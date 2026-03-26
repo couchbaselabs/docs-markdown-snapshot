@@ -2,7 +2,7 @@
 title: Resync
 description: Recalculating routing and data access following Sync Function changes
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/manage/pages/resync.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@sync-gateway:manage:resync.adoc[]
 ---
 
@@ -41,9 +41,9 @@ To update the Sync Function and fully resync, you are recommended to follow the 
 > [!NOTE]
 > This is an expensive operation because it requires every document in the database to be processed by the new function.
 
-The database can accept no requests until resync is complete because no user’s full access privileges are known until all documents have been scanned. Therefore, the Sync Function update will result in application downtime whilst the database is offline (that is, between the call to the `/{db}/_offline` and `/{db}/_online` endpoints in [Steps to Update and Resync](#steps-to-resync).
+The database can accept no requests until resync is complete because no user's full access privileges are known until all documents have been scanned. Therefore, the Sync Function update will result in application downtime whilst the database is offline (that is, between the call to the `/{db}/_offline` and `/{db}/_online` endpoints in [Steps to Update and Resync](#steps-to-resync).
 
-You won’t need to run the resync operation, if either:
+You won't need to run the resync operation, if either:
 
 * The modifications to the Sync Function only impact write security (and not routing/access), or,
 * You only want changes to channel/access rules to apply to documents written after the change was made.
@@ -70,17 +70,17 @@ When running a resync operation, the context in the Sync Function is the admin u
 
 ### [](#revoking-access)Revoking Access
 
-If you change the sync function to revoke a user’s access to a document, the access will only take effect once a new revision to that document is saved on Sync Gateway. Running a resync operation does not revoke access to that document.
+If you change the sync function to revoke a user's access to a document, the access will only take effect once a new revision to that document is saved on Sync Gateway. Running a resync operation does not revoke access to that document.
 
 ### [](#availability)Availability
 
-If you need to ensure access to the database during a Sync function update and resync, you can create a read-only backup of the Sync Gateway’s bucket beforehand, then run a secondary Sync Gateway on the backup bucket, in read-only mode. Once you detect the resync is complete, switch back to the main Sync Gateway and bucket.
+If you need to ensure access to the database during a Sync function update and resync, you can create a read-only backup of the Sync Gateway's bucket beforehand, then run a secondary Sync Gateway on the backup bucket, in read-only mode. Once you detect the resync is complete, switch back to the main Sync Gateway and bucket.
 
 ### [](#updating-clusters)Updating Clusters
 
 In a clustered environment with multiple Sync Gateway instances sharing the load, all the instances need to share the same configuration. To ensure this happens, you must taken all instances offline using the [/{db}/\_offline](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Management/operation/post%5Fdb-%5Foffline) endpoint.
 
-After the configuration is updated, **one** instance should be brought up so it can update the database—​if more than one is running at this time, they’ll conflict with each other. After the first instance finishes opening the database, the others can be started.
+After the configuration is updated, **one** instance should be brought up so it can update the database—​if more than one is running at this time, they'll conflict with each other. After the first instance finishes opening the database, the others can be started.
 
 ---
 

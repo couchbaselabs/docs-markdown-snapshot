@@ -3,7 +3,7 @@ title: Import Data with the Capella UI
 description: Use the Capella Import page to import data from your local drive
   into your cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/import-data-documents.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:data-service/import-data-documents.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:cloud:clusters:data-service/import-data-documents.adoc[]
 
 # Import Data with the Capella UI
 
-> Use the Capella Import page to import data from your local drive into your cluster. The Capella Import page guides you through each step of the process, prompting you to select source files and identify target locations. Capella prepares a preview of your import, displaying real-time updates as you explore options for refining your import. Using preview, you can ensure you’re satisfied with the import before importing data into your cluster. 
+> Use the Capella Import page to import data from your local drive into your cluster. The Capella Import page guides you through each step of the process, prompting you to select source files and identify target locations. Capella prepares a preview of your import, displaying real-time updates as you explore options for refining your import. Using preview, you can ensure you're satisfied with the import before importing data into your cluster. 
 
 ## [](#about-importing-data)About Importing Data
 
@@ -41,7 +41,7 @@ You can specify existing Scopes and Collections for your data import target. You
 
 ## [](#reviewing-and-refining-your-import)Reviewing and Refining Your Import
 
-Once you’ve specified your source file and target location, you can explore options for creating document keys and specify what parts of the data should be imported using Import Rules.
+Once you've specified your source file and target location, you can explore options for creating document keys and specify what parts of the data should be imported using Import Rules.
 
 ### [](#options-for-creating-document-keys)Options for Creating Document Keys
 
@@ -73,8 +73,8 @@ Using import rules, you can control which portions of your source file are inclu
 * **Skip the first n documents**: by default, Capella loads all documents. Setting this option skips a specified number of documents before importing. When enabled, enter the number of documents to skip before the import starts.
 * **Import a maximum of n documents**: stops loading after a specified number of documents. Use this to partially load large datasets. When enabled, enter the maximum number of documents to import.
 * **Exclude field names**: Omit named fields from the uploaded documents. Use this to remove a field from documents, for example, a document key from a field in a document. When enabled, specify a comma-separated list of field names to exclude from the import.
-* **Omit Empty Types**: rows in the CSV file which don’t contain data are stored as empty strings in the JSON doc. Setting this option removes these fields from the uploaded document.
-* **Infer Field Types**: all values in a CSV are interpreted as strings by default. Setting this option causes the Import tool to look at each value and decide if it’s a string, integer, or Boolean value and put the inferred field type into the document.
+* **Omit Empty Types**: rows in the CSV file which don't contain data are stored as empty strings in the JSON doc. Setting this option removes these fields from the uploaded document.
+* **Infer Field Types**: all values in a CSV are interpreted as strings by default. Setting this option causes the Import tool to look at each value and decide if it's a string, integer, or Boolean value and put the inferred field type into the document.
 
 ## [](#how-to-import-data)How to Import Data
 
@@ -117,7 +117,7 @@ For more examples of how to use `cbimport`, see [Import and Export Data with Com
 
 ### [](#import-sample-data)Import Sample Data
 
-Load sample data to try out Capella’s Data Tools.
+Load sample data to try out Capella's Data Tools.
 
 1. Go to **Data Tools** **Import**.
 2. Choose **Load sample data**.

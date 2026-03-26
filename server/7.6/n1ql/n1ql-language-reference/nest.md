@@ -3,7 +3,7 @@ title: NEST Clause
 description: The NEST clause creates an input object by producing a single
   result of nesting keyspaces.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/nest.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/nest.adoc[]
 ---
 
@@ -433,7 +433,7 @@ expr
 
 ### [](#return-values)Return Values
 
-If the right-hand source object is NULL, MISSING, empty, or a non-array value, then the result object’s right-side value is MISSING (omitted).
+If the right-hand source object is NULL, MISSING, empty, or a non-array value, then the result object's right-side value is MISSING (omitted).
 
 Nests can be chained with other NEST, JOIN, and UNNEST clauses. By default, an INNER NEST is performed. This means that for each result object produced, both the left and right source objects must be non-missing and non-null. The right-hand side result of NEST is always an array or MISSING. If there is no matching right source object, then the right source object is as follows:
 
@@ -505,7 +505,7 @@ Results
 Index NESTs allow you to flip the direction of a Lookup NEST clause. Index NESTs can be used efficiently when Lookup NESTs cannot efficiently nest left-hand side documents with right-to-left nests, and your situation cannot be flipped because your predicate needs to be on the left-hand side, such as [Example 4](#Lookup-NEST-Example-1) above where airline documents have no reference to route documents.
 
 > [!NOTE]
-> For index nests, the syntax uses `ON KEY` (singular) instead of `ON KEYS` (plural). This is because an Index NEST’s `ON KEY` expression must produce a scalar value; whereas a Lookup NEST’s `ON KEYS` expression can produce either a scalar or an array value.
+> For index nests, the syntax uses `ON KEY` (singular) instead of `ON KEYS` (plural). This is because an Index NEST's `ON KEY` expression must produce a scalar value; whereas a Lookup NEST's `ON KEYS` expression can produce either a scalar or an array value.
 
 ### [](#syntax-4)Syntax
 

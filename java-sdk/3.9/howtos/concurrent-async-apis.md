@@ -3,7 +3,7 @@ title: Async and Reactive APIs
 description: The Java SDK offers efficient, non-blocking alternatives to the
   regular blocking API.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@java-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -42,7 +42,7 @@ The following example fetches a document and prints out the `GetResult` once it 
     reactiveCollection.get("airline_10").subscribe(System.out::println, System.err::println);
 ```
 
-It is important to understand that reactive types are lazy, which means that they are only executed when a consumer subscribes to them. So a code like this won’t even be executed at all:
+It is important to understand that reactive types are lazy, which means that they are only executed when a consumer subscribes to them. So a code like this won't even be executed at all:
 
 ```java
     reactiveCollection.upsert("airline_10", JsonObject.create());

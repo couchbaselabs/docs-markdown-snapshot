@@ -1,7 +1,7 @@
 ---
 title: Writing Documentation Overview
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/asciidoc-overview.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:asciidoc-overview.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:home:contribute:asciidoc-overview.adoc[]
 
 The Couchbase documentation is written using AsciiDoc. AsciiDoc is a lightweight markup language that supports the structural and semantic elements necessary for writing web-first, technical documentation. You can write an AsciiDoc document using Atom, VS Code, or your preferred plain text editor.
 
-If a document contains incorrect AsciiDoc syntax, you’ll see a warning message that starts with `asciidoctor` when you build the site.
+If a document contains incorrect AsciiDoc syntax, you'll see a warning message that starts with `asciidoctor` when you build the site.
 
 asciidoctor: WARNING: backup-and-restore.adoc: line 12: invalid style for listing block: code
 

@@ -3,7 +3,7 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:python-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -19,7 +19,7 @@ This page covers using our operational Python SDK to connect to the Analytics Se
 > [!TIP]
 > Analytics SDKs
 > 
-> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase's analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
 > 
 > Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](../../../home/columnar-sdk.md) for more information.
 
@@ -31,7 +31,7 @@ The analytics service is available in [Capella operational](../../../cloud/clust
 
 After familiarizing yourself with our [introductory primer](../../../server/current/analytics/primer-beer.md), in particular creating a dataset and linking it to a bucket, try Couchbase Analytics using the Python SDK. Intentionally, the API for analytics is nearly identical to that of the query service.
 
-Here’s a complete example of doing a analytics and handling the results:
+Here's a complete example of doing a analytics and handling the results:
 
 ```py
 from couchbase.cluster import Cluster, ClusterOptions, AnalyticsOptions
@@ -62,7 +62,7 @@ except CouchbaseException as ex:
 > [!NOTE]
 > When using a Couchbase version < 6.5 you must create a valid Bucket connection using `cluster.bucket(name)` before you can use Analytics.
 
-Let’s break it down. An analytics query is always performed at the `Cluster` level, using the `analytics_query` method. It takes the statement as a required argument and then allows to provide additional options if needed.
+Let's break it down. An analytics query is always performed at the `Cluster` level, using the `analytics_query` method. It takes the statement as a required argument and then allows to provide additional options if needed.
 
 Once a result returns you can iterate the returned rows and/or access the `AnalyticsMetaData` associated with the query.
 
@@ -100,7 +100,7 @@ result = cluster.analytics_query(
     AnalyticsOptions(named_parameters={"country": "France"}))
 ```
 
-The complete code for this page’s example can be found at [analytics\_ops.py](https://github.com/couchbase/docs-sdk-python/blob/release/3.2/modules/howtos/examples/analytics%5Fops.py). What style you choose is up to you, for readability in more complex queries we generally recommend using the named parameters. Note that you cannot use parameters in all positions. If you put it in an unsupported place the server will respond with a `CompilationFailedException` or similar.
+The complete code for this page's example can be found at [analytics\_ops.py](https://github.com/couchbase/docs-sdk-python/blob/release/3.2/modules/howtos/examples/analytics%5Fops.py). What style you choose is up to you, for readability in more complex queries we generally recommend using the named parameters. Note that you cannot use parameters in all positions. If you put it in an unsupported place the server will respond with a `CompilationFailedException` or similar.
 
 ## [](#the-analytics-result)The Analytics Result
 

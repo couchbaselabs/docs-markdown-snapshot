@@ -4,7 +4,7 @@ description: Enterprise Analytics can be installed on Ubuntu Linux and Debian
   Linux for production and development use-cases. Root installation is
   supported.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/ubuntu-debian-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:install:ubuntu-debian-install.adoc[]
 ---
 
@@ -89,7 +89,7 @@ Once installation is complete, Enterprise Analytics starts automatically. It con
 
 Following installation and start-up of Enterprise Analytics, you must initialize and provision a node.
 
-* If it’s the first node in a deployment, initialization and provisioning happens all at once when you create a cluster of one.  
+* If it's the first node in a deployment, initialization and provisioning happens all at once when you create a cluster of one.  
 For more information, see [Create a Cluster](../manage/manage-nodes/create-cluster.md).
 * If you already have an existing cluster, the node is initialized and provisioned when you add it to the cluster.  
 For more information, see [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md).

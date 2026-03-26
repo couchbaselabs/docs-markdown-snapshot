@@ -1,7 +1,7 @@
 ---
 title: Toggles
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/toggles.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::toggles.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:styleguide::toggles.adoc[]
 
 # Toggles
 
-A toggle is a UI element that turns a specific feature on or off. It changes visually to indicate when it’s turned on or off.
+A toggle is a UI element that turns a specific feature on or off. It changes visually to indicate when it's turned on or off.
 
 It appears as a small switch in the UI:
 

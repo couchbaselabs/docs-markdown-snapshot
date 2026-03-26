@@ -2,7 +2,7 @@
 title: UPSERT
 description: UPSERT is used to insert a new record or update an existing one.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/upsert.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/upsert.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:cloud:n1ql:n1ql-language-reference/upsert.adoc[]
 
 # UPSERT
 
-> UPSERT is used to insert a new record or update an existing one. If the document doesn’t exist it will be created. UPSERT is a combination of INSERT and UPDATE. 
+> UPSERT is used to insert a new record or update an existing one. If the document doesn't exist it will be created. UPSERT is a combination of INSERT and UPDATE. 
 
 > [!WARNING]
 > Please note that the examples on this page will alter the data in your sample buckets. To restore your sample data, remove and reinstall the `travel-sample` bucket. Refer to [Import Sample Data](../../clusters/data-service/import-data-documents.md#import-sample-data) for details.

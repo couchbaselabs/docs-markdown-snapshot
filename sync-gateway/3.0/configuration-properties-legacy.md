@@ -4,7 +4,7 @@ description: Configuring <em>Sync Gateway</em> Pre-3.0 to provide secure
   cloud-to-edge synchronization of enterprise data using the standard, static,
   configuration file.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/configuration-properties-legacy.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::configuration-properties-legacy.adoc[]
 ---
 
@@ -22,11 +22,11 @@ Configuration Schema | [Javascript Functions](configuration-javascript-functions
 > [!IMPORTANT]
 > Legacy Configuration
 > 
-> This page describes Sync Gateway’s legacy Pre-3.0 configuration method — for current configuration details — see: [Configuration Overview](configuration-overview.md) and-or [Bootstrap Configuration](configuration-schema-bootstrap.md).
+> This page describes Sync Gateway's legacy Pre-3.0 configuration method — for current configuration details — see: [Configuration Overview](configuration-overview.md) and-or [Bootstrap Configuration](configuration-schema-bootstrap.md).
 
 ## [](#introduction)Introduction
 
-This page describes Sync Gateway’s legacy Pre-3.0 configuration method. It uses a centralized configuration file to hold all configuration settings in JSON form — see:[the schema](#lbl-schema) for the file contents.
+This page describes Sync Gateway's legacy Pre-3.0 configuration method. It uses a centralized configuration file to hold all configuration settings in JSON form — see:[the schema](#lbl-schema) for the file contents.
 
 > [!IMPORTANT]
 > Persistent Configuration is enabled by default from 3.0.
@@ -37,7 +37,7 @@ Many configuration settings can be changed using the [Admin REST API](rest-api-a
 
 ## [](#lbl-format)File Format
 
-The Configuration Properties file defines sync gateway’s runtime behavior. Its contents include, for example:
+The Configuration Properties file defines sync gateway's runtime behavior. Its contents include, for example:
 
 * Details of the connected Couchbase databases
 * How replications are conducted

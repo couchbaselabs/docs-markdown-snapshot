@@ -2,7 +2,7 @@
 title: Calculate Aggregates and Group Results
 description: How to calculate aggregates and group the results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/group-agg.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:guides:group-agg.adoc[]
 ---
 
@@ -137,7 +137,7 @@ For more information, see [FILTER Clause](../n1ql/n1ql-language-reference/aggreg
 
 ## [](#grouping-the-results)Grouping the Results
 
-By default, an aggregate function returns a single result for all the documents that the query selects. It’s often more useful to group the documents (by a different field) and return the aggregate result for each group.
+By default, an aggregate function returns a single result for all the documents that the query selects. It's often more useful to group the documents (by a different field) and return the aggregate result for each group.
 
 To group the results of an aggregate query, use the GROUP BY clause.
 

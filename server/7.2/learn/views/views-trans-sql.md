@@ -3,7 +3,7 @@ title: Translating SQL to MapReduce
 description: This section provides information on how to translate SQL to a
   MapReduce environment.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-trans-sql.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:views/views-trans-sql.adoc[]
 ---
 
@@ -17,9 +17,9 @@ link: xref:7.2@server:learn:views/views-trans-sql.adoc[]
 If you have existing SQL queries and need materialized reductions, you can follow the guidelines on this page for translating SQL queries to MapReduce views.
 
 > [!IMPORTANT]
-> If you don’t need materialized reductions, we recommend that you reformulate your SQL queries to use SQL++ rather than MapReduce views.
+> If you don't need materialized reductions, we recommend that you reformulate your SQL queries to use SQL++ rather than MapReduce views.
 
-Here’s an example of a SQL statement that you might want to translate:
+Here's an example of a SQL statement that you might want to translate:
 
 SELECT fieldlist FROM table
     WHERE condition
@@ -90,7 +90,7 @@ The `WHERE` clause within an SQL statement forms the selection criteria for choo
 
 In general, for each `WHERE` clause you need to include the corresponding field in the key of the generated view, and then use the `key`, `keys` or `startkey` / `endkey` combinations to indicate the data you want to select. The complexity occurs when you need to perform queries on multiple fields. There are a number of different strategies that you can use for this.
 
-The simplest way is to decide whether you want to be able to select a specific combination, or whether you want to perform range or multiple selections. For example, using our recipe database, if you want to select recipes that use the ingredient ‘carrot’ and have a cooking time of exactly 20 minutes, then you can specify these two fields in the `map()` function:
+The simplest way is to decide whether you want to be able to select a specific combination, or whether you want to perform range or multiple selections. For example, using our recipe database, if you want to select recipes that use the ingredient 'carrot' and have a cooking time of exactly 20 minutes, then you can specify these two fields in the `map()` function:
 
 function(doc, meta)
 {
@@ -120,7 +120,7 @@ This works because of the sorting mechanism in a view, which outputs the informa
 
 More complex queries though are more difficult. What if you want to select recipes with carrots and rice, still preparable in under 20 minutes?
 
-A standard `map()` function like that above wont work. A range query on both ingredients will list all the ingredients between the two. There are a number of solutions available to you. First, the easiest way to handle the timing selection is to create a view that explicitly selects recipes prepared within the specified time. Here’s an example:
+A standard `map()` function like that above wont work. A range query on both ingredients will list all the ingredients between the two. There are a number of solutions available to you. First, the easiest way to handle the timing selection is to create a view that explicitly selects recipes prepared within the specified time. Here's an example:
 
 function(doc, meta)
 {
@@ -130,7 +130,7 @@ function(doc, meta)
   }
 }
 
-Although this approach seems to severely limit your queries, remember you can create multiple views, so you could create one for 10 minutes, one for 20 minutes, one for 30 minutes, or whatever intervals you select. It’s unlikely that anyone will really want to select recipes that can be prepared in 17 minutes, so such granular selection is overkill.
+Although this approach seems to severely limit your queries, remember you can create multiple views, so you could create one for 10 minutes, one for 20 minutes, one for 30 minutes, or whatever intervals you select. It's unlikely that anyone will really want to select recipes that can be prepared in 17 minutes, so such granular selection is overkill.
 
 The multiple ingredients is more difficult to solve. One way is to use the client to perform two queries and merge the data. For example, the `map()` function:
 
@@ -213,7 +213,7 @@ function(doc, meta)
    emit([doc.city, doc.name], null)
 }
 
-If you need to query on a value, and that query specification is part of the order sequence then you can use the format above. For example, if the query basis is city, then you can extract all the records for ‘London’ using the above view and a suitable range query:
+If you need to query on a value, and that query specification is part of the order sequence then you can use the format above. For example, if the query basis is city, then you can extract all the records for 'London' using the above view and a suitable range query:
 
 ?endkey=["London\u0fff"]&startkey=["London"]
 
@@ -236,7 +236,7 @@ For example:
 
 SELECT name,city,SUM(sales) FROM sales GROUP BY name,city
 
-This query groups the information by the two fields ‘name’ and ‘city’ and produces a sum total of these values. To translate this into a MapReduce function within Couchbase Server:
+This query groups the information by the two fields 'name' and 'city' and produces a sum total of these values. To translate this into a MapReduce function within Couchbase Server:
 
 * From the list of selected fields, identify the field used for the calculation. These will need to be exposed within the value emitted by the `map()` function.
 * Identify the list of fields in the `GROUP BY` clause. These will need to be output within the key of the `map()` function.

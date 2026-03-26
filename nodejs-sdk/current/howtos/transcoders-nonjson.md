@@ -3,7 +3,7 @@ title: Transcoders and Non-JSON Documents
 description: The Node SDK supports common JSON, string and binary document
   requirements out-of-the-box.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
@@ -45,7 +45,7 @@ This table summarizes that information, and this more concise form will be used 
 It is most common to store JSON with Couchbase. However, it is possible to store non-JSON documents, such as raw binary data.
 
 > [!NOTE]
-> It’s important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
+> It's important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
 
 Also note that some simple data types can be stored directly as JSON, without recourse to non-JSON transcoding. A valid JSON document can be a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value.
 
@@ -62,7 +62,7 @@ Note that this transcoder does not accept a serializer, and always performs stra
 | String   | String → Buffer | CF\_UTF8                |
 | NF\_UTF8 | anything else   | Error: bad value passed |
 
-Here’s an example of using the `RawStringTranscoder`:
+Here's an example of using the `RawStringTranscoder`:
 
 ```javascript
 try {
@@ -98,7 +98,7 @@ The RawBinaryTranscoder provides the ability for the user to explicitly store an
 | Buffer  | Buffer        | CF\_RAW                 |
 | NF\_RAW | anything else | Error: bad value passed |
 
-Here’s an example of using the `RawBinaryTranscoder`:
+Here's an example of using the `RawBinaryTranscoder`:
 
 ```jvascript
 try {
@@ -130,7 +130,7 @@ More advanced transcoding needs can be accomplished if the application implement
 
 We saw above two examples of custom transcoders with `RawStringTranscoder` and `RawBinaryTranscoder`
 
-It’s easy to create a transcoders. Simply implement the Transcoder interface’s two methods:
+It's easy to create a transcoders. Simply implement the Transcoder interface's two methods:
 
 ```javascript
 /**

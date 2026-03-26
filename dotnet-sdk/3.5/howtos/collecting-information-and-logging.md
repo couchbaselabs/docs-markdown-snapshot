@@ -6,7 +6,7 @@ description: Couchbase .NET SDK3 relies on the Microsoft.Extensions.Logging API
   a wide variety of compatible 3rd party logging implementations such as
   Serilog, NLog, and others.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.5/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.5@dotnet-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
@@ -91,7 +91,7 @@ Note that because we are using [Couchbase Dependency Injection](https://www.nuge
 
 ## [](#logging-in-applications-targeting-the-net-full-framework)Logging in applications targeting the .NET Full Framework
 
-Targeting logging in .NET Full applications is a bit more challenging in that there is no DI container, thus the standard way of injecting the logging dependencies won’t work. Furthermore, since there is no support for the `Microsoft.Extensions.Logging` interfaces, we’ll need to create our own wrappers. One for a Log4Net `ILogger` implementation:
+Targeting logging in .NET Full applications is a bit more challenging in that there is no DI container, thus the standard way of injecting the logging dependencies won't work. Furthermore, since there is no support for the `Microsoft.Extensions.Logging` interfaces, we'll need to create our own wrappers. One for a Log4Net `ILogger` implementation:
 
 ```csharp
 public class Log4NetLogger : ILogger

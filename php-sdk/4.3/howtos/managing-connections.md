@@ -2,7 +2,7 @@
 title: Managing Connections
 description: This section describes how to connect the PHP SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@php-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -38,7 +38,7 @@ $cluster = new Cluster($connectionString, $opts);
 ```
 
 > [!TIP]
-> You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
+> You don't need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ## [](#connection-strings)Connection Strings
 
@@ -74,7 +74,7 @@ We recommend creating a single `Cluster` instance when your application starts u
 
 ## [](#alternate-addresses-and-custom-ports)Alternate Addresses and Custom Ports
 
-If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT’d environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
+If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT'd environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
 
 On the server side, each server node must be configured to advertise its external address as well as any custom port mapping. This is done with the `setting-alternate-address` [CLI command](#7.1@server:cli:cbcli/couchbase-cli-setting-alternate-address.adoc) introduced in Couchbase Server 6.5\. A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
 
@@ -91,7 +91,7 @@ $cluster = new Cluster($connectionString, $opts);
 > [!TIP]
 > In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node.
 
-In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `io.networkResolution` client setting to `default` if the client and server are on the same network, or `external` if they’re on different networks.
+In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `io.networkResolution` client setting to `default` if the client and server are on the same network, or `external` if they're on different networks.
 
 > [!NOTE]
 > Any TLS certificates must be set up at the point where the connections are being made.
@@ -103,14 +103,14 @@ Couchbase Server Enterprise Edition and Couchbase Capella support full encryptio
 For TLS verification the SDK uses the following certificates:
 
 * The certificates in the Mozilla Root CA bundle (bundled with the SDK as of 4.1.4 and obtained from [curl](https://curl.se/docs/caextract.html)).
-* The certificates in OpenSSL’s default certificate store (as of 4.1.0).
+* The certificates in OpenSSL's default certificate store (as of 4.1.0).
 * The self-signed root certificate that is used to sign Capella Certificates (bundled with the SDK as of 4.0.0).
 
 The OpenSSL defaults can be overridden using the `SSL_CERT_DIR` and `SSL_CERT_FILE` environment variables. `The SSL_CERT_DIR` variable is used to set a specific directory in which the client should look for individual certificate files, whereas the `SSL_CERT_FILE` environment variable is used to point to a single file containing one or more certificates. More information can be found in the relevant [OpenSSL documentation](https://www.openssl.org/docs/man1.1.1/man3/SSL%5FCTX%5Fload%5Fverify%5Flocations.html).
 
 Loading the Mozilla certificates can be disabled using the `disable_mozilla_ca_certificates` connection string parameter.
 
-The Couchbase++ core’s metadata provide information about where OpenSSL’s default certificate store is located, which version of the Mozilla Root CA store is bundled with the SDK, and other useful details. You can obtain the metadata using the following command:
+The Couchbase++ core's metadata provide information about where OpenSSL's default certificate store is located, which version of the Mozilla Root CA store is bundled with the SDK, and other useful details. You can obtain the metadata using the following command:
 
 ```console
 $  php -r 'print_r(Couchbase\Extension\version());'
@@ -141,12 +141,12 @@ With debug-level logging enabled, if the Mozilla certificates have been loaded, 
 * Couchbase Capella
 * Couchbase Server
 
-The PHP SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
+The PHP SDK bundles Capella's standard root certificate by default. This means you don't need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
 > [!NOTE]
-> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
+> Capella's root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
 
-Certificates from the Mozilla Root CA store are now bundled with the SDK. If the server’s certificate is signed by a well-known CA (e.g., GoDaddy, Verisign, etc.), you don’t need to configure the `trust_certiciate` path in your connection string.
+Certificates from the Mozilla Root CA store are now bundled with the SDK. If the server's certificate is signed by a well-known CA (e.g., GoDaddy, Verisign, etc.), you don't need to configure the `trust_certiciate` path in your connection string.
 
 You can still provide a certificate explicitly if necessary:
 
@@ -183,7 +183,7 @@ $cluster = new Cluster($connectionString, $opts);
 
 Then use this custom `Cluster` when opening the connection to the cluster.
 
-If you want to verify it’s actually working, you can use a tool like `tcpdump`. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
+If you want to verify it's actually working, you can use a tool like `tcpdump`. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
 
 E..e..@.@.............+......q{...#..Y.....
 .E...Ey........9........................id{"key":"value"}
@@ -196,7 +196,7 @@ E.....@.@.............+....Z.'yZ..#........
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 
-As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it’s good practice to always enable DNS-SRV on the client.
+As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it's good practice to always enable DNS-SRV on the client.
 
 The following steps are necessary to make it work:
 
@@ -239,7 +239,7 @@ $connectionString = "couchbase://couchbase.example.com";
 $cluster = new Cluster($connectionString, $opts);
 ```
 
-If the DNS SRV records could not be loaded properly you’ll get the message logged and the given host name will be used as an A record lookup.
+If the DNS SRV records could not be loaded properly you'll get the message logged and the given host name will be used as an A record lookup.
 
 [2020-09-07 14:30:26.358] [186383,186390] [warning] 47ms, DNS SRV query returned 0 records for "localhost", assuming that cluster is listening this address
 
@@ -254,7 +254,7 @@ We strongly recommend that the client and server [are in the same LAN-like envir
 
 ### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 
-Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
+Some DNS caching providers (notably, home routers) can't handle an SRV record that's large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
 
 ## [](#further-reading)Further Reading
 

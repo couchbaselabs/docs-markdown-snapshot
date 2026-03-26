@@ -2,7 +2,7 @@
 title: Deploying a Sync Gateway Cluster
 description: Connect Sync Gateway to a Server Cluster Deployed with CAO 1.2.x
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/use-kubernetes/pages/deploy-cluster-to-kubernetes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@sync-gateway:use-kubernetes:deploy-cluster-to-kubernetes.adoc[]
 ---
 
@@ -16,13 +16,13 @@ link: xref:3.3@sync-gateway:use-kubernetes:deploy-cluster-to-kubernetes.adoc[]
 
 ## [](#how-to)How to
 
-Follow the instructions in this tutorial to connect Sync Gateway deployed on _Kubernetes_ to a Couchbase Server cluster — [Connect Sync Gateway to a Couchbase Cluster](../../../operator/current/tutorial-sync-gateway.md). See also the prerequisites in the tutorial’s [Connecting Sync Gateway to Server (Prerequisites)](../../../operator/current/tutorial-sync-gateway.md#prerequisites) section.
+Follow the instructions in this tutorial to connect Sync Gateway deployed on _Kubernetes_ to a Couchbase Server cluster — [Connect Sync Gateway to a Couchbase Cluster](../../../operator/current/tutorial-sync-gateway.md). See also the prerequisites in the tutorial's [Connecting Sync Gateway to Server (Prerequisites)](../../../operator/current/tutorial-sync-gateway.md#prerequisites) section.
 
 **If the Couchbase Server was deployed using Couchbase Autonomous Operater 1.2**, then the following deviations from those instructions apply:
 
-* You cannot configure Mutual TLS (mTLS, or two-way TLS) to connect to the Couchbase Server, although you _can_ use one-way TLS (see: the tutorial’s [Enabling TLS Connectivity to Couchbase Server](../../../operator/current/tutorial-sync-gateway.md#enabling-tls-connectivity-to-couchbase-server) section).
+* You cannot configure Mutual TLS (mTLS, or two-way TLS) to connect to the Couchbase Server, although you _can_ use one-way TLS (see: the tutorial's [Enabling TLS Connectivity to Couchbase Server](../../../operator/current/tutorial-sync-gateway.md#enabling-tls-connectivity-to-couchbase-server) section).
 * If you are using RBAC users to connect, you need to create the sync gateway user as shown in [Create an RBAC User](../start-here/get-started-prepare.md#step-2create-rbac-user).  
-This user is referenced in the tutorial’s [Configuring RBAC User for Sync Gateway](../../../operator/current/tutorial-sync-gateway.md#configuring-rbac-user-for-sync-gateway) section.
+This user is referenced in the tutorial's [Configuring RBAC User for Sync Gateway](../../../operator/current/tutorial-sync-gateway.md#configuring-rbac-user-for-sync-gateway) section.
 
 ---
 

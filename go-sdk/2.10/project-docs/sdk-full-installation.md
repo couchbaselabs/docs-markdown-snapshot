@@ -2,7 +2,7 @@
 title: Full Installation
 description: Installation instructions for the Couchbase Go Client.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.10@go-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:2.10@go-sdk:project-docs:sdk-full-installation.adoc[]
 
 The Couchbase Go SDK 2.x is a complete rewrite of the API, reducing the number of overloads to present a simplified surface area, and adding support for future Couchbase Server features like [Collections and Scopes](../concept-docs/collections.md)(available from Couchbase Server 7.0 onwards). The Go 2.x SDK also introduces improved error handling providing extra error information.
 
-If you’re upgrading your application from Couchbase Go SDK 1.x, please read the [Migration Guide](migrating-sdk-code-to-3.n.md).
+If you're upgrading your application from Couchbase Go SDK 1.x, please read the [Migration Guide](migrating-sdk-code-to-3.n.md).
 
 ## [](#installing-the-sdk)Installing the SDK
 

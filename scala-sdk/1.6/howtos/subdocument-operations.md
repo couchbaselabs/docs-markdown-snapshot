@@ -3,7 +3,7 @@ title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.6@scala-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -172,7 +172,7 @@ result match {
 
 ## [](#choosing-an-api)Choosing an API
 
-The Scala SDK provides three APIs for all operations. There’s the simple blocking one you’ve already seen, then this asynchronous variant that returns Scala `Future`:
+The Scala SDK provides three APIs for all operations. There's the simple blocking one you've already seen, then this asynchronous variant that returns Scala `Future`:
 
 ```scala
 val future: Future[LookupInResult] = collection.async.lookupIn("customer123", Array(
@@ -243,7 +243,7 @@ result match {
 }
 ```
 
-Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here’s an example of one which replaces one path and removes another.
+Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here's an example of one which replaces one path and removes another.
 
 ```scala
 val result = collection.mutateIn("customer123", Array(
@@ -463,7 +463,7 @@ results match {
 
 Errors from the replicas and the active are ignored, so if all fail (including if the document does not exist), an empty stream is returned.
 
-You may want to use `lookupInAllReplicas` to build a consensus, but it’s more likely that you’ll make use of `lookupInAnyReplica` as a fallback to a `lookupIn`, when the active node times out.
+You may want to use `lookupInAllReplicas` to build a consensus, but it's more likely that you'll make use of `lookupInAnyReplica` as a fallback to a `lookupIn`, when the active node times out.
 
 ## [](#concurrent-modifications)Concurrent Modifications
 
@@ -496,7 +496,7 @@ val result = collection.get("player432")
 
 ## [](#durability)Durability
 
-Couchbase’s [traditional durability](#2.7@java-sdk::durability.adoc), using `PersistTo` and `ReplicateTo`, is [still available](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), particularly for talking to Couchbase Server 6.0 and earlier:
+Couchbase's [traditional durability](#2.7@java-sdk::durability.adoc), using `PersistTo` and `ReplicateTo`, is [still available](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), particularly for talking to Couchbase Server 6.0 and earlier:
 
 ```scala
 val result = collection.mutateIn("key", Array(

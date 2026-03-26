@@ -3,7 +3,7 @@ title: Upgrading a Cluster
 description: Upgrades are scheduled as needed on Capella Analytics clusters to
   provide a reliable service with the latest features.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/upgrade-cluster.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:admin:upgrade-cluster.adoc[]
 ---
 
@@ -18,7 +18,7 @@ This page walks you through maintenance jobs for Capella Analytics cluster upgra
 
 ## [](#database-upgrade-timeframes)Cluster Upgrade Timeframes
 
-When planning for cluster upgrades, it’s important to understand the upgrade timeframes:
+When planning for cluster upgrades, it's important to understand the upgrade timeframes:
 
 * **Notice period**: the timeframe between when the maintenance job is scheduled (and maintenance notifications are sent) and the scheduled upgrade date (target start time). You receive notification emails when Capella schedules a maintenance job. For more information, see [Manage Maintenance Email Notifications](#upgrade-email-notifications).
 * **Upgrade window**: the timeframe during which the maintenance job can begin. This time is dependent on the upgrade type and begins after the notice period ends, allowing you to adjust the maintenance schedule as needed. For more information, see [Reschedule an Individual Maintenance Job](#reschedule-maintenance-job).
@@ -79,7 +79,7 @@ Depending on the type of upgrade and the target start time, you can schedule a n
 
 To reschedule your maintenance job:
 
-1. On your Capella Analytics cluster’s **Maintenance** page, click on the job name in the **Maintenance Jobs** list.
+1. On your Capella Analytics cluster's **Maintenance** page, click on the job name in the **Maintenance Jobs** list.
 2. Select one of the following:
 
   * **Keep current schedule**.
@@ -101,7 +101,7 @@ To view canceled maintenance jobs:
 
 You can set a preferred time and day of the week for future maintenance jobs to be scheduled. This does not reschedule maintenance jobs that are already scheduled on the Maintenance tab.
 
-When an upgrade or maintenance becomes available, Capella Analytics attempts to schedule the maintenance at your preferred time and day of the week. The preferred time is not a guarantee. If it’s not possible to schedule the maintenance at your preferred time, the cluster is scheduled at any time within the maintenance window.
+When an upgrade or maintenance becomes available, Capella Analytics attempts to schedule the maintenance at your preferred time and day of the week. The preferred time is not a guarantee. If it's not possible to schedule the maintenance at your preferred time, the cluster is scheduled at any time within the maintenance window.
 
 To set a preferred maintenance day and time for all upcoming jobs:
 

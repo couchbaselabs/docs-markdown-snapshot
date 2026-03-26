@@ -1,7 +1,7 @@
 ---
 title: Online Persistent Volume Expansion
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/tutorial-volume-expansion.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@operator::tutorial-volume-expansion.adoc[]
 ---
 
@@ -17,23 +17,23 @@ link: xref:2.8@operator::tutorial-volume-expansion.adoc[]
 
 ## [](#introduction)Introduction
 
-In this tutorial you’ll learn how to use the Kubernetes Operator to expand persistent volumes that are already in use by Couchbase clusters without needing to perform an upgrade on the underlying storage subsystem. The Kubernetes Operator performs storage upgrades by working in conjunction with [Kubernetes Persistent Volume Expansion](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims) to claim additional storage for running pods without any downtime.
+In this tutorial you'll learn how to use the Kubernetes Operator to expand persistent volumes that are already in use by Couchbase clusters without needing to perform an upgrade on the underlying storage subsystem. The Kubernetes Operator performs storage upgrades by working in conjunction with [Kubernetes Persistent Volume Expansion](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims) to claim additional storage for running pods without any downtime.
 
 ## [](#before-you-begin)Before You Begin
 
 This tutorial uses the context of Azure Kubernetes Service (AKS), but the steps generally apply to any Kubernetes environment.
 
-Before you begin, you’ll need to set up a few things first:
+Before you begin, you'll need to set up a few things first:
 
-* You’ll need a Kubernetes cluster with at least 3 available worker nodes that have at least 20GiB of storage capacity.
+* You'll need a Kubernetes cluster with at least 3 available worker nodes that have at least 20GiB of storage capacity.
 
   * If you need to set up a cluster on AKS, refer to [Quickstart: Deploy an AKS cluster using the Azure portal](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal).
 * Your environment needs to have a `StorageClass` capable of performing volume expansions. Refer to [Online Volume Expansion](howto-persistent-volumes.md#online-volume-expansion) for more information about supported storage classes.
 
-  * This tutorial references the `azurefile` storage class which is provided by the Azure Kubernetes Service (AKS). You’ll need to use the name of your particular storage class if installing in a non-AKS Kubernetes environment.
-* You’ll need [Helm version 3.1](https://helm.sh/docs/intro/install/) or higher for installing the necessary dependencies (e.g. the Kubernetes Operator, the Couchbase cluster, etc.)
+  * This tutorial references the `azurefile` storage class which is provided by the Azure Kubernetes Service (AKS). You'll need to use the name of your particular storage class if installing in a non-AKS Kubernetes environment.
+* You'll need [Helm version 3.1](https://helm.sh/docs/intro/install/) or higher for installing the necessary dependencies (e.g. the Kubernetes Operator, the Couchbase cluster, etc.)
 
-  * Once you have Helm installed, you’ll need to add the Couchbase chart repository:  
+  * Once you have Helm installed, you'll need to add the Couchbase chart repository:  
   ```console  
   $ helm repo add couchbase https://couchbase-partners.github.io/helm-charts/  
   ```  
@@ -45,7 +45,7 @@ Before you begin, you’ll need to set up a few things first:
 
 ## [](#create-the-couchbase-cluster-deployment)Create the Couchbase Cluster Deployment
 
-Let’s start by setting up our Couchbase deployment. To speed up the process, we’ll be using the Couchbase Helm chart to conveniently install a Couchbase cluster with persistent volumes.
+Let's start by setting up our Couchbase deployment. To speed up the process, we'll be using the Couchbase Helm chart to conveniently install a Couchbase cluster with persistent volumes.
 
 Run the following command to create a file with the necessary override values for the Couchbase chart:
 
@@ -91,8 +91,8 @@ EOF
 
 | **1** | [couchbaseclusters.spec.enableOnlineVolumeExpansion](resource/couchbasecluster.md#couchbaseclusters-spec-enableonlinevolumeexpansion): Setting this field to true enables online expansion of persistent volumes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **2** | [couchbaseclusters.spec.servers.volumeMounts](resource/couchbasecluster.md#couchbaseclusters-spec-servers-volumemounts): With this configuration we’re telling the Kubernetes Operator to provision persistent volume claims for the data mount path according to the data-expanding claim template.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| **3** | [couchbaseclusters.spec.volumeClaimTemplates](resource/couchbasecluster.md#couchbaseclusters-spec-volumeclaimtemplates): This configuration defines the data-expanding claim template. volumeClaimTemplates.spec.storageClassName: This field refers to the name of the storage class that services volume claims. The storage class **must** support volume expansion in order to add additional storage in-place. Here we’re using the [azurefile](https://docs.microsoft.com/en-us/azure/aks/concepts-storage#storage-classes) storage class. volumeClaimTemplates.spec.resources: This field defines the size of the volume that will be allocated. Here we’re requesting 5Gi volumes. Volume expansion is triggered when this value is increased. |
+| **2** | [couchbaseclusters.spec.servers.volumeMounts](resource/couchbasecluster.md#couchbaseclusters-spec-servers-volumemounts): With this configuration we're telling the Kubernetes Operator to provision persistent volume claims for the data mount path according to the data-expanding claim template.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **3** | [couchbaseclusters.spec.volumeClaimTemplates](resource/couchbasecluster.md#couchbaseclusters-spec-volumeclaimtemplates): This configuration defines the data-expanding claim template. volumeClaimTemplates.spec.storageClassName: This field refers to the name of the storage class that services volume claims. The storage class **must** support volume expansion in order to add additional storage in-place. Here we're using the [azurefile](https://docs.microsoft.com/en-us/azure/aks/concepts-storage#storage-classes) storage class. volumeClaimTemplates.spec.resources: This field defines the size of the volume that will be allocated. Here we're requesting 5Gi volumes. Volume expansion is triggered when this value is increased. |
 
 Now, install the Couchbase chart, making sure to specify the values override file we just created:
 
@@ -101,7 +101,7 @@ $ helm install -f pvc_resize_values.yaml expand couchbase/couchbase-operator
 ```
 
 > [!NOTE]
-> The Couchbase chart deploys the Kubernetes Operator by default. If you already have the Kubernetes Operator deployed in the current namespace, then you’ll need to specify additional overrides during chart installation so that only the Couchbase cluster is deployed:
+> The Couchbase chart deploys the Kubernetes Operator by default. If you already have the Kubernetes Operator deployed in the current namespace, then you'll need to specify additional overrides during chart installation so that only the Couchbase cluster is deployed:
 > 
 > ```console
 > $ helm install -f pvc_resize_values.yaml --set install.couchbaseOperator=false,install.admissionController=false expand couchbase/couchbase-operator
@@ -109,7 +109,7 @@ $ helm install -f pvc_resize_values.yaml expand couchbase/couchbase-operator
 
 ### [](#verify-the-installation)Verify the Installation
 
-The configuration we’re using calls for a three-node Couchbase cluster (two `data` nodes and one `search` node), which will take a few minutes to be created. You can run the following command to verify the deployment status:
+The configuration we're using calls for a three-node Couchbase cluster (two `data` nodes and one `search` node), which will take a few minutes to be created. You can run the following command to verify the deployment status:
 
 ```console
 $ kubectl describe couchbasecluster expand-couchbase-cluster
@@ -124,7 +124,7 @@ Events:
 
 ## [](#expand-the-persistent-volume)Expand the Persistent Volume
 
-Now let’s modify the [CouchbaseCluster](resource/couchbasecluster.md) resource in order to initiate volume expansion.
+Now let's modify the [CouchbaseCluster](resource/couchbasecluster.md) resource in order to initiate volume expansion.
 
 ```console
 $ kubectl edit couchbasecluster scale-couchbase-cluster
@@ -144,7 +144,7 @@ and change the requested storage of the `data-expanding` template from `5Gi` to 
           storage: 10Gi (1)
 ```
 
-| **1** | Here we’re changing the requested storage of the data-expanding template from 5Gi to 10Gi. This will trigger the expansion of _all_ the Couchbase services that reference data-expanding template. |
+| **1** | Here we're changing the requested storage of the data-expanding template from 5Gi to 10Gi. This will trigger the expansion of _all_ the Couchbase services that reference data-expanding template. |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 Save the configuration changes to initiate the volume expansion task.

@@ -3,7 +3,7 @@ title: USE Clause
 description: The USE clause enables you to specify that the query should use
   particular keys, or a particular index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/hints.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/hints.adoc[]
 ---
 
@@ -46,7 +46,7 @@ use-clause ::= use-keys-clause | use-index-clause
 
 ### [](#purpose-2)Purpose
 
-You can refer to a document’s unique document key by using the `USE KEYS` clause. Only documents having those document keys will be included as inputs to a query.
+You can refer to a document's unique document key by using the `USE KEYS` clause. Only documents having those document keys will be included as inputs to a query.
 
 There is no optimizer hint equivalent to this clause.
 

@@ -3,7 +3,7 @@ title: Getting a Reference
 description: The REST API can be used to retrieve an existing XDCR reference to
   a defined, target cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-xdcr-get-ref.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:rest-xdcr-get-ref.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:7.6@server:rest-api:rest-xdcr-get-ref.adoc[]
 
 On the cluster that is intended to be a _source_ for XDCR, a _reference_ to an intended _target_ cluster must first be defined. The target cluster is typically a different cluster from the source cluster; but may be the same cluster.
 
-Following their definition, details of all a source cluster’s references can be retrieved.
+Following their definition, details of all a source cluster's references can be retrieved.
 
 The Full Admin, Cluster Admin, or XDCR Admin role is required.
 

@@ -3,7 +3,7 @@ title: Supported Operating System Versions
 description: Couchbase Lite on Java -- the OS and SDK versions on which this
   framework is supported
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/java/pages/supported-os.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite:java:supported-os.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:3.3@couchbase-lite:java:supported-os.adoc[]
 # Supported Operating System Versions
 
 > Description — _Couchbase Lite on Java — the OS and SDK versions on which this framework is supported_  
-> Related Content — [What’s New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
+> Related Content — [What's New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
 
 ## [](#officially-supported-versions)Officially Supported Versions
 

@@ -2,7 +2,7 @@
 title: Expressions
 description: A description of SQL++ for Enterprise Analytics expressions.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/2_expr.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sqlpp:2_expr.adoc[]
 ---
 
@@ -191,7 +191,7 @@ SOME x IN [ 1, 2, 3 ] SATISFIES x < 3  -- ➋
 ➀ Returns `FALSE`  
 ➁ Returns `TRUE`
 
-If the set in these examples is empty `[ ]`, the first expression yields `TRUE` because every value in an empty set satisfies the condition of less than 3\. The second expression yields `FALSE` because there are no values in the set, there aren’t some, or any, values that are less than 3\. To express a universal predicate that yields `FALSE` with the empty set, you use the quantifier `SOME AND EVERY` in place of `EVERY`.
+If the set in these examples is empty `[ ]`, the first expression yields `TRUE` because every value in an empty set satisfies the condition of less than 3\. The second expression yields `FALSE` because there are no values in the set, there aren't some, or any, values that are less than 3\. To express a universal predicate that yields `FALSE` with the empty set, you use the quantifier `SOME AND EVERY` in place of `EVERY`.
 
 A quantified expression returns `NULL` or `MISSING` if the first expression in it evaluates to `NULL` or `MISSING`. Otherwise, a type error results if the first expression in a quantified expression does not return a collection.
 

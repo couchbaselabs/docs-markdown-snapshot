@@ -2,7 +2,7 @@
 title: TLS Certificate Authentication
 description: Securing Couchbase Sync Gateway with TLS Authentication
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/authentication-certs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::authentication-certs.adoc[]
 ---
 
@@ -26,11 +26,11 @@ To access the Admin REST API from an entirely different network or from a remote
 
 **Authorization**
 
-In addition to the Admin REST API, a user can be assigned to a role with additional privileges. The role and the user assigned to it can be created in the configuration file. Then, the Sync Function’s [requireRole()](sync-function-api-require-role-cmd.md) helper function can be used to allow certain operations only if the user has that role.
+In addition to the Admin REST API, a user can be assigned to a role with additional privileges. The role and the user assigned to it can be created in the configuration file. Then, the Sync Function's [requireRole()](sync-function-api-require-role-cmd.md) helper function can be used to allow certain operations only if the user has that role.
 
 **Data Model Validation**
 
-In a NoSQL database, it is the application’s responsibility to ensure that the documents are created in accordance with the data model adopted throughout the system. As an additional check, the Sync Function’s [throw()](sync-function-api-throw-cmd.md) method can be used to reject documents that do not follow the pre-defined data model.
+In a NoSQL database, it is the application's responsibility to ensure that the documents are created in accordance with the data model adopted throughout the system. As an additional check, the Sync Function's [throw()](sync-function-api-throw-cmd.md) method can be used to reject documents that do not follow the pre-defined data model.
 
 ## [](#connection-to-sync-gateway)Connection to Sync Gateway
 
@@ -44,7 +44,7 @@ A path to a PEM-format file containing an X.509 certificate or a certificate cha
 
 `"SSLKey"`
 
-A path to a PEM-format file containing the certificate’s matching private key.
+A path to a PEM-format file containing the certificate's matching private key.
 
 If both properties are present, the server will respond to SSL (and only SSL) over both the public and admin ports. If you want to support both HTTP and HTTPS connections you will need to run two separate instances of Sync Gateway.
 
@@ -54,22 +54,22 @@ Certificates are a complex topic. There are basically two routes you can go: req
 
 ## [](#requesting-a-certificate-from-a-ca)Requesting a Certificate from a CA
 
-You can obtain a certificate from a trusted [Certificate Authority](https://en.wikipedia.org/wiki/Certificate%5Fauthority) (CA). Examples of trusted CAs include [Let’s Encrypt](https://letsencrypt.org/), Thawte or GoDaddy. What this means is that their own root certificates are known and trusted by operating systems, so any certificate that they sign will also be trusted.
+You can obtain a certificate from a trusted [Certificate Authority](https://en.wikipedia.org/wiki/Certificate%5Fauthority) (CA). Examples of trusted CAs include [Let's Encrypt](https://letsencrypt.org/), Thawte or GoDaddy. What this means is that their own root certificates are known and trusted by operating systems, so any certificate that they sign will also be trusted.
 
 Hence, the benefit of a certificate obtained from a trusted CA is that it will be trusted by any SSL client.
 
 ## [](#creating-a-self-signed-certificate)Creating a Self-Signed Certificate
 
-Unlike a CA-signed cert, a self-signed cert isn’t intrinsically trustworthy: a client can’t tell who you are by examining the cert, because no recognized authority has vouched for it. But a self-signed cert is still unique (only you, as the holder of the private key, can operate a server using that cert), and it still allows the connection to be encrypted.
+Unlike a CA-signed cert, a self-signed cert isn't intrinsically trustworthy: a client can't tell who you are by examining the cert, because no recognized authority has vouched for it. But a self-signed cert is still unique (only you, as the holder of the private key, can operate a server using that cert), and it still allows the connection to be encrypted.
 
-It’s easy to create a self-signed certificate using the openssl command-line tool and these directions. In a nutshell, you just need to run these commands:
+It's easy to create a self-signed certificate using the openssl command-line tool and these directions. In a nutshell, you just need to run these commands:
 
 ```bash
 $ openssl genrsa -out privkey.pem 2048
 $ openssl req -new -x509 -sha256 -key privkey.pem -out cert.pem -days 1095
 ```
 
-The second command is interactive and will ask you for information like country and city name that goes into the X.509 certificate. You can put whatever you want there; the only important part is the field `Common Name (e.g. server FQDN or YOUR name)` which needs to be the exact _hostname_ that clients will reach your server at. The client will verify that this name matches the hostname in the URL it’s trying to access, and will reject the connection if it doesn’t.
+The second command is interactive and will ask you for information like country and city name that goes into the X.509 certificate. You can put whatever you want there; the only important part is the field `Common Name (e.g. server FQDN or YOUR name)` which needs to be the exact _hostname_ that clients will reach your server at. The client will verify that this name matches the hostname in the URL it's trying to access, and will reject the connection if it doesn't.
 
 The tool will then create two files: `privkey.pem` (the private key) and `cert.pem` (the public certificate.)
 
@@ -81,7 +81,7 @@ $ openssl x509 -inform PEM -in cert.pem -outform DER -out cert.cer
 
 ## [](#installing-the-certificate)Installing the Certificate
 
-Whichever way you obtained the certificate, you will now have a private key and an X.509 certificate. Ensure that they’re in separate files and in PEM format, and put them in a directory that’s readable by the Sync Gateway process. The private key is very sensitive (it’s not encrypted) so make sure the file isn’t readable by unauthorized processes.
+Whichever way you obtained the certificate, you will now have a private key and an X.509 certificate. Ensure that they're in separate files and in PEM format, and put them in a directory that's readable by the Sync Gateway process. The private key is very sensitive (it's not encrypted) so make sure the file isn't readable by unauthorized processes.
 
 Then just add the `"SSLCert"` and `"SSLKey"` properties to your Sync Gateway configuration file.
 
@@ -117,7 +117,7 @@ Once the Couchbase Server cluster has been protected by the deployment of root a
 
 To generate the _client_ certificate, make sure that the Couchbase Server cluster has the expected [bucket and RBAC user](../../server/current/manage/manage-security/configure-client-certificates.md#assumptions). Also refer to the [Getting Started: Configure Couchbase Server](get-started-install.md#configure-couchbase-server) to configure the RBAC user with appropriate privileges for access by a Sync Gateway instance.
 
-Next, follow the instructions in [Client Access: Root-Certificate Authorization](../../server/current/manage/manage-security/configure-client-certificates.md#client-certificate-authorized-by-a-root-certificate) to create a client certificate that is authorized by the cluster’s root certificate.
+Next, follow the instructions in [Client Access: Root-Certificate Authorization](../../server/current/manage/manage-security/configure-client-certificates.md#client-certificate-authorized-by-a-root-certificate) to create a client certificate that is authorized by the cluster's root certificate.
 
 After completing the procedure, you will have multiple files generated in the current directory. You will use the following files to configure Sync Gateway:
 

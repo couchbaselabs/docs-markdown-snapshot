@@ -1,7 +1,7 @@
 ---
 title: The Couchbase Pendo Voice
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/pendo/modules/ROOT/pages/voice.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:pendo::voice.adoc[]
 ---
 
@@ -14,10 +14,10 @@ When writing in-app guidance through Pendo, aim for the following voice characte
 
 | Voice Characteristic | Description                                                                     | Do                                                                                                                       | Do Not                                                                                                     |
 | -------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| Passionate           | We’re passionate about our work and we want to help developers get things done. | Use strong verbs. Champion Couchbase. Show the user you mean what you say.                                               | Use passive voice. Be wishy-washy or tentative.                                                            |
+| Passionate           | We're passionate about our work and we want to help developers get things done. | Use strong verbs. Champion Couchbase. Show the user you mean what you say.                                               | Use passive voice. Be wishy-washy or tentative.                                                            |
 | Authentic            | We aim to be authentic, good humans. Always.                                    | Be conversational. Use words and phrases that sound natural when spoken out-loud. Be honest and direct. Stay empathetic. | Use too much jargon. Try to use words even the most beginner users will understand. Oversell. Overpromise. |
-| Cheerful             | We want to celebrate our user’s successes with them.                            | Be encouraging. Take the time to celebrate success.                                                                      | Be overly negative. Be prescriptive or demanding.                                                          |
-| Professional         | We want to be respected partners in our customer’s journeys.                    | Present facts and data. Write to the point. Write clearly. Spell everything correctly. Capitalize proper nouns.          | Be too casual or informal. Use extra language or fluff to convey a point.                                  |
+| Cheerful             | We want to celebrate our user's successes with them.                            | Be encouraging. Take the time to celebrate success.                                                                      | Be overly negative. Be prescriptive or demanding.                                                          |
+| Professional         | We want to be respected partners in our customer's journeys.                    | Present facts and data. Write to the point. Write clearly. Spell everything correctly. Capitalize proper nouns.          | Be too casual or informal. Use extra language or fluff to convey a point.                                  |
 
 ## [](#what-does-this-look-like-in-practice)What Does This Look Like In Practice?
 

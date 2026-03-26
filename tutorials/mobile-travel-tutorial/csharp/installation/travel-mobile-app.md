@@ -1,7 +1,7 @@
 ---
 title: Travel Mobile App
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/installation/travel-mobile-app.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:csharp/installation/travel-mobile-app.adoc[]
 ---
 
@@ -32,11 +32,11 @@ Visual Studio and Couchbase are supported on M1 processors via the Rosetta v2 tr
 
 ### [](#ios-development)iOS Development
 
-For iOS development, we recommend version of XCode 12.5 or higher. For OS and XCode version compatibility, refer to Apple’s documentation <https://developer.apple.com/support/xcode/>
+For iOS development, we recommend version of XCode 12.5 or higher. For OS and XCode version compatibility, refer to Apple's documentation <https://developer.apple.com/support/xcode/>
 
 ### [](#android-development)Android Development
 
-For Android development, we recommend Google’s IDE Android Studio and running version 4.x or higher. For Android Studio and OS compatibility, refer to Google’s documentation <https://developer.android.com/studio#system-requirements-a-namerequirementsa/>
+For Android development, we recommend Google's IDE Android Studio and running version 4.x or higher. For Android Studio and OS compatibility, refer to Google's documentation <https://developer.android.com/studio#system-requirements-a-namerequirementsa/>
 
 #### [](#android-version)Android Version
 
@@ -48,7 +48,7 @@ For Android development, Xamarin always recommends you have the latest Android S
 
 #### [](#xamarin-hot-reloaded)Xamarin Hot Reloaded
 
-To use Hot Reloaded we highly recommend you target iOS v14 or Android 10 or higher. Full documentation can be found on Microsoft’s Documentation site <https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/hot-reload>
+To use Hot Reloaded we highly recommend you target iOS v14 or Android 10 or higher. Full documentation can be found on Microsoft's Documentation site <https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/hot-reload>
 
 ## [](#travel-sample-mobile-app)Travel Sample Mobile App
 
@@ -68,7 +68,7 @@ git clone -b master --depth 1 https://github.com/couchbaselabs/mobile-travel-sam
 
 ## [](#configure-app-to-connect-to-backend)Configure App to connect to Backend
 
-You will have to update the URLs specified in the app to connect to the backend If you haven’t done so already, complete the steps outlined in the "Backend Installation" to install your Couchbase Server, Sync Gateway and Python web backend app.
+You will have to update the URLs specified in the app to connect to the backend If you haven't done so already, complete the steps outlined in the "Backend Installation" to install your Couchbase Server, Sync Gateway and Python web backend app.
 
 ### [](#updating-the-web-backend-url)Updating the web backend URL
 

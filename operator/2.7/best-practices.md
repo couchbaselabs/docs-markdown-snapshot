@@ -1,7 +1,7 @@
 ---
 title: Guidelines and Best Practices
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/best-practices.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::best-practices.adoc[]
 ---
 
@@ -45,7 +45,7 @@ Likewise, it is recommended that you deploy Couchbase Server clusters with anti-
 
 ### [](#server-group-configuration)Server Group Configuration
 
-The server group feature of the Couchbase data platform allows you group Couchbase Server nodes in such a way that data or index replicas are distributed over failure domains that are larger than that of a single server (e.g. rack, data center, availability zone, etc). When server groups are defined, the Server Group Awareness feature distributes vBuckets on a best-effort basis, while ensuring each instance is under an equal load. As such, under certain circumstances, it’s possible for multiple replicas to be co-located in the same server group.
+The server group feature of the Couchbase data platform allows you group Couchbase Server nodes in such a way that data or index replicas are distributed over failure domains that are larger than that of a single server (e.g. rack, data center, availability zone, etc). When server groups are defined, the Server Group Awareness feature distributes vBuckets on a best-effort basis, while ensuring each instance is under an equal load. As such, under certain circumstances, it's possible for multiple replicas to be co-located in the same server group.
 
 It is recommended that server groups should have an equal number of pods per server class to make it simpler to maintain server group constraints. It is also recommended that you have more server groups than replicas for the same reason.
 
@@ -59,7 +59,7 @@ Storage options may have both beneficial and detrimental impacts on your cluster
 
 Persistent volumes are recommended for production deployments. This allows for the quick recovery of a failed pod by warming up from existing data and allowing quicker back-filling via delta-recovery, rather than a full rebalance.
 
-By having some of the pod’s file system persisted, logging data can be extracted from failed pods where this would normally be lost with a fully ephemeral file system. It also aids in data recovery situations which cannot be rectified by the Operator.
+By having some of the pod's file system persisted, logging data can be extracted from failed pods where this would normally be lost with a fully ephemeral file system. It also aids in data recovery situations which cannot be rectified by the Operator.
 
 __Table 1\. Cluster Supportability with Persistent Volumes__
 | Deployment Type      | Services        | Required Volume Mount(s) | Recoverable? | Supportable? |
@@ -87,7 +87,7 @@ It is also highly recommended that in cloud deployments, storage be located in t
 
 ### [](#ephemeral-clusters)Ephemeral Clusters
 
-In some use cases, such as an in-memory cache, it is undesirable to have to provision persistent volumes in order to deploy a cluster. In other situations, it may be impossible, if the platform doesn’t support dynamic persistent volume provisioning for example.
+In some use cases, such as an in-memory cache, it is undesirable to have to provision persistent volumes in order to deploy a cluster. In other situations, it may be impossible, if the platform doesn't support dynamic persistent volume provisioning for example.
 
 The Operator provides the option to run clusters with ephemeral storage only. In this mode of operation, the Operator can recover a partially down cluster — where Couchbase server is unable to automatically failover the pods — by forcing the down pods out of the cluster with the [couchbaseclusters.spec.recoveryPolicy](resource/couchbasecluster.md#couchbaseclusters-spec-recoverypolicy) attribute. The Operator will also fully rebuild a cluster that has had all pods deleted.
 

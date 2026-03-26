@@ -3,7 +3,7 @@ title: Manage Replications
 description: Use the procedures on this page to create and manage XDCR (Cross
   Data Center Replication) with Capella operational clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/manage-xdcr-replications.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:xdcr/manage-xdcr-replications.adoc[]
 ---
 
@@ -39,7 +39,7 @@ To view and manage replications:
 
 If you have not set up a replication for your cluster, you can click **Set Up Replication**. For more information about adding **Self-Managed Targets**, see [Create a Replication from Capella to a Self-Managed Cluster](#from-capella-to-self-managed).
 
-If you have already created replications for your cluster, you’ll see a summary of your replications in a table. For an example, see [Observe an Ongoing Replication](#observing).
+If you have already created replications for your cluster, you'll see a summary of your replications in a table. For an example, see [Observe an Ongoing Replication](#observing).
 
 ## [](#create-replication)Create a Replication
 
@@ -80,7 +80,7 @@ To create a replication between 2 operational clusters:
 5. To enable bi-directional replication with Sync Gateway (App Services), select **Enable Active-Active XDCR with App Services**.  
 This option allows creating a replication with App Services 4.0+ app endpoints linked to both source and target buckets. When creating the replication, Capella:
 
-  * Enables the bucket property [Cross Cluster Versioning](../../../server/current/learn/clusters-and-availability/xdcr-overview.md#cross-cluster-versioning) on both source and target buckets, if it’s not already set.
+  * Enables the bucket property [Cross Cluster Versioning](../../../server/current/learn/clusters-and-availability/xdcr-overview.md#cross-cluster-versioning) on both source and target buckets, if it's not already set.
   * Sets the replication flag `mobile` to `Active` for all legs of the replication.  
   This option is only available when both source and target clusters use Couchbase Server version 7.6.6+ and linked App Services use version 4.0+.
 6. To add a filter to your replication, under **Filter Replication**, click **Enable**:
@@ -117,7 +117,7 @@ It may take some time for your replication to be set up and start replicating do
 
 ### [](#from-on-prem-to-capella)Create a Replication to Capella from a Self-Managed Cluster
 
-Replicate your data to an operational cluster from a self-managed cluster that’s in an on-premises datacenter or a non-Capella cloud.
+Replicate your data to an operational cluster from a self-managed cluster that's in an on-premises datacenter or a non-Capella cloud.
 
 To set up XDCR from a self-managed cluster to an operational cluster:
 
@@ -179,9 +179,9 @@ To get the hostname to use in the XDCR remote cluster reference:
   > Although the connection string is sometimes referred to as the "public connection string," if you have VPC peering set up the connection string resolves to private addresses. For more information, see [Configure a VPC Peering Connection](../../clouds/private-network.md).
   2. A private endpoint, go to **Settings** **Private Endpoints** and copy the **Private Endpoint DNS**.
 
-#### [](#copy-certificate)Copy Your Operational Cluster’s Security Certificate
+#### [](#copy-certificate)Copy Your Operational Cluster's Security Certificate
 
-To copy your operational cluster’s security certificate:
+To copy your operational cluster's security certificate:
 
 1. In the Capella UI, go to **Operational** and select your cluster name.
 2. Go to **Settings** **Security Certificate**.
@@ -206,16 +206,16 @@ To setup an XDCR remote reference:
 |                                 |                                                                                                                                                                                                                                                                                                          |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Cluster Name**                | Any name                                                                                                                                                                                                                                                                                                 |
-| **IP/Hostname**                 | The connection string from [Get the Hostname to Use in the XDCR Remote Cluster Reference](#get-hostname). As the hostname saves as a DNS SRV string in Couchbase Server 7.X and later, you do not need to specify a port. If you’re using the Public Connection String, remove the couchbases:// prefix. |
+| **IP/Hostname**                 | The connection string from [Get the Hostname to Use in the XDCR Remote Cluster Reference](#get-hostname). As the hostname saves as a DNS SRV string in Couchbase Server 7.X and later, you do not need to specify a port. If you're using the Public Connection String, remove the couchbases:// prefix. |
 | **Username for Remote Cluster** | Cluster credentials from [Create a Cluster Access Credential in Your Operational Cluster](#access-credential).                                                                                                                                                                                           |
 | **Password**                    | Cluster credentials from [Create a Cluster Access Credential in Your Operational Cluster](#access-credential).                                                                                                                                                                                           |
-| **Certificate**                 | Paste the security certificate copied in [Copy Your Operational Cluster’s Security Certificate](#copy-certificate).                                                                                                                                                                                      |
+| **Certificate**                 | Paste the security certificate copied in [Copy Your Operational Cluster's Security Certificate](#copy-certificate).                                                                                                                                                                                      |
 | **Network Type**                | If your replication is traveling through: The public Internet or a peered VPC network, select **Auto**. A private endpoint, select **Force using alternate address**.                                                                                                                                    |
 4. Complete the setup for your replication.  
 For more information about how to set up a replication in Couchbase Server, see [Create a Replication](../../../server/current/manage/manage-xdcr/create-xdcr-replication.md) in the Couchbase Server documentation.
 
 > [!NOTE]
-> If you’re [securing your replication over a private endpoint](#cluster:xdcr/manage-xdcr-security.adoc#xdcr-pe-limits), you can only setup the XDCR remote reference using the [REST API](../../../server/current/rest-api/rest-xdcr-create-ref.md). In your [curl Syntax](../../../server/current/rest-api/rest-xdcr-create-ref.md#curl-syntax), you must set the hostname as the **Private Endpoint DNS** and network type as `network_type=external`.
+> If you're [securing your replication over a private endpoint](#cluster:xdcr/manage-xdcr-security.adoc#xdcr-pe-limits), you can only setup the XDCR remote reference using the [REST API](../../../server/current/rest-api/rest-xdcr-create-ref.md). In your [curl Syntax](../../../server/current/rest-api/rest-xdcr-create-ref.md#curl-syntax), you must set the hostname as the **Private Endpoint DNS** and network type as `network_type=external`.
 
 To setup an XDCR remote reference:
 
@@ -226,16 +226,16 @@ To setup an XDCR remote reference:
 |                                 |                                                                                                                                                                                                                                                                                                          |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Cluster Name**                | Any name                                                                                                                                                                                                                                                                                                 |
-| **IP/Hostname**                 | The connection string from [Get the Hostname to Use in the XDCR Remote Cluster Reference](#get-hostname). As the hostname saves as a DNS SRV string in Couchbase Server 7.X and later, you do not need to specify a port. If you’re using the Public Connection String, remove the couchbases:// prefix. |
+| **IP/Hostname**                 | The connection string from [Get the Hostname to Use in the XDCR Remote Cluster Reference](#get-hostname). As the hostname saves as a DNS SRV string in Couchbase Server 7.X and later, you do not need to specify a port. If you're using the Public Connection String, remove the couchbases:// prefix. |
 | **Username for Remote Cluster** | Cluster credentials from [Create a Cluster Access Credential in Your Operational Cluster](#access-credential).                                                                                                                                                                                           |
 | **Password**                    | Cluster credentials from [Create a Cluster Access Credential in Your Operational Cluster](#access-credential).                                                                                                                                                                                           |
-| **Certificate**                 | Paste the security certificate copied in [Copy Your Operational Cluster’s Security Certificate](#copy-certificate).                                                                                                                                                                                      |
+| **Certificate**                 | Paste the security certificate copied in [Copy Your Operational Cluster's Security Certificate](#copy-certificate).                                                                                                                                                                                      |
 4. Complete the setup for your replication.  
 For more information about how to set up a replication in Couchbase Server, see [Create a Replication](../../../server/current/manage/manage-xdcr/create-xdcr-replication.md) in the Couchbase Server documentation.
 
 ### [](#from-capella-to-self-managed)Create a Replication from Capella to a Self-Managed Cluster
 
-Replicate your data from an operational cluster to a self-managed cluster that’s in an on-premises datacenter or a non-Capella cloud.
+Replicate your data from an operational cluster to a self-managed cluster that's in an on-premises datacenter or a non-Capella cloud.
 
 > [!NOTE]
 > Replication Security
@@ -323,7 +323,7 @@ You can view the details for a current replication at any time from **Settings**
 
 Pausing an XDCR replication temporarily suspends the replication of data from the source to the target. Pausing a replication always occurs on the source cluster. You can resume a paused replication at any time.
 
-When pausing a bidirectional replication, only the replication from the current cluster will be paused. To pause both directions of a bidirectional replication, you’ll need to pause the replication on both clusters individually.
+When pausing a bidirectional replication, only the replication from the current cluster will be paused. To pause both directions of a bidirectional replication, you'll need to pause the replication on both clusters individually.
 
 To pause or resume a replication:
 
@@ -364,6 +364,6 @@ To delete a replication:
 
 ## [](#error-and-other-notifications)Errors and Other Notifications
 
-If a connectivity issue occurs while replicating to a self-managed target, you’ll see an error under **Self-Managed Targets** on the **Replication** page. Connectivity errors appear in the **Connectivity Status** column.
+If a connectivity issue occurs while replicating to a self-managed target, you'll see an error under **Self-Managed Targets** on the **Replication** page. Connectivity errors appear in the **Connectivity Status** column.
 
 For all replication types, any errors, warnings, or informational messages can be viewed in more detail from the **Errors** column under **Replications**. Click the icon in the **Errors** column for a listed replication to view error details.

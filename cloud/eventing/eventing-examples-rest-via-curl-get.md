@@ -3,7 +3,7 @@ title: Create a Recurring Timer with a REST API
 description: Create a recurring Timer that fetches documents from an external
   REST endpoint until you manually cancel it.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-rest-via-curl-get.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-examples-rest-via-curl-get.adoc[]
 ---
 
@@ -27,7 +27,7 @@ This page contains the following:
 * An example where a control document is created of mutated, which creates a Timer. This Timer initially fires 30 seconds into the future. It fetches a document from an external REST endpoint and writes the document to the source bucket.  
 The original control document does not change.  
 The Timer is rearmed at the start of the following day, and continues to fetch daily exchange rates until you cancel it.
-* An example where the control document is mutated, which cancels any existing Timer with a reference that matches the control document’s `meta.id`. This has no effect if the Timer created has already fired.
+* An example where the control document is mutated, which cancels any existing Timer with a reference that matches the control document's `meta.id`. This has no effect if the Timer created has already fired.
 
 ## [](#prerequisites)Prerequisites
 
@@ -122,7 +122,7 @@ A successful JSON payload should look similar to the following:
 }
 ```
 
-If you’re running your own Python server, the returning JSON data is static but contains a current date.
+If you're running your own Python server, the returning JSON data is static but contains a current date.
 
 ```shell
 curl -q -X GET 'https://localhost:8001/api/latest'
@@ -142,7 +142,7 @@ curl -q -X GET 'https://localhost:8001/api/latest'
 ```
 
 > [!NOTE]
-> You must use a real IP address if you’re not on the Couchbase Server.
+> You must use a real IP address if you're not on the Couchbase Server.
 
 ### [](#create-keyspaces)Create Keyspaces
 
@@ -327,7 +327,7 @@ Deploy your Eventing Function:
 2. Click **More Options (⋮)** next to **recurring\_timer**.
 3. Click **Deploy** to deploy your Function.
 
-After it’s deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
+After it's deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
 
 ## [](#example-create-a-recurring-timer-and-allow-the-timer-to-fire-and-rearm)Example: Create a Recurring Timer and Allow the Timer to Fire and Rearm
 
@@ -374,7 +374,7 @@ To check that a new document has been created in the source collection:
 
 1. Go to **Data Tools** **Documents**.
 2. Select the keyspace `bulk.data.source` in the **Get documents from** list.
-3. Click the new document **cur\_recurring\_timer::1** to open the **Edit Document** dialog. The JSON document includes data written by the Timer’s callback.  
+3. Click the new document **cur\_recurring\_timer::1** to open the **Edit Document** dialog. The JSON document includes data written by the Timer's callback.  
 ```json  
 {  
   "last_update_loc": "2021-07-18T14:04:06.408",  

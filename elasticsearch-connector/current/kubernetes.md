@@ -1,7 +1,7 @@
 ---
 title: Deploying in Kubernetes
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/kubernetes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:elasticsearch-connector::kubernetes.adoc[]
 ---
 
@@ -13,13 +13,13 @@ link: xref:elasticsearch-connector::kubernetes.adoc[]
 > A guide to deploying the connector in Kubernetes as a StatefulSet. 
 
 > [!WARNING]
-> The connector’s relationship with Kubernetes is evolving. Deployment instructions may change from one release to the next. **These instructions apply to version 4.3.4 of the connector.**
+> The connector's relationship with Kubernetes is evolving. Deployment instructions may change from one release to the next. **These instructions apply to version 4.3.4 of the connector.**
 
 ## [](#docker-image)Docker Image
 
-The connector image is available on Docker Hub as `couchbase/elasticsearch-connector`. It’s built from a Red Hat Universal Base Image, making it suitable for deployment to OpenShift as well as other Kubernetes environments.
+The connector image is available on Docker Hub as `couchbase/elasticsearch-connector`. It's built from a Red Hat Universal Base Image, making it suitable for deployment to OpenShift as well as other Kubernetes environments.
 
-To configure the connector, mount volumes for the `config` and `secrets` directories. We’ll look at an example in a moment.
+To configure the connector, mount volumes for the `config` and `secrets` directories. We'll look at an example in a moment.
 
 ## [](#deploying-as-a-statefulset)Deploying as a StatefulSet
 
@@ -29,7 +29,7 @@ There are two alternatives for configuring the StatefulSet depending on your req
 
 ### [](#fixed-scale)Fixed-Scale
 
-The simplest way to deploy the connector is to decide up-front how many replicas to use. We’ll call this a "fixed-scale" deployment. In this mode, the connector doesn’t know it’s deployed in Kubernetes, so you have to tell it the number of replicas by setting an [environment variable](#environment-variables). The value of this environment variable **must** be the same as the number of replicas in the StatefulSet.
+The simplest way to deploy the connector is to decide up-front how many replicas to use. We'll call this a "fixed-scale" deployment. In this mode, the connector doesn't know it's deployed in Kubernetes, so you have to tell it the number of replicas by setting an [environment variable](#environment-variables). The value of this environment variable **must** be the same as the number of replicas in the StatefulSet.
 
 To change the number of replicas in a fixed-scale deployment, you must first delete the StatefulSet and then deploy a new one configured with the desired replica count. As long as you use the same group name, the new StatefulSet will resume streaming from where the old one stopped.
 
@@ -67,7 +67,7 @@ To enable fixed-scale mode:
 #### [](#pros-2)Pros:
 
 * Can safely scale the connector using `kubectl scale`.
-* Potentially compatible with Horizontal Pod Autoscaling (HPA), although we haven’t tested this.
+* Potentially compatible with Horizontal Pod Autoscaling (HPA), although we haven't tested this.
 
 #### [](#cons-2)Cons:
 
@@ -82,15 +82,15 @@ To enable fixed-scale mode:
 
 ## [](#environment-variables)Environment Variables
 
-The following environment variables control aspects of the connector’s behavior related to deployment in Kubernetes:
+The following environment variables control aspects of the connector's behavior related to deployment in Kubernetes:
 
-* `CBES_K8S_STATEFUL_SET` \- When set to `true`, the connector uses the ordinal suffix from the pod’s hostname to determine its member number, and ignores the value of the `memberNumber` config property. This means you don’t need to manually assign a unique member number to each pod, or parse the hostname yourself. _(Ignored if `CBESK8SWATCHREPLICAS` is true.)_
-* `CBES_TOTAL_MEMBERS` \- If you are doing a fixed-scale deployment, you must set this to the same number as the StatefulSet’s `spec.replicas` property. When combined with `CBES_K8S_STATEFUL_SET`, this gives the connector all the information it needs to determine the size of the group and its rank within the group. _(Ignored if `CBESK8SWATCHREPLICAS` is true.)_
+* `CBES_K8S_STATEFUL_SET` \- When set to `true`, the connector uses the ordinal suffix from the pod's hostname to determine its member number, and ignores the value of the `memberNumber` config property. This means you don't need to manually assign a unique member number to each pod, or parse the hostname yourself. _(Ignored if `CBESK8SWATCHREPLICAS` is true.)_
+* `CBES_TOTAL_MEMBERS` \- If you are doing a fixed-scale deployment, you must set this to the same number as the StatefulSet's `spec.replicas` property. When combined with `CBES_K8S_STATEFUL_SET`, this gives the connector all the information it needs to determine the size of the group and its rank within the group. _(Ignored if `CBESK8SWATCHREPLICAS` is true.)_
 * `CBES_K8S_WATCH_REPLICAS` \- When set to `true`, enables native Kubernetes integration.
 
 ## [](#managing-checkpoints)Managing Checkpoints
 
-A simple way to back up the connector’s replication checkpoint is to run the `cbes-checkpoint-backup` command as a Kubernetes [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/). To save the checkpoint for later, attach a [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) to the pod that runs this command.
+A simple way to back up the connector's replication checkpoint is to run the `cbes-checkpoint-backup` command as a Kubernetes [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/). To save the checkpoint for later, attach a [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) to the pod that runs this command.
 
 Saved checkpoints are typically valid for no more than a few days. Your cron job should prune old checkpoints to save space.
 
@@ -103,7 +103,7 @@ The backup CronJob and the restore Job both use the same Docker image as the con
 
 ## [](#a-practical-example)A Practical Example
 
-The connector’s GitHub repository has some [example YAML files](https://github.com/couchbase/couchbase-elasticsearch-connector/tree/master/examples/kubernetes) you can use to get started.
+The connector's GitHub repository has some [example YAML files](https://github.com/couchbase/couchbase-elasticsearch-connector/tree/master/examples/kubernetes) you can use to get started.
 
 Start by creating the service account (skip this step if doing a fixed-scale deployment):
 
@@ -122,7 +122,7 @@ kubectl apply -f elasticsearch-connector-configuration.yaml
 
 Now edit `elasticsearch-connector.yaml`. The default values are appropriate for experimenting with native Kubernetes integration. For a fixed-scale deployment, remove (or comment-out) any references to the custom service account.
 
-It’s important for each StatefulSet to use a different connector group name. The default group name in the example YAML files is `example-group`. Pick a name for your new group. Search for "example-group" and replace every occurrence with the new group name.
+It's important for each StatefulSet to use a different connector group name. The default group name in the example YAML files is `example-group`. Pick a name for your new group. Search for "example-group" and replace every occurrence with the new group name.
 
 Finally, apply the StatefulSet YAML to start the connector:
 

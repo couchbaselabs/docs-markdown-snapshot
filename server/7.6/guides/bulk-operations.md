@@ -2,7 +2,7 @@
 title: Work with Documents in Bulk
 description: How to perform bulk CRUD operations with a command line tool or an SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/bulk-operations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:guides:bulk-operations.adoc[]
 ---
 
@@ -171,7 +171,7 @@ For more information, see [Collection](https://docs.couchbase.com/sdk-api/couchb
 A dictionary of `MutationResult` objects is returned.
 
 > [!CAUTION]
-> `CBCollection.insert_multi` is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that’s still in flux and may likely be changed.
+> `CBCollection.insert_multi` is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that's still in flux and may likely be changed.
 
 ---
 
@@ -358,7 +358,7 @@ Pass some document IDs to fetch to the `get_multi()` function. This will fetch t
 A dictionary of `GetResult` objects is returned.
 
 > [!CAUTION]
-> `CBCollection.get_multi` is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that’s still in flux and may likely be changed.
+> `CBCollection.get_multi` is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that's still in flux and may likely be changed.
 
 ---
 
@@ -519,7 +519,7 @@ For more information, see [Collection](https://docs.couchbase.com/sdk-api/couchb
 A dictionary of `MutationResult` objects is returned.
 
 > [!CAUTION]
-> `CBCollection.upsert_multi` is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that’s still in flux and may likely be changed.
+> `CBCollection.upsert_multi` is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that's still in flux and may likely be changed.
 
 ---
 
@@ -654,7 +654,7 @@ Pass the document IDs to remove to the `remove_multi()` function. This will dele
 A dictionary of `MutationResult` objects is returned.
 
 > [!CAUTION]
-> `CBCollection.remove_multi` is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that’s still in flux and may likely be changed.
+> `CBCollection.remove_multi` is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that's still in flux and may likely be changed.
 
 ---
 

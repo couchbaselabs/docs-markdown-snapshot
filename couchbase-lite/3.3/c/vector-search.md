@@ -3,7 +3,7 @@ title: Vector Search
 description: Use Vector Search to build adaptive and user-focused applications
   using Generative AI.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/c/pages/vector-search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite:c:vector-search.adoc[]
 ---
 
@@ -32,7 +32,7 @@ You can [use Vector Search](gs-install.md) to enhance your mobile and edge appli
 
 Additionally, Vector Search in Couchbase Lite provides the following benefits:
 
-* Unified Cloud-to-Edge Support for Vector Similarity Search - Couchbase supports Vector Search from cloud to edge, which enables applications to efficiently utilize cloud and edge computing’s strengths.
+* Unified Cloud-to-Edge Support for Vector Similarity Search - Couchbase supports Vector Search from cloud to edge, which enables applications to efficiently utilize cloud and edge computing's strengths.
 * Enhanced Data Privacy on the Edge - By performing Vector Search within the device, personal data and search queries of a sensitive nature do not have to leave the device.
 * Low Latency Application Support - You can run searches locally against a local dataset using a local embedded model. This eliminates the network variability and results in more consistent execution speed. Even in the case where the model is not embedded within the local device but is deployed at the edge location, the round trip time (RTT) associated with queries can be significantly reduced compared to searches made over the Internet.
 * Cost Per Query Reduction - When you have hundreds of thousands of connected clients querying against a cloud-based LLM, the load on cloud model and operational costs of running the cloud based model can be considerably high. By running queries locally on the device, you can save on data transfer costs and cloud egress charges while also decentralizing the operational costs.
@@ -96,7 +96,7 @@ __Table 1\. Regular Vector Indexes vs Lazy Vector Indexes__
 
 ### [](#about-vector-encoding)About Vector Encoding
 
-Vector encoding reduces the size of the vectors index by algorithmic compression. You can configure the Vector Encoding in Couchbase Lite to address your application’s needs.
+Vector encoding reduces the size of the vectors index by algorithmic compression. You can configure the Vector Encoding in Couchbase Lite to address your application's needs.
 
 This vector encoding compression reduces disk space required and I/O time during indexing and queries, but greater compression can result in inaccurate results in distance calculations.
 

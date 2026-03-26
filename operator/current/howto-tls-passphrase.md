@@ -1,7 +1,7 @@
 ---
 title: Configure TLS Passphrase Protection
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-tls-passphrase.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::howto-tls-passphrase.adoc[]
 ---
 
@@ -94,7 +94,7 @@ networking:
 | **3** | Optional HTTP headers to include in the rest request.                                                                                                                                                               |
 
 > [!NOTE]
-> Couchbase Server doesn’t trim the response from the rest URL, therefore white-space and newline characters must be avoided by the webserver providing the passphrase.
+> Couchbase Server doesn't trim the response from the rest URL, therefore white-space and newline characters must be avoided by the webserver providing the passphrase.
 
 > [!WARNING]
 > Couchbase Server is currently unable to perform mutual TLS between itself and the provided rest endpoint. Without Mutual TLS, the rest server is unable to verify if a client is allowed to request the passphrase. Given this limitation, caution should be taken when configuring a rest point to prevent unauthorized requests. See [Securing TLS Rest Endpoints](concept-tls.md#securing-rest-endpoints) documentation for a general guide to securing rest endpoints.

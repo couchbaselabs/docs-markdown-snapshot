@@ -2,7 +2,7 @@
 title: Databases
 description: Working with Couchbase Lite Databases in JavaScript
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/database.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::database.adoc[]
 ---
 
@@ -39,7 +39,7 @@ Figure 2\. Couchbase Lite Examples
 
 Storing local configuration
 
-You may not need to sync all the data related for a particular application. You can set up a scope that syncs data, and a second scope that doesn’t.
+You may not need to sync all the data related for a particular application. You can set up a scope that syncs data, and a second scope that doesn't.
 
 One reason for doing this is to store local configuration data (such as user preferences or UI state). Since this information only relates to a particular browser or device, there is no need to sync it:
 
@@ -49,7 +49,7 @@ One reason for doing this is to store local configuration data (such as user pre
 
 ## [](#browser-storage)Browser Storage
 
-Couchbase Lite JavaScript stores data in the browser’s IndexedDB, a robust client-side storage API.
+Couchbase Lite JavaScript stores data in the browser's IndexedDB, a robust client-side storage API.
 
 IndexedDB Characteristics
 
@@ -66,7 +66,7 @@ You can create a new database and-or open an existing database, using the [Datab
 Things to watch for include:
 
 * If the named database does not exist, a new one is created
-* The database is stored in the browser’s IndexedDB under the current origin
+* The database is stored in the browser's IndexedDB under the current origin
 
 > [!IMPORTANT]
 > Unlike native Couchbase Lite SDKs, collections and their indexes must be declared in the `DatabaseConfig` when opening the database. Collections cannot be created or deleted while the database is open.
@@ -215,7 +215,7 @@ await localDb.close();
 Databases in Couchbase Lite JavaScript are subject to browser storage quotas and policies.
 
 > [!IMPORTANT]
-> IndexedDB quotas, persistence, and eviction rules vary by browser, so the same app may store different amounts of data across environments. When writes exceed quota, a `QuotaExceededError` is thrown with no automatic retry or cleanup. The application must catch these errors, decide how to free space, or prompt the user. The SDK relies entirely on IndexedDB’s native behavior. See [Browsers and Storage](supported-browsers.md#browser-specific-considerations) for detailed information.
+> IndexedDB quotas, persistence, and eviction rules vary by browser, so the same app may store different amounts of data across environments. When writes exceed quota, a `QuotaExceededError` is thrown with no automatic retry or cleanup. The application must catch these errors, decide how to free space, or prompt the user. The SDK relies entirely on IndexedDB's native behavior. See [Browsers and Storage](supported-browsers.md#browser-specific-considerations) for detailed information.
 
 ### [](#storage-quotas)Storage Quotas
 
@@ -266,7 +266,7 @@ if (navigator.storage && navigator.storage.persist) {
 
 From time to time it may be necessary to perform maintenance on your database, such as compacting the database to remove unused documents and blobs.
 
-Couchbase Lite’s API provides the [Database.performMaintenance()](https://docs.couchbase.com/mobile/1.0.0/couchbase-lite-javascript/classes/Database.html#performMaintenance) method. The available maintenance operations include `compact`, `reindex`, and `integrityCheck`.
+Couchbase Lite's API provides the [Database.performMaintenance()](https://docs.couchbase.com/mobile/1.0.0/couchbase-lite-javascript/classes/Database.html#performMaintenance) method. The available maintenance operations include `compact`, `reindex`, and `integrityCheck`.
 
 This is a resource-intensive operation and is not performed automatically. It should be run on-demand using the API.
 

@@ -3,7 +3,7 @@ title: CREATE COLLECTION
 description: The CREATE COLLECTION statement enables you to create a named
   collection within a scope.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/createcollection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/createcollection.adoc[]
 ---
 
@@ -86,7 +86,7 @@ Assuming that the query context is set, this statement creates a collection call
 CREATE COLLECTION country;
 ```
 
-Example 3\. Create collection if it doesn’t exist
+Example 3\. Create collection if it doesn't exist
 
 For this example, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 

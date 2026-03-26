@@ -2,7 +2,7 @@
 title: Connect Your SDK
 description: Tips for successful connection over unreliable networks.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/connection-troubleshooting.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clouds:connection-troubleshooting.adoc[]
 ---
 
@@ -93,7 +93,7 @@ As a workaround, you can switch to a DNS provider which can support modern DNS S
 
 ## [](#validating-connectivity-with-sdk-doctor)Validating Connectivity with SDK doctor
 
-If you are running the latest version of your chosen SDK (or command line tool), have TLS set up, and have set a WAN development profile — and are still experiencing connection problems — it’d be good to diagnostically check for lower level details with [SDK doctor](https://github.com/couchbaselabs/sdk-doctor). From the environment where it looks like your program cannot connect, run one of the of the [pre-built binaries](https://github.com/couchbaselabs/sdk-doctor/releases) for your platform. Usually the summary at the end is pretty easy to interpret. Output that shows correct connectivity may look like this:
+If you are running the latest version of your chosen SDK (or command line tool), have TLS set up, and have set a WAN development profile — and are still experiencing connection problems — it'd be good to diagnostically check for lower level details with [SDK doctor](https://github.com/couchbaselabs/sdk-doctor). From the environment where it looks like your program cannot connect, run one of the of the [pre-built binaries](https://github.com/couchbaselabs/sdk-doctor/releases) for your platform. Usually the summary at the end is pretty easy to interpret. Output that shows correct connectivity may look like this:
 
 ```console
 $ ./sdk-doctor-macos diagnose -u username -p password couchbases://cb.51bbb323-476e-4354-bec8-5f9b0a67d146.dp.cloud.couchbase.com/travel-sample

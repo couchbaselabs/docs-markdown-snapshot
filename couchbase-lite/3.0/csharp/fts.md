@@ -2,7 +2,7 @@
 title: Using Full-Text Search&#8201;&#8212;&#8201;Working with Queries
 description: Couchbase Lite database data querying concepts -- full text search
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/csharp/pages/fts.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:csharp:fts.adoc[]
 ---
 
@@ -20,7 +20,7 @@ To run a full-text search (FTS) query, you must create a full-text index on the 
 
 You can choose to use SQL++ or QueryBuilder syntaxes to create and use FTS indexes.
 
-The following examples use the data model introduced in [Indexing](indexing.md). They create and use an FTS index built from the hotel’s `Overview` text.
+The following examples use the data model introduced in [Indexing](indexing.md). They create and use an FTS index built from the hotel's `Overview` text.
 
 ## [](#sql)SQL++
 
@@ -28,7 +28,7 @@ The following examples use the data model introduced in [Indexing](indexing.md).
 
 N1QL provides a configuration object to define Full Text Search indexes — `FullTextIndexConfiguration`.
 
-Example 1\. Using N1QL’s FullTextIndexConfiguration
+Example 1\. Using N1QL's FullTextIndexConfiguration
 
 ```C#
 string[] indexProperties = new string[] { "overview", "name" };
@@ -176,7 +176,7 @@ Query for the set of documents that contains the term "linux", and at least one 
 
 ## [](#ordering-results)Ordering Results
 
-It’s very common to sort full-text results in descending order of relevance. This can be a very difficult heuristic to define, but Couchbase Lite comes with a ranking function you can use.
+It's very common to sort full-text results in descending order of relevance. This can be a very difficult heuristic to define, but Couchbase Lite comes with a ranking function you can use.
 
 In the `OrderBy` array, use a string of the form `Rank(X)`, where `X` is the property or expression being searched, to represent the ranking of the result.
 

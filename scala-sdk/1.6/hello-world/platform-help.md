@@ -3,7 +3,7 @@ title: Platform Introduction
 description: A simple Scala orientation intro for _non-Scala_ folk who are
   evaluating the Couchbase Scala SDK.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/hello-world/pages/platform-help.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.6@scala-sdk:hello-world:platform-help.adoc[]
 ---
 
@@ -29,7 +29,7 @@ To install the JDK we are going to use a JVM-management tool called `sdkman`.
 
 ## [](#repl)REPL
 
-Like many modern languages, Scala ships with a REPL (which stands for \*R\*ead \*E\*valuate \*P\*rint \*L\*oop), an interactive terminal in which you can try out code snippets, and build programs iteratively. It’s a great way to work through a _Hello World_ program. To give it a go, simply type `scala` into your terminal (we’ll assume that you know to press `<Enter>` after commands).
+Like many modern languages, Scala ships with a REPL (which stands for \*R\*ead \*E\*valuate \*P\*rint \*L\*oop), an interactive terminal in which you can try out code snippets, and build programs iteratively. It's a great way to work through a _Hello World_ program. To give it a go, simply type `scala` into your terminal (we'll assume that you know to press `<Enter>` after commands).
 
 ```console
 $ scala
@@ -64,9 +64,9 @@ scala> :type "hello"
 String
 ```
 
-We know "hello" is a string, as it’s enclosed in double quote marks — and the compiler knows that too.
+We know "hello" is a string, as it's enclosed in double quote marks — and the compiler knows that too.
 
-Let’s try a different data structure. Put the following into the REPL:
+Let's try a different data structure. Put the following into the REPL:
 
 ```scala
 val customers - Array(

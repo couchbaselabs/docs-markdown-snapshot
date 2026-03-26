@@ -3,7 +3,7 @@ title: ALTER INDEX
 description: The ALTER INDEX statement moves the placement of an existing index
   or replica among different GSI nodes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/alterindex.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/alterindex.adoc[]
 ---
 
@@ -185,11 +185,11 @@ bucket
 
 scope
 
-(Optional) An [identifier](identifiers.md) that refers to the [scope name](../n1ql-intro/sysinfo.md#logical-hierarchy) of the keyspace. If omitted, the bucket’s default scope is used.
+(Optional) An [identifier](identifiers.md) that refers to the [scope name](../n1ql-intro/sysinfo.md#logical-hierarchy) of the keyspace. If omitted, the bucket's default scope is used.
 
 collection
 
-(Optional) An [identifier](identifiers.md) that refers to the [collection name](../n1ql-intro/sysinfo.md#logical-hierarchy) of the keyspace. If omitted, the default collection in the bucket’s default scope is used.
+(Optional) An [identifier](identifiers.md) that refers to the [collection name](../n1ql-intro/sysinfo.md#logical-hierarchy) of the keyspace. If omitted, the default collection in the bucket's default scope is used.
 
 For example, `` def_type ON default:`travel-sample` `` indicates the `def_type` index on the default collection in the default scope in the `` default:`travel-sample` `` bucket.
 
@@ -316,7 +316,7 @@ If the `ALTER INDEX` fails, then:
 | Missing Node Information For Move Index                                                                     | Mistyped "node" instead of "nodes" Mistyped punctuation or other item                           |
 | No Index Movement Required for Specified Destination List                                                   | Entered the current node instead of the target node                                             |
 | syntax error - at \\",\\"                                                                                   | Missed a double-quote mark (")                                                                  |
-| Unable to find Index service for destination xxx.xxx.xxx.xxx:8091 or destination is not part of the cluster | Address doesn’t exist or was mistyped Node isn’t running Node not properly added to the cluster |
+| Unable to find Index service for destination xxx.xxx.xxx.xxx:8091 or destination is not part of the cluster | Address doesn't exist or was mistyped Node isn't running Node not properly added to the cluster |
 | Unsupported action value                                                                                    | Mistyped the "action"                                                                           |
 
 ## [](#examples)Examples

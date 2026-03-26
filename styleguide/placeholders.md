@@ -1,7 +1,7 @@
 ---
 title: Code Placeholders
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/placeholders.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::placeholders.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:styleguide::placeholders.adoc[]
 
 # Code Placeholders
 
-The type of placeholder you add to code depends on the type of [code example](examples.md) you’re including.
+The type of placeholder you add to code depends on the type of [code example](examples.md) you're including.
 
 ## [](#curl-and-shell-placeholders)curl and Shell Placeholders
 

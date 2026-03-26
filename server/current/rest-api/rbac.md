@@ -3,7 +3,7 @@ title: Role-Based Access Control (RBAC)
 description: Full  and Security Administrators can manage the Couchbase
   <em>Role-Based Access Control</em> (RBAC) system, using the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rbac.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rbac.adoc[]
 ---
 
@@ -24,7 +24,7 @@ For more information, see [Authorization](../learn/security/authorization-overvi
 
 ## [](#get-information-on-users-and-groups)Retrieve Information on Roles, Permissions, Users, and Groups
 
-The REST API allows information to be retrieved on available roles and permissions; and on the cluster’s currently defined users and groups. Curl syntax, parameter-descriptions, examples, and call-specific responses are described in the subsections below. See the section [Responses](#responses), for further descriptions of error and other notifications.
+The REST API allows information to be retrieved on available roles and permissions; and on the cluster's currently defined users and groups. Curl syntax, parameter-descriptions, examples, and call-specific responses are described in the subsections below. See the section [Responses](#responses), for further descriptions of error and other notifications.
 
 ### [](#list-roles)List Roles
 
@@ -184,7 +184,7 @@ curl -X POST
 
 The `permissions-check-specification` must indicate whether the check is to be made at the level of the cluster (for permissions associated with global roles), or at the level of a bucket within the cluster (for permissions associated with bucket-specific roles); or at the level of a specific data-set associated with the buckets (such as `stats` or `views`); and must specify the permission (such as `read` or `write`) for which the check is to be made. Cluster, bucket, and data-set, if specified, must be separated from one another with a period. The permission to be checked for must be preceded by the `!` character.
 
-A successful call returns `200 OK`, plus an object indicating whether the authenticating administrator’s possession of the specified permission is `true` or `false`.
+A successful call returns `200 OK`, plus an object indicating whether the authenticating administrator's possession of the specified permission is `true` or `false`.
 
 For an alternative procedure whereby the authenticating administrator can retrieve information on their assigned roles, see [Who Am I?](rest-whoami.md).
 
@@ -289,7 +289,7 @@ The specified `password` must conform to the settings established as described i
 If successful, the call returns `200 OK`. No object is returned.
 
 > [!NOTE]
-> In Couchbase Server 7.1.1 and later versions, if an existing user’s password is to be changed, and their existing role-assignments are to be kept unchanged, the `/settings/rbac/users/local` URI can be used with the `PATCH` method: this allows the `password` parameter to be used, specifying a new password; and the `username` and `roles` parameters to be omitted.
+> In Couchbase Server 7.1.1 and later versions, if an existing user's password is to be changed, and their existing role-assignments are to be kept unchanged, the `/settings/rbac/users/local` URI can be used with the `PATCH` method: this allows the `password` parameter to be used, specifying a new password; and the `username` and `roles` parameters to be omitted.
 
 #### [](#example-create-local-users)Examples: Create Local Users, Assigning Roles
 
@@ -343,9 +343,9 @@ http://<ip-address-or-domain-name>/settings/rbac/users/local/<new-username> \
 The REST API call explanation is as follows:
 
 * Make sure that `password` and `temporaryPassword` conform to the settings in [Set Password Policy](rest-set-password-policy.md).
-* Enter your (meaning, Administrator’s) password and username for the `<password>` and `<username>` parameters.
-* Specify the new user’s username in place of `<new-username>`.
-* Specify the new user’s first password in place of `<first-password>`.
+* Enter your (meaning, Administrator's) password and username for the `<password>` and `<username>` parameters.
+* Specify the new user's username in place of `<new-username>`.
+* Specify the new user's first password in place of `<first-password>`.
 * Specify the necessary roles in the `roles` flag. Separate multiple instances of `role` with commas. You can assign roles that permit data access to a bucket, a scope within a bucket, or a collection within a scope. Specify the assignment in square brackets after the role name. In the square brackets, first mention the bucket name, then the scope name and the collection name. Separate the names of bucket, scope, and collection with colons.
 * `temporaryPassword` is a boolean flag that, when set to `true`, forces the new user to change their password upon first login.
 
@@ -615,7 +615,7 @@ The creation of an already existing group or local or external user succeeds wit
 
 ## [](#backup-and-restore-users-and-groups)Backup and Restore Users and Groups
 
-Use the `/settings/rbac/backup` endpoint to back up and restore users and groups. It’s useful if you want to transfer or synchronize users between different database clusters.
+Use the `/settings/rbac/backup` endpoint to back up and restore users and groups. It's useful if you want to transfer or synchronize users between different database clusters.
 
 ### [](#backup-users-and-user-groups)Backup Users and User Groups
 

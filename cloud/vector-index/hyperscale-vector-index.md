@@ -4,7 +4,7 @@ description: Hyperscale Vector Indexes are optimized to index a single vector
   column. They offer the highest performance of any index when it comes to
   vector data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-index/pages/hyperscale-vector-index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:vector-index:hyperscale-vector-index.adoc[]
 ---
 
@@ -33,7 +33,7 @@ Hyperscale Vector Indexes have the following requirements:
 * You have documents in a collection that contain one or more vector embeddings. You can add a single vector to a Hyperscale Vector Index. If your documents contain multiple embedded vectors, you can create multiple indexes — one for each vector attribute.  
 Embeddings can be an array of floating point numbers or a base64 encoded string. Couchbase Capella does not embed vectors itself. You can use an external embedding model to embed vectors into your data and add them to your documents, or use [Capella AI Services](../../ai/build/model-service/deploy-embed-model.md).
 * The vectors you add to an index must contain the same number of dimensions. Also the values in the vector must be 32-bit floating point numbers. If a vector does not meet both of these requirements, the vector index treats it as a NULL value and the document is not added to the index.
-* You must know the number of dimensions the vector contains. The embedding model you use to embed the vectors may determine this value for you. For example, OpenAI API’s `text-embedding-ada-002` embedding model creates vectors that have 1536 dimensions.
+* You must know the number of dimensions the vector contains. The embedding model you use to embed the vectors may determine this value for you. For example, OpenAI API's `text-embedding-ada-002` embedding model creates vectors that have 1536 dimensions.
 * You must decide whether you want to use the default distance metric and quantization for your index. By default, a Hyperscale Vector index uses the [Euclidean distance squared](vectors-and-indexes-overview.md#euclidean-squared) metric and [Scalar Quantization (SQ)](vectors-and-indexes-overview.md#sq) with 8 bits per vector dimension (`SQ8`). The metrics affect how the index compares vectors. The quantization determines how much memory your index uses and the amount of processing Couchbase Capella must perform to train and search them. See [Vector Similarity Metrics](vectors-and-indexes-overview.md#vector%5Fsimilarity) and [Quantization](vectors-and-indexes-overview.md#quantization) for more information.
 
 ### [](#examples-on-this-page)Examples on this Page
@@ -174,8 +174,8 @@ Hyperscale Vector indexes perform better with larger centroids (fewer centroids 
 
 When choosing the number of centroids for your index, consider the following guidelines:
 
-* If the majority of your working data set fits into the bucket’s memory quota, choose a smaller number of centroids for the index. Having more of the working data set in memory reduces disk I/O during searches, making searches faster. Another option is to have the fastest possible storage such as a fast NVME connected to a high-speed PCIe interface.
-* If your working data set is much larger than the bucket’s memory quota, choose a larger number of centroids for the index. This setting reduces the number of vectors associated with each centroid, which can reduce disk I/O during searches.
+* If the majority of your working data set fits into the bucket's memory quota, choose a smaller number of centroids for the index. Having more of the working data set in memory reduces disk I/O during searches, making searches faster. Another option is to have the fastest possible storage such as a fast NVME connected to a high-speed PCIe interface.
+* If your working data set is much larger than the bucket's memory quota, choose a larger number of centroids for the index. This setting reduces the number of vectors associated with each centroid, which can reduce disk I/O during searches.
 
 You may need to experiment with different numbers of centroids to find the best setting for your dataset and queries.
 
@@ -205,11 +205,11 @@ See [Scalar Quantization](vectors-and-indexes-overview.md#sq) for more informati
 
 If you choose to use PQ in your index, you must set two values:
 
-* The number of subquantizers (number of subspaces PQ splits the vector’s dimensions into) to use. This value must be a divisor of the number of dimensions in the vector. For example, if your vector has 99 dimensions, you can only use the values 3, 9, 11, 33, and 99 for the subquantizers. Using any other value returns an error.
-* The number of bits in the centroid’s index value. This value sets the number centroids to find in each subspace. For example, setting this value to 8 has PQ store the index for the centroids in a byte. This results in SQ using 256 centroids per subspace.  
+* The number of subquantizers (number of subspaces PQ splits the vector's dimensions into) to use. This value must be a divisor of the number of dimensions in the vector. For example, if your vector has 99 dimensions, you can only use the values 3, 9, 11, 33, and 99 for the subquantizers. Using any other value returns an error.
+* The number of bits in the centroid's index value. This value sets the number centroids to find in each subspace. For example, setting this value to 8 has PQ store the index for the centroids in a byte. This results in SQ using 256 centroids per subspace.  
 The number of centroids you set using this value must be less than the number of vectors in the dataset. For example, if you choose 32 for the centroid index size, your dataset must have at least 4,294,967,296 vectors in it.
 
-The larger you set either of these values, the more accurate the index’s search results are. The trade-off is that your index is larger, as it has to store data for more centroids. A smaller value results in a smaller index that returns less accurate results.
+The larger you set either of these values, the more accurate the index's search results are. The trade-off is that your index is larger, as it has to store data for more centroids. A smaller value results in a smaller index that returns less accurate results.
 
 The format for the PQ settings is:
 
@@ -217,7 +217,7 @@ The format for the PQ settings is:
 pq-settings ::= 'PQ' subquantizers 'x' number-of-bits
 ```
 
-For example, `PQ32x8` has PQ break the vector’s dimensions into 32 subspaces, each of which has 256 centroids. See [Product Quantization](vectors-and-indexes-overview.md#pq) for more information about how PQ works.
+For example, `PQ32x8` has PQ break the vector's dimensions into 32 subspaces, each of which has 256 centroids. See [Product Quantization](vectors-and-indexes-overview.md#pq) for more information about how PQ works.
 
 #### [](#algorithm-settings-examples)Algorithm Settings Examples
 
@@ -225,7 +225,7 @@ The following table shows several `description` values along with an explanation
 
 | Setting       | Effect                                                                                                                                                                                                                                                  |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IVF,SQ8       | Couchbase Capella chooses the number of centroids the IVF algorithm uses. The index uses Scalar Quantization with an 8-bit index, meaning it breaks each of the vector’s dimensions into 256 bins.                                                      |
+| IVF,SQ8       | Couchbase Capella chooses the number of centroids the IVF algorithm uses. The index uses Scalar Quantization with an 8-bit index, meaning it breaks each of the vector's dimensions into 256 bins.                                                      |
 | IVF1024,PQ8x8 | IVF uses 1024 centroids to divide the dataset. The index uses Product Quantization. PQ breaks the vector space into 8 subspaces, each of which uses 8-bits to represent centroids in the subspace. This settings means each subspace has 256 centroids. |
 
 ### [](#examples)Create Hyperscale Vector Index Example
@@ -288,7 +288,7 @@ The key pieces of this example are:
   * It uses the Euclidean distance (`l2`) similarity function when locating centroids. This function has high accuracy, which matters in a dataset with only 153 documents.
   * Also, because the dataset is so small, the example sets the `description` to `IVF8,SQ4`. This value has the [inverted file algorithm](vectors-and-indexes-overview.md#IVF) use just 8 centroids. It also uses 4-bit [scalar quantization](vectors-and-indexes-overview.md#sq). These settings limit the fragmentation of the small dataset.
 
-In most cases, you’ll not use these settings in a production environment.
+In most cases, you'll not use these settings in a production environment.
 
 ## [](#query-with-a-hyperscale-vector-index)Query with a Hyperscale Vector Index
 
@@ -321,13 +321,13 @@ The `APPROX_VECTOR_DISTANCE` parameters shown in the example are:
 Also use a `LIMIT` clause to return just the number of results you need. The query pushes the `LIMIT` clause down into the index scan so that the scan ends after finding the number of matches you need.
 
 > [!NOTE]
-> You can also call the function [VECTOR\_DISTANCE()](../n1ql/n1ql-language-reference/vectorfun.md#vector%5Fdistance) to find similar vectors. However, this function does not use the Hyperscale Vector index to perform the vector search. Instead, it performs a brute-force search for similar vectors. It’s useful to measure the recall of your Hyperscale Vector index. See [Determine Recall Rate](vector-index-best-practices.md#recall-accuracy) for more information about measuring recall.
+> You can also call the function [VECTOR\_DISTANCE()](../n1ql/n1ql-language-reference/vectorfun.md#vector%5Fdistance) to find similar vectors. However, this function does not use the Hyperscale Vector index to perform the vector search. Instead, it performs a brute-force search for similar vectors. It's useful to measure the recall of your Hyperscale Vector index. See [Determine Recall Rate](vector-index-best-practices.md#recall-accuracy) for more information about measuring recall.
 
 ### [](#query-example)Hyperscale Vector Index Query Example
 
 You must supply a vector value in your query that Couchbase Capella can compare to the vectors in the index. In actual use, your application generates a vector for the query value using the same embedding model it used to embed the vectors in your documents.
 
-To avoid the complication of calling an embedding model, this example uses embedded vectors in the `rgb_questions.json` file that’s included in `color_data_2vectors.zip`. For this example, the contents of this file are loaded into a collection named `color-vector-sample.color.rgb-questions`. This collection contains a `question` attribute which is a search prompt for a particular color. The `couchbase_search_query.knn.vector` attribute contains the embedded vector for the `question` attribute. The following query lists several attributes from a document in the collection. It truncates the `couchbase_search_query.knn.vector` attribute to just the first 4 dimensions of the vector for readability:
+To avoid the complication of calling an embedding model, this example uses embedded vectors in the `rgb_questions.json` file that's included in `color_data_2vectors.zip`. For this example, the contents of this file are loaded into a collection named `color-vector-sample.color.rgb-questions`. This collection contains a `question` attribute which is a search prompt for a particular color. The `couchbase_search_query.knn.vector` attribute contains the embedded vector for the `question` attribute. The following query lists several attributes from a document in the collection. It truncates the `couchbase_search_query.knn.vector` attribute to just the first 4 dimensions of the vector for readability:
 
 ```sqlpp
 SELECT 
@@ -360,7 +360,7 @@ The output of the query looks like this:
 }]
 ```
 
-To use the embedded vector, you need to include the `couchbase_search_query.knn.vector` attribute in your query’s `SELECT` statement. You can either directly copy and paste the entire array into your query or use a subquery to retrieve it from the `color-vector-sample.color.rgb-questions` collection. The following example uses a subquery to get the vector, and also includes the `wanted_similar_color_from_search` attribute in the output which shows you the color that the query should return.
+To use the embedded vector, you need to include the `couchbase_search_query.knn.vector` attribute in your query's `SELECT` statement. You can either directly copy and paste the entire array into your query or use a subquery to retrieve it from the `color-vector-sample.color.rgb-questions` collection. The following example uses a subquery to get the vector, and also includes the `wanted_similar_color_from_search` attribute in the output which shows you the color that the query should return.
 
 ```sqlpp
 WITH question_vec AS (
@@ -382,7 +382,7 @@ In this example, the `APPROX_VECTOR_DISTANCE` function compares the vector in th
 * The `embedding-vector-dot` is the name of the indexed vector key in the collection.
 * The `couchbase_search_query.knn[0].vector` is the vector search value to compare to the vectors in the index. This value is the result of the subquery that gets the vector from the `rgb-questions` collection.
 * `l2` is the distance metric to use.
-* `4` is the number of centroids to probe for matching vectors. This value defaults to `1`. This example sets this value to `4` because the dataset is small. In a small dataset, it’s more likely that relevant vectors are not associated with the same centroid. This parameter broadens the search beyond a single centroid to find more relevant vectors. If you re-run the query with the default value of `1`, you’ll see that the results are less relevant.
+* `4` is the number of centroids to probe for matching vectors. This value defaults to `1`. This example sets this value to `4` because the dataset is small. In a small dataset, it's more likely that relevant vectors are not associated with the same centroid. This parameter broadens the search beyond a single centroid to find more relevant vectors. If you re-run the query with the default value of `1`, you'll see that the results are less relevant.
 
 The result of running the query is:
 

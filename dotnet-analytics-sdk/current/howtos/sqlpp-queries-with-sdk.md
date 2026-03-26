@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:dotnet-analytics-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -95,7 +95,7 @@ __Table 1\. Available Query Options__
 | Dictionary<string, object> Raw { get; init; }             | Raw parameters passed directly to the analytics service for advanced options. Use WithRawParameters(Dictionary<string, object>) or WithRaw(string, object) to create updated copies.                                |
 | bool? ReadOnly { get; init; }                             | Specifies that this query should be executed in read-only mode, disabling the ability for the query to make any changes to the data.                                                                                |
 | QueryScanConsistency? ScanConsistency { get; init; }      | The scan consistency for the query request.                                                                                                                                                                         |
-| TimeSpan? Timeout { get; init; }                          | Sets the overall timeout for the query request. If unset, the default TimeoutOptions’s \`QueryTimeout will be used. Note that if a CancellationToken is used on the query call, it may trigger before this timeout. |
+| TimeSpan? Timeout { get; init; }                          | Sets the overall timeout for the query request. If unset, the default TimeoutOptions's \`QueryTimeout will be used. Note that if a CancellationToken is used on the query call, it may trigger before this timeout. |
 
 ## [](#further-information)Further Information
 

@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Python Client.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.4@python-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -95,8 +95,8 @@ $ python3 -m pip install couchbase==4.4.0
 * [CXXCBC-681](https://jira.issues.couchbase.com/browse/CXXCBC-681): No longer storing entire `transaction_get_result` in staged mutations, reducing memory use ([#757](https://github.com/couchbase/couchbase-cxx-client/pull/757)).
 * [CXXCBC-682](https://jira.issues.couchbase.com/browse/CXXCBC-682): Transaction replace/insert result now includes post-op content ([#756](https://github.com/couchbase/couchbase-cxx-client/pull/756)).
 * [CXXCBC-683](https://jira.issues.couchbase.com/browse/CXXCBC-683): Transactions replace now uses CAS from given `TransactionsGetResult` when the document is a staged insert ([#763](https://github.com/couchbase/couchbase-cxx-client/pull/763)).
-* [CXXCBC-688](https://jira.issues.couchbase.com/browse/CXXCBC-688): Don’t convert Public API TOF from lambda to Core API’s TOF, rely on internal state ([#765](https://github.com/couchbase/couchbase-cxx-client/pull/765)).
-* [CXXCBC-690](https://jira.issues.couchbase.com/browse/CXXCBC-690): Don’t move `staged_mutation` item when capturing it in `commit_doc` lambdas ([#767](https://github.com/couchbase/couchbase-cxx-client/pull/767)).
+* [CXXCBC-688](https://jira.issues.couchbase.com/browse/CXXCBC-688): Don't convert Public API TOF from lambda to Core API's TOF, rely on internal state ([#765](https://github.com/couchbase/couchbase-cxx-client/pull/765)).
+* [CXXCBC-690](https://jira.issues.couchbase.com/browse/CXXCBC-690): Don't move `staged_mutation` item when capturing it in `commit_doc` lambdas ([#767](https://github.com/couchbase/couchbase-cxx-client/pull/767)).
 
 ## [](#python-sdk-4-3-releases)Python SDK 4.3 Releases
 
@@ -382,7 +382,7 @@ $ python3 -m pip install couchbase==4.2.0
 
 #### [](#behavioral-change-4)Behavioral Change
 
-It’s important to use `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes. Method `Scope.search_query()` is now deprecated and will be removed in a future release. Method `Scope.search_query()` will _not_ work with scoped indexes.
+It's important to use `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes. Method `Scope.search_query()` is now deprecated and will be removed in a future release. Method `Scope.search_query()` will _not_ work with scoped indexes.
 
 #### [](#enhancements-14)Enhancements
 
@@ -630,7 +630,7 @@ $ python3 -m pip install couchbase==4.1.5
 
 #### [](#behavioral-change-8)Behavioral Change
 
-Accessing content from an Exist operation with the `` LookupInResult’s `content_as `` method now returns a boolean. This boolean is `True` if the path exists, `False` otherwise. Prior to this change the SDK raised a `DocumentNotFoundException` if the path existed or `PathNotFoundException` if the path didn’t exist. The behavioral change aligns the Python SDK with Couchbase’s [CRUD RFC](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0053-sdk3-crud.md).
+Accessing content from an Exist operation with the `` LookupInResult’s `content_as `` method now returns a boolean. This boolean is `True` if the path exists, `False` otherwise. Prior to this change the SDK raised a `DocumentNotFoundException` if the path existed or `PathNotFoundException` if the path didn't exist. The behavioral change aligns the Python SDK with Couchbase's [CRUD RFC](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0053-sdk3-crud.md).
 
 #### [](#fixes-22)Fixes
 
@@ -815,7 +815,7 @@ $ python3 -m pip install couchbase==4.0.4
 * [PYCBC-1276](https://issues.couchbase.com/browse/PYCBC-1276): Added legacy durability to mutation operations. This allows the use of client durability within operations that allow for a durability option.
 * [PYCBC-1399](https://issues.couchbase.com/browse/PYCBC-1399): Added Metrics API — users can now provide a custom meter for logging metrics.
 * [PYCBC-1391](https://issues.couchbase.com/browse/PYCBC-1391): Removed `_raw_metrics` property from streaming API Metrics result objects.
-* [PYCBC-1392](https://issues.couchbase.com/browse/PYCBC-1392): Updated `collection.exists()` logic to align with a recent change in the underlying Couchbase++ client. Users will no longer see an error if a document doesn’t exist, instead the `resp.exists()` method will be needed to determine whether a document is there or not.
+* [PYCBC-1392](https://issues.couchbase.com/browse/PYCBC-1392): Updated `collection.exists()` logic to align with a recent change in the underlying Couchbase++ client. Users will no longer see an error if a document doesn't exist, instead the `resp.exists()` method will be needed to determine whether a document is there or not.
 * [PYCBC-1395](https://issues.couchbase.com/browse/PYCBC-1395): Updated build deferred index logic to align with recent change in Couchbase++ client.
 
 ### [](#version-4-0-3-2-august-2022)Version 4.0.3 (2 August 2022)

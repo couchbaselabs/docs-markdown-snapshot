@@ -2,7 +2,7 @@
 title: Changes Feed
 description: Integrating Sync Gateway with other servers
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/changes-feed.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::changes-feed.adoc[]
 ---
 
@@ -54,7 +54,7 @@ In addition to regular polling, if the request is sent with a special `last_seq`
 
 [continuous](http://guide.couchdb.org/draft/notifications.html#continuous)
 
-The continuous changes API allows you to receive change notifications as they come, in a single HTTP connection. You make a request to the continuous changes API and both you and Sync Gateway will hold the connection open “forever.”
+The continuous changes API allows you to receive change notifications as they come, in a single HTTP connection. You make a request to the continuous changes API and both you and Sync Gateway will hold the connection open "forever."
 
 [WebSockets](#lbl-websockets)
 
@@ -68,7 +68,7 @@ In this section
 
 Continuous streaming HTTP responses may not be suitable for all deployments. Some proxy servers perform chunked-mode response parsing, which waits for the entire response to be buffered before sending it on. So, since the continuous feed response never ends, nothing is ever sent through to the client. This problem can be avoided using the WebSocket method.
 
-The client requests WebSockets by setting the `_changes` URL’s feed query parameter to `websocket`, and opening a WebSocket connection to that URL — see: [Example 1](#ex-getfeed).
+The client requests WebSockets by setting the `_changes` URL's feed query parameter to `websocket`, and opening a WebSocket connection to that URL — see: [Example 1](#ex-getfeed).
 
 Example 1\. Changes Feed Request
 
@@ -81,7 +81,7 @@ Upgrade: websocket
 
 ### [](#lbl-options)Specifying Options
 
-After the connection opens, the client MUST send a single textual message to the server, specifying the feed options. This message is identical to the body of a regular HTTP POST to `_changes`, i.e. it’s a JSON object whose keys are the parameters (for example, `{"since": 112233, "include_docs": true}`). Depending on which client you use, make sure that options are sent as binary.
+After the connection opens, the client MUST send a single textual message to the server, specifying the feed options. This message is identical to the body of a regular HTTP POST to `_changes`, i.e. it's a JSON object whose keys are the parameters (for example, `{"since": 112233, "include_docs": true}`). Depending on which client you use, make sure that options are sent as binary.
 
 ### [](#lbl-messages)Messages
 

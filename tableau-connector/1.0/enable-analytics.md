@@ -1,7 +1,7 @@
 ---
 title: Enable Couchbase Analytics Service
 editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.0/modules/ROOT/pages/enable-analytics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.0@tableau-connector::enable-analytics.adoc[]
 ---
 
@@ -46,11 +46,11 @@ For more information on how to enable services by adding a node, follow the guid
 
 ### [](#option-2-join-a-cluster-and-rebalance)Option 2: Join a Cluster and Rebalance
 
-The example below shows how an uninitialized and unprovisioned node joins itself to an existing cluster to enable the Analytics service. Use your browser to go to the new node’s Couchbase Web Console and left-click on the Join Existing Cluster button.
+The example below shows how an uninitialized and unprovisioned node joins itself to an existing cluster to enable the Analytics service. Use your browser to go to the new node's Couchbase Web Console and left-click on the Join Existing Cluster button.
 
 ![New Node dialog](_images/new-node.png) 
 
-This brings up the Join Cluster dialog. Left-click on the Configure Services & Settings For This Node control. The expanded dialog allows specification of the services, the name and IP address, and the disk paths for the new node. It also requires the username and password of the Cluster Admin and the name or IP address of the cluster to be joined. Enter the cluster’s IP address and password, and uncheck all Services fields except Data and Analytics. Then, left-click on the Join Cluster button, at the lower right.
+This brings up the Join Cluster dialog. Left-click on the Configure Services & Settings For This Node control. The expanded dialog allows specification of the services, the name and IP address, and the disk paths for the new node. It also requires the username and password of the Cluster Admin and the name or IP address of the cluster to be joined. Enter the cluster's IP address and password, and uncheck all Services fields except Data and Analytics. Then, left-click on the Join Cluster button, at the lower right.
 
 ![Join Cluster dialog](_images/join-cluster-dialog.png) 
 

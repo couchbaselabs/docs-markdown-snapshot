@@ -2,7 +2,7 @@
 title: Buckets
 description: A bucket is the fundamental space for storing data in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/buckets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:buckets-memory-and-storage/buckets.adoc[]
 ---
 
@@ -25,8 +25,8 @@ If a Couchbase bucket exceeds its RAM quota, the system ejects items. Ejection r
 * Ephemeral buckets are an alternative to Couchbase buckets when you do not need data persistence. Use them when disk access causes too much overhead. Ephemeral buckets deliver consistent in-memory performance without disk-based fluctuations. They also allow nodes to rebalance and restart faster.  
 An Ephemeral bucket handles running out of RAM quota in one of two ways, depending on how you set their ejection policy:
 
-  * If you choose not to have data ejected, Couchbase Server does not remove data from the bucket when it fills. Instead, it returns an error when you try to load additional data into the bucket. To be able to load more data into the bucket, you must either increase the bucket’s RAM quota or remove some data from the bucket.
-  * If you enable data ejection, Couchbase Server removes older data from the bucket to make room for new data. When Couchbase Server ejects data from an Ephemeral bucket, you cannot recover it. It removes all of the item’s data. However, it keeps a tombstone (a record of the ejected item, including keys and metadata) until the next scheduled metadata purge for the current node. See [Storage](storage-settings.md) for more details.
+  * If you choose not to have data ejected, Couchbase Server does not remove data from the bucket when it fills. Instead, it returns an error when you try to load additional data into the bucket. To be able to load more data into the bucket, you must either increase the bucket's RAM quota or remove some data from the bucket.
+  * If you enable data ejection, Couchbase Server removes older data from the bucket to make room for new data. When Couchbase Server ejects data from an Ephemeral bucket, you cannot recover it. It removes all of the item's data. However, it keeps a tombstone (a record of the ejected item, including keys and metadata) until the next scheduled metadata purge for the current node. See [Storage](storage-settings.md) for more details.
 
 ## [](#bucket-capabilities)Bucket Capabilities
 

@@ -1,7 +1,7 @@
 ---
 title: Backup with VMware Velero
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/tutorial-velero-backup.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::tutorial-velero-backup.adoc[]
 ---
 
@@ -75,7 +75,7 @@ couchbasebucket.couchbase.com/default created
 couchbasecluster.couchbase.com/cb-example created
 ```
 
-The Operator will begin to provision the cluster. In the mean time let’s have a look at the configuration:
+The Operator will begin to provision the cluster. In the mean time let's have a look at the configuration:
 
 ```yaml
 apiVersion: couchbase.com/v2
@@ -149,7 +149,7 @@ $ velero backup create \
 | **1** | test is the name of the backup we wish to create. This is globally scoped so needs to be unique.                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | We specify that this backup should only look at the test namespace. This is another good reason for deploying Couchbase clusters in their own namespaces — you can limit the scope of and control third party applications.                                                                                                                                                                                                                                                                           |
-| **3** | We specify exactly what resources to backup. We want to backup all Couchbase resources — for brevity I’ve used only what is in use. Backing up persistent volumes will create snapshots. Backing up persistent volume claims and ConfigMap resources will save all the persistent metadata required by the Operator for recovery. Backing up secrets will protect the admin username and password. Finally deployments, roles, role bindings and service accounts will allow the Operator to restart. |
+| **3** | We specify exactly what resources to backup. We want to backup all Couchbase resources — for brevity I've used only what is in use. Backing up persistent volumes will create snapshots. Backing up persistent volume claims and ConfigMap resources will save all the persistent metadata required by the Operator for recovery. Backing up secrets will protect the admin username and password. Finally deployments, roles, role bindings and service accounts will allow the Operator to restart. |
 
 You may have noticed that neither pods nor services were backed up. This is because the Operator will be able to recreate them from the cluster `ConfigMap`, metadata attached to the persistent volume claims, and the `CouchbaseCluster` resource itself. Likewise the deployment will be able to recreate the Operator pod.
 
@@ -201,7 +201,7 @@ Persistent Volumes:  3 of 3 snapshots completed successfully (specify --details 
 
 ## [](#disaster-strikes)Disaster Strikes!
 
-The Operator can easily handle pods and persistent volumes being deleted. What it can’t cater for is someone deleting everything, which is where [Velero](https://velero.io/) comes in. So let’s simulate total devastation to see [Velero](https://velero.io/) in action:
+The Operator can easily handle pods and persistent volumes being deleted. What it can't cater for is someone deleting everything, which is where [Velero](https://velero.io/) comes in. So let's simulate total devastation to see [Velero](https://velero.io/) in action:
 
 ```console
 $ kubectl delete namespace test
@@ -230,7 +230,7 @@ $ kubectl -n test logs -f deployment/couchbase-operator
 {"level":"info","ts":1581948127.1986287,"logger":"leader","msg":"Not the leader. Waiting."}
 ```
 
-However, as you will see, the Operator’s leader election hangs. This is because we backed the `ConfigMap` that is used to determine leadership. But this is actually a good thing.
+However, as you will see, the Operator's leader election hangs. This is because we backed the `ConfigMap` that is used to determine leadership. But this is actually a good thing.
 
 It is worthwhile taking a moment and checking that things are as you expect before continuing. The most important resources to double check are the persistent volume claims as they contain your data and recovery metadata. They should be present and `Bound`, ready to be used.
 

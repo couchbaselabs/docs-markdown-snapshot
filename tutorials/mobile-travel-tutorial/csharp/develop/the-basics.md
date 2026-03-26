@@ -1,7 +1,7 @@
 ---
 title: The Basics
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/develop/the-basics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:csharp/develop/the-basics.adoc[]
 ---
 
@@ -50,15 +50,15 @@ db = new Database(DbName, options);
 Try it out
 
 1. Build and Run the Travel Sample Mobile App
-2. On Login screen select “Proceed as Guest” option.
-3. This will log you into app in Guest Mode. Signing in as Guest will create a new empty database for “guest” account if one does not exist
-4. Confirm that you see the “Bookmarked Hotels” page. It will be empty the very first time.
+2. On Login screen select "Proceed as Guest" option.
+3. This will log you into app in Guest Mode. Signing in as Guest will create a new empty database for "guest" account if one does not exist
+4. Confirm that you see the "Bookmarked Hotels" page. It will be empty the very first time.
 
 ## [](#create-and-update-a-document)Create and Update a Document
 
 Bookmarked hotels are persisted in a separate document with `type` of `bookmarkedhotels`.
 
-The first time a hotel is bookmarked, the `bookmarkedhotels` document is created with the document ID of that hotel document in the `hotels` property. The hotel’s information is persisted in a separate `hotels` type document.
+The first time a hotel is bookmarked, the `bookmarkedhotels` document is created with the document ID of that hotel document in the `hotels` property. The hotel's information is persisted in a separate `hotels` type document.
 
 Subsequently, every time a hotel is bookmarked, the process repeats.
 
@@ -85,7 +85,7 @@ public void ToggleBookmark(HotelListCellModel hotel) {
 }
 ```
 
-Fetch the document of type `bookmarkedhotels`. Don’t worry too much about how you query for document of specific type from the database. We will examine `queries` in a future lesson.
+Fetch the document of type `bookmarkedhotels`. Don't worry too much about how you query for document of specific type from the database. We will examine `queries` in a future lesson.
 
 Create document of type `bookmarkedhotels` if one does not exist.
 
@@ -133,16 +133,16 @@ if (hotel.Source["id"] is string id) {
 
 Try it out — add a bookmark
 
-1. As Guest User, tap on “hotels” button
+1. As Guest User, tap on "hotels" button
 2. In "location" text field , enter "London"
 3. You will see list of hotels.
 4. The list of hotels is pulled from the Couchbase Server via the Travel Sample Web Services API. The list of hotels is not displayed unless there is an open connection the python web app so make sure you have your Travel Sample Web app running
 5. Right click/tap on the first hotel cell
-6. You will see the button to “Bookmark”
-7. Tap “bookmark”
+6. You will see the button to "Bookmark"
+7. Tap "bookmark"
 8. This should display a "bookmark" icon on the hotel cell
 9. Tap "Back" button
-10. Verify that you see the bookmarked hotel in the “Bookmarked Hotels” screen — see: [Figure 1](#fig-net-hotelsearch)A motivation for having separate docs for each bookmarked hotel is if they become sharable between users via the sync function.
+10. Verify that you see the bookmarked hotel in the "Bookmarked Hotels" screen — see: [Figure 1](#fig-net-hotelsearch)A motivation for having separate docs for each bookmarked hotel is if they become sharable between users via the sync function.
 
 ![uwp basics add document](https://raw.githubusercontent.com/couchbaselabs/mobile-travel-sample/master/content/assets/uwp_basics_add_document.gif) 
 
@@ -178,8 +178,8 @@ Try it out
 1. Follow the steps in [Try it out — add a bookmark](#lab-net-bookmk) section to bookmark a hotel
 2. Confirm that you see the bookmarked hotels in the "Bookmarked Hotels" screen. If not, make sure you go through the instructions [Try it out — add a bookmark](#lab-net-bookmk) section
 3. Right click/tap on the first Hotel cell
-4. You will get button to “UnBookmark”
-5. Tap “unbookmark”
+4. You will get button to "UnBookmark"
+5. Tap "unbookmark"
 6. Verify that the unbookmarked hotel does not show up in list — see: [Figure 2](#fig-net-unbookmk)
 
 ![uwp basics delete document](../../_images/uwp_basics_delete_document.gif) 

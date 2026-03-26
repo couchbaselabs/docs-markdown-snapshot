@@ -1,7 +1,7 @@
 ---
 title: Colons and Semi-Colons
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/colons.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::colons.adoc[]
 ---
 
@@ -22,6 +22,6 @@ Use a colon to introduce an ordered or unordered list.
 
 Try to avoid using a semi-colon. In most cases, a period and a pair of shorter sentences is fine.
 
-If you’re using a semi-colon to separate complex items in a list, just change the list to an ordered or unordered list.
+If you're using a semi-colon to separate complex items in a list, just change the list to an ordered or unordered list.
 
-Otherwise, try to follow the Google Developer Style Guide’s [guidance on semi-colons](https://developers.google.com/style/semicolons).
+Otherwise, try to follow the Google Developer Style Guide's [guidance on semi-colons](https://developers.google.com/style/semicolons).

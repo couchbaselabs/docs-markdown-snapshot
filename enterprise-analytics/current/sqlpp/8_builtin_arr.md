@@ -3,7 +3,7 @@ title: Array Functions
 description: This topic describes the builtin SQL++ for Enterprise Analytics
   array functions.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/8_builtin_arr.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sqlpp:8_builtin_arr.adoc[]
 ---
 
@@ -177,7 +177,7 @@ array_ifnull([null, 1, 2]);
 * Syntax:  
 array_insert(list, pos, val1, val2, ...)
 * Inserts the supplied values into the original array or multiset. Values can be NULL, meaning you can insert NULLs.  
-When the input is an array, the supplied values are inserted at the specified position. If the position is positive, the position before the first item is 0, the position before the second item is 1, and so on. If the position is negative, the position before the last item is -1, the position before the second-last item is -2, and so on. For example, in the array \[5,6\], the valid positions are 0, 1, 2, -1, -2\. If the input array or multiset is empty, the only valid position is 0\. If the position is a floating-point number, it’s cast to integer.  
+When the input is an array, the supplied values are inserted at the specified position. If the position is positive, the position before the first item is 0, the position before the second item is 1, and so on. If the position is negative, the position before the last item is -1, the position before the second-last item is -2, and so on. For example, in the array \[5,6\], the valid positions are 0, 1, 2, -1, -2\. If the input array or multiset is empty, the only valid position is 0\. If the position is a floating-point number, it's cast to integer.  
 When the input is a multiset, the location of the inserted values is undefined. The position must be less than the size of the multiset.
 * Arguments:
 

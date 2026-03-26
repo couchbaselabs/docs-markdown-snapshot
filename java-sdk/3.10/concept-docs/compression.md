@@ -4,7 +4,7 @@ description: In response to increasing volumes of data being sent over the wire,
   Couchbase Data Platform provides data compression between the SDK and
   Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/concept-docs/pages/compression.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@java-sdk:concept-docs:compression.adoc[]
 ---
 
@@ -29,7 +29,7 @@ The document must be below 20MiB in size in both compressed and uncompressed for
 > This size limit is enforced by Couchbase Server; in practice it will affect very few users, as most JSON documents are considerably smaller. A compressed doument of just under 20MB, which is greater than 20,971,520 bytes (20 MiB) when uncompressed, will be rejected by the server as follows:
 > 
 > * Couchbase Server decompresses the document to check that it is valid JSON, and is correctly compressed with _Snappy_, and at this point measures it against `max data size` (20 MiB).
-> * If the decompressed value’s size exceeds this limit, the mutation is failed with a "too big" error code (E2BIG code 3).
+> * If the decompressed value's size exceeds this limit, the mutation is failed with a "too big" error code (E2BIG code 3).
 > 
 > Therefore, where necessary, enforce document size limits in your application on _uncompressed_ documents.
 

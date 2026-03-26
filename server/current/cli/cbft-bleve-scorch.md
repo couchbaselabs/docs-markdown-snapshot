@@ -3,7 +3,7 @@ title: cbft-bleve for Scorch Indexes
 description: The <code>cbft-bleve</code> tool supports commands that return
   information on <em>Scorch</em> index partitions.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbft-bleve-scorch.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbft-bleve-scorch.adoc[]
 ---
 
@@ -102,7 +102,7 @@ If successful, the command returns the following:
 
 ## [](#deleted)deleted
 
-The `deleted` command prints a bitmap that represents items that have been _deleted_ from each segment of a specified snapshot, during the course of the segment’s existence. The syntax is as follows:
+The `deleted` command prints a bitmap that represents items that have been _deleted_ from each segment of a specified snapshot, during the course of the segment's existence. The syntax is as follows:
 
 cbft-bleve scorch deleted [index-store-path] [snapshot] [flags]
 

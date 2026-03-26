@@ -1,7 +1,7 @@
 ---
 title: Error Messages
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/error-messages.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ui-ux::error-messages.adoc[]
 ---
 
@@ -45,13 +45,13 @@ An error occurred when attempting to save an item
 
 Please try again.
 
-Use "please" if you’re asking the user to do something that inconveniences them. Try to reword the error message to avoid "please."
+Use "please" if you're asking the user to do something that inconveniences them. Try to reword the error message to avoid "please."
 
 For example, `An unexpected error has occurred. Please reupload your file and try again.` or `An unexpected error has occurred. Reupload your file and try again.`
 
 For very generic error messages, where we are not 100% sure what the user should do to resolve, `Please try again` is fine.
 
-Don’t use "thanks" or "thank you."
+Don't use "thanks" or "thank you."
 
 Avoid using "sorry".
 

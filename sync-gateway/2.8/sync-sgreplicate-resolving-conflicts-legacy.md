@@ -2,7 +2,7 @@
 title: Conflict Resolution with 1.x client
 description: Couchbase Sync Gateway -- resolving conflicts
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/sync-sgreplicate-resolving-conflicts-legacy.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::sync-sgreplicate-resolving-conflicts-legacy.adoc[]
 ---
 
@@ -104,17 +104,17 @@ function getChanges(seq) {
 }
 ```
 
-Let’s go through this step by step:
+Let's go through this step by step:
 
 1. GET request to the `_changes` endpoint. With the following options:
 
   * `feed=longpoll&since=<seq>`: The response will contain all the changes since the specified `seq`. If `seq` is the last sequence number (the most recent one) then the connection will remain open until a new document is processed by Sync Gateway and the change event is sent. The `getChanges` method is called recursively to always have the latest changes.
   * `include_docs:` The response will contain the document body (i.e. the current revision for that document).
   * `all_docs&active_only=true:` The response will exclude changes that are deletions and channel access removals.
-2. **Detect and resolve conflicts.**If there are more than one revision then it’s a conflict. Resolve the conflict and return (stop processing this response). Once the conflict is resolve, get the next change(s).
+2. **Detect and resolve conflicts.**If there are more than one revision then it's a conflict. Resolve the conflict and return (stop processing this response). Once the conflict is resolve, get the next change(s).
 3. **There were no conflicts in this response, get the next change(s).**
 
-The program won’t run yet because the `resolveConflicts` method isn’t defined, read the next section to learn how to resolve conflicts once they are detected.
+The program won't run yet because the `resolveConflicts` method isn't defined, read the next section to learn how to resolve conflicts once they are detected.
 
 ### [](#resolving-conflicts)Resolving conflicts
 

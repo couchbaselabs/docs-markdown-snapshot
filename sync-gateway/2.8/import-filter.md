@@ -3,7 +3,7 @@ title: Import Filter
 description: Introducing <em>import filters</em> and how to use them to speed-up
   the initial import process.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/import-filter.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::import-filter.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:2.8@sync-gateway::import-filter.adoc[]
 
 ## [](#introduction)Introduction
 
-Sync Gateway’s initial import process can take a considerable time to complete for clusters with a large amount of data. The process can be made more efficient by using an _Import filter_. Without a filter (the default), Sync Gateway imports all documents.
+Sync Gateway's initial import process can take a considerable time to complete for clusters with a large amount of data. The process can be made more efficient by using an _Import filter_. Without a filter (the default), Sync Gateway imports all documents.
 
 ## [](#configuration)Configuration
 
@@ -62,11 +62,11 @@ Example 1\. Using an Import Filter
 
 Configuration properties:
 
-| **1** | The user’s username that you created on the Couchbase Server Admin Console.                                                                                                                                                                                                                           |
+| **1** | The user's username that you created on the Couchbase Server Admin Console.                                                                                                                                                                                                                           |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | The user’s password that you created on the Couchbase Server Admin Console.                                                                                                                                                                                                                           |
+| **2** | The user's password that you created on the Couchbase Server Admin Console.                                                                                                                                                                                                                           |
 | **3** | The [Sync with Couchbase Server](../current/sync/sync-with-couchbase-server.md) feature allows Couchbase Server SDKs to also perform operations on this bucket.                                                                                                                                       |
-| **4** | num\_index\_replicas is the number of index replicas stored in Couchbase Server, introduced with GSI/N1QL indexing — see [Indexing versus Views](../current/deploy/indexing.md). If you’re running a single Couchbase Server node for development purposes the num\_index\_replicas must be set to 0. |
+| **4** | num\_index\_replicas is the number of index replicas stored in Couchbase Server, introduced with GSI/N1QL indexing — see [Indexing versus Views](../current/deploy/indexing.md). If you're running a single Couchbase Server node for development purposes the num\_index\_replicas must be set to 0. |
 | **5** | Only import documents which have a type property equal to mobile.                                                                                                                                                                                                                                     |
 
 ## [](#related-content)Related Content

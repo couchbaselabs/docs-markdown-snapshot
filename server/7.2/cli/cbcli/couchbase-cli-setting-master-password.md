@@ -2,7 +2,7 @@
 title: setting-master-password
 description: Manages the Couchbase master password
 editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbcli/couchbase-cli-setting-master-password.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cli:cbcli/couchbase-cli-setting-master-password.adoc[]
 ---
 
@@ -111,12 +111,12 @@ Currently, only the following key types are supported: - RSA - DSA
 
 ## [](#examples)EXAMPLES
 
-To use the Secret Management feature, the first thing you need to do is set a password on each node of the cluster. To do this, install and start Couchbase, but don’t go through the setup process or initialize the cluster. Once Couchbase has started, run the following command to set the master password for your server.
+To use the Secret Management feature, the first thing you need to do is set a password on each node of the cluster. To do this, install and start Couchbase, but don't go through the setup process or initialize the cluster. Once Couchbase has started, run the following command to set the master password for your server.
 
 $ couchbase-cli setting-master-password -c 127.0.0.1 -u Administrator \
   -p password --new-password password
 
-Once the master password is configured restart the server. Upon restarting the cluster you will notice that the server doesn’t fully start. This is because it is waiting for you to enter the master password. You can do this by running the command below. The master-password subcommand has to be run locally on the node that is waiting for the master password.
+Once the master password is configured restart the server. Upon restarting the cluster you will notice that the server doesn't fully start. This is because it is waiting for you to enter the master password. You can do this by running the command below. The master-password subcommand has to be run locally on the node that is waiting for the master password.
 
 $ couchbase-cli master-password --send-password password
 

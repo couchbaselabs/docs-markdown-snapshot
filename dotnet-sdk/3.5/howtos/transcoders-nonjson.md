@@ -2,7 +2,7 @@
 title: Transcoders and Non-JSON Documents
 description: The .NET SDK supports common JSON document requirements out-of-the-box.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.5/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.5@dotnet-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
@@ -68,7 +68,7 @@ var userBytes = JsonSerializer.SerializeToUtf8Bytes(new User
 await collection.UpsertAsync("john-smith", userBytes, options => options.Transcoder(new RawJsonTranscoder()));
 ```
 
-Since System.Text.Json has already done the serialization work, we don’t want to use the default `JsonTranscoder`, as this will run the provided String needlessly through `DefaultSerializer` (JSON.NET). Instead, RawJsonTranscoder is used, which just passes through the serialized bytes, and stores them in Couchbase with the JSON Common Flag set.
+Since System.Text.Json has already done the serialization work, we don't want to use the default `JsonTranscoder`, as this will run the provided String needlessly through `DefaultSerializer` (JSON.NET). Instead, RawJsonTranscoder is used, which just passes through the serialized bytes, and stores them in Couchbase with the JSON Common Flag set.
 
 Similarly, the same transcoder is used on reading the document, so the raw bytes can be retrieved in a String without going through `DefaultSerializer` (JSON.NET). System.Text.Json can then be used for the deserialization.
 
@@ -85,7 +85,7 @@ var decodedUser = JsonSerializer.Deserialize(returnedJson, typeof(User));
 It is most common to store JSON with Couchbase. However, it is possible to store non-JSON documents, such as raw binary data, perhaps using an concise binary encoding like [MessagePack](https://msgpack.org) or [CBOR](https://cbor.io/), in the Key-Value store.
 
 > [!NOTE]
-> It’s important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
+> It's important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
 
 Also note that some simple data types can be stored directly as JSON, without recourse to non-JSON transcoding. A valid JSON document can be a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value.
 
@@ -101,7 +101,7 @@ Note that this transcoder does not accept a serializer, and always performs stra
 | byte\[\]     | InvalidArgumentException | \-          |
 | Other Object | InvalidArgumentException | \-          |
 
-Here’s an example of using the `RawStringTranscoder`:
+Here's an example of using the `RawStringTranscoder`:
 
 ```csharp
 var docId = "doc";
@@ -132,7 +132,7 @@ The RawBinaryTranscoder provides the ability for the user to explicitly store an
 | IMemoryOwner<byte>   | InvalidArgumentException | Passthrough(from 3.2.6)  |
 | Other Object         | InvalidArgumentException | InvalidArgumentException |
 
-Here’s an example of using the `RawBinaryTranscoder`:
+Here's an example of using the `RawBinaryTranscoder`:
 
 ```csharp
 
@@ -169,7 +169,7 @@ More advanced transcoding needs can be accomplished if the application implement
 
 We saw above one example of using System.Text.Json with the `RawJsonTranscoder`, but it requires the application to explicitly serialize and deserialize objects each time. By creating a custom JSON serializer, we can avoid this.
 
-It’s easy to create a serializer. Simply implement the `ITypeSerializer` interface’s three methods:
+It's easy to create a serializer. Simply implement the `ITypeSerializer` interface's three methods:
 
 ```csharp
 public class DotnetJsonSerializer : ITypeSerializer
@@ -205,7 +205,7 @@ public class DotnetJsonSerializer : ITypeSerializer
 }
 ```
 
-In this case, there is no need to provide a custom transcoder. The [table for JsonTranscoder](#default-behaviour) shows that it already does what we need: for any Object (that’s not a `byte[]`), it sends it to its serializer, and then stores the result in Couchbase with the JSON Common Flag set. All we need to do is change the serializer, as so:
+In this case, there is no need to provide a custom transcoder. The [table for JsonTranscoder](#default-behaviour) shows that it already does what we need: for any Object (that's not a `byte[]`), it sends it to its serializer, and then stores the result in Couchbase with the JSON Common Flag set. All we need to do is change the serializer, as so:
 
 ```csharp
 var serializer = new DotnetJsonSerializer();
@@ -244,7 +244,7 @@ await foreach (var result in globalResults)
 
 ### [](#creating-a-custom-transcoder)Creating a Custom Transcoder
 
-Let’s look at a more complex example: encoding the JSON alternative, [MessagePack](https://msgpack.org). MessagePack is a compact binary data representation, so it should be stored with the binary Common Flag. The Common Flag is chosen by the transcoder, and none of the existing transcoders matches our needs (`RawBinaryTranscoder` does set the binary flag, but it passes data through directly rather than using a serializer). So we need to write one.
+Let's look at a more complex example: encoding the JSON alternative, [MessagePack](https://msgpack.org). MessagePack is a compact binary data representation, so it should be stored with the binary Common Flag. The Common Flag is chosen by the transcoder, and none of the existing transcoders matches our needs (`RawBinaryTranscoder` does set the binary flag, but it passes data through directly rather than using a serializer). So we need to write one.
 
 Start by creating a new serializer for MessagePack. This is similar to the custom JSON Serializer example above:
 

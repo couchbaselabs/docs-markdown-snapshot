@@ -4,7 +4,7 @@ description: Network Time Protocol (NTP) is used to synchronize time across
   multiple servers. The purpose of NTP is to keep an individual node's clock
   'accurate'.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/synchronize-clocks-using-ntp.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:synchronize-clocks-using-ntp.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:server:install:synchronize-clocks-using-ntp.adoc[]
 
 # Clock Sync with NTP
 
-Network Time Protocol (NTP) is used to synchronize time across multiple servers. The purpose of NTP is to keep an individual node’s clock 'accurate'. This is done by having the node periodically synchronize its clock with a reference server. You can specify multiple servers to provide redundancy in case one or more time servers are unavailable. Correct time synchronisation is important in Couchbase Server for Expiry behavior and to maintain accurate synchronicity in timestamp-based conflict resolution (see [Time Synchronization](../learn/clusters-and-availability/xdcr-conflict-resolution.md#time-synchronization)).
+Network Time Protocol (NTP) is used to synchronize time across multiple servers. The purpose of NTP is to keep an individual node's clock 'accurate'. This is done by having the node periodically synchronize its clock with a reference server. You can specify multiple servers to provide redundancy in case one or more time servers are unavailable. Correct time synchronisation is important in Couchbase Server for Expiry behavior and to maintain accurate synchronicity in timestamp-based conflict resolution (see [Time Synchronization](../learn/clusters-and-availability/xdcr-conflict-resolution.md#time-synchronization)).
 
 > [!TIP]
 > In a multi-cluster environment, it is important for all the nodes in the cluster to have the same time from a global perspective. In other words, all the nodes must synchronize with the same reference server and time.

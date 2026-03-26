@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Couchbase Lite Query Introduction"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-android/edit/query/content/modules/userprofile-query-android/pages/userprofile_query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:userprofile-query-android:userprofile_query.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:tutorials:userprofile-query-android:userprofile_query.adoc[]
 
 Couchbase Lite brings powerful querying and Full-Text-Search(FTS) capabilities to the edge.
 
-Its query interface is based on [N1QL](https://www.couchbase.com/products/n1ql), Couchbase’s declarative query language, which implements the emerging SQL++ standard.
+Its query interface is based on [N1QL](https://www.couchbase.com/products/n1ql), Couchbase's declarative query language, which implements the emerging SQL++ standard.
 
 The query API is designed using the [Fluent API Design Pattern](https://en.wikipedia.org/wiki/Fluent%5Finterface), and uses method cascading to read like a Domain Specific Language (DSL). This makes the interface very intuitive and easy to understand.
 
@@ -41,7 +41,7 @@ This tutorial assumes familiarity with building [Android](https://www.android.co
 * [JDK 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * git (Optional) This is required if you would prefer to pull the source code from GitHub repo.
 
-  * Create a [free github account](https://github.com)if you don’t already have one
+  * Create a [free github account](https://github.com)if you don't already have one
   * git can be downloaded from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## [](#app-overview)App Overview
@@ -141,7 +141,7 @@ if (imageViewBytes != null) {
 }
 ```
 
-The `Map<String, Object>` object functions used as a data storage mechanism between the app’s UI and the backing functionality of the Couchbase Lite `Document` object.
+The `Map<String, Object>` object functions used as a data storage mechanism between the app's UI and the backing functionality of the Couchbase Lite `Document` object.
 
 ### [](#university-document)The University Document
 
@@ -198,7 +198,7 @@ public void openPrebuiltDatabase(Context context)
 DatabaseConfiguration config = new DatabaseConfiguration();  
 config.setDirectory(context.getFilesDir().toString());  
 ```
-* Then we determine if the "universities" database already exists at the specified location. It would not be present if this is the first time we are using the app, in which case, we locate the _"universities.cblite"_ resource in the App’s main bundle and we copy it over to the Database folder.  
+* Then we determine if the "universities" database already exists at the specified location. It would not be present if this is the first time we are using the app, in which case, we locate the _"universities.cblite"_ resource in the App's main bundle and we copy it over to the Database folder.  
 If the database is already present at the specified Database location, we simply open the database.  
 ```java  
 if (!dbFile.exists()) {  
@@ -254,7 +254,7 @@ userprofileDatabase.close();
 Try It Out
 
 1. The app should be running in the simulator
-2. Log into the app with any email Id and password. Let’s use the values _"[demo@example.com](mailto:demo@example.com)"_ and _"password"_ for user Id and password fields respectively. If this is the first time that _any_ user is signing in to the app, the pre-built database will be loaded from the App Bundle. In addition, new user-specific Database will be created / opened.
+2. Log into the app with any email Id and password. Let's use the values _"[demo@example.com](mailto:demo@example.com)"_ and _"password"_ for user Id and password fields respectively. If this is the first time that _any_ user is signing in to the app, the pre-built database will be loaded from the App Bundle. In addition, new user-specific Database will be created / opened.
 3. Confirm that the console log output has a message similar to the one below. In my example, I am logging in with a user email Id of _"[demo@example.com](mailto:demo@example.com)"_.  
 ```bash  
 2019-06-12 13:07:12.542 24206-24206/com.couchbase.userprofile I/CB-Update: Will open Prebuilt DB  at path /data/user/0/com.couchbase.userprofile/files  

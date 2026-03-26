@@ -3,7 +3,7 @@ title: Manage Multi-Factor Authentication (MFA)
 description: Couchbase Capella provides the option to enable multi-factor
   authentication (MFA) to further enhance account security.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/mfa.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:organizations:ui-auth/mfa.adoc[]
 ---
 
@@ -19,7 +19,7 @@ Multi-Factor Authentication (MFA) is a layered approach to account authenticatio
 ## [](#prerequisites)Prerequisites
 
 > [!IMPORTANT]
-> If your organization uses federated and single sign-on authentication, your SSO users can’t use Capella’s MFA solution. Instead, they use your Identity Provider’s MFA.
+> If your organization uses federated and single sign-on authentication, your SSO users can't use Capella's MFA solution. Instead, they use your Identity Provider's MFA.
 
 To enable MFA for your Capella account, you need:
 
@@ -30,7 +30,7 @@ To enable MFA for your Capella account, you need:
   * LastPass Authenticator
   * Microsoft Authenticator
 
-For more information about what authenticator app to choose, contact your company’s IT or security team.
+For more information about what authenticator app to choose, contact your company's IT or security team.
 
 ## [](#turn-on-mfa)Turn on Multi-Factor Authentication for your Account
 

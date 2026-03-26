@@ -3,7 +3,7 @@ title: Failure Considerations
 description: Data durability refers to the fault tolerance and persistence of
   data in the face of software or hardware failure.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.2/modules/concept-docs/pages/durability-replication-failure-considerations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@python-sdk:concept-docs:durability-replication-failure-considerations.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:4.2@python-sdk:concept-docs:durability-replication-failure-considerat
 
 # Failure Considerations
 
-> Data durability refers to the fault tolerance and persistence of data in the face of software or hardware failure. Even the most reliable software and hardware might fail at some point, and along with the failures, introduce a chance of data loss. Couchbase’s durability features include Synchronous Replication, and the possibility to use distributed, multi-document ACID transactions. It is the responsibility of the development team and the software architect to evaluate the best choice for each use case. 
+> Data durability refers to the fault tolerance and persistence of data in the face of software or hardware failure. Even the most reliable software and hardware might fail at some point, and along with the failures, introduce a chance of data loss. Couchbase's durability features include Synchronous Replication, and the possibility to use distributed, multi-document ACID transactions. It is the responsibility of the development team and the software architect to evaluate the best choice for each use case. 
 
-Couchbase’s distributed and scalable nature exposes any set-up to the risk of potential network and hardware problems. The key to durability is planning for resilience, by evaluating the options on offer for persistence and replication, and carefully considering the performance trade-offs involved.
+Couchbase's distributed and scalable nature exposes any set-up to the risk of potential network and hardware problems. The key to durability is planning for resilience, by evaluating the options on offer for persistence and replication, and carefully considering the performance trade-offs involved.
 
 ## [](#durability)Durability
 
@@ -58,6 +58,6 @@ If a version of Couchbase Server lower than 6.5 is being used then the fallback 
 
 ### [](#performance-considerations)Performance considerations
 
-Note that Couchbase’s design of asynchronous persistence and replication is there for a reason: The time it takes to store an item in memory is several orders of magnitude quicker than persisting it to disk or sending it over the network. Operation times and latencies will increase when waiting on the speed of the network and the speed of the disk.
+Note that Couchbase's design of asynchronous persistence and replication is there for a reason: The time it takes to store an item in memory is several orders of magnitude quicker than persisting it to disk or sending it over the network. Operation times and latencies will increase when waiting on the speed of the network and the speed of the disk.
 
 Durability operations may also cause increased network traffic since it is implemented at the client level by sending special probes to each server once the actual modification has completed.

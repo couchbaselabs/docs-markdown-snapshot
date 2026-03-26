@@ -3,7 +3,7 @@ title: Manage Auditing
 description: You can audit actions performed on Couchbase Server. Auditing helps
   administrators verify that system management tasks are performed correctly.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-auditing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-security/manage-auditing.adoc[]
 ---
 
@@ -79,7 +79,7 @@ Set the path for saving the audit logs. The operating system, on which Couchbase
   * Windows: `C:\Program Files\Couchbase\Server\var\lib\couchbase\logs`
   * MacOS: `/Users/couchbase/Library/Application Support/Couchbase/var/lib/couchbase/logs`  
 File Reset Interval  
-Use this setting to specify when Couchbase Server rotates the audit log, based on the log’s age or file size. When rotation occurs, Couchbase Server renames the current `audit.log` file to a new filename with a timestamp, for example, `<node-name>.local-2024-07-30T15-42-18-audit.log`.  
+Use this setting to specify when Couchbase Server rotates the audit log, based on the log's age or file size. When rotation occurs, Couchbase Server renames the current `audit.log` file to a new filename with a timestamp, for example, `<node-name>.local-2024-07-30T15-42-18-audit.log`.  
 For more information about log rotation, see [Saving and Pruning Audit Records](../../learn/security/auditing.md#saving-audit-records).  
 > [!NOTE]  
 > By default, Couchbase Server does not delete old log files automatically. Over time, these files can consume significant disk space on your nodes. You can set the [pruneAge](../../rest-api/rest-auditing.md#pruneAge) parameter in the `settings/audit` REST API to make Couchbase Server delete log files based on their age. For more information, see [Audit API](../../rest-api/rest-auditing.md).

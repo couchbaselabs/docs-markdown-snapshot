@@ -3,7 +3,7 @@ title: Data Modelling
 description: <em>Couchbase Sync Gateway's</em> data model; for secure
   cloud-to-edge synchronization of enterprise data.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/data-modeling.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::data-modeling.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.8@sync-gateway::data-modeling.adoc[]
 
 # Data Modelling
 
-> _Couchbase Sync Gateway’s_ data model; for secure cloud-to-edge synchronization of enterprise data.  
+> _Couchbase Sync Gateway's_ data model; for secure cloud-to-edge synchronization of enterprise data.  
 
 ## [](#introduction)Introduction
 
@@ -24,9 +24,9 @@ What to avoid
 
 You should avoid designing user property names prefixed with an underscore character (`_`, ASCII `&#095`).
 
-Why it’s an issue
+Why it's an issue
 
-The underscore character (`_`) is a **reserved prefix** for _Document_ system properties, for example: the document’s identifier (`_id`) and revision property (`_rev`).
+The underscore character (`_`) is a **reserved prefix** for _Document_ system properties, for example: the document's identifier (`_id`) and revision property (`_rev`).
 
 Any document which does contain user properties with a leading underscore will be rejected by Sync Gateway — see [Example 1](#error-code) for the error details.
 
@@ -57,11 +57,11 @@ How to avoid the error
 You should change any top-level user properties that have a key with a leading underscore , by either:
 
 * Renaming them to remove the underscore, or,
-* Wrapping them inside another object with a key that doesn’t have a leading underscore.
+* Wrapping them inside another object with a key that doesn't have a leading underscore.
 
 ## [](#document-structure)Document Structure
 
-Couchbase’s unit of data is a document, this is the NOSQL equivalent of a row or record.
+Couchbase's unit of data is a document, this is the NOSQL equivalent of a row or record.
 
 Documents are stored as a key-value pair, which comprises a unique and immutable key, the _Id_, and a value representing the users' data (a JSON-object or binary blob).
 

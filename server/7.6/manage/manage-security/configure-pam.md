@@ -4,7 +4,7 @@ description: <em>Pluggable Authentication Modules</em> (PAM) provide an
   authentication framework that allows multiple, low-level authentication
   schemes to be used by a single API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/configure-pam.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-security/configure-pam.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:7.6@server:manage:manage-security/configure-pam.adoc[]
 
 # Configure PAM
 
-> _Pluggable Authentication Modules_ (PAM) provide an authentication framework that allows multiple, low-level authentication schemes to be used by a single API. The _Enterprise Edition_ of Couchbase Server, running on Linux, supports administrator-authentication through PAM’s _Linux password-module_. 
+> _Pluggable Authentication Modules_ (PAM) provide an authentication framework that allows multiple, low-level authentication schemes to be used by a single API. The _Enterprise Edition_ of Couchbase Server, running on Linux, supports administrator-authentication through PAM's _Linux password-module_. 
 
 ## [](#pam-features)PAM Features
 

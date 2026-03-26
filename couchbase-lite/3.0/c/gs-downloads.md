@@ -2,7 +2,7 @@
 title: Download Links
 description: Download links for Couchbase Lite for C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/c/pages/gs-downloads.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:c:gs-downloads.adoc[]
 ---
 
@@ -29,7 +29,7 @@ For _Android_, _iOS_ and _Windows_ downloads, see the Couchbase Downloads page h
 
 Alternatively, check the [install](gs-install.md)page, for how to get the software using a package manager.
 
-Ensure you select the correct package for your application’s compiler and architecture.
+Ensure you select the correct package for your application's compiler and architecture.
 
 ## [](#release-3-0-15)Release 3.0.15
 
@@ -174,7 +174,7 @@ For _Android_, _iOS_ and _Windows_ downloads, see the Couchbase Downloads page h
 
 Alternatively, check the [install](gs-install.md)page, for how to get the software using a package manager.
 
-Ensure you select the correct package for your application’s compiler and architecture.
+Ensure you select the correct package for your application's compiler and architecture.
 
 ## [](#release-3-0-12)Release 3.0.12
 
@@ -319,7 +319,7 @@ For _Android_, _iOS_ and _Windows_ downloads, see the Couchbase Downloads page h
 
 Alternatively, check the [install](gs-install.md)page, for how to get the software using a package manager.
 
-Ensure you select the correct package for your application’s compiler and architecture.
+Ensure you select the correct package for your application's compiler and architecture.
 
 ## [](#release-3-0-11)Release 3.0.11
 

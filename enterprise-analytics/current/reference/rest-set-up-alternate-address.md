@@ -5,7 +5,7 @@ description: Alternate addresses and port-numbers can be established for and
   HTTP methods, using the
   <code>/node/controller/setupAlternateAddresses/external</code> URI.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-set-up-alternate-address.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:reference:rest-set-up-alternate-address.adoc[]
 ---
 
@@ -24,7 +24,7 @@ DELETE /node/controller/setupAlternateAddresses/external
 
 ## [](#rest-setup-alternate-address-description)Description
 
-A single, alternate address can be established for and removed from a node. Likewise, a single alternate port-number can be established for and removed from each node-service. This facilitates communication with external applications that are not permitted to contact nodes directly; but have access to a router or other networked entity that provides interfaces on the cluster’s behalf.
+A single, alternate address can be established for and removed from a node. Likewise, a single alternate port-number can be established for and removed from each node-service. This facilitates communication with external applications that are not permitted to contact nodes directly; but have access to a router or other networked entity that provides interfaces on the cluster's behalf.
 
 ## [](#curl-syntax)Curl Syntax
 

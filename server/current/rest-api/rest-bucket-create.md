@@ -3,7 +3,7 @@ title: Creating and Editing Buckets
 description: Buckets can be created, and their configurations subsequently
   edited, with the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-bucket-create.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rest-bucket-create.adoc[]
 ---
 
@@ -35,7 +35,7 @@ A single cluster can contain up to 30 buckets.
 Administrators with the Full Admin or Cluster Admin role can create and configure buckets. Administrators with the Bucket Admin role can also edit bucket configurations, as long as their privileges apply to all buckets or specifically to the target bucket. For details on roles and privileges, see [Roles](../learn/security/roles.md).
 
 > [!NOTE]
-> When migrating a bucket between storage backends, you can edit only the bucket’s [ramQuota](#ramQuota), [evictionPolicy](#evictionpolicy), and [storageBackend](#storagebackend) parameters. For more information, see [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md).
+> When migrating a bucket between storage backends, you can edit only the bucket's [ramQuota](#ramQuota), [evictionPolicy](#evictionpolicy), and [storageBackend](#storagebackend) parameters. For more information, see [Migrate a Bucket's Storage Backend](../manage/manage-buckets/migrate-bucket.md).
 
 ## [](#curl-syntax)Curl Syntax
 
@@ -95,7 +95,7 @@ curl -X POST -u <administrator>:<password>
 All parameters are described in the following subsections.
 
 > [!NOTE]
-> The `threadsNumber` parameter, which sets the number of threads for the bucket, has not had any effect since version Couchbase Server 7.0.0\. It’s deprecated and is no longer listed in the syntax.
+> The `threadsNumber` parameter, which sets the number of threads for the bucket, has not had any effect since version Couchbase Server 7.0.0\. It's deprecated and is no longer listed in the syntax.
 
 ## [](#parameter-groups)Parameter Groups
 
@@ -134,7 +134,7 @@ This section lists the general parameters for creating a bucket.
   * [memoryLowWatermark](#memorylowwatermark)
   * [memoryHighWatermark](#memoryhighwatermark)  
   > [!NOTE]  
-  > When migrating a bucket between storage backends, you can edit only the bucket’s [ramQuota](#ramQuota), [evictionPolicy](#evictionpolicy), and [storageBackend](#storagebackend) parameters. For more information, see [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md).
+  > When migrating a bucket between storage backends, you can edit only the bucket's [ramQuota](#ramQuota), [evictionPolicy](#evictionpolicy), and [storageBackend](#storagebackend) parameters. For more information, see [Migrate a Bucket's Storage Backend](../manage/manage-buckets/migrate-bucket.md).
 * You cannot edit the following parameters after bucket creation:
 
   * [bucketType](#buckettype)
@@ -187,7 +187,7 @@ You must specify the name parameter when creating a bucket. If you do not provid
 {"name":"Bucket name needs to be specified"}
 ```
 
-You cannot change the bucket name after creating the bucket. If you try to specify this parameter while editing the bucket configuration,Couchbase Server ignores it. To edit an existing bucket’s configuration, specify the bucket name as the `{bucketName}` path parameter. Refer to [HTTP Methods and URIs](#http-methods-and-uris) for more details.
+You cannot change the bucket name after creating the bucket. If you try to specify this parameter while editing the bucket configuration,Couchbase Server ignores it. To edit an existing bucket's configuration, specify the bucket name as the `{bucketName}` path parameter. Refer to [HTTP Methods and URIs](#http-methods-and-uris) for more details.
 
 #### [](#example-name-create)Example: Defining a New Name, When Creating
 
@@ -280,7 +280,7 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 The storage backend to use for the new bucket. In Enterprise Edition, this value can be set to either `couchstore` or `magma` (the default). In Couchbase Server Community Edition, the default and only valid value is `couchstore`. For more information, see [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md).
 
 > [!NOTE]
-> You can edit this value after initially creating the bucket. Couchbase Server sets the new backend value globally. However, this change does not convert the bucket to the new backend storage engine. Instead, Couchbase Server adds overrides to every node containing the bucket to indicate that their vBuckets are still in the old format. You must take additional steps to complete the migration to the new storage backend. See [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information.
+> You can edit this value after initially creating the bucket. Couchbase Server sets the new backend value globally. However, this change does not convert the bucket to the new backend storage engine. Instead, Couchbase Server adds overrides to every node containing the bucket to indicate that their vBuckets are still in the old format. You must take additional steps to complete the migration to the new storage backend. See [Migrate a Bucket's Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information.
 
 #### [](#example-storage-backend)Example: Specifying the Storage Backend
 
@@ -335,9 +335,9 @@ Changes to the ejection policy of an ephemeral bucket take effect without requir
 * Perform a [swap rebalance](../install/upgrade-procedure-selection.md#swap-rebalance) on all nodes in the cluster running the data service.
 * Perform a [graceful failover](../learn/clusters-and-availability/graceful-failover.md) followed by a [delta recovery](../learn/clusters-and-availability/recovery.md#delta-recovery) and [rebalance](../learn/clusters-and-availability/rebalance.md) for all nodes running the data service in the cluster.  
 > [!NOTE]  
-> If you’re performing a storage backend migration (see [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md)) while you’re changing the ejection policy, you must set `noRestart` to `true`. You must also perform a full recovery instead of a delta recovery after the graceful failover because the migration process requires it.
+> If you're performing a storage backend migration (see [Migrate a Bucket's Storage Backend](../manage/manage-buckets/migrate-bucket.md)) while you're changing the ejection policy, you must set `noRestart` to `true`. You must also perform a full recovery instead of a delta recovery after the graceful failover because the migration process requires it.
 
-For more information about changing the ejection policy of a bucket, including the steps to take to change the policy without downtime, see [Change a Bucket’s Ejection Policy](../manage/manage-buckets/change-ejection-policy.md).
+For more information about changing the ejection policy of a bucket, including the steps to take to change the policy without downtime, see [Change a Bucket's Ejection Policy](../manage/manage-buckets/change-ejection-policy.md).
 
 #### [](#example-evictionpolicy-create)Example: Specifying an Ejection Policy, when Creating
 
@@ -366,7 +366,7 @@ If successful, the call returns a `200 OK` notification with no other value retu
 
 ### [](#norestart)noRestart
 
-Set this parameter to `true` to prevent Couchbase Server from automatically restarting the bucket when you change the ejection policy using [evictionPolicy](#evictionpolicy). It only has an effect if you’ve also set a value in the `evictionPolicy` parameter.
+Set this parameter to `true` to prevent Couchbase Server from automatically restarting the bucket when you change the ejection policy using [evictionPolicy](#evictionpolicy). It only has an effect if you've also set a value in the `evictionPolicy` parameter.
 
 This parameter defaults to `false`, meaning Couchbase Server automatically restarts the bucket after you change the ejection policy.
 
@@ -421,7 +421,7 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 
 ### [](#durabilityImpossibleFallback)durabilityImpossibleFallback
 
-Overrides Couchbase Server’s default behavior when it cannot meet a durable write’s majority requirement. When set to the default `disabled` setting, Couchbase Server reports to clients that a durable write that cannot meet its majority requirement has failed.
+Overrides Couchbase Server's default behavior when it cannot meet a durable write's majority requirement. When set to the default `disabled` setting, Couchbase Server reports to clients that a durable write that cannot meet its majority requirement has failed.
 
 If you set this value to `fallbackToActiveAck`, Couchbase Server reports the write as successful if the write succeeds to the active vBucket. It reports it as a successful durable write even if it could not meet the majority requirement.
 
@@ -430,9 +430,9 @@ If you set this value to `fallbackToActiveAck`, Couchbase Server reports the wri
 > 
 > Enabling `durabilityImpossibleFallback` degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure. When enabled for a bucket, this setting makes durable writes to it during a failover no more safe from data loss than regular asynchronous writes. Also, because transactions require durable writes, enabling this setting means they do not provide the same guarantees as they do when `durabilityImpossibleFallback` is off.
 > 
-> Use this setting only in special cases such as when you’re performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible.
+> Use this setting only in special cases such as when you're performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible.
 
-Use this setting only in special cases. For example, use it when you’re performing a graceful failover and you still want durable writes to succeed for a bucket with a single replica.
+Use this setting only in special cases. For example, use it when you're performing a graceful failover and you still want durable writes to succeed for a bucket with a single replica.
 
 For information about the `durabilityImpossibleFallback` setting, see [Maintaining Durable Writes During Single Replica Failovers](../learn/data/durability.md#maintaining-durable-writes).
 
@@ -467,11 +467,11 @@ If successful, the call returns a `200 OK` notification.
 
 ### [](#rank)rank
 
-The rank for the bucket: this determines the bucket’s place in the order in which the rebalance process handles the buckets on the cluster. The bucket can be either a Couchbase or an Ephemeral bucket. Rank can be established as an integer, from `0` (the default) to `1000`. The higher a bucket’s assigned integer (in relation to the integers assigned other buckets), the sooner in the rebalance process the bucket is handled. For example, if on a cluster that hosts multiple buckets, one bucket is assigned a rank of `25` and all others remain with the default assignment of `0`, the bucket assigned `25` is handled before any other bucket, when rebalance occurs.
+The rank for the bucket: this determines the bucket's place in the order in which the rebalance process handles the buckets on the cluster. The bucket can be either a Couchbase or an Ephemeral bucket. Rank can be established as an integer, from `0` (the default) to `1000`. The higher a bucket's assigned integer (in relation to the integers assigned other buckets), the sooner in the rebalance process the bucket is handled. For example, if on a cluster that hosts multiple buckets, one bucket is assigned a rank of `25` and all others remain with the default assignment of `0`, the bucket assigned `25` is handled before any other bucket, when rebalance occurs.
 
-This assignment of `rank` allows a cluster’s most mission-critical data to be rebalanced with top priority.
+This assignment of `rank` allows a cluster's most mission-critical data to be rebalanced with top priority.
 
-#### [](#example-rank-create)Example: Specifying a Bucket’s Rank, when Creating
+#### [](#example-rank-create)Example: Specifying a Bucket's Rank, when Creating
 
 The following establishes a new bucket named `testBucket`, and assigns it a `rank` of 100.
 
@@ -481,7 +481,7 @@ curl -v -X POST http://localhost:8091/pools/default/buckets -u Administrator:pas
 
 If the call is successful, `202 Accepted` is returned. Assigned the rank of `100`, `testBucket` will be handled by the rebalance process before any bucket whose assignment is less than `100`, and after and bucket whose assignment is greater.
 
-#### [](#example-rank-edit)Example: Specifying a Bucket’s Rank, when Editing
+#### [](#example-rank-edit)Example: Specifying a Bucket's Rank, when Editing
 
 The following edits the previously established value of `rank` for `testBucket`:
 
@@ -561,12 +561,12 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 
 ### [](#maxttl)maxTTL
 
-Sets the bucket’s maximum time to live. The default value is `0`, which does not automatically expire documents. It also does not affect expiration values you directly set on a document.
+Sets the bucket's maximum time to live. The default value is `0`, which does not automatically expire documents. It also does not affect expiration values you directly set on a document.
 
 Setting this parameter to a non-zero value has two effects:
 
-* It sets a default expiration time for documents you create or mutate in the bucket. The bucket’s `maxTTL` value can be overridden by a `maxTTL` parameter set on the collection containing a document, or by directly setting an expiration on the document itself (except as explained in the next point).
-* It sets the maximum time in seconds a document can exist before it expires. You can explicitly set a document to expire before this time. Attempting to set a document to expire after this time has Couchbase Server set the document to expire in `maxTTL` seconds. As with setting a default expiration, a non-zero `maxTTL` setting on a document’s collection overrides the bucket’s `maxTTL` setting.
+* It sets a default expiration time for documents you create or mutate in the bucket. The bucket's `maxTTL` value can be overridden by a `maxTTL` parameter set on the collection containing a document, or by directly setting an expiration on the document itself (except as explained in the next point).
+* It sets the maximum time in seconds a document can exist before it expires. You can explicitly set a document to expire before this time. Attempting to set a document to expire after this time has Couchbase Server set the document to expire in `maxTTL` seconds. As with setting a default expiration, a non-zero `maxTTL` setting on a document's collection overrides the bucket's `maxTTL` setting.
 
 The maximum value is MAX32INT (`2147483647` seconds, or `68.096` years). Attempting to set `maxTTL` value greater than MAX32INT returns an the error: `{"maxTTL":"Max TTL must be an integer between 0 and 2147483647"}`.
 
@@ -632,7 +632,7 @@ For information on conflict resolution, see [XDCR Conflict Resolution](../learn/
 
 #### [](#example-conflictresolutiontype-create)Example: Specifying a Conflict Resolution Policy, when Creating
 
-A bucket’s conflict resolution policy can only be specified when the bucket is created: attempts to change the setting subsequently are ignored.
+A bucket's conflict resolution policy can only be specified when the bucket is created: attempts to change the setting subsequently are ignored.
 
 The following example creates a new bucket, named `testBucket`, specifying the `lww` conflict resolution policy.
 
@@ -673,7 +673,7 @@ If flushing is enabled for a bucket, then the result will include a `doFlush` st
  "flush": "/pools/default/buckets/travel-sample/controller/doFlush"
 ```
 
-The `doflush` statement is excluded for buckets that don’t have flushing enabled.
+The `doflush` statement is excluded for buckets that don't have flushing enabled.
 
 ```text
  "name": "bucket1",
@@ -940,7 +940,7 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 
 ### [](#memorylowwatermark)memoryLowWatermark
 
-If a bucket’s memory quota is exceeded, items may be ejected from the bucket by the Data Service.
+If a bucket's memory quota is exceeded, items may be ejected from the bucket by the Data Service.
 
 The `memoryLowWatermark` value defines the low memory watermark for a bucket. When item ejection is triggered by reaching the high watermark, data is removed until the memory usage falls back to the `memoryLowWatermark` threshold, ensuring efficient memory management. For more information, see [Ejection](../learn/buckets-memory-and-storage/memory.md#ejection).
 
@@ -973,7 +973,7 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 
 ### [](#memoryhighwatermark)memoryHighWatermark
 
-If a bucket’s memory quota is exceeded, items may be ejected from the bucket by the Data Service.
+If a bucket's memory quota is exceeded, items may be ejected from the bucket by the Data Service.
 
 The `mem_high_wat` value defines the high memory watermark for a Couchbase bucket. When memory usage reaches this threshold, the Data Service begins ejecting items to reduce memory consumption, or stops ingesting data if enough space cannot be freed. For more information, see [Ejection](../learn/buckets-memory-and-storage/memory.md#ejection).
 
@@ -1006,7 +1006,7 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 
 ### [](#encryptionAtRestKeyId)encryptionAtRestKeyId
 
-Sets the encryption-at-rest key ID for the bucket. The default value, `-1`, indicates that the bucket is not encrypted. When you set this value to the `id` for an encrytion-at-rest-key, Couchbase Server encrypts the the bucket’s data at rest. The key ID must be for an existing key and the key must be configured to encrypt either all buckets or for this bucket specifically.
+Sets the encryption-at-rest key ID for the bucket. The default value, `-1`, indicates that the bucket is not encrypted. When you set this value to the `id` for an encrytion-at-rest-key, Couchbase Server encrypts the the bucket's data at rest. The key ID must be for an existing key and the key must be configured to encrypt either all buckets or for this bucket specifically.
 
 For more information about encryption at rest, see [Native Encryption at Rest](../learn/security/native-encryption-at-rest-overview.md).
 
@@ -1034,7 +1034,7 @@ curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
 
 ### [](#encryptionAtRestDekRotationInterval)encryptionAtRestDekRotationInterval
 
-Sets how often in seconds Couchbase Server rotates the bucket’s data encryption keys (DEKs). After this period elapses, Couchbase Server marks the DEK inactive and creates a new active DEK. It keeps the inactive DEK to decrypt data that’s still encrypted with it until its lifetime elapses (see [encryptionAtRestDekLifetime](#encryptionAtRestDekLifetime)).
+Sets how often in seconds Couchbase Server rotates the bucket's data encryption keys (DEKs). After this period elapses, Couchbase Server marks the DEK inactive and creates a new active DEK. It keeps the inactive DEK to decrypt data that's still encrypted with it until its lifetime elapses (see [encryptionAtRestDekLifetime](#encryptionAtRestDekLifetime)).
 
 The default value is `2592000`, which means Couchbase Server rotates the DEKs every 30 days. Set this value to 0 to turn off DEK rotation.
 
@@ -1050,7 +1050,7 @@ curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
 
 ### [](#encryptionAtRestDekLifetime)encryptionAtRestDekLifetime
 
-Sets the lifetime of the bucket’s data encryption keys (DEKs) in seconds from the moment it was created. Once this period passes, Couchbase Server uses the active DEK to re-encrypts any data that’s still encrypted using the expired DEK. It then deletes the expired DEK.
+Sets the lifetime of the bucket's data encryption keys (DEKs) in seconds from the moment it was created. Once this period passes, Couchbase Server uses the active DEK to re-encrypts any data that's still encrypted using the expired DEK. It then deletes the expired DEK.
 
 This value defaults to `31536000`, which means Couchbase Server keeps expired DEKs for 365 days. Setting this value to 0 means Couchbase Server never deletes expired DEKs.
 
@@ -1324,4 +1324,4 @@ For an overview of change history, see [Change History](../learn/data/change-his
 
 See [Roles](../learn/security/roles.md), for information on roles and privileges.
 
-For information on how to inspect a bucket’s current configuration, see [Getting All Bucket Information](rest-buckets-summary.md).
+For information on how to inspect a bucket's current configuration, see [Getting All Bucket Information](rest-buckets-summary.md).

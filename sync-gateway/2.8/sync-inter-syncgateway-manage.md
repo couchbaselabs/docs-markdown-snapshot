@@ -2,7 +2,7 @@
 title: Manage Inter-Sync Gateway Replications
 description: Managing inter-Sync Gateway replications
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/sync-inter-syncgateway-manage.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::sync-inter-syncgateway-manage.adoc[]
 ---
 
@@ -137,16 +137,16 @@ Success Response::
 
 ## [](#updating-a-replication)Updating a Replication
 
-You can update an existing replication’s definition, whether configured or initialized by Admin Rest API, by providing the details you want to change in an API call ([Example 3](#update-replication-definition)). Changes will only be made to those parameters provided in the call.
+You can update an existing replication's definition, whether configured or initialized by Admin Rest API, by providing the details you want to change in an API call ([Example 3](#update-replication-definition)). Changes will only be made to those parameters provided in the call.
 
 If you change the remote URI it must be to a valid URI.
 
 > [!TIP]
-> How do I change an existing replication’s definition details?
+> How do I change an existing replication's definition details?
 > 
 > Send a `PUT` request to the `_replication` endpoint. Specify just the changed items in the JSON body.
 
-Example 3\. Update a replication’s details
+Example 3\. Update a replication's details
 
 * Request
 * Response
@@ -270,7 +270,7 @@ curl --location --request GET "http://localhost:4985/db1-local/_replicationStatu
 --header 'Content-Type: application/json' \
 ```
 
-| **1** | This example’s criteria selects replications with any status (including errors), on local and remote nodes. The returned status details also include replication definition details. |
+| **1** | This example's criteria selects replications with any status (including errors), on local and remote nodes. The returned status details also include replication definition details. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 ```json

@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::release-notes.adoc[]
 ---
 
@@ -98,7 +98,7 @@ None for this release.
 * [CBG-4382 - Empty files for high memory heap profiles](https://jira.issues.couchbase.com/browse/CBG-4382)
 * [CBG-4537 - ISGR fatal connection errors leak a stats reporter goroutine](https://jira.issues.couchbase.com/browse/CBG-4537)
 * [CBG-4571 - Audit events for database audit are enabled when no per-db audit logging config is set](https://jira.issues.couchbase.com/browse/CBG-4571)
-* [CBG-4573 - Blip leaks nextFrameToSend goroutines if non ack’d messages are queued](https://jira.issues.couchbase.com/browse/CBG-4573)
+* [CBG-4573 - Blip leaks nextFrameToSend goroutines if non ack'd messages are queued](https://jira.issues.couchbase.com/browse/CBG-4573)
 * [CBG-4598 - Caching DCP feed does not utilize network connstr option](https://jira.issues.couchbase.com/browse/CBG-4598)
 
 ### [](#enhancements-4)Enhancements
@@ -187,7 +187,7 @@ None for this release.
 
 * [CBG-4075 - Timeout error will release document sequence as unused](https://jira.issues.couchbase.com/browse/CBG-4075)
 * [CBG-4089 - Make config polling more resilient to timeout errors](https://jira.issues.couchbase.com/browse/CBG-4089)
-* [CBG-4165 - rotated\_logs\_size\_limit not used by ConsoleLogger’s FileOutput](https://jira.issues.couchbase.com/browse/CBG-4165)
+* [CBG-4165 - rotated\_logs\_size\_limit not used by ConsoleLogger's FileOutput](https://jira.issues.couchbase.com/browse/CBG-4165)
 * [CBG-4243 - Default log file permissions changed from 644 to 600](https://jira.issues.couchbase.com/browse/CBG-4243)
 
 ### [](#enhancements-7)Enhancements
@@ -250,7 +250,7 @@ Version 3.2.0 of Sync Gateway also delivers the following features and enhanceme
 * [CBG-3844 - updateSeq must happen after DCP callback invocation](https://jira.issues.couchbase.com/browse/CBG-3844)
 * [CBG-3856 - Fixed GET /db RBAC permissions missing for Sync Gateway Architect](https://jira.issues.couchbase.com/browse/CBG-3856)
 * [CBG-3867 - Prevent ISGR creation with empty ID](https://jira.issues.couchbase.com/browse/CBG-3867)
-* [CBG-3869 - Fixed UnmarshalDocumentSyncDataFromFeed doesn’t return any present user xattrs if sync data doesn’t exist on the doc](https://jira.issues.couchbase.com/browse/CBG-3869)
+* [CBG-3869 - Fixed UnmarshalDocumentSyncDataFromFeed doesn't return any present user xattrs if sync data doesn't exist on the doc](https://jira.issues.couchbase.com/browse/CBG-3869)
 * [CBG-3882 - Fixed sgcollect\_info fails to upload to s3](https://jira.issues.couchbase.com/browse/CBG-3882)
 * [CBG-3883 - Fixed OIDC-auth causes admin\_channels/admin\_roles loss](https://jira.issues.couchbase.com/browse/CBG-3883)
 * [CBG-3888 - Fixed sgcollect\_info TypeError when task execution timeout occurs](https://jira.issues.couchbase.com/browse/CBG-3888)
@@ -259,17 +259,17 @@ Version 3.2.0 of Sync Gateway also delivers the following features and enhanceme
 * [CBG-3950 - Fixed database with default db can see users matching other databases in the bucket](https://jira.issues.couchbase.com/browse/CBG-3950)
 * [CBG-3968 - Include scope with collections in resync status](https://jira.issues.couchbase.com/browse/CBG-3968)
 * [CBG-3988 - Fixed documents may not be imported when collection added to an existing db](https://jira.issues.couchbase.com/browse/CBG-3988)
-* [CBG-3996 - Fixed sgcollect doesn’t work on mac distributions](https://jira.issues.couchbase.com/browse/CBG-3996)
+* [CBG-3996 - Fixed sgcollect doesn't work on mac distributions](https://jira.issues.couchbase.com/browse/CBG-3996)
 * [CBG-4003 - Fixed DeleteRole doesnt trigger history calculation for named collections](https://jira.issues.couchbase.com/browse/CBG-4003)
 * [CBG-4015 - Fixed nextSequenceGreaterThan should update to current \_sync:seq before releasing sequences](https://jira.issues.couchbase.com/browse/CBG-4015)
 * [CBG-4025 - Fixed users roles are not getting invalidated after a resync](https://jira.issues.couchbase.com/browse/CBG-4025)
 * [CBG-4055 - Fixed incorrect types listed in API docs for all\_docs query parameters](https://jira.issues.couchbase.com/browse/CBG-4055)
 * [CBG-4070 - Fixed panic in CheckpointHash function for bucket UUID call](https://jira.issues.couchbase.com/browse/CBG-4070)
-* [CBG-4105 - Fixed corrupt DB config handling doesn’t remove the config when longer present in the bucket](https://jira.issues.couchbase.com/browse/CBG-4105)
-* [CBG-4106 - Fixed if we error in removeCorruptConfigIfExists we don’t unload/remove database](https://jira.issues.couchbase.com/browse/CBG-4106)
+* [CBG-4105 - Fixed corrupt DB config handling doesn't remove the config when longer present in the bucket](https://jira.issues.couchbase.com/browse/CBG-4105)
+* [CBG-4106 - Fixed if we error in removeCorruptConfigIfExists we don't unload/remove database](https://jira.issues.couchbase.com/browse/CBG-4106)
 * [CBG-4128 - Decouple client request context from lazy-init OIDC discovery sync process](https://jira.issues.couchbase.com/browse/CBG-4128)
 * [CBG-4136 - API Docs: Limit scopes configuration to only one entry](https://jira.issues.couchbase.com/browse/CBG-4136)
-* [CBG-4221 - Pending unused sequences shouldn’t update high cache sequence](https://jira.issues.couchbase.com/browse/CBG-4221)
+* [CBG-4221 - Pending unused sequences shouldn't update high cache sequence](https://jira.issues.couchbase.com/browse/CBG-4221)
 * [CBG-4218 - Fixed duplicated sequences can cause SGW to be unresponsive](https://jira.issues.couchbase.com/browse/CBG-4218)
 
 ### [](#enhancements-8)Enhancements
@@ -303,7 +303,7 @@ Version 3.2.0 of Sync Gateway also delivers the following features and enhanceme
 * [CBG-3822 - Audit Logging](https://jira.issues.couchbase.com/browse/CBG-3822)
 * [CBG-3823 - Warn when releasing a large number of unused sequences](https://jira.issues.couchbase.com/browse/CBG-3823)
 * [CBG-3824 - Optimize storage of skipped sequences](https://jira.issues.couchbase.com/browse/CBG-3824)
-* [CBG-3837 - Don’t perform per-document logging when processing an unused sequence range](https://jira.issues.couchbase.com/browse/CBG-3837)
+* [CBG-3837 - Don't perform per-document logging when processing an unused sequence range](https://jira.issues.couchbase.com/browse/CBG-3837)
 * [CBG-3839 - Detect and handle \_sync:seq rollback in sequence allocator](https://jira.issues.couchbase.com/browse/CBG-3839)
 * [CBG-3843 - Include collection set in resync status](https://jira.issues.couchbase.com/browse/CBG-3843)
 * [CBG-3847 - Log \_sync:seq on database start](https://jira.issues.couchbase.com/browse/CBG-3847)

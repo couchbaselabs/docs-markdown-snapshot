@@ -3,7 +3,7 @@ title: Access and Organize Data in Enterprise Analytics
 description: This topic introduces the database objects that you use to view and
   organize data in Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/database-objects.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sources:database-objects.adoc[]
 ---
 
@@ -78,7 +78,7 @@ Enterprise Analytics has 3 types of collections:
 * **Remote collections** contain a shadow or mirror copy of data streamed from a remote data source. The remote data source can be a Kafka pipeline or a Couchbase database. A remote collection is associated with a [link](#links) that provides authentication and connection information for the remote data source. When the link is connected to the remote source, Enterprise Analytics streams data from the remote source into the collection. This streaming means that the remote collection has a local replica of the data in the data source. When the link is disconnected, the collection retains the data as it was when the link disconnected. Queries on remote collections are efficient because of the local shadow copy of the streamed data.  
 The remote collection also contains metadata about the data format of the remote source as well as optional data filters.  
 You can use the Enterprise Analytics [UI](manage-remote.md) or the SQL++ [CREATE COLLECTION](../sqlpp/5%5Fddl%5Fremote.md) statement to add a remote collection.
-* **External collections** let you query data stored in an S3 bucket. Like remote collections, they’re associated with a [link](#links). Unlike remote collections, Enterprise Analytics does not copy data from the external data source into the external collection. Instead, every query reads data from the external storage location. The external collection contains just the metadata necessary to read data from the S3 bucket. As a result, Enterprise Analytics cannot index external collections.  
+* **External collections** let you query data stored in an S3 bucket. Like remote collections, they're associated with a [link](#links). Unlike remote collections, Enterprise Analytics does not copy data from the external data source into the external collection. Instead, every query reads data from the external storage location. The external collection contains just the metadata necessary to read data from the S3 bucket. As a result, Enterprise Analytics cannot index external collections.  
 You can use the Enterprise Analytics [UI](manage-external.md) or a [CREATE EXTERNAL COLLECTION](../sqlpp/5%5Fddl%5Fexternal.md) SQL++ statement to add an external collection.
 * **Standalone collections** allow you to assemble and manipulate groups of documents on an as-needed basis. These are stored, manipulated, and managed locally. Standalone collections do not use links.  
 You populate these collections with data by importing data files or by using SQL++ statements to [INSERT](../sqlpp/5%5Fdml%5Finsert.md), [COPY INTO](../sqlpp/5%5Fdml%5Fcopy%5Fin.md), and otherwise add and update documents in a purpose-built collection.  

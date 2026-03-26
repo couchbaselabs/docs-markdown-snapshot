@@ -2,7 +2,7 @@
 title: Integrating External Stores
 description: Introducing Sync Gateway integration with external data stores
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/integrating-external-stores.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::integrating-external-stores.adoc[]
 ---
 
@@ -107,7 +107,7 @@ var client = new Swagger({
     });  
 });  
 ```  
-Here’s what the code above is doing:
+Here's what the code above is doing:
 
 | **1** | Use the [request-promise](https://github.com/request/request-promise) library to retrieve the movies from the external store.                                                                                                                                                  |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -200,7 +200,7 @@ var client = new Swagger({
 });
 ```
 
-Here’s what the code above is doing:
+Here's what the code above is doing:
 
 | **1** | Gets the last sequence number of the database.                                                                                                 |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -286,7 +286,7 @@ Restart Sync Gateway to have an empty database and run the program. The document
 
 ![admin ui attachment](_images/admin-ui-attachment.png) 
 
-You can view the thumbnail at `http://localhost:4984/movies_lister/{db}/{doc}/{attachment}/` (note it’s on the public port 4984).
+You can view the thumbnail at `http://localhost:4984/movies_lister/{db}/{doc}/{attachment}/` (note it's on the public port 4984).
 
 ![sg attachment](_images/sg-attachment.png) 
 

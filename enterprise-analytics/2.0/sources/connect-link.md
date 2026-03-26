@@ -1,7 +1,7 @@
 ---
 title: Connect or Disconnect a Remote Link
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/connect-link.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sources:connect-link.adoc[]
 ---
 
@@ -21,9 +21,9 @@ You incur charges when you connect a remote link.
 3. Click **Link**.
 
 > [!NOTE]
-> You can view the link’s status when you hover on the link icon.
+> You can view the link's status when you hover on the link icon.
 
-Enterprise Analytics begins setting up the required infrastructure for the connection. Automatic data ingestion from the connected data source to all linked collections begins as soon as set up is complete. If more than 1 collection uses the link, data ingestion begins for all of them. The link’s status changes to connected.
+Enterprise Analytics begins setting up the required infrastructure for the connection. Automatic data ingestion from the connected data source to all linked collections begins as soon as set up is complete. If more than 1 collection uses the link, data ingestion begins for all of them. The link's status changes to connected.
 
 After you connect the link and your initial data import is complete, you can run `ANALYZE COLLECTION` on each collection associated with the link. The `ANALYZE` statement samples data in the collection so that you can apply the cost-based optimization (CBO) instead of rule-based optimization. As data in the collections changes, you can run `ANALYZE COLLECTION` periodically to refresh the samples. For more information, see [Cost-Based Optimizer](../sqlpp/5b%5Fcbo.md). You can also use SQL++ for Enterprise Analytics statement to connect a remote link. See [CONNECT Statements](../sqlpp/5%5Fddl%5Fconnect.md).
 
@@ -49,7 +49,7 @@ You can pause a data event stream from continuously updating the collection asso
 3. Click **Link**.
 
 > [!NOTE]
-> You can view the link’s status when you hover on the link icon.
+> You can view the link's status when you hover on the link icon.
 
 You can also use an SQL++ for Enterprise Analytics statement to disconnect a remote link. See [DISCONNECT Statements](../sqlpp/5%5Fddl%5Fdisconnect.md).
 

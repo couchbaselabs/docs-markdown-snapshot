@@ -4,7 +4,7 @@ description: In SQL++ for Enterprise Analytics, user-defined functions enable
   you to name and reuse complex or repetitive expressions, including subqueries,
   in order to simplify your queries.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/9_udf.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sqlpp:9_udf.adoc[]
 ---
 
@@ -234,7 +234,7 @@ After determining the database and scope, Enterprise Analytics tries to find a u
 
 ### [](#examples)Examples
 
-The examples in this section assume that you’re using the database and scope `sampleAnalytics.Commerce`. See [Connecting to Data Sources](../intro/connecting-to-data-sources.md) to install the Commerce dataset.
+The examples in this section assume that you're using the database and scope `sampleAnalytics.Commerce`. See [Connecting to Data Sources](../intro/connecting-to-data-sources.md) to install the Commerce dataset.
 
 You can use [USE Statements](5%5Fddl%5Fuse.md) to set the default scope for the statement that follows it.
 
@@ -244,7 +244,7 @@ Example
   USE sampleAnalytics.Commerce;
 ```
 
-If you’re using the Enterprise Analytics UI, you can alternatively use the query editor’s **Query Context** lists to set the database and scope.
+If you're using the Enterprise Analytics UI, you can alternatively use the query editor's **Query Context** lists to set the database and scope.
 
 ![The Query Context lists](_images/workbench-context-set.png) 
 

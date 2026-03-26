@@ -4,7 +4,7 @@ description: The Index Service ensures availability and performance through
   replication and partitioning. You can control the scan consistency for
   individual queries.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/index-replication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:services-and-indexes/indexes/index-replication.adoc[]
 ---
 
@@ -44,13 +44,13 @@ In the following example, an index with two replicas is created. The active inde
 CREATE INDEX country_idx ON airport(country, city)  
 WITH {"nodes": ["node1:8091", "node2:8091", "node3:8091"]};  
 ```
-* In the `WITH` clause, use the `num_replica` attribute to specify the number of replicas required. When you use this attribute by itself, the index and the required number of replicas are automatically distributed across Index Service nodes. The distribution pattern is based on a projection of optimal index availability, given the number and disposition of Index Service nodes across defined server groups. The required number of replicas must be smaller than the number of cluster nodes currently running the Index Service. If it’s not, the index creation fails.  
+* In the `WITH` clause, use the `num_replica` attribute to specify the number of replicas required. When you use this attribute by itself, the index and the required number of replicas are automatically distributed across Index Service nodes. The distribution pattern is based on a projection of optimal index availability, given the number and disposition of Index Service nodes across defined server groups. The required number of replicas must be smaller than the number of cluster nodes currently running the Index Service. If it's not, the index creation fails.  
 In the following example, an index is created with two replicas, with no destination nodes specified:  
 ```sqlpp  
 CREATE INDEX country_idx ON airport(country, city)  
 WITH {"num_replica": 2};  
 ```
-* In the `WITH` clause, use the `nodes` and `num_replica` attributes together. In this case, the Index planner chooses from the set of specified nodes to place the index and the required number of replicas. The required number of replicas must be smaller than the number of specified nodes. If it’s not, the index creation fails.
+* In the `WITH` clause, use the `nodes` and `num_replica` attributes together. In this case, the Index planner chooses from the set of specified nodes to place the index and the required number of replicas. The required number of replicas must be smaller than the number of specified nodes. If it's not, the index creation fails.
 
 For more information on using SQL++, see [SQL++ for Query Reference](../../../n1ql/n1ql-language-reference/index.md).
 
@@ -108,7 +108,7 @@ You can specify the scan consistency via the [run-time preferences](../../../too
 
 ## [](#index-snapshots)Index Snapshots
 
-Couchbase Server maintains one or more index snapshots on disk, to permit rapid recovery if nodes fail. In cases where recovery requires an Index Service node to be restarted, the node’s indexes are rebuilt from the snapshots retained on disk.
+Couchbase Server maintains one or more index snapshots on disk, to permit rapid recovery if nodes fail. In cases where recovery requires an Index Service node to be restarted, the node's indexes are rebuilt from the snapshots retained on disk.
 
 By default, two index snapshots are stored on disk. You can change index snapshot settings via the [CLI](../../../cli/cbcli/couchbase-cli-setting-index.md) or the [REST API](../../../rest-api/post-settings-indexes.md).
 

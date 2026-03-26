@@ -1,7 +1,7 @@
 ---
 title: Couchbase Scopes and Collections
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-scopes-and-collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::concept-scopes-and-collections.adoc[]
 ---
 
@@ -27,7 +27,7 @@ Figure 1\. Scopes and Collections Overview
 
 The finest-grained entity in a Couchbase cluster is the collection. A collection is — as it sounds — a collection of documents. Collections should be logical groupings of similar document types e.g. users, products, etc. This makes the logical organization of data far simpler than in versions of Couchbase Server prior to 7\. Couchbase server currently supports up to 1000 collections per cluster.
 
-Collections also contain indexes that apply to the collection’s documents. As indexes are specific to a collection, and a small subset of all documents on the system, this allows for higher performance and massive scalability of indexes. Couchbase server currently supports up to 10,000 indexes per cluster.
+Collections also contain indexes that apply to the collection's documents. As indexes are specific to a collection, and a small subset of all documents on the system, this allows for higher performance and massive scalability of indexes. Couchbase server currently supports up to 10,000 indexes per cluster.
 
 Collections enable fine-grain access control, and fine grain data replication with cross-datacenter replication (XDCR).
 
@@ -44,7 +44,7 @@ Collections enable fine-grain access control, and fine grain data replication wi
 
 A scope is simply a single-tier namespace for a group of collections to exist within. Collections within a scope must all have unique names, but collections in different scopes may share the same name. This property allows multi-tenancy.
 
-For example, consider a white-box website that requires all the same collections to function. You can use scopes to define data collections with fixed names across all brands, while also allowing brand-specific configuration. Therefore it’s possible to create "cookie-cutter" websites with minimal modification to the client code, all that is required is to define what scope to use.
+For example, consider a white-box website that requires all the same collections to function. You can use scopes to define data collections with fixed names across all brands, while also allowing brand-specific configuration. Therefore it's possible to create "cookie-cutter" websites with minimal modification to the client code, all that is required is to define what scope to use.
 
 Scopes, and by extension multi-tenancy in general, allow high data density by aggregating multiple applications into a single database. To aid in this, scopes can define coarser-grain access control, and data replication, than collections.
 
@@ -117,7 +117,7 @@ Due to the flexibility of the data model, a scope can reference multiple collect
 
 Resource groups can also form the basis of role-based access control rules, defining security boundaries.
 
-While we’ve only illustrated the use of collection groups, the Operator also provides scope groups too that act in a similar fashion. This leads us on to resource sharing…​
+While we've only illustrated the use of collection groups, the Operator also provides scope groups too that act in a similar fashion. This leads us on to resource sharing…​
 
 ### [](#resource-sharing)Resource Sharing
 
@@ -130,7 +130,7 @@ Figure 4\. Operator Scope Grouping and Collection Sharing
 This depicts how the Operator would internally act upon a scope group, with a referenced collection group:
 
 1. The first step shows the very terse configuration, we only require 3 resources to define this entire topology.
-2. The next step shows the configuration after scope group expansion. What’s important to note here, is like collection groups, the configuration is shared by all instances of the scope group expansion, in particular the collection group.
+2. The next step shows the configuration after scope group expansion. What's important to note here, is like collection groups, the configuration is shared by all instances of the scope group expansion, in particular the collection group.
 3. The final step shows what the scopes and collections topology would look like in Couchbase Server.
 
 In every step, the configuration is completely valid, and can be represented by Couchbase custom resource types.

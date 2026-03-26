@@ -2,7 +2,7 @@
 title: Logging API
 description: Introduced in Couchbase Lite 3.2.2.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/new-logging-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:objc:new-logging-api.adoc[]
 ---
 
@@ -74,7 +74,7 @@ Sinks will receive only logs at the level and domain for which it is initialized
 `LogSinks` are meant to support logging by the Couchbase Lite platform. They were never meant as a general framework for logging.
 
 > [!IMPORTANT]
-> Customer code can no longer log, directly, to any of the Couchbase log sinks. The Console and File log sinks cannot be subclassed and do not publish methods that allow writing logs. If you need to log to the console for example, you’ll have to create your own way of doing so.
+> Customer code can no longer log, directly, to any of the Couchbase log sinks. The Console and File log sinks cannot be subclassed and do not publish methods that allow writing logs. If you need to log to the console for example, you'll have to create your own way of doing so.
 
 API Custom Logger Class
 

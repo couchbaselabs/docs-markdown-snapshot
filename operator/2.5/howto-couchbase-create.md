@@ -1,7 +1,7 @@
 ---
 title: Create a Couchbase Deployment
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/howto-couchbase-create.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::howto-couchbase-create.adoc[]
 ---
 
@@ -83,9 +83,9 @@ By taking a quick look at this configuration file, you can see that it defines a
 You can use this example `CouchbaseCluster` configuration file "as-is" to test out how the Operator deploys a Couchbase Server cluster. However, to deploy a Couchbase cluster that is more specifically tailored to your development and production needs, you need to create your own custom configuration file that conforms to the `CouchbaseCluster` specification.
 
 > [!TIP]
-> Ensure that your Kubernetes environment has the [appropriate resources](../../server/current/install/sizing-general.md) for the Couchbase cluster that you’re trying to deploy.
+> Ensure that your Kubernetes environment has the [appropriate resources](../../server/current/install/sizing-general.md) for the Couchbase cluster that you're trying to deploy.
 > 
-> In the case of Minikube, the default memory allocation is 2 GB. This is not sufficient for running a three-node Couchbase cluster like the one in the example configuration. If you’re using the example configuration for demo purposes, you should set the memory allocation to 4 GB at a minimum (8 GB recommended). You should also increase the CPU allocation if you experience poor performance.
+> In the case of Minikube, the default memory allocation is 2 GB. This is not sufficient for running a three-node Couchbase cluster like the one in the example configuration. If you're using the example configuration for demo purposes, you should set the memory allocation to 4 GB at a minimum (8 GB recommended). You should also increase the CPU allocation if you experience poor performance.
 > 
 > You can set the recommended memory and CPU allocation when you start Minikube:
 > 
@@ -112,7 +112,7 @@ After receiving the configuration, the Operator automatically begins creating th
 
 ### [](#verifying-the-deployment)Verifying the Deployment
 
-Once the cluster has been provisioned, you’ll see that various pods, a service, and a Couchbase cluster have been created. If you used the example configuration (which calls for a three-node cluster) you should see three pods created. The Operator also creates an internal headless service that can be used by applications deployed inside the same Kubernetes namespace to connect to the Couchbase cluster.
+Once the cluster has been provisioned, you'll see that various pods, a service, and a Couchbase cluster have been created. If you used the example configuration (which calls for a three-node cluster) you should see three pods created. The Operator also creates an internal headless service that can be used by applications deployed inside the same Kubernetes namespace to connect to the Couchbase cluster.
 
 Run the following command to see the newly created pods:
 

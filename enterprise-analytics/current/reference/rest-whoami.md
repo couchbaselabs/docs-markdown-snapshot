@@ -3,7 +3,7 @@ title: Who Am I?
 description: A Couchbase-Server user can check their id (or <em>username</em>),
   domain, roles, and other details.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-whoami.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:reference:rest-whoami.adoc[]
 ---
 
@@ -23,14 +23,14 @@ GET ./whoami
 The call returns an object that contains the following:
 
 * `roles`. An object containing a key-value pair for every role assigned to the user. For example, `"role": "analytics_reader"`. Bucket-related roles are accompanied by a statement of the bucket to which the role applies. For example, `"bucket_name": "travel-sample"`.
-* `id`. The user’s id (or _username_).
-* `domain`. The user’s _authentication domain_, which can be `local` or `external`. For information, see [Authentication Domains](#learn:security/authentication-domains.adoc).
-* `name`. The user’s full name, if specified.
-* `password_change_date`. The date on which the user’s password was last changed. For example, `"2020-02-13T04:08:31.000Z"`.
+* `id`. The user's id (or _username_).
+* `domain`. The user's _authentication domain_, which can be `local` or `external`. For information, see [Authentication Domains](#learn:security/authentication-domains.adoc).
+* `name`. The user's full name, if specified.
+* `password_change_date`. The date on which the user's password was last changed. For example, `"2020-02-13T04:08:31.000Z"`.
 
 ## [](#responses)Responses
 
-If successful, the call returns `200 OK`, and an object that contains information about the user’s id, domain, name, roles, and date of last password-change.
+If successful, the call returns `200 OK`, and an object that contains information about the user's id, domain, name, roles, and date of last password-change.
 
 A malformed URI returns `404 Object Not Found`. Failure to authenticate returns `401 Unauthorized`.
 

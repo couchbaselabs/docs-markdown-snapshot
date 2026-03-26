@@ -4,7 +4,7 @@ description: Although resource requirements will largely depend on the size and
   resource demands of your Couchbase deployment, there are some minimum and
   recommended specifications that you should follow.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/sys-resource-req.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:install:sys-resource-req.adoc[]
 ---
 
@@ -36,7 +36,7 @@ link: xref:2.0@enterprise-analytics:install:sys-resource-req.adoc[]
 
 Clock Source on Linux
 
-The Linux kernel uses the Clock Source to obtain the current clock value and this information is stored in `/sys/devices/system/clocksource/clocksource0/current_clocksource`. Couchbase has several clock sources, such as TSC, XEN, and others, that are used depending on the hardware clock capabilities, and the OS installation. The XEN source, which is the default on AWS setups, can use up to 25% of all available CPU time to obtain the current timestamp. The TSC clock source, on the other hand, incurs little CPU cost. Couchbase recommends changing the clock source to TSC if it’s set to anything else.
+The Linux kernel uses the Clock Source to obtain the current clock value and this information is stored in `/sys/devices/system/clocksource/clocksource0/current_clocksource`. Couchbase has several clock sources, such as TSC, XEN, and others, that are used depending on the hardware clock capabilities, and the OS installation. The XEN source, which is the default on AWS setups, can use up to 25% of all available CPU time to obtain the current timestamp. The TSC clock source, on the other hand, incurs little CPU cost. Couchbase recommends changing the clock source to TSC if it's set to anything else.
 
 Check the clock source on your Linux OS using the following command:
 

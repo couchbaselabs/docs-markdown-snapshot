@@ -2,7 +2,7 @@
 title: Call a User-Defined Function
 description: How to call a user-defined function from SQL++ statements.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/call-user-defined-function.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:guides:call-user-defined-function.adoc[]
 ---
 
@@ -27,7 +27,7 @@ If you want to try out the examples in this section, follow the instructions giv
 A user-defined function can be **global** or **scoped**.
 
 * When you call a **global** function, any partial keyspace references within the function definition are resolved against the `default:` namespace, regardless of the current [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context).
-* When you call a **scoped** function, any partial keyspace references within the function definition are resolved against the function’s bucket and scope, regardless of the current [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context).
+* When you call a **scoped** function, any partial keyspace references within the function definition are resolved against the function's bucket and scope, regardless of the current [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context).
 
 ## [](#executing-a-sql-user-defined-function)Executing a SQL++ User-Defined Function
 

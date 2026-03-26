@@ -1,7 +1,7 @@
 ---
 title: Pagination
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-pagination.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-pagination.adoc[]
 ---
 
@@ -28,7 +28,7 @@ The default sort order is based on _score_ (relevance) where the results are ord
 
 ### [](#example)Example
 
-Here’s an example query that fetches results from the 11th onwards to the 15th that have been ordered by _score_.
+Here's an example query that fetches results from the 11th onwards to the 15th that have been ordered by _score_.
 
 {
   "query": {
@@ -77,7 +77,7 @@ Here are some examples using `search_after/search_before` over sort key "\_id" (
 }
 
 > [!NOTE]
-> A Full Text Search request that doesn’t carry any pagination settings will return the first 10 results (`"size: 10", "from": 0`) ordered by _score_ sequentially from the highest to lowest.
+> A Full Text Search request that doesn't carry any pagination settings will return the first 10 results (`"size: 10", "from": 0`) ordered by _score_ sequentially from the highest to lowest.
 
 ## [](#pagination-tips-and-recommendations)Pagination tips and recommendations
 
@@ -95,6 +95,6 @@ This solution requires a few preconditions be met:
 
 A common solution to this is to always include the document ID as the final sort criteria.
 
-For example, if you want to sort by \[“name”, “-age”\], instead of sort by \[“name”, “-age”, “\_id”\].
+For example, if you want to sort by \["name", "-age"\], instead of sort by \["name", "-age", "\_id"\].
 
 With `search_after`/`search_before` paginations, the heap memory requirement of deeper page searches is made proportional to the requested page size alone. So it reduces the heap memory requirement of deeper page searches significantly down from the offset+from values.

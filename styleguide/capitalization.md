@@ -1,7 +1,7 @@
 ---
 title: Capitalization
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/capitalization.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::capitalization.adoc[]
 ---
 
@@ -23,6 +23,6 @@ Follow the official capitalization for brand names, companies, software, product
 
 Do not use unnecessary capitalization. Do not use all-uppercase letters except for official names, abbreviations, or referencing code that uses all caps.
 
-Do not use camel case, unless the name or code you’re referencing uses it.
+Do not use camel case, unless the name or code you're referencing uses it.
 
 For capitalization rules for specific terms, see the [A-Z Word List](word-list.md).

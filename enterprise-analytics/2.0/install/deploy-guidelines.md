@@ -3,7 +3,7 @@ title: Deployment Guidelines
 description: Before you install Enterprise Analytics, follow the recommended
   deployment guidelines for setting up your production environment.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/deploy-guidelines.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:install:deploy-guidelines.adoc[]
 ---
 
@@ -35,4 +35,4 @@ Linux OS
 
 * When deploying Enterprise Analytics on production Linux, you should use either the XFS or ext4 filesystem.  
 XFS is preferred because it provides more consistent latency, through fairer scheduling, when multiple IO streams are accessing the filesystem. For example, during Data Service compaction or when the working set exceeds the memory quota and the data is read from disk.
-* The Enterprise Analytics installer requires the ability to create a normal local Unix user with the name `couchbase`, if such a user does not already exist. This can be important if you’re using a directory service for user management, such as LDAP.
+* The Enterprise Analytics installer requires the ability to create a normal local Unix user with the name `couchbase`, if such a user does not already exist. This can be important if you're using a directory service for user management, such as LDAP.

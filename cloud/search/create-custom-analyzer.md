@@ -4,7 +4,7 @@ description: Create a custom analyzer with the Couchbase Capella UI's Advanced
   Mode to modify the input text from a Search query or Search index and improve
   search results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-custom-analyzer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:create-custom-analyzer.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:cloud:search:create-custom-analyzer.adoc[]
 
 # Create a Custom Analyzer
 
-> Create a custom analyzer with the Couchbase Capella UI’s Advanced Mode to modify the input text from a Search query or Search index and improve search results. For more information, see [Search Index Features](customize-index.md#analyzers). 
+> Create a custom analyzer with the Couchbase Capella UI's Advanced Mode to modify the input text from a Search query or Search index and improve search results. For more information, see [Search Index Features](customize-index.md#analyzers). 
 
 > [!NOTE]
 > You must use Advanced Mode to add a custom analyzer to your Search index. For more information, see [Advanced Mode Editing](create-search-indexes.md#advanced-mode).

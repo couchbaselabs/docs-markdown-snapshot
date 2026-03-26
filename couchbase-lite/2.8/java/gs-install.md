@@ -3,7 +3,7 @@ title: Couchbase Lite on Java&#8201;&#8212;&#8201;Installing
 description: Couchbase Lite on Java -- a framework for developing offline-first
   Java applications for mobile and edge
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/java/pages/gs-install.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:java:gs-install.adoc[]
 ---
 
@@ -120,11 +120,11 @@ repositories {
 ```
 4. Open the project folder in Intellij IDEA and import the gradle settings.  
 > [!TIP]  
-> If you don’t have auto-import set for Gradle projects, then accept the **Import Gradle Project** prompt that is displayed bottom-right of the screen  
+> If you don't have auto-import set for Gradle projects, then accept the **Import Gradle Project** prompt that is displayed bottom-right of the screen  
 Note the Gradle menu at the extreme right of the screen:  
 ![GradleMenuWebApp](_images/GradleMenuWebApp.png)
 
-That’s it. You’re all set to start building your own Couchbase Lite on Java applications — see [\[Building a Getting Started App\]](#Building a Getting Started App) for an example of how to do that.
+That's it. You're all set to start building your own Couchbase Lite on Java applications — see [\[Building a Getting Started App\]](#Building a Getting Started App) for an example of how to do that.
 
 Sample build.gradle content
 
@@ -171,7 +171,7 @@ Of course if you are using gpIDE Ultimate Edition you can use its integrated tom
 
 For more about this plugin and its use see [Using the Gradle WebApp Plugin](#using-the-gradle-webapp-plugin)
 
-**Running multiple Couchbase Lite on Java web apps**Each web application has its own \*class loader (WebappX). This loads the classes, jars, and resources found in the application’s `WEB-INF/classes` and `WEB-INF/lib` folders, together with any shared jar files from `$CATALINA_BASE/lib` — see [tomcat documentation](https://tomcat.apache.org/tomcat-9.0-doc/class-loader-howto.html) for more.
+**Running multiple Couchbase Lite on Java web apps**Each web application has its own \*class loader (WebappX). This loads the classes, jars, and resources found in the application's `WEB-INF/classes` and `WEB-INF/lib` folders, together with any shared jar files from `$CATALINA_BASE/lib` — see [tomcat documentation](https://tomcat.apache.org/tomcat-9.0-doc/class-loader-howto.html) for more.
 
 So, if you are running multiple Couchbase Lite web applications, deploy your Couchbase Lite on Java library `<pathToCbl>/libs` to `$CATALINA_BASE/lib`. This means you do not need to deploy it in each web app and **minimizes the size of each app**.
 
@@ -216,13 +216,13 @@ gradle init
   ```
 3. Open the project folder in Intellij IDEA and import the gradle settings.  
 > [!TIP]  
-> If you don’t have auto-import set for Gradle projects, then accept the **Import Gradle Project** prompt that is displayed bottom-right of the screen  
+> If you don't have auto-import set for Gradle projects, then accept the **Import Gradle Project** prompt that is displayed bottom-right of the screen  
 Note the Gradle menu at the extreme right of the screen:  
 ![GradleMenuWebApp](_images/GradleMenuWebApp.png)
 
 If you want to deploy your app to a local tomcat container then see [Deploying a WAR file to tomcat](#deploying-a-war-file-to-tomcat)
 
-That’s it. You’re all set to start building your own Couchbase Lite on Java applications — see [\[Building a Getting Started App\]](#Building a Getting Started App) for an example of how to do that.
+That's it. You're all set to start building your own Couchbase Lite on Java applications — see [\[Building a Getting Started App\]](#Building a Getting Started App) for an example of how to do that.
 
 Sample build.gradle content
 
@@ -330,7 +330,7 @@ Go back to [GET STARTED](#get-started)
 
 1. Download the _zip_ file from the [Couchbase Downloads](https://www.couchbase.com/downloads?family=mobile) page.
 2. Unpack the downloaded file to a location accessible to — and usable by — your chosen **build** environment.  
-We’ll refer to that location — `<your dir>/couchbase-lite-java-2.8.3` — as the `<pathToCbl>`.
+We'll refer to that location — `<your dir>/couchbase-lite-java-2.8.3` — as the `<pathToCbl>`.
 3. Include the following dependency in your `build.gradle` file, you can remove any Couchbase Lite Maven references:  
 ```Java  
 Dependencies {  
@@ -372,7 +372,7 @@ Web Service/Tomcat
 1. Copy the _native libraries_ (`<pathToCbl>/support`) to a location accessible to — and usable by — your build and runtime environments.
 2. Add the following libraries to the `LD_LIBRARY_PATH` in \`$CATALINA\_BASE/bin/setenv.sh:  
 > [!NOTE]  
-> If the setenv.sh file doesn’t exist, you will need to create a new file.  
+> If the setenv.sh file doesn't exist, you will need to create a new file.  
 ```bashrc  
 LD_LIBRARY_PATH=<pathToCbl>/support/linux/x86_64/:$LD_LIBRARY_PATH  
 ```
@@ -428,7 +428,7 @@ If you want to deploy your web app to a local Tomcat instance then you will need
 > The generated war file will be at <PROJECT ROOT>/build/libs.
 2. Deploy the war file to Tomcat, by copying it to $CATALINA\_BASE/webapps  
 > [!TIP]  
-> You can also use Tomcat’s Manager App to deploy the war file — see [tomcat’s Manager App](https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html) documentation for more detail.
+> You can also use Tomcat's Manager App to deploy the war file — see [tomcat's Manager App](https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html) documentation for more detail.
 3. To use common class loader approach to load Couchbase Lite libraries, copy all of the Couchbase Lite jar files in $CATALINA\_BASE/lib.  
 > [!NOTE]  
 > For linux platform see also — [Additional Steps for Linux](#additional-steps-for-linux)

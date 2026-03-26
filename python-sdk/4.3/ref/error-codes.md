@@ -3,7 +3,7 @@ title: Error Messages
 description: The standardized error codes returned by the Couchbase Python SDK,
   from cloud connection to sub-document.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/ref/pages/error-codes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@python-sdk:ref:error-codes.adoc[]
 ---
 
@@ -102,7 +102,7 @@ Raised when:
 
 ### [](#13-ambiguoustimeout)\# 13 AmbiguousTimeout
 
-Raised when a timeout occurs and we aren’t sure if the underlying operation has completed. This normally occurs because we sent the request to the server successfully, but timed out waiting for the response. Note that idempotent operations should never return this, as they do not have ambiguity.
+Raised when a timeout occurs and we aren't sure if the underlying operation has completed. This normally occurs because we sent the request to the server successfully, but timed out waiting for the response. Note that idempotent operations should never return this, as they do not have ambiguity.
 
 ### [](#14-unambiguoustimeout)\# 14 UnambiguousTimeout
 
@@ -311,7 +311,7 @@ ID Range 500 - 599
 
 ### [](#501-viewnotfound)\# 501 ViewNotFound
 
-Raised when Http status code 404 — reason or error contains “not\_found”.
+Raised when Http status code 404 — reason or error contains "not\_found".
 
 ### [](#502-designdocumentnotfound)\# 502 DesignDocumentNotFound
 
@@ -393,7 +393,7 @@ Raised when decryption fails due to malformed input, integrity check failure, et
 
 Unresolved include directive in modules/ref/pages/error-codes.adoc - include::7.6=@sdk:shared:partial$error-ref.adoc\[\]
 
-Couldn’t look up
+Couldn't look up
 
 ```terminal
 ERROR:couchbase.connection:[2302468477383294429] <8676842d-4e8b-4c5b-a44f-e0886f8c0bc1.dp.cloud.couchbase.com:18091> (SOCK=a95ae0d1210d3132) Couldn't look up 8676842d-4e8b-4c5b-a44f-e0886f8c0bc1.dp.cloud.couchbase.com (nodename nor servname provided, or not known) [EAI=8] (L:503)

@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:rust-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 
 > You can query for documents in Couchbase using the SQL++ query language (formerly N1QL), a language based on SQL, but designed for structured and flexible JSON documents. 
 
-Our query service uses SQL++, which will be fairly familiar to anyone who’s used any dialect of SQL. [Additional Resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](../../../server/current/n1ql/n1ql-language-reference/index.md).
+Our query service uses SQL++, which will be fairly familiar to anyone who's used any dialect of SQL. [Additional Resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](../../../server/current/n1ql/n1ql-language-reference/index.md).
 
 > [!TIP]
 > SQL++ Compared to Key-Value
@@ -24,7 +24,7 @@ Our query service uses SQL++, which will be fairly familiar to anyone who’s us
 
 ## [](#getting-started)Getting Started
 
-Let’s get started by connecting to a Couchbase cluster, as usual (of course, change the address and credentials to match your own cluster’s):
+Let's get started by connecting to a Couchbase cluster, as usual (of course, change the address and credentials to match your own cluster's):
 
 ```rust
 let cluster = Cluster::connect(
@@ -48,7 +48,7 @@ Note that building indexes is covered in more detail on the [Query concept page]
 
 ## [](#a-simple-query)A Simple Query
 
-Here’s the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
+Here's the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
 
 ```rust
 let scope = cluster.bucket("travel-sample").scope("inventory");
@@ -62,7 +62,7 @@ while let Some(row) = rows.next().await {
 }
 ```
 
-(Note that we won’t be covering the SQL++ language itself in any detail here, but if you’re familiar with SQL you’ll see it’s very similar.)
+(Note that we won't be covering the SQL++ language itself in any detail here, but if you're familiar with SQL you'll see it's very similar.)
 
 The returned `QueryResult` contains a `rows[T]` method, allowing the results to be converted into something useful. The above example demonstrates returning the results as `serde_json::Value`, a flexible way to handle JSON.
 
@@ -106,7 +106,7 @@ Queries take an optional `scanConsistency` parameter that enables a tradeoff bet
 * With scan consistency set to `RequestPlus`, all outstanding document changes and index updates are processed before the query is run. Select this when consistency is always more important than performance.
 * For a middle ground, `AtPlus` is a "read your own write" (RYOW) option, which means it just waits for the documents that you specify to be indexed.
 
-Here’s how to specify the `RequestPlus` scan consistency level:
+Here's how to specify the `RequestPlus` scan consistency level:
 
 ```rust
     let result = cluster
@@ -170,7 +170,7 @@ pub struct User {
 }
 ```
 
-Now you’re free to pull out the results directly as your type:
+Now you're free to pull out the results directly as your type:
 
 ```rust
 let statement = "SELECT name, address, age from `users` LIMIT 10;";

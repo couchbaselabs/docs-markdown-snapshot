@@ -1,7 +1,7 @@
 ---
 title: Create App Roles
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/security/create-app-role.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::security/create-app-role.adoc[]
 ---
 
@@ -22,10 +22,10 @@ Roles are granted access to channels. Any user assigned a role can access any ch
 
 As an entity, roles comprise a name and a list of channels.
 
-Any user associated with a role inherits the right to access any of the channels in the role’s list. This provides a convenient way to associate multiple channels with multiple users.
+Any user associated with a role inherits the right to access any of the channels in the role's list. This provides a convenient way to associate multiple channels with multiple users.
 
 > [!TIP]
-> Roles have a separate namespace from users, so it’s possible to have a user and a role with the same name.
+> Roles have a separate namespace from users, so it's possible to have a user and a role with the same name.
 
 ## [](#procedure)Procedure
 
@@ -37,15 +37,15 @@ Now, click **\+ CREATE APP ROLE** to access the role creation screen:
 
 ![creating the app role](../_images/user-management/app-role-sc.png) 
 
-Figure 1\. Creating a user’s App Role
+Figure 1\. Creating a user's App Role
 
-Fill in the name of the role. You can also fill in the name of the channel, and then press the Return key to add it to the list of channels. Any user with this role will be able to access documents that are included in one or more of the channels. Press **CREATE APP ROLE** when you’ve finished.
+Fill in the name of the role. You can also fill in the name of the channel, and then press the Return key to add it to the list of channels. Any user with this role will be able to access documents that are included in one or more of the channels. Press **CREATE APP ROLE** when you've finished.
 
 For more information on channels, see [Add Security with Channels](channels.md)
 
 ![Editing the app role](../_images/user-management/edit-role.png) 
 
-Figure 2\. Editing a user’s App Role
+Figure 2\. Editing a user's App Role
 
 You can perform the following actions in the Edit App Role page:
 

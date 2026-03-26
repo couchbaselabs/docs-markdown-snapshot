@@ -3,7 +3,7 @@ title: Data Operations
 description: Key Value (KV) or data service offers the simplest way to retrieve
   or mutate data where the key is known.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:python-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -22,7 +22,7 @@ A _document_ refers to an entry in the database (other databases may refer to th
 
 ## [](#crud-operations)CRUD Operations
 
-The core interface to Couchbase Server is simple KV operations on full documents. Make sure you’re familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK section](../hello-world/start-using-sdk.md). We’re going to expand on the short _Upsert_ example we used there, adding options as we move through the various CRUD operations. Here is the _Insert_ operation at its simplest:
+The core interface to Couchbase Server is simple KV operations on full documents. Make sure you're familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK section](../hello-world/start-using-sdk.md). We're going to expand on the short _Upsert_ example we used there, adding options as we move through the various CRUD operations. Here is the _Insert_ operation at its simplest:
 
 Insert
 
@@ -49,11 +49,11 @@ result = collection.insert("document-key-opts",
                            expiry=timedelta(seconds=30))
 ```
 
-Expiration sets an explicit time to live (TTL) for a document. We’ll discuss modifying `Expiration` in more details [below](#expiration-ttl). For a discussion of item (Document) _vs_ Bucket expiration, see the [Expiration Overview page](#6.6@server:learn:buckets-memory-and-storage/expiration.adoc#expiration-bucket-versus-item).
+Expiration sets an explicit time to live (TTL) for a document. We'll discuss modifying `Expiration` in more details [below](#expiration-ttl). For a discussion of item (Document) _vs_ Bucket expiration, see the [Expiration Overview page](#6.6@server:learn:buckets-memory-and-storage/expiration.adoc#expiration-bucket-versus-item).
 
 ### [](#cas)CAS
 
-Setting a Compare and Swap (CAS) value is a form of optimistic locking — dealt with in depth in the [CAS page](concurrent-document-mutations.md). Here we just note that the CAS is a value representing the current state of an item; each time the item is modified, its CAS changes. The CAS value is returned as part of a document’s metadata whenever a document is accessed. Without explicitly setting it, a newly-created document would have a CAS value of _0_.
+Setting a Compare and Swap (CAS) value is a form of optimistic locking — dealt with in depth in the [CAS page](concurrent-document-mutations.md). Here we just note that the CAS is a value representing the current state of an item; each time the item is modified, its CAS changes. The CAS value is returned as part of a document's metadata whenever a document is accessed. Without explicitly setting it, a newly-created document would have a CAS value of _0_.
 
 ```python
 # Replace document with CAS
@@ -176,7 +176,7 @@ result = collection.remove(
 
 ## [](#expiration-ttl)Expiration / TTL
 
-We already touched on how to set `Expiry` on an operation but we didn’t discuss how to handle extending that expiry time. By default, Couchbase documents do not expire, but transient or temporary data may be needed for user sessions, caches, or other temporary documents. You can use expiration values on documents to handle transient data. To prevent a document that already has expiry from expiring you can use `Touch` operations which will extend the expiry by the time specified.
+We already touched on how to set `Expiry` on an operation but we didn't discuss how to handle extending that expiry time. By default, Couchbase documents do not expire, but transient or temporary data may be needed for user sessions, caches, or other temporary documents. You can use expiration values on documents to handle transient data. To prevent a document that already has expiry from expiring you can use `Touch` operations which will extend the expiry by the time specified.
 
 ```python
 result = collection.touch("document-key", timedelta(seconds=10))
@@ -200,7 +200,7 @@ result = collection.get_and_touch("document-key", timedelta(seconds=10))
 The value of a document can be increased or decreased atomically using `.increment()` and `.decrement()`.
 
 > [!NOTE]
-> Increment & Decrement are considered part of the ‘binary’ API, and as such may still be subject to change.
+> Increment & Decrement are considered part of the 'binary' API, and as such may still be subject to change.
 
 Increment
 
@@ -255,14 +255,14 @@ A counter must be incremented or decremented by only a single datacenter. Each d
 
 ## [](#kv-range-scan)KV Range Scan
 
-A range scan gives you documents from a collection, even if you don’t know the document IDs. This feature requires Couchbase Server 7.6 or newer.
+A range scan gives you documents from a collection, even if you don't know the document IDs. This feature requires Couchbase Server 7.6 or newer.
 
 > [!TIP]
 > KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 
-Here’s an example of a KV range scan that gets all documents in a collection:
+Here's an example of a KV range scan that gets all documents in a collection:
 
 KV Range Scan for all documents in a collection
 
@@ -273,7 +273,7 @@ for r in result:
     print(f'Found result, ID={r.id}, content={r.content_as[dict]}')
 ```
 
-| **1** | The RangeScan class has two optional parameters: start and end. If you omit them like in this example, you’ll get all documents in the collection. These parameters are for advanced use cases; you probably won’t need to specify them. Instead, it’s more common to use the "prefix" scan type shown in the next example. |
+| **1** | The RangeScan class has two optional parameters: start and end. If you omit them like in this example, you'll get all documents in the collection. These parameters are for advanced use cases; you probably won't need to specify them. Instead, it's more common to use the "prefix" scan type shown in the next example. |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### [](#kv-range-scan-prefix)Prefix scan

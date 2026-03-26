@@ -2,7 +2,7 @@
 title: SQL for Mobile -- Differences from SQL for Server
 description: Differences between Couchbase Server SQL++ and Couchbase Lite N1QL
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/swift/pages/query-n1ql-mobile-server-diffs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite:swift:query-n1ql-mobile-server-diffs.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:3.3@couchbase-lite:swift:query-n1ql-mobile-server-diffs.adoc[]
 > Related Content — [Predictive Queries](querybuilder.md#lbl-predquery) | [Live Queries](query-live.md) | [Indexing](indexing.md)
 
 > [!IMPORTANT]
-> N1QL is Couchbase’s implementation of the developing **SQL++** standard. As such the terms _N1QL_ and _SQL++_ are used interchangeably in Couchbase documentation unless explicitly stated otherwise.
+> N1QL is Couchbase's implementation of the developing **SQL++** standard. As such the terms _N1QL_ and _SQL++_ are used interchangeably in Couchbase documentation unless explicitly stated otherwise.
 
 There are several minor but notable behavior differences between _SQL++ for Mobile_ queries and _SQL++ for Server_, as shown in [Table 1](#tbl-diffs).
 
@@ -47,7 +47,7 @@ __Table 1\. SQL++ Query Comparison__
 
 | SQL++ for Couchbase Server                                                                                                                                                                                                                                                                                                             | SQL++ for Mobile                                                                                                                                                                                                                                                                                                                                                                                                      |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Couchbase Server operates in the same way as Couchbase Lite, except: MISSING, NULL and FALSE are FALSE Numbers 0 is FALSE Empty strings, arrays, and objects are FALSE All other values are TRUE You can choose to use _Couchbase Server’s SQL++ rules_ by using the TOBOOLEAN(expr) function to convert a value to its boolean value. | SQL++ for Mobile’s boolean logic rules are based on SQLite’s, so: TRUE is TRUE, and FALSE is FALSE Numbers 0 or 0.0 are FALSE Arrays and dictionaries are FALSE String and Blob are TRUE if the values are casted as a non-zero or FALSE if the values are casted as 0 or 0.0 — see: [SQLITE’s CAST and Boolean expressions](https://sqlite.org/lang%5Fexpr.html)^ for more details) NULL is FALSE MISSING is MISSING |
+| Couchbase Server operates in the same way as Couchbase Lite, except: MISSING, NULL and FALSE are FALSE Numbers 0 is FALSE Empty strings, arrays, and objects are FALSE All other values are TRUE You can choose to use _Couchbase Server's SQL++ rules_ by using the TOBOOLEAN(expr) function to convert a value to its boolean value. | SQL++ for Mobile's boolean logic rules are based on SQLite's, so: TRUE is TRUE, and FALSE is FALSE Numbers 0 or 0.0 are FALSE Arrays and dictionaries are FALSE String and Blob are TRUE if the values are casted as a non-zero or FALSE if the values are casted as 0 or 0.0 — see: [SQLITE's CAST and Boolean expressions](https://sqlite.org/lang%5Fexpr.html)^ for more details) NULL is FALSE MISSING is MISSING |
 
 ### [](#logical-operations)Logical Operations
 

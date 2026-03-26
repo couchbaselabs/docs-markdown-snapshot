@@ -2,7 +2,7 @@
 title: server-eshell
 description: Opens a shell to talk to the cluster manager process
 editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbcli/couchbase-cli-server-eshell.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cli:cbcli/couchbase-cli-server-eshell.adoc[]
 ---
 
@@ -23,7 +23,7 @@ _couchbase-cli server-eshell_ [--cluster <url>] [--username <user>] [--password 
 
 This is a hidden command and is not intended for typical production use. This command allows the user to connect to the cluster manager process in order to make unsupported changes in the cluster manager. This command is typically used as last resort in order to address uncommon production issues. Check with the Couchbase Support team before running this command because improper use can lead to the cluster being placed in an unusable state.
 
-When this command is executed it connects to the local cluster manager process specified and starts a shell so that the user can interact with the cluster manager. This command only works for localhost and can’t connect to any other host.
+When this command is executed it connects to the local cluster manager process specified and starts a shell so that the user can interact with the cluster manager. This command only works for localhost and can't connect to any other host.
 
 ## [](#options)OPTIONS
 

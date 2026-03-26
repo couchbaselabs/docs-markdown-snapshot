@@ -3,7 +3,7 @@ title: Manage Your Billing
 description: Couchbase Capella bills you for the size and number of operational
   clusters in your organization.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/billing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:billing:billing.adoc[]
 ---
 
@@ -27,13 +27,13 @@ Billing for your organization is based on the chosen [Support Plan](#paid-plan) 
 * [Developer Pro Support Plan](#dev-pro)
 * [Enterprise Plan](#enterprise)
 
-You can change the Support Plan for your cluster at any time. For more information about changing your cluster’s plan, see [Change a Cluster’s Plan and Support Timezone](change-support-plan.md).
+You can change the Support Plan for your cluster at any time. For more information about changing your cluster's plan, see [Change a Cluster's Plan and Support Timezone](change-support-plan.md).
 
 For more information and a comparison of the available Support Plans, see [Plans and Pricing](https://www.couchbase.com/pricing/) and the [Capella Support Policy](https://couchbase.com/support-policy/cloud) on the Couchbase website.
 
 ### [](#free)Free Tier Plan
 
-Clusters and services on the Free plan are always free and available, as long as you’re actively using them. You do not need to have a credit balance or credit card in your organization to use the Free plan.
+Clusters and services on the Free plan are always free and available, as long as you're actively using them. You do not need to have a credit balance or credit card in your organization to use the Free plan.
 
 Each organization can use only 1 free tier cluster. You cannot change the support plan for a free tier cluster to a paid plan.
 
@@ -61,7 +61,7 @@ You can use the Enterprise plan with [pre-paid credits](#pre-paid-credits), or [
 
 Couchbase calculates cluster charges daily.
 
-Any hourly charges for the current day are reflected in your organization’s balance on the next calendar day. Monthly usage periods for each calendar month include daily usage.
+Any hourly charges for the current day are reflected in your organization's balance on the next calendar day. Monthly usage periods for each calendar month include daily usage.
 
 ### [](#when-a-cluster-is-on)When a Cluster is On
 
@@ -77,7 +77,7 @@ Couchbase charges by the clock hour for Capella operational clusters. It bases t
   * Disk IOPS and throughput (AWS and Azure Ultra Disk only)
 * The operational cluster [Support Plan](#support-plans).
 
-Your operational cluster becomes billable after it successfully deploys and is in a running state. You’re billed for each clock hour that your operational cluster runs. For example, if your operational cluster ran at 10:30 a.m. and was turned off or deleted at 11:30 a.m. on the same day, you’re billed for 2 **on** hours because the operational cluster ran during 2 clock hours.
+Your operational cluster becomes billable after it successfully deploys and is in a running state. You're billed for each clock hour that your operational cluster runs. For example, if your operational cluster ran at 10:30 a.m. and was turned off or deleted at 11:30 a.m. on the same day, you're billed for 2 **on** hours because the operational cluster ran during 2 clock hours.
 
 You can [change a clusters size](../clusters/scale-database.md) or [change its Support Plan](change-support-plan.md) after its deployment. The hourly rate for that operational cluster increases or decreases based on your changes.
 
@@ -124,7 +124,7 @@ Cloud service providers typically charge for the following data transfer types:
 
 | Type                       | Description                                                                                                                                                                                                                                                                                                                                                                                                      |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Inter-Zone or Intra-Region | Charged for traffic crossing Availability Zones, VPC Peering Connections, or public IP addresses within the same region. In AWS and GCP, these charges are commonly .01 credit per GB, for both ingress and egress. In Azure, this is free of charge, except for VNET peering. These are the most common data transfer charges you’ll incur for using Capella.                                                   |
+| Inter-Zone or Intra-Region | Charged for traffic crossing Availability Zones, VPC Peering Connections, or public IP addresses within the same region. In AWS and GCP, these charges are commonly .01 credit per GB, for both ingress and egress. In Azure, this is free of charge, except for VNET peering. These are the most common data transfer charges you'll incur for using Capella.                                                   |
 | Inter Region               | Charges for instance traffic crossing regions, within the same cloud service provider. Inter-region traffic rates are specific to both the source regions, or where the data is moving out of, and the destination region, or where the data is moving to. Charges range from .01 credits/GB (between AWS us-east-1 and us-east-2) to .16 credits/GB (between Azure South America regions and other continents). |
 | Internet                   | Data transferred out to the Internet, including data transferred to other Infrastructure as a Service (IaaS) providers. These charges are typical .09 credits/GB in North American and European regions, with higher rates in Asia Pacific.                                                                                                                                                                      |
 
@@ -137,7 +137,7 @@ The following data transfers are free of charge:
 
 If you choose to connect to Capella through [Private Endpoints](../security/private-endpoints.md), Couchbase provisions a single load balancer per operational cluster that enables that connection.
 
-You’ll be charged for Private Endpoints based on the following costs:
+You'll be charged for Private Endpoints based on the following costs:
 
 * A fixed hourly connection cost, with an hourly rate that varies based on the region where the load balancer is deployed. Charges are for each clock hour that the Private Endpoint service is provisioned, regardless of usage or the state of your operational cluster (on or off).
 * A per GiB data processing charge for data processed through the load balancer, with a per GiB rate that varies based on the region where the Private Endpoint service is used.
@@ -148,13 +148,13 @@ These charges are in addition to any Private Endpoint costs from AWS or Azure fo
 
 If you connect to Capella through the [Data API](../data-api-guide/data-api-intro.md), Couchbase provisions a single load balancer per operational cluster to enable that connection.
 
-You’ll be charged for Data API access based on the following costs:
+You'll be charged for Data API access based on the following costs:
 
 * A fixed hourly connection cost, with an hourly rate that varies based on the region where the load balancer is deployed. Charges are for each clock hour that the Data API is enabled, regardless of usage or the state of your operational cluster (on or off).
 * A per GiB data processing charge for data processed through the load balancer, with a per GiB rate that varies based on the region where the Data API is used.
 
 > [!IMPORTANT]
-> When [VPC Peering](../clouds/private-network.md) support is enabled for the Data API, you’ll be charged an incremental extra cost for Data API access, regardless of whether any VPC Peering connections are currently established.
+> When [VPC Peering](../clouds/private-network.md) support is enabled for the Data API, you'll be charged an incremental extra cost for Data API access, regardless of whether any VPC Peering connections are currently established.
 > 
 > Enabling private endpoint support with the Data API has no additional cost beyond the regular charges associated with the Data API.
 
@@ -238,7 +238,7 @@ You can buy pre-paid credits through [the Couchbase Sales team with a direct inv
 
 ### [](#low-credits)Low Credit Warning Calculations
 
-To help with managing costs and getting the best use out of your prepaid credits, Capella tries to estimate your credit usage for new clusters. Capella displays warnings when you [create a new cluster](../clusters/create-database.md) or [change a cluster’s Support Plan](change-support-plan.md), if your projected credit usage would be greater than your available prepaid credit balance and cause pay-as-you-go charges.
+To help with managing costs and getting the best use out of your prepaid credits, Capella tries to estimate your credit usage for new clusters. Capella displays warnings when you [create a new cluster](../clusters/create-database.md) or [change a cluster's Support Plan](change-support-plan.md), if your projected credit usage would be greater than your available prepaid credit balance and cause pay-as-you-go charges.
 
 Capella looks at your credit usage from the last 7-30 days to project how long credits for a new cluster will last, based on an average daily credit burn rate, and the fixed costs for a new cluster.
 
@@ -250,7 +250,7 @@ If you do not have at least 7 days of usage data for a cluster, Capella does not
 
 ### [](#pay-as-you-go-credits)Pay-As-You-Go (On-Demand) Credits
 
-With pay-as-you-go credits, you’re billed for your real-time cluster usage. Couchbase calculates the number of credits your clusters and resources have consumed periodically and bills for your consumption during that time.
+With pay-as-you-go credits, you're billed for your real-time cluster usage. Couchbase calculates the number of credits your clusters and resources have consumed periodically and bills for your consumption during that time.
 
 You can choose to pay for pay-as-you-go credits through [the Couchbase Sales team with a direct invoice](#direct-invoice), your [CSP](#marketplaces), or by [credit card](#credit-cards).
 
@@ -264,9 +264,9 @@ Your payment options and final usage calculations depend on how you want to pay 
 
 ### [](#direct-invoice)Direct Invoice from Couchbase Sales
 
-You can choose to pay for your Couchbase Capella usage through a monthly direct invoice. Your monthly usage periods are used for reporting and billing purposes. Your credit balance updates once every calendar day and reflects the previous day’s cumulative usage across all operational clusters in your organization.
+You can choose to pay for your Couchbase Capella usage through a monthly direct invoice. Your monthly usage periods are used for reporting and billing purposes. Your credit balance updates once every calendar day and reflects the previous day's cumulative usage across all operational clusters in your organization.
 
-For [pre-paid credits](#pre-paid-credits), you can choose to purchase credits ahead of time to pay for your Capella usage through a contract with Couchbase Sales. If you use more than your pre-purchased credit balance during a calendar month, you’ll be billed through Capella’s pay-as-you-go system for the additional usage. You must pay this bill in arrears.
+For [pre-paid credits](#pre-paid-credits), you can choose to purchase credits ahead of time to pay for your Capella usage through a contract with Couchbase Sales. If you use more than your pre-purchased credit balance during a calendar month, you'll be billed through Capella's pay-as-you-go system for the additional usage. You must pay this bill in arrears.
 
 For [pay-as-you-go](#pay-as-you-go-credits), you can choose to pay for those credits through a monthly invoice from Couchbase Capella.
 
@@ -275,15 +275,15 @@ For [pay-as-you-go](#pay-as-you-go-credits), you can choose to pay for those cre
 
 To enable credit purchases for your organization, you must add an [Activation ID](#billing/upgrade-account.adoc) to your account. Contact [Couchbase Sales](https://info.couchbase.com/Capella-Contact.html) to get an Activation ID and start using paid operational clusters through the direct invoice payment option.
 
-Your credits expire if they’re not used within 12 months.
+Your credits expire if they're not used within 12 months.
 
-Your organization’s billing contact receives an invoice for the purchased credits based on the currency equivalent outlined in your purchase agreement.
+Your organization's billing contact receives an invoice for the purchased credits based on the currency equivalent outlined in your purchase agreement.
 
 ### [](#marketplaces)CSP Marketplaces
 
-You can choose to pay for your usage through your CSP. Go through 1 of Capella’s cloud service provider (CSP) marketplaces to get started with paying for your [credits](#billing-system). You’ll receive an invoice through your CSP for your previous month’s usage on Capella.
+You can choose to pay for your usage through your CSP. Go through 1 of Capella's cloud service provider (CSP) marketplaces to get started with paying for your [credits](#billing-system). You'll receive an invoice through your CSP for your previous month's usage on Capella.
 
-All invoices and payments are managed through your CSP’s account.
+All invoices and payments are managed through your CSP's account.
 
 To pay for your credits with your cloud service provider, go to:
 
@@ -291,7 +291,7 @@ To pay for your credits with your cloud service provider, go to:
 * [GCP Marketplace](https://console.cloud.google.com/marketplace/product/couchbase-public/couchbase-capella-database-as-a-service?pli=1)
 * [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/couchbase.couchbase%5Fcapella%5Fdbaas?tab=overview)
 
-For [pre-paid credits](#pre-paid-credits), you can choose to purchase preset credit packages through your CSP to pay for your Capella usage. If you use more than your pre-purchased credit balance during a calendar month, you’ll be billed through Capella’s pay-as-you-go system for the additional usage, through your CSP. You must pay this bill in arrears.
+For [pre-paid credits](#pre-paid-credits), you can choose to purchase preset credit packages through your CSP to pay for your Capella usage. If you use more than your pre-purchased credit balance during a calendar month, you'll be billed through Capella's pay-as-you-go system for the additional usage, through your CSP. You must pay this bill in arrears.
 
 For [pay-as-you-go](#pay-as-you-go-credits), you can choose to pay for those credits through a monthly invoice managed by your CSP.
 
@@ -302,7 +302,7 @@ After you purchase credits through your CSP, you must add an [Activation ID](#bi
 
 ### [](#credit-cards)Credit Card Payments
 
-You can choose to add a credit card to your organization to get billed directly for your Capella usage, instead of purchasing [pre-paid credits](#pre-paid-credits) through [Couchbase Sales](#direct-invoice) or a supported [cloud provider’s marketplace](#marketplaces). Couchbase bills your credit card for any usage in the previous calendar month, similar to [pay-as-you-go credits](#pay-as-you-go-credits).
+You can choose to add a credit card to your organization to get billed directly for your Capella usage, instead of purchasing [pre-paid credits](#pre-paid-credits) through [Couchbase Sales](#direct-invoice) or a supported [cloud provider's marketplace](#marketplaces). Couchbase bills your credit card for any usage in the previous calendar month, similar to [pay-as-you-go credits](#pay-as-you-go-credits).
 
 If you choose to pay for your Capella usage through a credit card, you can deploy clusters and services on a [Basic](#basic) or [Developer Pro](#dev-pro) Support Plan.
 
@@ -325,7 +325,7 @@ If you need to dispute a charge or have any questions related to credit card bil
 
 #### [](#credit-card-payment-schedule)Credit Card Payment Schedule
 
-The default credit card in your organization will be charged on the seventh day of every month, based on your previous month’s usage.
+The default credit card in your organization will be charged on the seventh day of every month, based on your previous month's usage.
 
 If your payment fails to process, Couchbase tries to bill your default credit card again for 3 days. If by the fourteenth day of the month, Couchbase still has not processed a payment on your default credit card, all paid services and clusters in your organization are paused.
 
@@ -337,5 +337,5 @@ If no payment is received by the end of the calendar month after you incurred us
 * [Manage Billing Alerts](manage-billing-alerts.md)
 * [View Capella Usage and Invoices](usage-invoices.md)
 * [Upgrade Your Account](upgrade-account.md)
-* [Change a Cluster’s Plan and Support Timezone](change-support-plan.md)
+* [Change a Cluster's Plan and Support Timezone](change-support-plan.md)
 * [Request Prompt Action for Cluster Recovery](support-pre-auth.md)

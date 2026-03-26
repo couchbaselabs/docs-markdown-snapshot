@@ -3,7 +3,7 @@ title: "Function: Advanced Sub-Document MUTATEIN Array Operation"
 description: Perform the Advanced Sub-Document MUTATEIN operation on an array
   where Eventing interacts with the Data Service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-handler-advancedMutateInArray.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:eventing:eventing-handler-advancedMutateInArray.adoc[]
 ---
 
@@ -21,7 +21,7 @@ The `advancedMutateInArray` function:
 * Requires a binding of type `bucket alias`
 * Operates on any mutation where the `meta.id` or KEY is `combine_landmark_names`
 
-For example, you can generate an input document with the KEY `combine_landmark_names` and the DATA `{ "id": "combine_landmark_names", "landmark_names": [] }`, then set the number of workers in the Eventing Function’s setting to 18\. Running the Function adds 4,495 landmark names to an array without conflict and in no particular order.
+For example, you can generate an input document with the KEY `combine_landmark_names` and the DATA `{ "id": "combine_landmark_names", "landmark_names": [] }`, then set the number of workers in the Eventing Function's setting to 18\. Running the Function adds 4,495 landmark names to an array without conflict and in no particular order.
 
 For more information about the Advanced Sub-Document MUTATEIN operation, see [Sub-Document MUTATEIN Operation](eventing-advanced-keyspace-accessors.md#advanced-subdoc-array-op-mutatein).
 

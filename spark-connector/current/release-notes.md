@@ -1,7 +1,7 @@
 ---
 title: Release Notes
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:spark-connector::release-notes.adoc[]
 ---
 
@@ -189,7 +189,7 @@ Version 3.2.1 is the second version to support Spark 3.2.x and is built on top o
 
 ### [](#features-3)Features
 
-* Updated the underlying SDK to 1.3.0, which (along with general enhancements and fixes) bundles the Capella certificate, so it doesn’t have to be added manually.
+* Updated the underlying SDK to 1.3.0, which (along with general enhancements and fixes) bundles the Capella certificate, so it doesn't have to be added manually.
 * [SPARKC-133](https://issues.couchbase.com/browse/SPARKC-133): Added support for spark structured streaming. For more details, see the documentation section for streaming.
 
 ## [](#couchbase-spark-connector-3-2-0-ga-january-2022)Couchbase Spark Connector 3.2.0 GA (January 2022)

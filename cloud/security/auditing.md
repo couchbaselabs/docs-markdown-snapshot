@@ -3,7 +3,7 @@ title: Audit Events
 description: Capella provides event auditing, whereby events are logged. Log
   files can be downloaded for inspection.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/auditing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:security:auditing.adoc[]
 ---
 
@@ -37,7 +37,7 @@ For information on how to configure the filtering of events, see [Audit Manageme
 
 In some cases, it may be unnecessary to log filterable events incurred by particular users. Filterable events created by such users can be specified to be ignored, even when these filterable events have been explicitly enabled.
 
-For a user’s events to be ignored, the username and the _domain_ of the user must be specified: the domain always being `local`.
+For a user's events to be ignored, the username and the _domain_ of the user must be specified: the domain always being `local`.
 
 The following Couchbase _internal users_ may also be specified:
 
@@ -67,7 +67,7 @@ The table below lists frequently used audit fields, with corresponding descripti
 | Unresolved include directive in modules/security/pages/auditing.adoc - include::server:learn:partial$user-audit-warning.adoc\[\] |               |                                                                                                                                                                                                                                                              |
 | "local"                                                                                                                          | Object        | Contains key-value pairs for "ip" and incoming "port", for the node on which the event was processed.                                                                                                                                                        |
 | "remote"                                                                                                                         | Object        | Contains key-value pairs for "ip" and outgoing "port", for the node on which the event-request was dispatched.                                                                                                                                               |
-| "timestamp"                                                                                                                      | UTC timestamp | The UTC timestamp for the event’s generation (for example, "2020-01-29T08:02:07.476-08:00": see [Date and Time Formats](http://www.w3.org/TR/NOTE-datetime)).                                                                                                |
+| "timestamp"                                                                                                                      | UTC timestamp | The UTC timestamp for the event's generation (for example, "2020-01-29T08:02:07.476-08:00": see [Date and Time Formats](http://www.w3.org/TR/NOTE-datetime)).                                                                                                |
 
 ## [](#examples-of-audit-event-records)Examples of Audit Event Records
 
@@ -303,18 +303,18 @@ After a request has been made, its progress can be tracked by means of its _stat
 > Each [GET request](../management-api-reference/index.md#tag/Audit-Logs/operation/getAuditLogExport) for a cluster audit log export generates a new download URL. Multiple URLs can coexist and be used to download the export during this 72 hour period that the export is available.
 
 * `Failed`. The request failed, and no export has occurred. The user should open a support ticket, so that the problem can be investigated and appropriately resolved.
-* `no audit log files exist within the requested time frame`. No log files exist for the time-period that was specified: therefore, no export has occurred. This error may occur if auditing was not enabled during the requested time period. It’s also possible that there was no auditable activity on the cluster during the requested time-period.
+* `no audit log files exist within the requested time frame`. No log files exist for the time-period that was specified: therefore, no export has occurred. This error may occur if auditing was not enabled during the requested time period. It's also possible that there was no auditable activity on the cluster during the requested time-period.
 
 ### [](#limitations)Limitations on Export Requests
 
 The following limitations exist on export requests:
 
 * Only one export request may be running at any given time. A _running_ export request is one whose status is either `queued` or `in progress`.
-* No more than three _historical_ export requests are permitted in a 24 hour period. A historical export request is one whose start time is earlier than the point that’s 24 hours before the making of the request.  
+* No more than three _historical_ export requests are permitted in a 24 hour period. A historical export request is one whose start time is earlier than the point that's 24 hours before the making of the request.  
 Note, however, that any number of export requests can be made whose start time is no earlier than 24 hours of the making of the request.
 * No export request can be made whose start time is earlier than 30 days prior to the making of the request.
-* No export request can be made whose start time is later than 15 minutes prior to the making of the request. For example, if you make an export request at 14:00 UTC, the export’s designated start time must be 13:45 UTC or earlier.
-* No export request can be made whose end time is later than 15 minutes prior to the making of the request. For example, if you make an export request at 14:00 UTC, the export’s designated end time must be 13:45 UTC or earlier.
+* No export request can be made whose start time is later than 15 minutes prior to the making of the request. For example, if you make an export request at 14:00 UTC, the export's designated start time must be 13:45 UTC or earlier.
+* No export request can be made whose end time is later than 15 minutes prior to the making of the request. For example, if you make an export request at 14:00 UTC, the export's designated end time must be 13:45 UTC or earlier.
 * No export request can be made whose absolute time-range is less than 15 minutes.
 
 Note also that returned files may contain subsets of records that were made outside the user-specified time-period.

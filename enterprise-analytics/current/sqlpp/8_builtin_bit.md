@@ -3,7 +3,7 @@ title: Bitwise Functions
 description: This topic describes the builtin SQL++ for Enterprise Analytics
   bitwise functions.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/8_builtin_bit.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sqlpp:8_builtin_bit.adoc[]
 ---
 
@@ -22,7 +22,7 @@ All Bit/Binary functions can only operate on 64-bit signed integers.
 > All non-integer numbers and other data types result in null.
 
 > [!NOTE]
-> The query language uses [two’s complement](https://en.wikipedia.org/wiki/Two%27s%5Fcomplement) representation.
+> The query language uses [two's complement](https://en.wikipedia.org/wiki/Two%27s%5Fcomplement) representation.
 
 When looking at the value in binary form, bit 1 is the Least Significant Bit (LSB) and bit 32 is the Most Significant Bit (MSB).
 
@@ -253,7 +253,7 @@ Circular right shift of the number 6 (0110 in binary) by two bits.
 { "BitSHIFT": BITSHIFT(6,-2,TRUE) };
 * The expected result is:  
 { "BitSHIFT": -9223372036854775807 }  
-This results in -9223372036854775807 (1100 0000 0000 0000 0000 0000 0000 0000 in binary) because the two 1-bits wrapped right, around to the Most Significant Digit position and changed the integer’s sign to negative.
+This results in -9223372036854775807 (1100 0000 0000 0000 0000 0000 0000 0000 in binary) because the two 1-bits wrapped right, around to the Most Significant Digit position and changed the integer's sign to negative.
 * Example 3:  
 Circular left shift of the number 524288 (1000 0000 0000 0000 0000 in binary) by 45 bits.  
 { "BitSHIFT": BITSHIFT(524288,45,TRUE) };

@@ -3,7 +3,7 @@ title: Authorization
 description: For authorizing users, Couchbase Server provides <em>Role-Based
   Access Control</em>.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/authorization-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:security/authorization-overview.adoc[]
 ---
 
@@ -46,7 +46,7 @@ Users can be added to Couchbase Server by the Full Administrator. Each user must
 
 A user can be assigned one or more roles by the Full Administrator. Each role is itself associated with a subset of privileges; a privilege being a form of action, such as Read, Write, Execute, or Manage. Each privilege is associated with a resource; such as a bucket, index, view, or DCP stream.
 
-For example, the Data Reader role features the Read privilege, which is applied to the data of a bucket. When a user has been assigned the Data Reader role, and attempts to gain read-access to the bucket’s data by submitting their credentials, Couchbase Server identifies the user, recognises their assigned role and privilege, and duly authorises read-access.
+For example, the Data Reader role features the Read privilege, which is applied to the data of a bucket. When a user has been assigned the Data Reader role, and attempts to gain read-access to the bucket's data by submitting their credentials, Couchbase Server identifies the user, recognises their assigned role and privilege, and duly authorises read-access.
 
 Note that resource-access can optionally be specified by means of _parameterisation_. This means that a wildcard character has been used, during role-assignment, to specify that a privilege applies to all resource-instances within a resource-class: for example, to all buckets.
 

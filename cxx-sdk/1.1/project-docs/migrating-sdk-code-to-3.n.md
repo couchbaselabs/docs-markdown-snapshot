@@ -3,7 +3,7 @@ title: Migrating from SDK2 to SDK3 API
 description: This is the first release of the Couchbase Scala SDK -- you will
   not have any code based upon older API versions.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.1@cxx-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -22,6 +22,6 @@ Migration will only be a concern if you are mixing code from different JVM SDKs 
 
 ## [](#legacy-mapreduce-views)Legacy MapReduce Views
 
-Note, if you are looking for information about Couchbase’s legacy MapReduce Views Service, MapReduce Views are deprecated in Couchbase Server, and will eventually be removed. Information on using MapReduce Views with the SDK can still be accessed in our [documentation archive](https://docs-archive.couchbase.com/scala-sdk/1.2/howtos/view-queries-with-sdk.html).
+Note, if you are looking for information about Couchbase's legacy MapReduce Views Service, MapReduce Views are deprecated in Couchbase Server, and will eventually be removed. Information on using MapReduce Views with the SDK can still be accessed in our [documentation archive](https://docs-archive.couchbase.com/scala-sdk/1.2/howtos/view-queries-with-sdk.html).
 
 Views are the only service which does not benefit from [Multi-Dimensional Scaling](../../../server/7.6/learn/services-and-indexes/services/services.md#services-and-multi-dimensional-scaling), and is rarely the best choice over, say, [our Query service](../howtos/sqlpp-queries-with-sdk.md) if you are starting a fresh application. See our discussion document on [the best service for your use case](../concept-docs/querying-your-data.md) for querying your data.

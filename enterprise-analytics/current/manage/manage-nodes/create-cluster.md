@@ -4,7 +4,7 @@ description: A new Enterprise Analytics node can be <em>provisioned</em>, to
   establish its Full Administrator credentials, its service-assignments, and its
   memory quotas. At this point, it becomes a <em>cluster</em> of one node.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/create-cluster.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:manage:manage-nodes/create-cluster.adoc[]
 ---
 
@@ -75,7 +75,7 @@ The **Configure** screen now appears. It provides detailed configuration options
 
 The displayed fields are:
 
-* **Host Name / IP Address**: The data in this field determines the name that will be used for this node. The field has been populated with the _loopback_ address, `127.0.0.1`, which can be used until a second node is added to the cluster, at which point the name will automatically be changed to the IP address of the underlying host. If you wish, you can substitute the IP address of the underlying host now, or you can substitute the fully qualified hostname of the underlying host, if one exists. If you _do_ wish to use a fully qualified hostname, you _must_ specify it now, since a node’s name cannot be changed from an IP address to a hostname once the cluster has become a multi-node cluster. For information about naming, see [Naming Clusters and Nodes](../../../../server/current/learn/clusters-and-availability/nodes.md#naming-clusters-and-nodes).
+* **Host Name / IP Address**: The data in this field determines the name that will be used for this node. The field has been populated with the _loopback_ address, `127.0.0.1`, which can be used until a second node is added to the cluster, at which point the name will automatically be changed to the IP address of the underlying host. If you wish, you can substitute the IP address of the underlying host now, or you can substitute the fully qualified hostname of the underlying host, if one exists. If you _do_ wish to use a fully qualified hostname, you _must_ specify it now, since a node's name cannot be changed from an IP address to a hostname once the cluster has become a multi-node cluster. For information about naming, see [Naming Clusters and Nodes](../../../../server/current/learn/clusters-and-availability/nodes.md#naming-clusters-and-nodes).
 * **enable node encryption**: Check the checkbox to enable _node-to-node_ encryption for the cluster. Use of IP address families and node-to-node encryption is described in [Node-to-Node Encryption](../../cli/couchbase-cli-node-to-node-encryption.md).
 * **IP Family Preference**: Select the appropriate radio-button. If **IPv4** or **IPv6** is selected, the corresponding address family is required, but the other supported address family can also be used. (This is the default setting, with the IPv4 address family being required.) If **IPv4-only** or **IPv6-only** is selected, only the corresponding address family can be used. (Note that the **IPv4-only** and **IPv6-only** options are available only with Enterprise Analytics Version 7.0.2 and later.)
 * **Enterprise Analytics Memory Quota**: A field that allows specify how much memory should be allocated. Select for both the current node and for each node you may subsequently add to the cluster.
@@ -101,7 +101,7 @@ The total RAM available is displayed below this figure, at the center. If your m
 
 When you have finished entering your configuration-details, click on the **Save & Finish** button, at the lower right. This configures the server accordingly, and brings up the Enterprise Analytics Web Console **Dashboard**, for the first time.
 
-The Dashboard is the main landing page after logging in. It consists of a **banner** with interactive controls; a **main panel**, which allows display of data and configuration fields (and which, on initial appearance, is unpopulated); a **left-hand navigation bar**, which allows the main panel’s content to be determined; and a **lower panel**, which displays current status on the cluster. These are described in [Understanding the Dashboard](../manage-ui/manage-ui.md#understanding-the-dashboard), which is part of the page that introduces all features of [Enterprise Analytics Web Console](../manage-ui/manage-ui.md).
+The Dashboard is the main landing page after logging in. It consists of a **banner** with interactive controls; a **main panel**, which allows display of data and configuration fields (and which, on initial appearance, is unpopulated); a **left-hand navigation bar**, which allows the main panel's content to be determined; and a **lower panel**, which displays current status on the cluster. These are described in [Understanding the Dashboard](../manage-ui/manage-ui.md#understanding-the-dashboard), which is part of the page that introduces all features of [Enterprise Analytics Web Console](../manage-ui/manage-ui.md).
 
 ### [](#new-custer-set-up-next-steps)New-Cluster Set-Up: Next Steps
 
@@ -132,7 +132,7 @@ couchbase-cli cluster-init -c 10.142.181.101 \
 
 This provisions node `10.142.181.101` with the Full Administrator username and password, and establishes three services. It also specifies the memory quota.
 
-If the node is successfully provisioned, it’s thereby initialized as a cluster. The following output is displayed:
+If the node is successfully provisioned, it's thereby initialized as a cluster. The following output is displayed:
 
 SUCCESS: Cluster initialized
 

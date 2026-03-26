@@ -2,7 +2,7 @@
 title: Organizations and Organization Users Overview
 description: Use organizations and organization roles to manage users in Couchbase Capella.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/organizations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:organizations:organizations.adoc[]
 ---
 
@@ -34,7 +34,7 @@ When you [create your Capella account](../get-started/create-account.md) without
 Only users who have the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) organization role can send email invitations to users.
 
 > [!TIP]
-> Use organization roles to give a user access to the Capella UI. Use [projects](../projects/projects.md) and [project roles](../projects/project-roles.md) to grant more specific privileges and access to clusters, data, and data tools. Use [cluster access credentials](../clusters/manage-database-users.md) to manage your programmatic and application-level access to a cluster’s data.
+> Use organization roles to give a user access to the Capella UI. Use [projects](../projects/projects.md) and [project roles](../projects/project-roles.md) to grant more specific privileges and access to clusters, data, and data tools. Use [cluster access credentials](../clusters/manage-database-users.md) to manage your programmatic and application-level access to a cluster's data.
 
 For more information about how to add, edit, and remove organization users, see [Manage Organization Users](manage-organization-users.md).
 

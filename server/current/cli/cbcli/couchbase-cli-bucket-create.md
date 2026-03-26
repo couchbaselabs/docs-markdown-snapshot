@@ -2,7 +2,7 @@
 title: bucket-create
 description: Create a new bucket
 editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-bucket-create.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbcli/couchbase-cli-bucket-create.adoc[]
 ---
 
@@ -100,11 +100,11 @@ The amount of memory to allocate to the cache for this bucket, in mebibytes. The
 
 \--bucket-replica <num>
 
-The number of servers to which data is replicated. Replicas provide protection against data loss by keeping copies of this bucket’s data on multiple servers. By default, the number of replicas is one, even if there is only a single server in the cluster. The minimum number of replicas is zero, and the maximum three. This option is valid for Couchbase and Ephemeral buckets only.
+The number of servers to which data is replicated. Replicas provide protection against data loss by keeping copies of this bucket's data on multiple servers. By default, the number of replicas is one, even if there is only a single server in the cluster. The minimum number of replicas is zero, and the maximum three. This option is valid for Couchbase and Ephemeral buckets only.
 
 \--bucket-priority <priority>
 
-Specifies the priority of this bucket’s background tasks. This option is valid for Couchbase and Ephemeral buckets only. For Couchbase buckets, background task-types include disk I/O, DCP stream-processing, and item-paging. For Ephemeral buckets, background task-types are the same as for Couchbase buckets, with the exception of disk I/O, which does not apply to Ephemeral buckets. The value of this option may be "high" or "low". The default is "low". Specifying "high" may result in faster processing; but only when more than one bucket is defined for the cluster, and when different priority settings have been established among the buckets. When Couchbase and Ephemeral buckets have different priority settings, this affects the prioritization only of task-types other than disk I/O.
+Specifies the priority of this bucket's background tasks. This option is valid for Couchbase and Ephemeral buckets only. For Couchbase buckets, background task-types include disk I/O, DCP stream-processing, and item-paging. For Ephemeral buckets, background task-types are the same as for Couchbase buckets, with the exception of disk I/O, which does not apply to Ephemeral buckets. The value of this option may be "high" or "low". The default is "low". Specifying "high" may result in faster processing; but only when more than one bucket is defined for the cluster, and when different priority settings have been established among the buckets. When Couchbase and Ephemeral buckets have different priority settings, this affects the prioritization only of task-types other than disk I/O.
 
 \--bucket-eviction-policy <policy>
 
@@ -124,7 +124,7 @@ Enables view index replication for the current bucket. This option is valid for 
 
 \--conflict-resolution <type>
 
-Specifies this bucket’s conflict resolution mechanism; which is to be used if a conflict occurs during Cross Data-Center Replication (XDCR). Sequence-based and timestamp-based mechanisms are supported.
+Specifies this bucket's conflict resolution mechanism; which is to be used if a conflict occurs during Cross Data-Center Replication (XDCR). Sequence-based and timestamp-based mechanisms are supported.
 
 Sequence-based conflict resolution selects the document that has been updated the greatest number of times since the last sync: for example, if one cluster has updated a document twice since the last sync, and the other cluster has updated the document three times, the document updated three times is selected; regardless of the specific times at which updates took place.
 

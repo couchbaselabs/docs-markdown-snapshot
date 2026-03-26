@@ -2,7 +2,7 @@
 title: Logging
 description: Configuring logging with the Analytics Go SDK.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/howtos/pages/logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:go-analytics-sdk:howtos:logging.adoc[]
 ---
 
@@ -50,7 +50,7 @@ type Logger interface {
 
 Sometimes you want to use your own logger with the SDK. You might want your logging to use a popular logging framework such as logrus. In the following examples we show to use the SDK with a logrus logger:
 
-First we need to create our own logger that wraps the logrus logger. The logrus logging functions don’t quite match the gocbanalytics logging interface. This means that we need to do a bit of marshalling to get the data into a set of parameters that logrus can use.
+First we need to create our own logger that wraps the logrus logger. The logrus logging functions don't quite match the gocbanalytics logging interface. This means that we need to do a bit of marshalling to get the data into a set of parameters that logrus can use.
 
 ```golang
 type MyLogrusLogger struct {

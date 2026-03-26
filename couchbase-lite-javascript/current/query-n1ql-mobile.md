@@ -2,7 +2,7 @@
 title: SQL++ Queries
 description: Couchbase Lite JavaScript -- SQL++ Query API
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/query-n1ql-mobile.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::query-n1ql-mobile.adoc[]
 ---
 
@@ -21,7 +21,7 @@ Couchbase Lite JavaScript supports SQL++ (also known as N1QL), a powerful query 
 SQL++ for Mobile brings SQL-like querying capabilities to the browser, allowing you to query documents stored locally in IndexedDB with the same familiar syntax used in Couchbase Server.
 
 > [!NOTE]
-> N1QL is Couchbase’s implementation of the developing SQL standard. As such, the terms N1QL and SQL are used interchangeably in Couchbase documentation unless explicitly stated otherwise.
+> N1QL is Couchbase's implementation of the developing SQL standard. As such, the terms N1QL and SQL are used interchangeably in Couchbase documentation unless explicitly stated otherwise.
 
 ## [](#query-format)Query Format
 
@@ -36,7 +36,7 @@ const results = await query.execute();
 
 ## [](#creating-queries)Creating Queries
 
-You create queries using the database’s `createQuery()` method, which takes a SQL++ query string:
+You create queries using the database's `createQuery()` method, which takes a SQL++ query string:
 
 Example 2\. Create and execute query
 
@@ -655,7 +655,7 @@ The following features are not currently supported:
 
 ### [](#boolean-logic)Boolean Logic Rules
 
-Couchbase Lite JavaScript follows Couchbase Server’s boolean logic rules:
+Couchbase Lite JavaScript follows Couchbase Server's boolean logic rules:
 
 * `TRUE` is TRUE, `FALSE` is FALSE
 * Numbers: 0 or 0.0 are FALSE

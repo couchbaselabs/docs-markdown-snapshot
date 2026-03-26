@@ -4,7 +4,7 @@ description: Couchbase is the modern database for enterprise applications.
   Couchbase is a distributed, JSON document database, with all the desired
   capabilities of a relational DBMS.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/introduction/pages/why-couchbase.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:introduction:why-couchbase.adoc[]
 ---
 
@@ -23,7 +23,7 @@ Couchbase is designed to interleave transactions with these high-performance ope
 
 These unique design choices in Couchbase lead to reduced data sprawl, improved security, decreased administration, and lower cost. But most importantly, it enables developers to write applications once and deploy them at any scale.
 
-Couchbase’s distributed streaming architecture is designed for no single point of failure. This enables elastic scaling, resource fencing as well as instantaneous data replication for high- availability, global geo-distribution, and disaster-recovery. The result is a database that is resilient, cost-efficient, and built for metered usage. This cloud-native architecture combined with Kubernetes (K8s) delivers a self-managed autonomous database.
+Couchbase's distributed streaming architecture is designed for no single point of failure. This enables elastic scaling, resource fencing as well as instantaneous data replication for high- availability, global geo-distribution, and disaster-recovery. The result is a database that is resilient, cost-efficient, and built for metered usage. This cloud-native architecture combined with Kubernetes (K8s) delivers a self-managed autonomous database.
 
 Couchbase is:
 

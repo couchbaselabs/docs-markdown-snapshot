@@ -3,7 +3,7 @@ title: JOIN Clause
 description: The JOIN clause enables you to create new input objects by
   combining two or more source objects.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/join.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/join.adoc[]
 ---
 
@@ -158,7 +158,7 @@ Boolean expression representing the join condition between the left-hand side [F
 
 ### [](#limitations)Limitations
 
-* A RIGHT OUTER join is only supported when it’s the only join in the query; or when it’s the first join in a chain of joins.
+* A RIGHT OUTER join is only supported when it's the only join in the query; or when it's the first join in a chain of joins.
 * No mixing of ANSI join syntax with lookup or index join syntax in the same FROM clause.
 * If the right-hand side of an ANSI join is a keyspace reference, then for the nested-loop join method an appropriate secondary index must exist on the right-hand side keyspace; for the hash join method, a primary index can be used.
 * Adaptive indexes are not considered when selecting indexes on inner side of the join.
@@ -580,7 +580,7 @@ There are two join methods for performing ANSI join: nested-loop join and hash j
 The ANSI join hints are similar to the [USE INDEX](hints.md#use-index-clause) or [USE KEYS](hints.md#use-keys-clause) hints. The ANSI join hints can be specified after the right-hand side of an ANSI join specification.
 
 > [!NOTE]
-> The join hint for the first join should be specified on the first join’s right-hand side, and the join hint for the second join should be specified on the second join’s right-hand side, etc. If a join hint is specified on the first FROM term, i.e. the first join’s left-hand side, an error is returned.
+> The join hint for the first join should be specified on the first join's right-hand side, and the join hint for the second join should be specified on the second join's right-hand side, etc. If a join hint is specified on the first FROM term, i.e. the first join's left-hand side, an error is returned.
 
 > [!TIP]
 > In Couchbase Capella, you can also supply a join hint within a specially-formatted [hint comment](optimizer-hints.md). Note that you cannot specify a join hint for the same keyspace using both the `USE` clause and a hint comment. If you do this, the `USE` clause and the hint comment are both marked as erroneous and ignored by the optimizer.
@@ -663,7 +663,7 @@ other-hint-terms ::= use-index-term | use-keys-term
 
 ![Syntax diagram](../_images/n1ql-language-reference/other-hint-terms.png) 
 
-You can use only one join hint ([USE HASH](#use-hash-term) or [USE NL](#use-nl-term)) together with only one other hint ([USE INDEX](hints.md#use-index-term) or [USE KEYS](hints.md#use-keys-term)) for a total of two hints. The order of the two hints doesn’t matter.
+You can use only one join hint ([USE HASH](#use-hash-term) or [USE NL](#use-nl-term)) together with only one other hint ([USE INDEX](hints.md#use-index-term) or [USE KEYS](hints.md#use-keys-term)) for a total of two hints. The order of the two hints doesn't matter.
 
 When multiple hints are being specified, use only one `USE` keyword with one following the other, as shown in [Example 11](#Multiple-hint-Example-1) and [Example 12](#Multiple-hint-Example-2).
 
@@ -761,7 +761,7 @@ ON (rte.airlineid = META(aline).id);
 ANSI JOIN provides great flexibility since the `ON` clause of an ANSI JOIN can be any expression as long as it evaluates to TRUE or FALSE. Below are different join scenarios involving arrays and ways to handle each scenario.
 
 > [!NOTE]
-> These keyspaces and indexes will be used throughout this section’s array scenarios. As a convention, when a field name starts with `a` it is an array, so each keyspace has two array fields and two regular fields.
+> These keyspaces and indexes will be used throughout this section's array scenarios. As a convention, when a field name starts with `a` it is an array, so each keyspace has two array fields and two regular fields.
 > 
 > ![ansi-join-example](../_images/ansi-join-example-5655abeb045efeff368831190fba81dddb8f3fbe.svg) 
 > 
@@ -858,11 +858,11 @@ JOIN b2
 WHERE b1.c11 = 10;
 ```
 
-In this case, the ANY predicate involves a join, and thus, effectively we are joining `b1` with elements of the `b2.a21` array. This now becomes a 1-to-many join. Note that we use an ANY clause for this scenario since it’s a natural extension of the existing support for array indexes; the only difference is for index span generation, we now can have a potential join expression. Array indexes can be used for join in this scenario.
+In this case, the ANY predicate involves a join, and thus, effectively we are joining `b1` with elements of the `b2.a21` array. This now becomes a 1-to-many join. Note that we use an ANY clause for this scenario since it's a natural extension of the existing support for array indexes; the only difference is for index span generation, we now can have a potential join expression. Array indexes can be used for join in this scenario.
 
 ### [](#ansi-join-involving-left-hand-side-arrays)ANSI JOIN Involving Left-Hand Side Arrays
 
-This is a slightly more complex scenario, where the array reference is on the left-hand side of the join, and it’s a many-to-1 join. There are two alternative ways to handle the scenario where the array appears on the left-hand side of the join.
+This is a slightly more complex scenario, where the array reference is on the left-hand side of the join, and it's a many-to-1 join. There are two alternative ways to handle the scenario where the array appears on the left-hand side of the join.
 
 #### [](#use-unnest)Use UNNEST
 
@@ -1027,7 +1027,7 @@ If `LEFT` or `LEFT OUTER` is specified, then a left outer join is performed.
 
 At least one joined object is produced for each left-hand source object.
 
-If the right-hand source object is `NULL` or `MISSING`, then the joined object’s right-hand side value is also `NULL` or `MISSING` (omitted), respectively.
+If the right-hand source object is `NULL` or `MISSING`, then the joined object's right-hand side value is also `NULL` or `MISSING` (omitted), respectively.
 
 ### [](#limitations-2)Limitations
 
@@ -1148,7 +1148,7 @@ An _index join_ is another legacy syntax for joins which reverses the direction 
 
 You can use an index join when a lookup join would be inefficient, and you need to flip the relationship so the join predicate is on the right-hand side of the join.
 
-For index joins, the syntax uses `ON KEY …​ FOR` (singular) instead of `ON KEYS` (plural). This is because an index join’s `ON KEY …​ FOR` expression produces a single scalar value; whereas a lookup join’s `ON KEYS` expression can produce either a single scalar or an array of scalar values.
+For index joins, the syntax uses `ON KEY …​ FOR` (singular) instead of `ON KEYS` (plural). This is because an index join's `ON KEY …​ FOR` expression produces a single scalar value; whereas a lookup join's `ON KEYS` expression can produce either a single scalar or an array of scalar values.
 
 > [!NOTE]
 > An index join requires an inverse index on the foreign key in the keyspace on the right-hand side of the join.

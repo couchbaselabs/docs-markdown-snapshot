@@ -3,7 +3,7 @@ title: Back Up or Restore a Capella Analytics Cluster
 description: With a Cloud Snapshot cluster backup, you can backup and restore
   your entire Capella Analytics cluster with a single backup.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/backup-restore.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:admin:backup-restore.adoc[]
 ---
 
@@ -18,13 +18,13 @@ Specifically, Capella uses [Amazon S3 Backups](https://docs.aws.amazon.com/aws-b
 
 ## [](#backup-types)Backup Types
 
-A Capella Analytics cluster backup is a backup of the Capella Analytics S3 bucket, using your Cloud Service Provider’s (CSP’s) backup service.
+A Capella Analytics cluster backup is a backup of the Capella Analytics S3 bucket, using your Cloud Service Provider's (CSP's) backup service.
 
-Each Capella Analytics cluster backup stands on its own as a full, complete backup of your cluster’s storage. You can restore or delete a backup independently - each cluster backup does not depend on other backups to be restored.
+Each Capella Analytics cluster backup stands on its own as a full, complete backup of your cluster's storage. You can restore or delete a backup independently - each cluster backup does not depend on other backups to be restored.
 
-Your CSP’s backup service, which is the underlying backup mechanism for Capella Analytics, takes incremental storage snapshots for any backup after your first cluster backup. Even though the incrementality of your backups is determined by your CSP, each of your backups can still be restored or deleted independently through Capella Analytics. When you delete a cluster backup or it expires, your CSP manages the deletion so that only the data that’s no longer needed to restore another backup is removed.
+Your CSP's backup service, which is the underlying backup mechanism for Capella Analytics, takes incremental storage snapshots for any backup after your first cluster backup. Even though the incrementality of your backups is determined by your CSP, each of your backups can still be restored or deleted independently through Capella Analytics. When you delete a cluster backup or it expires, your CSP manages the deletion so that only the data that's no longer needed to restore another backup is removed.
 
-The incrementality of your backups, or how much data has changed between each of your backups, is determined by your CSP’s backup service. Your backup size and backup retention policies determine your backup costs. Couchbase Capella bases your billing for your cluster backups on the backup storage usage reports from your CSP.
+The incrementality of your backups, or how much data has changed between each of your backups, is determined by your CSP's backup service. Your backup size and backup retention policies determine your backup costs. Couchbase Capella bases your billing for your cluster backups on the backup storage usage reports from your CSP.
 
 You can take [on-demand cluster backups](#on-demand). You can also choose to [schedule cluster backups](#schedule).
 
@@ -62,13 +62,13 @@ By default, Capella takes Cloud Snapshots backups every 4 hours and keeps them f
 
 ### [](#next-steps)Next Steps
 
-If you set a schedule for your cluster backups, Capella starts your schedule at the time you specified in UTC. Using your Cloud Service Provider’s snapshot service, Capella takes a backup of your cluster at the interval set in the schedule.
+If you set a schedule for your cluster backups, Capella starts your schedule at the time you specified in UTC. Using your Cloud Service Provider's snapshot service, Capella takes a backup of your cluster at the interval set in the schedule.
 
 If you want to stop taking cluster backups on a schedule, click **Delete Schedule**.
 
 You can change your cluster backup schedule at any time.
 
-Capella Analytics displays an estimate of the number of backups you’ll have on your cluster, based on the frequency and retention period set in your schedule.
+Capella Analytics displays an estimate of the number of backups you'll have on your cluster, based on the frequency and retention period set in your schedule.
 
 For more information about how to restore a cluster backup, see [Restore a Cluster Backup](#restore).
 
@@ -80,7 +80,7 @@ You can only restore cluster backups to the same cluster with an identical confi
 
 Before Capella restores a cluster backup, all existing data on the destination cluster is destroyed. [Allowed IP addresses](ip-allowed-list.md) are removed and must be added again manually after your restore completes. [Access control users](auth/auth-data.md) are not included in restore operations. The existing users on the cluster are not removed or changed during a restore. If you delete a [link](#sources/database-objects.adoc) before restoring a backup, you have to edit the restored link after the restore operation is complete.
 
-You cannot use your cluster while you’re restoring a cluster backup. Restore operations can take time to complete. The time it takes to restore your cluster is not considered to be downtime based on the [Capella Cloud Service Availability agreement](https://www.couchbase.com/capellasla/).
+You cannot use your cluster while you're restoring a cluster backup. Restore operations can take time to complete. The time it takes to restore your cluster is not considered to be downtime based on the [Capella Cloud Service Availability agreement](https://www.couchbase.com/capellasla/).
 
 To restore a backup to a cluster:
 

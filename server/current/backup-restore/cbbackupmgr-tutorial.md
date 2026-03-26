@@ -2,7 +2,7 @@
 title: cbbackupmgr tutorial
 description: A quick guide to using cbbackupmgr
 editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-tutorial.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:backup-restore:cbbackupmgr-tutorial.adoc[]
 ---
 
@@ -31,7 +31,7 @@ $ cbbackupmgr config -a /data/backup -r cluster
 
 Backup repository `cluster` created successfully in archive `/data/backup`
 
-One of the most important aspects of backup repository creation is that we can configure that backup repository in many different ways to change the way backups in each backup repository are taken. Let’s say we want a separate backup of only the index definitions in the travel-sample bucket. To do this we can create a separate backup repository called "single".
+One of the most important aspects of backup repository creation is that we can configure that backup repository in many different ways to change the way backups in each backup repository are taken. Let's say we want a separate backup of only the index definitions in the travel-sample bucket. To do this we can create a separate backup repository called "single".
 
 $ cbbackupmgr config -a /data/backup -r single \
   --include-data travel-sample --disable-data
@@ -65,7 +65,7 @@ $ cbbackupmgr info -a /data/backup --all
 
 The info subcommand gives us a directory print out of all of the backup repositories and backups in the backup archive. Since there are no backups yet we can just see our archives information in the output of this command. There is also information about how much disk space each repository contains. More information about the info subcommand can be found in the [cbbackupmgr-info](cbbackupmgr-info.md) page.
 
-Now that we have our backup repositories configured it’s time to start taking backups. Since the backup repository contains all of the configuration information for how the backup should be taken we just need to specify the backup repository name and the information for the target cluster we intend to back up. Below is an example of how to take a backup on the "cluster" backup repository. We will assume that we have our cluster running on localhost.
+Now that we have our backup repositories configured it's time to start taking backups. Since the backup repository contains all of the configuration information for how the backup should be taken we just need to specify the backup repository name and the information for the target cluster we intend to back up. Below is an example of how to take a backup on the "cluster" backup repository. We will assume that we have our cluster running on localhost.
 
 $ cbbackupmgr backup -c 127.0.0.1 -u Administrator -p password -a /data/backup -r cluster
 Backing up to 2020-03-25T08_08_11.770436Z
@@ -83,7 +83,7 @@ Deletions backed up: 0, Deletions failed to backup: 0
 
 When the backup command is executed it will by default print out a progress bar which is helpful for understanding how long your backup will take to complete and the rate of data movement. While the backup is running the progress bar will give an estimated time to completion, but this will change to average backup rate when the backup finishes. Information is also provided on the total data and items already backed up and the current rate of data movement. If the backup completes successfully you will see the "Backup completed successfully" message and a break down of mutations and deletions backed up per bucket.
 
-Let’s also run the backup on the "single" backup repository to see how the two backup runs differ.
+Let's also run the backup on the "single" backup repository to see how the two backup runs differ.
 
 $ cbbackupmgr backup -a /data/backup -r single \
   -c couchbase://127.0.0.1 -u Administrator -p password
@@ -98,7 +98,7 @@ Deletions backed up: 0, Deletions failed to backup: 0
 
 Since the "single" backup repository is only configured to back up index definitions for the travel-sample bucket we do not see a progress bar for the beer-sample bucket. We can also see that the backup executed quicker since there was much less data to actually back up.
 
-Since we now have backups in our backup archive let’s take a look at the state of our backup archive has changed by using the info subcommand.
+Since we now have backups in our backup archive let's take a look at the state of our backup archive has changed by using the info subcommand.
 
 $ cbbackupmgr info -a /data/backup --all
 | Archive
@@ -619,7 +619,7 @@ The backup subcommand provides many options in order to customize how you backup
 
 ### [](#restoring-a-backup)Restoring a Backup
 
-Now that we have some backup data let’s restore that data backup to the cluster. In order to restore data we just need to know the name of the backup that we want to restore. To find the name we can again use the info subcommand in order to see what is in our backup archive. The backup name will always be a timestamp. For example, let’s say we want to restore the 2016-03-22T10\_26\_08.933579821-07\_00 from the "cluster" backup repository. In order to do this we run the command below.
+Now that we have some backup data let's restore that data backup to the cluster. In order to restore data we just need to know the name of the backup that we want to restore. To find the name we can again use the info subcommand in order to see what is in our backup archive. The backup name will always be a timestamp. For example, let's say we want to restore the 2016-03-22T10\_26\_08.933579821-07\_00 from the "cluster" backup repository. In order to do this we run the command below.
 
 $ cbbackupmgr restore -a /data/backup -r cluster \
  -c http://127.0.0.1:8091 -u Administrator -p password \

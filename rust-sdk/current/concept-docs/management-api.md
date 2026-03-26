@@ -2,7 +2,7 @@
 title: Managing Couchbase Clusters from the SDK
 description: Cluster management from the SDK.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/management-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:concept-docs:management-api.adoc[]
 ---
 
@@ -19,7 +19,7 @@ The Couchbase Rust SDK has a management API to provision clusters. This is not t
 
 The SDK lets you programmatically create _users_, assign them _roles_ and associated _privileges_, and remove them from the system.
 
-This is an overview of the user management API’s capabilities.
+This is an overview of the user management API's capabilities.
 
 ### [](#creating-a-user)Creating a User
 

@@ -2,7 +2,7 @@
 title: Kotlin
 description: Couchbase Lite for Android -- Kotlin support
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/android/pages/kotlin.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:android:kotlin.adoc[]
 ---
 
@@ -45,7 +45,7 @@ Couchbase Lite provides a set of [ConfigurationFactories](https://docs.couchbase
 
 ### [](#database)Database
 
-Use [DatabaseConfigurationFactory](https://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android-ktx/com/couchbase/lite/ConfigurationFactoriesKt.html#DatabaseConfigurationFactory)to create a `DatabaseConfiguration` object, overriding the receiver’s values with the passed parameters.
+Use [DatabaseConfigurationFactory](https://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android-ktx/com/couchbase/lite/ConfigurationFactoriesKt.html#DatabaseConfigurationFactory)to create a `DatabaseConfiguration` object, overriding the receiver's values with the passed parameters.
 
 * In Use
 * Definition
@@ -68,7 +68,7 @@ fun DatabaseConfiguration?.create(
 
 ### [](#replication)Replication
 
-Use [ReplicatorConfigurationFactory](https://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android-ktx/com/couchbase/lite/ConfigurationFactoriesKt.html#ReplicatorConfigurationFactory)to create a `ReplicatorConfiguration` object, overriding the receiver’s values with the passed parameters.
+Use [ReplicatorConfigurationFactory](https://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android-ktx/com/couchbase/lite/ConfigurationFactoriesKt.html#ReplicatorConfigurationFactory)to create a `ReplicatorConfiguration` object, overriding the receiver's values with the passed parameters.
 
 * In Use
 * Definition
@@ -118,7 +118,7 @@ fun MessageEndpointListenerConfiguration?.create(
 
 ### [](#full-text-search)Full Text Search
 
-Use [FullTextIndexConfigurationFactory](https://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html#FullTextIndexConfigurationFactory)to create a `FullTextIndexConfiguration` object, overriding the receiver’s values with the passed parameters.
+Use [FullTextIndexConfigurationFactory](https://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html#FullTextIndexConfigurationFactory)to create a `FullTextIndexConfiguration` object, overriding the receiver's values with the passed parameters.
 
 * In Use
 * Definition
@@ -137,7 +137,7 @@ fun FullTextIndexConfiguration?.create(expression: String? = null)
 
 ### [](#indexing)Indexing
 
-Use [ValueIndexConfigurationFactory](https://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html#ValueIndexConfigurationFactory)to create a `ValueIndexConfiguration` object, overriding the receiver’s values with the passed parameters.
+Use [ValueIndexConfigurationFactory](https://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html#ValueIndexConfigurationFactory)to create a `ValueIndexConfiguration` object, overriding the receiver's values with the passed parameters.
 
 * In Use
 * Definition
@@ -156,7 +156,7 @@ fun ValueIndexConfiguration?.create(vararg expressions: String = emptyArray())
 
 ### [](#logs)Logs
 
-Use [LogFileConfigurationFactory](https://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html#LogFileConfigurationFactory)to create a `LogFileConfiguration` object, overriding the receiver’s values with the passed parameters.
+Use [LogFileConfigurationFactory](https://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html#LogFileConfigurationFactory)to create a `LogFileConfiguration` object, overriding the receiver's values with the passed parameters.
 
 * In Use
 * Definition

@@ -2,7 +2,7 @@
 title: SDK License
 description: Couchbase SDKs' source code is licensed under the Apache Licence 2.0.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.10/modules/project-docs/pages/sdk-licenses.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@kotlin-sdk:project-docs:sdk-licenses.adoc[]
 ---
 
@@ -17,7 +17,7 @@ The Couchbase Kotlin Client is distributed as source under the [Apache License, 
 
 ## [](#binary-distribution)Binary Distribution
 
-Binary distributions are made under Couchbase’s own license agreements.
+Binary distributions are made under Couchbase's own license agreements.
 
 * [Enterprise License Agreement](https://www.couchbase.com/license-agreement/)
 * [Community License Agreement](https://www.couchbase.com/community-license-agreement/)

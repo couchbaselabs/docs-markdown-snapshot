@@ -2,7 +2,7 @@
 title: Public REST API
 description: Description of the Sync Gateway Rest API'
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/rest-api.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::rest-api.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Related _REST API_ topics: [Admin REST API](rest-api-admin.md) | [Metrics REST A
 > [!IMPORTANT]
 > Content Blocking
 > 
-> Couchbase Mobile’s API documentation utilizes [Swagger UI](https://swagger.io/tools/swagger-ui/)to deliver an interactive and dynamic user experience. The page will not function correctly if your organization’s security policies restricts access to this type of content — instead see the alternate statics page [Public REST API (Static Page)](rest%5Fapi%5Fpublic%5Fstatic.md)
+> Couchbase Mobile's API documentation utilizes [Swagger UI](https://swagger.io/tools/swagger-ui/)to deliver an interactive and dynamic user experience. The page will not function correctly if your organization's security policies restricts access to this type of content — instead see the alternate statics page [Public REST API (Static Page)](rest%5Fapi%5Fpublic%5Fstatic.md)
 
 ## [](#using-the-api-explorer)Using the API Explorer
 

@@ -1,7 +1,7 @@
 ---
 title: Couchbase User Authentication
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/tutorial-rbac-auth.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::tutorial-rbac-auth.adoc[]
 ---
 
@@ -283,7 +283,7 @@ $ kubectl port-forward --namespace default <couchbase-pod-name> 8091:8091
 # open localhost:8091
 ```
 
-After logging in, go to the **Security** view, and click **LDAP**. Under "Test User Authentication", enter the username `jbrown` and the password `password`, and then click **Test User Authentication**. Couchbase Server will map the specified username to an LDAP DN, and perform authentication on the LDAP server. If your LDAP configuration is set up correctly, you’ll get a notification that the test was successful.
+After logging in, go to the **Security** view, and click **LDAP**. Under "Test User Authentication", enter the username `jbrown` and the password `password`, and then click **Test User Authentication**. Couchbase Server will map the specified username to an LDAP DN, and perform authentication on the LDAP server. If your LDAP configuration is set up correctly, you'll get a notification that the test was successful.
 
 #### [](#grant-roles-to-an-ldap-user)Grant Roles to an LDAP User
 

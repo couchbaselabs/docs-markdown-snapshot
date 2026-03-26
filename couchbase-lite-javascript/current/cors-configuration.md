@@ -3,7 +3,7 @@ title: CORS Configuration
 description: Couchbase Lite JavaScript -- CORS Configuration for Replication
   with Sync Gateway
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/cors-configuration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::cors-configuration.adoc[]
 ---
 
@@ -28,7 +28,7 @@ This page explains the CORS requirements for Couchbase Lite JavaScript, how to c
 
 ### [](#minimum-cors-settings)Minimum CORS Settings
 
-Sync Gateway must be configured with CORS settings that allow your web application’s origin.
+Sync Gateway must be configured with CORS settings that allow your web application's origin.
 
 Example 1\. Sync Gateway CORS Configuration
 

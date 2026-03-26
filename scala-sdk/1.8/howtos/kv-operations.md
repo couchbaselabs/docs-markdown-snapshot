@@ -4,7 +4,7 @@ description: Data service offers the simplest way to retrieve or mutate data
   where the key is known. Here we cover CRUD operations, document expiration,
   and optimistic locking with CAS.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.8/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.8@scala-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -19,7 +19,7 @@ At its heart Couchbase Server is a high-performance key-value store, and the key
 
 A _document_ refers to an entry in the database (other databases may refer to the same concept as a _row_). A document has an ID (_primary key_ in other databases), which is unique to the document and by which it can be located. The document also has a value which contains the actual application data. See [the concept guide to _Documents_](../concept-docs/documents.md) for a deeper dive into documents in the Couchbase Data Platform.
 
-Before proceeding, make sure you’re familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK](../hello-world/start-using-sdk.md) section.
+Before proceeding, make sure you're familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK](../hello-world/start-using-sdk.md) section.
 
 The code samples below will use these imports:
 
@@ -36,11 +36,11 @@ import scala.util.{Failure, Success, Try}
 ```
 
 > [!TIP]
-> The Query Service can also be used to perform many single-document operations, but we very strongly recommend using the key-value API for this instead. It can be much more efficient as the request can go directly to the correct node, there’s no query parsing overhead, and it’s over the highly optimized memcached binary protocol.
+> The Query Service can also be used to perform many single-document operations, but we very strongly recommend using the key-value API for this instead. It can be much more efficient as the request can go directly to the correct node, there's no query parsing overhead, and it's over the highly optimized memcached binary protocol.
 
 ## [](#json)JSON
 
-The Couchbase Server is a key-value store that’s agnostic to what’s stored, but it’s very common to store JSON so most of the examples below will focus on that use-case.
+The Couchbase Server is a key-value store that's agnostic to what's stored, but it's very common to store JSON so most of the examples below will focus on that use-case.
 
 The Scala SDK provides you with several options for working with JSON. They are described in more detail in [this guide](json.md), and the information below is just a summary of that.
 
@@ -54,7 +54,7 @@ To make things easy and to help get you started, the Scala SDK also bundles a ho
 
 ### [](#using-jsonobject-and-jsonarray)Using JsonObject and JsonArray
 
-Using the built-in JSON library here’s how to create some simple JSON:
+Using the built-in JSON library here's how to create some simple JSON:
 
 ```scala
 val json = JsonObject(
@@ -77,7 +77,7 @@ arr.add(JsonObject("address" -> "29 Acacia Road"))
 obj.put("addresses", arr)
 ```
 
-It’s easy to retrieve data:
+It's easy to retrieve data:
 
 ```scala
 json.str("name") // "Eric Wimp"
@@ -93,7 +93,7 @@ json.dyn.addresses(0).address.str // "29 Acacia Road"
 
 The majority of the Scala SDK will not throw exceptions. Methods on `JsonObject` are one of the few cases where they are thrown.
 
-If you’d rather not deal with exceptions, `JsonObject` comes with a counterpart `JsonObjectSafe` that provides an alternative interface, in which all methods return Scala `Try` results rather than throwing:
+If you'd rather not deal with exceptions, `JsonObject` comes with a counterpart `JsonObjectSafe` that provides an alternative interface, in which all methods return Scala `Try` results rather than throwing:
 
 ```scala
 val safe: JsonObjectSafe = json.safe
@@ -106,7 +106,7 @@ r match {
 }
 ```
 
-(Don’t worry if `Try` is unfamiliar, you’ll see plenty of examples of how to use it and combine it with other `Try` in the examples below.)
+(Don't worry if `Try` is unfamiliar, you'll see plenty of examples of how to use it and combine it with other `Try` in the examples below.)
 
 A `JsonArraySafe` counterpart for `JsonArray` also exists. Note that `JsonObjectSafe`, though presenting a more functional interface, is still mutable.
 
@@ -127,7 +127,7 @@ collection.upsert("document-key", json) match {
 ```
 
 > [!NOTE]
-> All the examples here use the Scala SDK’s simplest API, which blocks until the operation is performed. There’s also an asynchronous API that is based around Scala `Future`, and a reactive API. See [Choosing an API](#concurrent-async-apis) for more details.
+> All the examples here use the Scala SDK's simplest API, which blocks until the operation is performed. There's also an asynchronous API that is based around Scala `Future`, and a reactive API. See [Choosing an API](#concurrent-async-apis) for more details.
 
 ## [](#handling-single-errors)Handling Single Errors
 
@@ -137,7 +137,7 @@ Instead, methods that can error will return a Scala `Try` object, which can eith
 
 Pattern matching can be used to handle a `Try`, as above.
 
-Don’t worry about cluttering up your code with explicit error handling for every operation: Scala provides useful methods to chain multiple `Try` together, and we’ll go into these later.
+Don't worry about cluttering up your code with explicit error handling for every operation: Scala provides useful methods to chain multiple `Try` together, and we'll go into these later.
 
 > [!NOTE]
 > We will use `println` to simply print any errors in these samples, but the application will of course want to perform better error handling.
@@ -161,7 +161,7 @@ Note that a `Try` lets us check for a particular sort of error. The case clauses
 
 ## [](#retrieving-documents)Retrieving Documents
 
-We’ve tried upserting and inserting documents into Couchbase Server, let’s get them back:
+We've tried upserting and inserting documents into Couchbase Server, let's get them back:
 
 ```scala
 collection.get("document-key") match {
@@ -170,7 +170,7 @@ collection.get("document-key") match {
 }
 ```
 
-Of course if we’re getting a document we probably want to do something with the content:
+Of course if we're getting a document we probably want to do something with the content:
 
 ```scala
 // Create some initial JSON
@@ -199,17 +199,17 @@ collection.get("document-key3") match {
 }
 ```
 
-Woah, this looks messy! Don’t worry, this is the ugliest possible way of handling multiple `Try` results and we’ll see ways of tidying this up very soon.
+Woah, this looks messy! Don't worry, this is the ugliest possible way of handling multiple `Try` results and we'll see ways of tidying this up very soon.
 
-For now, let’s break down what’s going on here.
+For now, let's break down what's going on here.
 
 First, we create some JSON and insert it.
 
 Then, we get the document.
 
-If it’s successful, we convert the document’s content into a `JsonObjectSafe`.
+If it's successful, we convert the document's content into a `JsonObjectSafe`.
 
-We can use `contentAs` to return the document’s content in all sorts of ways: as a String, as an Array\[Byte\], as a `org.json4s.JValue` from the [json4s library](https://github.com/json4s/json4s)…​ it’s very flexible (see [the JSON docs](json.md) for details). Here, we’ve asked for it to be returned as a `JsonObjectSafe` \- a 'safe' interface to the `JsonObject` that doesn’t throw exceptions.
+We can use `contentAs` to return the document's content in all sorts of ways: as a String, as an Array\[Byte\], as a `org.json4s.JValue` from the [json4s library](https://github.com/json4s/json4s)…​ it's very flexible (see [the JSON docs](json.md) for details). Here, we've asked for it to be returned as a `JsonObjectSafe` \- a 'safe' interface to the `JsonObject` that doesn't throw exceptions.
 
 Finally, if the conversion to a `JsonObjectSafe` was successful, we try to get the "status" field (which returns a `Try` with `JsonObjectSafe`), and print it if we were successful.
 
@@ -217,7 +217,7 @@ Finally, if the conversion to a `JsonObjectSafe` was successful, we try to get t
 
 Nesting multiple `Try` in that way quickly gets very hard to parse. Luckily, Scala provides functional tools to easily combine `Try` and handle them in one place.
 
-First there’s `flatMap`, which can be used to rewrite the previous example like this:
+First there's `flatMap`, which can be used to rewrite the previous example like this:
 
 ```scala
 val r: Try[String] = collection
@@ -250,7 +250,7 @@ r match {
 
 ## [](#replace)Replace
 
-A very common operation is to `get` a document, modify its contents, and `replace` it. Let’s use a for-comprehension:
+A very common operation is to `get` a document, modify its contents, and `replace` it. Let's use a for-comprehension:
 
 ```scala
 val initial = JsonObject("status" -> "great")
@@ -284,19 +284,19 @@ r match {
 }
 ```
 
-There’s a couple of things to cover with the `replace` line.
+There's a couple of things to cover with the `replace` line.
 
-First, most of the methods in the Scala SDK take optional parameters that have sensible defaults. One of them, `cas`, is provided here. We’ll see more throughout this document.
+First, most of the methods in the Scala SDK take optional parameters that have sensible defaults. One of them, `cas`, is provided here. We'll see more throughout this document.
 
 ### [](#optimistic-locking)What is CAS?
 
-CAS, or Compare and Swap, is a form of optimistic locking. Every document in Couchbase has a CAS value, and it’s changed on every mutation. When you `get` a document you also get the document’s CAS, and then when it’s time to write the document, you send the same CAS back. If another agent has modified that document, the Couchbase Server can detect you’ve provided a now-outdated CAS, and return an error instead of mutating the document. This provides cheap, safe concurrency. See [this detailed description of CAS](concurrent-document-mutations.md) for further details.
+CAS, or Compare and Swap, is a form of optimistic locking. Every document in Couchbase has a CAS value, and it's changed on every mutation. When you `get` a document you also get the document's CAS, and then when it's time to write the document, you send the same CAS back. If another agent has modified that document, the Couchbase Server can detect you've provided a now-outdated CAS, and return an error instead of mutating the document. This provides cheap, safe concurrency. See [this detailed description of CAS](concurrent-document-mutations.md) for further details.
 
-In general, you’ll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent’s mutations.
+In general, you'll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent's mutations.
 
 ### [](#retrying-on-cas-failures)Retrying on CAS Failures
 
-But if we get a CAS mismatch, we usually just want to retry the operation. Let’s see a more advanced `replace` example that shows one way to handle this:
+But if we get a CAS mismatch, we usually just want to retry the operation. Let's see a more advanced `replace` example that shows one way to handle this:
 
 ```scala
 val initial = JsonObject("status" -> "great")
@@ -359,7 +359,7 @@ As an optimization the application may consider using the [Sub-Document API](sub
 
 ## [](#case-classes)Case Classes
 
-So far we’ve used JSON directly with `JsonObject` and `JsonObjectSafe`, but it can be very useful to deal with Scala case classes instead.
+So far we've used JSON directly with `JsonObject` and `JsonObjectSafe`, but it can be very useful to deal with Scala case classes instead.
 
 See [this guide](json.md#case-classes) for details.
 
@@ -381,7 +381,7 @@ collection.remove("document-key2", durability = Durability.Majority) match {
 }
 ```
 
-The default is `Durability.Disabled`, in which the SDK will return as soon as Couchbase Server has the mutation available in-memory on the active node. This is the default for a reason: it’s the fastest mode, and the majority of the time is all the application needs.
+The default is `Durability.Disabled`, in which the SDK will return as soon as Couchbase Server has the mutation available in-memory on the active node. This is the default for a reason: it's the fastest mode, and the majority of the time is all the application needs.
 
 However, we recognize that there are times when the application needs that extra certainty that especially vital mutations have been successfully replicated, and the other durability options provide the means to achieve this.
 
@@ -441,7 +441,7 @@ collection.get("document-key", GetOptions().withExpiry(true)) match {
 }
 ```
 
-Note that when updating the document, special care must be taken to avoid resetting the expiry to zero. Here’s how:
+Note that when updating the document, special care must be taken to avoid resetting the expiry to zero. Here's how:
 
 ```scala
 val r: Try[MutationResult] = for {
@@ -505,7 +505,7 @@ A counter must be incremented or decremented by only a single datacenter. Each d
 
 ## [](#kv-range-scan)KV Range Scan
 
-A range scan gives you documents from a collection, even if you don’t know the document IDs.
+A range scan gives you documents from a collection, even if you don't know the document IDs.
 
 This feature requires Couchbase Server 7.6 or newer.
 
@@ -514,7 +514,7 @@ This feature requires Couchbase Server 7.6 or newer.
 
 ### [](#kv-range-scan-range)Range scan
 
-Here’s an example of a KV range scan that gets all documents in a collection:
+Here's an example of a KV range scan that gets all documents in a collection:
 
 KV Range Scan for all documents in a collection
 
@@ -553,7 +553,7 @@ val results = collection.scan(ScanType.SamplingScan(limit = 100))
 
 ### [](#kv-range-scan-only-ids)Get IDs instead of full document
 
-To save network bandwidth it’s possible to retrieve only the document IDs from any scan.
+To save network bandwidth it's possible to retrieve only the document IDs from any scan.
 
 KV Range Scan for all document IDs in a collection
 

@@ -3,7 +3,7 @@ title: Start Using the .NET SDK
 description: The Couchbase .NET SDK enables you to interact with a Couchbase
   Server cluster from .NET using C# and other .NET languages.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:dotnet-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -136,10 +136,10 @@ As well as the .NET SDK (see below), and a running instance of Couchbase Server,
 
 The Couchbase .NET SDK is compatible with [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 2.0 and .NET Standard 2.1, via the currently supported Microsoft .NET SDKs. Currently, that includes [.NET 6.0 and later](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) for .NET Standard 2.1 and [.NET Framework 4.6.2 and later](https://learn.microsoft.com/en-us/lifecycle/products/microsoft-net-framework) for .NET Standard 2.0\. The [.NET Standard documentation](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) and [.NET Standard version chart](https://dotnet.microsoft.com/platform/dotnet-standard#versions) may be useful to help understand other available options.
 
-Couchbase strongly recommends using the [latest LTS version of .NET that’s officially supported](https://versionsof.net/) by both Microsoft and Couchbase. Other .NET implementations may work, but aren’t tested, and are outside the scope of technical support. See the [Compatibility](../project-docs/compatibility.md#dotnet-compatibility) section for more details.
+Couchbase strongly recommends using the [latest LTS version of .NET that's officially supported](https://versionsof.net/) by both Microsoft and Couchbase. Other .NET implementations may work, but aren't tested, and are outside the scope of technical support. See the [Compatibility](../project-docs/compatibility.md#dotnet-compatibility) section for more details.
 
 > [!NOTE]
-> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK when using .NET 6.0 or later, it is trusted by default. .NET Framework clients will have to add it to the Windows certificate store.
+> Capella's root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK when using .NET 6.0 or later, it is trusted by default. .NET Framework clients will have to add it to the Windows certificate store.
 
 ### [](#quick-installation)Quick Installation
 
@@ -180,7 +180,7 @@ The following code samples assume:
 
 ## [](#step-by-step)Step by Step
 
-Start a new console project (in Visual Studio or VS Code, etc). Go to our [Platform Introduction](platform-help.md) if you don’t already have an editor or IDE setup for working in .NET — e.g. you are evaluating the .NET SDK, but .NET is not your normal platform.
+Start a new console project (in Visual Studio or VS Code, etc). Go to our [Platform Introduction](platform-help.md) if you don't already have an editor or IDE setup for working in .NET — e.g. you are evaluating the .NET SDK, but .NET is not your normal platform.
 
 Firstly, you will need to have a few `using` statements at the top of **Program.cs** in your console program:
 
@@ -192,12 +192,12 @@ using Couchbase;await ExampleUsing();
 
 ### [](#connect)Connect
 
-Connect to your cluster by calling the `Cluster.ConnectAsync()` method and pass it your connection details. The basic connection details that you’ll need are given below — for more background information, see [Managing Connections](../howtos/managing-connections.md).
+Connect to your cluster by calling the `Cluster.ConnectAsync()` method and pass it your connection details. The basic connection details that you'll need are given below — for more background information, see [Managing Connections](../howtos/managing-connections.md).
 
 * Capella Connection
 * Local Server Connection
 
-From version 3.3, the .NET SDK includes Capella’s standard certificates by default, so you do not need to additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
+From version 3.3, the .NET SDK includes Capella's standard certificates by default, so you do not need to additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
 
 ```csharp
 var options = new ClusterOptions
@@ -284,7 +284,7 @@ You can learn more about SQL++ queries on the [Query page](../howtos/n1ql-querie
 
 ## [](#next-steps)Next Steps
 
-Now you’re up and running, try one of the following:
+Now you're up and running, try one of the following:
 
 * Our [Travel Sample Application](sample-application.md) demonstrates all the basics you need to know;
 * Explore [Key Value Operations](../howtos/kv-operations.md) against a document database;
@@ -299,7 +299,7 @@ The [API reference](https://docs.couchbase.com/sdk-api/couchbase-net-client/api/
 
 ### [](#troubleshooting)Troubleshooting
 
-* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you’re running the SDK on your laptop against a Capella cluster, see further information on:
+* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you're running the SDK on your laptop against a Capella cluster, see further information on:
 
   * Notes on [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
   * [Network Requirements](../project-docs/compatibility.md#network-requirements).

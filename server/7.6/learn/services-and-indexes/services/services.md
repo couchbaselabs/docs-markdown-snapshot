@@ -2,7 +2,7 @@
 title: Services
 description: Couchbase <em>Services</em> support access to and maintenance of data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/services-and-indexes/services/services.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:services-and-indexes/services/services.adoc[]
 ---
 
@@ -17,7 +17,7 @@ Services are configured and deployed by the Full Administrator who initializes C
 
 In Couchbase Server Version 7.6 and later, you can add one or more arbiter nodes to your cluster. An arbiter node helps your cluster in two ways:
 
-* It provides [fast failover](../../clusters-and-availability/nodes.md#fast-failover) which helps decrease the cluster’s latency when reacting to a failover.
+* It provides [fast failover](../../clusters-and-availability/nodes.md#fast-failover) which helps decrease the cluster's latency when reacting to a failover.
 * It provides [quorum arbitration](../../../install/deployment-considerations-lt-3nodes.md#quorum-arbitration) that helps avoid contention issues if the nodes in the cluster become partitioned.
 
 ## [](#services-and-multi-dimensional-scaling)Services and Multi-Dimensional Scaling

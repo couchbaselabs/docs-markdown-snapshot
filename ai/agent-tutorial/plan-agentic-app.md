@@ -3,7 +3,7 @@ title: Plan Your Agentic App
 description: Before you start building, you should plan the tools, framework,
   and structure of your agent application.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/plan-agentic-app.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:agent-tutorial:plan-agentic-app.adoc[]
 ---
 
@@ -31,7 +31,7 @@ For more information about how to choose an agent development framework and an o
 * The underlying storage you want to use for memory and agent data.  
 For more information about using a Capella operational cluster for vector and data storage, see [Process Your Data For Capella AI Services](../build/vectorization-service/data-processing.md).
 * The tools your agent needs to use to solve user problems.  
-For more information about how Capella AI Services can help manage your agent’s tools, see [Integrate an Agent with the Agent Catalog](../build/integrate-agent-with-catalog.md).
+For more information about how Capella AI Services can help manage your agent's tools, see [Integrate an Agent with the Agent Catalog](../build/integrate-agent-with-catalog.md).
 * The interface you want to use for user interactions with your application, such as a web application, command-line tool, or API.
 * The way you want to test and evaluate the performance of your agentic app.  
 For more information about using Capella AI Services for evaluating your agent, see [Monitor and Observe with Agent Tracer](../build/agent-tracer/agent-tracer.md).
@@ -40,7 +40,7 @@ For more information about using Capella AI Services for evaluating your agent, 
 
 Choosing the LLM for your agentic app depends on the specific use case for your agent.
 
-If you choose to develop a multi-agent application to split agent tasks, you can use a different LLM for each agent, specialized to that specific task. You can also choose to call other LLM’s when calling tools from an agent.
+If you choose to develop a multi-agent application to split agent tasks, you can use a different LLM for each agent, specialized to that specific task. You can also choose to call other LLM's when calling tools from an agent.
 
 You should consider the following factors when choosing an LLM for your agentic app:
 
@@ -53,11 +53,11 @@ You should consider the following factors when choosing an LLM for your agentic 
 
 ### [](#context-size)Context Size
 
-An LLM’s context size, also known as context window or context length, determines how much information your agent can use for its tasks at once. It’s comparable to a human’s working memory. LLM context is made of tokens, or the smallest unit of language that an LLM can process. If a prompt, user conversation, or other information given to an LLM is larger than the model’s context size, the LLM can lose information or need a summary to continue processing. Larger context size can increase accuracy, decrease hallucinations, and improve responses, but can increase costs.
+An LLM's context size, also known as context window or context length, determines how much information your agent can use for its tasks at once. It's comparable to a human's working memory. LLM context is made of tokens, or the smallest unit of language that an LLM can process. If a prompt, user conversation, or other information given to an LLM is larger than the model's context size, the LLM can lose information or need a summary to continue processing. Larger context size can increase accuracy, decrease hallucinations, and improve responses, but can increase costs.
 
 Some agent tasks require models with larger context sizes. Agents that function as a customer support agent, contract analysis helper, or developer assistant all need larger context from the base LLM to support the functions of those use cases.
 
-For example, if your agent needs to do any of the following, you’ll need an LLM that supports a larger context size:
+For example, if your agent needs to do any of the following, you'll need an LLM that supports a larger context size:
 
 * Reference user conversations over time.
 * Reference long documents.
@@ -66,11 +66,11 @@ For example, if your agent needs to do any of the following, you’ll need an LL
 
 ### [](#latency-and-accuracy)Latency and Accuracy
 
-A key factor in an LLM’s latency is the rate at which the LLM can process tokens, or its TPM/TPS (Tokens Per Minute or Tokens Per Second). A larger model takes longer to process tokens than a smaller model, which can make your agent feel slower to respond to an end user.
+A key factor in an LLM's latency is the rate at which the LLM can process tokens, or its TPM/TPS (Tokens Per Minute or Tokens Per Second). A larger model takes longer to process tokens than a smaller model, which can make your agent feel slower to respond to an end user.
 
 Both generating and processing tokens can increase latency on your model. Agents that need to be highly responsive and interactive for an end user might not benefit from a high-end model, because of the required latency.
 
-When choosing your LLM, you need to decide if the quality and accuracy of your agent’s responses matters more than the response speed.
+When choosing your LLM, you need to decide if the quality and accuracy of your agent's responses matters more than the response speed.
 
 If you need an agent that feels engaging and responsive, you might want a smaller, faster LLM. With correct tuning in your agent, such as long, detailed prompts and few-shot examples, you can still maintain quality outputs with speed and lower costs.
 
@@ -80,7 +80,7 @@ If you need to keep a lot of context for your agent and chain a lot of calls to 
 
 Keeping context available for your agent, either through longer-term storage between sessions, or during a user interaction, can also increase your costs.
 
-To reduce costs, you can try processing your agent interactions in batches. Batch processing reduces LLM costs but can reduce interactivity and increase the latency of your agent’s responses.
+To reduce costs, you can try processing your agent interactions in batches. Batch processing reduces LLM costs but can reduce interactivity and increase the latency of your agent's responses.
 
 You can also try to use a different LLM for different tasks. Use larger, more advanced models for complex reasoning, and smaller models for less complex tasks to keep your costs manageable. [Caching frequently used results from an LLM call](../build/model-service/configure-value-adds.md#caching) can also help.
 
@@ -101,7 +101,7 @@ If your agent needs to use APIs or integrate with other tools and systems, make 
 
 Where you host your LLM can change your costs, model performance, data control, and model options.
 
-Externally hosted models offer good performance, but you’ll have less control over your data and do not have the same options to fine-tune model responses and behavior. Your usage costs might also be higher.
+Externally hosted models offer good performance, but you'll have less control over your data and do not have the same options to fine-tune model responses and behavior. Your usage costs might also be higher.
 
 An open source, self-hosted model can reduce costs for higher volumes of usage, and keep sensitive data safe.
 
@@ -124,9 +124,9 @@ Generally, agentic apps can use the following reasoning frameworks:
 
 In the ReAct framework, agents work through problems in a defined chain of thought-action-observation, to eventually arrive at a final answer.
 
-Using prompts, the agent starts by using reasoning steps, or thoughts, to break down a task into smaller steps. The agent uses actions, such as calling tools, to gather more information. Then, the agent evaluates the information it’s gathered, using its observations to return the final answer - or start another thought.
+Using prompts, the agent starts by using reasoning steps, or thoughts, to break down a task into smaller steps. The agent uses actions, such as calling tools, to gather more information. Then, the agent evaluates the information it's gathered, using its observations to return the final answer - or start another thought.
 
-You’ll also need to think about how many times you want to allow your agent to repeat the thought-action-observation loop, and write prompts that support and encourage ReAct in your model.
+You'll also need to think about how many times you want to allow your agent to repeat the thought-action-observation loop, and write prompts that support and encourage ReAct in your model.
 
 Use ReAct for your agent when you need to solve complex, multi-step problems with iterative reasoning and tool usage. ReAct works well when you need transparency in reasoning and an adaptable agent that can handle ambiguous or changing user requests.
 
@@ -165,7 +165,7 @@ For the examples in this documentation, Couchbase has used [LangGraph and LangCh
 
 [LangGraph](https://www.langchain.com/langgraph) is a stateful, multi-agent framework built with [LangChain](https://www.langchain.com/). LangGraph uses graphs and state machines to define agents and can be used for multi-agent workflows. Specifically, LangGraph is great for complex workflows, including tool routing and complex tool usage.
 
-LangGraph can support single, multi-agent, or hierarchical agent architectures, with flexibility around how much control and autonomy you want to give to your agent. You can also choose to stream messages from agents or workflows to keep users informed at each step of your application’s flow.
+LangGraph can support single, multi-agent, or hierarchical agent architectures, with flexibility around how much control and autonomy you want to give to your agent. You can also choose to stream messages from agents or workflows to keep users informed at each step of your application's flow.
 
 LangGraph and LangChain are built on Python and require a Python installation to run.
 

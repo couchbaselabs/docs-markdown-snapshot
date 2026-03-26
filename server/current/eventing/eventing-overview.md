@@ -2,7 +2,7 @@
 title: Run a Function on Data Change
 description: The Eventing Service lets you handle data changes in real time.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:eventing:eventing-overview.adoc[]
 ---
 
@@ -73,7 +73,7 @@ The following table compares the implementation of the Eventing Service with the
 
 ## [](#eventing-service-use-cases)Eventing Service Use Cases
 
-You can use the Eventing Service to track data changes in many different domains. For example, you can design a custom workflow to track a user’s credit limit, usage currency, and risk propositions when that user makes a credit card transaction. You can also create a workflow that automatically maintains a set stock threshold and triggers new stock replacements when that stock runs out.
+You can use the Eventing Service to track data changes in many different domains. For example, you can design a custom workflow to track a user's credit limit, usage currency, and risk propositions when that user makes a credit card transaction. You can also create a workflow that automatically maintains a set stock threshold and triggers new stock replacements when that stock runs out.
 
 The following table provides use cases for the Eventing Service.
 

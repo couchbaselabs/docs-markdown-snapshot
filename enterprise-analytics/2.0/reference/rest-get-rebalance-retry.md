@@ -1,7 +1,7 @@
 ---
 title: Getting Rebalance-Retry Status
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-get-rebalance-retry.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:reference:rest-get-rebalance-retry.adoc[]
 ---
 
@@ -52,7 +52,7 @@ If successful, the command returns the following object:
   "delta_recovery_buckets": "all"
 }
 
-This indicates that the status of `retry_rebalance` is `pending`; and provides a `rebalance_id` for the process, of `ff5845cdce693db2dce9a9308cbf885d`. This id can be used to cancel the retry. The output also lists the cluster’s nodes, indicates that `2` retry attempts are scheduled to occur if necessary after the current one, and indicates that `291` seconds are still to elapse before the pending retry.
+This indicates that the status of `retry_rebalance` is `pending`; and provides a `rebalance_id` for the process, of `ff5845cdce693db2dce9a9308cbf885d`. This id can be used to cancel the retry. The output also lists the cluster's nodes, indicates that `2` retry attempts are scheduled to occur if necessary after the current one, and indicates that `291` seconds are still to elapse before the pending retry.
 
 Note that if no rebalance is pending, the following object is returned:
 

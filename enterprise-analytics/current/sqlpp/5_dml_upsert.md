@@ -3,7 +3,7 @@ title: UPSERT INTO Statements
 description: This topic describes how you use <code>UPSERT INTO</code>
   statements to insert and update objects in a standalone collection.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_dml_upsert.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sqlpp:5_dml_upsert.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:enterprise-analytics:sqlpp:5_dml_upsert.adoc[]
 
 > This topic describes how you use `UPSERT INTO` statements to insert and update objects in a standalone collection. 
 
-If any of the objects you’re adding has the same primary key as an object that’s already in the standalone collection, Enterprise Analytics replaces the existing object’s values with the new object’s values.
+If any of the objects you're adding has the same primary key as an object that's already in the standalone collection, Enterprise Analytics replaces the existing object's values with the new object's values.
 
 ## [](#syntax)Syntax
 
@@ -75,9 +75,9 @@ After you use `UPSERT INTO`, you can run `ANALYZE COLLECTION` on the collection 
 
 **Show an additional example** 
 
-This example begins with two statements that create an external collection for data stored on S3 and a standalone collection. In this example, the objects in the external collection have a primary key field named `my_pk` with a data type of string, which you then use as the standalone collection’s primary key.
+This example begins with two statements that create an external collection for data stored on S3 and a standalone collection. In this example, the objects in the external collection have a primary key field named `my_pk` with a data type of string, which you then use as the standalone collection's primary key.
 
-They’re followed by an `UPSERT INTO` statement that copies all data from the external location—identified by the defined `PATH` clause—to the standalone collection as is.
+They're followed by an `UPSERT INTO` statement that copies all data from the external location—identified by the defined `PATH` clause—to the standalone collection as is.
 
 ```SQL++
   CREATE EXTERNAL COLLECTION my_external_dataset

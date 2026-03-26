@@ -4,7 +4,7 @@ description: You can use array functions to evaluate arrays, perform
   computations on elements in an array, and to return a new array based on a
   transformation.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/arrayfun.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/arrayfun.adoc[]
 ---
 
@@ -1658,7 +1658,7 @@ Given the following sample document:
 }
 ```
 
-Here’s how different array subscripts evaluate:
+Here's how different array subscripts evaluate:
 
 * `a.airline[]`: Returns `NULL` (not an array).
 * `a.schedule[]`: Equivalent to `a.schedule`, returns the array.

@@ -2,7 +2,7 @@
 title: SELECT Statements
 description: This topic describes the syntax used by SQL++ for Enterprise Analytics queries.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/3_query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sqlpp:3_query.adoc[]
 ---
 
@@ -13,13 +13,13 @@ link: xref:2.0@enterprise-analytics:sqlpp:3_query.adoc[]
 
 > This topic describes the syntax used by SQL++ for Enterprise Analytics queries. 
 
-Most of the examples in this topic assume that you’re using a database called `sampleAnalytics` and a scope called `Commerce`. Refer to [Connecting to Data Sources](../intro/connecting-to-data-sources.md) to install this example data. You can set up standalone collections to access the data in Enterprise Analytics.
+Most of the examples in this topic assume that you're using a database called `sampleAnalytics` and a scope called `Commerce`. Refer to [Connecting to Data Sources](../intro/connecting-to-data-sources.md) to install this example data. You can set up standalone collections to access the data in Enterprise Analytics.
 
 You can use a [USE Statements](5%5Fddl%5Fuse.md) to set the database and scope for the statement that follows it. For example:
 
 USE sampleAnalytics.Commerce;
 
-In the UI you can also use the query editor’s **Query Context** lists to set the database and scope.
+In the UI you can also use the query editor's **Query Context** lists to set the database and scope.
 
 ![The Query Context lists](_images/workbench-context-set.png) 
 
@@ -66,7 +66,7 @@ In a query block, the `FROM`, `WHERE`, `GROUP BY`, and `HAVING` clauses are coll
 
 For example, the clause `FROM customers AS c` scans over the `customers` collection, binding the variable `c` to each `customer` object in turn, and produces a stream of bindings.
 
-Here’s a slightly more complex example of a stream generator:
+Here's a slightly more complex example of a stream generator:
 
 ```SQL++
  FROM customers AS c, orders AS o
@@ -109,7 +109,7 @@ In SQL++, the `SELECT` clause can appear either at the beginning or at the end o
 
 ## [](#Select%5Felement)SELECT VALUE Clause
 
-The `SELECT VALUE` clause returns an array or multiset that contains the results of evaluating the `VALUE` expression. SQL++ for Enterprise Analytics performs one evaluation per binding tuple—that is, per `FROM` clause item—satisfying the statement’s selection criteria. If there is no `FROM` clause, SQL++ evaluates the expression after `VALUE` once with no binding tuples, with the exception of those inherited from an outer environment.
+The `SELECT VALUE` clause returns an array or multiset that contains the results of evaluating the `VALUE` expression. SQL++ for Enterprise Analytics performs one evaluation per binding tuple—that is, per `FROM` clause item—satisfying the statement's selection criteria. If there is no `FROM` clause, SQL++ evaluates the expression after `VALUE` once with no binding tuples, with the exception of those inherited from an outer environment.
 
 ### Example Q1: SELECT VALUE
 
@@ -401,7 +401,7 @@ Result:
 
 In the result, `$1` is the generated name for `o.orderno % 1000`, while `order_date` is the generated name for `o.order_date`.
 
-Because the generated names can be confusing and non-mnemonic, it’s a good practice to use naming conventions and supply meaningful and concise names for the selected items.
+Because the generated names can be confusing and non-mnemonic, it's a good practice to use naming conventions and supply meaningful and concise names for the selected items.
 
 ## [](#Abbreviated%5Ffield%5Faccess%5Fexpressions)Abbreviated Field Access Expressions
 
@@ -454,7 +454,7 @@ Result:
 
 Synonyms for `UNNEST`: `CORRELATE`, `FLATTEN`
 
-The purpose of a `FROM` clause is to logically iterate over a collection, binding a variable to each item in turn. Here’s a query that iterates over the `customers` dataset, choosing certain customers and returning some of their attributes.
+The purpose of a `FROM` clause is to logically iterate over a collection, binding a variable to each item in turn. Here's a query that iterates over the `customers` dataset, choosing certain customers and returning some of their attributes.
 
 ### Example Q8: FROM clause with implicit variable
 
@@ -484,7 +484,7 @@ Result:
     }
 ]
 
-A `FROM` clause always produces a stream of bindings, and binds an iteration variable to each item in a collection in turn. Because the [Q8](#q8) example does not provide an explicit iteration variable, the `FROM` clause defines an implicit variable named `customers`, the same name as the dataset that’s being iterated over. The implicit iteration variable serves as the object-name for all field-names in the query block that do not have explicit object-names. As a result, `address.zipcode` means `customers.address.zipcode`, `custid` means `customers.custid`, and `name` means `customers.name`.
+A `FROM` clause always produces a stream of bindings, and binds an iteration variable to each item in a collection in turn. Because the [Q8](#q8) example does not provide an explicit iteration variable, the `FROM` clause defines an implicit variable named `customers`, the same name as the dataset that's being iterated over. The implicit iteration variable serves as the object-name for all field-names in the query block that do not have explicit object-names. As a result, `address.zipcode` means `customers.address.zipcode`, `custid` means `customers.custid`, and `name` means `customers.name`.
 
 You can also provide an explicit iteration variable, as in this version of the same query.
 
@@ -499,17 +499,17 @@ Alternative version of [Q8](#q8) with the same result.
  ORDER BY customer_id;
 ```
 
-This example binds the variable `c` to each `customer` object in turn as the query iterates over the `customers` dataset. You can use an explicit iteration variable to identify the fields of the referenced object, as in `c.name` in the `SELECT` clause of Q9\. When referencing a field of an object, you can omit the iteration variable when there is no ambiguity. For example, you could replace `c.name` by `name` in the `SELECT` clause of Q9\. That’s why field-names like `name` and `custid` could stand by themselves in the [Q8](#q8) version of this query.
+This example binds the variable `c` to each `customer` object in turn as the query iterates over the `customers` dataset. You can use an explicit iteration variable to identify the fields of the referenced object, as in `c.name` in the `SELECT` clause of Q9\. When referencing a field of an object, you can omit the iteration variable when there is no ambiguity. For example, you could replace `c.name` by `name` in the `SELECT` clause of Q9\. That's why field-names like `name` and `custid` could stand by themselves in the [Q8](#q8) version of this query.
 
-In the [Q8](#q8) and [Q9](#q9) examples, the `FROM` clause iterates over the objects in a dataset. However, in general, a `FROM` clause can iterate over any collection. For example, the objects in the `orders` dataset each contain a field called `items`, which is an array of nested objects. In some cases, you’ll write a `FROM` clause that iterates over a nested array like `items`.
+In the [Q8](#q8) and [Q9](#q9) examples, the `FROM` clause iterates over the objects in a dataset. However, in general, a `FROM` clause can iterate over any collection. For example, the objects in the `orders` dataset each contain a field called `items`, which is an array of nested objects. In some cases, you'll write a `FROM` clause that iterates over a nested array like `items`.
 
 The stream of objects, or more accurately the variable bindings, produced by the `FROM` clause does not have any particular order. The system chooses the most efficient order for the iteration. If you want your query result to have a specific order, you must use an `ORDER BY` clause.
 
-It’s good practice to specify an explicit iteration variable for each collection in the `FROM` clause, and to use these variables to qualify the field-names in other clauses. Here are some reasons for this convention:
+It's good practice to specify an explicit iteration variable for each collection in the `FROM` clause, and to use these variables to qualify the field-names in other clauses. Here are some reasons for this convention:
 
 * Supplying different names for the collection as a whole and for an object in the collection improves readability. For example, in the clause `FROM customers AS c`, the name `customers` represents the dataset and the name `c` represents one object in the dataset.
 * In some cases, a query requires iteration variables. For example, to join a dataset to itself, you must supply distinct iteration variables to distinguish the left side of the join from the right side.
-* In a subquery, it’s sometimes necessary to refer to an object in an outer query block, called a correlated subquery. To avoid potential confusion in correlated subqueries, it’s best to use explicit variables.
+* In a subquery, it's sometimes necessary to refer to an object in an outer query block, called a correlated subquery. To avoid potential confusion in correlated subqueries, it's best to use explicit variables.
 
 ## [](#Join%5Fclauses)Joins
 
@@ -763,7 +763,7 @@ Grouping is important when manipulating hierarchies like the ones that are often
 
 ![GROUP AS](_images/NamedExpr.png) 
 
-To start, here’s an example of grouping from ordinary SQL.
+To start, here's an example of grouping from ordinary SQL.
 
 #### Example Q16: GROUP BY clause
 
@@ -803,9 +803,9 @@ Result:
 
 The input to a `GROUP BY` clause is the stream of binding tuples generated by the `FROM` and `WHERE`clauses. Before grouping, this query binds the variable `o` to each object in the `orders` collection in turn.
 
-SQL++ evaluates the expression in the `GROUP BY` clause, called the grouping expression, once for each of the binding tuples. It then organizes the results into groups in which the grouping expression has a common value, defined by the `=` operator. In this example, the grouping expression is `o.custid`, and each of the resulting groups is a set of `orders` that have the same `custid`. If necessary, the system forms a group for `orders` in which `custid` is `null`, and another group for `orders` that have no `custid`. This query uses the aggregating function `COUNT(o.orderno)`, which counts the order numbers in each group. If you’re sure that each order object has a distinct `orderno`, you could instead count the order objects in each group by using `COUNT(*)` in place of `COUNT(o.orderno)`.
+SQL++ evaluates the expression in the `GROUP BY` clause, called the grouping expression, once for each of the binding tuples. It then organizes the results into groups in which the grouping expression has a common value, defined by the `=` operator. In this example, the grouping expression is `o.custid`, and each of the resulting groups is a set of `orders` that have the same `custid`. If necessary, the system forms a group for `orders` in which `custid` is `null`, and another group for `orders` that have no `custid`. This query uses the aggregating function `COUNT(o.orderno)`, which counts the order numbers in each group. If you're sure that each order object has a distinct `orderno`, you could instead count the order objects in each group by using `COUNT(*)` in place of `COUNT(o.orderno)`.
 
-In the `GROUP BY` clause, you can optionally define an alias for the grouping expression. For example, in [Q16](#q16), you could have written `GROUP BY o.custid AS cid`. You could then use the alias `cid` in place of the grouping expression in later clauses. In cases where the grouping expression contains an operator, it’s helpful to define an alias: for example, `GROUP BY salary + bonus AS pay`.
+In the `GROUP BY` clause, you can optionally define an alias for the grouping expression. For example, in [Q16](#q16), you could have written `GROUP BY o.custid AS cid`. You could then use the alias `cid` in place of the grouping expression in later clauses. In cases where the grouping expression contains an operator, it's helpful to define an alias: for example, `GROUP BY salary + bonus AS pay`.
 
 Example [Q16](#q16) had a single grouping expression, `o.custid`. If a query has multiple grouping expressions, it evaluates the combination of grouping expressions for every binding tuple, and partitions the stream of binding tuples into groups that have values in common for all of the grouping expressions. An example of such a query follows in [Q18](#q18).
 
@@ -864,11 +864,11 @@ Result:
     }
 ]
 
-Notice in example [Q17](#q17) what happens when you apply the special aggregation function `COUNT` to a collection that does not exist, such as the orders of M. Sinclair: it returns zero. This behavior is unlike that of the other special aggregation functions `SUM`, `AVG`, `MAX`, and `MIN`, which return `null` if their operand does not exist. This should make you cautious about the `COUNT` function: If it returns zero, that might mean that the collection you’re counting has zero members, or that it does not exist, or that you have misspelled the collection’s name.
+Notice in example [Q17](#q17) what happens when you apply the special aggregation function `COUNT` to a collection that does not exist, such as the orders of M. Sinclair: it returns zero. This behavior is unlike that of the other special aggregation functions `SUM`, `AVG`, `MAX`, and `MIN`, which return `null` if their operand does not exist. This should make you cautious about the `COUNT` function: If it returns zero, that might mean that the collection you're counting has zero members, or that it does not exist, or that you have misspelled the collection's name.
 
-Example [Q17](#q17) also shows how a query block can have more than one grouping expression. In general, the `GROUP BY` clause produces a binding tuple for each different combination of values for the grouping expressions. In Q17, the `c.custid` field uniquely identifies a customer, so adding `c.name` as a grouping expression does not result in any more groups. Nevertheless, you must include `c.name` as a grouping expression to reference it outside—after—the `GROUP BY` clause. If you do not include `c.name` in the `GROUP BY` clause, it’s not a group property and you cannot use it in the `SELECT` clause.
+Example [Q17](#q17) also shows how a query block can have more than one grouping expression. In general, the `GROUP BY` clause produces a binding tuple for each different combination of values for the grouping expressions. In Q17, the `c.custid` field uniquely identifies a customer, so adding `c.name` as a grouping expression does not result in any more groups. Nevertheless, you must include `c.name` as a grouping expression to reference it outside—after—the `GROUP BY` clause. If you do not include `c.name` in the `GROUP BY` clause, it's not a group property and you cannot use it in the `SELECT` clause.
 
-Of course, a grouping expression need not be a field-name. The [Q18](#q18) example groups orders by month, using a temporal function to extract the month component of the order dates. In cases like this, it’s helpful to define an alias for the grouping expression so that you can reference it elsewhere in the query, such as in the `SELECT` clause.
+Of course, a grouping expression need not be a field-name. The [Q18](#q18) example groups orders by month, using a temporal function to extract the month component of the order dates. In cases like this, it's helpful to define an alias for the grouping expression so that you can reference it elsewhere in the query, such as in the `SELECT` clause.
 
 #### Example Q18: Grouping expressions
 
@@ -900,7 +900,7 @@ Result:
     }
 ]
 
-Groups are commonly formed from named collections like `customers` and `orders`. However, in some queries you need to form groups from a collection that’s nested inside another collection, such as `items` inside `orders`. In SQL++ you can do this by using left-correlation in the `FROM` clause to unnest the inner collection, joining the inner collection with the outer collection, and then performing the grouping on the join, as illustrated in example [Q19](#q19) .
+Groups are commonly formed from named collections like `customers` and `orders`. However, in some queries you need to form groups from a collection that's nested inside another collection, such as `items` inside `orders`. In SQL++ you can do this by using left-correlation in the `FROM` clause to unnest the inner collection, joining the inner collection with the outer collection, and then performing the grouping on the join, as illustrated in example [Q19](#q19) .
 
 Example [Q19](#q19) also shows how you can use a `LET` clause after a `GROUP BY` clause to define an expression that you can reference multiple times in later clauses.
 
@@ -981,7 +981,7 @@ Result:
   }
 ]
 
-This query uses string functions to split each customer’s address into city and region. The query then counts the total number of orders placed by each customer, and groups the results first by customer region, then by customer city. The aggregate results, labeled `Order Count`, are only shown by city, and there are no subtotals or grand total. To add these, you can use the `ROLLUP` sub-clause, as in the following example.
+This query uses string functions to split each customer's address into city and region. The query then counts the total number of orders placed by each customer, and groups the results first by customer region, then by customer city. The aggregate results, labeled `Order Count`, are only shown by city, and there are no subtotals or grand total. To add these, you can use the `ROLLUP` sub-clause, as in the following example.
 
 ##### [](#example-qr2-grouping-with-rollup-totals)Example QR2: Grouping with ROLLUP totals
 
@@ -1228,7 +1228,7 @@ Result:
   }
 ]
 
-To simplify the results, this query uses an inner join so that customers who have not placed an order are not included in the totals. The query uses string functions to extract the region from each customer’s address, and a temporal function to extract the year from the order date.
+To simplify the results, this query uses an inner join so that customers who have not placed an order are not included in the totals. The query uses string functions to extract the region from each customer's address, and a temporal function to extract the year from the order date.
 
 The query uses the `CUBE` sub-clause with customer region and order month. This means that there are four possible aggregates to calculate:
 
@@ -1247,7 +1247,7 @@ The query also uses the `IFNULL` function to populate the region and date fields
 
 ![HAVING](_images/HavingClause.png) 
 
-The `HAVING` clause is similar to the `WHERE` clause, except that it comes after `GROUP BY` and applies a filter to groups rather than to individual objects. Here’s an example of a `HAVING` clause that filters orders by applying a condition to their nested arrays of `items`.
+The `HAVING` clause is similar to the `WHERE` clause, except that it comes after `GROUP BY` and applies a filter to groups rather than to individual objects. Here's an example of a `HAVING` clause that filters orders by applying a condition to their nested arrays of `items`.
 
 By adding a `HAVING` clause to Q19, you can filter the results to include only those orders with total revenue greater than 1000, as shown in Q22.
 
@@ -1276,7 +1276,7 @@ Result:
 
 ### [](#Aggregation%5FPseudoFunctions)Aggregation Pseudo-Functions
 
-SQL provides several special functions for performing aggregations on groups including: `SUM`, `AVG`, `MAX`, `MIN`, and `COUNT`; some implementations provide more. SQL++ supports these same functions. However, it’s worth spending some time on these special functions because they do not behave like ordinary functions. They’re called pseudo-functions here because they do not evaluate their operands in the same way as ordinary functions.
+SQL provides several special functions for performing aggregations on groups including: `SUM`, `AVG`, `MAX`, `MIN`, and `COUNT`; some implementations provide more. SQL++ supports these same functions. However, it's worth spending some time on these special functions because they do not behave like ordinary functions. They're called pseudo-functions here because they do not evaluate their operands in the same way as ordinary functions.
 
 To see the difference, consider these two examples, which are syntactically similar:
 
@@ -1480,7 +1480,7 @@ In this case, following `GROUP AS g`, the clause binds variable `g` to the follo
 
 After using `GROUP AS` to make the content of a group accessible, you typically write a subquery to access that content. You write a subquery for this purpose in the same way as any other subquery. The name specified in the `GROUP AS` clause—\`g\` in the above example—is the name of a collection of objects. You can write a `FROM` clause to iterate over the objects in the collection, and you can specify an iteration variable to represent each object in turn. For `GROUP AS` queries, this reference uses `g` as the name of the reconstituted group, and `gi` as an iteration variable representing one object inside the group. Of course, you can use any names you like for these purposes.
 
-Now to take a look at how you might use `GROUP AS` in a query. Suppose that you want to group customers by zip code, and for each group you want to see the average credit rating and a list of the individual customers in the group. Here’s a query that does that:
+Now to take a look at how you might use `GROUP AS` in a query. Suppose that you want to group customers by zip code, and for each group you want to see the average credit rating and a list of the individual customers in the group. Here's a query that does that:
 
 ##### Example Q24: GROUP AS
 
@@ -1701,7 +1701,7 @@ The `NULLS` modifier determines how the system orders `MISSING` and `NULL` relat
 
 If you do not specify the `NULLS` modifier, when the system encounters `MISSING` and `NULL` in the ordering keys it treats them as being smaller any other value. If both occur in the data, the system treats `MISSING` as smaller than `NULL`. The relative order between `MISSING` and `NULL` is not affected by the `NULLS` modifier. That is, `MISSING` is still treated as smaller than `NULL`.
 
-The ordering of values of a given type is consistent with its type’s `<=` ordering; the ordering of values across types is implementation-defined but stable.
+The ordering of values of a given type is consistent with its type's `<=` ordering; the ordering of values across types is implementation-defined but stable.
 
 The `LIMIT` clause limits the result set to a specified maximum size.
 
@@ -1935,7 +1935,7 @@ The **NULLS modifier** determines whether to include or ignore NULL values in th
 
 ### [](#Window%5Fframe%5Fvariable)Window Frame Variable
 
-The `AS` keyword enables you to specify an alias for the window frame contents. It introduces a variable to bind to the contents of the frame. When using a built-in [aggregate function](8%5Fbuiltin%5Fagg.md) as a window function, the function’s argument must be a subquery which refers to this alias, for example:
+The `AS` keyword enables you to specify an alias for the window frame contents. It introduces a variable to bind to the contents of the frame. When using a built-in [aggregate function](8%5Fbuiltin%5Fagg.md) as a window function, the function's argument must be a subquery which refers to this alias, for example:
 
 ```SQL++
  SELECT ARRAY_COUNT(DISTINCT (FROM alias SELECT VALUE alias.src.field))
@@ -1991,7 +1991,7 @@ The **window frame clause** defines the window frame. You can use it with all [a
 
 You can define the window frame in the following ways:
 
-* `ROWS`: Counts the exact number of tuples within the frame. If window ordering doesn’t result in unique ordering, the function may produce unpredictable results. You can add a unique expression or more window ordering expressions to produce unique ordering.
+* `ROWS`: Counts the exact number of tuples within the frame. If window ordering doesn't result in unique ordering, the function may produce unpredictable results. You can add a unique expression or more window ordering expressions to produce unique ordering.
 * `RANGE`: Looks for a value offset within the frame. The function produces deterministic results.
 * `GROUPS`: Counts all groups of tied rows within the frame. The function produces deterministic results.
 

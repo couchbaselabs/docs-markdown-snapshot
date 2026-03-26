@@ -2,7 +2,7 @@
 title: Integrate Prometheus
 description: Integrating Sync Gateway and Prometheus for Stats Monitoring and Alerts
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/deploy/pages/stats-prometheus.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:deploy:stats-prometheus.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Related _Statistics_ topics: [Metrics REST API](../rest-api/rest-api-metrics.md)
 
 ## [](#introduction)Introduction
 
-Sync Gateway’s Metrics REST API exposes stats in a [Prometheus![glossary icon](../_images/icons/glossaryIconImage2.png)](../glossary.md#prometheus) compatible and JSON formats.
+Sync Gateway's Metrics REST API exposes stats in a [Prometheus![glossary icon](../_images/icons/glossaryIconImage2.png)](../glossary.md#prometheus) compatible and JSON formats.
 
 ## [](#lbl-prom-act)Configuration
 
@@ -50,9 +50,9 @@ Within the sync gateway configuration file:
 
 ## [](#integration)Integration
 
-You will need to integrate Sync Gateway’s metrics feed with your Prometheus deployment. Couchbase provide both a configuration file and a sample rules file, in the `/path/to/sync/gateway/examples` folder, to make this integration with Prometheus easier.
+You will need to integrate Sync Gateway's metrics feed with your Prometheus deployment. Couchbase provide both a configuration file and a sample rules file, in the `/path/to/sync/gateway/examples` folder, to make this integration with Prometheus easier.
 
-Copy both the Prometheus configuration file (`prometheus.yml`) file and the baseline rules directory (`rules/sync-gateway.rules.yml`) from Sync Gateway’s release package into Prometheus’s `/etc` directory.
+Copy both the Prometheus configuration file (`prometheus.yml`) file and the baseline rules directory (`rules/sync-gateway.rules.yml`) from Sync Gateway's release package into Prometheus's `/etc` directory.
 
 Example 2\. Files in-situ
 
@@ -73,11 +73,11 @@ Configuration of Prometheus to work with Sync Gateway is governed by two files, 
 
 Prometheus Configuration File
 
-The provided `prometheus.yml` file specifies the configuration required to scrape the Sync Gateway metrics target. In this instance it defines Sync Gateway’s `metricsInterface` as being accessible on `sync_gateway:4986/metrics`. If you have multiple Sync Gateways, you can specify all their endpoints here (as `targets`).
+The provided `prometheus.yml` file specifies the configuration required to scrape the Sync Gateway metrics target. In this instance it defines Sync Gateway's `metricsInterface` as being accessible on `sync_gateway:4986/metrics`. If you have multiple Sync Gateways, you can specify all their endpoints here (as `targets`).
 
 Prometheus Rules File
 
-Prometheus’s rules files enable you to specify both _recording_ and _alerting_ rules. Sync Gateway’s out-of-the-box rule set provides a starting point, which you can customize as needed. The rules include:
+Prometheus's rules files enable you to specify both _recording_ and _alerting_ rules. Sync Gateway's out-of-the-box rule set provides a starting point, which you can customize as needed. The rules include:
 
 * A total queries record that adds up all query counts and saves it as `sgw::gsi::total_queries`
 * A few example alerts
@@ -108,7 +108,7 @@ scrape_configs:
 | **1** | The scrape\_interval specifies the polling interval.This interval determines the frequency at which Prometheus will scrape data from this endpoint. You can adjust it to your needs.                                            |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | rules\_files specifies the path to the Prometheus Rules file(s).The rules file defines any custom alerts based on the collected stats.                                                                                          |
-| **3** | The targets property specifies the list of targets making statistics available to Prometheus; here we specify Sync Gateway’s metricsInterface.If you have multiple Sync Gateways, you can specify each of their endpoints here. |
+| **3** | The targets property specifies the list of targets making statistics available to Prometheus; here we specify Sync Gateway's metricsInterface.If you have multiple Sync Gateways, you can specify each of their endpoints here. |
 
 The rules file (`sync-gateway-rules.yml`) specifies the alerting and recording rules.
 

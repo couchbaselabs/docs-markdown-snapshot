@@ -2,7 +2,7 @@
 title: Collections&#8201;&#8212;&#8201;Server Compatibility
 description: How <em>Sync Gateway</em> can work with <em>Couchbase Server's Collections</em>
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/server-compatibility-collections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::server-compatibility-collections.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:3.0@sync-gateway::server-compatibility-collections.adoc[]
 
 # Collections&#8201;&#8212;&#8201;Server Compatibility
 
-> How _Sync Gateway_ can work with _Couchbase Server’s Collections_  
+> How _Sync Gateway_ can work with _Couchbase Server's Collections_  
 
 _Related topics_: [XDCR](server-compatibility-xdcr.md) | [Eventing](server-compatibility-eventing.md) | [Transactions](server-compatibility-transactions.md) | Collections
 
@@ -24,9 +24,9 @@ Couchbase Server provides the backing data store for Sync Gateway.
 > [!TIP]
 > See: [Compatibility Matrix](compatibility.md) for version compatibility information.
 
-Here we provide details on how Couchbase Server’s Scopes and Collections feature relates to the Couchbase mobile ecosystem.
+Here we provide details on how Couchbase Server's Scopes and Collections feature relates to the Couchbase mobile ecosystem.
 
-Sync Gateway offers support for Couchbase Server’s default scopes and collections ([Default Collections](#7.0@server:learn:data/scopes-and-collections.adoc#default-scope-and-collection)). It does not currently support named scopes or collections ([Named Collections](#7.0@server:learn:data/scopes-and-collections.adoc#naming-for-scopes-and-collections)).
+Sync Gateway offers support for Couchbase Server's default scopes and collections ([Default Collections](#7.0@server:learn:data/scopes-and-collections.adoc#default-scope-and-collection)). It does not currently support named scopes or collections ([Named Collections](#7.0@server:learn:data/scopes-and-collections.adoc#naming-for-scopes-and-collections)).
 
 ---
 

@@ -2,7 +2,7 @@
 title: Install and Verify
 description: Install Couchbase Edge Server for use in your applications.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/get-started/pages/install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-edge-server:get-started:install.adoc[]
 ---
 
@@ -142,7 +142,7 @@ To open the necessary port (e.g., 59840):
 sudo firewall-cmd --zone=FedoraServer --add-port=59840/tcp --permanent sudo firewall-cmd --reload
 ```
 
-If you’re using FedoraWorkstation, make sure to assign your network interface to that zone:
+If you're using FedoraWorkstation, make sure to assign your network interface to that zone:
 
 ```bash
 sudo nmcli connection modify "your-network-interface" connection.zone "FedoraWorkstation"

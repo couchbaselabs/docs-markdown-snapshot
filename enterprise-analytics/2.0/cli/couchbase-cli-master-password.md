@@ -2,7 +2,7 @@
 title: master-password
 description: Sends the Couchbase master password
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/couchbase-cli-master-password.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:cli:couchbase-cli-master-password.adoc[]
 ---
 
@@ -41,7 +41,7 @@ To use the Secret Management feature, the first thing you need to do is set a pa
 $ couchbase-cli setting-master-password -c 127.0.0.1 -u Administrator \
   -p password --new-password password
 
-Once the master password is configured restart the server. Upon restarting the cluster you will notice that the server doesn’t fully start. This is because it is waiting for you to enter the master password. You can do this by running the command below. The master-password subcommand has to be run locally on the node that is waiting for the master password and as the user must have be able to read files in the `couchbase` group.
+Once the master password is configured restart the server. Upon restarting the cluster you will notice that the server doesn't fully start. This is because it is waiting for you to enter the master password. You can do this by running the command below. The master-password subcommand has to be run locally on the node that is waiting for the master password and as the user must have be able to read files in the `couchbase` group.
 
 $ couchbase-cli master-password --send-password password
 

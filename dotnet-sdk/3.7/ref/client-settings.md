@@ -3,7 +3,7 @@ title: Client Settings
 description: The <code>ClusterOptions</code> class enables you to configure .NET
   SDK options for bootstrapping, timeouts, reliability, and performance.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.7@dotnet-sdk:ref:client-settings.adoc[]
 ---
 
@@ -105,7 +105,7 @@ The following listing covers all possible configuration options and explains the
 
 ## [](#security-options)Security Options
 
-By default the client will connect to Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition, it’s possible to secure the connection using TLS.
+By default the client will connect to Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition, it's possible to secure the connection using TLS.
 
 Template for configuring security settings
 
@@ -139,7 +139,7 @@ Cluster Option: `IgnoreRemoteCertificateNameMismatch(boolean)`
 
 Default: `false`
 
-If TLS is enabled via `EnableTls`, setting this to true will disable hostname validation when authenticating connections to Couchbase Server. This is typically done in test or development environments where a domain name (FQDN) has not been specified for the bootstrap server’s URI, and the IP address is use to validate the certificate, which will fail with a `RemoteCertificateNameMismatch` error.
+If TLS is enabled via `EnableTls`, setting this to true will disable hostname validation when authenticating connections to Couchbase Server. This is typically done in test or development environments where a domain name (FQDN) has not been specified for the bootstrap server's URI, and the IP address is use to validate the certificate, which will fail with a `RemoteCertificateNameMismatch` error.
 
 Name: **Enable Certificate Revocation**
 
@@ -402,7 +402,7 @@ Cluster Option: `CompressionMinRatio(float)`
 
 Default: `0.83f`
 
-If compression is enabled, the minimum compression ratio to accept when sending documents to the server. Documents which don’t achieve this compression ratio are sent to the server uncompressed.
+If compression is enabled, the minimum compression ratio to accept when sending documents to the server. Documents which don't achieve this compression ratio are sent to the server uncompressed.
 
 1.0 means no compression was achieved. A value of 0.75 would result in documents which compress to at least 75% of their original size to be transmitted compressed. The default is 0.83 (83%).
 
@@ -611,7 +611,7 @@ Default: `10s`
 
 description
 
-The time to wait while attempting to connect to a node’s KV service via a socket. Initial connection, reconnecting, node added, etc.
+The time to wait while attempting to connect to a node's KV service via a socket. Initial connection, reconnecting, node added, etc.
 
 Name: **Key Value Range Scan Timeout**
 

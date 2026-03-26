@@ -1,7 +1,7 @@
 ---
 title: Security
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/develop/security.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:csharp/develop/security.adoc[]
 ---
 
@@ -41,7 +41,7 @@ Figure 1\. Retrieve User Data
 
 ## [](#access-control)Access Control
 
-In this lesson you’ll be introduced to Sync Gateway, our secure web gateway. Sync Gateway is an Internet-facing synchronization mechanism that exposes a web interface which provides - Data Synchronization and Routing - Authorization and Access Control
+In this lesson you'll be introduced to Sync Gateway, our secure web gateway. Sync Gateway is an Internet-facing synchronization mechanism that exposes a web interface which provides - Data Synchronization and Routing - Authorization and Access Control
 
 In this chapter, we will focus on Authorization and Access Control. We will discuss Data Synchronization and Routing in the [Sync](sync.md) chapter.
 

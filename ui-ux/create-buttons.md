@@ -1,7 +1,7 @@
 ---
 title: Create Buttons
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/create-buttons.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ui-ux::create-buttons.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:ui-ux::create-buttons.adoc[]
 
 # Create Buttons
 
-Any button that creates or adds a new component to a user’s database should:
+Any button that creates or adds a new component to a user's database should:
 
 * Start with a plus sign (+), followed by the verb **Create**.
 * Clearly state the component that the user will create.

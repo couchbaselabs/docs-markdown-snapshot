@@ -3,7 +3,7 @@ title: Incoming Replications
 description: Incoming replications details for a target cluster in XDCR are
   listed in the UI and can be retrieved using the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/incoming-xdcr-replications.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-xdcr/incoming-xdcr-replications.adoc[]
 ---
 
@@ -17,13 +17,13 @@ link: xref:server:manage:manage-xdcr/incoming-xdcr-replications.adoc[]
 A cluster is identified as a target cluster in XDCR when it receives replicated data from a remote cluster. Then the replicating remote cluster is identified as a source cluster. When a replication is created, on the source cluster, the replication is called an outgoing replication, and on the target cluster, the same replication is called an incoming replication.
 
 > [!NOTE]
-> A replication is always created on a cluster that’s the source of data being replicated.
+> A replication is always created on a cluster that's the source of data being replicated.
 
 ## [](#view-incoming-replications)View Incoming Replications
 
 On the XDCR UI, if the cluster is a target for XDCR replications from remote clusters, the Incoming Replications section lists the incoming replications, grouped by the remote cluster name. Expand the source cluster information in the Incoming Replications section to see the details of replications created on the remote cluster.
 
-If the remote cluster has not yet created a replication, the replication count shows 0\. However, the remote cluster name is listed because the remote cluster has added this cluster’s connection details to its XDCR cluster references.
+If the remote cluster has not yet created a replication, the replication count shows 0\. However, the remote cluster name is listed because the remote cluster has added this cluster's connection details to its XDCR cluster references.
 
 In the illustration, the Incoming Replications section lists 2 remote clusters, East and South, replicating data to the North cluster. You can see 1 incoming replication from the East cluster and 2 incoming replications from the South cluster.
 
@@ -41,7 +41,7 @@ You can calculate the number of incoming XDCR connections for a replication with
 
 The formula details are as follows:
 
-* `target_nozzle_per_node` is the incoming replication’s target\_nozzle\_per\_node.
+* `target_nozzle_per_node` is the incoming replication's target\_nozzle\_per\_node.
 * `number of Data nodes on the source cluster` is the number of Data nodes in the remote cluster that the replication is coming from (the number of SourceClusterNodes in the incoming replications information).
 * `number of Data nodes on the target cluster` is the number of Data nodes in the current cluster, the target of the incoming replication.
 

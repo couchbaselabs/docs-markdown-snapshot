@@ -3,7 +3,7 @@ title: Data Sync using Sync Gateway
 description: Couchbase Lite for Objective-C -- Synchronizing data changes
   between local and remote databases using Sync Gateway
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/objc/pages/replication.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:objc:replication.adoc[]
 ---
 
@@ -38,7 +38,7 @@ Couchbase Mobile uses a replication protocol based on WebSockets fof replication
 
 Incompatibilities
 
-Couchbase Lite’s replication protocol is **incompatible** with CouchDB-based databases. And since Couchbase Lite 2.x+ only supports the new protocol, you will need to run a version of Sync Gateway that supports it — see: [Compatibility](../../current/objc/compatibility.md).
+Couchbase Lite's replication protocol is **incompatible** with CouchDB-based databases. And since Couchbase Lite 2.x+ only supports the new protocol, you will need to run a version of Sync Gateway that supports it — see: [Compatibility](../../current/objc/compatibility.md).
 
 Legacy Compatibility
 
@@ -51,7 +51,7 @@ You can find further information in our blog: [Introducing the Data Replication 
 
 ### [](#lbl-repl-ord)Ordering
 
-To optimize for speed, the replication protocol doesn’t guarantee that documents will be received in a particular order. So we don’t recommend to rely on that when using the replication or database change listeners for example.
+To optimize for speed, the replication protocol doesn't guarantee that documents will be received in a particular order. So we don't recommend to rely on that when using the replication or database change listeners for example.
 
 ## [](#configuration-summary)Configuration Summary
 
@@ -104,7 +104,7 @@ id<CBLListenerToken> thisListenerToken
 
 **Notes on Example**
 
-| **1** | Use the [ReplicatorConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html) class’s constructor — [\-initWithDatabase:target:](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28im%29initWithDatabase:target:) — to initialize the replicator configuration with the local database — see also: [Configure Target](#lbl-cfg-tgt) |
+| **1** | Use the [ReplicatorConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html) class's constructor — [\-initWithDatabase:target:](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28im%29initWithDatabase:target:) — to initialize the replicator configuration with the local database — see also: [Configure Target](#lbl-cfg-tgt) |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Configure how the client will authenticate the server. Here we say connect only to servers presenting a self-signed certificate. By default, clients accept only servers presenting certificates that can be verified using the OS bundled Root CA Certificates — see: [Server Authentication](#lbl-svr-auth).                                                                                                                                                                           |
 | **3** | Configure the credentials the client will present to the server. Here we say to provide _Basic Authentication_ credentials. Other options are available — see: [Client Authentication](#lbl-client-auth).                                                                                                                                                                                                                                                                                |
@@ -125,8 +125,8 @@ Use the [ReplicatorConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchba
 
 The constructor provides:
 
-* the name of the local database to be sync’d
-* the server’s URL (including the port number and the name of the remote database to sync with)  
+* the name of the local database to be sync'd
+* the server's URL (including the port number and the name of the remote database to sync with)  
 It is expected that the app will identify the IP address and URL and append the remote database name to the URL endpoint, producing for example: `wss://10.0.2.2:4984/travel-sample`  
 The URL scheme for web socket URLs uses `ws:` (non-TLS) or `wss:` (SSL/TLS) prefixes.
 
@@ -151,7 +151,7 @@ CBLReplicatorConfiguration *thisConfig
 
 Here we define the direction and type of replication we want to initiate.
 
-We use `[ReplicatorConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html)` class’s [replicatorType](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28py%29replicatorType) and `[continuous](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28py%29continuous)` parameters, to tell the replicator:
+We use `[ReplicatorConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html)` class's [replicatorType](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28py%29replicatorType) and `[continuous](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28py%29continuous)` parameters, to tell the replicator:
 
 * The direction of the replication: `**pushAndPull**`; `pull`; `push`
 * The type of replication, that is:
@@ -171,7 +171,7 @@ thisConfig.continuous = YES;
 
 A point to consider when initiating a replication, particularly a continuous replication, is keeping the connection alive. Couchbase Lite minimizes the chance of dropped connections by having the replicator maintain a heartbeat; essentially pinging the Sync Gateway at a configurable interval.
 
-When necessary you can adjust this interval using [heartbeat](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28py%29heartbeat) as shown in — [Example 4](#ex-htbt). You may need to do this when, for example, when the Sync Gateway is behind a load balancer, which may have its own keep-alive parameters — see Sync Gateway’s topic [Load Balancer - Keep Alive](../../../sync-gateway/current/deploy/load-balancer.md#lbl-keepalive).
+When necessary you can adjust this interval using [heartbeat](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28py%29heartbeat) as shown in — [Example 4](#ex-htbt). You may need to do this when, for example, when the Sync Gateway is behind a load balancer, which may have its own keep-alive parameters — see Sync Gateway's topic [Load Balancer - Keep Alive](../../../sync-gateway/current/deploy/load-balancer.md#lbl-keepalive).
 
 The default heartbeat value is 300 (5 minutes).
 
@@ -201,13 +201,13 @@ repl = nil;
 
 Define the credentials your app (the client) is expecting to receive from the Sync Gateway (the server) in order to ensure it is prepared to continue with the sync.
 
-Note that the client cannot authenticate the server if TLS is turned off. When TLS is enabled (Sync Gateway’s default) the client _must_ authenticate the server. If the server cannot provide acceptable credentials then the connection will fail.
+Note that the client cannot authenticate the server if TLS is turned off. When TLS is enabled (Sync Gateway's default) the client _must_ authenticate the server. If the server cannot provide acceptable credentials then the connection will fail.
 
 Use `[ReplicatorConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html)` properties [acceptOnlySelfSignedServerCertificate](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28py%29acceptOnlySelfSignedServerCertificate) and [setPinnedServerCertificate()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28py%29pinnedServerCertificate), to tell the replicator how to verify server-supplied TLS server certificates.
 
 * If there is a pinned certificate, nothing else matters, the server cert must **exactly** match the pinned certificate.
 * If there are no pinned certs and [acceptOnlySelfSignedServerCertificate](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28py%29acceptOnlySelfSignedServerCertificate) is `true` then any self-signed certificate is accepted. Certificates that are not self signed are rejected, no matter who signed them.
-* If there are no pinned certificates and [acceptOnlySelfSignedServerCertificate](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28py%29acceptOnlySelfSignedServerCertificate) is `false` (default), the client validates the server’s certificates against the system CA certificates. The server must supply a chain of certificates whose root is signed by one of the certificates in the system CA bundle.
+* If there are no pinned certificates and [acceptOnlySelfSignedServerCertificate](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorConfiguration.html#/c:objc%28cs%29CBLReplicatorConfiguration%28py%29acceptOnlySelfSignedServerCertificate) is `false` (default), the client validates the server's certificates against the system CA certificates. The server must supply a chain of certificates whose root is signed by one of the certificates in the system CA bundle.
 
 Example 5\. Set Server TLS security
 
@@ -385,7 +385,7 @@ CBLReplicator *replicator = [[CBLReplicator alloc] initWithConfig:config];
 
 By default, Couchbase Lite gets all the channels to which the configured user account has access. This behavior is suitable for most apps that rely on [user authentication](../../../sync-gateway/current/security/authentication-users.md) and the [sync function](../../../sync-gateway/current/access-control/sync-function/sync-function-api.md) to specify which data to pull for each user.
 
-Optionally, it’s also possible to specify a comma-separated list of channel names on Couchbase Lite’s replicator configuration object. In this case, the replication from Sync Gateway will only pull documents tagged with those channels.
+Optionally, it's also possible to specify a comma-separated list of channel names on Couchbase Lite's replicator configuration object. In this case, the replication from Sync Gateway will only pull documents tagged with those channels.
 
 ### [](#lbl-repl-delta)Delta Sync
 
@@ -406,7 +406,7 @@ In this section
 
 ### [](#lbl-repl-start)Start Replicator
 
-Use the `[Replicator](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicator.html)` class’s [initWith(config:)](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicator.html#/c:objc%28cs%29CBLReplicator%28im%29initWithConfig:) constructor, to initialize the replicator with the configuration you have defined. You can, optionally, add a change listener (see [Monitor](#lbl-repl-mon)) before starting the replicator running using [start()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicator.html#/c:objc%28cs%29CBLReplicator%28im%29start).
+Use the `[Replicator](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicator.html)` class's [initWith(config:)](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicator.html#/c:objc%28cs%29CBLReplicator%28im%29initWithConfig:) constructor, to initialize the replicator with the configuration you have defined. You can, optionally, add a change listener (see [Monitor](#lbl-repl-mon)) before starting the replicator running using [start()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicator.html#/c:objc%28cs%29CBLReplicator%28im%29start).
 
 Example 7\. Initialize and run replicator
 
@@ -443,7 +443,7 @@ In this section
 
 [Change Listeners](#lbl-repl-chng) | [Replicator Status](#lbl-repl-status) | [Monitor Document Changes](#lbl-repl-evnts) | [Documents Pending Push](#lbl-repl-pend)
 
-You can monitor a replication’s status by using a combination of [Change Listeners](#lbl-repl-chng) and the `replication.status.activity` property — see; [activity enum](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorStatus.html#/c:objc%28cs%29CBLReplicatorStatus%28py%29activity). This enables you to know, for example, when the replication is actively transferring data and when it has stopped.
+You can monitor a replication's status by using a combination of [Change Listeners](#lbl-repl-chng) and the `replication.status.activity` property — see; [activity enum](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicatorStatus.html#/c:objc%28cs%29CBLReplicatorStatus%28py%29activity). This enables you to know, for example, when the replication is actively transferring data and when it has stopped.
 
 You can also choose to monitor document changes — see: [Monitor Document Changes](#lbl-repl-evnts).
 
@@ -454,7 +454,7 @@ Use this to monitor changes and to inform on sync progress; this is an optional 
 > [!TIP]
 > Best Practice
 > 
-> You should register the listener before starting your replication, to avoid having to do a restart to activate it …​ and don’t forget to save the token so you can remove the listener later
+> You should register the listener before starting your replication, to avoid having to do a restart to activate it …​ and don't forget to save the token so you can remove the listener later
 
 Use the [Replicator](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicator.html) class to add a change listener as a callback to the Replicator ([addChangeListener(\_:)](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicator.html#/c:objc%28cs%29CBLReplicator%28im%29addChangeListener:)) — see: [Example 9](#ex-repl-mon). You will then be asynchronously notified of state changes.
 
@@ -462,7 +462,7 @@ Remove your change listener before stopping the replicator — use the [removeCh
 
 ### [](#lbl-repl-status)Replicator Status
 
-You can use the [Replicator](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicator.html) class’s [status](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicator.html#/c:objc%28cs%29CBLReplicator%28py%29status) property to check the replicator status. That is, whether it is actively transferring data or if it has stopped — see: [Example 9](#ex-repl-mon).
+You can use the [Replicator](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicator.html) class's [status](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLReplicator.html#/c:objc%28cs%29CBLReplicator%28py%29status) property to check the replicator status. That is, whether it is actively transferring data or if it has stopped — see: [Example 9](#ex-repl-mon).
 
 The returned _ReplicationStatus_ structure comprises:
 
@@ -522,7 +522,7 @@ The following diagram describes the status changes when the application starts a
 
 Additionally, on iOS, an app already in the background may be terminated. In this case, the `Database` and `Replicator` instances will be `null` when the app returns to the foreground. Therefore, as preventive measure, it is recommended to do a `null` check when the app enters the foreground, and to re-initialize the database and replicator if any of those is `null`.
 
-On other platforms, Couchbase Lite doesn’t react to OS backgrounding or foregrounding events and replication(s) will continue running as long as the remote system does not terminate the connection and the app does not terminate. It is generally recommended to stop replications before going into the background otherwise socket connections may be closed by the OS and this may interfere with the replication process.
+On other platforms, Couchbase Lite doesn't react to OS backgrounding or foregrounding events and replication(s) will continue running as long as the remote system does not terminate the connection and the app does not terminate. It is generally recommended to stop replications before going into the background otherwise socket connections may be closed by the OS and this may interfere with the replication process.
 
 ### [](#lbl-repl-evnts)Monitor Document Changes
 
@@ -563,7 +563,7 @@ This code snippet shows how to stop the document listener using the token from t
 
 #### [](#document-access-removal-behavior)Document Access Removal Behavior
 
-When access to a document is removed on Sync Gateway (see: Sync Gateway’s [Sync Function](../../../sync-gateway/current/access-control/sync-function/sync-function-api.md)), the document replication listener sends a notification with the `AccessRemoved` flag set to `true` and subsequently purges the document from the database.
+When access to a document is removed on Sync Gateway (see: Sync Gateway's [Sync Function](../../../sync-gateway/current/access-control/sync-function/sync-function-api.md)), the document replication listener sends a notification with the `AccessRemoved` flag set to `true` and subsequently purges the document from the database.
 
 ### [](#lbl-repl-pend)Documents Pending Push
 
@@ -685,7 +685,7 @@ The following error codes are considered temporary by the Couchbase Lite replica
 
 ## [](#load-balancers)Load Balancers
 
-Couchbase Lite \[[2](#%5Ffootnotedef%5F2 "View footnote.")\] uses WebSockets as the communication protocol to transmit data. Some load balancers are not configured for WebSocket connections by default (NGINX for example); so it might be necessary to explicitly enable them in the load balancer’s configuration (see [Load Balancers](../../../sync-gateway/current/deploy/load-balancer.md)).
+Couchbase Lite \[[2](#%5Ffootnotedef%5F2 "View footnote.")\] uses WebSockets as the communication protocol to transmit data. Some load balancers are not configured for WebSocket connections by default (NGINX for example); so it might be necessary to explicitly enable them in the load balancer's configuration (see [Load Balancers](../../../sync-gateway/current/deploy/load-balancer.md)).
 
 By default, the WebSocket protocol uses compression to optimize for speed and bandwidth utilization. The level of compression is set on Sync Gateway and can be tuned in the configuration file ([replicator\_compression](../../../sync-gateway/current/configuration/configuration-properties-legacy.md#replicator%5Fcompression)).
 
@@ -744,7 +744,7 @@ Example 16\. Protocol Mismatch
 CouchbaseLite Replicator ERROR: {Repl#2} Got LiteCore error: WebSocket error 1006 "connection closed abnormally"
 ```
 
-If Sync Gateway is configured with a self signed certificate, and your app points to a `wss` scheme but the replicator configuration isn’t using the certificate you will encounter an error with status code `5011` — see: [Example 17](#ex-5011)
+If Sync Gateway is configured with a self signed certificate, and your app points to a `wss` scheme but the replicator configuration isn't using the certificate you will encounter an error with status code `5011` — see: [Example 17](#ex-5011)
 
 Example 17\. Certificate Mismatch or Not Found
 

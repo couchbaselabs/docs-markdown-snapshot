@@ -3,7 +3,7 @@ title: Channels
 description: About Sync Gateway <em>Channels</em> and their part in data routing
   and access control for secure cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/channels.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::channels.adoc[]
 ---
 
@@ -18,13 +18,13 @@ _Related Concepts_: [Access Control Model](access-control-model.md) | Channels |
 
 ## [](#concept)Concept
 
-Sync Gateway uses _Channels_ defined at collection level to make it easy to share a database’s documents across a large user base whilst retaining effective access control. They serve as a security conduit between the document and a user:
+Sync Gateway uses _Channels_ defined at collection level to make it easy to share a database's documents across a large user base whilst retaining effective access control. They serve as a security conduit between the document and a user:
 
 ## [](#overview)Overview
 
 Channels are defined at the collection level, which means that specific channels can be associated with individual collections of documents. This system allows users with access to a specific channel to access all documents assigned to that channel within that collection.
 
-By defining channels at the collection level, it’s possible to implement detailed access control for different types of data within the database.
+By defining channels at the collection level, it's possible to implement detailed access control for different types of data within the database.
 
 You typically will use channels to:
 
@@ -49,7 +49,7 @@ function (doc, oldDoc, meta) {
 
 Here the function then calls the `channel` and passes in the name of the collection `(CollectionsName)` as an argument.
 
-By default, every document in the collection is automatically assigned to a channel with the same name as the collection. This system automatically creates a channel with the collection’s name. The assignment of all documents to the collection channel is functionally similar to assigning them to the [Star Channel](#2.7@sync-gateway-channels.adoc#star-channel).
+By default, every document in the collection is automatically assigned to a channel with the same name as the collection. This system automatically creates a channel with the collection's name. The assignment of all documents to the collection channel is functionally similar to assigning them to the [Star Channel](#2.7@sync-gateway-channels.adoc#star-channel).
 
 To override this, use a custom sync function or a Specified Default Sync Function.
 
@@ -83,7 +83,7 @@ Imagine a database containing a collection of customer data. Within this collect
 | **1** | Using the Admin REST API : You can provide the admin\_channels property using the **Admin REST API** endpoint ([/{db}/\_user/{name}](rest-api-admin.md#/user/post\%5F%5Fdb%5F%5F%5Fuser%5Fname%5F)).                                                                                                                                                                                                                              |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Programmatically using Access Grant Document: The [Sync Function](sync-function.md) provides a flexible and secure method for controlling document access and routing.You can program it to derive appropriate access and channel routing information from data embedded within document properties.                                                                                                                              |
-| **3** | File-based Configuration Properties: This is only available in 3.x and is typically used for dev/test environments. You can do it in the Sync Gateway JSON Configuration File ([Database Configuration](configuration-schema-database.md) ) by adding the appropriate channel to the user’s admin\_channels property — see: [user admin\_channels](configuration-schema-database.md#database-users-this%5Fuser-admin%5Fchannels). |
+| **3** | File-based Configuration Properties: This is only available in 3.x and is typically used for dev/test environments. You can do it in the Sync Gateway JSON Configuration File ([Database Configuration](configuration-schema-database.md) ) by adding the appropriate channel to the user's admin\_channels property — see: [user admin\_channels](configuration-schema-database.md#database-users-this%5Fuser-admin%5Fchannels). |
 
 ## [](#lbl-syschan)System Channels
 
@@ -113,7 +113,7 @@ You make dynamic user access grants in the sync function using the [access()](sy
 
 Granting a user access with the _all channels_ wildcard gives them access to any channel, and any document in any channel, including those from private channels.
 
-Replications by users with _all channels_ wildcard access will pull **all** documents. Because of this potential for syncing large volumes of data (sync pulls all documents in the bucket), users with _all channels_ wildcard access should use a channel filter to explicitly name the channel(s) to be sync’d.
+Replications by users with _all channels_ wildcard access will pull **all** documents. Because of this potential for syncing large volumes of data (sync pulls all documents in the bucket), users with _all channels_ wildcard access should use a channel filter to explicitly name the channel(s) to be sync'd.
 
 **Note:** Users granted access using the _all channels_ wildcard **do not** inherit [requireAccess()](sync-function-api-require-access-cmd.md) rights to any specific channel.
 
@@ -136,9 +136,9 @@ __Table 1\. Guidance on Channel Assignment Limits__
 
 ## [](#lbl-metda-limits)Sync Metadata Limits
 
-Every time a document is assigned to a new channel, the channel name is appended to that document’s sync metadata.
+Every time a document is assigned to a new channel, the channel name is appended to that document's sync metadata.
 
-Therefore, a document’s set of channels is limited by the allowed sync metadata size described in [Table 2](#tbl-metadata-size).
+Therefore, a document's set of channels is limited by the allowed sync metadata size described in [Table 2](#tbl-metadata-size).
 
 __Table 2\. Size Limits for Sync Metadata__
 | Value of enable\_shared\_bucket\_access | Size (Mb per Document) |

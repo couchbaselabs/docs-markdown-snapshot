@@ -3,7 +3,7 @@ title: Failover
 description: <em>Failover</em> is a process whereby a node can be taken out of a
   Couchbase cluster with speed.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/failover.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:clusters-and-availability/failover.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Hard failover should _not_ be used on a responsive node, since this may disrupt 
 
 Graceful failover _must_ be manually initiated. Hard failover _can_ be manually initiated. Hard failover can also be initiated automatically by Couchbase Server: this is known as _automatic_ failover. The Cluster Manager detects the unavailability of a node, and duly initiates a _hard_ failover, without administrator intervention.
 
-Note that when a node is failed over (as opposed to _removed_), some replica vBuckets are lost from the surviving nodes; since some are promoted to _active_ status, and are not replaced with new replica-copies. By contrast, [removal](removal.md) creates new copies of those replica vBuckets that would otherwise be lost. This maintains the cluster’s previous level of data-availability; but results in greater competition for memory resources, across the surviving nodes.
+Note that when a node is failed over (as opposed to _removed_), some replica vBuckets are lost from the surviving nodes; since some are promoted to _active_ status, and are not replaced with new replica-copies. By contrast, [removal](removal.md) creates new copies of those replica vBuckets that would otherwise be lost. This maintains the cluster's previous level of data-availability; but results in greater competition for memory resources, across the surviving nodes.
 
 Ideally, after any failover, [rebalance](rebalance.md) should be performed. This is especially important when a Data Service node has been failed over, since the rebalance will ensure an optimal ratio of active to replica vBuckets across all the remaining Data Service nodes.
 

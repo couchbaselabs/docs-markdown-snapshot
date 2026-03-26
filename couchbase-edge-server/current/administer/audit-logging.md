@@ -1,7 +1,7 @@
 ---
 title: Audit Logging
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/administer/pages/audit-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-edge-server:administer:audit-logging.adoc[]
 ---
 
@@ -49,7 +49,7 @@ __Table 2\. Audit Log Event Breakdown__
 The following table lists all Audit Log Events that can be captured in the Couchbase Edge Server audit log file.
 
 > [!IMPORTANT]
-> If `Enabled` is `true`, the audit events are logged in the audit log file unless it’s within the `audit.disabled` array.
+> If `Enabled` is `true`, the audit events are logged in the audit log file unless it's within the `audit.disabled` array.
 
 __Table 3\. Audit Log Events__
 | Audit Event ID | Description                        | Enabled? |

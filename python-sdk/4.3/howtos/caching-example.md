@@ -3,7 +3,7 @@ title: Caching Example
 description: A walk-through of the basics of Key-Value operations with
   Couchbase, through the lens of a REST api caching layer.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/howtos/pages/caching-example.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@python-sdk:howtos:caching-example.adoc[]
 ---
 
@@ -82,7 +82,7 @@ def post(key):
         return 'Unexpected error: {}'.format(e), 500
 ```
 
-The last thing we’ll do is add `PUT` and `DELETE` endpoints, matching up to the Couchbase operations `upsert` and `remove`, and apply the same error handling once more:
+The last thing we'll do is add `PUT` and `DELETE` endpoints, matching up to the Couchbase operations `upsert` and `remove`, and apply the same error handling once more:
 
 PUT
 

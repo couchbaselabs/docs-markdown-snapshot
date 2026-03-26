@@ -5,7 +5,7 @@ description: Configure Single Sign-On (SSO) between Google Workspace and
   without managing separate credentials. This integration enables streamlined
   access management while maintaining enterprise-grade security.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/sso-google.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:organizations:ui-auth/sso-google.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:organizations:ui-auth/sso-google.adoc[]
 
 # Set Up Capella SSO Using Google Workspace
 
-> Configure Single Sign-On (SSO) between Google Workspace and Couchbase Capella to allow your organization’s users to authenticate securely without managing separate credentials. This integration enables streamlined access management while maintaining enterprise-grade security. 
+> Configure Single Sign-On (SSO) between Google Workspace and Couchbase Capella to allow your organization's users to authenticate securely without managing separate credentials. This integration enables streamlined access management while maintaining enterprise-grade security. 
 
 ## [](#prerequisites)Prerequisites
 
@@ -79,7 +79,7 @@ Create a realm in Capella using information from Google.
   For more information, see [Map User Roles](manage-role-mapping.md).
   4. Choose to turn on or off group mapping.  
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
-  If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
+  If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project's **Collaborators** tab.
 4. Click **Create Realm**.  
 Capella creates the new realm with an auto-generated name.  
 > [!IMPORTANT]  
@@ -92,7 +92,7 @@ Now that you have created the realm, you must finish configuring the custom SAML
 1. Returning to the Google Cloud Console, on the **Add custom SAML app** setup page, click **Continue**.
 2. Copy and paste the following fields from your Capella realm configuration into the Google custom SAML app setup:  
 > [!TIP]  
-> To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
+> To find this information for your organization's Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
 
 | Capella Field |           | Google Field |
 | ------------- | --------- | ------------ |
@@ -159,9 +159,9 @@ Start by adding an OAuth client configuration for Capella in the Google Cloud Co
   * **Application type**: Select **Web application**.
   * **Name**: Enter a name for your Capella integration.
   * **Authorized JavaScript origins**: Leave empty.
-  * **Authorized redirect URIs**: Leave empty for now—​you’ll add this later.
+  * **Authorized redirect URIs**: Leave empty for now—​you'll add this later.
 13. Click **Create**.  
-Your Client ID and Client Secret are shown. Keep this information secure as you’ll need it for the next step.
+Your Client ID and Client Secret are shown. Keep this information secure as you'll need it for the next step.
 
 Create a Realm in Capella
 
@@ -186,7 +186,7 @@ When adding additional scopes, separate each entry with a space.
   For more information, see [Map User Roles](manage-role-mapping.md).
   2. Choose to turn on or off group mapping.  
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
-  If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
+  If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project's **Collaborators** tab.
 6. Click **Create Realm**.  
 Capella creates the new realm with an auto-generated name.  
 > [!IMPORTANT]  
@@ -199,7 +199,7 @@ Now that you have created the realm, you need to finish configuring the Google W
 1. In the Google Cloud Console, open the OAuth client you [created](#create-google-app-oidc) for Capella.
 2. Copy the following field from your Capella realm configuration to the Google OAuth client configuration:  
 > [!TIP]  
-> To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
+> To find this information for your organization's Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
 
 | Capella Field |                          | Google Field |
 | ------------- | ------------------------ | ------------ |

@@ -3,7 +3,7 @@ title: Vector Search Using Search Vector Indexes
 description: Use Couchbase Capella's Vector Search features to add fast and
   accurate semantic search to your applications.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/vector-search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:vector-search:vector-search.adoc[]
 ---
 
@@ -12,13 +12,13 @@ link: xref:cloud:vector-search:vector-search.adoc[]
 
 # Vector Search Using Search Vector Indexes
 
-> Use Couchbase Capella’s Vector Search features to add fast and accurate semantic search to your applications. 
+> Use Couchbase Capella's Vector Search features to add fast and accurate semantic search to your applications. 
 
 ## [](#about-vector-search)About Vector Search
 
-Vector Search builds on Couchbase Capella’s [Search Service](../search/search.md) to provide vector index support. You can use these new Search Vector Indexes for Retrieval Augmented Generation (RAG) with an existing Large Language Model (LLM).
+Vector Search builds on Couchbase Capella's [Search Service](../search/search.md) to provide vector index support. You can use these new Search Vector Indexes for Retrieval Augmented Generation (RAG) with an existing Large Language Model (LLM).
 
-Using Capella’s Vector Search, an embedding model, and your chosen LLM, you can develop AI applications while giving context and up-to-date information from your own data.
+Using Capella's Vector Search, an embedding model, and your chosen LLM, you can develop AI applications while giving context and up-to-date information from your own data.
 
 You can develop applications that include:
 

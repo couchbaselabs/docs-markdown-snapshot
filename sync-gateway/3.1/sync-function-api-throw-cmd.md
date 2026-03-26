@@ -2,7 +2,7 @@
 title: throw()
 description: Rejecting a document change in Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/sync-function-api-throw-cmd.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::sync-function-api-throw-cmd.adoc[]
 ---
 
@@ -29,9 +29,9 @@ No arguments
 
 ## [](#context)Context
 
-You enforce the validity of document structure by checking the necessary constraints and throwing an exception if they’re not met.
+You enforce the validity of document structure by checking the necessary constraints and throwing an exception if they're not met.
 
-In validating a document, you’ll often need to compare the new revision to the old one, to check for illegal changes in state. For example, some properties may be immutable after the document is created, or may be changeable only by certain users, or may only be allowed to change in certain ways. That’s why the current document contents are given to the sync function, as the `oldDoc` parameter.
+In validating a document, you'll often need to compare the new revision to the old one, to check for illegal changes in state. For example, some properties may be immutable after the document is created, or may be changeable only by certain users, or may only be allowed to change in certain ways. That's why the current document contents are given to the sync function, as the `oldDoc` parameter.
 
 We recommend that you not create invalid documents in the first place. As much as possible, your app logic and validation function should prevent invalid documents from being created locally. The server-side sync function validation should be seen as a fail-safe and a guard against malicious access.
 

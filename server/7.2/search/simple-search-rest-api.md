@@ -3,7 +3,7 @@ title: Run a Simple Search with the REST API and curl/HTTP
 description: You can use the REST API and a curl command to run a search against
   a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/simple-search-rest-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:simple-search-rest-api.adoc[]
 ---
 
@@ -20,7 +20,7 @@ link: xref:7.2@server:search:simple-search-rest-api.adoc[]
 * Your user account has the **Search Admin** or **Search Reader** role.
 * You installed the Couchbase command-line tool (CLI).
 * You have the hostname or IP address for your database.
-* You’ve created a Search index.  
+* You've created a Search index.  
 For more information about how to create a Search index, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md) or [Create a Search Index with the REST API and curl/HTTP](create-search-index-rest-api.md).
 
 ## [](#procedure)Procedure
@@ -59,6 +59,6 @@ For more information about the available properties for a Search query JSON payl
 
 ## [](#next-steps)Next Steps
 
-If you don’t get the search results you were expecting, you can change the JSON payload [for your Search index](search-index-params.md) or [for your Search query](search-request-params.md).
+If you don't get the search results you were expecting, you can change the JSON payload [for your Search index](search-index-params.md) or [for your Search query](search-request-params.md).
 
 You can also [Customize a Search Index with the Web Console](customize-index.md).

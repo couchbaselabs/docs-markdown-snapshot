@@ -1,7 +1,7 @@
 ---
 title: Configure Persistent Volumes
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-persistent-volumes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::howto-persistent-volumes.adoc[]
 ---
 
@@ -141,7 +141,7 @@ It may take some time for online volume expansion to complete, especially since 
 > 
 > Refer to [Volume Expansion Lifecycle](reference-couchbasecluster-events.md#volume-expansion-lifecycle) for a description of volume expansion events.
 
-It’s important to note that setting [couchbaseclusters.spec.enableOnlineVolumeExpansion](resource/couchbasecluster.md#couchbaseclusters-spec-enableonlinevolumeexpansion) to `true` _does not guarantee that volumes will be expanded online_. Please review the following notes before attempting online volume expansion:
+It's important to note that setting [couchbaseclusters.spec.enableOnlineVolumeExpansion](resource/couchbasecluster.md#couchbaseclusters-spec-enableonlinevolumeexpansion) to `true` _does not guarantee that volumes will be expanded online_. Please review the following notes before attempting online volume expansion:
 
 * The underlying `StorageClass` must be capable of performing [volume expansions](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims) (`allowVolumeExpansion=true`).
 

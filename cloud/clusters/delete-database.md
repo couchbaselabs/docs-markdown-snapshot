@@ -1,7 +1,7 @@
 ---
 title: Delete a Cluster
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/delete-database.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:delete-database.adoc[]
 ---
 
@@ -20,7 +20,7 @@ link: xref:cloud:clusters:delete-database.adoc[]
 > [!IMPORTANT]
 > Permissions Required
 > 
-> You need the [Project Owner](../projects/project-roles.md#project-owner-role) or [Cluster Manager](../projects/project-roles.md#project-cluster-manager-role) role for the project containing the cluster you’re deleting.
+> You need the [Project Owner](../projects/project-roles.md#project-owner-role) or [Cluster Manager](../projects/project-roles.md#project-cluster-manager-role) role for the project containing the cluster you're deleting.
 
 ## [](#procedure)Procedure
 
@@ -46,4 +46,4 @@ To delete a Couchbase Capella cluster:
   1. In the confirmation field, enter the name of the cluster that you want to delete.
   2. Click **Delete Cluster**.
 
-Once you delete a cluster, it’s queued for automatic deletion and remains visible with the Destroying status. This process can take up to 15 minutes.
+Once you delete a cluster, it's queued for automatic deletion and remains visible with the Destroying status. This process can take up to 15 minutes.

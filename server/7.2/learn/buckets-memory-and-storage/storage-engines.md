@@ -3,7 +3,7 @@ title: Storage Engines
 description: "Couchbase supports two different backend storage mechanisms:
   Couchstore and Magma."
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/buckets-memory-and-storage/storage-engines.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:buckets-memory-and-storage/storage-engines.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.2@server:learn:buckets-memory-and-storage/storage-engines.adoc[]
 
 ## [](#couchstore)Couchstore
 
-Couchstore is the original storage engine for Couchbase Server. It’s the only storage engine available in Couchbase Server Community Edition. Couchstore is designed for high performance with datasets that fit in memory. It has a minimum memory requirement of 100 MB per node, and a recommended minimum memory-to-data ratio of 10%. If you have a small dataset whose working set (frequently accessed data) can fit in memory, then you should consider using Couchstore.
+Couchstore is the original storage engine for Couchbase Server. It's the only storage engine available in Couchbase Server Community Edition. Couchstore is designed for high performance with datasets that fit in memory. It has a minimum memory requirement of 100 MB per node, and a recommended minimum memory-to-data ratio of 10%. If you have a small dataset whose working set (frequently accessed data) can fit in memory, then you should consider using Couchstore.
 
 ## [](#storage-engine-magma)Magma
 
@@ -47,7 +47,7 @@ __Table 1\. Magma Supported Services__
 | Minimum memory to data ratio | 10%        | 1%                       |
 | Maximum data per node        | 3 TB       | 10 TB                    |
 
-| [1](#quota-ref) | Magma’s minimum memory requirement is higher at 1GB per node due to the more complex data structures it has to maintain. |
+| [1](#quota-ref) | Magma's minimum memory requirement is higher at 1GB per node due to the more complex data structures it has to maintain. |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------ |
 
 ## [](#when-should-you-use-couchstore)When should you use Couchstore?

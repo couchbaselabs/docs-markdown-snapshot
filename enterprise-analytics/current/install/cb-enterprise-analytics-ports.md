@@ -3,7 +3,7 @@ title: Enterprise Analytics Ports
 description: Enterprise Analytics uses multiple TCP ports for communication
   between components and with Couchbase clients.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/cb-enterprise-analytics-ports.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:install:cb-enterprise-analytics-ports.adoc[]
 ---
 
@@ -69,11 +69,11 @@ Changing the port mappings requires a reset and reconfiguration of any Enterpris
 
 1. [Install Enterprise Analytics](introduction-linux-installation.md).
 2. [Stop Enterprise Analytics](start-stop-cb-enterprise-analytics.md).
-3. For most ports, you’ll need to edit the Enterprise Analytics `_staticconfig_` file. This file will be wherever you put the path to `_/opt/enterprise-analytics/etc/couchbase/staticconfig_` in a multi-node installation.  
+3. For most ports, you'll need to edit the Enterprise Analytics `_staticconfig_` file. This file will be wherever you put the path to `_/opt/enterprise-analytics/etc/couchbase/staticconfig_` in a multi-node installation.  
 ```txt  
 vi /opt/enterprise-analytics/etc/couchbase/static_config  
 ```  
-If you’re remapping the CAPI port (8092 / 18092) you’ll need to edit the `_/opt/enterprise-analytics/etc/couchdb/default.d/capi.ini_` file and replace 8092 with the new port number.
+If you're remapping the CAPI port (8092 / 18092) you'll need to edit the `_/opt/enterprise-analytics/etc/couchdb/default.d/capi.ini_` file and replace 8092 with the new port number.
 4. Add each custom port map entry on its own line, using the following format. Enclose the port name and number in braces (`{}`) and end each entry with a period (`.`):  
 ```txt  
 {port-name, port-number}.  
@@ -83,7 +83,7 @@ For example, to change the REST API port from 8091 to 9000, you would add the fo
 {rest_port, 9000}.  
 ```  
 After you have added all of your custom port mappings, save the file and close your text editor.
-5. If you already configured Enterprise Analytics, you’ll need to delete the `_/opt/enterprise-analytics/var/lib/couchbase/config/config.dat_` file and files in the `_/opt/enterprise-analytics/var/lib/couchbase/config/chronicle/_` directory to remove the old configuration.  
+5. If you already configured Enterprise Analytics, you'll need to delete the `_/opt/enterprise-analytics/var/lib/couchbase/config/config.dat_` file and files in the `_/opt/enterprise-analytics/var/lib/couchbase/config/chronicle/_` directory to remove the old configuration.  
 ```txt  
 rm -rf /opt/enterprise-analytics/var/lib/couchbase/config/config.dat  
 rm -rf /opt/enterprise-analytics/var/lib/couchbase/config/chronicle/*  

@@ -1,7 +1,7 @@
 ---
 title: Envelope Query
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-queryshape-envelope.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-queryshape-envelope.adoc[]
 ---
 
@@ -84,11 +84,11 @@ Containment rules for the Envelope Query with other indexed GeoJSON shapes in th
 
 | Contains (relation)Document Shape | Envelope (GeoShape)                                                                                                                                   |
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Point                             | NA, Point can’t contain an envelope.                                                                                                                  |
-| LineString                        | NA, LineString can’t contain an envelope.                                                                                                             |
+| Point                             | NA, Point can't contain an envelope.                                                                                                                  |
+| LineString                        | NA, LineString can't contain an envelope.                                                                                                             |
 | Polygon                           | Matches if the polygon area is containing the rectangle region in the query.                                                                          |
-| MultiPoint                        | NA, MultiPoint can’t contain an envelope.                                                                                                             |
-| MultiLineString                   | NA, MultiLineString can’t contain an envelope.                                                                                                        |
+| MultiPoint                        | NA, MultiPoint can't contain an envelope.                                                                                                             |
+| MultiLineString                   | NA, MultiLineString can't contain an envelope.                                                                                                        |
 | MultiPolygon                      | Matches if any of the polygon areas contains the entire rectangle region.                                                                             |
 | GeometryCollection                | Matches if there is a containment between any heterogeneous (above 6) shapes in the geometrycollection array in the document and the query rectangle. |
 | Circle                            | Matches if the query rectangle resides within the document circle.                                                                                    |

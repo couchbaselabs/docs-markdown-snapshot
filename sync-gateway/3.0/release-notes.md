@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::release-notes.adoc[]
 ---
 
@@ -129,7 +129,7 @@ Version 3.0.3 of sync gateway delivers a number of fixes and enhancements. .Vers
 
 * [CBG-2032 Prevent use of internal underscore properties](https://issues.couchbase.com/browse/CBG-2032)
 * [CBG-2035 Handle removed buckets in background persistent config update polling](https://issues.couchbase.com/browse/CBG-2035)
-* [CBG-2069 Support CBL clients that don’t increment revpos when attachment body changes](https://issues.couchbase.com/browse/CBG-2069)
+* [CBG-2069 Support CBL clients that don't increment revpos when attachment body changes](https://issues.couchbase.com/browse/CBG-2069)
 * [CBG-2078 Option to make GUEST access read-only](https://issues.couchbase.com/browse/CBG-2078)
 
 ### [](#issues-and-resolutions-3-0-3)Issues and Resolutions
@@ -243,7 +243,7 @@ The `_resync` process has been enhanced to better handle large datasets, minimiz
 * [CBG-1170](https://issues.couchbase.com//browse/CBG-1170) — [Upgrade to go 1.15](https://issues.couchbase.com//browse/CBG-1170)
 * [CBG-1127](https://issues.couchbase.com//browse/CBG-1127) — [Treat resurrected tombstones as non-conflict when no shared history](https://issues.couchbase.com//browse/CBG-1127)
 * [CBG-949](https://issues.couchbase.com//browse/CBG-949) — [Improve error when non-upgradable HTTP request is sent to \_blipsync endpoint](https://issues.couchbase.com//browse/CBG-949)
-* [CBG-841](https://issues.couchbase.com//browse/CBG-841) — [Force users to opt in to accepting unsigned tokens from providers in SG’s provider config.](https://issues.couchbase.com//browse/CBG-841)
+* [CBG-841](https://issues.couchbase.com//browse/CBG-841) — [Force users to opt in to accepting unsigned tokens from providers in SG's provider config.](https://issues.couchbase.com//browse/CBG-841)
 * [CBG-715](https://issues.couchbase.com//browse/CBG-715) — [High CPU usage in high volume basic auth scenarios](https://issues.couchbase.com//browse/CBG-715)
 * [CBG-641](https://issues.couchbase.com//browse/CBG-641) — [Admin API Auth](https://issues.couchbase.com//browse/CBG-641)
 * [CBG-551](https://issues.couchbase.com//browse/CBG-551) — [Avoid storing \_removed:true revision bodies in the revision cache](https://issues.couchbase.com//browse/CBG-551)
@@ -273,7 +273,7 @@ The `_resync` process has been enhanced to better handle large datasets, minimiz
 * [CBG-1172](https://issues.couchbase.com//browse/CBG-1172) — [ISGR credentials with characters requiring URL encoding cause blipsync to fail](https://issues.couchbase.com//browse/CBG-1172)
 * [CBG-1161](https://issues.couchbase.com//browse/CBG-1161) — [DefaultPurgeInterval specified in days and used as though in hours](https://issues.couchbase.com//browse/CBG-1161)
 * [CBG-1113](https://issues.couchbase.com//browse/CBG-1113) — [CBL1.x/Websocket based changes feeds leak goroutine on disconnect](https://issues.couchbase.com//browse/CBG-1113)
-* [CBG-789](https://issues.couchbase.com//browse/CBG-789) — [Updating a blob with new data does not update SG’s metadata on sync](https://issues.couchbase.com//browse/CBG-789)
+* [CBG-789](https://issues.couchbase.com//browse/CBG-789) — [Updating a blob with new data does not update SG's metadata on sync](https://issues.couchbase.com//browse/CBG-789)
 
 ### [](#api-and-configuration-changes)API and Configuration Changes
 

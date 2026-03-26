@@ -2,7 +2,7 @@
 title: Metrics REST API
 description: Description of the Sync Gateway Metrics Rest API
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/rest-api-metrics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::rest-api-metrics.adoc[]
 ---
 
@@ -17,7 +17,7 @@ Related _REST API_ topics: [Public REST API](rest-api.md) | [Admin REST API](res
 
 ## [](#introduction)Introduction
 
-Sync Gateway makes collecting performance data easy and secure by providing a Metrics REST API. It exposes Sync Gateway’s stats on two endpoints, which deliver the same data in one of two formats:
+Sync Gateway makes collecting performance data easy and secure by providing a Metrics REST API. It exposes Sync Gateway's stats on two endpoints, which deliver the same data in one of two formats:
 
 * The `metrics` endpoint returns Sync Gateway statistics in [Prometheus![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#prometheus) format.  
 For example: `GET host:4986/metrics`  

@@ -5,7 +5,7 @@ description: Trusted CA (or 'root') certificates can be loaded into the trust
   cluster's nodes, and to authenticate clients' access-attempts. Intermediate
   certificates can also be loaded into the trust store.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/load-trusted-cas.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:rest-api:load-trusted-cas.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:7.2@server:rest-api:load-trusted-cas.adoc[]
 
 # Load Root Certificates
 
-> Trusted CA (or 'root') certificates can be loaded into the trust store of the Couchbase-Server cluster; in order to provide authority to the cluster’s nodes, and to authenticate clients' access-attempts. Intermediate certificates can also be loaded into the trust store. 
+> Trusted CA (or 'root') certificates can be loaded into the trust store of the Couchbase-Server cluster; in order to provide authority to the cluster's nodes, and to authenticate clients' access-attempts. Intermediate certificates can also be loaded into the trust store. 
 
 ## [](#http-method-and-uri)HTTP Method and URI
 
@@ -22,7 +22,7 @@ POST /node/controller/loadTrustedCAs
 
 ## [](#description)Description
 
-Loads trusted certificates into the Couchbase-Server trust store. All loaded certificates can be accessed by all nodes. Loaded CA (or _root_) certificates can be used to provide authority to the cluster’s nodes, and can be used to authenticate clients' access-attempts.
+Loads trusted certificates into the Couchbase-Server trust store. All loaded certificates can be accessed by all nodes. Loaded CA (or _root_) certificates can be used to provide authority to the cluster's nodes, and can be used to authenticate clients' access-attempts.
 
 The Full Admin, the Local User Security Admin, or the External User Security Admin role is required.
 

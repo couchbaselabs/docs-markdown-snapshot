@@ -3,7 +3,7 @@ title: Retrieving Auto-Failover Settings
 description: Use the  <code>/settings/autoFailover</code> endpoint to get the
   current auto-failover settings.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-cluster-autofailover-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rest-cluster-autofailover-settings.adoc[]
 ---
 
@@ -99,7 +99,7 @@ The keys in the object returned in the example are:
 
 * `enabled`Whether automatic failover is on (a value of `true`) or off (`false`).
 * `timeout`The number of seconds Couchbase Server waits after a node has become unavailable before it performs an automatic failover. This value can be between 5 and 3600\. The default value is 120.
-* `count`. The number of nodes that Couchbase Server has auto-failed over. Couchbase Server resets this value to zero either when the cluster rebalances to remove or rejoin the failed nodes, or when an administrator manually resets the count (see [Resetting Auto-Failover](rest-cluster-autofailover-reset.md)). The parameter’s default value is 0\. If number of failed-over nodes reaches the maximum count set by `maxCount`, Couchbase Server refuses to auto-failover more nodes until you reset the count or resolve the auto-failovers with a recovery and rebalance.
+* `count`. The number of nodes that Couchbase Server has auto-failed over. Couchbase Server resets this value to zero either when the cluster rebalances to remove or rejoin the failed nodes, or when an administrator manually resets the count (see [Resetting Auto-Failover](rest-cluster-autofailover-reset.md)). The parameter's default value is 0\. If number of failed-over nodes reaches the maximum count set by `maxCount`, Couchbase Server refuses to auto-failover more nodes until you reset the count or resolve the auto-failovers with a recovery and rebalance.
 * `failoverOnDataDiskIssues`. This object contains two keys:
 
   * `enabled` indicates whether auto-failover can occur when a disk has been unresponsive, and which can be `true` or `false` (the default).

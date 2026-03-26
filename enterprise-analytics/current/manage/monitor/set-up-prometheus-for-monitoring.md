@@ -3,7 +3,7 @@ title: Configure Prometheus to Collect Couchbase Metrics
 description: Enterprise Analytics provides an API endpoint that helps you
   configure Prometheus to collect data from it.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/monitor/set-up-prometheus-for-monitoring.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:manage:monitor/set-up-prometheus-for-monitoring.adoc[]
 ---
 
@@ -18,14 +18,14 @@ link: xref:enterprise-analytics:manage:monitor/set-up-prometheus-for-monitoring.
 
 For a general introduction to using Prometheus with Couchbase, see the blog post [Scraping Database Metrics from Couchbase Capella with Prometheus](https://www.couchbase.com/blog/scraping-database-metrics-from-couchbase-capella-with-prometheus/).
 
-To collect metrics from your Enterprise Analytics database, Prometheus must connect to the nodes in its cluster. Therefore, it needs to have a list of the cluster’s nodes. To make this process easier and help automate updating Prometheus’s list of nodes, Enterprise Analytics provides a discovery API endpoint named `/prometheus_sd_config`. Calling this endpoint returns a list of the nodes in the cluster in a format that Prometheus can use.
+To collect metrics from your Enterprise Analytics database, Prometheus must connect to the nodes in its cluster. Therefore, it needs to have a list of the cluster's nodes. To make this process easier and help automate updating Prometheus's list of nodes, Enterprise Analytics provides a discovery API endpoint named `/prometheus_sd_config`. Calling this endpoint returns a list of the nodes in the cluster in a format that Prometheus can use.
 
 > [!NOTE]
 > Prior to version 7.2.1, an endpoint named `/prometheus_sd_config.yaml` was the best way to configure Prometheus to collect metrics from Enterprise Analytics. This endpoint is now deprecated because the new `/prometheus_sd_config` discovery API endpoint offers more features. See [Replicate the Earlier Discovery API](../../reference/rest-discovery-api.md#old-api) to learn how to call the new API to generate the same output as the now-deprecated `/prometheus_sd_config.yaml` endpoint.
 
 ## [](#prerequisites)Prerequisites
 
-You should create an Enterprise Analytics user for Prometheus to use when connecting to your database. Assign this user the External Stats Reader role which grants it the ability to call the discovery API. This role also gives it the ability to read Enterprise Analytics’s metrics.
+You should create an Enterprise Analytics user for Prometheus to use when connecting to your database. Assign this user the External Stats Reader role which grants it the ability to call the discovery API. This role also gives it the ability to read Enterprise Analytics's metrics.
 
 To get the certificate from the Enterprise Analytics Web Console:
 
@@ -33,7 +33,7 @@ To get the certificate from the Enterprise Analytics Web Console:
 2. Click the **Certificates** tab.
 3. Copy the contents of the **Trusted Root Certificates** text field to a file.
 
-Save the file to a location in your Prometheus host. When you configure your Prometheus job to collect metrics from Enterprise Analytics, add the file to the job definition’s `tls_config` section.
+Save the file to a location in your Prometheus host. When you configure your Prometheus job to collect metrics from Enterprise Analytics, add the file to the job definition's `tls_config` section.
 
 If you do not want to Prometheus to use the secure ports, you can change the port number the discovery API call returns. See [Prometheus Discovery API](../../reference/rest-discovery-api.md).
 
@@ -43,7 +43,7 @@ You have two ways to use the discovery API when configuring Prometheus to collec
 
 To use the file-based method, you call the discovery API and save the results to a file. Then you configure Prometheus to read this file to get the list of nodes. With this method, you have to take additional steps to update the list if you change the nodes in your Couchbase Database.
 
-To use the HTTP service discovery method, you configure Prometheus to get the list directly from the discovery API endpoint. When you choose this method, Prometheus’s defaults to periodically calling the API endpoint to see if your database’s configuration has changed.
+To use the HTTP service discovery method, you configure Prometheus to get the list directly from the discovery API endpoint. When you choose this method, Prometheus's defaults to periodically calling the API endpoint to see if your database's configuration has changed.
 
 The following sections explain each of these methods.
 
@@ -76,13 +76,13 @@ The following example defines a new job to collect metrics from an Enterprise An
 ```
 
 > [!NOTE]
-> As mentioned earlier, the file-based configuration does not automatically update if there are changes in your Enterprise Analytics cluster. Prometheus cannot automatically update its configuration if you add or remove nodes. However, it does monitor the file containing the list of nodes for changes. You can automate updates to this file by having a task that periodically calls the Enterprise Analytics discovery API endpoint and updates the list file. However, it’s easier to just configure Prometheus to call the discovery API itself and let it manage the updates.
+> As mentioned earlier, the file-based configuration does not automatically update if there are changes in your Enterprise Analytics cluster. Prometheus cannot automatically update its configuration if you add or remove nodes. However, it does monitor the file containing the list of nodes for changes. You can automate updates to this file by having a task that periodically calls the Enterprise Analytics discovery API endpoint and updates the list file. However, it's easier to just configure Prometheus to call the discovery API itself and let it manage the updates.
 
 ## [](#configure-http-service-discovery)Configure HTTP Service Discovery
 
 You can configure Prometheus to call the Enterprise Analytics discovery API itself. With this method, has the benefit that Prometheus defaults to periodically calling the endpoint so it automatically learns of any added or removed nodes.
 
-To use the HTTP service discovery method, add a job to your Prometheus hosts’s `prometheus.yml` configuration file to collect data from your Couchbase Database. In this job, add an `http_sd_configs` section that tells Prometheus to call your database’s discovery API endpoint. You must also provide authentication in this section in addition to the authentication Prometheus uses to retrieve the metrics. If you’re using encrypted connections, add the path to your Enterprise Analytics’s certificate.
+To use the HTTP service discovery method, add a job to your Prometheus hosts's `prometheus.yml` configuration file to collect data from your Couchbase Database. In this job, add an `http_sd_configs` section that tells Prometheus to call your database's discovery API endpoint. You must also provide authentication in this section in addition to the authentication Prometheus uses to retrieve the metrics. If you're using encrypted connections, add the path to your Enterprise Analytics's certificate.
 
 The following example shows a job configuration to collect metrics from an Enterprise Analytics by calling the discovery API on a node named `node1`. The `http_sd_configs` section contains its own copy of the `basic_auth` and `tls_config` subsections.
 

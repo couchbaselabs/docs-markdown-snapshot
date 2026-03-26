@@ -3,7 +3,7 @@ title: Retrieve Records
 description: Retrieve records or documents from your collections using SQL++,
   Couchbase's SQL-based query language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/retrieving-documents.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:tutorials:java-tutorial/retrieving-documents.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:cloud:tutorials:java-tutorial/retrieving-documents.adoc[]
 
 # Retrieve Records
 
-> Retrieve records or documents from your collections using SQL++, Couchbase’s SQL-based query language. You can retrieve your records using the [query editor](#retrieve-with-query-editor) or the [SDK](#retrieve-with-sdk). 
+> Retrieve records or documents from your collections using SQL++, Couchbase's SQL-based query language. You can retrieve your records using the [query editor](#retrieve-with-query-editor) or the [SDK](#retrieve-with-sdk). 
 
 ## [](#prerequisites)Prerequisites
 
@@ -110,13 +110,13 @@ select crc.* from `course-record-collection` crc where crc.`credit-points` < 200
 
 The `id` field is not automatically returned when you retrieve all of your course information.
 
-The `id` is part of a document’s meta structure, and to retrieve it you must adjust your SQL++ query and run it again:
+The `id` is part of a document's meta structure, and to retrieve it you must adjust your SQL++ query and run it again:
 
 1. Enter the following query into your query editor:  
 ```sqlpp  
 select META().id, crc.* from `course-record-collection` crc where crc.`credit-points` < 200  
 ```  
-The `META()` function call returns any property contained inside the document’s metadata, including the ID.
+The `META()` function call returns any property contained inside the document's metadata, including the ID.
 2. Click **Run** to retrieve course records and their IDs.  
 ```json  
 [  
@@ -183,7 +183,7 @@ public class ArtSchoolRetriever {
     }  
 }  
 ```
-3. In the `ArtSchoolRetriever.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster’s public connection string, and the username and password from your cluster access credentials.
+3. In the `ArtSchoolRetriever.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster's public connection string, and the username and password from your cluster access credentials.
 4. Open a terminal window and navigate to your `student` directory.
 5. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 6. Run the following command to retrieve all course records:  
@@ -237,7 +237,7 @@ public class ArtSchoolRetrieverParameters {
     }  
 }  
 ```
-3. In the `ArtSchoolRetrieverParameters.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster’s public connection string, and the username and password from your cluster access credentials.
+3. In the `ArtSchoolRetrieverParameters.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster's public connection string, and the username and password from your cluster access credentials.
 4. Open a terminal window and navigate to your `student` directory.
 5. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 6. Run the following command to retrieve all course records:  

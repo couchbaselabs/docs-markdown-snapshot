@@ -3,7 +3,7 @@ title: Couchbase Web Console
 description: The features of Couchbase Server can be managed by means of
   Couchbase Web Console.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-ui/manage-ui.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-ui/manage-ui.adoc[]
 ---
 
@@ -54,11 +54,11 @@ Detailed information on authenticating with Couchbase Server is provided in [Aut
 
 ## [](#understanding-the-dashboard)Understanding the Dashboard
 
-On the user’s successful login, the console displays the **Dashboard**. If this is the user’s first-time access, the appearance is as follows:
+On the user's successful login, the console displays the **Dashboard**. If this is the user's first-time access, the appearance is as follows:
 
 ![dashboardInitial](../_images/manage-ui/dashboardInitial.png) 
 
-The display thus consists of a **banner** with interactive controls; a **main panel**, which allows display of data and configuration fields; a **left-hand navigation bar**, which allows the main panel’s content to be determined; and a **lower panel**, which displays current status on the cluster. These are described below.
+The display thus consists of a **banner** with interactive controls; a **main panel**, which allows display of data and configuration fields; a **left-hand navigation bar**, which allows the main panel's content to be determined; and a **lower panel**, which displays current status on the cluster. These are described below.
 
 ### [](#console-banner)Banner
 
@@ -116,7 +116,7 @@ Note that red notifications provide a red, interactive `X`, which must be left-c
 
 Couchbase Web Console allows users to access features by left-clicking on _tabs_. Tabs are located:
 
-* _In the left-hand navigation bar_. Whenever a tab is left-clicked on, the appearance of the console’s _main panel_ changes, to display content for the selected feature.
+* _In the left-hand navigation bar_. Whenever a tab is left-clicked on, the appearance of the console's _main panel_ changes, to display content for the selected feature.
 * _In the upper, horizontal navigation bar_. This appears, for _some_ features, immediately above the main panel. Whenever a tab is left-clicked on, the appearance of the main panel changes, to display alternative content for the feature selected from the left-hand navigation bar.
 
 The remaining sections on this page describe in turn the features accessed by left-clicking on the tabs provided.
@@ -139,7 +139,7 @@ The **Servers** screen provides information on every node in the cluster. In thi
 For conceptual information on services, see [Services](../../learn/services-and-indexes/services/services.md).
 * **CPU**, **RAM**, **swap**, **disk used**. Information on resource-consumption, on the specified node.
 * **items**. The active and replica data items currently residing on the node. For information on intra-cluster replication, see [Intra-Cluster Replication](../../learn/clusters-and-availability/intra-cluster-replication.md).
-* **Statistics**Left-click on this interactive tab, to display interactive statistics-charts for the bucket, on the console’s **Dashboard**. Note that statistics are only available when at least one bucket has been installed.
+* **Statistics**Left-click on this interactive tab, to display interactive statistics-charts for the bucket, on the console's **Dashboard**. Note that statistics are only available when at least one bucket has been installed.
 
 Above the server-information row, two additional controls are provided:
 
@@ -179,7 +179,7 @@ The **Buckets** screen displays each bucket on its own row, with supporting info
 * **name**. The name of the bucket.
 * **items**. The number of data items (typically referred to as _documents_) within the bucket.
 * **resident**. The percentage of the items resident on the current node.
-* **ops/sec**. The number of operations per second being performed on the bucket’s data.
+* **ops/sec**. The number of operations per second being performed on the bucket's data.
 * **RAM used/quota**. The amount of memory currently being used by the bucket, against its total allocated quota for this node.
 * **disk used**. The amount of disk used by the bucket, on this node.
 

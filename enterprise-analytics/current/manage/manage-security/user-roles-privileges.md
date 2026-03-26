@@ -3,7 +3,7 @@ title: User Roles and Privileges
 description: Learn how to manage user access through Enterprise Analytics'
   role-based security system with predefined roles and granular privileges.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/user-roles-privileges.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:manage:manage-security/user-roles-privileges.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:enterprise-analytics:manage:manage-security/user-roles-privileges.ado
 
 > Learn how to manage user access through Enterprise Analytics' role-based security system with predefined roles and granular privileges. 
 
-Enterprise Analytics uses Role-Based Access Control (RBAC) to secure your data and operations. Use predefined roles for quick setup or assign specific privileges to create custom access patterns that match your organization’s security requirements.
+Enterprise Analytics uses Role-Based Access Control (RBAC) to secure your data and operations. Use predefined roles for quick setup or assign specific privileges to create custom access patterns that match your organization's security requirements.
 
 Enterprise Analytics provides predefined roles and privileges to manage user access control effectively.
 
@@ -74,7 +74,7 @@ __Table 2\. Non-Administrative Roles__
 
 ## [](#users-function)Users Function
 
-The `users()` function is a SQL++ built-in function that returns a list the cluster’s current users.
+The `users()` function is a SQL++ built-in function that returns a list the cluster's current users.
 
 ### [](#example)Example:
 

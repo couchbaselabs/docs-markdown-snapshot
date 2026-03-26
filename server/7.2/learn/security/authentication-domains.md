@@ -4,7 +4,7 @@ description: "To access Couchbase Server, users must be authenticated: this can
   occur in either the <em>local</em> or the <em>external</em> authentication
   domain."
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/security/authentication-domains.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:security/authentication-domains.adoc[]
 ---
 
@@ -24,11 +24,11 @@ Couchbase Server authenticates each user by means of one of two _authentication 
   * The _Full Administrator_ for Couchbase Server.
   * _Locally Defined Users_, which are explicitly created by a Couchbase Server administrator; and each feature a username and password unique within the Local domain.
   * _Internal Components_ within Couchbase Server that support core functionality (for example, indexing, searching, and replicating), and run with full administrative privileges.
-  * _Generated Users_, which are created by Couchbase Server as part of the upgrade process from pre-5.0 to 5.0 and post-5.0 versions; each in correspondence with a legacy bucket. Each Generated User is assigned a _username_ that is identical to the bucket-name; and either a _password_ that is identical to the bucket’s pre-5.0 password, or _no password_, if the bucket did not feature a password. Generated Users are created to ensure that legacy applications can continue to access legacy buckets after upgrade to 5.0 or post-5.0, with the same username-password combination being used for authentication.
+  * _Generated Users_, which are created by Couchbase Server as part of the upgrade process from pre-5.0 to 5.0 and post-5.0 versions; each in correspondence with a legacy bucket. Each Generated User is assigned a _username_ that is identical to the bucket-name; and either a _password_ that is identical to the bucket's pre-5.0 password, or _no password_, if the bucket did not feature a password. Generated Users are created to ensure that legacy applications can continue to access legacy buckets after upgrade to 5.0 or post-5.0, with the same username-password combination being used for authentication.
 * _External_: Contains either or both of the following:
 
   * Users that are explicitly registered on Couchbase Server as _external_; as supported either by _LDAP_ or _PAM_. Usernames and passwords are defined and stored remotely; with the usernames also stored on Couchbase Server. Note that external usernames do not clash with local usernames.
-  * Users that are not defined or registered on Couchbase Server in any way, and are defined entirely on LDAP. In this case, _Native LDAP Support_ must have been used to configure Couchbase Server’s access to LDAP, with _LDAP Group Support_ enabled. If one or more of the user’s LDAP Groups has been _mapped_ to a corresponding Couchbase-Server user-group, the user can be authenticated on the LDAP server, and then be granted the roles assigned to each of the user-groups to which a mapping has been made.
+  * Users that are not defined or registered on Couchbase Server in any way, and are defined entirely on LDAP. In this case, _Native LDAP Support_ must have been used to configure Couchbase Server's access to LDAP, with _LDAP Group Support_ enabled. If one or more of the user's LDAP Groups has been _mapped_ to a corresponding Couchbase-Server user-group, the user can be authenticated on the LDAP server, and then be granted the roles assigned to each of the user-groups to which a mapping has been made.
 
 When a user attempts to authenticate, Couchbase Server always looks up their credentials in the same order: which is _Local_ first, and _External_ second.
 
@@ -59,7 +59,7 @@ Couchbase Server allows Native LDAP to be configured by means of the [UI](../../
 
 ### [](#introduction-to-ldap-groups)LDAP Groups
 
-LDAP allows users to be members of _LDAP Groups_. When a user authenticates with LDAP, a list of the user’s LDAP groups is returned to Couchbase Server. If an LDAP group has previously been _mapped_ to a Couchbase-Server group, the user inherits the roles assigned to the Couchbase-Server group. Note that LDAP Groups thus allow users _not_ registered on Couchbase Server — even as _external_ — to be authorized.
+LDAP allows users to be members of _LDAP Groups_. When a user authenticates with LDAP, a list of the user's LDAP groups is returned to Couchbase Server. If an LDAP group has previously been _mapped_ to a Couchbase-Server group, the user inherits the roles assigned to the Couchbase-Server group. Note that LDAP Groups thus allow users _not_ registered on Couchbase Server — even as _external_ — to be authorized.
 
 ### [](#native-ldap-auth-sequence)Native LDAP Authentication and Authorization Sequence
 
@@ -73,8 +73,8 @@ If authentication has succeeded, the authentication-process is thereby concluded
 
 1. Couchbase Server checks whether an _external_ user, with the specified username, has previously been added to Couchbase Server. If such an external user is located, Couchbase Server determines which roles have been assigned to the user: first, it checks for roles that have been _directly_ assigned to the user; and secondly, it checks for roles assigned to the user by means of _group membership_. (For information on granting roles to users directly and by means of groups, see [Manage Users, Groups, and Roles](../../manage/manage-security/manage-users-and-roles.md).) The user is granted the privileges that correspond to each of their assigned roles.
 2. If _LDAP Group Support_ has been enabled, Couchbase Server again contacts the LDAP server: this time, in order to retrieve a list of the LDAP groups of which the user is a member. Note that this step is performed irrespective of whether the user has been determined to be an _external_ user on Couchbase Server. See [Group Authorization Enablement](../../manage/manage-security/configure-ldap.md#group-authorization-enablement), for detailed information on configuring LDAP Group Support.
-3. Couchbase Server determines whether one or more of the user’s LDAP groups have been _mapped_ to existing Couchbase-Server user-groups. Wherever a mapping exists, the user is granted (in addition to whatever privileges they may have already been granted as an _external_ user) the privileges that correspond to all roles assigned to the Couchbase-Server user-group. (For information on mapping LDAP groups to Couchbase-Server user-groups, see [Map LDAP Groups to Couchbase-Server Roles](../../manage/manage-security/configure-ldap.md#map-ldap-groups-to-couchbase-server-roles).)  
-If any granted privilege supports the user’s intended action, the action is permitted; otherwise, the action is prohibited.
+3. Couchbase Server determines whether one or more of the user's LDAP groups have been _mapped_ to existing Couchbase-Server user-groups. Wherever a mapping exists, the user is granted (in addition to whatever privileges they may have already been granted as an _external_ user) the privileges that correspond to all roles assigned to the Couchbase-Server user-group. (For information on mapping LDAP groups to Couchbase-Server user-groups, see [Map LDAP Groups to Couchbase-Server Roles](../../manage/manage-security/configure-ldap.md#map-ldap-groups-to-couchbase-server-roles).)  
+If any granted privilege supports the user's intended action, the action is permitted; otherwise, the action is prohibited.
 
 For detailed, step-by-step accounts of how to configure these procedures, see [Configure LDAP](../../manage/manage-security/configure-ldap.md).
 
@@ -82,7 +82,7 @@ For detailed, step-by-step accounts of how to configure these procedures, see [C
 
 LDAP provides a convenient way of managing authentication and authorization for human users. However, LDAP may be less appropriate for the authentication and authorization of _application identities_. This is because:
 
-* Couchbase Server must access the LDAP server for initial authentication; thereby adding a potentially undesirable latency to the application’s establishment of a full connection with Couchbase Server.
+* Couchbase Server must access the LDAP server for initial authentication; thereby adding a potentially undesirable latency to the application's establishment of a full connection with Couchbase Server.
 * If the LDAP server is unavailable, the application cannot be authenticated or authorized. In such circumstances, Couchbase Server, even though it may itself still be available, cannot grant data-access to the application.
 
 Therefore, to avoid both latency and risk of unavailability, applications should authenticate and authorize with Couchbase Server _locally_.
@@ -101,7 +101,7 @@ For details on configuring `saslauthd` to support external authentication by LDA
 
 ### [](#introduction-to-pam-based-authentication)saslauthd and PAM
 
-_Pluggable Authentication Modules_ (PAM) provide an authentication framework that allows multiple, low-level authentication schemes to be used by a single API. The _Enterprise Edition_ of Couchbase Server, running on Linux, supports administrator-authentication through PAM’s _Linux password-module_.
+_Pluggable Authentication Modules_ (PAM) provide an authentication framework that allows multiple, low-level authentication schemes to be used by a single API. The _Enterprise Edition_ of Couchbase Server, running on Linux, supports administrator-authentication through PAM's _Linux password-module_.
 
 Used with the _Enterprise Edition_ of Couchbase Server, the PAM _Linux password-module_ provides:
 

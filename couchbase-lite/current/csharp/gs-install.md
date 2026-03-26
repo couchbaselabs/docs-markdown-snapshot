@@ -2,7 +2,7 @@
 title: Installing Couchbase Lite on .Net
 description: How to install Couchbase Lite on .Net
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/gs-install.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:csharp:gs-install.adoc[]
 ---
 
@@ -30,7 +30,7 @@ For experienced developers, this is all you need to add _Couchbase Lite for C#.N
 > [!IMPORTANT]
 > To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
 
-That’s it!  
+That's it!  
 You should be ready to build you app using this version. The rest of this content contains more detail, for those who want to know more about the install or who encountered issues
 
 ## [](#install-methods)Install Methods

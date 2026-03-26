@@ -3,7 +3,7 @@ title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase
   Lite on Android
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/android/pages/gs-build.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite:android:gs-build.adoc[]
 ---
 
@@ -28,9 +28,9 @@ Quick Steps
 2. Build it
 3. Run it
 4. Push the "Run it!" Button
-5. That’s it.
+5. That's it.
 
-If you had problems, or just want more information on the app, there’s more below.
+If you had problems, or just want more information on the app, there's more below.
 
 ![getstarted output ktx](../_images/getstarted-output-ktx.png) 
 

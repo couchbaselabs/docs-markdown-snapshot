@@ -2,7 +2,7 @@
 title: Key-Value Operations
 description: How to perform CRUD key-value operations in Couchbase.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/kv-operations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:guides:kv-operations.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.2@server:guides:kv-operations.adoc[]
 
 ## [](#introduction)Introduction
 
-Every item in a database goes through the basic _CRUD_ cycle, which is typical of an application’s use of data. CRUD stands for create, read, update, and delete:
+Every item in a database goes through the basic _CRUD_ cycle, which is typical of an application's use of data. CRUD stands for create, read, update, and delete:
 
 * **C**reate: when data is first inserted into the cluster
 * **R**ead: when an application retrieves the data

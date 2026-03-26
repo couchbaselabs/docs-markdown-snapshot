@@ -1,7 +1,7 @@
 ---
 title: Facets
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-search-response-facets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-search-response-facets.adoc[]
 ---
 
@@ -43,21 +43,21 @@ It would not make sense to use it on a unique field like an ID.
 * **Field**: The field over which you want to gather the facet information.
 * **Size**: The number of top categories per partition to be considered for the facet results.  
 For example, size - 3 ⇒ facets results returns the top 3 categories across all partitions and merges them as the final result.  
-Varying size value varies the count value of each facet and the “others” value as well. This is due to the fact that when the size is varied, some of the categories fall out of the top “n” and into the “others” category.  
+Varying size value varies the count value of each facet and the "others" value as well. This is due to the fact that when the size is varied, some of the categories fall out of the top "n" and into the "others" category.  
 > [!NOTE]  
 > It is recommended to keep the size reasonably large, close to the number of unique terms to get consistent results.
 * **Numeric Range Facet**: A numeric range facet works by the user defining their own buckets (numeric ranges).  
 The facet then counts how many of the matching documents fall into a particular bucket for a particular field.  
-Along with the two fields from term facet, “numeric\_ranges” field has to include all the numeric ranges for the faceted field.  
-“Numeric\_ranges” could possibly be an array of ranges and each entry of it must specify either min, max or both for the range.
+Along with the two fields from term facet, "numeric\_ranges" field has to include all the numeric ranges for the faceted field.  
+"Numeric\_ranges" could possibly be an array of ranges and each entry of it must specify either min, max or both for the range.
 
   * **Name**: Name for the facet.
   * **Min**: The lower bound value of this range.
   * **Max**: The upper bound value of this range.
 * **Date Range Facet**: The Date Range facet is same as numeric facet, but on dates instead of numbers. Full text search and Bleve expect dates to be in the format specified by [RFC-3339](https://www.ietf.org/rfc/rfc3339.txt), which is a specific profile of ISO-8601 that is more restrictive.  
-Along with the two fields from term facet, “date\_ranges” field has to include all the numeric ranges for the faceted field.  
-The facet ranges go under a field named “date\_ranges”.  
-“date\_ranges” could possibly be an array of ranges and each entry of it must specify either start, end or both for the range.
+Along with the two fields from term facet, "date\_ranges" field has to include all the numeric ranges for the faceted field.  
+The facet ranges go under a field named "date\_ranges".  
+"date\_ranges" could possibly be an array of ranges and each entry of it must specify either start, end or both for the range.
 
   * **Name**: Name for the facet.
   * **Start**: Start date for this range.
@@ -174,7 +174,7 @@ facets": {
 
 ### [](#date-range-facet)Date Range Facet
 
-Computes facet on the ‘updated’ field that has 2 values old and new
+Computes facet on the 'updated' field that has 2 values old and new
 
 ```consle
 curl -XPOST -H "Content-Type: application/json" -u username:password http://<node>:8094/api/index/bix/query -d '{

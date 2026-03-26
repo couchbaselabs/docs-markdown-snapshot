@@ -2,7 +2,7 @@
 title: Running Queries
 description: How to run queries in Couchbase Analytics.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/run-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:analytics:run-query.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:server:analytics:run-query.adoc[]
 
 You can run queries using the Analytics Workbench, the command line query tool `cbq`, or directly through the REST API. You can also run Analytics queries using a software development kit (SDK), or via the ODBC or JDBC drivers. For the examples, we assume that:
 
-* You’re running a Couchbase node with the Analytics service on localhost — the DNS name in the URL could be different in a Docker or a real cluster setup.
+* You're running a Couchbase node with the Analytics service on localhost — the DNS name in the URL could be different in a Docker or a real cluster setup.
 * You authenticate as a user with the "Full Administrator" role with the user name `Administrator` and the password `password` — of course you should use different credentials for your installation.
 
 ## [](#Using%5Fanalytics%5Fworkbench)Using the Analytics Workbench
@@ -47,7 +47,7 @@ The _query context_ drop-down menu at the top right of the Query Editor enables 
 
 ![The query context drop-down menu](_images/workbench-context-menu.png) 
 
-If you have set the query context, you don’t need to enter the Analytics scope name when you refer to a database entity in the Query Editor; you only need to enter the name of the Analytics collection. The collection is assumed to be within the scope specified by the query context. Of course, you can still explicitly enter the full scope and collection name of a database entity if required. For more details, refer to [Resolving Database Entities](appendix%5F3%5Fresolution.md#Resolving%5Fdatabase%5Fentities).
+If you have set the query context, you don't need to enter the Analytics scope name when you refer to a database entity in the Query Editor; you only need to enter the name of the Analytics collection. The collection is assumed to be within the scope specified by the query context. Of course, you can still explicitly enter the full scope and collection name of a database entity if required. For more details, refer to [Resolving Database Entities](appendix%5F3%5Fresolution.md#Resolving%5Fdatabase%5Fentities).
 
 ## [](#Using%5Fcommand%5Fline)Using the Command Line Query Tool
 
@@ -112,7 +112,7 @@ The request returns:
     }
 }
 
-again including the envelope that we’ve seen in the example above.
+again including the envelope that we've seen in the example above.
 
 ## [](#Using%5Fthe%5FSDKs)Using the SDKs, ODBC, or JDBC
 

@@ -4,7 +4,7 @@ description: XDCR filtering expressions allow a document to be included in or
   excluded from a filtered replication, based on the document's fields and
   values.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/xdcr-reference/pages/xdcr-filtering-expressions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:xdcr-reference:xdcr-filtering-expressions.adoc[]
 ---
 
@@ -13,14 +13,14 @@ link: xref:7.6@server:xdcr-reference:xdcr-filtering-expressions.adoc[]
 
 # XDCR Filtering Expressions
 
-> XDCR filtering expressions allow a document to be included in or excluded from a filtered replication, based on the document’s fields and values. 
+> XDCR filtering expressions allow a document to be included in or excluded from a filtered replication, based on the document's fields and values. 
 
 ## [](#understanding-filtering-expressions)Understanding Filtering Expressions
 
 XDCR Advanced Filtering _expressions_, applied to the documents within a specified source bucket, allow case-sensitive matches to be made on:
 
-* _id_ and _xattrs_ values, within the document’s _metadata_.
-* Field-names and values, within the document’s _data_, nested to any degree.
+* _id_ and _xattrs_ values, within the document's _metadata_.
+* Field-names and values, within the document's _data_, nested to any degree.
 
 Every document on which a match is successfully made is included in the filtered replication. Other documents are _not_ included.
 
@@ -60,7 +60,7 @@ If `travel-sample.inventory.airline` is used as the source collection, every doc
 
 ### [](#mata-data-access)Metadata Access
 
-Each document contains _metadata_, as well as _data_. Within the metadata, a document’s _id_ and _extended attributes_ can be accessed by means of the reserved word `META`, used as part of the the pattern-matching _expression_.
+Each document contains _metadata_, as well as _data_. Within the metadata, a document's _id_ and _extended attributes_ can be accessed by means of the reserved word `META`, used as part of the the pattern-matching _expression_.
 
 For example, the following expression seeks a match on any document the value of whose metadata _id_ field contains the substring `"airline_10"`:
 
@@ -91,7 +91,7 @@ _Extended Attributes_ are optionally used to define application-specific metadat
   }
 ```
 
-The extended attribute’s value could then be filtered and matched with the following expression:
+The extended attribute's value could then be filtered and matched with the following expression:
 
 ```sqlpp
 REGEXP_CONTAINS(META().xattrs.color, "blue")

@@ -2,7 +2,7 @@
 title: SDK Release Notes
 description: Release notes for the Couchbase PHP Client.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@php-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -697,7 +697,7 @@ Fixes
 New features and enhancements
 
 * [CXXCBC-456](https://issues.couchbase.com/browse/CXXCBC-456): Updated configuration logic when 0x0d (`EConfigOnly`) status code is received to have the SDK request new configuration and send current operation to retry orchestrator ([#523](https://github.com/couchbaselabs/couchbase-cxx-client/pull/523)).
-* [CXXCBC-191](https://issues.couchbase.com/browse/CXXCBC-191): Index Key Encoding ([#519](https://github.com/couchbaselabs/couchbase-cxx-client/pull/519)) — in line with the [rfc](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0054-sdk3-management-apis.md), the `fields` paramaeter is now remamed to keys in the Public API’s `create_index()`, and each index key provided to `create_index()` is encoded by surrounding them with backticks.
+* [CXXCBC-191](https://issues.couchbase.com/browse/CXXCBC-191): Index Key Encoding ([#519](https://github.com/couchbaselabs/couchbase-cxx-client/pull/519)) — in line with the [rfc](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0054-sdk3-management-apis.md), the `fields` paramaeter is now remamed to keys in the Public API's `create_index()`, and each index key provided to `create_index()` is encoded by surrounding them with backticks.
 * Added `full_set` option to view query options ([#517](https://github.com/couchbaselabs/couchbase-cxx-client/pull/517)).
 
 Fixes
@@ -919,8 +919,8 @@ API documentation: <https://docs.couchbase.com/sdk-api/couchbase-php-client-4.1.
 
 * [PCBC-890](https://issues.couchbase.com/browse/PCBC-890): Scope must implement ScopeInterface ([#57](https://github.com/couchbase/couchbase-php-client/pull/57))
 * [PCBC-899](https://issues.couchbase.com/browse/PCBC-899): Ensure the connection will be closed on error ([#70](https://github.com/couchbase/couchbase-php-client/pull/70))
-* [PCBC-900](https://issues.couchbase.com/browse/PCBC-900): Don’t set "function" property on exceptions. ([#74](https://github.com/couchbase/couchbase-php-client/pull/74))
-* [PCBC-905](https://issues.couchbase.com/browse/PCBC-905): Don’t dereference empty optional if option is not set ([#75](https://github.com/couchbase/couchbase-php-client/pull/75))
+* [PCBC-900](https://issues.couchbase.com/browse/PCBC-900): Don't set "function" property on exceptions. ([#74](https://github.com/couchbase/couchbase-php-client/pull/74))
+* [PCBC-905](https://issues.couchbase.com/browse/PCBC-905): Don't dereference empty optional if option is not set ([#75](https://github.com/couchbase/couchbase-php-client/pull/75))
 * [PCBC-907](https://issues.couchbase.com/browse/PCBC-907): Assign meta to view query result ([#79](https://github.com/couchbase/couchbase-php-client/pull/79))
 * Fix missing header for GCC 13 ([#63](https://github.com/couchbase/couchbase-php-client/pull/63))
 
@@ -943,7 +943,7 @@ API documentation: <https://docs.couchbase.com/sdk-api/couchbase-php-client-4.1.
   * [CXXCBC-293](https://issues.couchbase.com/browse/CXXCBC-293): Performance improvements:
 
     * Speed up UUID serialization to string ([#346](https://github.com/couchbaselabs/couchbase-cxx-client/pull/346))
-    * Don’t allow to copy `mcbp_message` objects ([#345](https://github.com/couchbaselabs/couchbase-cxx-client/pull/345))
+    * Don't allow to copy `mcbp_message` objects ([#345](https://github.com/couchbaselabs/couchbase-cxx-client/pull/345))
     * Avoid extra allocation and initialization ([#344](https://github.com/couchbaselabs/couchbase-cxx-client/pull/344))
 * Build system fixes:
 

@@ -2,7 +2,7 @@
 title: CREATE USER
 description: The CREATE USER statement enables you to create a user.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/createuser.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/createuser.adoc[]
 ---
 
@@ -42,8 +42,8 @@ create-user ::= 'CREATE' 'USER' ( 'IF' 'NOT' 'EXISTS' )? username 'PASSWORD' pas
 
 | username | (Required) The unique identifier for the new local user.                                          |
 | -------- | ------------------------------------------------------------------------------------------------- |
-| password | (Required) A quoted string containing the user’s password. It must be at least 6 characters long. |
-| name     | (Optional) A quoted string containing the user’s full name.                                       |
+| password | (Required) A quoted string containing the user's password. It must be at least 6 characters long. |
+| name     | (Optional) A quoted string containing the user's full name.                                       |
 | group    | (Optional) The group you want to assign the user to.                                              |
 
 > [!NOTE]

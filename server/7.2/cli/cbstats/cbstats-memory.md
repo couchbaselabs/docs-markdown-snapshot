@@ -2,7 +2,7 @@
 title: memory
 description: Gets memory-related statistics.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbstats/cbstats-memory.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cli:cbstats/cbstats-memory.adoc[]
 ---
 
@@ -25,8 +25,8 @@ This command returns a number of memory-related statistics, some of which are fo
 
 | Stat                     | Description                                                                                                                                                                                         |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| bytes                    | Engine’s total memory usage.                                                                                                                                                                        |
-| ep\_kv\_size             | Memory used to store item metadata, keys, and values, no matter what the vbucket’s state may be. If an item’s value is ejected, this statistic will be decremented by the size of the item’s value. |
+| bytes                    | Engine's total memory usage.                                                                                                                                                                        |
+| ep\_kv\_size             | Memory used to store item metadata, keys, and values, no matter what the vbucket's state may be. If an item's value is ejected, this statistic will be decremented by the size of the item's value. |
 | ep\_value\_size          | Memory used to store values for resident keys.                                                                                                                                                      |
 | ep\_overhead             | Extra memory used by transient data; such as persistence queue, replication queues, and checkpoints.                                                                                                |
 | ep\_mem\_used\_primary   | If this is a magma bucket, this statistic represents the memory usage of the bucket excluding magma. Otherwise, this statistic represents total memory used, in bytes.                              |

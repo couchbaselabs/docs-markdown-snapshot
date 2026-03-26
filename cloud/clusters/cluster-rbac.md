@@ -4,7 +4,7 @@ description: Cluster-level role-based access control (RBAC) defines cluster
   access permissions for programmatic access to your
   xref:clusters:databases.adoc[clusters].
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/cluster-rbac.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:cluster-rbac.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:cloud:clusters:cluster-rbac.adoc[]
 
 > Cluster-level role-based access control (RBAC) defines cluster access permissions for programmatic access to your [clusters](databases.md). 
 
-Cluster access credentials provide programmatic and application-level access to data on a cluster. These credentials are separate from [organization roles](../organizations/organization-user-roles.md) and [project roles](../projects/project-roles.md). Your Capella user account’s organization and project roles control your access to the Capella UI, while cluster access credentials control programmatic and application-level access to data.
+Cluster access credentials provide programmatic and application-level access to data on a cluster. These credentials are separate from [organization roles](../organizations/organization-user-roles.md) and [project roles](../projects/project-roles.md). Your Capella user account's organization and project roles control your access to the Capella UI, while cluster access credentials control programmatic and application-level access to data.
 
 Cluster access credentials are specific to a cluster and consist of a cluster access name, password, and a set of access levels or roles, depending on the chosen credential type.
 

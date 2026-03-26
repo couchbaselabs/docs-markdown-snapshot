@@ -3,7 +3,7 @@ title: "Couchbase Tutorial: A Student Record System"
 description: A short tutorial that will guide the developer in downloading and
   installing Couchbase, then creating a database to store student records.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/hello-world/pages/student-record-developer-tutorial.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@scala-sdk:hello-world:student-record-developer-tutorial.adoc[]
 ---
 
@@ -18,7 +18,7 @@ This tutorial introduces Couchbase and working with a document database, as well
 
 ## [](#introduction)Introduction
 
-Couchbase is a schema-less document database engine designed for high performance, scalability, and rapid development. During this tutorial, we’ll introduce you to some key concepts behind Couchbase and how they differ from traditional SQL database systems such as MySQL and Oracle. We’re going to examine the advantages of a schema-less engine by building a document database for storing student records.
+Couchbase is a schema-less document database engine designed for high performance, scalability, and rapid development. During this tutorial, we'll introduce you to some key concepts behind Couchbase and how they differ from traditional SQL database systems such as MySQL and Oracle. We're going to examine the advantages of a schema-less engine by building a document database for storing student records.
 
 ## [](#database-design)The Data Model
 
@@ -35,7 +35,7 @@ So what would this database look like under a relational compared to a document 
 
 Unresolved include directive in modules/hello-world/pages/student-record-developer-tutorial.adoc - include::partial$diagrams/student-record-erd.puml[]
 
-Nothing too dramatic: the database contains a list of students and a list of courses. Each student can enrol on any number of courses, and the record of each of the student’s enrollments is stored in a separate table called `enrollment`, which links to the student’s record and the courses they are enrolling on.
+Nothing too dramatic: the database contains a list of students and a list of courses. Each student can enrol on any number of courses, and the record of each of the student's enrollments is stored in a separate table called `enrollment`, which links to the student's record and the courses they are enrolling on.
 
 The `enrollment` table highlights one of the problems with the relational database model: each table is based on a fixed schema that can only support a single data object type. You cannot store, for example, the enrollment records in the same table as the student, even though it may more natural to do so; after all, an `enrollment` cannot exist without a `student`, so why not store them together?
 
@@ -45,7 +45,7 @@ The document model gives you the same decomposition advantages as the relational
 
 Unresolved include directive in modules/hello-world/pages/student-record-developer-tutorial.adoc - include::partial$diagrams/student-document-database-design.puml[]
 
-Here’s how the student record system might look as a document database:
+Here's how the student record system might look as a document database:
 
 Student Record
 
@@ -67,7 +67,7 @@ Student Record
 }
 ```
 
-The document is stored in JSON format, which allows for the storage of complex types such as arrays without decomposing them to a second table. JSON also allows the flexibility to change the structure of the document without having to rebuild schemas (as you would in a relational database system). A new field, let’s say to store email addresses, could be added to new documents without having to migrate existing data to a new schema. In this case, the list of `enrollment` records is stored with the student record. Each `enrollment` record holds a reference to the course it relates to.
+The document is stored in JSON format, which allows for the storage of complex types such as arrays without decomposing them to a second table. JSON also allows the flexibility to change the structure of the document without having to rebuild schemas (as you would in a relational database system). A new field, let's say to store email addresses, could be added to new documents without having to migrate existing data to a new schema. In this case, the list of `enrollment` records is stored with the student record. Each `enrollment` record holds a reference to the course it relates to.
 
 > [!TIP]
 > It would be a very bad idea to store the course record with each student:
@@ -99,13 +99,13 @@ Graphic Design Course Record
 
 Couchbase uses a document model which stores each database record as a JSON document. The document can contain both simple scalar types, and complex types such as nested records and arrays.
 
-Hilary’s enrollments are stored in the same document as her student details. As well as being a more natural way to store child information with its parent, this structure allows for all of Hilary’s details (enrollments included) in one search, without the need for complex table joins to retrieve the enrollment information.
+Hilary's enrollments are stored in the same document as her student details. As well as being a more natural way to store child information with its parent, this structure allows for all of Hilary's details (enrollments included) in one search, without the need for complex table joins to retrieve the enrollment information.
 
 ## [](#creating-your-database)Creating Your Database
 
-In the next part of the tutorial, you’re going to begin your exploration of Couchbase by signing up to Capella and deploying a free tier cluster. Capella is the simplest way of using Couchbase; should you wish to try a local Docker installation instead, you can adjust the connection steps in the tutorial below — but we strongly recommend Capella as the easiest way of getting started.
+In the next part of the tutorial, you're going to begin your exploration of Couchbase by signing up to Capella and deploying a free tier cluster. Capella is the simplest way of using Couchbase; should you wish to try a local Docker installation instead, you can adjust the connection steps in the tutorial below — but we strongly recommend Capella as the easiest way of getting started.
 
-In free tier, you’ll get a free cluster of three nodes, featuring the Data Service, Query Service, and Index Service — all that you need to follow along with this tutorial.
+In free tier, you'll get a free cluster of three nodes, featuring the Data Service, Query Service, and Index Service — all that you need to follow along with this tutorial.
 
 ### [](#capella-installation)Capella Installation
 
@@ -113,11 +113,11 @@ Sign up to of [the Couchbase Capella cloud service](https://www.couchbase.com/pr
 
 Make a note of the database endpoint, and any user names and passwords that you set up. You will use these to access your Capella database from the Scala SDK.
 
-The next thing to do is create the bucket where you’re going to store your documents. You will also learn other ways in which Couchbase allows you to logically partition your data.
+The next thing to do is create the bucket where you're going to store your documents. You will also learn other ways in which Couchbase allows you to logically partition your data.
 
 ### [](#so-what-is-a-bucket-exactly)So What is a Bucket Exactly?
 
-If you think in RDBMS terms, a Couchbase Bucket is analogous to a database: it’s the data store where you’re going to store and retrieve related information about the students.
+If you think in RDBMS terms, a Couchbase Bucket is analogous to a database: it's the data store where you're going to store and retrieve related information about the students.
 
 You can click on the **Dashboard** **Buckets** link to access the Buckets page, then click on **Add Bucket**.
 
@@ -129,17 +129,17 @@ Once you have entered the bucket name, press the **Add Bucket** button to return
 
 ### [](#scopes%5Fand%5Fcollections)Scopes and Collections
 
-In all but the simplest cases, it’s better to provide some kind of separation between documents of different types. Couchbase has a simple hierarchy model which allows for such separation:
+In all but the simplest cases, it's better to provide some kind of separation between documents of different types. Couchbase has a simple hierarchy model which allows for such separation:
 
 Unresolved include directive in modules/hello-world/pages/student-record-developer-tutorial.adoc - include::partial$diagrams/couchbase-hierarchy.puml[]
 
-You’re already familiar with clusters, nodes, and buckets. Inside a bucket you can also have any number of _scopes_ (up to a thousand), and inside a scope you can have any number of _collections_ (again, up to a thousand).
+You're already familiar with clusters, nodes, and buckets. Inside a bucket you can also have any number of _scopes_ (up to a thousand), and inside a scope you can have any number of _collections_ (again, up to a thousand).
 
 | **scopes**      | Acts as a parent to a collection. When you create a new bucket, Couchbase will provide you with a default scope called \_default. You can use the default scope to store                             |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **collections** | A collection can contain a set of documents. A default collection (\_default) is provided, but it is recommended that you create your own collection named to reflect the documents store inside it. |
 
-Rather than have our student records stored in the default collection, we’re going to add two collections: one will be used to store the student records, the other will be used to store the course details.
+Rather than have our student records stored in the default collection, we're going to add two collections: one will be used to store the student records, the other will be used to store the course details.
 
 Now looking again at the relational design of our student database:
 
@@ -149,16 +149,16 @@ We can see that our equivalent document-based system could do with a little deco
 
 Unresolved include directive in modules/hello-world/pages/student-record-developer-tutorial.adoc - include::partial$diagrams/student-document-database-design.puml[]
 
-So, inside our `student-bucket` we’ve set up a scope called `art-school-scope`. Perhaps we have a number of schools and we want to restrict access to the school based on the role of the user; using scopes is the ideal way to do it.
+So, inside our `student-bucket` we've set up a scope called `art-school-scope`. Perhaps we have a number of schools and we want to restrict access to the school based on the role of the user; using scopes is the ideal way to do it.
 
 Within the `scope` we set up two collections:
 
-| **student-record-collection** | Contains the student records, and within each student record we carry a list of all their enrollments. Again, this moves away from the standard relational decomposition since we’re actually storing the enrollments as part of the student’s record, instead of implementing it as a link table between the students and the courses. |
+| **student-record-collection** | Contains the student records, and within each student record we carry a list of all their enrollments. Again, this moves away from the standard relational decomposition since we're actually storing the enrollments as part of the student's record, instead of implementing it as a link table between the students and the courses. |
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **course-record-collection**  | The enrollment records will carry a link to the course record it applies to, so we can retrieve other details such as the full name of the course and the number of credit points the student receives for completing it.                                                                                                               |
 
 > [!NOTE]
-> Of course, it’s possible to just add the details of the course to the student’s enrollment records, but this may have downsides. Changing the credit points on the course, for example, would involve running through every student’s enrollments and changing the credit details on each one. This is why the document model and relational model are used in conjunction to get the best combination of robust design and performance.
+> Of course, it's possible to just add the details of the course to the student's enrollment records, but this may have downsides. Changing the credit points on the course, for example, would involve running through every student's enrollments and changing the credit details on each one. This is why the document model and relational model are used in conjunction to get the best combination of robust design and performance.
 
 Now that you understand the basics of scopes and collections, return to your administration screen so we can add them to your bucket.
 
@@ -168,7 +168,7 @@ Return to the `Buckets` screen and click the **Scopes & Collections** link.
 
 ![Examining the scopes and collections](click-scopes-and-collections.png) 
 
-Although the bucket is created with a default scope, for this example, you’re going to create your own. Click on the **Add Scope** link.
+Although the bucket is created with a default scope, for this example, you're going to create your own. Click on the **Add Scope** link.
 
 On the next dialog, create your `art-school-scope`.
 
@@ -178,7 +178,7 @@ Press **Save** to save the new scope and return to the bucket screen. The new sc
 
 ## [](#adding-the-collections)Adding the collections
 
-Next, we’re going to add two collections for the new scope. Click the **Add Collection** link for the\`art-school-scope'.
+Next, we're going to add two collections for the new scope. Click the **Add Collection** link for the\`art-school-scope'.
 
 ![Adding a new collection](add-collection-link.png) 
 
@@ -191,15 +191,15 @@ You should now have the `art-school-scope` containing your two collections.
 ![Screen showing new collections added](completed-art-school-scope.png) 
 
 > [!TIP]
-> We’re sticking with the Capella GUI for this stage of the tutorial, but management options for creating resources are available through the SDK, the command line, the REST API, or through Infrastructure-as-Code (IAC) with Terraform.
+> We're sticking with the Capella GUI for this stage of the tutorial, but management options for creating resources are available through the SDK, the command line, the REST API, or through Infrastructure-as-Code (IAC) with Terraform.
 
 ## [](#writing-your-first-app)Writing Your First App
 
-Now you have your cluster, bucket, scope, and collections set up and ready to be populated. Next, you’ll set up your system to write your first Couchbase application.
+Now you have your cluster, bucket, scope, and collections set up and ready to be populated. Next, you'll set up your system to write your first Couchbase application.
 
 ### [](#prerequisites)Prerequisites
 
-To keep things as light as possible, we’re not going to worry about building a web front end or REST service, just a few methods to read/write our documents to the database.
+To keep things as light as possible, we're not going to worry about building a web front end or REST service, just a few methods to read/write our documents to the database.
 
 You will need a few things installed on your machine before you begin:
 
@@ -211,7 +211,7 @@ You will need a few things installed on your machine before you begin:
 
 ### [](#installing-the-sdk)Installing the SDK
 
-More details of the installation process are in the [full installation guide](../project-docs/sdk-full-installation.md). In most cases, given the above prerequisites, it’s a simple matter of the following for your favorite build tool:
+More details of the installation process are in the [full installation guide](../project-docs/sdk-full-installation.md). In most cases, given the above prerequisites, it's a simple matter of the following for your favorite build tool:
 
 * Scala Build Tool (SBT)
 * Gradle
@@ -272,7 +272,7 @@ You can test the setup is correct by opening a terminal window and changing to t
 mvn install
 ```
 
-You’re now ready to write your first Couchbase application.
+You're now ready to write your first Couchbase application.
 
 ## [](#sdk-introduction)SDK Introduction
 
@@ -282,7 +282,7 @@ Working with any database SDK usually involves the following operations:
 2. Carry out CRUD (Create, Read, Update, Delete) operations.
 3. Disconnect from the database (important for resource cleanup).
 
-Fortunately, the Couchbase SDK follows the same pattern, so the first thing you’re going to do is write the code to connect to your document store.
+Fortunately, the Couchbase SDK follows the same pattern, so the first thing you're going to do is write the code to connect to your document store.
 
 ### [](#connecting-to-the-database)Connecting to the database
 
@@ -296,33 +296,33 @@ Add the following content to the `ConnectStudent.java` file:
 Unresolved directive in student-record-developer-tutorial.adoc - include::{java-sample-location}ConnectStudent.java[]
 ```
 
-If you’re familiar with the JDBC API then connecting to a Couchbase server is not that different:
+If you're familiar with the JDBC API then connecting to a Couchbase server is not that different:
 
 | **1** | A call to Cluster.connect creates a channel to the named server (localhost running on your local machine in this case), supplying your username and password to authenticate the connection.                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **2** | The retrieved cluster is used to retrieve the bucket set up in [install-couchbase-server.adoc](#install-couchbase-server.adoc).                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| **3** | {why-waitUntilReady} Once the function has finished, it sends a notification to its caller, which will then process the output of the call.Now this usually works very well in practice, but in our simple example there is a problem: after we make the call to cluster.bucket, the program will carry on without waiting for the bucket retrieval to be complete. This means we’re now trying to retrieve the scope from a bucket object that hasn’t been fully initialised.This is where the waitUntilReady call comes in. This will force the program to wait until the bucket object is fully prepared. |
+| **3** | {why-waitUntilReady} Once the function has finished, it sends a notification to its caller, which will then process the output of the call.Now this usually works very well in practice, but in our simple example there is a problem: after we make the call to cluster.bucket, the program will carry on without waiting for the bucket retrieval to be complete. This means we're now trying to retrieve the scope from a bucket object that hasn't been fully initialised.This is where the waitUntilReady call comes in. This will force the program to wait until the bucket object is fully prepared. |
 | **4** | Retrieves the art-school-scope from the bucket.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **5** | Retrieves the student collection from the scope.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **6** | The next line is just a check to make sure we have connected and retrieved the collection when the program is run. You can see the output by running it through maven:                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **7** | And as with all database systems, it’s good practise to disconnect from the Couchbase cluster once you’ve finished working with it.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **7** | And as with all database systems, it's good practise to disconnect from the Couchbase cluster once you've finished working with it.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 ```sh
 mvn exec:java -Dexec.mainClass="ConnectStudent" -Dexec.cleanupDaemonThreads=false
 ```
 
-Somewhere in the output, you’ll find the line containing the name of the collection you’ve successfully retrieved:
+Somewhere in the output, you'll find the line containing the name of the collection you've successfully retrieved:
 
 ![Console showing successful connection to server](connect-to-cluster-console-output.png) 
 
 > [!TIP]
 > As an experiment, try commenting out the `bucket.waitUntilReady` call, then run the program again. What happens?
 
-Okay, so you’ve connected to the cluster and retrieved your collection. Unfortunately, there’s nothing in there to see at the moment, so the next thing to do is create a few records.
+Okay, so you've connected to the cluster and retrieved your collection. Unfortunately, there's nothing in there to see at the moment, so the next thing to do is create a few records.
 
 ## [](#populating-the-student-collection)Populating the student collection
 
-Remember that Couchbase is a [document store](#couchbase-tutorial-student-records.adoc#database-design), not a relational database in the traditional sense. Rather than storing data in tables, you’re going to create a document in JSON and insert it into the `student-record-collection`. Here’s Hilary Smith’s student record (minus the enrollment details –- we’ll come to that later):
+Remember that Couchbase is a [document store](#couchbase-tutorial-student-records.adoc#database-design), not a relational database in the traditional sense. Rather than storing data in tables, you're going to create a document in JSON and insert it into the `student-record-collection`. Here's Hilary Smith's student record (minus the enrollment details –- we'll come to that later):
 
 ```json
 Unresolved include directive in modules/hello-world/pages/student-record-developer-tutorial.adoc - include::example$hilary-smith-basic.json[]
@@ -334,9 +334,9 @@ Start by creating the file `InsertStudent.java` in the `java` directory:
 Unresolved directive in student-record-developer-tutorial.adoc - include::{java-sample-location}InsertStudent.java[]
 ```
 
-| **1** | Up to this point, it’s pretty much the same as the ConnectStudent class: mainly the boilerplate code to connect to the cluster and access the collection.                                                                                                                                                                                                                                                                                                                                            |
+| **1** | Up to this point, it's pretty much the same as the ConnectStudent class: mainly the boilerplate code to connect to the cluster and access the collection.                                                                                                                                                                                                                                                                                                                                            |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | Since Couchbase is primarily a store for JSON documents, it makes sense to include a whole class of functionality for creating and manipulating data in the JSON format. In this case, use the JsonObject class to create and populate Hilary’s student record. JSON doesn’t have its own date type, and so Couchbase doesn’t have a native data type either. The recommended way of dealing with dates is to store them as [ISO-8601](https://en.wikipedia.org/wiki/ISO%5F8601)\-formatted strings. |
+| **2** | Since Couchbase is primarily a store for JSON documents, it makes sense to include a whole class of functionality for creating and manipulating data in the JSON format. In this case, use the JsonObject class to create and populate Hilary's student record. JSON doesn't have its own date type, and so Couchbase doesn't have a native data type either. The recommended way of dealing with dates is to store them as [ISO-8601](https://en.wikipedia.org/wiki/ISO%5F8601)\-formatted strings. |
 | **3** | The upsert function is used to insert or update documents in a collection. The first parameter is a unique identifier for the document (much like the primary key used in relational database systems). If upsert call finds a document with a matching identifier in the collection, then the document is updated. If there is no existing identifer, then a new record is created.                                                                                                                 |
 
 When you run the program:
@@ -345,7 +345,7 @@ When you run the program:
 mvn exec:java -Dexec.mainClass="InsertStudent" -Dexec.cleanupDaemonThreads=false
 ```
 
-nothing much happens. You can return to the Couchbase administrator’s console and examine the contents of the `student-record-collection`.
+nothing much happens. You can return to the Couchbase administrator's console and examine the contents of the `student-record-collection`.
 
 ![Student record showing in the web console](hilarys-record-in-admin-console.png) 
 
@@ -355,11 +355,11 @@ Before carrying on to the next section, change your program so you can add a stu
 
 ## [](#courses-collection)Courses Collection
 
-In the next section, you’re going to build another short program for populating the course collection.
+In the next section, you're going to build another short program for populating the course collection.
 
 ## [](#populating-the-course-details-collection)Populating the course details collection
 
-You can use the same technique to build a store for the courses. Here’s a quick reminder of the course document structure:
+You can use the same technique to build a store for the courses. Here's a quick reminder of the course document structure:
 
 * Art History
 * Graphic Design
@@ -377,17 +377,17 @@ Unresolved include directive in modules/hello-world/pages/student-record-develop
 Unresolved include directive in modules/hello-world/pages/student-record-developer-tutorial.adoc - include::example$fine-art-course.json[]
 ```
 
-The code should be familiar to you; there’s not much difference between writing to the course collection and writing to the student collection, you just have more records to deal with:
+The code should be familiar to you; there's not much difference between writing to the course collection and writing to the student collection, you just have more records to deal with:
 
 ```java
 Unresolved directive in student-record-developer-tutorial.adoc - include::{java-sample-location}InsertCourses.java[]
 ```
 
-| **1** | Note that you’re now writing to a different collection. |
+| **1** | Note that you're now writing to a different collection. |
 | ----- | ------------------------------------------------------- |
 
 > [!IMPORTANT]
-> Make sure that you’ve created the `course-collection` in the admin console before you attempt to run the program.
+> Make sure that you've created the `course-collection` in the admin console before you attempt to run the program.
 
 You can use maven to run the application:
 
@@ -401,19 +401,19 @@ Use the admin console to make sure the documents have been created in the correc
 
 ## [](#next-steps)Next steps
 
-So you’ve created a cluster, a bucket, a scope and two collections. You’ve also populated your collections with documents. Well, a database isn’t much use until we can retrieve information from it, which is what you’re going to take a look at in the next part.
+So you've created a cluster, a bucket, a scope and two collections. You've also populated your collections with documents. Well, a database isn't much use until we can retrieve information from it, which is what you're going to take a look at in the next part.
 
 # [](#using-the-query-editor)Using the Query Editor
 
 Return to the admin console, and click on the **Query** item on the left-hand menu.
 
-This will take you to the query workbench. The workbench has a few filter fields that’ll make it much easier to narrow down our search criteria.
+This will take you to the query workbench. The workbench has a few filter fields that'll make it much easier to narrow down our search criteria.
 
 ![The console query editor](set-query-filters.png) 
 
-Use the two dropdown items to select the `student-bucket` and the `art-school-scope`. This narrows the scope of the queries, meaning you don’t have to add the name of the bucket and the scope to your queries.
+Use the two dropdown items to select the `student-bucket` and the `art-school-scope`. This narrows the scope of the queries, meaning you don't have to add the name of the bucket and the scope to your queries.
 
-Okay, let’s try a simple query to retrieve all the course in our collection.
+Okay, let's try a simple query to retrieve all the course in our collection.
 
 Type the following query into the query editor field:
 
@@ -422,7 +422,7 @@ select crc.* from `course-record-collection` crc
 ```
 
 > [!NOTE]
-> SQL++ is very similar to standard SQL. Once you have mastered the document database model, you’ll find it very easy to adapt.
+> SQL++ is very similar to standard SQL. Once you have mastered the document database model, you'll find it very easy to adapt.
 
 ![Query to retrieve the course collection](attempt-first-query.png) 
 
@@ -442,7 +442,7 @@ You get an error message returned from the cluster:
 
 | **1** | The internal Couchbase code for the message.                                                                                                                                   |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **2** | A plain text description telling you what happened. In this case, the problem is that there no index defined on our bucket, so the search couldn’t locate any key information. |
+| **2** | A plain text description telling you what happened. In this case, the problem is that there no index defined on our bucket, so the search couldn't locate any key information. |
 | **3** | The JSON message also returns the original query.                                                                                                                              |
 
 ## [](#creating-an-index)Creating an index
@@ -511,13 +511,13 @@ which will bring back:
 
 ### [](#but-what-about-the-primary-id-field)But what about the primary id field?
 
-Good question. You may want to get hold of `id` field, which as you can see, isn’t returned with the document, even if we’re asking for all the fields in the call. The primary key exists as part of the document’s "meta" structure, which can be interrogated along with the rest of the document. Make the following small adjustment to the `SQL++` statement and run the query again:
+Good question. You may want to get hold of `id` field, which as you can see, isn't returned with the document, even if we're asking for all the fields in the call. The primary key exists as part of the document's "meta" structure, which can be interrogated along with the rest of the document. Make the following small adjustment to the `SQL++` statement and run the query again:
 
 ```sqlpp
 select META().id, crc.* from `course-record-collection` crc where crc.`credit-points` < 200
 ```
 
-The `META()` function call will return any property contained in the document’s metadata, including its id:
+The `META()` function call will return any property contained in the document's metadata, including its id:
 
 ```json
 [
@@ -543,7 +543,7 @@ You can find a full rundown of the SQL++ language here: [n1ql:n1ql-language-refe
 
 ## [](#using-the-sdk)Using the SDK
 
-Of course, you can also retrieve documents using the SDK. In this section, you’re going to use the same SQL++ queries as part of a small Java application. Let’s start with a basic record retrieval:
+Of course, you can also retrieve documents using the SDK. In this section, you're going to use the same SQL++ queries as part of a small Java application. Let's start with a basic record retrieval:
 
 ```java
 Unresolved directive in student-record-developer-tutorial.adoc - include::{java-sample-location}ArtSchoolRetriever.java[]
@@ -555,7 +555,7 @@ If you build and run this program:
 mvn exec:java -Dexec.mainClass="ArtSchoolRetriever" -Dexec.cleanupDaemonThreads=false
 ```
 
-Then you’ll get a list of the classes in the output.
+Then you'll get a list of the classes in the output.
 
 ![Terminal window showing course records retrieved with the Java SDK](retrieve-courses-cli.png) 
 
@@ -575,7 +575,7 @@ Unresolved directive in student-record-developer-tutorial.adoc - include::{java-
 
 | **1** | The SQL++ statement takes a parameters $creditPoints which will be substituted with a correctly typed value when the statement is called.                                                                                    |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | The value to substitute is provided in the QueryOptions given as the second parameter in the call. The value of the map entry is the actual parameter value (in this case, 200 which we’re using to test the credit-points). |
+| **2** | The value to substitute is provided in the QueryOptions given as the second parameter in the call. The value of the map entry is the actual parameter value (in this case, 200 which we're using to test the credit-points). |
 
 You can use `maven` to run the program:
 
@@ -585,19 +585,19 @@ mvn exec:java -Dexec.mainClass="ArtSchoolRetrieverParameters" -Dexec.cleanupDaem
 
 ## [](#next-steps-2)Next steps
 
-Now you can add and search for records, the next section will consolidate what you’ve learned so far by demonstrating how to amend existing records by adding enrollment details. So when you’re ready carry on to [java-tutorial/adding-course-enrollments.adoc](#java-tutorial/adding-course-enrollments.adoc).
+Now you can add and search for records, the next section will consolidate what you've learned so far by demonstrating how to amend existing records by adding enrollment details. So when you're ready carry on to [java-tutorial/adding-course-enrollments.adoc](#java-tutorial/adding-course-enrollments.adoc).
 
 ## [](#introduction-2)Introduction
 
-A quick recap: here’s the structure of our document store:
+A quick recap: here's the structure of our document store:
 
 Unresolved include directive in modules/hello-world/pages/student-record-developer-tutorial.adoc - include::partial$diagrams/student-document-database-design.puml[]
 
-At this point, you should have a student records for Hilary Smith and Ashley Jones, along with records for three courses. You’re now going to write a short program that will add enrollment details to the student records.
+At this point, you should have a student records for Hilary Smith and Ashley Jones, along with records for three courses. You're now going to write a short program that will add enrollment details to the student records.
 
-You’re going to create another program in the same working directory that will bring together all the concepts you’ve learned so far.
+You're going to create another program in the same working directory that will bring together all the concepts you've learned so far.
 
-At the end of the exercise, you should have changed Hilary’s student record to store the enrollment details in an array:
+At the end of the exercise, you should have changed Hilary's student record to store the enrollment details in an array:
 
 ```json
 {
@@ -617,23 +617,23 @@ At the end of the exercise, you should have changed Hilary’s student record to
 }
 ```
 
-So, let’s begin with the Java program that will change Hilary’s record.
+So, let's begin with the Java program that will change Hilary's record.
 
 ```java
 Unresolved directive in student-record-developer-tutorial.adoc - include::{java-sample-location}AddEnrollments.java[]
 ```
 
-| **1**  | As you’ll remember from our [first example](#java-tutorial/creating-the-students-collection.adoc#connecting-to-the-database), the application first has to connect to the Couchbase cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **1**  | As you'll remember from our [first example](#java-tutorial/creating-the-students-collection.adoc#connecting-to-the-database), the application first has to connect to the Couchbase cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2**  | Then it picks up the correct Bucket from the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | **3**  | Do you remember why we need this waitUntilReady function is needed when connecting to the server? Answer {why-waitUntilReady}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **4**  | Here again, we pick up the student collection from the art-school-scope; you’ll need it later to change Hilary’s record and write it back to the collection.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| **5**  | There are three method calls here: Retrieve Hilary’s student record. Retrieve the graphic design course record. Retrieve the art history course record. Each method uses a SQL++ call to retrieve a single record from its respective collection. This is just a demonstration, so there is no error checking to ensure that an item from the collection has been returned. In a live system, checks would have to be made to prevent possible errors while the program is running.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **6**  | Remember that Couchbase doesn’t have a native date type, so it’s common practice to store the dates as strings.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| **7**  | The enrollments inside the student record are stored as an array; since JSON is the native data format for Couchbase, it’s not surprising that each SDK has a host of functions for processing data in JSON. In this case, the call JsonArray.create() will create an empty list structure.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **8**  | Now JSON elements are added to the enrollments array. Looking back at the [data structure](#enrollments-structure) for enrollments, we need store just two items: the course that the enrollment relates to, and the date the student enrolled. enrollments.add(JsonObject.create().put("course-id", graphic\_design.getString("id"))     .put("date-enrolled", currentDate)); The course-id uses the id of the course record retrieved from the database. We could, of course, store the whole record in this field. Why _wouldn’t_ we want to do that? Answer This goes back to our relational model, and the idea of normalising the data model so that we don’t have repeating data items all over the place. Here, you’re just storing a reference to the course, not the course record itself. So if the course details change (such as the number of credit points assigned to it), then you don’t have to search through every single record that includes its own version. |
-| **9**  | The array of enrollments is built, so now you add them to Hilary’s record. This is where the document database model shines; there is no need to change a database schema and rebuild the database. Just add the data and you’re done.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| **10** | Finally, the changes need to be committed to the collection. For this, use the upsert function, which takes the key of the record you wish to insert or update and the record itself as parameters. If they key exists in the collection then the record is updated. If the key does not exist then it’s a fresh document, so the item is inserted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **4**  | Here again, we pick up the student collection from the art-school-scope; you'll need it later to change Hilary's record and write it back to the collection.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **5**  | There are three method calls here: Retrieve Hilary's student record. Retrieve the graphic design course record. Retrieve the art history course record. Each method uses a SQL++ call to retrieve a single record from its respective collection. This is just a demonstration, so there is no error checking to ensure that an item from the collection has been returned. In a live system, checks would have to be made to prevent possible errors while the program is running.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **6**  | Remember that Couchbase doesn't have a native date type, so it's common practice to store the dates as strings.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **7**  | The enrollments inside the student record are stored as an array; since JSON is the native data format for Couchbase, it's not surprising that each SDK has a host of functions for processing data in JSON. In this case, the call JsonArray.create() will create an empty list structure.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **8**  | Now JSON elements are added to the enrollments array. Looking back at the [data structure](#enrollments-structure) for enrollments, we need store just two items: the course that the enrollment relates to, and the date the student enrolled. enrollments.add(JsonObject.create().put("course-id", graphic\_design.getString("id"))     .put("date-enrolled", currentDate)); The course-id uses the id of the course record retrieved from the database. We could, of course, store the whole record in this field. Why _wouldn't_ we want to do that? Answer This goes back to our relational model, and the idea of normalising the data model so that we don't have repeating data items all over the place. Here, you're just storing a reference to the course, not the course record itself. So if the course details change (such as the number of credit points assigned to it), then you don't have to search through every single record that includes its own version. |
+| **9**  | The array of enrollments is built, so now you add them to Hilary's record. This is where the document database model shines; there is no need to change a database schema and rebuild the database. Just add the data and you're done.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **10** | Finally, the changes need to be committed to the collection. For this, use the upsert function, which takes the key of the record you wish to insert or update and the record itself as parameters. If they key exists in the collection then the record is updated. If the key does not exist then it's a fresh document, so the item is inserted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 As always, use maven to run the program.
 
@@ -645,4 +645,4 @@ And check your results in administrator console.
 
 ## [](#great-job)Great Job!
 
-You’ve reached the end of the beginners' tutorial. You can explore the documentation site to learn more about Couchbase.
+You've reached the end of the beginners' tutorial. You can explore the documentation site to learn more about Couchbase.

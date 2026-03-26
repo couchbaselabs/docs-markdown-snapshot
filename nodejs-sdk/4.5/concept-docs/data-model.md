@@ -3,7 +3,7 @@ title: Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/concept-docs/pages/data-model.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.5@nodejs-sdk:concept-docs:data-model.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:4.5@nodejs-sdk:concept-docs:data-model.adoc[]
 
 # Data Model
 
-> Couchbase’s use of JSON as a storage format allows powerful search and query over documents. Several data structures are supported by the SDK, including map, list, queue, and set. 
+> Couchbase's use of JSON as a storage format allows powerful search and query over documents. Several data structures are supported by the SDK, including map, list, queue, and set. 
 
-The power to search, query, and easily work with data in Couchbase, comes from the choice of JSON as a storage format. Non-JSON storage is supported — see the [Binary Storage Documentation](nonjson.md) — including UTF-8 strings, raw sequences of bytes, and language specific serializations, however, only JSON is supported by [Query](n1ql-query.md). In Couchbase, JSON’s key-value structure allows the storage of collection data structures such as lists, maps, sets and queues — _see [below](#data-structures)_. JSON’s tree-like structure allows operations against [specific paths in the Document](subdocument-operations.md), and efficient support for these data structures.
+The power to search, query, and easily work with data in Couchbase, comes from the choice of JSON as a storage format. Non-JSON storage is supported — see the [Binary Storage Documentation](nonjson.md) — including UTF-8 strings, raw sequences of bytes, and language specific serializations, however, only JSON is supported by [Query](n1ql-query.md). In Couchbase, JSON's key-value structure allows the storage of collection data structures such as lists, maps, sets and queues — _see [below](#data-structures)_. JSON's tree-like structure allows operations against [specific paths in the Document](subdocument-operations.md), and efficient support for these data structures.
 
 ## [](#data-structures)Data Structures
 

@@ -2,7 +2,7 @@
 title: setting-compaction
 description: Modifies compaction settings
 editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-setting-compaction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbcli/couchbase-cli-setting-compaction.adoc[]
 ---
 
@@ -169,13 +169,13 @@ Currently, only the following key types are supported: - RSA - DSA
 
 ## [](#examples)EXAMPLES
 
-If we want to set our view and database compaction percentage thresholds to 30% each, but also wanted to ensure that our fragmentation didn’t grow above 1GB we would run the following command
+If we want to set our view and database compaction percentage thresholds to 30% each, but also wanted to ensure that our fragmentation didn't grow above 1GB we would run the following command
 
 $ couchbase-cli setting-compaction -c 192.168.1.5 --username Administrator \
  --password password --compaction-view-size 1024 --compaction-db-size 1024 \
  --compaction-view-percentage 30 --compaction-db-percentage 30
 
-If we want to have the same settings as above, but we wanted compaction to only run at night so that we didn’t run the risk of compaction affecting normal application traffic we would run the following command. Note that in this example we will assume our night time period is midnight to 6AM. We will also enable compaction aborts so that we can ensure compaction is never running outside of this time window.
+If we want to have the same settings as above, but we wanted compaction to only run at night so that we didn't run the risk of compaction affecting normal application traffic we would run the following command. Note that in this example we will assume our night time period is midnight to 6AM. We will also enable compaction aborts so that we can ensure compaction is never running outside of this time window.
 
 $ couchbase-cli setting-compaction -c 192.168.1.5 --username Administrator \
  --password password --compaction-view-size 1024 --compaction-db-size 1024 \
@@ -183,14 +183,14 @@ $ couchbase-cli setting-compaction -c 192.168.1.5 --username Administrator \
  --compaction-period-from 00:00 --compaction-period-to 6:00 \
  --enable-compaction-abort 1
 
-If we don’t mind when compaction runs and we have the disk overhead to run both view and database compaction at the same time then we might set up compaction with the settings in the first example, but also enable parallel compaction. This can be done by running the command below.
+If we don't mind when compaction runs and we have the disk overhead to run both view and database compaction at the same time then we might set up compaction with the settings in the first example, but also enable parallel compaction. This can be done by running the command below.
 
 $ couchbase-cli setting-compaction -c 192.168.1.5 --username Administrator \
  --password password --compaction-view-size 1024 --compaction-db-size 1024 \
  --compaction-view-percentage 30 --compaction-db-percentage 30 \
  --enable-compaction-parallel
 
-If your application heavily uses expirations or you create and delete a lot of documents quickly then you might want to shorten your metadata purge interval in order to ensure that you don’t use too much disk space. If we want our compaction to run when the fragmentation is 30% or 1GB and we want to change the metadata purge interval to 2 days then we would run the following command.
+If your application heavily uses expirations or you create and delete a lot of documents quickly then you might want to shorten your metadata purge interval in order to ensure that you don't use too much disk space. If we want our compaction to run when the fragmentation is 30% or 1GB and we want to change the metadata purge interval to 2 days then we would run the following command.
 
 $ couchbase-cli setting-compaction -c 192.168.1.5 --username Administrator \
  --password password --compaction-view-size 1024 --compaction-db-size 1024 \
@@ -203,7 +203,7 @@ $ couchbase-cli setting-compaction -c 192.168.1.5 --username Administrator \
  --password password --gsi-compaction-mode append \
  --compaction-gsi-percentage 50
 
-If you want to change the GSI index compaction settings to use the circular compaction mode and want GSI compaction only to happen on Tuesdays and Thursdays between midnight and 3AM and don’t want GSI compaction running outside of those time windows even if the compaction started at a valid time specify the following command.
+If you want to change the GSI index compaction settings to use the circular compaction mode and want GSI compaction only to happen on Tuesdays and Thursdays between midnight and 3AM and don't want GSI compaction running outside of those time windows even if the compaction started at a valid time specify the following command.
 
 $ couchbase-cli setting-compaction -c 192.168.1.5 --username Administrator \
  --password password --gsi-compaction-mode circular \

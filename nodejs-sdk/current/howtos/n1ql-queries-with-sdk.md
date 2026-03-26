@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/n1ql-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:nodejs-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 
 ## [](#getting-started)Getting Started
 
-Our query service uses SQL++ (formerly N1QL), which will be fairly familiar to anyone who’s used any dialect of SQL. [Additional resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page.
+Our query service uses SQL++ (formerly N1QL), which will be fairly familiar to anyone who's used any dialect of SQL. [Additional resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page.
 
 Before you get started you may wish to check out the [SQL++ intro page](../../../server/current/n1ql/n1ql-language-reference/index.md), or just dive in with a query against our travel-sample data set. Also, building indexes is covered in more detail on the [Query concept page](../concept-docs/n1ql-query.md#index-building).
 

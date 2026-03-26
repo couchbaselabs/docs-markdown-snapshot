@@ -1,7 +1,7 @@
 ---
 title: Delete a Collection or Link
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/delete-entity.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sources:delete-entity.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:2.0@enterprise-analytics:sources:delete-entity.adoc[]
 
 You can delete any collection that you no longer need.
 
-1. For a remote collection, [disconnect](connect-link.md#stop-stream) the collection’s link to stop the data event stream.
+1. For a remote collection, [disconnect](connect-link.md#stop-stream) the collection's link to stop the data event stream.
 2. In the UI, point to the name of the collection and then choose **Delete**.
 
 You can also use an SQL++ for Enterprise Analytics statement to delete a collection. See [DROP Statements](../sqlpp/5%5Fddl%5Fdrop.md).

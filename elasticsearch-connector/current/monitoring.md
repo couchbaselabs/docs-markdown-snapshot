@@ -1,7 +1,7 @@
 ---
 title: Monitoring
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/monitoring.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:elasticsearch-connector::monitoring.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:elasticsearch-connector::monitoring.adoc[]
 
 # Monitoring
 
-> The connector exposes several performance metrics. Here’s a summary of the most important metrics and how to interpret them. 
+> The connector exposes several performance metrics. Here's a summary of the most important metrics and how to interpret them. 
 
 In its default configuration, the connector runs an embedded web server. Metrics are exposed in Dropwizard JSON format at `<http://localhost:31415/metrics?pretty>`.
 
@@ -106,4 +106,4 @@ Time spent waiting after a temporary indexing failure before the request is retr
 
 ## [](#undocumented-metrics)Undocumented Metrics
 
-The connector exposes several other metrics that are useful for troubleshooting. However, only the metrics described in this document are considered part of the connector’s public API. Undocumented metrics should be considered "uncommitted", meaning they may be modified or removed in a patch release without advance notice.
+The connector exposes several other metrics that are useful for troubleshooting. However, only the metrics described in this document are considered part of the connector's public API. Undocumented metrics should be considered "uncommitted", meaning they may be modified or removed in a patch release without advance notice.

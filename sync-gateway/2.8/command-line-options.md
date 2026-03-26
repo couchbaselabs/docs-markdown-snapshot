@@ -3,7 +3,7 @@ title: Using the Command Line
 description: Start a Sync Gateway instance using command line options and
   securely sync enterprise data from cloud to edge
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/command-line-options.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::command-line-options.adoc[]
 ---
 
@@ -61,7 +61,7 @@ You can check the latest position by navigating to the folder containing the Syn
 $ ./sync_gateway -help (1)
 ```
 
-| **1** | This command lists all Sync Gateway’s current command line arguments |
+| **1** | This command lists all Sync Gateway's current command line arguments |
 | ----- | -------------------------------------------------------------------- |
 
 ## [](#available-options)Available Options

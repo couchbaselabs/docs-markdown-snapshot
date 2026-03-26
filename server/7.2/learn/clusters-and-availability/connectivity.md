@@ -3,7 +3,7 @@ title: Connectivity
 description: Couchbase Server handles client-to-cluster, node-to-node, and
   cluster-to-cluster communications.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/connectivity.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:clusters-and-availability/connectivity.adoc[]
 ---
 
@@ -33,7 +33,7 @@ Client connectivity is established in three phases: _Authentication and Authoriz
 
 ## [](#managing-ip-address-families)Managing IP-Address Families
 
-Couchbase Server supports both the IPv4 and IPv6 address families. The address family can be established as part of a cluster’s initial configuration: see [Create a Cluster](../../manage/manage-nodes/create-cluster.md) and [Initialize a Node with the CLI](../../manage/manage-nodes/initialize-node.md#initialize-a-node-with-the-cli), for details on how to do this with the UI and CLI respectively.
+Couchbase Server supports both the IPv4 and IPv6 address families. The address family can be established as part of a cluster's initial configuration: see [Create a Cluster](../../manage/manage-nodes/create-cluster.md) and [Initialize a Node with the CLI](../../manage/manage-nodes/initialize-node.md#initialize-a-node-with-the-cli), for details on how to do this with the UI and CLI respectively.
 
 For information on using the CLI to change the address family for an existing cluster, see [Manage Address Families](../../manage/manage-nodes/manage-address-families.md).
 
@@ -53,7 +53,7 @@ iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 9000 -j REDIRECT --to-port 
 
 This command will create a redirection from the external port 9000 to the _query service_ running on port 8093.
 
-The assigning of alternate addresses and port numbers, which can be accomplished by means of the CLI and the REST API, may facilitate communication with external applications that are not permitted to contact a cluster’s nodes directly; but have access to a router or other networked entity that provides externally visible addresses on the nodes’ behalf. Note that an alternate address can be used to specify an XDCR _target cluster_: see [Create a Reference](../../manage/manage-xdcr/create-xdcr-reference.md).
+The assigning of alternate addresses and port numbers, which can be accomplished by means of the CLI and the REST API, may facilitate communication with external applications that are not permitted to contact a cluster's nodes directly; but have access to a router or other networked entity that provides externally visible addresses on the nodes' behalf. Note that an alternate address can be used to specify an XDCR _target cluster_: see [Create a Reference](../../manage/manage-xdcr/create-xdcr-reference.md).
 
 Two possible use cases are given below.
 
@@ -80,9 +80,9 @@ Applications' access to nodes can be _segregated_, by means of a _Dual Network_,
 The annotations to this diagram are as follows:
 
 1. A cluster can be accessed by its principal address, 10.0.0.100, or its alternate, 10.1.0.100\. Within the cluster are two nodes, each of which can be accessed internally by means of a primary or secondary IP address.
-2. The path to the cluster by which application-requests are routed may depend on whether the cluster’s principal or alternate address is used.
+2. The path to the cluster by which application-requests are routed may depend on whether the cluster's principal or alternate address is used.
 3. When in possession of both principal and alternate addresses, applications generally default to use of the principal; but may be able to override the default, and use the alternate. Here indeed, Application 2 uses the alternate.
-4. Within the cluster, node-access by external applications is managed according to the mappings for the cluster’s principal and alternate addresses. Here, the principal address is mapped to the nodes’ primary addresses, and the alternate address is mapped to the nodes’ secondary addresses.
+4. Within the cluster, node-access by external applications is managed according to the mappings for the cluster's principal and alternate addresses. Here, the principal address is mapped to the nodes' primary addresses, and the alternate address is mapped to the nodes' secondary addresses.
 
 ### [](#assigning-alternate-addresses)Assigning Alternate Addresses
 

@@ -2,7 +2,7 @@
 title: Add Course Enrollments
 description: Add enrollment information to the student records using the Couchbase SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/adding-course-enrollments.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:tutorials:java-tutorial/adding-course-enrollments.adoc[]
 ---
 
@@ -110,14 +110,14 @@ public class AddEnrollments {
 ```  
 > [!NOTE]  
 > Because this is a tutorial, you do not need to add an error check to make sure that your collection has returned an item. In a live application, error checks must be made to prevent errors and keep the application running.
-3. In the `AddEnrollments.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster’s public connection string, and the username and password from your cluster access credentials.
+3. In the `AddEnrollments.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster's public connection string, and the username and password from your cluster access credentials.
 4. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 5. Run the following command to insert the student record into the collection:  
 ```sh  
 mvn exec:java -Dexec.mainClass="AddEnrollments" -Dexec.cleanupDaemonThreads=false  
 ```
 6. From the Capella UI, go to your free tier operational cluster.
-7. Go to the `student-record-collection` and click the document ID to see the new information you just added to Hilary’s student record.
+7. Go to the `student-record-collection` and click the document ID to see the new information you just added to Hilary's student record.
 
 If you come across errors in your console, see [Troubleshooting the Developer Tutorial](tutorial-troubleshooting.md).
 

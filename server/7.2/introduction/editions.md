@@ -2,7 +2,7 @@
 title: Couchbase Server Editions
 description: "Couchbase Server is available in two editions: Enterprise and Community."
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/introduction/pages/editions.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:introduction:editions.adoc[]
 ---
 
@@ -21,7 +21,7 @@ The Enterprise Edition (EE) represents the latest, most stable, production-ready
 
 A subscription to the Enterprise Edition includes a commercial license, better availability capabilities, enhanced security features, advanced tooling, and higher performance and scale. It also includes technical support with service level commitments via our 24/7 support organization and hot fixes for releases.
 
-Refer to the [pricing](https://www.couchbase.com/pricing) page for details on Couchbase’s Enterprise Edition.
+Refer to the [pricing](https://www.couchbase.com/pricing) page for details on Couchbase's Enterprise Edition.
 
 ## [](#community-edition)Community Edition
 

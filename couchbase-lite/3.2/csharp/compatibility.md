@@ -2,7 +2,7 @@
 title: Compatibility
 description: Couchbase Lite framework and Sync Gateway compatibility
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/compatibility.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite:csharp:compatibility.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:3.2@couchbase-lite:csharp:compatibility.adoc[]
 
 > Description — _Couchbase Lite framework and Sync Gateway compatibility_  
 > _Abstract — This content identifies the compatibility of Couchbase Lite on C#.Net with Sync Gateway, together with the operating systems upon which it is supported._  
-> Related Content — [What’s New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Supported Platforms](supported-os.md)
+> Related Content — [What's New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Supported Platforms](supported-os.md)
 
 ## [](#couchbase-litesync-gateway-matrix)Couchbase Lite/Sync Gateway Matrix
 
@@ -54,7 +54,7 @@ Product Notes
 * [Release Notes](releasenotes.md)
 * [Compatibility](compatibility.md)
 * [Supported Platforms](supported-os.md)
-* [What’s New](#cbl-whatsnew.adoc)
+* [What's New](#cbl-whatsnew.adoc)
 
 .
 

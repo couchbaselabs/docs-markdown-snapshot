@@ -3,7 +3,7 @@ title: Import Filter Configuration
 description: Using Sync Gateway's Admin REST API and the Import Filter function
   to configure access
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/configuration-schema-import-filter.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::configuration-schema-import-filter.adoc[]
 ---
 
@@ -19,10 +19,10 @@ link: xref:3.2@sync-gateway::configuration-schema-import-filter.adoc[]
 
 ## [](#introduction)Introduction
 
-Using an import filter will significantly improve efficiency if you’re working with large datasets:
+Using an import filter will significantly improve efficiency if you're working with large datasets:
 
-* Import filters are defined at the collection level and allow you to retrieve only the relevant documents you need rather than the entire dataset. The import filter helps determine which documents can be copied by Sync Gateway. It looks at the application’s needs and applies these criteria to all future changes.
-* By reducing the amount of data that needs to be processed, an import filter will improve the performance of your queries and analysis. It’s worth noting that Sync Gateway imports all documents by default, so it’s generally a good idea to use an import filter unless you have a strong reason not to.
+* Import filters are defined at the collection level and allow you to retrieve only the relevant documents you need rather than the entire dataset. The import filter helps determine which documents can be copied by Sync Gateway. It looks at the application's needs and applies these criteria to all future changes.
+* By reducing the amount of data that needs to be processed, an import filter will improve the performance of your queries and analysis. It's worth noting that Sync Gateway imports all documents by default, so it's generally a good idea to use an import filter unless you have a strong reason not to.
 
 See: [Import filter](import-processing.md) for more.
 
@@ -36,7 +36,7 @@ If you are using legacy configuration, you need to include it in your configurat
 
 > [!NOTE]
 > You need Couchbase Lite 3.1+ and Sync Gateway 3.1+ to use `custom` Scopes and Collections.  
-> If you’re using Capella App Services or Sync Gateway releases that are older than version 3.1, you won’t be able to access `custom` Scopes and Collections. To use Couchbase Lite 3.1+ with these older versions, you can use the `default` Collection as a backup option.
+> If you're using Capella App Services or Sync Gateway releases that are older than version 3.1, you won't be able to access `custom` Scopes and Collections. To use Couchbase Lite 3.1+ with these older versions, you can use the `default` Collection as a backup option.
 
 The configuration settings described here are provisioned through the [Database Configuration](rest-api-admin.md) endpoints.
 
@@ -154,7 +154,7 @@ Produces
 
 ## [](#%5FImport%5Ffilter)Schema
 
-This section shows Sync Gateway’s import control configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
+This section shows Sync Gateway's import control configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
 
 The configuration settings described here are provisioned through [Authentication](rest%5Fapi%5Fadmin.md#tag/Authentication) endpoints.
 
@@ -164,7 +164,7 @@ The `import_filter` controls whether a document written to the Couchbase Server 
 
 You should provision the filter as a Javascript function in the request body of a call to the Admin Rest API endpoint `put {db}/_config/import_filter`.
 
-Set the header’s content type to `content-Type: application/javascript`.
+Set the header's content type to `content-Type: application/javascript`.
 
 The function takes the document body as parameter and is expected to return a boolean to indicate whether the document should be imported.
 

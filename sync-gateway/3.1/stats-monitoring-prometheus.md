@@ -3,7 +3,7 @@ title: Prometheus Metrics
 description: This content covers the Prometheus statistics and metrics collected
   and made available by Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/stats-monitoring-prometheus.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::stats-monitoring-prometheus.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:3.1@sync-gateway::stats-monitoring-prometheus.adoc[]
 # Prometheus Metrics
 
 > This content covers the Prometheus statistics and metrics collected and made available by Sync Gateway  
-> Sync Gateway’s statistics and metrics provide under-the-hood data on the performance, resource utilization and health of it nodes. This is increasingly important as deployments scale to support a large numbers of connected mobile and edge components.
+> Sync Gateway's statistics and metrics provide under-the-hood data on the performance, resource utilization and health of it nodes. This is increasingly important as deployments scale to support a large numbers of connected mobile and edge components.
 
 Related _inter-syncgateway_ topics: [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md) | [Metrics REST API](rest-api-metrics.md) | [Prometheus Integration](stats-prometheus.md)
 
@@ -29,7 +29,7 @@ Example 1\. Metrics in Prometheus format
 curl -X GET "http://localhost:4986/_metrics" -H "accept: application/json"
 ```
 
-This endpoint’s data will be scraped at configurable interval, when the `metricsInterface` is activated and Sync Gateway integrated with Prometheus — see: [Integrate Prometheus](stats-prometheus.md) and our blog entry [Monitoring Couchbase Sync Gateway with Prometheus and Grafana](https://blog.couchbase.com/monitoring-sync-gateway-prometheus-grafana/).
+This endpoint's data will be scraped at configurable interval, when the `metricsInterface` is activated and Sync Gateway integrated with Prometheus — see: [Integrate Prometheus](stats-prometheus.md) and our blog entry [Monitoring Couchbase Sync Gateway with Prometheus and Grafana](https://blog.couchbase.com/monitoring-sync-gateway-prometheus-grafana/).
 
 The response in Prometheus format is defined as follows:
 

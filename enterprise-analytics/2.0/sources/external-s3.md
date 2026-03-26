@@ -1,7 +1,7 @@
 ---
 title: Query Data in External Data Sources
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/external-s3.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sources:external-s3.adoc[]
 ---
 
@@ -36,7 +36,7 @@ When you create an external collection based on an Amazon S3 or S3-compatible st
 > [!TIP]
 > If you use the Amazon S3 console, prefixes are also referred to as folders.
 
-To make querying the external data source as efficient as possible, you should supply a path that’s as specific and precise as possible. You can use static prefixes, dynamic prefixes, or a mixture of both to define a path. For information about static and dynamic prefixes, see [Design a Location Path](dynamic-prefixes.md).
+To make querying the external data source as efficient as possible, you should supply a path that's as specific and precise as possible. You can use static prefixes, dynamic prefixes, or a mixture of both to define a path. For information about static and dynamic prefixes, see [Design a Location Path](dynamic-prefixes.md).
 
 > [!IMPORTANT]
 > Because you cannot index the data located in an external store, Couchbase encourages thoughtful design of the paths used in external collections.
@@ -47,7 +47,7 @@ You can select a subset of the files in a location by using fields that include 
 
 ### [](#alternate-storage-provider-information)Alternate Storage Provider Information
 
-If you’re accessing data from an S3-compatible storage provider, you need your provider’s endpoint address. You do not need to provide an endpoint for Amazon S3 storage.
+If you're accessing data from an S3-compatible storage provider, you need your provider's endpoint address. You do not need to provide an endpoint for Amazon S3 storage.
 
 ## [](#create)Create a Link for Amazon S3 and S3-compatible Storage
 
@@ -74,7 +74,7 @@ If you’re accessing data from an S3-compatible storage provider, you need your
 * JSON
 * Avro
 
-* Define the data types for the fields in the files as a comma-separated list of `<field-name> <datatype>` values. The `<datatype>` is 1 of the [primitive data types](../../../server/current/analytics/10%5Fdata%5Ftype.md). If the field’s value does not match the data type, Enterprise Analytics ignores the record. You can also specify `NOT UNKNOWN` flag after the data type to have Enterprise Analytics ignore the record if the value is `missing` or `null`. For example:  
+* Define the data types for the fields in the files as a comma-separated list of `<field-name> <datatype>` values. The `<datatype>` is 1 of the [primitive data types](../../../server/current/analytics/10%5Fdata%5Ftype.md). If the field's value does not match the data type, Enterprise Analytics ignores the record. You can also specify `NOT UNKNOWN` flag after the data type to have Enterprise Analytics ignore the record if the value is `missing` or `null`. For example:  
 id BIGINT NOT UNKNOWN, firstname STRING, lastname STRING
 * Select **Header** if the first line of your CSV file is not a list of the columns in the file.
 * If your data uses a value other than an empty string (`""`) to indicate a null value, select **Use custom string as Null** and enter the value.  

@@ -1,7 +1,7 @@
 ---
 title: Menus
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/menus.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::menus.adoc[]
 ---
 
@@ -14,7 +14,7 @@ A menu is a sequence of named clickable UI elements. Menus display vertically in
 
 Menus never appear horizontally - those are [Tabs](tabs.md).
 
-Like a tab, a menu changes the information that’s displayed the UI. This could be for the whole application, or for a specific section.
+Like a tab, a menu changes the information that's displayed the UI. This could be for the whole application, or for a specific section.
 
 The UI highlights the currently selected menu item for the user.
 

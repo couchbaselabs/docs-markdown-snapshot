@@ -4,7 +4,7 @@ description: First-time users can get Enterprise Analytics running simply and
   rapidly by using Docker. Once you install Docker, you can use a single command
   to download and install Enterprise Analytics on your computer.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/intro/pages/do-a-quick-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:intro:do-a-quick-install.adoc[]
 ---
 
@@ -62,7 +62,7 @@ Explanation of settings:
 
 * `blobStorageScheme`: Use s3 (S3Mock is S3-compatible)
 * `blobStorageBucket`: Bucket name created in S3Mock
-* `blobStorageEndpoint`: The local S3Mock container’s host
+* `blobStorageEndpoint`: The local S3Mock container's host
 * `blobStorageAnonymousAuth=true`: Required, since S3Mock does not use IAM
 * `blobStoragePathStyleAddressing=true`: Required, as S3Mock does not support virtual-host-style addressing
 
@@ -70,7 +70,7 @@ Explanation of settings:
 
 The hostname `host.docker.internal` in the command above is not available by default on Linux.
 
-You must replace it with your Docker host’s IP address, which you can find with the command:
+You must replace it with your Docker host's IP address, which you can find with the command:
 
 docker network inspect bridge --format='{{(index .IPAM.Config 0).Gateway}}'
 
@@ -80,7 +80,7 @@ For example, if the command returns 172.17.0.1, set:
 
 ##### [](#note-on-blobstorageendpoint-for-windows-users)Note on blobStorageEndpoint for Windows users
 
-The command to obtain the Docker host’s IP address is:
+The command to obtain the Docker host's IP address is:
 
 docker network inspect nat --format='{{(index .IPAM.Config 0).Gateway}}'
 
@@ -127,5 +127,5 @@ To learn more about the `travel-sample` dataset and data ingestion from diverse 
 
 ## [](#other-destinations)Other Destinations
 
-* [Create a Cluster](../manage/manage-nodes/create-cluster.md): Provides a detailed explanation of how to provision a Enterprise Analytics-node, and thereby create Enterprise Analytics cluster. This is the procedure you’ll certainly use in production as well as for testing different configurations. The available options include use of the Enterprise Analytics Web Console, the Couchbase REST API, and the Couchbase Command Line Interface.
+* [Create a Cluster](../manage/manage-nodes/create-cluster.md): Provides a detailed explanation of how to provision a Enterprise Analytics-node, and thereby create Enterprise Analytics cluster. This is the procedure you'll certainly use in production as well as for testing different configurations. The available options include use of the Enterprise Analytics Web Console, the Couchbase REST API, and the Couchbase Command Line Interface.
 * [Start and Stop Enterprise Analytics](../install/start-stop-cb-enterprise-analytics.md): Explains how to start and stop the service and application using the commands that are specific to your underlying platform.

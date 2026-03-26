@@ -1,7 +1,7 @@
 ---
 title: CouchbaseBackupRestore Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbasebackuprestore.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::resource/couchbasebackuprestore.adoc[]
 ---
 
@@ -427,7 +427,7 @@ Variable references $(VAR\_NAME) are expanded using the previously defined envir
 
 #### [](#description-27)Description
 
-Source for the environment variable’s value. Cannot be used if value is not empty.
+Source for the environment variable's value. Cannot be used if value is not empty.
 
 ### [](#couchbasebackuprestores-spec-env-valuefrom-configmapkeyref)couchbasebackuprestores.spec.env.valueFrom.configMapKeyRef
 
@@ -553,7 +553,7 @@ Required: resource to select.
 
 #### [](#description-39)Description
 
-Selects a key of a secret in the pod’s namespace.
+Selects a key of a secret in the pod's namespace.
 
 ### [](#couchbasebackuprestores-spec-env-valuefrom-secretkeyref-key)couchbasebackuprestores.spec.env.valueFrom.secretKeyRef.key
 
@@ -595,7 +595,7 @@ Specify whether the Secret or its key must be defined.
 
 #### [](#description-43)Description
 
-Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer. By default, the system does not force updates, and all updates use Couchbase’s conflict resolution mechanism to ensure that if newer data exists on the cluster, older restored data does not overwrite it. However, if `couchbasebackuprestores.spec.forceUpdates` is true, then the backup record will _always_ overwrite the cluster record, regardless of Couchbase’s conflict resolution.
+Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer. By default, the system does not force updates, and all updates use Couchbase's conflict resolution mechanism to ensure that if newer data exists on the cluster, older restored data does not overwrite it. However, if `couchbasebackuprestores.spec.forceUpdates` is true, then the backup record will _always_ overwrite the cluster record, regardless of Couchbase's conflict resolution.
 
 ### [](#couchbasebackuprestores-spec-logretention)couchbasebackuprestores.spec.logRetention
 

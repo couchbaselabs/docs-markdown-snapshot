@@ -3,7 +3,7 @@ title: Spring Data Couchbase
 description: Spring-based programming model for Couchbase Server with any of our
   JVM-based SDKs (Java, Kotlin, and Scala).
 editUrl: https://github.com/couchbase/docs-sdk-extensions/edit/main/modules/ROOT/pages/spring-data-couchbase.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sdk-extensions::spring-data-couchbase.adoc[]
 ---
 
@@ -23,7 +23,7 @@ From SDC 4.0, and Couchbase Server 7.0, easier migration from RDBMS is provided 
 * Scope name can be configured by overriding `config.getScopeName()`. The base method results in the use of the `_default` Scope.
 * Other Scopes can potentially be used with templates and repositories.
 * If Scopes require different authorization, `RepositoryOperationsMapping` is required.
-* In SDC, we continue to leverage the “ `_class` property, so that data migration to/from Scopes/Collections is not required.
+* In SDC, we continue to leverage the " `_class` property, so that data migration to/from Scopes/Collections is not required.
 
 More information can be found in the [reference documentation](https://docs.spring.io/spring-data/couchbase/docs/current/reference/html/#reference) and [API guide](https://docs.spring.io/spring-data/couchbase/docs/current/api/) — as well as by exploring the Java-based [sample application](../java-sdk/current/hello-world/spring-data-sample-application.md).
 

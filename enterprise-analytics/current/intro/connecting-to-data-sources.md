@@ -3,7 +3,7 @@ title: Connecting to Data Sources
 description: You can import datasets from multiple sources to work with sample
   data in Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/intro/pages/connecting-to-data-sources.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:intro:connecting-to-data-sources.adoc[]
 ---
 
@@ -67,13 +67,13 @@ To create a standalone collection:
 
 ### [](#populate-a-standalone-collection)Populate a Standalone Collection
 
-1. Use the query editor’s Query Context lists to select the `sampleAnalytics` database and `Commerce` scope.
+1. Use the query editor's Query Context lists to select the `sampleAnalytics` database and `Commerce` scope.
 2. In the query editor, begin an INSERT INTO statement as follows:  
 ```sql  
 INSERT INTO customers (  
 ```
 3. [Open the customers data](https://docs.couchbase.com/server/current/analytics/%5Fattachments/CommerceCustomers.json), select the contents of the page and copy it.
-4. To complete the statement, return to the query editor and paste the JSON document in between the parentheses. You’ll need to add the closing parenthesis ) if you used copy and paste to supply the `INSERT INTO` statement.
+4. To complete the statement, return to the query editor and paste the JSON document in between the parentheses. You'll need to add the closing parenthesis ) if you used copy and paste to supply the `INSERT INTO` statement.
 5. Run the query to populate the `customers` collection.
 6. To verify that the collection contains data now, run the following query:  
 ```sql  
@@ -86,7 +86,7 @@ Create another standalone collection for `orders`, which uses the **Field Name**
 
 You can import the Couchbase `beer-sample` dataset into a Capella operational cluster or self-managed Couchbase Server cluster. This dataset consists of a single collection, which contains data on beers and breweries.
 
-Set up [remote collections](../sources/manage-remote.md) to hold shadow copies of the `beer-sample` data in Enterprise Analytics. Use WHERE clauses to create multiple collections on Enterprise Analytics, instead of creating only a single collection to match what’s in your remote data source in your Capella operational cluster or Couchbase Server.
+Set up [remote collections](../sources/manage-remote.md) to hold shadow copies of the `beer-sample` data in Enterprise Analytics. Use WHERE clauses to create multiple collections on Enterprise Analytics, instead of creating only a single collection to match what's in your remote data source in your Capella operational cluster or Couchbase Server.
 
 Any Enterprise Analytics collections that use a WHERE clause apply that clause on an ongoing basis to continuously filter the incoming data event stream. Only documents that meet the WHERE clause criteria are upserted into your Enterprise Analytics collection.
 

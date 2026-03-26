@@ -1,7 +1,7 @@
 ---
 title: Create a Kafka Pipeline Collection
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/kafka-collection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sources:kafka-collection.adoc[]
 ---
 
@@ -54,7 +54,7 @@ Whether Change Data Capture (CDC) applies, and if so, the source.
 1. In the UI, select the **Workbench** tab and locate the Kafka link for which you want to add a collection.
 2. Select **\+ collection**.
 3. In the **Collection Name** field, enter a name for the collection.
-4. In the **Database** list, select the required database and in the **Scope** list, select the required scope or verify the supplied database and scope if you’re adding it to a specific scope.
+4. In the **Database** list, select the required database and in the **Scope** list, select the required scope or verify the supplied database and scope if you're adding it to a specific scope.
 5. In the **Topic** field, enter a name for the Kafka topic.
 6. In the **Primary Key** field, enter the name of the primary key and its data type in the format `KEY_NAME:DATA_TYPE`. See the [requirements](#reqs) for examples.
 7. In the **Key Serialization Type** field, select the data serialization type used for keys. See the [requirements](#reqs) for examples.

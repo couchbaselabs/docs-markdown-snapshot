@@ -3,7 +3,7 @@ title: cbbackupmgr
 description: <code>cbbackupmgr</code> is a tool for managing the backup and
   restore of Couchbase-Server data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/backup-restore/pages/enterprise-backup-restore.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:backup-restore:enterprise-backup-restore.adoc[]
 ---
 
@@ -36,11 +36,11 @@ All backup is stored in and recovered from a _Backup Repository_. In turn, a _Ba
 * All bucket data is stored in a small, secondary database.
 * All bucket creation scripts and configuration files are stored on the file system, as files.
 
-### [](#whats-backed-up)What’s Backed Up
+### [](#whats-backed-up)What's Backed Up
 
-By default, backups include your database’s data and metadata.
+By default, backups include your database's data and metadata.
 
-You can change what the tool backs up and restores by using arguments to the `cbbackupmgr config` command. For example, if you only want to back up your cluster’s metadata, use the `--disable-data` command line flag when configuring your backup repository. You may to choose to use this flag if you want to transfer settings to a new database cluster. When you use this flag, `cbbackupmgr` backs up just the following:
+You can change what the tool backs up and restores by using arguments to the `cbbackupmgr config` command. For example, if you only want to back up your cluster's metadata, use the `--disable-data` command line flag when configuring your backup repository. You may to choose to use this flag if you want to transfer settings to a new database cluster. When you use this flag, `cbbackupmgr` backs up just the following:
 
 * analytic collections and indexes for local links and synonyms
 * bucket configuration
@@ -57,7 +57,7 @@ You can change what the tool backs up and restores by using arguments to the `cb
 Another useful flag is `--enable-users` which backs up users and user groups. Users and groups are not backed up by default. This option is useful for preventing the loss of users and groups in case of disaster.
 
 > [!NOTE]
-> Backups that include users contain the user’s hashed passwords.
+> Backups that include users contain the user's hashed passwords.
 
 Other flags let you exclude specific metadata, or select a subset of data to back up. See [cbbackupmgr config](cbbackupmgr-config.md) for a list of the arguments you can use to control what `cbbackupmgr` backs up.
 

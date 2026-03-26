@@ -3,7 +3,7 @@ title: SQL++ Support for Couchbase Transactions
 description: SQL++ offers full support for Couchbase ACID transactions based on
   optimistic concurrency.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/transactions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/transactions.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:server:n1ql:n1ql-language-reference/transactions.adoc[]
 
 > SQL++ offers full support for Couchbase ACID transactions based on optimistic concurrency. 
 
-A transaction is a group of operations that are either committed to the database together, or are all undone from the database if there’s a failure. For an overview of Couchbase transactions, see [Transactions](../../learn/data/transactions.md).
+A transaction is a group of operations that are either committed to the database together, or are all undone from the database if there's a failure. For an overview of Couchbase transactions, see [Transactions](../../learn/data/transactions.md).
 
 * Only DML statements are permitted within a transaction: [INSERT](insert.md), [UPSERT](upsert.md), [DELETE](delete.md), [UPDATE](update.md), [MERGE](merge.md), [SELECT](selectintro.md), [EXECUTE FUNCTION](execfunction.md), [PREPARE](prepare.md), or [EXECUTE](execute.md).
 * The `EXECUTE FUNCTION` statement is only permitted in a transaction if the user-defined function does not contain any subqueries other than `SELECT` subqueries.
@@ -92,7 +92,7 @@ Refer to [Roles](../../learn/security/roles.md) for details.
 > [!NOTE]
 > Query Mode
 > 
-> When a transaction executes a query statement, the transaction enters query mode, which means that the query is executed with the user’s query permissions. Any key-value operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
+> When a transaction executes a query statement, the transaction enters query mode, which means that the query is executed with the user's query permissions. Any key-value operations which are executed by the transaction _after_ the query statement are _also_ executed with the user's query permissions. These may or may not be different to the user's data permissions; if they are different, you may get unexpected results.
 
 ## [](#worked-example)Worked Example
 
@@ -211,7 +211,7 @@ ON KEYS b.`user`;
 COMMIT TRANSACTION;
 ```
 
-The results of running the transaction in the Query Workbench are shown below. If you’re using the cbq shell, the results are formatted differently, but contain the same information.
+The results of running the transaction in the Query Workbench are shown below. If you're using the cbq shell, the results are formatted differently, but contain the same information.
 
 Results
 

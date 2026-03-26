@@ -2,7 +2,7 @@
 title: Cordova
 description: Using Couchbase Lite with Javascript applications
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/javascript/pages/cordova.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@couchbase-lite:javascript:cordova.adoc[]
 ---
 
@@ -20,7 +20,7 @@ link: xref:3.1@couchbase-lite:javascript:cordova.adoc[]
 
 ## [](#introduction)Introduction
 
-To use Couchbase Lite as an embedded database within your Cordova-based app, you need a way to access Couchbase Lite’s iOS and Android native APIs from within your Cordova web application.
+To use Couchbase Lite as an embedded database within your Cordova-based app, you need a way to access Couchbase Lite's iOS and Android native APIs from within your Cordova web application.
 
 ## [](#native-functionality)Native Functionality
 

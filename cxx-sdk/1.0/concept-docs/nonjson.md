@@ -2,7 +2,7 @@
 title: Non-JSON Documents
 description: Binary formats &amp; Transcoders
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/concept-docs/pages/nonjson.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.0@cxx-sdk:concept-docs:nonjson.adoc[]
 ---
 
@@ -21,7 +21,7 @@ Note that only JSON documents can be accessed using Query and Search. Limited su
 
 ## [](#using-non-json-documents)Using non-JSON documents
 
-It’s important to note that a JSON document can also refer to a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value. Nevertheless if your application requires a non-JSON format, the SDK may still support it natively.
+It's important to note that a JSON document can also refer to a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value. Nevertheless if your application requires a non-JSON format, the SDK may still support it natively.
 
 If there is no native support for your format, you can write a _transcoder_ which handles the encoding and decoding of your documents to and from the server.
 
@@ -29,7 +29,7 @@ If there is no native support for your format, you can write a _transcoder_ whic
 
 Every item (record) in Couchbase contains metadata stored along with it in the server. One of the metadata fields is a 32 bit "flag" value.
 
-Couchbase SDKs accept native object types (integers, strings, arrays, dictionaries) as valid inputs for a Document and internally convert them to JSON before sending them to the server to be stored. When the SDK serializes the Document, it notes the type of serialization performed (JSON) and sends a corresponding type code along with the serialized document to the server to be stored. This type code is stored in the flags field within the item’s metadata.
+Couchbase SDKs accept native object types (integers, strings, arrays, dictionaries) as valid inputs for a Document and internally convert them to JSON before sending them to the server to be stored. When the SDK serializes the Document, it notes the type of serialization performed (JSON) and sends a corresponding type code along with the serialized document to the server to be stored. This type code is stored in the flags field within the item's metadata.
 
 Later, when retrieving the document from the server, the SDK checks the type code which informs it about the type of serialization used to encode the document, and thus how the SDK should de-serialize the document.
 

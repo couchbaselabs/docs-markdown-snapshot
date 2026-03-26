@@ -3,7 +3,7 @@ title: String Functions
 description: This topic describes the builtin SQL++ for Enterprise Analytics
   string functions.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/8_builtin_str.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sqlpp:8_builtin_str.adoc[]
 ---
 
@@ -145,7 +145,7 @@ lower("ANALYTICS");
 
 * Syntax:  
 ltrim(string[, chars]);
-* Returns a new string with all leading characters that appear in `chars` removed. By default, white space is the character to trim. Here, one character means one code point. For example, the emoji 4-people-family notation 👩‍👩‍👧‍👦 contains 7 code points, and it’s possible to trim a few code points (such as a 2-people-family 👨‍👦) from it. See the following example for more details.
+* Returns a new string with all leading characters that appear in `chars` removed. By default, white space is the character to trim. Here, one character means one code point. For example, the emoji 4-people-family notation 👩‍👩‍👧‍👦 contains 7 code points, and it's possible to trim a few code points (such as a 2-people-family 👨‍👦) from it. See the following example for more details.
 * Arguments:
 
   * `string` : a `string` to trim,

@@ -1,6 +1,6 @@
 ---
 editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/generated-source-config-reference.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:kafka-connector::generated-source-config-reference.adoc[]
 ---
 
@@ -82,7 +82,7 @@ If true, you must also tell the connector which certificate to trust. Specify a 
 
 ### [](#couchbase.enable.hostname.verification)`couchbase.enable.hostname.verification`
 
-Set this to `false` to disable TLS hostname verification for Couchbase connections. Less secure, but might be required if for some reason you can’t issue a certificate whose Subject Alternative Names match the hostname used to connect to the server. Only disable if you understand the impact and can accept the risks.
+Set this to `false` to disable TLS hostname verification for Couchbase connections. Less secure, but might be required if for some reason you can't issue a certificate whose Subject Alternative Names match the hostname used to connect to the server. Only disable if you understand the impact and can accept the risks.
 
 * Type: boolean
 * Default: `true`
@@ -219,7 +219,7 @@ The class must implement either `com.couchbase.connect.kafka.handler.source.Sour
 
 To publish JSON messages identical to the Couchbase documents, use `com.couchbase.connect.kafka.handler.source.RawJsonSourceHandler` and set `value.converter` to `org.apache.kafka.connect.converters.ByteArrayConverter`.
 
-When using a custom source handler that filters out certain messages, consider also configuring `couchbase.black.hole.topic`. See that property’s documentation for details.
+When using a custom source handler that filters out certain messages, consider also configuring `couchbase.black.hole.topic`. See that property's documentation for details.
 
 * Type: class
 * Importance: medium
@@ -232,8 +232,8 @@ Comma-delimited list of Couchbase metadata headers to add to records. Recognized
 * **`scope`** \- Name of the scope the document came from.
 * **`collection`** \- Name of the collection the document came from.
 * **`key`** \- The Couchbase document ID.
-* **`qualifiedKey`** \- The document’s scope, collection, and document ID, delimited by dots. Example: `myScope.myCollection.myDocumentId`
-* **`cas`** \- The document’s "compare and swap" value.
+* **`qualifiedKey`** \- The document's scope, collection, and document ID, delimited by dots. Example: `myScope.myCollection.myDocumentId`
+* **`cas`** \- The document's "compare and swap" value.
 * **`partition`** \- The index of the Couchbase partition the document came from.
 * **`partitionUuid`** \- Identifies the history branch of the partition the document came from.
 * **`seqno`** \- The DCP sequence number of the event.
@@ -321,7 +321,7 @@ When the Kafka Connect framework polls the connector for new records, the connec
 
 If true, Couchbase Server will omit the document content when telling the connector about a change. The document key and metadata will still be present.
 
-If you don’t care about the content of changed documents, enabling this option is a great way to reduce the connector’s network bandwidth and memory usage.
+If you don't care about the content of changed documents, enabling this option is a great way to reduce the connector's network bandwidth and memory usage.
 
 * Type: boolean
 * Default: `false`
@@ -329,9 +329,9 @@ If you don’t care about the content of changed documents, enabling this option
 
 ### [](#couchbase.connector.name.in.offsets)`couchbase.connector.name.in.offsets`
 
-When true, the connector’s offsets are saved under a key that includes the connector name. This is redundant, since the Kafka Connect framework already isolates the offsets of connectors with different names.
+When true, the connector's offsets are saved under a key that includes the connector name. This is redundant, since the Kafka Connect framework already isolates the offsets of connectors with different names.
 
-Set this to true only if you’ve previously deployed the connector to production with this set to true, and you do not wish to restart streaming from the beginning. Otherwise you should ignore this property.
+Set this to true only if you've previously deployed the connector to production with this set to true, and you do not wish to restart streaming from the beginning. Otherwise you should ignore this property.
 
 * Type: boolean
 * Default: `false`
@@ -446,11 +446,11 @@ To reduce bandwidth usage, Couchbase Server 5.5 and later can send documents to 
 
 ### [](#couchbase.persistence.polling.interval)`couchbase.persistence.polling.interval`
 
-When a Couchbase Server node fails over, documents on the failing node that haven’t been fully replicated may be "rolled back" to a previous state. To ensure consistency between Couchbase and the Kafka topic, the connector can defer publishing a document to Kafka until it has been saved to disk on all replicas.
+When a Couchbase Server node fails over, documents on the failing node that haven't been fully replicated may be "rolled back" to a previous state. To ensure consistency between Couchbase and the Kafka topic, the connector can defer publishing a document to Kafka until it has been saved to disk on all replicas.
 
 To enable this feature, specify a non-zero persistence polling interval. The interval is how frequently the connector asks each Couchbase node which changes have been fully replicated and persisted. This ensures consistency between Couchbase and Kafka, at the cost of additional latency and bandwidth usage.
 
-To disable this feature, specify a zero duration (`0`). In this mode the connector publishes changes to Kafka immediately, without waiting for replication. This is fast and uses less network bandwidth, but can result in publishing "phantom changes" that don’t reflect the actual state of a document in Couchbase after a failover.
+To disable this feature, specify a zero duration (`0`). In this mode the connector publishes changes to Kafka immediately, without waiting for replication. This is fast and uses less network bandwidth, but can result in publishing "phantom changes" that don't reflect the actual state of a document in Couchbase after a failover.
 
 > [!TIP]
 > Documents written to Couchbase with enhanced durability are never published to Kafka until the durability requirements are met, regardless of whether persistence polling is enabled.
@@ -470,7 +470,7 @@ The flow control buffer limits how much data Couchbase will send before waiting 
 > [!CAUTION]
 > Make sure to allocate enough memory to the Kafka Connect worker process to accommodate the flow control buffer, otherwise the connector might run out of memory under heavy load. Read on for details.
 
-There’s a separate buffer for each node in the Couchbase cluster. When calculating how much memory to allocate to the Kafka Connect worker, multiply the flow control buffer size by the number of Couchbase nodes, then multiply by 2\. This is how much memory a single connector task requires for the flow control buffer (not counting the connector’s baseline memory usage).
+There's a separate buffer for each node in the Couchbase cluster. When calculating how much memory to allocate to the Kafka Connect worker, multiply the flow control buffer size by the number of Couchbase nodes, then multiply by 2\. This is how much memory a single connector task requires for the flow control buffer (not counting the connector's baseline memory usage).
 
 * Type: string
 * Default: `16m`
@@ -479,7 +479,7 @@ There’s a separate buffer for each node in the Couchbase cluster. When calcula
 
 ### [](#couchbase.xattrs)`couchbase.xattrs`
 
-Should filters and source handlers have access to a document’s extended attributes?
+Should filters and source handlers have access to a document's extended attributes?
 
 * Type: boolean
 * Default: `false`

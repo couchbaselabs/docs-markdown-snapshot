@@ -1,7 +1,7 @@
 ---
 title: Auto-scaling the Couchbase Query Service
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/tutorial-autoscale-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::tutorial-autoscale-query.adoc[]
 ---
 
@@ -17,18 +17,18 @@ link: xref:2.7@operator::tutorial-autoscale-query.adoc[]
 
 ## [](#introduction)Introduction
 
-In this tutorial you’ll learn how to use the Autonomous Operator to automatically scale the Couchbase Query Service in order to maintain a target CPU utilization threshold. You’ll also learn more about how the Kubernetes [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) (HPA) initiates a request to scale the Query Service in order to maintain desired performance thresholds.
+In this tutorial you'll learn how to use the Autonomous Operator to automatically scale the Couchbase Query Service in order to maintain a target CPU utilization threshold. You'll also learn more about how the Kubernetes [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) (HPA) initiates a request to scale the Query Service in order to maintain desired performance thresholds.
 
 ## [](#before-you-begin)Before You Begin
 
-Before you begin this tutorial, you’ll need to set up a few things first:
+Before you begin this tutorial, you'll need to set up a few things first:
 
-* You’ll need a Kubernetes cluster with at least 10 available worker nodes.
+* You'll need a Kubernetes cluster with at least 10 available worker nodes.
 
-  * Worker nodes should have 4 vCPU and 16 GiB memory in order to exhibit the expected auto-scaling behavior that you’ll be initiating later on in this tutorial.
-* You’ll need [Helm version 3.1](https://helm.sh/docs/intro/install/) or higher for installing the necessary dependencies (e.g. the Autonomous Operator, the Couchbase cluster, etc.)
+  * Worker nodes should have 4 vCPU and 16 GiB memory in order to exhibit the expected auto-scaling behavior that you'll be initiating later on in this tutorial.
+* You'll need [Helm version 3.1](https://helm.sh/docs/intro/install/) or higher for installing the necessary dependencies (e.g. the Autonomous Operator, the Couchbase cluster, etc.)
 
-  * Once you have Helm installed, you’ll need to add the Couchbase chart repository:  
+  * Once you have Helm installed, you'll need to add the Couchbase chart repository:  
   ```console  
   $ helm repo add couchbase https://couchbase-partners.github.io/helm-charts/  
   ```  
@@ -51,7 +51,7 @@ The response should contain an `APIResourceList` with the type of resources that
 
 {"kind":"APIResourceList","apiVersion":"v1","groupVersion":"metrics.k8s.io/v1beta1","resources":[{"name":"nodes","singularName":"","namespaced":false,"kind":"NodeMetrics","verbs":["get","list"]},{"name":"pods","singularName":"","namespaced":true,"kind":"PodMetrics","verbs":["get","list"]}]}
 
-If you receive a `NotFound` error, then you’ll need to [install Metrics Server](https://github.com/kubernetes-sigs/metrics-server#installation):
+If you receive a `NotFound` error, then you'll need to [install Metrics Server](https://github.com/kubernetes-sigs/metrics-server#installation):
 
 ```console
 $ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
@@ -68,7 +68,7 @@ metrics-server   1/1     1            1           2m2s
 
 ## [](#reserve-nodes-for-the-workload-generator)Reserve Nodes for the Workload Generator
 
-Later on in this tutorial we’ll be using a separate application to generate a query workload that will induce auto-scaling. So before we deploy anything, we need to reserve one of our Kubernetes worker nodes for exclusively running this application. We can do this by applying a scheduling tolerance with the following commands:
+Later on in this tutorial we'll be using a separate application to generate a query workload that will induce auto-scaling. So before we deploy anything, we need to reserve one of our Kubernetes worker nodes for exclusively running this application. We can do this by applying a scheduling tolerance with the following commands:
 
 ```console
 $ APP_NODE=$(kubectl get nodes | grep Ready | head -1  | awk '{print $1}')
@@ -80,7 +80,7 @@ $ kubectl taint nodes $APP_NODE type=app:NoSchedule
 
 ## [](#create-the-couchbase-cluster-deployment)Create the Couchbase Cluster Deployment
 
-Now that we’ve reserved a worker node for our query generator, we can start setting up our Couchbase deployment. To speed up the process, we’ll be using the Couchbase Helm chart to conveniently install a Couchbase cluster that has auto-scaling enabled for the nodes running the Query Service nodes.
+Now that we've reserved a worker node for our query generator, we can start setting up our Couchbase deployment. To speed up the process, we'll be using the Couchbase Helm chart to conveniently install a Couchbase cluster that has auto-scaling enabled for the nodes running the Query Service nodes.
 
 Run the following command to create a file with the necessary override values for the Couchbase chart:
 
@@ -144,7 +144,7 @@ $ helm install -f autoscale_values.yaml scale couchbase/couchbase-operator
 ```
 
 > [!NOTE]
-> The Couchbase chart deploys the Autonomous Operator by default. If you already have the Autonomous Operator deployed in the current namespace, then you’ll need to specify additional overrides during chart installation so that only the Couchbase cluster is deployed:
+> The Couchbase chart deploys the Autonomous Operator by default. If you already have the Autonomous Operator deployed in the current namespace, then you'll need to specify additional overrides during chart installation so that only the Couchbase cluster is deployed:
 > 
 > ```console
 > $ helm install -f autoscale_values.yaml --set install.couchbaseOperator=false,install.admissionController=false scale couchbase/couchbase-operator
@@ -152,7 +152,7 @@ $ helm install -f autoscale_values.yaml scale couchbase/couchbase-operator
 
 ### [](#verify-the-installation)Verify the Installation
 
-The configuration we’re using calls for a five-node Couchbase cluster (three `default` nodes and two `query` nodes), which will take a few minutes to be created. You can run the following command to verify the deployment status:
+The configuration we're using calls for a five-node Couchbase cluster (three `default` nodes and two `query` nodes), which will take a few minutes to be created. You can run the following command to verify the deployment status:
 
 ```console
 $ kubectl describe couchbasecluster scale-couchbase-cluster
@@ -178,11 +178,11 @@ $ kubectl get couchbaseautoscalers
 NAME                            SIZE   SERVERS
 query.scale-couchbase-cluster   2      query **(1)** **(2)**
 
-In the console output, you’ll see:
+In the console output, you'll see:
 
 | **1** | NAME: The Autonomous Operator creates [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) custom resources with the name format _<server-class>_._<cluster-name>_. Considering that we enabled auto-scaling for the query server class configuration, and the name of our cluster is scale-couchbase-cluster, we can determine that the name of the [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) custom resource created by the Autonomous Operator will be query.scale-couchbase-cluster.                    |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | SIZE: This is the current number of Couchbase nodes that the Autonomous Operator is maintaining for the query server class. Considering that we set servers.query.size to 2 in our cluster configuration, and because the cluster doesn’t yet have the ability to automatically scale, we can expect that the SIZE listed here will be 2. Once we create an HPA for the query server class, and the number of query nodes begins to scale, the SIZE will update to reflect the number of nodes currently being maintained. |
+| **2** | SIZE: This is the current number of Couchbase nodes that the Autonomous Operator is maintaining for the query server class. Considering that we set servers.query.size to 2 in our cluster configuration, and because the cluster doesn't yet have the ability to automatically scale, we can expect that the SIZE listed here will be 2. Once we create an HPA for the query server class, and the number of query nodes begins to scale, the SIZE will update to reflect the number of nodes currently being maintained. |
 
 ### [](#accessing-the-couchbase-web-console)Accessing the Couchbase Web Console
 
@@ -205,7 +205,7 @@ Run the `kubectl port-forward` command to forward the necessary port to the list
 
 ## [](#create-a-horizontal-pod-autoscaler)Create a Horizontal Pod Autoscaler
 
-Now that we’ve confirmed that CPU metrics data are being collected, we can create a `HorizontalPodAutoscaler` resource that targets this metric. For this tutorial, we’ll be configuring an HPA to scale the number of Couchbase `query` nodes in our cluster when the CPU usage of a `query` pod exceeds 70%. When CPU usage exceeds 70%, additional `query` nodes will be added, and when usage falls below 70% then the HPA will consider scaling down to reduce overhead. This example shows both scaling up and scaling down.
+Now that we've confirmed that CPU metrics data are being collected, we can create a `HorizontalPodAutoscaler` resource that targets this metric. For this tutorial, we'll be configuring an HPA to scale the number of Couchbase `query` nodes in our cluster when the CPU usage of a `query` pod exceeds 70%. When CPU usage exceeds 70%, additional `query` nodes will be added, and when usage falls below 70% then the HPA will consider scaling down to reduce overhead. This example shows both scaling up and scaling down.
 
 Run the following command to create a `HorizontalPodAutoscaler` resource that will take action when the CPU of a `query` pod exceeds 70%:
 
@@ -244,11 +244,11 @@ EOF
 
 | **1** | scaleTargetRef.kind: This field must be set to [CouchbaseAutoscaler](resource/couchbaseautoscaler.md), which is the kind of custom resource that gets automatically created by the Autonomous Operator when you enable auto-scaling for a particular server class.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | scaleTargetRef.name: This field needs to reference the name of the [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) custom resource. Since the Autonomous Operator creates [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) custom resources with the name format _<server-class>_._<cluster-name>_, the name we’ll need specify is query.scale-couchbase-cluster. As described previously in the [Verify the Installation](#verify-the-installation) section, a quick way to view the existing [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) custom resources (and their names) is to run the following command: $ kubectl get couchbaseautoscalers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **2** | scaleTargetRef.name: This field needs to reference the name of the [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) custom resource. Since the Autonomous Operator creates [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) custom resources with the name format _<server-class>_._<cluster-name>_, the name we'll need specify is query.scale-couchbase-cluster. As described previously in the [Verify the Installation](#verify-the-installation) section, a quick way to view the existing [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) custom resources (and their names) is to run the following command: $ kubectl get couchbaseautoscalers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | **3** | scaleDown.stabilizationWindowSeconds: This field can be used to control scaling down behavior, in this instance we indicate to [scale down after 60 seconds](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#example-change-downscale-stabilization-window) as described in the [official documentation](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#stabilization-window). Scaling down can also be prevented entirely using a policy of selectPolicy: Disabled. Other policies are available and fully documented in the [Kubernetes documentation](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#scaling-policies).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| **4** | minReplicas: This field sets the minimum number of Couchbase nodes for the specified server class. Here, we’ve set the minimum number of query nodes to 2. This means that number of query nodes will never be down-scaled to fewer than two nodes, even if the HPA detects that the target metric is relatively below the target value. Setting minReplicas is important for maintaining service availability. Refer to [Couchbase Cluster Auto-scaling Best Practices](concept-couchbase-autoscaling-best-practices.md) for additional guidance on setting this value in production environments.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **5** | maxReplicas: This field sets the maximum number of Couchbase nodes for the specified server class. It cannot be set to a value lower than what is defined for minReplicas. Here, we’ve set the maximum number of query nodes to 6. This means that number of query nodes will never be up-scaled to more than six nodes, even if the HPA detects that the target metric is still relatively above the target value. Setting a value for maxReplicas is required because it provides important protection against runaway scaling events. Refer to [Couchbase Cluster Auto-scaling Best Practices](concept-couchbase-autoscaling-best-practices.md) for additional guidance on setting this value in production environments. The [prerequisites](#before-you-begin) for this tutorial state that 10 Kubernetes worker nodes are required. So far we’re currently using five worker nodes for our Couchbase cluster (three default nodes and two query nodes), and have reserved one worker node for the workload generator. By setting maxReplicas to 6, we’re allowing the query server class to scale up to an additional four nodes if necessary, thus potentially requiring up to 10 worker nodes for our entire setup. |
-| **6** | metrics.resource.name: The name of target metric that will be monitored by the HPA for the purposes of auto-scaling. Here, we’ve specified cpu as the metric that will be used to scale the number query nodes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **4** | minReplicas: This field sets the minimum number of Couchbase nodes for the specified server class. Here, we've set the minimum number of query nodes to 2. This means that number of query nodes will never be down-scaled to fewer than two nodes, even if the HPA detects that the target metric is relatively below the target value. Setting minReplicas is important for maintaining service availability. Refer to [Couchbase Cluster Auto-scaling Best Practices](concept-couchbase-autoscaling-best-practices.md) for additional guidance on setting this value in production environments.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **5** | maxReplicas: This field sets the maximum number of Couchbase nodes for the specified server class. It cannot be set to a value lower than what is defined for minReplicas. Here, we've set the maximum number of query nodes to 6. This means that number of query nodes will never be up-scaled to more than six nodes, even if the HPA detects that the target metric is still relatively above the target value. Setting a value for maxReplicas is required because it provides important protection against runaway scaling events. Refer to [Couchbase Cluster Auto-scaling Best Practices](concept-couchbase-autoscaling-best-practices.md) for additional guidance on setting this value in production environments. The [prerequisites](#before-you-begin) for this tutorial state that 10 Kubernetes worker nodes are required. So far we're currently using five worker nodes for our Couchbase cluster (three default nodes and two query nodes), and have reserved one worker node for the workload generator. By setting maxReplicas to 6, we're allowing the query server class to scale up to an additional four nodes if necessary, thus potentially requiring up to 10 worker nodes for our entire setup. |
+| **6** | metrics.resource.name: The name of target metric that will be monitored by the HPA for the purposes of auto-scaling. Here, we've specified cpu as the metric that will be used to scale the number query nodes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **7** | metrics.resource.target.averageUtilization: Specifying the averageUtilization type means that the metric will be averaged across all of the pods. Here, by setting a value of 70, the HPA will scale the number of query nodes when the average CPU utilization across all query pods exceeds 70%.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 > [!NOTE]
@@ -256,7 +256,7 @@ EOF
 
 ### [](#verify-horizontalpodautoscaler-status)Verify `HorizontalPodAutoscaler` Status
 
-Now that we’ve created the `HorizontalPodAutoscaler` resource, the HPA will begin to monitor the target metric and report that the initial size (number) of the `query` nodes are within desired range. Run the following command to print these details to the console output:
+Now that we've created the `HorizontalPodAutoscaler` resource, the HPA will begin to monitor the target metric and report that the initial size (number) of the `query` nodes are within desired range. Run the following command to print these details to the console output:
 
 ```console
 $ kubectl describe hpa query-cpu-hpa
@@ -274,9 +274,9 @@ CouchbaseAutoscaler pods:             2 current / 2 desired  **(2)**
 
 ## [](#test-the-auto-scaling-behavior)Test the Auto-scaling Behavior
 
-At this point, we’ve completed all the necessary steps to configure our cluster deployment to automatically scale the number of `query` nodes. If the average CPU utilization across current `query` nodes exceeds 70%, an additional `query` node will be added to the cluster.
+At this point, we've completed all the necessary steps to configure our cluster deployment to automatically scale the number of `query` nodes. If the average CPU utilization across current `query` nodes exceeds 70%, an additional `query` node will be added to the cluster.
 
-However, we should test our configuration to be sure that `query` nodes will automatically scale as expected To do this, we’ll be attempting to induce auto-scaling behavior by generating a specific workload for the Query Service.
+However, we should test our configuration to be sure that `query` nodes will automatically scale as expected To do this, we'll be attempting to induce auto-scaling behavior by generating a specific workload for the Query Service.
 
 ### [](#load-data)Load Data
 
@@ -315,7 +315,7 @@ You can check the Couchbase Web Console to ensure that the data set has been loa
 
 ### [](#apply-query-workload)Apply Query Workload
 
-Now that the Travel Sample data has been loaded and indexed, we can put a CPU-intensive load on the Query Service that should trigger auto-scaling to occur. For this tutorial we’ll be using an experimental tool called `n1qlgen` to apply stress for a set duration of time.
+Now that the Travel Sample data has been loaded and indexed, we can put a CPU-intensive load on the Query Service that should trigger auto-scaling to occur. For this tutorial we'll be using an experimental tool called `n1qlgen` to apply stress for a set duration of time.
 
 Run the following command to initiate the query workload:
 
@@ -377,7 +377,7 @@ Events:
 After 10 minutes the query generator will complete and the number of `query` nodes will eventually scale back down to the previously-configured minimum of two nodes.
 
 > [!NOTE]
-> If your CPU utilization didn’t reach the target value, you can try with a lower CPU utilization threshold, or apply additional query generators by adjusting the `concurrency` and `seed` values.
+> If your CPU utilization didn't reach the target value, you can try with a lower CPU utilization threshold, or apply additional query generators by adjusting the `concurrency` and `seed` values.
 
 ### [](#optional-limit-scale-down-rate)Optional: Limit Scale Down Rate
 
@@ -385,7 +385,7 @@ When we created the `HorizontalPodAutoscaler` resource in a [previous step](#cre
 
 You may find that rapid down-scaling is not desirable for your environment and workload, or perhaps you want to disable automatic down-scaling completely in favor of manual down-scaling. These types of configurations can be accomplished by customizing the `scaleDown` policy in the `HorizontalPodAutoscaler` resource.
 
-First, let’s consider the scenario where we want to reduce the rate of down-scaling. We can accomplish this by configuring a policy that scales in smaller [_increments_](concept-couchbase-autoscaling.md#scaling-increments):
+First, let's consider the scenario where we want to reduce the rate of down-scaling. We can accomplish this by configuring a policy that scales in smaller [_increments_](concept-couchbase-autoscaling.md#scaling-increments):
 
 ```console
 $ cat << EOF | kubectl apply -f -

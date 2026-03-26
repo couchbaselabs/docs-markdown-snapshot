@@ -1,7 +1,7 @@
 ---
 title: About These Docs
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.6/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@java-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
@@ -53,7 +53,7 @@ The [Learn](../concept-docs/concepts.md) section is a collection of concept docs
 
 ## [](#reference-docs)Reference Docs
 
-The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the SDK’s API. Any error here should be filed directly against the individual SDKs bug tracker (JIRA), although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
+The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the SDK's API. Any error here should be filed directly against the individual SDKs bug tracker (JIRA), although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
 
 The first link in the navigation for the Reference Section is to the API Guide for the _latest version_ of the SDK. Links to previous versions can be found with the [Release Notes](sdk-release-notes.md).
 
@@ -65,7 +65,7 @@ All of the above (tutorials, howtos, concept docs, and reference docs) help you 
 
 ## [](#another-route-through)Another Route Through?
 
-Each page contains several links to related pages in the docs, as well as to relevant sections of the latest generated API docs. Links are made to cover as many common user journeys as we could think of. For cases where we didn’t anticipate your needs, every page in each SDK is linked from the left-hand navigation, and the paragraphs above detail the broad purpose of these groupings and some of their content.
+Each page contains several links to related pages in the docs, as well as to relevant sections of the latest generated API docs. Links are made to cover as many common user journeys as we could think of. For cases where we didn't anticipate your needs, every page in each SDK is linked from the left-hand navigation, and the paragraphs above detail the broad purpose of these groupings and some of their content.
 
 > [!NOTE]
 > Several _non-pages_ exist, in the sense that where a page found in one or more SDKs, such as the _Travel Sample Application_, is not available in one (or more) SDKs — as, for example, we have not made a [libcouchbase Travel Sample Application](#3.0@c-sdk:hello-world:sample-application.adoc) — then a page will still exist, so that when navigating between SDKs through either the dropdown nav, or changing ghe name in the URL bar, you will not find yourself facing a 404 error, and will still have access to the left-hand nvigation for that SDK.

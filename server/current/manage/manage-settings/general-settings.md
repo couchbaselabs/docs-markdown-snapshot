@@ -5,7 +5,7 @@ description: <em>General</em> settings allow configuration of <em>cluster
   availability</em> for the cluster; and of <em>advanced settings</em> for the
   Index and Query Services.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/general-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-settings/general-settings.adoc[]
 ---
 
@@ -91,7 +91,7 @@ If you enable this setting, Couchbase Server fails over a node that experiences 
 
 Auto-failover for data disk read/write non-responsiveness after X seconds [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
-This setting is similar to the previous setting, except the duration in the **seconds** box sets the amount of time a read or write operation has to finish. This setting defaults to off. When you enable it, if a read or write operation on the data disk takes longer than the values in the **seconds** box, Couchbase Server performs an auto-failover on the node. It lets you handle cases where a node’s data disk is indefinitely hanging or is so busy it becomes unresponsive without generating errors. The default duration is 120 seconds. You can change the duration to a value from 5 to 3600 seconds.
+This setting is similar to the previous setting, except the duration in the **seconds** box sets the amount of time a read or write operation has to finish. This setting defaults to off. When you enable it, if a read or write operation on the data disk takes longer than the values in the **seconds** box, Couchbase Server performs an auto-failover on the node. It lets you handle cases where a node's data disk is indefinitely hanging or is so busy it becomes unresponsive without generating errors. The default duration is 120 seconds. You can change the duration to a value from 5 to 3600 seconds.
 
 Preserve durable writes [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
@@ -101,15 +101,15 @@ The **Node Availability** section also contains a **For Ephemeral Buckets** subs
 
 Enable auto-reprovisioning for up to X node
 
-This setting helps avoid data loss in cases where a node fails and restarts before Couchbase Server can begin an auto-failover for it. This setting defaults to enabled. When it’s enabled, Couchbase Server automatically promotes the replicas of the active ephemeral vBuckets on the failed node. By making these replicas active, Couchbase Server prevents the loss of data caused by the restarted node losing the data in its ephemeral buckets.
+This setting helps avoid data loss in cases where a node fails and restarts before Couchbase Server can begin an auto-failover for it. This setting defaults to enabled. When it's enabled, Couchbase Server automatically promotes the replicas of the active ephemeral vBuckets on the failed node. By making these replicas active, Couchbase Server prevents the loss of data caused by the restarted node losing the data in its ephemeral buckets.
 
-The **node** box sets the maximum number of nodes Couchbase Server can auto-reprovision at a time. This value defaults to 1, meaning only a single node’s ephemeral buckets are auto-reprovisioned at a time. After the failed node rejoins the cluster, you must perform a rebalance before another node can be auto-reprovisioned. Only set this limit greater than 1 if the remaining nodes have enough capacity to handle the increased workload of multiple ephemeral buckets.
+The **node** box sets the maximum number of nodes Couchbase Server can auto-reprovision at a time. This value defaults to 1, meaning only a single node's ephemeral buckets are auto-reprovisioned at a time. After the failed node rejoins the cluster, you must perform a rebalance before another node can be auto-reprovisioned. Only set this limit greater than 1 if the remaining nodes have enough capacity to handle the increased workload of multiple ephemeral buckets.
 
 Allow auto-failover for ephemeral buckets with no replicas [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
 When enabled, this setting allows Couchbase Server to auto-failover a node that contains an ephemeral bucket with no replicas. When Couchbase Server fails over a node with an ephemeral bucket with no replicas, it creates empty vBuckets on the remaining nodes to replace the missing vBuckets on the failed node. When the failed node rejoins the cluster, Couchbase Server moves the replacement vBuckets back to it.
 
-This setting is off by default. When it’s off, Couchbase Server does not auto-failover a node that contains vBuckets for an unreplicated ephemeral bucket. In this case, you must manually fail over any node that contains an unreplicated ephemeral bucket’s vBuckets.
+This setting is off by default. When it's off, Couchbase Server does not auto-failover a node that contains vBuckets for an unreplicated ephemeral bucket. In this case, you must manually fail over any node that contains an unreplicated ephemeral bucket's vBuckets.
 
 See [Auto-Failover and Ephemeral Buckets](../../learn/clusters-and-availability/automatic-failover.md#auto-failover-and-ephemeral-buckets) for more information about auto-failover and ephemeral buckets.
 
@@ -410,7 +410,7 @@ For additional details on the cluster-level query settings, refer to [Settings a
 
 ### [](#rebalance-settings-via-cli)Rebalance Settings via CLI
 
-To obtain the cluster’s current rebalance settings by means of the CLI, use the [setting-rebalance](../../cli/cbcli/couchbase-cli-setting-rebalance.md) command, with the `--get` option:
+To obtain the cluster's current rebalance settings by means of the CLI, use the [setting-rebalance](../../cli/cbcli/couchbase-cli-setting-rebalance.md) command, with the `--get` option:
 
 ```shell
 /opt/couchbase/bin/couchbase-cli setting-rebalance \
@@ -520,7 +520,7 @@ http://10.143.192.101:8091/pools/default \
 -d eventingMemoryQuota=512
 ```
 
-This establishes the cluster’s IP address as its name, and assigns memory-quotas to the Data, Index, Search, Analytics, and Eventing Services.
+This establishes the cluster's IP address as its name, and assigns memory-quotas to the Data, Index, Search, Analytics, and Eventing Services.
 
 Note that when used with GET, `/pools/default` returns configuration-settings. The output can be filtered, by means of a tool such as [jq](https://stedolan.github.io/jq/):
 
@@ -652,7 +652,7 @@ If successful, this call returns a JSON document featuring all the current query
 Unresolved include directive in modules/manage/pages/manage-settings/general-settings.adoc - include::n1ql-rest-settings:example$query-settings-post-settings.json[]
 ```
 
-The document’s values indicate that the specified values for directory and size have been established; and that the current setting for access-control restricts access to all, with no exceptions.
+The document's values indicate that the specified values for directory and size have been established; and that the current setting for access-control restricts access to all, with no exceptions.
 
 To specify particular URLs as allowed and disallowed, use the `/settings/querySettings/curlWhitelist` method:
 
@@ -665,7 +665,7 @@ curl -v -X POST -u $USER:$PASSWORD \
        "disallowed_urls": ["https://company2.com"]}'
 ```
 
-A JSON document is specified as the payload for the method. The document’s values indicate that `https://company1.com` is allowed, and `https://company2.com` is disallowed.
+A JSON document is specified as the payload for the method. The document's values indicate that `https://company1.com` is allowed, and `https://company2.com` is disallowed.
 
 If successful, the call returns a JSON document that confirms the modified settings:
 
@@ -681,7 +681,7 @@ By means of the REST API, both _rebalance retries_ and _maximum concurrent moves
 
 #### [](#rebalance-retries-via-rest)Rebalance Retries via REST
 
-To obtain the cluster’s current settings for _rebalance retries_ by means of the REST API, use the `GET /settings/retryRebalance` HTTP method and URI, as follows:
+To obtain the cluster's current settings for _rebalance retries_ by means of the REST API, use the `GET /settings/retryRebalance` HTTP method and URI, as follows:
 
 ```shell
 curl -X GET -u Administrator:password \

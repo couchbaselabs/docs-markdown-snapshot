@@ -1,7 +1,7 @@
 ---
 title: Adding Synchronization
 editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/develop/java/adding-synchronization.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:todo-app:develop/java/adding-synchronization.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:tutorials:todo-app:develop/java/adding-synchronization.adoc[]
 
 # Adding Synchronization
 
-In this lesson you’ll be introduced to Sync Gateway, our secure web gateway. You’ll learn how to use Couchbase Lite’s synchronization APIs, set up Sync Gateway for synchronization with the cloud and other devices, and resolve data conflicts within your application.
+In this lesson you'll be introduced to Sync Gateway, our secure web gateway. You'll learn how to use Couchbase Lite's synchronization APIs, set up Sync Gateway for synchronization with the cloud and other devices, and resolve data conflicts within your application.
 
 **TIP:** To make things a bit more exciting, you may want to use the pre-built database containing a list of Groceries. Refer to the [Create a Database](#swift/create-database.adoc) lesson to learn how to use it.
 
@@ -35,7 +35,7 @@ Now that your application runs smoothly on the device you are ready to introduce
 
 During development, you can set the **server** property to **walrus:** (also known as the Walrus mode) and it will keep the data in memory. Note that anytime you restart Sync Gateway in walrus mode, the database will be empty.
 
-By default, Sync Gateway doesn’t allow unauthenticated requests to be processed for security reasons. So you’re enabling the **GUEST** user which represents all the unauthenticated clients that will be synchronizing with your Sync Gateway instance.
+By default, Sync Gateway doesn't allow unauthenticated requests to be processed for security reasons. So you're enabling the **GUEST** user which represents all the unauthenticated clients that will be synchronizing with your Sync Gateway instance.
 
 > [!NOTE]
 > User authentication is covered in more detail in the [Adding Security](#swift/adding-security.adoc) lesson.
@@ -43,7 +43,7 @@ By default, Sync Gateway doesn’t allow unauthenticated requests to be processe
 Sync Gateway is always listening on two ports:
 
 * 4984: the public port which will be used from the application.
-* 4985: the admin port used for administrative tasks (for security reasons, it’s only accessible on localhost).
+* 4985: the admin port used for administrative tasks (for security reasons, it's only accessible on localhost).
 
 ### [](#try-it-out)Try it out
 
@@ -196,7 +196,7 @@ private Boolean mSyncEnabled = true;
 
 ## [](#resolve-conflicts)Resolve Conflicts
 
-Due to the unpredictability of mobile connections it’s inevitable that more than one device will update the same document simultaneously. Couchbase Lite provides features to resolve these conflicts. The resolution rules are written by the developer to keep full control over which revision should be picked. The most common resolution methods are:
+Due to the unpredictability of mobile connections it's inevitable that more than one device will update the same document simultaneously. Couchbase Lite provides features to resolve these conflicts. The resolution rules are written by the developer to keep full control over which revision should be picked. The most common resolution methods are:
 
 * **Deletes always win:** if one side deletes a document it will always stay deleted, even if the other side has made changes to it later on.
 * **N-way merge:** if both sides have updated different properties, the document will end up with the updates from both sides.
@@ -264,7 +264,7 @@ The query results are then posted to the application code using the change callb
 
 ### [](#automatic-conflict-resolution)Automatic conflict resolution
 
-Even if the conflict isn’t resolved, Couchbase Lite has to return something. It chooses one of the two conflicting revisions as the winner. The choice is deterministic, which means that every device that is faced with the same conflict will pick the same winner, without having to communicate.
+Even if the conflict isn't resolved, Couchbase Lite has to return something. It chooses one of the two conflicting revisions as the winner. The choice is deterministic, which means that every device that is faced with the same conflict will pick the same winner, without having to communicate.
 
 Shown below is a list document created with two conflicting revisions. After deleting the row, the text **Text Changed** appears which is the name of the second conflicting revision. The action of deleting a document only deletes the current revision and if there are conflicting revisions it will be promoted as the new current revision.
 
@@ -279,7 +279,7 @@ Shown below is a list document created with two conflicting revisions. After del
 
 > **Note:** During development, the method `save(boolean)` is used to intentionally create a conflict. You can long press the floating action button to create a list conflict. The code is located in the `createListConflict()` method of **ListsActivity.java**. 
 
-This can be surprising at first but it’s the strength of using a distributed database that defers the conflict resolution logic to the application. It’s your responsibility as the developer to ensure conflicts are resolved! Even if you decide to let Couchbase Lite pick the winner you must remove extraneous conflicting revisions to prevent the behaviour observed above. The code below removes all revisions except the current/winning one.
+This can be surprising at first but it's the strength of using a distributed database that defers the conflict resolution logic to the application. It's your responsibility as the developer to ensure conflicts are resolved! Even if you decide to let Couchbase Lite pick the winner you must remove extraneous conflicting revisions to prevent the behaviour observed above. The code below removes all revisions except the current/winning one.
 
 ```swift
 // This code can be found in AppDelegate.swift
@@ -384,7 +384,7 @@ private void resolveConflicts(final ListSavedRevision revs, final MapString, Obj
 ```swift  
 let kConflictResolution = true  
 ```
-2. Perform the same actions and this time deleting the list conflict doesn’t reveal the subsequent conflicting revision anymore.  
+2. Perform the same actions and this time deleting the list conflict doesn't reveal the subsequent conflicting revision anymore.  
 ![image48](../../_images/image48.gif)
 
 1. To enable conflict resolution, change `ConflictResolution = false` to `ConflictResolution = true` in the `CreateHint()` method in **CoreApp.cs**

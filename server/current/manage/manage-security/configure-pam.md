@@ -4,7 +4,7 @@ description: <em>Pluggable Authentication Modules</em> (PAM) provide an
   authentication framework that allows multiple, low-level authentication
   schemes to be used by a single API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/configure-pam.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-security/configure-pam.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:server:manage:manage-security/configure-pam.adoc[]
 
 # Configure PAM
 
-> _Pluggable Authentication Modules_ (PAM) provide an authentication framework that allows multiple, low-level authentication schemes to be used by a single API. The _Enterprise Edition_ of Couchbase Server, running on Linux, supports administrator-authentication through PAM’s _Linux password-module_. 
+> _Pluggable Authentication Modules_ (PAM) provide an authentication framework that allows multiple, low-level authentication schemes to be used by a single API. The _Enterprise Edition_ of Couchbase Server, running on Linux, supports administrator-authentication through PAM's _Linux password-module_. 
 
 ## [](#pam-features)PAM Features
 
@@ -69,7 +69,7 @@ usermod -aG sasl couchbase
   MECHANISMS="pam"  
   ```  
   If output to the above command does not confirm that `MECHANISMS` is set to `pam`, bring up the configuration file `/etc/default/saslauthd` in an editor, and manually set the `MECHANISMS` parameter to `pam`.
-5. If you’re running RHEL 8.x or a distribution derived from it, add the following lines to the file `/etc/pam.d/passwd`:  
+5. If you're running RHEL 8.x or a distribution derived from it, add the following lines to the file `/etc/pam.d/passwd`:  
 auth       include    system-auth  
 account    include    system-auth
 6. Set up PAM to authenticate the Couchbase service, by copying `/etc/pam.d/passwd` to `/etc/pam.d/couchbase`.  

@@ -3,7 +3,7 @@ title: Introduction
 description: The Couchbase Apache Superset Connector lets you visualize data
   from Tabular Analytics Views (TAV) in Apache Superset.
 editUrl: https://github.com/couchbase/docs-connectors-superset/edit/release/1.0/modules/ROOT/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:superset-connector::index.adoc[]
 ---
 
@@ -36,7 +36,7 @@ Couchbase **strongly** recommends that you secure your Superset connection using
 
 For details on creating a Capella Columnar instance, first see [Creating a Capella Columnar Cluster](../../analytics/admin/prepare-project.md).
 
-You’ll need to access the Capella administration console to get the connection string for your Columnar database.
+You'll need to access the Capella administration console to get the connection string for your Columnar database.
 
 1. Sign in to your Capella instance as an `Organization owner` or `Project owner`.
 2. Select **Columnar** from the top-level page menu.
@@ -47,7 +47,7 @@ You’ll need to access the Capella administration console to get the connection
 ![get capella columnar connection string](_images/get-capella-columnar-connection-string.png)
 6. Make a note of the connection string.
 
-Next, you need to add the IP address of the machine from which you’re running Superset, so that Capella allows the machine to access the Columnar data.
+Next, you need to add the IP address of the machine from which you're running Superset, so that Capella allows the machine to access the Columnar data.
 
 1. Click on **Allowed IP Addresses** in the left-hand menu.
 2. Click the **Add Allowed IP** button.  

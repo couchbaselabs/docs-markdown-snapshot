@@ -1,7 +1,7 @@
 ---
 title: Access the Couchbase Server User Interface
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/howto-ui.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::howto-ui.adoc[]
 ---
 
@@ -43,7 +43,7 @@ Forwarding from [::1]:8091 -> 8091
 You can then connect to http://localhost:8091 to access the UI.
 
 > [!IMPORTANT]
-> If you must connect over TLS then forward port 18091 and use the address `https://localhost:18091`. Ensure your cluster administrator has provided a CA certificate to be installed into your browser’s trust store. If certificate-based authentication is used, then ensure you have installed your client certificate/key into your browser too. As you are connecting to `localhost` it is also important that your cluster administrator has added the `localhost` subject alternative address name into the cluster TLS certificate.
+> If you must connect over TLS then forward port 18091 and use the address `https://localhost:18091`. Ensure your cluster administrator has provided a CA certificate to be installed into your browser's trust store. If certificate-based authentication is used, then ensure you have installed your client certificate/key into your browser too. As you are connecting to `localhost` it is also important that your cluster administrator has added the `localhost` subject alternative address name into the cluster TLS certificate.
 
 ## [](#dns-based-addressing)DNS Based Addressing
 

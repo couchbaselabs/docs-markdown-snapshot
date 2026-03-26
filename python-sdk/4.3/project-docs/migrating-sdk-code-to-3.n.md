@@ -4,7 +4,7 @@ description: The SDK API 3 (used in Python SDK 3.x and 4.x) introduces breaking
   changes to the previous SDK API 2 APIs (used in Python SDK 2.x) in order to
   provide a number of improvements. Collections and Scopes are introduced.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@python-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -47,7 +47,7 @@ __Table 1\. SDK API Versions__
 
 **SDK API 3.6**: Introduced support for base 64 encoded vector types alongside Server 7.6.2 (and Capella). General Availability of our C++ SDK — now available as a supported, stand-alone SDK, this SDK is also the core of our Node.js, PHP, Python, and Ruby SDKs.
 
-**SDK API 3.5**: Introduced support for Vector Search alongside Server 7.6 (and Capella). Adds scoped indexes to Search (for Vector Seach and traditional FTS). Read from Replica for Query and Sub-Doc operations. KV Range Scan for querying documents through the Data Service, even if you don’t know the document IDs (for use cases that require relatively low concurrency and tolerate relatively high latency). Transactions now implemented as a native library in all SDKs (except libcouchbase).
+**SDK API 3.5**: Introduced support for Vector Search alongside Server 7.6 (and Capella). Adds scoped indexes to Search (for Vector Seach and traditional FTS). Read from Replica for Query and Sub-Doc operations. KV Range Scan for querying documents through the Data Service, even if you don't know the document IDs (for use cases that require relatively low concurrency and tolerate relatively high latency). Transactions now implemented as a native library in all SDKs (except libcouchbase).
 
 **SDK API 3.4**: Introduced support for ARM v8 on Ubuntu 20.04, Transactions on Spring Data Couchbase, and compatibility with running in serverless environments, such as AWS λ. The `couchbase2://` connection string was introduced in Go 2.7, Java 3.5, Kotlin 1.2, and Scala 1.5, for Cloud Native Gateway with [Couchbase Autonomous Operator](../../../operator/current/overview.md) (from CAO 2.6.1).
 
@@ -69,7 +69,7 @@ The concept of a `Cluster` and a `Bucket` remain the same, but a fundamental new
 
 Note that the SDKs include the feature from SDK 3.0, to allow easier migration.
 
-In the previous SDK generation, particularly with the `KeyValue` API, the focus has been on the codified concept of a `Document`. Documents were read and written and had a certain structure, including the `id`/`key`, content, expiry (`ttl`), and so forth. While the server still operates on the logical concept of documents, we found that this model in practice didn’t work so well for client code in certain edge cases. As a result we have removed the `Document` class/structure completely from the API. The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`. This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.
+In the previous SDK generation, particularly with the `KeyValue` API, the focus has been on the codified concept of a `Document`. Documents were read and written and had a certain structure, including the `id`/`key`, content, expiry (`ttl`), and so forth. While the server still operates on the logical concept of documents, we found that this model in practice didn't work so well for client code in certain edge cases. As a result we have removed the `Document` class/structure completely from the API. The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`. This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.
 
 As an example here is a KeyValue document fetch:
 
@@ -88,7 +88,7 @@ Compare this to a SQL++ (formerly N1QL) query:
 query_result = cluster.query("select 1=1", QueryOptions(timeout=timedelta(seconds=3)))
 ```
 
-Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`. Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON. You’ll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.
+Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`. Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON. You'll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.
 
 The KV API extends the concept of the serializer to the `Transcoder`. Since you can also store non-JSON data inside a document, the `Transcoder` allows the writing of binary data as well. It handles the object/entity encoding and decoding, and if it happens to deal with JSON makes uses of the configured `Serializer` internally. See the _Serialization and Transcoding_ section below for details.
 
@@ -160,7 +160,7 @@ collection.compression = COMPRESS_INOUT
 
 See the [configuration section](../ref/client-settings.md) for full specifics.
 
-At the end of this guide you’ll find a [reference](#configurations-options-reference) that describes the SDK API 2 environment options and their SDK 3 equivalents where applicable.
+At the end of this guide you'll find a [reference](#configurations-options-reference) that describes the SDK API 2 environment options and their SDK 3 equivalents where applicable.
 
 ### [](#authentication)Authentication
 
@@ -428,7 +428,7 @@ Importantly, the Python SDK 4.0 has been substantially reworked to use a new bac
   * All management options should be imported from `couchbase.management.options`
   * All results should be imported from `couchbase.result`
   * All exceptions should be imported from `couchbase.exceptions`
-  * Enumerations and Classes related to operations should be imported from that operation’s path. For example, `QueryScanConsistency` should be imported from `couchbase.n1ql` (i.e. `from couchbase.n1ql import QueryScanConsistency`)
+  * Enumerations and Classes related to operations should be imported from that operation's path. For example, `QueryScanConsistency` should be imported from `couchbase.n1ql` (i.e. `from couchbase.n1ql import QueryScanConsistency`)
 * Changes to the async APIs (`acouchbase` and `txcouchbase`):
 
   * While multi-operations (`get_multi`, `upsert_multi`, etc.) still exist for the `couchbase` API, they have been removed from the async APIs (`acouchbase` and `txcouchbase`) as each of the async APIs are built with libraries that have mechanisms to handle multi/bulk operations (`asyncio` has `asyncio.gather(…​)` and `Twisted` has `DeferredList(…​)`).

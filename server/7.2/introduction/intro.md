@@ -1,7 +1,7 @@
 ---
 title: Couchbase Server
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/introduction/pages/intro.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:introduction:intro.adoc[]
 ---
 
@@ -51,7 +51,7 @@ Tutorials
 
 CRUD Operations
 
-* [Developer’s Intro](../develop/intro.md)
+* [Developer's Intro](../develop/intro.md)
 * [SDKs](../../../home/sdk.md)
 * [CRUD Using SDKs](../../../java-sdk/current/howtos/kv-operations.md)
 
@@ -98,7 +98,7 @@ Search Service
 Analytics Service
 
 * [Analytics Service](../learn/services-and-indexes/services/analytics-service.md)
-* [What’s SQL++ for Analytics?](../analytics/1%5Fintro.md)
+* [What's SQL++ for Analytics?](../analytics/1%5Fintro.md)
 * [Tutorial](../analytics/primer-beer.md)
 * [Analytics Using SDKs](../../../java-sdk/current/howtos/analytics-using-sdk.md)
 

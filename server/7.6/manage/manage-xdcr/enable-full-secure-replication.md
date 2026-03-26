@@ -3,7 +3,7 @@ title: Enable Fully Secure Replications
 description: <em>Fully</em> secure replications handle both authentication and
   data-transfer via TLS.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-xdcr/enable-full-secure-replication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-xdcr/enable-full-secure-replication.adoc[]
 ---
 
@@ -96,7 +96,7 @@ From the starting-point given above, in [Examples on this Page](#examples-on-thi
 
 ### [](#edit-existing-reference-to-fully-secure-with-creds-cli)Secure an Existing Reference with CLI, Using Credentials
 
-To edit the existing non-secure reference to `10.142.180.102`, specifying fully secure replication by means of the remote cluster’s appropriate administrative credentials and its root certificate, enter the following:
+To edit the existing non-secure reference to `10.142.180.102`, specifying fully secure replication by means of the remote cluster's appropriate administrative credentials and its root certificate, enter the following:
 
 couchbase-cli xdcr-setup -c 10.142.180.101 \
 -u Administrator -p password \
@@ -116,7 +116,7 @@ The reference and its associated replications are now fully secured.
 
 ### [](#edit-existing-reference-to-fully-secure-with-certs-cli)Secure an Existing Reference with CLI, Using Certificates
 
-To edit the existing non-secure reference to `10.142.180.102`, specifying fully secure replication by means of the remote cluster’s root certificate, a client certificate, and a client private key, enter the following:
+To edit the existing non-secure reference to `10.142.180.102`, specifying fully secure replication by means of the remote cluster's root certificate, a client certificate, and a client private key, enter the following:
 
 couchbase-cli xdcr-setup -c 10.142.180.101 \
 -u Administrator \
@@ -131,7 +131,7 @@ couchbase-cli xdcr-setup -c 10.142.180.101 \
 --xdcr-user-certificate /Users/username/clientcert/travel-sample.pem \
 --xdcr-user-key /Users/username/clientcert/travel-sample.key
 
-Note that the `--edit` flag is specified. The `--xdcr-username` and `--xdcr-password` are those for the remote cluster. The value of `--xdcr-certificate` is set to `full`. Specified as local pathnames are the values of `--xdcr-certificate` (the root certificate of the remote cluster), `--xdcr-user-certificate` (the client certificate), and `--xdcr-user-key` (the client’s private key). If successful, the command returns the following:
+Note that the `--edit` flag is specified. The `--xdcr-username` and `--xdcr-password` are those for the remote cluster. The value of `--xdcr-certificate` is set to `full`. Specified as local pathnames are the values of `--xdcr-certificate` (the root certificate of the remote cluster), `--xdcr-user-certificate` (the client certificate), and `--xdcr-user-key` (the client's private key). If successful, the command returns the following:
 
 SUCCESS: Cluster reference edited
 
@@ -139,7 +139,7 @@ The reference and its associated replications are now fully secured.
 
 ### [](#create-new-fully-secure-reference-with-creds)Create a New, Fully Secure Reference with CLI, Using Credentials
 
-To create a new, fully secure reference from `10.142.180.101` to `10.142.180.103` by means of the remote cluster’s appropriate administrative credentials and its root certificate, enter the following:
+To create a new, fully secure reference from `10.142.180.101` to `10.142.180.103` by means of the remote cluster's appropriate administrative credentials and its root certificate, enter the following:
 
 couchbase-cli xdcr-setup -c 10.142.180.101 \
 -u Administrator -p password \
@@ -159,7 +159,7 @@ The new reference is now fully secured, as will be its associated replications.
 
 ### [](#create-new-fully-secure-reference-with-certs-cli)Create a New, Fully Secure Reference with CLI, Using Certificates
 
-To create a new, fully secure reference from `10.142.180.101` to `10.142.180.103` by means of the remote cluster’s root certificate, a client certificate, and a client private key, enter the following:
+To create a new, fully secure reference from `10.142.180.101` to `10.142.180.103` by means of the remote cluster's root certificate, a client certificate, and a client private key, enter the following:
 
 couchbase-cli xdcr-setup -c 10.142.180.101 \
 -u Administrator -p password \
@@ -173,7 +173,7 @@ couchbase-cli xdcr-setup -c 10.142.180.101 \
 --xdcr-user-certificate /Users/username/clientcert/travel-sample.pem \
 --xdcr-user-key /Users/username/clientcert/travel-sample.key
 
-Note that the `--create` flag is specified. The `--xdcr-username` and `--xdcr-password` are those for the remote cluster. The value of `--xdcr-secure-connection` is set to `full`. Specified as local pathnames are the values of `--xdcr-certificate` (the root certificate of the remote cluster), `--xdcr-user-certificate` (the client certificate), and `--xdcr-user-key` (the client’s private key).
+Note that the `--create` flag is specified. The `--xdcr-username` and `--xdcr-password` are those for the remote cluster. The value of `--xdcr-secure-connection` is set to `full`. Specified as local pathnames are the values of `--xdcr-certificate` (the root certificate of the remote cluster), `--xdcr-user-certificate` (the client certificate), and `--xdcr-user-key` (the client's private key).
 
 If successful, the command returns the following:
 
@@ -191,7 +191,7 @@ From the starting-point given above in [Examples on this Page](enable-half-secur
 
 ### [](#make-existing-reference-fully-secure-with-creds-rest)Secure an Existing Reference with REST, Using Credentials
 
-To edit the existing reference from `10.142.180.101` to `10.142.180.102`, fully securing it by means of the remote cluster’s appropriate administrative credentials and its root certificate, enter the following:
+To edit the existing reference from `10.142.180.101` to `10.142.180.102`, fully securing it by means of the remote cluster's appropriate administrative credentials and its root certificate, enter the following:
 
 curl -X POST -u Administrator:password \
 http://10.142.180.101:8091/pools/default/remoteClusters/10.142.180.102 \
@@ -226,7 +226,7 @@ The `secureType` field specifies `full`: therefore, the reference and its associ
 
 ### [](#make-existing-reference-fully-secure-with-certs-rest)Secure an Existing Reference with REST, Using Certificates
 
-To edit the existing non-secure reference from `10.142.180.101` to `10.142.180.102`, specifying fully secure replication by means of the remote cluster’s root certificate, a client certificate, and a client private key, enter the following:
+To edit the existing non-secure reference from `10.142.180.101` to `10.142.180.102`, specifying fully secure replication by means of the remote cluster's root certificate, a client certificate, and a client private key, enter the following:
 
 http://10.142.180.101:8091/pools/default/remoteClusters/10.142.180.102 \
 -d name=10.142.180.102 \
@@ -239,7 +239,7 @@ http://10.142.180.101:8091/pools/default/remoteClusters/10.142.180.102 \
 --data-urlencode "clientCertificate=$(cat /Users/username/clientcert/travel-sample.pem)" \
 --data-urlencode "clientKey=$(cat /Users/username/clientcert/travel-sample.key)"
 
-The URI terminates with the name of the remote cluster, signifying that this operation _edits_, rather than _creates_. The `username` and `password` specified are those of the remote cluster. Note that the `demandEncryption` flag is set to `true`, and the `encryptionType` flag specifies `full`. The value of `--xdcr-certificate` is set to `full`. Specified as local pathnames are the values of `--xdcr-certificate` (the root certificate of the remote cluster), `--xdcr-user-certificate` (the client certificate), and `--xdcr-user-key` (the client’s private key).
+The URI terminates with the name of the remote cluster, signifying that this operation _edits_, rather than _creates_. The `username` and `password` specified are those of the remote cluster. Note that the `demandEncryption` flag is set to `true`, and the `encryptionType` flag specifies `full`. The value of `--xdcr-certificate` is set to `full`. Specified as local pathnames are the values of `--xdcr-certificate` (the root certificate of the remote cluster), `--xdcr-user-certificate` (the client certificate), and `--xdcr-user-key` (the client's private key).
 
 If successful, the command returns the following:
 
@@ -262,7 +262,7 @@ The `secureType` field specifies `full`: therefore, the reference and its associ
 
 ### [](#create-new-fully-secure-reference-with-creds-rest)Create a New, Fully Secure Reference with REST, Using Credentials
 
-To create a new, fully secure reference from `10.142.180.101` to `10.142.180.103` by means of the remote cluster’s appropriate administrative credentials and its root certificate, enter the following:
+To create a new, fully secure reference from `10.142.180.101` to `10.142.180.103` by means of the remote cluster's appropriate administrative credentials and its root certificate, enter the following:
 
 curl -X POST -u Administrator:password \
 http://10.142.180.101:8091/pools/default/remoteClusters \
@@ -297,7 +297,7 @@ The `secureType` field specifies `full`: therefore, the new reference is fully s
 
 ### [](#create-new-fully-secure-reference-with-certs-rest)Create a New, Fully Secure Reference with REST, Using Certificates
 
-To create a new, fully secure reference from `10.142.180.101` to `10.142.180.103`, specifying fully secure replication by means of the remote cluster’s root certificate, a client certificate, and a client private key, enter the following:
+To create a new, fully secure reference from `10.142.180.101` to `10.142.180.103`, specifying fully secure replication by means of the remote cluster's root certificate, a client certificate, and a client private key, enter the following:
 
 curl -X POST -u Administrator:password \
 http://10.142.180.101:8091/pools/default/remoteClusters \
@@ -311,7 +311,7 @@ http://10.142.180.101:8091/pools/default/remoteClusters \
 --data-urlencode "clientCertificate=$(cat /Users/username/clientcert/travel-sample.pem)" \
 --data-urlencode "clientKey=$(cat /Users/username/clientcert/travel-sample.key)"
 
-The `username` and `password` specified are those of the remote cluster. Note that the `demandEncryption` flag is set to `true`, and the `encryptionType` flag specifies `full`. The value of `--xdcr-certificate` is set to `full`. Specified as local pathnames are the values of `--xdcr-certificate` (the root certificate of the remote cluster), `--xdcr-user-certificate` (the client certificate), and `--xdcr-user-key` (the client’s private key).
+The `username` and `password` specified are those of the remote cluster. Note that the `demandEncryption` flag is set to `true`, and the `encryptionType` flag specifies `full`. The value of `--xdcr-certificate` is set to `full`. Specified as local pathnames are the values of `--xdcr-certificate` (the root certificate of the remote cluster), `--xdcr-user-certificate` (the client certificate), and `--xdcr-user-key` (the client's private key).
 
 If successful, the command returns the following:
 

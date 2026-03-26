@@ -2,7 +2,7 @@
 title: Views Best Practices
 description: Several practices should be kept in mind with developing and deploying views.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/views/views-writing-views.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:views/views-writing-views.adoc[]
 ---
 
@@ -19,11 +19,11 @@ Keep in mind the following factors when developing and deploying views:
 
 * View quantity per design document
 * Modifying existing views
-* Don’t include document IDs
+* Don't include document IDs
 * Check document fields
 * View Size, disk storage and I/O
 * Include value data in views
-* Don’t include entire documents in view output
+* Don't include entire documents in view output
 * Use document types
 * Use built-in Reduce functions
 
@@ -45,7 +45,7 @@ Rebuilding all the views within a single design document is an expensive operati
 
 This process of rebuilding will occur across all the nodes within the cluster and increases the overall disk I/O and CPU requirements until the view has been recreated. This process will take place in addition to any production design documents and views that also need to be kept up to date.
 
-## [](#dont-include-document-ids)Don’t include document IDs
+## [](#dont-include-document-ids)Don't include document IDs
 
 The document ID is automatically output by the view system when the view is accessed. When accessing a view without reduce enabled you can always determine the document ID of the document that generated the row. You should not include the document ID (from `meta.id` ) in your key or value data.
 
@@ -119,7 +119,7 @@ function(doc, meta)
 
 This creates an optimized view containing only the information required, ensuring the highest performance when updating the view, and smaller disk usage.
 
-## [](#dont-include-entire-documents-in-view-output)Don’t include entire documents in view output
+## [](#dont-include-entire-documents-in-view-output)Don't include entire documents in view output
 
 A view index should be designed to provide base information and through the implicitly returned document ID point to the source document. It is bad practice to include the entire document within your view output.
 
@@ -151,7 +151,7 @@ You can then either access the document data individually through the client lib
 
 If you are using a document type (by using a field in the stored JSON to indicate the document structure), be aware that on a large database this can mean that the view function is called to update the index for document types that are not being updated or added to the index.
 
-For example, within a database storing game objects with a standard list of objects, and the users that interact with them, you might use a field in the JSON to indicate ‘object’ or ‘player’. With a view that outputs information when the document is an object:
+For example, within a database storing game objects with a standard list of objects, and the users that interact with them, you might use a field in the JSON to indicate 'object' or 'player'. With a view that outputs information when the document is an object:
 
 function(doc, meta)
 {

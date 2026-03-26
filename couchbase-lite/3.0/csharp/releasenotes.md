@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Lite on C#.Net
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/csharp/pages/releasenotes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:csharp:releasenotes.adoc[]
 ---
 
@@ -91,7 +91,7 @@ Version 3.0.2 of Couchbase Lite for C#.Net delivers a number of fixes and enhanc
 
 ### [](#enhancements-4)Enhancements
 
-* [CBL-3038](https://issues.couchbase.com/browse/CBL-3038) — [Cookies set in Headers are replaced with Session Authenticator’s cookies](https://issues.couchbase.com/browse/CBL-3038)
+* [CBL-3038](https://issues.couchbase.com/browse/CBL-3038) — [Cookies set in Headers are replaced with Session Authenticator's cookies](https://issues.couchbase.com/browse/CBL-3038)
 * [CBL-2975](https://issues.couchbase.com/browse/CBL-2975) — [Implement enhanced pinned server certificate feature](https://issues.couchbase.com/browse/CBL-2975)
 
 ### [](#issues-and-resolutions-3-0-2)Issues and Resolutions
@@ -116,7 +116,7 @@ _Quick Links_
 
 #### [](#sqln1ql-query-strings)SQL++/N1QL Query Strings
 
-Couchbase Lite’s SQL++ for Mobile query API vastly simplifies the integration of Couchbase Lite within hybrid/cross platform apps.
+Couchbase Lite's SQL++ for Mobile query API vastly simplifies the integration of Couchbase Lite within hybrid/cross platform apps.
 
 N1QL for Mobile is an implementation of the emerging SQL-for-JSON query language specification (SQL++). It provides native, hybrid and cross-platform mobile app developers with a consistent, convenient and flexible interface to query JSON documents within the embedded database using a SQL-based syntax. This means developers can reuse queries across platforms, reducing development, testing and maintenance costs.
 
@@ -148,10 +148,10 @@ The API is enhanced to allow replicator listeners to be added at any point witho
 
 ### [](#other-enhancements)Other Enhancements
 
-* [CBL-2635](https://issues.couchbase.com//browse/CBL-2635) — [Update support level and message note of Database’saveBlob() and getBlob() API](https://issues.couchbase.com//browse/CBL-2635)
+* [CBL-2635](https://issues.couchbase.com//browse/CBL-2635) — [Update support level and message note of Database'saveBlob() and getBlob() API](https://issues.couchbase.com//browse/CBL-2635)
 * [CBL-2628](https://issues.couchbase.com//browse/CBL-2628) — [Change away from using SELECT when open socket](https://issues.couchbase.com//browse/CBL-2628)
 * [CBL-2482](https://issues.couchbase.com//browse/CBL-2482) — [Change database.createQuery(String query) signature to throw CouchbaseLiteException](https://issues.couchbase.com//browse/CBL-2482)
-* [CBL-2456](https://issues.couchbase.com//browse/CBL-2456) — [Update Database’s createQuery() to return an error or throw CouchbaseLiteException (Beta 3)](https://issues.couchbase.com//browse/CBL-2456)
+* [CBL-2456](https://issues.couchbase.com//browse/CBL-2456) — [Update Database's createQuery() to return an error or throw CouchbaseLiteException (Beta 3)](https://issues.couchbase.com//browse/CBL-2456)
 * [CBL-2438](https://issues.couchbase.com//browse/CBL-2438) — [Add note about notification when disabling autoPurge](https://issues.couchbase.com//browse/CBL-2438)
 * [CBL-2408](https://issues.couchbase.com//browse/CBL-2408) — [Add kFLUndefinedValue constant in Fleece.h](https://issues.couchbase.com//browse/CBL-2408)
 * [CBL-2383](https://issues.couchbase.com//browse/CBL-2383) — [Increase kOtherDBCloseTimeoutSecs to allow enough time for all db open connections to be closed](https://issues.couchbase.com//browse/CBL-2383)
@@ -180,7 +180,7 @@ The API is enhanced to allow replicator listeners to be added at any point witho
 * [CBL-1711](https://issues.couchbase.com//browse/CBL-1711) — [API: Add MaintenanceType for Query Optimization](https://issues.couchbase.com//browse/CBL-1711)
 * [CBL-1692](https://issues.couchbase.com//browse/CBL-1692) — [Add UWP PR validation Part 2 (build everything from source and make a GitHub action)](https://issues.couchbase.com//browse/CBL-1692)
 * [CBL-1666](https://issues.couchbase.com//browse/CBL-1666) — [Allow apps to trigger SQLite index optimization directly](https://issues.couchbase.com//browse/CBL-1666)
-* [CBL-1650](https://issues.couchbase.com//browse/CBL-1650) — [CBL doesn’t purge channel removals when removal revision already exists in CBL](https://issues.couchbase.com//browse/CBL-1650)
+* [CBL-1650](https://issues.couchbase.com//browse/CBL-1650) — [CBL doesn't purge channel removals when removal revision already exists in CBL](https://issues.couchbase.com//browse/CBL-1650)
 * [CBL-1584](https://issues.couchbase.com//browse/CBL-1584) — [Replicator Retry Logic](https://issues.couchbase.com//browse/CBL-1584)
 * [CBL-1583](https://issues.couchbase.com//browse/CBL-1583) — [JSON Results](https://issues.couchbase.com//browse/CBL-1583)
 * [CBL-1582](https://issues.couchbase.com//browse/CBL-1582) — [Configurable Replicator Level](https://issues.couchbase.com//browse/CBL-1582)
@@ -192,7 +192,7 @@ The API is enhanced to allow replicator listeners to be added at any point witho
 * [CBL-1311](https://issues.couchbase.com//browse/CBL-1311) — [Use Builder pattern for Configuration](https://issues.couchbase.com//browse/CBL-1311)
 * [CBL-1308](https://issues.couchbase.com//browse/CBL-1308) — [Allow to remove query listener or any listeners directly from token](https://issues.couchbase.com//browse/CBL-1308)
 * [CBL-1232](https://issues.couchbase.com//browse/CBL-1232) — [Support function to change the kC4ReplicatorOptionProgressLevel](https://issues.couchbase.com//browse/CBL-1232)
-* [CBL-1118](https://issues.couchbase.com//browse/CBL-1118) — [Update SimpleInjector to version 5 and edit nuspec to restrict it’s version < 6](https://issues.couchbase.com//browse/CBL-1118)
+* [CBL-1118](https://issues.couchbase.com//browse/CBL-1118) — [Update SimpleInjector to version 5 and edit nuspec to restrict it's version < 6](https://issues.couchbase.com//browse/CBL-1118)
 * [CBL-1049](https://issues.couchbase.com//browse/CBL-1049) — [Zero fleece options when replicator is freed](https://issues.couchbase.com//browse/CBL-1049)
 * [CBL-911](https://issues.couchbase.com//browse/CBL-911) — [Couchbase Lite Java replication hangs when using DEBUG console + file logging on Windows](https://issues.couchbase.com//browse/CBL-911)
 * [CBL-790](https://issues.couchbase.com//browse/CBL-790) — [API: Fix database directory setup](https://issues.couchbase.com//browse/CBL-790)
@@ -371,7 +371,7 @@ None for this release.
 
 * [CBL-2583](https://issues.couchbase.com//browse/CBL-2583) — [Replication unable to continue after termination between rev and ack](https://issues.couchbase.com//browse/CBL-2583)
 * [CBL-2579](https://issues.couchbase.com//browse/CBL-2579) — [409 retry can result in invalid remote ancestor ID](https://issues.couchbase.com//browse/CBL-2579)
-* [CBL-2512](https://issues.couchbase.com//browse/CBL-2512) — [Replicator won’t stop](https://issues.couchbase.com//browse/CBL-2512)
+* [CBL-2512](https://issues.couchbase.com//browse/CBL-2512) — [Replicator won't stop](https://issues.couchbase.com//browse/CBL-2512)
 * [CBL-2478](https://issues.couchbase.com//browse/CBL-2478) — [Tear down DBAccess on stopped instead of on release](https://issues.couchbase.com//browse/CBL-2478)
 * [CBL-2405](https://issues.couchbase.com//browse/CBL-2405) — [Hung in call to c4socket\_closed](https://issues.couchbase.com//browse/CBL-2405)
 * [CBL-2325](https://issues.couchbase.com//browse/CBL-2325) — [REST \_replicate throws errro](https://issues.couchbase.com//browse/CBL-2325)
@@ -392,7 +392,7 @@ None for this release.
 * [CBL-1354](https://issues.couchbase.com//browse/CBL-1354) — [finding euclidean distance, square euclidean distance rounding the precision value ](https://issues.couchbase.com//browse/CBL-1354)
 * [CBL-1310](https://issues.couchbase.com//browse/CBL-1310) — [app crashing while fetching the prediction query result](https://issues.couchbase.com//browse/CBL-1310)
 * [CBL-1225](https://issues.couchbase.com//browse/CBL-1225) — [Testfest : unshare the docs does not replicate to CBL](https://issues.couchbase.com//browse/CBL-1225)
-* [CBL-862](https://issues.couchbase.com//browse/CBL-862) — [CBL 2.7 and later doesn’t catch Illegal top-level key like "\_id"](https://issues.couchbase.com//browse/CBL-862)
+* [CBL-862](https://issues.couchbase.com//browse/CBL-862) — [CBL 2.7 and later doesn't catch Illegal top-level key like "\_id"](https://issues.couchbase.com//browse/CBL-862)
 * [CBL-708](https://issues.couchbase.com//browse/CBL-708) — [Conflicting revision bodies are not removed after resolution](https://issues.couchbase.com//browse/CBL-708)
 * [CBL-462](https://issues.couchbase.com//browse/CBL-462) — [Continuous push attempts to replicate purged documents](https://issues.couchbase.com//browse/CBL-462)
 * [CBL-220](https://issues.couchbase.com//browse/CBL-220) — [Windows cannot handle dates before 1970 with C API](https://issues.couchbase.com//browse/CBL-220)
@@ -437,7 +437,7 @@ Product Notes
 * [Release Notes](releasenotes.md)
 * [Compatibility](compatibility.md)
 * [Supported Platforms](supported-os.md)
-* [What’s New](#cbl-whatsnew.adoc)
+* [What's New](#cbl-whatsnew.adoc)
 
 ###### [](#-2)
 

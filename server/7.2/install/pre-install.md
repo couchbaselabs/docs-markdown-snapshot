@@ -4,7 +4,7 @@ description: Although resource requirements will largely depend on the size and
   resource demands of your Couchbase deployment, there are some minimum and
   recommended specifications that you should follow.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/pre-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:install:pre-install.adoc[]
 ---
 
@@ -32,7 +32,7 @@ link: xref:7.2@server:install:pre-install.adoc[]
 
 \*_You can reduce the CPU and RAM resources below the Minimum Specifications for development and testing purposes. Resources can be as low as 1 GB of free RAM beyond operating system requirements, and a single CPU core. However, you must adhere to the Minimum Specifications for production._
 
-\*\*_The Recommended Specifications don’t take into account your intended workload. You should follow the [sizing guidelines](sizing-general.md) when determining system specifications for your Couchbase Server deployment._
+\*\*_The Recommended Specifications don't take into account your intended workload. You should follow the [sizing guidelines](sizing-general.md) when determining system specifications for your Couchbase Server deployment._
 
 Clock Source on Linux
 

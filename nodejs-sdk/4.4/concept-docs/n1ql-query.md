@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.4@nodejs-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -51,7 +51,7 @@ async function queryNamed() {
 ```
 
 > [!CAUTION]
-> **When running an application using Prepared Statements through the Node.js SDK** — if you plan to upgrade Couchbase Server from 6.0.x or earlier to 6.5.0 or later, and are running a version of the Node.js SDK with an underlying LCB prior to 2.10.6, you will need to [restart the app or otherwise work around](#6.5@server:install:upgrade-strategy-for-features.adoc#prepared-statements) a change in the Server’s behaviour.
+> **When running an application using Prepared Statements through the Node.js SDK** — if you plan to upgrade Couchbase Server from 6.0.x or earlier to 6.5.0 or later, and are running a version of the Node.js SDK with an underlying LCB prior to 2.10.6, you will need to [restart the app or otherwise work around](#6.5@server:install:upgrade-strategy-for-features.adoc#prepared-statements) a change in the Server's behaviour.
 
 ## [](#indexes)Indexes
 
@@ -73,7 +73,7 @@ CREATE INDEX ix_name ON `travel-sample`.inventory.hotel(name);
 CREATE INDEX ix_email ON `travel-sample`.inventory.hotel(email);
 ```
 
-This would allow you to query the _travel-sample_ bucket’s hotel collection regarding a document’s `name` or `email` properties, thus:
+This would allow you to query the _travel-sample_ bucket's hotel collection regarding a document's `name` or `email` properties, thus:
 
 ```n1ql
 SELECT name, email

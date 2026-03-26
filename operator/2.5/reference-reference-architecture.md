@@ -1,7 +1,7 @@
 ---
 title: <code>CouchbaseCluster</code> Reference Architecture
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/reference-reference-architecture.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::reference-reference-architecture.adoc[]
 ---
 
@@ -200,7 +200,7 @@ Cluster configuration is quite complicated, so will not be discussed at length h
 In general, the cluster is designed to be stable, fault tolerant and secure.
 
 > [!IMPORTANT]
-> Cluster scheduling requires on Kubernetes node being manually labeled for exclusive use by the Couchbase cluster. An example of how to perform this is documented in the cluster definition’s comments.
+> Cluster scheduling requires on Kubernetes node being manually labeled for exclusive use by the Couchbase cluster. An example of how to perform this is documented in the cluster definition's comments.
 
 > [!IMPORTANT]
 > There is no one-size-fits-all cluster topology. This documents an arbitrary selection of services and server class sizes. Consult Couchbase solutions engineering to determine the correct cluster sizing for your workload.

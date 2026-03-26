@@ -1,7 +1,7 @@
 ---
 title: Menu UI Macro
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/menu-ui-macro.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::menu-ui-macro.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:styleguide::menu-ui-macro.adoc[]
 
 # Menu UI Macro
 
-Use Antora’s Menu UI Macro to render any menu navigation in your documentation.
+Use Antora's Menu UI Macro to render any menu navigation in your documentation.
 
 For example, `menu:File[Save]` renders as **File** **Save** in the Couchbase Documentation.
 

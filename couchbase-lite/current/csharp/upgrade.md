@@ -1,7 +1,7 @@
 ---
 title: Upgrade
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/upgrade.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:csharp:upgrade.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Couchbase Lite 4.0 introduces significant architectural changes, most notably th
 
 The action takes place automatically and can lead to some delay in the database becoming available for use in your application.
 
-In addition, if you’re syncing with a 4.0.3 Sync Gateway, you should be aware of the significant configuration enhancements introduced and their effects. See [Upgrading Sync Gateway](../../../sync-gateway/current/upgrading.md) for more details. This is a one-way conversion.
+In addition, if you're syncing with a 4.0.3 Sync Gateway, you should be aware of the significant configuration enhancements introduced and their effects. See [Upgrading Sync Gateway](../../../sync-gateway/current/upgrading.md) for more details. This is a one-way conversion.
 
 ### [](#major-changes-in-4-0-3)Major Changes in 4.0.3
 
@@ -28,11 +28,11 @@ In addition, if you’re syncing with a 4.0.3 Sync Gateway, you should be aware 
 
 **Enhanced Conflict Resolution**: The default conflict resolution strategy changes from `most active wins` to `last write wins` based on hybrid logical timestamps, providing more intuitive and predictable conflict resolution behavior.
 
-**New Document Properties**: a new `Timestamp` property is available on Document objects, providing direct access to the document’s logical timestamp as a `ulong` value representing nanoseconds since the Unix epoch.
+**New Document Properties**: a new `Timestamp` property is available on Document objects, providing direct access to the document's logical timestamp as a `ulong` value representing nanoseconds since the Unix epoch.
 
 ### [](#database-compatibility-40)Database Compatibility
 
-**Automatic Upgrade from 3.x**: CBL 4.0.3 databases are compatible with CBL 3.1 and 3.2 databases. When opening a 3.1 or 3.2 database with CBL 4.0.3, documents are automatically upgraded to use version vectors when they’re updated and saved.
+**Automatic Upgrade from 3.x**: CBL 4.0.3 databases are compatible with CBL 3.1 and 3.2 databases. When opening a 3.1 or 3.2 database with CBL 4.0.3, documents are automatically upgraded to use version vectors when they're updated and saved.
 
 **No Configuration Required**: CBL 4.0.3 enables version vectors by default - the feature requires no API configuration.
 
@@ -86,7 +86,7 @@ This content introduces the changes made to the Couchbase Lite for C#.Net API fo
 
 #### [](#breaking-change)Breaking Change
 
-The function [ATAN2(x, y)](https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FAtan2%5FCouchbase%5FLite%5FQuery%5FIExpression%5FCouchbase%5FLite%5FQuery%5FIExpression%5F), which returns the principal value of the arc tangent of y/x, now becomes [ATAN2(y, x)](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FAtan2%5FCouchbase%5FLite%5FQuery%5FIExpression%5FCouchbase%5FLite%5FQuery%5FIExpression%5F); that’s, the arguments reverses in line with common notation.
+The function [ATAN2(x, y)](https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FAtan2%5FCouchbase%5FLite%5FQuery%5FIExpression%5FCouchbase%5FLite%5FQuery%5FIExpression%5F), which returns the principal value of the arc tangent of y/x, now becomes [ATAN2(y, x)](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FAtan2%5FCouchbase%5FLite%5FQuery%5FIExpression%5FCouchbase%5FLite%5FQuery%5FIExpression%5F); that's, the arguments reverses in line with common notation.
 
 #### [](#removed)Removed
 
@@ -161,7 +161,7 @@ db.PerformMaintenance(MaintenanceType.Compact)
 
 ##### [](#match)Match
 
-We’re removing [Match](https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-net/api/Couchbase.Lite.Query.IFullTextExpression.html#Couchbase%5FLite%5FQuery%5FIFullTextExpression%5FMatch%5FSystem%5FString%5F)at the next major release.  
+We're removing [Match](https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-net/api/Couchbase.Lite.Query.IFullTextExpression.html#Couchbase%5FLite%5FQuery%5FIFullTextExpression%5FMatch%5FSystem%5FString%5F)at the next major release.  
 You should plan to switch to using the alternative [FullTextFunction.match(indexName:)](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.FullTextFunction.html#Couchbase%5FLite%5FQuery%5FFullTextFunction%5FMatch%5FSystem%5FString%5FSystem%5FString%5F)at the earliest opportunity.
 
 ##### [](#before-4)Before
@@ -198,7 +198,7 @@ using (var query =
 
 ##### [](#isnullormissing)IsNullOrMissing
 
-We’re removing [isNullOrMissing](https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-net/api/Couchbase.Lite.Query.IExpression.html#Couchbase%5FLite%5FQuery%5FIExpression%5FIsNullOrMissing)  
+We're removing [isNullOrMissing](https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-net/api/Couchbase.Lite.Query.IExpression.html#Couchbase%5FLite%5FQuery%5FIExpression%5FIsNullOrMissing)  
 You should plan to switch to using the alternative [IsNotValued()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.IExpression.html#Couchbase%5FLite%5FQuery%5FIExpression%5FIsNotValued)
 
 at the earliest opportunity.
@@ -267,7 +267,7 @@ For example, when a new minor version such as CBL 3.1.0 becomes available, the r
 
 **Full Downgrade Support** \- Downgrades between patch releases are supported. Users can safely downgrade between different patch versions within the same minor release.
 
-For example, if you’re running CBL 3.1.6 you can downgrade to CBL 3.1.4 or CBL 3.1.3 without issues.
+For example, if you're running CBL 3.1.6 you can downgrade to CBL 3.1.4 or CBL 3.1.3 without issues.
 
 ## [](#related-content)Related Content
 

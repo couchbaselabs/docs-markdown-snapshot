@@ -2,7 +2,7 @@
 title: Collections&#8201;&#8212;&#8201;Server Compatibility
 description: How Sync Gateway can work with Couchbase Server's Collections
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/server-compatibility-collections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::server-compatibility-collections.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:2.8@sync-gateway::server-compatibility-collections.adoc[]
 
 # Collections&#8201;&#8212;&#8201;Server Compatibility
 
-> How Sync Gateway can work with Couchbase Server’s Collections  
+> How Sync Gateway can work with Couchbase Server's Collections  
 
 _Related compatibility topics_: [XDCR](../current/server-compatibility/server-compatibility-xdcr.md) | [Eventing](../current/server-compatibility/server-compatibility-eventing.md) | [Transactions](../current/server-compatibility/server-compatibility-transactions.md) | Collections
 
@@ -24,9 +24,9 @@ Couchbase Server provides the backing data store for Sync Gateway.
 > [!TIP]
 > See: [Compatibility Matrix](#sync-gateway::compatibility.adoc) for version compatibility information.
 
-Here we provide details on how Couchbase Server’s Scopes and Collections feature relates to the Couchbase mobile ecosystem.
+Here we provide details on how Couchbase Server's Scopes and Collections feature relates to the Couchbase mobile ecosystem.
 
-Sync Gateway offers support for Couchbase Server’s default scopes and collections ([Default Collections](#7.0@server:learn:data/scopes-and-collections.adoc#default-scope-and-collection)). It does not currently support named scopes or collections ([Named Collections](#7.0@server:learn:data/scopes-and-collections.adoc#naming-for-scopes-and-collections)).
+Sync Gateway offers support for Couchbase Server's default scopes and collections ([Default Collections](#7.0@server:learn:data/scopes-and-collections.adoc#default-scope-and-collection)). It does not currently support named scopes or collections ([Named Collections](#7.0@server:learn:data/scopes-and-collections.adoc#naming-for-scopes-and-collections)).
 
 ## [](#related-content)Related Content
 

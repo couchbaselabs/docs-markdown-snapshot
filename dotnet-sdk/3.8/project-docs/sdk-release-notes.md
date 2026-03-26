@@ -2,7 +2,7 @@
 title: SDK Release Notes
 description: Release notes and download archive for the Couchbase .NET Client.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.8@dotnet-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -172,9 +172,9 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 \+ NOTE: Random seed order must be enabled with `?random_seed_nodes=true` in the connection string. This will be the default in a future release.
 
-[NCBC-3879](https://couchbasecloud.atlassian.net/browse/NCBC-3879): .NET SDK was setting span attributes directly on the operation’s span, rather than on the despatch span. Attributes have now been added to the `DispatchSpan` for Query and KV operations, but not removed from the operation’s span in order not to break user queries that target those specific traces.
+[NCBC-3879](https://couchbasecloud.atlassian.net/browse/NCBC-3879): .NET SDK was setting span attributes directly on the operation's span, rather than on the despatch span. Attributes have now been added to the `DispatchSpan` for Query and KV operations, but not removed from the operation's span in order not to break user queries that target those specific traces.
 
-\+ **DEPRECATION NOTICE**: In 3.7.0, these attributes should be removed from the operation’s span.
+\+ **DEPRECATION NOTICE**: In 3.7.0, these attributes should be removed from the operation's span.
 
 [NCBC-3883](https://couchbasecloud.atlassian.net/browse/NCBC-3883): Updated `System.Text.Json` dependency, owing to a security vulnerability.
 
@@ -233,7 +233,7 @@ Version 3.6.1 is a hotfix release.
 #### [](#fixed-issues-11)Fixed Issues
 
 * [NCBC-3791](https://issues.couchbase.com/browse/NCBC-3791): `BucketConfig` version used to be compared against the latest applied config, not the latest one received.
-* [NCBC-3698](https://issues.couchbase.com/browse/NCBC-3698): Manually setting `ScopeName` and/or `CollectionName` in the `CollectionQueryIndexManager` API’s options will now throw an `InvalidArgumentException`. Previously, the SDK was ignoring the `ScopeName` and `CollectionName` in options, instead of throwing `InvalidArgumentException` as per RFC.
+* [NCBC-3698](https://issues.couchbase.com/browse/NCBC-3698): Manually setting `ScopeName` and/or `CollectionName` in the `CollectionQueryIndexManager` API's options will now throw an `InvalidArgumentException`. Previously, the SDK was ignoring the `ScopeName` and `CollectionName` in options, instead of throwing `InvalidArgumentException` as per RFC.
 * [NCBC-3780](https://issues.couchbase.com/browse/NCBC-3780): Transactions: `QueryContext` is now copied when retrying `SingleQueryTransactions`.
 
 #### [](#improvement)Improvement
@@ -252,7 +252,7 @@ Version 3.6.0 is the first release of the 3.6 series.
 
 #### [](#fixed-issues-12)Fixed Issues
 
-* [NCBC-3572](https://issues.couchbase.com/browse/NCBC-3572): For management services, `CancellationTokens` are now more accurate to the operation’s lifetime.
+* [NCBC-3572](https://issues.couchbase.com/browse/NCBC-3572): For management services, `CancellationTokens` are now more accurate to the operation's lifetime.
 * [NCBC-3702](https://issues.couchbase.com/browse/NCBC-3702): Stellar client: Use `DefaultSerializer` as default at Cluster level
 * [NCBC-3760](https://issues.couchbase.com/browse/NCBC-3760): Fixed an issue regarding passing an `X509CertificateFactory` in `ClusterOptions`.
 * [NCBC-3768](https://issues.couchbase.com/browse/NCBC-3768): Aligned Boolean search API to RFC.
@@ -270,7 +270,7 @@ Version 3.6.0 is the first release of the 3.6 series.
 * [NCBC-3771](https://issues.couchbase.com/browse/NCBC-3771): Refactored `RetryOrcestrator` for Data Service operations to be clearer.
 * [NCBC-3792](https://issues.couchbase.com/browse/NCBC-3792): Optimize for larger InFlightOperationSet for high latency connections.
 * [NCBC-3796](https://issues.couchbase.com/browse/NCBC-3796): Updated local build version to 3.6.0.
-* [NCBC-3797](https://issues.couchbase.com/browse/NCBC-3797): Updated \`VectorSearch’s InterfaceStability to Committed.
+* [NCBC-3797](https://issues.couchbase.com/browse/NCBC-3797): Updated \`VectorSearch's InterfaceStability to Committed.
 
 ## [](#net-sdk-3-5-releases).NET SDK 3.5 Releases
 
@@ -333,7 +333,7 @@ Version 3.5.1 is the second release of the 3.5 series.
 * [NCBC-3720](https://issues.couchbase.com/browse/NCBC-3720): `ClusterChangeMapNotification` was reported in logs and errors in place of KV ops — this has been fixed, and `SET/Upsert` is now correctly reported.
 * [NCBC-3721](https://issues.couchbase.com/browse/NCBC-3721): Fixed a regression in 3.5.0 which would not allow building a Cluster with `LoggingMeter` disabled.
 * [NCBC-3724](https://issues.couchbase.com/browse/NCBC-3724): Fixed a known issue with Snappier implementation in the SDK preventing bootstrap .NET with SDK v3.4.10 onwards against server v7.6.0.
-* [NCBC-3725](https://issues.couchbase.com/browse/NCBC-3725): Fixed a bug where `ConfigPushHandler` wasn’t performing well under massive config push spam.
+* [NCBC-3725](https://issues.couchbase.com/browse/NCBC-3725): Fixed a bug where `ConfigPushHandler` wasn't performing well under massive config push spam.
 * [NCBC-3727](https://issues.couchbase.com/browse/NCBC-3727): When Faster Failover with ClustermapChangeNotification is enabled, config polling was short circuited, causing the SDK to rebootstrap because it thinks that it cannot connect to the cluster with the current nodes list. This behavior has been fixed.
 * [NCBC-3732](https://issues.couchbase.com/browse/NCBC-3732): Fixed logic bug that was causing the `ConfigPushHandler` to skip all new clustermap config revision.
 * [NCBC-3734](https://issues.couchbase.com/browse/NCBC-3734): The NRE was causing config revisions to be skipped which meant retries for `NotMyVBucket` were happening multiple times using the same config revision.
@@ -341,7 +341,7 @@ Version 3.5.1 is the second release of the 3.5 series.
 * [NCBC-3742](https://issues.couchbase.com/browse/NCBC-3742): Reduced push config spam in ConfigPushHandler.
 * [NCBC-3747](https://issues.couchbase.com/browse/NCBC-3747): When CB Server 7.2 sends a cluster map changed notification, it is sent with a JSON body containing the new map. After deserializing, we were not replacing `$HOST` with the correct values, causing the in-memory map to become corrupt and subsequent operations to timeout. This has been fixed, and now after deserializing a pushed notification with a cluster map the SDK replaces `$HOST` with the endpoint, and applies any overridden network resolution settings. This matches the behavior when we receive a `BucketConfig` back from an explicit request.
 * [NCBC-3752](https://issues.couchbase.com/browse/NCBC-3752): Fixed a race condition affecting `KeyMapper` being updated out of sync with `CurrentConfig`.
-* [NCBC-3753](https://issues.couchbase.com/browse/NCBC-3753): The SDK will now only publish a config if it’s a higher revision than the current one.
+* [NCBC-3753](https://issues.couchbase.com/browse/NCBC-3753): The SDK will now only publish a config if it's a higher revision than the current one.
 * [NCBC-3749](https://issues.couchbase.com/browse/NCBC-3749): Log the `ConfigVersion` used by an operation throughout the SDK.
 * [NCBC-3723](https://issues.couchbase.com/browse/NCBC-3723): Fixed a `NullReferenceException` in `ConfigPushHandler`, which meant the code could jump to the error handling and log/exit instead of processing the config.
 * [NCBC-3740](https://issues.couchbase.com/browse/NCBC-3740): When Faster Failover is available, a `GetClusterMap` request is no longer the only response to `NotMyVBucket`.
@@ -478,7 +478,7 @@ Version 3.4.13 is the fourteenth release of the 3.4 series.
 * [NCBC-3397](https://issues.couchbase.com/browse/NCBC-3397): `IOperation.Elapsed` was not correctly counting duration between retries — the stopwatch field of `IOperation/OperationBase` is stopped in `HandleOperationCompleted()` and never re-started. This has now been fixed, and the `Elapsed` field of `OperationBase` now correctly increments with the stopwatch time after each retry cycle.
 * [NCBC-3498](https://issues.couchbase.com/browse/NCBC-3498): Added code documentation to `PersistentList` as the internals use reference comparisons, but there is no guarantee that internally the document might be reloaded by the database. The documention instructs users to override the `Object.Equals` method on their POCOs so that that values of the objects will be compared and not the objects' reference.
 * [NCBC-3510](https://issues.couchbase.com/browse/NCBC-3510): Fixed a regression in Config Push Notification / Faster Failover performance. Config Push notifications are now handled by a single thread per node in a LIFO manner, and skip out of date push notifications, as well as providing more logging around config updates to help troubleshoot in the future. Additionally, `GetClusterConfig` asks for the old version, not the pushed version.
-* [NCBC-3526](https://issues.couchbase.com/browse/NCBC-3526): The Search Service’s `` NumericRangeQuery’s `MaxInclusive `` property was defaulting to `false`. It now defaults to `true`, in line with the [rfc](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0052-sdk3-full-text-search.md#numericrangequery).
+* [NCBC-3526](https://issues.couchbase.com/browse/NCBC-3526): The Search Service's `` NumericRangeQuery’s `MaxInclusive `` property was defaulting to `false`. It now defaults to `true`, in line with the [rfc](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0052-sdk3-full-text-search.md#numericrangequery).
 * [NCBC-3543](https://issues.couchbase.com/browse/NCBC-3543): `DefaultSerializer` will now correctly handle Unicode surrogate pairs on buffer boundaries.
 
 #### [](#new-features-and-behavioral-changes-6)New Features and Behavioral Changes
@@ -488,7 +488,7 @@ Version 3.4.13 is the fourteenth release of the 3.4 series.
 * [NCBC-3481](https://issues.couchbase.com/browse/NCBC-3481): The legacy `Enum.GetValues(Type)` overload is not AOT-compatible. Added conditional compilation to use the Enum.GetValues<TEnum>() overload on .NET 6 and later.
 * [NCBC-3487](https://issues.couchbase.com/browse/NCBC-3487): Reduced reliance on `SerializeWithFallback`, which is incompatible with trimming and `NativeAOT`.
 * [NCBC-3488](https://issues.couchbase.com/browse/NCBC-3488): Delaying creation of `CollectionQueryIndexManager`, which will allow it to be left off the DI container, and trimmed out of the output executable if unused.
-* [NCBC-3489](https://issues.couchbase.com/browse/NCBC-3489): Implemented an in-flight operation limit to provide backpressure. The previous design allowed a single connection from the connection pool to collect a large number of in-flight operations, rather than ensuring a more even spread of operations across connections in the pool. This potentially allowed small operation may be blocked waiting for large operation to pass over the network socket. A more even spread of operations doesn’t guarantee this will be the case, but does make it more likely.
+* [NCBC-3489](https://issues.couchbase.com/browse/NCBC-3489): Implemented an in-flight operation limit to provide backpressure. The previous design allowed a single connection from the connection pool to collect a large number of in-flight operations, rather than ensuring a more even spread of operations across connections in the pool. This potentially allowed small operation may be blocked waiting for large operation to pass over the network socket. A more even spread of operations doesn't guarantee this will be the case, but does make it more likely.
 * [NCBC-3508](https://issues.couchbase.com/browse/NCBC-3508): Support HTTP response streaming in legacy .NET runtimes
 
   * .NET 4 consumers may opt-in to HTTP response streaming so long as they ensure they properly dispose of any returned `XXXResult` objects rather than leaving them dangling and potentially causing a connection leak. If they do choose this behavior then `System.IOException` cases previously addressed by [NCBC-3433](https://issues.couchbase.com/browse/NCBC-3433) should not occur due to the new pattern for disposing of `HttpClient`.
@@ -579,7 +579,7 @@ Version 3.4.10 is the eleventh release of the 3.4 series.
 * [NCBC-3430](https://issues.couchbase.com/browse/NCBC-3430): Added `ClustermapChangeNotification` flag support.
 * [NCBC-3421](https://issues.couchbase.com/browse/NCBC-3421): Deserializing K/V operations with the `DefaultSerializer` was allocating an excessive number of buffers for each operation. This change introduces a reusable pool of text readers which reads directly from the memory buffer without stream-related overhead or intermediate buffers. This results in a performance gain and a significant reduction in heap allocations when deserializing from a memory buffer.
 * [NCBC-3432](https://issues.couchbase.com/browse/NCBC-3432): Added additional logging at the IO level to capture more details of exceptions thrown when sockets are opened.
-* [NCBC-3438](https://issues.couchbase.com/browse/NCBC-3438): Several of the listed dependencies for the .NET 6 target were unnecessary, as those packages are now included in the .NET framework and we’re not targeting a higher version. We have removed these NuGet dependencies for the .NET 6 Target, which will reduce restore time and size for consumers.
+* [NCBC-3438](https://issues.couchbase.com/browse/NCBC-3438): Several of the listed dependencies for the .NET 6 target were unnecessary, as those packages are now included in the .NET framework and we're not targeting a higher version. We have removed these NuGet dependencies for the .NET 6 Target, which will reduce restore time and size for consumers.
 
 ### [](#version-3-4-9)Version 3.4.9 (20 July 2023)
 
@@ -673,7 +673,7 @@ Version 3.4.5 is the sixth release of the 3.4 series.
 
 * [NCBC-3334](https://issues.couchbase.com/browse/NCBC-3334): `KvNotMyVBucket` errors after add node + rebalance.
 * [NCBC-3337](https://issues.couchbase.com/browse/NCBC-3337): NullReferenceException when bootstrapping against a non-existent bucket.
-* [NCBC-3347](https://issues.couchbase.com/browse/NCBC-3347): IGetResult shouldn’t have an internal Status property.
+* [NCBC-3347](https://issues.couchbase.com/browse/NCBC-3347): IGetResult shouldn't have an internal Status property.
 * [NCBC-3360](https://issues.couchbase.com/browse/NCBC-3360): Fix QueryContext bug in QueryIndexManager.
 * [NCBC-3362](https://issues.couchbase.com/browse/NCBC-3362): SDK writes to \_default collection when intended collection is dropped.
 * [NCBC-3363](https://issues.couchbase.com/browse/NCBC-3363): SubDoc SuccessDeleted not treated as Success.
@@ -716,8 +716,8 @@ Version 3.4.3 is the fourth release of the 3.4 series.
 
 #### [](#fixed-issues-29)Fixed Issues
 
-* [NCBC-3316](https://issues.couchbase.com/browse/NCBC-3316): Scan: Refactored operation parsing, so `RangeScanContinue.OnNext()` doesn’t get called after the first batch of a partition has been consumed.
-* [NCBC-3329](https://issues.couchbase.com/browse/NCBC-3329): `NamedBucketProxyGenerator` and `NamedCollectionProxyGenerator` caches were not thread-safe during start up. This applies primarily to unit testing scenarios — most MVC applications were not affected, as it doesn’t affect anything once the DI container is configured, because startup DI registration is single-threaded.
+* [NCBC-3316](https://issues.couchbase.com/browse/NCBC-3316): Scan: Refactored operation parsing, so `RangeScanContinue.OnNext()` doesn't get called after the first batch of a partition has been consumed.
+* [NCBC-3329](https://issues.couchbase.com/browse/NCBC-3329): `NamedBucketProxyGenerator` and `NamedCollectionProxyGenerator` caches were not thread-safe during start up. This applies primarily to unit testing scenarios — most MVC applications were not affected, as it doesn't affect anything once the DI container is configured, because startup DI registration is single-threaded.
 * [NCBC-3331](https://issues.couchbase.com/browse/NCBC-3331): Retrying Named Prepared Queries from the SDK — added an example of a custom `RetryStrategy` for the case where you do not want the named prepared statement to be retried, and want a fast-fail in that specific case and tests for named parameters.
 
 #### [](#new-features-and-behavioral-changes-16)New Features and Behavioral Changes
@@ -981,7 +981,7 @@ Version 3.2.8 is the eighth release of the 3.2 series.
 [Download](https://packages.couchbase.com/clients/net/3.2/Couchbase-Net-Client-3.2.8.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.2.8) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.2.8)
 
 > [!NOTE]
-> .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft’s decision to EOL .NET Core 2.1 on August 21, 2021\.
+> .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft's decision to EOL .NET Core 2.1 on August 21, 2021\.
 
 #### [](#known-issues-7)Known Issues
 
@@ -1015,7 +1015,7 @@ Version 3.2.7 is the seventh release of the 3.2 series.
 [Download](https://packages.couchbase.com/clients/net/3.2/Couchbase-Net-Client-3.2.7.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.2.7) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.2.7)
 
 > [!NOTE]
-> .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft’s decision to EOL .NET Core 2.1 on August 21, 2021\.
+> .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft's decision to EOL .NET Core 2.1 on August 21, 2021\.
 
 #### [](#known-issues-8)Known Issues
 
@@ -1031,7 +1031,7 @@ Version 3.2.7 is the seventh release of the 3.2 series.
 * [NCBC-3096](https://issues.couchbase.com/browse/NCBC-3096): Cleaned up `CancellationTokenSource` handling in ConfigHandler.
 * [NCBC-3100](https://issues.couchbase.com/browse/NCBC-3100): Included `LastDispatchedFrom` and `LastDispatchedTo` in `IErrorContext` implementations.
 * [NCBC-3102](https://issues.couchbase.com/browse/NCBC-3102): Fixed a bug where the `RemoteHost` tag was assigned the value of LocalHost when an Orphaned report is generated.
-* [NCBC-3107](https://issues.couchbase.com/browse/NCBC-3107): Escape keyspace values with backticks only if missing, fixing an error where `IQueryIndexManager` didn’t accept some bucket names.
+* [NCBC-3107](https://issues.couchbase.com/browse/NCBC-3107): Escape keyspace values with backticks only if missing, fixing an error where `IQueryIndexManager` didn't accept some bucket names.
 * [NCBC-3109](https://issues.couchbase.com/browse/NCBC-3109): Fixed issue with Quota Limited Exceptions not being thrown for some Management apis.
 
 #### [](#new-features-and-behavioral-changes-26)New Features and Behavioral Changes
@@ -1052,7 +1052,7 @@ Version 3.2.6 is the sixth release of the 3.2 series.
 [Download](https://packages.couchbase.com/clients/net/3.2/Couchbase-Net-Client-3.2.6.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.2.6) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.2.6)
 
 > [!NOTE]
-> .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft’s decision to EOL .NET Core 2.1 on August 21, 2021\.
+> .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft's decision to EOL .NET Core 2.1 on August 21, 2021\.
 
 #### [](#known-issues-9)Known Issues
 
@@ -1071,7 +1071,7 @@ Version 3.2.6 is the sixth release of the 3.2 series.
 * [NCBC-3050](https://issues.couchbase.com/browse/NCBC-3050): Exception iterating over a DataStructures dictionary.
 * [NCBC-3057](https://issues.couchbase.com/browse/NCBC-3057): Incorrect and inefficient db.couchbase.service span tags.
 * [NCBC-3061](https://issues.couchbase.com/browse/NCBC-3061): PersistentDictionary should use a replace operation when setting `Item: key`.
-* [NCBC-3062](https://issues.couchbase.com/browse/NCBC-3062): Don’t set `MaxIdleTime` on `ServicePoint` in .NET Core 3.1.
+* [NCBC-3062](https://issues.couchbase.com/browse/NCBC-3062): Don't set `MaxIdleTime` on `ServicePoint` in .NET Core 3.1.
 * [NCBC-3072](https://issues.couchbase.com/browse/NCBC-3072): `CollectionManager.GetAllScopesAsync` throws on success.
 * [NCBC-3073](https://issues.couchbase.com/browse/NCBC-3073): PersistentDictionary. TryGetValue does not properly map path not found error.
 
@@ -1106,7 +1106,7 @@ Version 3.2.5 is the fifth release of the 3.2 series.
 [Download](https://packages.couchbase.com/clients/net/3.2/Couchbase-Net-Client-3.2.5.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.2.5) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.2.5)
 
 > [!NOTE]
-> .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft’s decision to EOL .NET Core 2.1 on August 21, 2021\.
+> .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft's decision to EOL .NET Core 2.1 on August 21, 2021\.
 
 #### [](#known-issues-10)Known Issues
 
@@ -1155,7 +1155,7 @@ Version 3.2.4 is the fourth release of the 3.2 series.
 #### [](#fixed-issues-45)Fixed Issues
 
 * [NCBC-2974](https://issues.couchbase.com/browse/NCBC-2974): When `GetCid` failed, an infinite loop could be triggered, causing the `CidLock` to time out. The regression that caused this in the previous release has now been fixed.
-* [NCBC-2989](https://issues.couchbase.com/browse/NCBC-2989): Fixed side effects related to singleton `CouchbaseHttpClient`. Now each consuming service can safely manipulate the \`HttpClient’s timeout and connection ID headers and such without affecting other services.
+* [NCBC-2989](https://issues.couchbase.com/browse/NCBC-2989): Fixed side effects related to singleton `CouchbaseHttpClient`. Now each consuming service can safely manipulate the \`HttpClient's timeout and connection ID headers and such without affecting other services.
 
 #### [](#new-features-and-behavioral-changes-29)New Features and Behavioral Changes.
 
@@ -1179,7 +1179,7 @@ Version 3.2.3 is the third release of the 3.2 series.
 
 #### [](#fixed-issues-46)Fixed Issues
 
-* [NCBC-2965](https://issues.couchbase.com/browse/NCBC-2965): Don’t capture ExecutionContext for long-running tasks/timers, as this could cause memory leaks.
+* [NCBC-2965](https://issues.couchbase.com/browse/NCBC-2965): Don't capture ExecutionContext for long-running tasks/timers, as this could cause memory leaks.
 * [NCBC-2966](https://issues.couchbase.com/browse/NCBC-2966): Allow ILoggerFactory from the DI container to be overridden.
 * [NCBC-2967](https://issues.couchbase.com/browse/NCBC-2967): Rewrite OrphanReporter to avoid blocking calls.
 * [NCBC-2968](https://issues.couchbase.com/browse/NCBC-2968): Use correct service type name in query context.
@@ -1294,7 +1294,7 @@ Version 3.1.7 is the eighth release of the 3.1 series, bringing enhancements and
 
 * [NCBC-2698](https://issues.couchbase.com/browse/NCBC-2698): Added FTS Support for Collections.
 * [NCBC-2881](https://issues.couchbase.com/browse/NCBC-2881): Use Hello to determine if collections are available now no longer leaves exception in DEBUG level log.
-* [NCBC-2887](https://issues.couchbase.com/browse/NCBC-2887): Previously the CID value of 0 could be appended to the key if the default scope/collection was being used. Now, this is checked for, and we don’t send the CID with the key in this case, as it is not required by the server.
+* [NCBC-2887](https://issues.couchbase.com/browse/NCBC-2887): Previously the CID value of 0 could be appended to the key if the default scope/collection was being used. Now, this is checked for, and we don't send the CID with the key in this case, as it is not required by the server.
 
 ### [](#version-3-1-6-24-may-2021)Version 3.1.6 (24 May 2021)
 
@@ -1582,9 +1582,9 @@ Version 3.0.6 is the seventh release of the 3.0 series, bringing enhancements an
 * [NCBC-2604](https://issues.couchbase.com/browse/NCBC-2604): exception.IsRetryable() in docs.
 * [NCBC-2619](https://issues.couchbase.com/browse/NCBC-2619): Update KV samples.
 * [NCBC-2638](https://issues.couchbase.com/browse/NCBC-2638): Intermittent InvalidOperationException in Dependency Injection.
-* [NCBC-2639](https://issues.couchbase.com/browse/NCBC-2639): Upsert-and-remove doesn’t work.
+* [NCBC-2639](https://issues.couchbase.com/browse/NCBC-2639): Upsert-and-remove doesn't work.
 * [NCBC-2652](https://issues.couchbase.com/browse/NCBC-2652): Operations gets stuck in retry loop until timeout.
-* [NCBC-2657](https://issues.couchbase.com/browse/NCBC-2657): Exceptions Aren’t Thrown For N1QL Errors After Results.
+* [NCBC-2657](https://issues.couchbase.com/browse/NCBC-2657): Exceptions Aren't Thrown For N1QL Errors After Results.
 * [NCBC-2659](https://issues.couchbase.com/browse/NCBC-2659): Fix strong naming for Couchbase.Extensions.DependencyInjection.
 * [NCBC-2662](https://issues.couchbase.com/browse/NCBC-2662): Correct DI security for named buckets on .NET Core.
 * [NCBC-2671](https://issues.couchbase.com/browse/NCBC-2671): KV Throughput drop after failover-rebalance
@@ -1790,7 +1790,7 @@ Version 3.0.1 is the second release of the 3.0 series, bringing enhancements and
 * [NCBC-2475](https://issues.couchbase.com/browse/NCBC-2475): GetNodes() sometimes returns no results, incorrectly.
 * [NCBC-2479](https://issues.couchbase.com/browse/NCBC-2479): Point config.json for combination tests back at localhost
 * [NCBC-2480](https://issues.couchbase.com/browse/NCBC-2480): SocketException: Cannot bind to address in SslConnectionTests
-* [NCBC-2481](https://issues.couchbase.com/browse/NCBC-2481): KV operations don’t respect IgnoreCertificateNameMismatch
+* [NCBC-2481](https://issues.couchbase.com/browse/NCBC-2481): KV operations don't respect IgnoreCertificateNameMismatch
 * [NCBC-2488](https://issues.couchbase.com/browse/NCBC-2488): Couchbase.IntegrationTests.BootstrapFailedTests.Test\_BootStrap\_Error\_Propagates\_To\_View\_Operations \[FAIL\]
 * [NCBC-2493](https://issues.couchbase.com/browse/NCBC-2493): Improve error logging and handling for Query
 * [NCBC-2497](https://issues.couchbase.com/browse/NCBC-2497): SetKeepAlive fails on Windows
@@ -1835,7 +1835,7 @@ This release features significant changes to the API, simplifies the programming
 * [NCBC-2266](https://issues.couchbase.com/browse/NCBC-2266): UserManager#AvailableRolesAsync must be called getRoles
 * [NCBC-2268](https://issues.couchbase.com/browse/NCBC-2268): CollectionManager does not align with RFC
 * [NCBC-2273](https://issues.couchbase.com/browse/NCBC-2273): Incorrect ScopeMissingException
-* [NCBC-2274](https://issues.couchbase.com/browse/NCBC-2274): Can’t connect to two buckets from one cluster object
+* [NCBC-2274](https://issues.couchbase.com/browse/NCBC-2274): Can't connect to two buckets from one cluster object
 * [NCBC-2277](https://issues.couchbase.com/browse/NCBC-2277): SearchOptions does not map query parameters
 * [NCBC-2282](https://issues.couchbase.com/browse/NCBC-2282): fix test and implementation of positional params
 * [NCBC-2286](https://issues.couchbase.com/browse/NCBC-2286): Make all options have no "With" prefix

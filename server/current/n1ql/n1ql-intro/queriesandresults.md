@@ -3,7 +3,7 @@ title: Query Concepts
 description: An overview of common concepts that you will need to understand in
   order to use the Query service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-intro/queriesandresults.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-intro/queriesandresults.adoc[]
 ---
 
@@ -33,7 +33,7 @@ The result for each query is a set of JSON documents. The returned document set 
 
 Every returned document meets the query criteria.
 
-Here’s a sample query and the result returned:
+Here's a sample query and the result returned:
 
 Query
 
@@ -170,7 +170,7 @@ The Index service enables you to create two types of index: primary indexes and 
 
 * You can define a primary index on a keyspace. Primary indexes are based on the unique key of every item in a specified collection. A primary index is intended to be used for simple queries, which have no filters or predicates.
 * You can also create a secondary index on specific fields in a keyspace. Secondary indexes, often referred to as Global Secondary Indexes or GSIs, constitute the principal means of indexing documents to be accessed by the Query service.  
-For example, creating a secondary index on the `name` and `email` fields in the `users` keyspace would allow you to query the keyspace regarding a document’s `name` or `email` properties.
+For example, creating a secondary index on the `name` and `email` fields in the `users` keyspace would allow you to query the keyspace regarding a document's `name` or `email` properties.
 
 Note that you do not need to create an index on a keyspace to be able to query that keyspace. If no indexes exist on a keyspace, Couchbase Server uses a sequential scan to query that index.
 

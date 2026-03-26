@@ -3,7 +3,7 @@ title: Run a Vector Search with a Couchbase SDK
 description: Using a Couchbase SDK, you can run a simple or more complex vector
   search against a Search Vector Index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/run-vector-search-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:vector-search:run-vector-search-sdk.adoc[]
 ---
 
@@ -32,7 +32,7 @@ Choose your preferred programming language to view the applicable prerequisites 
 * Python
 
 * You have the Search Service enabled on a node in your operational cluster. For more information about how to change Services on your operational cluster, see [Modify a Paid Cluster](../clusters/modify-database.md).
-* You have the hostname for the node in your operational cluster that’s running the Search Service.  
+* You have the hostname for the node in your operational cluster that's running the Search Service.  
 Go to your operational cluster settings and click **Nodes** to view node hostnames.
 * You have created a Search Vector Index.  
 For more information about how to create a Search Vector Index, see [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md).  
@@ -46,7 +46,7 @@ For more information about how to create a Search Vector Index, see [Create a Se
 For more information about installing and using the Couchbase Go SDK, see [Start Using the Go SDK](../../go-sdk/current/hello-world/start-using-sdk.md).
 
 * You have the Search Service enabled on a node in your operational cluster. For more information about how to change Services on your operational cluster, see [Modify a Paid Cluster](../clusters/modify-database.md).
-* You have the hostname for the node in your operational cluster that’s running the Search Service.  
+* You have the hostname for the node in your operational cluster that's running the Search Service.  
 Go to your operational cluster settings and click **Nodes** to view node hostnames.
 * You have created a Search Vector Index.  
 For more information about how to create a Search Vector Index, see [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md).  
@@ -60,7 +60,7 @@ For more information about how to create a Search Vector Index, see [Create a Se
 For more information about installing and using the Couchbase Java SDK, see [Hello World](../../java-sdk/current/hello-world/start-using-sdk.md).
 
 * You have the Search Service enabled on a node in your operational cluster. For more information about how to change Services on your operational cluster, see [Modify a Paid Cluster](../clusters/modify-database.md).
-* You have the hostname for the node in your operational cluster that’s running the Search Service.  
+* You have the hostname for the node in your operational cluster that's running the Search Service.  
 Go to your operational cluster settings and click **Nodes** to view node hostnames.
 * You have created a Search Vector Index.  
 For more information about how to create a Search Vector Index, see [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md).  
@@ -277,9 +277,9 @@ except CouchbaseException as ex:
 ## [](#semantic)Example: Semantic Search with Color Descriptions
 
 > [!NOTE]
-> The following code sample requires you to have a paid subscription to the OpenAI API to generate an embedding vector from a sample text string. For more information about pricing for the OpenAI API, see [OpenAI’s Pricing page](https://openai.com/pricing) for embedding models.
+> The following code sample requires you to have a paid subscription to the OpenAI API to generate an embedding vector from a sample text string. For more information about pricing for the OpenAI API, see [OpenAI's Pricing page](https://openai.com/pricing) for embedding models.
 > 
-> The `rgb.json` sample data contains ready-made embedding vectors for each color’s `description` text. For an example of how to use a ready-made vector with Vector Search, see [Run a Vector Search with the Capella UI](run-vector-search-ui.md).
+> The `rgb.json` sample data contains ready-made embedding vectors for each color's `description` text. For an example of how to use a ready-made vector with Vector Search, see [Run a Vector Search with the Capella UI](run-vector-search-ui.md).
 
 If you use the sample dataset inside `rgb.json`, you can use the OpenAI API to generate an embedding from any text string.
 
@@ -596,7 +596,7 @@ except CouchbaseException as ex:
 
 You can [create an additional mapping](../search/create-search-index-ui.md#add-mapping) to update your Search Vector Index to include the `description` field with your search results.
 
-For example, you could use the following JSON Search Vector Index payload to create your Search index. It includes two child field mappings, `colorvect_l2` and `embedding_vector_dot` on two different vector fields in the keyspace’s documents. It also adds 3 normal Search index fields (`brightness`, `color`, and `description`) to add more usable data to the Search Vector Index:
+For example, you could use the following JSON Search Vector Index payload to create your Search index. It includes two child field mappings, `colorvect_l2` and `embedding_vector_dot` on two different vector fields in the keyspace's documents. It also adds 3 normal Search index fields (`brightness`, `color`, and `description`) to add more usable data to the Search Vector Index:
 
 ```json
 {

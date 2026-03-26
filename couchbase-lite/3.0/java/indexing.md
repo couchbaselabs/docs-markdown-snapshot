@@ -2,7 +2,7 @@
 title: Indexing your Data
 description: Working with Couchbase Lite's data model  --  Using indexes
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/java/pages/indexing.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:java:indexing.adoc[]
 ---
 
@@ -11,12 +11,12 @@ link: xref:3.0@couchbase-lite:java:indexing.adoc[]
 
 # Indexing your Data
 
-> Description — _Working with Couchbase Lite’s data model — Using indexes_  
+> Description — _Working with Couchbase Lite's data model — Using indexes_  
 > Related Content — [Databases](database.md) | [Documents](document.md) | [Indexing](indexing.md) |
 
 ## [](#introduction)Introduction
 
-Before we begin querying documents, let’s briefly mention the importance of having an appropriate and balanced approach to indexes.
+Before we begin querying documents, let's briefly mention the importance of having an appropriate and balanced approach to indexes.
 
 Creating indexes can speed up the performance of queries. A query will typically return results more quickly if it can take advantage of an existing database index to search, narrowing down the set of documents to be examined.
 

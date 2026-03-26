@@ -2,7 +2,7 @@
 title: Create a Vector Search Index with the REST API and curl/HTTP
 description: You can create a Vector Search index with the Search Service API.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/vector-search/pages/create-vector-search-index-rest-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:vector-search:create-vector-search-index-rest-api.adoc[]
 ---
 
@@ -41,7 +41,7 @@ You must create a Search index before you can [run a search](run-vector-search-r
 > * To set your document keys, use the value of the `id` field from each JSON document.
 * Your user account has the **Search Admin** role for the bucket where you want to create the index.
 * You have installed the Couchbase command-line tool (CLI).
-* You have the hostname or IP address for the node in your cluster where you’re running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../../current/manage/manage-nodes/list-cluster-nodes.md).
+* You have the hostname or IP address for the node in your cluster where you're running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../../current/manage/manage-nodes/list-cluster-nodes.md).
 
 ## [](#procedure)Procedure
 
@@ -62,7 +62,7 @@ Do not include the [uuid](../search/search-index-params.md#uuid) or [sourceUUID]
 
 ### [](#example)Example
 
-In the following example, the JSON payload creates an index named `color-index` on the `vector-sample.color.rgb` keyspace. It creates two child field mappings, `colorvect_l2` and `embedding_vector_dot` on two different vector fields in the keyspace’s documents.
+In the following example, the JSON payload creates an index named `color-index` on the `vector-sample.color.rgb` keyspace. It creates two child field mappings, `colorvect_l2` and `embedding_vector_dot` on two different vector fields in the keyspace's documents.
 
 It also adds 3 normal Search index fields (`brightness`, `color`, and `description`) to add more usable data to the Vector Search index:
 

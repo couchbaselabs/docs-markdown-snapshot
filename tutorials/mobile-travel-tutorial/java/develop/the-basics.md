@@ -1,7 +1,7 @@
 ---
 title: The Basics
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/java/develop/the-basics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:java/develop/the-basics.adoc[]
 ---
 
@@ -58,15 +58,15 @@ The Couchbase Lite Database is created with specified name and `DatabaseConfigur
 Try it out
 
 1. Build and Run the Travel Sample Mobile App
-2. On the Login screen select the “Proceed as Guest” option.
-3. This will log you into the app in Guest Mode. Signing in as Guest will create a new empty database for the “guest” account if one does not exist.
+2. On the Login screen select the "Proceed as Guest" option.
+3. This will log you into the app in Guest Mode. Signing in as Guest will create a new empty database for the "guest" account if one does not exist.
 4. Confirm that you see the "Bookmarks" page. It will be empty the very first time.
 
 ## [](#create-and-update-a-document)Create and Update a Document
 
 Bookmarked hotels are persisted in a separate document with a `type` of `bookmarkedhotels`.
 
-The first time a hotel is bookmarked, the `bookmarkedhotels` document is created with the document ID of that hotel document in the `hotels` property. The hotel’s information is persisted in a separate `hotels` type document.
+The first time a hotel is bookmarked, the `bookmarkedhotels` document is created with the document ID of that hotel document in the `hotels` property. The hotel's information is persisted in a separate `hotels` type document.
 
 Subsequently, every time a hotel is bookmarked, the process repeats.
 
@@ -115,7 +115,7 @@ The following snippet persists the hotel instance (`Set<Hotel>`) as a new `Docum
   bookmarkIds(database, ids);
 ```
 
-Next you will get the document with ID `user::guest` or create one if it doesn’t exist.
+Next you will get the document with ID `user::guest` or create one if it doesn't exist.
 
 This is implemented in the `bookmarkIds` private method.
 
@@ -143,7 +143,7 @@ The document is created with the `type` property set to `bookmarkedhotels` and a
   currentBookmarks.addAll(ids);
 ```
 
-Next, the selected hotel’s ID is added to the `hotels` array.
+Next, the selected hotel's ID is added to the `hotels` array.
 
 ```java
   final MutableArray newBookmarks = new MutableArray();
@@ -160,7 +160,7 @@ Finally, you will save the document.
 
 Try it out
 
-1. As a Guest User, tap on the “ADD” button.
+1. As a Guest User, tap on the "ADD" button.
 2. In "location" text field , enter "L" as if you were starting to type "London". You will see list of hotels.
 3. The list of hotels is pulled from Couchbase Server via the Travel Sample Web Services API. When searching for hotels in **Guest mode**, the app sends a GET request to the Python Web App which performs a Full-Text Search query on Couchbase Server. Search results will not be displayed unless there is an open connection to the Python web app and the Full-Text Search index has been created in Couchbase Server.
 4. Tap on the first hotel cell to bookmark it.
@@ -188,7 +188,7 @@ Void removeBookmarksAsync(@Nonnull Set<Hotel> hotels) throws CouchbaseLiteExcept
 }
 ```
 
-When a hotel is bookmarked, it gets inserted in the Couchbase Lite database for offline access. So when the user unbookmarks a hotel, the document needs to be removed from the database. That’s what the code below is doing.
+When a hotel is bookmarked, it gets inserted in the Couchbase Lite database for offline access. So when the user unbookmarks a hotel, the document needs to be removed from the database. That's what the code below is doing.
 
 ```java
   final Database database = db.getDatabase();

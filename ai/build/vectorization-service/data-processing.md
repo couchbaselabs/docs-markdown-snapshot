@@ -3,7 +3,7 @@ title: Process Your Data For Capella AI Services
 description: Use Capella AI Services Workflows to prepare, process, and
   vectorize text for use with other Capella AI Services.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/data-processing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:build:vectorization-service/data-processing.adoc[]
 ---
 
@@ -35,7 +35,7 @@ For more information about vectors, see [About Vectors](../../../cloud/vector-in
 
 Workflows create dedicated metadata collections and [Eventing functions](../../../cloud/eventing/eventing-overview.md) on your chosen Capella operational cluster:
 
-* A Workflow’s metadata is stored in collections inside the `vectorization-meta-data` scope.
+* A Workflow's metadata is stored in collections inside the `vectorization-meta-data` scope.
 * Every Workflow creates 2 Eventing functions:
 
   * `vec_ctr_$WORKFLOW_ID`
@@ -154,13 +154,13 @@ A Capella AI Services Workflow can have 1 of the following statuses:
 | Deploying      | The resources for this Workflow are currently being deployed on AI services.                                                                                                                                                                               |
 | Deploy Failed  | The required resources for this Workflow failed to deploy. You can delete this Workflow and try to deploy a new one.                                                                                                                                       |
 | Pending        | The deployment process for the Workflow is taking longer than expected.                                                                                                                                                                                    |
-| Running        | The Workflow is currently processing documents. You can stop the Workflow while it’s running by going to **More Options (⋮)** **Stop Workflow** on the Workflows page.                                                                                     |
-| Completed      | The Workflow has finished processing documents. A Workflow can change to the Completed state even if it’s only processed a single document. You can rerun the Workflow by going to going to **More Options (⋮)** **Rerun Workflow** on the Workflows page. |
+| Running        | The Workflow is currently processing documents. You can stop the Workflow while it's running by going to **More Options (⋮)** **Stop Workflow** on the Workflows page.                                                                                     |
+| Completed      | The Workflow has finished processing documents. A Workflow can change to the Completed state even if it's only processed a single document. You can rerun the Workflow by going to going to **More Options (⋮)** **Rerun Workflow** on the Workflows page. |
 | Failed         | The Workflow failed during processing. Click to view more information about the error. You can rerun the Workflow by going to going to **More Options (⋮)** **Rerun Workflow** on the Workflows page.                                                      |
 | Stopping       | The Workflow is currently finishing processing any currently ingested documents and preparing to stop.                                                                                                                                                     |
 | Stopped        | The Workflow has stopped processing documents. You can rerun the Workflow by going to going to **More Options (⋮)** **Rerun Workflow** on the Workflows page.                                                                                              |
 | Stop Failed    | An error occurred while stopping the Workflow. Contact [Couchbase Capella Support](../../../cloud/support/manage-support.md) to delete the Workflow.                                                                                                       |
-| Destroying     | The Workflow’s resources are being deleted.                                                                                                                                                                                                                |
+| Destroying     | The Workflow's resources are being deleted.                                                                                                                                                                                                                |
 | Destroy Failed | An error occurred while deleting the Workflow. Contact [Couchbase Capella Support](../../../cloud/support/manage-support.md).                                                                                                                              |
 
 ## [](#workflow-billing)Workflow Billing

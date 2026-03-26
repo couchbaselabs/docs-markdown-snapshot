@@ -3,7 +3,7 @@ title: Saving Data
 description: Entity Framework Core (EF Core) supports two fundamental approaches
   for saving data to the database.
 editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-crud-data.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:efcore-provider::entity-framework-core-crud-data.adoc[]
 ---
 
@@ -18,7 +18,7 @@ While querying allows you to read data from the database, saving data means addi
 
 ## [](#approach-1-change-tracking-and-savechanges)Approach 1: Change Tracking and SaveChanges
 
-In many scenarios, your program needs to query some data from the database, perform some modification on it, and save those modifications back; this is sometimes referred to as a ["Unit of Work"](https://en.wikipedia.org/wiki/Unit%5Fof%5Fwork). For example, let’s assume that you have a set of Blogs, and you’d like to change the Url property of one of them.
+In many scenarios, your program needs to query some data from the database, perform some modification on it, and save those modifications back; this is sometimes referred to as a ["Unit of Work"](https://en.wikipedia.org/wiki/Unit%5Fof%5Fwork). For example, let's assume that you have a set of Blogs, and you'd like to change the Url property of one of them.
 
 > [!NOTE]
 > Like any EF Core Provider `DbContext`, lifetime, configuration, and initialization [best practices](https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/) should be used with the `DbContext`. Always call [Dispose()](https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#the-dbcontext-lifetime) when done using the `DbContext`.
@@ -38,7 +38,7 @@ The code above performs the following steps:
 
 1. It uses a regular LINQ query to load an entity from the database and adds them to the internal change tracker.
 2. The retrieved entities `Url` property is modified.
-3. Finally, `DbContext.SaveChanges()` is called and the entity’s modified properties are persisted to the database.
+3. Finally, `DbContext.SaveChanges()` is called and the entity's modified properties are persisted to the database.
 
 ## [](#approach-2-bulk-update-with-executeupdate-and-executedelete)Approach 2: Bulk Update with ExecuteUpdate and ExecuteDelete
 

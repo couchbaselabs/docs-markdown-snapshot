@@ -3,7 +3,7 @@ title: Encryption At Rest
 description: Understand encryption at rest in Couchbase Server and how to
   configure it using the Autonomous Operator.
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-encryption-at-rest.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::concept-encryption-at-rest.adoc[]
 ---
 
@@ -30,7 +30,7 @@ Encryption at rest supports encrypting multiple types of data within your Couchb
 > [!NOTE]
 > Field-Level Encryption in Applications
 > 
-> Applications can use the SDK to encrypt specific fields. Depending on your application’s requirements, field-level encryption may be more appropriate than encrypting the entire bucket. See the SDK documentation for your development language for more information. For example:
+> Applications can use the SDK to encrypt specific fields. Depending on your application's requirements, field-level encryption may be more appropriate than encrypting the entire bucket. See the SDK documentation for your development language for more information. For example:
 > 
 > * Go SDK: [Encrypting Your Data](../../go-sdk/current/howtos/encrypting-using-sdk.md)
 > * Java SDK: [Encrypting Your Data](../../java-sdk/current/howtos/encrypting-using-sdk.md)
@@ -113,7 +113,7 @@ spec:
 
 ### [](#step-2-create-encryption-keys)Step 2: Create Encryption Keys
 
-Create one or more `CouchbaseEncryptionKey` resources. Here’s a simple example with an auto-generated key:
+Create one or more `CouchbaseEncryptionKey` resources. Here's a simple example with an auto-generated key:
 
 ```yaml
 apiVersion: couchbase.com/v2

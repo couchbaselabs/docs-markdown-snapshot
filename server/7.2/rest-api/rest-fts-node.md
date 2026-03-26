@@ -1,7 +1,7 @@
 ---
 title: Node Configuration
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-fts-node.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:rest-api:rest-fts-node.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:7.2@server:rest-api:rest-fts-node.adoc[]
 
 GET /api/cfg
 
-Returns the node’s current view of the cluster’s configuration as JSON.
+Returns the node's current view of the cluster's configuration as JSON.
 
 **Permission Required**: cluster.settings!read
 
@@ -134,7 +134,7 @@ Forces the node to replan resource assignments (by running the planner, if enabl
 
 GET /api/managerMeta
 
-Returns information on the node’s capabilities, including available indexing and storage options as JSON, and is intended to help management tools and web UI’s to be more dynamically metadata driven.
+Returns information on the node's capabilities, including available indexing and storage options as JSON, and is intended to help management tools and web UI's to be more dynamically metadata driven.
 
 **Permission Required**: cluster.settings!read
 
@@ -152,7 +152,7 @@ curl http://cbft-01:8094/api/diag > cbft-01.json
 curl http://cbft-02:8094/api/diag > cbft-02.json
 curl http://cbft-03:8094/api/diag > cbft-03.json
 
-The _/api/diag_ response JSON object can be quite large, from 100’s of KB to much more.
+The _/api/diag_ response JSON object can be quite large, from 100's of KB to much more.
 
 The motivation for _/api/diag_ is to simplify working with the Couchbase community, forums, technical support and other engineers by making data capture from each FTS node a single step.
 
@@ -177,7 +177,7 @@ Sample response
 
 GET /api/runtime
 
-Returns information on the node’s software, such as version strings and slow-changing runtime settings as JSON.
+Returns information on the node's software, such as version strings and slow-changing runtime settings as JSON.
 
 **Permission Required**: cluster.settings!read
 
@@ -201,7 +201,7 @@ Sample response
 
 GET /api/runtime/args
 
-Returns information on the node’s command-line, parameters, environment variables and O/S process values as JSON.
+Returns information on the node's command-line, parameters, environment variables and O/S process values as JSON.
 
 **Permission Required**: cluster.settings!read
 
@@ -237,12 +237,12 @@ Requests the node to perform a GC.
 
 GET /api/runtime/stats
 
-Returns information on the node’s low-level runtime stats as JSON.
+Returns information on the node's low-level runtime stats as JSON.
 
 **Role Required**: Full-Admin, Cluster-Admin
 
 GET /api/runtime/statsMem
 
-Returns information on the node’s low-level GC and memory related runtime stats as JSON.
+Returns information on the node's low-level GC and memory related runtime stats as JSON.
 
 **Role Required**: Full-Admin, Cluster-Admin

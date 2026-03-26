@@ -3,7 +3,7 @@ title: Two-Node and Single-Node Clusters
 description: The number of nodes in a Couchbase-Server deployment may impact
   both maintenance-requirements and feature-availability.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/deployment-considerations-lt-3nodes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:install:deployment-considerations-lt-3nodes.adoc[]
 ---
 
@@ -21,7 +21,7 @@ When setting up a Couchbase Server deployment, the number of nodes in that deplo
 The following limitations apply to deployments with two nodes:
 
 * **No auto-failover functionality**  
-When a deployment of Couchbase Server has fewer than three nodes, auto-failover is disabled. This is because with fewer than three nodes in the deployment, it’s not easy to determine which node is having an issue and thus avoid a split-brain configuration.
+When a deployment of Couchbase Server has fewer than three nodes, auto-failover is disabled. This is because with fewer than three nodes in the deployment, it's not easy to determine which node is having an issue and thus avoid a split-brain configuration.
 * **Maximum number of replicas is 1**  
 A Couchbase Server deployment can have multiple replicas. However, when a deployment has only two nodes, you can only have a maximum of one replica since the Active and Replica of a vBucket cannot exist on the same server.
 * **Run the cluster at < 50% load capacity**  
@@ -29,7 +29,7 @@ When running a Couchbase deployment with two nodes, we recommend running the clu
 
 ### [](#metadata-management)Metadata Management
 
-In Couchbase Server 7.0+, metadata is managed by means of _Chronicle_; which is a _consensus-based_ system, based on the [Raft](https://raft.github.io/) algorithm. Due to the strong consistency with which topology-related metadata is thus managed, in the event of a _quorum failure_ (meaning, the unresponsiveness of at least half of the cluster’s nodes — for example, the unresponsiveness of one node in a two-node cluster), no modification of nodes, buckets, scopes, and collections can take place until the quorum failure is resolved.
+In Couchbase Server 7.0+, metadata is managed by means of _Chronicle_; which is a _consensus-based_ system, based on the [Raft](https://raft.github.io/) algorithm. Due to the strong consistency with which topology-related metadata is thus managed, in the event of a _quorum failure_ (meaning, the unresponsiveness of at least half of the cluster's nodes — for example, the unresponsiveness of one node in a two-node cluster), no modification of nodes, buckets, scopes, and collections can take place until the quorum failure is resolved.
 
 Note that optionally, the quorum failure can be resolved by means of _unsafe failover_. However, that the consequences of unsafe failover in 7.0 are different from those in previous versions; and the new consequences should be fully understood before unsafe failover is attempted.
 

@@ -2,7 +2,7 @@
 title: Configuration Overview
 description: How to configure <em>Sync&#160;Gateway</em> for secure cloud-to-edge data sync
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:configuration:configuration-overview.adoc[]
 ---
 
@@ -28,7 +28,7 @@ sync gateway propagates configuration changes made to a node through the API end
 * **Persistent Updates**  
 Any database changes made using the API endpoints persist and survive sync gateway node restarts (this does not apply when running in file-based configuration mode).  
 > [!NOTE]  
-> Using sync gateway with Couchbase Server’s [Couchbase Eventing Service](../../../server/current/eventing/eventing-overview.md) feature requires persistent configuration. Databases created via file-based configuration are not recorded in the registry and Eventing cannot detect them for compatibility checks — see [Server Compatibility - Eventing](../server-compatibility/server-compatibility-eventing.md).
+> Using sync gateway with Couchbase Server's [Couchbase Eventing Service](../../../server/current/eventing/eventing-overview.md) feature requires persistent configuration. Databases created via file-based configuration are not recorded in the registry and Eventing cannot detect them for compatibility checks — see [Server Compatibility - Eventing](../server-compatibility/server-compatibility-eventing.md).
 * **Secure REST API**  
 by default the REST API requires authentication and authorization using Couchbase Server RBAC-user credentials — see [Secure Sync Gateway Access](../security/secure-sgw-access.md). This can be disabled for test purposes only.
 * **Automatic upgrade path**  
@@ -44,9 +44,9 @@ Figure 1\. Configuration Workflow
 
 1. Set up a user for the Admin REST API on Couchbase Server  
 You can turn off authentication of REST API users for test purposes **only**
-2. Provide a [bootstrap configuration file](configuration-schema-bootstrap.md), in JSON format, which defines the sync gateway node’s run time behavior. This configuration is node-specific. Any changes require a sync gateway restart.
+2. Provide a [bootstrap configuration file](configuration-schema-bootstrap.md), in JSON format, which defines the sync gateway node's run time behavior. This configuration is node-specific. Any changes require a sync gateway restart.
 3. Add or amend configuration items in-flight using the Admin Rest API.  
-All changes persist across sync gateway restarts. sync gateway initiates auto restarts for any change that requires one. You’ll need to configure and maintain:
+All changes persist across sync gateway restarts. sync gateway initiates auto restarts for any change that requires one. You'll need to configure and maintain:
 
   1. Databases  
   Use the Admin REST API endpoint [Database Configuration](configuration-schema-database.md) endpoints to add required databases.

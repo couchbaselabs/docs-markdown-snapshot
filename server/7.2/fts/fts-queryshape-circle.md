@@ -1,7 +1,7 @@
 ---
 title: Circle Query
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-queryshape-circle.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-queryshape-circle.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.2@server:fts:fts-queryshape-circle.adoc[]
 
 A GeoJSON query via a GeoShape of Circle to find GeoJSON types in a Search index using the 3 relations intersects, contains, and within.
 
-A Circle represents a disc shape on the earth’s spherical surface. This is a Couchbase extension to GeoJSON.
+A Circle represents a disc shape on the earth's spherical surface. This is a Couchbase extension to GeoJSON.
 
 For full details on formats for the radius refer to [Distances](fts-supported-queries-geojson-spatial.md#specifying-distances)
 
@@ -88,11 +88,11 @@ Containment rules for the Circle Query with other indexed GeoJSON shapes in the 
 
 | Contains (relation)Document Shape | Circle (GeoShape)                                                                                                                                          |
 | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Point                             | NA. Points can’t cover a circle.                                                                                                                           |
-| LineString                        | NA. LineStrings can’t cover a circle.                                                                                                                      |
+| Point                             | NA. Points can't cover a circle.                                                                                                                           |
+| LineString                        | NA. LineStrings can't cover a circle.                                                                                                                      |
 | Polygon                           | Matches if the polygon area contains the circular region in the query.                                                                                     |
-| MultiPoint                        | NA. MultiPoints can’t cover a circle.                                                                                                                      |
-| MultiLineString                   | NA. MultiLineStrings can’t cover a circle.                                                                                                                 |
+| MultiPoint                        | NA. MultiPoints can't cover a circle.                                                                                                                      |
+| MultiLineString                   | NA. MultiLineStrings can't cover a circle.                                                                                                                 |
 | MultiPolygon                      | Matches if any of the polygons in the multipolygon array contains the circular region in the query.                                                        |
 | GeometryCollection                | Matches if there is a containment between any of the heterogeneous (above 6) shapes in the geometrycollection array in the document with the query circle. |
 | Circle                            | Matches if the area of the document circle contains the query circle.                                                                                      |

@@ -2,7 +2,7 @@
 title: Query Monitoring
 description: Couchbase Server provides a UI to monitor the current state of Query Service.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/tools/pages/query-monitoring.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:tools:query-monitoring.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.2@server:tools:query-monitoring.adoc[]
 > [!NOTE]
 > Query Monitoring is only available in Enterprise Edition.
 
-From the **Couchbase Web Console** \> **Query** \> **Query Monitor**, you can view the different types queries that are Active (currently running), Completed (recently run), and Prepared (aggregate statistics for prepared queries). Statistics information for the query service is displayed at the bottom of the page. Different information may be shown depending on the user’s access control role.
+From the **Couchbase Web Console** \> **Query** \> **Query Monitor**, you can view the different types queries that are Active (currently running), Completed (recently run), and Prepared (aggregate statistics for prepared queries). Statistics information for the query service is displayed at the bottom of the page. Different information may be shown depending on the user's access control role.
 
 ![query monitor](_images/query-monitor.png) 
 

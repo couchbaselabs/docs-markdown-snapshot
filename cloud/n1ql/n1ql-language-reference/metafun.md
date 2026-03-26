@@ -3,7 +3,7 @@ title: Miscellaneous Utility Functions
 description: Miscellaneous utility functions enable you to perform tasks beyond
   the usual evaluation and transformation of data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/metafun.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/metafun.adoc[]
 ---
 
@@ -325,7 +325,7 @@ This function enables you to execute a SQL++ statement provided as a string and 
 The function evaluates the statement dynamically using the same permissions as the invoking statement. The statement must be read-only. If it tries to modify data (like with UPDATE or INSERT), the function fails with `error 5010, "not a readonly request”`.
 
 > [!NOTE]
-> The results are materialized in memory, so large result sets may require a lot of memory. To limit memory usage, you can use quotas (the evaluated statement operates within the invoking statement’s quota).
+> The results are materialized in memory, so large result sets may require a lot of memory. To limit memory usage, you can use quotas (the evaluated statement operates within the invoking statement's quota).
 
 ### [](#arguments-6)Arguments
 
@@ -801,7 +801,7 @@ The return value is usually a number, depending on the datatype of the input exp
 | Array            | The number of elements — equivalent to [ARRAY\_LENGTH()](arrayfun.md#fn-array-length).          |
 | Binary           | The size of the binary object.                                                                  |
 | Boolean          | 1                                                                                               |
-| Number           | The number of characters in the number’s text representation.                                   |
+| Number           | The number of characters in the number's text representation.                                   |
 | MISSING          | missing                                                                                         |
 | NULL             | null                                                                                            |
 
@@ -870,7 +870,7 @@ This property is indexable.
 
 expiration
 
-Value representing a document’s expiration date. A value of 0 (zero) means no expiration date. For details, refer to [KV Operations](../../../java-sdk/current/howtos/kv-operations.md#document-expiration).
+Value representing a document's expiration date. A value of 0 (zero) means no expiration date. For details, refer to [KV Operations](../../../java-sdk/current/howtos/kv-operations.md#document-expiration).
 
 This property is indexable.
 
@@ -882,7 +882,7 @@ This property is not indexable. If you attempt to build an index on this propert
 
 id
 
-Value representing a document’s unique ID number.
+Value representing a document's unique ID number.
 
 This property is indexable.
 
@@ -910,7 +910,7 @@ Attempting to select the entire `META().xattrs` object will return an empty resu
 
 ### [](#return-value-12)Return Value
 
-The bare function returns a JSON object containing the specified document’s metadata. When the function is used with a property as part of a nested expression, the expression returns the JSON value of the property.
+The bare function returns a JSON object containing the specified document's metadata. When the function is used with a property as part of a nested expression, the expression returns the JSON value of the property.
 
 ### [](#examples-7)Examples
 
@@ -1189,12 +1189,12 @@ Array of \[`field_name`, `value`\] arrays for each field in the input object `ob
 
 * If `obj` has nested objects, then fields of such nested sub-objects are also explored and corresponding inner-array elements are produced.
 * If `obj` is an array, then each element of the array is explored and corresponding inner-array elements are produced.
-* If `obj` is a primitive data type of integer or string, then it returns NULL, as they don’t have a name.
+* If `obj` is a primitive data type of integer or string, then it returns NULL, as they don't have a name.
 * If `obj` is an array of primitive data types, then it returns an empty array `[]`.
 * If `obj` is an array of objects, then it returns an array of objects.
 
 > [!TIP]
-> If you wrap an array of primitive data types in an [object constructor](constructionops.md#object-construction), it’s treated as an object and returns an array; without the object constructor, it’s treated as an array of primitive data types and returns `[]`. For example, in [PAIRS() Example 2](#pairs-example2):
+> If you wrap an array of primitive data types in an [object constructor](constructionops.md#object-construction), it's treated as an object and returns an array; without the object constructor, it's treated as an array of primitive data types and returns `[]`. For example, in [PAIRS() Example 2](#pairs-example2):
 > 
 > * `PAIRS(public_likes)` returns `[]`
 > * `PAIRS({public_likes})` returns an array
@@ -1634,9 +1634,9 @@ By default, the function masks only to alphanumeric characters while preserving 
 
 To redact both field names and values, set `"name": true` in the filter object. See [Example 3](#redact-ex3).
 
-When you provide multiple filter objects, the function evaluates them in the order you specify. For each field in the input object, the function applies the first filter that matches the field’s criteria. Once applied, it does not consider any other filter objects for that field, even if they also match. See [Example 4](#redact-ex4).
+When you provide multiple filter objects, the function evaluates them in the order you specify. For each field in the input object, the function applies the first filter that matches the field's criteria. Once applied, it does not consider any other filter objects for that field, even if they also match. See [Example 4](#redact-ex4).
 
-For nested objects, the nested fields inherit the redaction behavior of their parent by default. However, if you define a filter that specifically targets a nested field, that filter overrides the parent field’s filter.
+For nested objects, the nested fields inherit the redaction behavior of their parent by default. However, if you define a filter that specifically targets a nested field, that filter overrides the parent field's filter.
 
 ### [](#return-value-16)Return Value
 

@@ -3,7 +3,7 @@ title: Manage Indexes
 description: Indexes provided by the Index Service can be managed with Couchbase
   Web Console, with the CLI, and with the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-indexes/manage-indexes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:manage:manage-indexes/manage-indexes.adoc[]
 ---
 
@@ -21,7 +21,7 @@ Indexes provided by the _Index Service_ facilitate and enhance use of the _Query
 * The _SQL++_ language, which is provided by the Query Service as a means of querying data within documents; and of defining and editing indexes. See the [SQL++ Language Reference](../../n1ql/n1ql-language-reference/index.md) for information.
 * _Couchbase Web Console_, which provides a user interface for the management of indexes.
 
-This page describes how to use Couchbase Web Console to manage indexes. It also shows how to use the console’s **Query Editor**, provided on the **Query** screen, to define and edit indexes by means of SQL++.
+This page describes how to use Couchbase Web Console to manage indexes. It also shows how to use the console's **Query Editor**, provided on the **Query** screen, to define and edit indexes by means of SQL++.
 
 ## [](#access-indexes)Access the Indexes Screen
 

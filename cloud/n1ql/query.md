@@ -3,7 +3,7 @@ title: Query Data with SQL++
 description: The Query Service supports the querying of data by means of the
   SQL++ query language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/query.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:query.adoc[]
 ---
 
@@ -28,9 +28,9 @@ Use the Search Service for Full-Text Search with natural language processing acr
 
 ## SQL++ for Query
 
-To create queries, you must use a query language that’s structured so that the Query Service understands what it needs to retrieve. Couchbase Capella uses a query language called SQL++. The Couchbase implementation of SQL++ was formerly known as [N1QL](https://www.couchbase.com/products/n1ql) (pronounced "nickel").
+To create queries, you must use a query language that's structured so that the Query Service understands what it needs to retrieve. Couchbase Capella uses a query language called SQL++. The Couchbase implementation of SQL++ was formerly known as [N1QL](https://www.couchbase.com/products/n1ql) (pronounced "nickel").
 
-SQL++ is an expressive, powerful, and complete SQL dialect for querying, updating, and manipulating JSON data. Based on SQL, it’s immediately familiar to developers who can quickly start developing rich applications.
+SQL++ is an expressive, powerful, and complete SQL dialect for querying, updating, and manipulating JSON data. Based on SQL, it's immediately familiar to developers who can quickly start developing rich applications.
 
 ## How-To Guides
 

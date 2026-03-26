@@ -3,7 +3,7 @@ title: Run a Vector Search with the REST API and curl/HTTP
 description: You can use the REST API and a curl command to run a search against
   a Search Vector Index and return similar vectors.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-search/pages/run-vector-search-rest-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:vector-search:run-vector-search-rest-api.adoc[]
 ---
 
@@ -27,7 +27,7 @@ For more information about how the Search Service scores documents in search res
 * You have a bucket with scopes and collections in your cluster. For more information about how to create a bucket, see [Create a Bucket](../manage/manage-buckets/create-bucket.md).
 * Your user account has the **Search Admin** or **Search Reader** role.
 * You installed the Couchbase command-line tool (CLI).
-* You have the hostname or IP address for the node in your cluster where you’re running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../manage/manage-nodes/list-cluster-nodes.md).
+* You have the hostname or IP address for the node in your cluster where you're running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../manage/manage-nodes/list-cluster-nodes.md).
 * You have created a Search Vector Index.  
 For more information about how to create a Search Vector Index, see [Create a Search Vector Index with the Server Web Console](create-vector-search-index-ui.md) or [Create a Search Vector Index with the REST API and curl/HTTP](create-vector-search-index-rest-api.md).  
 > [!TIP]  
@@ -229,7 +229,7 @@ If the REST API call is successful, the Search Service returns a `200 OK` and th
 
 In the following example, the JSON payload uses both a `query` and `knn` object to run both a Vector Search and traditional Search query on an index named `products-index`.
 
-The query searches for a specific embedding vector generated from an ecommerce website’s product description. The Search vector is generated from the phrase `long battery life wireless earbuds`. The `query` object specifically searches for documents that have `Electronics` as their category, with a price between `100.00` and `300.00`. The query returns the `description`, `price`, and `product_name` fields in results. Since the query is on a large, partitioned index and uses the `bm25` scoring algorithm, the query also uses `global_scoring` to keep document scores consistent across the Search index’s partitions:
+The query searches for a specific embedding vector generated from an ecommerce website's product description. The Search vector is generated from the phrase `long battery life wireless earbuds`. The `query` object specifically searches for documents that have `Electronics` as their category, with a price between `100.00` and `300.00`. The query returns the `description`, `price`, and `product_name` fields in results. Since the query is on a large, partitioned index and uses the `bm25` scoring algorithm, the query also uses `global_scoring` to keep document scores consistent across the Search index's partitions:
 
 ```console
 curl -XPOST -H "Content-Type: application/json" \

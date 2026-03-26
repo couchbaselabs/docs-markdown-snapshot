@@ -3,7 +3,7 @@ title: Run a Geospatial Search Query with the REST API and curl/HTTP
 description: Search for geospatial data in your Couchbase Server cluster with a
   compatible Search index, the REST API and curl/HTTP.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/geo-search-rest-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:search:geo-search-rest-api.adoc[]
 ---
 
@@ -25,7 +25,7 @@ For more information about the supported data types, see [geopoint](field-data-t
 * Your user account has the [Search Admin](../learn/security/roles.md#search-admin) role for the bucket where you want to create the Search index.  
 If you only want to run a search, you only need the **Search Reader** role.
 * You installed the Couchbase command-line tool (CLI).
-* You have the hostname or IP address for the node in your cluster where you’re running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../manage/manage-nodes/list-cluster-nodes.md).
+* You have the hostname or IP address for the node in your cluster where you're running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../manage/manage-nodes/list-cluster-nodes.md).
 
 ## [](#procedure)Procedure
 
@@ -441,4 +441,4 @@ You can also:
 * Change the JSON payload [for your Search index](search-index-params.md).
 * Change the JSON payload [for your Search query](search-request-params.md).
 
-If you want to add autocomplete to your cluster’s search, see [Use Autocomplete with the Search Service](search-query-auto-complete.md).
+If you want to add autocomplete to your cluster's search, see [Use Autocomplete with the Search Service](search-query-auto-complete.md).

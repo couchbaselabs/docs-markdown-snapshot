@@ -2,7 +2,7 @@
 title: Database Encryption
 description: Encrypting Couchbase Lite Databases in JavaScript
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/encryption.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::encryption.adoc[]
 ---
 
@@ -74,7 +74,7 @@ await users.save({
 
 ## [](#persisting-key)Persisting the Encryption Key
 
-Couchbase Lite does not persist the encryption key. It is the application’s responsibility to manage the key.
+Couchbase Lite does not persist the encryption key. It is the application's responsibility to manage the key.
 
 > [!IMPORTANT]
 > There is no secure cross-session storage available in browsers. The encryption password must be obtained from the user each time the application loads, or stored using browser-specific mechanisms with appropriate security considerations.
@@ -143,7 +143,7 @@ When using database encryption in browser applications:
 * **HTTPS Only**: Always serve encrypted database applications over HTTPS to prevent password interception.
 * **Memory Considerations**: Be aware that decrypted data exists in browser memory during use.
 * **Storage Clearing**: Educate users that clearing browser data will delete encrypted databases.
-* **Indexed Properties**: Be aware that indexed properties are not encrypted. Only index properties that don’t contain sensitive data.
+* **Indexed Properties**: Be aware that indexed properties are not encrypted. Only index properties that don't contain sensitive data.
 
 ## [](#related-content)Related Content
 

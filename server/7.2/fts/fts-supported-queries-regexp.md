@@ -1,7 +1,7 @@
 ---
 title: Regexp Query
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-regexp.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-supported-queries-regexp.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:7.2@server:fts:fts-supported-queries-regexp.adoc[]
 
 # Regexp Query
 
-A _regexp_ query finds documents containing terms that match the specified regular expression. Please note that the regex query is a non-analytic query, meaning it won’t perform any text analysis on the query text.
+A _regexp_ query finds documents containing terms that match the specified regular expression. Please note that the regex query is a non-analytic query, meaning it won't perform any text analysis on the query text.
 
 ```json
 {

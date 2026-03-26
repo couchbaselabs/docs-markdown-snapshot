@@ -2,7 +2,7 @@
 title: Authentication API
 description: Enterprise Analytics supports authentication via local and external domains.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-authentication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:reference:rest-authentication.adoc[]
 ---
 
@@ -25,7 +25,7 @@ The default password policy is described in [Password Strength](#learn:security/
 
 ### [](#ldap-groups)LDAP Groups
 
-LDAP supports _groups_, of which multiple users can be members. Enterprise Analytics supports the association of LDAP groups with Couchbase-Server groups: a user successfully authenticated on an LDAP server may have their LDAP group information duly returned to Enterprise Analytics. If Enterprise Analytics has configured an association between one or more of the user’s LDAP groups and corresponding groups defined on Enterprise Analytics, the user is assigned the roles and privileges for the corresponding Couchbase-Server groups.
+LDAP supports _groups_, of which multiple users can be members. Enterprise Analytics supports the association of LDAP groups with Couchbase-Server groups: a user successfully authenticated on an LDAP server may have their LDAP group information duly returned to Enterprise Analytics. If Enterprise Analytics has configured an association between one or more of the user's LDAP groups and corresponding groups defined on Enterprise Analytics, the user is assigned the roles and privileges for the corresponding Couchbase-Server groups.
 
 ## [](#external-authentication-configuration-options)Configuration Options
 

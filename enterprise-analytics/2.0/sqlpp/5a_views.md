@@ -2,7 +2,7 @@
 title: Views and Tabular Views
 description: This topic describes views and tabular views.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5a_views.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sqlpp:5a_views.adoc[]
 ---
 
@@ -27,7 +27,7 @@ Example
 USE sampleAnalytics.Commerce;
 ```
 
-If you’re using the UI, you can use the query editor’s **Query Context** lists to set the database and scope.
+If you're using the UI, you can use the query editor's **Query Context** lists to set the database and scope.
 
 ![The Query Context lists](_images/workbench-context-set.png) 
 
@@ -66,7 +66,7 @@ The `OR REPLACE` and `IF NOT EXISTS` clauses specify the action to take if a vie
 
 These examples use the [Connecting to Data Sources](../intro/connecting-to-data-sources.md).
 
-The following view operates on the `customers` collection, showing the `custid`, `name`, and `rating` of each customer with a rating greater than 700, omitting the customer’s address.
+The following view operates on the `customers` collection, showing the `custid`, `name`, and `rating` of each customer with a rating greater than 700, omitting the customer's address.
 
 CREATE VIEW good_customers AS
     SELECT custid, name, rating

@@ -4,7 +4,7 @@ description: Security is a process and Couchbase Capella strives to achieve the
   best ways to protect your data, from Zero Trust, through adaptive access, to
   centralized management and proactive monitoring.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/security.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:security:security.adoc[]
 ---
 
@@ -19,19 +19,19 @@ This page groups together listings of some of the many features of Capella secur
 
 ## [](#security-highlights)Security Highlights
 
-All communication is encrypted using TLS 1.2 or higher. This can’t be turned off.
+All communication is encrypted using TLS 1.2 or higher. This can't be turned off.
 
 ### [](#auditing)Auditing
 
 Capella provides event auditing, whereby events are logged. Log files can be downloaded for inspection.
 
-Event auditing occurs on a _per node_ basis: each node captures only its own events, and saves the records in its own log file. When a cluster’s log files are to be inspected, the user can perform a _download_: all log files are duly downloaded, as a single, compressed file, to the user’s current system.
+Event auditing occurs on a _per node_ basis: each node captures only its own events, and saves the records in its own log file. When a cluster's log files are to be inspected, the user can perform a _download_: all log files are duly downloaded, as a single, compressed file, to the user's current system.
 
 For a full overview, providing access to step-by-step instructions and reference information, see [Auditing](auditing.md).
 
 ### [](#encryption-at-rest)Encryption at Rest
 
-By default, Couchbase Capella clusters use the underlying cloud provider’s key management service to create a new key for each cluster. These key management services include AWS Key Management Service, Google Cloud Key Management Service, and Azure Key Vault.
+By default, Couchbase Capella clusters use the underlying cloud provider's key management service to create a new key for each cluster. These key management services include AWS Key Management Service, Google Cloud Key Management Service, and Azure Key Vault.
 
 Capella uses customer master keys that are 256-bit Advanced Encryption Standard (AES) symmetric keys and are not exportable. AES-256, which has a key length of 256 bits, supports the largest bit size and is practically unbreakable by brute force based on current computing power, making it the strongest encryption standard. Customer master keys use hardware security modules (HSMs) validated under FIPS 140-2.
 
@@ -41,7 +41,7 @@ Capella also supports [customer-managed encryption keys](cmek.md). Customer-mana
 
 ### [](#access-management)Access Management
 
-Capella is built upon Couchbase’s sophisticated Role-Based Access Control.
+Capella is built upon Couchbase's sophisticated Role-Based Access Control.
 
 [Organization and Project Overview](../organizations/organization-projects-overview.md): Couchbase Capella is organized into organizations and projects, each of which has its own user roles.
 
@@ -53,13 +53,13 @@ Capella is built upon Couchbase’s sophisticated Role-Based Access Control.
 
 [Federated & SSO Authentication](../organizations/ui-auth/capella-ui-auth.md): Couchbase Capella allows users to sign in to the Capella UI using federated and SSO authentication after configuring Capella to authenticate using data passed from your identity provider (IdP). Okta, Azure AD, Ping Identity, and CyberArk are supported IdPs.
 
-[Multi-Factor Authentication (MFA)](../organizations/ui-auth/mfa.md): Any non-SSO user within your organization can use Capella’s MFA. MFA improves your Capella account security by requiring two credentials to sign in: your password and a time-based one-time password (TOTP).
+[Multi-Factor Authentication (MFA)](../organizations/ui-auth/mfa.md): Any non-SSO user within your organization can use Capella's MFA. MFA improves your Capella account security by requiring two credentials to sign in: your password and a time-based one-time password (TOTP).
 
 Five failed attempts at logging in a user results in that account being locked for five minutes.
 
 ### [](#secrets-management)Secrets Management
 
-Application passwords management can be simplified with our [Hashicorp Vault plug-in](https://github.com/couchbasecloud/vault-plugin-database-couchbasecapella). Vault’s Cluster Secrets Engine generates dynamic, short-lived cluster credentials, which streamlines the management of cluster connections and roles. You can also customize permissions and TTL settings.
+Application passwords management can be simplified with our [Hashicorp Vault plug-in](https://github.com/couchbasecloud/vault-plugin-database-couchbasecapella). Vault's Cluster Secrets Engine generates dynamic, short-lived cluster credentials, which streamlines the management of cluster connections and roles. You can also customize permissions and TTL settings.
 
 ## [](#applying-best-practice)Applying Best Practice
 
@@ -96,11 +96,11 @@ See [Manage Multi-Factor Authentication (MFA)](../organizations/ui-auth/mfa.md) 
 
 If Couchbase grants your organization access to this feature, you can restrict public access for a [new cluster](../clusters/create-database.md).
 
-With restrict public access turned on for your cluster, you can only connect to your cluster through Capella’s private networking options, including [VPC peering](../clouds/private-network.md) and [private endpoints](private-endpoints.md).
+With restrict public access turned on for your cluster, you can only connect to your cluster through Capella's private networking options, including [VPC peering](../clouds/private-network.md) and [private endpoints](private-endpoints.md).
 
-For example, with restrict public access enabled, only your cloud service provider (CSP) network that’s peered with Capella can access your cluster. This configuration allows direct traffic routing from your on-premises network to Capella through your CSP’s network that’s peered with Capella.
+For example, with restrict public access enabled, only your cloud service provider (CSP) network that's peered with Capella can access your cluster. This configuration allows direct traffic routing from your on-premises network to Capella through your CSP's network that's peered with Capella.
 
-When you restrict public access for a cluster, the cluster is accessible only through private IP addresses that Capella assigns. In your applications, you can use the [DNS hostname](../clusters/modify-database.md#view-config) provided by Capella to resolve your cluster’s private IP addresses. You can also still use the connection string for your cluster on the **Settings** **Connect** page.
+When you restrict public access for a cluster, the cluster is accessible only through private IP addresses that Capella assigns. In your applications, you can use the [DNS hostname](../clusters/modify-database.md#view-config) provided by Capella to resolve your cluster's private IP addresses. You can also still use the connection string for your cluster on the **Settings** **Connect** page.
 
 ### [](#shared-responsibilities)Shared Responsibilities
 
@@ -112,6 +112,6 @@ Key areas of customer responsibility are _Defining Roles_ and _Customer Access C
 
 ### [](#common-next-steps)Common Next Steps
 
-Now that you have seen an overview of Capella’s security features, any one of the above links will take you deeper. You may also want to continue with one of the following next steps:
+Now that you have seen an overview of Capella's security features, any one of the above links will take you deeper. You may also want to continue with one of the following next steps:
 
 * Authenticating your client by X.509 certificate — [Java](../../java-sdk/current/howtos/sdk-authentication.md#authenticating-the-java-client-by-certificate); [Node.js](../../nodejs-sdk/current/howtos/sdk-authentication.md#authenticating-a-node-js-client-by-certificate).

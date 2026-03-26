@@ -2,7 +2,7 @@
 title: Data API vs. Couchbase SDKs
 description: This page explains when to use the Data API and when to use Couchbase SDKs.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-sdks.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:data-api-guide:data-api-sdks.adoc[]
 ---
 
@@ -23,7 +23,7 @@ In some instances, it may not be practical to deploy Couchbase SDKs and related 
 
 Integrated Platform-as-a-Service ecosystems
 
-It’s often not practical to deploy SDKs within broader Integrated Platform-as-a-Service (iPaaS) ecosystems such as Google Application Services. Integrating Capella into those third party platforms is simplified using the Data API. Developers can build connectors using off-the-shelf HTTP client libraries.
+It's often not practical to deploy SDKs within broader Integrated Platform-as-a-Service (iPaaS) ecosystems such as Google Application Services. Integrating Capella into those third party platforms is simplified using the Data API. Developers can build connectors using off-the-shelf HTTP client libraries.
 
 AI integrations
 

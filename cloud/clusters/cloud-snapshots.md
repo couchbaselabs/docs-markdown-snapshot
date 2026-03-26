@@ -3,7 +3,7 @@ title: Back Up and Restore An Entire Cluster
 description: With a Cloud Snapshot cluster backup, you can backup and restore an
   entire cluster and all of its buckets in a single backup.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/cloud-snapshots.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:cloud-snapshots.adoc[]
 ---
 
@@ -20,15 +20,15 @@ Specifically, Couchbase Capella uses the following snapshot services, based on y
 * [Google Cloud Provider Standard Disk Snapshots](https://cloud.google.com/compute/docs/disks/snapshots)
 * [Azure Disk Backup](https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview)
 
-Data transfer costs during backup and restore operations are based on your cluster’s chosen CSP.
+Data transfer costs during backup and restore operations are based on your cluster's chosen CSP.
 
 ## [](#backup-types)Backup Types
 
-Each Cloud Snapshot cluster backup stands on its own as a full, complete backup of your cluster’s storage. This is different from [bucket backups](backup-restore.md), which can be full or incremental. You can restore or delete a backup independently - each cluster backup does not depend on other backups to be restored.
+Each Cloud Snapshot cluster backup stands on its own as a full, complete backup of your cluster's storage. This is different from [bucket backups](backup-restore.md), which can be full or incremental. You can restore or delete a backup independently - each cluster backup does not depend on other backups to be restored.
 
-Your CSP’s backup service, which is the underlying backup mechanism for your cluster backups, takes incremental storage snapshots for any backup after your first cluster backup. Even though the incrementality of your backups is determined by your CSP, each of your backups can still be restored or deleted independently through Capella. When you delete a cluster backup or it expires, your CSP manages the deletion so that only the data that’s no longer needed to restore another backup is removed.
+Your CSP's backup service, which is the underlying backup mechanism for your cluster backups, takes incremental storage snapshots for any backup after your first cluster backup. Even though the incrementality of your backups is determined by your CSP, each of your backups can still be restored or deleted independently through Capella. When you delete a cluster backup or it expires, your CSP manages the deletion so that only the data that's no longer needed to restore another backup is removed.
 
-The incrementality of your backups, or how much data has changed between each of your backups, is determined by your CSP’s backup service. Your backup size and backup retention policies determine your backup costs. Capella bases your billing for your cluster backups on the backup storage usage reports from your CSP.
+The incrementality of your backups, or how much data has changed between each of your backups, is determined by your CSP's backup service. Your backup size and backup retention policies determine your backup costs. Capella bases your billing for your cluster backups on the backup storage usage reports from your CSP.
 
 > [!CAUTION]
 > If you use Cloud Snapshot backups on an Azure cluster, Azure limits your total number of incremental backups to a maximum of 500\. After 500 snapshot backups, Azure starts using full cluster backups. If you exceed 500 snapshot backups stored on your Azure-hosted cluster, your cluster backup costs will greatly increase.
@@ -99,7 +99,7 @@ If you use a backup with cross-region copies to create a new cluster, Capella tr
 
 For cluster backups across all versions, if the number of nodes deployed in the destination cluster for a restore is different from the node configuration in your backup, Capella scales your cluster configuration up or down to the number of nodes present in the backup. Take care when restoring backups to make sure you do not lose node configuration changes.
 
-Before Capella restores a cluster backup, all existing data on the destination cluster is destroyed. You cannot use your cluster while you’re [restoring a cluster backup](restore-cloud-snapshot.md). Restore operations can take time to complete.
+Before Capella restores a cluster backup, all existing data on the destination cluster is destroyed. You cannot use your cluster while you're [restoring a cluster backup](restore-cloud-snapshot.md). Restore operations can take time to complete.
 
 The time it takes to restore your cluster is not considered to be downtime based on the [Capella Cloud Service Availability agreement](https://www.couchbase.com/capellasla/).
 

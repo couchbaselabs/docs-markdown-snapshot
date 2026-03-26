@@ -3,7 +3,7 @@ title: Hello Columnar&#8201;&#8212;&#8201;Node.js SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Columnar and the Node.js Columnar SDK.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-nodejs/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-columnar-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -14,10 +14,10 @@ link: xref:nodejs-columnar-sdk:hello-world:start-using-sdk.adoc[]
 
 > Install, connect, try. A quick start guide to get you up and running with Columnar and the Node.js Columnar SDK. 
 
-[Capella Columnar](../../../analytics/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](#home:sdk.adoc), the Node.js Columnar SDK is developed from the ground-up for Columnar’s analytical use cases, and supports streaming APIs to handle large datasets.
+[Capella Columnar](../../../analytics/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](#home:sdk.adoc), the Node.js Columnar SDK is developed from the ground-up for Columnar's analytical use cases, and supports streaming APIs to handle large datasets.
 
 > [!WARNING]
-> Don’t Mix Columnar & Operational SDKs.
+> Don't Mix Columnar & Operational SDKs.
 > 
 > Do not combine the Node.js Columnar SDK with the Node.js Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
 > 
@@ -27,7 +27,7 @@ link: xref:nodejs-columnar-sdk:hello-world:start-using-sdk.adoc[]
 
 Sign up for a [Capella account](../../../cloud/get-started/create-account.md), and choose a [Columnar](../../../analytics/intro/intro.md) cluster.
 
-You’ll need to add your IP address to the allowlist, during the sign-up and cluster creation process (this can also be done at any time, via the UI, should the address change, or if you need to add a new one).
+You'll need to add your IP address to the allowlist, during the sign-up and cluster creation process (this can also be done at any time, via the UI, should the address change, or if you need to add a new one).
 
 ### [](#prerequisites)Prerequisites
 

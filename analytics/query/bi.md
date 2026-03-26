@@ -5,7 +5,7 @@ description: You can apply features available for visualizing and analyzing data
   interactive data visualization platforms to the query results you obtain in
   Capella Analytics.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/bi.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:query:bi.adoc[]
 ---
 
@@ -42,7 +42,7 @@ For information about setting up the connector, see the [Introduction](../../tab
 
 ## [](#power-bi-connector)Use the Couchbase Power BI Connector
 
-The Couchbase Power BI Connector provides the integration between tabular views of your Capella Analytics collections or query results and Microsoft’s Power BI interactive data visualization platform.
+The Couchbase Power BI Connector provides the integration between tabular views of your Capella Analytics collections or query results and Microsoft's Power BI interactive data visualization platform.
 
 For information about setting up the connector, see the [Introduction](../../power-bi-connector/current/index.md) documentation.
 

@@ -4,7 +4,7 @@ description: Couchbase Capella provides metrics for Workflows and the Model
   Service for you to discover and trend model performance, identify performance
   issues, and more.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/monitor-dashboard.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:admin:monitor-dashboard.adoc[]
 ---
 
@@ -45,7 +45,7 @@ The **Unstructured Data** dashboard presents a general summary of the metrics, h
 * Pages processed, to identify workload size and processing throughput.
 * Documents processed, to identify ingestion volume.
 
-To see your **Unstructured Data** workflow’s status and metrics:
+To see your **Unstructured Data** workflow's status and metrics:
 
 1. Go to **AI Services** **Monitoring**.
 2. Select **Unstructured Data**.
@@ -63,7 +63,7 @@ The **Structured Data** dashboard presents a general summary of the metrics, hea
 * Number of requests, to identify workload.
 * Average embedding response latency, to identify model performance and responsiveness.
 
-To see your **Structured Data** Workflow’s status and metrics:
+To see your **Structured Data** Workflow's status and metrics:
 
 1. Go to **AI Services** **Monitoring**.
 2. Click **Structured Data**.
@@ -75,13 +75,13 @@ For more information about Workflows, see [Process Your Data For Capella AI Serv
 
 ## [](#model-llm-emb)View Model Metrics
 
-The **Model** dashboard presents a general summary of your model’s metrics, health status, and active alerts. It presents metrics such as:
+The **Model** dashboard presents a general summary of your model's metrics, health status, and active alerts. It presents metrics such as:
 
 * CPU usage, to identify how much processing power the model is consuming.
 * Guardrail violations, to identify when the model generates unsafe or undesired outputs.
 * Cache completion tokens, to identify how often the model returns results from cache instead of generating new ones.
 
-To see your model’s status and metrics:
+To see your model's status and metrics:
 
 1. Go to **AI Services** **Monitoring**.
 2. Click **Model**.

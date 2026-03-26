@@ -2,7 +2,7 @@
 title: Couchbase Server Processes
 description: Couchbase Server spawns a number of different processes on each node.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/server-processes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:install:server-processes.adoc[]
 ---
 
@@ -41,7 +41,7 @@ __Table 1\. Couchbase Processes on Linux__
 | epmd                             | Erlang-specific name server process for Erlang distribution                                                                                      | Data      | /opt/couchbase/bin/                                           |
 | godu                             | Go utility that gets disk usage stats                                                                                                            | Data      | /opt/couchbase/bin/priv/godu                                  |
 | goport (number of copies varies) | Process that acts as a bridge between ns\_server (Erlang) and the other server components (cbq- engine, cbft, and so on) which are written in Go | Query     | /opt/couchbase/bin/                                           |
-| gosecrets                        | Service that’s used to encrypt the cluster configuration stored on disk                                                                          | Data      | /opt/couchbase/bin/                                           |
+| gosecrets                        | Service that's used to encrypt the cluster configuration stored on disk                                                                          | Data      | /opt/couchbase/bin/                                           |
 | goxdcr                           | Cross datacenter replication (XDCR) - replicates data from 1 cluster to another                                                                  | Data      | /opt/couchbase/bin/                                           |
 | indexer                          | Index Service                                                                                                                                    | Index     | /opt/couchbase/bin/                                           |
 | inet\_gethost (2 copies)         | Built-in Erlang port process that performs name service lookups                                                                                  | Data      | /opt/couchbase/lib/erlang/erts-13.2.2.3/bin/inet\_gethost     |
@@ -75,7 +75,7 @@ __Table 2\. Couchbase Processes on Windows__
 | eventing-producer.exe       | Eventing supervisor service (1 instance per node)                                                                                | Eventing  | C:\\Program Files\\Couchbase\\Server\\bin                |
 | godu.exe                    | Go utility to get disk usage stats                                                                                               | Data      | C:\\Program Files\\Couchbase\\Server\\bin\\priv          |
 | goport.exe                  | Process that acts as a bridge between ns\_server (Erlang) and the other server components (cbq- engine.exe, cbft.exe, and so on) | Query     | C:\\Program Files\\Couchbase\\Server\\bin                |
-| gosecrets.exe               | Service that’s used to encrypt the cluster configuration stored on disk                                                          | Data      | C:\\Program Files\\Couchbase\\Server\\bin                |
+| gosecrets.exe               | Service that's used to encrypt the cluster configuration stored on disk                                                          | Data      | C:\\Program Files\\Couchbase\\Server\\bin                |
 | goxdcr.exe                  | Cross datacenter replication (XDCR) - replicates data from 1 cluster to another                                                  | Data      | C:\\Program Files\\Couchbase\\Server\\bin                |
 | indexer.exe                 | Index Service                                                                                                                    | Index     | C:\\Program Files\\Couchbase\\Server\\bin                |
 | inet\_gethost.exe           | Built-in Erlang port process that performs name service lookups                                                                  | Data      | C:\\Program Files\\Couchbase\\Server\\erts-13.2.2.3\\bin |

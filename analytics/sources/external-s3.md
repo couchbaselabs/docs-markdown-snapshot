@@ -1,7 +1,7 @@
 ---
 title: Query Data in Amazon S3
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/external-s3.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sources:external-s3.adoc[]
 ---
 
@@ -36,7 +36,7 @@ When you create an external collection based on an S3 bucket, you can supply a p
 > [!TIP]
 > If you use the Amazon S3 console, prefixes are also referred to as folders.
 
-To make querying the external data source as efficient as possible, you should supply a path that’s as specific and precise as possible. You can use static prefixes, dynamic prefixes, or a mixture of both to define a path. For information about static and dynamic prefixes, see [Design a Location Path](dynamic-prefixes.md).
+To make querying the external data source as efficient as possible, you should supply a path that's as specific and precise as possible. You can use static prefixes, dynamic prefixes, or a mixture of both to define a path. For information about static and dynamic prefixes, see [Design a Location Path](dynamic-prefixes.md).
 
 > [!IMPORTANT]
 > Because you cannot index the data located in an external store, Couchbase encourages thoughtful design of the paths used in external collections.
@@ -60,7 +60,7 @@ You can select a subset of the files in a location by using fields that include 
 
 ## [](#create-a-collection-for-s3-data)Create a Collection for S3 Data
 
-You must create a collection for the data before you can query it in Capella Analytics. After you create the link to an S3 bucket, Capella Analytics prompts you to create a collection for your data. You can create the collection immediately by clicking **Create Linked Collection**. If you want to create the collection later, click **Complete Later**. When you’re ready to create the collection, hover over the link name’s under **Links** and select **More Options (⋮)** **Create Linked Collection**.
+You must create a collection for the data before you can query it in Capella Analytics. After you create the link to an S3 bucket, Capella Analytics prompts you to create a collection for your data. You can create the collection immediately by clicking **Create Linked Collection**. If you want to create the collection later, click **Complete Later**. When you're ready to create the collection, hover over the link name's under **Links** and select **More Options (⋮)** **Create Linked Collection**.
 
 To complete creating the collection:
 
@@ -72,7 +72,7 @@ To complete creating the collection:
   * CSV and TSV
   * Parquet
 
-  * Define the data types for the fields in the files as a comma-separated list of `<field-name> <datatype>` values. The `<datatype>` is one of the [primitive data types](../../server/current/analytics/10%5Fdata%5Ftype.md). If the field’s value does not match the data type, Capella Analytics ignores the record. You can also specify `NOT UNKNOWN` flag after the data type to have Capella Analytics ignore the record if the value is `missing` or `null`. For example:  
+  * Define the data types for the fields in the files as a comma-separated list of `<field-name> <datatype>` values. The `<datatype>` is one of the [primitive data types](../../server/current/analytics/10%5Fdata%5Ftype.md). If the field's value does not match the data type, Capella Analytics ignores the record. You can also specify `NOT UNKNOWN` flag after the data type to have Capella Analytics ignore the record if the value is `missing` or `null`. For example:  
   id BIGINT NOT UNKNOWN, firstname STRING, lastname STRING
   * Clear **File includes header row** if the first line of your CSV file is not a list of the columns in the file.
   * If your data uses a value other than an empty string (`""`) to indicate a null value, select **Use custom string as Null** and enter the value.  

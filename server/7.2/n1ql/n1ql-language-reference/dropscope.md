@@ -2,7 +2,7 @@
 title: DROP SCOPE
 description: The <code>DROP SCOPE</code> statement enables you to delete a scope.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/dropscope.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/dropscope.adoc[]
 ---
 
@@ -38,7 +38,7 @@ scope
 
 ### [](#if-exists)IF EXISTS Clause
 
-The optional `IF EXISTS` clause enables the statement to complete successfully when the specified scope doesn’t exist. If the scope does not exist within the specified bucket, then:
+The optional `IF EXISTS` clause enables the statement to complete successfully when the specified scope doesn't exist. If the scope does not exist within the specified bucket, then:
 
 * If this clause is not present, an error is generated.
 * If this clause is present, the statement does nothing and completes without error.

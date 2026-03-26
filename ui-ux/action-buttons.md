@@ -1,7 +1,7 @@
 ---
 title: Action Buttons
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/action-buttons.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ui-ux::action-buttons.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:ui-ux::action-buttons.adoc[]
 
 An action button is anything the user clicks that causes something to happen in the UI.
 
-Never surprise the user with what happens after they click a button. The result should be obvious from the button’s text.
+Never surprise the user with what happens after they click a button. The result should be obvious from the button's text.
 
 ![A blue button that says + Create Project](_images/CreateProjectButton.png) 
 
@@ -35,7 +35,7 @@ If the user is making a change that they need to save or cancel, the confirmatio
 
 ## [](#keep-it-between-3-5-words)Keep It Between 3-5 Words
 
-Do not add a lot of words to a single button, or it might not be obvious that it’s a button to the user.
+Do not add a lot of words to a single button, or it might not be obvious that it's a button to the user.
 
 Try to stick to 3-5 words.
 

@@ -3,7 +3,7 @@ title: "Function: Document Controlled Expiry"
 description: Purge a document automatically based on self-contained start and
   duration fields.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-docControlledSelfExpiry.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:eventing:eventing-handler-docControlledSelfExpiry.adoc[]
 ---
 
@@ -22,7 +22,7 @@ link: xref:7.6@server:eventing:eventing-handler-docControlledSelfExpiry.adoc[]
 
   * As an offset from the current time. If the absolute value of the expiry is less than 30 days (60 \* 60 \* 24 \* 30 seconds), it is considered an offset.
   * As an absolute Unix time stamp. If the value is greater than 30 days (60 \* 60 \* 24 \* 30 seconds), it is considered an absolute time stamp.
-  * As described in [Expiration](../learn/data/expiration.md), if a "Bucket Max Time-To-Live" is set (specified in seconds), it is an enforced hard upper limit. As such, any subsequent document mutation (by SQL++, Eventing, or any Couchbase SDK) will result in the document having its expiration adjusted and set to the bucket’s maximum TTL if the operation has:
+  * As described in [Expiration](../learn/data/expiration.md), if a "Bucket Max Time-To-Live" is set (specified in seconds), it is an enforced hard upper limit. As such, any subsequent document mutation (by SQL++, Eventing, or any Couchbase SDK) will result in the document having its expiration adjusted and set to the bucket's maximum TTL if the operation has:
 
     * No TTL.
     * A TTL of zero.

@@ -2,7 +2,7 @@
 title: Errors
 description: This topic describes SQL++ for Enterprise Analytics errors.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/4_error.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sqlpp:4_error.adoc[]
 ---
 
@@ -21,7 +21,7 @@ A query can potentially result in one of the following types of errors:
 
 If the query processor runs into an error, it terminates the ongoing processing of the query and returns an error or warning message to the client.
 
-For example, the UI displays query status next to the query editor’s **Run Query** button. When an exclamation mark appears next to the status, you can move your cursor over this symbol to show the message.
+For example, the UI displays query status next to the query editor's **Run Query** button. When an exclamation mark appears next to the status, you can move your cursor over this symbol to show the message.
 
 ![Displaying a type mismatch warning message](_images/error_message.png) 
 

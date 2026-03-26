@@ -3,7 +3,7 @@ title: Metrics Reporting
 description: Individual request tracing presents a very specific (though
   isolated) view of the system.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.7/modules/howtos/pages/observability-metrics.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.7@scala-sdk:howtos:observability-metrics.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:1.7@scala-sdk:howtos:observability-metrics.adoc[]
 
 In addition, it also makes sense to capture information that aggregates request data (i.e. requests per second), but also data which is not tied to a specific request at all (i.e. resource utilization).
 
-The deployment situation itself is similar to the request tracer: either applications already have a metrics infrastructure in place or they don’t. The difference is that exposing some kind of metrics is much more common than request based tracing, because most production deployments at least monitor CPU and memory usage (e.g. through JMX).
+The deployment situation itself is similar to the request tracer: either applications already have a metrics infrastructure in place or they don't. The difference is that exposing some kind of metrics is much more common than request based tracing, because most production deployments at least monitor CPU and memory usage (e.g. through JMX).
 
 Metrics broadly fall into the following categories:
 
@@ -141,7 +141,7 @@ In addition to OpenTelemetry, we also provide a module so you can hook up the SD
 libraryDependencies += "com.couchbase.client" % "metrics-micrometer" % "0.1.0"
 ```
 
-In addition to the facade you also need to include your micrometer implementation of choice. Once you’ve created the a Micrometer `MeterRegistry`, you need to wrap it and pass it into the environment:
+In addition to the facade you also need to include your micrometer implementation of choice. Once you've created the a Micrometer `MeterRegistry`, you need to wrap it and pass it into the environment:
 
 ```scala
    val config: Try[ClusterEnvironment] = ClusterEnvironment.builder

@@ -2,7 +2,7 @@
 title: Creating and Editing a Collection
 description: Collections can be <em>created</em> by means of the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/creating-a-collection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:rest-api:creating-a-collection.adoc[]
 ---
 
@@ -61,7 +61,7 @@ This parameter is ignored unless the following settings have been made _at bucke
 
 See [Creating and Editing Buckets](rest-bucket-create.md), for information on bucket parameters. For an overview of change history, see [Change History](../learn/data/change-history.md).
 
-Note that `history` is the only parameter that can be edited (by means of the `PATCH` method), subsequent to the collection’s creation.
+Note that `history` is the only parameter that can be edited (by means of the `PATCH` method), subsequent to the collection's creation.
 
 ## [](#responses)Responses
 
@@ -69,7 +69,7 @@ Success returns `200 OK`, for each call. Failure to authenticate gives `401 Unau
 
 ## [](#examples)Examples
 
-The following call creates a collection named `my_collection_in_my_scope`, within an existing scope named `my_scope`. It specifies the default expiration for documents in the collection that’s equivalent to two years. It also specifies that no change history should be maintained for the collection.
+The following call creates a collection named `my_collection_in_my_scope`, within an existing scope named `my_scope`. It specifies the default expiration for documents in the collection that's equivalent to two years. It also specifies that no change history should be maintained for the collection.
 
 curl -X POST -v -u Administrator:password \
 http://10.143.210.101:8091/pools/default/buckets/\

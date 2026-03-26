@@ -2,7 +2,7 @@
 title: Licenses
 description: Couchbase SDKs' source code is licensed under the Apache Licence 2.0.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/project-docs/pages/sdk-licenses.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:python-columnar-sdk:project-docs:sdk-licenses.adoc[]
 ---
 
@@ -17,7 +17,7 @@ The Couchbase Java Client is distributed as source under the [Apache License, Ve
 
 ## [](#binary-distribution)Binary Distribution
 
-Binary distributions are made under Couchbase’s own license agreements.
+Binary distributions are made under Couchbase's own license agreements.
 
 * [Enterprise License Agreement](https://www.couchbase.com/LA03262019)
 * [Community License Agreement (PDF)](https://www.couchbase.com/binaries/content/assets/website/legal/ce-license-agreement.pdf)

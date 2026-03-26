@@ -3,7 +3,7 @@ title: Managing Connections
 description: This section describes how to connect the Java Columnar SDK to a
   Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:java-columnar-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -46,10 +46,10 @@ public class Example {
 ```
 
 > [!WARNING]
-> The above example uses a `try-with-resources` block to ensure the `Cluster` instance gets closed at the end. It’s important to either use a `try-with-resources` block, or make sure to call `cluster.close()` when you’re done with the cluster.
+> The above example uses a `try-with-resources` block to ensure the `Cluster` instance gets closed at the end. It's important to either use a `try-with-resources` block, or make sure to call `cluster.close()` when you're done with the cluster.
 
 > [!NOTE]
-> Capella’s root certificate is **not** signed by a well known Certificate Authority. However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust.
+> Capella's root certificate is **not** signed by a well known Certificate Authority. However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust.
 
 ### [](#connection-strings)Connection Strings
 
@@ -75,4 +75,4 @@ We strongly recommend that the client and server [are in the same LAN-like envir
 
 ### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 
-Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\].
+Some DNS caching providers (notably, home routers) can't handle an SRV record that's large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\].

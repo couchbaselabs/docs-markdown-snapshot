@@ -3,7 +3,7 @@ title: Import Data to a Standalone Collection
 description: You can use the Capella Analytics workbench to upload a data file
   into a standalone collection.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/import-data-standalone.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sources:import-data-standalone.adoc[]
 ---
 
@@ -45,7 +45,7 @@ After you select a file to import, Capella Analytics prepares a set of different
 
 While Capella Analytics detects the format of the selected file automatically, you can select a different **Parsed As** method to view differences in the previews.
 
-If you set any import filters, the tabular and JSON document previews update to show their effects. By using the previews, you can be sure you’re satisfied with the options you select and how Capella Analytics parses the data before you populate the standalone collection.
+If you set any import filters, the tabular and JSON document previews update to show their effects. By using the previews, you can be sure you're satisfied with the options you select and how Capella Analytics parses the data before you populate the standalone collection.
 
 ### [](#filters)Import Filters
 
@@ -65,11 +65,11 @@ Using import filters, you can control which portions of your source file Capella
 
 * **Skip the first n documents**: Specifies an offset to apply before beginning to import documents from the selected file. Check this option to enter a number of documents to skip before the import starts.
 * **Import a maximum of n documents**: Places a limit on the number of documents to import from the selected file. Check this option to enter a maximum number of documents to import.
-* **Exclude field names**: Omits specified keys (fields) from the imported documents. Use this option to prevent a field from being imported, for example, a field that’s not relevant to your needs. Check this option to specify a comma-separated list of field names to exclude from the import.
+* **Exclude field names**: Omits specified keys (fields) from the imported documents. Use this option to prevent a field from being imported, for example, a field that's not relevant to your needs. Check this option to specify a comma-separated list of field names to exclude from the import.
 
 ### [](#target-collection)Target Collection
 
-You can specify an existing standalone collection as your target for the data import. If you select a target collection that already contains data, Capella Analytics performs an UPSERT operation to insert and update the documents in the collection. The primary key and data type of the data you’re importing must match the values defined for the collection.
+You can specify an existing standalone collection as your target for the data import. If you select a target collection that already contains data, Capella Analytics performs an UPSERT operation to insert and update the documents in the collection. The primary key and data type of the data you're importing must match the values defined for the collection.
 
 You can also create a new standalone collection as the target. See [Create a Standalone Collection](manage-columnar.md#create-standalone) for information about requirements.
 
@@ -84,7 +84,7 @@ The Import Data dialog opens.
 4. Choose a file to upload.
 5. Preview your import and optionally refine it by setting [import filters](#filters).
 6. Specify the target database, scope, and standalone collection for your import. You can choose an existing collection or click **Create Collection** to create a new one.  
-The primary key and data type of the data you’re importing must match the values defined for the collection. See [Create a Standalone Collection](manage-columnar.md#create-standalone).
+The primary key and data type of the data you're importing must match the values defined for the collection. See [Create a Standalone Collection](manage-columnar.md#create-standalone).
 7. Click **Import Data**. Your browser begins a batch process to upsert documents into the collection.  
 > [!NOTE]  
 > Navigating away from the Import Data dialog can interrupt this process.  

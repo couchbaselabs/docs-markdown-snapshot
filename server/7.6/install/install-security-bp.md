@@ -3,7 +3,7 @@ title: Security Considerations
 description: Ensure that you follow security best best practices throughout the
   deployment lifecycle.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/install-security-bp.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:install:install-security-bp.adoc[]
 ---
 
@@ -42,7 +42,7 @@ You might also consider encrypting your file system to ensure that only authoriz
 Practice secure authentication procedures
 
 * Audit who has access to the system
-* Change passwords regularly and don’t reuse them
+* Change passwords regularly and don't reuse them
 * Use strong and unique passwords
 
 Enhance physical security

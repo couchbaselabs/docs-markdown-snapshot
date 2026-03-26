@@ -2,7 +2,7 @@
 title: Connect To Your Cluster
 description: Use the Connect page to choose how you want to connect to your cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/connect.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:get-started:connect.adoc[]
 ---
 
@@ -26,10 +26,10 @@ To enable access to your cluster via the Data API, see [Get Started with the Dat
 
 The procedures on this page assume the following:
 
-* You have [configured cluster access](../clusters/manage-database-users.md#create-database-credentials) by creating a cluster access credential. You’ll need the username and password for the cluster credential to connect to the cluster.
-* You have [added your IP address](../clusters/allow-ip-address.md#accessing-allowed-ips-in-the-capella-ui) to the cluster’s list of allowed IPs.
+* You have [configured cluster access](../clusters/manage-database-users.md#create-database-credentials) by creating a cluster access credential. You'll need the username and password for the cluster credential to connect to the cluster.
+* You have [added your IP address](../clusters/allow-ip-address.md#accessing-allowed-ips-in-the-capella-ui) to the cluster's list of allowed IPs.
 * You have [downloaded the security certificate](create-account.md#next-steps) for your cluster. The certificate is bundled with all of the Couchbase SDKs, except the C SDK (libcouchbase).
-* You’re not connecting from an IPv6-only environment — you need to be able to use the IPv4 records published for Capella clusters.
+* You're not connecting from an IPv6-only environment — you need to be able to use the IPv4 records published for Capella clusters.
 
 You can do all of this from a single location using the Connect page in the Capella UI.
 
@@ -48,7 +48,7 @@ From the Capella UI:
 
 1. On the **Operational Clusters** page, click on the cluster that you want to connect to.
 2. Go to **Connect** **SDK**.
-3. Note the **public connection string** — you’ll need this to connect to the cluster.
+3. Note the **public connection string** — you'll need this to connect to the cluster.
 4. If you have not already done so, follow the instructions on screen to enter an allowed IP address.
 5. Choose an existing cluster user from the drop-down, or create a new cluster access user.
 6. Select the preferred SDK language.
@@ -68,7 +68,7 @@ From the Capella UI:
 
 1. On the **Operational Clusters** page, click on the cluster that you want to connect to.
 2. Go to **Connect** **Couchbase Shell**.
-3. Note the **public connection string** — you’ll need this to connect to the cluster.
+3. Note the **public connection string** — you'll need this to connect to the cluster.
 4. If you have not already done so, follow the instructions on screen to enter an allowed IP address.
 5. Choose an existing cluster user from the drop-down, or create a new cluster access user.
 6. Download and unzip the latest version of [Couchbase Shell](https://couchbase.sh) for your operating system.
@@ -95,7 +95,7 @@ From the Capella UI:
 
 1. On the **Operational Clusters** page, click on the cluster that you want to connect to.
 2. Go to **Connect** **Import & Export Tools**.
-3. Note the **public connection string** — you’ll need this to connect to the cluster.
+3. Note the **public connection string** — you'll need this to connect to the cluster.
 4. If you have not already done so, follow the instructions on screen to enter an allowed IP address.
 5. If you have not already done so, follow the instructions on screen to create a cluster access user.
 6. Download the security certificate, following the instructions on screen.
@@ -109,7 +109,7 @@ From the Capella UI:
 
 1. On the **Operational Clusters** page, click on the cluster that you want to connect to.
 2. Go to **Connect** **IDE Plugins and Extensions**.
-3. Note the **public connection string** — you’ll need this to connect to the cluster.
+3. Note the **public connection string** — you'll need this to connect to the cluster.
 4. If you have not already done so, follow the instructions on screen to enter an allowed IP address.
 5. If you have not already done so, follow the instructions on screen to create a cluster access user.
 6. Download the security certificate, following the instructions on screen.

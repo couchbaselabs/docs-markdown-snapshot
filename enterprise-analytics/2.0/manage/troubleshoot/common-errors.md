@@ -2,7 +2,7 @@
 title: Common Errors
 description: Common errors that occur during management of Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/troubleshoot/common-errors.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:troubleshoot/common-errors.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:2.0@enterprise-analytics:manage:troubleshoot/common-errors.adoc[]
 
 File descriptor and core file size limits
 
-If you’re having problems starting Enterprise Analytics on Linux for the first time, there are two common and related causes to consider. When the **/etc/init.d/couchbase-server** script runs, it tries to set the file descriptor limit and core file size limit:
+If you're having problems starting Enterprise Analytics on Linux for the first time, there are two common and related causes to consider. When the **/etc/init.d/couchbase-server** script runs, it tries to set the file descriptor limit and core file size limit:
 
 ulimit -n 40960
 ulimit -c unlimited
@@ -128,8 +128,8 @@ Then looking at the design document, you see it could never work, as values are 
 One important question to answer is, why do you see the errors when querying with `stale=false` but do not see them when querying with `stale=update_after` (default) or `stale=ok`? Consider these points:
 
 * `stale=false` means: trigger an index update/build, and wait until it that update/build finishes, then start streaming the view results. For this example, index build/update failed, so the client gets an error, describing why it failed, from all nodes where it failed.
-* `stale=update_after` means start streaming the index contents immediately and after trigger an index update (if the index is not up to date already), so query responses won’t see indexing errors as they do for the `stale=false` scenario. For this particular example, the error happened during the initial index build, so the index was empty when the view queries arrived in the system, whence the empty result set.
-* `stale=ok` is very similar to (2), except it doesn’t trigger index updates.  
+* `stale=update_after` means start streaming the index contents immediately and after trigger an index update (if the index is not up to date already), so query responses won't see indexing errors as they do for the `stale=false` scenario. For this particular example, the error happened during the initial index build, so the index was empty when the view queries arrived in the system, whence the empty result set.
+* `stale=ok` is very similar to (2), except it doesn't trigger index updates.  
 Finally, index build/update errors, related to user Map/Reduce functions, can be found in a dedicated log file that exists per node and has a filename matching mapreduce\_errors.#. For example, from node 1, the file \*mapreduce\_errors.1 contained:  
 [mapreduce_errors:error,2012-08-20T16:18:36.250,n_0@192.168.1.80:>0.2096.1<] Bucket `default`,  
        main group `_design/dev_test3`,  

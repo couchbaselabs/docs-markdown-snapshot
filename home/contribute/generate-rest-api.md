@@ -1,7 +1,7 @@
 ---
 title: Generate REST API Documentation
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/generate-rest-api.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:generate-rest-api.adoc[]
 ---
 
@@ -67,9 +67,9 @@ We copied the files from <https://github.com/couchbase/docs-sync-gateway/tree/re
 
 Ideally we would have one set of source files shared between SGW and Capella App Services, but we had to account for the following differences:
 
-1. Wording "Sync Gateway" vs "App Services". We attempted to handle this by parametrizing `{SGW}` as the openapi-generator toolchain doesn’t expand these variables and simply passes them through. This is handled on the Capella side and defined in `partial$tokens.adoc`.
-2. Remove references to versions. As these aren’t to be exposed for Capella, we placed these behind an undefined ifdef, e.g. `ifdef::expose-versions[(CBS 7.0.2 Developer Preview)]`.
-3. Select subset of endpoints For Preview, and then GA, and then ongoing, the set of exposed functionality for App Services will be more constrained than for SGW. The ideal solution would be to generate a defined subset of a spec, using either functionality built into openapi-generator, or a 3rd party pre-processing step. (I believe the `adoc_yaml_parser` used in SGW swagger2markup toolchain does something similar?) However, given time constraints, we’ve simply **deleted** or commented out sections manually. This has the obvious disadvantage that **reintroducing** endpoints as features are introduced from GA will now require extra manual splicing.
+1. Wording "Sync Gateway" vs "App Services". We attempted to handle this by parametrizing `{SGW}` as the openapi-generator toolchain doesn't expand these variables and simply passes them through. This is handled on the Capella side and defined in `partial$tokens.adoc`.
+2. Remove references to versions. As these aren't to be exposed for Capella, we placed these behind an undefined ifdef, e.g. `ifdef::expose-versions[(CBS 7.0.2 Developer Preview)]`.
+3. Select subset of endpoints For Preview, and then GA, and then ongoing, the set of exposed functionality for App Services will be more constrained than for SGW. The ideal solution would be to generate a defined subset of a spec, using either functionality built into openapi-generator, or a 3rd party pre-processing step. (I believe the `adoc_yaml_parser` used in SGW swagger2markup toolchain does something similar?) However, given time constraints, we've simply **deleted** or commented out sections manually. This has the obvious disadvantage that **reintroducing** endpoints as features are introduced from GA will now require extra manual splicing.
 
 #### [](#toolchain)Toolchain
 
@@ -103,7 +103,7 @@ docs/public/modules/app-services/pages/references/assets/rest/
 | **3** | contains mustache templates copied from Capella Core above, but with tweaks detailed below. |
 | **4** | contains the 3 specs for the APIs (Public, Admin, and Metrics)                              |
 
-The Generate script uses Docker to run openapi-generator - this is convenient as you don’t have to worry about installing the toolchain, but is a bit slower.
+The Generate script uses Docker to run openapi-generator - this is convenient as you don't have to worry about installing the toolchain, but is a bit slower.
 
 > [!NOTE]
 > Some of the mustache files are changed in the following ways:

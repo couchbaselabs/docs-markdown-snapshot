@@ -3,7 +3,7 @@ title: Receive Alerts
 description: Alerts notify you when events with the Critical or Warning severity
   level occur in your organization, project, or cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/alerts.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:monitoring/alerts.adoc[]
 ---
 
@@ -27,7 +27,7 @@ To receive alerts in the Capella UI or email, you need:
 > [!NOTE]
 > Email notifications are opt-in for each user.
 
-When you turn on email notifications for your Capella account, you receive email alerts from all clusters in projects where you have a [project role](../../projects/project-roles.md). Email alerts show the event name, affected resource, and a link to view the event in your organization’s Activity Log.
+When you turn on email notifications for your Capella account, you receive email alerts from all clusters in projects where you have a [project role](../../projects/project-roles.md). Email alerts show the event name, affected resource, and a link to view the event in your organization's Activity Log.
 
 ![An example of an email alert notification for a Low Node Disk Storage event.](../_images/alert-email-example.png) 
 

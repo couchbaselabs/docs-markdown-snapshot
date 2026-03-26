@@ -1,7 +1,7 @@
 ---
 title: Anchor Links
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/anchor-links.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::anchor-links.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:styleguide::anchor-links.adoc[]
 If you need to link to a specific place in a page, whether from another page or on the same page, use an anchor link.
 
 > [!NOTE]
-> Do not rely on Antora’s automatically generated anchor links. If you need to use an anchor link, create your own. This prevents broken links if header content changes.
+> Do not rely on Antora's automatically generated anchor links. If you need to use an anchor link, create your own. This prevents broken links if header content changes.
 
 When creating an anchor link:
 
@@ -25,7 +25,7 @@ When creating an anchor link:
 
 For example, an anchor link for the heading **Generate API Keys** could be `[#generate-api-keys]`.
 
-As well, make sure you’re using the right anchor link style for the type of anchor you want to create:
+As well, make sure you're using the right anchor link style for the type of anchor you want to create:
 
 | Element              | Required Anchor Link Style |
 | -------------------- | -------------------------- |

@@ -4,7 +4,7 @@ description: Full and Cluster Administrators can migrate a bucket's storage
   backend by calling the REST API and then performing full restores on the nodes
   containing the bucket.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/migrate-bucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-buckets/migrate-bucket.adoc[]
 ---
 
@@ -17,23 +17,23 @@ link: xref:server:manage:manage-buckets/migrate-bucket.adoc[]
 
 ## [](#storage-backend-migration-overview)Storage Backend Migration Overview
 
-You can migrate a bucket’s storage backend if you find the bucket’s current performance is not meeting your needs. For example, you can migrate a bucket from Couchstore to Magma if the bucket’s working set grows beyond its memory quota. You can migrate from Couchstore to Magma, or from Magma to Couchstore. Migrating to a Magma bucket always results in a bucket with 1024 vBuckets, regardless of the number of vBuckets in the original bucket.
+You can migrate a bucket's storage backend if you find the bucket's current performance is not meeting your needs. For example, you can migrate a bucket from Couchstore to Magma if the bucket's working set grows beyond its memory quota. You can migrate from Couchstore to Magma, or from Magma to Couchstore. Migrating to a Magma bucket always results in a bucket with 1024 vBuckets, regardless of the number of vBuckets in the original bucket.
 
 > [!NOTE]
 > The backend migration described in this section does not support migrating between buckets with different numbers of vBuckets. You cannot migrate a Couchstore or Magma bucket with 1024 vBuckets to a Magma bucket with 128 vBuckets. Similarly, you cannot migrate from a Magma bucket with 128 vBuckets to a Couchstore or a Magma bucket with 1024 vBuckets. To migrate between buckets with different number of vBuckets, you can use a local cross datacenter replication (XDCR). See [XDCR Storage Backend Migration](#xdcr-migration) for more information.
 
-You start a bucket’s migration by calling the REST API to edit the bucket’s [storageBackend](../../rest-api/rest-bucket-create.md#storagebackend) setting. This call changes the bucket’s global storage backend parameter. However, it does not trigger an immediate conversion of the vBuckets to the new backend. Instead, Couchbase adds override settings to each node to indicate its vBuckets still use the old storage backend. To complete the migration, you must force the vBuckets to be rewritten. The two ways to trigger this rewrite are to perform a swap rebalance or a graceful failover followed by a full recovery. As Couchbase writes the vBuckets during these processes, it removes the storage override and saves the vBuckets using the new storage backend.
+You start a bucket's migration by calling the REST API to edit the bucket's [storageBackend](../../rest-api/rest-bucket-create.md#storagebackend) setting. This call changes the bucket's global storage backend parameter. However, it does not trigger an immediate conversion of the vBuckets to the new backend. Instead, Couchbase adds override settings to each node to indicate its vBuckets still use the old storage backend. To complete the migration, you must force the vBuckets to be rewritten. The two ways to trigger this rewrite are to perform a swap rebalance or a graceful failover followed by a full recovery. As Couchbase writes the vBuckets during these processes, it removes the storage override and saves the vBuckets using the new storage backend.
 
 > [!NOTE]
-> When migrating a bucket between storage backends, you can edit only the bucket’s [ramQuota](../../rest-api/rest-bucket-create.md#ramQuota), [evictionPolicy](../../rest-api/rest-bucket-create.md#evictionpolicy), and [storageBackend](../../rest-api/rest-bucket-create.md#storagebackend) parameters. Couchbase Server prevents you from making changes to the other bucket parameters.
+> When migrating a bucket between storage backends, you can edit only the bucket's [ramQuota](../../rest-api/rest-bucket-create.md#ramQuota), [evictionPolicy](../../rest-api/rest-bucket-create.md#evictionpolicy), and [storageBackend](../../rest-api/rest-bucket-create.md#storagebackend) parameters. Couchbase Server prevents you from making changes to the other bucket parameters.
 
 ## [](#prerequisites)Prerequisites
 
-Before migrating a bucket, verify that the bucket’s parameters meet the requirements for the new storage backend. For example, a Magma bucket must have a memory quota of at least 1 GB. The REST API call to change the bucket’s storage backend returns an error if the bucket does not meet the new storage backend’s requirements. See [Storage Engines](../../learn/buckets-memory-and-storage/storage-engines.md) for a list of storage backend requirements.
+Before migrating a bucket, verify that the bucket's parameters meet the requirements for the new storage backend. For example, a Magma bucket must have a memory quota of at least 1 GB. The REST API call to change the bucket's storage backend returns an error if the bucket does not meet the new storage backend's requirements. See [Storage Engines](../../learn/buckets-memory-and-storage/storage-engines.md) for a list of storage backend requirements.
 
-If you’re planning to migrate from Couchstore to Magma, also consider the current disk usage on the nodes containing the bucket. Magma’s default fragmentation settings can result in higher disk use. See [Disk Use Under Couchstore Verses Magma](#disk%5Fusage) for more information.
+If you're planning to migrate from Couchstore to Magma, also consider the current disk usage on the nodes containing the bucket. Magma's default fragmentation settings can result in higher disk use. See [Disk Use Under Couchstore Verses Magma](#disk%5Fusage) for more information.
 
-You should also consider changing the bucket’s ejection policy. The Full Ejection policy works well for Magma buckets, especially when the ratio of memory to data storage is low. Magma allows you to set a memory to data storage ratio as low as 1%. Couchstore buckets usually work best with Value Only Ejection. See [Ejection](../../learn/buckets-memory-and-storage/memory.md#ejection) for more information about ejection policies.
+You should also consider changing the bucket's ejection policy. The Full Ejection policy works well for Magma buckets, especially when the ratio of memory to data storage is low. Magma allows you to set a memory to data storage ratio as low as 1%. Couchstore buckets usually work best with Value Only Ejection. See [Ejection](../../learn/buckets-memory-and-storage/memory.md#ejection) for more information about ejection policies.
 
 You can change the ejection policy at the same time you change the storage backend. If you choose to do so, you must set the `noRestart` parameter to `true` in the REST API call to change the storage backend. This setting prevents Couchbase Server from restarting the bucket after changing the storage backend. If you do not set `noRestart` to `true`, Couchbase Server does not change the ejection policy. Instead of taking effect after a bucket restart, the new ejection policy takes effect after you finish the backend migration.
 
@@ -41,13 +41,13 @@ See [Change Ejection Policy During a Backend Storage Migration](change-ejection-
 
 ## [](#perform%5Fmigration)Perform a Migration
 
-1. Call the REST API to change the bucket’s `storageBackend` parameter. For example, the following command changes the storage backend of the travel-sample bucket to Magma.  
+1. Call the REST API to change the bucket's `storageBackend` parameter. For example, the following command changes the storage backend of the travel-sample bucket to Magma.  
 ```console  
 curl -X POST -u Administrator:password \  
   http://localhost:8091/pools/default/buckets/travel-sample \
   -d 'storageBackend=magma'  
 ```  
-If you also want to change the bucket’s ejection policy, you can do so at the same time by adding the `evictionPolicy` and `noRestart` parameters to the REST API call. For example, the following command changes the storage backend of the `travel-sample` bucket to Magma and sets the ejection policy to Full Ejection without restarting the bucket immediately:  
+If you also want to change the bucket's ejection policy, you can do so at the same time by adding the `evictionPolicy` and `noRestart` parameters to the REST API call. For example, the following command changes the storage backend of the `travel-sample` bucket to Magma and sets the ejection policy to Full Ejection without restarting the bucket immediately:  
 ```console  
 curl -X POST -u Administrator:password \  
   http://localhost:8091/pools/default/buckets/travel-sample \
@@ -107,18 +107,18 @@ The `null` under node3 indicates that it does not have a storage backend overrid
 
 ## [](#disk%5Fusage)Disk Use Under Couchstore Verses Magma
 
-If you migrate a bucket’s storage from Couchstore to Magma, you may see increased disk usage. Couchstore’s default threshold for fragmentation is 30%. When a Couchstore bucket reaches this threshold, Couchbase Server attempts to fully compact the bucket. If the bucket has a low write workload, Couchbase Server may be able to compact the bucket to 0% fragmentation.
+If you migrate a bucket's storage from Couchstore to Magma, you may see increased disk usage. Couchstore's default threshold for fragmentation is 30%. When a Couchstore bucket reaches this threshold, Couchbase Server attempts to fully compact the bucket. If the bucket has a low write workload, Couchbase Server may be able to compact the bucket to 0% fragmentation.
 
-Magma’s default fragmentation threshold is 50%. Couchbase Server treats this threshold differently than the Couchstore threshold. It does not perform a full compaction with the goal of reducing the bucket’s fragmentation to 0%. Instead, Couchbase Server compacts a Magma bucket to maintain its fragmentation at the threshold value. This maintenance of the default 50% fragmentation can result in greater disk use for a Magma-backed bucket verses the Couchstore-backed bucket.
+Magma's default fragmentation threshold is 50%. Couchbase Server treats this threshold differently than the Couchstore threshold. It does not perform a full compaction with the goal of reducing the bucket's fragmentation to 0%. Instead, Couchbase Server compacts a Magma bucket to maintain its fragmentation at the threshold value. This maintenance of the default 50% fragmentation can result in greater disk use for a Magma-backed bucket verses the Couchstore-backed bucket.
 
-If a bucket you migrated to Magma has higher sustained disk use that interferes with the node’s performance, you have two options:
+If a bucket you migrated to Magma has higher sustained disk use that interferes with the node's performance, you have two options:
 
-* Reduce the fragmentation threshold of the Magma bucket. For example, you could choose to reduce the fragmentation threshold to 30%. You should only consider changing the threshold if the bucket’s workload is not write-intensive. For write-intensive workloads, the best practice for Magma buckets is to leave the fragmentation setting at 50%. See [Auto-Compaction](../manage-settings/configure-compact-settings.md) to learn how to change the bucket’s database fragmentation setting.
+* Reduce the fragmentation threshold of the Magma bucket. For example, you could choose to reduce the fragmentation threshold to 30%. You should only consider changing the threshold if the bucket's workload is not write-intensive. For write-intensive workloads, the best practice for Magma buckets is to leave the fragmentation setting at 50%. See [Auto-Compaction](../manage-settings/configure-compact-settings.md) to learn how to change the bucket's database fragmentation setting.
 * Roll back the migration. You can revert a bucket from Magma back to Couchstore during or after a migration. See the next section for more information.
 
 ## [](#rolling-back-a-migration)Rolling Back a Migration
 
-As you migrate each node’s vBuckets to a new storage backend, you may decide that the migration is not meeting your needs. For example, you may see increased disk usage when moving from Couchstore to Magma as explained in [Disk Use Under Couchstore Verses Magma](#disk%5Fusage).
+As you migrate each node's vBuckets to a new storage backend, you may decide that the migration is not meeting your needs. For example, you may see increased disk usage when moving from Couchstore to Magma as explained in [Disk Use Under Couchstore Verses Magma](#disk%5Fusage).
 
 ### [](#prerequisites-2)Prerequisites
 
@@ -143,20 +143,20 @@ You can roll back the migration by doing the following:
 
 You can roll back the migration by:
 
-1. Changing the bucket’s backend setting to its original value.
+1. Changing the bucket's backend setting to its original value.
 2. Force any migrated nodes to rewrite their vBuckets back to the old backend.
 
 You do not have to perform any steps for nodes you did not migrate.
 
 For example, to roll back the migration shown in [Perform a Migration](#perform%5Fmigration), you would follow these steps:
 
-1. Call the REST API to change the bucket’s backend back to Couchstore:  
+1. Call the REST API to change the bucket's backend back to Couchstore:  
 ```console  
 curl -X POST -u Administrator:password \  
   http://localhost:8091/pools/default/buckets/travel-sample \
   -d 'storageBackend=couchstore'  
 ```
-2. Determine which nodes you have already migrated by calling the REST API to get the bucket’s metadata:  
+2. Determine which nodes you have already migrated by calling the REST API to get the bucket's metadata:  
 ```console  
 curl -s GET -u Administrator:password \  
     http://localhost:8091/pools/default/buckets/travel-sample \
@@ -194,7 +194,7 @@ To roll back node3, follow these steps:
       http://localhost:8091/controller/rebalance \
     -d 'knownNodes=ns_1@node1.,ns_1@node2.,ns_1@node3.'  
   ```
-4. Repeat the previous step until all nodes that you’d migrated have rolled back to their original storage backend.
+4. Repeat the previous step until all nodes that you'd migrated have rolled back to their original storage backend.
 
 ## [](#xdcr-migration)XDCR Storage Backend Migration
 
@@ -203,7 +203,7 @@ You can use [Cross Data Center Replication (XDCR)](../../learn/clusters-and-avai
 > [!NOTE]
 > Versions of Couchbase Server before 8.0 do not support XDCR replication between buckets with different numbers of vBuckets. They also do not support Magma buckets with 128 vBuckets. Due to both these limitations, you cannot replicate from a pre-8.0 cluster to a Magma bucket with 128 vBuckets. You can replicate in the opposite direction (from a Magma bucket with 128 vBuckets to a pre-8.0 cluster) because Magma buckets on Couchbase Server 8.0 and later can replicate to buckets with a different number of vBuckets. However, you should avoid doing so because bidirectional replication is impossible in this configuration.
 
-To perform an XDCR storage backed migration on the same cluster, it must have enough memory and storage for two copies of the bucket’s data. After the migration, you can drop the original bucket to free the resources it uses.
+To perform an XDCR storage backed migration on the same cluster, it must have enough memory and storage for two copies of the bucket's data. After the migration, you can drop the original bucket to free the resources it uses.
 
 The process for performing a backend migration using XDCR is similar to configuring any other XDCR replication. The only difference is that the source and destination of the replication are the same cluster.
 

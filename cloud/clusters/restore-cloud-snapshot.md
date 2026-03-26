@@ -3,7 +3,7 @@ title: Restore a Cluster Backup
 description: You can restore a cluster backup in a disaster recovery situation
   to restore your cluster to a previous point in time.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/restore-cloud-snapshot.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:restore-cloud-snapshot.adoc[]
 ---
 
@@ -32,8 +32,8 @@ To view the CMEK ID and Key IDs used by your backups, go to **Backup** **Cluster
 
 You can restore a cluster backup from:
 
-* [Your cluster’s **Backup** tab](#cluster), to restore a backup to the same cluster.
-* [Your project’s **Backup** tab](#project), to restore a backup to a different cluster.
+* [Your cluster's **Backup** tab](#cluster), to restore a backup to the same cluster.
+* [Your project's **Backup** tab](#project), to restore a backup to a different cluster.
 
 > [!CAUTION]
 > Restoring a cluster backup also deletes all cluster access credentials and allowed IP addresses on your cluster.
@@ -49,7 +49,7 @@ You can restore a cluster backup from:
 
 ### [](#cluster)Restore a Cluster Backup From the Cluster Backup Tab
 
-If you restore from your cluster’s **Backup** tab, you can restore your backup to the same cluster.
+If you restore from your cluster's **Backup** tab, you can restore your backup to the same cluster.
 
 To restore a cluster backup to the same cluster:
 
@@ -67,7 +67,7 @@ To restore a cluster backup to the same cluster:
 
 ### [](#project)Restore a Cluster Backup From the Project Backups Tab
 
-If you restore from your project’s **Backups** tab, you can restore your backup to the same or a different cluster in your project.
+If you restore from your project's **Backups** tab, you can restore your backup to the same or a different cluster in your project.
 
 To restore a backup to the same or a different cluster:
 

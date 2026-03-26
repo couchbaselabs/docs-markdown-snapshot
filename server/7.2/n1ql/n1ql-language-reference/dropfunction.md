@@ -3,7 +3,7 @@ title: DROP FUNCTION
 description: The <code>DROP FUNCTION</code> statement enables you to delete a
   user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/dropfunction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/dropfunction.adoc[]
 ---
 
@@ -51,7 +51,7 @@ To delete a global function in a particular namespace, the function name must be
 
 ### [](#if-exists-clause)IF EXISTS Clause
 
-The optional `IF EXISTS` clause enables the statement to complete successfully when the specified function doesn’t exist.
+The optional `IF EXISTS` clause enables the statement to complete successfully when the specified function doesn't exist.
 
 When the function does not exist within the specified context: \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
 

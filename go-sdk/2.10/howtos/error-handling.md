@@ -3,7 +3,7 @@ title: Handling Errors
 description: Errors are inevitable. The developer’s job is to be prepared for
   whatever is likely to come up
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.10@go-sdk:howtos:error-handling.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.10@go-sdk:howtos:error-handling.adoc[]
 
 # Handling Errors
 
-> Errors are inevitable. The developer’s job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. 
+> Errors are inevitable. The developer's job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. 
 
 Couchbase gives you a lot of flexibility, but it is recommended that you equip yourself with an understanding of the possibilities.
 
@@ -111,7 +111,7 @@ Couchbase provides optimistic concurrency using CAS. Each document gets a CAS va
 
 ### [](#ambiguity)Ambiguity
 
-There are situations with any distributed system in which it is simply impossible to know for sure if the operation completed successfully or not. Take this as an example: your application requests that a new document be created on Couchbase Server. This completes, but, just before the server can notify the client that it was successful, a network switch dies and the application’s connection to the server is lost. The client will timeout waiting for a response and will raise a `TimeoutException`, but it’s ambiguous to the app whether the operation succeeded or not.
+There are situations with any distributed system in which it is simply impossible to know for sure if the operation completed successfully or not. Take this as an example: your application requests that a new document be created on Couchbase Server. This completes, but, just before the server can notify the client that it was successful, a network switch dies and the application's connection to the server is lost. The client will timeout waiting for a response and will raise a `TimeoutException`, but it's ambiguous to the app whether the operation succeeded or not.
 
 So `ErrTimeout` is one ambiguous error, another is `ErrDurabilityAmbiguous`, which can returned when performing a durable operation. This similarly indicates that the operation may or may not have succeeded: though when using durability you are guaranteed that the operation will either have been applied to all replicas, or none.
 
@@ -158,7 +158,7 @@ For instance, for inserts, they can simply be retried to see if they fail on `Er
 	}
 ```
 
-That example is much closer to what an application will want to be doing. Let’s flesh it out further.
+That example is much closer to what an application will want to be doing. Let's flesh it out further.
 
 ### [](#real-world-error-handling)Real-World Error Handling
 
@@ -206,9 +206,9 @@ The application can write wrappers so that it can easily do operations without h
 
 This will make a 'best effort' to do the insert (though its retry strategy is rather naive, and applications may want to implement a more sophisticated approach involving exponential backoff and circuit breaking.)
 
-If that best effort fails, and the `doInsertReal` call still returns an error, then it’s highly context-dependent how to handle that. Examples would include displaying a "please try again later" error to a user, if there is one, and logging it for manual human review. The application must make a suitable call for each case.
+If that best effort fails, and the `doInsertReal` call still returns an error, then it's highly context-dependent how to handle that. Examples would include displaying a "please try again later" error to a user, if there is one, and logging it for manual human review. The application must make a suitable call for each case.
 
-The application can write similar wrappers for the other operations - replace, upsert et al. Note that the logic is a little different in each case: for inserts, we confirm if the operation has already been successful on an ambiguous result by checking for `ErrDocumentExists`. But this wouldn’t make sense for an upsert.
+The application can write similar wrappers for the other operations - replace, upsert et al. Note that the logic is a little different in each case: for inserts, we confirm if the operation has already been successful on an ambiguous result by checking for `ErrDocumentExists`. But this wouldn't make sense for an upsert.
 
 ### [](#non-idempotent-operations)Non-Idempotent Operations
 
@@ -218,7 +218,7 @@ Some operations we can view as idempotent as they will fail with no effect after
 
 Idempotent operations are much easier to handle, as on ambiguous error results (`ErrDurabilityAmbiguous` and `ErrTimeout`) the operation can simply be retried.
 
-Most key-value operations are idempotent. For those that aren’t, such as a Sub-Document `arrayAppend` call, or a counter increment, the application should, on an ambiguous result, first read the document to see if that change was applied.
+Most key-value operations are idempotent. For those that aren't, such as a Sub-Document `arrayAppend` call, or a counter increment, the application should, on an ambiguous result, first read the document to see if that change was applied.
 
 ## [](#query-and-analytics-errors)Query and Analytics Errors
 

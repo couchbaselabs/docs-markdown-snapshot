@@ -2,7 +2,7 @@
 title: Manage Scopes and Collections
 description: Scopes and collections can be managed by means of the UI, CLI, and REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-scopes-and-collections/manage-scopes-and-collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-scopes-and-collections/manage-scopes-and-collections.adoc[]
 ---
 
@@ -34,7 +34,7 @@ This brings up the **Add Data Bucket** dialog. Use this to create **testBucket**
 ![createTestBucket](../_images/manage-scopes-and-collections/createTestBucket.png)  
 Left-click on the **Add Bucket** button, to create. The **Buckets** screen now displays the newly created bucket:  
 ![bucketsScreenWithNewBucket](../_images/manage-scopes-and-collections/bucketsScreenWithNewBucket.png)
-3. Examine the new bucket’s _default collection_. At the right-hand side of the row that displays the new bucket, two options appear: **Documents** and **Scopes & Collections**. Left-click on the **Scopes & Collections** option:  
+3. Examine the new bucket's _default collection_. At the right-hand side of the row that displays the new bucket, two options appear: **Documents** and **Scopes & Collections**. Left-click on the **Scopes & Collections** option:  
 ![selectCollectionsOption](../_images/manage-scopes-and-collections/selectCollectionsOption.png)  
 This brings up the **Scopes & Collections** screen, which appears as follows:  
 ![scopesAndCollectionsScreenInitial](../_images/manage-scopes-and-collections/scopesAndCollectionsScreenInitial.png)  
@@ -399,7 +399,7 @@ curl -u Administrator:password -X POST \
 http://localhost:8091/pools/default/buckets/testBucket/scopes/my_scope/collections \
 -d name=my_collection_in_my_scope_1 \
 -d maxTTL=0  
-Setting `maxTTL` parameter to `0` means that documents in the collection use the bucket’s `maxTTL` setting. If successful, the operation returns a uid.  
+Setting `maxTTL` parameter to `0` means that documents in the collection use the bucket's `maxTTL` setting. If successful, the operation returns a uid.  
 {"uid":2}  
 Create the second collection as follows:  
 curl -u Administrator:password -X POST \  

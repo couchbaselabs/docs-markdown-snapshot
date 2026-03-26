@@ -2,7 +2,7 @@
 title: Managing Connections
 description: This section describes how to connect the C++ SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cxx-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -78,7 +78,7 @@ If this were compiled as `start_using`, then the connection string and authentic
 $ ./start_using couchbase://127.0.0.1 Administrator password
 ```
 
-Here we’re talking to a local development cluster. For Capella, this will need `couchbases://` for TLS, followed by your Capella cluster name — see [Connect To Your Cluster](../../../cloud/get-started/connect.md). The client certificate for connecting to Capella is included in the C++ SDK installation.
+Here we're talking to a local development cluster. For Capella, this will need `couchbases://` for TLS, followed by your Capella cluster name — see [Connect To Your Cluster](../../../cloud/get-started/connect.md). The client certificate for connecting to Capella is included in the C++ SDK installation.
 
 ## [](#connection-strings)Connection Strings
 
@@ -115,17 +115,17 @@ We strongly recommend that the client and server [are in the same LAN-like envir
 
 #### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 
-Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
+Some DNS caching providers (notably, home routers) can't handle an SRV record that's large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
 
 ## [](#complex-environments)Complex Environments
 
 ## [](#alternate-addresses-and-custom-ports)Alternate Addresses and Custom Ports
 
-If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT’d environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
+If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT'd environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 
-As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it’s good practice to always enable DNS-SRV on the client.
+As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it's good practice to always enable DNS-SRV on the client.
 
 The following steps are necessary to make it work:
 

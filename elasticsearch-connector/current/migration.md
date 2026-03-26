@@ -1,7 +1,7 @@
 ---
 title: Migration Considerations
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/migration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:elasticsearch-connector::migration.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:elasticsearch-connector::migration.adoc[]
 
 # Migration Considerations
 
-> Prior to version 4, the Couchbase Elasticsearch connector was implemented as an Elasticsearch plug-in. Here’s what you need to know if you’re migrating from the plug-in to the new standalone connector. 
+> Prior to version 4, the Couchbase Elasticsearch connector was implemented as an Elasticsearch plug-in. Here's what you need to know if you're migrating from the plug-in to the new standalone connector. 
 
 In this document, version 4 of the connector is referred to as the "standalone connector" to distinguish it from the Elasticsearch plug-in of prior versions.
 

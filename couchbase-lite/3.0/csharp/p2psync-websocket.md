@@ -3,7 +3,7 @@ title: Data Sync Peer-to-Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/csharp/pages/p2psync-websocket.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:csharp:p2psync-websocket.adoc[]
 ---
 
@@ -12,13 +12,13 @@ link: xref:3.0@couchbase-lite:csharp:p2psync-websocket.adoc[]
 
 # Data Sync Peer-to-Peer
 
-> Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
-> _Abstract — An introduction to Couchbase Lite’s peer-to-peer sync._  
+> Description — _Couchbase Lite's Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
+> _Abstract — An introduction to Couchbase Lite's peer-to-peer sync._  
 > Related Content — [API Reference](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
 ## [](#introduction)Introduction
 
-Couchbase Lite’s peer-to-peer synchronization solution offers secure storage and bidirectional synchronization of data between edge devices without the need for a centralized cloud-based control point.
+Couchbase Lite's peer-to-peer synchronization solution offers secure storage and bidirectional synchronization of data between edge devices without the need for a centralized cloud-based control point.
 
 The solution provides an out-of-the-box implementation of a websocket based listener for use in peer-to-peer applications communicating over in IP-based networks.
 
@@ -32,7 +32,7 @@ This implementation enables customers to:
 
 ## [](#overview)Overview
 
-At its most basic, peer-to-peer synchronization requires one peer to act as the listener to the other peer’s replicator.
+At its most basic, peer-to-peer synchronization requires one peer to act as the listener to the other peer's replicator.
 
 ![docs listener diagram](../_images/docs-listener-diagram.png) 
 
@@ -55,7 +55,7 @@ You can also learn more about how to implement peer-to-peer synchronization by r
 
 ## [](#features)Features
 
-Couchbase Lite for C#.Net’s peer-to-peer synchronization solution provides support for cross-platform synchronization; for example, between Android and iOS devices.
+Couchbase Lite for C#.Net's peer-to-peer synchronization solution provides support for cross-platform synchronization; for example, between Android and iOS devices.
 
 Each listener instance serves one Couchbase Lite database. But there is no hard limit on the number of listener instances that you can associate with a database.
 
@@ -152,7 +152,7 @@ var thisReplicator = new Replicator(thisConfig); (5)
 thisReplicator.Start(); (6)
 ```
 
-| **1** | Get the listener’s endpoint. Here we use a known URL, but it could be a URL established dynamically in a discovery phase.                 |
+| **1** | Get the listener's endpoint. Here we use a known URL, but it could be a URL established dynamically in a discovery phase.                 |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Initialize the replicator configuration with the database to be synchronized and the listener it is to synchronize with                   |
 | **3** | Configure the replicator to expect a self-signed certificate from the listener                                                            |
@@ -164,7 +164,7 @@ thisReplicator.Start(); (6)
 
 ### [](#urlendpointlistener)URLEndpointListener
 
-The `URLEndpointListener` is the listener for peer-to-peer synchronization. It acts like a passive replicator, in the same way that Sync Gateway does in a 'standard' replication. On the client side, the listener’s endpoint is used to point the replicator to the listener.
+The `URLEndpointListener` is the listener for peer-to-peer synchronization. It acts like a passive replicator, in the same way that Sync Gateway does in a 'standard' replication. On the client side, the listener's endpoint is used to point the replicator to the listener.
 
 Core functionalities of the listener are:
 
@@ -226,7 +226,7 @@ API Reference: [TlsIdentity](http://docs.couchbase.com/mobile/3.0.15/couchbase-l
 
 authenticator
 
-Use this to specify the authenticator the listener uses to authenticate the client’s connection request. This should be set to one of the following:
+Use this to specify the authenticator the listener uses to authenticate the client's connection request. This should be set to one of the following:
 
 * ListenerPasswordAuthenticator
 * ListenerCertificateAuthenticator
@@ -279,24 +279,24 @@ __Table 1\. Secure storage details__
 | Platform            | MacOS/iOS                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Key Storage         | KeyChain                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Certificate Storage | KeyChain                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Notes               | Use kSecAttrLabel of the SecCertificate to store the TLSIdentity’s label                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Notes               | Use kSecAttrLabel of the SecCertificate to store the TLSIdentity's label                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Reference           | <https://developer.apple.com/documentation/security/keychain%5Fservices>                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Platform            | Java                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Key Storage         | User Specified KeyStore                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Certificate Storage | User Specified KeyStore                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Notes               | The KeyStore represents a storage facility for cryptographic keys and certificates. It’s users’ choice to decide whether to persist the KeyStore or not. The supported KeyStore types are PKCS12 (Default from Java 9) and JKS (Default on Java 8 and below).                                                                                                                                                                                                                                                                |
+| Notes               | The KeyStore represents a storage facility for cryptographic keys and certificates. It's users' choice to decide whether to persist the KeyStore or not. The supported KeyStore types are PKCS12 (Default from Java 9) and JKS (Default on Java 8 and below).                                                                                                                                                                                                                                                                |
 | Reference           | <https://docs.oracle.com/javase/7/docs/api/java/security/KeyStore.html>                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Platform            | .Net (excluding Xamarin)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Key Storage         | Opaque; Keys are stored automatically by the runtime when storing the certificate with the PersistKeySet flag set.                                                                                                                                                                                                                                                                                                                                                                                                           |
 | Certificate Storage | User specified X509Store                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Notes               | Use a map file to map the stored certificates and TLSIdentity’s labels. The actual store of X509Store depends on platform implementation: Windows — OS KeyStore macOS — KeyChain Linux — file on filesystem                                                                                                                                                                                                                                                                                                                  |
+| Notes               | Use a map file to map the stored certificates and TLSIdentity's labels. The actual store of X509Store depends on platform implementation: Windows — OS KeyStore macOS — KeyChain Linux — file on filesystem                                                                                                                                                                                                                                                                                                                  |
 | Reference           | Opaque Keys: <https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.x509certificates.x509certificate2collection.import?view=netstandard-2.0#System%5FSecurity%5FCryptography%5FX509Certificates%5FX509Certificate2Collection%5FImport%5FSystem%5FByte%5F%5F%5FSystem%5FString%5FSystem%5FSecurity%5FCryptography%5FX509Certificates%5FX509KeyStorageFlags%5F> X509Store Reference: <https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.x509certificates.x509store?view=netcore-3.1> |
 
 | Platform            | Xamarin                                                                                                                                                                                                                                                                                                                                                                   |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Key Storage         | RSACryptoServiceProvider provided by Xamarin.                                                                                                                                                                                                                                                                                                                             |
 | Certificate Storage | User specified X509Store                                                                                                                                                                                                                                                                                                                                                  |
-| Notes               | Use a map file to map the stored certificates and TLSIdentity’s labels. The same label is used to persist the key The current Xamarin’s RSACryptoServiceProvider implementation stores keys in files. Users can use TLSIdentity.getIdentity(X509Certificate2Collection) to create a TLSIdentity object if they would like to manage the keys and certificates themselves. |
+| Notes               | Use a map file to map the stored certificates and TLSIdentity's labels. The same label is used to persist the key The current Xamarin's RSACryptoServiceProvider implementation stores keys in files. Users can use TLSIdentity.getIdentity(X509Certificate2Collection) to create a TLSIdentity object if they would like to manage the keys and certificates themselves. |
 | Reference           | RSACryptoServiceProvider: <https://docs.microsoft.com/en-us/dotnet/standard/security/how-to-store-asymmetric-keys-in-a-key-container> X509Store Reference — <https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.x509certificates.x509store?view=netcore-3.1>                                                                                        |
 
 ## [](#related-content)Related Content

@@ -4,7 +4,7 @@ description: Given a legacy document set containing attributes whose format
   makes them difficult to search on. In order to correct this search deficiency,
   new searchable attributes will be added to the document.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-example-data-enrichment.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:eventing:eventing-example-data-enrichment.adoc[]
 ---
 
@@ -117,7 +117,7 @@ For complete details on how to set up your keyspaces, refer to [creating buckets
     "ip_num_end": 87964681  
   }
   * Click **Cancel** to close the editor.
-9. Because our Eventing Function is deployed, it will continue to process all new mutations, let’s test this out.
+9. Because our Eventing Function is deployed, it will continue to process all new mutations, let's test this out.
 
   * Access the **Couchbase Web Console** **Buckets** page and click the **Scopes and Collections** link of the **bulk** bucket.
   * Click **Documents** in the upper right banner for the **data** scope.
@@ -156,14 +156,14 @@ For complete details on how to set up your keyspaces, refer to [creating buckets
 **Procedure (Case 2)**:
 
 > [!IMPORTANT]
-> Undeploy the Eventing Function `case_1_enrich_ips`, if it’s running.
+> Undeploy the Eventing Function `case_1_enrich_ips`, if it's running.
 
 1. Access the **Couchbase Web Console** **Eventing** page and click the function name **case\_1\_enrich\_ips** link of the **source** bucket.  
 ![enrichcase1 03b undeploy](_images/enrichcase1_03b_undeploy.png)  
 
   * Click **Undeploy**
   * Click **Undeploy Function** to confirm.
-2. We assume that the two documents from **Case 1** above exist in the `source` collection. If they don’t, please create them in the `source` collection.
+2. We assume that the two documents from **Case 1** above exist in the `source` collection. If they don't, please create them in the `source` collection.
 
   * Access the **Couchbase Web Console** **Buckets** page and click the **Scopes and Collections** link of the **bulk** bucket.
   * Click **Documents** in the upper right banner for the **data** scope.
@@ -248,7 +248,7 @@ For complete details on how to set up your keyspaces, refer to [creating buckets
     "ip_num_end": 121519113  
   }
   * Click **Cancel** to close the editor.
-10. Because our Eventing Function is deployed, it will continue to process all new mutations, let’s test this out.
+10. Because our Eventing Function is deployed, it will continue to process all new mutations, let's test this out.
 
   * Access the **Couchbase Web Console** **Buckets** page and click the **Scopes and Collections** link of the **bulk** bucket.
   * Click **Documents** in the upper right banner for the **data** scope.

@@ -3,7 +3,7 @@ title: Channels
 description: About Sync Gateway <em>Channels</em> and their part in data routing
   for secure cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/channels.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::channels.adoc[]
 ---
 
@@ -13,14 +13,14 @@ link: xref:2.8@sync-gateway::channels.adoc[]
 # Channels
 
 > About Sync Gateway _Channels_ and their part in data routing for secure cloud-to-edge enterprise data synchronization.  
-> Sync Gateway’s _Channels_ are a key part of a flexible approach to data routing and access control.   
+> Sync Gateway's _Channels_ are a key part of a flexible approach to data routing and access control.   
 > In this topic we look at how to implement access-control and document routing using _Channels_. 
 
 _Related concepts topics_: [Users](../current/access-control/users.md) | [Roles](../current/access-control/roles.md) | Channels | [Revisions](../current/manage/revisions.md) | [Tombstones](../current/manage/managing-tombstones.md)
 
 ## [](#introduction)Introduction
 
-Sync Gateway uses _Channels_ to make it easy to share a database’s documents across a large user base whilst retaining effective access control. They serve as a security conduit between the document and a user:
+Sync Gateway uses _Channels_ to make it easy to share a database's documents across a large user base whilst retaining effective access control. They serve as a security conduit between the document and a user:
 
 * Every user is granted access to a list of channels.
 * Every document in the database is assigned a list of channels it is distributed to.
@@ -75,7 +75,7 @@ You make dynamic user access grants in the sync function using the [access(usern
 
 Granting a user access with the _all channels_ wildcard gives them access to any channel, and any document in any channel, including those from private channels.
 
-Replications by users with _all channels_ wildcard access will pull **all** documents. Because of this potential for syncing large volumes of data (sync pulls all documents in the bucket), users with _all channels_ wildcard access should use a channel filter to explicitly name the channel(s) to be sync’d.
+Replications by users with _all channels_ wildcard access will pull **all** documents. Because of this potential for syncing large volumes of data (sync pulls all documents in the bucket), users with _all channels_ wildcard access should use a channel filter to explicitly name the channel(s) to be sync'd.
 
 **Note:** Users granted access using the _all channels_ wildcard **do not** inherit [requireAccess(<channel>)](sync-function.md#requireaccesschannels) rights to any specific channel.
 
@@ -136,7 +136,7 @@ function sync(doc, oldDoc) {
 // `
 ```
 
-| **1** | If the document is public, we assign it to the _public channel_, using the public channel wildcard; otherwise we assign it to the user’s channel.                                                   |
+| **1** | If the document is public, we assign it to the _public channel_, using the public channel wildcard; otherwise we assign it to the user's channel.                                                   |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | For documents of type user, if the user has an admin role, we grant them access to _all_ documents using the _all channels_ wildcard.                                                               |
 | **3** | For documents of type ticket, we require the user to have **explicit** access to 'ourChannel'. Users with access granted only using the _all channels_ wildcard will **not** satisfy this criteria. |
@@ -195,18 +195,18 @@ function (doc, oldDoc) {
 | **1** | The Sync Function routes incoming documents to a channel named foo. |
 | ----- | ------------------------------------------------------------------- |
 
-Channels are created as documents are assigned to them. The Sync Function cannot reference any external state and must return the same results every time it’s called on the same input.
+Channels are created as documents are assigned to them. The Sync Function cannot reference any external state and must return the same results every time it's called on the same input.
 
 Valid channel names consist of text letters `[A–Z, a–z]`, digits `[0–9]`, and a few special characters `[= + / . , _ @]`. Channel names are case-sensitive. Channels with no documents assigned to them are empty.
 
-If you don’t supply a Sync Function in the configuration file, Sync Gateway uses the [default Sync Function](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-sync). This default function is really only useful for experimentation and development.
+If you don't supply a Sync Function in the configuration file, Sync Gateway uses the [default Sync Function](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-sync). This default function is really only useful for experimentation and development.
 
 > [!TIP]
 > You are advised to write a Sync Function that provides validation, routing and access-control appropriate to your business needs — see: [Sync Function](../current/access-control/sync-function/sync-function.md) for more on sync functions.
 
 ## [](#remove-from-channel)Remove from Channel
 
-If the document was previously routed to a channel, but the current call to the sync function (for an updated revision) doesn’t route it to that channel, the document is removed from the channel.
+If the document was previously routed to a channel, but the current call to the sync function (for an updated revision) doesn't route it to that channel, the document is removed from the channel.
 
 This may cause users to lose access to that document. If that happens, the next time Couchbase Lite pulls changes from the gateway, it will purge the document from the database and trigger the document replication listener on Couchbase Lite with the `AccessRemoved` flag.
 
@@ -226,9 +226,9 @@ __Table 1\. Guidance on Channel Assignment Limits__
 
 ### [](#sync-metadata-limits)Sync Metadata Limits
 
-Every time a document is assigned to a new channel, the channel name is appended to that document’s sync metadata.
+Every time a document is assigned to a new channel, the channel name is appended to that document's sync metadata.
 
-Therefore, a document’s set of channels is limited by the allowed sync metadata size described in [Table 2](#tbl-metadata-size).
+Therefore, a document's set of channels is limited by the allowed sync metadata size described in [Table 2](#tbl-metadata-size).
 
 __Table 2\. Size Limits for Sync Metadata__
 | Value of enable\_shared\_bucket\_access | Size (Mb per Document) |

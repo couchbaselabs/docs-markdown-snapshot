@@ -1,7 +1,7 @@
 ---
 title: Couchbase Resource RBAC
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-rbac.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::concept-rbac.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Figure 1\. Example resource type security model
 
 In [Figure 1](#image-example-security-model), an example security model with five different roles is depicted (Cluster Administrator, User Administrator, Data Scientist, XDCR Administrator, and Backup Administrator). These roles are arbitrary, and are simply an example of how a user might describe who in their organization would be allowed to modify a given resource type. For example, in the diagram above, the user has given a Backup Administrator the rights to modify `CouchbaseBackup` resources, and a XDCR Administrator the rights to modify `CouchbaseReplication` resources.
 
-Using the flexibility of Kubernetes RBAC, you can group access to resource types however you want. In the example above, the user’s organization might change to where a single individual is responsible for both backups _and_ XDCR, in which case, that individual would need to be given access to both `CouchbaseBackup` and `CouchbaseReplication` resource types.
+Using the flexibility of Kubernetes RBAC, you can group access to resource types however you want. In the example above, the user's organization might change to where a single individual is responsible for both backups _and_ XDCR, in which case, that individual would need to be given access to both `CouchbaseBackup` and `CouchbaseReplication` resource types.
 
 ## [](#example-roles)Example Roles
 

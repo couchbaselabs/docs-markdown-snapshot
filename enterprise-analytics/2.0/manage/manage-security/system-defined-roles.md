@@ -3,7 +3,7 @@ title: System Defined Roles
 description: For authorizing users, Enterprise Analytics has some pre-built
   roles with predefined sets of privileges that can be assigned to users.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-security/system-defined-roles.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:manage-security/system-defined-roles.adoc[]
 ---
 
@@ -80,7 +80,7 @@ The `sys_data_admin` role includes the following privileges:
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Grant/Revoke Management   | Can GRANT/REVOKE any privilege on any object to/from any user and role.                                                                                                                                            |
 | Role Management           | Can create/drop roles and GRANT/REVOKE privileges to/from custom roles.                                                                                                                                            |
-| Default Object Privileges | Doesn’t have any privileges on objects by default. For example, user with sys\_security\_admin role can grant select on object to another user, but cannot query the object itself, but can be granted privileges. |
+| Default Object Privileges | Doesn't have any privileges on objects by default. For example, user with sys\_security\_admin role can grant select on object to another user, but cannot query the object itself, but can be granted privileges. |
 | Role Assignment Authority | Can grant sys\_data\_admin, sys\_data\_reader and sys\_view\_reader roles.                                                                                                                                         |
 
 #### [](#privileges-4)Privileges

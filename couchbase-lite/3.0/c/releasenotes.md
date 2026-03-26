@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Lite on C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/c/pages/releasenotes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:c:releasenotes.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:3.0@couchbase-lite:c:releasenotes.adoc[]
 
 > Description — _Couchbase Lite on C_  
 > _Abstract — This content describes the key features and changes implemented by release 3.0 of Couchbase Lite on C_  
-> Related Content — [What’s New](#cbl-whatsnew.adoc) | [Compatibility](compatibility.md) | [Supported Platforms](supported-os.md)
+> Related Content — [What's New](#cbl-whatsnew.adoc) | [Compatibility](compatibility.md) | [Supported Platforms](supported-os.md)
 
 ## [](#maint-3-0-15)3.0.15 — November 2023
 
@@ -58,7 +58,7 @@ Version 3.0.12 for C delivers the following features and enhancements:
 
 * [CBL-3671 - Fix slowdowns and storage overhead caused by document revision history not being pruned](https://issues.couchbase.com/browse/CBL-3671)
 * [CBL-3929 - Crash when closing database shortly after remove listener token in query change (Port)](https://issues.couchbase.com/browse/CBL-3929)
-* [CBLReplicatorConfiguration’s property encryption callbacks](https://issues.couchbase.com/browse/CBL-4349)
+* [CBLReplicatorConfiguration's property encryption callbacks](https://issues.couchbase.com/browse/CBL-4349)
 * [CBL-4349 - Missing nullable marks in](https://issues.couchbase.com/browse/CBL-4349)
 * [CBL-4529 - Error when saving documents with LiteCore error 17: must be called during a transaction](https://issues.couchbase.com/browse/CBL-4529)
 * [CBL-4450 - Stop replicator could cause 'database is locked' error when saving a document](https://issues.couchbase.com/browse/CBL-4450)
@@ -179,7 +179,7 @@ Read More . . . [Couchbase Lite for C](index.md)
 
 #### [](#sqln1ql-query-strings)SQL++/N1QL Query Strings
 
-Couchbase Lite’s SQL++ for Mobile query API vastly simplifies the integration of Couchbase Lite within hybrid/cross platform apps.
+Couchbase Lite's SQL++ for Mobile query API vastly simplifies the integration of Couchbase Lite within hybrid/cross platform apps.
 
 N1QL for Mobile is an implementation of the emerging SQL-for-JSON query language specification (SQL++). It provides native, hybrid and cross-platform mobile app developers with a consistent, convenient and flexible interface to query JSON documents within the embedded database using a SQL-based syntax. This means developers can reuse queries across platforms, reducing development, testing and maintenance costs.
 
@@ -230,7 +230,7 @@ Product Notes
 * [Release Notes](releasenotes.md)
 * [Compatibility](compatibility.md)
 * [Supported Platforms](supported-os.md)
-* [What’s New](#cbl-whatsnew.adoc)
+* [What's New](#cbl-whatsnew.adoc)
 
 ###### [](#-2)
 

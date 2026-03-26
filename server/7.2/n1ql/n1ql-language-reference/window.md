@@ -3,7 +3,7 @@ title: WINDOW Clause
 description: The WINDOW clause defines named windows for window functions and
   aggregate functions used as window functions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/window.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/window.adoc[]
 ---
 
@@ -188,7 +188,7 @@ The window frame can be defined in the following ways:
 
 `ROWS`
 
-Counts the exact number of objects within the frame. If window ordering doesn’t result in unique ordering, the function may produce unpredictable results. You can add a unique expression or more window ordering expressions to produce unique ordering.
+Counts the exact number of objects within the frame. If window ordering doesn't result in unique ordering, the function may produce unpredictable results. You can add a unique expression or more window ordering expressions to produce unique ordering.
 
 `RANGE`
 
@@ -229,7 +229,7 @@ The **window frame extent** clause specifies the start point and end point of th
 
 The expression before `AND` is the start point and expression after `AND` is the end point. If `BETWEEN` is omitted, you can only specify the start point; the end point becomes `CURRENT ROW`.
 
-The window frame end point can’t be before the start point. If this clause violates this restriction explicitly, an error will result. If it violates this restriction implicitly, the window frame will be empty, which means the window function will return its default value: in most cases this is NULL, except for [COUNT()](aggregatefun.md#count) or [COUNTN()](aggregatefun.md#countn), whose default value is 0.
+The window frame end point can't be before the start point. If this clause violates this restriction explicitly, an error will result. If it violates this restriction implicitly, the window frame will be empty, which means the window function will return its default value: in most cases this is NULL, except for [COUNT()](aggregatefun.md#count) or [COUNTN()](aggregatefun.md#countn), whose default value is 0.
 
 Window frame extents that result in an explicit violation are:
 

@@ -1,7 +1,7 @@
 ---
 title: Overview
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/installation/overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:csharp/installation/overview.adoc[]
 ---
 
@@ -25,7 +25,7 @@ It includes the following components - - \*Client Side \* - Travel Mobile App : 
 
 ## [](#pre-requisites)Pre-requisites
 
-To start, it is easiest if you run all the components on the same machine. It’s not required to run your development environment this way but it is more convenient to start a development environment with components running locally.
+To start, it is easiest if you run all the components on the same machine. It's not required to run your development environment this way but it is more convenient to start a development environment with components running locally.
 
 **Windows Users** : - If you are developing on Windows, you must use a Windows 10 machine. Also, note that if you choose Manual or docker installation mode, you should also have **administrative privileges on the Windows box** so you can authorize the installation and running of the required executables.
 
@@ -42,7 +42,7 @@ To start, it is easiest if you run all the components on the same machine. It’
 
 ### [](#%5Fpython%5Fv2.7%5Fand%5Fabove)Python (v2.7 and above)
 
-You need this only if you use the Manual installation option - Downloadable from [python.org](https://www.python.org/downloads/) \- **Windows Users** : If you are developing on Windows, make sure that Python is included in your system’s PATH environment variable. You can follow instructions [here](https://www.pythoncentral.io/add-python-to-path-python-is-not-recognized-as-an-internal-or-external-command/) to update your PATH variable to include the path to the Python install. The default installation path would be _c:27_ for Python 2.7.
+You need this only if you use the Manual installation option - Downloadable from [python.org](https://www.python.org/downloads/) \- **Windows Users** : If you are developing on Windows, make sure that Python is included in your system's PATH environment variable. You can follow instructions [here](https://www.pythoncentral.io/add-python-to-path-python-is-not-recognized-as-an-internal-or-external-command/) to update your PATH variable to include the path to the Python install. The default installation path would be _c:27_ for Python 2.7.
 
 ### [](#docker)Docker
 
@@ -51,7 +51,7 @@ You need this only if you use the Docker installation option.
 
 ### [](#git)git
 
-* Create a [free github account](https://github.com) if you don’t already have one
+* Create a [free github account](https://github.com) if you don't already have one
 * Git is downloadable from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ### [](#try-it-out)Try it out

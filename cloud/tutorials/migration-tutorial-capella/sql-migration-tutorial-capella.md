@@ -3,7 +3,7 @@ title: "Migration Tutorial: Migrate your Data from MySQL to Couchbase Capella"
 description: Using MySQL as a starting point, this guide demonstrates how to
   migrate your existing data from SQL tables to a Couchbase Capella instance.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/migration-tutorial-capella/sql-migration-tutorial-capella.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:tutorials:migration-tutorial-capella/sql-migration-tutorial-capella.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Before you make a start, you will need a Capella instance to run the tutorial. I
 
 You will also need to download and install the Server Development Tools package, which includes the `cbimport` command line application. You will find installation instructions for the Server Development Tools package here ⇒ [Server Development Tools package](../../../server/current/cli/cli-intro.md#server-developer-tools-package)
 
-If you’re running through the examples, then you will also need an existing MySQL installation with the preexisting table structure defined in [the following section](#student-record-sql-database-section).
+If you're running through the examples, then you will also need an existing MySQL installation with the preexisting table structure defined in [the following section](#student-record-sql-database-section).
 
 > [!IMPORTANT]
 > This tutorial makes use of the MySQL JSON functions that were introduced in version `5.7.22`. Make sure you have installed MySQL version `5.7.22` or later.
@@ -58,7 +58,7 @@ You will see that our document model is not an exact mapping of the SQL database
 
 The first stage of your migration is to extract the data a file format that the `cbimport` utility can work with. `cbimport` can work with comma-separated value files or JSON-formatted files. Because we already know that we will be embedding our `enrollment` records into the record for each student, makes sense to use the more versatile JSON structure.
 
-Fortunately, MySQL has a number of SQL functions that make working with JSON data fairly straightforward, so we’ll start by migrating the `course` table into a JSON file:
+Fortunately, MySQL has a number of SQL functions that make working with JSON data fairly straightforward, so we'll start by migrating the `course` table into a JSON file:
 
 Extract the `course` table
 
@@ -87,7 +87,7 @@ Using the `JSON_OBJECT` function, the command will `SELECT` every record in the 
 ```
 
 > [!NOTE]
-> Strictly speaking, the JSON output is not a well-formed JSON document because it isn’t structured as an array. Nevertheless, `cbimport` will read each line as a separate record.
+> Strictly speaking, the JSON output is not a well-formed JSON document because it isn't structured as an array. Nevertheless, `cbimport` will read each line as a separate record.
 
 ## [](#extract-your-student-data-from-mysql)Extract your Student data from MySQL
 
@@ -146,7 +146,7 @@ Create the cluster.
 > You can also navigate to your project by finding it in the Project List and clicking on its link.
 6. On your project page, click on **Create Cluster**  
 ![create cluster](../_images/create-cluster.png)
-7. Select your cluster options (you may use the _free_ option if it’s available), then press **Create Cluster**. After a short interval, your new cluster will be provisioned.  
+7. Select your cluster options (you may use the _free_ option if it's available), then press **Create Cluster**. After a short interval, your new cluster will be provisioned.  
 ![new cluster](../_images/new-cluster.png)
 
 ---
@@ -174,7 +174,7 @@ Now that we have created the cluster, we need to add a location to hold the migr
 
 Allow your IP Address
 
-Before running `cbimport` from your local machine, you need to add your machine’s IP address to Capella’s allowed list. Navigate to your cluster’s security settings and add your IP to the "Allowed IP addresses" list.
+Before running `cbimport` from your local machine, you need to add your machine's IP address to Capella's allowed list. Navigate to your cluster's security settings and add your IP to the "Allowed IP addresses" list.
 
 1. Click on **Settings** from the top level menu.  
 ![settings menu](../_images/settings-menu.png)
@@ -196,7 +196,7 @@ When running `cbimport`, authentication credentials are required, which you can 
 4. Add a password.
 5. In the `Bucket Level Access` section, select `student-bucket` for the bucket, `All Scopes` for the scope, and `Read/Write` for Access:  
 ![completed access page](../_images/completed-access-page.png)
-6. Click on **Create Cluster Access** when you’re done.
+6. Click on **Create Cluster Access** when you're done.
 
 ---
 
@@ -265,6 +265,6 @@ You can repeat the same process to generate and run a `cbimport` command for the
 
 ## [](#check-your-data)Check your data
 
-You can use Capella’s **Data Tools** to check your data has been imported correctly.
+You can use Capella's **Data Tools** to check your data has been imported correctly.
 
 ![view data](../_images/view-data.png)

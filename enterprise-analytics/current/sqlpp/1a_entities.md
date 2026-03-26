@@ -3,7 +3,7 @@ title: Entities in Enterprise Analytics
 description: This topic describes how Enterprise Analytics organizes entities
   into a hierarchy and resolves the entity names in a statement or query.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/1a_entities.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sqlpp:1a_entities.adoc[]
 ---
 
@@ -35,7 +35,7 @@ Database
 Database
 ...
 
-Collections, views, user-defined functions, and synonyms are all at the same level of the hierarchy. To fully qualify one of these database objects in your queries, you prefix that entity’s identifier with those of its database and scope in the format `database_name.scope_name.database_object_name`.
+Collections, views, user-defined functions, and synonyms are all at the same level of the hierarchy. To fully qualify one of these database objects in your queries, you prefix that entity's identifier with those of its database and scope in the format `database_name.scope_name.database_object_name`.
 
 SQL++ for Enterprise Analytics stores indexes for individual collections: `database.scope.collection.index`. For more information about indexes, see [Using Indexes](7%5Fusing%5Findex.md).
 
@@ -71,7 +71,7 @@ For additional examples of how Enterprise Analytics resolves statements in which
 
 ## [](#metadata)Metadata Storage
 
-Enterprise Analytics stores entity metadata in the internal `System` database’s `Metadata` scope. In the `System.Metadata` scope, a different collection stores metadata for entities at each hierarchical level:
+Enterprise Analytics stores entity metadata in the internal `System` database's `Metadata` scope. In the `System.Metadata` scope, a different collection stores metadata for entities at each hierarchical level:
 
 System database
   |-- Metadata scope
@@ -111,7 +111,7 @@ Also, keep the following constraints in mind:
 
 * Identifiers are case sensitive.
 * Dash (-) characters are also used as an [operator](2%5Fexpr.md#Operator%5Fexpressions). To use an identifier that includes a dash in a query, you must escape that identifier with backtick (``` `` ```) characters.
-* Reserved keywords have a defined meaning in SQL++ syntax or Enterprise Analytics processing. To use an identifier that’s the same as a [reserved keyword](reserved%5Fkeywords.md) in a query, you must escape that identifier with backtick (``` `` ```) characters.
+* Reserved keywords have a defined meaning in SQL++ syntax or Enterprise Analytics processing. To use an identifier that's the same as a [reserved keyword](reserved%5Fkeywords.md) in a query, you must escape that identifier with backtick (``` `` ```) characters.
 
 > [!TIP]
 > You may also need to escape identifiers that originate outside of Enterprise Analytics, and that are therefore not subject to these requirements. For example, to identify a primary key that has a space character in it, such as "Employee ID", you enter it as ```` `` `Employee ID ``` ````.
@@ -184,7 +184,7 @@ The name of a database\_object is incompletely qualified when you specify only i
 ```
 
 > [!TIP]
-> To query an entity with a name that’s the same as a [reserved keyword](reserved%5Fkeywords.md), like Database, you must escape the name with backtick (``` `` ```) characters.
+> To query an entity with a name that's the same as a [reserved keyword](reserved%5Fkeywords.md), like Database, you must escape the name with backtick (``` `` ```) characters.
 
 ## [](#see-also)See Also
 

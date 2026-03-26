@@ -3,7 +3,7 @@ title: Manage AWS Private Endpoints Using the Management API
 description: Configure and manage AWS private endpoints for App Services using
   the Capella Operational Management API.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/private-endpoints/app-services-private-endpoints-aws-api.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::private-endpoints/app-services-private-endpoints-aws-api.adoc[]
 ---
 
@@ -253,7 +253,7 @@ Follow these steps to ensure the connection is working correctly.
 
 ### [](#private-dns)Private DNS
 
-You must enable private DNS in the cloud service provider’s endpoint to successfully connect to App Services.
+You must enable private DNS in the cloud service provider's endpoint to successfully connect to App Services.
 
 To enable private DNS in AWS:
 
@@ -382,7 +382,7 @@ To verify the status of the connection, see [List Connections](#list-connections
 
 ### [](#remove-connections)Remove Connections
 
-Removing connections isn’t usually necessary for most operations using App Services. If you want to remove a connection, there are two options:
+Removing connections isn't usually necessary for most operations using App Services. If you want to remove a connection, there are two options:
 
 * Delete the endpoint via the AWS CLI or the AWS console.
 * [Reject the connection](#ex-reject-connection). The connection is severed, but remains in the [connection list](#list-connections) as rejected.

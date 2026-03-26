@@ -1,7 +1,7 @@
 ---
 title: Connecting to Tableau Cloud using the Tableau Bridge
 editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/connecting-to-tableau-cloud-using-tableau-bridge.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tableau-connector::connecting-to-tableau-cloud-using-tableau-bridge.adoc[]
 ---
 
@@ -128,7 +128,7 @@ The location of the file where the PAT is stored.
 
 1. Start the Tableau Desktop application and sign in to Tableau Cloud  
 ![Sign into Tableau Cloud](_images/sign-in-tableau-cloud.png)
-2. After providing your sign-in credentials, check the status on the menu bar to ensure you’re signed in correctly.  
+2. After providing your sign-in credentials, check the status on the menu bar to ensure you're signed in correctly.  
 ![Signed in](_images/signed-in-menu.png)
 3. From the Tableau Desktop menu, click **Server** **Publish Data Source**and select the pre-existing datasource you wish to publish to Tableau Cloud.  
 ![Publish datasource](_images/publish-data-source-dialog.png)

@@ -3,7 +3,7 @@ title: Getting Started with Hashicorp Terraform Deployment
 description: Use Terraform Provider to deploy and manage your clusters with
   declarative configuration.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/terraform/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:terraform:index.adoc[]
 ---
 
@@ -38,7 +38,7 @@ The list of supported resources and schema definitions are detailed [in the Reso
 To get started, see the [Provider Example Configs](https://github.com/couchbasecloud/terraform-provider-capella/tree/main/examples):
 
 * [Retrieve organization details in Capella](https://github.com/couchbasecloud/terraform-provider-couchbase-capella/blob/main/examples/organization):  
-Couchbase Capella uses an ordered hierarchy to help you keep all of your data organized and securely accessible. The entity at the top of the hierarchy is called an organization. Everything you do in Capella — whether it’s creating a cluster or managing billing — happens within the scope of an [organization](../organizations/organizations.md).
+Couchbase Capella uses an ordered hierarchy to help you keep all of your data organized and securely accessible. The entity at the top of the hierarchy is called an organization. Everything you do in Capella — whether it's creating a cluster or managing billing — happens within the scope of an [organization](../organizations/organizations.md).
 * [Create and manage users](https://github.com/couchbasecloud/terraform-provider-couchbase-capella/blob/main/examples/user):  
 Users have roles within an [organization](#organization:manage-organization-users.adoc), and within [individual projects](../projects/manage-project-users.md#project-users-summary).
 * [Create and manage API Keys](https://github.com/couchbasecloud/terraform-provider-couchbase-capella/blob/main/examples/apikey):  
@@ -50,7 +50,7 @@ The Cluster is the individual instance of a [Couchbase Database](../clusters/dat
 * [Retrieve cluster certificate details](https://github.com/couchbasecloud/terraform-provider-couchbase-capella/blob/main/examples/certificate):  
 Retrive the certificate details for a Capella cluster; list the certificate details based on the cluster ID and authentication access token.
 * [Manage cluster credential](https://github.com/couchbasecloud/terraform-provider-couchbase-capella/blob/main/examples/database%5Fcredential):  
-Cluster credentials are separate from organization roles and project roles. A [cluster credential](../clusters/manage-database-users.md#about-database-credentials) is specific to a cluster and consists of a cluster access name, secret, and a set of bucket and scope access levels. It’s required for applications to remotely authenticate on a cluster and access bucket data.
+Cluster credentials are separate from organization roles and project roles. A [cluster credential](../clusters/manage-database-users.md#about-database-credentials) is specific to a cluster and consists of a cluster access name, secret, and a set of bucket and scope access levels. It's required for applications to remotely authenticate on a cluster and access bucket data.
 * [Create & manage allowlists](https://github.com/couchbasecloud/terraform-provider-couchbase-capella/blob/main/examples/allowlist):  
 More than one [allowlist](../security/security.md#access-management) gives extra security across testing, development, and deployment infrastructure, and different projects.
 * [Create & manage buckets](https://github.com/couchbasecloud/terraform-provider-couchbase-capella/blob/main/examples/bucket):  

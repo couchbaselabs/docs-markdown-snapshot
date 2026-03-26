@@ -1,7 +1,7 @@
 ---
 title: Import Processing
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/import-processing.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::import-processing.adoc[]
 ---
 
@@ -40,7 +40,7 @@ If you are using legacy configuration then, you need to include it in your confi
 
 > [!NOTE]
 > You need Couchbase Lite 3.1+ and Sync Gateway 3.1+ to use `custom` Scopes and Collections.  
-> If you’re using Capella App Services or Sync Gateway releases that are older than version 3.1, you won’t be able to access `custom` Scopes and Collections. To use Couchbase Lite 3.1+ with these older versions, you can use the `default` Collection as a backup option.
+> If you're using Capella App Services or Sync Gateway releases that are older than version 3.1, you won't be able to access `custom` Scopes and Collections. To use Couchbase Lite 3.1+ with these older versions, you can use the `default` Collection as a backup option.
 
 The configuration settings described here are provisioned through the [Database Configuration](rest-api-admin.md) endpoints.
 

@@ -3,7 +3,7 @@ title: Manage Cluster Access Credentials
 description: Cluster access credentials provide programmatic and
   application-level access to data on a cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-database-users.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:manage-database-users.adoc[]
 ---
 
@@ -69,7 +69,7 @@ Cluster Access Name
 The cluster access name cannot exceed 35 characters in length or contain the following characters: `( ) < > @ , ; : \ " / [ ] ? = { }`  
 Password  
 Passwords must be at least 8 characters in length. They need 1 or more uppercase letters, lowercase letters, numbers, and special characters: `` ^ $ ( ) ? " ! @ # % , ' : _ ~ ` = + - ``  
-Selecting **Auto-generate password** generates a random password that meets the requirements. Copy this password to a secure location, as you’re unable to view it again after creating the cluster access credentials.
+Selecting **Auto-generate password** generates a random password that meets the requirements. Copy this password to a secure location, as you're unable to view it again after creating the cluster access credentials.
 4. Choose and configure basic or advanced access credentials:
 
   * Basic Access Credentials
@@ -108,7 +108,7 @@ To edit existing cluster access credentials:
     3. Expand the cluster breadcrumb and search for a cluster.
   2. Select the cluster where you want to make changes to your cluster access credentials.
   3. Go to **Settings** **Cluster Access**.
-2. Click the cluster access credentials you’re modifying.
+2. Click the cluster access credentials you're modifying.
 3. Edit the desired settings:
 
   1. You can change the password of any cluster access credential type by clicking **Change Password**.  
@@ -123,7 +123,7 @@ To edit existing cluster access credentials:
 ## [](#delete-database-credentials)Delete Cluster Access Credentials
 
 > [!WARNING]
-> Deleting cluster access credentials can cause an application that’s using them to stop functioning. Always make sure that you have updated your application to use new credentials before deleting cluster access credentials.
+> Deleting cluster access credentials can cause an application that's using them to stop functioning. Always make sure that you have updated your application to use new credentials before deleting cluster access credentials.
 
 To delete existing cluster access credentials:
 
@@ -212,6 +212,6 @@ To delete an access role:
 
 ## [](#manage-database-users-vault)Manage Cluster Access with Hashicorp Vault
 
-The Couchbase Capella [Hashicorp Vault plug-in](https://github.com/couchbasecloud/vault-plugin-database-couchbasecapella) can serve as a centralized hub for secrets management. In addition to managing existing credentials, Vault’s Cluster Secrets Engine generates dynamic, short-lived cluster access credentials. This streamlines the management of cluster connections and roles, and you can customize permissions and TTL settings.
+The Couchbase Capella [Hashicorp Vault plug-in](https://github.com/couchbasecloud/vault-plugin-database-couchbasecapella) can serve as a centralized hub for secrets management. In addition to managing existing credentials, Vault's Cluster Secrets Engine generates dynamic, short-lived cluster access credentials. This streamlines the management of cluster connections and roles, and you can customize permissions and TTL settings.
 
 For more information, see the [Hashicorp Vault plug-in for Capella](https://github.com/couchbasecloud/vault-plugin-database-couchbasecapella).

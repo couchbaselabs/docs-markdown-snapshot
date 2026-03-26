@@ -3,7 +3,7 @@ title: Manage Scopes and Collections
 description: Scopes and collections, which allow documents to be categorized and
   organized within a bucket, can be created and deleted within the Capella UI.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/scopes-collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:data-service/scopes-collections.adoc[]
 ---
 
@@ -30,7 +30,7 @@ Scopes and collections categorize and organize documents within a bucket. A coll
 
 ## [](#create-scope)Create a Scope
 
-To create a scope, you need the [Project Owner or Cluster Manager role for the project with the cluster where you’re creating the scope. ](../../projects/project-roles.md#project-owner-role)
+To create a scope, you need the [Project Owner or Cluster Manager role for the project with the cluster where you're creating the scope. ](../../projects/project-roles.md#project-owner-role)
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -48,7 +48,7 @@ A scope name can only contain the `A-Z`, `a-z`, and `0-9` characters as well as 
 
 ## [](#delete-a-scope)Delete a Scope
 
-To delete a scope, you need the [Project Owner or Cluster Manager role for the project with the cluster where you’re deleting a scope. ](../../projects/project-roles.md#project-owner-role)
+To delete a scope, you need the [Project Owner or Cluster Manager role for the project with the cluster where you're deleting a scope. ](../../projects/project-roles.md#project-owner-role)
 
 > [!CAUTION]
 > Deleting a scope deletes all of the collections and documents in that scope from the cluster. You can only restore them from a previous backup.
@@ -68,7 +68,7 @@ To delete a scope, you need the [Project Owner or Cluster Manager role for the p
 
 ## [](#create-collection)Create a Collection
 
-To create a collection, you need the [Project Owner or Cluster Manager role for the project with the cluster where you’re creating the collection. ](../../projects/project-roles.md#project-owner-role)
+To create a collection, you need the [Project Owner or Cluster Manager role for the project with the cluster where you're creating the collection. ](../../projects/project-roles.md#project-owner-role)
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -82,13 +82,13 @@ To create a collection, you need the [Project Owner or Cluster Manager role for 
 6. Next to the scope name where you want to create a collection, go to **More Options (⋮)** **Add Collection**.
 7. In the **Collection Name** field, enter a collection name.  
 A collection name can only contain the `A-Z`, `a-z`, and `0-9` characters as well as the `-`, `_`, and `%` symbols. It cannot start with either the `_` or `%` symbols. It cannot be longer than 251 characters in length and is case-sensitive.
-8. In the **TTL** field, enter an expiration time in seconds for the new collection. By default, the TTL for collections is `0`, meaning it uses its bucket’s TTL value. To prevent the bucket’s TTL from setting a default expiration for your collection’s documents, set the TTL value to `-1`.  
+8. In the **TTL** field, enter an expiration time in seconds for the new collection. By default, the TTL for collections is `0`, meaning it uses its bucket's TTL value. To prevent the bucket's TTL from setting a default expiration for your collection's documents, set the TTL value to `-1`.  
 For information about collection expiration, see [Expiration](../../../server/current/learn/data/expiration.md).
 9. Click **Create Collection**.
 
 ## [](#delete-a-collection)Delete a Collection
 
-To delete a collection, you need the [Project Owner or Cluster Manager role for the project with the cluster where you’re deleting the collection. ](../../projects/project-roles.md#project-owner-role)
+To delete a collection, you need the [Project Owner or Cluster Manager role for the project with the cluster where you're deleting the collection. ](../../projects/project-roles.md#project-owner-role)
 
 > [!CAUTION]
 > Deleting a collection deletes all of the documents within it from the cluster. You can restore these documents from a previous backup.

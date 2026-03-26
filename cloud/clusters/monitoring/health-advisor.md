@@ -4,7 +4,7 @@ description: Capella Health Advisor analyzes the health of your operational
   cluster and provides expert advice to optimize its configurations,
   performance, and stability.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/health-advisor.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:monitoring/health-advisor.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:cloud:clusters:monitoring/health-advisor.adoc[]
 
 Capella Health Advisor is a cluster monitoring tool that provides you with ready-to-use insights, best practices, and recommendations for your active operational cluster. Based on Couchbase expertise and knowledge, Health Advisor analyzes your operational cluster and generates a report detailing its current health state.
 
-With proactive warnings and guidance on solutions, the Health Advisor report helps you better understand how to reduce your cluster’s risk of incurring future problems.
+With proactive warnings and guidance on solutions, the Health Advisor report helps you better understand how to reduce your cluster's risk of incurring future problems.
 
 These reports can be available on a scheduled or per-use basis.
 
@@ -66,7 +66,7 @@ To view a Health Advisor report in the Capella UI:
 ### [](#schedule-automatic-reports)Schedule Automatic Reports
 
 > [!NOTE]
-> Automatic report scheduling is only available to clusters on an [**Enterprise**](../../support/support.md#support-levels) Plan. To upgrade your Support Plan, see [Change a Cluster’s Plan and Support Timezone](../../billing/change-support-plan.md).
+> Automatic report scheduling is only available to clusters on an [**Enterprise**](../../support/support.md#support-levels) Plan. To upgrade your Support Plan, see [Change a Cluster's Plan and Support Timezone](../../billing/change-support-plan.md).
 
 Health Advisor supports automatic report generation and delivery. You can choose to schedule and receive weekly reports to your Capella account email address every Monday. You can also enable or disable the automatic generation of Health Advisor reports for your cluster.
 
@@ -76,7 +76,7 @@ To adjust these settings:
 
 ## [](#cluster-health-assessment)Cluster Health Assessment
 
-Capella Health Advisor has over 30 different health checks for your cluster. When generating a report, Health Advisor goes through these health checks by analyzing different categories of your cluster, evaluating their severity level and offering advice to optimize your cluster’s health.
+Capella Health Advisor has over 30 different health checks for your cluster. When generating a report, Health Advisor goes through these health checks by analyzing different categories of your cluster, evaluating their severity level and offering advice to optimize your cluster's health.
 
 ### [](#severity-level)Severity
 
@@ -85,8 +85,8 @@ Health Advisor checks are assigned a severity level. A higher severity level mea
 Health Advisor severity levels, from least to most urgent, include:
 
 * **Good**: Your cluster has passed the related checks.
-* **Needs Review**: It’s recommended to consider following the advice and fixing any issues to prevent future issues.
-* **Warning**: It’s highly recommended you follow the advice provided and fix any issues in your cluster as soon as possible.
+* **Needs Review**: It's recommended to consider following the advice and fixing any issues to prevent future issues.
+* **Warning**: It's highly recommended you follow the advice provided and fix any issues in your cluster as soon as possible.
 
 > [!NOTE]
 > If your cluster configurations are intentional, but get flagged as **Needs Review**, the advice provided might not be relevant to you.
@@ -110,8 +110,8 @@ The following examples demonstrate different kinds of advice a Health Advisor re
 
 | Advice                      | Severity         | Category | Details                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | --------------------------- | ---------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Data Resident Ratio         | **Good**         | Data     | Your cluster passed this Health Advisor check.                                                                                                                                                                                                                                                                        | A bucket memory quota sets the maximum memory for a bucket’s chosen storage engine. The resident ratio for a bucket is the percentage of its data that’s stored in RAM.                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Multiple Availability Zones | **Needs Review** | Cluster  | Your cluster is currently not deployed using Multiple Availability Zones. Use Multiple Availability Zones to distribute your cluster nodes evenly across your Cloud Service Provider’s (CSP) availability zones. Multiple Availability Zones help keep your data available, even if 1 Availability Zone goes offline. | Your cluster is currently not deployed using Multiple Availability Zones. Your cluster could be vulnerable to an Availability Zone outage. You cannot change this setting after you deploy your cluster. If you have an enterprise cluster that requires high availability, create a support ticket to get help with migrating your cluster to Multiple Availability Zones.                                                                                                                                                                                                                  |
+| Data Resident Ratio         | **Good**         | Data     | Your cluster passed this Health Advisor check.                                                                                                                                                                                                                                                                        | A bucket memory quota sets the maximum memory for a bucket's chosen storage engine. The resident ratio for a bucket is the percentage of its data that's stored in RAM.                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Multiple Availability Zones | **Needs Review** | Cluster  | Your cluster is currently not deployed using Multiple Availability Zones. Use Multiple Availability Zones to distribute your cluster nodes evenly across your Cloud Service Provider's (CSP) availability zones. Multiple Availability Zones help keep your data available, even if 1 Availability Zone goes offline. | Your cluster is currently not deployed using Multiple Availability Zones. Your cluster could be vulnerable to an Availability Zone outage. You cannot change this setting after you deploy your cluster. If you have an enterprise cluster that requires high availability, create a support ticket to get help with migrating your cluster to Multiple Availability Zones.                                                                                                                                                                                                                  |
 | Index Resident Ratio        | **Warning**      | Index    | The resident ratio for 1 or more nodes running the Index Service in your cluster is low, indicating potential memory issues. An index resident ratio is the ratio of index data that can be cached in memory on a node running the Index Service.                                                                     | The index resident ratio on 1 or more Index Service nodes is critically low. We recommend you take immediate action to restore query performance and reduce disk I/O for your index data. We recommend you increase the memory resources on any nodes running the Index Service. If your indexes are partitioned, add the Index Service to additional nodes in your cluster. Consider reviewing and removing unused indexes, merging 2 or more indexes into a single index, or using the Index Advisor to build more efficient indexes. Create a support ticket if you need more assistance. |
 
 For the full list of Health Advisor advice, see [Health Advisor Reference](../../reference/health-advisor-reference.md).

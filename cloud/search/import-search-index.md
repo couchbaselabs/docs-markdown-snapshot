@@ -2,7 +2,7 @@
 title: Import a Search Index Definition with the Capella UI
 description: Use the Couchbase Capella UI to import a JSON Search index definition.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/import-search-index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:import-search-index.adoc[]
 ---
 
@@ -28,9 +28,9 @@ To import a full [Search index definition](search-index-params.md) with the Cape
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
-  1. Click your organization name and go to **Operational**.
-  2. Click your current project name or search for a project and go to **Operational**.
-  3. Expand the cluster breadcrumb and search for a cluster.
+  * Click your organization name and go to **Operational**.
+  * Click your current project name or search for a project and go to **Operational**.
+  * Expand the cluster breadcrumb and search for a cluster.
 2. Select the cluster where you want to work with the Search Service.
 3. Go to **Data Tools** **Search**.
 4. Click **Import Search Index**.

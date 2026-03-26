@@ -3,7 +3,7 @@ title: Platform Introduction
 description: Discover how to get up and running developing applications with the
   Couchbase PHP SDK 4.0+ using <code>Visual Studio Code</code>.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/hello-world/pages/platform-help.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@php-sdk:hello-world:platform-help.adoc[]
 ---
 
@@ -23,11 +23,11 @@ A simple PHP orientation intro for _non-PHP_ folk who are evaluating the Couchba
 
 ## [](#installing-php-and-the-couchbase-php-sdk)Installing PHP and the Couchbase PHP SDK
 
-The Couchbase PHP SDK generally tracks PHP’s own [supported versions](https://www.php.net/supported-versions.php), and recommends the most recent "Active Support" version, except as specified in our documentation and especially the [release notes](../project-docs/sdk-release-notes.md).
+The Couchbase PHP SDK generally tracks PHP's own [supported versions](https://www.php.net/supported-versions.php), and recommends the most recent "Active Support" version, except as specified in our documentation and especially the [release notes](../project-docs/sdk-release-notes.md).
 
 As of June 2024, these versions are PHP 8.3 (Latest Active Support), 8.2 (Active Support), and 8.1 (Security Support) — see the table below for [supported versions and dates](#php-version-compatibility).
 
-In this section, we’ll recommend a known good installation path here for **the purposes of evaluating** Couchbase. Though we’ll call out some key sections where you may wish to override that for your needs, you and your in-house PHP experts will want to make a decision for ongoing development and deployment.
+In this section, we'll recommend a known good installation path here for **the purposes of evaluating** Couchbase. Though we'll call out some key sections where you may wish to override that for your needs, you and your in-house PHP experts will want to make a decision for ongoing development and deployment.
 
 The [PHP install page](https://www.php.net/manual/en/install.php) has full details and many options for installing PHP on various operating systems.
 
@@ -42,7 +42,7 @@ $ brew install php
 $ pecl install https://packages.couchbase.com/clients/php/couchbase-4.1.0.tgz
 ```
 
-<https://www.php.net/manual/en/install.unix.php> has information on installing on various Linux systems. Where there are no specific instructions on the official PHP page, or in our tested guidance below, it is worth consulting your distro’s trusted documentation, as there may be known-good repositories with PHP binaries to evaluate.
+<https://www.php.net/manual/en/install.unix.php> has information on installing on various Linux systems. Where there are no specific instructions on the official PHP page, or in our tested guidance below, it is worth consulting your distro's trusted documentation, as there may be known-good repositories with PHP binaries to evaluate.
 
 Once you have installed PHP, simply use `pecl` to install the Couchbase PHP SDK.
 
@@ -70,7 +70,7 @@ Windows downloads and instructions for the PHP SDK are available from [the insta
 
 ## [](#next-steps)Next Steps
 
-If you’re just starting with PHP then [the official PHP Manual](https://www.php.net/manual/en/index.php) is a great resource.
+If you're just starting with PHP then [the official PHP Manual](https://www.php.net/manual/en/index.php) is a great resource.
 
 ## [](#vscode)Using a Code Editor (Visual Studio Code)
 
@@ -79,11 +79,11 @@ Visual Studio Code is a free code editor which runs on Windows, Linux and MacOS 
 * <https://code.visualstudio.com/docs/setup/setup-overview>
 
 > [!NOTE]
-> we’ve given instructions for VS Code as it’s a currently popular, cross-platform, multi-language editor that’s seeing widespread use, and is easy to set up and get started. If you’re planning to primarily develop in PHP, you may prefer to look into using a full IDE like [PhpStorm](https://www.jetbrains.com/phpstorm/).
+> we've given instructions for VS Code as it's a currently popular, cross-platform, multi-language editor that's seeing widespread use, and is easy to set up and get started. If you're planning to primarily develop in PHP, you may prefer to look into using a full IDE like [PhpStorm](https://www.jetbrains.com/phpstorm/).
 
 ### [](#adding-php-development-support)Adding PHP Development Support
 
-VSCode is a flexible editor, with support for various programming languages. Though basic syntax highlighting for PHP is included in the box, you’ll find it useful to add an extension with support for development — debugging, discovery, and navigation — in your chosen programming language.
+VSCode is a flexible editor, with support for various programming languages. Though basic syntax highlighting for PHP is included in the box, you'll find it useful to add an extension with support for development — debugging, discovery, and navigation — in your chosen programming language.
 
 For PHP, we suggest using [PHP Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client).
 
@@ -101,7 +101,7 @@ For PHP, we suggest using [PHP Intelephense](https://marketplace.visualstudio.co
 
 ### [](#adding-the-code-command)Adding the `code` command
 
-If you work from the command-line, you’ll want to add the `code` command to allow you to edit a file directly.
+If you work from the command-line, you'll want to add the `code` command to allow you to edit a file directly.
 
 In VSCode, View the Command Palette (Ctrl+Shift+P or Cmd+Shift+P) and search for `Shell command: Install 'code' command in PATH` and press Enter.
 
@@ -109,7 +109,7 @@ You can now type `code MyExample.php` to open a single file in VSCode, or `code 
 
 ### [](#creating-a-project)Creating a project
 
-In the following example, we’ll open our terminal, make a new directory, set up a bare-bones project and run the scaffolding code.
+In the following example, we'll open our terminal, make a new directory, set up a bare-bones project and run the scaffolding code.
 
 ```console
 $ mkdir CouchbaseExample
@@ -160,4 +160,4 @@ As you read through the docs, you will see that many code examples link to the [
 
 ## [](#next-steps-2)Next steps
 
-That’s it! You are now ready to [start developing your Couchbase application](start-using-sdk.md).
+That's it! You are now ready to [start developing your Couchbase application](start-using-sdk.md).

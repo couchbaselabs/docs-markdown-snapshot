@@ -4,7 +4,7 @@ description: The Couchbase <em>Cluster Manager</em> runs on all the nodes of a
   cluster, maintaining essential per-node processes, and coordinating
   cluster-wide operations.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/cluster-manager.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:clusters-and-availability/cluster-manager.adoc[]
 ---
 
@@ -25,7 +25,7 @@ As shown, the Cluster Manager consists of two processes. The first, the _babysit
 
 The processes for which the _babysitter_ is responsible are:
 
-* _ns-server_: Manages the node’s participation in the cluster, as described in [ns-server](#ns-server), below.
+* _ns-server_: Manages the node's participation in the cluster, as described in [ns-server](#ns-server), below.
 * _kv engine_: Runs as part of the [Data Service](../services-and-indexes/services/data-service.md), which must be installed on at least one cluster-node. Provides access to [Data](../data/data.md).
 * _services_: One or more Couchbase [Services](../services-and-indexes/services/services.md) that optionally run on the node.
 * _xdcr_: The program for handling _Cross Data-Center Replication_ (XDCR). This is installed with the Data Service, but runs as an independent OS-level process, separate from the Cluster Manager itself. See [Availability](replication-architecture.md), for information.
@@ -69,7 +69,7 @@ For the practical steps to be following in adding and removing nodes, see [Add a
 
 ## [](#node-failure-detection)Node-Failure Detection
 
-Nodes within a Couchbase Server-cluster provide status on their health by means of a _heartbeat_ mechanism. Heartbeats are provided by all instances of the Cluster Manager, at regular intervals. Each heartbeat contains basic statistics on the node, which are used to assess the node’s condition.
+Nodes within a Couchbase Server-cluster provide status on their health by means of a _heartbeat_ mechanism. Heartbeats are provided by all instances of the Cluster Manager, at regular intervals. Each heartbeat contains basic statistics on the node, which are used to assess the node's condition.
 
 The _Master Services_ keep track of heartbeats received from all other nodes. If automatic failover is enabled, and no heartbeats are received from a node for longer than the default timeout period, the _Master Services_ may automatically fail the node over.
 

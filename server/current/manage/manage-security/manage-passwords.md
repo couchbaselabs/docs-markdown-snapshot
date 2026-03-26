@@ -3,7 +3,7 @@ title: Manage Passwords
 description: Couchbase Server lets you manage passwords for local users, and
   enforce password policies.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-passwords.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-security/manage-passwords.adoc[]
 ---
 
@@ -57,12 +57,12 @@ This feature ensures that users set their own private password as soon as possib
 
 ### [](#reset-password)Reset Passwords for Existing Users
 
-You can reset any local user’s password associated with your cluster.
+You can reset any local user's password associated with your cluster.
 
 > [!NOTE]
 > You cannot reset the password for external domain user accounts. The **Reset Password** button appears on the **Users** section only if the user is locally defined.
 
-To reset a local user’s password, do the following:
+To reset a local user's password, do the following:
 
 1. On the **Security** screen, select **Users & Groups**, and then select **Users**.  
 ![userSecurityRowClicked](../_images/manage-security/userSecurityRowClicked.png)
@@ -71,7 +71,7 @@ To reset a local user’s password, do the following:
 3. In the **Reset Password** dialog, enter the new password for the user in the **New Password** field and re-enter to confirm the password in the **Confirm Password** field.
 4. Select **Save** to save the password changes.
 
-The local user’s password is reset.
+The local user's password is reset.
 
 ### [](#set-initial-password)Set Initial Password for a New User
 
@@ -85,7 +85,7 @@ To set an initial password for a new user from the UI, do the following:
 
 1. On the **Security** screen, select **Users & Groups**, and then select **Users**.
 2. Select **Add User** to create a new user.
-3. In the **Add New User** dialog, enter the following user’s details:
+3. In the **Add New User** dialog, enter the following user's details:
 
   * Enter the **Username**.
   * Enter a temporary password in the **Password** field and re-enter it in the **Verify Password** field.
@@ -257,10 +257,10 @@ Successful call returns `200 OK` and the local user password is changed.
 
 An administrator can force a password change for a local user.
 
-To change your password when prompted at the login screen, whether you’re a new user or an existing user, do the following:
+To change your password when prompted at the login screen, whether you're a new user or an existing user, do the following:
 
 1. Open the Couchbase Web Console UI.
-2. Enter your temporary password if you’re a new user or current password if you’re an existing user. You’re redirected to the **Provide New Password** dialog.
+2. Enter your temporary password if you're a new user or current password if you're an existing user. You're redirected to the **Provide New Password** dialog.
 3. Enter the new password in the **New Password** field and re-enter it in the **Confirm Password** field.
 4. Select **Change Password** to save the new password.
 

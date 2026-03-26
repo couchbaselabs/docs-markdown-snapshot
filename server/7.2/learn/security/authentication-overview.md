@@ -4,7 +4,7 @@ description: To access Couchbase Server, users must be authenticated.
   <em>Authentication</em> is a process for identifying who is attempting to
   access a system.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/security/authentication-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:security/authentication-overview.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:7.2@server:learn:security/authentication-overview.adoc[]
 
 # Understanding Authentication
 
-> To access Couchbase Server, users must be authenticated. _Authentication_ is a process for identifying who is attempting to access a system. Subsequent to successful authentication, _authorization_ can be performed, whereby the user’s appropriate access-level is determined. 
+> To access Couchbase Server, users must be authenticated. _Authentication_ is a process for identifying who is attempting to access a system. Subsequent to successful authentication, _authorization_ can be performed, whereby the user's appropriate access-level is determined. 
 
 ## [](#passing-credentials)Authentication Options
 
@@ -53,7 +53,7 @@ In ascending order of strength, the Couchbase password-authentication mechanisms
 * _SCRAM-SHA256_: One of a group of hash functions referred to as _SHA2_, SCRAM-SHA256 uses a 256-bit key.
 * _SCRAM-SHA512_: Another hash function from the _SHA2_ group, SCRAM-SHA512 uses a 512-bit key; and is the strongest supported authentication protocol.
 
-During initial client-server negotiation, the strongest authentication protocol supported by both Couchbase Server and the application’s client OS is selected for use. For example, if the client supports only the PLAIN protocol, the PLAIN protocol is used; but if the client also supports the SCRAM-SHA1 protocol, then SCRAM-SHA1 is used.
+During initial client-server negotiation, the strongest authentication protocol supported by both Couchbase Server and the application's client OS is selected for use. For example, if the client supports only the PLAIN protocol, the PLAIN protocol is used; but if the client also supports the SCRAM-SHA1 protocol, then SCRAM-SHA1 is used.
 
 A challenge-response method can be transmitted through both encrypted and unencrypted channels.
 
@@ -65,7 +65,7 @@ Couchbase Server supports the use of x.509 certificates, to authenticate clients
 
 Certificate-based authentication relies on a _Certificate Authority_ (CA) to validate identities and issue certificates. The certificate includes information such as the name of the entity it identifies, an expiration date, the name of the CA that issued the certificate, and the digital signature of the issuing CA.
 
-For a complete overview of Couchbase Server’s certificate-handling mechanisms, see [Certificates](certificates.md). For practical steps required to set up client and server certificates, see [Manage Certificates](../../manage/manage-security/manage-certificates.md)
+For a complete overview of Couchbase Server's certificate-handling mechanisms, see [Certificates](certificates.md). For practical steps required to set up client and server certificates, see [Manage Certificates](../../manage/manage-security/manage-certificates.md)
 
 ## [](#authorization)Authorization
 

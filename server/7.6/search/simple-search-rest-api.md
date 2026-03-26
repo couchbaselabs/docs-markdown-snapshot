@@ -3,7 +3,7 @@ title: Run a Simple Search with the REST API and curl/HTTP
 description: You can use the REST API and a curl command to run a search against
   a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/simple-search-rest-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:search:simple-search-rest-api.adoc[]
 ---
 
@@ -21,7 +21,7 @@ For more information about how the Search Service scores documents in search res
 * You have the Search Service enabled on a node in your cluster. For more information about how to deploy a new node and Services on your cluster, see [Manage Nodes and Clusters](../../current/manage/manage-nodes/node-management-overview.md).
 * Your user account has the **Search Admin** or **Search Reader** role for the bucket or buckets that contain the Search indexes you want to search.
 * You installed the Couchbase command-line tool (CLI).
-* You have the hostname or IP address for the node in your cluster where you’re running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../../current/manage/manage-nodes/list-cluster-nodes.md).
+* You have the hostname or IP address for the node in your cluster where you're running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../../current/manage/manage-nodes/list-cluster-nodes.md).
 * You have created a Search index.  
 For more information about how to create a Search index, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md) or [Create a Search Index with the REST API and curl/HTTP](create-search-index-rest-api.md).
 

@@ -2,7 +2,7 @@
 title: SQL++ Support for Couchbase Transactions
 description: SQL++ offers full support for Couchbase ACID transactions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/transactions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/transactions.adoc[]
 ---
 
@@ -64,7 +64,7 @@ Note that some Couchbase SDKs provide APIs to support Couchbase transactions. Fo
 
 ### [](#couchbase-transactions-with-the-cbq-shell)Couchbase Transactions with the cbq shell
 
-* To execute a transaction containing multiple statements, you can create the transaction one statement at a time. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction. In this case, you don’t need to set the `txid` parameter. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
+* To execute a transaction containing multiple statements, you can create the transaction one statement at a time. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction. In this case, you don't need to set the `txid` parameter. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
 * Alternatively, you can use the `tximplicit` parameter to run a single statement as a transaction. In this case, you do not need to specify the `txid` parameter either.
 * You can specify parameters for the Couchbase transaction using the `\SET` command.
 
@@ -91,7 +91,7 @@ Refer to [Roles](../../learn/security/roles.md) for details.
 > [!NOTE]
 > Query Mode
 > 
-> When a transaction executes a query statement, the transaction enters query mode, which means that the query is executed with the user’s query permissions. Any key-value operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
+> When a transaction executes a query statement, the transaction enters query mode, which means that the query is executed with the user's query permissions. Any key-value operations which are executed by the transaction _after_ the query statement are _also_ executed with the user's query permissions. These may or may not be different to the user's data permissions; if they are different, you may get unexpected results.
 
 ## [](#worked-example)Worked Example
 

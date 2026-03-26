@@ -3,7 +3,7 @@ title: Managing Connections
 description: This section describes how to connect the Go Analytics SDK to an
   Analytics cluster.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:go-analytics-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -40,7 +40,7 @@ Typically, an Enterprise Analytics cluster will be behind a load balancer, and y
 
 You must specify the schema — either `https://` (for TLS) or `http://` (for insecure connections — perhaps on a development machine) in the connection string. The default port for insecure connections is port `80`.
 
-If you’re connecting to a cluster directly, without a load balancer, you can specify the port in the connection string: `<https://analytics.example.com:18095>`. For a standalone Analytics cluster, the port is usually `18095` (or `8095` for an insecure connection). Make sure to check with your administrator.
+If you're connecting to a cluster directly, without a load balancer, you can specify the port in the connection string: `<https://analytics.example.com:18095>`. For a standalone Analytics cluster, the port is usually `18095` (or `8095` for an insecure connection). Make sure to check with your administrator.
 
 ### [](#client-settings-parameters)Client Settings Parameters
 

@@ -1,7 +1,7 @@
 ---
 title: Download and API Reference
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.3/modules/ROOT/pages/download-links.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@spark-connector::download-links.adoc[]
 ---
 
@@ -30,4 +30,4 @@ This can also be used in a Java application and imported with Maven or Gradle.
 
 It can also be downloaded manually here: [Download (Scala 2.12 / Java)](http://packages.couchbase.com/clients/connectors/spark/3.3.5/Couchbase-Spark-Connector%5F2.12-3.3.5.zip) | [API Reference](http://docs.couchbase.com/sdk-api/couchbase-spark-connector-3.3.5/api)
 
-Note that the download contains an assembled jar, which means they contain all the dependencies in one "fat jar". This means that you don’t need to juggle multiple dependencies if you want to use the jar as part of Spark’s command line access tools (like the shell) or add it to the classpath of workers.
+Note that the download contains an assembled jar, which means they contain all the dependencies in one "fat jar". This means that you don't need to juggle multiple dependencies if you want to use the jar as part of Spark's command line access tools (like the shell) or add it to the classpath of workers.

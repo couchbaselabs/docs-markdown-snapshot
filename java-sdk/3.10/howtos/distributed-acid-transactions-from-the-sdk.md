@@ -3,7 +3,7 @@ title: Using Couchbase Transactions
 description: A practical guide on using Couchbase Distributed ACID transactions,
   via the Java SDK.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
@@ -475,7 +475,7 @@ cluster.transactions().run((ctx) -> {
 > [!IMPORTANT]
 > Query Mode
 > 
-> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user’s query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
+> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user's query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user's query permissions. These may or may not be different to the user's data permissions; if they are different, you may get unexpected results.
 
 ## [](#concurrent-operations)Concurrent Operations
 
@@ -511,7 +511,7 @@ var result = cluster.reactive().transactions().run((ctx) -> {
 
 To ensure key-value performance is not compromised, and to avoid conflicting writes, applications should **never** perform non-transactional _writes_ concurrently with transactional ones, on the same document.
 
-You can verify this when debugging your application by subscribing to the client’s event logger and checking for any `IllegalDocumentStateEvent` events. These events are raised when a non-transactional write has been detected and overridden.
+You can verify this when debugging your application by subscribing to the client's event logger and checking for any `IllegalDocumentStateEvent` events. These events are raised when a non-transactional write has been detected and overridden.
 
 ```java
 cluster.environment().eventBus().subscribe(event -> {

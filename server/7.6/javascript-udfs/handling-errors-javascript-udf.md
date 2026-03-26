@@ -3,7 +3,7 @@ title: Handling Errors in JavaScript Functions
 description: You can handle errors in JavaScript user-defined functions with the
   same standard exception mechanism you would use in any JavaScript code.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/javascript-udfs/pages/handling-errors-javascript-udf.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:javascript-udfs:handling-errors-javascript-udf.adoc[]
 ---
 
@@ -65,7 +65,7 @@ then an error object is returned:
 
 ## [](#function)Handle Errors with the Function
 
-In most cases, it’s better to use your JavaScript function to handle likely errors. You can provide a more user-friendly message or take an alternative course of action.
+In most cases, it's better to use your JavaScript function to handle likely errors. You can provide a more user-friendly message or take an alternative course of action.
 
 For example, the following function will add an airline record, but will return a `failure` message if the `try` SQL++ statement fails:
 

@@ -3,7 +3,7 @@ title: Monitor
 description: Monitoring of Couchbase Server can be performed by means of
   Couchbase Web Console, the CLI, and the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/monitor/monitor-intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:monitor/monitor-intro.adoc[]
 ---
 
@@ -38,7 +38,7 @@ The `cbstats` tool provides Data-Service statistics, for an individual, specifie
 
 ## [](#monitoring-with-the-rest-api)Monitoring with the REST API
 
-Couchbase Server provides a REST API for [Getting Cluster Statistics](../../rest-api/rest-statistics.md). Statistics are retrieved based on the specification of one or more _metrics_. Optionally, the statistics can be further defined through the specifying of a _function_; and/or _labels_ with values. An instance of _Prometheus_ runs on each node of the cluster; and the metrics for each node are duly stored in that node’s instance of Prometheus.
+Couchbase Server provides a REST API for [Getting Cluster Statistics](../../rest-api/rest-statistics.md). Statistics are retrieved based on the specification of one or more _metrics_. Optionally, the statistics can be further defined through the specifying of a _function_; and/or _labels_ with values. An instance of _Prometheus_ runs on each node of the cluster; and the metrics for each node are duly stored in that node's instance of Prometheus.
 
 For a complete list of metrics, see the [Metrics Reference](../../metrics-reference/metrics-reference.md).
 
@@ -52,4 +52,4 @@ The progressive desynchronization of nodes whose clock have been previously sync
 
 ## [](#monitoring-couchbase-metrics-with-prometheus)Monitoring Couchbase Metrics with Prometheus
 
-It’s also possible to set up a [Prometheus](https://prometheus.io/) monitor to consume metrics data from a Couchbase cluster. You can find an introduction on how to do this in [Configure Prometheus to Collect Couchbase Metrics](set-up-prometheus-for-monitoring.md)
+It's also possible to set up a [Prometheus](https://prometheus.io/) monitor to consume metrics data from a Couchbase cluster. You can find an introduction on how to do this in [Configure Prometheus to Collect Couchbase Metrics](set-up-prometheus-for-monitoring.md)

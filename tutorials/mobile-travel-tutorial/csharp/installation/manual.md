@@ -1,7 +1,7 @@
 ---
 title: Manual
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/installation/manual.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:csharp/installation/manual.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:tutorials:mobile-travel-tutorial:csharp/installation/manual.adoc[]
 * Visual C++ 2017 (**only Windows Users**): Install the Microsoft Visual C++ Compiler for Python Downloadable from [here](https://www.microsoft.com/en-us/download/details.aspx?id=44266).
 * Python 3.4+: downloadable from [python.org](https://www.python.org/downloads/). This should come packaged with pip3
 
-**Windows Users** : If you are developing on Windows, make sure that Python is included in your system’s PATH environment variable. You can follow instructions [here](https://www.pythoncentral.io/add-python-to-path-python-is-not-recognized-as-an-internal-or-external-command/)to set your PATH variable.
+**Windows Users** : If you are developing on Windows, make sure that Python is included in your system's PATH environment variable. You can follow instructions [here](https://www.pythoncentral.io/add-python-to-path-python-is-not-recognized-as-an-internal-or-external-command/)to set your PATH variable.
 * Git: downloadable from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 Try it out
@@ -147,7 +147,7 @@ cd try-cb-python
 
 * Verify the pip installation.  
 If you are developing on Windows, **pip.exe** will be found in the "Scripts" sub directory under the Python installation directory.  
-Add the path to the "Scripts" folder to the system’s PATH environment variable.  
+Add the path to the "Scripts" folder to the system's PATH environment variable.  
 You can follow instructions [here](https://www.pythoncentral.io/add-python-to-path-python-is-not-recognized-as-an-internal-or-external-command/)to set your PATH variable.  
 Verify that pip is recognized by typing the following in the cmd terminal. You should see the help menu.  
 ```bash  

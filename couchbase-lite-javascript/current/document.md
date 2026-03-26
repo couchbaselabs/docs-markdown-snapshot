@@ -2,7 +2,7 @@
 title: Documents
 description: Couchbase Lite concepts -- Data model -- Documents
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/document.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::document.adoc[]
 ---
 
@@ -71,7 +71,7 @@ Couchbase Lite JavaScript natively works with JSON data. Documents are JavaScrip
 
 An individual document often represents a single instance of an object in application code.
 
-You can consider a document as the equivalent of a 'row' in a relational table, with each of the document’s attributes being equivalent to a 'column'.
+You can consider a document as the equivalent of a 'row' in a relational table, with each of the document's attributes being equivalent to a 'column'.
 
 Documents can contain nested structures. This allows developers to express many-to-many relationships without requiring a reference or join table, and is naturally expressive of hierarchical data.
 
@@ -143,7 +143,7 @@ Learn more about [Using Dictionaries](#using-dictionaries) and [Using Arrays](#u
 
 ## [](#working-with-data)Working with Data
 
-### [](#checking-a-documents-properties)Checking a Document’s Properties
+### [](#checking-a-documents-properties)Checking a Document's Properties
 
 To check whether a given property exists in the document, use standard JavaScript property access or the `hasOwnProperty()` method.
 
@@ -162,7 +162,7 @@ if (doc.hasOwnProperty("rate")) {
 }
 ```
 
-If you try to access a property which doesn’t exist in the document, JavaScript will return `undefined`.
+If you try to access a property which doesn't exist in the document, JavaScript will return `undefined`.
 
 ### [](#date-accessors)Date Handling
 
@@ -325,7 +325,7 @@ For more on working with blobs, see [Blobs](blob.md)
 
 ## [](#document-retrieval)Retrieving Documents
 
-You can retrieve documents by their ID using the collection’s `document()` method.
+You can retrieve documents by their ID using the collection's `document()` method.
 
 Example 4\. Retrieve a document
 
@@ -360,7 +360,7 @@ if (docToUpdate) {
 
 ## [](#document-delete)Deleting Documents
 
-You can delete a document using the collection’s `deleteDocument()` method.
+You can delete a document using the collection's `deleteDocument()` method.
 
 Example 6\. Delete a document
 
@@ -375,7 +375,7 @@ if (deleteDoc) {
 
 ## [](#batch-operations)Batch operations
 
-If you’re making multiple changes to a database at once, it’s faster to group them together. The following example persists multiple documents in a batch.
+If you're making multiple changes to a database at once, it's faster to group them together. The following example persists multiple documents in a batch.
 
 Example 7\. Batch operations
 
@@ -419,7 +419,7 @@ async function bulkUpdate() {
 }
 ```
 
-At the **local** level this operation is still transactional: no other `Database` instances, including ones managed by the replicator can make changes during the execution of the batch operation, and other instances will not see partial changes. But Couchbase Mobile is a distributed system, and due to the way replication works, there’s no guarantee that Sync Gateway or other devices will receive your changes all at once.
+At the **local** level this operation is still transactional: no other `Database` instances, including ones managed by the replicator can make changes during the execution of the batch operation, and other instances will not see partial changes. But Couchbase Mobile is a distributed system, and due to the way replication works, there's no guarantee that Sync Gateway or other devices will receive your changes all at once.
 
 ## [](#document-change-events)Document change events
 

@@ -3,7 +3,7 @@ title: "Eventing Service: Fundamentals"
 description: The Couchbase Eventing Service is a framework to operate on changes
   to data in real time. Events are changes to data in the Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:eventing:eventing-overview.adoc[]
 ---
 
@@ -18,13 +18,13 @@ The term 'mutation' generally refers to document changes happening in the Couchb
 
 Natively integrated with the Couchbase Data Platform, the Eventing Service does not require any third party solutions to manage and respond to data mutations. In an event-based architecture, all data changes are reactive and in real-time.
 
-For example, consider the number of mutations in the data cluster of an e-Commerce application when a customer places a new order. You can observe that: a new transaction record gets created, a new purchase-transaction gets appended to the User’s account, seller’s stock-inventory gets updated with a new purchase order. Each of these data mutations qualifies as an event in the cluster.
+For example, consider the number of mutations in the data cluster of an e-Commerce application when a customer places a new order. You can observe that: a new transaction record gets created, a new purchase-transaction gets appended to the User's account, seller's stock-inventory gets updated with a new purchase order. Each of these data mutations qualifies as an event in the cluster.
 
 A few sample events are listed below:
 
 * Capturing the sensor output from a patient.
 * Placing an order in an e-Commerce application.
-* A customer’s order causing a drop in the inventory.
+* A customer's order causing a drop in the inventory.
 * Change in the status of a project.
 * Removing a user from a transaction scoring application.
 * News article expires after a certain period of time.
@@ -115,9 +115,9 @@ Apart from notifications and alerts, Functions provide an option to propagate da
 
 As an Organization, you can use the Eventing Service in a wide variety of use cases. Be it in domains such as retail, healthcare, telecommunications, finance, marketing, media, or travel; you can leverage the Eventing Service to track data mutations.
 
-For an easy understanding, consider a sample use case in the banking and financial domain. Let us say the user performs a credit card transaction. Using the Event-Condition-Action model, you can design a custom workflow based on factors such as user’s credit limit, usage currency, and risk propositions.
+For an easy understanding, consider a sample use case in the banking and financial domain. Let us say the user performs a credit card transaction. Using the Event-Condition-Action model, you can design a custom workflow based on factors such as user's credit limit, usage currency, and risk propositions.
 
-As another sample use case, consider an organization operating in the Supply Chain Management domain. As a developer, using the Function’s Event-Condition-Action model, you can design a custom workflow in your inventory for stock replenishment. Functions help you to construct a business workflow that automatically triggers new stock replacements and maintains a set stock threshold.
+As another sample use case, consider an organization operating in the Supply Chain Management domain. As a developer, using the Function's Event-Condition-Action model, you can design a custom workflow in your inventory for stock replenishment. Functions help you to construct a business workflow that automatically triggers new stock replacements and maintains a set stock threshold.
 
 The rows in the below table list some popular scenarios where the Eventing Service across domains can be used.
 
@@ -145,7 +145,7 @@ Following are a few aspects of the onboarding process:
 
 * The Eventing Service is intrinsic to Couchbase Server; unlike Polling and Message Queue based external systems, it eliminates the need for an additional layer without involving multiple applications for tracking data mutations. All data mutations are handled in real-time, and the Eventing Service offers a centralized control for data governance.
 * When you transition to leverage the Eventing Service, application developers can use Couchbase Functions to manage business workflow changes swiftly. Application developers can program, test, debug and troubleshoot on a single Eventing Service platform, instead of managing multiple applications across different network layers.
-* After onboarding, you can manage and optimize the system throughput efficiently. If your data resides in the Couchbase cluster, based on aspects such as data workload, data mutation rate, and Function execution latency, you can either scale up vertically by adding additional workers or scale out horizontally via Couchbase’s elastic scaling option by adding another node.
+* After onboarding, you can manage and optimize the system throughput efficiently. If your data resides in the Couchbase cluster, based on aspects such as data workload, data mutation rate, and Function execution latency, you can either scale up vertically by adding additional workers or scale out horizontally via Couchbase's elastic scaling option by adding another node.
 * The Eventing Service provides an export and import option for code portability. Using this option, you can reuse the Eventing Function code to validate the execution logic in different environments with workload variations.
 * The Eventing Service is highly performant during the recursive restartability operations. You can undeploy a Function, pause for few cycles and then start the Eventing Function code. Deploying a Function after a time-lapse ensures that the Function execution is tested for restartability.
 * Eventing is compute oriented and leverages the latest trends in multi-core CPUs; therefore nodes selected for Eventing should optimally have a higher number of cores than nodes used for indexing.

@@ -3,7 +3,7 @@ title: User-Defined Functions
 description: You can call a user-defined function in any expression where you
   can call a built-in function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/userfun.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/userfun.adoc[]
 ---
 
@@ -25,7 +25,7 @@ To call a global function in a particular namespace, the function name must be a
 > [!NOTE]
 > The name of a user-defined function is case-sensitive, unlike that of a built-in function. You must call the user-defined function using the same case that was used when it was created.
 
-It’s not possible to call a user-defined function in an expression if the function has side effects, such as performing mutations. When you do this, an error is generated.
+It's not possible to call a user-defined function in an expression if the function has side effects, such as performing mutations. When you do this, an error is generated.
 
 ## [](#prerequisites)Prerequisites
 
@@ -164,7 +164,7 @@ Result
 
 Example 3\. External functions
 
-For this example, it’s assumed that you have created two external functions:
+For this example, it's assumed that you have created two external functions:
 
 1. A function called `geohash`, which depends on the JavaScript `encodeGeoHash` function in the `geohash-js` library;
 2. A function called `adjacent`, which depends on the JavaScript `calculateAdjacent` function in the `geohash-js` library.

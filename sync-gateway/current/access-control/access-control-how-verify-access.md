@@ -3,7 +3,7 @@ title: How to Verify Access
 description: How to verify Sync Gateway access to data in cloud-to-edge
   enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/access-control-how-verify-access.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:access-control:access-control-how-verify-access.adoc[]
 ---
 
@@ -32,7 +32,7 @@ Use the Admin REST API to see the:
 
 The `all_channels` property of a user account determines the channels a user can access. Its value is derived from the union of:
 
-* The user’s `admin_channels` property, which is set using the Admin REST API.
+* The user's `admin_channels` property, which is set using the Admin REST API.
 * The channels the user has been granted access to by [access()](sync-function/sync-function-api-access-cmd.md) calls from sync functions invoked for current revisions of documents.
 * The `all_channels` properties of any roles the user belongs to. These are themselves computed using the above rules.
 
@@ -53,7 +53,7 @@ The [output](#ex-output) shows that the user `pupshaw` has access to the followi
 | **1** | all through its own admin\_channels setting for the default collection.                    |
 | ----- | ------------------------------------------------------------------------------------------ |
 | **2** | collectionAChannel through its own admin\_channels setting for the collection collectionA. |
-| **3** | hoopy through the froods role’s admin\_channels setting in the default collection.         |
+| **3** | hoopy through the froods role's admin\_channels setting in the default collection.         |
 
 ```json
 {
@@ -94,9 +94,9 @@ curl http://localhost:4985/db/_role/frood
 
 The output shows that the role `froods` has access to the following channels:
 
-| **1** | hoopy through its role’s admin\_channels setting for the default collection.           |
+| **1** | hoopy through its role's admin\_channels setting for the default collection.           |
 | ----- | -------------------------------------------------------------------------------------- |
-| **2** | collectionA through its role’s admin\_channels setting for the collection collectionA. |
+| **2** | collectionA through its role's admin\_channels setting for the collection collectionA. |
 
 ```json
 {

@@ -3,7 +3,7 @@ title: Diagnosing and preventing Network Problems with Health Check
 description: In today's distributed and virtual environments, users will often
   not have full administrative control over their whole network.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/health-check.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.4@nodejs-sdk:howtos:health-check.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:4.4@nodejs-sdk:howtos:health-check.adoc[]
 
 # Diagnosing and preventing Network Problems with Health Check
 
-> In today’s distributed and virtual environments, users will often not have full administrative control over their whole network. Health Check introduces various diagnostics tools to request information regarding the state of the underlying connections from the SDK, giving instant health check information. 
+> In today's distributed and virtual environments, users will often not have full administrative control over their whole network. Health Check introduces various diagnostics tools to request information regarding the state of the underlying connections from the SDK, giving instant health check information. 
 
 Diagnosing problems in distributed environments is far from easy, so Couchbase provides a _Health Check API_ with `Diagnostics()` for a look at what the client believes is the current state of the SDKs connection to the cluster. More extensive discussion of the uses of Health Check can be found in the [Health Check Concept Guide](../concept-docs/health-check.md).
 

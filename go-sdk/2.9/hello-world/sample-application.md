@@ -4,7 +4,7 @@ description: Discover how to program interactions with the Couchbase Server via
   the data, Query, and search services -- using the Travel Sample Application
   with the built-in Travel Sample data Bucket.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/hello-world/pages/sample-application.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.9@go-sdk:hello-world:sample-application.adoc[]
 ---
 
@@ -54,7 +54,7 @@ You can now try out searching for flights, booking flights, and searching for ho
 
 The backend code shows Couchbase Go SDK in action with Query and Search, but also how to plug together all of the elements and build an application with Couchbase Server and the Go SDK.
 
-Here’s the Search code, where `AirportSearch` checks to see whether the search term is a three or four letter FAA or ICAO abbreviation, and if not searches for it as an airport name:
+Here's the Search code, where `AirportSearch` checks to see whether the search term is a three or four letter FAA or ICAO abbreviation, and if not searches for it as an airport name:
 
 ```golang
 func AirportSearch(w http.ResponseWriter, req *http.Request) {

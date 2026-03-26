@@ -4,7 +4,7 @@ description: A Couchbase-Server <em>cluster</em> consists of one or more
   <em>nodes</em>, each of which is a system running an instance of Couchbase
   Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/nodes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:clusters-and-availability/nodes.adoc[]
 ---
 
@@ -80,7 +80,7 @@ In Couchbase Server 7.6 and later, you can deploy arbiter nodes. These nodes do 
 
 An arbiter node helps your cluster in two ways:
 
-* It provides [fast failover](#fast-failover) which helps decrease the cluster’s latency when reacting to a failover.
+* It provides [fast failover](#fast-failover) which helps decrease the cluster's latency when reacting to a failover.
 * It provides [quorum arbitration](../../install/deployment-considerations-lt-3nodes.md#quorum-arbitration) that helps avoid contention issues if the nodes in the cluster become partitioned.
 
 ## [](#rebalance-and-fail-over)Rebalance, Removal, Failover, and Recovery
@@ -91,7 +91,7 @@ Node _removal_ allows a node to be taken out of a cluster in a highly controlled
 
 _Failover_ is the process by which a cluster-node can be removed; either _proactively_, to support required maintenance, or _reactively_, in the event of an outage. Two types of failover are supported, which are _graceful_ (for Data Service nodes only) and _hard_ (for nodes of any kind). Both types can be applied manually when needed. _Hard_ can also be applied automatically, by means of prior configuration: in which case it becomes known as _automatic_ failover. See [Failover](failover.md), for more information.
 
-_Recovery_ allows a previously failed-over node to be added back into its original cluster, by means of the _rebalance_ operation. _Full_ recovery involves removing all pre-existing data from, and assigning new data to, the node that is being recovered. _Delta_ recovery maintains and resynchronizes a node’s pre-existing data. See [Recovery](recovery.md), for more information.
+_Recovery_ allows a previously failed-over node to be added back into its original cluster, by means of the _rebalance_ operation. _Full_ recovery involves removing all pre-existing data from, and assigning new data to, the node that is being recovered. _Delta_ recovery maintains and resynchronizes a node's pre-existing data. See [Recovery](recovery.md), for more information.
 
 ### [](#fast-failover)Fast Failover
 
@@ -126,7 +126,7 @@ Clusters and the individual nodes they contain must be _named_. Names can always
 
 When a cluster is first created, it is necessarily a single-node cluster. The new cluster requires _two_ names:
 
-* A _cluster_ name. Once defined, this provides a convenient, verbal reference, which will never be used in programmatic or networked access. The name can be of any length, can make use of any symbols (for example: `%`, `$`, `!`, `#`), and can include spaces. The name can be changed at any time during the life of the cluster, irrespective of the cluster’s configuration.
+* A _cluster_ name. Once defined, this provides a convenient, verbal reference, which will never be used in programmatic or networked access. The name can be of any length, can make use of any symbols (for example: `%`, `$`, `!`, `#`), and can include spaces. The name can be changed at any time during the life of the cluster, irrespective of the cluster's configuration.
 * A _node_ name. This will be used in programmatic and networked access: indeed, all the other nodes in the cluster will access this node by means of this name; which must be one of the following:
 
   * The IP address of the underlying host. This can be of either the IPv4 or IPv6 family.
@@ -161,7 +161,7 @@ Node-renaming is permitted only for single-node clusters. A node-name cannot be 
 
 When an already provisioned node is to be added to an existing, single-node cluster, the new node must be referenced by means of either the IP address or the hostname of the underlying host. Once added, the new node is named in accordance with that reference. For information on node-addition by means of the UI, the CLI, and the REST API, see [Add a Node and Rebalance](../../manage/manage-nodes/add-node-and-rebalance.md).
 
-When a new node, prior to its provisioning, is to be joined to the existing, single-node cluster, it must reference the single-node cluster by means of either the IP address or the hostname of the single-node cluster’s underlying host. The new node gets automatically named with the IP address of its own underlying host. For information on joining a cluster, see [Join a Cluster and Rebalance](../../manage/manage-nodes/join-cluster-and-rebalance.md).
+When a new node, prior to its provisioning, is to be joined to the existing, single-node cluster, it must reference the single-node cluster by means of either the IP address or the hostname of the single-node cluster's underlying host. The new node gets automatically named with the IP address of its own underlying host. For information on joining a cluster, see [Join a Cluster and Rebalance](../../manage/manage-nodes/join-cluster-and-rebalance.md).
 
 When a new node is either added or joined to an existing, single-node cluster, and the original node was named with the default, loopback address, the original node is automatically renamed with the IP address of its underlying host. (Specifically, the original node opens a connection to the new node, determines the interface it is using for the source port, and adopts the name that corresponds to that interface.) This name-change persists even in the event that the addition of the second node, when initiated by means of Couchbase Web Console, is subsequently cancelled prior to the required, concluding rebalance.
 

@@ -3,7 +3,7 @@ title: DROP COLLECTION
 description: The DROP COLLECTION statement enables you to delete a named
   collection from a scope.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/dropcollection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/dropcollection.adoc[]
 ---
 
@@ -44,7 +44,7 @@ When you specify a collection name without a path, you must set the [query conte
 
 ### [](#if-exists)IF EXISTS Clause
 
-The optional `IF EXISTS` clause enables the statement to complete successfully when the specified collection doesn’t exist. If the collection does not exist within the specified scope, then:
+The optional `IF EXISTS` clause enables the statement to complete successfully when the specified collection doesn't exist. If the collection does not exist within the specified scope, then:
 
 * If this clause is not present, an error is generated.
 * If this clause is present, the statement does nothing and completes without error.

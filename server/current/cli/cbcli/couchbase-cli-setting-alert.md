@@ -2,7 +2,7 @@
 title: setting-alert
 description: Modifies alert settings
 editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-setting-alert.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbcli/couchbase-cli-setting-alert.adoc[]
 ---
 
@@ -168,7 +168,7 @@ Specifies that an email alert should be sent if the disk analyzer process gets s
 
 \--alert-memory-threshold
 
-Specifies that an email alert should be sent when any node’s system memory usage exceeds a threshold.
+Specifies that an email alert should be sent when any node's system memory usage exceeds a threshold.
 
 \--alert-bucket-history-size
 

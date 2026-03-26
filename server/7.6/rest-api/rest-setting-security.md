@@ -3,7 +3,7 @@ title: Configure On-the-Wire Security
 description: Establish and retrieve cluster-wide settings for the use of
   encryption and cipher-suites.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-setting-security.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:rest-setting-security.adoc[]
 ---
 
@@ -57,7 +57,7 @@ The syntax for the `GET` and `POST` methods includes the following:
 * `service-name`. If provided, determines the service to which settings are either written with `POST`, or read with `GET`. The value of `service-name` can be any one of the following: `data` (Data Service), `fullTextSearch` (Search Service), `index` (Index Service), `eventing` (Eventing Service), `query` (Query Service), `analytics` (Analytics Service), `backup` (Backup Service), `clusterManager` (Cluster Manager). If no `service-name` is provided, _global_ settings are written or read.
 * `disableUIOverHttp`. Whether access to Couchbase Web Console should be disabled over http. Default is `false`, meaning that the console can be accessed over http. This parameter can only be set globally.
 * `disableUIOverHttps`. Whether access to Couchbase Web Console should be disabled over https. Default is `false`, meaning that the console can be accessed over https. This parameter can only be set globally.
-* `disableWWWAuthenticate`. Whether to disable Couchbase Server’s responding to unauthenticated requests with _WWW-Authenticate_. Default is `false`, meaning that Couchbase Server responds to unauthenticated requests with _WWW-Authenticate_. This parameter can only be set globally.
+* `disableWWWAuthenticate`. Whether to disable Couchbase Server's responding to unauthenticated requests with _WWW-Authenticate_. Default is `false`, meaning that Couchbase Server responds to unauthenticated requests with _WWW-Authenticate_. This parameter can only be set globally.
 * `responseHeaders`. A list of response headers.
 * `allowedHosts`. Specifies a list of naming conventions that must be met by the name of any node that is to be added or joined to the cluster. This parameter, which is available only in 7.1.1+, is described separately, in [Restrict Node-Addition](rest-specify-node-addition-conventions.md). This parameter can only be set globally.
 * `allowNonLocalCACertUpload`. Whether the `POST` method and `/controller/uploadClusterCA` URI (which are deprecated in 7.1) can be used to upload CA certificates from a node other than localhost. Value can be `true` or `false` (the default). For information, see [Upload and Retrieve the Root Certificate](deprecated-security-apis/upload-retrieve-root-cert.md). This parameter can only be set globally.
@@ -70,7 +70,7 @@ The syntax for the `GET` and `POST` methods includes the following:
 * `tlsMinVersion`. Specifies the minimum TLS version accepted by the cluster. Can be the default `tlsv1.2` or `tlsv1.3`. It can be set either globally or per service.  
 > [!NOTE]  
 > The settings `tlsv1` and `tlsv1.1` were deprecated in Couchbase Server Version 7.2 and removed in Coucbase Server 7.6\. The Couchbase Server upgrade process from pre-7.6 to 7.6 or later sets this value to `tlsv1.2` if it was set to a lower value.
-* `honorCipherOrder`. Specifies whether the server uses its own cipher-suite preference, rather than the client’s. The cluster’s list of accepted cipher-suites can be defined with the `cipherSuites` flag (see below). The default value of `honorCipherOrder` is `true`: a setting of `false` is _not_ recommended, since insecure. This parameter can be set either globally, or per service.
+* `honorCipherOrder`. Specifies whether the server uses its own cipher-suite preference, rather than the client's. The cluster's list of accepted cipher-suites can be defined with the `cipherSuites` flag (see below). The default value of `honorCipherOrder` is `true`: a setting of `false` is _not_ recommended, since insecure. This parameter can be set either globally, or per service.
 * `cipherSuites`. Specifies a list of the cipher suites to be used, in order of preference. The argument must be a list of cipher-suites.  
 This parameter can be set either globally, or per service. If the parameter is set for a given service, each listed cipher-suite must appear as a member of the array that is the value of the non-configurable **supportedCipherSuites** setting for the service. If the parameter is set globally, each listed cipher-suite can be used by a given service only if it appears as a member of **supportedCipherSuites** for that service.
 * `scramSha1Enabled`, `scramSha256Enabled`, or `scramSha512Enabled`. Whether the specified password-authentication mechanism — which can be used by applications accessing the Data Service without a TLS-encrypted connection — is enabled or disabled. Value can be `true` (the default, meaning _enabled_) or `false` (meaning _disabled_). This setting is established _globally_, and must not specify the `service-name`.  
@@ -82,14 +82,14 @@ Note that for Couchbase Server Version 7.6 and later, disablement of all three S
 * `pbkdf2HmacSha512Iterations`. Iterations parameter of `pbkdf2-hmac-sha512`, used only if `pbkdf2-hmac-sha512` is specified for Data-Service password hashing, as the value of `passwordHashAlg`. Specified as a number of iterations. Default is `10000`.
 * `scramShaIterations`. Sets the number of iterations for all `scram-sha` hashes (`scram-sha1`, `scram-sha256`, and `scram-sha512`), if they are not disabled. Specified as a number of iterations. Default is `15000`.
 * `intCredsRotationInterval`. Interval at which Couchbase Server rotates internal credentials globally. Specified in milliseconds. Default is `1800000` (30 minutes).
-* `validateNodeCertSan`. Whether Couchbase Server checks that the node’s hostname matches the _Subject Alternative Name_ (SAN) in that node’s certificate. Value can be `true` (which is the default) or `false`. A mismatch triggers an error in the following scenarios:
+* `validateNodeCertSan`. Whether Couchbase Server checks that the node's hostname matches the _Subject Alternative Name_ (SAN) in that node's certificate. Value can be `true` (which is the default) or `false`. A mismatch triggers an error in the following scenarios:
 
   * When the certificate is uploaded to the node
-  * When the node’s `hostname` changes during node-addition, or during cluster-initialization.
-  * When the node’s `hostname` changes due to use of an API or CLI (for example, the [node-init](#cli:cbcli/couchbase-cli-node-iniit.adoc) command).  
-These checks are performed to ensure that each node bears a certificate whose SAN matches the node’s hostname, thereby ensuring that other nodes will be able to verify the node’s identity when connecting with it.
+  * When the node's `hostname` changes during node-addition, or during cluster-initialization.
+  * When the node's `hostname` changes due to use of an API or CLI (for example, the [node-init](#cli:cbcli/couchbase-cli-node-iniit.adoc) command).  
+These checks are performed to ensure that each node bears a certificate whose SAN matches the node's hostname, thereby ensuring that other nodes will be able to verify the node's identity when connecting with it.
 
-* `allowHashMigrationDuringAuth` controls whether Couchbase Server automatically rehashes a locally-stored password if it was hashed using an algorithm other than the one set by `passwordHashAlg`. If you set this value to `true`, the user’s password is automatically rehashed using the new algorithm after authentication. See [Automatic Password Hash Migration](../learn/security/authentication-overview.md#password-hash-migration) for more information.  
+* `allowHashMigrationDuringAuth` controls whether Couchbase Server automatically rehashes a locally-stored password if it was hashed using an algorithm other than the one set by `passwordHashAlg`. If you set this value to `true`, the user's password is automatically rehashed using the new algorithm after authentication. See [Automatic Password Hash Migration](../learn/security/authentication-overview.md#password-hash-migration) for more information.  
 > [!NOTE]  
 > This setting only has an effect if the entire database cluster is running Couchbase Server 7.6 or later.
 
@@ -147,7 +147,7 @@ http://10.144.210.101:8091/settings/security \
 -d tlsMinVersion=tlsv1.2 \
 -d 'cipherSuites=["TLS_RSA_WITH_AES_128_CBC_SHA", "TLS_RSA_WITH_AES_256_CBC_SHA"]'
 
-The `disableUIOverHttp` flag is given a value of `true`, indicating that access to Couchbase Web Console will be disabled over http. The `disableUIOverHttps` flag is _not_ specified, meaning that access to Couchbase Web Console will _not_ be disabled over https, by default. The `clusterEncryptionLevel` is specified as `control`, indicating that only server-management information is passed in encrypted form between cluster-nodes: note that this parameter can only be set after the `node-to-node-encryption` CLI command has been used to enable internal network-security for the cluster, as described in [Manage Node-to-Node Encryption](../manage/manage-nodes/apply-node-to-node-encryption.md). The `tlsMinVersion` is specified as version 1.2\. The `honorCipherOrder` parameter is _not_ specified, meaning that it retains its default value of `true`; which ensures that the cluster’s own cipher-suites preference is used, rather than the client’s. The `cipherSuites` parameter is assigned a value that is a list of two cipher suites.
+The `disableUIOverHttp` flag is given a value of `true`, indicating that access to Couchbase Web Console will be disabled over http. The `disableUIOverHttps` flag is _not_ specified, meaning that access to Couchbase Web Console will _not_ be disabled over https, by default. The `clusterEncryptionLevel` is specified as `control`, indicating that only server-management information is passed in encrypted form between cluster-nodes: note that this parameter can only be set after the `node-to-node-encryption` CLI command has been used to enable internal network-security for the cluster, as described in [Manage Node-to-Node Encryption](../manage/manage-nodes/apply-node-to-node-encryption.md). The `tlsMinVersion` is specified as version 1.2\. The `honorCipherOrder` parameter is _not_ specified, meaning that it retains its default value of `true`; which ensures that the cluster's own cipher-suites preference is used, rather than the client's. The `cipherSuites` parameter is assigned a value that is a list of two cipher suites.
 
 If successful, the call returns an empty array:
 

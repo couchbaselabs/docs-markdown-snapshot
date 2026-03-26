@@ -1,7 +1,7 @@
 ---
 title: Classic Editor
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-UI-classic-editor-legacy.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-creating-index-from-UI-classic-editor-legacy.adoc[]
 ---
 
@@ -22,7 +22,7 @@ _Note a legacy index can only work on just one keyspace <bucket\_name>.\_default
 
 # [](#main)Creating a Legacy Index
 
-This section describes creating an Index on a bucket’s **\_default** scope/collection. This collection is created when upgrading from Buckets to Collections.
+This section describes creating an Index on a bucket's **\_default** scope/collection. This collection is created when upgrading from Buckets to Collections.
 
 To create a basic Search index on the \_default collection, through the Classic Editor:
 
@@ -34,7 +34,7 @@ To create a basic Search index on the \_default collection, through the Classic 
 Enter **travel-sample-index** as the name of the Search index you are creating in the **Index Name** text-box.  
 ![fts index name default](_images/fts-index-name-default.png)
 * Select the bucket **travel-sample** from the **Bucket** pull-down menu.  
-Use the pull-down menu provided for the Bucket field, on the upper-right, and select a bucket that you are allowed to access to via the cluster’s RBAC settings.  
+Use the pull-down menu provided for the Bucket field, on the upper-right, and select a bucket that you are allowed to access to via the cluster's RBAC settings.  
 ![fts index name and bucket default](_images/fts-index-name-and-bucket-default.png)
 * Save your index, left-click on the **Create Index** button near the bottom of the screen.  
 This is all you need to specify in order to create a basic index for test and development. No further configuration is required.  
@@ -46,7 +46,7 @@ This is all you need to specify in order to create a basic index for test and de
 
 In the **Couchbase Web Console** \> **Search** page.
 
-* Click on the index you just created (named "landmark-content-index") to expand the Index’s controls.
+* Click on the index you just created (named "landmark-content-index") to expand the Index's controls.
 * In the text area of the search box enter **+view +food +beach** this will search on all three keywords
 * Click on the blue **Search** button. You will get documents from both type hotel and type landmark  
 ![fts index default search](_images/fts-index-default-search.png)

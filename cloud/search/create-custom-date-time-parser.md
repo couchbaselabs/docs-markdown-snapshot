@@ -3,7 +3,7 @@ title: Create a Custom Date/Time Parser
 description: Create a custom date/time parser with the Couchbase Capella UI to
   tell the Search Service how to process a new date/time format.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-custom-date-time-parser.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:create-custom-date-time-parser.adoc[]
 ---
 
@@ -42,7 +42,7 @@ To create a custom date/time parser with the Capella UI in Advanced Mode:
 7. Click **Add Custom Date/Time Parser**
 8. In the **Date/Time Parser Name** field, enter a name for the date/time parser.
 9. In the **New Date and Time** field, enter a date/time layout with Go syntax.  
-For more information, see the documentation about the [Go Programming Language Time Package’s Layout Constant](https://pkg.go.dev/time#pkg-constants).
+For more information, see the documentation about the [Go Programming Language Time Package's Layout Constant](https://pkg.go.dev/time#pkg-constants).
 10. (Optional) To add an additional layout, click **Add** and enter a new layout.
 11. Click **Add Custom Date/Time Parser**.
 

@@ -2,7 +2,7 @@
 title: Getting Statistics
 description: XDCR replication-statistics can be returned by the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-xdcr-statistics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:rest-xdcr-statistics.adoc[]
 ---
 
@@ -19,13 +19,13 @@ GET /pools/default/buckets/<source_or_target_bucket>/stats/
 
 GET /pools/default/buckets/[source_bucket]/stats/[replications/<remote_UUID>/<source_bucket>/<target_bucket>/<statistic_name>]
 
-The endpoint `/pools/default/buckets/<source_or_target_bucket>/stats/` returns all statistical information for replications either _from_ or _to_ the specified bucket — depending on whether the replication’s source or target bucket is specified.
+The endpoint `/pools/default/buckets/<source_or_target_bucket>/stats/` returns all statistical information for replications either _from_ or _to_ the specified bucket — depending on whether the replication's source or target bucket is specified.
 
 Information on a statistic for a replication proceeding _from_ a specific source bucket _to_ a specific target bucket is returned by specifying the source bucket as the value of `source_or_target_bucket` and appending the replication-identifier `replications/<remote_UUID>/<source_bucket>/<target_bucket>/<statistic_name>` to the URI. Within the replication-identifier, `remote_UUID` is the universally unique identifier for the reference supporting the replication — this can be obtained by means of the `GET /pools/default/remoteClusters` method and URI — see [Getting a Reference](rest-xdcr-get-ref.md). The `source_bucket` and `target_bucket` are the source and target buckets for the replication, respectively. The `statistic_name` specifies the statistic to be returned.
 
 Note that all elements in the replication-identifier following `replications` must be _encoded_: thus, each forward-slash must be represented as `%2F`. A list of the values that can be specified as `statistic_name` is provided in [Curl Syntax](#curl-syntax), below.
 
-To return statistics for the source bucket (whether or not the replication-identifier is used), the source cluster’s Full Admin, Cluster Admin, XDCR Inbound, or XDCR Admin role is required. To return statistics for the target bucket, the target cluster’s Full Admin, XDCR Admin, or XDCR Inbound role is required.
+To return statistics for the source bucket (whether or not the replication-identifier is used), the source cluster's Full Admin, Cluster Admin, XDCR Inbound, or XDCR Admin role is required. To return statistics for the target bucket, the target cluster's Full Admin, XDCR Admin, or XDCR Inbound role is required.
 
 ## [](#curl-syntax)Curl Syntax
 
@@ -38,7 +38,7 @@ curl -u <source-username>:<source-password> \
   /pools/default/buckets/<source_bucket>/stats\
   /replications%2F<remote_UUID>%2F<source_bucket>%2F<target_bucket>%2F<statistic_name>
 
-If the replication-identifier is _not_ used, and the _target_ cluster’s IP address or domain-name is applied, the target cluster’s username and password must be provided, and the target bucket must be specified.
+If the replication-identifier is _not_ used, and the _target_ cluster's IP address or domain-name is applied, the target cluster's username and password must be provided, and the target bucket must be specified.
 
 The `remote_UUID` is the universally unique identifier for the replication, which is obtained by means of the `GET /pools/default/remoteClusters` method and URI — see [Getting a Reference](rest-xdcr-get-ref.md).
 

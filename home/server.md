@@ -1,7 +1,7 @@
 ---
 title: Couchbase Server
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/server.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home::server.adoc[]
 ---
 
@@ -65,7 +65,7 @@ Explore Couchbase [Tutorials](https://developer.couchbase.com/tutorials/) to lea
 
 Build your first sample app
 
-* [Developer’s Intro](../server/current/guides/kv-operations.md)
+* [Developer's Intro](../server/current/guides/kv-operations.md)
 * [Data Model](../server/current/learn/data/document-data-model.md)
 * [Hello World Using SDKs](../java-sdk/current/hello-world/start-using-sdk.md)
 * [CRUD Using SDKs](../java-sdk/current/howtos/kv-operations.md)
@@ -206,11 +206,11 @@ Find information about platform support changes, deprecation notifications, nota
 
 ###### 
 
-What’s New
+What's New
 
 Find information about new features and enhancements in a release.
 
-[What’s new](../server/current/introduction/whats-new.md)
+[What's new](../server/current/introduction/whats-new.md)
 
 ###### 
 

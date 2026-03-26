@@ -3,7 +3,7 @@ title: Collecting Information and Logging in the C (libcouchbase) SDK
 description: This page describes how to enable debug logging in the C SDK and
   debug application crashes and potential bugs.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:c-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:c-sdk:howtos:collecting-information-and-logging.adoc[]
 
 ## [](#library-logging)Library logging
 
-The C SDK offers a basic logging facility through which its various subsystems can output debug and error information. This information provides details of the library’s internals and additional error information which may otherwise not be accessible via other APIs. Logging may be enabled using environment variables, a connection string directive, or `lcb_cntl`
+The C SDK offers a basic logging facility through which its various subsystems can output debug and error information. This information provides details of the library's internals and additional error information which may otherwise not be accessible via other APIs. Logging may be enabled using environment variables, a connection string directive, or `lcb_cntl`
 
 The most common way to enable logging is to set the `LCB_LOGLEVEL` environment variable to a number between 1 and 5, with 5 being the most verbose and 1 being the least verbose. Note that the client logs will go to standard error:
 

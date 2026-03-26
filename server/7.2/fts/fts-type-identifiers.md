@@ -1,7 +1,7 @@
 ---
 title: Specifying Type Identifiers
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-type-identifiers.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-type-identifiers.adoc[]
 ---
 
@@ -34,7 +34,7 @@ Each document that contains a field with that name is duly included in the index
 
 ## [](#doc-id-up-to-separator)Doc ID up to separator
 
-The characters in the ID of each document, up to but not including the separator. For example, if the document’s ID is `hotel_10123`, the value `hotel` is determined by the index to be the type of document. The value entered into the field should be the separator-character used in the ID: for example, `_`, if that character is the underscore
+The characters in the ID of each document, up to but not including the separator. For example, if the document's ID is `hotel_10123`, the value `hotel` is determined by the index to be the type of document. The value entered into the field should be the separator-character used in the ID: for example, `_`, if that character is the underscore
 
 ## [](#doc-id-with-regex)Doc ID with regex
 

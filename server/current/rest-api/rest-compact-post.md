@@ -2,7 +2,7 @@
 title: Performing Compaction Manually
 description: Couchbase Server allows a bucket's data to be compacted manually.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-compact-post.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rest-compact-post.adoc[]
 ---
 
@@ -11,11 +11,11 @@ link: xref:server:rest-api:rest-compact-post.adoc[]
 
 # Performing Compaction Manually
 
-> Couchbase Server allows a bucket’s data to be compacted manually. 
+> Couchbase Server allows a bucket's data to be compacted manually. 
 
 ## [](#description)Description
 
-Couchbase Server allows a specified bucket’s data to be compacted by the administrator, manually. _Full Admin_ and _Cluster Admin_ permissions are required.
+Couchbase Server allows a specified bucket's data to be compacted by the administrator, manually. _Full Admin_ and _Cluster Admin_ permissions are required.
 
 ## [](#http-methods-and-uris)HTTP methods and URIs
 

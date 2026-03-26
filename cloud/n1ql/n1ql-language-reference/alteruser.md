@@ -2,7 +2,7 @@
 title: ALTER USER
 description: The ALTER USER statement enables you to alter the details of an existing user.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/alteruser.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/alteruser.adoc[]
 ---
 
@@ -15,12 +15,12 @@ link: xref:cloud:n1ql:n1ql-language-reference/alteruser.adoc[]
 
 ## [](#purpose)Purpose
 
-Use the ALTER USER statement to update a local user’s attributes, such as their password, full name, and group. You can add the user to new groups or remove them from all existing groups.
+Use the ALTER USER statement to update a local user's attributes, such as their password, full name, and group. You can add the user to new groups or remove them from all existing groups.
 
 This statement helps manage access control and keeps user information up to date within Couchbase Server.
 
 > [!CAUTION]
-> When you add new groups to a user, the ALTER USER statement replaces the user’s existing group assignments with the new ones you provide. It updates the entire group list, so any existing groups not included in the new list will be removed.
+> When you add new groups to a user, the ALTER USER statement replaces the user's existing group assignments with the new ones you provide. It updates the entire group list, so any existing groups not included in the new list will be removed.
 
 ## [](#prerequisites)Prerequisites
 
@@ -45,8 +45,8 @@ alter-user ::= 'ALTER' 'USER' username ( 'PASSWORD' password )?
 
 | username | (Required) The unique identifier of the local user.                                                   |
 | -------- | ----------------------------------------------------------------------------------------------------- |
-| password | (Optional) A quoted string containing the user’s new password. It must be at least 6 characters long. |
-| name     | (Optional) A quoted string containing the user’s updated name.                                        |
+| password | (Optional) A quoted string containing the user's new password. It must be at least 6 characters long. |
+| name     | (Optional) A quoted string containing the user's updated name.                                        |
 | group    | (Optional) The group you want to assign the user to.                                                  |
 
 > [!NOTE]
@@ -58,7 +58,7 @@ alter-user ::= 'ALTER' 'USER' username ( 'PASSWORD' password )?
 
 ## [](#examples)Examples
 
-Example 1\. Change a user’s password and full name
+Example 1\. Change a user's password and full name
 
 ```sqlpp
 ALTER USER Hilary PASSWORD "newpassword" WITH "Hilary Chloe";

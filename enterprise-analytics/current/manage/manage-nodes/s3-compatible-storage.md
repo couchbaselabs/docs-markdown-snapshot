@@ -3,7 +3,7 @@ title: Configuring S3-Compatible Storage
 description: You can set up Couchbase Enterprise Analytics to use an
   S3-Compatible storage solution.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/s3-compatible-storage.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:manage:manage-nodes/s3-compatible-storage.adoc[]
 ---
 
@@ -59,7 +59,7 @@ Create the **Access key ID** and **Secret access key** for the bucket in Storage
 
 ## [](#configure-s3-credentials)Configure S3 Access Credentials
 
-You should place the credentials file in the `.aws` directory in the `Couchbase` user’s home directory. For example, `/home/couchbase/.aws/credentials` & `chmod’d` to `600` as a security best practice. Make sure to enter the credentials under the default profile. For more information about how to set configuration and credential files in the AWS CLI, see the [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html). You can verify that each node was properly configured using AWS CLI:
+You should place the credentials file in the `.aws` directory in the `Couchbase` user's home directory. For example, `/home/couchbase/.aws/credentials` & `chmod’d` to `600` as a security best practice. Make sure to enter the credentials under the default profile. For more information about how to set configuration and credential files in the AWS CLI, see the [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html). You can verify that each node was properly configured using AWS CLI:
 
 ```none
 aws s3 ls s3://bucket/prefix/ --endpoint-url https://storagegrid-endpoint.com

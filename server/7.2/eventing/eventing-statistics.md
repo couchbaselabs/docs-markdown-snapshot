@@ -3,7 +3,7 @@ title: Statistics
 description: Eventing Statistics, for each deployed Function, can be fetched
   from an Eventing node using the Web Console or using the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-statistics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:eventing:eventing-statistics.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:7.2@server:eventing:eventing-statistics.adoc[]
 
 > Eventing Statistics, for each deployed Function, can be fetched from an Eventing node using the Web Console or using the REST API. 
 
-**Via the Web Console’s Eventing page**
+**Via the Web Console's Eventing page**
 
 As of 7.0.0, Eventing Statistics can be displayed in the Eventing main UI page for each deployed Function by clicking on the Function name to expand the Function controls. These three key metrics or Deployment Statistics are updated every 10 seconds by default and displayed as numeric values:
 
@@ -34,7 +34,7 @@ In addition to the per Function numeric statistics above as of 7.0.0 there are t
 
 In addition, per Function Statistics the Web Console or using the REST API.
 
-**Via the Web Console’s custom Dashboards**
+**Via the Web Console's custom Dashboards**
 
 Eventing Statistics, for each deployed Function, can be fetched from an Eventing node using the Web Console.
 
@@ -64,7 +64,7 @@ Note, you may click and expand any of the above graphs for any deployed Eventing
 
 Eventing statistics can be fetched from each eventing node using REST API bound to localhost. The resulting JSON based responses are local to the node, and suitable for further aggregation across nodes of the cluster.
 
-You must have appropriate RBAC privileges to view an Eventing Function’s Application log in the UI or via the REST API. The role of either "Full Admin" or "Eventing Full Admin" can access any Eventing Function endpoint. For more information refer to [Eventing Role-Based Access Control](eventing-rbac.md).
+You must have appropriate RBAC privileges to view an Eventing Function's Application log in the UI or via the REST API. The role of either "Full Admin" or "Eventing Full Admin" can access any Eventing Function endpoint. For more information refer to [Eventing Role-Based Access Control](eventing-rbac.md).
 
 The following REST endpoint could be used to get the full set of Eventing statistics:
 

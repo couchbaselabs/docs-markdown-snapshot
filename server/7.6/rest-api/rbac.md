@@ -3,7 +3,7 @@ title: Role-Based Access Control (RBAC)
 description: Full  and Security Administrators can manage the Couchbase
   <em>Role-Based Access Control</em> (RBAC) system, using the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rbac.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:rbac.adoc[]
 ---
 
@@ -24,7 +24,7 @@ For more information, see [Authorization](../learn/security/authorization-overvi
 
 ## [](#get-information-on-users-and-groups)Retrieve Information on Roles, Permissions, Users, and Groups
 
-The REST API allows information to be retrieved on available roles and permissions; and on the cluster’s currently defined users and groups. Curl syntax, parameter-descriptions, examples, and call-specific responses are described in the subsections below. See the section [Responses](#responses), for further descriptions of error and other notifications.
+The REST API allows information to be retrieved on available roles and permissions; and on the cluster's currently defined users and groups. Curl syntax, parameter-descriptions, examples, and call-specific responses are described in the subsections below. See the section [Responses](#responses), for further descriptions of error and other notifications.
 
 ### [](#list-roles)List Roles
 
@@ -184,7 +184,7 @@ curl -X POST
 
 The `permissions-check-specification` must indicate whether the check is to be made at the level of the cluster (for permissions associated with global roles), or at the level of a bucket within the cluster (for permissions associated with bucket-specific roles); or at the level of a specific data-set associated with the buckets (such as `stats` or `views`); and must specify the permission (such as `read` or `write`) for which the check is to be made. Cluster, bucket, and data-set, if specified, must be separated from one another with a period. The permission to be checked for must be preceded by the `!` character.
 
-A successful call returns `200 OK`, plus an object indicating whether the authenticating administrator’s possession of the specified permission is `true` or `false`.
+A successful call returns `200 OK`, plus an object indicating whether the authenticating administrator's possession of the specified permission is `true` or `false`.
 
 For an alternative procedure whereby the authenticating administrator can retrieve information on their assigned roles, see [Who Am I?](rest-whoami.md).
 
@@ -288,7 +288,7 @@ The specified `password` must conform to the settings established as described i
 
 If successful, the call returns `200 OK`. No object is returned.
 
-Note that in Couchbase Server 7.1.1+, if an existing user’s password is to be changed, and their existing role-assignments are to be kept unchanged, the `/settings/rbac/users/local` URI can be used with the `PATCH` method: this allows the `password` parameter to be used, specifying a new password; and the `username` and `roles` parameters to be omitted.
+Note that in Couchbase Server 7.1.1+, if an existing user's password is to be changed, and their existing role-assignments are to be kept unchanged, the `/settings/rbac/users/local` URI can be used with the `PATCH` method: this allows the `password` parameter to be used, specifying a new password; and the `username` and `roles` parameters to be omitted.
 
 #### [](#example-create-local-users)Examples: Create Local Users, Assigning Roles
 
@@ -488,7 +488,7 @@ The creation of an already existing group or local or external user succeeds wit
 
 ## [](#backup-and-restore-users-and-groups)Backup and Restore Users and Groups
 
-Use the `/settings/rbac/backup` endpoint to back up and restore users and groups. It’s useful if you want to transfer or synchronize users between different database clusters.
+Use the `/settings/rbac/backup` endpoint to back up and restore users and groups. It's useful if you want to transfer or synchronize users between different database clusters.
 
 ### [](#backup-users-and-user-groups)Backup Users and User Groups
 

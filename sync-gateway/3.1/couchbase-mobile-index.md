@@ -2,7 +2,7 @@
 title: Couchbase Mobile
 description: Couchbase Mobile delivers the power of NoSQL to the Edge
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/couchbase-mobile-index.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::couchbase-mobile-index.adoc[]
 ---
 
@@ -47,7 +47,7 @@ Couchbase Mobile raises events when data changes in the database. These events c
 
 ![restapi](_images/icons/restapi.png) 
 
-REST APIs provide full programmatic access for reading and writing data over the web. Input and output is JSON, and it’s easy to integrate with existing apps and REST architectures
+REST APIs provide full programmatic access for reading and writing data over the web. Input and output is JSON, and it's easy to integrate with existing apps and REST architectures
 
 ### [](#stream-batch-api)Stream & Batch API
 

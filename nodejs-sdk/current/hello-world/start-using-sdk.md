@@ -3,7 +3,7 @@ title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Node.js SDK.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:nodejs-sdk:hello-world:start-using-sdk.adoc[]
 
 > Install, connect, try. A quick start guide to get you up and running with Couchbase and the Node.js SDK. 
 
-Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let’s look at those data operations, and installing the Node.js SDK.
+Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let's look at those data operations, and installing the Node.js SDK.
 
 Upsert with a Unique ID
 
@@ -23,7 +23,7 @@ const docId = crypto.randomUUID()
 await collection.upsert(docId, json)
 ```
 
-`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We’ll explore creating and retrieving data records in more detail [below](#create-read-update-delete), after walking through a quick installation.
+`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We'll explore creating and retrieving data records in more detail [below](#create-read-update-delete), after walking through a quick installation.
 
 ## [](#before-you-start)Before You Start
 
@@ -48,7 +48,7 @@ Install Couchbase Server locally, or in your private Cloud:
   * [Azure Marketplace](../../../server/current/cloud/couchbase-azure-marketplace.md)
   * [GCP Marketplace](../../../server/current/cloud/couchbase-gcp-cloud-launcher.md)
 
-For the example code below to run, you’ll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
+For the example code below to run, you'll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
 
 ### [](#prerequisites)Prerequisites
 
@@ -97,7 +97,7 @@ To make development easier, Couchbase plugins are available for VSCode and the I
 
 ### [](#grab-the-code)Grab the Code
 
-If you’re all set up and in a real hurry, just grab this code sample and add in your Capella details.
+If you're all set up and in a real hurry, just grab this code sample and add in your Capella details.
 
 Complete Hello World code sample \[**Click to open or collapse the listing**\] 
 
@@ -306,7 +306,7 @@ main()
 Otherwise, read on as we introduce the CRUD API and connection to Capella or self-managed Couchbase Server.
 
 > [!TIP]
-> There’s a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown.
+> There's a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown.
 
 > [!NOTE]
 > The code samples on this page use ESModules, but the Node.js SDK is fully compatible with CommonJS as well. Simply adjust the import syntax as needed.
@@ -428,7 +428,7 @@ Couchbase documents are organized into buckets, scopes, and collections. [CRUD o
 
 ### [](#json)JSON
 
-We’ll create a regular javascript object to start with:
+We'll create a regular javascript object to start with:
 
 * Javascript
 * Typescript
@@ -449,7 +449,7 @@ const json = {
 
 `insert` and `upsert` will both create a new document. The difference between the two is that if a document with that key already exists, the `insert` operation will fail, while the `upsert` operation will succeed, replacing the content.
 
-We need to provide a unique ID as the key, and we’ll use a UUID here:
+We need to provide a unique ID as the key, and we'll use a UUID here:
 
 Creating a new document
 
@@ -523,7 +523,7 @@ await collection.replace(docId, newJson, replaceOpts)
 ```
 
 > [!CAUTION]
-> When you replace a document, it’s usually good practice to use [optimistic locking](../howtos/concurrent-document-mutations.md). Otherwise, changes might get lost if two people change the same document at the same time.
+> When you replace a document, it's usually good practice to use [optimistic locking](../howtos/concurrent-document-mutations.md). Otherwise, changes might get lost if two people change the same document at the same time.
 
 ### [](#remove-delete)Remove (Delete)
 
@@ -546,9 +546,9 @@ Documents are organized into collections — collections of documents that belon
 
 For example, imagine you have two types of documents: customers and invoices. You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
 
-Each document belongs to exactly one collection. A document’s ID is unique _within_ the collection.
+Each document belongs to exactly one collection. A document's ID is unique _within_ the collection.
 
-Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection’s name is unique within the scope.
+Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection's name is unique within the scope.
 
 More details can be found on the [Data Model page](../concept-docs/data-model.md).
 

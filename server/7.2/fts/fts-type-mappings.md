@@ -1,7 +1,7 @@
 ---
 title: Specifying Type Mappings
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-type-mappings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-type-mappings.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:7.2@server:fts:fts-type-mappings.adoc[]
 
 # Specifying Type Mappings
 
-> Whereas a _type identifier_ tells the index how to determine the position in each document of the characters that specify the document’s type, a _type mapping_ specifies the characters themselves. 
+> Whereas a _type identifier_ tells the index how to determine the position in each document of the characters that specify the document's type, a _type mapping_ specifies the characters themselves. 
 
 If **Doc ID up to separator** is used as a type identifier, and the underscore is specified as the separator-character, a type mapping of _hotel_ ensures that `hotel_10123`, rather than `airline_10`, is indexed.
 
@@ -28,7 +28,7 @@ The display indicates that a single type mapping is currently defined, which is 
 
 This is a special type mapping created by every index automatically: it is applied to each document whose type _either_ does not match a user-specified type mapping, _or_ has no recognized type attribute. Therefore, if the default mapping is left enabled, all documents are included in the index, regardless of whether the user actively specifies type mappings.
 
-To ensure that only documents corresponding to the user’s specified type mappings are included in the index, the default type mapping must be disabled (see below for an example).
+To ensure that only documents corresponding to the user's specified type mappings are included in the index, the default type mapping must be disabled (see below for an example).
 
 Each type mapping is listed as either **dynamic**, meaning that all fields are considered available for indexing, or **only index specified fields**, meaning that only fields specified by the user are indexed.
 
@@ -97,7 +97,7 @@ With multiple collections index, you can search documents across multiple collec
 
 ## [](#type-mapping-with-specific-document-type)Type Mapping with Specific Document Type
 
-With a specific document type, you can search documents of a specific type from a single collection or multiple collections. Every document in Couchbase includes the type field that represents the type of the document. For example, the type “airport” represents the documents related to airport information.
+With a specific document type, you can search documents of a specific type from a single collection or multiple collections. Every document in Couchbase includes the type field that represents the type of the document. For example, the type "airport" represents the documents related to airport information.
 
 ![fts type mapping with specific document type](_images/fts-type-mapping-with-specific-document-type.png)
 
@@ -111,7 +111,7 @@ You can click the document link and verify the document type.
 
 ## [](#document-type-with-single-collections)Document Type with single collection
 
-Every document in Couchbase includes the type field that represents the type of the document. For example, type “airport” represents the documents related to airport information.
+Every document in Couchbase includes the type field that represents the type of the document. For example, type "airport" represents the documents related to airport information.
 
 If you want to search for a specific document type from a single collection, you can manually specify the document type after the collection in the Collection field.
 
@@ -123,7 +123,7 @@ Now, when you search for the airport document type, the index will display all d
 
 ## [](#document-type-with-multiple-collections)Document Type with multiple collections
 
-Every document in Couchbase includes the type field that represents the type of the document. For example, type “airport” represents the documents related to airport information.
+Every document in Couchbase includes the type field that represents the type of the document. For example, type "airport" represents the documents related to airport information.
 
 If you want to search for a specific document type from the multiple collections, you can manually specify the document type after the collection in the Collection field.
 
@@ -239,7 +239,7 @@ The name of any field within the document that contains a single value or an arr
 
 ### [](#field-type)Field Type
 
-The _data-type_ of the value of the field. This can be `text`, `number`, `datetime`, `boolean`, `disabled`, or `geopoint`; and can be selected from the field’s pull-down menu, as follows:
+The _data-type_ of the value of the field. This can be `text`, `number`, `datetime`, `boolean`, `disabled`, or `geopoint`; and can be selected from the field's pull-down menu, as follows:
 
 ![fts type mappings ui select data type](_images/fts-type-mappings-ui-select-data-type.png) 
 
@@ -257,7 +257,7 @@ Typically identical to the **field** (and dynamically supplied during text-input
 
 ### [](#field-analyzer)Field Analyzer
 
-An analyzer optionally to be used for the field. The list of available analyzers can be displayed by means of the field’s pull-down menu, and can be selected from.
+An analyzer optionally to be used for the field. The list of available analyzers can be displayed by means of the field's pull-down menu, and can be selected from.
 
 #### [](#example-4)Example
 
@@ -278,13 +278,13 @@ When checked, the field is indexed; when unchecked, the field is not indexed. Th
 
 When the child field `store` option is checked, the original field content is included in the FTS index, enabling the retrieval of stored field values during a search operation.
 
-When unchecked, the original field content is not included in the FTS index. Storing the field within the index is necessary to support highlighting, which also needs "term vectors” for the field to be indexed.
+When unchecked, the original field content is not included in the FTS index. Storing the field within the index is necessary to support highlighting, which also needs "term vectors" for the field to be indexed.
 
 #### [](#example-6)Example
 
 ![fts type mappings child field store](_images/fts-type-mappings-child-field-store.png) 
 
-Ideally, enabling this `Child Field Store` option has a sizing aspect to the index definition. This option also permits highlighting of search texts in the returned results, so that matched expressions can be easily seen. However, enabling this option also results in larger indexes and slightly longer indexing times. The field content will show up in queries (when the index has the store option checked) only when requested. There is a ‘fields’ section in the query for it.
+Ideally, enabling this `Child Field Store` option has a sizing aspect to the index definition. This option also permits highlighting of search texts in the returned results, so that matched expressions can be easily seen. However, enabling this option also results in larger indexes and slightly longer indexing times. The field content will show up in queries (when the index has the store option checked) only when requested. There is a 'fields' section in the query for it.
 
 {
 "query": {...},
@@ -312,7 +312,7 @@ Term vectors are the locations of terms in a particular field. Certain kinds of 
 
 When checked, the field is included in the definition of **\_all**, which is the field specified by default in the **Advanced** panel. When unchecked, the field is not included.
 
-Inclusion means when _query strings_ are used to specify searches, the text in the current field is searchable without the field name requiring a prefix. For Example, a search on description:modern can be accomplished simply by specifying the word ‘modern’. This is applicable for all query types and not just limited to query string query type.
+Inclusion means when _query strings_ are used to specify searches, the text in the current field is searchable without the field name requiring a prefix. For Example, a search on description:modern can be accomplished simply by specifying the word 'modern'. This is applicable for all query types and not just limited to query string query type.
 
 #### [](#example-8)Example
 
@@ -351,7 +351,7 @@ Left-click on **OK**. The field is saved, and its principal attributes displayed
 
 ## [](#docid-with-regexp-in-type-mappings)DocID with regexp in Type Mappings
 
-“Doc ID with regexp” is another way the search service allows the user to extract “type identifiers” for indexing.
+"Doc ID with regexp" is another way the search service allows the user to extract "type identifiers" for indexing.
 
 * Set up a valid regular expression within docid\_regexp. Remember this will be applied on the document IDs.
 * Choose a type mapping name that is considered a match for the regexp.
@@ -410,7 +410,7 @@ Below is a full index definition using it.
 }
 ```
 
-So setting this as the index definition would index all attributes of documents with “airline” or "airport" in its document IDs.
+So setting this as the index definition would index all attributes of documents with "airline" or "airport" in its document IDs.
 
 ![fts type mapping regexp with docid](_images/fts-type-mapping-regexp-with-docid.png) 
 

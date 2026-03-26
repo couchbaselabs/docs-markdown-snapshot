@@ -3,7 +3,7 @@ title: Add a Capella Cluster to a Prometheus Server
 description: Connect a Prometheus server to your Couchbase Capella cluster and
   collect metrics.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/prometheus.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:monitoring/prometheus.adoc[]
 ---
 
@@ -75,7 +75,7 @@ The sample configuration file contains the following information:
 > [!NOTE]
 > Collecting Prometheus metrics over private endpoints is only available upon request from Capella Support. To open a Support ticket, see [Create a Support Ticket](../../support/manage-support.md#create-support-ticket).
 
-To collect metrics over a private endpoint connection, your cluster’s configuration must meet specific requirements. If your configurations do not meet the requirements, use [VPC Peering](#vpc-peering).
+To collect metrics over a private endpoint connection, your cluster's configuration must meet specific requirements. If your configurations do not meet the requirements, use [VPC Peering](#vpc-peering).
 
 Collecting metrics over a [private endpoint](../../security/private-endpoints.md) is only available with the following conditions:
 
@@ -92,7 +92,7 @@ To enable private endpoints for Prometheus metrics:
 
 1. Enable metrics with the [Management REST API](../../management-api-reference/index.md#tag/Private-Endpoint-Service).
 
-  1. If you’re enabling the private endpoint service for the first time, use the [POST v4/organizations/{organizationId}/projects/{projectIs}/clusters/{clusterId}/privateEndpointService](../../management-api-reference/index.md#tag/Private-Endpoint-Service/operation/enablePrivateEndpointService) endpoint.
+  1. If you're enabling the private endpoint service for the first time, use the [POST v4/organizations/{organizationId}/projects/{projectIs}/clusters/{clusterId}/privateEndpointService](../../management-api-reference/index.md#tag/Private-Endpoint-Service/operation/enablePrivateEndpointService) endpoint.
   2. If you want to enable metrics after enabling the private endpoint service, use the [PUT /v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/privateEndpointService](../../management-api-reference/index.md#tag/Private-Endpoint-Service/operation/updatePrivateEndpointService) endpoint.
 2. In your Prometheus directory, set the URL in your [configuration file](#configuration-file) as the concatenation of the Private Endpoint DNS URL, REST API, and Prometheus service discovery endpoint. For example:
 

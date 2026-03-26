@@ -3,7 +3,7 @@ title: Sub-Document Operations
 description: <em>Sub-document</em> operations can be used to efficiently access
   <em>parts</em> of documents.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.6/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@ruby-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -122,7 +122,7 @@ rescue Error::PathExists
 end
 ```
 
-Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutate-in_ API. Here’s an example of one which replaces one path and removes another.
+Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutate-in_ API. Here's an example of one which replaces one path and removes another.
 
 ```ruby
 result = collection.mutate_in("customer123", [
@@ -359,7 +359,7 @@ collection.mutate_in("player432", [
 
 Even when modifying the _same_ part of the document, operations will not necessarily conflict. For example, two concurrent _subdoc-array-append_ operations to the same array will both succeed, never overwriting the other.
 
-While CAS is no longer so strongly required to ensure document updates are preserved, as Sub-Doc reduces the chance of losing a mutation, it may still be needed to ensure document state remains consistent over multiple invocations of _mutate-in_: Sometimes it’s important to ensure the entire document didn’t change state since the last operation, such as in the case _subdoc-remove_ operations to ensure that the element being removed was not already replaced by something else.
+While CAS is no longer so strongly required to ensure document updates are preserved, as Sub-Doc reduces the chance of losing a mutation, it may still be needed to ensure document state remains consistent over multiple invocations of _mutate-in_: Sometimes it's important to ensure the entire document didn't change state since the last operation, such as in the case _subdoc-remove_ operations to ensure that the element being removed was not already replaced by something else.
 
 ## [](#durability)Durability
 

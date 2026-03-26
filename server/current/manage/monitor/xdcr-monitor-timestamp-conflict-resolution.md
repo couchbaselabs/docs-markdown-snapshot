@@ -2,7 +2,7 @@
 title: Monitor Clock Drift
 description: The progressive desynchronization of nodes can be monitored.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/monitor/xdcr-monitor-timestamp-conflict-resolution.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:monitor/xdcr-monitor-timestamp-conflict-resolution.adoc[]
 ---
 
@@ -27,7 +27,7 @@ Drift can be monitored by means of the [cbstats](#cli:cbstats/cbstats-intro.adoc
 
 The following drift-related statistics are provided:
 
-* `max_cas`. The vBucket’s current maximum hybrid logical clock timestamp. In general, this statistic shows the value issued to the last mutation or in certain cases the largest timestamp the vBucket has received (when the received timestamp is ahead of the local clock).
+* `max_cas`. The vBucket's current maximum hybrid logical clock timestamp. In general, this statistic shows the value issued to the last mutation or in certain cases the largest timestamp the vBucket has received (when the received timestamp is ahead of the local clock).
 * `max_cas_str`. This is `max_cas`, displayed as a human-readable ISO-8601 timestamp (UTC).
 * `total_abs_drift`. "Total Absolute Drift" is the accumulated drift observed by the vBucket. Drift is always accumulated as an absolute value.
 * `total_abs_drift_count` . The number of updates applied to `total_abs_drift`, for the purpose of average or rate calculations.
@@ -41,11 +41,11 @@ The following drift-related statistics are provided:
 
 The following drift-related statistics are provided:
 
-* `ep_active_hlc_drift`. The sum of `total_abs_drift` for the node’s active vBuckets.
-* `ep_active_hlc_drift_count`. The sum of `total_abs_drift_count` for the node’s active vBuckets.
-* `ep_replica_hlc_drift`. The sum of `total_abs_drift` for the node’s active vBuckets.
-* `ep_replica_hlc_drift_count`. The sum of `total_abs_drift_count` for the node’s active vBuckets.
-* `ep_active_ahead_exceptions`. The sum of `drift_ahead_exceeded` for the node’s active vBuckets.
-* `ep_active_behind_exceptions`. The sum of `drift_behind_exceeded` for the node’s active vBuckets.
-* `ep_replica_ahead_exceptions`. The sum of `drift_ahead_exceeded` for the node’s replica vBuckets.
-* `ep_replica_behind_exceptions`. The sum of `drift_behind_exceeded` for the node’s replica vBuckets.
+* `ep_active_hlc_drift`. The sum of `total_abs_drift` for the node's active vBuckets.
+* `ep_active_hlc_drift_count`. The sum of `total_abs_drift_count` for the node's active vBuckets.
+* `ep_replica_hlc_drift`. The sum of `total_abs_drift` for the node's active vBuckets.
+* `ep_replica_hlc_drift_count`. The sum of `total_abs_drift_count` for the node's active vBuckets.
+* `ep_active_ahead_exceptions`. The sum of `drift_ahead_exceeded` for the node's active vBuckets.
+* `ep_active_behind_exceptions`. The sum of `drift_behind_exceeded` for the node's active vBuckets.
+* `ep_replica_ahead_exceptions`. The sum of `drift_ahead_exceeded` for the node's replica vBuckets.
+* `ep_replica_behind_exceptions`. The sum of `drift_behind_exceeded` for the node's replica vBuckets.

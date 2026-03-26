@@ -3,7 +3,7 @@ title: Bi-directional XDCR with Mobile Clusters
 description: Enable active-active deployments between mobile clusters using
   bi-directional Cross Data Center Replication (XDCR) with Sync Gateway 4.0.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/server-compatibility/pages/server-compatibility-xdcr-mobile.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:server-compatibility:server-compatibility-xdcr-mobile.adoc[]
 ---
 
@@ -68,7 +68,7 @@ The bi-directional XDCR architecture coordinates multiple components to maintain
 
 Document mutations flow through an orchestrated pipeline that preserves mobile metadata while preventing replication loops.
 
-When a document changes in either cluster, Sync Gateway assigns version vector updates that include the identifier and incremented count. XDCR recognizes these version vectors and replicates the document while preserving the metadata. The receiving cluster’s Sync Gateway processes the incoming document through its import mechanism, recognizing that the version vector indicates an external update that does not require additional versioning.
+When a document changes in either cluster, Sync Gateway assigns version vector updates that include the identifier and incremented count. XDCR recognizes these version vectors and replicates the document while preserving the metadata. The receiving cluster's Sync Gateway processes the incoming document through its import mechanism, recognizing that the version vector indicates an external update that does not require additional versioning.
 
 ### [](#metadata-filtering)Metadata Filtering
 
@@ -102,7 +102,7 @@ Both clusters run Sync Gateway in active mode, processing reads and writes from 
 
 Clients maintain independent checkpoints for each cluster they connect to.
 
-When a client connects to a cluster for the first time, it begins replication from sequence zero, checking which documents are missing and need downloading. The client stores this checkpoint locally, associated with the cluster’s identifier. Subsequent connections to the same cluster resume from the stored checkpoint, downloading only changes since the last sync. This mechanism prevents redundant data transfer when clients switch between clusters.
+When a client connects to a cluster for the first time, it begins replication from sequence zero, checking which documents are missing and need downloading. The client stores this checkpoint locally, associated with the cluster's identifier. Subsequent connections to the same cluster resume from the stored checkpoint, downloading only changes since the last sync. This mechanism prevents redundant data transfer when clients switch between clusters.
 
 ### [](#version-compatibility)Version Compatibility
 

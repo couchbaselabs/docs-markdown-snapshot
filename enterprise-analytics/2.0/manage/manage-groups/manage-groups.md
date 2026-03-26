@@ -3,7 +3,7 @@ title: Manage Server Groups
 description: Nodes can be assigned to server <em>groups</em>, in order to
   protect a cluster from large-scale infrastructure failure.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-groups/manage-groups.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:manage-groups/manage-groups.adoc[]
 ---
 
@@ -30,7 +30,7 @@ The examples in the subsections show how to create and manage groups, using the 
 To manage groups, navigate to the **Servers** section in the navigation bar and follow these steps:
 
 1. In the servers screen, click the **Groups** option to use the server groups interface.
-2. The **Server Groups** screen displays information about your cluster’s current server groups. Initially, you’ll see that the cluster contains the servers organized under default group names. By default, Enterprise Analytics places each new server into a group named Group 1.
+2. The **Server Groups** screen displays information about your cluster's current server groups. Initially, you'll see that the cluster contains the servers organized under default group names. By default, Enterprise Analytics places each new server into a group named Group 1.
 3. To modify a group name, look for an edit option adjacent to the group name. This opens an **Edit Group Name** dialog where you can change the group name in the text field and save your changes by clicking the **Rename Group** button.
 
 ### [](#add-a-group-with-the-ui)Add a Group, with the UI
@@ -51,14 +51,14 @@ Once you enter the information, the system adds a new group and displays it in t
 To move a server between groups, proceed as follows:
 
 1. On the **Server Groups** screen, locate the server you want to move in the server list.
-2. Look for a **move to** option or list in the server’s row.
+2. Look for a **move to** option or list in the server's row.
 3. Click this option to see a list of available groups that can receive the server.
 4. Select the destination group from the list. Once selected, a **pending move** notification appears, indicating that the move is in the queue but not yet applied.
 
 > [!NOTE]
-> You can cancel the pending move by clicking the **Cancel move** option in the server’s row.
+> You can cancel the pending move by clicking the **Cancel move** option in the server's row.
 
-\+ . After selecting the move, you’ll notice that: - A **Reset** option and an **Apply Changes** button become available. - You can cancel the pending move by clicking the **Reset** option. . To complete the move, click the **Apply Changes** button. . After applying changes, you may see warning notifications indicating: - The cluster has unbalanced server groups. For more information see [Unequal Groups](../../../../server/current/learn/clusters-and-availability/groups.md#vbucket-distribution-across-unequal-groups). - Perform a rebalance. . Return to the **Servers** screen to see the updated group assignments and perform a rebalance if recommended. . If you need a rebalance, click the **Rebalance** button to start the rebalancing process.
+\+ . After selecting the move, you'll notice that: - A **Reset** option and an **Apply Changes** button become available. - You can cancel the pending move by clicking the **Reset** option. . To complete the move, click the **Apply Changes** button. . After applying changes, you may see warning notifications indicating: - The cluster has unbalanced server groups. For more information see [Unequal Groups](../../../../server/current/learn/clusters-and-availability/groups.md#vbucket-distribution-across-unequal-groups). - Perform a rebalance. . Return to the **Servers** screen to see the updated group assignments and perform a rebalance if recommended. . If you need a rebalance, click the **Rebalance** button to start the rebalancing process.
 
 ### [](#delete-a-group-with-the-ui)Delete a Group, with the UI
 
@@ -67,7 +67,7 @@ To delete a group, you must first remove all nodes from the group. You can eithe
 To delete a group by removing servers:
 
 1. Go to the **Servers** screen and locate each server you need to remove from the group.
-2. Click on the server’s row to expand the details view.
+2. Click on the server's row to expand the details view.
 3. Click **Remove** button on the bottom. A confirmation dialog appears asking you to confirm the server removal.
 4. Click **Remove Server** to confirm the removal. The server shows a **REMOVAL pending rebalance** status. A **Cancel Remove** option is also available if you need to cancel the operation.
 5. Click the **Rebalance** button to complete the server removal process. Repeat this process for all servers in the group you want to delete.
@@ -83,7 +83,7 @@ The system deletes the group, and it no longer appears as a row on the Server Gr
 
 When adding a server to a cluster where multiple groups exist, you can assign the server to a specific group during the addition process.
 
-In the **Add Server** dialog, you’ll find an **Assign Group** field with a list of controls that allow you to select from existing groups. Choose the appropriate group from this list before completing the server addition.
+In the **Add Server** dialog, you'll find an **Assign Group** field with a list of controls that allow you to select from existing groups. Choose the appropriate group from this list before completing the server addition.
 
 ## [](#manage-groups-with-the-cli)Manage Groups with the CLI
 
@@ -145,7 +145,7 @@ Added new nodes to a cluster by means of the `server-add` command. [Server-add](
 To add an _already provisioned_ node, enter the following. Specifying the administrator username and password of the new, provisioned node.
 
 > [!NOTE]
-> Adding a provisioned node removes all former provisioning, and reprovisions the node according to what’s specified during addition. Also that if the node is **unprovisioned**, no username or password for the node is required.
+> Adding a provisioned node removes all former provisioning, and reprovisions the node according to what's specified during addition. Also that if the node is **unprovisioned**, no username or password for the node is required.
 
 See [Nodes](../../../../server/current/learn/clusters-and-availability/nodes.md), for more information.
 
@@ -174,7 +174,7 @@ This confirms that `10.143.190.104` has been added to `Group 2`. A rebalance sho
 
 ### [](#move-a-server-between-groups-with-the-CLi)Move a Server Between Groups, with the CLI
 
-To move a node to a different group, specify it’s origin, the destination groups, and the node to be moved, as follows:
+To move a node to a different group, specify it's origin, the destination groups, and the node to be moved, as follows:
 
 /opt/enterprise-analytics/bin/couchbase-cli
 -u Administrator \
@@ -241,7 +241,7 @@ If successful, `200 OK` is given and an object is returned that contains informa
 For general management purposes, the output contains the following, both of which are used in examples further:
 
 * The _URI path and revision integer_ for the overall group-configuration. This must be specified when the configuration is to be changed.
-* The group’s _URI path and UUID string_. The allows the individual group to be referenced, when nodes are to be moved between groups, or are to be added.
+* The group's _URI path and UUID string_. The allows the individual group to be referenced, when nodes are to be moved between groups, or are to be added.
 
 ### [](#add-a-group-with-the-rest-api)Add a Group, with the REST API
 
@@ -275,7 +275,7 @@ Success gives `200 OK`, and returns an empty array.
 
 Server groups can be deleted with the `DELETE /pools/default/serverGroups/<:uuid>` HTTP method and URI. The group must be empty, for the request to succeed. For full details, see [Deleting Groups](../../reference/rest-servergroup-delete.md).
 
-The procedure described in [Getting Server Group Information](../../reference/rest-servergroup-get.md) should be used to determine the `uuid` of the group to be deleted and to ascertain the group’s emptiness. The following request deletes the group, which is specified by means of the `uuid`.
+The procedure described in [Getting Server Group Information](../../reference/rest-servergroup-get.md) should be used to determine the `uuid` of the group to be deleted and to ascertain the group's emptiness. The following request deletes the group, which is specified by means of the `uuid`.
 
 curl -X DELETE -u Administrator:password \
 http://10.143.190.101:8091/pools/default/serverGroups/\

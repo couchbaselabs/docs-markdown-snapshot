@@ -2,7 +2,7 @@
 title: SELECT Clause
 description: The SELECT clause determines the result set.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/selectclause.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/selectclause.adoc[]
 ---
 
@@ -58,7 +58,7 @@ The projection consists of an optional `ALL` or `DISTINCT` [quantifier](#all-dis
 
 SELECT ALL retrieves all of the data specified and will result in all of the specified columns, including all duplicates.
 
-SELECT DISTINCT removes duplicate result objects from the query’s result set.
+SELECT DISTINCT removes duplicate result objects from the query's result set.
 
 > [!NOTE]
 > The DISTINCT clause is not blocking in nature, since it streams the input and produces the output in parallel, while consuming less memory.
@@ -105,7 +105,7 @@ The star expression may be preceded by a [path](nestedops.md), to select all the
 
 #### [](#field-expression)Select Expression
 
-The select expression is any expression that evaluates to a field to be included in the query’s result set. At its simplest, this may be the name of a field in the data source, such as `id`, `airline`, or `stops`. Refer to [Example 1](#ex-field).
+The select expression is any expression that evaluates to a field to be included in the query's result set. At its simplest, this may be the name of a field in the data source, such as `id`, `airline`, or `stops`. Refer to [Example 1](#ex-field).
 
 The select expression may include a [path](nestedops.md), to select a nested field from within an array, such as `schedule[0].day`. Refer to [Example 2](#ex-path).
 
@@ -137,7 +137,7 @@ exclude-clause ::= 'EXCLUDE' exclude-term ( ',' exclude-term )*
 
 ![Syntax diagram](../_images/n1ql-language-reference/exclude-clause.png) 
 
-The EXCLUDE clause removes specific fields from your query’s result set.
+The EXCLUDE clause removes specific fields from your query's result set.
 
 Instead of listing every field you want to include in the SELECT statement, use EXCLUDE to specify only the ones you want to omit. This is particularly useful when you use the star expression (`*`) to select all fields, but want to exclude a few.
 

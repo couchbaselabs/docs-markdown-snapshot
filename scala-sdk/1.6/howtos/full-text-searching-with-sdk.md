@@ -3,7 +3,7 @@ title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server, and to perform vector searches.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.6@scala-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -24,7 +24,7 @@ From Couchbase Server 7.6, the FTS service also supports powerful vector search.
 
 After familiarizing yourself with how to create and query a search index in the UI, you can query it from the SDK.
 
-You’ll need to know whether a global or scoped search index has been created - see [Scoped vs Global Indexes](#scoped-vs-global-indexes) for details. If your Couchbase Server is pre 7.6 it will certainly be a global index, otherwise, the UI will tell you which it is.
+You'll need to know whether a global or scoped search index has been created - see [Scoped vs Global Indexes](#scoped-vs-global-indexes) for details. If your Couchbase Server is pre 7.6 it will certainly be a global index, otherwise, the UI will tell you which it is.
 
 These APIs are used for querying global search indexes: `cluster.searchQuery()`, and `cluster.search()`. And this one is used for scoped search indexes: `scope.search()`.
 
@@ -50,7 +50,7 @@ import scala.util.{Failure, Success, Try}
 
 The `cluster.searchQuery()` API takes the name of the index and the type of query as required arguments, and allows additional options to be provided if needed.
 
-Here is a simple `MatchQuery` that looks for the text “swanky” using a defined index:
+Here is a simple `MatchQuery` that looks for the text "swanky" using a defined index:
 
 ```none
 val result: Try[SearchResult] = cluster.searchQuery("travel-sample-index-hotel-description",
@@ -65,7 +65,7 @@ result match {
 }
 ```
 
-All simple query types are created in the same manner. Some have additional properties, which can be seen in common query type descriptions. Couchbase FTS’s [range of query types](#7.6@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted.
+All simple query types are created in the same manner. Some have additional properties, which can be seen in common query type descriptions. Couchbase FTS's [range of query types](#7.6@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted.
 
 ## [](#working-with-results)Working with Results
 
@@ -100,7 +100,7 @@ The FTS APIs exist on both the `Cluster` and `Scope` objects.
 
 This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
-It’s important to use the `Cluster.searchQuery()` or `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
+It's important to use the `Cluster.searchQuery()` or `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
 
 ## [](#vector-search)Vector Search
 
@@ -118,7 +118,7 @@ val request = SearchRequest.vectorSearch(VectorSearch(VectorQuery("vector_field"
 val result: Try[SearchResult] = scope.search("vector-index", request)
 ```
 
-Let’s break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
+Let's break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
 
 The `VectorSearch` allows us to perform one or more `VectorQuery` s.
 

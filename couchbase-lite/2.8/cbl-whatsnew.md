@@ -1,7 +1,7 @@
 ---
 title: What&#8217;s New
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/ROOT/pages/cbl-whatsnew.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite::cbl-whatsnew.adoc[]
 ---
 
@@ -18,7 +18,7 @@ In addition to significant performance and resilience enhancements Couchbase Lit
 
 #### [](#peer-to-peer-synchronization)Peer-to-Peer Synchronization
 
-Using Couchbase Lite’s Peer-to-Peer Synchronization solution, you can build offline-first applications on edge devices that directly collaborate in secure bi-directional database synchronization without depending on centralized cloud-based control.
+Using Couchbase Lite's Peer-to-Peer Synchronization solution, you can build offline-first applications on edge devices that directly collaborate in secure bi-directional database synchronization without depending on centralized cloud-based control.
 
 The solution provides an out-of-the-box implementation of a websocket based listener for use in peer-to-peer applications communicating over in IP-based networks.
 

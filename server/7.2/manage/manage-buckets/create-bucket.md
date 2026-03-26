@@ -3,7 +3,7 @@ title: Create a Bucket
 description: <em>Full</em> and <em>Cluster</em> Administrators can use Couchbase
   Web Console, the CLI, or the REST API to create a bucket.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-buckets/create-bucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:manage:manage-buckets/create-bucket.adoc[]
 ---
 
@@ -51,7 +51,7 @@ For more information about bucket types, see [Buckets](../../learn/buckets-memor
   * **Couchstore**
   * **Magma**  
 For more information about the available storage engines, see [Storage Engines](../../learn/buckets-memory-and-storage/storage-engines.md).
-4. In the **Memory Quota** field, enter a value in MiB per node for the total RAM available for the bucket. This value can’t exceed the total RAM quota for your cluster.  
+4. In the **Memory Quota** field, enter a value in MiB per node for the total RAM available for the bucket. This value can't exceed the total RAM quota for your cluster.  
 > [!NOTE]  
 > Your memory quota needs to match the minimum memory resident ratio required by your chosen storage engine. For more information, see [Bucket Memory Quotas](../../learn/buckets-memory-and-storage/memory.md#bucket-memory).
 
@@ -93,7 +93,7 @@ To configure advanced settings for a Couchbase bucket:
   2. To replicate view indexes and data from the bucket, select the **Replicate view indexes** checkbox.
 2. To set a [document expiration](../../learn/data/expiration.md) for documents in the bucket, under **Bucket Max Time-To-Live**, select the **Enable** checkbox.
 
-  1. In the **Seconds** field, enter the maximum time in seconds that a document can exist in the bucket before it’s deleted.  
+  1. In the **Seconds** field, enter the maximum time in seconds that a document can exist in the bucket before it's deleted.  
   > [!TIP]  
   > The maximum allowed value is 2147483647 seconds (68.096 years). You can only apply this setting to documents created after you change the configuration.
 3. Choose a **Compression Mode** for the bucket:
@@ -120,9 +120,9 @@ For more information about ejection, see the [Ejection](../../learn/buckets-memo
 
   * **Default**
   * **High**  
-Bucket Priority sets the priority of the bucket’s background tasks relative to the background tasks of other buckets on the cluster.
+Bucket Priority sets the priority of the bucket's background tasks relative to the background tasks of other buckets on the cluster.
 
-Background tasks may involve disk I/O, DCP stream-processing, item-paging, and more. Specifying High might result in faster processing for the current bucket’s tasks. This setting only takes effect when there is more than one bucket defined for the cluster, and you have assigned different Bucket Priority values.
+Background tasks may involve disk I/O, DCP stream-processing, item-paging, and more. Specifying High might result in faster processing for the current bucket's tasks. This setting only takes effect when there is more than one bucket defined for the cluster, and you have assigned different Bucket Priority values.
 
 1. In the **Minimum Durability Level** list, select a durability level for the bucket:
 
@@ -161,7 +161,7 @@ To configure advanced settings for an Ephemeral bucket:
   1. In the **Number of replica (backup) copies** list, select the number of replicas for the bucket.
 2. To set a [document expiration](../../learn/data/expiration.md) for documents in the bucket, under **Bucket Max Time-To-Live**, select the **Enable** checkbox.
 
-  1. In the **Seconds** field, enter the maximum number of seconds a document can exist in the bucket before it’s deleted.  
+  1. In the **Seconds** field, enter the maximum number of seconds a document can exist in the bucket before it's deleted.  
   > [!TIP]  
   > The maximum allowed value is 2147483648 seconds (68.096 years). You can only apply this setting to documents created after you change the configuration.
 3. Choose a **Compression Mode** for the bucket:
@@ -179,9 +179,9 @@ For more information about XDCR conflict resolution, see [XDCR Conflict Resoluti
 
   * **Default**
   * **High**  
-Bucket Priority sets the priority of the bucket’s background tasks relative to the background tasks of other buckets on the cluster.
+Bucket Priority sets the priority of the bucket's background tasks relative to the background tasks of other buckets on the cluster.
 
-Background tasks may involve DCP stream-processing, item-paging, and more. Specifying High might result in faster processing for the current bucket’s tasks. This setting only takes effect when there is more than one bucket defined for the cluster, and the buckets are assigned different Bucket Priority values.
+Background tasks may involve DCP stream-processing, item-paging, and more. Specifying High might result in faster processing for the current bucket's tasks. This setting only takes effect when there is more than one bucket defined for the cluster, and the buckets are assigned different Bucket Priority values.
 
 1. Choose an **Ejection Policy** for the bucket:
 

@@ -1,7 +1,7 @@
 ---
 title: Upgrade an Online Cluster
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/upgrade-cluster-online.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:upgrade-cluster-online.adoc[]
 ---
 
@@ -24,8 +24,8 @@ A Couchbase-Server cluster can be upgraded while continuing to serve data. A _sp
 
 ### [](#tls-address-family-restriction-and-node-addition)TLS, Address-Family Restriction, and Node Addition
 
-Couchbase Server 7.0.2 and later versions allow TLS to be specified as mandatory for all internal and external cluster-communications — see [Manage On-the-Wire Security](../manage/manage-security/manage-tls.md). It also allows the cluster’s address family to be specifically restricted to either IPv4 or IPv6 — see [Manage Address Families](../manage/manage-nodes/manage-address-families.md).
+Couchbase Server 7.0.2 and later versions allow TLS to be specified as mandatory for all internal and external cluster-communications — see [Manage On-the-Wire Security](../manage/manage-security/manage-tls.md). It also allows the cluster's address family to be specifically restricted to either IPv4 or IPv6 — see [Manage Address Families](../manage/manage-nodes/manage-address-families.md).
 
 The procedures described in the current section both involve the introduction of upgraded nodes into an existing, online cluster. If the cluster is running Version 6.0.x, and the upgraded node is running Version 7.0.2+, and the upgraded node has TLS specified as mandatory, and/or has its address family restricted to either IPv4 or IPv6, the upgraded node _cannot_ be added to the cluster.
 
-To add the node to the cluster, change the node’s TLS setting so that TLS is _not_ mandatory for all communications, and/or change the node’s address family so that it is _not_ specifically restricted to either IPv4 or IPv6\. Then, _restart_ the node. After the node has restarted, it can be added to the 6.0.x cluster.
+To add the node to the cluster, change the node's TLS setting so that TLS is _not_ mandatory for all communications, and/or change the node's address family so that it is _not_ specifically restricted to either IPv4 or IPv6\. Then, _restart_ the node. After the node has restarted, it can be added to the 6.0.x cluster.

@@ -4,7 +4,7 @@ description: Now in Couchbase version 7.0 the concept of scopes and collections
   have been introduced allowing greater flexibility in grouping data and also
   the ability to support multitenancy.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-buckets-to-collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:eventing:eventing-buckets-to-collections.adoc[]
 ---
 
@@ -85,8 +85,8 @@ Eventing in the collections world can just use the \_default scope and the \_def
 
 ![eventing collections multi tenant](_images/eventing-collections-multi-tenant.jpg) 
 
-If we put the put ‘Eventing Storage’ (in collections) in the same bucket as with data with non 100% residency the Evening performance can easily drop by a factor of five (5) or more.
+If we put the put 'Eventing Storage' (in collections) in the same bucket as with data with non 100% residency the Evening performance can easily drop by a factor of five (5) or more.
 
-Of course you can put everything including the ‘Eventing Storage’ collection into a single bucket, if the bucket is 100% resident you will not suffer slowdowns but as the residency rate of this bucket drops you will start accessing your underlying disk for Eventing control documents (definitions, timers, and checkpoints). This behavior is analogous to swapping to disk when your active computer’s programs combined are larger than your computer’s memory.
+Of course you can put everything including the 'Eventing Storage' collection into a single bucket, if the bucket is 100% resident you will not suffer slowdowns but as the residency rate of this bucket drops you will start accessing your underlying disk for Eventing control documents (definitions, timers, and checkpoints). This behavior is analogous to swapping to disk when your active computer's programs combined are larger than your computer's memory.
 
-Typically the overhead of the Eventing housekeeping area "Eventing Storage" is quite small, just 1024 documents per Function and occasional check point documents. However if Timers are used the size of this collection can grow to about 1K bytes x number of active timers (_for 1M active timers this is 1.5G bytes_). As such the enclosing bucket holding the ‘Eventing Storage’ needs to be sized appropriately.
+Typically the overhead of the Eventing housekeeping area "Eventing Storage" is quite small, just 1024 documents per Function and occasional check point documents. However if Timers are used the size of this collection can grow to about 1K bytes x number of active timers (_for 1M active timers this is 1.5G bytes_). As such the enclosing bucket holding the 'Eventing Storage' needs to be sized appropriately.

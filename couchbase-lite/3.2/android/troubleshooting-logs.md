@@ -2,7 +2,7 @@
 title: Using the Legacy Logging API for Troubleshooting
 description: Couchbase Lite on Android -- Using Logs for Troubleshooting
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/android/pages/troubleshooting-logs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite:android:troubleshooting-logs.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:3.2@couchbase-lite:android:troubleshooting-logs.adoc[]
 > [!NOTE]
 > Constraints
 > 
-> * The value returned by `LogLevel.getValue()` is not useful. It’s not the Android log level.
+> * The value returned by `LogLevel.getValue()` is not useful. It's not the Android log level.
 > * The retrieval of logs from the device is out of scope of this feature.
 > * This content applies to the post 2.5 versions.
 
@@ -41,11 +41,11 @@ In all instances, you control what is logged and at what level using the [Log](h
 
 ## [](#lbl-console-logs)Console based logging
 
-Console based logging logs to Android’s logcat logger and is the first choice for troubleshooting during development.
+Console based logging logs to Android's logcat logger and is the first choice for troubleshooting during development.
 
 Console logs are your go-to resource for diagnostic information. You can easily fine-tune their diagnostic content to meet the needs of a particular debugging scenario, perhaps by increasing the verbosity and-or choosing to focus on messages from a specific domain; to better focus on the problem area.
 
-Console logging is enabled by default. To change default settings use database’s [Log](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-android/com/couchbase/lite/Log.html) method to set the required values — see [Example 1](#eg-cons-log)
+Console logging is enabled by default. To change default settings use database's [Log](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-android/com/couchbase/lite/Log.html) method to set the required values — see [Example 1](#eg-cons-log)
 
 You will primarily use [log.getConsole()](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-android/com/couchbase/lite/ConsoleLogger.html) and [ConsoleLogger](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-android/com/couchbase/lite/ConsoleLogger.html) to control console logging.
 
@@ -89,7 +89,7 @@ Use this format and a decoder, such as **cbl-log**, to view them — see: [Decod
 
 As with console logging you can set the log level — see: the [FileLogger](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-android/com/couchbase/lite/FileLogger.html) class.
 
-With file based logging you can also use the [LogFileConfiguration](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-android/com/couchbase/lite/LogFileConfiguration.html) class’s properties to specify the:
+With file based logging you can also use the [LogFileConfiguration](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-android/com/couchbase/lite/LogFileConfiguration.html) class's properties to specify the:
 
 * log file path to the directory to store the log file Once this limit is exceeded a new log file is started.
 * log file format  

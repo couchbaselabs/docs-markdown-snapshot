@@ -3,7 +3,7 @@ title: Change a Bucket&#8217;s Ejection Policy
 description: You can change the ejection method of a bucket using the Couchbase
   Server Web Console or the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/change-ejection-policy.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-buckets/change-ejection-policy.adoc[]
 ---
 
@@ -12,18 +12,18 @@ link: xref:server:manage:manage-buckets/change-ejection-policy.adoc[]
 
 # Change a Bucket&#8217;s Ejection Policy
 
-> You can change the ejection method of a bucket using the Couchbase Server Web Console or the REST API. The bucket’s ejection policy (also known as its eviction method) controls how Couchbase Server removes documents from memory as the bucket approaches its memory quota. See [Ejection](../../learn/buckets-memory-and-storage/memory.md#ejection) for more information about ejection policies. 
+> You can change the ejection method of a bucket using the Couchbase Server Web Console or the REST API. The bucket's ejection policy (also known as its eviction method) controls how Couchbase Server removes documents from memory as the bucket approaches its memory quota. See [Ejection](../../learn/buckets-memory-and-storage/memory.md#ejection) for more information about ejection policies. 
 
 You initially set the ejection policy when you create a Couchbase bucket. However, you can change the ejection policy of an existing bucket.
 
-You may want to change the ejection policy of a Couchbase bucket when migrating its [storage engine](../../learn/buckets-memory-and-storage/storage-engines.md). For example, when migrating a bucket from Couchstore to Magma, you should consider changing the bucket’s ejection policy to Full Ejection. This policy works well for Magma buckets that have a low memory to storage ratio. You can change both the storage backend and the ejection policy at the same time. See [Migrate a Bucket’s Storage Backend](migrate-bucket.md) for steps to perform both operations.
+You may want to change the ejection policy of a Couchbase bucket when migrating its [storage engine](../../learn/buckets-memory-and-storage/storage-engines.md). For example, when migrating a bucket from Couchstore to Magma, you should consider changing the bucket's ejection policy to Full Ejection. This policy works well for Magma buckets that have a low memory to storage ratio. You can change both the storage backend and the ejection policy at the same time. See [Migrate a Bucket's Storage Backend](migrate-bucket.md) for steps to perform both operations.
 
 ## [](#change-the-ejection-policy-using-the-couchbase-server-web-console)Change the Ejection Policy Using the Couchbase Server Web Console
 
-You can edit a bucket’s ejection policy using the Couchbase Server Web Console.
+You can edit a bucket's ejection policy using the Couchbase Server Web Console.
 
 > [!IMPORTANT]
-> When you change the ejection policy of a Couchbase bucket using the Couchbase Server Web Console, Couchbase Server automatically restarts the bucket. Restarting the bucket closes all open connections and results in some downtime. Do not change the ejection policy of a bucket in production unless you’re prepared this downtime. You can also change the ejection policy using REST API which lets you avoid downtime. See [Change Couchbase Bucket Ejection Policy Using the REST API](#rest-api) for more details.
+> When you change the ejection policy of a Couchbase bucket using the Couchbase Server Web Console, Couchbase Server automatically restarts the bucket. Restarting the bucket closes all open connections and results in some downtime. Do not change the ejection policy of a bucket in production unless you're prepared this downtime. You can also change the ejection policy using REST API which lets you avoid downtime. See [Change Couchbase Bucket Ejection Policy Using the REST API](#rest-api) for more details.
 > 
 > Changing the ejection policy of an ephemeral bucket does not require a bucket restart or other additional steps. The new setting takes effect immediately.
 
@@ -33,14 +33,14 @@ To change the ejection policy of a bucket, follow these steps:
 ![bucketsViewInitialEdit](../_images/manage-buckets/bucketsViewInitialEdit.png)
 2. Click the row containing the bucket that you want to edit to expand it.  
 ![bucketsViewWithExpandedBucketRow](../_images/manage-buckets/bucketsViewWithExpandedBucketRow.png)
-3. Click **Edit** to edit the bucket’s settings.  
+3. Click **Edit** to edit the bucket's settings.  
 ![bucket edit dialog initial](../_images/manage-buckets/bucket-edit-dialog-initial.png)
 4. Click **Advanced bucket settings** to expand the section containing the ejection policy setting.  
 ![bucket edit dialog expanded](../_images/manage-buckets/bucket-edit-dialog-expanded.png)
-5. Change the **Ejection Method** setting the new value you want. The available settings depend on the bucket’s type:  
+5. Change the **Ejection Method** setting the new value you want. The available settings depend on the bucket's type:  
 Couchbase buckets
 
-  * **Value-only**: Couchbase Server removes a document’s data, but keeps its keys and metadata in memory. Keeping these values in memory helps lessen the performance overhead of removing the document from memory.
+  * **Value-only**: Couchbase Server removes a document's data, but keeps its keys and metadata in memory. Keeping these values in memory helps lessen the performance overhead of removing the document from memory.
   * **Full**: Couchbase Server removes the entire document from memory.  
 Ephemeral buckets
 
@@ -51,7 +51,7 @@ If you change the setting of a Couchbase bucket, the Couchbase Server Web Consol
 
 ## [](#ephemeral-rest-api)Change Ephemeral Bucket Ejection Policy Using the REST API
 
-You can change the ejection policy for an ephemeral bucket by sending a POST request to the `/pools/default/buckets/{BUCKETNAME}` endpoint to change the `evictionPolicy` setting. Unlike changing a Couchbase bucket’s ejection policy, changing the ejection policy of an ephemeral bucket does not require a bucket restart or other additional steps. The new setting takes effect immediately.
+You can change the ejection policy for an ephemeral bucket by sending a POST request to the `/pools/default/buckets/{BUCKETNAME}` endpoint to change the `evictionPolicy` setting. Unlike changing a Couchbase bucket's ejection policy, changing the ejection policy of an ephemeral bucket does not require a bucket restart or other additional steps. The new setting takes effect immediately.
 
 The following steps demonstrate how to change the ejection policy of an ephemeral bucket named `sample-ephemeral` to `nruEviction` using the REST API.
 
@@ -81,24 +81,24 @@ The call to the REST API returns no output if it succeeds.
 }  
 ```
 
-See [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md) for more information about changing a bucket’s settings.
+See [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md) for more information about changing a bucket's settings.
 
 ## [](#rest-api)Change Couchbase Bucket Ejection Policy Using the REST API
 
 You can change the ejection policy for a Couchbase bucket using the REST API. You change the ejection policy by sending a POST request to the `/pools/default/buckets/{BUCKETNAME}` endpoint to change the `evictionPolicy` setting.
 
-Unlike the Couchbase Server Web Console, using the REST API to change a Couchbase bucket’s ejection policy lets you prevent the downtime caused by restarting a Couchbase bucket. When you call the REST API to change the ejection policy, can set the `noRestart` parameter to `true` to prevent Couchbase Server from restarting the bucket after you make the change. If you do not allow Couchbase Server to restart the Couchbase bucket, you must take additional steps to apply the change.
+Unlike the Couchbase Server Web Console, using the REST API to change a Couchbase bucket's ejection policy lets you prevent the downtime caused by restarting a Couchbase bucket. When you call the REST API to change the ejection policy, can set the `noRestart` parameter to `true` to prevent Couchbase Server from restarting the bucket after you make the change. If you do not allow Couchbase Server to restart the Couchbase bucket, you must take additional steps to apply the change.
 
-If you do not set the `noRestart` parameter or set it to `false` for a Couchbase bucket, Couchbase Server may automatically restart the bucket after you change the ejection policy. Couchbase Server only automatically restarts the bucket if you’re not changing the ejection policy during a backend storage migration. If you’re changing the ejection policy during a backend storage migration, you must set `noRestart` to `true` to prevent Couchbase Server from restarting the bucket. See [Change Ejection Policy During a Backend Storage Migration](#change-during-migration) for an explanation.
+If you do not set the `noRestart` parameter or set it to `false` for a Couchbase bucket, Couchbase Server may automatically restart the bucket after you change the ejection policy. Couchbase Server only automatically restarts the bucket if you're not changing the ejection policy during a backend storage migration. If you're changing the ejection policy during a backend storage migration, you must set `noRestart` to `true` to prevent Couchbase Server from restarting the bucket. See [Change Ejection Policy During a Backend Storage Migration](#change-during-migration) for an explanation.
 
 > [!NOTE]
 > The `noRestart` parameter has no effect when changing the ejection policy of an ephemeral bucket. Changing the ejection policy of an ephemeral bucket takes effect without a bucket restart or other additional steps. See [Change Ephemeral Bucket Ejection Policy Using the REST API](#ephemeral-rest-api) for more details.
 
-How you apply the ejection policy change for a Couchbase bucket depends on whether you’re changing the ejection policy during a backend storage migration.
+How you apply the ejection policy change for a Couchbase bucket depends on whether you're changing the ejection policy during a backend storage migration.
 
 ### [](#change-during-migration)Change Ejection Policy During a Backend Storage Migration
 
-You can change the ejection policy of a Couchbase bucket while you’re migrating the storage engine it uses. You often want to change the ejection policy during migration because the Couchstore and Magma storage engines work best with different ejection policies. See [Storage Engines](../../learn/buckets-memory-and-storage/storage-engines.md) for information about storage engines and [Migrate a Bucket’s Storage Backend](migrate-bucket.md) for information about migrating a bucket’s storage backend.
+You can change the ejection policy of a Couchbase bucket while you're migrating the storage engine it uses. You often want to change the ejection policy during migration because the Couchstore and Magma storage engines work best with different ejection policies. See [Storage Engines](../../learn/buckets-memory-and-storage/storage-engines.md) for information about storage engines and [Migrate a Bucket's Storage Backend](migrate-bucket.md) for information about migrating a bucket's storage backend.
 
 If you choose to change the ejection policy while migrating the storage backend, you must set `noRestart` to `true`. This setting prevents Couchbase Server from restarting the bucket after changing the policy. If you set this option to `false` or do not include it from your REST API call, Couchbase Server does not change the ejection policy.
 
@@ -107,13 +107,13 @@ After you change the ejection policy while migrating the storage backend, the po
 * a [swap rebalance](../../install/upgrade-procedure-selection.md#swap-rebalance) on all nodes in the cluster running the data service.
 * a [graceful failover](../../learn/clusters-and-availability/graceful-failover.md) followed by a [full recovery](../../learn/clusters-and-availability/recovery.md#full-recovery) and [rebalance](../../learn/clusters-and-availability/rebalance.md) for all nodes running the data service in the cluster.
 
-See [Migrate a Bucket’s Storage Backend](migrate-bucket.md) for information about migrating a bucket’s storage backend and complete steps to change the ejection policy while performing a migration.
+See [Migrate a Bucket's Storage Backend](migrate-bucket.md) for information about migrating a bucket's storage backend and complete steps to change the ejection policy while performing a migration.
 
 ### [](#standalone-ejection-policy-change)Standalone Ejection Policy Change
 
-You can change a Couchbase bucket’s ejection policy when you’re not migrating its storage backend using the REST API. In this case, you can choose whether to have Couchbase Server restart the bucket after you change the ejection policy. You control this behavior using the `noRestart` parameter in the REST API POST method to `/pools/default/buckets/{BUCKETNAME}`:
+You can change a Couchbase bucket's ejection policy when you're not migrating its storage backend using the REST API. In this case, you can choose whether to have Couchbase Server restart the bucket after you change the ejection policy. You control this behavior using the `noRestart` parameter in the REST API POST method to `/pools/default/buckets/{BUCKETNAME}`:
 
-* To trigger the automatic bucket restart, set the `noRestart` parameter to `false` or do not supply it in the REST API call. Couchbase Server automatically restart the bucket once the REST API call completes. Restarting the bucket is disruptive—​it closes all open connections and results in some downtime. Do not change the ejection policy of a bucket in production unless you’re prepared this downtime.
+* To trigger the automatic bucket restart, set the `noRestart` parameter to `false` or do not supply it in the REST API call. Couchbase Server automatically restart the bucket once the REST API call completes. Restarting the bucket is disruptive—​it closes all open connections and results in some downtime. Do not change the ejection policy of a bucket in production unless you're prepared this downtime.
 * To prevent the automatic bucket restart, set the `noRestart` parameter to `true`. The new ejection setting does not take effect until you perform one of the following procedures:
 
   * a [swap rebalance](../../install/upgrade-procedure-selection.md#swap-rebalance) on all nodes in the cluster running the data service.
@@ -133,14 +133,14 @@ curl -v -X POST http://localhost:8091/pools/default/buckets/travel-sample \
      -d evictionPolicy="fullEviction" \
      -d noRestart=true  
 ```
-2. At this point, the bucket’s ejection policy has changed at the bucket level. However, each node has an override setting that has them use the old ejection policy.  
+2. At this point, the bucket's ejection policy has changed at the bucket level. However, each node has an override setting that has them use the old ejection policy.  
 You can compare the bucket and node settings to see which nodes have an override by sending a GET request to the `/pools/default/buckets/{BUCKETNAME}` REST API endpoint. The following command calls the REST API to get the configuration of the `travel-sample` bucket. It filters the result through the `jq` command to show just the `evictionPolicy` values from the bucket level and the individual nodes:  
 ```console  
 curl -s GET -u Administrator:password \  
     http://localhost:8091/pools/default/buckets/travel-sample \
     | jq '[ .nodes[] | { (.hostname): .evictionPolicy }] + [{ (.name): .evictionPolicy }]'  
 ```  
-The output of the previous command shows that the bucket’s `evictionPolicy` parameter has changed to `fullEviction`, but the nodes are still using the old `valueOnly` ejection policy:  
+The output of the previous command shows that the bucket's `evictionPolicy` parameter has changed to `fullEviction`, but the nodes are still using the old `valueOnly` ejection policy:  
 ```json  
 [  
   {  

@@ -2,7 +2,7 @@
 title: Drop a Bucket
 description: Full, Cluster, and Bucket Administrators can drop a bucket.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/delete-bucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-buckets/delete-bucket.adoc[]
 ---
 
@@ -27,7 +27,7 @@ The **Buckets** screen now appears, showing the buckets that have already been d
 
 ![bucketsViewInitialEdit](../_images/manage-buckets/bucketsViewInitialEdit.png) 
 
-To delete a particular bucket, left-click on the bucket’s row in the UI; then, when the **Drop** button appears, left-click on it:
+To delete a particular bucket, left-click on the bucket's row in the UI; then, when the **Drop** button appears, left-click on it:
 
 ![accessDropButton](../_images/manage-buckets/accessDropButton.png) 
 

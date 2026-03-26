@@ -3,7 +3,7 @@ title: Using Couchbase Transactions
 description: A practical guide to using Couchbase’s distributed ACID
   transactions, via the Go SDK.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.10@go-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.10@go-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 
 # Using Couchbase Transactions
 
-> A practical guide to using Couchbase’s distributed ACID transactions, via the Go SDK. 
+> A practical guide to using Couchbase's distributed ACID transactions, via the Go SDK. 
 
 This guide will show you examples of how to perform multi-document ACID (atomic, consistent, isolated, and durable) database transactions within your application, using the Couchbase Go SDK.
 
@@ -480,7 +480,7 @@ if err != nil {
 
 ### [](#query-options)Query Options
 
-Query options can be provided via `TransactionQueryOptions`, which provides a subset of the options in the Go SDK’s `QueryOptions`.
+Query options can be provided via `TransactionQueryOptions`, which provides a subset of the options in the Go SDK's `QueryOptions`.
 
 ```go
 _, err := cluster.Transactions().Run(func(ctx *gocb.TransactionAttemptContext) error {
@@ -557,7 +557,7 @@ if err != nil {
 > [!IMPORTANT]
 > Query Mode
 > 
-> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user’s query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
+> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user's query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user's query permissions. These may or may not be different to the user's data permissions; if they are different, you may get unexpected results.
 
 ## [](#concurrent-operations)Concurrent Operations
 

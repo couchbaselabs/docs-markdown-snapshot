@@ -1,7 +1,7 @@
 ---
 title: Headings
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/headings.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::headings.adoc[]
 ---
 
@@ -31,7 +31,7 @@ Try to keep headings as short and to-the-point as possible. Try to fit your head
 
 Frequency
 
-Use a heading whenever it makes sense to do so. Add a heading when you’re starting a new thought or need to highlight something new and important to the user. Keep headings useful, and make sure that you always have content in between 2 headings. Vale flags any headings that appear directly on top of each other with no content in between.
+Use a heading whenever it makes sense to do so. Add a heading when you're starting a new thought or need to highlight something new and important to the user. Keep headings useful, and make sure that you always have content in between 2 headings. Vale flags any headings that appear directly on top of each other with no content in between.
 
 Depth
 
@@ -40,11 +40,11 @@ Do not go past an H4 heading. You do not need to have more than 4 levels of head
 > [!NOTE]
 > Do not add [Parentheses](parentheses.md) to headings.
 
-The content of your H1 heading also needs to match the type of topic you’re writing:
+The content of your H1 heading also needs to match the type of topic you're writing:
 
 | Content Type             | Heading Style                                                                                                                                                                                        | Examples                                           |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Concept topic            | Concept headings are a single noun, which accurately outlines the concept you’re describing. Use additional words if you feel that a single noun cannot accurately describe the content of the page. | Clusters Indexes                                   |
+| Concept topic            | Concept headings are a single noun, which accurately outlines the concept you're describing. Use additional words if you feel that a single noun cannot accurately describe the content of the page. | Clusters Indexes                                   |
 | How-to or Tutorial topic | Task headings are short imperative phrases that start with a verb that does something to a noun.                                                                                                     | Delete a Cluster Create an Index Explore Your Data |
 | Reference topic          | Reference headings are short phrases that state what kind of reference content the user finds on a page.                                                                                             | Audit Events Error Messages Rebalance Reports      |
 

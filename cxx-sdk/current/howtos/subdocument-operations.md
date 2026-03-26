@@ -3,7 +3,7 @@ title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cxx-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -141,7 +141,7 @@ if (err) {
 
 ## [](#choosing-an-api)Choosing an API
 
-The C++ SDK provides two async APIs for all operations. There’s the one returning `std::future` you’ve already seen, as well as a callback-based variant:
+The C++ SDK provides two async APIs for all operations. There's the one returning `std::future` you've already seen, as well as a callback-based variant:
 
 ```c++
 collection.lookup_in(
@@ -205,7 +205,7 @@ if (err.ec() == couchbase::errc::key_value::path_exists) {
 }
 ```
 
-Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here’s an example of one which replaces one path and removes another.
+Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here's an example of one which replaces one path and removes another.
 
 ```c++
 auto [err, result] = collection
@@ -543,7 +543,7 @@ auto [err2, result2] = collection
 
 ## [](#durability)Durability
 
-Couchbase’s [traditional durability](#2.7@java-sdk::durability.adoc), using `persist_to` and `replicate_to`, is [still available](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), particularly for talking to Couchbase Server 6.0 and earlier:
+Couchbase's [traditional durability](#2.7@java-sdk::durability.adoc), using `persist_to` and `replicate_to`, is [still available](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), particularly for talking to Couchbase Server 6.0 and earlier:
 
 ```c++
 auto [err, result] = collection

@@ -5,7 +5,7 @@ description: Couchbase Server lets you assign roles to individual users, which
   roles to each group. Each user automatically inherits the roles of the groups
   they belong to.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-users-and-roles.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-security/manage-users-and-roles.adoc[]
 ---
 
@@ -62,7 +62,7 @@ Add, edit, or delete groups in Couchbase Server through the Couchbase Web Consol
 
 ### [](#add-a-group)Add a Group
 
-Create user groups and assign roles to them. Add users to the group, which automatically grants users the group’s roles. Groups provide an efficient way to manage role assignments when the number of users is large.
+Create user groups and assign roles to them. Add users to the group, which automatically grants users the group's roles. Groups provide an efficient way to manage role assignments when the number of users is large.
 
 To create a group from the UI, do the following:
 
@@ -118,11 +118,11 @@ Repeat the procedure for any additional roles you want to assign to the same or 
 
 ### [](#edit-a-group)Edit a Group
 
-To make additional changes to an existing group’s role assignments, do the following:
+To make additional changes to an existing group's role assignments, do the following:
 
 1. In the **Users & Groups** tab, select **Groups**.
 2. Select **Edit** associated with the group you want to edit. The **Edit Group** dialog is displayed.
-3. Make the necessary changes to the group’s role assignments.
+3. Make the necessary changes to the group's role assignments.
 4. Select **Save** to save the changes.
 
 ### [](#delete-a-role-assignment)Delete a Role Assignment
@@ -163,11 +163,11 @@ To add a locally authenticated user from the UI, do the following:
   For more information about username and password authentication, see [Usernames and Passwords](../../learn/security/usernames-and-passwords.md).
   * **Verify Password**: To verify the temporary password for the user.
   * **Force Password Update**: To force the user to change their assigned temporary password on next login, enable this option. For more information about forcing password changes, see [Force Password Update](manage-passwords.md#force-password-update).
-  * **Roles**: The list of role (categories) to associate with the user. You can assign the user to one or more specific roles, or to one or more groups so that the user inherits the group’s assigned roles, or both.  
+  * **Roles**: The list of role (categories) to associate with the user. You can assign the user to one or more specific roles, or to one or more groups so that the user inherits the group's assigned roles, or both.  
   To see the roles, expand each role category. The first category is **Administrative** roles, which grants access to cluster-wide features. The **Administrative** role category is followed by the **Bucket**, **Data**, **Views**, **Query & Index**, **Search**, **Analytics**, **Eventing**, **XDCR**, **Backup**, and **Mobile** role categories.  
   For more information about assigning roles, see [Assign Roles to a User](#adding-roles).  
   You can apply the roles to some or all buckets of the cluster. Within any given bucket, the assigned role can apply to all or to a subset of [scopes and collections](../../learn/data/scopes-and-collections.md) defined for that bucket.
-  * **Groups**: The list of groups to associate with the user. You can assign the user to one or more groups so that the user inherits the group’s assigned roles.
+  * **Groups**: The list of groups to associate with the user. You can assign the user to one or more groups so that the user inherits the group's assigned roles.
 3. Select **Save** to save the details.
 
 If Native LDAP or `saslauthd` is enabled, the **Add New User** dialog displays the Authentication Domain section. Authentication Domain has the following options:
@@ -197,7 +197,7 @@ Now, you can continue the user-definition process by assigning the user to a gro
 
 ### [](#assigning-groups)Assign a User to a Group
 
-You can assign a user to one or more groups. You can either continue the user-definition process by assigning the user to a group while [adding the user](#add-a-locally-authenticated-user), or you can edit the user’s details later to assign them to a group.
+You can assign a user to one or more groups. You can either continue the user-definition process by assigning the user to a group while [adding the user](#add-a-locally-authenticated-user), or you can edit the user's details later to assign them to a group.
 
 To assign a user to a group, when adding the user, do the following:
 
@@ -205,9 +205,9 @@ To assign a user to a group, when adding the user, do the following:
 2. Select the group(s) to which you want to assign the user.
 3. Select **Add User** to save the changes.
 
-#### [](#editing-users-and-groups)Change User’s Group
+#### [](#editing-users-and-groups)Change User's Group
 
-To change a user’s group or assign a user to a group, by editing the user’s details, do the following:
+To change a user's group or assign a user to a group, by editing the user's details, do the following:
 
 1. On the **Security** screen, select **Users & Groups**, and then select **Users**.
 2. Select the user from the list you want to assign a group and select **Edit** associated with that user. The **Edit User** dialog is displayed.
@@ -229,7 +229,7 @@ The `auth domain` for the user is `Couchbase`, indicating that this is a locally
 
 ### [](#adding-an-externally-authenticated-user)Add an Externally Authenticated User
 
-An externally authenticated user is not authenticated on Couchbase Server. Instead, the user is authenticated on a server outside the cluster. The user’s password is defined and maintained by the external system.
+An externally authenticated user is not authenticated on Couchbase Server. Instead, the user is authenticated on a server outside the cluster. The user's password is defined and maintained by the external system.
 
 External authentication must be supported by [Native LDAP](../../learn/security/authentication-domains.md#native-ldap-support), [saslauthd](../../learn/security/authentication-domains.md#using-saslauthd), or [PAM](../../learn/security/authentication-domains.md#introduction-to-pam-based-authentication).
 
@@ -242,7 +242,7 @@ To add externally authenticated users, you must complete the required setup. For
 To add an externally authenticated user, do the following:
 
 1. On the **Security** screen, select the **Add User** tab. The **Add New User** dialog is displayed.
-2. In the **Add New User** dialog, select the **External** authentication domain type. Password fields are not displayed as they’re not necessary to add an externally authenticated user.  
+2. In the **Add New User** dialog, select the **External** authentication domain type. Password fields are not displayed as they're not necessary to add an externally authenticated user.  
 ![externalUserRadioButton](../_images/manage-security/externalUserRadioButton.png)
 3. The steps to set up **Username**, **Roles**, and **Groups** are same as in the sections [Add a Locally Authenticated User](#add-a-locally-authenticated-user), [Assign Roles to a User](#adding-roles), and [Assign a User to a Group](#assigning-groups) respectively.  
 For example, assign the **Query System Catalog** role to the external user. Then add the external user to the `ClusterAdmin` group, where it inherits the **Cluster Admin** role.
@@ -291,7 +291,7 @@ To lock or unlock a user account, do the following:
     1. Select **Unlock**. The **Confirm Unlock User** dialog is displayed.
     2. Select **Unlock User** to confirm and save the changes.
 
-When a user attempts to log in to their account after it’s locked, they see the following error message:
+When a user attempts to log in to their account after it's locked, they see the following error message:
 
 Login failed. Please try again.
 
@@ -384,7 +384,7 @@ The output has information about the following entries:
 * `name`: The name of the user, if specified.
 * `groups`: The local groups to which the user belongs.
 * `external_groups`: Any external groups to which the user belongs.
-* `password_change_date`: The date the user’s password was last changed.
+* `password_change_date`: The date the user's password was last changed.
 
 #### [](#create-local-users-with-the-cli)Manage Local Users with the CLI
 
@@ -573,7 +573,7 @@ The command explanation is as follows:
 * Assign the `replication_admin` role to the new group using the `--roles` flag.
 
 > [!NOTE]
-> To change the group’s role assignments, recreate the group and specify all new role assignments as arguments to the `--roles` flag. User memberships remain unchanged.
+> To change the group's role assignments, recreate the group and specify all new role assignments as arguments to the `--roles` flag. User memberships remain unchanged.
 
 If the command is successful, the following message is displayed.
 
@@ -619,7 +619,7 @@ To create an externally authenticated user and directly assign a role to it, use
 The command explanation is as follows:
 
 * Specify `--auth-domain` as `external`.
-* Use the `--set` flag to update the cluster’s RBAC profile.
+* Use the `--set` flag to update the cluster's RBAC profile.
 * Do not specify a password. Couchbase Server does not save the password because the authentication occurs on the LDAP server. Assign the role to the user with the `--roles` flag as `cluster_admin`.
 
 If the command is successful, the following message is displayed:
@@ -710,7 +710,7 @@ You can define each user as either local or external. Before you create external
 
 #### [](#get-user-information-with-the-rest-api)Get User Information Using the REST API
 
-To list the cluster’s current users, use the `GET /settings/rbac/users` method and URI as follows:
+To list the cluster's current users, use the `GET /settings/rbac/users` method and URI as follows:
 
 curl -v -X GET -u Administrator:password \
 http://10.143.192.101:8091/settings/rbac/users
@@ -907,7 +907,7 @@ The command explanation is as follows:
 
 ### [](#get-group-information-with-the-rest-api)Get Group Information Using the REST API
 
-To list the cluster’s current groups, use the `GET /settings/rbac/groups` method and URI as follows:
+To list the cluster's current groups, use the `GET /settings/rbac/groups` method and URI as follows:
 
 curl -v -X GET -u Administrator:password \
 http://10.143.192.101:8091/settings/rbac/groups

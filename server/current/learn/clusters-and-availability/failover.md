@@ -3,7 +3,7 @@ title: Failover
 description: <em>Failover</em> is a process whereby a node can be taken out of a
   Couchbase cluster with speed.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/failover.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:clusters-and-availability/failover.adoc[]
 ---
 
@@ -28,7 +28,7 @@ Graceful failover _must_ be manually initiated. Hard failover _can_ be manually 
 > [!NOTE]
 > When a node is failed over, some replica vBuckets on the remaining nodes are promoted to active status but are not recreated as new replicas. As a result, the cluster temporarily loses those replica copies.
 > 
-> In contrast, when a node is removed, the cluster automatically restores any replica vBuckets that would otherwise be lost during [removal](removal.md). This preserves the cluster’s data availability level, but increases memory resource usage on the surviving nodes.
+> In contrast, when a node is removed, the cluster automatically restores any replica vBuckets that would otherwise be lost during [removal](removal.md). This preserves the cluster's data availability level, but increases memory resource usage on the surviving nodes.
 
 Ideally, after any failover, [rebalance](rebalance.md) should be performed. This is especially important when a Data Service node has been failed over, since the rebalance will ensure an optimal ratio of active to replica vBuckets across all the remaining Data Service nodes.
 
@@ -87,11 +87,11 @@ For further examples of rebalance in the context of _node removal_, see [Removal
 
 ## [](#failover-efficiency)Failover Efficiency
 
-the cluster’s [Master Services](cluster-manager.md#master-services) determine how efficiently the cluster handles a failover. They manage operations with cluster-wide impact such as failover, rebalance, and adding and deleting buckets. The Master Services are also called the Orchestrator.
+the cluster's [Master Services](cluster-manager.md#master-services) determine how efficiently the cluster handles a failover. They manage operations with cluster-wide impact such as failover, rebalance, and adding and deleting buckets. The Master Services are also called the Orchestrator.
 
 At any given time, only one instance of the Master Services is in charge. The Master Service instances negotiate among themselves to identify and elect one of them to be the active Master Service. If the elected instance becomes unavailable, another instance takes over.
 
-Having the node that’s hosting the active Master Services fail over causes greater latency than usual. The remaining Master Service instances must renegotiate among themselves to determine which becomes the new active Master Service before handling the failover. Having the Master Services co-located with a highly subscribed services such as the Data Service can result in unnecessary latency when failing over the node and ensuring data availability.
+Having the node that's hosting the active Master Services fail over causes greater latency than usual. The remaining Master Service instances must renegotiate among themselves to determine which becomes the new active Master Service before handling the failover. Having the Master Services co-located with a highly subscribed services such as the Data Service can result in unnecessary latency when failing over the node and ensuring data availability.
 
 To limit failover latency, the Master Services should be co-located on a node with lowest overhead due to services. When choosing a node to host the active Master Service, Couchbase Server weighs the impact of each service running on each node. The services are broken into several tiers, listed here from least to greatest impact:
 
@@ -102,7 +102,7 @@ To limit failover latency, the Master Services should be co-located on a node wi
 
 Each tier is assigned a cost ten times higher than the previous tier. For example, Couchbase Server considers a node running Analytics, Indexing, and Search services more capable of handing the active Master Service role than a node running just the Data Service.
 
-If one is available, Couchbase Service always chooses an the cluster’s [Master Services](cluster-manager.md#master-services) to host the active Master Service. Arbiter nodes do not run any services, and are therefore perfect candidates for hosting the Master Service.
+If one is available, Couchbase Service always chooses an the cluster's [Master Services](cluster-manager.md#master-services) to host the active Master Service. Arbiter nodes do not run any services, and are therefore perfect candidates for hosting the Master Service.
 
 ## [](#node-removal)Node Removal
 

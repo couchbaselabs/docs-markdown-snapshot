@@ -1,7 +1,7 @@
 ---
 title: Dynamic Admission Controller Deployment Settings
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/reference-admission-cli.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@operator::reference-admission-cli.adoc[]
 ---
 
@@ -67,7 +67,7 @@ spec:
 | **1** | The command-line arguments for the DAC are defined [below](#command-line-arguments).                                                                                                                                                                                                                  |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | The container image to use. The version is defined by the tools package you are using, so typically handed for you. Likewise, this is a standard Kubernetes image, for Red Hat OCP you will need to use the Red Hat Container Catalog version. An OCP specific tool set usually handles this for you. |
-| **3** | The DAC is a regular HTTPS web service, so needs this port defining. Port 8443 is the default as it’s a user space port and doesn’t need any elevated privileges.                                                                                                                                     |
+| **3** | The DAC is a regular HTTPS web service, so needs this port defining. Port 8443 is the default as it's a user space port and doesn't need any elevated privileges.                                                                                                                                     |
 | **4** | The DAC must use TLS transport between the Kubernetes API and itself. This volume mount gives access to an X.509 certificate/key pair.                                                                                                                                                                |
 | **5** | The DAC runs under a service account granting it privileges as defined in [the DAC RBAC reference](reference-admission-rbac.md). Certain privileges are optional based on the provided flags defined [below](#command-line-arguments).                                                                |
 | **6** | The TLS certificates are provided via a Kubernetes secret. This allows you to provide the certificates explicitly, or use kubernetes.io/tls type secrets provided by [3rd party certificate managers](tutorial-cert-manager.md).                                                                      |

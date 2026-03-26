@@ -3,7 +3,7 @@ title: Cost-Based Optimizer for Capella Analytics Services
 description: The cost-based optimizer for Capella Analytics uses samples to
   choose the optimal plan to execute a query.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5b_cbo.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sqlpp:5b_cbo.adoc[]
 ---
 
@@ -21,7 +21,7 @@ Capella Analytics uses rule-based optimization to query your collections until y
 
 ## [](#about-the-cost-based-optimizer)About the Cost-Based Optimizer
 
-The execution plan for a query involves many possible operations: scan, join, filter, and so on. When planning for a query’s execution, there are usually several possible choices for each operation, including the use of different indexes or different join methods. Some of the choices will be faster and more efficient than others. The cost-based optimizer (CBO) aims to choose the most efficient option for each.
+The execution plan for a query involves many possible operations: scan, join, filter, and so on. When planning for a query's execution, there are usually several possible choices for each operation, including the use of different indexes or different join methods. Some of the choices will be faster and more efficient than others. The cost-based optimizer (CBO) aims to choose the most efficient option for each.
 
 When generating an execution plan, the cost-based optimizer does the following:
 
@@ -29,7 +29,7 @@ When generating an execution plan, the cost-based optimizer does the following:
 2. **Join method**: the optimizer chooses between nested-loop joins, hash joins, and hash broadcast joins. For hash joins, the optimizer chooses which side of the join should be the build side or the probe side.
 3. **Join enumeration**: the optimizer considers different join orders, and generates the optimal join order for query execution.
 
-The cost-based optimizer for Capella Analytics services uses a random sample of the data taken from each collection. At query planning time, the optimizer queries the samples based on the query’s single-collection predicates to estimate the number of qualifying objects in each base collection for the query.
+The cost-based optimizer for Capella Analytics services uses a random sample of the data taken from each collection. At query planning time, the optimizer queries the samples based on the query's single-collection predicates to estimate the number of qualifying objects in each base collection for the query.
 
 The optimizer uses these results to estimate the cardinality of each predicate. It uses these cardinalities to compute the cost of different access paths, then compares the estimated cost of the alternatives to generate a query execution plan with the lowest cost.
 
@@ -48,7 +48,7 @@ Before you can use the cost-based optimizer for a query, you must first gather t
 
 You must gather a sample from each collection that the query specifies. You can only gather an optimizer sample from a collection, not from a view.
 
-You must periodically refresh the sample for each collection, based on the collection’s rate of change and how frequently you need to query each collection.
+You must periodically refresh the sample for each collection, based on the collection's rate of change and how frequently you need to query each collection.
 
 The query language provides ANALYZE statements which enable you to manage cost-based optimizer samples.
 
@@ -119,8 +119,8 @@ You can find metadata for the cost-based optimizer samples (for historical reaso
 
 The Index catalog entry for a cost-based optimizer sample contains the following extra fields specific to samples:
 
-* **SampleSeed**: The sample’s seed.
-* **SampleCardinalityTarget**: The sample’s size.
+* **SampleSeed**: The sample's seed.
+* **SampleCardinalityTarget**: The sample's size.
 * **SourceCardinality**: The total number of objects in the collection when it was sampled.
 * **SourceAvgItemSize**: The average object size (in bytes) in the collection when it was sampled.
 

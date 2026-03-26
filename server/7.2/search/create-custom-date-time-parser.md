@@ -3,7 +3,7 @@ title: Create a Custom Date/Time Parser
 description: Create a custom date/time parser with the Couchbase Server Web
   Console to tell the Search Service how to process a new date/time format.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-custom-date-time-parser.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:create-custom-date-time-parser.adoc[]
 ---
 
@@ -18,8 +18,8 @@ If you store date data in a format other than RFC-3339 (ISO-8601), then you need
 
 ## [](#prerequisites)Prerequisites
 
-* You’ve created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md).
-* You’ve logged in to the Couchbase Server Web Console.
+* You've created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md).
+* You've logged in to the Couchbase Server Web Console.
 
 ## [](#procedure)Procedure
 
@@ -32,7 +32,7 @@ To create a custom date/time parser with the Couchbase Server Web Console:
 5. Click **Add Date/Time Parser**
 6. In the **Name** field, enter a name for the date/time parser.
 7. In the **Layout to be added** field, enter a date/time layout with Go syntax.  
-For more information, see the documentation about the [Go Programming Language Time Package’s Layout Constant](https://pkg.go.dev/time#pkg-constants).
+For more information, see the documentation about the [Go Programming Language Time Package's Layout Constant](https://pkg.go.dev/time#pkg-constants).
 8. Click **Add**.
 9. (Optional) To add an additional layout, repeat the previous steps.
 10. Click **Save**.

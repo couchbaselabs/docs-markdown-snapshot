@@ -3,7 +3,7 @@ title: Use the Query History
 description: The workbench for Enterprise Analytics maintains a history of all
   the queries you've executed.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/query/pages/history.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:query:history.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.0@enterprise-analytics:query:history.adoc[]
 
 # Use the Query History
 
-> The workbench for Enterprise Analytics maintains a history of all the queries you’ve executed. 
+> The workbench for Enterprise Analytics maintains a history of all the queries you've executed. 
 
 ## [](#prerequisites)Prerequisites
 
@@ -57,7 +57,7 @@ You can use the following options to work with the list of queries in the histor
 * **search history** — Search the query history by entering text in the **filter queries** search box. Enterprise Analytics lists all matching queries.
 * **delete a specific entry** — Choose a specific entry and click **Delete Selected** to delete it from the history.  
 > [!TIP]  
-> This can be useful if you want a more manicured history for when you’re exporting it for future use.
+> This can be useful if you want a more manicured history for when you're exporting it for future use.
 * **Delete all entries** — Click **Delete all** to delete the entire query history.
 * **Close & Run** — Click **Close&Run** to run the selected query.
 * **Close** — Click **Close&Run** to close the **Query History** window.

@@ -3,7 +3,7 @@ title: Cascade Delete Documents
 description: Use the Eventing Service to perform cascade delete operations on
   your documents.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-cascade-delete.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-examples-cascade-delete.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:cloud:eventing:eventing-examples-cascade-delete.adoc[]
 
 When you delete a user from Couchbase Capella, you can use Eventing Functions to delete all documents associated with that deleted user.
 
-The `OnDelete` handler listens to mutations or data changes within a specified user’s source collection. When you delete a user, the Eventing Function executes its JavaScript code to remove the deleted user and all of their associated data.
+The `OnDelete` handler listens to mutations or data changes within a specified user's source collection. When you delete a user, the Eventing Function executes its JavaScript code to remove the deleted user and all of their associated data.
 
 Unlike the similar scriptlet [cascadeKvDeleteWithDoc](eventing-handler-cascadeKvDeleteWithDoc.md), which uses KV or the Data Service, the example on this page uses SQL++.
 
@@ -94,7 +94,7 @@ Deploy your Eventing Function:
 2. Click **More Options (⋮)** next to **delete\_orphaned\_txns**.
 3. Click **Deploy** to deploy your Function.
 
-After it’s deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
+After it's deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
 
 ### [](#create-users-transactions-and-indexes)Create Users, Transactions, and Indexes
 

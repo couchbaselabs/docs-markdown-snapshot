@@ -3,7 +3,7 @@ title: Metrics Reporting
 description: Individual request tracing presents a very specific (though
   isolated) view of the system.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/howtos/pages/observability-metrics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@java-sdk:howtos:observability-metrics.adoc[]
 ---
 
@@ -18,7 +18,7 @@ The SDK exposes metrics for operation durations, broken down into p50, p90, p99,
 
 These metrics can either be logged periodically into the application logs, using the `LoggingMeter` (this is the default behaviour).
 
-Or, sent into the OpenTelemetry or Micrometer libraries, where they can be sent on to the user’s metrics infrastructure — such as Prometheus.
+Or, sent into the OpenTelemetry or Micrometer libraries, where they can be sent on to the user's metrics infrastructure — such as Prometheus.
 
 ## [](#the-default-loggingmeter)The Default LoggingMeter
 
@@ -113,7 +113,7 @@ To do this, first add this to your Maven, or the equivalent to your build tool o
 </dependencies>
 ```
 
-In addition, you’ll need to get the metrics data into your metrics backend. This is often done by having the metrics backend (such as Prometheus) regularly gather, or 'scrape', the metrics data.
+In addition, you'll need to get the metrics data into your metrics backend. This is often done by having the metrics backend (such as Prometheus) regularly gather, or 'scrape', the metrics data.
 
 There are multiple approaches here. The `opentelemetry-exporter-prometheus` library makes it possible to open an HTTP server in the application that Prometheus can then scape.
 
@@ -226,7 +226,7 @@ Some things to note:
 * The app has been told to export metrics over OLTP GRPC to localhost:4317\. `opentelemetry-collector` is listening to this.
 * `opentelemetry-collector` will store the metrics, and exposes port 10000 for Prometheus to periodically scrape.
 
-Now run the application. All being well, `opentelemetry-collector` should regularly log that it’s receiving the `db.couchbase.operations` metric, as it has been configured with a `logging` exporter.
+Now run the application. All being well, `opentelemetry-collector` should regularly log that it's receiving the `db.couchbase.operations` metric, as it has been configured with a `logging` exporter.
 
 And Prometheus (the UI is available on <http://localhost:9090>) should allow querying for `db_couchbase_operations`. (Though a real deployment will generally use another tool, such as Grafana, for visualisation.)
 
@@ -267,7 +267,7 @@ To do this, first add this to your Maven, or the equivalent to your build tool o
 </dependency>
 ```
 
-You can now create a Micrometer registry and pass it into the SDK. Here we’re using a Prometheus Micrometer registry, and setting up an HTTP server inside the application that will run on port 10000 and which Prometheus can scrape.
+You can now create a Micrometer registry and pass it into the SDK. Here we're using a Prometheus Micrometer registry, and setting up an HTTP server inside the application that will run on port 10000 and which Prometheus can scrape.
 
 But Micrometer of course, like OpenTelemetry, can support many more metrics backends than Prometheus. See the Micrometer documentation for details.
 

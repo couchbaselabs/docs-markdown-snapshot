@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on C#.Net
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/releasenotes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite:csharp:releasenotes.adoc[]
 ---
 
@@ -76,7 +76,7 @@ Version 3.2.2 for C#.Net delivers the following features and enhancements:
 * [CBL-6534 - No Such Table Error When Upgrading from 3.1.9 to 3.2.1](https://jira.issues.couchbase.com/browse/CBL-6534)
 * [CBL-6822 - Replicator may hang while stopping the housekeeper task during stop](https://jira.issues.couchbase.com/browse/CBL-6822)
 
-* [CBL-6540 - ReplicatorConfiguration’s AllowReplicatingInBackground behavior is reversed](https://jira.issues.couchbase.com/browse/CBL-6540)
+* [CBL-6540 - ReplicatorConfiguration's AllowReplicatingInBackground behavior is reversed](https://jira.issues.couchbase.com/browse/CBL-6540)
 
 ### [](#known-issues-3)Known Issues
 
@@ -107,7 +107,7 @@ Version 3.2.1 for C#.Net delivers the following features and enhancements:
 
 ### [](#known-issues-4)Known Issues
 
-* [CBL-6539 - ReplicatorConfiguration’s AllowReplicatingInBackground behavior is reversed](https://jira.issues.couchbase.com/browse/CBL-6539)
+* [CBL-6539 - ReplicatorConfiguration's AllowReplicatingInBackground behavior is reversed](https://jira.issues.couchbase.com/browse/CBL-6539)
 
 ### [](#deprecations-4)Deprecations
 
@@ -143,8 +143,8 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 
 * [CBL-5272 - Ensure that c4queryobs\_\* functions are called under the database-exclusive lock](https://issues.couchbase.com/browse/CBL-5272)
 * [CBL-5267 - Include Privacy Manifest in the released library](https://issues.couchbase.com/browse/CBL-5267)
-* [CBL-5210 - Implement Collection’s database property](https://issues.couchbase.com/browse/CBL-5210)
-* [CBL-5204 - Implementation Collection’s full-name property](https://issues.couchbase.com/browse/CBL-5204)
+* [CBL-5210 - Implement Collection's database property](https://issues.couchbase.com/browse/CBL-5210)
+* [CBL-5204 - Implementation Collection's full-name property](https://issues.couchbase.com/browse/CBL-5204)
 * [CBL-4483 - Windows only code no longer being called on .NET 6 non-Windows](https://issues.couchbase.com/browse/CBL-4483)
 * [CBL-5381 - Update iOS Target Version to 12](https://issues.couchbase.com/browse/CBL-5381)
 * [CBL-1572 - Update .Net 6 C# language to version 9.0](https://issues.couchbase.com/browse/CBL-1572)
@@ -173,14 +173,14 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 * [CBL-4913 - Fixed regression in pull of blobs/legacy attachment handling](https://issues.couchbase.com/browse/CBL-4913)
 * [CBL-5082 - Fixed crash in setting Housekeeper::\_doExpiration()](https://issues.couchbase.com/browse/CBL-5082)
 * [CBL-5033 - Fixed Puller revoked docs should queue with other revs](https://issues.couchbase.com/browse/CBL-5033)
-* [CBL-5044 - Don’t capture backtrace for OutOfRange error FLDictIterator\_Next](https://issues.couchbase.com/browse/CBL-5044)
+* [CBL-5044 - Don't capture backtrace for OutOfRange error FLDictIterator\_Next](https://issues.couchbase.com/browse/CBL-5044)
 * [CBL-5307 - Correctly updating remote revision when pulling the existing revision](https://issues.couchbase.com/browse/CBL-5307)
 * [CBL-5332 - Fixed crash during document expiration](https://issues.couchbase.com/browse/CBL-5332)
 * [CBL-5335 - Fixed array\_agg failures](https://issues.couchbase.com/browse/CBL-5335)
 * [CBL-5336 - Over the bound of FLDicIterator should be banned](https://issues.couchbase.com/browse/CBL-5336)
 * [CBL-5377 - Fixed MILLIS\_TO\_STRING is returning UTC instead of local time zone](https://issues.couchbase.com/browse/CBL-5377)
 * [CBL-5449 - Fixed Attachments flag is dropped when applying delta to incoming rev](https://issues.couchbase.com/browse/CBL-5449)
-* [CBL-5515 - Fixed Result alias can’t be used elsewhere in query](https://issues.couchbase.com/browse/CBL-5515)
+* [CBL-5515 - Fixed Result alias can't be used elsewhere in query](https://issues.couchbase.com/browse/CBL-5515)
 * [CBL-5540 - Fixed pthread\_mutex\_lock called on a destroyed mutex](https://issues.couchbase.com/browse/CBL-5540)
 * [CBL-5587 - Fixed Remote rev KeepBody flag could be cleared accidentally](https://issues.couchbase.com/browse/CBL-5587)
 * [CBL-5589 - Fixed N1QL Parser has exponential slowdown for redundant parentheses](https://issues.couchbase.com/browse/CBL-5589)
@@ -215,8 +215,8 @@ Version 3.2.0 Beta 2 for C#.Net delivers the following features and enhancements
 
 ### [](#enhancements-6)Enhancements
 
-* [CBL-5210 - Implement Collection’s database property](https://issues.couchbase.com/browse/CBL-5210)
-* [CBL-5241 - Implementation Collection’s full-name property](https://issues.couchbase.com/browse/CBL-5204)
+* [CBL-5210 - Implement Collection's database property](https://issues.couchbase.com/browse/CBL-5210)
+* [CBL-5241 - Implementation Collection's full-name property](https://issues.couchbase.com/browse/CBL-5204)
 * [CBL-5381 - Update iOS Target Version to 12](https://issues.couchbase.com/browse/CBL-5381)
 * [CBL-5272 - Ensure that c4queryobs\_\* functions are called under the database-exclusive lock](https://issues.couchbase.com/browse/CBL-5272)
 * [CBL-5267 - Include Privacy Manifest in the released library](https://issues.couchbase.com/browse/CBL-5267)
@@ -248,7 +248,7 @@ Version 3.2.0 Beta 2 for C#.Net delivers the following features and enhancements
 * [CBL-5335 - array\_agg seem to fail under some circumstances](https://issues.couchbase.com/browse/CBL-5335)
 * [CBL-5332 - Crash during document expiration](https://issues.couchbase.com/browse/CBL-5332)
 * [CBL-5307 - Updating remote revision when pulling the existing revision](https://issues.couchbase.com/browse/CBL-5307)
-* [CBL-5044 - Don’t capture backtrace for OutOfRange error FLDictIterator\_Next](https://issues.couchbase.com/browse/CBL-5044)
+* [CBL-5044 - Don't capture backtrace for OutOfRange error FLDictIterator\_Next](https://issues.couchbase.com/browse/CBL-5044)
 * [CBL-5033 - Puller revoked docs should queue with other revs](https://issues.couchbase.com/browse/CBL-5033)
 * [CBL-5020 - Fixed cannot read digest file: /libs/macos/aarch64/lib/libLiteCoreJNI.dylib.MD5 exception](https://issues.couchbase.com/browse/CBL-5020)
 * [CBL-5449 - Port - Attachments flag is dropped when applying delta to incoming rev](https://issues.couchbase.com/browse/CBL-5449)
@@ -282,19 +282,19 @@ None for this release
 
 ### [](#deprecations-6)Deprecations
 
-* [CBL-5491 - Default’s MAX\_ATTEMPT\_WAIT\_TIME and USE\_PLAIN\_TEXT are deprecated](https://issues.couchbase.com/browse/CBL-5491)
-* [CBL-4316 - Replicator’s getPendingDocumentIds() and isDocumentPending(String id) are deprecated](https://issues.couchbase.com/browse/CBL-4316)
-* [CBL-4315 - ReplicatorConfiguration’s filters and conflict resolver properties are deprecated](https://issues.couchbase.com/browse/CBL-4315)
+* [CBL-5491 - Default's MAX\_ATTEMPT\_WAIT\_TIME and USE\_PLAIN\_TEXT are deprecated](https://issues.couchbase.com/browse/CBL-5491)
+* [CBL-4316 - Replicator's getPendingDocumentIds() and isDocumentPending(String id) are deprecated](https://issues.couchbase.com/browse/CBL-4316)
+* [CBL-4315 - ReplicatorConfiguration's filters and conflict resolver properties are deprecated](https://issues.couchbase.com/browse/CBL-4315)
 * [CBL-4314 - ReplicatorConfiguration APIs with Database object are deprecated ](https://issues.couchbase.com/browse/CBL-4314)
 * [CBL-4313 - MessageEndpointListenerConfiguration APIs using Database object are deprecated](https://issues.couchbase.com/browse/CBL-4313)
 * [CBL-4312 - URLEndpointListenerConfiguration APIs using Database object are deprecated](https://issues.couchbase.com/browse/CBL-4312)
 * [CBL-4311 - QueryBuilder : isNullOrMissing() and notNullOrMissing() are deprecated](https://issues.couchbase.com/browse/CBL-4311)
-* [CBL-4310 - QueryBuilder : FullTextFunction’s rank(String index) and match(String index, String query) are deprecated](https://issues.couchbase.com/browse/CBL-4310)
-* [CBL-4309 - QueryBuilder : DataSource’s database() is deprecated](https://issues.couchbase.com/browse/CBL-4309)
-* [CBL-4307 - DocumentChange’s database property is deprecated](https://issues.couchbase.com/browse/CBL-4307)
+* [CBL-4310 - QueryBuilder : FullTextFunction's rank(String index) and match(String index, String query) are deprecated](https://issues.couchbase.com/browse/CBL-4310)
+* [CBL-4309 - QueryBuilder : DataSource's database() is deprecated](https://issues.couchbase.com/browse/CBL-4309)
+* [CBL-4307 - DocumentChange's database property is deprecated](https://issues.couchbase.com/browse/CBL-4307)
 * [CBL-4306 - DatabaseChange and DatabaseChangeListener are deprecated](https://issues.couchbase.com/browse/CBL-4306)
-* [CBL-4305 - Database’s removeChangeListener() is deprecated](https://issues.couchbase.com/browse/CBL-4305)
-* [CBL-4304 - Database’s Document APIs are deprecated](https://issues.couchbase.com/browse/CBL-4304)
+* [CBL-4305 - Database's removeChangeListener() is deprecated](https://issues.couchbase.com/browse/CBL-4305)
+* [CBL-4304 - Database's Document APIs are deprecated](https://issues.couchbase.com/browse/CBL-4304)
 * [CBL-4320 - UWP deprecated and Xamarin deprecated](https://issues.couchbase.com/browse/CBL-4320)
 
 > [!NOTE]

@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Lite on Android
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/android/pages/releasenotes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:android:releasenotes.adoc[]
 ---
 
@@ -112,7 +112,7 @@ Version 3.0.2 of Couchbase Lite for Android delivers a number of fixes and enhan
 * [CBL-3000](https://issues.couchbase.com/browse/CBL-3000) — [c4DbChanges in AbstractDatabase.postDatabaseChanged may contain nulls](https://issues.couchbase.com/browse/CBL-3000)
 * [CBL-2998](https://issues.couchbase.com/browse/CBL-2998) — [Replicator stopped with WebSocket 1008 / SocketTimeoutException when disable Wi-Fi](https://issues.couchbase.com/browse/CBL-2998)
 * [CBL-2996](https://issues.couchbase.com/browse/CBL-2996) — [Several bad tests in ReplicatorLocal2LocalTest suite](https://issues.couchbase.com/browse/CBL-2996)
-* [CBL-2995](https://issues.couchbase.com/browse/CBL-2995) — [Cookies set in Headers are replaced with Session Authenticator’s cookies](https://issues.couchbase.com/browse/CBL-2995)
+* [CBL-2995](https://issues.couchbase.com/browse/CBL-2995) — [Cookies set in Headers are replaced with Session Authenticator's cookies](https://issues.couchbase.com/browse/CBL-2995)
 * [CBL-2962](https://issues.couchbase.com/browse/CBL-2962) — [URLEndpointListenerTest fixes](https://issues.couchbase.com/browse/CBL-2962)
 * [CBL-2884](https://issues.couchbase.com/browse/CBL-2884) — [evpos is missing in the changed attachment body when using delta sync](https://issues.couchbase.com/browse/CBL-2884)
 
@@ -148,7 +148,7 @@ Read More . . . [Couchbase Lite for Kotlin](kotlin.md)
 
 #### [](#sqln1ql-query-strings)SQL++/N1QL Query Strings
 
-Couchbase Lite’s SQL++ for Mobile query API vastly simplifies the integration of Couchbase Lite within hybrid/cross platform apps.
+Couchbase Lite's SQL++ for Mobile query API vastly simplifies the integration of Couchbase Lite within hybrid/cross platform apps.
 
 N1QL for Mobile is an implementation of the emerging SQL-for-JSON query language specification (SQL++). It provides native, hybrid and cross-platform mobile app developers with a consistent, convenient and flexible interface to query JSON documents within the embedded database using a SQL-based syntax. This means developers can reuse queries across platforms, reducing development, testing and maintenance costs.
 
@@ -181,12 +181,12 @@ The API is enhanced to allow replicator listeners to be added at any point witho
 ### [](#other-enhancements)Other Enhancements
 
 * [CBL-2645](https://issues.couchbase.com//browse/CBL-2645) — [Update Lithium to RC-1 LiteCore](https://issues.couchbase.com//browse/CBL-2645)
-* [CBL-2634](https://issues.couchbase.com//browse/CBL-2634) — [Update support level and message note of Database’saveBlob() and getBlob() API](https://issues.couchbase.com//browse/CBL-2634)
+* [CBL-2634](https://issues.couchbase.com//browse/CBL-2634) — [Update support level and message note of Database'saveBlob() and getBlob() API](https://issues.couchbase.com//browse/CBL-2634)
 * [CBL-2630](https://issues.couchbase.com//browse/CBL-2630) — [Update to latest LiteCore](https://issues.couchbase.com//browse/CBL-2630)
 * [CBL-2628](https://issues.couchbase.com//browse/CBL-2628) — [Change away from using SELECT when open socket](https://issues.couchbase.com//browse/CBL-2628)
 * [CBL-2551](https://issues.couchbase.com//browse/CBL-2551) — [Include description of error codes](https://issues.couchbase.com//browse/CBL-2551)
 * [CBL-2481](https://issues.couchbase.com//browse/CBL-2481) — [Change database.createQuery(String query) signature to throw CouchbaseLiteException](https://issues.couchbase.com//browse/CBL-2481)
-* [CBL-2456](https://issues.couchbase.com//browse/CBL-2456) — [Update Database’s createQuery() to return an error or throw CouchbaseLiteException (Beta 3)](https://issues.couchbase.com//browse/CBL-2456)
+* [CBL-2456](https://issues.couchbase.com//browse/CBL-2456) — [Update Database's createQuery() to return an error or throw CouchbaseLiteException (Beta 3)](https://issues.couchbase.com//browse/CBL-2456)
 * [CBL-2439](https://issues.couchbase.com//browse/CBL-2439) — [Add note about notification when disabling autoPurge](https://issues.couchbase.com//browse/CBL-2439)
 * [CBL-2408](https://issues.couchbase.com//browse/CBL-2408) — [Add kFLUndefinedValue constant in Fleece.h](https://issues.couchbase.com//browse/CBL-2408)
 * [CBL-2383](https://issues.couchbase.com//browse/CBL-2383) — [Increase kOtherDBCloseTimeoutSecs to allow enough time for all db open connections to be closed](https://issues.couchbase.com//browse/CBL-2383)
@@ -196,7 +196,7 @@ The API is enhanced to allow replicator listeners to be added at any point witho
 * [CBL-2292](https://issues.couchbase.com//browse/CBL-2292) — [Update mobile n1ql test suite](https://issues.couchbase.com//browse/CBL-2292)
 * [CBL-2099](https://issues.couchbase.com//browse/CBL-2099) — [Add Kotlin Flowables](https://issues.couchbase.com//browse/CBL-2099)
 * [CBL-2064](https://issues.couchbase.com//browse/CBL-2064) — [Implement Encrypted Property Feature](https://issues.couchbase.com//browse/CBL-2064)
-* [CBL-2040](https://issues.couchbase.com//browse/CBL-2040) — [Change QueryBuilder’s ATAN2(X, Y) to ATAN2(Y, X)](https://issues.couchbase.com//browse/CBL-2040)
+* [CBL-2040](https://issues.couchbase.com//browse/CBL-2040) — [Change QueryBuilder's ATAN2(X, Y) to ATAN2(Y, X)](https://issues.couchbase.com//browse/CBL-2040)
 * [CBL-2006](https://issues.couchbase.com//browse/CBL-2006) — [Annotate methods and returns for nullability](https://issues.couchbase.com//browse/CBL-2006)
 * [CBL-1979](https://issues.couchbase.com//browse/CBL-1979) — [Support Android v30](https://issues.couchbase.com//browse/CBL-1979)
 * [CBL-1948](https://issues.couchbase.com//browse/CBL-1948) — [Make objects with native companions AutoClosable](https://issues.couchbase.com//browse/CBL-1948)
@@ -214,7 +214,7 @@ The API is enhanced to allow replicator listeners to be added at any point witho
 * [CBL-1714](https://issues.couchbase.com//browse/CBL-1714) — [Refactor POSIX error domain codes to be platform independent](https://issues.couchbase.com//browse/CBL-1714)
 * [CBL-1711](https://issues.couchbase.com//browse/CBL-1711) — [API: Add MaintenanceType for Query Optimization](https://issues.couchbase.com//browse/CBL-1711)
 * [CBL-1666](https://issues.couchbase.com//browse/CBL-1666) — [Allow apps to trigger SQLite index optimization directly](https://issues.couchbase.com//browse/CBL-1666)
-* [CBL-1650](https://issues.couchbase.com//browse/CBL-1650) — [CBL doesn’t purge channel removals when removal revision already exists in CBL](https://issues.couchbase.com//browse/CBL-1650)
+* [CBL-1650](https://issues.couchbase.com//browse/CBL-1650) — [CBL doesn't purge channel removals when removal revision already exists in CBL](https://issues.couchbase.com//browse/CBL-1650)
 * [CBL-1584](https://issues.couchbase.com//browse/CBL-1584) — [Replicator Retry Logic](https://issues.couchbase.com//browse/CBL-1584)
 * [CBL-1583](https://issues.couchbase.com//browse/CBL-1583) — [JSON Results](https://issues.couchbase.com//browse/CBL-1583)
 * [CBL-1582](https://issues.couchbase.com//browse/CBL-1582) — [Configurable Replicator Level](https://issues.couchbase.com//browse/CBL-1582)
@@ -418,7 +418,7 @@ None for this release.
 
 * [CBL-2583](https://issues.couchbase.com//browse/CBL-2583) — [Replication unable to continue after termination between rev and ack](https://issues.couchbase.com//browse/CBL-2583)
 * [CBL-2579](https://issues.couchbase.com//browse/CBL-2579) — [409 retry can result in invalid remote ancestor ID](https://issues.couchbase.com//browse/CBL-2579)
-* [CBL-2512](https://issues.couchbase.com//browse/CBL-2512) — [Replicator won’t stop](https://issues.couchbase.com//browse/CBL-2512)
+* [CBL-2512](https://issues.couchbase.com//browse/CBL-2512) — [Replicator won't stop](https://issues.couchbase.com//browse/CBL-2512)
 * [CBL-2478](https://issues.couchbase.com//browse/CBL-2478) — [Tear down DBAccess on stopped instead of on release](https://issues.couchbase.com//browse/CBL-2478)
 * [CBL-2436](https://issues.couchbase.com//browse/CBL-2436) — [Lithium beta 2: Confirm LiteCore request for close, before connection is opened.](https://issues.couchbase.com//browse/CBL-2436)
 * [CBL-2405](https://issues.couchbase.com//browse/CBL-2405) — [Hung in call to c4socket\_closed](https://issues.couchbase.com//browse/CBL-2405)
@@ -431,7 +431,7 @@ None for this release.
 * [CBL-2210](https://issues.couchbase.com//browse/CBL-2210) — [RESTListener synchronous response may hang](https://issues.couchbase.com//browse/CBL-2210)
 * [CBL-2208](https://issues.couchbase.com//browse/CBL-2208) — [REST API \_replicate lacks authentication](https://issues.couchbase.com//browse/CBL-2208)
 * [CBL-2182](https://issues.couchbase.com//browse/CBL-2182) — [Crash in assertion](https://issues.couchbase.com//browse/CBL-2182)
-* [CBL-2180](https://issues.couchbase.com//browse/CBL-2180) — [Conflict resolver doesn’t sync blob](https://issues.couchbase.com//browse/CBL-2180)
+* [CBL-2180](https://issues.couchbase.com//browse/CBL-2180) — [Conflict resolver doesn't sync blob](https://issues.couchbase.com//browse/CBL-2180)
 * [CBL-1748](https://issues.couchbase.com//browse/CBL-1748) — [X509TrustManager.checkServerTrusted with X509TrustManagerExtensions.checkServerTrusted](https://issues.couchbase.com//browse/CBL-1748)
 * [CBL-1722](https://issues.couchbase.com//browse/CBL-1722) — [POSIX 32 (Broken Pipe) appears to crash application](https://issues.couchbase.com//browse/CBL-1722)
 * [CBL-1718](https://issues.couchbase.com//browse/CBL-1718) — [Handle db close in inBatch](https://issues.couchbase.com//browse/CBL-1718)
@@ -439,7 +439,7 @@ None for this release.
 * [CBL-1438](https://issues.couchbase.com//browse/CBL-1438) — [WSA codes not properly handled by bio\_return\_value](https://issues.couchbase.com//browse/CBL-1438)
 * [CBL-1401](https://issues.couchbase.com//browse/CBL-1401) — [API: Remove LogLevel.getValue](https://issues.couchbase.com//browse/CBL-1401)
 * [CBL-1225](https://issues.couchbase.com//browse/CBL-1225) — [Testfest : unshare the docs does not replicate to CBL](https://issues.couchbase.com//browse/CBL-1225)
-* [CBL-862](https://issues.couchbase.com//browse/CBL-862) — [CBL 2.7 and later doesn’t catch Illegal top-level key like "\_id"](https://issues.couchbase.com//browse/CBL-862)
+* [CBL-862](https://issues.couchbase.com//browse/CBL-862) — [CBL 2.7 and later doesn't catch Illegal top-level key like "\_id"](https://issues.couchbase.com//browse/CBL-862)
 * [CBL-708](https://issues.couchbase.com//browse/CBL-708) — [Conflicting revision bodies are not removed after resolution](https://issues.couchbase.com//browse/CBL-708)
 * [CBL-462](https://issues.couchbase.com//browse/CBL-462) — [Continuous push attempts to replicate purged documents](https://issues.couchbase.com//browse/CBL-462)
 * [CBL-220](https://issues.couchbase.com//browse/CBL-220) — [Windows cannot handle dates before 1970 with C API](https://issues.couchbase.com//browse/CBL-220)
@@ -491,7 +491,7 @@ Product Notes
 * [Release Notes](releasenotes.md)
 * [Compatibility](compatibility.md)
 * [Supported Platforms](supported-os.md)
-* [What’s New](#cbl-whatsnew.adoc)
+* [What's New](#cbl-whatsnew.adoc)
 
 ###### [](#-2)
 

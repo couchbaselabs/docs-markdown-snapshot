@@ -2,7 +2,7 @@
 title: Manage Scopes and Collections
 description: Scopes and collections allow you to organize your documents within a database.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/scopes-collections-manage.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::scopes-collections-manage.adoc[]
 ---
 
@@ -41,7 +41,7 @@ To modify collections, you must:
 
 Every database you create contains a default scope and a default collection named \_default.
 
-If you create a document in the database and don’t specify a specific scope or collection, it is saved in the default collection, in the default scope.
+If you create a document in the database and don't specify a specific scope or collection, it is saved in the default collection, in the default scope.
 
 The default scope and collection cannot be dropped.
 
@@ -220,11 +220,11 @@ console.log('Collection removed from configuration');
 | **3** | Collection no longer accessible           |
 
 > [!WARNING]
-> Removing a collection from the configuration does not delete its data from IndexedDB. The data remains but is inaccessible. To permanently delete the collection’s data, you must delete the documents before removing the collection from the configuration.
+> Removing a collection from the configuration does not delete its data from IndexedDB. The data remains but is inaccessible. To permanently delete the collection's data, you must delete the documents before removing the collection from the configuration.
 
 ## [](#purge-collection-data)Purge Collection Data
 
-To permanently delete a collection’s data:
+To permanently delete a collection's data:
 
 > [!IMPORTANT]
 > Purging deletes all traces of a document, without leaving a "tombstone" revision behind. However, this means _purges are not visible to the replicator_, which has two side effects:

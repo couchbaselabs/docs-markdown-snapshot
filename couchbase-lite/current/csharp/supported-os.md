@@ -3,7 +3,7 @@ title: Supported Operating System Versions
 description: Couchbase Lite on C#.Net -- the OS and SDK versions on which this
   framework is supported
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/supported-os.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:csharp:supported-os.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:couchbase-lite:csharp:supported-os.adoc[]
 # Supported Operating System Versions
 
 > Description — _Couchbase Lite on C#.Net — the OS and SDK versions on which this framework is supported_  
-> Related Content — [What’s New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
+> Related Content — [What's New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
 
 ## [](#officially-supported-versions)Officially Supported Versions
 
@@ -29,7 +29,7 @@ Run-times which have received more testing and are **officially** supported are 
 > [!NOTE]
 > Newer .NET Runtime Versions
 > 
-> The **Minimum Runtime Version** column specifies the minimum required version for each .NET runtime. Later versions, including .NET 10 and higher, also work because .NET provides backward compatibility. Couchbase Lite is built to be compatible with newer .NET runtime versions as they’re released. If you encounter any issues with a newer .NET version, submit a support ticket.
+> The **Minimum Runtime Version** column specifies the minimum required version for each .NET runtime. Later versions, including .NET 10 and higher, also work because .NET provides backward compatibility. Couchbase Lite is built to be compatible with newer .NET runtime versions as they're released. If you encounter any issues with a newer .NET version, submit a support ticket.
 
 __Table 1\. Supported versions__
 | .NET Runtime      | Minimum Runtime Version (and newer) | Minimum OS version                  |

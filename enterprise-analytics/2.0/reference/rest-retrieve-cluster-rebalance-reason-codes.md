@@ -1,7 +1,7 @@
 ---
 title: Getting Cluster Rebalance Reason Codes
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-retrieve-cluster-rebalance-reason-codes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:reference:rest-retrieve-cluster-rebalance-reason-codes.adoc[]
 ---
 
@@ -22,10 +22,10 @@ At any point that the service needs rebalancing, you can use this method to obta
 
 The reason code(s) can be one or more of the following:
 
-* Service isn’t balanced.
-* Servers aren’t balanced.
+* Service isn't balanced.
+* Servers aren't balanced.
 * The number of replicas has changed.
-* The bucket map isn’t balanced.
+* The bucket map isn't balanced.
 
 > [!NOTE]
 > The service returns the reason code only if a rebalance is required.

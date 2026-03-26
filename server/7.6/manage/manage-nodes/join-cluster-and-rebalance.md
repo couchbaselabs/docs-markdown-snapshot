@@ -2,7 +2,7 @@
 title: Join a Cluster and Rebalance
 description: An independent Couchbase Server-node can be joined to an existing cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-nodes/join-cluster-and-rebalance.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-nodes/join-cluster-and-rebalance.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Note also, however, that a node _cannot_ join itself to a cluster if the node ha
 
 ### [](#node-joining-and-certificate-management)Node-Joining and Certificate-Management
 
-The examples on this page assume that the default, _system-generated_ certificates provided by Couchbase Server continue to be resident on the cluster and the node to be joined. In a production or similar context, to ensure security, only administrator-configured certificates should be used on a cluster: these should rely on a well known _Certificate Authority_, whose certificate is loaded as the cluster’s _root_ certificate. (For more information, see [Default Certificates and Certificate Substitution](../../learn/security/certificates.md#server-certificates).)
+The examples on this page assume that the default, _system-generated_ certificates provided by Couchbase Server continue to be resident on the cluster and the node to be joined. In a production or similar context, to ensure security, only administrator-configured certificates should be used on a cluster: these should rely on a well known _Certificate Authority_, whose certificate is loaded as the cluster's _root_ certificate. (For more information, see [Default Certificates and Certificate Substitution](../../learn/security/certificates.md#server-certificates).)
 
 In such a context, no node can be joined to the cluster until conformant administrator-configured certificates have been loaded onto it — such activities will thus need to be performed in addition to those shown by the examples on this page.
 
@@ -52,7 +52,7 @@ The examples assume:
 
 Proceed as follows:
 
-1. Acccess the new node’s Couchbase Web Console instance, at `10.142.181.102:8091`. The welcome screen is displayed:  
+1. Acccess the new node's Couchbase Web Console instance, at `10.142.181.102:8091`. The welcome screen is displayed:  
 ![newNodeWelcomeScreen](../_images/manage-nodes/newNodeWelcomeScreen.png)
 2. Left-click on the **Join Existing Cluster** button:  
 ![joinExistingClusterButton](../_images/manage-nodes/joinExistingClusterButton.png)  
@@ -62,7 +62,7 @@ This brings up the **Join Cluster** dialog:
 ![joinClusterDialogExpanded](../_images/manage-nodes/joinClusterDialogExpanded.png)  
 The expanded dialog allows specification of the services, the name and IP address, and the disk paths for the new node. It also requires the username and password of the **Cluster Admin** (although the credentials of the **Full Admin** for the cluster are equally implied), and the name or IP address of the cluster to be joined.  
 If you do not specify any services, the node joins the cluster as an [arbiter node](../../learn/clusters-and-availability/nodes.md#adding-arbiter-nodes).
-4. Enter the cluster’s IP address (in this case, `10.142.181.101`) and password, and uncheck all **Services** fields except **Data**. Leave all other details unchanged. Then, left-click on the **Join Cluster** button, at the lower right.  
+4. Enter the cluster's IP address (in this case, `10.142.181.101`) and password, and uncheck all **Services** fields except **Data**. Leave all other details unchanged. Then, left-click on the **Join Cluster** button, at the lower right.  
 The dashboard for the cluster now appears. The following notification is provided at the lower left:  
 ![serverAssociationMessage](../_images/manage-nodes/serverAssociationMessage.png)
 5. Access the **Servers** screen, by left-clicking on the **Servers** tab, on the left-hand navigation bar. The display is as follows:  

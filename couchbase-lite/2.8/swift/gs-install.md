@@ -2,7 +2,7 @@
 title: Install Couchbase Lite on Swift
 description: Installing Couchbase Lite on Swift
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/swift/pages/gs-install.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:swift:gs-install.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Create or open an existing _Xcode_ project and install Couchbase Lite using one 
 > 
 > The recommended solution is to use an `.xcframework` package, where possible. Alternatively, as an interim solution, you can do the following workaround in your _Xcode_ project:
 > 
-> 1. Navigate to the target’s _Build Settings_
+> 1. Navigate to the target's _Build Settings_
 > 2. Locate the **Validate Workspace** setting  
 > ![xcode 12x3 fix](../_images/xcode-12x3-fix.png)
 > 3. Set _Validate Workspace_ to **Yes**, then return it to **No**

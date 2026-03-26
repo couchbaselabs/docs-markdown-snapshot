@@ -2,7 +2,7 @@
 title: Join a Cluster and Rebalance
 description: An independent Enterprise Analytics-node can be joined to an existing cluster.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/join-cluster-and-rebalance.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:manage:manage-nodes/join-cluster-and-rebalance.adoc[]
 ---
 
@@ -25,11 +25,11 @@ Note also, however, that a node _cannot_ join itself to a cluster if the node ha
 
 ### [](#connectivity-considerations)Connectivity Considerations
 
-When adding a node to a cluster, it’s important to follow the connectivity best practices outlined in [Cluster Connectivity and Topology Management](cluster-connectivity-topology-management.md). The scale out procedures vary based on the addressing model in use (Active Load Balancer, Passive Load Balancer, or DNS-Only). To minimize disruptions to client applications, ensure that you follow the procedures detailed in [Rebalance Out (Scale-In)](cluster-connectivity-topology-management.md#rebalance-out-scale-in) section.
+When adding a node to a cluster, it's important to follow the connectivity best practices outlined in [Cluster Connectivity and Topology Management](cluster-connectivity-topology-management.md). The scale out procedures vary based on the addressing model in use (Active Load Balancer, Passive Load Balancer, or DNS-Only). To minimize disruptions to client applications, ensure that you follow the procedures detailed in [Rebalance Out (Scale-In)](cluster-connectivity-topology-management.md#rebalance-out-scale-in) section.
 
 ### [](#node-joining-and-certificate-management)Node-Joining and Certificate-Management
 
-The examples on this page assume that the default, _system-generated_ certificates provided by Enterprise Analytics continue to be resident on the cluster and the node to be joined. In a production or similar context, to ensure security, only administrator-configured certificates should be used on a cluster: these should rely on a well known _Certificate Authority_, whose certificate is loaded as the cluster’s _root_ certificate. (For more information, see [Default Certificates and Certificate Substitution](#server:learn:security/certificates.html#server-certificates).)
+The examples on this page assume that the default, _system-generated_ certificates provided by Enterprise Analytics continue to be resident on the cluster and the node to be joined. In a production or similar context, to ensure security, only administrator-configured certificates should be used on a cluster: these should rely on a well known _Certificate Authority_, whose certificate is loaded as the cluster's _root_ certificate. (For more information, see [Default Certificates and Certificate Substitution](#server:learn:security/certificates.html#server-certificates).)
 
 In such a context, no node can be joined to the cluster until conformant administrator-configured certificates have been loaded onto it — such activities will thus need to be performed in addition to those shown by the examples on this page.
 
@@ -48,7 +48,7 @@ The examples in the subsections below show how the same uninitialized and unprov
 
 The examples assume:
 
-* A one-node cluster already exists; and is named after its IP address: `127.0.0.1`. It’s running on Enterprise Analytics, and has the `travel-sample` datasets installed. To access and install this, see [Connecting to Data Sources](../../intro/connecting-to-data-sources.md).
+* A one-node cluster already exists; and is named after its IP address: `127.0.0.1`. It's running on Enterprise Analytics, and has the `travel-sample` datasets installed. To access and install this, see [Connecting to Data Sources](../../intro/connecting-to-data-sources.md).
 * A new node has been started. This is named after its IP address: `10.142.181.102`. It has not been initialized or provisioned.
 * The cluster has the Full Administrator username of `Administrator`, and password of `password`.
 * The cluster is protected by the default Couchbase-Server certificate-configuration.
@@ -57,7 +57,7 @@ The examples assume:
 
 Proceed as follows:
 
-1. Access the new node’s Enterprise Analytics Web Console instance, at `10.142.181.102:8091`. The welcome screen is displayed, showing the Enterprise Analytics setup interface with options for setting up a new cluster or joining an existing cluster.
+1. Access the new node's Enterprise Analytics Web Console instance, at `10.142.181.102:8091`. The welcome screen is displayed, showing the Enterprise Analytics setup interface with options for setting up a new cluster or joining an existing cluster.
 2. Click on the **Join Existing Cluster** button to begin the process of joining this node to an existing cluster. This brings up the **Join Cluster** dialog with initial fields for cluster connection details.
 3. Click on the **Configure Services & Settings For This Node** control. The dialog expands vertically to reveal additional configuration options. The expanded dialog allows specification of the name and IP address, and the disk paths for the new node. It also requires the username and password of the **Cluster Admin** (although the credentials of the **Full Admin** for the cluster are equally implied), and the name or IP address of the cluster to be joined.  
 The expanded interface includes:
@@ -66,7 +66,7 @@ The expanded interface includes:
   * **Cache Disk Path(s)**: Field to specify the disk path(s) for cache storage  
   > [!NOTE]  
   > If you do not specify any services, the node joins the cluster as an [arbiter node](../../../../server/current/learn/clusters-and-availability/nodes.md#adding-arbiter-nodes).
-4. Enter the cluster’s IP address (in this case, `127.0.0.1`) in the appropriate field, provide the administrator credentials, and uncheck all **Services** fields except **Data**. Leave all other details unchanged. Then, click on the **Join Cluster** button at the lower right.  
+4. Enter the cluster's IP address (in this case, `127.0.0.1`) in the appropriate field, provide the administrator credentials, and uncheck all **Services** fields except **Data**. Leave all other details unchanged. Then, click on the **Join Cluster** button at the lower right.  
 The dashboard for the cluster now appears, indicating successful connection to the cluster. A notification appears at the lower left of the screen confirming that the server association has been completed successfully.
 5. Access the **Servers** screen by clicking on the **Servers** tab on the left-hand navigation bar. The display shows that the new node `10.142.181.102` has successfully joined the cluster. However, it is not yet taking traffic, and will be activated following a _rebalance_. The display shows the figure under the **Items** column for `127.0.0.1` indicating items in _active_ vBuckets and 0 items in _replica_ vBuckets. Meanwhile, the **Items** figure for `10.142.181.102` is 0/0, indicating that no items are yet distributed onto that node in either active or replica form.  
 To access information about buckets, vBuckets, and intra-cluster replication, see the architecture [Overview](../../../../server/current/learn/architecture-overview.md).

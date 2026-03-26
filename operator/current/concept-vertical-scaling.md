@@ -1,7 +1,7 @@
 ---
 title: Couchbase Cluster Vertical Scaling
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-vertical-scaling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::concept-vertical-scaling.adoc[]
 ---
 
@@ -19,7 +19,7 @@ Vertical scaling is not as well supported by Kubernetes, but may be required for
 Modifying CPU and memory
 
 * Better resource utilization by requiring fewer nodes to support your workload
-* Reducing the relative impact of an application’s fixed overhead
+* Reducing the relative impact of an application's fixed overhead
 
 Modifying storage
 

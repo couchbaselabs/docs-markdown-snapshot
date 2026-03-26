@@ -3,7 +3,7 @@ title: Managing Sample Buckets
 description: Couchbase Server offers several sample buckets you can install for
   development and testing.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-sample-buckets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:rest-sample-buckets.adoc[]
 ---
 
@@ -81,7 +81,7 @@ If successful, the call returns output similar to the following:
 ]
 ```
 
-The output lists the available sample buckets and whether it’s installed and the memory required to install the bucket.
+The output lists the available sample buckets and whether it's installed and the memory required to install the bucket.
 
 > [!NOTE]
 > the `quotaNeeded` value is the minimum that Couchbase Server must have available. The sample bucket might not consume this entire value when you install it.

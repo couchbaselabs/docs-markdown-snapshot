@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase C Client, libcouchbase (LCB).
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:c-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -194,7 +194,7 @@ $ sudo dpkg -i libcouchbase3{-tools,-libevent,}_3.2.0*.deb libcouchbase-dev*.deb
 
 ## [](#installation-from-source)Installation from source
 
-You may install the library from source either by downloading a source archive, or by checking out the [git repository](https://github.com/couchbase/libcouchbase). Follow the instructions in the archive’s [README](https://github.com/couchbase/libcouchbase/blob/master/README.markdown) for further instructions.
+You may install the library from source either by downloading a source archive, or by checking out the [git repository](https://github.com/couchbase/libcouchbase). Follow the instructions in the archive's [README](https://github.com/couchbase/libcouchbase/blob/master/README.markdown) for further instructions.
 
 ## [](#installation-on-mac-os-x)Installation on Mac OS X
 
@@ -544,7 +544,7 @@ This is a maintenance release and includes several bugs fixes and stability impr
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.10/index.html)
 
-* [CCBC-1616](https://issues.couchbase.com/browse/CCBC-1616): A `wait_for_config` check is now applied for all pipelines. Previously, the `lcb_wait` function would wait for the pending configuration updates, but didn’t do it if the configuration update operation was being retried. Now, the operation also will not wait for pending configuration updates, rather it will return from `lcb_wait` as soon as the operation completes.
+* [CCBC-1616](https://issues.couchbase.com/browse/CCBC-1616): A `wait_for_config` check is now applied for all pipelines. Previously, the `lcb_wait` function would wait for the pending configuration updates, but didn't do it if the configuration update operation was being retried. Now, the operation also will not wait for pending configuration updates, rather it will return from `lcb_wait` as soon as the operation completes.
 
   * The old behaviour still works when `wait_for_config=true` is passed in the connection string (or `LCB_CNTL_WAIT_FOR_CONFIG` is set to non-zero value): in this case the library will wait for the configuration.
   * This setting does not affect the mode when the event loop is executed by the application, and without `lcb_wait`.
@@ -1292,7 +1292,7 @@ Version 3.1.0 is the first release of the 3.1 series.
 * [CCBC-1374](https://issues.couchbase.com/browse/CCBC-1374): Reintroduce input error classification macro.
 * [CCBC-1375](https://issues.couchbase.com/browse/CCBC-1375): Translate query errors when scope/collection missing.
 * [CCBC-1366](https://issues.couchbase.com/browse/CCBC-1366): Do not cache bucket-less configurations.
-* [CCBC-1363](https://issues.couchbase.com/browse/CCBC-1363): Allow using parent project’s `hdr_histogram_static` target.
+* [CCBC-1363](https://issues.couchbase.com/browse/CCBC-1363): Allow using parent project's `hdr_histogram_static` target.
 * [CCBC-1361](https://issues.couchbase.com/browse/CCBC-1361): Allow `"_default._default"` collection for pre-collections servers.
 * [MB-42884](https://issues.couchbase.com/browse/MB-42884): Correctly define `FILEVERSION` for libcouchbase.dll.
 * [CCBC-1351](https://issues.couchbase.com/browse/CCBC-1351): Option to render cbc-ping output as a table.
@@ -1510,7 +1510,7 @@ Version 3.0.2 is the third release of the 3.0 series, bringing enhancements and 
 * [CCBC-1200](https://issues.couchbase.com/browse/CCBC-1200): LCB will now retry bootstrap on missing bucket error until timeout. Bootstrap timeout is controlled by "config\_total\_timeout" in connection string or `LCB_CNTL_CONFIGURATION_TIMEOUT`.
 * [CCBC-1190](https://issues.couchbase.com/browse/CCBC-1190): When performing an operation immediately after bucket creation, the server returns `TMPFAIL` and libcouchbase bubbled this up rather than restarting. Now fixed so LCB automatic retries for temporary failures from the server.
 * [CCBC-1158](https://issues.couchbase.com/browse/CCBC-1158): Reduced retrying on unknown collection to a sensible level.
-* [CCBC-1254](https://issues.couchbase.com/browse/CCBC-1254): It’s now possible to use a separate option for default timeout of Analytics queries (connection string "analytics\_timeout").
+* [CCBC-1254](https://issues.couchbase.com/browse/CCBC-1254): It's now possible to use a separate option for default timeout of Analytics queries (connection string "analytics\_timeout").
 * [CCBC-1178](https://issues.couchbase.com/browse/CCBC-1178): It is now no longer possible to (illigally) set CAS for upsert and insert operations.
 * [CCBC-1156](https://issues.couchbase.com/browse/CCBC-1156): Fixed enum value for analytics type of HTTP request.
 * [CCBC-1251](https://issues.couchbase.com/browse/CCBC-1251): No longer log error when using GCCCP on pre-6.5 Couchbase Server.

@@ -4,7 +4,7 @@ description: To support secure communications between nodes, clusters, and
   clients, Enterprise Analytics provides interfaces for the configuration of
   on-the-wire security settings.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/manage-tls.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:manage:manage-security/manage-tls.adoc[]
 ---
 
@@ -35,7 +35,7 @@ You can set the following three options globally and on a per-service basis. Set
 > [!NOTE]  
 > The values `tlsv1` and `tlsv1.1` were deprecated in Enterprise Analytics 7.2, and are no longer supported by Enterprise Analytics 7.6 and later.  
 This parameter can set globally and per service.
-* `honorCipherOrder`. Specifies whether the service uses its own cipher-suite preference, rather than the client’s. The default value of `honorCipherOrder` is `true`: a setting of `false` is _not_ recommended, since insecure.
+* `honorCipherOrder`. Specifies whether the service uses its own cipher-suite preference, rather than the client's. The default value of `honorCipherOrder` is `true`: a setting of `false` is _not_ recommended, since insecure.
 * `cipherSuites`. Specifies a list of the cipher suites to be used by the service, in order of preference. The argument must be a list of cipher suites, each of which appears as a member of the array that is the value of the non-configurable **supportedCipherSuites** setting for the service.  
 Note that Enterprise Analytics only accepts _IETF RFC_ names, for cipher-suites: _OpenSSL_ names cannot be used.
 
@@ -43,7 +43,7 @@ Additional on-the-wire security settings are provided for global configuration o
 
 * `disableUIOverHttp`. Whether access to Enterprise Analytics Web Console should be disabled over http. The default is that the console _can_ be accessed over http.
 * `disableUIOverHttps`. Whether access to Enterprise Analytics Web Console should be disabled over https. The default is that the console _can_ be accessed over https.
-* `disableWWWAuthenticate`. Whether to disable Enterprise Analytics’s responding to unauthenticated requests with _WWW-Authenticate_. The default is _not_ to disable.
+* `disableWWWAuthenticate`. Whether to disable Enterprise Analytics's responding to unauthenticated requests with _WWW-Authenticate_. The default is _not_ to disable.
 * `clusterEncryptionLevel`. Controls the level of encryption imposed on cluster-communications. This can only be set after cluster encryption has been enabled: see [Manage Node-to-Node Encryption](../manage-nodes/apply-node-to-node-encryption.md). Its value can be any of the following:
 
   * `control`, meaning that server-management information passed between nodes is passed in encrypted form.
@@ -53,7 +53,7 @@ Additional on-the-wire security settings are provided for global configuration o
 * `Strict-Transport-Security`. Establishes an _HTTP Secure Transport Header (HSTS)_; so as to inform the Web-Console browser never to load a site using HTTP; and instead, to automatically convert all access-requests from HTTP to HTTPS. Three _sub-settings_ must be established, which are:
 
   * The duration of HTTPS-enforcement for this browser.
-  * Whether the site’s subdomains are to be covered by the setting.
+  * Whether the site's subdomains are to be covered by the setting.
   * Whether the _preload_ directive should be set; so that the policy is enforced before any communication takes place.
 
 ### [](#enforcing-tls)Enforcing TLS
@@ -76,7 +76,7 @@ The Couchbase CLI allows cluster-wide on-the-wire security-settings to be retrie
 
 ### [](#get-cluster-wide-settings-with-the-cli)Get Cluster-Wide Settings, with the CLI
 
-The cluster-wide security configuration includes both global and per service settings. You can view the current configuration using the [setting-security](../../cli/couchbase-cli-setting-security.md) command. The following example pipes this command’s output to the [jq](https://stedolan.github.io/jq) command to make the output more readable:
+The cluster-wide security configuration includes both global and per service settings. You can view the current configuration using the [setting-security](../../cli/couchbase-cli-setting-security.md) command. The following example pipes this command's output to the [jq](https://stedolan.github.io/jq) command to make the output more readable:
 
 ```console
 /opt/enterprise-analytics/bin/couchbase-cli
@@ -232,7 +232,7 @@ Enter the following command:
 --cipher-suites TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA \
 --set
 
-This establishes that the server’s order of cipher-suites is to be honored, and specifies a cipher-suite list of two ciphers.
+This establishes that the server's order of cipher-suites is to be honored, and specifies a cipher-suite list of two ciphers.
 
 If the call is successful, the following message is displayed:
 
@@ -271,14 +271,14 @@ The `tlsMinVersion` flag specifies the global-minimum TLS version to be used; wh
 
 ### [](#set-global-cipher-suite-list-with-the-rest-api)Set a Global Cipher-Suite List, with the REST API
 
-To establish a global cipher-suite list, and specify whether to honor the server’s or the client’s cipher-suite preference, enter the following:
+To establish a global cipher-suite list, and specify whether to honor the server's or the client's cipher-suite preference, enter the following:
 
 curl  -u Administrator:password -v -X POST \
 http://10.144.210.101:8091/settings/security \
 -d honorCipherOrder=true \
 -d 'cipherSuites=["TLS_RSA_WITH_AES_128_CBC_SHA", "TLS_RSA_WITH_AES_256_CBC_SHA"]'
 
-The `honorCipherOrder` flag is specified as `true`, meaning that the server’s order of preference for cipher-suites, rather than the client’s, will be used. (Note, however, that `true` is the default; meaning that the server’s preference is used even if this parameter is not specified.) The value specified for the `cipherSuites` flag is a list of cipher-suites that can be used for the server, in order of preference. If the value for `cipherSuites` is an empty list (`[]`), no global cipher-suite list is established: For information about default cipher-suite lists used by individual services, see [On-the-Wire Security](../../../../server/current/learn/security/on-the-wire-security.md).
+The `honorCipherOrder` flag is specified as `true`, meaning that the server's order of preference for cipher-suites, rather than the client's, will be used. (Note, however, that `true` is the default; meaning that the server's preference is used even if this parameter is not specified.) The value specified for the `cipherSuites` flag is a list of cipher-suites that can be used for the server, in order of preference. If the value for `cipherSuites` is an empty list (`[]`), no global cipher-suite list is established: For information about default cipher-suite lists used by individual services, see [On-the-Wire Security](../../../../server/current/learn/security/on-the-wire-security.md).
 
 If successful, the call gives `200 OK`, and returns an empty array.
 

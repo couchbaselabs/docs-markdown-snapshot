@@ -3,7 +3,7 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.9@go-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -19,7 +19,7 @@ This page covers using our operational Go SDK to connect to the Analytics Servic
 > [!TIP]
 > Analytics SDKs
 > 
-> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase's analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
 > 
 > Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](../../../home/columnar-sdk.md) for more information.
 

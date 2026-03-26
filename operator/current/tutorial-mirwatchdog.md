@@ -1,7 +1,7 @@
 ---
 title: Monitor for Manual Intervention Scenarios
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/tutorial-mirwatchdog.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::tutorial-mirwatchdog.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:operator::tutorial-mirwatchdog.adoc[]
 
 ## [](#overview)Overview
 
-The Operator automatically resolves most cluster issues without user involvement. However, some scenarios fall outside the Operator’s control and require manual intervention. The Manual Intervention Required (MIR) Watchdog monitors for these scenarios and places the cluster into a special MIR state when they occur, alerting you to take action.
+The Operator automatically resolves most cluster issues without user involvement. However, some scenarios fall outside the Operator's control and require manual intervention. The Manual Intervention Required (MIR) Watchdog monitors for these scenarios and places the cluster into a special MIR state when they occur, alerting you to take action.
 
 ### [](#enable-the-manual-intervention-required-watchdog)Enable the Manual Intervention Required Watchdog
 

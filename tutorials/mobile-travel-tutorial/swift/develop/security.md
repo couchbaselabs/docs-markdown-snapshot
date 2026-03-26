@@ -1,7 +1,7 @@
 ---
 title: Security
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/swift/develop/security.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:swift/develop/security.adoc[]
 ---
 
@@ -43,7 +43,7 @@ Figure 2\. View Created User in Server
 
 ## [](#access-control)Access Control
 
-In this lesson you’ll be introduced to Sync Gateway, our secure web gateway.
+In this lesson you'll be introduced to Sync Gateway, our secure web gateway.
 
 The Couchbase Sync Gateway is an Internet-facing synchronization mechanism that exposes a web interface which provides:
 

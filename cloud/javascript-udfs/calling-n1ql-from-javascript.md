@@ -3,7 +3,7 @@ title: Calling SQL++ from JavaScript
 description: You can run SQL++ statements from inside the JavaScript code you
   use for a user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/javascript-udfs/pages/calling-n1ql-from-javascript.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:javascript-udfs:calling-n1ql-from-javascript.adoc[]
 ---
 
@@ -95,7 +95,7 @@ function selectHotels() {
 > [!IMPORTANT]
 > If an inline statement or SQL++ call does not return a value, then the associated SQL++ statement is executed as part of a synchronous operation. This means the runtime will wait until the statement completes before moving on to the next line of JavaScript.
 > 
-> If the inline statement or SQL++ call returns a value, then it’s executed asynchronously. Execution of the JavaScript continues before the iterator is returned. Each document is fetched from the bucket as it’s requested by the iterator.
+> If the inline statement or SQL++ call returns a value, then it's executed asynchronously. Execution of the JavaScript continues before the iterator is returned. Each document is fetched from the bucket as it's requested by the iterator.
 > 
 > ![inline-call-sequence](_images/inline-call-sequence-519984698fa53bcd24f4a50467d4acdeb4ec8965.svg)
 

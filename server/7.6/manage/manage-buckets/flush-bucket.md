@@ -2,7 +2,7 @@
 title: Flush a Bucket
 description: <em>Flushing</em> deletes every object that a bucket contains.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-buckets/flush-bucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-buckets/flush-bucket.adoc[]
 ---
 
@@ -23,7 +23,7 @@ The **Buckets** screen now appears, showing the buckets that have already been d
 
 ![bucketsViewInitialEdit](../_images/manage-buckets/bucketsViewInitialEdit.png) 
 
-To edit the settings for a particular bucket, left-click on the bucket’s row in the UI; then, when the **Edit** button appears, left-click on it:
+To edit the settings for a particular bucket, left-click on the bucket's row in the UI; then, when the **Edit** button appears, left-click on it:
 
 This displays the **Edit Bucket Settings** dialog, which permits changes to be made to a subset of existing settings. All the settings contained here are described in detail for the **Add Data Bucket** dialog, in the section [Create a Bucket](create-bucket.md)
 
@@ -39,7 +39,7 @@ Note that flushing _cannot_ be performed while the bucket is the source for an o
 
 ![flushBucketButton](../_images/manage-buckets/flushBucketButton.png)
 
-When the **Flush** button is left-clicked on, flushing of the bucket occurs. This causes all items in the bucket to be deleted by the system at the earliest opportunity. Note that for this reason, you are recommended _not_ to run with the **Flush** setting enabled in production; due to the danger of all a bucket’s data being inadvertently lost.
+When the **Flush** button is left-clicked on, flushing of the bucket occurs. This causes all items in the bucket to be deleted by the system at the earliest opportunity. Note that for this reason, you are recommended _not_ to run with the **Flush** setting enabled in production; due to the danger of all a bucket's data being inadvertently lost.
 
 ## [](#providing-authorization)Providing Authorization
 

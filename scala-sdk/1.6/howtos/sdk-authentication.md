@@ -3,7 +3,7 @@ title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.6@scala-sdk:howtos:sdk-authentication.adoc[]
 ---
 
@@ -41,7 +41,7 @@ For a more detailed conceptual description of using certificates, see [Certifica
 
 ## [](#authenticating-a-scala-client-by-certificate)Authenticating a Scala Client by Certificate
 
-For sample procedures whereby certificates can be generated and deployed, see [Manage Certificates](../../../server/7.6/manage/manage-security/manage-certificates.md). The rest of this document assumes that the processes there, or something similar, have been followed. That is, a cluster certificate has been created and installed on the server, a client certificate has been created, and it is stored in a JVM keystore along with the cluster’s certificate.
+For sample procedures whereby certificates can be generated and deployed, see [Manage Certificates](../../../server/7.6/manage/manage-security/manage-certificates.md). The rest of this document assumes that the processes there, or something similar, have been followed. That is, a cluster certificate has been created and installed on the server, a client certificate has been created, and it is stored in a JVM keystore along with the cluster's certificate.
 
 ```scala
 // Open the keystore using standard JVM classes

@@ -2,7 +2,7 @@
 title: Secure API Access
 description: Sync Gateway REST API Access
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/rest-api/pages/rest-api-access.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@sync-gateway:rest-api:rest-api-access.adoc[]
 ---
 
@@ -44,7 +44,7 @@ Authenticated users will have access to Admin and-or Metrics API functionality, 
 
 ## [](#lbl-rbac-roles)Available Server RBAC Roles on Sync Gateway
 
-Couchbase Server makes a number of RBAC roles available for Sync Gateway use. Each user’s access-level will depend on its allocated role.
+Couchbase Server makes a number of RBAC roles available for Sync Gateway use. Each user's access-level will depend on its allocated role.
 
 The currently available roles will vary depending on the Couchbase Server release version — see: [Table 1](#tbl-ee-svr-sgw-roles).  
 
@@ -55,11 +55,11 @@ Note that the only role available for community-edition users is the **Full Admi
 __Table 1\. Sync gateway role availability by release__
 | Role                               | Capability                                                                                                                       | 7.1.0+                     | 7.0.2 DP[1](#more-on-developer-previews) | 6.1 - 7.0                  |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------- | -------------------------- |
-| Sync Gateway Architect             | Can manage Sync Gateway databases and users, and access Sync Gateway’s metrics endpoint. This user cannot read application data. | ![yes](../_images/yes.png) | ![yes](../_images/yes.png)               | ![no](../_images/no.png)   |
+| Sync Gateway Architect             | Can manage Sync Gateway databases and users, and access Sync Gateway's metrics endpoint. This user cannot read application data. | ![yes](../_images/yes.png) | ![yes](../_images/yes.png)               | ![no](../_images/no.png)   |
 | Sync Gateway Application           | Can manage Sync Gateway users and roles, and read and write application data through Sync Gateway.                               | ![yes](../_images/yes.png) | ![yes](../_images/yes.png)               | ![no](../_images/no.png)   |
 | Sync Gateway Application Read Only | Can read Sync Gateway users and roles, and read application data through Sync Gateway.                                           | ![yes](../_images/yes.png) | ![yes](../_images/yes.png)               | ![no](../_images/no.png)   |
 | Sync Gateway Replicator            | Can manage Inter-Sync Gateway Replications.This user cannot read application data.                                               | ![yes](../_images/yes.png) | ![yes](../_images/yes.png)               | ![no](../_images/no.png)   |
-| Sync Gateway Dev Ops               | Can manage Sync Gateway node-level configuration, and access Sync Gateway’s /metrics endpoint for Prometheus integration.        | ![yes](../_images/yes.png) | ![yes](../_images/yes.png)               | ![no](../_images/no.png)   |
+| Sync Gateway Dev Ops               | Can manage Sync Gateway node-level configuration, and access Sync Gateway's /metrics endpoint for Prometheus integration.        | ![yes](../_images/yes.png) | ![yes](../_images/yes.png)               | ![no](../_images/no.png)   |
 | Sync-Gateway Role                  | Can access DB / bucket scoped operations                                                                                         | ![no](../_images/no.png)   | ![no](../_images/no.png)                 | ![yes](../_images/yes.png) |
 | Application Access                 | Can access DB / bucket scoped operations                                                                                         | ![no](../_images/no.png)   | ![no](../_images/no.png)                 | ![yes](../_images/yes.png) |
 | Bucket Full Access                 | Can access DB / bucket scoped operations                                                                                         | ![no](../_images/no.png)   | ![no](../_images/no.png)                 | ![yes](../_images/yes.png) |
@@ -143,7 +143,7 @@ __Table 2\. Sync Gateway Network Port Requirements__
 | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 4984 | Public port. External HTTP port used for replication with Couchbase Lite databases and other applications accessing the REST API on the Internet. The Public REST API is used for client replication. The default port for the Public REST API is 4984.                                                                                                                                     |
 | 4985 | Admin port. Internal HTTP port for unrestricted access to the database and to run administrative tasks. The Admin REST API is used to administer user accounts and roles. It can also be used to look at the contents of databases in superuser mode. The default port for the Admin REST API is 4985\. By default, the Admin REST API is reachable only from localhost for safety reasons. |
-| 4986 | Metrics port. By default 4986 is the internal HTTP port designated for providing access to Sync Gateway’s Metrics REST API. Like the admin port, it is bound to 127.0.0.1 by default. The Metrics REST API returns Sync Gateway metrics, in JSON and-or Prometheus-compatible formats, for performance monitoring and-or diagnostic purposes,                                               |
+| 4986 | Metrics port. By default 4986 is the internal HTTP port designated for providing access to Sync Gateway's Metrics REST API. Like the admin port, it is bound to 127.0.0.1 by default. The Metrics REST API returns Sync Gateway metrics, in JSON and-or Prometheus-compatible formats, for performance monitoring and-or diagnostic purposes,                                               |
 
 For more on configuration see [api.admin\_interface](../configuration/configuration-schema-bootstrap.md#api-admin%5Finterface)
 

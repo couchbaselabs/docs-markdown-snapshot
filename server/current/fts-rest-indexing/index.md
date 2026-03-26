@@ -3,7 +3,7 @@ title: Couchbase Search Index Management and Monitoring API
 description: The Search Indexing REST API is provided by the Search Service.
   This API enables you to manage and monitor your Search indexes.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/fts-rest-indexing/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:fts-rest-indexing:index.adoc[]
 ---
 
@@ -1668,7 +1668,7 @@ A query can specify a timeout value, a consistency requirement, or both. This se
 * Logical first phase consistency wait — if timeout in this period, get 416 error with message saying request could not be satisfied.
 * If consistency wait times out with 416, return value to client will indicate the sequence number range processed so the client will have an idea how far the processing got and has the option of retrying more intelligently.
 * In phase 2, you have the normal pindex timeout. This will start whenever the first phase completes. At this point, request will return 200 HTTP response code unless there is an internal server error.
-* The client must check response status, which returns any errors or timeouts for each pindex. If the response includes the number of errors, and the client can determine whether they need the complete results or can continue as long as enough pindexes return to give a reasonable user experience. The query return status is 200 even if all pindexes return errors, so it’s critical to check the response status and code accordingly.
+* The client must check response status, which returns any errors or timeouts for each pindex. If the response includes the number of errors, and the client can determine whether they need the complete results or can continue as long as enough pindexes return to give a reasonable user experience. The query return status is 200 even if all pindexes return errors, so it's critical to check the response status and code accordingly.
 * If the client sets timeout low, for example 1 ms, you may receive a 200 error with all timeouts instead of a consistency wait timeout.
 
 ##### [](#p-api-index-name-query-security)Security

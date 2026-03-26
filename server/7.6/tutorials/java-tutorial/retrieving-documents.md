@@ -3,7 +3,7 @@ title: Retrieve Records
 description: Retrieve records, or documents, from your collections using SQL++,
   Couchbase's SQL-based query language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/tutorials/pages/java-tutorial/retrieving-documents.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:tutorials:java-tutorial/retrieving-documents.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:7.6@server:tutorials:java-tutorial/retrieving-documents.adoc[]
 
 # Retrieve Records
 
-> Retrieve records, or documents, from your collections using SQL++, Couchbase’s SQL-based query language. You can retrieve your records using the [query editor](#retrieve-with-query-editor) or the [SDK](#retrieve-with-sdk). 
+> Retrieve records, or documents, from your collections using SQL++, Couchbase's SQL-based query language. You can retrieve your records using the [query editor](#retrieve-with-query-editor) or the [SDK](#retrieve-with-sdk). 
 
 ## [](#retrieve-with-query-editor)With the Query Editor
 
@@ -94,13 +94,13 @@ select crc.* from `course-record-collection` crc where crc.`credit-points` < 200
 
 The `id` field is not automatically returned when you retrieve all of your course information.
 
-The `id` is part of a document’s meta structure, and to retrieve it you must adjust your SQL++ query and run it again:
+The `id` is part of a document's meta structure, and to retrieve it you must adjust your SQL++ query and run it again:
 
 1. Enter the following query into your query editor:  
 ```sqlpp  
 select META().id, crc.* from `course-record-collection` crc where crc.`credit-points` < 200  
 ```  
-The `META()` function call returns any property contained inside the document’s metadata, including the ID.
+The `META()` function call returns any property contained inside the document's metadata, including the ID.
 2. Click **Execute** to retrieve course records and their IDs.  
 ```json  
 [  

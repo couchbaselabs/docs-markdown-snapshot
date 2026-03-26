@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on Objective-C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/objc/pages/releasenotes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite:objc:releasenotes.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Version 3.3.2 for Objective-C delivers the following features and enhancements:
 ### [](#enhancements)Enhancements
 
 * [CBL-7751 — Update mbedTLS to 3.6.5](https://jira.issues.couchbase.com/browse/CBL-7751)
-* [CBL-7776 — Increase Replicator’s WebSocket PING / PONG timeout](https://jira.issues.couchbase.com/browse/CBL-7776)
+* [CBL-7776 — Increase Replicator's WebSocket PING / PONG timeout](https://jira.issues.couchbase.com/browse/CBL-7776)
 
 ### [](#fixed-issues)Fixed Issues
 
@@ -82,7 +82,7 @@ Version 3.3.0 for Objective-C delivers the following features and enhancements:
 * [CBL-6791 — Starting a Live Query in the Background May Crash the App](https://jira.issues.couchbase.com/browse/CBL-6791)
 * [CBL-6799 — Potential crash in URLEndpointListener due to accessing a NULL responseTimer during stop](https://jira.issues.couchbase.com/browse/CBL-6799)
 * [CBL-7146 — UserAgent shows incorrect info](https://jira.issues.couchbase.com/browse/CBL-7146)
-* [CBL-7167 — Getting non existing TLS Identity using label shouldn’t throw an error](https://jira.issues.couchbase.com/browse/CBL-7167)
+* [CBL-7167 — Getting non existing TLS Identity using label shouldn't throw an error](https://jira.issues.couchbase.com/browse/CBL-7167)
 * [CBL-7179 — Swift Codable skips nil values during encoding](https://jira.issues.couchbase.com/browse/CBL-7179)
 * [CBL-7181 — Assertion Failure in URLEndpointListener Due to Collection Mismatch with Connected Replicator](https://jira.issues.couchbase.com/browse/CBL-7181)
 * [CBL-7189 — Assertion failure caused by pull filter during replication](https://jira.issues.couchbase.com/browse/CBL-7189)

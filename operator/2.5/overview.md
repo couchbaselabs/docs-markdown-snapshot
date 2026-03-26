@@ -1,7 +1,7 @@
 ---
 title: Introduction
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/overview.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::overview.adoc[]
 ---
 
@@ -38,7 +38,7 @@ The Operator extends Kubernetes by defining types that represent Couchbase clust
 
 ## [](#what-features-does-it-provide)What Features Does it Provide?
 
-The goal of the Operator is to fully manage one or more Couchbase deployments so that you don’t need to worry about the operational complexities of running Couchbase. The following is a list of the management tasks that are currently supported:
+The goal of the Operator is to fully manage one or more Couchbase deployments so that you don't need to worry about the operational complexities of running Couchbase. The following is a list of the management tasks that are currently supported:
 
 * Cluster life-cycle
 
@@ -58,7 +58,7 @@ The goal of the Operator is to fully manage one or more Couchbase deployments so
 
 ## [](#essential-reading)Essential Reading
 
-Kubernetes and the Operator are complex systems — you shouldn’t go in unprepared. The following is a selection of documentation that should be read and understood fully before continuing:
+Kubernetes and the Operator are complex systems — you shouldn't go in unprepared. The following is a selection of documentation that should be read and understood fully before continuing:
 
 * [Best practices](best-practices.md) \- understand the best way to deploy Couchbase clusters
 * [System requirements](prerequisite-and-setup.md) \- understand supported platforms, software and resource requirements
@@ -103,7 +103,7 @@ How to integrate with and configure 3rd party components. The Operator itself ca
 
 Resource Names
 
-Kubernetes resources names, such as `Service` or `CouchbaseCluster`, will be rendered verbatim. These are distinguished by the use of bumpy-capitals, or camel-case, with an upper case first character. These are the names of resources when specified as `kind` in a resource’s YAML definition.
+Kubernetes resources names, such as `Service` or `CouchbaseCluster`, will be rendered verbatim. These are distinguished by the use of bumpy-capitals, or camel-case, with an upper case first character. These are the names of resources when specified as `kind` in a resource's YAML definition.
 
 Attribute Paths
 
@@ -113,5 +113,5 @@ Where attribute paths are used in the documentation, they have been prefixed wit
 
 ## [](#further-reading)Further Reading
 
-* [What’s New?](whats-new.md)
+* [What's New?](whats-new.md)
 * [Release Notes](release-notes.md)

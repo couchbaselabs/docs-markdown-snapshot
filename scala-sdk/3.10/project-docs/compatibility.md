@@ -4,7 +4,7 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@scala-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -149,7 +149,7 @@ __Recommended Spring Data Couchbase per Server Version Matrix__
 | **Server 7.0 - 8.0** | **Compatible**        | **Recommended**                    |
 
 > [!NOTE]
-> Check the Spring Data Couchbase’s compile dependencies — older versions may link an out-of-date version of the SDK in their dependencies list, although a supported version should be in the `updates`. Please make sure that you are using a supported version of the Couchbase Scala SDK, prefereably the latest version, which will contain any available bug fixes. Using the latest Spring Data Couchbase should ensure that this is so.
+> Check the Spring Data Couchbase's compile dependencies — older versions may link an out-of-date version of the SDK in their dependencies list, although a supported version should be in the `updates`. Please make sure that you are using a supported version of the Couchbase Scala SDK, prefereably the latest version, which will contain any available bug fixes. Using the latest Spring Data Couchbase should ensure that this is so.
 
 ### [](#api-version)API Version
 
@@ -184,7 +184,7 @@ __SDK API Versions__
 
 **SDK API 3.6**: Introduced support for base 64 encoded vector types alongside Server 7.6.2 (and Capella). General Availability of our C++ SDK — now available as a supported, stand-alone SDK, this SDK is also the core of our Node.js, PHP, Python, and Ruby SDKs.
 
-**SDK API 3.5**: Introduced support for Vector Search alongside Server 7.6 (and Capella). Adds scoped indexes to Search (for Vector Seach and traditional FTS). Read from Replica for Query and Sub-Doc operations. KV Range Scan for querying documents through the Data Service, even if you don’t know the document IDs (for use cases that require relatively low concurrency and tolerate relatively high latency). Transactions now implemented as a native library in all SDKs (except libcouchbase).
+**SDK API 3.5**: Introduced support for Vector Search alongside Server 7.6 (and Capella). Adds scoped indexes to Search (for Vector Seach and traditional FTS). Read from Replica for Query and Sub-Doc operations. KV Range Scan for querying documents through the Data Service, even if you don't know the document IDs (for use cases that require relatively low concurrency and tolerate relatively high latency). Transactions now implemented as a native library in all SDKs (except libcouchbase).
 
 **SDK API 3.4**: Introduced support for ARM v8 on Ubuntu 20.04, Transactions on Spring Data Couchbase, and compatibility with running in serverless environments, such as AWS λ. The `couchbase2://` connection string was introduced in Go 2.7, Java 3.5, Kotlin 1.2, and Scala 1.5, for Cloud Native Gateway with [Couchbase Autonomous Operator](../../../operator/current/overview.md) (from CAO 2.6.1).
 

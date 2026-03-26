@@ -2,7 +2,7 @@
 title: Resync
 description: Recalculating routing and data access following Sync Function changes
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/resync.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:manage:resync.adoc[]
 ---
 
@@ -30,7 +30,7 @@ You need to run a resync operation when:
 * You have changed access control rules in the Sync Function.
 * You want the changes to apply to all existing documents in the database.
 
-You’ll not need to run the resync operation if either:
+You'll not need to run the resync operation if either:
 
 * The modifications to the Sync Function only impact write security, and not routing/access.
 * You only want changes to channel/access rules to apply to documents written after you made the change.
@@ -45,14 +45,14 @@ The resync operation runs asynchronously. Use [GET /{db}/\_resync](../rest-api/r
 > When using nonpersistent (legacy) configuration, the resync action is carried out **only** on the node that the POST is made to. It is not cross-node aware. In a multi-node cluster, the resync must only run on 1 node. Starting resync on more than 1 node results in multiple instances running, with undefined system behavior. When using persistent configuration (default since Sync Gateway 3.0), resync operations work across all nodes automatically.
 
 > [!NOTE]
-> There’s also a 'support-only' option to regenerate sequences while resyncing.
+> There's also a 'support-only' option to regenerate sequences while resyncing.
 
 ## [](#update-sync-function-and-resync)Update Sync Function and Resync
 
 This section describes how to update your Sync Function and perform a full resync of your database.
 
 > [!IMPORTANT]
-> This is an expensive operation because the new function must process every document in the database. The database cannot accept requests until resync is complete because Sync Gateway cannot determine any user’s full access privileges until it scans all documents. Therefore, the Sync Function update results in application downtime while the database is offline.
+> This is an expensive operation because the new function must process every document in the database. The database cannot accept requests until resync is complete because Sync Gateway cannot determine any user's full access privileges until it scans all documents. Therefore, the Sync Function update results in application downtime while the database is offline.
 
 * Persistent Configuration
 * Non-Persistent Configuration
@@ -97,15 +97,15 @@ This section covers important considerations when running a resync operation.
 
 ### [](#resync-context)Resync Context
 
-When running a resync operation, the context in the Sync Function is the admin user. For that reason, calling the methods `requireUser`, `requireAccess`, and `requireRole` always succeeds. You may use those functions in production to govern write operations. But in a resync operation, all the documents are already written to the database. For that reason, it’s recommended to use resync for changing the assignment to channels only (i.e. reads).
+When running a resync operation, the context in the Sync Function is the admin user. For that reason, calling the methods `requireUser`, `requireAccess`, and `requireRole` always succeeds. You may use those functions in production to govern write operations. But in a resync operation, all the documents are already written to the database. For that reason, it's recommended to use resync for changing the assignment to channels only (i.e. reads).
 
 ### [](#revoking-access)Revoking Access
 
-If you change the sync function to revoke a user’s access to a document, the access only takes effect once you save a new revision to that document on Sync Gateway. Running a resync operation does not revoke access to that document.
+If you change the sync function to revoke a user's access to a document, the access only takes effect once you save a new revision to that document on Sync Gateway. Running a resync operation does not revoke access to that document.
 
 ### [](#maintaining-availability-during-resync)Maintaining Availability During Resync
 
-If you need to verify access to the database during a Sync function update and resync, you can create a read-only backup of the Sync Gateway’s bucket beforehand, then run a secondary Sync Gateway on the backup bucket in read-only mode. Once you detect the resync is complete, switch back to the main Sync Gateway and bucket.
+If you need to verify access to the database during a Sync function update and resync, you can create a read-only backup of the Sync Gateway's bucket beforehand, then run a secondary Sync Gateway on the backup bucket in read-only mode. Once you detect the resync is complete, switch back to the main Sync Gateway and bucket.
 
 ### [](#monitoring-resync-status)Monitoring Resync Status
 

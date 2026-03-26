@@ -4,7 +4,7 @@ description: When creating and querying Hyperscale and Composite Vector indexes,
   you have several options to set that can affect the speed and accuracy of your
   results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/vector-index-best-practices.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:vector-index:vector-index-best-practices.adoc[]
 ---
 
@@ -36,7 +36,7 @@ Hyperscale Vector indexes tend to perform better with larger centroids (smaller 
 **Recommendation:** The best practice for the `nList` depends on your vector index type:
 
 * If you find that your Composite Vector index query throughput and latency is not meeting your needs, you can try rebuilding the index with a larger `nList` value.
-* For Hyperscale Vector indexes, decrease the `nList` value if your working dataset fits into the bucket’s memory quota. You can also try decreasing the `nList` value if you have fast storage such as NVME connected to a high-speed PCIe interface.
+* For Hyperscale Vector indexes, decrease the `nList` value if your working dataset fits into the bucket's memory quota. You can also try decreasing the `nList` value if you have fast storage such as NVME connected to a high-speed PCIe interface.
 
 ### [](#train%5Flist)train\_list
 
@@ -63,7 +63,7 @@ ON  `demo`.`squad`.`context`(`vector` VECTOR)
 
 The number of partitions the index controls how the index is split among logical shards. This setting affects the scalability, memory distribution, and parallelism of the index. You set this value using the `PARTITION BY` clause in the `CREATE [VECTOR] INDEX` statement. See [Index Partitioning](../n1ql/n1ql-language-reference/index-partitioning.md) for more information about partitioning indexes.
 
-Tests show that increasing the number of partitions linearly reduces both the time it takes to build and train the index and index’s memory use. These changes do not affect the QPS or latency of queries that use the index.
+Tests show that increasing the number of partitions linearly reduces both the time it takes to build and train the index and index's memory use. These changes do not affect the QPS or latency of queries that use the index.
 
 **Recommendation:** if the length of time it takes to build the index or the amount of memory the index uses is a concern, you can try increasing the number of partitions.
 
@@ -92,7 +92,7 @@ Couchbase tested different quantization settings using datasets that differed in
 **Recommendations:**
 
 * SQ8 provides the best balance between memory use and recall for lower dimensional datasets.
-* If you have a low-dimensional dataset that’s in the range of a billion vectors, consider using SQ4 quantization.
+* If you have a low-dimensional dataset that's in the range of a billion vectors, consider using SQ4 quantization.
 * Use PQ for higher-dimensional datasets if you want to reduce memory use and are willing to accept less accurate recall, decreased QPS, and increased latency.
 
 ## [](#tune-queries)Tune Queries
@@ -101,7 +101,7 @@ When querying a Hyperscale Vector index, you can set several parameters in the `
 
 ### [](#nprobes)nProbes
 
-`nProbes` sets the number of centroids in the Hyperscale Vector index to search for similar vectors. You optionally set this value as the fourth parameter in the `APPROX_VECTOR_DISTANCE` function call in your query. The default value for this value is 1, which only searches for similar vectors in the centroid that’s closest to the search vector.
+`nProbes` sets the number of centroids in the Hyperscale Vector index to search for similar vectors. You optionally set this value as the fourth parameter in the `APPROX_VECTOR_DISTANCE` function call in your query. The default value for this value is 1, which only searches for similar vectors in the centroid that's closest to the search vector.
 
 Tests show that increasing `nProbes` beyond the default improves the accuracy of results non-linearly (larger values show diminishing improvements). However, it caused a linear decrease in QPS and increase in latency.
 
@@ -113,7 +113,7 @@ A query can perform a reranking phase after a vector search. This reranking phas
 
 Testing shows that enabling reranking improves the accuracy of recall in limited cases and decreases QPS.
 
-**Recommendation:** if you find recall accuracy is not meeting your needs and you’re using SQ4 or PQ128x8 or below quantization, try enabling reranking. You must have your index set to persist the full vector value, which increases memory use.
+**Recommendation:** if you find recall accuracy is not meeting your needs and you're using SQ4 or PQ128x8 or below quantization, try enabling reranking. You must have your index set to persist the full vector value, which increases memory use.
 
 If you do not enable reranking, consider preventing the persistence of the full vector value in the index to reduce memory and disk use. See [Preventing Vector Persistence](hyperscale-reranking.md#prevent-vector-persistence) to learn how to turn off full vector persistence.
 

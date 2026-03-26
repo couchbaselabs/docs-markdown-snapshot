@@ -4,7 +4,7 @@ description: The Backup Service REST API supports the restoration of data from
   an active, imported, or archived repository into either the host cluster or
   into another cluster running the Backup Service.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-restore-data.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:backup-restore-data.adoc[]
 ---
 
@@ -38,7 +38,7 @@ repository/< "active" | "imported" | "archived" >/\
   -u <username>:<password>
   -d <restore-specification>
 
-The `username` and `password` must identify an administrator with the Full Admin role. The `repository-id` must be the name of an active, imported, or archived repository, according to the statement’s preceding path-parameter.
+The `username` and `password` must identify an administrator with the Full Admin role. The `repository-id` must be the name of an active, imported, or archived repository, according to the statement's preceding path-parameter.
 
 The `restore-specification` must be a JSON document containing the following:
 

@@ -1,7 +1,7 @@
 ---
 title: Index Creation with REST API
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-with-rest-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-creating-index-with-rest-api.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.2@server:fts:fts-creating-index-with-rest-api.adoc[]
 
 The user interface for Full Text Search is provided by the Couchbase Web Console.
 
-* Ensure that Couchbase Server has the Search service appropriately enabled. The service must be enabled for a given node as part of that node’s initial configuration. Refer to Create a Cluster for information.
+* Ensure that Couchbase Server has the Search service appropriately enabled. The service must be enabled for a given node as part of that node's initial configuration. Refer to Create a Cluster for information.
 * You must have permission to log into the console, load sample data, create indexes, create search indexes, and perform searches. For information on Role-Based Access Control, see [Authorization](../learn/security/authorization-overview.md).
 * The example(s) provided assume that you have can load or have loaded the `travel-sample` dataset. You will perform your Search operations on the data under this bucket. For instructions on how to load this sample dataset, see [Sample Buckets](../manage/manage-settings/install-sample-buckets.md).
 * The Couchbase Web Console by accessing `http://localhost:8091` or if remote `http://${CB_HOSTNAME}:8091` where **CB\_HOSTNAME** is an environment variable set to a FQDN or an IP address for a node on your Couchbase cluster.

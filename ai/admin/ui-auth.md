@@ -3,7 +3,7 @@ title: Manage Roles for UI Access
 description: Your level of access to Capella AI Services using the Capella UI is
   determined by your organization and project roles.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/ui-auth.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:admin:ui-auth.adoc[]
 ---
 
@@ -19,7 +19,7 @@ To interact with Capella AI Services using the Capella UI, you need an organizat
 ## [](#prerequisites)Prerequisites
 
 * You need to be the [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner) to invite new users to your organization and assign organization roles.
-* To add collaborators to a project and assign project roles, you need to be a [Project Owner](../../cloud/projects/project-roles.md) for that project. If you’re the [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner), you already have this role.
+* To add collaborators to a project and assign project roles, you need to be a [Project Owner](../../cloud/projects/project-roles.md) for that project. If you're the [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner), you already have this role.
 
 ## [](#assign-organization-and-project-roles)Assign Organization and Project Roles
 
@@ -88,7 +88,7 @@ __Table 4\. Project roles and Workflows__
 
 ### [](#ai-functions-permissions)AI Functions Permissions
 
-Both organization and project roles determine your level of access to [AI Functions](../build/ai-functions.md). When determining project roles, keep in mind that you must be a collaborator on the same project that has the operational cluster where you’re interacting with AI Functions.
+Both organization and project roles determine your level of access to [AI Functions](../build/ai-functions.md). When determining project roles, keep in mind that you must be a collaborator on the same project that has the operational cluster where you're interacting with AI Functions.
 
 The following table describes the organization roles as they apply to AI Functions:
 
@@ -99,7 +99,7 @@ __Table 5\. Organization roles and AI Functions__
 | Project Creator     | ✖                   | ✖                | ✖                   | ✔                 |
 | Organization Member | ✖                   | ✖                | ✖                   | ✔                 |
 
-The following table describes the project roles as they apply to AI Functions, for projects containing the operational cluster where you’re enabling and interacting with AI Functions:
+The following table describes the project roles as they apply to AI Functions, for projects containing the operational cluster where you're enabling and interacting with AI Functions:
 
 __Table 6\. Project roles and AI Functions__
 | Project Role            | Enable AI Functions | Run AI Functions | View AI Functions | View AI Functions Examples |
@@ -130,7 +130,7 @@ __Table 7\. Organization roles and Agent Catalog__
 | Project Creator     | ✖              | ✖                | ✖              |
 | Organization Member | ✖              | ✖                | ✖              |
 
-The following table describes the project roles for projects containing the operational cluster that’s supporting Agent Catalog:
+The following table describes the project roles for projects containing the operational cluster that's supporting Agent Catalog:
 
 __Table 8\. Project roles and Agent Catalog__
 | Project Role            | View Tools Hub | View Prompts Hub | View Tracer UI |

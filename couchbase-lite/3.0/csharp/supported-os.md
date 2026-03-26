@@ -3,7 +3,7 @@ title: Supported Operating System Versions
 description: Couchbase Lite on C#.Net -- the OS and SDK versions on which this
   framework is supported
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/csharp/pages/supported-os.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:csharp:supported-os.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:3.0@couchbase-lite:csharp:supported-os.adoc[]
 # Supported Operating System Versions
 
 > Description — _Couchbase Lite on C#.Net — the OS and SDK versions on which this framework is supported_  
-> Related Content — [What’s New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
+> Related Content — [What's New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
 
 ## [](#officially-supported-versions)Officially Supported Versions
 
@@ -42,6 +42,6 @@ The following run-times are compatible but are not QE tested, and so are not off
 | .NET Core Mac   | 3.0                     | 10.12              |
 | .NET Core Linux | 3.1                     | n/a\*              |
 
-\* There are many different variants of Linux, and we don’t have the resources to test all of them. They are tested on Ubuntu 16.04, but have been shown to work on CentOS, and in theory work on any distro supported by .NET Core.
+\* There are many different variants of Linux, and we don't have the resources to test all of them. They are tested on Ubuntu 16.04, but have been shown to work on CentOS, and in theory work on any distro supported by .NET Core.
 
-Comparing this to the [supported versions](https://docs-archive.couchbase.com/couchbase-lite/1.4/csharp..html#supported-versions) in 1.x you can see we’ve traded some lower obsolete versions for new platform support.
+Comparing this to the [supported versions](https://docs-archive.couchbase.com/couchbase-lite/1.4/csharp..html#supported-versions) in 1.x you can see we've traded some lower obsolete versions for new platform support.

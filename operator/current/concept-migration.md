@@ -1,7 +1,7 @@
 ---
 title: Couchbase Cluster Migration
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-migration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::concept-migration.adoc[]
 ---
 
@@ -143,7 +143,7 @@ Here is an example of overriding the migration order by server class:
 
 ### [](#pre-migration-nodes)Pre-migration Nodes
 
-To add nodes to the source cluster before performing any migration pre-migration nodes can be defined. These nodes will be added before any migration happens. Pre-migration nodes are simply defined by adding a Server Class for nodes that don’t exist on the source cluster. Using the examples above two single pre-migration nodes can be added by modifying the spec like:
+To add nodes to the source cluster before performing any migration pre-migration nodes can be defined. These nodes will be added before any migration happens. Pre-migration nodes are simply defined by adding a Server Class for nodes that don't exist on the source cluster. Using the examples above two single pre-migration nodes can be added by modifying the spec like:
 
 ```yaml
 apiVersion: couchbase.com/v2
@@ -175,7 +175,7 @@ To migrate an existing cluster a Couchbase Cluster spec describing the state of 
 
 ### [](#backup-service)Backup Service
 
-Currently, the Operator does not support running nodes with the Backup Service. This means that if the source cluster has nodes with the Backup Service then these nodes will need to be removed or replaced with nodes that aren’t running the Backup Service. Backup is still supported by the Operator
+Currently, the Operator does not support running nodes with the Backup Service. This means that if the source cluster has nodes with the Backup Service then these nodes will need to be removed or replaced with nodes that aren't running the Backup Service. Backup is still supported by the Operator
 
 ### [](#buckets)Buckets
 

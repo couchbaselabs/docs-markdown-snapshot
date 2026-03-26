@@ -1,7 +1,7 @@
 ---
 title: Include Examples and Partials
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/includes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:includes.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:home:contribute:includes.adoc[]
 
 ## [](#example-files)Example Files
 
-Examples are non-AsciiDoc files that contain reusable content, such as source code or programmatic output, that is often inserted into [code blocks](code-blocks.md). They’re saved in the [_examples_ directory of a module](component-configuration.md#examples-dir). Regardless of an example’s source module, it can be inserted into any standard page in your documentation site using the include directive and the example file’s resource ID.
+Examples are non-AsciiDoc files that contain reusable content, such as source code or programmatic output, that is often inserted into [code blocks](code-blocks.md). They're saved in the [_examples_ directory of a module](component-configuration.md#examples-dir). Regardless of an example's source module, it can be inserted into any standard page in your documentation site using the include directive and the example file's resource ID.
 
 Include directive and example resource ID structure
 
@@ -23,7 +23,7 @@ include::version@component:module:example$file.ext[]
 
 ## [](#partial-files)Partial Files
 
-Partials are AsciiDoc files that contain reusable snippets of content. They’re saved in the [_partials_ directory of a module](component-configuration.md#partials-dir). Regardless of a partial’s source module, it can be inserted into any standard page in your documentation site using the include directive and the partial file’s resource ID.
+Partials are AsciiDoc files that contain reusable snippets of content. They're saved in the [_partials_ directory of a module](component-configuration.md#partials-dir). Regardless of a partial's source module, it can be inserted into any standard page in your documentation site using the include directive and the partial file's resource ID.
 
 Include directive and partial resource ID structure
 
@@ -31,7 +31,7 @@ include::version@component:module:partial$file.adoc[]
 
 ## [](#insert-an-example-or-a-partial)Insert an Example or a Partial
 
-An entire example or partial (or a portion of) is inserted into a page using the include directive and file’s resource ID. A [resource ID](https://docs.antora.org/antora/2.0/page/resource-id/) is just like a page ID, but it has an extra coordinate, `family$`. The family coordinate for examples is `example$` and `partial$` for partials. Like the [page ID in an xref](cross-references.md), the more a page and the partial or example are related, the less coordinates you have to specify.
+An entire example or partial (or a portion of) is inserted into a page using the include directive and file's resource ID. A [resource ID](https://docs.antora.org/antora/2.0/page/resource-id/) is just like a page ID, but it has an extra coordinate, `family$`. The family coordinate for examples is `example$` and `partial$` for partials. Like the [page ID in an xref](cross-references.md), the more a page and the partial or example are related, the less coordinates you have to specify.
 
 Include from the same module
 
@@ -82,7 +82,7 @@ If you received this error message, you might have a failover condition.
 
 include::6.0@sdk-common:shared:partial$env-errors.adoc[tag=failover-definition]
 
-Code regions in example files can be tagged using the language’s comment syntax before `tag` and `end`. For example, if you tag code in a YAML file, place a hash (`#`) before the tag directive.
+Code regions in example files can be tagged using the language's comment syntax before `tag` and `end`. For example, if you tag code in a YAML file, place a hash (`#`) before the tag directive.
 
 ```yaml
 # tag::expire[]

@@ -1,7 +1,7 @@
 ---
 title: Set Up Documentation Repositories
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/set-up-repository.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:set-up-repository.adoc[]
 ---
 
@@ -26,7 +26,7 @@ Couchbase Documentation repositories are usually prefixed with `docs-`.
 ## [](#clone)Clone the Repository
 
 > [!NOTE]
-> Contributors from outside Couchbase need to [fork documentation repositories](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) to contribute changes. If you’re a Couchbase employee, DO NOT fork repositories to contribute to Couchbase Documentation.
+> Contributors from outside Couchbase need to [fork documentation repositories](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) to contribute changes. If you're a Couchbase employee, DO NOT fork repositories to contribute to Couchbase Documentation.
 
 After you have found the repository that you want to work in, you need to clone it onto your computer:
 

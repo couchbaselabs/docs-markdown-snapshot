@@ -2,7 +2,7 @@
 title: Auditing
 description: Couchbase Server provides event-auditing, sending output to a log-file.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/security/auditing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:security/auditing.adoc[]
 ---
 
@@ -40,13 +40,13 @@ The table below lists frequently used audit fields, with corresponding descripti
 | "real\_userid" | Object        | Contains key-value pairs for "domain" (specifying "local"; "external"; "builtin" — for the administrator who set up the cluster; or "rejected" — for a user who has been denied access); and "user" (specifying the id of the user who generated the event). |
 | "local"        | Object        | Contains key-value pairs for "ip" and incoming "port", for the node on which the event was processed.                                                                                                                                                        |
 | "remote"       | Object        | Contains key-value pairs for "ip" and outgoing "port", for the node on which the event-request was dispatched.                                                                                                                                               |
-| "timestamp"    | UTC timestamp | The UTC timestamp for the event’s generation (for example, "2020-01-29T08:02:07.476-08:00": see [Date and Time Formats](http://www.w3.org/TR/NOTE-datetime)).                                                                                                |
+| "timestamp"    | UTC timestamp | The UTC timestamp for the event's generation (for example, "2020-01-29T08:02:07.476-08:00": see [Date and Time Formats](http://www.w3.org/TR/NOTE-datetime)).                                                                                                |
 
 ## [](#saving-audit-records)Saving and Pruning Audit Records
 
-When auditing is enabled, logged events are written to a default file, named `audit.log`. After an administrator-specified period — which must be a minimum of 15 minutes and a maximum of 7 days — this file is closed, and is saved under a modified name that features a timestamp corresponding to the time of saving. A new, empty `audit.log` file is created and saved when a new audit event is generated. Note that this _rotation_ may happen earlier if the file reaches its maximum size of 20MB. For instructions on configuring the file’s _rotation time_, see [Manage Auditing](../../manage/manage-security/manage-auditing.md).
+When auditing is enabled, logged events are written to a default file, named `audit.log`. After an administrator-specified period — which must be a minimum of 15 minutes and a maximum of 7 days — this file is closed, and is saved under a modified name that features a timestamp corresponding to the time of saving. A new, empty `audit.log` file is created and saved when a new audit event is generated. Note that this _rotation_ may happen earlier if the file reaches its maximum size of 20MB. For instructions on configuring the file's _rotation time_, see [Manage Auditing](../../manage/manage-security/manage-auditing.md).
 
-By default, Couchbase Server does not automatically delete rotated audit log files. Over time, these log files can consume disk space on your nodes. You can choose to have Couchbase Server remove rotated audit logs after a period of time by using the [Configure Auditing](../../rest-api/rest-auditing.md) REST-API’s `pruneAge` parameter. You can also use an external tool or script to periodically remove audit files directly from the log directory.
+By default, Couchbase Server does not automatically delete rotated audit log files. Over time, these log files can consume disk space on your nodes. You can choose to have Couchbase Server remove rotated audit logs after a period of time by using the [Configure Auditing](../../rest-api/rest-auditing.md) REST-API's `pruneAge` parameter. You can also use an external tool or script to periodically remove audit files directly from the log directory.
 
 ## [](#sample-audit-records)Sample Audit Records
 

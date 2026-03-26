@@ -2,7 +2,7 @@
 title: DROP USER
 description: The DROP USER statement enables you to delete a user.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropuser.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/dropuser.adoc[]
 ---
 
@@ -39,7 +39,7 @@ drop-user ::= 'DROP' 'USER' ( 'IF' 'EXISTS' )? username
 
 ### [](#if-exists)IF EXISTS Clause
 
-The optional `IF EXISTS` clause enables the statement to complete successfully when the specified user doesn’t exist. If a user with the same username does not exist, then:
+The optional `IF EXISTS` clause enables the statement to complete successfully when the specified user doesn't exist. If a user with the same username does not exist, then:
 
 * If this clause is not present, an error is generated.
 * If this clause is present, the statement does nothing and completes without error.

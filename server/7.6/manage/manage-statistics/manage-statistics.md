@@ -3,7 +3,7 @@ title: Manage Statistics
 description: Statistics on Couchbase Server can be monitored; per bucket, per
   node, per service, and per cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-statistics/manage-statistics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-statistics/manage-statistics.adoc[]
 ---
 
@@ -94,7 +94,7 @@ Left-clicking on the '**+**' symbol displays an extension to the pull-down:
 
 ![clickToAddDashboardTwo](../_images/manage-statistics/clickToAddDashboardTwo.png) 
 
-The editable **new dashboard** field can be used to enter a name for the dashboard being defined. Optionally, a description of the dashboard and its purpose can be added in the **optional description…​** field. The radio buttons towards the bottom allow selection between the options **start w/ current charts** (in which case the new dashboard’s content will be initialized with whatever charts are already displayed on the screen) and **start blank**, in which case the new dashboard will initially show no charts at all.
+The editable **new dashboard** field can be used to enter a name for the dashboard being defined. Optionally, a description of the dashboard and its purpose can be added in the **optional description…​** field. The radio buttons towards the bottom allow selection between the options **start w/ current charts** (in which case the new dashboard's content will be initialized with whatever charts are already displayed on the screen) and **start blank**, in which case the new dashboard will initially show no charts at all.
 
 To create a new dashboard named **Test Dashboard** that starts with the existing content, enter data as follows:
 
@@ -163,7 +163,7 @@ Leaving the selection as **S** (for small), left-click on the **Save Chart** but
 
 ![dashboardWithOneChart](../_images/manage-statistics/dashboardWithOneChart.png) 
 
-The chart created for **CPU** is now displayed at the left. The chart features a line for each of the two nodes in the cluster. By hovering the mouse-cursor over the corner of the chart, controls can be displayed in the chart’s upper-right corner:
+The chart created for **CPU** is now displayed at the left. The chart features a line for each of the two nodes in the cluster. By hovering the mouse-cursor over the corner of the chart, controls can be displayed in the chart's upper-right corner:
 
 ![cpuChartWithControlDisplayed](../_images/manage-statistics/cpuChartWithControlDisplayed.png) 
 
@@ -173,7 +173,7 @@ By hovering the mouse-cursor over the central, data-bearing area of the chart, a
 
 ![cpuChartWithPopUpDisplayed](../_images/manage-statistics/cpuChartWithPopUpDisplayed.png) 
 
-As this clarifies, the chart’s blue and orange lines provide the **CPU** statistic for each of the cluster’s two nodes. To improve readabiliy further, left-click on the chart, to maximize it. The appearance is now as follows:
+As this clarifies, the chart's blue and orange lines provide the **CPU** statistic for each of the cluster's two nodes. To improve readabiliy further, left-click on the chart, to maximize it. The appearance is now as follows:
 
 ![cpuChartMaximized](../_images/manage-statistics/cpuChartMaximized.png) 
 
@@ -353,6 +353,6 @@ Extracts from the (extensive) formatted output might appear as follows:
     "hot_keys": []
   }
 
-A number of key statistics are thus returned, each applied to each of the specified bucket’s vBuckets.
+A number of key statistics are thus returned, each applied to each of the specified bucket's vBuckets.
 
 For more information, see [Getting Bucket Statistics](../../rest-api/rest-bucket-stats.md).

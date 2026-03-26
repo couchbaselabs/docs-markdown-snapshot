@@ -2,7 +2,7 @@
 title: Managing Connections
 description: This section describes how to connect the Go SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.10@go-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -45,7 +45,7 @@ if err != nil {
 ```
 
 > [!TIP]
-> You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
+> You don't need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ## [](#connection-strings)Connection Strings
 
@@ -71,7 +71,7 @@ A connection string may optionally be prefixed by either `"couchbase://"` or `"c
 
 ## [](#waiting-for-bootstrap-completion)Waiting for Bootstrap Completion
 
-Depending on the environment and network latency, bootstrapping the SDK fully might take a little longer than the default key-value timeout of 2.5 seconds. This means that whilst bootstrap is occurring any operations that you make might timeout. To prevent those early timeouts from happening, you can use the `WaitUntilReady` method which will return a timeout error if bootstrap isn’t completed in the specified time. Note that `WaitUntilReady` does not actually retry connecting, the retry is rechecking the connection state. If you are working at the _Cluster_ level, then add to the `cluster()` in the [earlier example](#connecting-to-a-cluster):
+Depending on the environment and network latency, bootstrapping the SDK fully might take a little longer than the default key-value timeout of 2.5 seconds. This means that whilst bootstrap is occurring any operations that you make might timeout. To prevent those early timeouts from happening, you can use the `WaitUntilReady` method which will return a timeout error if bootstrap isn't completed in the specified time. Note that `WaitUntilReady` does not actually retry connecting, the retry is rechecking the connection state. If you are working at the _Cluster_ level, then add to the `cluster()` in the [earlier example](#connecting-to-a-cluster):
 
 ```golang
 opts := gocb.ClusterOptions{
@@ -141,7 +141,7 @@ if err != nil {
 > [!TIP]
 > In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node.
 
-In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `network_type` client setting to `default` if the client and server are on the same network, or `external` if they’re on different networks.
+In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `network_type` client setting to `default` if the client and server are on the same network, or `external` if they're on different networks.
 
 > [!NOTE]
 > Any TLS certificates must be set up at the point where the connections are being made.
@@ -153,14 +153,14 @@ Couchbase Server Enterprise Edition and Couchbase Capella support full encryptio
 * Couchbase Capella
 * Couchbase Server
 
-The Go SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
+The Go SDK bundles Capella's standard root certificate by default. This means you don't need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
 > [!NOTE]
-> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
+> Capella's root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
 
 As of SDK 2.6, if you connect to a Couchbase Server cluster with a root certificate issued by a trusted CA (Certificate Authority), you no longer need to configure this in the `SecurityConfig` settings.
 
-The cluster’s root certificate just needs to be issued by a CA whose certificate is in the system store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
+The cluster's root certificate just needs to be issued by a CA whose certificate is in the system store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
 
 You can still provide a certificate explicitly if necessary:
 
@@ -208,7 +208,7 @@ if err != nil {
 }
 ```
 
-If you want to verify it’s actually working, you can use a tool like `tcpdump`. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
+If you want to verify it's actually working, you can use a tool like `tcpdump`. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
 
 E..e..@.@.............+......q{...#..Y.....
 .E...Ey........9........................id{"key":"value"}
@@ -221,7 +221,7 @@ E.....@.@.............+....Z.'yZ..#........
 
 ## [](#cloud-native-gateway)Cloud Native Gateway
 
-Couchbase’s next generation connection protocol, introduced in Go SDK 2.7 and [Couchbase Autonomous Operator 2.6.1](../../../operator/current/concept-cloud-native-gateway.md), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
+Couchbase's next generation connection protocol, introduced in Go SDK 2.7 and [Couchbase Autonomous Operator 2.6.1](../../../operator/current/concept-cloud-native-gateway.md), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
 
 The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a recent version of [Couchbase Autonomous Operator](../../../operator/current/overview.md)).
 
@@ -245,7 +245,7 @@ There are some different behaviors seen with this protocol:
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 
-As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it’s good practice to always enable DNS-SRV on the client.
+As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it's good practice to always enable DNS-SRV on the client.
 
 The following steps are necessary to make it work:
 
@@ -291,7 +291,7 @@ if err != nil {
 }
 ```
 
-If the DNS SRV records could not be loaded properly you’ll get the exception logged and the given host name will be used as a A record lookup.
+If the DNS SRV records could not be loaded properly you'll get the exception logged and the given host name will be used as a A record lookup.
 
 Also, if you pass in more than one node, DNS SRV bootstrap will not be attempted.
 
@@ -301,4 +301,4 @@ We strongly recommend that the client and server [are in the same LAN-like envir
 
 ### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 
-Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
+Some DNS caching providers (notably, home routers) can't handle an SRV record that's large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.

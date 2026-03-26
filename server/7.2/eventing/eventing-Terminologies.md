@@ -2,7 +2,7 @@
 title: Terminology
 description: While using Eventing Service, the following terminologies are used.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-Terminologies.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:eventing:eventing-Terminologies.adoc[]
 ---
 
@@ -36,7 +36,7 @@ The Eventing Service calls the following entry points or JavaScript functions on
 
 The **OnUpdate** handler gets called when a document is created or modified. Two major limitations exist. First, if a document is modified several times in a short duration, the calls may be coalesced into a single event due to deduplication. Second, it is not possible to discern between Create and Update operations.
 
-The entry point OnUpdate(doc,meta) passes both `doc`, the document, and `meta`, additional data containing useful information such as the document’s id, CAS, expiration, and datatype ("json" or "binary").
+The entry point OnUpdate(doc,meta) passes both `doc`, the document, and `meta`, additional data containing useful information such as the document's id, CAS, expiration, and datatype ("json" or "binary").
 
 > [!NOTE]
 > Unless the _Language compatibility_ in the settings of the Function is at least 6.6.2 binary documents will be suppressed.
@@ -60,7 +60,7 @@ After creating a timer the argument "callback" or JavaScript function will be ex
 The persistent state of an Eventing Function is captured in the below external elements, and all states that appears on the execution stack are ephemeral
 
 * The Listen To Location (the Eventing source) a collection that is the source of the mutations sent to the Function via the Database Change Protocol (DCP).
-* The Eventing Storage (the Eventing metadata) a collection used as a scratch pad for the Function’s state (this can be shared across all a tenant’s Functions).
+* The Eventing Storage (the Eventing metadata) a collection used as a scratch pad for the Function's state (this can be shared across all a tenant's Functions).
 * The documents or mutations being observed along with their extended attributes.
 * Optional Bindings for Function. There are three distinct types of bindings:
 
@@ -88,9 +88,9 @@ Often, such large integers are really only tokens, and it is not necessary to pe
 
 ### [](#feed-boundary)Feed Boundary
 
-Feed Boundary is a time or progress milestone used during an Eventing Function configuration. The Feed Boundary is a persistent setting in the Function’s definition and can only be set or altered when a Function is created, undeployed or paused.
+Feed Boundary is a time or progress milestone used during an Eventing Function configuration. The Feed Boundary is a persistent setting in the Function's definition and can only be set or altered when a Function is created, undeployed or paused.
 
-Based on the `Feed Boundary` setting, when an Eventing Function is deployed it can either process all data mutations available in the cluster (`Everything`) or process only future data mutations (`From now`) that occur post deployment. However, once deployed you may Pause/Resume an Eventing Function in this case; the Feed Boundary is a checkpoint of the Function’s actual progress such that no mutations or timers are reprocessed or lost.
+Based on the `Feed Boundary` setting, when an Eventing Function is deployed it can either process all data mutations available in the cluster (`Everything`) or process only future data mutations (`From now`) that occur post deployment. However, once deployed you may Pause/Resume an Eventing Function in this case; the Feed Boundary is a checkpoint of the Function's actual progress such that no mutations or timers are reprocessed or lost.
 
 ### [](#function-scope)Function Scope
 
@@ -115,7 +115,7 @@ Couchbase Eventing Functions use a collection as the source of data mutations. T
 When you are creating an Eventing Function, you need to specify a source collection. The handler(s) of **OnUpdate** and/or **OnDelete** are the entry points that receive events from this collection via DCP to both receive and track data mutations.
 
 > [!NOTE]
-> You can have multiple Eventing Functions running different code listening to the same source collection. However it is less resource intensive to use just one Eventing Function and merely code an if-then-else or switch statement in your handler’s JavaScript.
+> You can have multiple Eventing Functions running different code listening to the same source collection. However it is less resource intensive to use just one Eventing Function and merely code an if-then-else or switch statement in your handler's JavaScript.
 
 When a source collection is deleted, all deployed (or paused) Eventing Functions associated with this source collection are undeployed.
 
@@ -123,9 +123,9 @@ The `Listen To` can listen to multiple collections via a wildcard of `*` for the
 
 In the course of processing the JavaScript code of an Eventing Function, documents can be mutated in different collections. For understanding purposes, these keyspaces can be termed as destination collections which are bound to the Function via Bucket aliases.
 
-At times, the Eventing Function’s JavaScript code can trigger data mutations on documents via the Data Service (KV) via either Basic Keyspace Accessors or Advanced Keyspace Accessors. If the Eventing Function code directly modifies documents in the source collection, the Eventing Service will suppress the mutation back to the Eventing Function making the mutation. When implementing multiple Functions it is possible to create infinite recursions, however the Eventing Service by default will prevent deploying Functions that would result in recursion loops. It should be noted that not all recursion loops can be detected nor are all recursion loops wrong — the default recursion checks can be disabled. For more detail on cyclic generation of data changes, refer to [Bucket Allocation Considerations](troubleshooting-best-practices.md#cyclicredun).
+At times, the Eventing Function's JavaScript code can trigger data mutations on documents via the Data Service (KV) via either Basic Keyspace Accessors or Advanced Keyspace Accessors. If the Eventing Function code directly modifies documents in the source collection, the Eventing Service will suppress the mutation back to the Eventing Function making the mutation. When implementing multiple Functions it is possible to create infinite recursions, however the Eventing Service by default will prevent deploying Functions that would result in recursion loops. It should be noted that not all recursion loops can be detected nor are all recursion loops wrong — the default recursion checks can be disabled. For more detail on cyclic generation of data changes, refer to [Bucket Allocation Considerations](troubleshooting-best-practices.md#cyclicredun).
 
-At times, the Eventing Function’s JavaScript code can trigger data mutations on documents via the Query Service (SQL++) via inline SQL++ statements or N1QL() function calls. In this case the Eventing Function will see the mutation it just generated and additional business logic may be needed to terminate or protect against possible recursion.
+At times, the Eventing Function's JavaScript code can trigger data mutations on documents via the Query Service (SQL++) via inline SQL++ statements or N1QL() function calls. In this case the Eventing Function will see the mutation it just generated and additional business logic may be needed to terminate or protect against possible recursion.
 
 **Eventing Storage (the Eventing metadata)**
 
@@ -134,7 +134,7 @@ The Eventing Storage (or Metadata) collection, stores artifacts (or configuratio
 When you are creating an Eventing Function, ensure that a separate collection is designated as an Eventing metadata and reserved solely for the internal use of the Eventing Service. You can use a common Eventing metadata collection across multiple Eventing Functions for the same tenant.
 
 > [!NOTE]
-> The Eventing Storage keyspace must be in a Bucket of type Couchbase. If this keyspace is not persistent the Data Service, or KV, will evict timer and checkpoint documents on hitting quota and Eventing can lose track of both timers and mutations processed. Furthermore at any point, refrain from deleting the Eventing metadata collection. Also, ensure that your Eventing Function’s JavaScript code or other services do not perform a write or delete operation on the Eventing metadata collection.
+> The Eventing Storage keyspace must be in a Bucket of type Couchbase. If this keyspace is not persistent the Data Service, or KV, will evict timer and checkpoint documents on hitting quota and Eventing can lose track of both timers and mutations processed. Furthermore at any point, refrain from deleting the Eventing metadata collection. Also, ensure that your Eventing Function's JavaScript code or other services do not perform a write or delete operation on the Eventing metadata collection.
 
 If an Eventing metadata collection gets accidentally deleted, then all deployed Eventing Function are undeployed and associated indexes and constructs get dropped.
 
@@ -144,7 +144,7 @@ All Eventing Functions must have a unique name in a Couchbase cluster. A Functio
 
 **Deployment Feed Boundary**
 
-Using the `Feed Boundary` drop down, you can either set an Eventing Function to deploy for all data mutations available in the cluster (`Everything`) or choose to deploy the Eventing Function to process only future data mutations, post deployment (`From now`). However, once deployed you may Pause/Resume an Eventing Function in the Resume case; the Feed Boundary is a checkpoint of the Function’s actual progress when the Function was paused such that no mutations are reprocessed or lost upon a subsequent Resume.
+Using the `Feed Boundary` drop down, you can either set an Eventing Function to deploy for all data mutations available in the cluster (`Everything`) or choose to deploy the Eventing Function to process only future data mutations, post deployment (`From now`). However, once deployed you may Pause/Resume an Eventing Function in the Resume case; the Feed Boundary is a checkpoint of the Function's actual progress when the Function was paused such that no mutations are reprocessed or lost upon a subsequent Resume.
 
 **Description**
 
@@ -160,8 +160,8 @@ Typically you will never need to adjust this from the default setting of `Info`,
 * **SQL++ Consistency**: The default consistency level of SQL++ statements in the Eventing Function. This controls the consistency level for SQL++ statements, but can be set on a per statement basis. The valid values are `None` (the default) and `Request`.
 * **Workers**: Workers the number of worker processes to be started for the Eventing Function. Allows the Eventing Function to be scaled up (or vertical scaling). Each worker process supports two fixed threads of execution, however this setting is limited to a maximum of 64 for system optimization purposes. The system automatically generates a warning message if the number of workers exceeds a set threshold based upon cluster resources, however, in this case the handler can still be deployed. The minimum value is 1 (the default) and the recommended maximum is 64\. In most cases the maximum should be the number of vCPUs.
 * **Language compatibility**: The language version of the Eventing Function for backward compatibility.  
-If the semantics of a language construct change in any given release the “Language compatibility” setting will ensure an older Eventing Function will continue to see the runtime behavior that existed at the time it was authored, until such behavior is deprecated and removed. Note 6.0.0, 6.5.0, and 6.6.2 are the only currently defined versions and for newly authored Functions the default is the highest compatibility version available, currently 6.6.2.  
-For example, accessing non-existent items from a keyspace returns undefined in 6.5.0, while in 6.0.0 an exception is thrown. In addition, only a Function with “language compatibility” of 6.6.2 in its settings will pass binary documents to the OnUpdate(doc,meta) handler. In addition, values of 6.0.0 and 6.5.0 will filter all binary documents out of the DCP mutation stream, only 6.6.2 will pass binary documents to the Eventing Function handlers.
+If the semantics of a language construct change in any given release the "Language compatibility" setting will ensure an older Eventing Function will continue to see the runtime behavior that existed at the time it was authored, until such behavior is deprecated and removed. Note 6.0.0, 6.5.0, and 6.6.2 are the only currently defined versions and for newly authored Functions the default is the highest compatibility version available, currently 6.6.2.  
+For example, accessing non-existent items from a keyspace returns undefined in 6.5.0, while in 6.0.0 an exception is thrown. In addition, only a Function with "language compatibility" of 6.6.2 in its settings will pass binary documents to the OnUpdate(doc,meta) handler. In addition, values of 6.0.0 and 6.5.0 will filter all binary documents out of the DCP mutation stream, only 6.6.2 will pass binary documents to the Eventing Function handlers.
 * **Script Timeout**: Script Timeout provides a timeout option to terminate a non-responsive Function.  
 The entry points into the handler, e.g. OnUpdate and OnDelete, processing for each mutation must complete from start to finish prior to this specified timeout duration. The default is 60 seconds.
 * **Timer Context Max Size**: Timer Context Max Size limits the size of the context for any Timer created by the Function.  
@@ -169,7 +169,7 @@ Eventing Timers can store and access a context which can be any JSON document, t
 
 ### [](#section%5Fmzd%5Fl1p%5Fm2b)Bindings
 
-A binding is a construct that allows separating environment specific variables (example: keyspace names, external endpoint URLs plus credentials, or global constants) from the Eventing Function’s source code. It provides a level of indirection between environment specific artifacts to symbolic names, to help moving an Eventing Function definition from development to production environments without changing code. Binding names must be valid JavaScript identifiers and must not conflict with any built-in types.
+A binding is a construct that allows separating environment specific variables (example: keyspace names, external endpoint URLs plus credentials, or global constants) from the Eventing Function's source code. It provides a level of indirection between environment specific artifacts to symbolic names, to help moving an Eventing Function definition from development to production environments without changing code. Binding names must be valid JavaScript identifiers and must not conflict with any built-in types.
 
 An Eventing Function can have no binding, one binding, or several bindings. There are three distinct types of bindings:
 
@@ -185,7 +185,7 @@ You can add bucket aliases via the 'Bucket alias' choice then entering a tuple o
 > One or more Bucket alias bindings (or Bucket aliases) are mandatory when your Eventing Function code performs any collection related operations directly against the Data Service.
 
 * Read Only Bindings: A binding with access level of "Read Only" allows reading documents from the collection, but cannot be used to write (create, update or delete) documents in such a collection. Attempting to do so will throw a runtime exception.
-* Read-Write Bindings: A binding with access level of "Read Write" allows both reading and writing (create, update, delete) of documents in the collection. If you wish to modify the document passed to the OnUpdate entry point (or any other document in the source collection) you will need to provide a Read-Write binding alias to the Function’s source collection.
+* Read-Write Bindings: A binding with access level of "Read Write" allows both reading and writing (create, update, delete) of documents in the collection. If you wish to modify the document passed to the OnUpdate entry point (or any other document in the source collection) you will need to provide a Read-Write binding alias to the Function's source collection.
 
 **URL alias**
 
@@ -195,9 +195,9 @@ You can add URL bindings via the 'URL alias' choice then entering the following:
 
 **Constant alias**
 
-These bindings are utilized by the Eventing Function’s JavaScript code as global variables.
+These bindings are utilized by the Eventing Function's JavaScript code as global variables.
 
-You can add constant bindings via the 'Constant alias' choice then entering an alias-name and value. The value can be either an integer, decimal number, string, boolean, or a JSON object. For example you might have an alias of _debug_ with a value of _true_ (or _false_) to control verbose logging this would act just like adding a statement `const debug = true;` at the beginning of your JavaScript code (_although the Eventing syntax wouldn’t allow this global to be added to the actual JavaScript_).
+You can add constant bindings via the 'Constant alias' choice then entering an alias-name and value. The value can be either an integer, decimal number, string, boolean, or a JSON object. For example you might have an alias of _debug_ with a value of _true_ (or _false_) to control verbose logging this would act just like adding a statement `const debug = true;` at the beginning of your JavaScript code (_although the Eventing syntax wouldn't allow this global to be added to the actual JavaScript_).
 
 ## [](#operations)Operations
 
@@ -209,7 +209,7 @@ The deploy operation activates an Eventing Function in a cluster.
 
 This operation activates an Eventing Function. Source validations are performed, and only valid Eventing Function can be deployed. Deployment transpiles the code and creates the executable artifacts. The source code of an activated (or deployed and running) Eventing Function cannot be edited. Unless an Eventing Function is in deployed state, it will not receive or process any events (mutations or Timer callbacks). Deployment of an Eventing Function creates necessary metadata, spawns worker processes, calculates initial partitions, and initiates check-pointing of DCP stream to processes.
 
-Deployment for DCP observer (or Feed Boundary) has two variations controlled by the setting of the Eventing Function’s "Deployment Feed Boundary":
+Deployment for DCP observer (or Feed Boundary) has two variations controlled by the setting of the Eventing Function's "Deployment Feed Boundary":
 
 * Everything: The Eventing Function will see a deduplicated history of all documents, ending with the current value of each document. Hence, the Eventing Function will see every document in the keyspace at least once.
 * From now: The Eventing Function will see mutations from current time. In other words, the Eventing Function will see only documents that mutate after it is deployed.

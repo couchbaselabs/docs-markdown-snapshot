@@ -3,7 +3,7 @@ title: Java Analytics SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Enterprise Analytics and the Java Analytics SDK.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:java-analytics-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -29,7 +29,7 @@ The Java Analytics SDK requires Java 8 or later. We recommend using the most rec
 
 ## [](#maven-project-template)Maven Project Template
 
-The SDK’s source code repository includes an [example Maven project](https://github.com/couchbaselabs/couchbase-analytics-jvm-clients/tree/main/couchbase-analytics-java-client/examples/maven-project-template)you can copy to get started quickly.
+The SDK's source code repository includes an [example Maven project](https://github.com/couchbaselabs/couchbase-analytics-jvm-clients/tree/main/couchbase-analytics-java-client/examples/maven-project-template)you can copy to get started quickly.
 
 ## [](#adding-the-sdk-to-an-existing-project)Adding the SDK to an Existing Project
 

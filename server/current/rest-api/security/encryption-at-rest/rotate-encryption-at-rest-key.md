@@ -3,7 +3,7 @@ title: Rotate Data Encryption Keys
 description: You can use the REST API have Couchbase Server immediately rotate
   an encryption-at-rest key that it manages.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/rotate-encryption-at-rest-key.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:security/encryption-at-rest/rotate-encryption-at-rest-key.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:server:rest-api:security/encryption-at-rest/rotate-encryption-at-rest
 
 ## [](#description)Description
 
-You can manually trigger the rotation of an encryption-at-rest key that Couchbase Server manages. You may want to manually rotate the key if you believe it’s compromised.
+You can manually trigger the rotation of an encryption-at-rest key that Couchbase Server manages. You may want to manually rotate the key if you believe it's compromised.
 
 You can only rotate keys managed by an external KMS through that KMS. See [Manually Rotate Encryption-at-rest Keys](#manage:security/manage-native-encryption-at-rest.adoc#rotate-keys) for more information.
 
@@ -127,7 +127,7 @@ The following example rotates the encryption-at-rest key for the named `Example 
 }
 ```
 
-This key’s `data.id` is `18`. The command to rotate this key is:
+This key's `data.id` is `18`. The command to rotate this key is:
 
 ```bash
 curl -u Administrator:password \

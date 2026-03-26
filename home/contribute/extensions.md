@@ -1,7 +1,7 @@
 ---
 title: Site Extensions
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/extensions.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:extensions.adoc[]
 ---
 
@@ -28,6 +28,6 @@ Filter some text with [Markdown](https://commonmark.org/help/) syntax.
 > [!NOTE]
 > This is not implemented with a full Markdown parser. See [issue](https://github.com/asciidoctor/kramdown-asciidoc/issues/7)with a link to the "naive series of regexes" used as starting point.
 > 
-> (And note that we use Open [structural context](https://docs.asciidoctor.org/asciidoc/latest/blocks/delimited/#summary-of-structural-containers), with `--` delimiters, and headings don’t work inside these.)
+> (And note that we use Open [structural context](https://docs.asciidoctor.org/asciidoc/latest/blocks/delimited/#summary-of-structural-containers), with `--` delimiters, and headings don't work inside these.)
 > 
 > This feature is intended for handling OpenAPI specs, which can contain Markdown, however openapi-generator has [poor Asciidoc handling](https://github.com/OpenAPITools/openapi-generator/issues/11396), so instead we add the block delimiters in the template, and let the block filter handle it.

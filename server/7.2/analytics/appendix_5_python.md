@@ -2,7 +2,7 @@
 title: "Appendix 5: Python UDFs"
 description: A short guide and tutorial regarding the use of Python user-defined functions
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/appendix_5_python.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:analytics:appendix_5_python.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:7.2@server:analytics:appendix_5_python.adoc[]
 
 # Appendix 5: Python UDFs
 
-## [](#function-authors-guide)Function Author’s Guide
+## [](#function-authors-guide)Function Author's Guide
 
 Python UDFs in Analytics are designed first and foremost to give maximum freedom to the user, and as such almost any Python code can be bound as a function. However, to achieve the best performance and security, it is good to keep in mind how Analytics runs and utilizes your Python code.
 
@@ -85,13 +85,13 @@ class sent_model:
 
         return 'eh'
 
-Furthermore, let’s assume 'good.txt' contains the following entries:
+Furthermore, let's assume 'good.txt' contains the following entries:
 
 spam
 eggs
 ham
 
-Now, in the module directory, execute `shiv` with all the dependencies of the module listed. This function doesn’t actually use scikit-learn here, but it’s just included as an example of a real module dependency. This command will wrap up the code that was just written, along with any dependencies it might have, so the server can keep all dependencies of each library separate from one another.
+Now, in the module directory, execute `shiv` with all the dependencies of the module listed. This function doesn't actually use scikit-learn here, but it's just included as an example of a real module dependency. This command will wrap up the code that was just written, along with any dependencies it might have, so the server can keep all dependencies of each library separate from one another.
 
 shiv -o lib.pyz --site-packages . scikit-learn
 

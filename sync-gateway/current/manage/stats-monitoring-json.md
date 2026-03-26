@@ -3,7 +3,7 @@ title: JSON Metrics
 description: This content covers the statistics and metrics collected and made
   available by Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/stats-monitoring-json.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:manage:stats-monitoring-json.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:sync-gateway:manage:stats-monitoring-json.adoc[]
 # JSON Metrics
 
 > This content covers the statistics and metrics collected and made available by Sync Gateway  
-> Sync Gateway’s statistics and metrics provide under-the-hood data on the performance, resource utilization and health of it nodes. This is increasingly important as deployments scale to support a large numbers of connected mobile and edge components.
+> Sync Gateway's statistics and metrics provide under-the-hood data on the performance, resource utilization and health of it nodes. This is increasingly important as deployments scale to support a large numbers of connected mobile and edge components.
 
 Related _inter-syncgateway_ topics: [Legacy Pre-3.0 Configuration](../configuration/configuration-properties-legacy.md) | [Metrics REST API](../rest-api/rest-api-metrics.md) | [Prometheus Integration](../deploy/stats-prometheus.md)
 
@@ -263,7 +263,7 @@ By default, that is the number of bytes sent on `127.0.0.1:4985` since node star
 
 Use Case
 
-This metric can be useful in calculating the throughput on Sync Gateway’s admin interface:
+This metric can be useful in calculating the throughput on Sync Gateway's admin interface:
 
 `throughput` \= `[admin_net_bytes_recv](#admin%5Fnet%5Fbytes%5Frecv)` / `[admin_net_bytes_sent](#admin%5Fnet%5Fbytes%5Fsent)`
 
@@ -319,11 +319,11 @@ The total number of _goroutines_.
 
 Description
 
-The CPU’s utilization as percentage value.
+The CPU's utilization as percentage value.
 
 Derivation
 
-The CPU usage calculation is performed based on _user_ and _system_ CPU time, but it doesn’t include components such as `iowait`.
+The CPU usage calculation is performed based on _user_ and _system_ CPU time, but it doesn't include components such as `iowait`.
 
 Constraints
 
@@ -423,7 +423,7 @@ The total number of channel caches added.
 
 Constraints
 
-The metric doesn’t decrease when a channel is removed. That is, it is similar to [chan\_cache\_num\_channels](#chan%5Fcache%5Fnum%5Fchannels) but doesn’t track removals.
+The metric doesn't decrease when a channel is removed. That is, it is similar to [chan\_cache\_num\_channels](#chan%5Fcache%5Fnum%5Fchannels) but doesn't track removals.
 
 #### [](#chan%5Fcache%5Fchannels%5Fevicted%5Finactive)chan\_cache\_channels\_evicted\_inactive
 
@@ -435,7 +435,7 @@ The total number of channel cache channels evicted due to inactivity.
 
 Description
 
-The total number of active channel cache channels evicted, based on ‘not recently used’ criteria.
+The total number of active channel cache channels evicted, based on 'not recently used' criteria.
 
 #### [](#chan%5Fcache%5Fcompact%5Fcount)chan\_cache\_compact\_count
 
@@ -755,7 +755,7 @@ The total number of attachments pushed.
 
 Description
 
-The total number of writes that left the document in a conflicted state. Includes new conflicts, and mutations that don’t resolve existing conflicts.
+The total number of writes that left the document in a conflicted state. Includes new conflicts, and mutations that don't resolve existing conflicts.
 
 #### [](#doc%5Fpush%5Fcount)doc\_push\_count
 
@@ -861,11 +861,11 @@ The total number of instances during import when the document cas had changed, b
 
 Description
 
-The total number of DCP mutations added to Sync Gateway’s channel cache.
+The total number of DCP mutations added to Sync Gateway's channel cache.
 
 Use Case
 
-Can be used with `[dcp_caching_time](#dcp%5Fcaching%5Ftime)` to monitor cache processing latency. That is, the time between seeing a change on the DCP feed and when it’s available in the channel cache:
+Can be used with `[dcp_caching_time](#dcp%5Fcaching%5Ftime)` to monitor cache processing latency. That is, the time between seeing a change on the DCP feed and when it's available in the channel cache:
 
 `DCP cache latency` \= `[dcp_caching_time](#dcp%5Fcaching%5Ftime)` / `[dcp_caching_count](#dcp%5Fcaching%5Fcount)`
 
@@ -877,7 +877,7 @@ The total time between a DCP mutation arriving at Sync Gateway and being added t
 
 Use Case
 
-This metric can be used with `[dcp_caching_count](#dcp%5Fcaching%5Fcount)` to monitor cache processing latency. That is, the time between seeing a change on the DCP feed and when it’s available in the channel cache:
+This metric can be used with `[dcp_caching_count](#dcp%5Fcaching%5Fcount)` to monitor cache processing latency. That is, the time between seeing a change on the DCP feed and when it's available in the channel cache:
 
 `dcp_cache_latency` \= `[dcp_caching_time](#dcp%5Fcaching%5Ftime)` / `[dcp_caching_count](#dcp%5Fcaching%5Fcount)`
 

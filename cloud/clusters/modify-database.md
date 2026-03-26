@@ -2,7 +2,7 @@
 title: Modify a Paid Cluster
 description: Review, modify, and rename Couchbase Capella clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/modify-database.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:modify-database.adoc[]
 ---
 
@@ -20,11 +20,11 @@ Use the procedures on this page to modify an existing Couchbase Capella cluster.
 
 ## [](#prerequisites)Prerequisites
 
-* You have the [Project Owner](../projects/project-roles.md#project-owner-role) or [Cluster Manager](../projects/project-roles.md#project-cluster-manager-role) role for the project with the cluster you’re modifying.
+* You have the [Project Owner](../projects/project-roles.md#project-owner-role) or [Cluster Manager](../projects/project-roles.md#project-cluster-manager-role) role for the project with the cluster you're modifying.
 
 ## [](#view-config)View Cluster Node Configurations
 
-Before modifying a cluster, you can review a list of all individual nodes running on it. This list includes the hostname, status, and services associated with each node. It also describes each node’s CPU, RAM, and disk usage. Node statuses are Normal, Deploying, and Unhealthy.
+Before modifying a cluster, you can review a list of all individual nodes running on it. This list includes the hostname, status, and services associated with each node. It also describes each node's CPU, RAM, and disk usage. Node statuses are Normal, Deploying, and Unhealthy.
 
 1. Open the **Settings** page for your cluster:
 
@@ -46,7 +46,7 @@ Cluster configuration options depend on the chosen cloud provider. For more info
 ### [](#add-service)Add a Service
 
 > [!TIP]
-> You can enable Couchbase Capella’s [Storage Auto-Expansion](#clusters:modules/scale-cluster.adoc#Storage-Auto-Expansion) feature to automatically increase your storage capacity as your data grows.
+> You can enable Couchbase Capella's [Storage Auto-Expansion](#clusters:modules/scale-cluster.adoc#Storage-Auto-Expansion) feature to automatically increase your storage capacity as your data grows.
 
 Service groups allow you to create node configurations for specified [Couchbase services](databases.md#couchbase-services).
 
@@ -92,7 +92,7 @@ Once you add a service to a new or existing service group, you may need to adjus
   2. Select the cluster where you want to make changes to your settings.
   3. Go to **Settings**.
 2. In the navigation pane, click **Services**.
-3. To remove a service, click the **x** icon for the service you’re removing in the **Services** list:  
+3. To remove a service, click the **x** icon for the service you're removing in the **Services** list:  
 ![Deleting a cluster service](_images/deleting-service.png)
 4. If you have no other changes, [review and apply the new configuration](#apply-changes).
 
@@ -113,7 +113,7 @@ Once you add a service to a new or existing service group, you may need to adjus
   2. Select the cluster where you want to make changes to your settings.
   3. Go to **Settings**.
 2. In the navigation pane, click **Services**.
-3. Using the **Nodes** list in the service group you’re modifying, choose a new number of nodes for this configuration.
+3. Using the **Nodes** list in the service group you're modifying, choose a new number of nodes for this configuration.
 4. If you have no other changes, [review and apply the new configuration](#apply-changes).
 
 > [!NOTE]
@@ -136,7 +136,7 @@ Once you add a service to a new or existing service group, you may need to adjus
   2. Select the cluster where you want to make changes to your settings.
   3. Go to **Settings**.
 2. In the navigation pane, click **Services**.
-3. Use the **Compute** drop-down in the service group you’re modifying to choose a new compute instance type.  
+3. Use the **Compute** drop-down in the service group you're modifying to choose a new compute instance type.  
 The compute dictates the number of vCPUs and memory provisioned for each node in a service group.
 4. If you have no other changes, [review and apply the new configuration](#apply-changes).
 
@@ -144,7 +144,7 @@ The compute dictates the number of vCPUs and memory provisioned for each node in
 > Limitations
 > 
 > * The minimum compute configuration required to scale out a Single Node cluster is 4vCPUs 16 GB RAM.
-> * Your instance type options are limited to those available in the **Compute** list of the Service Group you’re modifying.
+> * Your instance type options are limited to those available in the **Compute** list of the Service Group you're modifying.
 
 ### [](#change-disk)Change Disk Type
 
@@ -158,7 +158,7 @@ The compute dictates the number of vCPUs and memory provisioned for each node in
   2. Select the cluster where you want to make changes to your settings.
   3. Go to **Settings**.
 2. In the navigation pane, click **Services**.
-3. Use the **Disk Type** control to change disk types for the configuration you’re modifying.
+3. Use the **Disk Type** control to change disk types for the configuration you're modifying.
 4. If you have no other changes, [review and apply the new configuration](#apply-changes).
 
 > [!NOTE]
@@ -178,7 +178,7 @@ The compute dictates the number of vCPUs and memory provisioned for each node in
   2. Select the cluster where you want to make changes to your settings.
   3. Go to **Settings**.
 2. In the navigation pane, click **Services**.
-3. Using the **Storage** box of the service group you’re modifying, enter the amount of storage you want per node for this configuration. If the cluster uses Azure, you must choose a new disk type to increase storage.
+3. Using the **Storage** box of the service group you're modifying, enter the amount of storage you want per node for this configuration. If the cluster uses Azure, you must choose a new disk type to increase storage.
 4. If you have no other changes, [review and apply the new configuration](#apply-changes).
 
 > [!NOTE]
@@ -203,14 +203,14 @@ The compute dictates the number of vCPUs and memory provisioned for each node in
   2. Select the cluster where you want to make changes to your settings.
   3. Go to **Settings**.
 2. In the navigation pane, click **Services**.
-3. Using the **IOPS** box, enter the IOPS value for the service group you’re modifying.  
-This field isn’t shown when a cluster uses GCP as its cloud provider. If you’re using Azure’s Premium SSD disk type, you can’t change the value of this field.
+3. Using the **IOPS** box, enter the IOPS value for the service group you're modifying.  
+This field isn't shown when a cluster uses GCP as its cloud provider. If you're using Azure's Premium SSD disk type, you can't change the value of this field.
 4. If you have no other changes, [review and apply the new configuration](#apply-changes).
 
 > [!NOTE]
 > Limitations
 > 
-> * **GCP**: IOPS (Input/Output Operations per Second) isn’t a directly configurable value. Instead, it’s automatically set at 30 reads and 30 writes IOPS per GB of storage provisioned.
+> * **GCP**: IOPS (Input/Output Operations per Second) isn't a directly configurable value. Instead, it's automatically set at 30 reads and 30 writes IOPS per GB of storage provisioned.
 > * **Azure**: IOPS for the Premium SSD (P) disk type are based on the chosen Premium SSD disk size. The IOPS for the Ultra disk type can be set, but the possible range depends on the chosen storage size.
 
 ## [](#apply-changes)Review and Apply Changes
@@ -220,7 +220,7 @@ All the changes you make to a cluster are on the **Service** page. Review this n
 Any warnings about your proposed changes appear on the **Service** page and can prevent you from updating the configuration until you resolve them. If you need to discard your changes, click **Cancel**.
 2. Once you have reviewed the changes, click **Save**.
 
-The cluster [rebalances](scale-database.md#rebalance) and redistributes service data over the new superset of nodes. The amount of time taken for the new nodes to rebalance into the cluster depends on the service of the new nodes, and how much data is redistributed. The cluster remains available during the rebalance, but you can’t make further changes until the rebalancing is complete.
+The cluster [rebalances](scale-database.md#rebalance) and redistributes service data over the new superset of nodes. The amount of time taken for the new nodes to rebalance into the cluster depends on the service of the new nodes, and how much data is redistributed. The cluster remains available during the rebalance, but you can't make further changes until the rebalancing is complete.
 
 ## [](#rename-database)Rename a Cluster
 

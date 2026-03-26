@@ -1,7 +1,7 @@
 ---
 title: Integrating CMOS with Existing Monitoring Stacks
 editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/integrating-with-existing-deployments.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cmos::integrating-with-existing-deployments.adoc[]
 ---
 
@@ -23,7 +23,7 @@ The environment you wish to integrate CMOS into must have:
 2. **Prometheus 2.26 or later**, with **Alertmanager 0.23.0 or later** installed;
 3. **Grafana 8.3.0 or later**, configured to use the Prometheus server as a Data Source;
 
-  * **Docker**, to run the Cluster Monitor’s Docker image
+  * **Docker**, to run the Cluster Monitor's Docker image
 
 ## [](#installation)Installation
 
@@ -56,7 +56,7 @@ docker run -d --rm \
 
 Navigate to the Web GUI, which listens by default on port `7196`. Sign in using the credentials you provided as environment variables when you started the Cluster Monitor earlier (by default, `admin`/`password`).
 
-Then click "Add Cluster" and enter the IP address of a node in the cluster, along with the cluster’s configured username and password. Repeat this for every cluster you wish to add to the Cluster Monitor.
+Then click "Add Cluster" and enter the IP address of a node in the cluster, along with the cluster's configured username and password. Repeat this for every cluster you wish to add to the Cluster Monitor.
 
 ## [](#configuration)Configuration
 
@@ -74,7 +74,7 @@ Then click "Add Cluster" and enter the IP address of a node in the cluster, alon
 However, if you:
 
 * Configure Grafana (v7.1+) dashboards through the use of provisioning files: [specify the plugins to install in your provisioning configuration file](https://grafana.com/docs/grafana/latest/administration/provisioning/#plugins).
-* Are running Grafana in a Docker container: simply pass through an additional environment variable `GF_INSTALL_PLUGINS=$PLUGIN_NAME $VERSION` where the `$PLUGIN_NAME` and latest `$VERSION` can be found on the plugin’s homepage (linked under "installation instructions" for each).
+* Are running Grafana in a Docker container: simply pass through an additional environment variable `GF_INSTALL_PLUGINS=$PLUGIN_NAME $VERSION` where the `$PLUGIN_NAME` and latest `$VERSION` can be found on the plugin's homepage (linked under "installation instructions" for each).
 
 ### [](#grafana-dashboards)Grafana: Dashboards
 

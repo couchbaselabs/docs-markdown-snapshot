@@ -3,7 +3,7 @@ title: Data Operations
 description: Key Value (KV) or data service offers the simplest way to retrieve
   or mutate data where the key is known.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:go-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -22,7 +22,7 @@ A _document_ refers to an entry in the database (other databases may refer to th
 
 ## [](#crud-operations)CRUD Operations
 
-The core interface to Couchbase Server is simple KV operations on full documents. Make sure you’re familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK section](../hello-world/start-using-sdk.md). We’re going to expand on the short _Upsert_ example we used there, adding options as we move through the various CRUD operations. Here is the _Insert_ operation at its simplest:
+The core interface to Couchbase Server is simple KV operations on full documents. Make sure you're familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK section](../hello-world/start-using-sdk.md). We're going to expand on the short _Upsert_ example we used there, adding options as we move through the various CRUD operations. Here is the _Insert_ operation at its simplest:
 
 ```go
 	// Insert Document
@@ -51,7 +51,7 @@ Options like timeout may also be added to operations. _Timeout_ in the Go SDK ha
 
 ### [](#cas)CAS
 
-Setting a Compare and Swap (CAS) value is a form of optimistic locking - dealt with in depth in the [CAS page](concurrent-document-mutations.md). Here we just note that the CAS is a value representing the current state of an item; each time the item is modified, its CAS changes. The CAS value is returned as part of a document’s metadata whenever a document is accessed. Without explicitly setting it, a newly-created document would have a CAS value of _0_.
+Setting a Compare and Swap (CAS) value is a form of optimistic locking - dealt with in depth in the [CAS page](concurrent-document-mutations.md). Here we just note that the CAS is a value representing the current state of an item; each time the item is modified, its CAS changes. The CAS value is returned as part of a document's metadata whenever a document is accessed. Without explicitly setting it, a newly-created document would have a CAS value of _0_.
 
 ```go
 	// Replace Document with Cas
@@ -224,7 +224,7 @@ When removing a document, you will have the same concern for durability as with 
 
 ## [](#expiration-ttl)Expiration / TTL
 
-We already touched on how to set `Expiry` on an operation but we didn’t discuss how to handle extending that expiry time. By default, Couchbase documents do not expire, but transient or temporary data may be needed for user sessions, caches, or other temporary documents. You can use expiration values on documents to handle transient data. To prevent a document that already has expiry from expiring you can use `Touch` operations which will extend the expiry by the time specified.
+We already touched on how to set `Expiry` on an operation but we didn't discuss how to handle extending that expiry time. By default, Couchbase documents do not expire, but transient or temporary data may be needed for user sessions, caches, or other temporary documents. You can use expiration values on documents to handle transient data. To prevent a document that already has expiry from expiring you can use `Touch` operations which will extend the expiry by the time specified.
 
 ```go
 	// Touch
@@ -301,14 +301,14 @@ A counter must be incremented or decremented by only a single datacenter. Each d
 
 ## [](#kv-range-scan)KV Range Scan
 
-A range scan gives you documents from a collection, even if you don’t know the document IDs. This feature requires Couchbase Server 7.6 or newer.
+A range scan gives you documents from a collection, even if you don't know the document IDs. This feature requires Couchbase Server 7.6 or newer.
 
 > [!TIP]
 > KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 
-Here’s an example of a KV range scan that gets all documents in a collection:
+Here's an example of a KV range scan that gets all documents in a collection:
 
 KV Range Scan for all documents in a collection
 
@@ -336,7 +336,7 @@ if err != nil {
 }
 ```
 
-| **1** | The RangeScan struct has two optional fields: From and To. If you omit them like in this example, you’ll get all documents in the collection. These parameters are for advanced use cases; you probably won’t need to specify them. Instead, it’s more common to use the "prefix" scan type shown in the next example. |
+| **1** | The RangeScan struct has two optional fields: From and To. If you omit them like in this example, you'll get all documents in the collection. These parameters are for advanced use cases; you probably won't need to specify them. Instead, it's more common to use the "prefix" scan type shown in the next example. |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### [](#kv-range-scan-prefix)Prefix scan

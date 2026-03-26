@@ -2,7 +2,7 @@
 title: Advanced Keyspace Accessors
 description: Use Advanced Keyspace Accessors to access advanced Key Value functionality.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-advanced-keyspace-accessors.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:eventing:eventing-advanced-keyspace-accessors.adoc[]
 ---
 
@@ -444,7 +444,7 @@ Results
 
 Sub-Document MUTATEIN operations let you modify only parts of a document instead of the entire document. This makes them faster and more efficient than full-document operations like REPLACE and UPSERT.
 
-By default, a MUTATEIN operation does not modify Extended Attributes (XATTRs). To modify a document’s XATTRs, you must:
+By default, a MUTATEIN operation does not modify Extended Attributes (XATTRs). To modify a document's XATTRs, you must:
 
 * Pass `xattrs` as the third argument of your OnUpdate function.
 * Pass `{ "xattrs": true }` in the `subdoc_operation_array` argument of your OnUpdate function.
@@ -528,7 +528,7 @@ function OnUpdate(doc, meta, xattrs) {
 
 Sub-Document LOOKUPIN operations let you search for a specific field in a document without having to search and retrieve the entire document.
 
-By default, a LOOKUPIN operation does not fetch Extended Attributes (XATTRs). To fetch a document’s XATTRs, you must:
+By default, a LOOKUPIN operation does not fetch Extended Attributes (XATTRs). To fetch a document's XATTRs, you must:
 
 * Pass `xattrs` as the third argument of your OnUpdate function.
 * Pass `{ "xattrs": true }` in the `subdoc_array` argument of your OnUpdate function.
@@ -536,9 +536,9 @@ By default, a LOOKUPIN operation does not fetch Extended Attributes (XATTRs). To
 The `subdoc_array` argument contains one or more of the following `couchbase.lookupIn.get` specs:
 
 * `<subdoc_path>`, which is the key of the subdocument you want to fetch.
-* `{ "xattrs": true }`, if you want to fetch a document’s XATTRs.
+* `{ "xattrs": true }`, if you want to fetch a document's XATTRs.
 * `{ "doc":[{ "value”: <subdoc_value_0>, ”success”: <bool> }, { "value”: <subdoc_value_1>, ”success”:<bool>} ], ”meta”: <meta>, ”success”: <overall fetch operation success bool> }`, which returns results.
-* `result.doc[i].value`, which gives you access to the i-th value of the subdocument. If there’s an error in fetching the i-th `subdoc_path`, the `result.doc[i].value` is undefined.
+* `result.doc[i].value`, which gives you access to the i-th value of the subdocument. If there's an error in fetching the i-th `subdoc_path`, the `result.doc[i].value` is undefined.
 
 #### [](#example-9)Example
 
@@ -558,7 +558,7 @@ function OnUpdate(doc, meta, xattrs) {
 
 ## [](#multiple-collection-functions)Eventing Functions that Listen to Multiple Collections
 
-You can use the wildcard `*` in an Eventing Function’s scope or collection to listen to multiple collections.
+You can use the wildcard `*` in an Eventing Function's scope or collection to listen to multiple collections.
 
 If the binding used by the Advanced Keyspace Accessor also contains a wildcard `*` for its scope or collection, you must use the additional `meta.keyspace` parameter.
 

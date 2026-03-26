@@ -1,7 +1,7 @@
 ---
 title: Sorting Query Results
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-sorting.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:fts:fts-sorting.adoc[]
 ---
 
@@ -30,7 +30,7 @@ You can specify the value of the `sort` field as an array of strings. These can 
 If multiple fields are included in the array, the sorting of documents begins according to their values for the field whose name is first in the array.  
 If any number of these values are identical, their documents are sorted again, this time according to their values for the field whose name is second; then, if any number of these values are identical, their documents are sorted a third time, this time according to their values for the field whose name is third; and so on.  
 Any document-field may be specified to hold the value on which sorting is to be based, provided that the field has been indexed in some way, whether dynamically or specifically.  
-The default sort-order is _ascending_. If a field-name is prefixed with the `-` character, that field’s results are sorted in _descending_ order.
+The default sort-order is _ascending_. If a field-name is prefixed with the `-` character, that field's results are sorted in _descending_ order.
 * `_id`: Refers to the document identifier. Whenever encountered in the array, causes sorting to occur by document identifer.
 * `_score`: Refers to the score assigned the document in the result-set. Whenever encountered in the array, causes sorting to occur by score.
 

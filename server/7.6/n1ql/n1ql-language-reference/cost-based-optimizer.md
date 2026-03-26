@@ -4,7 +4,7 @@ description: The cost-based optimizer takes into account the cost of memory,
   CPU, network transport, and disk usage when choosing the optimal plan to
   execute a query.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/cost-based-optimizer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/cost-based-optimizer.adoc[]
 ---
 
@@ -31,7 +31,7 @@ The cost-based optimizer can generate a query plan for [SELECT](selectintro.md),
 
 As an analogy, imagine that you need to travel from one side of a major city to the other by train. There may be many options available to you: commuter rail, metro, or light rail. You may also need to change from one service to another at an interchange station, perhaps more than once. By combining the fastest services with the smallest number of changes and the shortest wait time at each interchange, you can get to your destination in the most efficient way.
 
-Of course, to plan your route, you need to have knowledge of the train frequencies, the size and accessibility of the interchange stations, and how busy the services are likely to be at the time when you travel. Each of these factors imposes a cost on the options that are available to you. If you have a greater knowledge and experience of the city’s rail network, you will be better informed about these costs, and better able to plan the optimum journey.
+Of course, to plan your route, you need to have knowledge of the train frequencies, the size and accessibility of the interchange stations, and how busy the services are likely to be at the time when you travel. Each of these factors imposes a cost on the options that are available to you. If you have a greater knowledge and experience of the city's rail network, you will be better informed about these costs, and better able to plan the optimum journey.
 
 ## [](#advantages)Advantages of the Cost-Based Optimizer
 

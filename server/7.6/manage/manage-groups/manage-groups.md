@@ -3,7 +3,7 @@ title: Manage Server Groups
 description: Nodes can be assigned to server <em>groups</em>, in order to
   protect a cluster from large-scale infrastructure failure.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-groups/manage-groups.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-groups/manage-groups.adoc[]
 ---
 
@@ -115,7 +115,7 @@ The CLI `group-manage` command can be used to manage groups. The following subse
 
 ### [](#get-group-information-with-the-cli)Get Group Information, with the CLI
 
-To return a list containing the cluster’s currently defined groups, and the nodes assigned to each, enter the following:
+To return a list containing the cluster's currently defined groups, and the nodes assigned to each, enter the following:
 
 couchbase-cli group-manage -c 10.143.190.101:8091 \
 -u Administrator \
@@ -260,7 +260,7 @@ If successful, `200 OK` is given; and an object is returned that contains inform
 For general management purposes, the output contains the following, both of which are used in examples further below:
 
 * The _URI path and revision integer_ for the overall group-configuration. This must be specified when the configuration is to be changed.
-* The group’s _URI path and UUID string_. The allows the individual group to be referenced, when nodes are to be moved between groups, or are to be added.
+* The group's _URI path and UUID string_. The allows the individual group to be referenced, when nodes are to be moved between groups, or are to be added.
 
 ### [](#add-a-group-with-the-rest-api)Add a Group, with the REST API
 
@@ -291,7 +291,7 @@ Success gives `200 OK`, and returns an empty array.
 
 Server groups can be deleted with the `DELETE /pools/default/serverGroups/<:uuid>` HTTP method and URI. The group must be empty, for the request to succeed. For full details, see [Deleting Groups](../../rest-api/rest-servergroup-delete.md).
 
-The procedure described in [Getting Server Group Information](../../rest-api/rest-servergroup-get.md) should be used to determine the `uuid` of the group to be deleted; and to ascertain the group’s emptiness. The following request deletes the group, which is specified by means of the `uuid`.
+The procedure described in [Getting Server Group Information](../../rest-api/rest-servergroup-get.md) should be used to determine the `uuid` of the group to be deleted; and to ascertain the group's emptiness. The following request deletes the group, which is specified by means of the `uuid`.
 
 curl -X DELETE -u Administrator:password \
 http://10.143.190.101:8091/pools/default/serverGroups/\

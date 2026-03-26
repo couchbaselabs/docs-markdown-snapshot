@@ -2,7 +2,7 @@
 title: Manage Audit Logs
 description: How to configure and manage audit logging for App Services and App Endpoints.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/manage-audit-logs.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::monitoring/manage-audit-logs.adoc[]
 ---
 
@@ -34,7 +34,7 @@ In the examples on this page:
 * `$clusterId` is the cluster ID.
 * `$apiKeySecret` is the API key secret, used as the Bearer token.
 
-The endpoints described on this page all have the same base path: `/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}`. For clarity, this is not shown in the instructions, but it’s included in the examples.
+The endpoints described on this page all have the same base path: `/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}`. For clarity, this is not shown in the instructions, but it's included in the examples.
 
 ## [](#enable-disable-audit-logs)Enable and Disable App Services Audit Logs
 
@@ -246,7 +246,7 @@ curl -X PUT "https://cloudapi.cloud.couchbase.com/v4/organizations/$organization
 You can stream your App Services audit logs to an external storage (host) via a remote endpoint.
 
 > [!NOTE]
-> You’re responsible for any third-party audit log collectors that you configure.
+> You're responsible for any third-party audit log collectors that you configure.
 
 ### [](#set-streaming-config)Configure Streaming for App Services Audit Logs
 

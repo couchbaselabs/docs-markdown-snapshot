@@ -2,7 +2,7 @@
 title: DROP PRIMARY INDEX
 description: The DROP PRIMARY INDEX statement allows you to drop a primary index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropprimaryindex.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/dropprimaryindex.adoc[]
 ---
 
@@ -72,8 +72,8 @@ If the keyspace is a named collection, or the default collection in the default 
 | namespace  | (Optional) An [identifier](identifiers.md) that refers to the [namespace](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. Currently, only the default namespace is available. If the namespace name is omitted, the default namespace in the current session is used. |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | bucket     | (Required) An [identifier](identifiers.md) that refers to the [bucket name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace.                                                                                                                                           |
-| scope      | (Optional) An [identifier](identifiers.md) that refers to the [scope name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. If omitted, the bucket’s default scope is used.                                                                                            |
-| collection | (Optional) An [identifier](identifiers.md) that refers to the [collection name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. If omitted, the default collection in the bucket’s default scope is used.                                                             |
+| scope      | (Optional) An [identifier](identifiers.md) that refers to the [scope name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. If omitted, the bucket's default scope is used.                                                                                            |
+| collection | (Optional) An [identifier](identifiers.md) that refers to the [collection name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. If omitted, the default collection in the bucket's default scope is used.                                                             |
 
 For example, `` default:`travel-sample` `` indicates the default collection in the default scope in the `travel-sample` bucket in the `default` namespace.
 
@@ -117,7 +117,7 @@ CREATE PRIMARY INDEX ON airline;
 SELECT * FROM system:indexes WHERE name = '#primary';
 ```
 
-Subsequently, drop the unnamed primary index with the following statement so that it’s no longer reported in the `system:indexes` output.
+Subsequently, drop the unnamed primary index with the following statement so that it's no longer reported in the `system:indexes` output.
 
 ```sqlpp
 DROP PRIMARY INDEX ON airline;

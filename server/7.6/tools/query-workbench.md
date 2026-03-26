@@ -3,7 +3,7 @@ title: Query Workbench
 description: The Query Workbench provides a rich graphical user interface to
   perform query development.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/tools/pages/query-workbench.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:tools:query-workbench.adoc[]
 ---
 
@@ -335,7 +335,7 @@ Adds the imported queries to the end of the current query history.
 3. Choose **Next** to continue, or **Cancel** to cancel.
 
 > [!NOTE]
-> The browser’s Open File dialog is displayed. Locate and open a text file or JSON file containing the data you want to import.
+> The browser's Open File dialog is displayed. Locate and open a text file or JSON file containing the data you want to import.
 
 Alternatively, you can drag and drop the file from the Desktop into the **Query Editor** to a load a file. The content of the file is added in the **Query Editor** as a new query at the end of the history.
 
@@ -377,7 +377,7 @@ Automatically format queries before executing
 The query workbench automatically formats queries with line breaks and indentation before executing.  
 Use Cost-Based Optimizer  
 Specifies whether the [cost-based optimizer](../n1ql/n1ql-language-reference/cost-based-optimizer.md) is enabled.  
-Don’t save query history  
+Don't save query history  
 Disables auto-saving query history to local storage in your browser. This is a consideration for shared machines. When selected, any query history will be lost when you leave or refresh the query workbench.  
 Max Parallelism  
 Specifies the maximum parallelism for the query. If you do not specify, the cbq-engine uses its default value. For more information, refer to the [max\_parallelism](../n1ql/n1ql-manage/query-settings.md#max%5Fparallelism%5Freq) parameter.  

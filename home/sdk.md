@@ -1,7 +1,7 @@
 ---
 title: SDKs &amp; Connectors
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home::sdk.adoc[]
 ---
 
@@ -28,7 +28,7 @@ collection.reactive.upsert("document-key", json)
 > [!TIP]
 > Analytics SDKs
 > 
-> SDKs for [Enterprise Analytics](../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database (RT-OLAP) for real time apps and operational intelligence — are [available](analytics-sdk.md) for the Go, Java, Node.js, and Python platforms.
+> SDKs for [Enterprise Analytics](../enterprise-analytics/current/intro/intro.md) — Couchbase's analytical database (RT-OLAP) for real time apps and operational intelligence — are [available](analytics-sdk.md) for the Go, Java, Node.js, and Python platforms.
 > 
 > SDKs for [Capella Analytics](../analytics/intro/intro.md) are similar to the Enterprise Analytics SDKs. They must be used to connect to the current Capella Analytics Service, as it presents a different connection interface, without Enterprise Analytics' load balancer. They are [available](columnar-sdk.md) for the Go, Java, Node.js, and Python platforms.
 
@@ -58,7 +58,7 @@ The Couchbase SDKs allow applications to access a Couchbase cluster. They offer 
 
 ### Alternatives to SDKs
 
-The Data API gives access to data in Capella Operational clusters — for when to use the Data API, or Capella’s other REST APIs, see [Data API vs. Couchbase SDKs](../cloud/data-api-guide/data-api-sdks.md).
+The Data API gives access to data in Capella Operational clusters — for when to use the Data API, or Capella's other REST APIs, see [Data API vs. Couchbase SDKs](../cloud/data-api-guide/data-api-sdks.md).
 
 ###### 
 

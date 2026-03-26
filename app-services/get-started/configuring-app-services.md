@@ -3,7 +3,7 @@ title: Configure Your Free Tier App Services (Mobile sync)
 description: Configure App Services to test out a mobile application with your
   free tier operational cluster.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/get-started/configuring-app-services.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::get-started/configuring-app-services.adoc[]
 ---
 
@@ -43,7 +43,7 @@ To create an App Endpoint:
 6. Go to the **Linked Collections** table and link the **airline** collection.
 7. Click **Create App Endpoint**.
 
-If you link a large number of collections at one time, an initializing state occurs. During this phase, you can update general configuration, link, or unlink more collections, or change Auth Providers or the Access Control Function. After the linking of collections completes, the App Endpoint’s status shows as **Offline**. You can resume the endpoint by selecting the desired endpoint from the **App Endpoints** menu and clicking the **Resume App Endpoint** button in App Endpoint settings.
+If you link a large number of collections at one time, an initializing state occurs. During this phase, you can update general configuration, link, or unlink more collections, or change Auth Providers or the Access Control Function. After the linking of collections completes, the App Endpoint's status shows as **Offline**. You can resume the endpoint by selecting the desired endpoint from the **App Endpoints** menu and clicking the **Resume App Endpoint** button in App Endpoint settings.
 
 ## [](#configure-app-access)Configure the App Endpoint with an Access Control Policy
 
@@ -133,7 +133,7 @@ To connect Couchbase Lite to your App Endpoint:
 4. Select **Connect via Couchbase Lite**.
 5. Next to the **Public Connection** field, click **Copy**.
 6. Select **App Services Credentials** from the list to choose the credentials you want to use to connect to your Capella Cluster. To create App Services user credentials, go to [App User](#add-app-services-user).
-7. Under Choose a Couchbase Lite SDK, select the SDK you’re using or plan to use for your applications from the Language list.
+7. Under Choose a Couchbase Lite SDK, select the SDK you're using or plan to use for your applications from the Language list.
 
   * [Swift (iOS, macOS)](../../couchbase-lite/current/swift/gs-install.md): Replace the `URLEndpoint` in the sample code with your App Endpoint Public Connection URL.
   * [Kotlin (Android)](../../couchbase-lite/current/android/gs-install.md): Replace the `URLEndpoint` in the sample code with your App Endpoint Public Connection URL.

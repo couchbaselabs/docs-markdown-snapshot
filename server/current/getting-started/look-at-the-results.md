@@ -4,7 +4,7 @@ description: Once you have Couchbase Server running, you can log into the
   Couchbase Server Web Console and start to examine the different features that
   it provides.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/getting-started/pages/look-at-the-results.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:getting-started:look-at-the-results.adoc[]
 ---
 
@@ -34,7 +34,7 @@ Every time you log into the Web Console, you are brought to the **Cluster Dashbo
 
 ![The Cluster Dashboard](_images/ClusterOverview.png) 
 
-The **Cluster Dashboard** provides a graphical summary of the Couchbase cluster’s current state. The term _cluster_ might seem unexpected at this point, since you are only running a single instance of Couchbase Server; but nevertheless, it counts as a cluster of one.
+The **Cluster Dashboard** provides a graphical summary of the Couchbase cluster's current state. The term _cluster_ might seem unexpected at this point, since you are only running a single instance of Couchbase Server; but nevertheless, it counts as a cluster of one.
 
 All the values that are displayed on this screen were automatically configured by the sandbox container image during installation. In production, you will specify these values individually, according to your needs.
 
@@ -94,7 +94,7 @@ Note that if you are using the **spreadsheet** view, any unsaved changes that yo
 
 To view successive sets of documents, use the **Next Batch >** and **< Prev Batch** buttons.
 
-## [](#examining-the-cluster-logs)Examining the Cluster’s Logs
+## [](#examining-the-cluster-logs)Examining the Cluster's Logs
 
 The Couchbase Server maintains a constant, configurable log of alerts and operations, a subset of which can be examined from the web console.
 
@@ -117,7 +117,7 @@ Once the options have been set, click on **Start Collecting** to start recording
 > [!TIP]
 > If you are having a problem with your cluster setup, it may be useful to provide Couchbase Support with a log of the server activity.
 
-## [](#examining-the-cluster-metrics)Examining the Cluster’s Metrics
+## [](#examining-the-cluster-metrics)Examining the Cluster's Metrics
 
 As well as examining the state of the cluster from the web console, (see the section on [Examining the cluster dashboard](#examine-the-cluster-dashboard)), you can monitor more specific elements of the cluster operation, such as the indexes in real-time:
 

@@ -4,7 +4,7 @@ description: To get started with the Couchbase Capella Operational Management
   API, you must create an API key. An API key authenticates and authorizes you
   to access the Management API.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-start.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:management-api-guide:management-api-start.adoc[]
 ---
 
@@ -102,7 +102,7 @@ To generate a Management API key at the organization level:
   1. To allow a specific IP address or block, in the **Add IP / CIDR Block** field, enter the IP address or CIDR notation.
   2. To add your current IP address block, click **Add Current IP Address**.
 10. Click **Add**.
-11. When you’re ready, click **Generate Key**.  
+11. When you're ready, click **Generate Key**.  
 The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.  
 > [!WARNING]  
 > You must copy or download the API key token now. When you leave this page, you will not be able to copy or download the API key token again.
@@ -123,7 +123,7 @@ To generate a Management API key at the project level:
   1. To allow a specific IP address or block, in the **Add IP / CIDR Block** field, enter the IP address or CIDR notation.
   2. To add your current IP address, click **Add Current IP Address**.
 9. Click **Add**.
-10. When you’re ready, click **Generate Key**.  
+10. When you're ready, click **Generate Key**.  
 The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.  
 > [!WARNING]  
 > You must copy or download the API key token now. After leaving this page, you cannot copy or download the API key token.

@@ -2,7 +2,7 @@
 title: Create A Paid Cluster
 description: Create a cluster to store and access data in Couchbase Capella.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/create-database.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:create-database.adoc[]
 ---
 
@@ -41,13 +41,13 @@ To create a new cluster in a Capella project:
 > [!NOTE]  
 > Restrict public access  
 >  
-> If Couchbase has given your organization access to the restrict public access feature, this option appears here. When you restrict public access, you’re restricting access to your cluster only through Capella’s private networking options. For more information, see [Restrict Public Access](../security/security.md#public-access).
+> If Couchbase has given your organization access to the restrict public access feature, this option appears here. When you restrict public access, you're restricting access to your cluster only through Capella's private networking options. For more information, see [Restrict Public Access](../security/security.md#public-access).
 9. Choose a version of Couchbase Server to deploy on your cluster. For more information about Couchbase Server versions, see [Supported Couchbase Server Version](databases.md#cluster-version).
 10. Do one of the following:
 
   1. For a **Free** cluster, choose a cloud service provider and your preferred region.
   2. For a **Single Node** cluster, choose your Services and node compute and storage amount.
-  3. For a **Multi-Node** cluster, choose a base node template, then customize your node’s compute, storage, and IOPS configuration.
+  3. For a **Multi-Node** cluster, choose a base node template, then customize your node's compute, storage, and IOPS configuration.
   4. For a **Custom** cluster, add Service Groups, then assign nodes with a specific compute, storage, and IOPS configuration to each Group.  
 For more information, see [Services and Service Groups](databases.md#couchbase-services), [Node Configuration](databases.md#nodes), [Compute Configuration](databases.md#compute), or [Storage Configuration](databases.md#storage).
 11. Choose a **Support Plan** for your cluster. For more information about Support Plans, see [Support Plan](databases.md#plan).  
@@ -60,7 +60,7 @@ If you pay for your usage with [pre-paid credits](../billing/billing.md#pre-paid
 
 ## [](#next-steps)Next Steps
 
-Capella creates and deploys your cluster in your chosen cloud provider’s region. The process typically takes less than 5 minutes, but this can change based on cluster size and cloud provider performance.
+Capella creates and deploys your cluster in your chosen cloud provider's region. The process typically takes less than 5 minutes, but this can change based on cluster size and cloud provider performance.
 
 After your cluster shows a status of **Healthy**, you can:
 

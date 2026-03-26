@@ -4,7 +4,7 @@ description: Use the REST API to create a Search index alias. Use a Search index
   alias to run a Search query across multiple buckets, scopes, or Search
   indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/create-search-index-alias-rest-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:search:create-search-index-alias-rest-api.adoc[]
 ---
 
@@ -21,7 +21,7 @@ link: xref:7.6@server:search:create-search-index-alias-rest-api.adoc[]
 * You have created at least one Search index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md) or [Create a Search Index with the REST API and curl/HTTP](create-search-index-rest-api.md).
 * Your user account has the **Search Admin** role for the bucket where you want to create the alias.
 * You have installed the Couchbase command-line tool (CLI).
-* You have the hostname or IP address for the node in your cluster where you’re running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../../current/manage/manage-nodes/list-cluster-nodes.md).
+* You have the hostname or IP address for the node in your cluster where you're running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../../current/manage/manage-nodes/list-cluster-nodes.md).
 
 ## [](#procedure)Procedure
 
@@ -30,7 +30,7 @@ To create a Search index alias with the REST API:
 1. In your command-line tool, enter a `curl` command with the `XPUT` verb.
 2. Set your header content to include `"Content-Type: application/json"`.
 3. Enter your username, password, and the Search Service endpoint on port `8094` with the name of the index you want to create.  
-If your alias’s target Search indexes are all in the same bucket and scope, use the scoped index creation endpoint:  
+If your alias's target Search indexes are all in the same bucket and scope, use the scoped index creation endpoint:  
 Scoped Index Creation Endpoint  
 ```console  
 curl -s -XPUT -H "Content-Type: application/json" \
@@ -48,7 +48,7 @@ To use SSL, use the `https` protocol in the Search Service endpoint URL and port
 > [!NOTE]  
 > Your alias name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_).  
 >  
-> For Couchbase Server version 7.6 and later, if you’re using the scoped endpoint, your alias name must be unique inside your selected bucket and scope. You cannot have 2 aliases with the same name globally or inside the same bucket and scope.
+> For Couchbase Server version 7.6 and later, if you're using the scoped endpoint, your alias name must be unique inside your selected bucket and scope. You cannot have 2 aliases with the same name globally or inside the same bucket and scope.
 4. Enter the JSON payload for your Search index alias. Your Search index alias only requires the properties from [the start of a Search index JSON payload](search-index-params.md#initial), except where otherwise noted.
 
 ## [](#example-create-an-alias-with-targets-in-the-same-bucket-and-scope)Example: Create an Alias With Targets in the Same Bucket and Scope

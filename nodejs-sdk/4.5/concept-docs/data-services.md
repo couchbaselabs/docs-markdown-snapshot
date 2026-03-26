@@ -1,7 +1,7 @@
 ---
 title: Service Selection
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/concept-docs/pages/data-services.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.5@nodejs-sdk:concept-docs:data-services.adoc[]
 ---
 
@@ -28,7 +28,7 @@ Couchbase Data Services
 
 ## [](#use-cases)Use Cases
 
-It’s an understandable temptation to reach for the familiar, and Couchbase’s SQL-like SQL++ (formerly N1QL) makes the Query service an easy starting point for many, but it’s important to take time to match your use case to the best tool for the job.
+It's an understandable temptation to reach for the familiar, and Couchbase's SQL-like SQL++ (formerly N1QL) makes the Query service an easy starting point for many, but it's important to take time to match your use case to the best tool for the job.
 
 ### [](#known-documents)Known documents
 
@@ -40,13 +40,13 @@ If you know the path to the piece of information that you need within a JSON doc
 
 [Couchbase Analytics Service (CBAS)](#7.1@server:learn:services-and-indexes/services/analytics-service.adoc) performs well on huge datasets, with complex aggregations, and uses SQL++ for Analytics, which gives a similar query experience to SQL++ for Query. CBAS supports workloads involving only SELECT (not INSERT or UPDATE), and uses local secondary indexes. Scalable performance comes from multi-node partitioned-parallel join, sort, aggregate, and grouped aggregate operators, and multiple storage devices (vbuckets over several nodes).
 
-Use the Analytics Service when you don’t know every aspect of the query in advance -- for example, if the data access patterns change frequently, or you want to avoid creating an index for each data access pattern, or you want to run ad hoc queries for data exploration or visualization.
+Use the Analytics Service when you don't know every aspect of the query in advance -- for example, if the data access patterns change frequently, or you want to avoid creating an index for each data access pattern, or you want to run ad hoc queries for data exploration or visualization.
 
 ### [](#mutations)Mutations
 
 Use KV Operations - for better performance. Where your mutations are on just a path within the document, use the Sub-Document API.
 
-For the “update from a WHERE clause” with our Query Service, in which case you don’t know which documents would be altered, read the section on CAS and Concurrent Document Mutation to be aware of all of the implications.
+For the "update from a WHERE clause" with our Query Service, in which case you don't know which documents would be altered, read the section on CAS and Concurrent Document Mutation to be aware of all of the implications.
 
 ### [](#array-mutation)Array Mutation
 
@@ -54,7 +54,7 @@ Sub-Doc allows appending, prepending, and inserting into arrays. For more sophis
 
 ### [](#aggregation-reduce)Aggregation / Reduce
 
-MapReduce Views uses distributed Map-Reduce for very fast aggregation operations (fast, because the indexes are pre-computed results) — ideal for pre-grouped aggregations, such as grouping temporal data sets (by day, by month, etc.). Views’ spatial support allows for fast searching over extensive geo-spatial data in Couchbase Data Platform 5.x — however, Spatial Views are no longer supported in Couchbase Server 6.x, and so are not found in SDK 3.x. Continuing improvements to our Query Service makes the latter usually a better choice, particularly as Views does not scale as well as the other services, lacking a global Index node.
+MapReduce Views uses distributed Map-Reduce for very fast aggregation operations (fast, because the indexes are pre-computed results) — ideal for pre-grouped aggregations, such as grouping temporal data sets (by day, by month, etc.). Views' spatial support allows for fast searching over extensive geo-spatial data in Couchbase Data Platform 5.x — however, Spatial Views are no longer supported in Couchbase Server 6.x, and so are not found in SDK 3.x. Continuing improvements to our Query Service makes the latter usually a better choice, particularly as Views does not scale as well as the other services, lacking a global Index node.
 
 For queries over a larger number of documents, CBAS would be the best tool here, otherwise, for high throughput, simple queries, pick our Query Service.
 
@@ -70,7 +70,7 @@ From Couchbase Server 6.5, [Search Functions](#7.1@server:n1ql:n1ql-language-ref
 
 For operational queries -- such as the front-end queries behind every page display or navigation — the Query Service is a natural fit.
 
-The Query Service using SQL++ - SQL for JSON - is ideal for retrieving multiple documents that match specific queries. Data can be joined together, and Global Secondary Indexes can be used to speed up searches. It’s a powerful and flexible way of querying, retrieving, and updating data, using a familiar language, but if you know the document’s key, then regular KV (or Sub-Doc) operations will always be faster.
+The Query Service using SQL++ - SQL for JSON - is ideal for retrieving multiple documents that match specific queries. Data can be joined together, and Global Secondary Indexes can be used to speed up searches. It's a powerful and flexible way of querying, retrieving, and updating data, using a familiar language, but if you know the document's key, then regular KV (or Sub-Doc) operations will always be faster.
 
 ### [](#lowest-latency)Lowest Latency
 

@@ -3,7 +3,7 @@ title: Stream-based Views
 description: "With DCP, data does not need to be persisted to disk before
   retrieving it with a view query. DCP offers the following benefits for views:"
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-streaming.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:views/views-streaming.adoc[]
 ---
 
@@ -26,7 +26,7 @@ When submitting a view query, a parameter can be included that specifies data fr
 
 Every 5 seconds the automatic update process checks whether 5000 changes have occurred. If a minimum of 5000 changes occurred, an index update is triggered. Otherwise, no update is triggered. When triggered, the indexer requests from DCP all changes since it was last run. The default number of changes to check for is 5000, but that number can be configured by setting the `updateMinChanges` option. The update interval can also be configured by setting the `updateInterval` option.
 
-The `stale=false` view query argument has been enhanced. When an application sends a query that has the `stale` parameter set to false, the application receives all recent changes to the documents, including changes that haven’t yet been persisted to disk. It considers all document changes that have been received at the time the query was received. This means that using the durability requirements or observe feature to block for persistence in application code before issuing the `stale=false` query is no longer needed. It is recommended that you remove all such application level checks after upgrading.
+The `stale=false` view query argument has been enhanced. When an application sends a query that has the `stale` parameter set to false, the application receives all recent changes to the documents, including changes that haven't yet been persisted to disk. It considers all document changes that have been received at the time the query was received. This means that using the durability requirements or observe feature to block for persistence in application code before issuing the `stale=false` query is no longer needed. It is recommended that you remove all such application level checks after upgrading.
 
 > [!TIP]
 > For better scalability and throughput, we recommend that you set the value of the `stale` parameter to `ok`. With the stream-based views, data returned when `stale` is set to `ok` is closer to the key-value data, even though it might not include all of it.

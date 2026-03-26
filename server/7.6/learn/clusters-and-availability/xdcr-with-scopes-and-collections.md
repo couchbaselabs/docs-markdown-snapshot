@@ -4,7 +4,7 @@ description: When XDCR is established between a source bucket and a target
   bucket, data can be either <em>implicitly</em> or <em>explicitly</em> mapped
   between <em>collections</em>.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/xdcr-with-scopes-and-collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:clusters-and-availability/xdcr-with-scopes-and-collections.adoc[]
 ---
 
@@ -165,7 +165,7 @@ The practical, administrative steps required for performing replication as descr
 
 ## [](#migration)Migration
 
-When a pre-7.0 version of Couchbase Server is upgraded to 7.0 or later, all documents that resided in a pre-7.0 bucket appear in the upgraded bucket’s _default collection_, within its _default scope_. See [Scopes and Collections](../data/scopes-and-collections.md), for information.
+When a pre-7.0 version of Couchbase Server is upgraded to 7.0 or later, all documents that resided in a pre-7.0 bucket appear in the upgraded bucket's _default collection_, within its _default scope_. See [Scopes and Collections](../data/scopes-and-collections.md), for information.
 
 Following upgrade, data within the default collection can be _migrated_ to administrator-defined collections, within new target buckets, potentially on the same cluster. For each new collection, a replication to the appropriate target bucket can be defined, and a filter applied, ensuring that only the appropriate subset of documents is replicated. The mapping between the documents currently in the default collection on the source and the new collection on the target is therefore _explicitly_ specified by the administrator.
 
@@ -196,4 +196,4 @@ Replications can be defined to proceed from specified scopes and collections onl
 
 During the upgrade of a pre-7.0 _online_ source cluster (see [Upgrade an Online Cluster](../../install/upgrade-cluster-online.md)), any previously commenced replications (that is, replications commenced when the source cluster consisted entirely of nodes running a pre-7.0 version of Couchbase Server) continue. Note that during such an upgrade, if the upgrade is to Version 7.0 (and no higher), while the replications proceed, statistics for the source cluster may be inaccurate, log messages may show innocuous errors (such as `StatsMgr: error from getting high seqno`), and system activity may be marginally higher than usual.
 
-Following an upgrade from a pre-7.0 version to a version that is 7.0 or higher, each pre-existing replication continues, and is recognized as proceeding from the `_default` scope and collection of its source bucket. From this point, replications from administrator-defined scopes and collections can only be created when the target cluster is in each case running at least Version 7.0\. If the target cluster is running a pre-7.0 version, replications can only be created from the `_default` scope and collection of their source-bucket. Note that if such replications are indeed created, should a source bucket’s `_default` collection be deleted, any corresponding replication is automatically paused, and an error message is duly provided in the **Logs** area of Couchbase Web Console.
+Following an upgrade from a pre-7.0 version to a version that is 7.0 or higher, each pre-existing replication continues, and is recognized as proceeding from the `_default` scope and collection of its source bucket. From this point, replications from administrator-defined scopes and collections can only be created when the target cluster is in each case running at least Version 7.0\. If the target cluster is running a pre-7.0 version, replications can only be created from the `_default` scope and collection of their source-bucket. Note that if such replications are indeed created, should a source bucket's `_default` collection be deleted, any corresponding replication is automatically paused, and an error message is duly provided in the **Logs** area of Couchbase Web Console.

@@ -3,7 +3,7 @@ title: SQL++ Support for Couchbase Transactions
 description: SQL++ offers full support for Couchbase ACID transactions based on
   optimistic concurrency.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/transactions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/transactions.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:n1ql:n1ql-language-reference/transactions.adoc[]
 
 > SQL++ offers full support for Couchbase ACID transactions based on optimistic concurrency. 
 
-A transaction is a group of operations that are either committed to the database together, or are all undone from the database if there’s a failure. For an overview of Couchbase transactions, see [Transactions](../../../server/current/learn/data/transactions.md).
+A transaction is a group of operations that are either committed to the database together, or are all undone from the database if there's a failure. For an overview of Couchbase transactions, see [Transactions](../../../server/current/learn/data/transactions.md).
 
 * Only DML statements are permitted within a transaction: [INSERT](insert.md), [UPSERT](upsert.md), [DELETE](delete.md), [UPDATE](update.md), [MERGE](merge.md), [SELECT](selectintro.md), [EXECUTE FUNCTION](execfunction.md), [PREPARE](prepare.md), or [EXECUTE](execute.md).
 * The `EXECUTE FUNCTION` statement is only permitted in a transaction if the user-defined function does not contain any subqueries other than `SELECT` subqueries.

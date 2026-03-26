@@ -1,7 +1,7 @@
 ---
 title: Public Cloud Prerequisites
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/prerequisite-cloud.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::prerequisite-cloud.adoc[]
 ---
 
@@ -32,12 +32,12 @@ You will need to then accept the connection request in the region of the accepti
 
 #### [](#configure-route-tables-and-security-groups)Configure Route Tables and Security Groups
 
-Once the peering connection is accepted, you must [add a route](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-routing.html) to the route tables of each of the VPCs so that they can send and receive traffic across the VPC peering connection. To do this, go to **Route Tables** and select the route table associated with the public subnet of one of your VPCs. Select **Routes** and then **Edit**. Add the other VPC’s CIDR block as the **Destination**, and add the `pcx-` (peering connection) as the **Target**. Repeat these steps for the other VPC **Public Subnet**.
+Once the peering connection is accepted, you must [add a route](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-routing.html) to the route tables of each of the VPCs so that they can send and receive traffic across the VPC peering connection. To do this, go to **Route Tables** and select the route table associated with the public subnet of one of your VPCs. Select **Routes** and then **Edit**. Add the other VPC's CIDR block as the **Destination**, and add the `pcx-` (peering connection) as the **Target**. Repeat these steps for the other VPC **Public Subnet**.
 
 Next, find the security groups for the worker node CloudFormation stacks and edit their Inbound Rules.
 
-* Allow TCP traffic from ports 30000 - 32767 from the other cluster’s CIDR. Do this for both clusters. This will allow nodes in each cluster to talk to each other.
-* Allow ICMP from the same cluster’s CIDR to be able to ping the other cluster’s nodes to see if it has the desired network setup.
+* Allow TCP traffic from ports 30000 - 32767 from the other cluster's CIDR. Do this for both clusters. This will allow nodes in each cluster to talk to each other.
+* Allow ICMP from the same cluster's CIDR to be able to ping the other cluster's nodes to see if it has the desired network setup.
 
 ### [](#eks-best-practices)Best Practices
 
@@ -153,7 +153,7 @@ See the [Azure documentation](https://docs.microsoft.com/en-us/azure/virtual-mac
 
 Single disk per pod
 
-Given the slow mount time, it’s best to limit each pod to one disk (excluding the default disk). For example, separate server classes should be created for Data, Index, and Analytics pods.
+Given the slow mount time, it's best to limit each pod to one disk (excluding the default disk). For example, separate server classes should be created for Data, Index, and Analytics pods.
 
 Consider the limitations of Azure Disks
 
@@ -185,9 +185,9 @@ $ az network vnet create -g myResourceGroup -n myAKSVnet  --address-prefix 10.0.
 
 ### [](#aks-known-issues)Known Issues
 
-AKS doesn’t support Azure Availability Zones
+AKS doesn't support Azure Availability Zones
 
-At the time of this writing, AKS doesn’t support Azure Availability Zones. Rather, AKS supports Azure Availability Sets to achieve high availability.
+At the time of this writing, AKS doesn't support Azure Availability Zones. Rather, AKS supports Azure Availability Sets to achieve high availability.
 
 Availability Sets are labeled numerically (e.g. `0` and `1`). This means that [server groups](concept-server-groups.md) also have to be named "0" and "1".
 

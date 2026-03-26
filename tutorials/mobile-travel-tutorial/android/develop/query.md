@@ -1,7 +1,7 @@
 ---
 title: Query
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/android/develop/query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:android/develop/query.adoc[]
 ---
 
@@ -129,7 +129,7 @@ Expression hotelsExpr = Expression.property("hotels").from("bookmarkDS");
 Expression hotelIdExpr = Meta.id.from("hotelDS");
 ```
 
-Next, we use a function expression to find document’s whose `\_id` property is in the `hotels` array. And build the join expression.
+Next, we use a function expression to find document's whose `\_id` property is in the `hotels` array. And build the join expression.
 
 ```java
 Expression joinExpr = ArrayFunction.contains(hotelsExpr, hotelIdExpr);

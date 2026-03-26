@@ -5,7 +5,7 @@ description: This section provides a comprehensive checklist and best practices
   Capella Operational Analytics Service to Capella Analytics or Enterprise
   Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/migration/pages/pre-migration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:migration:pre-migration.adoc[]
 ---
 
@@ -119,8 +119,8 @@ The following table summarizes client connection options for Enterprise Analytic
 
 | Option                                                                           | SDK Impact                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Using Load Balancer (Couchbase recommended approach for production environments) | If you bootstrap an HTTP(S)-based connection with load balancers, it simplifies client connectivity by directing all requests to a well-known load-balanced endpoint. When a client connects, it sends an HTTP(S) request to this endpoint which is managed by a load balancer distributing traffic across multiple cluster nodes. In this setup, the SDK client sends all requests to load balancer’s endpoint.                                                                                                                                                                                                             |
-| Using DNS/HTTP(S) (without Load Balancer)                                        | In HTTP(S)-based connection bootstrapping without load balancers, the SDK client relies on keeping DNS records updated to discover cluster nodes dynamically. When a client connects, it queries the DNS entries associated with the cluster’s hostname and returns IP addresses with which you can contact the cluster nodes. SDK relies on DNS A records and randomly chooses a node to send its requests. If a failure or timeout occurs, the SDK may attempt to connect to another available DNS A record. After a user-configurable number of retries, the SDK throws an exception if it cannot establish a connection. |
+| Using Load Balancer (Couchbase recommended approach for production environments) | If you bootstrap an HTTP(S)-based connection with load balancers, it simplifies client connectivity by directing all requests to a well-known load-balanced endpoint. When a client connects, it sends an HTTP(S) request to this endpoint which is managed by a load balancer distributing traffic across multiple cluster nodes. In this setup, the SDK client sends all requests to load balancer's endpoint.                                                                                                                                                                                                             |
+| Using DNS/HTTP(S) (without Load Balancer)                                        | In HTTP(S)-based connection bootstrapping without load balancers, the SDK client relies on keeping DNS records updated to discover cluster nodes dynamically. When a client connects, it queries the DNS entries associated with the cluster's hostname and returns IP addresses with which you can contact the cluster nodes. SDK relies on DNS A records and randomly chooses a node to send its requests. If a failure or timeout occurs, the SDK may attempt to connect to another available DNS A record. After a user-configurable number of retries, the SDK throws an exception if it cannot establish a connection. |
 
 #### [](#enterprise-analytics)Enterprise Analytics
 
@@ -137,7 +137,7 @@ For information about operating systems, see [Supported Operating Systems](../in
 #### [](#server-requirement)Server Requirement
 
 * You can configure Enterprise Analytics with the similar server specifications as the existing Couchbase Server Analytics Service. You should be able to achieve the desired performance SLAs. However, you should perform a sanity validation post-migration.
-* Although resource requirements depend on the size and resource demands of the customer’s Couchbase deployment, there are some minimum and recommended specifications.
+* Although resource requirements depend on the size and resource demands of the customer's Couchbase deployment, there are some minimum and recommended specifications.
 
 For more information, see [System Requirements](../install/system-requirements.md)
 

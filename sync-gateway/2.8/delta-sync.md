@@ -3,7 +3,7 @@ title: Delta Sync
 description: Use Sync Gateway's delta sync feature for secure, resilient and
   efficient sync from cloud to edge
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/delta-sync.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::delta-sync.adoc[]
 ---
 
@@ -12,8 +12,8 @@ link: xref:2.8@sync-gateway::delta-sync.adoc[]
 
 # Delta Sync
 
-> Use Sync Gateway’s delta sync feature for secure, resilient and efficient sync from cloud to edge  
-> This content introduces Sync Gateway’s delta sync feature; sync only the data that has changed.
+> Use Sync Gateway's delta sync feature for secure, resilient and efficient sync from cloud to edge  
+> This content introduces Sync Gateway's delta sync feature; sync only the data that has changed.
 
 Related _Sync_ topics: [Sync with Couchbase Lite](../current/sync/sync-using-app.md) | [Inter-Sync Gateway Replication](../current/sync/sync-inter-syncgateway-overview.md) | [Delta Sync](../current/sync/delta-sync.md) | [Resync](../current/manage/resync.md)
 
@@ -69,7 +69,7 @@ Example 1\. Sample of Database with Delta Sync
 
 ## [](#tuning)Couchbase Server Bucket Storage Needs
 
-Delta sync’s storage of backed up revision bodies in the Couchbase Server bucket means additional Couchbase Server storage is required — see [Example 2](#addl-storage).
+Delta sync's storage of backed up revision bodies in the Couchbase Server bucket means additional Couchbase Server storage is required — see [Example 2](#addl-storage).
 
 > [!TIP]
 > Calculate required storage using: `doc_size * updates_per_day * 86400) / rev_max_age_seconds`

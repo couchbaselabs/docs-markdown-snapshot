@@ -2,7 +2,7 @@
 title: Couchbase Server Processes
 description: Couchbase Server spawns a number of different processes on each node.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/server-processes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:install:server-processes.adoc[]
 ---
 
@@ -17,7 +17,7 @@ Couchbase Server spawns processes from a set of binaries that get installed by t
 
 The tables on this page list out all of the Couchbase processes, along with the specific Couchbase services that will invoke them. If a particular Couchbase service is not running on a node, then the processes associated with that service will not run.
 
-It’s important that each of these processes is allowed to run and access files on the nodes that are enabled for the Couchbase services that they support. Otherwise, Couchbase Server will not function properly. Depending on your security environment, you may need to explicitly approve these processes and their binary directories in your security policy.
+It's important that each of these processes is allowed to run and access files on the nodes that are enabled for the Couchbase services that they support. Otherwise, Couchbase Server will not function properly. Depending on your security environment, you may need to explicitly approve these processes and their binary directories in your security policy.
 
 ## [](#linux)Linux
 

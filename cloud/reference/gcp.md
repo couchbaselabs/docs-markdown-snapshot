@@ -2,7 +2,7 @@
 title: Google Cloud Platform (GCP)
 description: Couchbase Capella supports deploying clusters onto Google Cloud Platform (GCP).
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/gcp.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:reference:gcp.adoc[]
 ---
 
@@ -17,7 +17,7 @@ Couchbase Capella provides fully managed Couchbase Server clusters that can be d
 
 ## [](#supported-regions)Supported Regions
 
-Couchbase Capella’s fully managed DBaaS supports the following GCP regions.
+Couchbase Capella's fully managed DBaaS supports the following GCP regions.
 
 * ✔ [App Services](#app-services:index.adoc) are supported in this region.
 
@@ -91,7 +91,7 @@ Clusters deployed onto GCP have several configuration options that allow you to 
 ### [](#nodes)Nodes
 
 > [!NOTE]
-> As they’re intended for evaluation purposes only, free tier operational clusters only include 1 node.
+> As they're intended for evaluation purposes only, free tier operational clusters only include 1 node.
 
 Clusters have a minimum of 3 nodes and a maximum of 27.
 

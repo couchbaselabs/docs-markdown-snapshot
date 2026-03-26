@@ -3,7 +3,7 @@ title: CREATE PRIMARY INDEX
 description: The CREATE PRIMARY INDEX statement allows you to create a primary
   index. Primary indexes contain a full set of keys in a given keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/createprimaryindex.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/createprimaryindex.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:7.6@server:n1ql:n1ql-language-reference/createprimaryindex.adoc[]
 
 # CREATE PRIMARY INDEX
 
-The `CREATE PRIMARY INDEX` statement allows you to create a primary index. Primary indexes contain a full set of keys in a given keyspace. Primary indexes are optional and are only required for running ad hoc queries on a keyspace that’s not supported by a secondary index.
+The `CREATE PRIMARY INDEX` statement allows you to create a primary index. Primary indexes contain a full set of keys in a given keyspace. Primary indexes are optional and are only required for running ad hoc queries on a keyspace that's not supported by a secondary index.
 
 ## [](#purpose)Purpose
 
@@ -80,8 +80,8 @@ If the keyspace is a named collection, or the default collection in the default 
 | namespace  | (Optional) An [identifier](identifiers.md) that refers to the [namespace](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. Currently, only the default namespace is available. If the namespace name is omitted, the default namespace in the current session is used. |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | bucket     | (Required) An [identifier](identifiers.md) that refers to the [bucket name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace.                                                                                                                                           |
-| scope      | (Optional) An [identifier](identifiers.md) that refers to the [scope name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. If omitted, the bucket’s default scope is used.                                                                                            |
-| collection | (Optional) An [identifier](identifiers.md) that refers to the [collection name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. If omitted, the default collection in the bucket’s default scope is used.                                                             |
+| scope      | (Optional) An [identifier](identifiers.md) that refers to the [scope name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. If omitted, the bucket's default scope is used.                                                                                            |
+| collection | (Optional) An [identifier](identifiers.md) that refers to the [collection name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. If omitted, the default collection in the bucket's default scope is used.                                                             |
 
 For example, `` default:`travel-sample` `` indicates the default collection in the default scope in the `travel-sample` bucket in the `default` namespace.
 
@@ -162,7 +162,7 @@ Index metadata provides a state field. This state field and other index metadata
 
 ### [](#primary-scan-timeout)Primary Scan Timeout
 
-For a primary index scan on any keyspace size, the query engine guarantees that the client is not exposed to scan timeout if the indexer throws a scan timeout after it has returned a greater than zero sized subset of primary keys. To complete the scan, the query engine performs successive scans of the primary index until all the primary keys have been returned. It’s possible that the indexer may throw scan timeout without returning any primary keys, and in this event the query engine returns scan timeout to the client.
+For a primary index scan on any keyspace size, the query engine guarantees that the client is not exposed to scan timeout if the indexer throws a scan timeout after it has returned a greater than zero sized subset of primary keys. To complete the scan, the query engine performs successive scans of the primary index until all the primary keys have been returned. It's possible that the indexer may throw scan timeout without returning any primary keys, and in this event the query engine returns scan timeout to the client.
 
 For example, if the indexer cannot find a snapshot that satisfies the consistency guarantee of the query within the timeout limit, it will timeout without returning any primary keys.
 

@@ -3,7 +3,7 @@ title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@php-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -74,7 +74,7 @@ For the purposes of the below examples we will use the Travel Sample sample buck
 
 Search queries are executed at Cluster level (not bucket or collection). As of Couchbase Server 6.5+ they do also not require a bucket to be opened first. In older versions of Couchbase Server, even though executed at Cluster level, a bucket must be opened before performing queries.
 
-Here is a simple MatchQuery that looks for the text “swanky” using a defined index:
+Here is a simple MatchQuery that looks for the text "swanky" using a defined index:
 
 ```php
 $matchQuery = new MatchSearchQuery("swanky");
@@ -88,7 +88,7 @@ foreach ($res->rows() as $row) {
 }
 ```
 
-All simple query types are created in the same manner, although some have additional properties, which can be seen in common query type descriptions. Couchbase FTS’s [range of query types](#7.1@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted. Here is a numeric range query that looks for hotels with `"Cleanliness"` ratings higher than `5`:
+All simple query types are created in the same manner, although some have additional properties, which can be seen in common query type descriptions. Couchbase FTS's [range of query types](#7.1@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted. Here is a numeric range query that looks for hotels with `"Cleanliness"` ratings higher than `5`:
 
 ```php
 $numericRangeQuery = new NumericRangeSearchQuery();
@@ -178,7 +178,7 @@ The FTS APIs exist at both the `Cluster` and `Scope` levels.
 
 This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
-It’s important to use the `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
+It's important to use the `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
 
 ## [](#vector-search)Vector Search
 
@@ -198,7 +198,7 @@ $request = SearchRequest::build(VectorSearch::build([
 $result = $scope->search("vector-index", $request);
 ```
 
-Let’s break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
+Let's break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
 
 The `VectorSearch` allows us to perform one or more `VectorQuery` s.
 

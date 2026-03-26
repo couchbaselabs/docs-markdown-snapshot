@@ -2,7 +2,7 @@
 title: scopes-details
 description: Provides low-level details on scopes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-scopes-details.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:cli:cbstats/cbstats-scopes-details.adoc[]
 ---
 
@@ -65,7 +65,7 @@ vb_1:0x0:0x0:items:    29
 
 Each line of the output presents a data _key_. Each key is either of the format `scopeID` : `collectionID` : `datumLabel`; or of the format `scopeID` : `datumLabel`. Each `scopeID` or `collectionID` is a hexadecimal number, prefixed by `0x`. Each `datumLabel` is a string. Each data key is concluded with a colon, and the associated value is presented to the right of the colon.
 
-The output’s initial lines describe the scopes and collections in the bucket on the specified node.
+The output's initial lines describe the scopes and collections in the bucket on the specified node.
 
 The `manifest_uid` value (here, `7`) is associated with the current state of collections on the node; and will be incremented whenever a collections-related change is made.
 

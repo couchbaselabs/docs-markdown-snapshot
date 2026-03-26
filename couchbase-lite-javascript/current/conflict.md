@@ -2,7 +2,7 @@
 title: Handling Data Conflicts
 description: Couchbase Lite JavaScript -- Handling conflict between data changes
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/conflict.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::conflict.adoc[]
 ---
 
@@ -35,18 +35,18 @@ The following sections discuss each scenario in more detail.
 
 ## [](#lbl-conflicts-when-replicating)Conflicts when Replicating
 
-There’s no practical way to prevent a conflict when incompatible changes to a document are made in multiple instances of an app. The conflict is realized only when replication propagates the incompatible changes to each other.
+There's no practical way to prevent a conflict when incompatible changes to a document are made in multiple instances of an app. The conflict is realized only when replication propagates the incompatible changes to each other.
 
 Example 1\. A typical cause of replication conflicts:
 
 1. Alice uses her device to create _DocumentA_.
-2. Replication syncs _DocumentA_ to Bob’s device.
+2. Replication syncs _DocumentA_ to Bob's device.
 3. Alice uses her device to apply _ChangeX_ to _DocumentA_.
 4. Bob uses his device to make a different change, _ChangeY_, to _DocumentA_.
-5. Replication syncs _ChangeY_ to Alice’s device.  
+5. Replication syncs _ChangeY_ to Alice's device.  
 This device already has _ChangeX_ putting the local document in conflict.
-6. Replication syncs _ChangeX_ to Bob’s device.  
-This device already has _ChangeY_ and now Bob’s local document is in conflict.
+6. Replication syncs _ChangeX_ to Bob's device.  
+This device already has _ChangeY_ and now Bob's local document is in conflict.
 
 ### [](#automatic-conflict-resolution)Automatic Conflict Resolution
 
@@ -1549,13 +1549,13 @@ When `null` is returned by the resolver, the conflict is resolved as a document 
 
 ## [](#conflicts-when-saving)Conflicts when Saving
 
-When updating a document, you need to consider the possibility of update conflicts. Update conflicts can occur when you try to update a document that’s been updated since you read it.
+When updating a document, you need to consider the possibility of update conflicts. Update conflicts can occur when you try to update a document that's been updated since you read it.
 
 Example 3\. How Updating May Cause Conflicts
 
-Here’s a typical sequence of events that would create an update conflict:
+Here's a typical sequence of events that would create an update conflict:
 
-1. Your code reads the document’s current properties, and constructs a modified copy to save.
+1. Your code reads the document's current properties, and constructs a modified copy to save.
 2. Another thread (perhaps the replicator) updates the document, creating a new revision with different properties.
 3. Your code updates the document with its modified properties using the save operation.
 

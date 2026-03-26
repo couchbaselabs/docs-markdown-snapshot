@@ -3,7 +3,7 @@ title: Search Functions
 description: Search functions enable you to use Full Text Search (FTS) queries
   directly within a SQL++ query.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/searchfun.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/searchfun.adoc[]
 ---
 
@@ -16,7 +16,7 @@ Search functions enable you to use [Full Text Search (FTS)](../../search/search.
 
 ### Prerequisites
 
-To use any of the search functions, the Search Service must be available on the cluster. It’s recommended that you create a suitable Search index for the searches that you want to run. For more information, refer to [Create a Search Index](../../search/create-search-indexes.md).
+To use any of the search functions, the Search Service must be available on the cluster. It's recommended that you create a suitable Search index for the searches that you want to run. For more information, refer to [Create a Search Index](../../search/create-search-indexes.md).
 
 > [!NOTE]
 > The examples in this page all assume that demonstration Search indexes have been created, as described in [Demonstration Indexes](#server:fts:fts-demonstration-indexes.adoc).
@@ -272,7 +272,7 @@ Results
 
 If the Full Text Search index being queried has its default mapping disabled and has a custom type mapping defined, the query needs to specify the type explicitly. The above query uses the demonstration index [travel-sample-index-hotel-description](#server:fts:fts-demonstration-indexes.adoc#travel-sample-index-hotel-description), which has the custom type mapping "hotel".
 
-For more information about defining custom type mappings within a Search index, refer to [Create a Type Mapping](../../search/create-type-mapping.md). Note that for SQL++ queries, only Search indexes with one type mapping are searchable. Also the supported type identifiers at the moment are "type\_field" and "docid\_prefix"; "docid\_regexp" isn’t supported yet for SEARCH queries via SQL++.
+For more information about defining custom type mappings within a Search index, refer to [Create a Type Mapping](../../search/create-type-mapping.md). Note that for SQL++ queries, only Search indexes with one type mapping are searchable. Also the supported type identifiers at the moment are "type\_field" and "docid\_prefix"; "docid\_regexp" isn't supported yet for SEARCH queries via SQL++.
 
 Search against a Vector Search index for the closest 2 vectors
 
@@ -383,7 +383,7 @@ identifier
 > [!NOTE]
 > * The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted.
 > * The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether.
-> * The outname is specified by the `out` field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to `"out"`.
+> * The outname is specified by the `out` field within the [SEARCH()](#search) function's _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to `"out"`.
 > * If the keyspace or keyspace alias contains any characters such as `-`, you must surround that part of the identifier with backticks ``` `` ```.
 
 ### [](#return-value-2)Return Value
@@ -497,7 +497,7 @@ identifier
 > [!NOTE]
 > * The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted.
 > * The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether.
-> * The outname is specified by the `out` field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to `"out"`.
+> * The outname is specified by the `out` field within the [SEARCH()](#search) function's _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to `"out"`.
 > * If the keyspace or keyspace alias contains any characters such as `-`, you must surround that part of the identifier with backticks ``` `` ```.
 
 ### [](#return-value-3)Return Value

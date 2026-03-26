@@ -2,7 +2,7 @@
 title: setting-alternate-address
 description: Modify alternate addresses
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-setting-alternate-address.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:cli:couchbase-cli-setting-alternate-address.adoc[]
 ---
 
@@ -22,7 +22,7 @@ _couchbase-cli setting-alternate-address_ [--cluster <url>] [--username <user>] 
 
 ## [](#description)DESCRIPTION
 
-This command is used to set the alternate address for a node. This alternate address allows the node to be connected by a different address, this is useful when an external agent tries to connect via a NAT’d environment such as the cloud or kubernetes.
+This command is used to set the alternate address for a node. This alternate address allows the node to be connected by a different address, this is useful when an external agent tries to connect via a NAT'd environment such as the cloud or kubernetes.
 
 ## [](#options)OPTIONS
 

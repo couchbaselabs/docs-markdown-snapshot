@@ -3,7 +3,7 @@ title: About Mapping Collections, Objects and Fields
 description: The Search Service has distinct mapping types for collections,
   objects, and fields in a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/about-mappings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:about-mappings.adoc[]
 ---
 
@@ -31,7 +31,7 @@ The mapping for a collection is also called a type mapping.
 
 A type mapping includes or excludes specific documents in a collection from an index. A document must match the collection and document type set by a type mapping to be included in a Search index.
 
-You can also choose to control the type of a document by [setting a type identifier](set-type-identifier.md). A type identifier is an optional configuration that tells the Search Service how to interpret a document’s type. Only documents that pass the filter from your type identifier can be included in your Search index under a specific type mapping, and potentially returned in search results.
+You can also choose to control the type of a document by [setting a type identifier](set-type-identifier.md). A type identifier is an optional configuration that tells the Search Service how to interpret a document's type. Only documents that pass the filter from your type identifier can be included in your Search index under a specific type mapping, and potentially returned in search results.
 
 Type mappings can be [Static mappings](#static) or [Dynamic mappings](#dynamic). Add [Object Mappings](#objects) and [Child Field Mappings](#fields) to make a collection type mapping a static mapping.
 
@@ -172,7 +172,7 @@ Just like [Object Names](#object-names), to avoid undesired results in your Sear
 > [!IMPORTANT]
 > You can only use XATTRs mappings in the Advanced Mode editor.
 
-Extended Attributes (XATTRs) mappings add fields and metadata from your document’s XATTRs and let you query them inside a Search index.
+Extended Attributes (XATTRs) mappings add fields and metadata from your document's XATTRs and let you query them inside a Search index.
 
 XATTRs mappings can be [static](#static) or [dynamic](#dynamic), based on whether you add [Child Field Mappings](#fields).
 
@@ -184,7 +184,7 @@ Each mapping type can be either **static** or **dynamic**:
 
 Static mappings
 
-When your data fields are stable and unlikely to change, use a static type mapping to add and define only specific fields from a matching document type to an index. If you’re unsure about your document structure and how it might change, use [Dynamic mappings](#dynamic), instead.
+When your data fields are stable and unlikely to change, use a static type mapping to add and define only specific fields from a matching document type to an index. If you're unsure about your document structure and how it might change, use [Dynamic mappings](#dynamic), instead.
 
 For example, you could create a static type mapping to only include the contents of the `description` field from the `cats` collection in your Search index, as a text field with an `en` analyzer.
 

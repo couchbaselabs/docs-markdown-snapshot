@@ -2,7 +2,7 @@
 title: Using Couchbase Transactions
 description: Distributed ACID Transactions in Couchbase SDKs
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@php-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
@@ -281,7 +281,7 @@ $cluster->transactions()->run(
 
 ### [](#query-options)Query Options
 
-Query options can be provided via `TransactionQueryOptions`, which provides a subset of the options in the PHP SDK’s `QueryOptions`.
+Query options can be provided via `TransactionQueryOptions`, which provides a subset of the options in the PHP SDK's `QueryOptions`.
 
 ```php
 $cluster->transactions()->run(

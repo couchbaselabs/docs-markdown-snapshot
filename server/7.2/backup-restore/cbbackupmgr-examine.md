@@ -2,7 +2,7 @@
 title: cbbackupmgr examine
 description: Searches one or more backups by key for a specific document
 editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-examine.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:backup-restore:cbbackupmgr-examine.adoc[]
 ---
 
@@ -73,7 +73,7 @@ The final backup to examine. See START AND END for information on what values ar
 
 \--search-partial-backups
 
-By default examine will skip backups which are incomplete. This flag may be supplied to attempt to search incomplete backups, however, the resulting search may fail, or not find the key you’re looking for.
+By default examine will skip backups which are incomplete. This flag may be supplied to attempt to search incomplete backups, however, the resulting search may fail, or not find the key you're looking for.
 
 \-j,--json
 
@@ -123,7 +123,7 @@ Multiple cloud providers are supported, see the list below for more information.
 
 \--obj-staging-dir <staging\_dir>
 
-When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it’s not treated as a persistent store) and is only used during the backup. NOTE: Do not use `/tmp` as the `obj-staging-dir`. See `Disk requirements` in [cbbackupmgr-cloud](cbbackupmgr-cloud.md) for more information.
+When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it's not treated as a persistent store) and is only used during the backup. NOTE: Do not use `/tmp` as the `obj-staging-dir`. See `Disk requirements` in [cbbackupmgr-cloud](cbbackupmgr-cloud.md) for more information.
 
 #### [](#optional-2)Optional
 

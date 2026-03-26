@@ -1,7 +1,7 @@
 ---
 title: Understanding Analyzers
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-index-analyzers.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-index-analyzers.adoc[]
 ---
 
@@ -59,7 +59,7 @@ The tokens so created are then made into a _token stream_ for the query.
 The following tokenizers are available from the Couchbase Web Console:
 
 * **Hebrew**: Creates tokens by breaking input-text into subsets that consist of hebrew letters only: characters such as punctuation-marks and numbers are omitted.  
-This does a restricted set of operations on the punctuations for example, it can’t combine the two geresh into a single gershayim (both of which are used as punctuations)
+This does a restricted set of operations on the punctuations for example, it can't combine the two geresh into a single gershayim (both of which are used as punctuations)
 * **Letter**: Creates tokens by breaking input-text into subsets that consist of letters only: characters such as punctuation-marks and numbers are omitted.  
 The creation of a token ends whenever a non-letter character is encountered. For example, the text `Reqmnt: 7-element phrase` would return the following tokens: `Reqmnt`, `element`, and `phrase`.
 * **Single**: Creates a single token from the entirety of the input-text. For example, the text `in each place` would return the following token: `in each place`.  
@@ -189,21 +189,21 @@ The user can select several pre-constructed analyzers available in the Couchbase
 The four basic pre-constructed analyzers are demonstrated below via an online tool <https://bleveanalysis.couchbase.com/analysis>:
 
 1. **Keyword**: This analyzer creates a single token representing the entire input. It forces exact matches and preserves characters such as spaces.  
-For example, the text “the QUICK brown fox jumps over the lazy Dog” phrase returns the following tokens:  
+For example, the text "the QUICK brown fox jumps over the lazy Dog" phrase returns the following tokens:  
 ![fts pre constructed analysers keyword](_images/fts-pre-constructed-analysers-keyword.png)
 2. **Simple**: The simple analyzer uses the Letter tokenizer, which keeps letters only. The Letter tokenizer creates tokens by breaking input text into subsets consisting of only letters. It omits characters such as punctuation marks and numbers. It ends the token creation when it encounters a non-letter character.  
-For example, the text “the QUICK brown fox jumps over the lazy Dog” phrase returns the following tokens:  
+For example, the text "the QUICK brown fox jumps over the lazy Dog" phrase returns the following tokens:  
 ![fts pre constructed analysers simple](_images/fts-pre-constructed-analysers-simple.png)
 3. **Standard**: The standard analyzer uses the Unicode tokenizer, the `to_lower` token filter, and the stop token filter for analysis.
 
   * **Unicode**: It creates tokens by performing Unicode Text Segmentation on word-boundaries, using the [segment](#:https://github.com/blevesearch/segment) library.  
   Token Filters accept a token-stream provided by a tokenizer and modify the tokens in the stream. E.g, stop word filtering and lower casing.
   * **to\_lower filter**: It converts all characters to the lower case. For example, HTML becomes html.
-  * **stop\_token filter**: It removes words such as ‘and’, ‘is’, and ‘the’.  
-  For example, the text “The QUICK Brown Fox Jumps Over The Lazy Dog” phrase returns the following tokens:  
+  * **stop\_token filter**: It removes words such as 'and', 'is', and 'the'.  
+  For example, the text "The QUICK Brown Fox Jumps Over The Lazy Dog" phrase returns the following tokens:  
   ![fts pre constructed analysers standard](_images/fts-pre-constructed-analysers-standard.png)  
   > [!NOTE]  
-  > Analyzers - Reserve Words The ‘standard’ analyzer removes stop words defined by the English language and special characters. If the user wants the stop words and special characters to be searchable, then the user will need to use a pre-constructed “simple” analyzer.
+  > Analyzers - Reserve Words The 'standard' analyzer removes stop words defined by the English language and special characters. If the user wants the stop words and special characters to be searchable, then the user will need to use a pre-constructed "simple" analyzer.
 4. **Web**: The web analyzer identifies email addresses, URLs, Twitter usernames and hashtags, and attempts to keep them intact, indexed as individual tokens.  
 For example, the web analyzer identifies the email address and keeps it intact, indexed as individual token.  
 ![fts pre constructed analysers web](_images/fts-pre-constructed-analysers-web.png)
@@ -246,7 +246,7 @@ In the context of SQL++ queries, a full text search index can be described as on
 * [Covering index](../n1ql/n1ql-language-reference/covering-indexes.md)
 * Non-covering index
 
-This characterization depends on the extent to which it could answer all aspects of the SELECT predicate and the WHERE clauses of a SQL++ query. A SQL++ query against a non-covering index will go through a "verification phase.” In this phase, documents are fetched from the query service based on the results of the search index, and the documents are validated as per the clauses defined in the query.
+This characterization depends on the extent to which it could answer all aspects of the SELECT predicate and the WHERE clauses of a SQL++ query. A SQL++ query against a non-covering index will go through a "verification phase." In this phase, documents are fetched from the query service based on the results of the search index, and the documents are validated as per the clauses defined in the query.
 
 For example, an index with only the field `field1` configured is considered a non-covering index for a query `field1=abc` and `field2=xyz`.
 
@@ -263,7 +263,7 @@ The user can explicitly specify the search query context in the following three 
 1. Explicitly specify the analyzer to use in the query (to match with that specified in the index).  
 Example 1  
 SEARCH(keyspace, {"match": "xyz", "field": "abc", "analyzer": "en"})
-2. Specify index name within the options argument of the SEARCH function, so this index’s mapping is picked up during the verification process  
+2. Specify index name within the options argument of the SEARCH function, so this index's mapping is picked up during the verification process  
 Example 2  
 SEARCH(keyspace, {"match": "xyz", "field": "abc"}, {"index": "fts-index-1"})
 3. Specify the index mapping itself as a JSON object within the options argument of the SEARCH function, which is used directly for the verification process  

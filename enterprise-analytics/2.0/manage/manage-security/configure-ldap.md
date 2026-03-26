@@ -4,7 +4,7 @@ description: Enterprise Analytics can be configured to authenticate users by
   means of LDAP; and to map the LDAP <em>groups</em> of which a user is a member
   to roles defined on Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-security/configure-ldap.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:manage-security/configure-ldap.adoc[]
 ---
 
@@ -83,8 +83,8 @@ Left-click on the control at the right-hand side of the **Encryption** field, to
 
 The options are **None** (to connect without encryption — this is insecure, and therefore is _not_ recommended), **TLS** (to connect to a TLS-encrypted port), and **StartTLSExtension** (to upgrade an existing connection).
 
-* **Certificate**. Whether to provide Enterprise Analytics with a copy of the LDAP server’s root certificate, so as to allow Enterprise Analytics to validate the LDAP server when connecting. This set of radio-buttons is enabled only if **TLS** or **StartTLSExtension** has been selected from the [Encryption](#encryption-pulldown-menu) pull-down menu.  
-The options are **None**, **Couchbase**, and **Paste Cert**. If **None** is selected, the LDAP server’s root certificate is _not_ provided to Enterprise Analytics: this option is insecure, and therefore _not_ recommended.  
+* **Certificate**. Whether to provide Enterprise Analytics with a copy of the LDAP server's root certificate, so as to allow Enterprise Analytics to validate the LDAP server when connecting. This set of radio-buttons is enabled only if **TLS** or **StartTLSExtension** has been selected from the [Encryption](#encryption-pulldown-menu) pull-down menu.  
+The options are **None**, **Couchbase**, and **Paste Cert**. If **None** is selected, the LDAP server's root certificate is _not_ provided to Enterprise Analytics: this option is insecure, and therefore _not_ recommended.  
 If **Couchbase** is selected, the root certificate for the Couchbase-Server cluster is used to validate the LDAP server: this assumes that the same root certificate is installed for both Enterprise Analytics and the LDAP server.
 
 **Paste Cert** should be selected if the LDAP server root certificate is _not_ the same certificate as has been installed for the Couchbase-Server cluster. When **Paste Cert** is selected, the panel expands vertically, to reveal the **LDAP Server Root Certificate** field.  
@@ -96,7 +96,7 @@ The text of the LDAP server root certificate should now be copied and pasted, in
 
 **Bind DN** requires the LDAP _Distinguished Name_ of the user who will perform user-search and groups synchronization. This user needs to have _read only_ access to the LDAP server, in order to be able to search for users and groups.
 
-**Password** requires input of the user’s password, as stored on the LDAP server.  
+**Password** requires input of the user's password, as stored on the LDAP server.  
   With data entered into these fields, a dialog might appear.
   * **Client Certificate**. This option, which allows allows Enterprise Analytics to authenticate with LDAP by means of a client certificate, should be used only with an LDAP server that _does not_ expect the `SASL EXTERNAL` bind command to be sent, once a TLS connection has been established. Note, therefore, that this option _can_ be used with the _GSuite_ LDAP server.  
   This option is only enabled if either **TLS** or **StartTLSExtension** has been selected from the [Encryption](#encryption-pulldown-menu) pull-down menu.  
@@ -118,16 +118,16 @@ You have three options for how Enterprise Analytics maps the username in an auth
 
 The default option is **Template**. Enter a username-to-DN mapping template string into the **Template** text field. Directly providing the mapping avoids requiring the LDAP server itself provide the mapping itself. The field shows the format for the template string as placeholder text.
 
-The username supplied to Enterprise Analytics by the user who’s attempting to authenticate replaces the `%u` in the template. For example, if the template is `cn=%u,dc=example,dc=com` and the user logs in as `exampleUser`, the template maps the user to the DN `cn=exampleUser,dc=example,dc=com`.
+The username supplied to Enterprise Analytics by the user who's attempting to authenticate replaces the `%u` in the template. For example, if the template is `cn=%u,dc=example,dc=com` and the user logs in as `exampleUser`, the template maps the user to the DN `cn=exampleUser,dc=example,dc=com`.
 
 #### [](#ldap-query-user)LDAP Search
 
 Select **LDAP Search**.
 
-You use the three fields to define an LDAP [search operation](https://ldap.com/the-ldap-search-operation/) to get the user’s DN from LDAP server.
+You use the three fields to define an LDAP [search operation](https://ldap.com/the-ldap-search-operation/) to get the user's DN from LDAP server.
 
 * **Base** is the _search base_ DN.
-* **Filter** is the [search filter](https://ldap.com/ldap-filters/). For example, if **Base** is specified as `ou=users,dc=example,dc=com`, **Filter** as `(uid=%u)`, and the user has provided `exampleUser` to Enterprise Analytics as their username, Enterprise Analytics performs the following search, in order to obtain the user’s DN: `ou=users,dc=example,dc=com??one?(uid=exampleUser)`.
+* **Filter** is the [search filter](https://ldap.com/ldap-filters/). For example, if **Base** is specified as `ou=users,dc=example,dc=com`, **Filter** as `(uid=%u)`, and the user has provided `exampleUser` to Enterprise Analytics as their username, Enterprise Analytics performs the following search, in order to obtain the user's DN: `ou=users,dc=example,dc=com??one?(uid=exampleUser)`.
 * **Scope** list sets the scope for the search. See [LDAP Search Scopes](https://ldapwiki.com/wiki/Wiki.jsp?page=LDAP%20Search%20Scopes) for a description of LDAP search scopes.
 
 For further information about **Base**, **Filter**, and **Scope**, see [The LDAP Search Operation](https://ldap.com/the-ldap-search-operation/).
@@ -156,7 +156,7 @@ For example, the following template has two regular expressions. The first attem
 > [!TIP]
 > Always double any backslashes (\\) that you use to escape special characters in your regular expressions because JSON also interprets backslash escapes.
 
-Enterprise Analytics attempts to match the regular expressions against the username supplied by the user who’s attempting to authenticate. If a regular expression matches the username, Enterprise Analytics applies any captured portions of the regular expression to the back references in the replacement string. Then it attempts to authenticate the user with LDAP using the DN or LDAP query.
+Enterprise Analytics attempts to match the regular expressions against the username supplied by the user who's attempting to authenticate. If a regular expression matches the username, Enterprise Analytics applies any captured portions of the regular expression to the back references in the replacement string. Then it attempts to authenticate the user with LDAP using the DN or LDAP query.
 
 If the authentication fails, Enterprise Analytics returns an authentication error. It does not attempt match any further regular expressions in the list. This behavior makes the order of the regular expressions in the list important. Always place more specific regular expressions before general ones. In the previous example, the regular expression to matching an email address comes before the general catch all regular expression that matches any username.
 
@@ -174,17 +174,17 @@ In the area immediately below that used for _User Authentication Enablement_, fi
 
 Switch on, to enable. This expands the dialog vertically.
 
-The LDAP groups of which a user is a member can be searched for by means of either the **User’s attributes** or an **LDAP Search**, each of which is provided as a radio-button option. Selection of either reveals a corresponding set of fields, in which information can be added. These are as follows.
+The LDAP groups of which a user is a member can be searched for by means of either the **User's attributes** or an **LDAP Search**, each of which is provided as a radio-button option. Selection of either reveals a corresponding set of fields, in which information can be added. These are as follows.
 
-#### [](#users-attributes)User’s Attributes
+#### [](#users-attributes)User's Attributes
 
-The **User’s attributes** radio-button is selected by default. This instructs Enterprise Analytics to assume that each LDAP user-record contains an attribute featuring the list of groups of which the user is a member. Enterprise Analytics therefore performs the following LDAP search: `<userDN>?<attribute>?one`.
+The **User's attributes** radio-button is selected by default. This instructs Enterprise Analytics to assume that each LDAP user-record contains an attribute featuring the list of groups of which the user is a member. Enterprise Analytics therefore performs the following LDAP search: `<userDN>?<attribute>?one`.
 
-The value of the specified `attribute` is treated as a list of groups. For example, if `attribute` is set in the **User Attribute** field to `memberOf`, Enterprise Analytics performs the following search for the specified user’s groups: `uid=exampleUser,dc=example,dc=com?memberOf?one`.
+The value of the specified `attribute` is treated as a list of groups. For example, if `attribute` is set in the **User Attribute** field to `memberOf`, Enterprise Analytics performs the following search for the specified user's groups: `uid=exampleUser,dc=example,dc=com?memberOf?one`.
 
 #### [](#traverse-nested-groups-for-user-attributes)Traverse Nested Groups, for User Attribute Search
 
-The **Traverse nested groups** checkbox, when checked, allows nested groups to be traversed by the search. Enterprise Analytics uses the same search to find groups of groups recursively (with each group’s DN being substituted for `%D`). If nested search is selected, `%u` cannot be used.
+The **Traverse nested groups** checkbox, when checked, allows nested groups to be traversed by the search. Enterprise Analytics uses the same search to find groups of groups recursively (with each group's DN being substituted for `%D`). If nested search is selected, `%u` cannot be used.
 
 Note that use of nested groups may significantly increase load on the LDAP server; and should therefore only be used if essential.
 
@@ -198,9 +198,9 @@ To perform the search, add a username, and left-click on the **Test Groups Query
 
 When the **LDAP Search** radio-button is selected, the **Query for Groups Using** panel appears.
 
-Selection of **LDAP Search** instructs Enterprise Analytics to perform an LDAP [search operation](https://ldap.com/the-ldap-search-operation/), in order to retrieve a list of the user’s groups. **Base** is the _search base_ DN. **Filter** is the [search filter](https://ldap.com/ldap-filters/). **Scope**, accessed from a pulldown menu, can be **base**, **one** (the default), or **sub**.
+Selection of **LDAP Search** instructs Enterprise Analytics to perform an LDAP [search operation](https://ldap.com/the-ldap-search-operation/), in order to retrieve a list of the user's groups. **Base** is the _search base_ DN. **Filter** is the [search filter](https://ldap.com/ldap-filters/). **Scope**, accessed from a pulldown menu, can be **base**, **one** (the default), or **sub**.
 
-When the search is conducted, `%u` is replaced with the specified username; and `%D` is replaced with the user’s DN. For example, **Base** might be specified as `ou=groups,dc=example,dc=com`, **Filter** as `(member=%D)`, and **Scope** as `one-level`.
+When the search is conducted, `%u` is replaced with the specified username; and `%D` is replaced with the user's DN. For example, **Base** might be specified as `ou=groups,dc=example,dc=com`, **Filter** as `(member=%D)`, and **Scope** as `one-level`.
 
 For further information about **Base**, **Filter**, and **Scope**, see [The LDAP Search Operation](https://ldap.com/the-ldap-search-operation/).
 

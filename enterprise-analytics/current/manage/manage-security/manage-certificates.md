@@ -2,7 +2,7 @@
 title: Manage Certificates
 description: Enterprise Analytics supports the use of X.509 certificates.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/manage-certificates.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:manage:manage-security/manage-certificates.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:enterprise-analytics:manage:manage-security/manage-certificates.adoc[
 
 ## [](#certificate-management-overview)Certificate Management Overview
 
-A conceptual and architectural overview of Enterprise Analytics’s support of X.509 certificates is provided in [Certificates](../../../../server/current/learn/security/certificates.md). The current section provides practical steps for:
+A conceptual and architectural overview of Enterprise Analytics's support of X.509 certificates is provided in [Certificates](../../../../server/current/learn/security/certificates.md). The current section provides practical steps for:
 
 * _Configuring server certificates_: These reside on Enterprise Analytics-nodes, identify the cluster to networked clients, and support encrypted network communications. Procedures are provided to demonstrate how a cluster can be protected by means of _root_ and _node_ certificates; and how node certificates can themselves be created with additional security and efficiency, by the creation and use of _intermediate_ certificates. See [Configure Server Certificates](configure-server-certificates.md).
 * _Configuring client certificates_: These can be used by networked clients to authenticate with Enterprise Analytics, and to support encrypted network communications. Certificate creation is demonstrated both with and without the use of intermediate certificates. The certificate-creation requirements specific to Java applications are demonstrated. Additionally, links are provided to other areas of the documentation, where the certificates in the current section can be used to establish secure _XDCR_ communication between clusters; and to establish communication between a cluster and a Java client. See [Configure Client Certificates](configure-client-certificates.md).

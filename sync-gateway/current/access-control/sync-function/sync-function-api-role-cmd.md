@@ -2,7 +2,7 @@
 title: role()
 description: Assigning Sync Gateway <em>roles</em>
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/sync-function/sync-function-api-role-cmd.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:access-control:sync-function/sync-function-api-role-cmd.adoc[]
 ---
 
@@ -30,14 +30,14 @@ Use the `role()` function to add a role to a user. This indirectly gives them ac
 
 | Argument | Description                                                                                                                                                                                                                                                                                                                               |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| rolename | Must be a string identifying a role, or an array of strings identifying multiple roles; the function is applied to each role in the array. If the value resolves to null the function result is a no-op. **Note** — Role names must always be prefixed with role:; an exception is thrown if a role name doesn’t conform with this rule.. |
+| rolename | Must be a string identifying a role, or an array of strings identifying multiple roles; the function is applied to each role in the array. If the value resolves to null the function result is a no-op. **Note** — Role names must always be prefixed with role:; an exception is thrown if a role name doesn't conform with this rule.. |
 | username | Must be a string identifying a user, or an array of strings identifying multiple users; the function is applied to each user in the array. If the value resolves to null the function result is a no-op.                                                                                                                                  |
 
 ## [](#context)Context
 
-This function affects the user’s ability to revise documents, if the access function requires role membership to validate certain types of changes. Its use is similar to `access`.
+This function affects the user's ability to revise documents, if the access function requires role membership to validate certain types of changes. Its use is similar to `access`.
 
-Nonexistent roles don’t cause an error, but have no effect on the user’s access privileges.
+Nonexistent roles don't cause an error, but have no effect on the user's access privileges.
 
 > [!TIP]
 > You can create roles retrospectively. As soon as a role is created, any pre-existing references to it take effect.

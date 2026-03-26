@@ -2,7 +2,7 @@
 title: Database Security
 description: Using Sync Gateway's Admin REST API to configure users and roles
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/configuration-schema-db-security.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::configuration-schema-db-security.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:3.1@sync-gateway::configuration-schema-db-security.adoc[]
 
 # Database Security
 
-> Using Sync Gateway’s Admin REST API to configure users and roles  
+> Using Sync Gateway's Admin REST API to configure users and roles  
 
 _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configuration-schema-bootstrap.md) | [Database](configuration-schema-database.md) | [Database Security](#configuration-schema-db-security&.adoc#8212;​page}) | [Access Control](configuration-schema-access-control.md) | [Import](configuration-schema-import-filter.md) | [Inter-Sync Gateway Replication](configuration-schema-isgr.md)
 
@@ -182,7 +182,7 @@ Content-Length: 63
 
 ## [](#lbl-schema)Schema
 
-This section shows Sync Gateway’s database security configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
+This section shows Sync Gateway's database security configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
 
 The configuration settings described here are provisioned through the Admin REST API — see as shown in [Database Security](rest-api-admin.md#/Database%5FSecurity).
 

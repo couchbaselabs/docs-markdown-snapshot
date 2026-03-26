@@ -1,7 +1,7 @@
 ---
 title: Metadata Management
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/metadata-management.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:clusters-and-availability/metadata-management.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:7.6@server:learn:clusters-and-availability/metadata-management.adoc[]
 
 # Metadata Management
 
-> A Couchbase Cluster’s _metadata_ describes its configuration. Some categories of metadata are maintained by means of a _consensus protocol_; others by means of _gossip replication_. 
+> A Couchbase Cluster's _metadata_ describes its configuration. Some categories of metadata are maintained by means of a _consensus protocol_; others by means of _gossip replication_. 
 
 ## [](#understanding-couchbase-server-metadata-management)Understanding Couchbase-Server Metadata-Management
 
@@ -24,7 +24,7 @@ In Couchbase Server version 7.0 and later, metadata is managed by means of _Chro
 
 The process whereby this metadata is maintained is described below, in [Consensus-Based Metadata-Management](#consensus-based-metadata-management).
 
-Additional cluster-metadata is handled by Couchbase Server’s _legacy_ metadata-management system, which is based on _gossip-replication_. This legacy-managed metadata includes:
+Additional cluster-metadata is handled by Couchbase Server's _legacy_ metadata-management system, which is based on _gossip-replication_. This legacy-managed metadata includes:
 
 * Compaction settings.
 * Security settings.
@@ -34,7 +34,7 @@ Additional cluster-metadata is handled by Couchbase Server’s _legacy_ metadata
 
 Changes to the legacy-managed metadata are asynchronously replicated across the nodes with _eventual consistency_, by means of _gossip replication_. This means that when a metadata change occurs on any node, that node attempts to replicate the change to all other nodes. Additionally, each node periodically pulls the configuration of some other, randomly selected node; in order to update its own configuration in cases where it has somehow missed an earlier change-notification. By these means, configuration generally spreads rapidly and reliably through the cluster.
 
-When a cluster-wide activity such as rebalance or failover needs to occur, this is performed by the cluster’s _orchestrator_ (its master node). To do so, the orchestrator obtains a _lease_ on metadata changes; to ensure that no topology-related metadata changes can be made by any other node, while the cluster-wide activity is in process.
+When a cluster-wide activity such as rebalance or failover needs to occur, this is performed by the cluster's _orchestrator_ (its master node). To do so, the orchestrator obtains a _lease_ on metadata changes; to ensure that no topology-related metadata changes can be made by any other node, while the cluster-wide activity is in process.
 
 ## [](#consensus-based-metadata-management)Consensus-Based Metadata-Management
 
@@ -56,9 +56,9 @@ Each node is considered to be in the role of either _leader_ or _follower_; with
 
 The leader is responsible for communicating with clients: this includes providing the current topology of the cluster, and receiving requests for topology change. The leader distributes clients' requests to the followers, as change-commands, which are to be appended to the log-instance on each node.
 
-In the event of the leader becoming non-communicative (say, due to network failure), a follower can advertise itself as a _candidate_ for leadership. Followers, receiving the communication, respond with _votes_. Every vote received by the candidate, including its own, constitutes one node’s support for the candidacy. If a majority of nodes are supportive, a new _term_ is started, with the elected node as leader.
+In the event of the leader becoming non-communicative (say, due to network failure), a follower can advertise itself as a _candidate_ for leadership. Followers, receiving the communication, respond with _votes_. Every vote received by the candidate, including its own, constitutes one node's support for the candidacy. If a majority of nodes are supportive, a new _term_ is started, with the elected node as leader.
 
-Nodes are given the right to vote only when fully integrated into the cluster. Nodes not fully integrated (as is the case, for example, during the process of their addition) are considered _replicas_. Replicas participate in the exchange and commitment of information (see immediately below), but do not vote. Once a node’s addition is complete, the node is able to vote.
+Nodes are given the right to vote only when fully integrated into the cluster. Nodes not fully integrated (as is the case, for example, during the process of their addition) are considered _replicas_. Replicas participate in the exchange and commitment of information (see immediately below), but do not vote. Once a node's addition is complete, the node is able to vote.
 
 ### [](#data-exchange-and-commitment)Data Exchange and Commitment
 
@@ -74,7 +74,7 @@ When network failures prevent change-commands from reaching a majority of nodes,
 
 ### [](#replicated-state-machine)Replicated State Machine
 
-The _Replicated State Machine_ is a key-value store, resident on each node, that contains the cluster’s topographical data. Clients that require such data receive it from the leader’s key-value store. The key-value pairs in the store are generated and updated based on change-commands appended to the replicated log. A change-command may:
+The _Replicated State Machine_ is a key-value store, resident on each node, that contains the cluster's topographical data. Clients that require such data receive it from the leader's key-value store. The key-value pairs in the store are generated and updated based on change-commands appended to the replicated log. A change-command may:
 
 * Add a key-value pair.
 * Update the value of a key-value pair.

@@ -3,7 +3,7 @@ title: "Examples: Using the Eventing Service"
 description: This page contains examples of how to use the Eventing Service with
   the Couchbase Web Console.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-examples.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:eventing:eventing-examples.adoc[]
 ---
 
@@ -45,7 +45,7 @@ The following scriptlets demonstrate how to use SQL++ or the Query Service with 
 
 ### [](#examples-scriptlets-generic)Generic Manipulation Eventing Functions
 
-The following scriptlets are examples of advanced use cases that focus on mutating a document without knowing that document’s schema.
+The following scriptlets are examples of advanced use cases that focus on mutating a document without knowing that document's schema.
 
 | [dateToEpochConversion](eventing-handler-dateToEpochConversion.md) | [deepCloneAndModify](eventing-handler-deepCloneAndModify.md) | [removeObjectStubs](eventing-handler-removeObjectStubs.md) | [removeNullsAndEmptys](eventing-handler-removeNullsAndEmptys.md) |
 | ------------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------------------------- | ---------------------------------------------------------------- |

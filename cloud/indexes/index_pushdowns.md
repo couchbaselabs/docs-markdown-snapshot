@@ -3,7 +3,7 @@ title: Index Pushdowns
 description: Index Pushdowns are performance optimizations where the Query
   engine pushes more of the work down to the Indexer.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/index_pushdowns.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:indexes:index_pushdowns.adoc[]
 ---
 
@@ -95,7 +95,7 @@ So, for each matching document, the query requires only a subset of the data sto
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Also, the primary\_key indicates whether the index should return the primary key meta().id of the matching document.                                                                                  |
 
-Note that in some cases (such as when `distinctScan` or `intersectScan` are used, as in this example), the primary key `meta().id` may be retrieved even though the query doesn’t explicitly specify it in the query. Without this optimization, index-scan would return all the index-keys defined in the index. If the `index_projection` field is missing in the EXPLAIN output, then Indexer would return all index-keys.
+Note that in some cases (such as when `distinctScan` or `intersectScan` are used, as in this example), the primary key `meta().id` may be retrieved even though the query doesn't explicitly specify it in the query. Without this optimization, index-scan would return all the index-keys defined in the index. If the `index_projection` field is missing in the EXPLAIN output, then Indexer would return all index-keys.
 
 ## [](#predicate-pushdown)Predicate Pushdown
 

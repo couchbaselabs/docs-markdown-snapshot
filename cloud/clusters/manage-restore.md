@@ -3,7 +3,7 @@ title: Restore a Bucket Backup
 description: You can restore a bucket backup to the same cluster where it was
   created or another cluster in the same organization.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-restore.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:manage-restore.adoc[]
 ---
 
@@ -56,7 +56,7 @@ Couchbase recommends that you only restore data from bucket backups in worst-cas
 4. Specify the **Destination Cluster**.  
 The restore location can be the current cluster (chosen by default) or a different cluster in your organization. If you select **Restore to a different cluster**, the **Cluster** list appears.
 
-  1. When restoring to a different cluster, use the **Cluster** list to select the cluster that’s the destination of the restore. You can only restore to a cluster in the same [organization](../organizations/organizations.md#organizations).
+  1. When restoring to a different cluster, use the **Cluster** list to select the cluster that's the destination of the restore. You can only restore to a cluster in the same [organization](../organizations/organizations.md#organizations).
 5. Choose the **Services to Restore**.
 
   1. Select each service you want to restore. By default, all options are selected. You must select at least one service.
@@ -91,7 +91,7 @@ There can be a delay while Capella schedules the restore. Once the restore start
 > 
 > * You need the [Project Owner](../projects/project-roles.md#project-owner-role) or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role for the project with the cluster.
 
-If GSI indexes were included in the bucket you restored, they’re automatically restored in a round-robin fashion among the current nodes running the Index Service. These indexes are created, but not built.
+If GSI indexes were included in the bucket you restored, they're automatically restored in a round-robin fashion among the current nodes running the Index Service. These indexes are created, but not built.
 
 Indexes are created and not built because Couchbase Capella does not know the optimal index topology ahead of time. By not building the indexes, Capella gives you the option to manually move each index between nodes and build them yourself. However, if you find the automatic index distribution acceptable, you can use the Capella UI to rebuild each index.
 
@@ -115,4 +115,4 @@ For more information about the download file, see [About the Zip Archive File](b
 
 For more information about the cbbackupmgr utility, see [cbbackupmgr](../reference/command-line-tools.md#cbbackupmgr) in [Command Line Tools](../reference/command-line-tools.md).
 
-If you’re running cbbackupmgr commands against Couchbase Capella clusters with the cluster access credentials, there are some cbbackupmgr disable options that you must use. These restrictions do not apply if you’re running cbbackupmgr commands against your self-managed clusters, using the downloaded backup archive.
+If you're running cbbackupmgr commands against Couchbase Capella clusters with the cluster access credentials, there are some cbbackupmgr disable options that you must use. These restrictions do not apply if you're running cbbackupmgr commands against your self-managed clusters, using the downloaded backup archive.

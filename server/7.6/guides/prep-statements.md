@@ -3,7 +3,7 @@ title: Prepare Statements for Reuse
 description: How to create and execute prepared statements, including
   placeholder parameters.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/prep-statements.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:guides:prep-statements.adoc[]
 ---
 
@@ -106,7 +106,7 @@ To supply values for placeholder parameters using the Query Workbench:
 * Use the **Named Parameters** options to specify named parameters.
 
 > [!TIP]
-> When you’re executing a prepared statement, the `EXECUTE` statement provides another, easier way to supply parameter values. See [Executing a Prepared Statement](#execute).
+> When you're executing a prepared statement, the `EXECUTE` statement provides another, easier way to supply parameter values. See [Executing a Prepared Statement](#execute).
 
 ---
 

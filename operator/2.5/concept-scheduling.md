@@ -1,7 +1,7 @@
 ---
 title: Couchbase Scheduling and Isolation
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/concept-scheduling.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::concept-scheduling.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:2.5@operator::concept-scheduling.adoc[]
 
 For any application, it is desirable to have consistent and predictable performance characteristics. This aids in predictability of future workloads, resource requirements, and operational expenditures.
 
-This is especially relevant to stateful applications whose overall performance is limited by the slowest component. While Couchbase Server’s architecture is designed to implicitly load-balance client load across the cluster, in a cloud environment, outside influences may negatively affect overall performance characteristics. This section aims to define best practices to minimize undesirable and unpredictable variation.
+This is especially relevant to stateful applications whose overall performance is limited by the slowest component. While Couchbase Server's architecture is designed to implicitly load-balance client load across the cluster, in a cloud environment, outside influences may negatively affect overall performance characteristics. This section aims to define best practices to minimize undesirable and unpredictable variation.
 
 ## [](#pod-isolation)Pod Isolation
 
@@ -66,7 +66,7 @@ The diagram above shows the result of using both node selectors with taints and 
 
 [Cluster Isolation](#cluster-isolation) provides guaranteed resources for Couchbase clusters to use. It is, however, relatively complex to plan and implement. It may be sufficient to ensure that Couchbase pods are scheduled and cannot be terminated by accident.
 
-By default, when Kubernetes schedules pods, it will place them on nodes with enough resource to accommodate them. It may also distribute pods across the cluster in order to spread the load. This may lead to a situation where there are no nodes capable of satisfying a Couchbase pod’s memory requests. Being a database, this may lead to the entire application stack not functioning.
+By default, when Kubernetes schedules pods, it will place them on nodes with enough resource to accommodate them. It may also distribute pods across the cluster in order to spread the load. This may lead to a situation where there are no nodes capable of satisfying a Couchbase pod's memory requests. Being a database, this may lead to the entire application stack not functioning.
 
 Kubernetes provides [priority classes](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/) in order to avoid these deadlock situations. By default all pods created by the user are run with the same priority class. It is possible to run pods with an elevated priority. If a high priority pod cannot be scheduled then it is possible for it to preempt pods of a lower priority — evict them from a node so that the high priority pod may be scheduled. If designed correctly, your platform will be able to tolerate evictions as those lower priority pods will be stateless and part of a highly available deployment.
 

@@ -3,7 +3,7 @@ title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the .NET SDK.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:dotnet-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -19,7 +19,7 @@ For a high-level overview of this feature, see the [Field-Level Encryption discu
 > [!TIP]
 > Native Encryption at Rest
 > 
-> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It’s a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
+> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It's a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
 
 ## [](#package)Packaging
 
@@ -78,7 +78,7 @@ Two modes of operation are available:
 
 ### [](#data-binding-example)Data Binding Example
 
-Sensitive fields of your data classes can be annotated with `EncryptedField`. Let’s use this class as an example:
+Sensitive fields of your data classes can be annotated with `EncryptedField`. Let's use this class as an example:
 
 ```csharp
 public class Employee
@@ -88,7 +88,7 @@ public class Employee
 }
 ```
 
-Now let’s create an employee record and save it to Couchbase:
+Now let's create an employee record and save it to Couchbase:
 
 ```csharp
 var collection = await bucket.DefaultCollectionAsync();
@@ -119,7 +119,7 @@ Because `contentAsObject()` does not decrypt anything, the expected output is so
 }
 ```
 
-Now let’s read the employee record using data binding:
+Now let's read the employee record using data binding:
 
 ```csharp
 using var getResult2 = await collection.GetAsync(id, options => options.Transcoder(encryptedTranscoder))
@@ -135,7 +135,7 @@ This prints `true`.
 
 The AEAD\_AES\_256\_CBC\_HMAC\_SHA512 algorithm included in this library uses encryption keys that are 64 bytes long.
 
-Here’s an example that shows how to create a suitable encryption key:
+Here's an example that shows how to create a suitable encryption key:
 
 ```csharp
 var keyBytes = new Span<byte>(new byte[64]);
@@ -147,7 +147,7 @@ var keyRing = new Keyring(new IKey[]
 });
 ```
 
-And here’s how to use it to create a `Keyring` for use with Couchbase Field-Level Encryption:
+And here's how to use it to create a `Keyring` for use with Couchbase Field-Level Encryption:
 
 ```csharp
 var provider =

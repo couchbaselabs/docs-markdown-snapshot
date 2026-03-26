@@ -3,7 +3,7 @@ title: Roles
 description: A Couchbase role permits one or more resources to be accessed
   according to defined privileges.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/roles.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:security/roles.adoc[]
 ---
 
@@ -43,11 +43,11 @@ For detailed information on scopes and collections, see [Scopes and Collections]
 Couchbase Server users can largely be categorized as administrators, developers, and applications. Each user-category is supported by a different subset of roles.
 
 * Administrators. Able to log into Couchbase Web Console and perform administrative tasks; but unable to read or write data.  
-The administrative tasks available are divided into multiple `admin` roles. For example, the **Cluster Admin** role allows the management of all cluster features except security; while the **Read-Only Admin** role allows only the reading of statistics; and the **Bucket Admin** role allows management only of one or more buckets. See the **Admin** roles listed below for full details. Note that depending on the administrator’s assigned roles, the content of Couchbase Web Console changes: for example, the entire **Security** screen is only visible to **Full Admin** administrators; and to administrators who possess both the **Local User Security Admin** and the **External User Security Admin** roles.
+The administrative tasks available are divided into multiple `admin` roles. For example, the **Cluster Admin** role allows the management of all cluster features except security; while the **Read-Only Admin** role allows only the reading of statistics; and the **Bucket Admin** role allows management only of one or more buckets. See the **Admin** roles listed below for full details. Note that depending on the administrator's assigned roles, the content of Couchbase Web Console changes: for example, the entire **Security** screen is only visible to **Full Admin** administrators; and to administrators who possess both the **Local User Security Admin** and the **External User Security Admin** roles.
 * Applications. Able to read or write data; but unable to log into Couchbase Web Console, or in any way modify cluster-settings. For example, the **Data Reader** and **Data Writer** roles allows data to be respectively read and written to one or more collections, within one or more scopes, within one or more buckets. Other application-intended roles are **Application Access**, **Data Writer**, **Data Backup & Restore**, and **Data Monitor**. See below for details on each.
 * Developers. Can be given a selection of roles, allowing the right degree of data and console access. For example, the **Read-Only Admin** role allows the reading of cluster-statistics, while the **Data Read** and **Data Write** roles allow access to data on one or more buckets.
 
-The following list contains all roles supported by Couchbase Server, Enterprise Edition. Each role is explained by means of a description and (in most cases) a table: the table lists the privileges in association with resources. The header of each table states the role’s **name**, followed by its alias name in parentheses: alias names are used in commands and queries. In each table-body, where a privilege is associated with a resource, this is indicated with a check-mark. Where a privilege is not associated with a resource (or where association would not be applicable), this is indicated with a cross. Resources not referred to in a particular table have no privileges associated with them in the context of the role being described.
+The following list contains all roles supported by Couchbase Server, Enterprise Edition. Each role is explained by means of a description and (in most cases) a table: the table lists the privileges in association with resources. The header of each table states the role's **name**, followed by its alias name in parentheses: alias names are used in commands and queries. In each table-body, where a privilege is associated with a resource, this is indicated with a check-mark. Where a privilege is not associated with a resource (or where association would not be applicable), this is indicated with a cross. Resources not referred to in a particular table have no privileges associated with them in the context of the role being described.
 
 Note that some roles grant access to Couchbase Web Console; while others do not. The set of features displayed within the console varies, according to role.
 
@@ -374,7 +374,7 @@ The **Sync Gateway** role (which is a Mobile role) allows full access to data pe
 
 ## [](#sync-gateway-configurator)Sync Gateway Architect
 
-The **Sync Gateway Architect** role (which is a Mobile role) allows management of Sync Gateway databases; and of Sync Gateway users and roles; and allows access to Sync Gateway’s `/metrics` endpoint. The role does not allow access to Couchbase Web Console; and does not allow reading of application data. For information on Sync Gateway users and roles, see [Access Control Concepts](http://docs.couchbase.com/sync-gateway/3.0/access-control-concepts.html).
+The **Sync Gateway Architect** role (which is a Mobile role) allows management of Sync Gateway databases; and of Sync Gateway users and roles; and allows access to Sync Gateway's `/metrics` endpoint. The role does not allow access to Couchbase Web Console; and does not allow reading of application data. For information on Sync Gateway users and roles, see [Access Control Concepts](http://docs.couchbase.com/sync-gateway/3.0/access-control-concepts.html).
 
 | Role: Sync Gateway Architect (sync\_gateway\_configurator) |                                         |                                         |                                         |                                         |
 | ---------------------------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
@@ -422,7 +422,7 @@ The **Sync Gateway Replicator** role (which is a Mobile role) allows management 
 
 ## [](#sync-gateway-dev-ops)Sync Gateway Dev Ops
 
-The **Sync Gateway Dev Ops** role (which is a Mobile role) allows management of Sync Gateway node-level configuration; and allows access to Syn Gateway’s `/metrics` endpoint, for Prometheus integration. The role does not allow access to Couchbase Web Console.
+The **Sync Gateway Dev Ops** role (which is a Mobile role) allows management of Sync Gateway node-level configuration; and allows access to Syn Gateway's `/metrics` endpoint, for Prometheus integration. The role does not allow access to Couchbase Web Console.
 
 | Role: Sync Gateway Dev Ops (sync\_gateway\_dev\_ops) |                                         |                                         |                                         |                                         |
 | ---------------------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
@@ -591,7 +591,7 @@ The **Query Delete** role (which is a Query & Index role) allows the DELETE stat
 
 ## [](#query-sequential-scan)Query Use Sequential Scan
 
-The **Query Use Sequential Scan** role, located under Query & Index in the Web Console’s roles list, allows users' queries to perform a sequential scan of a keyspace. The query planner only decides to use a sequential scan when there is no suitable index for the keyspace. Only queries by users with this role can use a sequential scan to access data because scanning a large unindexed keyspace can be expensive. This role does not grant the user the ability to read or mutate data or access to the Web Console. Administrators' queries automatically have permission to perform sequential scans when necessary.
+The **Query Use Sequential Scan** role, located under Query & Index in the Web Console's roles list, allows users' queries to perform a sequential scan of a keyspace. The query planner only decides to use a sequential scan when there is no suitable index for the keyspace. Only queries by users with this role can use a sequential scan to access data because scanning a large unindexed keyspace can be expensive. This role does not grant the user the ability to read or mutate data or access to the Web Console. Administrators' queries automatically have permission to perform sequential scans when necessary.
 
 | Role: Query Use Sequential Scan (query\_use\_sequential\_scans) |                                       |                                       |                                         |                                       |
 | --------------------------------------------------------------- | ------------------------------------- | ------------------------------------- | --------------------------------------- | ------------------------------------- |

@@ -2,7 +2,7 @@
 title: Roles
 description: Roles grant users access to one or more resources.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/roles.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:security/roles.adoc[]
 ---
 
@@ -19,7 +19,7 @@ Roles provide a set of privileges for interacting with a resource. These privile
 
 Some roles let you limit the privileges a role grants to specific collections, scopes, or buckets. For example, when granting a user the Data Writer role, you can limit the user so they can only write to a specific collection. You can also enable the user to write data to multiple collections, multiple scopes, or even to all buckets. For detailed information about scopes and collections, see [Scopes and Collections](../data/scopes-and-collections.md).
 
-You can grant a user multiple roles to tailor their privileges for the tasks they need to perform. For example, you can grant a user the [Data Reader](#data-reader) role to let them read all data in a specific bucket. In addition, you can grant them the [Data Writer](#data-writer) role, but limit them to writing data into a specific collection within the bucket. Some roles, such as [Query List Index](#query-list-index), are so limited that they’re only useful when combined with other roles ([Query Select](#query-select), for example).
+You can grant a user multiple roles to tailor their privileges for the tasks they need to perform. For example, you can grant a user the [Data Reader](#data-reader) role to let them read all data in a specific bucket. In addition, you can grant them the [Data Writer](#data-writer) role, but limit them to writing data into a specific collection within the bucket. Some roles, such as [Query List Index](#query-list-index), are so limited that they're only useful when combined with other roles ([Query Select](#query-select), for example).
 
 ### [](#roles-in-relation-to-buckets)Roles in Relation to Buckets
 
@@ -48,7 +48,7 @@ Developers require more privileges for greater access to data and to manage reso
 
 ## [](#role-overviews)Role Overviews
 
-The following sections describe the roles defined by Couchbase Server. The list is broken into the same categories that appear within the Couchbase Server Web Console’s **Edit User** dialog. Each description has a table listing what resources a user with the role can access and any limitations on their access. If a resource does not appear in this table, the role does not grant the user any privileges for it.
+The following sections describe the roles defined by Couchbase Server. The list is broken into the same categories that appear within the Couchbase Server Web Console's **Edit User** dialog. Each description has a table listing what resources a user with the role can access and any limitations on their access. If a resource does not appear in this table, the role does not grant the user any privileges for it.
 
 > [!NOTE]
 > The majority of roles are only available in Couchbase Server Enterprise Edition. The list indicates when a role is available in Couchbase Server Community Edition.
@@ -145,7 +145,7 @@ This role lets the user log into the Couchbase Server Web Console.
 The Local User Admin role lets a user manage users defined in the [local authentication domain](authentication-domains.md#local-domain). It also grants the ability to read all cluster statistics such as the settings, logs, and buckets. It does not grant the ability to read data.
 
 > [!NOTE]
-> While this role does not allow the user to read or write data, they can create users that can read and write data. This could be considered a privilege escalation, but it’s intentional behavior. This role is intended to manage all non-administrator roles, including those that can read or write data. You can address any possible privilege escalation concerns by auditing the actions of users with this role to see if they create users to get around the data access limitations.
+> While this role does not allow the user to read or write data, they can create users that can read and write data. This could be considered a privilege escalation, but it's intentional behavior. This role is intended to manage all non-administrator roles, including those that can read or write data. You can address any possible privilege escalation concerns by auditing the actions of users with this role to see if they create users to get around the data access limitations.
 
 This role allows users to edit local users, but they cannot grant these users the Full Admin, Read-Only Admin, Local User Admin, or External User Admin roles. They also cannot edit the accounts for any user with those roles (including their own account).
 
@@ -329,7 +329,7 @@ This role lets the user log into Couchbase Server Web Console.
 
 ### [](#manage-scopes)Manage Scopes
 
-The Manage Scopes role lets a user create and delete scopes and collections within one or more buckets. When granting this role, you choose the buckets where the user can create scopes and collections. The user does not have the ability to read, write, or alter data. Use this role to allow applications to manage a bucket’s scopes and collections.
+The Manage Scopes role lets a user create and delete scopes and collections within one or more buckets. When granting this role, you choose the buckets where the user can create scopes and collections. The user does not have the ability to read, write, or alter data. Use this role to allow applications to manage a bucket's scopes and collections.
 
 This role does not let the user log into Couchbase Server Web Console.
 
@@ -343,7 +343,7 @@ This role does not let the user log into Couchbase Server Web Console.
 The Application Access role lets a user read and write data in one or more buckets. This role does not grant the ability to query data via SQL++—the user can only access data via keys. When granting this role, you choose the buckets where the user can read and write data. As its name implies, this role is intended for use by applications instead of interactive users.
 
 > [!IMPORTANT]
-> This role is deprecated. Couchbase Server 5.0 added this role to replace an old method of password authentication to access buckets. To transition away from bucket passwords, the upgrade process to Couchbase Server 5.0 created new users with the bucket’s name and password and assigned this role. Do not grant this role to users. Instead, use one of the query or data roles.
+> This role is deprecated. Couchbase Server 5.0 added this role to replace an old method of password authentication to access buckets. To transition away from bucket passwords, the upgrade process to Couchbase Server 5.0 created new users with the bucket's name and password and assigned this role. Do not grant this role to users. Instead, use one of the query or data roles.
 
 Versions of Couchbase Server prior to 5.5 referred to this role as Bucket Full Access.
 
@@ -763,7 +763,7 @@ This role lets the user log into Couchbase Server Web Console.
 | Resource                                   | Permissions                                                                                    | Restrictions                                                                                    |
 | **Servers**                                | List servers                                                                                   | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers. |
 | **Settings**                               | View cluster settings                                                                          | Cannot view any other settings or change settings.                                              |
-| **Analytics**                              | Can read any analytic data. Can use the Couchbase Server Web Console’s Analytics query editor. | Cannot change analytic configuration.                                                           |
+| **Analytics**                              | Can read any analytic data. Can use the Couchbase Server Web Console's Analytics query editor. | Cannot change analytic configuration.                                                           |
 
 ### [](#analytics-admin)Analytics Admin
 
@@ -806,14 +806,14 @@ This role lets the user log into Couchbase Server Web Console.
 
 ## [](#eventing-roles)Eventing Roles
 
-These roles control a user’s access to the Eventing Service. Also, see [Eventing Full Admin](#eventing-full-admin) for the Eventing-related administrator role. For more information about Eventing, see [Run a Function on Data Change](../../eventing/eventing-overview.md).
+These roles control a user's access to the Eventing Service. Also, see [Eventing Full Admin](#eventing-full-admin) for the Eventing-related administrator role. For more information about Eventing, see [Run a Function on Data Change](../../eventing/eventing-overview.md).
 
 ### [](#eventing-manage-functions)Eventing Manage Scope Functions
 
 The Eventing Manage Scope Functions role lets the user manage the eventing functions in one or more scopes. When you grant this role, you choose the scopes where the user can manage eventing functions.
 
 > [!NOTE]
-> In addition to this role, the user must have the [Data DCP Reader](#data-dcp-reader) on the collections they want their functions to listen to. They must also have read and write permissions on one or more collections to store the function’s event data.
+> In addition to this role, the user must have the [Data DCP Reader](#data-dcp-reader) on the collections they want their functions to listen to. They must also have read and write permissions on one or more collections to store the function's event data.
 
 This role lets the user log into Couchbase Server Web Console.
 
@@ -852,7 +852,7 @@ This role lets the user log into Couchbase Server Web Console.
 
 ### [](#xdcr-inbound)XDCR Inbound
 
-The XDCR Inbound role lets the user create inbound XDCR streams for one or more buckets. When granting this role, you choose the buckets where the user can create inbound XDCR connections. Assign this role to the user that you’ll specify when creating an XDCR reference. See [Create a Reference](../../manage/manage-xdcr/create-xdcr-reference.md) for more information.
+The XDCR Inbound role lets the user create inbound XDCR streams for one or more buckets. When granting this role, you choose the buckets where the user can create inbound XDCR connections. Assign this role to the user that you'll specify when creating an XDCR reference. See [Create a Reference](../../manage/manage-xdcr/create-xdcr-reference.md) for more information.
 
 > [!NOTE]
 > Versions of Couchbase Server prior to 5.5 called this role Replication Target.
@@ -893,7 +893,7 @@ The mobile roles support connections with the Sync Gateway and related features.
 
 ### [](#sync-gateway)Sync Gateway
 
-The Sync Gateway role gives the user full access to the data Sync Gateway’s data stored in Couchbase Server. This role also lets the user manage indexes and read some cluster information. Only assign this role to the user that you create for the Sync Gateway to use when connecting to Couchbase Server. Choose one or more buckets that contain mobile data that you want this user to manage. See [Configure Server for Sync Gateway](#sync-gateway::get-started-prepare.adoc#configure-server) for more information.
+The Sync Gateway role gives the user full access to the data Sync Gateway's data stored in Couchbase Server. This role also lets the user manage indexes and read some cluster information. Only assign this role to the user that you create for the Sync Gateway to use when connecting to Couchbase Server. Choose one or more buckets that contain mobile data that you want this user to manage. See [Configure Server for Sync Gateway](#sync-gateway::get-started-prepare.adoc#configure-server) for more information.
 
 This role does not let the user log into Couchbase Server Web Console.
 
@@ -907,7 +907,7 @@ This role does not let the user log into Couchbase Server Web Console.
 
 ### [](#sync-gateway-configurator)Sync Gateway Architect
 
-The Sync Gateway Architect role lets the user manage Sync Gateway databases, users, and roles. You choose one or more collections, scopes, or buckets where the user can manage Sync Gateway data. This role also grants access to the Sync Gateway’s metrics via the `/metrics` REST API endpoint. For information about Sync Gateway users and roles, see [Access Control Concepts](../../../../sync-gateway/current/access-control/access-control-concepts.md).
+The Sync Gateway Architect role lets the user manage Sync Gateway databases, users, and roles. You choose one or more collections, scopes, or buckets where the user can manage Sync Gateway data. This role also grants access to the Sync Gateway's metrics via the `/metrics` REST API endpoint. For information about Sync Gateway users and roles, see [Access Control Concepts](../../../../sync-gateway/current/access-control/access-control-concepts.md).
 
 This role does not let the user log into Couchbase Server Web Console.
 
@@ -955,7 +955,7 @@ This role does not let the user log into Couchbase Server Web Console.
 
 ### [](#sync-gateway-dev-ops)Sync Gateway Dev Ops
 
-The Sync Gateway Dev Ops role lets the user manage the Sync Gateway’s node-level configuration. It also grants access to Sync Gateway’s `/metrics` endpoint for Prometheus integration.
+The Sync Gateway Dev Ops role lets the user manage the Sync Gateway's node-level configuration. It also grants access to Sync Gateway's `/metrics` endpoint for Prometheus integration.
 
 This role does not let the user log into Couchbase Server Web Console.
 

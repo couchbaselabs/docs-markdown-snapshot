@@ -3,7 +3,7 @@ title: How to Assign Users to Roles
 description: How to assign a Sync Gateway <em>User</em> one or more roles for
   secure access control in cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/access-control-how-assign-users-to-roles.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::access-control-how-assign-users-to-roles.adoc[]
 ---
 
@@ -59,14 +59,14 @@ See also: [/{db}/\_role/{name}](rest-api-admin.md#/role/put%5F%5Fdb%5F%5F%5Frole
 
 Sync Function
 
-You can also use the Sync Function’s [role()](sync-function-api-role-cmd.md) function to assign users to roles programmatically.
+You can also use the Sync Function's [role()](sync-function-api-role-cmd.md) function to assign users to roles programmatically.
 
 In this use case, where role assignment is done dynamically via the sync function, the role(s) to which user is assigned can be identified in two ways:
 
 * By document content — the role can be derived or specified as a property within the document body.
 * By user defined XATTR (3.0+) — the role can be specified within a special user-defined XATTR associated with the document — see: [Use XATTRs for Access Grants](access-control-how-use-xattrs-for-access-grants.md)
 
-Note that both role and user must already exist. Nonexistent roles don’t cause an error, but have no effect on the user’s access privileges.
+Note that both role and user must already exist. Nonexistent roles don't cause an error, but have no effect on the user's access privileges.
 
 ```javascript
 role ("Edge1User", "role:Edge1");

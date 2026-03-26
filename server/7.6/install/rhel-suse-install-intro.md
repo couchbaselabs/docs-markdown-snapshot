@@ -3,7 +3,7 @@ title: Install Couchbase Server on Red Hat Enterprise
 description: Couchbase Server can be installed on Red Hat Enterprise Linux for
   production and development use-cases.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/rhel-suse-install-intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:install:rhel-suse-install-intro.adoc[]
 ---
 
@@ -16,15 +16,15 @@ link: xref:7.6@server:install:rhel-suse-install-intro.adoc[]
 
 Use the instructions on this page to install Couchbase Server on Red Hat Enterprise Linux using Couchbase-provided RPM packages. The instructions support both Enterprise and Community [editions](https://www.couchbase.com/products/editions).
 
-If you’re upgrading an existing installation of Couchbase Server, refer to [Upgrading Couchbase Server](upgrade.md).
+If you're upgrading an existing installation of Couchbase Server, refer to [Upgrading Couchbase Server](upgrade.md).
 
 ## [](#before-you-install)Before You Install
 
 Couchbase Server works out-of-the-box with most OS configurations. However, the procedures on this page assume the following:
 
 * Your system meets the [minimum requirements](pre-install.md) and that your operating system version is [supported](install-platforms.md).
-* You’re working from a clean system and that you’ve [uninstalled](install-uninstalling.md) any previous versions of Couchbase Server.  
-If you’re upgrading an existing installation of Couchbase Server, refer to [Upgrading Couchbase Server](upgrade.md).
+* You're working from a clean system and that you've [uninstalled](install-uninstalling.md) any previous versions of Couchbase Server.  
+If you're upgrading an existing installation of Couchbase Server, refer to [Upgrading Couchbase Server](upgrade.md).
 
 For production deployments, make sure to follow the [deployment guidelines](install-production-deployment.md) so that your systems and environment are properly sized and configured before installation.
 
@@ -53,7 +53,7 @@ To install the latest release
 ```console  
 sudo yum install couchbase-server  
 ```  
-You’ll be prompted to start the download of Couchbase Server (plus any dependencies), as well as import several GPG keys. For each of these prompts, type `y` to accept and continue.  
+You'll be prompted to start the download of Couchbase Server (plus any dependencies), as well as import several GPG keys. For each of these prompts, type `y` to accept and continue.  
 To install a specific release
 
   1. List the available releases.  
@@ -68,12 +68,12 @@ To install a specific release
   ```  
   Using the example listing from the previous step, the resulting installation command would be:  
   sudo yum install couchbase-server-**6.0.0-1693**  
-  You’ll be prompted to start the download of Couchbase Server (plus any dependencies), as well as import several GPG keys. For each of these prompts, type `y` to accept and continue.  
+  You'll be prompted to start the download of Couchbase Server (plus any dependencies), as well as import several GPG keys. For each of these prompts, type `y` to accept and continue.  
 To install the latest release  
 ```console  
 sudo yum install couchbase-server-community  
 ```  
-You’ll be prompted to start the download of Couchbase Server (plus any dependencies), as well as import several GPG keys. For each of these prompts, type `y` to accept and continue.  
+You'll be prompted to start the download of Couchbase Server (plus any dependencies), as well as import several GPG keys. For each of these prompts, type `y` to accept and continue.  
 To install a specific release
 
   1. List the available releases.  
@@ -88,7 +88,7 @@ To install a specific release
   ```  
   Using the example listing from the previous step, the resulting installation command would be:  
   sudo yum install couchbase-server-community-**6.0.0-1693**  
-  You’ll be prompted to start the download of Couchbase Server (plus any dependencies), as well as import several GPG keys. For each of these prompts, type `y` to accept and continue.  
+  You'll be prompted to start the download of Couchbase Server (plus any dependencies), as well as import several GPG keys. For each of these prompts, type `y` to accept and continue.  
 Once installation is complete, Couchbase Server will start automatically (and will continue to start automatically at run levels 2, 3, 4, and 5, and explicitly shut down at run levels 0, 1, and 6). You can use the `systemctl` command (`service` on older operating systems) to start and stop the Couchbase Server service, as well as check the current status. Refer to [Couchbase Server Startup and Shutdown](startup-shutdown.md) for more information.
 4. Open a web browser and access the Couchbase Web Console to [verify](testing.md) that the installation was successful and that the node is available.
 
@@ -111,7 +111,7 @@ Non-root installation is performed identically for all supported Linux distribut
 
 ## [](#setting-max-process-limits)Setting Max Process Limits
 
-On Red Hat Enterprise, it’s recommended that you increase the maximum process limits for Couchbase.
+On Red Hat Enterprise, it's recommended that you increase the maximum process limits for Couchbase.
 
 To set the process limits, create a `.conf` file in the `/etc/security/limits.d` directory (such as `91-couchbase.conf`), and add the following values:
 

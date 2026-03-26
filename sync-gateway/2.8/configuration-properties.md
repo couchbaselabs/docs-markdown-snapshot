@@ -3,7 +3,7 @@ title: Configuration File
 description: How to configure <em>Sync Gateway</em> to provide secure
   cloud-to-edge synchronization of enterprise data.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/configuration-properties.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::configuration-properties.adoc[]
 ---
 
@@ -13,11 +13,11 @@ link: xref:2.8@sync-gateway::configuration-properties.adoc[]
 # Configuration File
 
 > How to configure _Sync Gateway_ to provide secure cloud-to-edge synchronization of enterprise data.  
-> This content describes Sync Gateway’s configuration schema providing parameter explanations and examples of use
+> This content describes Sync Gateway's configuration schema providing parameter explanations and examples of use
 
 ## [](#about-the-schema)About the Schema
 
-Sync Gateway uses a JSON-like configuration file to define its runtime behavior. The file’s contents include, for example:
+Sync Gateway uses a JSON-like configuration file to define its runtime behavior. The file's contents include, for example:
 
 * Details of the connected Couchbase databases
 * How replications are conducted

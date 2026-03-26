@@ -1,7 +1,7 @@
 ---
 title: Create a Lazy Bound Storage Class
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-storage-class.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::howto-storage-class.adoc[]
 ---
 
@@ -51,7 +51,7 @@ volumeBindingMode: Immediate
 
 The important field is `volumeBindingMode`. If set to `Immediate` a persistent volume is created for a persistent volume claim immediately upon creation. The Operator will have no control over where it is scheduled.
 
-If, however, it is set to `WaitForFirstConsumer` then the a persistent volume isn’t created when a persistent volume claim is created. It waits until the persistent volume claim is attached to a pod and inherits its scheduling information. This storage class can be used directly by the Operator.
+If, however, it is set to `WaitForFirstConsumer` then the a persistent volume isn't created when a persistent volume claim is created. It waits until the persistent volume claim is attached to a pod and inherits its scheduling information. This storage class can be used directly by the Operator.
 
 ## [](#creating-a-lazily-bound-storage-class)Creating a Lazily-Bound Storage Class
 

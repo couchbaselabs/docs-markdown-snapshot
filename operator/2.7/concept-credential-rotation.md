@@ -1,7 +1,7 @@
 ---
 title: Couchbase Credential Rotation
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-credential-rotation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::concept-credential-rotation.adoc[]
 ---
 
@@ -34,7 +34,7 @@ TLS Certificates operator 1.2
 
 TLS addresses the shortcomings of plain text passwords by never exposing private credentials on the network.
 
-When using server-side TLS, all data is encrypted, so passwords are obscured from view, so a third party cannot intercept those credentials. That’s not to say it cannot be compromised by either stealing the TLS private key, or factoring the public key, so these should also be rotated frequently. Certificates have a finite lifetime so must be rotated eventually.
+When using server-side TLS, all data is encrypted, so passwords are obscured from view, so a third party cannot intercept those credentials. That's not to say it cannot be compromised by either stealing the TLS private key, or factoring the public key, so these should also be rotated frequently. Certificates have a finite lifetime so must be rotated eventually.
 
 When using mutual TLS, this extends the system to allow authentication of the client with TLS certificates. Again these can be compromised and the user impersonated, or expire, so need periodic rotation.
 

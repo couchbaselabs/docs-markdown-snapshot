@@ -1,7 +1,7 @@
 ---
 title: Upgrade
 editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/deploy/upgrade.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:todo-app:deploy/upgrade.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:tutorials:todo-app:deploy/upgrade.adoc[]
 
 # Upgrade
 
-In this lesson you’ll learn how to install upgrades for Sync Gateway with zero downtime.
+In this lesson you'll learn how to install upgrades for Sync Gateway with zero downtime.
 
 ## [](#requirements)Requirements
 
@@ -36,7 +36,7 @@ Throughout this lesson, you will use different scripts located in the **deploy**
 
 To follow this lesson you must first have completed the Install lesson and have 2 Sync Gateway nodes up and running. You have deployed Sync Gateway 1.3 and in this lesson you will deploy Sync Gateway 1.3.1 as a rolling upgrade.
 
-A rolling upgrade means that the nodes are upgraded one at a time. While a node is being upgraded it’s taken offline by rebalancing the traffic to other nodes. The diagram below shows this process.
+A rolling upgrade means that the nodes are upgraded one at a time. While a node is being upgraded it's taken offline by rebalancing the traffic to other nodes. The diagram below shows this process.
 
 ## [](#upgrading-vm2)Upgrading VM2
 
@@ -109,4 +109,4 @@ curl VM4:8000
 
 ## [](#conclusion)Conclusion
 
-Well done! You’ve completed this lesson on upgrading the Sync Gateway version. In the next lesson you will learn how to scale Sync Gatway by adding additional nodes. Feel free to share your feedback, findings or ask any questions on the forums.
+Well done! You've completed this lesson on upgrading the Sync Gateway version. In the next lesson you will learn how to scale Sync Gatway by adding additional nodes. Feel free to share your feedback, findings or ask any questions on the forums.

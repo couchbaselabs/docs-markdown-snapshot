@@ -3,7 +3,7 @@ title: Manage Users, Groups, and Roles
 description: Couchbase Server allows defined <em>users</em> to be assigned
   roles, which permit access to resources.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/manage-users-and-roles.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-security/manage-users-and-roles.adoc[]
 ---
 
@@ -44,7 +44,7 @@ This indicates that no ability to support _external authentication_ — by means
 
 ### [](#add-a-group)Add a Group
 
-A _group_ can be defined, and roles assigned to it, by means of Couchbase Web Console. Users can then be defined, and assigned to each group; each user thus being granted the group’s roles. Groups may provide the most efficient way of managing role-assignments, when user-numbers are high.
+A _group_ can be defined, and roles assigned to it, by means of Couchbase Web Console. Users can then be defined, and assigned to each group; each user thus being granted the group's roles. Groups may provide the most efficient way of managing role-assignments, when user-numbers are high.
 
 To define a group, left-click on the **Add Group** tab, near the upper right of the **Security** screen:
 
@@ -105,13 +105,13 @@ This shows that the **MyCollection** collection is available. Select **MyCollect
 
 To make additional assignments, to other buckets, scopes, and collections, repeat the procedure using the selector. For each role to be defined, an entry must be specified for each of the three fields — bucket, scope, and collection. Then, the role is displayed as a role-definition, underneath the selector. Should it be necessary, a displayed role-definition can be deleted, by left-clicking on the **X**, to the right.
 
-(Note that some roles apply to all data in the bucket; some to all collections in a specified scope, within a specified bucket; and some to all documents in a specified collection, within a specified scope and bucket. Consequently, the selector varies in appearance, role by role; based on how many fields are required for the a full specification of the role’s assignment.)
+(Note that some roles apply to all data in the bucket; some to all collections in a specified scope, within a specified bucket; and some to all documents in a specified collection, within a specified scope and bucket. Consequently, the selector varies in appearance, role by role; based on how many fields are required for the a full specification of the role's assignment.)
 
 When all required role-definitions have been made, left-click on **Save**, to save the group. The **Security** screen is now displayed. The edited group appears, and can always be made visible by means of the **Groups** button.
 
 ![addedGroupForDataReader](../_images/manage-security/addedGroupForDataReader.png)
 
-To make additional changes to the group’s role-assignments, left click on the **Edit** button. The **Edit Group <group-name>** dialog appears: this is similar in appearance and behavior to the **Add Group** dialog, and thus allows new roles to be added, and existing to be deleted.
+To make additional changes to the group's role-assignments, left click on the **Edit** button. The **Edit Group <group-name>** dialog appears: this is similar in appearance and behavior to the **Add Group** dialog, and thus allows new roles to be added, and existing to be deleted.
 
 ### [](#add-a-user)Add a User
 
@@ -129,7 +129,7 @@ If either _Native LDAP_ or `saslauthd` has been enabled, towards the upper left 
 
 Add a locally authenticated user, by adding appropriate entries into the **Username** and **Password** fields. See [Usernames and Passwords](../../learn/security/usernames-and-passwords.md) for character-related requirements. The **Full Name** field may be left blank.
 
-The user may now either be assigned one or more specific roles, or be assigned to one or more groups (so as to inherit each group’s assigned roles), or both.
+The user may now either be assigned one or more specific roles, or be assigned to one or more groups (so as to inherit each group's assigned roles), or both.
 
 #### [](#adding-roles)Assign Roles to a User
 
@@ -147,7 +147,7 @@ To assign a user to a group, left-click on the **Groups** tab at the upper right
 
 ![rolesAndGroupsToggle](../_images/manage-security/rolesAndGroupsToggle.png) 
 
-The content of the dialog’s right-hand pane now changes, to display available groups:
+The content of the dialog's right-hand pane now changes, to display available groups:
 
 ![groupsPanel2](../_images/manage-security/groupsPanel2.png) 
 
@@ -163,15 +163,15 @@ The new user now appears on **Security** panel, as follows:
 
 ![securityScreenWithLocalUser](../_images/manage-security/securityScreenWithLocalUser.png) 
 
-The single, displayed row indicates that user `localUser` has been defined, and has been granted the **Query CURL Access** role (which was assigned directly) and the **Cluster Admin** role (which has been derived from the user’s assigned membership of the **ClusterAdmin** group). Note also that the **auth domain** for the user is **Couchbase**, indicating that this user is locally defined.
+The single, displayed row indicates that user `localUser` has been defined, and has been granted the **Query CURL Access** role (which was assigned directly) and the **Cluster Admin** role (which has been derived from the user's assigned membership of the **ClusterAdmin** group). Note also that the **auth domain** for the user is **Couchbase**, indicating that this user is locally defined.
 
 #### [](#editing-users-and-groups)Editing Users and Groups
 
-Once created, users and groups can be edited. Left-click on the currently defined user’s row:
+Once created, users and groups can be edited. Left-click on the currently defined user's row:
 
 ![userSecurityRowClicked](../_images/manage-security/userSecurityRowClicked.png) 
 
-The row expands vertically, displaying control-buttons at the lower right. By left-clicking on **Delete**, you delete the user. By left-clicking on **Edit**, you bring up the **Edit <username>** dialog, which provides options for redefining full name, roles, and groups. (The content of this dialog is similar to that of the **Add New User** dialog, examined above.) The **Reset Password** button only appears when the selected user is _locally_ defined: left-clicking on this brings up a dialog that allows redefinition of the user’s password:
+The row expands vertically, displaying control-buttons at the lower right. By left-clicking on **Delete**, you delete the user. By left-clicking on **Edit**, you bring up the **Edit <username>** dialog, which provides options for redefining full name, roles, and groups. (The content of this dialog is similar to that of the **Add New User** dialog, examined above.) The **Reset Password** button only appears when the selected user is _locally_ defined: left-clicking on this brings up a dialog that allows redefinition of the user's password:
 
 ![resetPassword](../_images/manage-security/resetPassword.png) 
 
@@ -179,15 +179,15 @@ Note that the **Users & Groups** panel, subsequent to the definition of a user, 
 
 ![accessGroupsButton](../_images/manage-security/accessGroupsButton.png) 
 
-The **Groups** view is now displayed. As with the **Users** view, left-clicking on a group’s row displays controls that include **Delete** and **Edit** options:
+The **Groups** view is now displayed. As with the **Users** view, left-clicking on a group's row displays controls that include **Delete** and **Edit** options:
 
 ![groupSecurityRow](../_images/manage-security/groupSecurityRow.png) 
 
-Left-click on the **Edit** button to display the **Edit Group <group-name>** dialog, which is similar to the **Add New Group**dialog examined above, and allows all the group’s attributes, except the name, to be modified.
+Left-click on the **Edit** button to display the **Edit Group <group-name>** dialog, which is similar to the **Add New Group**dialog examined above, and allows all the group's attributes, except the name, to be modified.
 
 ### [](#adding-an-externally-authenticated-user)Adding an Externally Authenticated User
 
-An _externally authenticated_ user is not authenticated on Couchbase Server. Instead, they are authenticated on a server external to the cluster. This means that the user’s password is defined and maintained externally.
+An _externally authenticated_ user is not authenticated on Couchbase Server. Instead, they are authenticated on a server external to the cluster. This means that the user's password is defined and maintained externally.
 
 The addition of a user as externally authenticated must be supported by [Native LDAP](../../learn/security/authentication-overview.md#native-ldap-support), [saslauthd](../../learn/security/authentication-overview.md#using-saslauthd), or [PAM](../../learn/security/authentication-overview.md#introduction-to-pam-based-authentication). Appropriate set-up procedures must have been completed prior to the addition of externally authenticated users.
 
@@ -197,7 +197,7 @@ To add an externally authenticated user, on the **Add New User** dialog, select 
 
 ![externalUserRadioButton](../_images/manage-security/externalUserRadioButton.png) 
 
-This removes the password-related fields from the dialog, since they are not required for the creation of an externally authenticated user. The fields for the user’s names remain, and can be used.
+This removes the password-related fields from the dialog, since they are not required for the creation of an externally authenticated user. The fields for the user's names remain, and can be used.
 
 From this point, the externally authenticated user can be defined exactly as was the locally authenticated user, above. For example, the **Query System Catalog** role can be assigned to the user; and the user then assigned to the `ClusterAdmin` group, whereby the **Cluster Admin** role is granted. When the definition-process is complete, the **Users** view of the **Users & Groups** panel appears as follows:
 
@@ -212,7 +212,7 @@ The externally authenticated user is now shown to have the username `externalUse
 
 ### [](#role-based-console-appearance)Role-Based Console Appearance
 
-Role-assignment determines which features of Couchbase Web Console are available to the administrator. Non-available features are not displayed: therefore, the console’s appearance changes, based on which roles have been assigned the current user.
+Role-assignment determines which features of Couchbase Web Console are available to the administrator. Non-available features are not displayed: therefore, the console's appearance changes, based on which roles have been assigned the current user.
 
 ## [](#manage-users-with-the-cli)Manage Users with the CLI
 
@@ -220,7 +220,7 @@ Users can be managed with the [user-manage](../../cli/cbcli/couchbase-cli-user-m
 
 ### [](#get-user-information-with-the-cli)Get User Information with the CLI
 
-To list the cluster’s current users, enter the following. Note that the command is piped to the [jq](https://stedolan.github.io/jq/) program, to optimize output-readability.
+To list the cluster's current users, enter the following. Note that the command is piped to the [jq](https://stedolan.github.io/jq/) program, to optimize output-readability.
 
 /opt/couchbase/bin/couchbase-cli user-manage --cluster http://10.144.210.101 \
 --username Administrator \
@@ -413,7 +413,7 @@ Using the CLI, create a group as follows:
 --group-name xdcrAdmin \
 --roles replication_admin
 
-This uses the `--set-group` flag to indicate that a group is to be created or edited. The `--group-name` flag specifies the name of a new group named `xdcrAdmin`, and the `--roles` flag is used to assign the `replication_admin` role to the new group. Note that to change the group’s role-assignments, the group must be recreated, with all the new role-assignments specified as the arguments to the `--roles` flag: user-memberships go unchanged.
+This uses the `--set-group` flag to indicate that a group is to be created or edited. The `--group-name` flag specifies the name of a new group named `xdcrAdmin`, and the `--roles` flag is used to assign the `replication_admin` role to the new group. Note that to change the group's role-assignments, the group must be recreated, with all the new role-assignments specified as the arguments to the `--roles` flag: user-memberships go unchanged.
 
 If the call is successful, the following is displayed.
 
@@ -452,7 +452,7 @@ To create an _externally authenticated_ user with direct role-assignment, use th
 --roles cluster_admin \
 --auth-domain external
 
-The `--auth-domain` is specified as `external`. The `--set` flag establishes that the cluster’s RBAC profile is to be updated. No password is specified, since none is to be saved on Couchbase Server — authentication occurring on the LDAP server. The role to be assigned to the user is specified by means of the `--roles` flag as `cluster_admin`
+The `--auth-domain` is specified as `external`. The `--set` flag establishes that the cluster's RBAC profile is to be updated. No password is specified, since none is to be saved on Couchbase Server — authentication occurring on the LDAP server. The role to be assigned to the user is specified by means of the `--roles` flag as `cluster_admin`
 
 If the command is successful, the following is returned:
 
@@ -524,7 +524,7 @@ Each user can be defined as either _locally_ or _externally_. The creation of ex
 
 ### [](#get-user-information-with-the-rest-api)Get User Information with the REST API
 
-To list the cluster’s current users, use the `GET /settings/rbac/users` method and URI as follows:
+To list the cluster's current users, use the `GET /settings/rbac/users` method and URI as follows:
 
 curl -v -X GET -u Administrator:password \
 http://10.143.192.101:8091/settings/rbac/users
@@ -533,7 +533,7 @@ If successful, the command provides as its output a document containing an entry
 
 ### [](#get-group-information-with-the-rest-api)Get Group Information with the REST API
 
-To list the cluster’s current groups, use the `GET /settings/rbac/groups` method and URI as follows:
+To list the cluster's current groups, use the `GET /settings/rbac/groups` method and URI as follows:
 
 curl -v -X GET -u Administrator:password \
 http://10.143.192.101:8091/settings/rbac/groups
@@ -621,7 +621,7 @@ curl -v -X PUT -u Administrator:password \
 http://10.143.192.101:8091/settings/rbac/groups/roAdminGroup \
 -d roles=ro_admin
 
-This establishes a new group named `roAdminGroup`. By means of the `roles` parameter, the `ro_admin` role is assigned to the group. This role will be inherited by all of the group’s future members.
+This establishes a new group named `roAdminGroup`. By means of the `roles` parameter, the `ro_admin` role is assigned to the group. This role will be inherited by all of the group's future members.
 
 #### [](#delete-a-group-with-the-rest-api)Delete a Group with the REST API
 
@@ -673,7 +673,7 @@ curl -v -X PUT -u Administrator:password \
 http://10.143.192.101:8091/settings/rbac/users/rjones \
 -d groups=Admins,xdcrAdmin
 
-This adds the externally authenticated user `rjones` to the cluster’s `Admins` and `xdcrAdmins` groups. The user now inherits the roles that have been assigned to each of the groups.
+This adds the externally authenticated user `rjones` to the cluster's `Admins` and `xdcrAdmins` groups. The user now inherits the roles that have been assigned to each of the groups.
 
 #### [](#delete-an-external-user-with-the-rest-api)Delete an External User with the REST API
 

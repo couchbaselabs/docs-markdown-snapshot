@@ -2,7 +2,7 @@
 title: Verify the Enterprise Analytics Installation
 description: You can test your connection to Enterprise Analytics in multiple ways.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/verify-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:install:verify-installation.adoc[]
 ---
 
@@ -17,9 +17,9 @@ link: xref:enterprise-analytics:install:verify-installation.adoc[]
 
 For a basic confirmation that a node is available, connect to the Enterprise Analytics Web Console with a web browser.
 
-If you set up Enterprise Analytics on a port other than `8091`, go to that specified port. You should clear your browser’s cache before opening the Web Console. For example, if your server is identified on your network as `serverA`, you can access the Web Console by going to `http://serverA:8091/` or `http://<serverA's-IP-address>:8091/`. (If you set up Enterprise Analytics on a port other than `8091`, go to that specified port.) You should clear your browser’s cache before attempting to access to the Web Console.
+If you set up Enterprise Analytics on a port other than `8091`, go to that specified port. You should clear your browser's cache before opening the Web Console. For example, if your server is identified on your network as `serverA`, you can access the Web Console by going to `http://serverA:8091/` or `http://<serverA's-IP-address>:8091/`. (If you set up Enterprise Analytics on a port other than `8091`, go to that specified port.) You should clear your browser's cache before attempting to access to the Web Console.
 
-If you’re logged into the node itself, you can go to `http://localhost:8091`. You can also use the `couchbase-cli` command to query node to confirm that it’s available.
+If you're logged into the node itself, you can go to `http://localhost:8091`. You can also use the `couchbase-cli` command to query node to confirm that it's available.
 
 > [!NOTE]
 > The Web Console uses the same port as smart clients when communicating with Enterprise Analytics. If you can connect to the Web Console from a particular machine, then administration and database clients on the same machine can also connect to the core cluster port and perform operations. The Web Console provides a warning if the Web browser loses connectivity to the node.
@@ -32,7 +32,7 @@ The `cbworkloadgen` command is a python program that performs basic operations (
 
 Testing With cbworkloadgen
 
-The command `cbworkloadgen` generates random data, then performs reads and writes of this data in Enterprise Analytics. It’s not intended to be a performance benchmarking tool.
+The command `cbworkloadgen` generates random data, then performs reads and writes of this data in Enterprise Analytics. It's not intended to be a performance benchmarking tool.
 
 To test an Enterprise Analytics installation using `cbworkloadgen`, execute the following command, supplying the IP address of the running node:
 

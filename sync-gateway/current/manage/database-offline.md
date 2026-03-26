@@ -2,7 +2,7 @@
 title: Take Database Offline/Online
 description: How to take a <em>Sync&nbspGateway</em> database offline and bring back online.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/database-offline.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:manage:database-offline.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:sync-gateway:manage:database-offline.adoc[]
 
 Sync Gateway enables you to take a database offline and bring it back online without stopping the Sync Gateway instance and without affecting other databases it serves.
 
-The change of status (online or offline) of a database occurs only in the specific Sync Gateway instance addressed. It’s not reflected by other Sync Gateway instances using that database. If you want to make changes in multiple Sync Gateway instances, you need to coordinate individual change operations in each instance.
+The change of status (online or offline) of a database occurs only in the specific Sync Gateway instance addressed. It's not reflected by other Sync Gateway instances using that database. If you want to make changes in multiple Sync Gateway instances, you need to coordinate individual change operations in each instance.
 
 ## [](#when-to-take-a-database-offlineonline)When To Take a Database Offline/Online
 
@@ -23,7 +23,7 @@ You may need to take a database offline or bring it back online in the following
 
 * You need to take a single database offline without affecting other databases.
 * You need to change the configuration properties for a database without restarting Sync Gateway.
-* You need to [resynchronize a database](resync.md) while it’s offline.
+* You need to [resynchronize a database](resync.md) while it's offline.
 * You created a database in an offline state, so you can postpone or coordinate the start of service delivery for the database across Sync Gateway instances.
 * You need to run a Couchbase Server upgrade.
 

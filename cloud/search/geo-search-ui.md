@@ -3,7 +3,7 @@ title: Run a Geospatial Search Query with the Capella UI
 description: Search for geospatial data in your Couchbase Capella operational
   cluster with a compatible Search index and the Capella UI.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/geo-search-ui.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:geo-search-ui.adoc[]
 ---
 
@@ -87,4 +87,4 @@ For example, the following query searches a geospatial field, `geo`, for any loc
 
 For more information about the different features you can add to your Search index to improve performance and search results, see [Search Index Features](customize-index.md).
 
-If you want to add autocomplete to your operational cluster’s search, see [Use Autocomplete with the Search Service](search-query-auto-complete.md).
+If you want to add autocomplete to your operational cluster's search, see [Use Autocomplete with the Search Service](search-query-auto-complete.md).

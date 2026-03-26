@@ -4,7 +4,7 @@ description: Discover how to program interactions with the Couchbase Server via
   the data, query, and search services -- using the Travel Sample Application
   with the built-in Travel Sample data Bucket.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/hello-world/pages/sample-application.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:python-sdk:hello-world:sample-application.adoc[]
 ---
 
@@ -50,7 +50,7 @@ The sample application runs 3 docker containers which contain the following:
 
 ![travel sample app overview](../../../sdk/current/shared/_images/travel-sample-app-overview.png) 
 
-The API implements a different endpoint for each of the app’s features. You can explore the API here in read-only mode, or once you are running the application, at the `localhost:8080/apidocs` endpoint.
+The API implements a different endpoint for each of the app's features. You can explore the API here in read-only mode, or once you are running the application, at the `localhost:8080/apidocs` endpoint.
 
 ## [](#data-model)Data Model
 
@@ -202,7 +202,7 @@ The request body consists of a JSON object with two fields: `username` and `pass
 }
 
 > [!NOTE]
-> The document key is a lowercase version of the provided username — this means that different usernames can refer to the same document. For example, if a user signs up with the username `Douglas Reynholm`, a different user can’t sign up with the username `douglas reynholm`, as both resolve to the same document key.
+> The document key is a lowercase version of the provided username — this means that different usernames can refer to the same document. For example, if a user signs up with the username `Douglas Reynholm`, a different user can't sign up with the username `douglas reynholm`, as both resolve to the same document key.
 
 See [Data Operations](../howtos/kv-operations.md) for more information about K/V operations.
 
@@ -234,7 +234,7 @@ except Exception as e:
     return abortmsg(500, "Failed to save user", flush=True)
 ```
 
-To perform a login, the frontend provides the username and password given by the user in the same JSON format as the `signup` endpoint. As the username is the document key, the application doesn’t need to retrieve the entire document, only the password field. The application uses a [Sub-Document](../howtos/subdocument-operations.md) operation to perform a `GET` on this one field. This password is then compared against the given username.
+To perform a login, the frontend provides the username and password given by the user in the same JSON format as the `signup` endpoint. As the username is the document key, the application doesn't need to retrieve the entire document, only the password field. The application uses a [Sub-Document](../howtos/subdocument-operations.md) operation to perform a `GET` on this one field. This password is then compared against the given username.
 
 ```python
 @api.route('/tenants/<tenant>/user/login', methods=['POST', 'OPTIONS'])
@@ -290,12 +290,12 @@ class FlightPathsView(SwaggerView):
         """
 ```
 
-Key/value operations aren’t sufficient to service a complex request like searching for flight information. The Query Service provides this capability with minimal complexity.
+Key/value operations aren't sufficient to service a complex request like searching for flight information. The Query Service provides this capability with minimal complexity.
 
 > [!NOTE]
 > You may recall that the web application provides both outbound and return flights. The frontend provides this information by making two separate requests to the backend, with the `<fromLoc>` and `<toLoc>` variable sections of the URL switched.
 
-A single query can’t provide this information without significant complexity, as the route document schema doesn’t include the airport names:
+A single query can't provide this information without significant complexity, as the route document schema doesn't include the airport names:
 
 ```json
 {
@@ -418,7 +418,7 @@ class AirportView(SwaggerView):
 
 ### [](#booking-flights)Booking Flights
 
-The frontend handles the cart, so adding flights doesn’t affect the database. Only when the user clicks **Buy** are flights booked.
+The frontend handles the cart, so adding flights doesn't affect the database. Only when the user clicks **Buy** are flights booked.
 
 The `updateflights` endpoint adds a flight booking to the database. The frontend provides the flight details in the request body, and the user and tenant in the URL. The endpoint first creates a booking document in the bookings collection of the corresponding tenant. This document contains the flight details provided to the frontend by the `flightPaths` endpoint:
 
@@ -468,7 +468,7 @@ def updateflights(tenant, username):
         return abortmsg(500, "Failed to add flight data")
 ```
 
-However, this booking document isn’t associated with the user who booked it. Therefore the endpoint performs a [Sub-Document](../howtos/subdocument-operations.md) operation on the `bookings` field in the given user’s document to add the booking document’s key:
+However, this booking document isn't associated with the user who booked it. Therefore the endpoint performs a [Sub-Document](../howtos/subdocument-operations.md) operation on the `bookings` field in the given user's document to add the booking document's key:
 
 ```python
 try:
@@ -492,7 +492,7 @@ The user can also view their flights after they have booked them. The `getflight
 
 First, the endpoint performs a [Sub-Document](../howtos/subdocument-operations.md) operation to retrieve the `bookings` field.
 
-If the user hasn’t booked any flights, there is no `bookings` field. However, if the application tries a lookup on this non-existent field, the operation still succeeds, but reading these results causes a `PathNotFoundException`. To avoid handling this exception, the lookup contains both a `get` and an `exists` operation. The endpoint can then verify the path exists before attempting to read the results:
+If the user hasn't booked any flights, there is no `bookings` field. However, if the application tries a lookup on this non-existent field, the operation still succeeds, but reading these results causes a `PathNotFoundException`. To avoid handling this exception, the lookup contains both a `get` and an `exists` operation. The endpoint can then verify the path exists before attempting to read the results:
 
 ```python
 @api.route('/tenants/<tenant>/user/<username>/flights', methods=['GET', 'OPTIONS'])
@@ -589,7 +589,7 @@ def hotels(description, location):
                                       SearchOptions(limit=100))
 ```
 
-The result of a search query is an iterable containing `SearchRow` objects. Each row represents a match in one document. It doesn’t contain the document data, instead just the matching string and metadata. This metadata includes the document key, so a sub-document operation retrieves the fields needed by the frontend.
+The result of a search query is an iterable containing `SearchRow` objects. Each row represents a match in one document. It doesn't contain the document data, instead just the matching string and metadata. This metadata includes the document key, so a sub-document operation retrieves the fields needed by the frontend.
 
 ```python
 allResults = []

@@ -2,7 +2,7 @@
 title: Crash Logs
 description: Couchbase Lite on Android -- Using symbolicate to decode crash logs
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/android/pages/troubleshooting-crashes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:android:troubleshooting-crashes.adoc[]
 ---
 
@@ -16,9 +16,9 @@ link: xref:2.8@couchbase-lite:android:troubleshooting-crashes.adoc[]
 
 ## [](#symbolication)Symbolication
 
-In order to make sense of a crash report you will need to translate the crash log’s memory addresses with human-readable function names and line numbers; this process is called _symbolication_.
+In order to make sense of a crash report you will need to translate the crash log's memory addresses with human-readable function names and line numbers; this process is called _symbolication_.
 
-To do this you will need to have debug symbol (`.dSYM`) files for the application and for Couchbase Lite on Android’s framework.
+To do this you will need to have debug symbol (`.dSYM`) files for the application and for Couchbase Lite on Android's framework.
 
 ## [](#related-content)Related Content
 

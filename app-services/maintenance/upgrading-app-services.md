@@ -2,7 +2,7 @@
 title: Upgrade App Services
 description: Scheduling for Capella App Services.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/maintenance/upgrading-app-services.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::maintenance/upgrading-app-services.adoc[]
 ---
 
@@ -135,14 +135,14 @@ To reschedule your maintenance job:
   Enter a new date and time and click **Save**.  
   If another job is in progress, then the selected job will be queued to run at a later time.
 
-You cannot reschedule a maintenance job while it’s **Running**.
+You cannot reschedule a maintenance job while it's **Running**.
 
 > [!NOTE]
-> When you create a new maintenance schedule for your App Service, you’re overriding the existing one. This cancels the previous maintenance job and applies the new schedule you set.
+> When you create a new maintenance schedule for your App Service, you're overriding the existing one. This cancels the previous maintenance job and applies the new schedule you set.
 
 ### [](#cancelled-maintenance-job)Cancel a Maintenance Job
 
-You can cancel maintenance jobs that you have scheduled. You cannot cancel a maintenance job while it’s **Running**.
+You can cancel maintenance jobs that you have scheduled. You cannot cancel a maintenance job while it's **Running**.
 
 You cannot cancel maintenance jobs scheduled by Capella Support. When Couchbase Support schedules a mandatory upgrade for your App Service, they cancel your previously scheduled maintenance upgrade. You can reschedule your upgrade once the mandatory upgrade is complete. To cancel a support-initiated upgrade, [Create a Support Ticket](#support:manage-support.adoc#create-support-ticket).
 
@@ -162,7 +162,7 @@ To view canceled maintenance jobs:
 
 You can set a preferred time and day of the week for future maintenance jobs to be scheduled. This does not reschedule maintenance jobs that are already scheduled on the Maintenance tab.
 
-When an upgrade or maintenance becomes available, Capella attempts to schedule the maintenance at your preferred time and day of the week. The preferred time is not a guarantee. If it’s not possible to schedule the maintenance at your preferred time, the job is scheduled at any time within the maintenance window.
+When an upgrade or maintenance becomes available, Capella attempts to schedule the maintenance at your preferred time and day of the week. The preferred time is not a guarantee. If it's not possible to schedule the maintenance at your preferred time, the job is scheduled at any time within the maintenance window.
 
 To set a preferred maintenance day and time for all upcoming jobs:
 

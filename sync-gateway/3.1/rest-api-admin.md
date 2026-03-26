@@ -2,7 +2,7 @@
 title: Admin REST API
 description: Description of the Sync Gateway Admin REST API
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/rest-api-admin.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::rest-api-admin.adoc[]
 ---
 
@@ -12,14 +12,14 @@ link: xref:3.1@sync-gateway::rest-api-admin.adoc[]
 # Admin REST API
 
 > Description of the Sync Gateway Admin REST API  
-> Use the API explorer to find out more about Sync Gateway’s endpoints by functionality.
+> Use the API explorer to find out more about Sync Gateway's endpoints by functionality.
 
 Related _REST API_ topics: [Public REST API](rest-api.md) | [Metrics REST API](rest-api-metrics.md)
 
 > [!IMPORTANT]
 > Content Blocking
 > 
-> Couchbase Mobile’s API documentation utilizes [Swagger UI](https://swagger.io/tools/swagger-ui/)to deliver an interactive and dynamic user experience. The page will not function correctly if your organization’s security policies restricts access to this type of content — instead see the alternate statics page [Admin REST API (Static Page)](rest%5Fapi%5Fadmin%5Fstatic.md)
+> Couchbase Mobile's API documentation utilizes [Swagger UI](https://swagger.io/tools/swagger-ui/)to deliver an interactive and dynamic user experience. The page will not function correctly if your organization's security policies restricts access to this type of content — instead see the alternate statics page [Admin REST API (Static Page)](rest%5Fapi%5Fadmin%5Fstatic.md)
 
 ## [](#introduction)Introduction
 

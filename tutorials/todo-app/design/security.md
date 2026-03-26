@@ -1,7 +1,7 @@
 ---
 title: Security and Access Control
 editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/design/security.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:todo-app:design/security.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:tutorials:todo-app:design/security.adoc[]
 
 # Security and Access Control
 
-In this lesson you’ll learn how to secure your data model using Couchbase Mobile’s built-in security framework.
+In this lesson you'll learn how to secure your data model using Couchbase Mobile's built-in security framework.
 
 Security rules are used to determine who has read and write access to the database. They live on the server in Sync Gateway and are enforced at all times.
 
@@ -41,9 +41,9 @@ Once the document is mapped to the channel you can give the user access to it. I
 
 ### [](#multiple-users)Multiple users
 
-Now let’s consider the action of sharing a list with another user. Currently, List and Task models do not have an option to specify other user names.
+Now let's consider the action of sharing a list with another user. Currently, List and Task models do not have an option to specify other user names.
 
-In the application, there is no limit to how many users can access a list. There could be thousands! So instead of embedding other user’s details on the List model we’ll introduce a 3rd document that joins a list and user. The image below adds the List User model. When processing a document of type "list-user", the Sync Function must grant the user (`doc.name`) access to the list (`doc.list`).
+In the application, there is no limit to how many users can access a list. There could be thousands! So instead of embedding other user's details on the List model we'll introduce a 3rd document that joins a list and user. The image below adds the List User model. When processing a document of type "list-user", the Sync Function must grant the user (`doc.name`) access to the list (`doc.list`).
 
 ![04 multiple users](../_images/04-multiple-users.png)
 
@@ -82,4 +82,4 @@ The following security changes to routing, read and write permissions were added
 
 ## [](#conclusion)Conclusion
 
-Well done! You’ve completed this lesson on designing the security model for each scenario in the application. In the next lesson you’ll learn how to create an empty database to store documents. Feel free to share your feedback, findings or ask any questions on the forums.
+Well done! You've completed this lesson on designing the security model for each scenario in the application. In the next lesson you'll learn how to create an empty database to store documents. Feel free to share your feedback, findings or ask any questions on the forums.

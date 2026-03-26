@@ -2,7 +2,7 @@
 title: Turn a Cluster Off or On
 description: You can turn a Capella Analytics services cluster off to save costs.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/off-on.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:admin:off-on.adoc[]
 ---
 
@@ -31,7 +31,7 @@ You can [create a schedule](#schedule-a-cluster-to-turn-onoff) to turn your clus
 
 | **Remote links and running queries**   | Remote links are disconnected. Any currently running queries are canceled.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Application and client connections** | Application and client connections will be disconnected. You cannot connect to or read/write from your cluster. You will receive an authentication error if you try to connect to a cluster that’s off. [Verify the cluster status](#check-cluster-status) if the application returns an authentication error.                                                                                                                                                                                                                                                                       |
+| **Application and client connections** | Application and client connections will be disconnected. You cannot connect to or read/write from your cluster. You will receive an authentication error if you try to connect to a cluster that's off. [Verify the cluster status](#check-cluster-status) if the application returns an authentication error.                                                                                                                                                                                                                                                                       |
 | **Backups and scheduled backups**      | Backups cannot run, be downloaded, or restored - even to another cluster. Backups can expire. Download backups you want to keep before turning off your cluster, or do not turn your cluster off past the expiration dates of your existing backups. If the cluster is scheduled to turn off while a backup or restore operation is running, Capella waits for the operation to complete before turning off the cluster. If you try to manually turn off the cluster while a backup or restore operation is running, Capella will return an error and the cluster will not turn off. |
 | **Maintenance**                        | If the cluster is running maintenance or due to run maintenance in the next hour, the cluster cannot be turned off manually or through a schedule. If the cluster is turned back on, it might need maintenance. Avoid scheduling an off soon after turning your cluster back on.                                                                                                                                                                                                                                                                                                     |
 
@@ -101,7 +101,7 @@ Capella turns your cluster on at the specified **From** time, until the **To** t
 7. To save and start your schedule, click **Start Schedule**.
 
 > [!NOTE]
-> Capella will not turn off the cluster if a cluster backup is running, if maintenance is running, or if maintenance is scheduled within 1 hour. If a cluster that’s off requires maintenance, the maintenance begins when it turns on.
+> Capella will not turn off the cluster if a cluster backup is running, if maintenance is running, or if maintenance is scheduled within 1 hour. If a cluster that's off requires maintenance, the maintenance begins when it turns on.
 
 ### [](#edit-cluster-schedule)Edit Cluster Schedule
 

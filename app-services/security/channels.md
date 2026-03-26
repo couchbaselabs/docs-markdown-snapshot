@@ -3,7 +3,7 @@ title: Add Security with Channels
 description: Channels and their part in data routing and access control for
   secure cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/security/channels.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::security/channels.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:app-services::security/channels.adoc[]
 
 ## [](#about-channels)About Channels
 
-Channels allow you to share a cluster’s documents across a large user base while retaining effective access control. They serve as a security conduit between the document and a user.
+Channels allow you to share a cluster's documents across a large user base while retaining effective access control. They serve as a security conduit between the document and a user.
 
 ![Access Control using Channels](../_images/channels/channels-example-all.png) 
 

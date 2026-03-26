@@ -1,7 +1,7 @@
 ---
 title: Concurrent Document Mutations
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/concurrent-document-mutations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:scala-sdk:howtos:concurrent-document-mutations.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:scala-sdk:howtos:concurrent-document-mutations.adoc[]
 
 The _CAS_ is a value representing the current state of an item. Each time the item is modified, its CAS changes.
 
-The CAS value itself is returned as part of a document’s metadata whenever a document is accessed. In the SDK, this is presented as the `cas` field in the result object from any operation which executes successfully.
+The CAS value itself is returned as part of a document's metadata whenever a document is accessed. In the SDK, this is presented as the `cas` field in the result object from any operation which executes successfully.
 
 CAS is an acronym for _Compare And Swap_, and is known as a form of optimistic locking. The CAS can be supplied as parameters to the _replace_ and _remove_ operations. When applications provide the CAS, server will check the application-provided version of CAS against the CAS of the document on the server:
 
@@ -59,7 +59,7 @@ Retrieving the document again yields:
 {u'field2': u'value2', u'a_field': u'a_value'}
 ```
 
-Note that `field1` is not present, even though the application inserted it into the document. The reason is because the replace on Thread #2 happened to run after the replace on Thread #1, however Thread #1’s replace was executed after Thread #2’s get: Since the local version of the document on Thread #2 did not contain field1 (because Thread #1’s update was not stored on the server yet), by executing the replace, it essentially overrode the replace performed by Thread #1.
+Note that `field1` is not present, even though the application inserted it into the document. The reason is because the replace on Thread #2 happened to run after the replace on Thread #1, however Thread #1's replace was executed after Thread #2's get: Since the local version of the document on Thread #2 did not contain field1 (because Thread #1's update was not stored on the server yet), by executing the replace, it essentially overrode the replace performed by Thread #1.
 
 | 1 | (#2): new\_doc = get("docid").value   |
 | - | ------------------------------------- |
@@ -76,13 +76,13 @@ In the prior example, we saw that concurrent updates to the same document may re
 __Table 2\. CAS flow__
 |                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| \>>> result = cb1.get('docid') \>>> new\_doc = result.value \>>> print new\_doc {u'a\_field': u'a\_value'} \>>> cur\_cas = result.cas \>>> print cur\_cas 272002471883283 \>>> new\_doc\['field1'\] = 'value1' \>>> new\_result = cb1.replace(        'docid',        new\_doc,        cas=cur\_cas) Server’s CAS matches cur\_cas. New CAS assigned \>>> print new\_result.cas 195896137937427 | \>>> result = cb2.get('docid') \>>> new\_doc = result.value \>>> print new\_doc {u'a\_field': u'a\_value'} \>>> cur\_cas = result.cas \>>> print cur\_cas 272002471883283 \>>> new\_doc\['field2'\] = 'value2' \>>> new\_result = cb2.replace(        'docid',        new\_doc,        cas=cur\_cas) CAS on server differs: 195896137937427 vs 272002471883283! |
+| \>>> result = cb1.get('docid') \>>> new\_doc = result.value \>>> print new\_doc {u'a\_field': u'a\_value'} \>>> cur\_cas = result.cas \>>> print cur\_cas 272002471883283 \>>> new\_doc\['field1'\] = 'value1' \>>> new\_result = cb1.replace(        'docid',        new\_doc,        cas=cur\_cas) Server's CAS matches cur\_cas. New CAS assigned \>>> print new\_result.cas 195896137937427 | \>>> result = cb2.get('docid') \>>> new\_doc = result.value \>>> print new\_doc {u'a\_field': u'a\_value'} \>>> cur\_cas = result.cas \>>> print cur\_cas 272002471883283 \>>> new\_doc\['field2'\] = 'value2' \>>> new\_result = cb2.replace(        'docid',        new\_doc,        cas=cur\_cas) CAS on server differs: 195896137937427 vs 272002471883283! |
 
 ## [](#handling-cas-errors)Handling CAS errors
 
-If the item’s CAS has changed since the last operation performed by the current client (i.e. the document has been changed by another client), the CAS used by the application is considered _stale_. If a _stale_ CAS is sent to the server (via one of the mutation commands, as above), the server will reply with an error, and the Couchbase SDK will accordingly return this error to the application (either via return code or exception, depending on the language).
+If the item's CAS has changed since the last operation performed by the current client (i.e. the document has been changed by another client), the CAS used by the application is considered _stale_. If a _stale_ CAS is sent to the server (via one of the mutation commands, as above), the server will reply with an error, and the Couchbase SDK will accordingly return this error to the application (either via return code or exception, depending on the language).
 
-How to handle this error depends on the application logic. If the application wishes to simply insert a new property within the document (which is not dependent on other properties within the document), then it may simply retry the read-update cycle by retrieving the item (and thus getting the new CAS), performing the local modification and then uploading the change to the server. For example, if a document represents a user, and the application is simply updating a user’s information (like an email field), the method to update this information may look like this:
+How to handle this error depends on the application logic. If the application wishes to simply insert a new property within the document (which is not dependent on other properties within the document), then it may simply retry the read-update cycle by retrieving the item (and thus getting the new CAS), performing the local modification and then uploading the change to the server. For example, if a document represents a user, and the application is simply updating a user's information (like an email field), the method to update this information may look like this:
 
 ```scala
 def casLoop(collection: Collection,
@@ -149,7 +149,7 @@ __Table 3\. Behavior of various operations on a locked item__
 A document can be locked for a maximum of 30 seconds, after which the server will unlock it. This is to prevent misbehaving applications from blocking access to documents inadvertently. You can modify the time the lock is held for (though it can be no longer than 30 seconds).
 
 > [!CAUTION]
-> Setting a lock greater than 30 seconds will cause Couchbase Server to set the lock duration at the Server’s _default_ value, which is 15 seconds.
+> Setting a lock greater than 30 seconds will cause Couchbase Server to set the lock duration at the Server's _default_ value, which is 15 seconds.
 
 Be sure to keep note of the _cas_ value when locking a document. You will need it when unlocking or mutating the document. The following blocks show how to use `lock` and `unlock` operations.
 

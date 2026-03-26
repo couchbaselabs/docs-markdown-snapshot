@@ -3,7 +3,7 @@ title: Backfill Support for SQL++
 description: Configure the temporary working space for the SQL++ engine and its
   embedded GSI client.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/backfill.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/backfill.adoc[]
 ---
 
@@ -79,7 +79,7 @@ Results
 {"queryTmpSpaceDir":"/opt/couchbase/tmp","queryTmpSpaceSize":2048,"queryCurlWhitelist":{"all_access":false,"allowed_urls":["http://localhost:8091/settings/querySettings",""],"disallowed_urls":[""]}}
 ```
 
-At the same time, the logs will contain messages for every change coming from both query and GSI, so after executing Example 3’s CURL statement:
+At the same time, the logs will contain messages for every change coming from both query and GSI, so after executing Example 3's CURL statement:
 
 _time=2017-12-06T14:12:39.709-08:00 _level=INFO _msg=New settings received: {"query.settings.tmp_space_dir":"/opt/couchbase/tmp/","query.settings.tmp_space_size":2048}
 

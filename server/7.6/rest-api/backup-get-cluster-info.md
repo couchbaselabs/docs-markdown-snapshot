@@ -3,7 +3,7 @@ title: Get Information on the Cluster
 description: The Backup Service REST API allows information to be retrieved on a
   cluster's active, archived, and imported repositories.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/backup-get-cluster-info.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:backup-get-cluster-info.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:7.6@server:rest-api:backup-get-cluster-info.adoc[]
 
 # Get Information on the Cluster
 
-> The Backup Service REST API allows information to be retrieved on a cluster’s active, archived, and imported repositories. 
+> The Backup Service REST API allows information to be retrieved on a cluster's active, archived, and imported repositories. 
 
 ## [](#http-methods-and-uris)HTTP Methods and URIs
 

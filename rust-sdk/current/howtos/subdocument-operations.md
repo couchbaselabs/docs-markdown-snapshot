@@ -3,7 +3,7 @@ title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -189,7 +189,7 @@ match result {
 }
 ```
 
-Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here’s an example of one which replaces one path and removes another.
+Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here's an example of one which replaces one path and removes another.
 
 ```rust
 let result = collection

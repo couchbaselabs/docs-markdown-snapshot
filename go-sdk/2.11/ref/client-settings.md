@@ -3,7 +3,7 @@ title: Client Settings
 description: Client settings using <code>ConnectOptions</code> for
   bootstrapping, timeouts, reliability, and performance.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.11@go-sdk:ref:client-settings.adoc[]
 ---
 
@@ -56,13 +56,13 @@ This is set to `true` by default. Note, changing the setting will only affect Se
 
 ## [](#security-options)Security Options
 
-By default the client will connect to Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition, it’s possible to secure the connection using TLS by specifying these options in conjunction with a `couchbase://` connecting string scheme.
+By default the client will connect to Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition, it's possible to secure the connection using TLS by specifying these options in conjunction with a `couchbase://` connecting string scheme.
 
 Name: **TLSRootCAs**
 
 Default: `nil`
 
-TLSRootCAs enables the specification of the Root Certificate’s to use when validating a server certificate on the client-side.
+TLSRootCAs enables the specification of the Root Certificate's to use when validating a server certificate on the client-side.
 
 Name: **TLSSkipVerify**
 

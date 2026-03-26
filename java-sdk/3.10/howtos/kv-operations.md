@@ -3,7 +3,7 @@ title: Data Operations
 description: Data service offers the simplest way to retrieve or mutate data
   where the key is known.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@java-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -20,7 +20,7 @@ At its heart Couchbase Server is a high-performance key-value store, and the key
 
 A _document_ refers to an entry in the database (other databases may refer to the same concept as a _row_). A document has an ID (_primary key_ in other databases), which is unique to the document and by which it can be located. The document also has a value which contains the actual application data. See [the concept guide to _Documents_](../concept-docs/documents.md) for a deeper dive into documents in the Couchbase Data Platform.
 
-Before proceeding, make sure you’re familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK](../hello-world/start-using-sdk.md) section.
+Before proceeding, make sure you're familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK](../hello-world/start-using-sdk.md) section.
 
 The code samples below will use these imports:
 
@@ -59,11 +59,11 @@ import com.couchbase.client.java.kv.ReplicateTo;
 > [!TIP]
 > SQL++ vs. Key-Value
 > 
-> [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) can also be used to perform many single-document operations but we very strongly recommend using the key-value API for this instead, as it can be much more efficient. The request can go directly to the correct node, there’s no query parsing overhead, and it’s over the highly optimized memcached binary protocol.
+> [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) can also be used to perform many single-document operations but we very strongly recommend using the key-value API for this instead, as it can be much more efficient. The request can go directly to the correct node, there's no query parsing overhead, and it's over the highly optimized memcached binary protocol.
 
 ## [](#json)JSON
 
-The Couchbase Server is a key-value store that’s agnostic to what’s stored, but it’s very common to store JSON so most of the examples below will focus on that use-case.
+The Couchbase Server is a key-value store that's agnostic to what's stored, but it's very common to store JSON so most of the examples below will focus on that use-case.
 
 The Java SDK provides you with several options for working with JSON.
 
@@ -80,7 +80,7 @@ If you pass any object (like the provided `JsonObject` and `JsonArray`), includi
 
 Here is a simple upsert operation, which will insert the document if it does not exist, or replace it if it does.
 
-We’ll use the built-in JSON types for simplicity, but you can use different types if you want.
+We'll use the built-in JSON types for simplicity, but you can use different types if you want.
 
 ```java
 JsonObject content = JsonObject.create()
@@ -91,7 +91,7 @@ MutationResult result = collection.upsert("document-key", content);
 ```
 
 > [!NOTE]
-> All the examples here use the Java SDK’s simplest API, which blocks until the operation is performed. There’s also an asynchronous API that is based around Java’s `CompletableFuture`, and a reactive API built around [Project Reactor](https://projectreactor.io/). They can be accessed like this:
+> All the examples here use the Java SDK's simplest API, which blocks until the operation is performed. There's also an asynchronous API that is based around Java's `CompletableFuture`, and a reactive API built around [Project Reactor](https://projectreactor.io/). They can be accessed like this:
 > 
 > ```java
 > AsyncCollection asynccollection = collection.async();
@@ -116,7 +116,7 @@ try {
 
 ### [](#retrieving-documents)Retrieving documents
 
-We’ve tried upserting and inserting documents into Couchbase Server, let’s get them back:
+We've tried upserting and inserting documents into Couchbase Server, let's get them back:
 
 ```java
 try {
@@ -128,7 +128,7 @@ try {
 }
 ```
 
-Of course if we’re getting a document we probably want to do something with the content:
+Of course if we're getting a document we probably want to do something with the content:
 
 ```java
 GetResult found = collection.get("document-key");
@@ -155,17 +155,17 @@ content.put("modified", true).put("initial", false);
 collection.replace("my-document", content, replaceOptions().cas(result.cas()));
 ```
 
-We `upsert` an initial version of the document. We don’t care about the exact details of the result, just whether it succeeded or not, so do not assign a return value. Then we `get` it back into `doc` and pull out the document’s content as a `JsonObject` using `contentAs`. Afterwards, we update a field in the `JsonObject` with `put`. `JsonObject` is mutable, we don’t need to store the result of the `put`. Finally, we `replace` the document with the updated content, and a CAS value, storing the final result as `result`.
+We `upsert` an initial version of the document. We don't care about the exact details of the result, just whether it succeeded or not, so do not assign a return value. Then we `get` it back into `doc` and pull out the document's content as a `JsonObject` using `contentAs`. Afterwards, we update a field in the `JsonObject` with `put`. `JsonObject` is mutable, we don't need to store the result of the `put`. Finally, we `replace` the document with the updated content, and a CAS value, storing the final result as `result`.
 
 #### [](#what-is-cas)What is CAS?
 
-CAS, or Compare And Swap, is a form of optimistic locking. Every document in Couchbase has a CAS value, and it’s changed on every mutation. When you `get` a document you also get the document’s CAS, and then when it’s time to write the document, you send the same CAS back. If another thread or program has modified that document in the meantime, the Couchbase Server can detect you’ve provided a now-outdated CAS, and return an error. This provides cheap, safe concurrency. See [this detailed description of CAS](concurrent-document-mutations.md) for further details.
+CAS, or Compare And Swap, is a form of optimistic locking. Every document in Couchbase has a CAS value, and it's changed on every mutation. When you `get` a document you also get the document's CAS, and then when it's time to write the document, you send the same CAS back. If another thread or program has modified that document in the meantime, the Couchbase Server can detect you've provided a now-outdated CAS, and return an error. This provides cheap, safe concurrency. See [this detailed description of CAS](concurrent-document-mutations.md) for further details.
 
-In general, you’ll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent’s mutations.
+In general, you'll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent's mutations.
 
 ### [](#retrying-on-cas-failures)Retrying on CAS failures
 
-But if we get a CAS mismatch, we usually just want to retry the operation. Let’s see a more advanced `replace` example that shows one way to handle this:
+But if we get a CAS mismatch, we usually just want to retry the operation. Let's see a more advanced `replace` example that shows one way to handle this:
 
 ```java
 String id = "my-document";
@@ -201,7 +201,7 @@ try {
 }
 ```
 
-Like `replace`, `remove` also optionally takes the CAS value if you want to make sure you are only removing the document if it hasn’t changed since you last fetched it.
+Like `replace`, `remove` also optionally takes the CAS value if you want to make sure you are only removing the document if it hasn't changed since you last fetched it.
 
 ## [](#durability)Durability
 
@@ -270,7 +270,7 @@ collection.replace("my-document3", json,
     replaceOptions().preserveExpiry(true));
 ```
 
-Prior to Couchbase 7.0, it’s necessary to fetch the previous expiry and set it again:
+Prior to Couchbase 7.0, it's necessary to fetch the previous expiry and set it again:
 
 ```java
 GetResult found = collection.get("my-document3", getOptions().withExpiry(true));
@@ -290,7 +290,7 @@ GetResult result = collection.getAndTouch("my-document3", Duration.ofDays(1));
 The value of a document can be increased or decreased atomically using `collecion.binary().increment()` and `collection.binary().decrement()`.
 
 > [!NOTE]
-> Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change
+> Increment & Decrement are considered part of the 'binary' API and as such may still be subject to change
 
 See the [API Reference](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/kv/Increment.html) for full details.
 
@@ -320,14 +320,14 @@ MutationResult result = usersCollection.upsert("user-key", content);
 
 ## [](#kv-range-scan)KV Range Scan
 
-A range scan gives you documents from a collection, even if you don’t know the document IDs. This feature requires Couchbase Server 7.6 or newer.
+A range scan gives you documents from a collection, even if you don't know the document IDs. This feature requires Couchbase Server 7.6 or newer.
 
 > [!TIP]
 > KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 
-Here’s an example of a KV range scan that gets all documents in a collection:
+Here's an example of a KV range scan that gets all documents in a collection:
 
 KV Range Scan for all documents in a collection
 
@@ -338,7 +338,7 @@ Stream<ScanResult> results = collection.scan(
 results.forEach(System.out::println);
 ```
 
-| **1** | The ScanType.rangeScan() method has two nullable parameters: from and to. If you pass null like in this example, you’ll get all documents in the collection. These parameters are for advanced use cases; you probably won’t need to specify them. Instead, it’s more common to use the "prefix" scan type shown in the next example. |
+| **1** | The ScanType.rangeScan() method has two nullable parameters: from and to. If you pass null like in this example, you'll get all documents in the collection. These parameters are for advanced use cases; you probably won't need to specify them. Instead, it's more common to use the "prefix" scan type shown in the next example. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### [](#kv-range-scan-prefix)Prefix scan

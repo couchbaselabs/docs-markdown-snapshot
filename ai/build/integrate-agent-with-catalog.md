@@ -3,7 +3,7 @@ title: Integrate an Agent with the Agent Catalog
 description: Use the Couchbase Agent Catalog to create your own custom AI agents
   with your preferred Large Language Model (LLM) and agent framework.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/integrate-agent-with-catalog.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:build:integrate-agent-with-catalog.adoc[]
 ---
 
@@ -41,7 +41,7 @@ The Agent Catalog does not execute tools itself - tool execution is managed by y
 * Agent handoffs
 * LLM generations
 
-You can also use it to manage your agent’s tools and prompts, through [Git](https://git-scm.com/) versioning and source control.
+You can also use it to manage your agent's tools and prompts, through [Git](https://git-scm.com/) versioning and source control.
 
 You can create new projects with the Agent Catalog, or integrate it into an existing project.
 
@@ -145,14 +145,14 @@ To start developing your own AI agent with the Agent Catalog:
 1. [Build any tools or prompts you want to use in your AI agent](#build).
 2. [Index and publish your tools and prompts to the Agent Catalog and your Couchbase cluster](#index-publish).
 3. [Call a tool or prompt from inside your agent code](#call).
-4. [Configure and use the Agent Tracer to analyze and monitor your agent’s activity and performance](agent-tracer/agent-tracer.md).
+4. [Configure and use the Agent Tracer to analyze and monitor your agent's activity and performance](agent-tracer/agent-tracer.md).
 
 If you want to integrate the Agent Catalog with an existing agent:
 
 1. [Configure your existing tools to be indexed by the Agent Catalog](#add-existing-tool).
 2. [Index and publish your tools and prompts to the Agent Catalog and your Couchbase cluster](#index-publish).
 3. [Adjust your code to call the tool or prompt from the catalog inside your agent code](#call).
-4. [Configure and use the Agent Tracer to analyze and monitor your agent’s activity and performance](agent-tracer/agent-tracer.md).
+4. [Configure and use the Agent Tracer to analyze and monitor your agent's activity and performance](agent-tracer/agent-tracer.md).
 
 If you need to, at any time, you can also [Clean or Delete Data From Agent Catalog](#delete).
 
@@ -173,7 +173,7 @@ The Agent Catalog converts the SQL++ queries, semantic searches, and HTTP reques
 * HTTP Request
 * Prompt
 
-To add a new Python function as a tool for your agent, you can use the Agent Catalog command-line tool’s `add` command:
+To add a new Python function as a tool for your agent, you can use the Agent Catalog command-line tool's `add` command:
 
 ```console
 agentc add 
@@ -215,9 +215,9 @@ def my_python_function(<<< Replace me with your input type! >>>) -> <<< Replace 
 
 You can also create a new Python function file manually or configure an existing Python function for your catalog. See [Add Existing Tools or Prompts to the Agent Catalog](#add-existing-tool).
 
-You can reference tools that have their Python source code outside your project’s GitHub repository, as long as they can be imported with an `import` statement.
+You can reference tools that have their Python source code outside your project's GitHub repository, as long as they can be imported with an `import` statement.
 
-You can add a SQL++ query that you want to use to search for data inside your Couchbase cluster. You can add any existing SQL++ query into a `.sqlpp` file to use with your agent. Use the Agent Catalog’s `add` command to create a new query:
+You can add a SQL++ query that you want to use to search for data inside your Couchbase cluster. You can add any existing SQL++ query into a `.sqlpp` file to use with your agent. Use the Agent Catalog's `add` command to create a new query:
 
 ```console
 agentc add
@@ -288,7 +288,7 @@ Add a new semantic search as a tool to your agent to return content from a seman
 * A Vector Search index that includes the document field that contains your vector embeddings. For more information about how to create a Vector Search index, see [Create a Search Vector Index in Quick Mode](../../cloud/vector-search/create-vector-search-index-ui.md).
 * The name of the embedding model used to create the vector embeddings in that field.
 
-To add a new semantic search tool, use the Agent Catalog’s `add` command:
+To add a new semantic search tool, use the Agent Catalog's `add` command:
 
 ```console
 agentc add
@@ -386,7 +386,7 @@ Add a new HTTP request as an agent tool to return operations from an [OpenAPI sp
 
 You must have an existing OpenAPI specification in JSON or YAML format, available in your project or hosted on a URL.
 
-To add a new HTTP request tool, use the Agent Catalog’s `add` command:
+To add a new HTTP request tool, use the Agent Catalog's `add` command:
 
 ```console
 agentc add
@@ -429,11 +429,11 @@ open_api:
       method: <<< Replace me with a method! >>>
 ```
 
-Add a new prompt to specify tools, instructions, or context to guide your AI agent’s behavior, without the use of additional formatting or templating.
+Add a new prompt to specify tools, instructions, or context to guide your AI agent's behavior, without the use of additional formatting or templating.
 
 Author your prompts in separate `.prompt` files, instead of embedding them directly in your code.
 
-To add a new prompt, you can use the Agent Catalog’s `add` command:
+To add a new prompt, you can use the Agent Catalog's `add` command:
 
 ```console
 agentc add
@@ -676,7 +676,7 @@ After you have written new tools or prompts or prepared existing tools and promp
 
 When you publish, you send these JSON index files to the Couchbase cluster configured in your environment variables, where you can [Use the Agent Catalog Tools and Prompts Hub](tools-prompts-hub.md).
 
-The Tools and Prompts Hub and the Agent Catalog rely on Git for versioning and source control for your tools and prompts. It’s important to push your agent project to Git, and index your tools and prompts often.
+The Tools and Prompts Hub and the Agent Catalog rely on Git for versioning and source control for your tools and prompts. It's important to push your agent project to Git, and index your tools and prompts often.
 
 To index and publish your tools or prompts:
 
@@ -755,7 +755,7 @@ cmd_publish(
 > [!TIP]
 > The code samples in this section are only partial code samples, to show you the specific code you need to add to your own agent. Click **View on GitHub** to view the full example code and view the necessary imports and other information.
 
-To call a tool or prompt from your agent’s code, call the `catalog.find()` method. For example, to search for a tool:
+To call a tool or prompt from your agent's code, call the `catalog.find()` method. For example, to search for a tool:
 
 ```python
         tool_search = catalog.find("tool", name="search_vector_database")

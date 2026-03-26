@@ -3,7 +3,7 @@ title: Platform Introduction
 description: A simple Java orientation intro for <em>non-Java</em> folk who are
   evaluating the Couchbase Scala SDK.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/hello-world/pages/platform-help.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:java-sdk:hello-world:platform-help.adoc[]
 ---
 
@@ -27,7 +27,7 @@ To install the JDK we are going to use a JVM-management tool called `sdkman`.
 
 ### [](#sdkman)SDKMAN!
 
-SDKMAN! — the Software Development Kit Manager — enables multiple Java versions and runtimes to be installed and managed, without intefering with your system’s default JVM.
+SDKMAN! — the Software Development Kit Manager — enables multiple Java versions and runtimes to be installed and managed, without intefering with your system's default JVM.
 
 This third party tool is unnecessary in most production environments, but ideal for development machines. Installation instructions can be found on the [SDKMAN! website](https://sdkman.io/install).
 

@@ -2,7 +2,7 @@
 title: Amazon Web Services (AWS)
 description: Couchbase Capella supports deploying clusters onto Amazon Web Services (AWS).
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/aws.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:reference:aws.adoc[]
 ---
 
@@ -17,7 +17,7 @@ Couchbase Capella provides fully managed Couchbase Server clusters that can be d
 
 ## [](#supported-regions)Supported Regions
 
-Couchbase Capella’s fully managed DBaaS supports the following AWS regions.
+Couchbase Capella's fully managed DBaaS supports the following AWS regions.
 
 * Americas
 * Europe
@@ -87,7 +87,7 @@ Clusters have a minimum of 3 nodes and a maximum of 27.
 Clusters consist of Service Groups that include the Couchbase services deployed and system resources. Each Service Group has a node quantity to represent the number of nodes in the cluster with that configuration. Individual Service Groups can have between 2 and 27 nodes but cannot collectively exceed 27\. The Service Group that includes the [Data Service](../clusters/data-service/data-service.md) requires at least 3 nodes.
 
 > [!NOTE]
-> As they’re intended for evaluation purposes only, free tier operational clusters only include 1 node. For paid single-node clusters deployed under a Basic or Developer Pro plan, Couchbase does not offer SLAs.
+> As they're intended for evaluation purposes only, free tier operational clusters only include 1 node. For paid single-node clusters deployed under a Basic or Developer Pro plan, Couchbase does not offer SLAs.
 
 ### [](#compute-and-memory)Compute and Memory
 

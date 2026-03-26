@@ -4,7 +4,7 @@ description: Couchbase Server creates a <em>report</em> for every rebalance that
   is performed. This section explains how to obtain the report, and how to read
   it.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rebalance-reference/pages/rebalance-reference.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rebalance-reference:rebalance-reference.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:server:rebalance-reference:rebalance-reference.adoc[]
 
 ## [](#Obtaining-a-rebalance-report)Obtaining a Rebalance Report
 
-Couchbase Server automatically creates a _rebalance report_ for every rebalance that occurs on the cluster. The report’s content consists of a JSON document, which provides statistics for every service that has been involved in the rebalance. On conclusion of the rebalance, the report can be accessed in any of the following ways:
+Couchbase Server automatically creates a _rebalance report_ for every rebalance that occurs on the cluster. The report's content consists of a JSON document, which provides statistics for every service that has been involved in the rebalance. On conclusion of the rebalance, the report can be accessed in any of the following ways:
 
 * By means of Couchbase Web Console, as described in [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md).
 * By means of the REST API, as described in [Getting Cluster Tasks](../rest-api/rest-get-cluster-tasks.md).
@@ -28,7 +28,7 @@ For more information on logging, see [Manage Logging](../manage/manage-logging/m
 
 Each rebalance report consists of a JSON document whose principal object is `stage_info`. This itself contains an object corresponding to each rebalance _stage_: one stage has occurred for each of the services deployed on the cluster. Therefore, if all six services have been deployed, six stages occur in a successful rebalance; and objects for `analytics`, `eventing`, `search`, `index` `query`, and `data` are provided.
 
-Among the details provided for each service are the times at which rebalance-processes started and ended, the durations of rebalance-processes, and the numbers of documents already handled and still to be handled. When rebalance concludes successfully, a report is duly generated, with all fields corresponding to the successful completion of the rebalance-processes they represent. In cases where rebalance is interrupted (for example, by the user’s left-clicking the **Stop Rebalance** button, in Couchbase Web Console, or due to auto-failover), a generated report will describe a partially unsuccessful rebalance; indicating, in certain fields, an incomplete or unstarted rebalance-process, by means of the value `false`.
+Among the details provided for each service are the times at which rebalance-processes started and ended, the durations of rebalance-processes, and the numbers of documents already handled and still to be handled. When rebalance concludes successfully, a report is duly generated, with all fields corresponding to the successful completion of the rebalance-processes they represent. In cases where rebalance is interrupted (for example, by the user's left-clicking the **Stop Rebalance** button, in Couchbase Web Console, or due to auto-failover), a generated report will describe a partially unsuccessful rebalance; indicating, in certain fields, an incomplete or unstarted rebalance-process, by means of the value `false`.
 
 ## [](#standard-fields)Standard Fields
 
@@ -128,7 +128,7 @@ The `details` provided for the Data Service are provided _per bucket_. Therefore
 
 The structure for each bucket may provide:
 
-* `compactionInfo`. Information on compaction, if it is performed for the bucket. If compaction is not performed, the `compactionInfo` structure is _not_ provided. If the `compactionInfo` structure _is_ provided, it gives the `averageTime` required for the bucket’s compaction, _per node_, in milliseconds.
+* `compactionInfo`. Information on compaction, if it is performed for the bucket. If compaction is not performed, the `compactionInfo` structure is _not_ provided. If the `compactionInfo` structure _is_ provided, it gives the `averageTime` required for the bucket's compaction, _per node_, in milliseconds.
 * `vbucketLevelInfo`. Information on the _phases_ whereby the vBuckets were moved during rebalance. If no vBucket movement occurred, the `vbucketLevelInfo` structure is _not_ provided. If the `vbucketLevelInfo` structure _is_ provided, it includes the following:
 
   * Fields that provide the `averageTime` for the `move`, `backfill`, `takeover`, and `persistence` phases for the bucket. For an explanation of these terms, see [Rebalance and the Data Service](../learn/clusters-and-availability/rebalance.md#rebalancing-the-data-service). Times are provided in milliseconds, to fourteen decimal places. The `totalCount` of vBuckets and `remainingCount` are also provided for the `move` phase: in a completed report, the `remainingCount` is expected to be zero.

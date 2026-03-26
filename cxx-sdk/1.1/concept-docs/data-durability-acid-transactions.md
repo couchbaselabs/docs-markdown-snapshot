@@ -3,7 +3,7 @@ title: Data Modelling, Durability, and Consistency
 description: Performance, availability, consistency -- balance your priorities,
   and model your data to achieve these goals.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/concept-docs/pages/data-durability-acid-transactions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.1@cxx-sdk:concept-docs:data-durability-acid-transactions.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:1.1@cxx-sdk:concept-docs:data-durability-acid-transactions.adoc[]
 
 > Performance, availability, consistency — balance your priorities, and model your data to achieve these goals. 
 
-You want to query your data, but does that always mean a SQL++ query to the Query Service? The CRUD API of the SQL++ Query service is mirrored by the Data Service’s API, but without the need for indexes, and using a binary protocol gives faster access than streaming JSON from the Query Service.
+You want to query your data, but does that always mean a SQL++ query to the Query Service? The CRUD API of the SQL++ Query service is mirrored by the Data Service's API, but without the need for indexes, and using a binary protocol gives faster access than streaming JSON from the Query Service.
 
 ```c++
 std::string document_id{ "document_key" };
@@ -31,20 +31,20 @@ if (err.ec() == couchbase::errc::key_value::document_not_found) {
 }
 ```
 
-At its heart, a database is in the business of storing data and letting you query and retrieve it. Putting a database on the network — in particular a remote network, or another company’s cloud service — and partitioning the data across multiple nodes, with several replicas, does not alter this. It does, however, mean that choices must be made to optimize for consistency or availability of data.
+At its heart, a database is in the business of storing data and letting you query and retrieve it. Putting a database on the network — in particular a remote network, or another company's cloud service — and partitioning the data across multiple nodes, with several replicas, does not alter this. It does, however, mean that choices must be made to optimize for consistency or availability of data.
 
 > [!TIP]
 > Skipping Ahead
 > 
 > This page lays out some of the things you need to consider when designing an app. If you have already reached your decisions, and want to work with the Data API, then skip straight to our pages on [Data Operations](../howtos/kv-operations.md), [Sub-Document Operations](../howtos/subdocument-operations.md), or [Concurrent Document Mutations](../howtos/concurrent-document-mutations.md), and try some of the code snippets there. Or see some of the other links in the [Further Reading](#further-reading) section.
 
-Whether you go through the Data Service, or Query, you’ll find that both follow the typical DML (Data Manipulation Language) patterns that you encounter in the relational database world. See the [SDK Query introduction](querying-your-data.md) for choices of SQL++ queries for OLTP (transactional queries) and OLAP (analytics) — including real-time analytics — as well as fuzzy searches and vector search.
+Whether you go through the Data Service, or Query, you'll find that both follow the typical DML (Data Manipulation Language) patterns that you encounter in the relational database world. See the [SDK Query introduction](querying-your-data.md) for choices of SQL++ queries for OLTP (transactional queries) and OLAP (analytics) — including real-time analytics — as well as fuzzy searches and vector search.
 
 Designing an application to offer guarantees of durability or consistency in a networked environment is hard. The newcomer to the area has to wrestle with concepts like [CAP Theorum](https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/) and the [many possible interpretations](https://en.wikipedia.org/wiki/Isolation%5F%28database%5Fsystems%29) of ACID transactions. Here we hope to keep it _relatively_ simple, with a look at which Couchbase features give you which guarantees, when you may prefer to use them, and — perhaps equally important, though sometimes overlooked — what is the performance cost of these choices.
 
 ## [](#data-and-good-schema-design)Data and Good Schema Design
 
-Each level of durability guarantee carries a price in time to persist to replicas or to disk. Transactional guarantees across multiple documents add another layer of performance cost — something readily borne when the data is important enough, and justifiably discarded for many categories of transient and unimportant data. However, many data fall into an intermediate category, and here the atomic consistency decision is made by what’s tolerable for read and write times. In this case, consider if a tweak to the schema, to bring items into the same document, can give you transactional guarantees without the performance penalty of multi-document transactions.
+Each level of durability guarantee carries a price in time to persist to replicas or to disk. Transactional guarantees across multiple documents add another layer of performance cost — something readily borne when the data is important enough, and justifiably discarded for many categories of transient and unimportant data. However, many data fall into an intermediate category, and here the atomic consistency decision is made by what's tolerable for read and write times. In this case, consider if a tweak to the schema, to bring items into the same document, can give you transactional guarantees without the performance penalty of multi-document transactions.
 
 Consider, too, that many operations are performed at the _collection_ level, and keeping documents in the same collection can make for speedier indexing and queries — whether SQL++ or Search.
 
@@ -58,9 +58,9 @@ When the relational model was proposed, more than 50 years ago, limitations in a
 
 ### [](#collections-and-scopes)Collections and Scopes
 
-Couchbase’s atomic units of data are documents, stored as key-value pairs. The value can be anything, but storing in JSON format enables indexing, searching, and many useful ways of working with the data from the SDK.
+Couchbase's atomic units of data are documents, stored as key-value pairs. The value can be anything, but storing in JSON format enables indexing, searching, and many useful ways of working with the data from the SDK.
 
-Collections are arbitary groupings of the data documents. Ones that suit your object model. For example, one collection of students enrolled at the college and one collection of courses available for them to take. Notionally you may view them as equivalent to an RDBMS table — but it’s up to you.
+Collections are arbitary groupings of the data documents. Ones that suit your object model. For example, one collection of students enrolled at the college and one collection of courses available for them to take. Notionally you may view them as equivalent to an RDBMS table — but it's up to you.
 
 Within a bucket, you can organize your collections into scopes — some methods are available at the bucket level, but Search and Query Services favour Scope-level indexing and querying for greater efficiency.
 
@@ -144,7 +144,7 @@ Couchbase Distributed [ACID (atomic, consistent, isolated, and durable)](../../.
 
 ### [](#further-reading)Further Reading
 
-This section of the docs covers the Data Service — Couchbase’s key-value document store, the heart of the database — from the client perspective. It addresses:
+This section of the docs covers the Data Service — Couchbase's key-value document store, the heart of the database — from the client perspective. It addresses:
 
 * Schemas for semi-structured data.
 * The sub-document API for retrieving and modifying only a portion of a document (saving network bandwidth and transmission time).

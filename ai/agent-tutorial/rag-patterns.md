@@ -3,7 +3,7 @@ title: About RAG Blueprints
 description: Learn about common RAG (Retrieval-Augmented Generation) patterns
   and how they are applied in knowledge bases, support, and search.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/rag-patterns.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:agent-tutorial:rag-patterns.adoc[]
 ---
 
@@ -14,9 +14,9 @@ link: xref:ai:agent-tutorial:rag-patterns.adoc[]
 
 > Learn about common RAG (Retrieval-Augmented Generation) patterns and how they are applied in knowledge bases, support, and search. 
 
-## [](#whats-rag)What’s RAG?
+## [](#whats-rag)What's RAG?
 
-Retrieval-Augmented Generation (RAG) is a technique that combines a Large Language Model (LLM) with an external knowledge source. Instead of relying only on an LLM’s training data, RAG retrieves relevant information from a database, document store, or [search index](../../cloud/vector-index/vectors-and-indexes-overview.md) and injects it into the LLM’s prompt.
+Retrieval-Augmented Generation (RAG) is a technique that combines a Large Language Model (LLM) with an external knowledge source. Instead of relying only on an LLM's training data, RAG retrieves relevant information from a database, document store, or [search index](../../cloud/vector-index/vectors-and-indexes-overview.md) and injects it into the LLM's prompt.
 
 RAG allows an LLM to:
 
@@ -56,7 +56,7 @@ The typical logic flow in this RAG blueprint is:
 
 1. The user asks a question.
 2. The system retrieves the most relevant documents or passages from the document set.
-3. The retrieved text is injected into the LLM’s prompt.
+3. The retrieved text is injected into the LLM's prompt.
 4. The LLM generates a grounded answer, citing or summarizing the sources.
 
 ![Diagram](_images/diag-ad5b92fc90727632ea2d8e9cc6a993a3518a4910.svg) 
@@ -79,7 +79,7 @@ If you use low-dimension embeddings for your RAG system, your retrieval results 
 
 Source attribution
 
-When retrieving documents through RAG, it’s important for your agent to cite its sources and return them in results.
+When retrieving documents through RAG, it's important for your agent to cite its sources and return them in results.
 
 This can also help make debugging your agent code easier.
 
@@ -112,7 +112,7 @@ This is even more important if your document set is expected to change often, an
 
 For a knowledge base assistant, consider using an embedding model like `nv-embedqa-mistral-7b-v2`.
 
-In general, choose a richer model that gives better semantic embeddings, or higher recall scores, or a model that’s tuned to your specific use case. Better semantics helps connect information across the chunks in your documents.
+In general, choose a richer model that gives better semantic embeddings, or higher recall scores, or a model that's tuned to your specific use case. Better semantics helps connect information across the chunks in your documents.
 
 For more information about how to deploy an embedding model on Capella, like `nv-embedqa-mistral-7b-v2`, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md).
 
@@ -151,7 +151,7 @@ Users might provide ambiguous or incomplete information in their initial query. 
 
 You may want your LLM to generate clarifying questions based on few-shot examples, or based on the knowledge available from its initial query.
 
-After generating a clarifying question, you also need to figure out how to incorporate that context into the agent’s memory to try and generate another response - whether that’s another question or a final answer.
+After generating a clarifying question, you also need to figure out how to incorporate that context into the agent's memory to try and generate another response - whether that's another question or a final answer.
 
 Escalation rules
 
@@ -159,8 +159,8 @@ In a customer support RAG app, you want your agent to know when to hand off to a
 
 * The user specifically requests it.
 * The user has shown escalating frustration.
-* The user asks a question outside the agent’s scope.
-* The agent fails to determine the user’s intent.
+* The user asks a question outside the agent's scope.
+* The agent fails to determine the user's intent.
 * The agent has encountered technical problems.
 
 Make sure that your handoff passes over all available information gathered by the AI agent to the human agent.
@@ -169,7 +169,7 @@ Guardrails
 
 Guardrails are especially important in a customer support scenario. You must make sure that the app does not provide unsafe, incorrect, or otherwise harmful information or instructions to the user.
 
-You might want your guardrails to filter unsafe or biased content from user queries. You could also want to make sure that no sensitive information from your app’s available resources, such as information that could personally identify a customer, gets returned in responses.
+You might want your guardrails to filter unsafe or biased content from user queries. You could also want to make sure that no sensitive information from your app's available resources, such as information that could personally identify a customer, gets returned in responses.
 
 Guardrails could be as simple as keyword or semantic filtering, or as complex as contextual grounding checks and AI-powered moderation.
 
@@ -236,7 +236,7 @@ Based on the specifics of your search agent, you need to balance finding enough 
 
 More exhaustive searches use more resources, as you compare a greater number of embeddings. This more precise search might be necessary for queries that require highly accurate results, such as in a medical research context.
 
-For a search query that’s more focused on brainstorming or answering a more complex question, it might be better to return more results, to make sure you do not leave anything out.
+For a search query that's more focused on brainstorming or answering a more complex question, it might be better to return more results, to make sure you do not leave anything out.
 
 Result transparency
 

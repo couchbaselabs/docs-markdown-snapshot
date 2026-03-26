@@ -4,7 +4,7 @@ description: Errors are inevitable. The developer's job is to be prepared for
   whatever is likely to come up -- and to try and be prepared for anything that
   conceivably could come up.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@python-sdk:howtos:error-handling.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:4.3@python-sdk:howtos:error-handling.adoc[]
 
 # Error Handling
 
-> Errors are inevitable. The developer’s job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. 
+> Errors are inevitable. The developer's job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. 
 
 Couchbase gives you a lot of flexibility, but it is recommended that you equip yourself with an understanding of the possibilities.
 
@@ -170,7 +170,7 @@ except CASMismatchException:
 
 ### [](#ambiguity)Ambiguity
 
-There are situations with any distributed system in which it is simply impossible to know for sure if the operation completed successfully or not. Take this as an example: your application requests that a new document be created on Couchbase Server. This completes, but, just before the server can notify the client that it was successful, a network switch dies and the application’s connection to the server is lost. The client will timeout waiting for a response and will raise a `TimeoutException`, but it’s ambiguous to the app whether the operation succeeded or not.
+There are situations with any distributed system in which it is simply impossible to know for sure if the operation completed successfully or not. Take this as an example: your application requests that a new document be created on Couchbase Server. This completes, but, just before the server can notify the client that it was successful, a network switch dies and the application's connection to the server is lost. The client will timeout waiting for a response and will raise a `TimeoutException`, but it's ambiguous to the app whether the operation succeeded or not.
 
 Another ambiguous exception is `DurabilitySyncWriteAmbiguousException`, which can returned when performing a durable operation. This also indicates that the operation may or may not have succeeded: though when using durability you are guaranteed that the operation will either have been applied to all replicas, or none.
 

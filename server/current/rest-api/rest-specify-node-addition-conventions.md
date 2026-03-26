@@ -4,7 +4,7 @@ description: The REST API allows node-naming conventions to be configured such
   that only nodes whose names conform to those conventions can be added to the
   cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-specify-node-addition-conventions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rest-specify-node-addition-conventions.adoc[]
 ---
 
@@ -107,11 +107,11 @@ The node `10.144.231.103` has the following `/etc/hosts` file:
 
 It thus recognizes itself as `com.prod.ubuntu`, and recognizes `10.144.231.101` as `com.test.ubuntu`.
 
-Note that on each of these nodes, when Couchbase Server is initialized and provisioned, the node’s FQDN (such as `com.test.ubuntu`) must be specified as the node-name. This can be accomplished by means of the UI (see [Configure Couchbase Server](../manage/manage-nodes/create-cluster.md#configure-couchbase-server)), the REST API (see [Initializing a Cluster](rest-initialize-cluster.md)), or the CLI (see [cluster-init](../cli/cbcli/couchbase-cli-cluster-init.md)).
+Note that on each of these nodes, when Couchbase Server is initialized and provisioned, the node's FQDN (such as `com.test.ubuntu`) must be specified as the node-name. This can be accomplished by means of the UI (see [Configure Couchbase Server](../manage/manage-nodes/create-cluster.md#configure-couchbase-server)), the REST API (see [Initializing a Cluster](rest-initialize-cluster.md)), or the CLI (see [cluster-init](../cli/cbcli/couchbase-cli-cluster-init.md)).
 
 ### [](#retrieving-the-current-setting)Retrieving the Current Setting
 
-Executed on the one-node cluster `10.144.231.101`, the following command retrieves the cluster’s current security settings. Here, the output is piped to the [jq](https://stedolan.github.io/jq/) command, to improve readability.
+Executed on the one-node cluster `10.144.231.101`, the following command retrieves the cluster's current security settings. Here, the output is piped to the [jq](https://stedolan.github.io/jq/) command, to improve readability.
 
 curl -X GET http://localhost:8091/settings/security -u Administrator:password | jq '.'
 
@@ -129,7 +129,7 @@ This shows that the default setting, the wildcard, is currently enforced. This m
 
 ### [](#changing-the-setting-specifying-an-fqdn)Changing the Setting, Specifying an FQDN
 
-Executed on `10.144.231.101`, the following command changes the cluster’s setting:
+Executed on `10.144.231.101`, the following command changes the cluster's setting:
 
 curl -X POST http://com.test.ubuntu:8091/settings/security \
 -d 'allowedHosts=["*.test.ubuntu", "127.0.0.1"]' \
@@ -211,7 +211,7 @@ Following node-addition, _rebalance_ should be performed, so that the added node
 
 ## [](#joining-a-cluster)Joining a Cluster
 
-The examples on this page all feature the _adding_ of a node to a cluster. A node can also be _joined_ to a cluster. Note that _joining_ and _adding_ are identically affected by the cluster’s established naming convention: therefore, if the node to be joined is not conformantly named, the operation fails with the message: `Host <name> is not allowed to join. Check allowedHosts setting.`
+The examples on this page all feature the _adding_ of a node to a cluster. A node can also be _joined_ to a cluster. Note that _joining_ and _adding_ are identically affected by the cluster's established naming convention: therefore, if the node to be joined is not conformantly named, the operation fails with the message: `Host <name> is not allowed to join. Check allowedHosts setting.`
 
 ## [](#see-also)See Also
 

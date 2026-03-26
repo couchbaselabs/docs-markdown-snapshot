@@ -3,7 +3,7 @@ title: Choose the Right Vector Index
 description: Use Couchbase Server's vector indexes to find documents based on
   content similarity or semantic meaning.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/use-vector-indexes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:vector-index:use-vector-indexes.adoc[]
 ---
 
@@ -12,13 +12,13 @@ link: xref:server:vector-index:use-vector-indexes.adoc[]
 
 # Choose the Right Vector Index
 
-> Use Couchbase Server’s vector indexes to find documents based on content similarity or semantic meaning. 
+> Use Couchbase Server's vector indexes to find documents based on content similarity or semantic meaning. 
 
 Couchbase Server supports three types of vector indexes. You store vectors as attributes in your documents and index them using one of the three types of vector indexes. You can then find relevant data by executing queries of the vector attributes which use the index to find similar vectors.
 
 As with other data types in Couchbase Server, indexes make searching for similar vectors much faster. Using indexes for vector searches is especially important due to the size of vector data. Vectors contain hundreds to thousands of dimensions. Using indexes reduces the resources needed to perform vector searches.
 
-If you’re unfamiliar with vectors and vector indexing, see [Use Vector Indexes for AI Applications](vectors-and-indexes-overview.md) for an overview.
+If you're unfamiliar with vectors and vector indexing, see [Use Vector Indexes for AI Applications](vectors-and-indexes-overview.md) for an overview.
 
 The three types of Couchbase Server vector indexes are:
 
@@ -75,7 +75,7 @@ The following table summarizes the differences between the three types of vector
 | **Limitations**                | Indexing can take longer relative to other index types                                                                                                                                                                                                         | Lower accuracy than Hyperscalar when using lower quantizations (fewer bits per vector) Scalar values filter data before vector search, potentially missing relevant results (see [note](#scalar-handling))                                                                         | Not as efficient as Composite Vector indexes if the search includes purely numeric or scalar values Does not scale to the extent of the other index types Limited to approximately 100 million documents |
 
 > [!NOTE]
-> A key difference between Hyperscale and Composite Vector indexes is how they handle scalar values in queries. Hyperscale Vector indexes compare vectors and scalar values at the same time. Composite Vector indexes always apply scalar filters first, and only perform vector searches on the results. This behavior means Composite Index searches can exclude relevant vectors from the search result. However, it’s useful for cases where you must exclude some vectors (even the nearest neighbors) based on scalar values. For example, it’s useful when meeting compliance requirements.
+> A key difference between Hyperscale and Composite Vector indexes is how they handle scalar values in queries. Hyperscale Vector indexes compare vectors and scalar values at the same time. Composite Vector indexes always apply scalar filters first, and only perform vector searches on the results. This behavior means Composite Index searches can exclude relevant vectors from the search result. However, it's useful for cases where you must exclude some vectors (even the nearest neighbors) based on scalar values. For example, it's useful when meeting compliance requirements.
 
 When choosing which type of index to use, consider the following:
 
@@ -88,7 +88,7 @@ Each type of index works best for different types of applications. The following
 
 ### [](#hyperscale-vector-index-applications)Hyperscale Vector Index Applications
 
-Hyperscale Vector indexes contain a single vector column. They excel at indexing huge datasets that can scale into the billions of documents. They’re optimized for pure vector searches, such as content discovery or recommendations.
+Hyperscale Vector indexes contain a single vector column. They excel at indexing huge datasets that can scale into the billions of documents. They're optimized for pure vector searches, such as content discovery or recommendations.
 
 The Hyperscale Vector index works well for applications such as:
 
@@ -98,7 +98,7 @@ Embedded vectors for images often contain up to thousands of dimensions, which H
 
 Chatbot context matching
 
-Chatbot context for workflows like retreival-augmented generation (RAG) requires a huge dataset for accurate results. The large dataset gives the chatbot a depth of knowledge that’s not necessary in simpler applications.
+Chatbot context for workflows like retreival-augmented generation (RAG) requires a huge dataset for accurate results. The large dataset gives the chatbot a depth of knowledge that's not necessary in simpler applications.
 
 Anomaly detection
 
@@ -168,7 +168,7 @@ Search Vector Indexes contain a single vector column in addition to a Full-Text 
 
 E-Commerce product recommendations
 
-E-Commerce applications can use scalar, text, and vector searches to find products that match a customer’s search. For example, a customer could search for red sneakers (text) that cost less than $100 (scalar) and are similar to an uploaded image of a sneaker (vector).
+E-Commerce applications can use scalar, text, and vector searches to find products that match a customer's search. For example, a customer could search for red sneakers (text) that cost less than $100 (scalar) and are similar to an uploaded image of a sneaker (vector).
 
 Travel recommendations
 

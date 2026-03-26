@@ -1,7 +1,7 @@
 ---
 title: Develop with Capella Analytics
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/columnar-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home::columnar-sdk.adoc[]
 ---
 
@@ -27,7 +27,7 @@ link: xref:home::columnar-sdk.adoc[]
 
 ## SDK APIs to work with Capella Analytics:
 
-Columnar SDKs are developed from the ground-up and while they maintain some syntactic similarities with the [operational SDKs](sdk.md), they are purpose built for Capella Analytics’s real-time analytical use cases. They support streaming APIs to handle large datasets, as well as the common features expected to be present in any modern database SDK — such as connection management and robust error handling.
+Columnar SDKs are developed from the ground-up and while they maintain some syntactic similarities with the [operational SDKs](sdk.md), they are purpose built for Capella Analytics's real-time analytical use cases. They support streaming APIs to handle large datasets, as well as the common features expected to be present in any modern database SDK — such as connection management and robust error handling.
 
 * Go
 * Java

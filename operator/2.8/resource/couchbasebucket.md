@@ -1,7 +1,7 @@
 ---
 title: CouchbaseBucket Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.8.x/docs/user/modules/ROOT/pages/resource/couchbasebucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@operator::resource/couchbasebucket.adoc[]
 ---
 
@@ -475,7 +475,7 @@ Name is the name of the bucket within Couchbase server. By default the Operator 
 
 #### [](#description-35)Description
 
-Rank determines the bucket’s place in the order in which the rebalance process handles the buckets on the cluster. The higher a bucket’s assigned integer (in relation to the integers assigned other buckets), the sooner in the rebalance process the bucket is handled. This assignment of rank allows a cluster’s most mission-critical data to be rebalanced with top priority. This option is only supported for Couchbase Server 7.6.0+.
+Rank determines the bucket's place in the order in which the rebalance process handles the buckets on the cluster. The higher a bucket's assigned integer (in relation to the integers assigned other buckets), the sooner in the rebalance process the bucket is handled. This assignment of rank allows a cluster's most mission-critical data to be rebalanced with top priority. This option is only supported for Couchbase Server 7.6.0+.
 
 ### [](#couchbasebuckets-spec-replicas)couchbasebuckets.spec.replicas
 
@@ -521,7 +521,7 @@ Managed defines whether scopes are managed for this bucket. This field is `false
 
 #### [](#description-39)Description
 
-Resources is an explicit list of named resources that will be considered for inclusion in this bucket. If a resource reference doesn’t match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
+Resources is an explicit list of named resources that will be considered for inclusion in this bucket. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
 
 ### [](#couchbasebuckets-spec-scopes-resources-kind)couchbasebuckets.spec.scopes.resources.kind
 

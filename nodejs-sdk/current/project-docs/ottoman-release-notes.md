@@ -3,7 +3,7 @@ title: Ottoman ODM Release Notes and Archives
 description: Release notes, installation instructions, and download archive for
   the Ottoman ODM.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/project-docs/pages/ottoman-release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-sdk:project-docs:ottoman-release-notes.adoc[]
 ---
 
@@ -20,7 +20,7 @@ The Ottoman ODM will run on any [supported LTS version of Node.js](https://githu
 
 ## [](#version-2-5-5-4-march-2026)Version 2.5.5 (4 March 2026)
 
-Version 2.5.5 is a patch release of the Ottoman ODM. This release adds telemetry for tracking installs. It does not change the package’s codebase or any functionality.
+Version 2.5.5 is a patch release of the Ottoman ODM. This release adds telemetry for tracking installs. It does not change the package's codebase or any functionality.
 
 ```console
 $ npm install ottoman@2.5.5
@@ -187,7 +187,7 @@ $ npm install ottoman@2.3.0
 
 ### [](#important-configuration-change)Important Configuration Change
 
-* This release includes a **major version bump** to the Couchbase dependency, and with it a specific change to handling SSL/TLS connections. If you were previously skipping certificate checking with the parameter `?ssl=no_verify` in your connection string, you’ll need to update it to `?tls_verify=none`. More information can be found in [this article](https://developer.couchbase.com/tutorial-nodejs-tls-connection#tls-authentication-without-certificate-checking).
+* This release includes a **major version bump** to the Couchbase dependency, and with it a specific change to handling SSL/TLS connections. If you were previously skipping certificate checking with the parameter `?ssl=no_verify` in your connection string, you'll need to update it to `?tls_verify=none`. More information can be found in [this article](https://developer.couchbase.com/tutorial-nodejs-tls-connection#tls-authentication-without-certificate-checking).
 
 ## [](#version-2-2-2-9-november-2022)Version 2.2.2 (9 November 2022)
 
@@ -215,7 +215,7 @@ $ npm install ottoman@2.2.1
 
 ### [](#fixed-issues-12)Fixed Issues
 
-* Updated index naming to include the model’s name.
+* Updated index naming to include the model's name.
 * `options.strict` is now set to true by default.
 * A `DocumentNotFound` error is thrown for documents with a different model.
 * Updated regex to ensure a clean index name.
@@ -274,7 +274,7 @@ $ npm install ottoman@2.0.0
 * Exposed various SDK types to use directly from Ottoman.
 * Added start option `ignoreWatchIndexes`. The `start()` function will wait for indexes by default, but this can be disabled by setting `ignoreWatchIndexes` to true.
 * Enforced referenced document option.
-* Ottoman now returns the document id reference if it doesn’t exist.
+* Ottoman now returns the document id reference if it doesn't exist.
 * Added event to listen for index readiness.
 * Added examples for find methods and bulk operations.
 * Improved from clause value escape behavior in the QueryBuilder.

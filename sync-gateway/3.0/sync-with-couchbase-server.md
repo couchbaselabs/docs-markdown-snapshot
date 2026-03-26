@@ -2,7 +2,7 @@
 title: Sync with Couchbase Server
 description: Use Sync Gateway to sync Couchbase Server changes securely from cloud to edge
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/sync-with-couchbase-server.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::sync-with-couchbase-server.adoc[]
 ---
 
@@ -65,11 +65,11 @@ Both sync gateway and Couchbase Server use a System extended attribute, with the
 * Allocated 1MB of storage, independent of the 20MB available for the document
 
 > [!WARNING]
-> The sync metadata is maintained internally by sync gateway and its structure can change at any time. It should not be used to drive business logic of applications. The direct use of the N1QL query is unsupported and must not be used in production environments. The `_raw` endpoint (/db/\_raw/{docid}) on sync gateway’s Admin REST API returns both the document and its associated mobile metadata.
+> The sync metadata is maintained internally by sync gateway and its structure can change at any time. It should not be used to drive business logic of applications. The direct use of the N1QL query is unsupported and must not be used in production environments. The `_raw` endpoint (/db/\_raw/{docid}) on sync gateway's Admin REST API returns both the document and its associated mobile metadata.
 
 ### [](#documents)Documents
 
-With bucket-sharing enabled, Couchbase Server documents can be inserted directly (using _N1QL_ or _SDKs_) or by using sync gateway’s [Public REST API](rest-api.md).
+With bucket-sharing enabled, Couchbase Server documents can be inserted directly (using _N1QL_ or _SDKs_) or by using sync gateway's [Public REST API](rest-api.md).
 
 sync gateway \[[1](#%5Ffootnotedef%5F1 "View footnote.")\] creates the metadata it needs by abstracting it from the SDK or N1QL applications reading and writing data directly to Couchbase Server buckets. It uses Couchbase Server XATTRs \[[2](#%5Ffootnotedef%5F2 "View footnote.")\] to store that metadata into an external document fragment — see [Extended Attributes (XATTR)](../../server/current/learn/data/extended-attributes-fundamentals.md).
 
@@ -77,7 +77,7 @@ sync gateway \[[1](#%5Ffootnotedef%5F1 "View footnote.")\] creates the metadata 
 
 Couchbase Server SDK/N1QL
 
-Use sync gateway’s REST API’s [/{db}/{docid}/{attachment}](rest-api-admin.md#/attachment) endpoints to manage attachments and blob data; you cannot use Couchbase Server SDKs to do this directly.
+Use sync gateway's REST API's [/{db}/{docid}/{attachment}](rest-api-admin.md#/attachment) endpoints to manage attachments and blob data; you cannot use Couchbase Server SDKs to do this directly.
 
 Standard practice would be to create the document using the SDK and then associate its blobs/attachments using the [Add/Update Attachment (/{db}/{docid}/{attachment})](rest-api-admin.md#/attachment/put%5F%5Fdb%5F%5F%5Fdoc%5F%5F%5Fattachment%5F) endpoint. You can see a practical example in this blog post — <https://blog.couchbase.com/store-sync-binary-data-attachments-blobs-couchbase-mobile>
 
@@ -91,19 +91,19 @@ Related Couchbase Lite content
 
 Using a WebApp
 
-Attachments can be accessed through sync gateway’s REST API using the [/{db}/{doc}/{attachment}](rest-api.md#/attachment/GetAttachment%5F) endpoint.
+Attachments can be accessed through sync gateway's REST API using the [/{db}/{doc}/{attachment}](rest-api.md#/attachment/GetAttachment%5F) endpoint.
 
 ### [](#tombstone-revisions)Tombstone Revisions
 
-Note that, with bucket-sharing enabled, [tombstone revision![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#tombstone-revision)s are **not** retained indefinitely; they are purged based on the server’s _metadata purge interval_.
+Note that, with bucket-sharing enabled, [tombstone revision![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#tombstone-revision)s are **not** retained indefinitely; they are purged based on the server's _metadata purge interval_.
 
-To ensure tombstones are synced with clients, you should set the server’s metadata purge interval based on your expected replication frequency — see the [$dbname.enable\_shared\_bucket\_access](configuration-schema-database.md#database-enable%5Fshared%5Fbucket%5Faccess) reference.
+To ensure tombstones are synced with clients, you should set the server's metadata purge interval based on your expected replication frequency — see the [$dbname.enable\_shared\_bucket\_access](configuration-schema-database.md#database-enable%5Fshared%5Fbucket%5Faccess) reference.
 
 ### [](#accessing-sync-metadata)Accessing Sync Metadata
 
 As stated, mobile metadata is not kept in the document, but in a system extended attribute (XATTR) in Couchbase Server.
 
-The N1QL query language \[[2](#%5Ffootnotedef%5F2 "View footnote.")\] supports the ability to query these extended attributes (XATTRS) and hence the document’s sync metadata — see: [Example 1](#simple-query).
+The N1QL query language \[[2](#%5Ffootnotedef%5F2 "View footnote.")\] supports the ability to query these extended attributes (XATTRS) and hence the document's sync metadata — see: [Example 1](#simple-query).
 
 Example 1\. Querying XATTRS-bsed sync metadata
 

@@ -2,7 +2,7 @@
 title: JavaScript Functions with Couchbase
 description: Writing Couchbase extension functions in the JavaScript Language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/javascript-udfs/pages/javascript-functions-with-couchbase.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:javascript-udfs:javascript-functions-with-couchbase.adoc[]
 ---
 
@@ -109,7 +109,7 @@ Along with global state, global [arrow functions](https://developer.mozilla.org/
 
 Logging using the `console.log(..)` function is not supported.
 
-In the rest of this section, we’re going to look at the concepts behind JavaScript User-Defined Functions:
+In the rest of this section, we're going to look at the concepts behind JavaScript User-Defined Functions:
 
 * [Calling JavaScript from SQL++ User-Defined Functions](calling-javascript-from-n1ql.md)
 * [Calling SQL++ from JavaScript](calling-n1ql-from-javascript.md)

@@ -4,7 +4,7 @@ title: Couchbase Distributed ACID Transactions for .NET SDK Pre-release Archive
 description: Historic release notes archive for the 1.0 pre-GA (Alpha &amp;
   Beta) Couchbase .NET Distributed ACID Transactions Releases.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/project-docs/pages/distributed-transactions-dotnet-1.0-pre-release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@dotnet-sdk:project-docs:distributed-transactions-dotnet-1.0-pre-release-notes.adoc[]
 ---
 
@@ -39,7 +39,7 @@ In the run-up to the Couchbase .NET Distributed ACID Transactions 1.0 API releas
 * [TXNN-40](https://issues.couchbase.com/browse/TXNN-40): Transaction Insert and rollback leaves behind an empty document.
 * [TXNN-41](https://issues.couchbase.com/browse/TXNN-41): Transaction cannot perform two replaces on same document.
 * [TXNN-42](https://issues.couchbase.com/browse/TXNN-42): MultiThreaded transaction does not delete a document if another thread updates it.
-* [TXNN-48](https://issues.couchbase.com/browse/TXNN-48): StandardTest.insertStagesBackupMetadata fails because FitPerformer thinks it doesn’t support AccessDeleted.
+* [TXNN-48](https://issues.couchbase.com/browse/TXNN-48): StandardTest.insertStagesBackupMetadata fails because FitPerformer thinks it doesn't support AccessDeleted.
 * [TXNN-52](https://issues.couchbase.com/browse/TXNN-52): Cleanup leaves sentinel for ATR entry, rather than removing entry.
 * [TXNN-47](https://issues.couchbase.com/browse/TXNN-47): TXNN Fit Performer needs to implement Cleanup hooks.
 

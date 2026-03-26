@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Automated Upgrade
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/concept-kubernetes-upgrade.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::concept-kubernetes-upgrade.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:2.5@operator::concept-kubernetes-upgrade.adoc[]
 
 # Kubernetes Automated Upgrade
 
-During your normal course of operations, you’ll no doubt need to upgrade the Kubernetes cluster on which your Couchbase deployment resides. This page details the requirements and considerations that you’ll need to take into account when performing an online upgrade of a Kubernetes cluster that’s hosting a stateful application like Couchbase Server.
+During your normal course of operations, you'll no doubt need to upgrade the Kubernetes cluster on which your Couchbase deployment resides. This page details the requirements and considerations that you'll need to take into account when performing an online upgrade of a Kubernetes cluster that's hosting a stateful application like Couchbase Server.
 
 ## [](#overview)Overview
 
@@ -50,7 +50,7 @@ There are two supported methods for upgrading a Kubernetes cluster: Automatic an
 
 To prevent downtime or a data loss scenario, the Operator provides controls for how automated Kubernetes upgrades proceed.
 
-A `PodDisruptionBudget` is created for each `CouchbaseCluster` resource created. The `PodDisruptionBudget` specifies that at least the cluster size minus one node (N-1) be ready at any time. This constraint allows, at most, one node to be evicted at a time. As a result, it’s recommended that to support an automatic Kubernetes upgrade, the cluster be deployed with anti-affinity enabled to guarantee only a single eviction at a time.
+A `PodDisruptionBudget` is created for each `CouchbaseCluster` resource created. The `PodDisruptionBudget` specifies that at least the cluster size minus one node (N-1) be ready at any time. This constraint allows, at most, one node to be evicted at a time. As a result, it's recommended that to support an automatic Kubernetes upgrade, the cluster be deployed with anti-affinity enabled to guarantee only a single eviction at a time.
 
 To ensure Couchbase Server nodes report that they are ready once they are added to the cluster and balanced in, the Kubernetes Pods are created with a [readiness gate](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-readiness-gate). The readiness gate is only set once all of the Couchbase Server nodes are balanced into the cluster and the cluster is in a stable condition that can tolerate the loss of a Pod without losing data.
 

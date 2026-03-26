@@ -3,7 +3,7 @@ title: CREATE SEQUENCE
 description: The CREATE SEQUENCE statement enables you to create a sequence in a
   given scope.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/createsequence.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/createsequence.adoc[]
 ---
 
@@ -34,8 +34,8 @@ You can specify a different maximum or minimum value for a sequence.
 
 A sequence may permit cycling. In this case, the sequence behaves as follows:
 
-* If the sequence is ascending, then when it reaches the maximum value, it continues from the minimum value — which may be different to the sequence’s specified starting value.
-* If the sequence is descending, then when it reaches the minimum value, it continues from the maximum value — which may be different to the sequence’s specified starting value.
+* If the sequence is ascending, then when it reaches the maximum value, it continues from the minimum value — which may be different to the sequence's specified starting value.
+* If the sequence is descending, then when it reaches the minimum value, it continues from the maximum value — which may be different to the sequence's specified starting value.
 
 If a sequence does not permit cycling, then when it reaches the maximum or minimum value, it generates an error.
 
@@ -47,7 +47,7 @@ Note however that if a Query node shuts down, or if you alter the sequence, the 
 
 ### [](#storage)Storage
 
-Sequences are stored in the bucket’s hidden `_system` scope. When you back up a bucket, sequences are included automatically, in accordance with the backup filters. Similarly, when you restore a bucket, sequences are restored in accordance with the restore command — if you select to restore specific scopes, the sequences associated with those scopes are restored, and no others.
+Sequences are stored in the bucket's hidden `_system` scope. When you back up a bucket, sequences are included automatically, in accordance with the backup filters. Similarly, when you restore a bucket, sequences are restored in accordance with the restore command — if you select to restore specific scopes, the sequences associated with those scopes are restored, and no others.
 
 ## [](#prerequisites)Prerequisites
 

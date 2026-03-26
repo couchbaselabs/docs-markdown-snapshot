@@ -1,7 +1,7 @@
 ---
 title: Configuring Rebalance Retries
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-configure-rebalance-retry.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:reference:rest-configure-rebalance-retry.adoc[]
 ---
 
@@ -41,7 +41,7 @@ Success gives `200 OK`, and returns an object containing status on pending rebal
 
 ## [](#example)Example
 
-To obtain the cluster’s current rebalance settings by means of the REST API, use the `GET /settings/retryRebalance` http method and URI, as follows:
+To obtain the cluster's current rebalance settings by means of the REST API, use the `GET /settings/retryRebalance` http method and URI, as follows:
 
 curl -X GET -u Administrator:password \
 http://10.143.192.101:8091/settings/retryRebalance

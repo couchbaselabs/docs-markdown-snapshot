@@ -3,7 +3,7 @@ title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the Go SDK.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.7/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@go-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -33,7 +33,7 @@ $ go get github.com/couchbase/gocbencryption/v2.0.0
 
 The Go Field-Level Encryption library works on the principle of `Encrypters` and `Decrypters` which can be packaged within a `Provider`, as well as a custom [Transcoder](transcoders-nonjson.md). `Encrypters` and `Decrypters` are registered with a `CryptoManager` and are then used at serialization/deserialization time to encrypt and decrypt annotated fields.
 
-Here we’ll go through an example of setting up and using the Go Field-Level Encryption library.
+Here we'll go through an example of setting up and using the Go Field-Level Encryption library.
 
 To begin we need to create a couple of keys, you should **not** use the `InsecureKeyring` other than for evaluation purposes and should keep your keys secure.
 
@@ -142,7 +142,7 @@ type Person struct {
 }
 ```
 
-Now let’s create a person document and save it to Couchbase:
+Now let's create a person document and save it to Couchbase:
 
 ```golang
 	bucket := cluster.Bucket("travel-sample")
@@ -203,7 +203,7 @@ map[
 ]
 ```
 
-Now let’s read the person document using the data binding.
+Now let's read the person document using the data binding.
 
 ```golang
 	personRes, err := collection.Get("p1", nil)
@@ -231,7 +231,7 @@ The output is now:
 > [!WARNING]
 > SDK 1 cannot read fields encrypted by SDK 2\.
 
-It’s inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
+It's inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
 
 SDK 2 requires additional configuration to read fields encrypted by SDK 1\. The rest of this section describes how to configure Field-Level Encryption in SDK 2 for backwards compatibility with SDK 1.
 

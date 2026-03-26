@@ -3,7 +3,7 @@ title: Authenticating
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:dotnet-sdk:howtos:sdk-authentication.adoc[]
 ---
 
@@ -67,7 +67,7 @@ var cluster = await Cluster.ConnectAsync(options);
 
 ## [](#certificate-authentication-mtls)Certificate Authentication (mTLS)
 
-For mutual TLS (mTLS), the server verifies the client’s identity via an X.509 certificate presented during the TLS handshake.
+For mutual TLS (mTLS), the server verifies the client's identity via an X.509 certificate presented during the TLS handshake.
 
 The SDK uses `CertificateAuthenticator` to hold the client certificate factory.
 
@@ -183,7 +183,7 @@ var newCertFactory = new PredefinedCertificateFactory(newClientCerts);
 cluster.Authenticator(new CertificateAuthenticator(newCertFactory));
 ```
 
-You may experience brief disruptions to HTTP requests in-flight during the \`HttpMessageHandler’s reconfiguration. Existing KV connections are not closed or re-authenticated, they continue using the old certificate until they are recycled by the connection pool.
+You may experience brief disruptions to HTTP requests in-flight during the \`HttpMessageHandler's reconfiguration. Existing KV connections are not closed or re-authenticated, they continue using the old certificate until they are recycled by the connection pool.
 
 ## [](#runtime-authenticator-swapping)Runtime Authenticator Swapping
 
@@ -312,7 +312,7 @@ var options = new ClusterOptions()
     .WithPasswordAuthentication("Administrator", "password"); // overwrites Authenticator
 ```
 
-The simplest rule: **pick one `With*Authentication()` method and don’t mix it with legacy properties.**Remove `UserName`/`Password`/`X509CertificateFactory` and replace them with the equivalent new call.
+The simplest rule: **pick one `With*Authentication()` method and don't mix it with legacy properties.**Remove `UserName`/`Password`/`X509CertificateFactory` and replace them with the equivalent new call.
 
 ## [](#api-summary)API Summary
 

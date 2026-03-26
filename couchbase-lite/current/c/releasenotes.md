@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/releasenotes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:c:releasenotes.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Version 4.0.3 for C delivers the following features and enhancements:
 ### [](#enhancements)Enhancements
 
 * [CBL-7750 — Update mbedTLS to 3.6.5](https://jira.issues.couchbase.com/browse/CBL-7750)
-* [CBL-7775 — Increase Replicator’s WebSocket PING / PONG timeout](https://jira.issues.couchbase.com/browse/CBL-7775)
+* [CBL-7775 — Increase Replicator's WebSocket PING / PONG timeout](https://jira.issues.couchbase.com/browse/CBL-7775)
 
 ### [](#fixed-issues)Fixed Issues
 
@@ -47,7 +47,7 @@ None for this release
 
 ### [](#fixed-issues-2)Fixed Issues
 
-* [CBL-7681 — Crash with 'Can’t retain immutable Value' Error after upgrading from 3.0.3 to 4.0.0](https://jira.issues.couchbase.com/browse/CBL-7681)
+* [CBL-7681 — Crash with 'Can't retain immutable Value' Error after upgrading from 3.0.3 to 4.0.0](https://jira.issues.couchbase.com/browse/CBL-7681)
 
 ### [](#known-issues-2)Known Issues
 
@@ -71,7 +71,7 @@ Version 4.0.0 for C delivers the following features and enhancements:
 ### [](#enhancements-3)Enhancements
 
 * [CBL-7568 — New Version Vector Database](https://issues.couchbase.com/browse/CBL-7568)
-* [CBL-6569 — Disabled SQLite’s mmap by default](https://issues.couchbase.com/browse/CBL-6569)
+* [CBL-6569 — Disabled SQLite's mmap by default](https://issues.couchbase.com/browse/CBL-6569)
 * [CBL-7280 — Support timestamp property in Document](https://issues.couchbase.com/browse/CBL-7280)
 * [CBL-7284 — Support Last-Write-Win as the default conflict resolution algorithm for Replicator](https://issues.couchbase.com/browse/CBL-7284)
 * [CBL-7431 — Include native symbols in Android Released Binaries](https://issues.couchbase.com/browse/CBL-7431)
@@ -83,11 +83,11 @@ Version 4.0.0 for C delivers the following features and enhancements:
 * [CBL-6513 — Fixed race creating the expiration column in a collection table](https://issues.couchbase.com/browse/CBL-6513)
 * [CBL-7413 — Fixed wrong error shown when using mismatch collections in Replicator](https://issues.couchbase.com/browse/CBL-7413)
 * [CBL-7463 — Fixed crash when creating Full-Text Index using Java Community Edition on Windows](https://issues.couchbase.com/browse/CBL-7463)
-* [CBL-7557 — Fixed invalid CBLFileLogSink’s directory value returned from CBLLogSinks\_File](https://issues.couchbase.com/browse/CBL-7557)
+* [CBL-7557 — Fixed invalid CBLFileLogSink's directory value returned from CBLLogSinks\_File](https://issues.couchbase.com/browse/CBL-7557)
 
 ### [](#known-issues-3)Known Issues
 
-* [CBL-7572 — Database.Copy() doesn’t convert Self-Source-ID to the original Source ID](https://issues.couchbase.com/browse/CBL-7572)
+* [CBL-7572 — Database.Copy() doesn't convert Self-Source-ID to the original Source ID](https://issues.couchbase.com/browse/CBL-7572)
 * [CBL-7573 — Couchbase Lite 4.0 is allowed to connect to Sync Gateway 3.2.6/3.3.0](https://issues.couchbase.com/browse/CBL-7573)
 
 ### [](#breaking-changes-2)Breaking Changes
@@ -96,7 +96,7 @@ Version 4.0.0 for C delivers the following features and enhancements:
 * [CBL-7289 — Remove Deprecated Database APIs](https://issues.couchbase.com/browse/CBL-7289)
 * [CBL-7301 — Remove Deprecated Replicator API](https://issues.couchbase.com/browse/CBL-7301)
 * [CBL-7314 — Remove Deprecated Logging APIs](https://issues.couchbase.com/browse/CBL-7314)
-* [CBL-7379 — Removed DatabaseConfiguration’s mmapEnabled property](https://issues.couchbase.com/browse/CBL-7379)
+* [CBL-7379 — Removed DatabaseConfiguration's mmapEnabled property](https://issues.couchbase.com/browse/CBL-7379)
 * [CBL-7391 — Removed Deprecated Default Constants](https://issues.couchbase.com/browse/CBL-7391)
 * [CBL-7399 — Restructure CBLReplicatorConfiguration member order to improve clarity and usability](https://issues.couchbase.com/browse/CBL-7399)
 

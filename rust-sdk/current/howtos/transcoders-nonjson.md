@@ -2,7 +2,7 @@
 title: Transcoders &amp; Non-JSON Documents
 description: The Rust SDK supports common JSON document requirements out-of-the-box.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
@@ -17,7 +17,7 @@ The Rust SDK uses the concepts of transcoders, which are used whenever data is s
 
 When sending data to Couchbase, the SDK passes the object being sent to a transcoder. The transcoder can either reject the object as being unsupported, or convert it into a `byte[]` and a Common Flag. The Common Flag specifies whether the data is JSON, a non-JSON string, or raw binary data.
 
-Transcoders in the Rust SDK work a little differently to other SDKs. The SDK exposes a number of `{operation-name}_raw` functions for supporting types that do not implement `Serialize` and/or should not be serialized to JSON using `serde_json`. Transcoding with these functions occurs outside the function, to be idiomatic to the Rust ecosystem. Owing to a lack of reflection in Rust, the transcoders implemented in the SDK do not work in the same way as other SDKs. We’ll explore how this works in the examples below.
+Transcoders in the Rust SDK work a little differently to other SDKs. The SDK exposes a number of `{operation-name}_raw` functions for supporting types that do not implement `Serialize` and/or should not be serialized to JSON using `serde_json`. Transcoding with these functions occurs outside the function, to be idiomatic to the Rust ecosystem. Owing to a lack of reflection in Rust, the transcoders implemented in the SDK do not work in the same way as other SDKs. We'll explore how this works in the examples below.
 
 On retrieving data from Couchbase, the fetched `byte[]` and Common Flag are passed to a transcoder. The transcoder converts the bytes into a concrete type (the application specifies the required type) if possible.
 
@@ -54,7 +54,7 @@ let value = raw_json::decode(content_raw, flags)?;
 It is most common to store JSON with Couchbase. However, it is possible to store non-JSON documents, such as raw binary data, perhaps using an concise binary encoding like [MessagePack](https://msgpack.org) or [CBOR](https://cbor.io/), in the Key-Value store.
 
 > [!NOTE]
-> It’s important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
+> It's important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
 
 Also note that some simple data types can be stored directly as JSON, without recourse to non-JSON transcoding. A valid JSON document can be a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value.
 
@@ -106,7 +106,7 @@ More advanced transcoding needs can be accomplished if the application implement
 
 ### [](#creating-a-custom-transcoder)Creating a Custom Transcoder
 
-Let’s look at a more complex example: encoding the JSON alternative, [MessagePack](https://msgpack.org). MessagePack is a compact binary data representation, so it should be stored with the binary Common Flag. The Common Flag is chosen by the transcoder, and none of the existing transcoders matches our needs (`raw_binary` does set the binary flag, but it passes data through directly rather than using a serializer). So we need to write one.
+Let's look at a more complex example: encoding the JSON alternative, [MessagePack](https://msgpack.org). MessagePack is a compact binary data representation, so it should be stored with the binary Common Flag. The Common Flag is chosen by the transcoder, and none of the existing transcoders matches our needs (`raw_binary` does set the binary flag, but it passes data through directly rather than using a serializer). So we need to write one.
 
 Create a transcoder that uses the `rmp_serde` crate to serialize/deserialize and sets the binary Common Flag when storing the data:
 

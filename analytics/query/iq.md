@@ -3,7 +3,7 @@ title: Get Assistance from Capella iQ
 description: Capella iQ is a service that leverages a large language model to
   help you write queries.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/iq.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:query:iq.adoc[]
 ---
 
@@ -23,7 +23,7 @@ For example, if you [loaded the travel-sample dataset](../intro/examples.md#trav
 
 ## [](#prerequisites)Prerequisites
 
-* If you’re the [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner), accept Capella iQ’s supplemental terms and turn it on for your organization. For more information, see [Configure Capella iQ](../../cloud/get-started/capella-iq/configure-capellaiq.md).
+* If you're the [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner), accept Capella iQ's supplemental terms and turn it on for your organization. For more information, see [Configure Capella iQ](../../cloud/get-started/capella-iq/configure-capellaiq.md).
 * (Optional) Create a data source for Couchbase sample data. For the first example on this page, you need the `travel-sample` dataset. See [Access Data](../intro/examples.md).
 
 ## [](#open-capella-iq)Open Capella iQ
@@ -59,7 +59,7 @@ If you have [loaded the travel-sample dataset](../intro/examples.md#travel-sampl
 2. Enter the following prompt:  
 Show me airlines that fly from JFK to SFO.
 3. Click **Run** and [look at the results](results.md).
-4. Enter another prompt to modify and iterate on iQ’s first query:  
+4. Enter another prompt to modify and iterate on iQ's first query:  
 This should be the number of flights by each airline.
 5. Click **Chart** to view the results of the query in [chart format](charts.md), instead.
 

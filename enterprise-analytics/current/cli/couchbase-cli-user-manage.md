@@ -2,7 +2,7 @@
 title: user-manage
 description: Manage RBAC users
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-user-manage.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:cli:couchbase-cli-user-manage.adoc[]
 ---
 
@@ -142,7 +142,7 @@ Specifies the group description, it is used with --set-group.
 
 \--ldap-ref <ref>
 
-Specifies the LDAP group’s distinguished name, to link the couchbase group with the LDAP one.
+Specifies the LDAP group's distinguished name, to link the couchbase group with the LDAP one.
 
 ## [](#host-formats)HOST FORMATS
 

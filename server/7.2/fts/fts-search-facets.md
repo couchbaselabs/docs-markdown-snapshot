@@ -1,7 +1,7 @@
 ---
 title: Search Facets
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-search-facets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-search-facets.adoc[]
 ---
 
@@ -127,7 +127,7 @@ Full text search and Bleve expect dates to be in the format specified by [RFC-33
 
 ## [](#example-3)Example
 
-* Date Range Facet - computes facet on the ‘updated’ field that has 2 values old and new.  
+* Date Range Facet - computes facet on the 'updated' field that has 2 values old and new.  
 curl -XPOST -H "Content-Type: application/json" -uAdministrator:asdasd http://<node>:8094/api/index/bix/query -d '{  
 "ctl": {"timeout": 0},  
 "from": 0,  

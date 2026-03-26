@@ -2,7 +2,7 @@
 title: Creating and Editing a Collection
 description: Collections can be created by means of the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/creating-a-collection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:creating-a-collection.adoc[]
 ---
 
@@ -66,7 +66,7 @@ When you set `maxTTL` to value greater than zero (but less than its maximum valu
 * It sets a default expiration time for documents you create or mutate in the collection.
 * It sets the maximum time in seconds a document can exist before it expires. You can explicitly set a document to expire before this time. Attempting to set a document to expire after this time has Couchbase Server set the document to expire in `maxTTL` seconds.
 
-When you set `maxTTL` to -1, it overrides the bucket’s `maxTTL` setting. By default, when the bucket has a `maxTTL` setting greater than zero, Couchbase Server sets new and mutated documents in the bucket to expire in `maxTTL` seconds. Setting the collection’s `maxTTL` to -1 blocks this behavior so that Couchbase Server does not set a default expiration for documents in the collection.
+When you set `maxTTL` to -1, it overrides the bucket's `maxTTL` setting. By default, when the bucket has a `maxTTL` setting greater than zero, Couchbase Server sets new and mutated documents in the bucket to expire in `maxTTL` seconds. Setting the collection's `maxTTL` to -1 blocks this behavior so that Couchbase Server does not set a default expiration for documents in the collection.
 
 For more information, see [Expiration](../learn/data/expiration.md).
 
@@ -95,7 +95,7 @@ Success returns `200 OK`, for each call. Failure to authenticate gives `401 Unau
 
 ## [](#examples)Examples
 
-The following call creates a collection named `my_collection_in_my_scope`, within an existing scope named `my_scope`. It specifies the default expiration for documents in the collection that’s equivalent to two years. It also specifies that no change history should be maintained for the collection.
+The following call creates a collection named `my_collection_in_my_scope`, within an existing scope named `my_scope`. It specifies the default expiration for documents in the collection that's equivalent to two years. It also specifies that no change history should be maintained for the collection.
 
 curl -X POST -v -u Administrator:password \
 http://10.143.210.101:8091/pools/default/buckets/\

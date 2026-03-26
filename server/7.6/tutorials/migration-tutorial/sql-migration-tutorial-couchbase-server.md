@@ -4,7 +4,7 @@ description: Using MySQL as a starting point, this guide demonstrates how to
   migrate your existing data from SQL tables to documents stored in a Couchbase
   bucket.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/tutorials/pages/migration-tutorial/sql-migration-tutorial-couchbase-server.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:tutorials:migration-tutorial/sql-migration-tutorial-couchbase-server.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Before you begin this exercise, you should have installed and set up a Couchbase
 
 To use `cbimport`, you will need to install the Couchbase `CLI` package. You will find the location of the package and instructions for installing it, here ⇒ [CLI Reference](../../cli/cli-intro.md)
 
-If you’re running through the examples, then you will also need an existing MySQL installation with the preexisting table structure defined in [the following section](#student-record-sql-database-section).
+If you're running through the examples, then you will also need an existing MySQL installation with the preexisting table structure defined in [the following section](#student-record-sql-database-section).
 
 > [!IMPORTANT]
 > This tutorial makes use of the MySQL JSON functions that were introduced in version `5.7.22`. Make sure you have installed MySQL version `5.7.22` or later.
@@ -59,7 +59,7 @@ You will see that our document model is not an exact mapping of the SQL database
 
 The first stage of your migration is to extract the data a file format that the `cbimport` utility can work with. `cbimport` can work with comma-separated value files or JSON-formatted files. Because we already know that we will be embedding our `enrollment` records into the record for each student, makes sense to use the more versatile JSON structure.
 
-Fortunately, MySQL has a number of SQL functions that make working with JSON data fairly straightforward, so we’ll start by migrating the `course` table into a JSON file:
+Fortunately, MySQL has a number of SQL functions that make working with JSON data fairly straightforward, so we'll start by migrating the `course` table into a JSON file:
 
 Extract the `course` table
 
@@ -88,7 +88,7 @@ Using the `JSON_OBJECT` function, the command will `SELECT` every record in the 
 ```
 
 > [!NOTE]
-> Strictly speaking, the JSON output is not a well-formed JSON document because it isn’t structured as an array. Nevertheless, `cbimport` will read each line as a separate record.
+> Strictly speaking, the JSON output is not a well-formed JSON document because it isn't structured as an array. Nevertheless, `cbimport` will read each line as a separate record.
 
 ## [](#extract-your-student-data-from-mysql)Extract your Student data from MySQL
 

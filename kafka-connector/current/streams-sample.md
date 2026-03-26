@@ -1,7 +1,7 @@
 ---
 title: Couchbase Sample with Kafka Streams
 editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/streams-sample.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:kafka-connector::streams-sample.adoc[]
 ---
 
@@ -171,7 +171,7 @@ KStream<String, JsonNode>[] documents = source
         );
 ```
 
-The first step in our pipeline would be to extract `content` from the Couchbase event and deserialize it as JSON, as Couchbase operates with JSON documents normally, and in `beer-sample` bucket in particular. With `branch` operator, we split stream into two by the document type, and in the same type we filter out documents that don’t have all the fields we want to insert into the MySQL database.
+The first step in our pipeline would be to extract `content` from the Couchbase event and deserialize it as JSON, as Couchbase operates with JSON documents normally, and in `beer-sample` bucket in particular. With `branch` operator, we split stream into two by the document type, and in the same type we filter out documents that don't have all the fields we want to insert into the MySQL database.
 
 ```java
 documents[0].foreach(new ForeachAction<String, JsonNode>() {
@@ -217,7 +217,7 @@ documents[1].foreach(new ForeachAction<String, JsonNode>() {
 });
 ```
 
-Once the documents are extracted and filtered we are ready to insert them into the MySQL database using statements prepared earlier. Note that inserted records are using the document ID from Couchbase, which means that records will be updated in place automatically without creating duplicates. This example does not handle document deletions or expiration, but it won’t be complex to do with an additional stream that executes `DELETE` statements.
+Once the documents are extracted and filtered we are ready to insert them into the MySQL database using statements prepared earlier. Note that inserted records are using the document ID from Couchbase, which means that records will be updated in place automatically without creating duplicates. This example does not handle document deletions or expiration, but it won't be complex to do with an additional stream that executes `DELETE` statements.
 
 ```java
 final KafkaStreams streams = new KafkaStreams(builder, props);

@@ -4,7 +4,7 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-columnar-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:nodejs-columnar-sdk:project-docs:compatibility.adoc[]
 > Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
 
 > [!WARNING]
-> Don’t Mix Columnar & Operational SDKs.
+> Don't Mix Columnar & Operational SDKs.
 > 
 > Do not combine the Node.js Columnar SDK with the Node.js Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
 > 

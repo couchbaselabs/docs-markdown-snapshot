@@ -3,7 +3,7 @@ title: Debugging and Diagnosability
 description: Debugging and diagnostics in the Eventing Service comprises of
   debugging functions, functions log, and log redaction.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-debugging-and-diagnosability.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:eventing:eventing-debugging-and-diagnosability.adoc[]
 ---
 
@@ -27,7 +27,7 @@ The default Eventing debug port is **9140**. To change the default port settings
 * The Chrome dev-tools URL must be hand copied due to built-in security in the browser.
 * All other events processed by the Eventing Function are unaffected except for the single the trapped event-instance.
 * Using the Debug option, you can place breakpoints in the code and run the Function execution, step through your code one line at a time, and inspect values of your variables. The step-step execution helps while troubleshooting the deployed Eventing Function under real world constraints.
-* If the debugged event-instance completes execution, no further event-instances get trapped for debugging. If you wish to debug a second event-instance you need to stop and restart the debugger in the Function’s code editor.
+* If the debugged event-instance completes execution, no further event-instances get trapped for debugging. If you wish to debug a second event-instance you need to stop and restart the debugger in the Function's code editor.
 * If a debug session gets terminated during execution, then the mutation may be abruptly processed or canceled.
 * Debugging is a convenience-feature intended to help during Function development: it is highly discouraged for use in production environments.  
 > [!WARNING]  
@@ -48,9 +48,9 @@ The debugger should only be enabled when you plan to debug your functions. When 
 
 Below we have expanded the deployed Eventing Function "case\_2\_enrich\_ips" from the Example [Data Enrichment](#eventing-example-data-enrichment).
 
-* The deployed Function expands (when you click the Function’s name) to provide additional options:  
+* The deployed Function expands (when you click the Function's name) to provide additional options:  
 ![debugger 03 deployed function](_images/debugger_03_deployed_function.png)
-* Click **View JavaScript** to bring up the Function’s JavaScript  
+* Click **View JavaScript** to bring up the Function's JavaScript  
 ![debugger 04 function editor](_images/debugger_04_function_editor.png)
 * Because we enabled debugging we now have a button, **Debug**, in the lower left of the code editor
 * From the **View JavaScript** page, click **Debug**. This will activate a one-time debug session. As a result, the next event-instance will get trapped and is forwarded to the Debugger.  
@@ -81,14 +81,14 @@ If you are debugging an Eventing Function that has a constant stream of mutation
     "ip_end": "5.62.60.9"  
   }  
   ![debugger 06b make event](_images/debugger_06b_make_event.png)
-  * Click **Save** to generate a mutation in your Eventing Function’s "Listen to Location".
+  * Click **Save** to generate a mutation in your Eventing Function's "Listen to Location".
 * Return to the tab/window that was in "Waiting for mutation." state. You can see the one-time debugging URL is now filled in and available to copy.  
 ![debugger 07 debugger have url](_images/debugger_07_debugger_have_url.png)
 * In the above debugging dialog Click **COPY**
 * Open a new tab/window, _\*do not close this browser tab/window with your debugging dialog\*_, for the Google Chrome Debugging session.
 * Paste the copied one-time debugging URL into the address bar and hit return.  
 ![debugger 08 new tab paste url](_images/debugger_08_new_tab_paste_url.png)
-* When the debugger comes up it may or may not display your Eventing Function’s JavaScript. If you do not see your code you may have to Click on the **step** button once or twice in the debugger (see the highlighted RED box above and below). Once you see your Function’s JavaScript code adjust the sizes of the various debugging windows to your personal preference.  
+* When the debugger comes up it may or may not display your Eventing Function's JavaScript. If you do not see your code you may have to Click on the **step** button once or twice in the debugger (see the highlighted RED box above and below). Once you see your Function's JavaScript code adjust the sizes of the various debugging windows to your personal preference.  
 ![debugger 09 chrome step](_images/debugger_09_chrome_step.png)
 * Set a breakpoint at line 12 by clicking on the line # on the left (see the highlighted RED box below). Once a break point is set it will display a bold BLUE bookmark.  
 ![debugger 10 chrome breakpoint](_images/debugger_10_chrome_breakpoint.png)
@@ -104,8 +104,8 @@ If you are debugging an Eventing Function that has a constant stream of mutation
 
 * During a debugging session this window must remain active. When you are presented a debug URL you must copy then paste it into a new browser window (described below). If you are using the UI to create the mutation, you must use a different tab/browser window to create the mutation. A debug session will also be terminated if from the Debugging pop-up (or debugging dialog), you can click **Stop Debugging**.
 * The URL you copied is valid only for a single mutation, to debug another subsequent mutation you must click **Stop debugging** button and capture click **Debug** again to get a fresh one-time debugging URL.
-* You are trying to debug a Couchbase server via a NAT’d IP Address and the debugger doesn’t work because the generated one-time debugger URL doesn’t reflect the NAT.  
-Example NAT’d setup  
+* You are trying to debug a Couchbase server via a NAT'd IP Address and the debugger doesn't work because the generated one-time debugger URL doesn't reflect the NAT.  
+Example NAT'd setup  
 Couchbase server is running 192.168.3.150 key ports 8091 for UI and 9140 for websocket devtools debugger  
 A public NAT for 192.168.3.150 is 4.71.116.187 (for both ports 8091 and 9140) in your firewall  
 Solution:  
@@ -124,7 +124,7 @@ There are currently three known URL variants from the oldest Chrome release to n
   * \*devtools://devtools/bundled/inspector.html
 * Potential issue with debugging International Components for Unicode (ICU)  
 > [!WARNING]  
-> In earlier versions 6.5.0, 6.5.1, and 6.6.0 users might experience bug MB-41508 a Chrome "WebSocket Disconnected" when debugging Eventing functions that call either toLocaleString() or Intl.DateTimeFormat. Essentially the file "icudtl.dat" which provides support for International Components for Unicode (ICU) is not in the needed location. The following step (copying the Chrome "icudtl.dat" file) is necessary only for development or staging clusters as users aren’t expected to spawn a debugger in a live production environment.  
+> In earlier versions 6.5.0, 6.5.1, and 6.6.0 users might experience bug MB-41508 a Chrome "WebSocket Disconnected" when debugging Eventing functions that call either toLocaleString() or Intl.DateTimeFormat. Essentially the file "icudtl.dat" which provides support for International Components for Unicode (ICU) is not in the needed location. The following step (copying the Chrome "icudtl.dat" file) is necessary only for development or staging clusters as users aren't expected to spawn a debugger in a live production environment.  
 Typically this issue will occur when the debugger hits an ICU function like _Intl.DateTimeFormat_ or _toLocaleString_, the result is your debugging session is disconnected as follows:  
 ![debug websocket disconnected](_images/debug_websocket_disconnected.png)  
 To fix the issue in Chrome you merely need to copy a file on the server to the expected file system location.
@@ -138,13 +138,13 @@ To fix the issue in Chrome you merely need to copy a file on the server to the e
 
 A transpiler accepts source code provided as input from one high-level programming language and produces an equivalent code in another high-level programming language.
 
-Couchbase Server uses a native transpiler. This transpiler converts the Eventing Function’s JavaScript syntax into a pure JavaScript representation that the JavaScript engine can understand. If this transpiler was unavailable, then the JavaScript engine would have failed to compile any native SQL++ queries or curl() functions.
+Couchbase Server uses a native transpiler. This transpiler converts the Eventing Function's JavaScript syntax into a pure JavaScript representation that the JavaScript engine can understand. If this transpiler was unavailable, then the JavaScript engine would have failed to compile any native SQL++ queries or curl() functions.
 
 When your source code is transformed, debugging becomes a problem because we must know where the original code is. Source maps solve this problem by providing a mapping between the original and the transformed source code.
 
 A source map, generated by our native transpiler provides a mapping between the transpiled code and the original function Eventing Function JavaScript code. Debugging is easy as the debugger detects the source map and presents the code to the developer in the original Eventing Function JavaScript format.
 
-Upon source map detection, a text confirmation flag gets displayed in the bottom of your browser’s debug window as a very long comment an example is highlighted below:
+Upon source map detection, a text confirmation flag gets displayed in the bottom of your browser's debug window as a very long comment an example is highlighted below:
 
 `//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpb` **truncated**
 
@@ -158,7 +158,7 @@ The Eventing Service Debugger port, `eventing_debug_port` (9140), is an internal
 ```console  
 {eventing_debug_port, 9444}.  
 ```
-4. If Couchbase Server was previously configured, you’ll need to delete the **/opt/couchbase/var/lib/couchbase/config/config.dat** file to remove the old configuration.
+4. If Couchbase Server was previously configured, you'll need to delete the **/opt/couchbase/var/lib/couchbase/config/config.dat** file to remove the old configuration.
 5. [Start Couchbase Server](../install/startup-shutdown.md).
 
 For detailed information on the modifying **ns\_server** port mappings, refer to [Custom Port Mapping](../install/install-ports.md#map-custom-ports).
@@ -177,7 +177,7 @@ Couchbase Server creates different application log files depending on the level 
 
 ### [](#system-log)System Log
 
-For the Eventing Service, Couchbase Server creates a system log file named **eventing.log** (refer to Table 1 for filesystem location by platform). This file is common across all Eventing Functions. The system log file captures information related to general management and supervision of the Eventing service (not the business logic of the Function). In addition this log file also captures life cycle or housekeeping information of every individual Eventing function depending on the Function’s "System Log Level" setting. An end user cannot write a message (via their JavaScript code in an Eventing Function) to this log file it is intended for debugging for customers that are on support contracts.
+For the Eventing Service, Couchbase Server creates a system log file named **eventing.log** (refer to Table 1 for filesystem location by platform). This file is common across all Eventing Functions. The system log file captures information related to general management and supervision of the Eventing service (not the business logic of the Function). In addition this log file also captures life cycle or housekeeping information of every individual Eventing function depending on the Function's "System Log Level" setting. An end user cannot write a message (via their JavaScript code in an Eventing Function) to this log file it is intended for debugging for customers that are on support contracts.
 
 __Table 1\. Eventing System Log Location in Platform__
 | Platform | Location                                                                                                             |
@@ -188,7 +188,7 @@ __Table 1\. Eventing System Log Location in Platform__
 
 The **eventing.log** contains redactable user data and the log is collected using the **cbcollect\_info** tool. For log rotation, refer to [Log File Rotation](../manage/manage-logging/manage-logging.md#log-file-rotation).
 
-The available logging levels are: _Info, Error, Warning, Debug, and Trace (Info is the default since version 6.0)_. The level can be altered via the "System Log Level" choice in the Settings dialog of each individual Eventing function and impacts the detail and quantity of information sent to the System Log (but has no effect on a specific Function’s Application Log). Unless directed by support you should not change the "System Log Level".
+The available logging levels are: _Info, Error, Warning, Debug, and Trace (Info is the default since version 6.0)_. The level can be altered via the "System Log Level" choice in the Settings dialog of each individual Eventing function and impacts the detail and quantity of information sent to the System Log (but has no effect on a specific Function's Application Log). Unless directed by support you should not change the "System Log Level".
 
 ![debug 5 log level](_images/debug_5_log_level.png) 
 
@@ -196,11 +196,11 @@ The available logging levels are: _Info, Error, Warning, Debug, and Trace (Info 
 
 Application logs allow you to identify and capture various business logic related activities and errors via user defined messages specific to each Eventing function.
 
-You must have the appropriate RBAC privileges to view an Eventing Function’s Application log in the UI or via the REST API. The role of either "Full Admin" or "Eventing Full Admin" can see Application log or can access any Eventing Function’s Application log. For more information refer to [Eventing Role-Based Access Control](eventing-rbac.md).
+You must have the appropriate RBAC privileges to view an Eventing Function's Application log in the UI or via the REST API. The role of either "Full Admin" or "Eventing Full Admin" can see Application log or can access any Eventing Function's Application log. For more information refer to [Eventing Role-Based Access Control](eventing-rbac.md).
 
-Unlike the System Log, Application logs can be viewed in the UI for any deployed function by clicking on the function’s “Log” hyperlink in the Eventing page.
+Unlike the System Log, Application logs can be viewed in the UI for any deployed function by clicking on the function's "Log" hyperlink in the Eventing page.
 
-Each Eventing function will have its own Application log based on the function name, e.g. **the\_function\_name.log**. (refer to Table 2 for filesystem path by platform). The information that goes to these log files is solely dependent the logic of the Function via _log(…)_ statements put inside the individual Eventing Function’s JavaScript code. Unlike the system log there is currently is no logging level for Application logs. Application logs are primarily used for development and debugging business logic.
+Each Eventing function will have its own Application log based on the function name, e.g. **the\_function\_name.log**. (refer to Table 2 for filesystem path by platform). The information that goes to these log files is solely dependent the logic of the Function via _log(…)_ statements put inside the individual Eventing Function's JavaScript code. Unlike the system log there is currently is no logging level for Application logs. Application logs are primarily used for development and debugging business logic.
 
 ```javascript
 function OnUpdate(doc, meta) {
@@ -217,7 +217,7 @@ function OnUpdate(doc, meta) {
 }
 ```
 
-Application logs receive user defined messages when a _log(…​)_ statement is encountered in the Function’s JavaScript code (they do not have a Log Level).
+Application logs receive user defined messages when a _log(…​)_ statement is encountered in the Function's JavaScript code (they do not have a Log Level).
 
 As a best practice the use of _log(…​)_ messages with try catch blocks can greatly assist Eventing Function development and debugging.
 
@@ -264,7 +264,7 @@ function OnUpdate(doc, meta) {
 }
 ```
 
-The output now indicates the exact error that occurred via the Function’s Application log as follows:
+The output now indicates the exact error that occurred via the Function's Application log as follows:
 
 ```text
 2020-02-09T07:12:17.936-08:00 [INFO] "id" "airport_1255"
@@ -295,11 +295,11 @@ Running the above on a source keyspace `travel-sample`.`_default`.`_default` wil
 
 This summarization greatly reduces the size of the Eventing logs in the event there is a low level issue or a syntax error that detected only at deploy time.
 
-You can access a Function’s Application log file using the UI by selecting the Function name and clicking on the 'Log' hyperlink/button or by opening a terminal and issuing Linux commands such as _cat_, _more_, _head_, _tail_, or ‘_tail -F_’ on a specific Eventing function’s log.
+You can access a Function's Application log file using the UI by selecting the Function name and clicking on the 'Log' hyperlink/button or by opening a terminal and issuing Linux commands such as _cat_, _more_, _head_, _tail_, or '_tail -F_' on a specific Eventing function's log.
 
 Couchbase Server creates an individual log file for every Function in the cluster on each Eventing node. Application logs will only contain information for the mutations processed on a given Eventing node.
 
-By default, the maximum size of a node’s Application log file is 40MB, and the number of log files before rotation is 10\. Unlike system logs, the Application logs are user-configurable in number and size.
+By default, the maximum size of a node's Application log file is 40MB, and the number of log files before rotation is 10\. Unlike system logs, the Application logs are user-configurable in number and size.
 
 > [!NOTE]
 > The **cbcollect\_info** tool does not collect the Application log files.

@@ -2,7 +2,7 @@
 title: Field Level Encryption
 description: A high-level overview of Field-Level Encryption concepts.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.3/modules/concept-docs/pages/encryption.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@nodejs-sdk:concept-docs:encryption.adoc[]
 ---
 
@@ -27,7 +27,7 @@ Figure 1\. Encrypting & decrypting via the FLE library
 
 ## [](#algorithm)Algorithm and Key Store
 
-SDK 3 uses the `AEAD_AES_256_CBC_HMAC_SHA_512` algorithm to provide authenticated symmetric encryption of sensitive JSON fields. This algorithm uses a 64-byte key (known affectionately as a "fat key", since it’s really two 32-byte keys joined together). The key materials for the AES and HMAC steps are distinct, but are managed as a single unit.
+SDK 3 uses the `AEAD_AES_256_CBC_HMAC_SHA_512` algorithm to provide authenticated symmetric encryption of sensitive JSON fields. This algorithm uses a 64-byte key (known affectionately as a "fat key", since it's really two 32-byte keys joined together). The key materials for the AES and HMAC steps are distinct, but are managed as a single unit.
 
 > [!NOTE]
 > Previous versions of the Field-Level Encryption library used a variation of this algorithm that managed the AES and HMAC keys separately. This was an obstacle to key rotation, so those algorithms are deprecated in SDK 3 and are no longer used for encryption. Existing data encrypted with the old algorithm can still be read by SDK 3, although additional configuration is required to enable backwards compatibility.
@@ -38,7 +38,7 @@ A `Keyring` provides access to encryption keys. Implementations are provided for
 
 ## [](#format)Field Encryption Format
 
-Here’s a document that illustrates how an encrypted field is stored in Couchbase. The document has a normal field called "foo", and an encrypted field called "bar". Note that the name of the "bar" field is mangled to indicate it holds an encrypted value:
+Here's a document that illustrates how an encrypted field is stored in Couchbase. The document has a normal field called "foo", and an encrypted field called "bar". Note that the name of the "bar" field is mangled to indicate it holds an encrypted value:
 
 {
   "foo": "I am not a secret",

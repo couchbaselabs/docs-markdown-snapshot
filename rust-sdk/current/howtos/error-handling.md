@@ -3,7 +3,7 @@ title: Handling Errors
 description: Errors are inevitable. Rust offers several flexible approaches to
   handling them.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:howtos:error-handling.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:rust-sdk:howtos:error-handling.adoc[]
 
 > Errors are inevitable. Rust offers several flexible approaches to handling them. 
 
-The developer’s job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. Couchbase gives you a lot of flexibility, but it is recommended that you equip yourself with an understanding of the possibilities.
+The developer's job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. Couchbase gives you a lot of flexibility, but it is recommended that you equip yourself with an understanding of the possibilities.
 
 See the [async page](concurrent-async-apis.md#error-handling-in-concurrent-contexts) for information on error handling in concurrent contexts.
 
@@ -118,7 +118,7 @@ match collection
 
 ### [](#ambiguity)Ambiguity
 
-There are situations with any distributed system in which it is simply impossible to know for sure if the operation completed successfully or not. Take this as an example: your application requests that a new document be created on Couchbase Server. This completes, but, just before the server can notify the client that it was successful, a network switch dies and the application’s connection to the server is lost. The application can drop the operation future, but it’s ambiguous to the app whether the operation succeeded or not.
+There are situations with any distributed system in which it is simply impossible to know for sure if the operation completed successfully or not. Take this as an example: your application requests that a new document be created on Couchbase Server. This completes, but, just before the server can notify the client that it was successful, a network switch dies and the application's connection to the server is lost. The application can drop the operation future, but it's ambiguous to the app whether the operation succeeded or not.
 
 Another ambiguous error is `DurabilityAmbiguous`, which can returned when performing a durable operation. This similarly indicates that the operation may or may not have succeeded — though when using durability you are guaranteed that the operation will either have been applied to all replicas, or none.
 
@@ -172,7 +172,7 @@ loop {
 }
 ```
 
-That example is much closer to what an application will want to be doing. Let’s flesh it out further.
+That example is much closer to what an application will want to be doing. Let's flesh it out further.
 
 ### [](#real-world-error-handling)Real-World Error Handling
 
@@ -246,9 +246,9 @@ loop {
 
 This will make a 'best effort' to do the insert (though its retry strategy is rather naïve, and applications may want to implement a more sophisticated approach involving exponential backoff and circuit breaking.)
 
-If that best effort fails, and the `do_insert` call still returns a `Error`, then it’s highly context-dependent how to handle that. Examples would include displaying a "please try again later" error to a user, if there is one, and logging it for manual human review. The application must make a suitable call for each case.
+If that best effort fails, and the `do_insert` call still returns a `Error`, then it's highly context-dependent how to handle that. Examples would include displaying a "please try again later" error to a user, if there is one, and logging it for manual human review. The application must make a suitable call for each case.
 
-The application can write similar wrappers for the other operations — replace, upsert, _et al_. Note that the logic is a little different in each case: for inserts, we confirm if the operation has already been successful on an ambiguous result by checking for `DocumentExists`But this wouldn’t make sense for an upsert.
+The application can write similar wrappers for the other operations — replace, upsert, _et al_. Note that the logic is a little different in each case: for inserts, we confirm if the operation has already been successful on an ambiguous result by checking for `DocumentExists`But this wouldn't make sense for an upsert.
 
 ### [](#idempotent-and-non-idempotent-operations)Idempotent and Non-Idempotent Operations
 
@@ -259,7 +259,7 @@ Some operations we can view as idempotent as they will fail with no effect after
 
 Idempotent operations are much easier to handle, as on ambiguous error results (`DurabilityAmbiguous` or timeouts) the operation can simply be retried.
 
-Most key-value operations are idempotent. For those that aren’t, such as a Sub-Document `array_append` call, or a counter increment, the application should, on an ambiguous result, first read the document to see if that change was applied.
+Most key-value operations are idempotent. For those that aren't, such as a Sub-Document `array_append` call, or a counter increment, the application should, on an ambiguous result, first read the document to see if that change was applied.
 
 ## [](#customizing-the-retrystrategy)Customizing the RetryStrategy
 

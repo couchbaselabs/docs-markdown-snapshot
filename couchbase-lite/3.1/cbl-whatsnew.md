@@ -1,7 +1,7 @@
 ---
 title: New In 3.1
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/ROOT/pages/cbl-whatsnew.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@couchbase-lite::cbl-whatsnew.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.1@couchbase-lite::cbl-whatsnew.adoc[]
 
 > [!NOTE]
 > Couchbase Lite 3.0 introduces some breaking changes.  
-> If you’re upgrading from 2.x, refer to the appropriate upgrade page — see: [Upgrading](#lbl-upgrade)Users should be able to upgrade to 3.1.x from 3.0.x without manual intervention.
+> If you're upgrading from 2.x, refer to the appropriate upgrade page — see: [Upgrading](#lbl-upgrade)Users should be able to upgrade to 3.1.x from 3.0.x without manual intervention.
 
 ## [](#release-3-1-11-march-2025)Release 3.1.11 (March 2025)
 
@@ -76,7 +76,7 @@ Couchbase Lite Release 3.1.1 introduces fixes and enhancements for:
 
 ## [](#release-3-1-0-april-2023)Release 3.1.0 (April 2023)
 
-Couchbase Mobile’s cloud-to-edge support for scopes and collections allows application developers to organize and logically isolate data.
+Couchbase Mobile's cloud-to-edge support for scopes and collections allows application developers to organize and logically isolate data.
 
 Independent lifecycle management and fine-grained security control simplifies the deployment of multi-tenant and high-application density cloud-to-edge applications at scale.
 
@@ -84,7 +84,7 @@ Independent lifecycle management and fine-grained security control simplifies th
 
 ## [](#see-also)See Also
 
-[What’s new in previous version 3.0](../3.0/cbl-whatsnew.md)
+[What's new in previous version 3.0](../3.0/cbl-whatsnew.md)
 
 ### [](#release-notes)Release Notes
 

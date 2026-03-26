@@ -3,7 +3,7 @@ title: vBuckets
 description: vBuckets are virtual buckets that break bucket data into smaller
   pieces to make distributing and replicating data across multiple nodes easier.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/vbuckets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:buckets-memory-and-storage/vbuckets.adoc[]
 ---
 
@@ -20,17 +20,17 @@ Couchbase Server lets users and applications save data in binary or JSON format 
 
 Couchbase Server breaks the data in buckets into smaller units called vBuckets (short for virtual buckets). Some people refer to vBuckets as shards. The vBuckets let Couchbase Server work with smaller chunks of data to ease distributing work around the cluster and maintaining data availability through replication.
 
-When it creates the bucket, Couchbase Server breaks it into a fixed number of vBuckets . Once created, the number of vBuckets in a bucket does not change. The number of vBuckets depends on the bucket’s storage backend (the system that manages the data storage) and the operating system running Couchbase Server:
+When it creates the bucket, Couchbase Server breaks it into a fixed number of vBuckets . Once created, the number of vBuckets in a bucket does not change. The number of vBuckets depends on the bucket's storage backend (the system that manages the data storage) and the operating system running Couchbase Server:
 
 * On MacOS, Couchbase Server creates 64 vBuckets for each bucket, no matter what the storage engine is.
 * Buckets that use the Couchstore storage engine use 1024 vBuckets on Linux and Windows.
-* Buckets that use Magma storage engine can use either 128 or 1024 vBuckets on Linux and Windows. You choose the number of vBuckets when you create the bucket. If you’re using XDCR, review the [XDCR Compatibility](../clusters-and-availability/xdcr-overview.md#xdcr-compatibility) information on vBuckets for Server versions earlier than 8.0.
+* Buckets that use Magma storage engine can use either 128 or 1024 vBuckets on Linux and Windows. You choose the number of vBuckets when you create the bucket. If you're using XDCR, review the [XDCR Compatibility](../clusters-and-availability/xdcr-overview.md#xdcr-compatibility) information on vBuckets for Server versions earlier than 8.0.
 
-The system distributes vBuckets evenly across the memory and storage resources of nodes that run the [Data Service](../services-and-indexes/services/data-service.md). The bucket’s data is distributed evenly across its vBuckets. This even distribution balances the workload of processing and maintaining data across all of the Data Service instances in the cluster.
+The system distributes vBuckets evenly across the memory and storage resources of nodes that run the [Data Service](../services-and-indexes/services/data-service.md). The bucket's data is distributed evenly across its vBuckets. This even distribution balances the workload of processing and maintaining data across all of the Data Service instances in the cluster.
 
 ### [](#accessing-data-in-vbuckets)Accessing Data in vBuckets
 
-When reading or writing data, Couchbase Server uses a CRC32 hashing algorithm to map items to vBuckets. It hashes the item’s key, to determine which vBucket stores the item.
+When reading or writing data, Couchbase Server uses a CRC32 hashing algorithm to map items to vBuckets. It hashes the item's key, to determine which vBucket stores the item.
 
 The Cluster Manager tracks which nodes contain each vBucket. It also determines which vBuckets are active vs which are replicas (see [Active and Replica vBuckets](#active-vs-replica)). When the mapping changes, the Cluster Manager updates the vBucket map and notifies clients of the change.
 

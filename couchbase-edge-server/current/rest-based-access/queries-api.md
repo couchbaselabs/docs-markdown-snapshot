@@ -2,7 +2,7 @@
 title: Run Queries with Edge Server
 description: You can run SQL++ queries in a keyspace using the keyspace's query endpoint.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/queries-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-edge-server:rest-based-access:queries-api.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:couchbase-edge-server:rest-based-access:queries-api.adoc[]
 
 # Run Queries with Edge Server
 
-> You can run SQL++ queries in a keyspace using the keyspace’s query endpoint. 
+> You can run SQL++ queries in a keyspace using the keyspace's query endpoint. 
 
 With Edge Server, you can specify SQL++ queries in two ways.
 
@@ -34,7 +34,7 @@ To create named queries for a database:
 To run a named query:
 
 1. Make a GET or POST call to the `_query` endpoint for the keyspace where the query is defined.
-2. Specify the query name as a path parameter. The name must match one of the keys of the database configuration’s [queries](../configuration/edge-server-configuration.md#databases-{DatabaseName}-queries) object.
+2. Specify the query name as a path parameter. The name must match one of the keys of the database configuration's [queries](../configuration/edge-server-configuration.md#databases-{DatabaseName}-queries) object.
 3. To pass parameters to the query, specify them as query parameters for a GET REST API call, or as a JSON object in the request body for a POST REST API call. Specify the query parameter names without the initial `$`.
 
 If the query is successful, the response is a JSON array of objects. Each object is a result; the keys are the column names.
@@ -217,7 +217,7 @@ HTTP Response
 
 Couchbase Edge Server uses a query language called SQL++ for Mobile.
 
-SQL++ is an expressive, powerful, and complete SQL dialect for querying, transforming, and manipulating JSON data. Because it’s based on SQL, it’s immediately familiar to developers, who can quickly start developing rich applications.
+SQL++ is an expressive, powerful, and complete SQL dialect for querying, transforming, and manipulating JSON data. Because it's based on SQL, it's immediately familiar to developers, who can quickly start developing rich applications.
 
 SQL++ for Mobile is a Couchbase implementation of SQL++, focused on mobile and edge applications. As the name suggests, SQL++ for Mobile is used across the Couchbase Mobile product range.
 

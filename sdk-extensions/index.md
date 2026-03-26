@@ -3,7 +3,7 @@ title: SDK Extension Libraries
 description: Field Level Encryption and Response Time Observability (Tracing)
   libraries ship separately from each SDK.
 editUrl: https://github.com/couchbase/docs-sdk-extensions/edit/main/modules/ROOT/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sdk-extensions::index.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:sdk-extensions::index.adoc[]
 
 Field Level Encryption and Response Time Observability (Tracing) libraries ship separately from each SDK. As does Spring Data and others which are not applicable for each SDK. These pages are for common material across a number of SDKs.
 
-If you have landed on this page, you most likely wish to be on a general page for one of the extension libraries. These are outlined in the next section. If you want to be on a particular SDK’s extension library page, you will find them listed at the [end of the page](#additional-information).
+If you have landed on this page, you most likely wish to be on a general page for one of the extension libraries. These are outlined in the next section. If you want to be on a particular SDK's extension library page, you will find them listed at the [end of the page](#additional-information).
 
 ## [](#distributed-acid-transactions-fle-and-rto)Distributed ACID Transactions, FLE, and RTO
 

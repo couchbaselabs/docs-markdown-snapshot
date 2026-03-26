@@ -2,7 +2,7 @@
 title: PREPARE
 description: The PREPARE statement prepares a query for repeated execution.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/prepare.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/prepare.adoc[]
 ---
 
@@ -169,7 +169,7 @@ For example, to reprepare a prepared statement named `NumParam` on a node with t
 UPDATE system:prepareds USE KEYS ["[127.0.0.1:8091]NumParam"] UNSET planPreparedTime;
 ```
 
-You can repeat this operation after creating each relevant index to refresh the prepared statement’s plan.
+You can repeat this operation after creating each relevant index to refresh the prepared statement's plan.
 
 ## [](#auto-execute)Auto-Execute
 

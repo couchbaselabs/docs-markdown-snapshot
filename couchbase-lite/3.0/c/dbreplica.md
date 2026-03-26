@@ -3,7 +3,7 @@ title: Data Sync Locally on Device
 description: Couchbase Lite Database Sync - Synchronize changes between
   databases on the same device
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/c/pages/dbreplica.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:c:dbreplica.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:3.0@couchbase-lite:c:dbreplica.adoc[]
 
 ## [](#overview)Overview
 
-Couchbase Lite supports replication between two local databases. This allows a Couchbase Lite replicator to store data on secondary storage. It is especially useful in scenarios where a user’s device may be damaged and its data moved to a different device.
+Couchbase Lite supports replication between two local databases. This allows a Couchbase Lite replicator to store data on secondary storage. It is especially useful in scenarios where a user's device may be damaged and its data moved to a different device.
 
 Example 1\. Replication between Local Databases
 

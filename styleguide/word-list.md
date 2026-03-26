@@ -1,7 +1,7 @@
 ---
 title: A-Z Word List
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/word-list.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::word-list.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:styleguide::word-list.adoc[]
 
 Use the following list to determine how to spell, capitalize, and use specific words and terms in Couchbase Documentation.
 
-For terms not covered here, see the [Google Developer Style Guide’s Word List](https://developers.google.com/style/word-list).
+For terms not covered here, see the [Google Developer Style Guide's Word List](https://developers.google.com/style/word-list).
 
 [#](#num) | [A](#a) | [B](#b) | [C](#c) | [D](#d) | [E](#e) | [F](#f) | [G](#g) | [H](#h) | [I](#i) | [J](#j) | [K](#k) | [L](#l) | [M](#m) | [N](#n) | [O](#o) | [P](#p) | [Q](#q) | [R](#r) | [S](#s) | [T](#t) | [U](#u) | [V](#v) | [W](#w) | [X](#x) | [Y](#y) | [Z](#z)
 
@@ -53,7 +53,7 @@ For terms not covered here, see the [Google Developer Style Guide’s Word List]
 | automatic schema discovery                             | Do not add a hyphen. Do not capitalize.                                                                                                                                                                                              |
 | auto-sharding                                          | Add the hyphen.                                                                                                                                                                                                                      |
 | Availability Zone                                      | Capitalize Availability and Zone.                                                                                                                                                                                                    |
-| AWS Identity and Access Management (IAM)               | Do not write as just IAM when referring to Amazon Web Services Identity and Access Management. Write as AWS IAM after the first expanded use on a page. It’s okay to use AWS Identity and Access Management (IAM) for the first use. |
+| AWS Identity and Access Management (IAM)               | Do not write as just IAM when referring to Amazon Web Services Identity and Access Management. Write as AWS IAM after the first expanded use on a page. It's okay to use AWS Identity and Access Management (IAM) for the first use. |
 
 ## [](#b)B
 
@@ -172,7 +172,7 @@ For terms not covered here, see the [Google Developer Style Guide’s Word List]
 | etc.                                      | Do not use Latin abbreviations. Use and so on, instead.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Event-Condition-Action model              | Add the hyphens. Capitalize Event, Condition, and Action.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Eventing Service                          | When referring to Couchbase Services, use title case.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| eviction, ejection, expiration            | Use **eviction** to refer to removing a record entirely from any system or cache. Items are evicted from ephemeral buckets when RAM is full. Use **ejection** to refer to removing a record from 1 layer, but still keeping it in a system. Items are ejected from Couchstore or Magma buckets when they’re removed from RAM, but still stored on disk. Use **expiration** to refer to a record being deleted after a specific time period. Items are expired when their time to live (TTL) is greater than 0, and that time has passed. |
+| eviction, ejection, expiration            | Use **eviction** to refer to removing a record entirely from any system or cache. Items are evicted from ephemeral buckets when RAM is full. Use **ejection** to refer to removing a record from 1 layer, but still keeping it in a system. Items are ejected from Couchstore or Magma buckets when they're removed from RAM, but still stored on disk. Use **expiration** to refer to a record being deleted after a specific time period. Items are expired when their time to live (TTL) is greater than 0, and that time has passed. |
 | external collection                       | Do not capitalize.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | extract, transform, load (ETL) operations | Write out for the first use on a page.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
@@ -182,7 +182,7 @@ For terms not covered here, see the [Google Developer Style Guide’s Word List]
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | failover                     | Write as 1 word for the noun. Write as 2 words for the verb.                                                            |
 | FAQ                          | Write as a proper acronym. For more information, see [Capitalization](capitalization.md).                               |
-| fewer                        | Use for countable nouns or to describe a noun that’s plural. For example, fewer clusters. Otherwise, use [less](#less). |
+| fewer                        | Use for countable nouns or to describe a noun that's plural. For example, fewer clusters. Otherwise, use [less](#less). |
 | filename                     | Write as 1 word. Do not add a hyphen.                                                                                   |
 | filesystem                   | Write as 1 word. Do not add a hyphen.                                                                                   |
 | fine-grained                 | Add the hyphen.                                                                                                         |
@@ -364,7 +364,7 @@ For terms not covered here, see the [Google Developer Style Guide’s Word List]
 | query shell           | Use the product name, CBQ.                                                                            |
 | Query Workbench       | Capitalize as a proper product name.                                                                  |
 | quick links           | Write as 2 separate words.                                                                            |
-| quotation marks       | Do not use quotation marks outside of code. Do not use fancy quotes (“” ‘’) characters.               |
+| quotation marks       | Do not use quotation marks outside of code. Do not use fancy quotes ("" '') characters.               |
 
 ## [](#r)R
 

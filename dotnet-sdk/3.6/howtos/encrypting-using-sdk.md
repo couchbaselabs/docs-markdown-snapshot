@@ -3,7 +3,7 @@ title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the .NET SDK.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@dotnet-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -73,7 +73,7 @@ Two modes of operation are available:
 
 ### [](#data-binding-example)Data Binding Example
 
-Sensitive fields of your data classes can be annotated with `EncryptedField`. Let’s use this class as an example:
+Sensitive fields of your data classes can be annotated with `EncryptedField`. Let's use this class as an example:
 
 ```csharp
 public class Employee
@@ -83,7 +83,7 @@ public class Employee
 }
 ```
 
-Now let’s create an employee record and save it to Couchbase:
+Now let's create an employee record and save it to Couchbase:
 
 ```csharp
 var collection = await bucket.DefaultCollectionAsync();
@@ -114,7 +114,7 @@ Because `contentAsObject()` does not decrypt anything, the expected output is so
 }
 ```
 
-Now let’s read the employee record using data binding:
+Now let's read the employee record using data binding:
 
 ```csharp
 using var getResult2 = await collection.GetAsync(id, options => options.Transcoder(encryptedTranscoder))
@@ -130,7 +130,7 @@ This prints `true`.
 
 The AEAD\_AES\_256\_CBC\_HMAC\_SHA512 algorithm included in this library uses encryption keys that are 64 bytes long.
 
-Here’s an example that shows how to create a suitable encryption key:
+Here's an example that shows how to create a suitable encryption key:
 
 ```csharp
 var keyBytes = new Span<byte>(new byte[64]);
@@ -142,7 +142,7 @@ var keyRing = new Keyring(new IKey[]
 });
 ```
 
-And here’s how to use it to create a `Keyring` for use with Couchbase Field-Level Encryption:
+And here's how to use it to create a `Keyring` for use with Couchbase Field-Level Encryption:
 
 ```csharp
 var provider =
@@ -163,7 +163,7 @@ var cryptoManager = DefaultCryptoManager.Builder()
 > [!WARNING]
 > SDK 2 cannot read fields encrypted by SDK 3\.
 
-It’s inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled a maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
+It's inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled a maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
 
 SDK 3 requires additional configuration to read fields encrypted by SDK 2\. The rest of this section describes how to configure Field-Level Encryption in SDK 3 for backwards compatibility with SDK 2.
 

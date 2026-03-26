@@ -3,7 +3,7 @@ title: DROP FUNCTION
 description: The <code>DROP FUNCTION</code> statement enables you to delete a
   user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropfunction.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/dropfunction.adoc[]
 ---
 
@@ -114,4 +114,4 @@ DROP FUNCTION adjacent;
 
 ---
 
-[1](#%5Ffootnoteref%5F1). In other words, you’re dropping a global function, and the function does not exist within the specified namespace; or, you’re dropping a scoped function, and the function does not exist within the specified scope.
+[1](#%5Ffootnoteref%5F1). In other words, you're dropping a global function, and the function does not exist within the specified namespace; or, you're dropping a scoped function, and the function does not exist within the specified scope.

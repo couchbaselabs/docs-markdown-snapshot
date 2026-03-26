@@ -2,7 +2,7 @@
 title: "Appendix 2: Performance Tuning"
 description: A description of Couchbase Analytics query performance tuning.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/appendix_2_parameters.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:analytics:appendix_2_parameters.adoc[]
 ---
 
@@ -211,7 +211,7 @@ You can supply hints to the cost-based optimizer using a hint comment. These ena
 
 The `productivity` hint can help the cost-based optimizer get a better join cardinality estimate for foreign key to foreign key joins.
 
-This hint is used within the join predicate. If the join is on a composite key, then this hint needs to be provided just once on any of the join’s predicates.
+This hint is used within the join predicate. If the join is on a composite key, then this hint needs to be provided just once on any of the join's predicates.
 
 The hint requires two parameters:
 

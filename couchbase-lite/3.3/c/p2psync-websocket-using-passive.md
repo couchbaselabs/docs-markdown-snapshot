@@ -3,7 +3,7 @@ title: Passive Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/c/pages/p2psync-websocket-using-passive.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite:c:p2psync-websocket-using-passive.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.3@couchbase-lite:c:p2psync-websocket-using-passive.adoc[]
 
 # Passive Peer
 
-> Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
+> Description — _Couchbase Lite's Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — How to set up a Listener to accept a Replicator connection and sync using peer-to-peer_  
 > Related Content — [API Reference](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-c/C/html) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
@@ -25,7 +25,7 @@ link: xref:3.3@couchbase-lite:c:p2psync-websocket-using-passive.adoc[]
 
 This content provides code and configuration examples covering the implementation of [Peer-to-Peer Sync](refer-glossary.md#peer-to-peer-sync) over WebSockets. Specifically, it covers the implementation of a [Passive Peer](refer-glossary.md#passive-peer).
 
-Couchbase’s Passive Peer (also referred to as the server, or Listener) will accept a connection from an [Active Peer](refer-glossary.md#active-peer) (also referred to as the client or replicator) and replicate database changes to synchronize both databases.
+Couchbase's Passive Peer (also referred to as the server, or Listener) will accept a connection from an [Active Peer](refer-glossary.md#active-peer) (also referred to as the client or replicator) and replicate database changes to synchronize both databases.
 
 Subsequent sections provide additional details and examples for the main configuration options.
 
@@ -96,7 +96,7 @@ You can find [C API References](https://docs.couchbase.com/mobile/3.3.4/couchbas
 
 **This phase is optional:** If the Listener is initialized on a well-known URL endpoint (for example, a static IP Address or well-known DNS address) then you can configure Active Peers to connect to those.
 
-Before initiating the Listener, you may execute a peer discovery phase. For the Passive Peer, this involves advertising the service using platform libraries, and waiting for an invite from the Active Peer. The connection is established once the Passive Peer has authenticated and accepted an Active Peer’s invitation.
+Before initiating the Listener, you may execute a peer discovery phase. For the Passive Peer, this involves advertising the service using platform libraries, and waiting for an invite from the Active Peer. The connection is established once the Passive Peer has authenticated and accepted an Active Peer's invitation.
 
 ## [](#initialize-the-listener-configuration)Initialize the Listener Configuration
 
@@ -186,7 +186,7 @@ Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/3.3.4/c
 
 If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous self-signed identity (unless `disableTLS = true`). Whilst the client cannot use this to authenticate the server, it will use it to encrypt communication, giving a more secure option than non-TLS communication.
 
-On macOS, iOS, and Windows, the auto-generated anonymous self-signed identity is saved in secure storage for future use to obviate the need to re-generate it. Typically, you will configure the Listener’s TLS Identity once during the initial launch and re-use it (from secure storage) on any subsequent starts.
+On macOS, iOS, and Windows, the auto-generated anonymous self-signed identity is saved in secure storage for future use to obviate the need to re-generate it. Typically, you will configure the Listener's TLS Identity once during the initial launch and re-use it (from secure storage) on any subsequent starts.
 
 On Linux and Android, the auto-generated anonymous self-signed identity is kept in memory and will be regenerated each time the listener is started.
 
@@ -318,7 +318,7 @@ typedef struct CBLExternalKeyCallbacks
 
 Define how the server (Listener) will authenticate the client as one it is prepared to interact with.
 
-Whilst client authentication is optional, Couchbase lite provides the necessary tools to implement it. Use the [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html) class’s [authenticator](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a68159e04ec97a47fcbe785709ca54b35) method to specify how the client-supplied credentials are to be authenticated.
+Whilst client authentication is optional, Couchbase lite provides the necessary tools to implement it. Use the [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html) class's [authenticator](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a68159e04ec97a47fcbe785709ca54b35) method to specify how the client-supplied credentials are to be authenticated.
 
 Valid options are:
 
@@ -433,7 +433,7 @@ __Table 1\. Expected system behavior__
 
 ## [](#lbl-start-listener)Start Listener
 
-Once you have completed the Listener’s configuration settings you can initialize the Listener instance and start it running — see: [Example 13](#initialize-and-start-listener)
+Once you have completed the Listener's configuration settings you can initialize the Listener instance and start it running — see: [Example 13](#initialize-and-start-listener)
 
 Example 13\. Initialize and start listener
 
@@ -448,7 +448,7 @@ CBLURLEndpointListener_Start(listener, &error);
 
 ## [](#monitor-listener)Monitor Listener
 
-Use the Listener’s [CBLURLEndpointListener\_Status()](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-c/C/html/%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5F8h.html#ac5cc57610ce3d6a2fb1e891a8f24a448) property/method to get counts of total and active connections — see: [Example 14](#get-connection-counts).
+Use the Listener's [CBLURLEndpointListener\_Status()](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-c/C/html/%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5F8h.html#ac5cc57610ce3d6a2fb1e891a8f24a448) property/method to get counts of total and active connections — see: [Example 14](#get-connection-counts).
 
 You should note that these counts can be extremely volatile. So, the actual number of active connections may have changed, by the time the [ConnectionStatus](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fconnection%5Fstatus.html) class returns a result.
 
@@ -462,7 +462,7 @@ uint64_t activeConnections = status.activeConnectionCount;
 
 ## [](#stop-listener)Stop Listener
 
-It is best practice to check the status of the Listener’s connections and stop only when you have confirmed that there are no active connections — see [Example 14](#get-connection-counts).
+It is best practice to check the status of the Listener's connections and stop only when you have confirmed that there are no active connections — see [Example 14](#get-connection-counts).
 
 Example 15\. Stop listener using `stop` method
 

@@ -1,7 +1,7 @@
 ---
 title: Autonomous Operations
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/autonomous-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:elasticsearch-connector::autonomous-operations.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Group configuration is stored in a central location so the entire group can be e
 
 The coordination service used by the connector is [HashiCorp Consul](https://www.consul.io).
 
-Installing and managing a production Consul cluster is beyond the scope of this guide, but we’ll show how to quickly and easily set up a Consul server in development mode.
+Installing and managing a production Consul cluster is beyond the scope of this guide, but we'll show how to quickly and easily set up a Consul server in development mode.
 
 > [!NOTE]
 > Couchbase does not provide support for Consul, nor for configuring Consul for use with the Couchbase Elasticsearch Connector. Although not supported, it is a useful solution for coordinating services across your infrastructure, so we offer this quickstart guide here for setting up your development environment.
@@ -32,8 +32,8 @@ Installing and managing a production Consul cluster is beyond the scope of this 
 ### [](#pre-requisites)Pre-requisites
 
 * Please review the [Getting Started](getting-started.md) documentation for basic connector configuration and operation. Make sure you are successful with a single worker before proceeding.
-* You’ll need a Consul executable for your platform. Visit the [Consul web site](https://www.consul.io) and navigate to the download page. Download [a compatible version of Consul](compatibility.md) (other versions may work, but these are the ones we currently test and support). Install the Consul binary by moving it to a directory in your `PATH`.
-* An Elasticsearch connector process will terminate if it finds itself in an unsafe state. For a production deployment, you’ll need to be familiar with systemd, upstart, init, or some other tool for monitoring a process and restarting it when it terminates.
+* You'll need a Consul executable for your platform. Visit the [Consul web site](https://www.consul.io) and navigate to the download page. Download [a compatible version of Consul](compatibility.md) (other versions may work, but these are the ones we currently test and support). Install the Consul binary by moving it to a directory in your `PATH`.
+* An Elasticsearch connector process will terminate if it finds itself in an unsafe state. For a production deployment, you'll need to be familiar with systemd, upstart, init, or some other tool for monitoring a process and restarting it when it terminates.
 
 ### [](#start-the-consul-server)Start the Consul Server
 
@@ -47,7 +47,7 @@ Visit the Consul web interface at <http://localhost:8500> to view the state of t
 
 ### [](#configure-the-connector-group)Configure the Connector Group
 
-Make a copy of the connector configuration file you customized for the [Getting Started](getting-started.md) guide. Let’s call the new config file `ao-quickstart-config.toml`.
+Make a copy of the connector configuration file you customized for the [Getting Started](getting-started.md) guide. Let's call the new config file `ao-quickstart-config.toml`.
 
 Our new connector group needs a name. Edit the `[group]` section so it looks like this:
 
@@ -59,21 +59,21 @@ Our new connector group needs a name. Edit the `[group]` section so it looks lik
 | **1** | The name can be anything you want, but this is the value assumed by the rest of this guide. |
 | ----- | ------------------------------------------------------------------------------------------- |
 
-Next, make sure there won’t be any port conflicts when running multiple workers on the same machine. Search for the `[metrics]` section and set the `httpPort` property to `-1` to disable the embedded HTTP server.
+Next, make sure there won't be any port conflicts when running multiple workers on the same machine. Search for the `[metrics]` section and set the `httpPort` property to `-1` to disable the embedded HTTP server.
 
 > [!NOTE]
 > The values in the `[group.static]` section are ignored when running in AO mode, but the section must still be present.
 
-Save the changes. Now let’s upload the configuration to Consul with this command:
+Save the changes. Now let's upload the configuration to Consul with this command:
 
 ```console
 $ cbes-consul configure --input=ao-quickstart-config.toml
 ```
 
-The config file should now be present in Consul’s Key/Value store which you can inspect using the [web interface](http://localhost:8500).
+The config file should now be present in Consul's Key/Value store which you can inspect using the [web interface](http://localhost:8500).
 
 > [!NOTE]
-> One limitation of running Consul in development mode is that data is not persisted between runs. You’ll need to re-run the connector configuration command after every Consul restart.
+> One limitation of running Consul in development mode is that data is not persisted between runs. You'll need to re-run the connector configuration command after every Consul restart.
 
 ## [](#using-cbes-consul)Using cbes-consul
 
@@ -85,7 +85,7 @@ Use this command to start a connector worker using the configuration defined in 
 $ cbes-consul run --group=my-ao-group
 ```
 
-Now let’s start a second worker. Open a new terminal window and run this command:
+Now let's start a second worker. Open a new terminal window and run this command:
 
 ```console
 $ cbes-consul run --group=my-ao-group --service-id=second (1)
@@ -95,11 +95,11 @@ $ cbes-consul run --group=my-ao-group --service-id=second (1)
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 > [!TIP]
-> Service IDs must be unique among all workers using the same Consul agent. If you don’t specify a service ID it defaults to the name of the group.
+> Service IDs must be unique among all workers using the same Consul agent. If you don't specify a service ID it defaults to the name of the group.
 
 One of the connectors in the group was elected the leader (probably the first one, since it started first). The leader watches for group membership changes and rebalances the workload accordingly.
 
-Add a third worker to the group and watch the output of the connectors to see how they respond. Pay particular attention to the leader’s output, since it will be the one telling the others what to do.
+Add a third worker to the group and watch the output of the connectors to see how they respond. Pay particular attention to the leader's output, since it will be the one telling the others what to do.
 
 Now stop the leader by sending it an interrupt signal (type `control-c` in its terminal window). This forces a leader election, which one of the remaining workers wins.
 
@@ -165,21 +165,21 @@ $ consul kv get couchbase/cbes/<group-name>/leader (1)
 
 ## [](#migrating-to-autonomous-operations)Migrating to Autonomous Operations
 
-Replication checkpoint documents created in AO mode are 100% compatible with checkpoints created in other modes. If you’re migrating to AO mode, use the same group name and your replication checkpoint will be preserved.
+Replication checkpoint documents created in AO mode are 100% compatible with checkpoints created in other modes. If you're migrating to AO mode, use the same group name and your replication checkpoint will be preserved.
 
 Just make sure to stop all non-AO workers for a group before running the AO workers.
 
 ## [](#tips-tricks)Tips & Tricks
 
 * All of the `cbes-consul checkpoint-*` commands may be performed at any time, even when workers are running. Just be careful not confuse them with the `cbes-checkpoint-*` commands, which should only be used when all workers in the group are stopped.
-* By default all of the CLI commands talk to Consul via the local agent. If there’s no local Consul agent, you can use a remote agent by passing `--consul-agent=<host:port>` (where `port` is usually 8500).
-* Configuration is not _completely_ centralized. Sensitive properties like passwords must be still be configured on each worker’s filesystem.
+* By default all of the CLI commands talk to Consul via the local agent. If there's no local Consul agent, you can use a remote agent by passing `--consul-agent=<host:port>` (where `port` is usually 8500).
+* Configuration is not _completely_ centralized. Sensitive properties like passwords must be still be configured on each worker's filesystem.
 
 ## [](#from-development-to-production)From Development to Production
 
 In a production environment, the recommended topology is to spread the connector workers over several machines, and to run the Consul agent in client mode on each machine that hosts a worker.
 
-You’ll also need at least one Consul agent running in server mode; the recommended number of servers is 3 or 5.
+You'll also need at least one Consul agent running in server mode; the recommended number of servers is 3 or 5.
 
 > [!TIP]
 > Please see the Consul documentation for detailed information about administering a production Consul cluster.

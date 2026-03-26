@@ -3,7 +3,7 @@ title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@java-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -170,7 +170,7 @@ System.out.println("Non-existent path exists? " + otherExists);
 
 ## [](#choosing-an-api)Choosing an API
 
-The Java SDK provides three APIs for all operations. There’s the simple blocking one you’ve already seen, then this asynchronous variant that returns Java `CompletableFuture`:
+The Java SDK provides three APIs for all operations. There's the simple blocking one you've already seen, then this asynchronous variant that returns Java `CompletableFuture`:
 
 ```java
 CompletableFuture<LookupInResult> future = collection.async().lookupIn("hotel_1368",
@@ -216,7 +216,7 @@ try {
 }
 ```
 
-Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here’s an example of one which replaces one path and removes another.
+Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here's an example of one which replaces one path and removes another.
 
 ```java
 collection.mutateIn("hotel_1368", List.of(remove("tz"), insert("alt_email", "hotel84@hotmail.com")));
@@ -415,7 +415,7 @@ results.forEach(it -> {
 });
 ```
 
-You may want to use `lookupInAllReplicas` to build a consensus, but it’s more likely that you’ll make use of `lookupInAnyReplica` as a fallback to a `lookupIn`, when the active node times out.
+You may want to use `lookupInAllReplicas` to build a consensus, but it's more likely that you'll make use of `lookupInAnyReplica` as a fallback to a `lookupIn`, when the active node times out.
 
 ## [](#concurrent-modifications)Concurrent Modifications
 
@@ -453,7 +453,7 @@ MutationResult result = collection.mutateIn("hotel_1368", List.of(decrement("log
 
 ## [](#durability)Durability
 
-Couchbase’s [traditional 'client verified' durability](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), using `PersistTo` and `ReplicateTo`, is still available, particularly for talking to Couchbase Server 7.0 and earlier:
+Couchbase's [traditional 'client verified' durability](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), using `PersistTo` and `ReplicateTo`, is still available, particularly for talking to Couchbase Server 7.0 and earlier:
 
 ```java
 MutationResult result = collection.mutateIn("hotel_1368",

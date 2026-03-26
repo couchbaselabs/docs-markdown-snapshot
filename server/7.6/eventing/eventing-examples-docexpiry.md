@@ -3,7 +3,7 @@ title: Document Expiry
 description: When a document in an existing collection is about to expire, a new
   document is created in a different collection.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-examples-docexpiry.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:eventing:eventing-examples-docexpiry.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.6@server:eventing:eventing-examples-docexpiry.adoc[]
 
 **Implementation**:
 
-Create a JavaScript Function that contains an **OnUpdate** handler, which runs whenever a document is created (or mutated). The Eventing Function calls a timer routine, which executes a callback function, two minutes prior to any document’s established expiration. This function retrieves a specified value from the document, and stores a document with the same key, in a specified target collection. The original document in the source collection is not changed during the copy (and will be deleted).
+Create a JavaScript Function that contains an **OnUpdate** handler, which runs whenever a document is created (or mutated). The Eventing Function calls a timer routine, which executes a callback function, two minutes prior to any document's established expiration. This function retrieves a specified value from the document, and stores a document with the same key, in a specified target collection. The original document in the source collection is not changed during the copy (and will be deleted).
 
 **Preparations**:
 
@@ -35,7 +35,7 @@ You will need to run a special SQL++ statement, a _cbc_ (the command-line KV cli
 
 **Procedure**:
 
-1. The example requires a document to be created in the 'source' collection with a key of **SampleDocument2**, a value of **{'a\_key': 'a\_value'}**, and most importantly that the document’s expiration (or TTL) set to 600 seconds or 10 minutes).  
+1. The example requires a document to be created in the 'source' collection with a key of **SampleDocument2**, a value of **{'a\_key': 'a\_value'}**, and most importantly that the document's expiration (or TTL) set to 600 seconds or 10 minutes).  
 There are several methods to make a test document with an expiration set. The easiest is most likely using SQL++. However you can use _cbc_ or any Couchbase SDK (the command-line KV client is compiled from the C SDK). For example you can use a Python script or a complied Java program.
 
   * SQL++ UPDATE
@@ -138,9 +138,9 @@ public class DocExpiryTestCC {
 Download the proper SDK and then compile and run one of the above Java programs  
 For information on the Couchbase Java SDK, refer to [Start Using the Java SDK](../../../java-sdk/current/hello-world/start-using-sdk.md).
 2. You now have a document in collection 'source' (keyspace `bulk`.`data`.`source`) with an expiration set.
-3. To verify that your new document was created, access the **Couchbase Web Console** \> **Documents** page and click the **Documents** then select the keyspace `bulk`.`data`.`source`. The new document gets displayed automatically (as this page will attempt to list the first few items). You will see one (1) document in the `bulk`.`data`.`source` keyspace (this will disappear on the document’s expiry of 10 minutes).  
+3. To verify that your new document was created, access the **Couchbase Web Console** \> **Documents** page and click the **Documents** then select the keyspace `bulk`.`data`.`source`. The new document gets displayed automatically (as this page will attempt to list the first few items). You will see one (1) document in the `bulk`.`data`.`source` keyspace (this will disappear on the document's expiry of 10 minutes).  
 ![docexpiry 05 buckets](_images/docexpiry_05_buckets.png)
-4. \[Optional Step\] Click on the document’s id, **SampleDocument2** to view the documents Data and also the documents Metadata information. Note that the "expiration" field in the Metadata is non-zero (set to a Unix timestamp in seconds since epoch).
+4. \[Optional Step\] Click on the document's id, **SampleDocument2** to view the documents Data and also the documents Metadata information. Note that the "expiration" field in the Metadata is non-zero (set to a Unix timestamp in seconds since epoch).
 5. From the **Couchbase Web Console** \> **Eventing** page, click **ADD FUNCTION**, to add a new Function. The **ADD FUNCTION** dialog appears.
 6. In the **ADD FUNCTION** dialog, for individual Function elements provide the below information:
 
@@ -202,13 +202,13 @@ You should see four log lines:
 2022-04-17T15:42:03.478-07:00 [INFO] "DocTimerCallback 1 on DocId:" "SampleDocument2"  
 2022-04-17T15:34:21.034-07:00 [INFO] "OnUpdate add Timer 2 min. prior to TTL to DocId:" "SampleDocument2"  
 The final result, is a new document containing a copy of the data from the original, named **SourceDocument2** being written to the collection 'target' with the same Key in the keyspace `bulk`.`data`.`target`.
-14. Now look at the **Documents** in the UI again you will see one (1) document in the `bulk`.`data`.`source` keyspace (this will disappear on the document’s expiry of 10 minutes).  
+14. Now look at the **Documents** in the UI again you will see one (1) document in the `bulk`.`data`.`source` keyspace (this will disappear on the document's expiry of 10 minutes).  
 ![docexpiry 05 buckets](_images/docexpiry_05_buckets.png)
 15. Now look at the **Documents** in the UI again you will see one (1) document in the `bulk`.`data`.`target` keyspace (this will persist)  
 ![docexpiry 05a buckets](_images/docexpiry_05a_buckets.png)
 16. Wait a few more minutes (actual just bit more than two minutes) past the 120 second window, then check the document in the `bulk`.`data`.`source` keyspace', you will find that it is missing and will not be accessible as it has expired due to the defined TTL on the document.  
 > [!NOTE]  
-> If you don’t actually try to access the document by clicking on the \*Documents" link the UI and specifying the keyspace `bulk`.`data`.`source` the UI may indicate it still exists until the expiry pager removes the tombstone for the deleted or expired documents (or an actual attempt to access it is made).  
+> If you don't actually try to access the document by clicking on the \*Documents" link the UI and specifying the keyspace `bulk`.`data`.`source` the UI may indicate it still exists until the expiry pager removes the tombstone for the deleted or expired documents (or an actual attempt to access it is made).  
 ![docexpiry 06 buckets](_images/docexpiry_06_buckets.png)
 
 **Cleanup**:

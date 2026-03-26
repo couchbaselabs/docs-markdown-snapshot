@@ -2,7 +2,7 @@
 title: View and Query Examples
 description: This section provides general information and query examples.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-query-samples.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:views/views-query-samples.adoc[]
 ---
 
@@ -25,7 +25,7 @@ There are some general points and advice for writing all views that apply irresp
 Fields may be missing from your document, or may only be supported in specific document types. Use an `if` test to identify problems. For example:  
 if (document.firstname)...
 * View output is case sensitive.  
-The value emitted by the `emit()` function is case sensitive. Emitting a field value of ‘Martin’ but specifying a `key` value of ‘martin’ will not match the data. Emitted data, and the key selection values, should be normalized to eliminate potential problems. For example:  
+The value emitted by the `emit()` function is case sensitive. Emitting a field value of 'Martin' but specifying a `key` value of 'martin' will not match the data. Emitted data, and the key selection values, should be normalized to eliminate potential problems. For example:  
 emit(doc.firstname.toLowerCase(),null);
 * Number formatting  
 Numbers within JavaScript may inadvertently be converted and output as strings. To ensure that data is correctly formatted, the value should be explicitly converted. For example:  
@@ -46,7 +46,7 @@ In the above example, the `emit()` function will only be called on a valid JSON 
 
 ## [](#document-id-primary-index)Document ID (primary) index
 
-To create a ‘primary key’ index, i.e. an index that contains a list of every document within the database, with the document ID as the key, you can create a simple view:
+To create a 'primary key' index, i.e. an index that contains a list of every document within the database, with the document ID as the key, you can create a simple view:
 
 function(doc,meta)
 {
@@ -97,7 +97,7 @@ Queries can now be specified by supplying a string converted to lowercase. For e
 
 ?key="martin"
 
-Will return all documents where the `firstname` field contains ‘Martin’, regardless of the document field capitalization.
+Will return all documents where the `firstname` field contains 'Martin', regardless of the document field capitalization.
 
 ## [](#using-expiration-metadata)Using expiration metadata
 
@@ -338,7 +338,7 @@ Keep in mind that you can create multiple views to provide different views and q
 
 If you are storing different document types within the same bucket, then you may want to ensure that you generate views only on a specific record type within the `map()` phase. This can be achieved by using an `if` statement to select the record.
 
-For example, if you are storing blog ‘posts’ and ‘comments’ within the same bucket, then a view on the blog posts could be created using the following map:
+For example, if you are storing blog 'posts' and 'comments' within the same bucket, then a view on the blog posts could be created using the following map:
 
 function(doc, meta) {
     if (doc.title && doc.type && doc.date &&
@@ -387,7 +387,7 @@ To sort based on reduce values, you must access the view content with reduction 
 
 ## [](#solutions-for-simulating-joins)Solutions for simulating joins
 
-Joins between data, even when the documents being examined are contained within the same bucket, are not possible directly within the view system. However, you can simulate this by making use of a common field used for linking when outputting the view information. For example, consider a blog post system that supports two different record types, ‘blogpost’ and ‘blogcomment’. The basic format for ‘blogpost’ is:
+Joins between data, even when the documents being examined are contained within the same bucket, are not possible directly within the view system. However, you can simulate this by making use of a common field used for linking when outputting the view information. For example, consider a blog post system that supports two different record types, 'blogpost' and 'blogcomment'. The basic format for 'blogpost' is:
 
 {
     "type" : "post",

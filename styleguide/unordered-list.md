@@ -1,7 +1,7 @@
 ---
 title: Unordered Lists
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/unordered-list.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::unordered-list.adoc[]
 ---
 
@@ -18,7 +18,7 @@ For example:
 
   * This is a sub-item
 
-If you only have 2 items in your list, it’s okay to just write it out in a sentence.
+If you only have 2 items in your list, it's okay to just write it out in a sentence.
 
 Use an unordered list when:
 

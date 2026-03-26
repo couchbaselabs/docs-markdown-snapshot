@@ -4,7 +4,7 @@ description: Couchbase is the modern database for enterprise applications.
   Couchbase Server 7.6 combines the strengths of relational databases with the
   flexibility, performance, and scale of Couchbase.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/introduction/pages/whats-new.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:introduction:whats-new.adoc[]
 ---
 
@@ -165,11 +165,11 @@ For more information, see [Cluster Manager Metrics](../metrics-reference/ns-serv
 
   * The new [base64 Encode and Decode functions](../eventing/eventing-language-constructs.md#base64%5Fcall) let you pack large arrays of floats as efficiently compressed strings when you use Eventing to generate vector embeddings.
   * The new [Sub-Document LOOKUPIN](../eventing/eventing-advanced-keyspace-accessors.md#advanced-subdoc-array-op-lookupin) and [Sub-Document MUTATEIN](../eventing/eventing-advanced-keyspace-accessors.md#advanced-subdoc-array-op-mutatein) operations let you search for or modify a specific field in a document without having to search and retrieve the entire document.
-  * You can now fetch and modify a document’s Extended User Attributes (XATTRs) through the [Sub-Document LOOKUPIN](../eventing/eventing-advanced-keyspace-accessors.md#advanced-subdoc-array-op-lookupin) and [Sub-Document MUTATEIN](../eventing/eventing-advanced-keyspace-accessors.md#advanced-subdoc-array-op-mutatein) operations.
+  * You can now fetch and modify a document's Extended User Attributes (XATTRs) through the [Sub-Document LOOKUPIN](../eventing/eventing-advanced-keyspace-accessors.md#advanced-subdoc-array-op-lookupin) and [Sub-Document MUTATEIN](../eventing/eventing-advanced-keyspace-accessors.md#advanced-subdoc-array-op-mutatein) operations.
 
 ### [](#sdks%5F762)SDKs
 
-* Alongside Version 7.6.2, Couchbase announces the 1.0.0 GA release of the [C++ SDK](../../../cxx-sdk/current/hello-world/overview.md). This SDK has been long used as the core of our [Node.js](../../../nodejs-sdk/current/hello-world/overview.md), [PHP](../../../php-sdk/current/hello-world/overview.md), [Python](../../../python-sdk/current/hello-world/overview.md), and [Ruby](../../../ruby-sdk/current/hello-world/overview.md) SDKs, to handle communicating with the cluster over Couchbase’s binary protocols. and is now released as a full, standalone SDK for applications needing the speed of C++.
+* Alongside Version 7.6.2, Couchbase announces the 1.0.0 GA release of the [C++ SDK](../../../cxx-sdk/current/hello-world/overview.md). This SDK has been long used as the core of our [Node.js](../../../nodejs-sdk/current/hello-world/overview.md), [PHP](../../../php-sdk/current/hello-world/overview.md), [Python](../../../python-sdk/current/hello-world/overview.md), and [Ruby](../../../ruby-sdk/current/hello-world/overview.md) SDKs, to handle communicating with the cluster over Couchbase's binary protocols. and is now released as a full, standalone SDK for applications needing the speed of C++.
 * Version 7.6.2 adds the ability to use multi-document ACID transactions with binary documents, alongside the current handling of JSON documents. This feature is initially implemented in the C++ and Java SDKs.
 
 ### [](#tools%5F762)Tools
@@ -198,11 +198,11 @@ See [Supported Platforms](../install/install-platforms.md) for a full list of su
 
 * A required minimum can be established for the number of replicas configured for a bucket. See [Setting a Replica-Minimum](../rest-api/setting-minimum-replicas.md).
 * In each user-created or sample bucket, a `_system` scope is created and maintained by default. This scope contains collections used by Couchbase services, for service-specific data. See [\_system Scope and its Collections](../learn/data/scopes-and-collections.md#system-scope-and-its-collections).
-* A _rank_ can be assigned to each bucket on the cluster, whereby each bucket’s handling by the _rebalance_ process is appropriately prioritized. Assignment can be made by means of either the CLI or the REST API. This feature allows the cluster’s most mission-critical data to be rebalanced most quickly. See [Creating and Editing Buckets](../rest-api/rest-bucket-create.md).
+* A _rank_ can be assigned to each bucket on the cluster, whereby each bucket's handling by the _rebalance_ process is appropriately prioritized. Assignment can be made by means of either the CLI or the REST API. This feature allows the cluster's most mission-critical data to be rebalanced most quickly. See [Creating and Editing Buckets](../rest-api/rest-bucket-create.md).
 * You can now have Couchbase Server prune rotated audit logs after a period of time. You set how long Couchbase Server should keep audit logs by using the new `pruneAge` parameter for the `/settings/audit` endpoint. The default value of 0 means that Couchbase Server does not prune audit logs. See [Configure Auditing](../rest-api/rest-auditing.md).
 * You can add one or more arbiter nodes to a cluster. An arbiter node helps your cluster in two ways:
 
-  * It provides [fast failover](../learn/clusters-and-availability/nodes.md#fast-failover) which helps decrease the cluster’s latency when reacting to a failover.
+  * It provides [fast failover](../learn/clusters-and-availability/nodes.md#fast-failover) which helps decrease the cluster's latency when reacting to a failover.
   * It provides [quorum arbitration](../install/deployment-considerations-lt-3nodes.md#quorum-arbitration) that helps avoid contention issues if the nodes in the cluster become partitioned.
 * The `sampleBuckets/install` REST API method now returns a JSON object containing the list of tasks Couchbase Server started to load the buckets. In addition, the `/pools/default/tasks` REST API endpoint now takes an optional `taskId` parameter to view details about a sample bucket loading task. See [Install Sample Buckets with the REST API](../manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-rest-api) for more information.
 * The minimum permitted duration for auto-failover on the nodes is reduced from 5 seconds to 1 second when set through the REST API.
@@ -220,7 +220,7 @@ See [Supported Platforms](../install/install-platforms.md) for a full list of su
 
 ### [](#performance)Performance
 
-* You can now migrate buckets from one storage backend to another. This feature supports migrating buckets from Couchstore to Magma and from Magma to Couchstore. You can migrate buckets while the database continues running. To complete the migration you must trigger a swap rebalance or a graceful failover followed by a full recovery on each node that contains the bucket. See [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md).
+* You can now migrate buckets from one storage backend to another. This feature supports migrating buckets from Couchstore to Magma and from Magma to Couchstore. You can migrate buckets while the database continues running. To complete the migration you must trigger a swap rebalance or a graceful failover followed by a full recovery on each node that contains the bucket. See [Migrate a Bucket's Storage Backend](../manage/manage-buckets/migrate-bucket.md).
 
 ### [](#security-and-authentication)Security and Authentication
 
@@ -228,10 +228,10 @@ See [Supported Platforms](../install/install-platforms.md) for a full list of su
 * Credentials for Couchbase-Server internal users can now be rotated at any time, by means of the REST API. See [Rotate Internal Credentials](../rest-api/rest-rotate-internal-credentials.md).
 * LDAP authentication now supports using regular expressions to map users to LDAP users and groups. You can supply multiple regular expressions that Couchbase attempts to match against the user name supplied during an authentication attempt. This feature gives you greater flexibility when authenticating users. For example, you can use a regular expression to map the domain name in an email address to an LDAP organization. See [Advanced Query](../manage/manage-security/configure-ldap.md#ldap-advanced-mapping) under [User Authentication Enablement](../manage/manage-security/configure-ldap.md#enable-ldap-user-authentication).
 * The Couchbase Server Web Console now supports using Structured Authentication Markup Language (SAML) for authentication. When you enable SAML authentication, a **Sign In Using SSO** button appears on the Web Console login screen. This button lets users who have already authenticated with the SAML identity provider (Okta, for example) to skip having to enter credentials. See [SAML Authentication](../learn/security/authentication-domains.md#saml-authentication) for more information.
-* Couchbase Server’s LDAP support now has a setting that turns on and off TLS middlebox compatibility. This setting controls low-level network communication options when Couchbase Server securely connects to an LDAP server through intermediate systems such as proxies and firewalls. See [Advanced Settings](../manage/manage-security/configure-ldap.md#advanced-settings) on the [Configure LDAP](../manage/manage-security/configure-ldap.md) page for more information about this setting.
-* Couchbase Server now supports using Public-Key Cryptography Standard (PKCS) #12 format certificates for node certificates. This format lets you bundle the node’s private key, public key, and certificate chain into a single file. See [PKCS #12 Certificates for Nodes](../learn/security/certificates.md#pkcs12) for more information.
-* Couchbase Server now supports the X.509 Elliptic Curve Key cipher suites. Elliptic Curve Key ciphers are less resource-intensive than other cipher suites. They’re useful when communicating with resource-constrained devices such as IoT hardware. See [Private Keys](../learn/security/certificates.md#private-key-formats) for more information.
-* Couchbase Server no longer supports TLS versions 1.0 and 1.1\. When upgrading to version 7.6 or later, the upgrade process automatically sets `minTLSVersion` to `tlsv1.2` if it’s set to `tlsv1` or `tlsv1.1`. Before you upgrade, be sure all the clients you use support TLS 1.2 or greater. See [On-the-Wire Security](../learn/security/on-the-wire-security.md) for more information.
+* Couchbase Server's LDAP support now has a setting that turns on and off TLS middlebox compatibility. This setting controls low-level network communication options when Couchbase Server securely connects to an LDAP server through intermediate systems such as proxies and firewalls. See [Advanced Settings](../manage/manage-security/configure-ldap.md#advanced-settings) on the [Configure LDAP](../manage/manage-security/configure-ldap.md) page for more information about this setting.
+* Couchbase Server now supports using Public-Key Cryptography Standard (PKCS) #12 format certificates for node certificates. This format lets you bundle the node's private key, public key, and certificate chain into a single file. See [PKCS #12 Certificates for Nodes](../learn/security/certificates.md#pkcs12) for more information.
+* Couchbase Server now supports the X.509 Elliptic Curve Key cipher suites. Elliptic Curve Key ciphers are less resource-intensive than other cipher suites. They're useful when communicating with resource-constrained devices such as IoT hardware. See [Private Keys](../learn/security/certificates.md#private-key-formats) for more information.
+* Couchbase Server no longer supports TLS versions 1.0 and 1.1\. When upgrading to version 7.6 or later, the upgrade process automatically sets `minTLSVersion` to `tlsv1.2` if it's set to `tlsv1` or `tlsv1.1`. Before you upgrade, be sure all the clients you use support TLS 1.2 or greater. See [On-the-Wire Security](../learn/security/on-the-wire-security.md) for more information.
 * To prevent [LUCKY13 attacks](https://en.wikipedia.org/wiki/Lucky%5FThirteen%5Fattack), Couchbase Server 7.6 removes the following ciphers from the default cipher list:
 
   * TLS\_ECDHE\_ECDSA\_WITH\_AES\_256\_CBC\_SHA
@@ -249,7 +249,7 @@ See [Supported Platforms](../install/install-platforms.md) for a full list of su
 
 ### [](#index-service)Index Service
 
-* You can choose to have the rebalance process move an index’s files between nodes instead of rebuilding them from scratch. This setting improves rebalance performance as moving the files is faster than rebuilding them. See [learn:clusters-and-availability/rebalance-and-index-service.adoc#index-rebalance-methods](../learn/clusters-and-availability/rebalance-and-index-service.md#index-rebalance-methods).
+* You can choose to have the rebalance process move an index's files between nodes instead of rebuilding them from scratch. This setting improves rebalance performance as moving the files is faster than rebuilding them. See [learn:clusters-and-availability/rebalance-and-index-service.adoc#index-rebalance-methods](../learn/clusters-and-availability/rebalance-and-index-service.md#index-rebalance-methods).
 
 ### [](#search-service)Search Service
 
@@ -273,8 +273,8 @@ For more information about vector search, see [Use Vector Search for AI Applicat
 * Introduces KV Range Scan, used to retrieve all documents in a specified range directly from the Data service. Note that in this initial version, you will achieve better performance using a direct fetch or retrieval from a Query with an Index. See the [SDK docs](../../../java-sdk/current/howtos/kv-operations.md#kv-range-scan) for more information.
 * Two changes in Couchbase Server 7.6 affect the `maxTTL` setting for collections:
 
-  * In earlier versions, you could only set a collection’s `maxTTL` setting when creating the collection. You can now change the `maxTTL` setting on a collection after creation.
-  * You can now set a collection’s `maxTTL` to -1 to prevent a bucket’s non-zero `maxTTL` setting from causing documents in the collection to expire automatically. This new setting is useful if you want most of the documents in a bucket to automatically expire, but want to prevent the documents in one or more collections from expiring by default.  
+  * In earlier versions, you could only set a collection's `maxTTL` setting when creating the collection. You can now change the `maxTTL` setting on a collection after creation.
+  * You can now set a collection's `maxTTL` to -1 to prevent a bucket's non-zero `maxTTL` setting from causing documents in the collection to expire automatically. This new setting is useful if you want most of the documents in a bucket to automatically expire, but want to prevent the documents in one or more collections from expiring by default.  
 See [Expiration](../learn/data/expiration.md) for more information.
 
 ### [](#query-service)Query Service

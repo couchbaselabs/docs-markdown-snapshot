@@ -3,7 +3,7 @@ title: Server Group Awareness
 description: Individual server-nodes can be assigned to specific
   <em>groups</em>, within a Couchbase Cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/groups.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:clusters-and-availability/groups.adoc[]
 ---
 
@@ -51,7 +51,7 @@ The distribution of vBuckets across groups is exemplified below. In each illustr
 
 ### [](#vbucket-distribution-across-equal-groups)Equal Groups
 
-The following illustration shows how vBuckets are distributed across two groups; each group containing four of the cluster’s nodes. The third group only contains one node, an arbiter node, which exists to allow a quorum to be formed if all the nodes in server group 1 or 2 fails.
+The following illustration shows how vBuckets are distributed across two groups; each group containing four of the cluster's nodes. The third group only contains one node, an arbiter node, which exists to allow a quorum to be formed if all the nodes in server group 1 or 2 fails.
 
 ![groups two equal updated](../_images/clusters-and-availability/groups-two-equal_updated.png) 
 
@@ -111,7 +111,7 @@ As described in [Index Replication](../services-and-indexes/indexes/index-replic
 
 Examples of these different forms of replica-definition are provided in [Index Replication](../services-and-indexes/indexes/index-replication.md#index-replication).
 
-If the node-locations for index and replicas _are_ specified, by means of the `WITH` clause and node-array, this user-defined topology is duly followed in the locating of index and replicas across the cluster, and any server groups that may have been defined. In this case, it is the administrator’s responsibility to ensure that optimal index-availability has been achieved, so as to handle possible instances of node or group failure.
+If the node-locations for index and replicas _are_ specified, by means of the `WITH` clause and node-array, this user-defined topology is duly followed in the locating of index and replicas across the cluster, and any server groups that may have been defined. In this case, it is the administrator's responsibility to ensure that optimal index-availability has been achieved, so as to handle possible instances of node or group failure.
 
 If the node-locations for index and replicas are _not_ specified, the node-locations are automatically provided by Couchbase Server, based on its own estimates of how to provide the highest index-availability. Such distributions are exemplified as follows.
 
@@ -154,7 +154,7 @@ At a minimum, one instance of the Index Service and one instance of the Search S
 
 Also, for auto-failover to be possible, the service-specific auto-failover constraints must be met — the policy information is documented in [Service-Specific Auto-Failover Policy](automatic-failover.md#failover-policy) — it lists the number of nodes that each service must be running on and explains the [Data Service Preference](automatic-failover.md#data-service-preference) when a service is co-located with the Data Service.
 
-## [](#defining-groups-and-enabling-group-failover)Defining Groups and Enabling Failover of All a Group’s Nodes
+## [](#defining-groups-and-enabling-group-failover)Defining Groups and Enabling Failover of All a Group's Nodes
 
 To define and manage groups:
 

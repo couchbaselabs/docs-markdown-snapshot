@@ -1,7 +1,7 @@
 ---
 title: About Couchbase Documentation Repositories
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/repositories.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:repositories.adoc[]
 ---
 
@@ -42,7 +42,7 @@ For a complete list, see the Documentation Repos Master List on the internal Cou
 
 ### [](#repo-special)Repositories that Require Special Handling
 
-Some Couchbase repositories only accept contributions via Gerrit, use custom branch patterns, and have additional content and AsciiDoc requirements. Review the project’s README for the latest contributing requirements, or ask another Couchbase Documentation team member.
+Some Couchbase repositories only accept contributions via Gerrit, use custom branch patterns, and have additional content and AsciiDoc requirements. Review the project's README for the latest contributing requirements, or ask another Couchbase Documentation team member.
 
 #### [](#cli)CLI
 
@@ -113,7 +113,7 @@ Modules organize content files, including text, images, and code samples, inside
 
 ROOT Module
 
-The `ROOT` module contains necessary top-level content associated with a component. For example, the `ROOT` module contains the navigation files for a component. When pages in the `ROOT` module are published, these pages are promoted a level above any other modules' pages in that component’s URL.
+The `ROOT` module contains necessary top-level content associated with a component. For example, the `ROOT` module contains the navigation files for a component. When pages in the `ROOT` module are published, these pages are promoted a level above any other modules' pages in that component's URL.
 
 Navigation Files
 

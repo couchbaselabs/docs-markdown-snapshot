@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/howtos/pages/n1ql-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.4@python-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:4.4@python-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 
 > You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. Querying can solve typical programming tasks such as finding a user profile by email address, facebook login, or user ID. 
 
-Our query service uses SQL++ (formerly N1QL), which will be fairly familiar to anyone who’s used any dialect of SQL. [Further resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](../../../server/7.6/n1ql/n1ql-language-reference/index.md), or just dive in with a query against our "travel-sample" data set. In this case, note that before you can query a bucket, you must define at least one index. You can define a _primary_ index on a bucket. When a primary index is defined you can issue non-covered queries on the bucket as well.
+Our query service uses SQL++ (formerly N1QL), which will be fairly familiar to anyone who's used any dialect of SQL. [Further resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](../../../server/7.6/n1ql/n1ql-language-reference/index.md), or just dive in with a query against our "travel-sample" data set. In this case, note that before you can query a bucket, you must define at least one index. You can define a _primary_ index on a bucket. When a primary index is defined you can issue non-covered queries on the bucket as well.
 
 Use [cbq](#7.6@server::tools/cbq-shell.html), our interactive Query shell. Open it, and enter the following:
 
@@ -32,7 +32,7 @@ Note that building indexes is covered in more detail on the [Query concept page]
 
 ## [](#getting-started)Getting Started
 
-After familiarizing yourself with the basics on how the SQL++ query language works and how to query it from the UI you can use it from the Python SDK. Here’s a complete example of doing a query and handling the results:
+After familiarizing yourself with the basics on how the SQL++ query language works and how to query it from the UI you can use it from the Python SDK. Here's a complete example of doing a query and handling the results:
 
 ```python
 from couchbase.cluster import Cluster
@@ -63,7 +63,7 @@ except CouchbaseException as ex:
 > [!NOTE]
 > When using a Couchbase version < 6.5 you must create a valid Bucket connection using `cluster.bucket(name)` before you can execute queries.
 
-Let’s break it down. A query is always performed at the `Cluster` level, using the `query` method. It takes the statement as a required argument and then allows to provide additional options if needed.
+Let's break it down. A query is always performed at the `Cluster` level, using the `query` method. It takes the statement as a required argument and then allows to provide additional options if needed.
 
 Once a result returns you can iterate the returned rows and/or access the `QueryMetaData` associated with the query.
 
@@ -99,7 +99,7 @@ result = cluster.query(
     QueryOptions(named_parameters={"city": "San Jose"}))
 ```
 
-The complete code for this page’s example can be found at [n1ql\_ops.py](https://github.com/couchbase/docs-sdk-python/blob/release/3.2/modules/howtos/examples/n1ql%5Fops.py). What style you choose is up to you, for readability in more complex queries we generally recommend using the named parameters. Note that you cannot use parameters in all positions. If you put it in an unsupported place the server will respond with a `ParsingFailedException` or similar.
+The complete code for this page's example can be found at [n1ql\_ops.py](https://github.com/couchbase/docs-sdk-python/blob/release/3.2/modules/howtos/examples/n1ql%5Fops.py). What style you choose is up to you, for readability in more complex queries we generally recommend using the named parameters. Note that you cannot use parameters in all positions. If you put it in an unsupported place the server will respond with a `ParsingFailedException` or similar.
 
 ## [](#the-query-result)The Query Result
 

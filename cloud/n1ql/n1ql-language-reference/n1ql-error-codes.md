@@ -3,7 +3,7 @@ title: SQL++ Error Codes
 description: The following table lists all of the SQL++ error codes, their error
   message, and some tips to resolve them.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/n1ql-error-codes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/n1ql-error-codes.adoc[]
 ---
 
@@ -221,7 +221,7 @@ These errors are related to the parsing.
 > [!NOTE]
 > Error 3000
 > 
-> If you’re using AI Functions, this error code indicates that the function you’re using is not enabled or associated with an LLM. You need to [enable the function](../../../ai/build/ai-functions.md#enable-ai-functions) and try again.
+> If you're using AI Functions, this error code indicates that the function you're using is not enabled or associated with an LLM. You need to [enable the function](../../../ai/build/ai-functions.md#enable-ai-functions) and try again.
 
 ## [](#4xxx-codes-plan)4xxx Codes (plan)
 

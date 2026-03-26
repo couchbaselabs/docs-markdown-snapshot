@@ -1,7 +1,7 @@
 ---
 title: Request Support
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/support/pages/manage-support.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:support:manage-support.adoc[]
 ---
 
@@ -14,18 +14,18 @@ link: xref:cloud:support:manage-support.adoc[]
 
 ## [](#requesting-support-through-the-couchbase-capella-ui)Requesting Support Through the Couchbase Capella UI
 
-Support tickets are created and managed on the **Support** tab. A summary of the organization’s support tickets is displayed here.
+Support tickets are created and managed on the **Support** tab. A summary of the organization's support tickets is displayed here.
 
 Support tickets can be viewed and created by any user with the [Organization Member](../organizations/organization-user-roles.md#organization-role-view) role.
 
 > [!NOTE]
-> If you’re a free tier plan user, you’re unable to create a support ticket. You’re community-supported. Use the Couchbase [forums](https://www.couchbase.com/forums/tag/couchbase-capella), [discord channel](https://discord.com/invite/K7NPMPGrPk?utm%5Fsource=forums&utm%5Fmedium=pinnedpost&utm%5Fcampaign=discord) and [documentation](../get-started/intro.md) for community support and feedback.
+> If you're a free tier plan user, you're unable to create a support ticket. You're community-supported. Use the Couchbase [forums](https://www.couchbase.com/forums/tag/couchbase-capella), [discord channel](https://discord.com/invite/K7NPMPGrPk?utm%5Fsource=forums&utm%5Fmedium=pinnedpost&utm%5Fcampaign=discord) and [documentation](../get-started/intro.md) for community support and feedback.
 > 
 > For more support options, [upgrade your plan](../billing/upgrade-account.md).
 
 ### [](#support-ticket-summary)Support Ticket Summary
 
-The **Support** tab shows a summary of the organization’s open and solved support tickets.
+The **Support** tab shows a summary of the organization's open and solved support tickets.
 
 The following information is shown for each support ticket:
 
@@ -41,7 +41,7 @@ The following information is shown for each support ticket:
 
 ## [](#create-support-ticket)Create a Support Ticket
 
-You can expect a response from Couchbase Capella Support in accordance with the cluster’s [Support Plan](../billing/billing.md#support-plans) and [Support Time Zone](support.md#support-time-zones).
+You can expect a response from Couchbase Capella Support in accordance with the cluster's [Support Plan](../billing/billing.md#support-plans) and [Support Time Zone](support.md#support-time-zones).
 
 > [!NOTE]
 > If you cannot create a support ticket, click **Contact Us** to call Couchbase Support.
@@ -55,12 +55,12 @@ To create a support ticket:
 
 | Field         | Description                                                                                                                                                                                        |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Subject       | Enter a concise subject that summarizes the overall issue and/or the type of support that you’re requesting.                                                                                       |
+| Subject       | Enter a concise subject that summarizes the overall issue and/or the type of support that you're requesting.                                                                                       |
 | Description   | Enter a detailed description of your issue.                                                                                                                                                        |
 | Topic         | Select an available category that best fits your issue.                                                                                                                                            |
 | Impact        | Select the level of impact that the issue is having in your environment.                                                                                                                           |
-| Project       | Select either the project that’s associated with the issue, or the project that contains a cluster that’s experiencing the issue. Only the projects of which you’re a member display in this menu. |
-| Cluster       | Select the cluster that’s associated with the issue. Only clusters from the project that you selected in the **Project** drop-down display in this menu.                                           |
+| Project       | Select either the project that's associated with the issue, or the project that contains a cluster that's experiencing the issue. Only the projects of which you're a member display in this menu. |
+| Cluster       | Select the cluster that's associated with the issue. Only clusters from the project that you selected in the **Project** drop-down display in this menu.                                           |
 | SDK Type      | If the issue is about interactions between a cluster and your application, select the language and version of the Couchbase SDK that your application is using.                                    |
 | Choose a file | Click **Choose a file** and attach it to the issue, or drag and drop to add a file.                                                                                                                |
 5. Click **Create**.  
@@ -86,7 +86,7 @@ Add a comment on your support ticket to message the Support team directly. Use c
 
 ### [](#verify-support-ticket-status)Verify Support Ticket Status
 
-Your support ticket’s activity is dependent on its status.
+Your support ticket's activity is dependent on its status.
 
 Go to your support ticket and verify its status in your **Support Ticket Summary**.
 

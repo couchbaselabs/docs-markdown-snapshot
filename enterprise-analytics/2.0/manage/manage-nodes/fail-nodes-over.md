@@ -4,7 +4,7 @@ description: Nodes can be <em>failed over</em>, and thereby removed safely from
   a cluster in the event of unavoidable downtime, without any break in the
   serving of data to applications.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/fail-nodes-over.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:manage-nodes/fail-nodes-over.adoc[]
 ---
 
@@ -19,7 +19,7 @@ Failover allows a node to be removed from a cluster reactively, because the node
 
 ## [](#understanding-failover)Understanding Failover
 
-Failover drops a node from a cluster _reactively_, because the node has become unresponsive or unstable. It’s manually or automatically initiated.
+Failover drops a node from a cluster _reactively_, because the node has become unresponsive or unstable. It's manually or automatically initiated.
 
 The automatic initiation of Failover is known as _automatic_ failover, and is configured by means of the [Node Availability](../manage-settings/general-settings.md#node-availability) panel of the **General** settings screen of Enterprise Analytics Web Console, or by means of equivalent CLI and REST API commands. The current page explains how to initiate Failover _manually_.
 
@@ -27,7 +27,7 @@ A complete conceptual description of failover and its variants (including hard) 
 
 ### [](#connectivity-considerations)Connectivity Considerations
 
-When performing a failover, it’s important to follow the connectivity best practices outlined in [Cluster Connectivity and Topology Management](cluster-connectivity-topology-management.md). The procedures on failover vary based on the addressing model in use (Active Load Balancer, Passive Load Balancer, or DNS-Only). To minimize disruptions to client applications, ensure that you follow the procedures detailed in [Failover Procedures](cluster-connectivity-topology-management.md#failover-procedures) section.
+When performing a failover, it's important to follow the connectivity best practices outlined in [Cluster Connectivity and Topology Management](cluster-connectivity-topology-management.md). The procedures on failover vary based on the addressing model in use (Active Load Balancer, Passive Load Balancer, or DNS-Only). To minimize disruptions to client applications, ensure that you follow the procedures detailed in [Failover Procedures](cluster-connectivity-topology-management.md#failover-procedures) section.
 
 ## [](#examples-on-this-page-hard-failover)Examples on This Page
 

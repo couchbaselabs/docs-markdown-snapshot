@@ -2,7 +2,7 @@
 title: Transcoders and Non-JSON Documents
 description: The Java SDK supports common JSON document requirements out-of-the-box.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.5/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.5@java-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
@@ -46,7 +46,7 @@ This table summarizes that information, and this more concise form will be used 
 
 As described above, the default serializer (`DefaultJsonSerializer`) uses Jackson for serializing objects. (This Jackson dependency is shaded into a different namespace, so that it does not clash with any Jackson used by your application.)
 
-If Jackson is on the application’s classpath, the SDK will instead automatically default to using this. It does this during `ClusterEnvironment` creation: if no serializer has been specified, and if Jackson is detected on the classpath, then a `JacksonJsonSerializer` is used as the global default serializer instead of `DefaultJsonSerializer`. This will create and use a Jackson `ObjectMapper` from the standard `com.fasterxml.jackson.databind` package.
+If Jackson is on the application's classpath, the SDK will instead automatically default to using this. It does this during `ClusterEnvironment` creation: if no serializer has been specified, and if Jackson is detected on the classpath, then a `JacksonJsonSerializer` is used as the global default serializer instead of `DefaultJsonSerializer`. This will create and use a Jackson `ObjectMapper` from the standard `com.fasterxml.jackson.databind` package.
 
 Using a custom JsonMapper
 
@@ -88,7 +88,7 @@ String json = gson.toJson(user);
 collection.upsert("john-smith", json, UpsertOptions.upsertOptions().transcoder(RawJsonTranscoder.INSTANCE));
 ```
 
-Since Gson has already done the serialization work, we don’t want to use the default `JsonTranscoder`, as this will run the provided String needlessly through `DefaultJsonSerializer` (Jackson). Instead, RawJsonTranscoder is used, which just passes through the serialized bytes, and stores them in Couchbase with the JSON Common Flag set.
+Since Gson has already done the serialization work, we don't want to use the default `JsonTranscoder`, as this will run the provided String needlessly through `DefaultJsonSerializer` (Jackson). Instead, RawJsonTranscoder is used, which just passes through the serialized bytes, and stores them in Couchbase with the JSON Common Flag set.
 
 Similarly, the same transcoder is used on reading the document, so the raw bytes can be retrieved in a String without going through `DefaultJsonSerializer` (Jackson). Gson can then be used for the deserialization.
 
@@ -104,7 +104,7 @@ User returnedUser = gson.fromJson(returnedJson, User.class);
 It is most common to store JSON with Couchbase. However, it is possible to store non-JSON documents, such as raw binary data, perhaps using an concise binary encoding like [MessagePack](https://msgpack.org) or [CBOR](https://cbor.io/), in the Key-Value store.
 
 > [!NOTE]
-> It’s important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) and its indexes, FTS, analytics, and eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
+> It's important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) and its indexes, FTS, analytics, and eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
 
 Also note that some simple data types can be stored directly as JSON, without recourse to non-JSON transcoding. A valid JSON document can be a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value.
 
@@ -120,7 +120,7 @@ Note that this transcoder does not accept a serializer, and always performs stra
 | byte\[\]     | InvalidArgumentException | \-          |
 | Other Object | InvalidArgumentException | \-          |
 
-Here’s an example of using the `RawStringTranscoder`:
+Here's an example of using the `RawStringTranscoder`:
 
 ```java
 collection.upsert(docId, "hello world", UpsertOptions.upsertOptions().transcoder(RawStringTranscoder.INSTANCE));
@@ -140,7 +140,7 @@ The RawBinaryTranscoder provides the ability for the user to explicitly store an
 | byte\[\]     | Passthrough              | Binary      |
 | Other Object | InvalidArgumentException | \-          |
 
-Here’s an example of using the `RawBinaryTranscoder`:
+Here's an example of using the `RawBinaryTranscoder`:
 
 ```java
 String input = "hello world";
@@ -161,7 +161,7 @@ More advanced transcoding needs can be accomplished if the application implement
 
 We saw above one example of using Google Gson with the `RawJsonTranscoder`, but it requires the application to explicitly serialize and deserialize objects each time. By creating a custom Gson serializer, we can avoid this.
 
-It’s easy to create a serializer. Simply implement the `JsonSerializer` interface’s three methods:
+It's easy to create a serializer. Simply implement the `JsonSerializer` interface's three methods:
 
 ```java
 class GsonSerializer implements JsonSerializer {
@@ -190,7 +190,7 @@ class GsonSerializer implements JsonSerializer {
 > [!NOTE]
 > The `TypeRef` overload is optional, and is only used if the application explicitly uses it with for example `result.contentAs(new TypeRef<String> {})`, which is an uncommon requirement. It is fine to throw an exception from this method rather than implementing it, if it is not needed.
 
-In this case, there is no need to provide a custom transcoder. The [table for JsonTranscoder](#default-behaviour) shows that it already does what we need: for any Object (that’s not a `byte[]`), it sends it to its serializer, and then stores the result in Couchbase with the JSON Common Flag set. All we need to do is change the serializer, as so:
+In this case, there is no need to provide a custom transcoder. The [table for JsonTranscoder](#default-behaviour) shows that it already does what we need: for any Object (that's not a `byte[]`), it sends it to its serializer, and then stores the result in Couchbase with the JSON Common Flag set. All we need to do is change the serializer, as so:
 
 ```java
 GsonSerializer serializer = new GsonSerializer();
@@ -223,7 +223,7 @@ The default global `JsonTranscoder` will be initialized with this serializer. No
 
 ### [](#creating-a-custom-transcoder)Creating a Custom Transcoder
 
-Let’s look at a more complex example: encoding the JSON alternative, [MessagePack](https://msgpack.org). MessagePack is a compact binary data representation, so it should be stored with the binary Common Flag. The Common Flag is chosen by the transcoder, and none of the existing transcoders matches our needs (`RawBinaryTranscoder` does set the binary flag, but it passes data through directly rather than using a serializer). So we need to write one.
+Let's look at a more complex example: encoding the JSON alternative, [MessagePack](https://msgpack.org). MessagePack is a compact binary data representation, so it should be stored with the binary Common Flag. The Common Flag is chosen by the transcoder, and none of the existing transcoders matches our needs (`RawBinaryTranscoder` does set the binary flag, but it passes data through directly rather than using a serializer). So we need to write one.
 
 Start by creating a new serializer for MessagePack. This is similar to the GsonSerializer example above:
 

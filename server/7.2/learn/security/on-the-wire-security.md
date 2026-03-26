@@ -4,7 +4,7 @@ description: To support secure communications between nodes, clusters, and
   clients, Couchbase Server provides interfaces for the configuration of
   on-the-wire security.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/security/on-the-wire-security.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:security/on-the-wire-security.adoc[]
 ---
 
@@ -27,7 +27,7 @@ The interfaces provided by Couchbase Server for configuring on-the-wire security
   * `strict`, meaning `all` with only encrypted communication permitted between nodes and between the cluster and external clients. Note, however, that after `strict` has been specified, communication that occurs entirely on a single node using the _loopback_ interface (whereby the machine is identified as either `::1` or `127.0.0.1`) is still permitted in non-encrypted form.  
   The cluster encryption-level can only be configured after cluster encryption itself has been _enabled_: see [Node-to-Node Encryption](../clusters-and-availability/node-to-node-encryption.md).  
   Before establishing the encryption-level as `strict`, see the information provided in [Enforcing TLS](../../rest-api/rest-setting-security.md#enforcing-tls).
-* _Configuring TLS and Cipher-Suites_. This includes establishing the server’s minimum TLS version; determining whether the server’s or the clients' cipher-order is used in a given communication; and configuring the list of cipher-suites that is accepted by the server. These values can be configured either _globally_ (for the whole cluster), or on a _per service_ basis. Details are provided immediately below.
+* _Configuring TLS and Cipher-Suites_. This includes establishing the server's minimum TLS version; determining whether the server's or the clients' cipher-order is used in a given communication; and configuring the list of cipher-suites that is accepted by the server. These values can be configured either _globally_ (for the whole cluster), or on a _per service_ basis. Details are provided immediately below.
 * _Setting an HTTP Secure Transport Header (HSTS)_; so as to inform the Web-Console browser never to load a site using HTTP; and instead, to automatically convert all access-requests from HTTP to HTTPS.
 * _Restricting Node-Addition_; by specifying a list of naming conventions that must be met by the name of any node that is to be added or joined to the cluster. This feature is described in [Specify Naming Conventions for Node-Addition](../../rest-api/rest-specify-node-addition-conventions.md).
 
@@ -37,13 +37,13 @@ _Transport Layer Security_ (TLS) is a protocol that provides security over a com
 
 TLS supports multiple methods for exchanging keys, encrypting data, and authenticating message-integrity. Appropriate methods, supported by both participants in an intended networked communication, can be specified through selection of an appropriate _cipher-suite_, from defined lists of ones acceptable.
 
-When a TLS connection is established between a client application and Couchbase Server — for example, using the secure port `18091` — a _handshake_ occurs, as defined by the [TLS Handshake Protocol](https://en.wikipedia.org/wiki/Transport%5FLayer%5FSecurity#TLS%5Fhandshake). As part of this exchange, the client sends to the server the client’s own cipher-suite list; which specifies the cipher-suites that the client itself supports. A server-setting is provided to specify whether the server then conforms to its own or the client’s preference, in selecting a commonly acceptable cipher-suite to be used for the communication.
+When a TLS connection is established between a client application and Couchbase Server — for example, using the secure port `18091` — a _handshake_ occurs, as defined by the [TLS Handshake Protocol](https://en.wikipedia.org/wiki/Transport%5FLayer%5FSecurity#TLS%5Fhandshake). As part of this exchange, the client sends to the server the client's own cipher-suite list; which specifies the cipher-suites that the client itself supports. A server-setting is provided to specify whether the server then conforms to its own or the client's preference, in selecting a commonly acceptable cipher-suite to be used for the communication.
 
 Once the selection has been made by Couchbase Server, Couchbase Server notifies the client of the selection, and the handshake process continues.
 
 ### [](#configuring-tls-and-cipher-suites)Configuring TLS and Cipher-Suites
 
-Configuration for TLS and cipher-suites includes establishing the server’s minimum TLS version; determining whether the server’s or the clients' cipher-order is used in a given communication; and configuring the list of cipher-suites that is accepted by the server. Such settings can be established either _globally_ (that is, for the entire cluster), or _per service_. (Note that the other on-the-wire security settings — for _console-access_ and _encryption-level_ — are _global-only_; and _cannot_ be set for an individual service.) A _service_ can be _any_ of the Couchbase Server [Services](../services-and-indexes/services/services.md); it can also be the [Cluster Manager](../clusters-and-availability/cluster-manager.md).
+Configuration for TLS and cipher-suites includes establishing the server's minimum TLS version; determining whether the server's or the clients' cipher-order is used in a given communication; and configuring the list of cipher-suites that is accepted by the server. Such settings can be established either _globally_ (that is, for the entire cluster), or _per service_. (Note that the other on-the-wire security settings — for _console-access_ and _encryption-level_ — are _global-only_; and _cannot_ be set for an individual service.) A _service_ can be _any_ of the Couchbase Server [Services](../services-and-indexes/services/services.md); it can also be the [Cluster Manager](../clusters-and-availability/cluster-manager.md).
 
 The relationships between _global_ and _per service_ settings for TLS and cipher-suites are described in the following subsections.
 
@@ -59,9 +59,9 @@ If a particular minimum TLS-version is specified for a given service, that servi
 
 #### [](#establishing-cipher-suite-preference)Establishing Cipher-Suite Preference
 
-This determines, when secure communication is required between server and client, whether the cipher-suite list configured for the server is that to be used; or whether that configured for the client is to be used. The server’s preference is strongly recommended to be used, since secure: however, preference can be delegated to the client, if required.
+This determines, when secure communication is required between server and client, whether the cipher-suite list configured for the server is that to be used; or whether that configured for the client is to be used. The server's preference is strongly recommended to be used, since secure: however, preference can be delegated to the client, if required.
 
-The default value — both _globally_ and _per service_ — is that the server’s preference is used: this, therefore, is the case if no cipher-suite preference value is specified either for a given service or globally.
+The default value — both _globally_ and _per service_ — is that the server's preference is used: this, therefore, is the case if no cipher-suite preference value is specified either for a given service or globally.
 
 If a particular cipher-suite preference value has been specified for a given service, the service uses that value. If no cipher-suite preference value has been specified for a given service, and a value has been specified globally, the service uses the global value.
 

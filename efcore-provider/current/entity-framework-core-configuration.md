@@ -2,7 +2,7 @@
 title: Configuring the EF Core Couchbase DB Provider
 description: Couchbase EFCore configuration choices
 editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-configuration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:efcore-provider::entity-framework-core-configuration.adoc[]
 ---
 
@@ -60,7 +60,7 @@ You can see an example of this in the [CouchbaseGettingStarted](https://github.c
 
 ## [](#couchbase-sdk-options)Couchbase SDK options
 
-Configuring the SDK is largely the same for EF Core Couchbase DB Provider. The SDK’s configuration is handled by the ClusterOptions.cs class. More details of the ClusterOptions class can be found in the [main SDK documentation](../../dotnet-sdk/current/ref/client-settings.md).
+Configuring the SDK is largely the same for EF Core Couchbase DB Provider. The SDK's configuration is handled by the ClusterOptions.cs class. More details of the ClusterOptions class can be found in the [main SDK documentation](../../dotnet-sdk/current/ref/client-settings.md).
 
 ## [](#ef-core-couchbase-db-provider-options)EF Core Couchbase DB Provider options
 

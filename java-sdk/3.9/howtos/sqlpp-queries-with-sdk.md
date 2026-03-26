@@ -5,7 +5,7 @@ description: You can query for documents in Couchbase using the
   a language based on SQL, but designed for structured and flexible JSON
   documents.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@java-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -38,7 +38,7 @@ import java.util.UUID;
 import static com.couchbase.client.java.query.QueryOptions.queryOptions;
 ```
 
-Here’s a complete example of doing a query and handling the results:
+Here's a complete example of doing a query and handling the results:
 
 * Couchbase Capella Sample
 * Local Couchbase Server
@@ -111,7 +111,7 @@ public class SimpleQuery {
 
 Note that building indexes is covered in some detail on the [Query concept page](../concept-docs/n1ql-query.md#index-building), which you should take a quick look at — and in the [API Reference](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/manager/query/package-summary.html).
 
-Let’s break down the above code snippet. A query is always performed at the `Cluster` level, using the `query` method. It takes the statement as a required argument and then allows to provide additional options if needed (in the example above, no options are specified).
+Let's break down the above code snippet. A query is always performed at the `Cluster` level, using the `query` method. It takes the statement as a required argument and then allows to provide additional options if needed (in the example above, no options are specified).
 
 Once a result returns you can iterate the returned rows and/or accessing the `QueryMetaData` associated with the query. If something goes wrong during the execution of the query, a derivate of the `CouchbaseException` will be thrown that also provides additional context on the operation:
 

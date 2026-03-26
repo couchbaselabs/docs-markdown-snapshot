@@ -3,7 +3,7 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.2/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@python-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -20,7 +20,7 @@ For complex and long-running queries, involving large ad hoc join, set, aggregat
 
 After familiarizing yourself with our [introductory primer](../../../server/7.6/analytics/primer-beer.md), in particular creating a dataset and linking it to a bucket, try Couchbase Analytics using the Python SDK. Intentionally, the API for analytics is nearly identical to that of the query service.
 
-Here’s a complete example of doing a analytics and handling the results:
+Here's a complete example of doing a analytics and handling the results:
 
 ```py
 from couchbase.cluster import Cluster, ClusterOptions, AnalyticsOptions
@@ -51,7 +51,7 @@ except CouchbaseException as ex:
 > [!NOTE]
 > When using a Couchbase version < 6.5 you must create a valid Bucket connection using `cluster.bucket(name)` before you can use Analytics.
 
-Let’s break it down. An analytics query is always performed at the `Cluster` level, using the `analytics_query` method. It takes the statement as a required argument and then allows to provide additional options if needed.
+Let's break it down. An analytics query is always performed at the `Cluster` level, using the `analytics_query` method. It takes the statement as a required argument and then allows to provide additional options if needed.
 
 Once a result returns you can iterate the returned rows and/or access the `AnalyticsMetaData` associated with the query.
 
@@ -89,7 +89,7 @@ result = cluster.analytics_query(
     AnalyticsOptions(named_parameters={"country": "France"}))
 ```
 
-The complete code for this page’s example can be found at [analytics\_ops.py](https://github.com/couchbase/docs-sdk-python/blob/release/3.2/modules/howtos/examples/analytics%5Fops.py). What style you choose is up to you, for readability in more complex queries we generally recommend using the named parameters. Note that you cannot use parameters in all positions. If you put it in an unsupported place the server will respond with a `CompilationFailedException` or similar.
+The complete code for this page's example can be found at [analytics\_ops.py](https://github.com/couchbase/docs-sdk-python/blob/release/3.2/modules/howtos/examples/analytics%5Fops.py). What style you choose is up to you, for readability in more complex queries we generally recommend using the named parameters. Note that you cannot use parameters in all positions. If you put it in an unsupported place the server will respond with a `CompilationFailedException` or similar.
 
 ## [](#the-analytics-result)The Analytics Result
 

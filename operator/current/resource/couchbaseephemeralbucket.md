@@ -1,7 +1,7 @@
 ---
 title: CouchbaseEphemeralBucket Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbaseephemeralbucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::resource/couchbaseephemeralbucket.adoc[]
 ---
 
@@ -218,7 +218,7 @@ EnableFlush defines whether a client can delete all documents in a bucket. This 
 
 #### [](#description-14)Description
 
-EvictionPolicy controls how Couchbase handles memory exhaustion. No eviction means that Couchbase server will make this bucket read-only when memory is exhausted in order to avoid data loss. NRU eviction will delete documents that haven’t been used recently in order to free up memory. This field must be "noEviction" or "nruEviction", defaulting to "noEviction".
+EvictionPolicy controls how Couchbase handles memory exhaustion. No eviction means that Couchbase server will make this bucket read-only when memory is exhausted in order to avoid data loss. NRU eviction will delete documents that haven't been used recently in order to free up memory. This field must be "noEviction" or "nruEviction", defaulting to "noEviction".
 
 ### [](#couchbaseephemeralbuckets-spec-expirypagersleeptime)couchbaseephemeralbuckets.spec.expiryPagerSleepTime
 
@@ -342,7 +342,7 @@ Name is the name of the bucket within Couchbase server. By default the Operator 
 
 #### [](#description-23)Description
 
-Rank determines the bucket’s place in the order in which the rebalance process handles the buckets on the cluster. The higher a bucket’s assigned integer (in relation to the integers assigned other buckets), the sooner in the rebalance process the bucket is handled. This assignment of rank allows a cluster’s most mission-critical data to be rebalanced with top priority. cluster’s most mission-critical data to be rebalanced with top priority. This option is only supported for Couchbase Server 7.6.0+.
+Rank determines the bucket's place in the order in which the rebalance process handles the buckets on the cluster. The higher a bucket's assigned integer (in relation to the integers assigned other buckets), the sooner in the rebalance process the bucket is handled. This assignment of rank allows a cluster's most mission-critical data to be rebalanced with top priority. cluster's most mission-critical data to be rebalanced with top priority. This option is only supported for Couchbase Server 7.6.0+.
 
 ### [](#couchbaseephemeralbuckets-spec-replicas)couchbaseephemeralbuckets.spec.replicas
 
@@ -388,7 +388,7 @@ Managed defines whether scopes are managed for this bucket. This field is `false
 
 #### [](#description-27)Description
 
-Resources is an explicit list of named resources that will be considered for inclusion in this bucket. If a resource reference doesn’t match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
+Resources is an explicit list of named resources that will be considered for inclusion in this bucket. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
 
 ### [](#couchbaseephemeralbuckets-spec-scopes-resources-kind)couchbaseephemeralbuckets.spec.scopes.resources.kind
 

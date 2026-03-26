@@ -3,7 +3,7 @@ title: Troubleshooting Cloud Connections
 description: Diagnose DNS-SRV problems. Troubleshoot other network connection
   trouble with SDK doctor.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.8/modules/howtos/pages/troubleshooting-cloud-connections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.8@scala-sdk:howtos:troubleshooting-cloud-connections.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:1.8@scala-sdk:howtos:troubleshooting-cloud-connections.adoc[]
 
 > Diagnose DNS-SRV problems. Troubleshoot other network connection trouble with SDK doctor. 
 
-Connecting to Cloud — in particular when developing applications outside the network where the Cluster is hosted — can expose unexpected network problems. We’ll show you how to troubleshoot _Host not Found_ problems. SDK doctor is a powerful but simple tool to help diagnose other connection problems.
+Connecting to Cloud — in particular when developing applications outside the network where the Cluster is hosted — can expose unexpected network problems. We'll show you how to troubleshoot _Host not Found_ problems. SDK doctor is a powerful but simple tool to help diagnose other connection problems.
 
 ## [](#troubleshooting-problems)Troubleshooting Problems
 
@@ -22,7 +22,7 @@ Connecting to Cloud — in particular when developing applications outside the n
 
 ### [](#troubleshooting-host-not-found)Troubleshooting Host not Found
 
-In order for your application to connect to your cloud, Capella creates a special kind of DNS record, called a Service record, or DNS-SRV record. DNS SRV records are widely supported and used frequently in systems like XMPP, and Kubernetes services. Occasionally, some DNS providers can run into issues with large DNS SRV records. This can manifest as a host not found issue. The actual problem is (a typically older) DNS server that cannot handle large responses which converts the error to host not found. This has frequently been observed when working from home with a service provider ‘router’ that embeds a caching DNS Server. To determine if this is the cause, you can compare an nslookup command from a shell from your default DNS server to a public DNS server, like those from Google or Cloudflare. If, for example, your public cloud record were cb.490e597e-73fd-4b87-a08a-1da9c826970e.dp.cloud.couchbase.com, you might see this with nslookup for the associated DNS SRV record:
+In order for your application to connect to your cloud, Capella creates a special kind of DNS record, called a Service record, or DNS-SRV record. DNS SRV records are widely supported and used frequently in systems like XMPP, and Kubernetes services. Occasionally, some DNS providers can run into issues with large DNS SRV records. This can manifest as a host not found issue. The actual problem is (a typically older) DNS server that cannot handle large responses which converts the error to host not found. This has frequently been observed when working from home with a service provider 'router' that embeds a caching DNS Server. To determine if this is the cause, you can compare an nslookup command from a shell from your default DNS server to a public DNS server, like those from Google or Cloudflare. If, for example, your public cloud record were cb.490e597e-73fd-4b87-a08a-1da9c826970e.dp.cloud.couchbase.com, you might see this with nslookup for the associated DNS SRV record:
 
 ```console
 $nslookup -q=SRV _couchbases._tcp.cb.490e597e-73fd-4b87-a08a-1da9c826970e.dp.cloud.couchbase.com
@@ -96,7 +96,7 @@ As a workaround, you can switch to a DNS provider which can support modern DNS S
 
 ### [](#validating-connectivity-with-sdk-doctor)Validating Connectivity with SDK doctor
 
-If you appear to be having connectivity issues, it’d be good to diagnostically check for lower level details with [SDK doctor](https://github.com/couchbaselabs/sdk-doctor). From the environment where it looks like your program cannot connect, run one of the of the [pre-built binaries](https://github.com/couchbaselabs/sdk-doctor/releases) for your platform. Usually the summary at the end is pretty easy to interpret. Output that shows correct connectivity may look like this:
+If you appear to be having connectivity issues, it'd be good to diagnostically check for lower level details with [SDK doctor](https://github.com/couchbaselabs/sdk-doctor). From the environment where it looks like your program cannot connect, run one of the of the [pre-built binaries](https://github.com/couchbaselabs/sdk-doctor/releases) for your platform. Usually the summary at the end is pretty easy to interpret. Output that shows correct connectivity may look like this:
 
 ```console
 $ ./sdk-doctor-macos diagnose -u username -p password couchbases://cb.51bbb323-476e-4354-bec8-5f9b0a67d146.dp.cloud.couchbase.com/travel-sample
@@ -498,12 +498,12 @@ This output is a possible indication that the DNS server in use does not support
 * `13:11:10.777 ERRO ▶ Bootstrap host cb-0000.e9718149-af24-4bc4-b496-53149cdb7966.dp.cloud.couchbase.com does not have a valid DNS entry.`  
 Check your IP is allowlisted in the [Couchbase Capella](https://docs.couchbase.com/cloud/index.html) UI as an Allowed IP (make sure to hit Save after adding it).
 * That your connection string has a hostname instead of an IP address, to allow DNS SRV.
-* That you are using a supported version of the Scala SDK — preferably the latest. All [recent versions](../project-docs/sdk-release-notes.md#version-1-3-0-26-april-2022) of the Scala SDK include the Capella cluster’s Security Certificate and automatically trust it unless you specify otherwise.
+* That you are using a supported version of the Scala SDK — preferably the latest. All [recent versions](../project-docs/sdk-release-notes.md#version-1-3-0-26-april-2022) of the Scala SDK include the Capella cluster's Security Certificate and automatically trust it unless you specify otherwise.
 * That if you are connecting via a proxy that intercepts TLS connections, you have configured the SDK to trust the Security Certificate used by the proxy. This is a common issue when connecting from inside a corporate network.
-* That you have enabled TLS by using a connection string starting with `couchbases://` (note the final 's') or an equivalent client setting (like the Java SDK’s `security.enableTls` client setting).
+* That you have enabled TLS by using a connection string starting with `couchbases://` (note the final 's') or an equivalent client setting (like the Java SDK's `security.enableTls` client setting).
 * That the user you are connecting as has been created in Capella and has correct permissions for the bucket you are connecting to.
 
-* The SDK logging should give some indication as to what’s failing. In particular, check if the DNS SRV lookup is successful. It will look something like:  
+* The SDK logging should give some indication as to what's failing. In particular, check if the DNS SRV lookup is successful. It will look something like:  
 [ INFO] (cb-events) [com.couchbase.core][DnsSrvRecordsLoadedEvent][2086ms] Loaded seed hosts from DNS SRV: [cb-0000.<hostname>, cb-0001.<hostname>, cb-0002.<hostname>]
 * You can determine if the certificate is the cause of the connection issues by **temporarily** disabling certificate validation with this alternative `ClusterEnvironment` configuration:  
 ```scala  

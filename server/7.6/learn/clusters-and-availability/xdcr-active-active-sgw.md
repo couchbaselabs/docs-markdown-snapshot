@@ -6,7 +6,7 @@ description: You can use XDCR with Sync Gateway mobile clusters in a
   XDCR with Sync Gateway buckets in a bi-directional replication can cause data
   corruption.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/xdcr-active-active-sgw.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:clusters-and-availability/xdcr-active-active-sgw.adoc[]
 ---
 
@@ -24,7 +24,7 @@ link: xref:7.6@server:learn:clusters-and-availability/xdcr-active-active-sgw.ado
 
 In the versions earlier than Server 7.6.6 and Sync Gateway (SGW) 4.0+, only an active-passive setup was supported with both XDCR and SGW. XDCR Active-Active replication with Sync Gateway for XDCR-Mobile interoperability configuration is introduced in the Server 7.6.6 version, where you can configure an active-active XDCR setup with Sync Gateway (SGW) and mobile applications both on the XDCR source and target clusters.
 
-For more information about how Sync Gateway 4.0+ version works with Couchbase Server’s XDCR, see [XDCR - Server Compatibility](../../../../sync-gateway/current/server-compatibility/server-compatibility-xdcr.md).
+For more information about how Sync Gateway 4.0+ version works with Couchbase Server's XDCR, see [XDCR - Server Compatibility](../../../../sync-gateway/current/server-compatibility/server-compatibility-xdcr.md).
 
 > [!IMPORTANT]
 > Here are a few limitations to the _XDCR Active-Active with Sync Gateway_ feature.

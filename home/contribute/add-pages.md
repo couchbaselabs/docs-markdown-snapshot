@@ -1,7 +1,7 @@
 ---
 title: Add a New Documentation Page
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/add-pages.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:add-pages.adoc[]
 ---
 
@@ -41,7 +41,7 @@ Specifically, the folder structure for this component, the `home` component of t
             ---- pages
             ---- partials
 3. Right-click the **pages** folder and click **New File**.
-4. Enter a name for your new AsciiDoc file. This filename will appear in the page’s URL when it’s published to our documentation site.  
+4. Enter a name for your new AsciiDoc file. This filename will appear in the page's URL when it's published to our documentation site.  
 Make sure your filename:
 
   * Uses lowercase letters (a-z).
@@ -51,7 +51,7 @@ Make sure your filename:
 VS Code automatically opens the new file.
 6. On the first line of the new file, enter a [document title](pages.md#doc-title), starting with an `=`.
 7. Write your documentation using proper AsciiDoc syntax. For more information about AsciiDoc syntax, see [AsciiDoc Basics](basics.md) or [the AsciiDoc Language documentation](https://docs.asciidoctor.org/asciidoc/latest/).
-8. Save the file, or take advantage of VS Code’s autosave feature (**File** **Auto Save**).
+8. Save the file, or take advantage of VS Code's autosave feature (**File** **Auto Save**).
 
 Any AsciiDoc file saved to a **pages** directory in an Antora documentation component is automatically published to the site.
 

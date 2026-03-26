@@ -3,7 +3,7 @@ title: Use the Query History
 description: The workbench for Capella Analytics maintains a history of all the
   queries you've executed.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/history.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:query:history.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:analytics:query:history.adoc[]
 
 # Use the Query History
 
-> The workbench for Capella Analytics maintains a history of all the queries you’ve executed. 
+> The workbench for Capella Analytics maintains a history of all the queries you've executed. 
 
 ## [](#prerequisites)Prerequisites
 
@@ -44,7 +44,7 @@ You can use the following options to work with the list of queries in the histor
 * **Search history** — You can search the query history by entering text in the **Filter Queries** search box. Capella Analytics lists all matching queries.
 * **Delete a specific entry** — Click the Trash icon next to a particular query to delete it from the history.  
 > [!TIP]  
-> This can be useful if you want a more manicured history for when you’re exporting it for future use.
+> This can be useful if you want a more manicured history for when you're exporting it for future use.
 * **Delete all entries** — Click **Clear** to delete the entire query history.
 * **Import Query** — To load queries from a file into the Query History, click **Import** to open a file picker.
 * **Export Query History** — To export the query history in JSON format, click **Export** to open the Export Query History dialog box. Enter a name for the file and click **Export**.

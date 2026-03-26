@@ -1,7 +1,7 @@
 ---
 title: Prerequisites and System Requirements
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/prerequisite-and-setup.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::prerequisite-and-setup.adoc[]
 ---
 
@@ -137,7 +137,7 @@ Preparing the Kubernetes cluster to run the Operator may require setting up prop
 
 ## [](#next-steps)Next Steps
 
-As you’re setting up your Kubernetes environment, make sure that you’re following the recommended [best practices](best-practices.md).
+As you're setting up your Kubernetes environment, make sure that you're following the recommended [best practices](best-practices.md).
 
 Once your Kubernetes environment is set up, you can move on to installing the admission controller and the Operator.
 

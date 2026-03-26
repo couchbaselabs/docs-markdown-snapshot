@@ -4,7 +4,7 @@ description: The Couchbase Node.js SDK is often used with unofficial and third
   party tools and applications to integrate into broader language and platform
   ecosystems, and across data lakes in heterogeneous environments.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/project-docs/pages/third-party-integrations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-sdk:project-docs:third-party-integrations.adoc[]
 ---
 
@@ -21,7 +21,7 @@ Couchbase SDKs are often used with unofficial and third party tools and applicat
 
 Couchbase engineers are involved to a greater or lesser degree with projects that help get the SDK working with various common challenges.
 
-[Ottoman](https://ottomanjs.com/) is an Object Data Modeler (ODM) for Couchbase’s Node.js SDK, providing JSON schema and validation for NoSQL. As an abstraction layer overthe SDK it significantly reduces the level of boilerplate needed during application development. See the [FAQ](https://ottomanjs.com/docs/faq) for a summary of benefits.
+[Ottoman](https://ottomanjs.com/) is an Object Data Modeler (ODM) for Couchbase's Node.js SDK, providing JSON schema and validation for NoSQL. As an abstraction layer overthe SDK it significantly reduces the level of boilerplate needed during application development. See the [FAQ](https://ottomanjs.com/docs/faq) for a summary of benefits.
 
 ## [](#across-the-ecosystem)Across the Ecosystem
 

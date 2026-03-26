@@ -3,7 +3,7 @@ title: Getting Cluster Tasks
 description: You can list tasks running on the cluster using the <code>GET
   /pools/default/tasks</code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-get-cluster-tasks.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:rest-get-cluster-tasks.adoc[]
 ---
 
@@ -24,7 +24,7 @@ GET /logs/rebalanceReport?reportID=REPORT_ID
 
 ## [](#rest-get-cluster-tasks-description)Description
 
-Calling `GET /pools/default/tasks` lists tasks running on the cluster. The list includes the task’s ID, status, and other relevant informaatiom. You can return information about sample bucket loading tasks by supplying its `taskId` as a parameter: `GET /pools/default/tasks?taskID=TASK_ID`.
+Calling `GET /pools/default/tasks` lists tasks running on the cluster. The list includes the task's ID, status, and other relevant informaatiom. You can return information about sample bucket loading tasks by supplying its `taskId` as a parameter: `GET /pools/default/tasks?taskID=TASK_ID`.
 
 Calling `GET /logs/rebalanceReport?reportID=REPORT_ID`, a report can be returned, providing information on a completed _rebalance_. The required `report-id` is provided in the object returned by `GET /pools/default/tasks`.
 
@@ -45,7 +45,7 @@ The arguments shown in the syntax are:
 * **`PASSWORD`**: the password for the user.
 * **`NODE_NAME_OR_ADDRESS`**: the name or IP address of a node in the cluster.
 * **`TASK_ID`**: the optional ID of a sample bucket loading task whose status you want ot view. You can find the `taskId` for a sample bucket task from the return value of calls to either the `/sampleBuckets/install` or `/pools/default/tasks`If you do not provide a task ID, the call returns all tasks on the cluster.
-* **`REPORT_ID`**: the required rebalance report ID. You can find this ID from the rebalance task’s `lastReportURI` field in the task list returned by calling `GET /pools/default/tasks` without parameters.
+* **`REPORT_ID`**: the required rebalance report ID. You can find this ID from the rebalance task's `lastReportURI` field in the task list returned by calling `GET /pools/default/tasks` without parameters.
 
 ## [](#responses)Responses
 
@@ -177,7 +177,7 @@ The result shows that the task is queued:
 ]
 ```
 
-Viewing the status of the `beer-sample` task shows that it’s running:
+Viewing the status of the `beer-sample` task shows that it's running:
 
 ```json
 [

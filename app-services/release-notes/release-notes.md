@@ -3,7 +3,7 @@ title: Capella App Services Release Notes
 description: Release notes for Capella App Services, including new features,
   enhancements, and updates.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/release-notes/release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::release-notes/release-notes.adoc[]
 ---
 
@@ -92,7 +92,7 @@ For more information about all changes within this maintenance release, see the 
 This release includes:
 
   * Improved attachment handling in replication. It is now correctly verified that `_attachments` is a top-level property before processing attachments. This prevents errors when documents contain the string `_attachments` elsewhere in their content.
-  * Fixed `MgmtRequest` function that fetches metadata or settings from Couchbase Server’s REST API panic if the HTTP request fails.
+  * Fixed `MgmtRequest` function that fetches metadata or settings from Couchbase Server's REST API panic if the HTTP request fails.
   * Updated [go-blip](https://github.com/couchbase/go-blip) to log using the BLIP connection ID instead of the HTTP correlation ID to improve traceability between Sync Gateway changes and BLIP logs.  
 For more information about all changes within this maintenance release, see the [Sync Gateway 3.2.5 Release Notes](#3.2@sync-gateway:product-notes:release-notes.adoc#3-2-5june-2025).
 
@@ -112,7 +112,7 @@ For more information about all changes within this maintenance release, see the 
 ## [](#march-2025)March 2025
 
 * App Services 3.2.2 or later is now fully compatible with Eventing Services on operational clusters that use Couchbase Server 7.6.5 or later.  
-The [Eventing Service](../../cloud/eventing/eventing-overview.md) can run one or more Eventing Functions in your cluster to handle data changes according to a real-time Event-Condition-Action model. This update adds the ability to create Eventing Functions that can read and write data from a keyspace (bucket, scope, or collection) that’s linked to an App Services App Endpoint. This expands previous capabilities, which only allowed for read-only bindings.  
+The [Eventing Service](../../cloud/eventing/eventing-overview.md) can run one or more Eventing Functions in your cluster to handle data changes according to a real-time Event-Condition-Action model. This update adds the ability to create Eventing Functions that can read and write data from a keyspace (bucket, scope, or collection) that's linked to an App Services App Endpoint. This expands previous capabilities, which only allowed for read-only bindings.  
 To [create an Eventing Function](../../cloud/eventing/add-eventing-functions.md) to use with App Services, you must enable the App Services Compatibility setting.
 
 ## [](#february-2025)February 2025
@@ -135,7 +135,7 @@ New App Services deployments now deploy [Sync Gateway 3.2.1](#3.2@sync-gateway:p
 ## [](#september-2024)September 2024
 
 * Cluster Deletion Protection for App Services  
-Deletion protection will block attempts to delete a cluster’s buckets and any linked App Services. For more information about deletion protection, see [Change Your Deletion Protection](../../cloud/clusters/modify-database.md#deletion-protection).
+Deletion protection will block attempts to delete a cluster's buckets and any linked App Services. For more information about deletion protection, see [Change Your Deletion Protection](../../cloud/clusters/modify-database.md#deletion-protection).
 * App Services 3.2.0  
 New App Services deployments now deploy [Sync Gateway 3.2.0](#3.2@sync-gateway:product-notes:release-notes.adoc#maint-3.2.0). This release includes the following:
 
@@ -153,9 +153,9 @@ This new offering provides an efficient and cost-effective way to develop, test,
 ## [](#august-2024)August 2024
 
 * Billing reporting for App Services  
-The billing reporting experience has been updated to provide more detailed information about your credit usage among Couchbase Capella’s services, including App Services and clusters. These updates include:
+The billing reporting experience has been updated to provide more detailed information about your credit usage among Couchbase Capella's services, including App Services and clusters. These updates include:
 
-  * An [overview of your organization’s credit usage](../../cloud/billing/manage-billing.md#access-billing).
+  * An [overview of your organization's credit usage](../../cloud/billing/manage-billing.md#access-billing).
   * [Granular filtering and reporting](../../cloud/billing/manage-billing.md#filter-usage) of all credit usage.
   * [Alerting](../../cloud/billing/manage-billing-alerts.md) for credit balances and pay-as-you-go usage.
 * Scopes and Collections in App Services  

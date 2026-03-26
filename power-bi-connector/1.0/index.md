@@ -3,7 +3,7 @@ title: Introduction
 description: The Couchbase Power BI Connector provides data visualization for
   the Couchbase platform, using Microsoft's data visualization software.
 editUrl: https://github.com/couchbase/docs-connectors-power-bi/edit/release/1.0/modules/ROOT/pages/index.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.0@power-bi-connector::index.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:1.0@power-bi-connector::index.adoc[]
 
 # Introduction
 
-> The Couchbase Power BI Connector provides data visualization for the Couchbase platform, using Microsoft’s data visualization software.
+> The Couchbase Power BI Connector provides data visualization for the Couchbase platform, using Microsoft's data visualization software.
 > 
 > The Couchbase Power BI Connector integrates:
 > 
@@ -22,7 +22,7 @@ link: xref:1.0@power-bi-connector::index.adoc[]
 > * Capella Columnar instances
 > * or Capella provisioned services
 > 
-> With Microsoft’s Power BI interactive data visualization platform.
+> With Microsoft's Power BI interactive data visualization platform.
 
 ## [](#prerequisites)Prerequisites
 
@@ -56,7 +56,7 @@ The connection between a Couchbase Analytics instance or a Capella columnar data
 ```console  
 openssl version  
 ```
-4. If the output indicates OpenSSL is not installed, rather than returning the version that you installed, then you need to add the OpenSSL binary’s location to the `PATH` environment:
+4. If the output indicates OpenSSL is not installed, rather than returning the version that you installed, then you need to add the OpenSSL binary's location to the `PATH` environment:
 
   1. Check the `C:\Program Files` or use `Find` to locate the SSL binary — usually the path will be something like:  
   ```console  
@@ -73,7 +73,7 @@ openssl version
 You will need to install the connector that allows Power BI to communicate with Couchbase, through ODBC.
 
 1. Download `couchbase-powerbi-connector-1.0.mez` from <https://packages.couchbase.com/releases/couchbase-powerbi-connector/1.0/couchbase-powerbi-connector-1.0.mez> — see the [release notes page](release-notes.md) for more details.
-2. Follow [Microsoft’s guide](https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-connector-extensibility#custom-connectors) on configuring a custom connector.
+2. Follow [Microsoft's guide](https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-connector-extensibility#custom-connectors) on configuring a custom connector.
 
 ## [](#verify-the-connector-is-loaded-successfully)Verify the Connector is Loaded Successfully:
 
@@ -97,7 +97,7 @@ To obtain the `connection string`.
 2. Select the **Connect** item from the top-level menu.
 3. Make a copy of the `public connection string`.  
 ![copying connection string](_images/get-connection-string.png)
-4. In the next section of the page, you will find the link to create a list of **Allowed IP Addresses**. Click on the link to create an entry for the IP address of the machine from which you’re running Power BI.  
+4. In the next section of the page, you will find the link to create a list of **Allowed IP Addresses**. Click on the link to create an entry for the IP address of the machine from which you're running Power BI.  
 ![creating-allowed-ip address](_images/allowed-ip-addresses.png)  
 > [!TIP]  
 > You can use the **Add Current IP Address** button to fill in the address of the machine currently running the web console.
@@ -140,11 +140,11 @@ Now, you will need to create a user account for Power BI to access the columnar 
 ![capella columnar user account](_images/capella-columnar-user-account.png)
 5. Click **Create Account** to finish setting up the user account.
 
-To create a secure connection to a self-managed Couchbase Server instance, you need to get the root certificate from the Administrator’s Console.
+To create a secure connection to a self-managed Couchbase Server instance, you need to get the root certificate from the Administrator's Console.
 
 1. Use your web browser to access the Admin console and log in as an Administrator.
 2. Use the left-hand menu to access the **Security** settings.
-3. From the top menu, select **Certificates**. This will take you to the page from which you can view the server’s security certificates:  
+3. From the top menu, select **Certificates**. This will take you to the page from which you can view the server's security certificates:  
 ![access root certificate](_images/access-root-certificate.png)
 4. Copy **all** the text in the Trusted **Root Certificates** section (start from `BEGIN CERTIFICATE` and include `END CERTIFICATE` ), and save the text to an accessible `PEM` file. E.g., `C:\Users\user\certificate.pem`).  
 You will use this file later when you create the ODBC connection.

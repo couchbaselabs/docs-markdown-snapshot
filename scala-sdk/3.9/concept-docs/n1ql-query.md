@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@scala-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -65,7 +65,7 @@ CREATE INDEX ix_name ON `travel-sample`.inventory.hotel(name);
 CREATE INDEX ix_email ON `travel-sample`.inventory.hotel(email);
 ```
 
-This would allow you to query the _travel-sample_ bucket’s hotel collection regarding a document’s `name` or `email` properties, thus:
+This would allow you to query the _travel-sample_ bucket's hotel collection regarding a document's `name` or `email` properties, thus:
 
 ```sqlpp
 SELECT name, email
@@ -146,7 +146,7 @@ For SQL++, the default consistency is `not_bounded`.
 
 For SQL++, the default consistency is `not_bounded`.
 
-Here’s how to specify the `RequestPlus` scan consistency level:
+Here's how to specify the `RequestPlus` scan consistency level:
 
 ```scala
 val result = cluster.query(

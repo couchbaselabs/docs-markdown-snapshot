@@ -2,7 +2,7 @@
 title: Database Security
 description: Using Sync Gateway's Admin REST API to configure users and roles
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/configuration-schema-db-security.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::configuration-schema-db-security.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:3.0@sync-gateway::configuration-schema-db-security.adoc[]
 
 # Database Security
 
-> Using Sync Gateway’s Admin REST API to configure users and roles  
+> Using Sync Gateway's Admin REST API to configure users and roles  
 
 _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configuration-schema-bootstrap.md) | [Database](configuration-schema-database.md) | [Database Security](#configuration-schema-db-security&.adoc#8212;​page}) | [Access Control](configuration-schema-access-control.md) | [Import](configuration-schema-import-filter.md) | [Inter-Sync Gateway Replication](configuration-schema-isgr.md)
 
@@ -106,7 +106,7 @@ _Sync Gateway Roles Required (CBS 7.0.2 Developer Preview):_
 | Type     | Name                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Schema                          |
 | -------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
 | **Path** | **db** _required_                      | Database name                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | string                          |
-| **Path** | **name** _required_                    | User’s name, may contain contain any combination of the characters \[a-z A-Z 0-9 - + . @ %\], when creating a user any other characters must be percent encoded, see: <https://en.wikipedia.org/wiki/Percent-encoding>. When passing a user name in a URL path it must be escaped again using percent encoding for example if a user is created with the name "0\|59", the '|' character must first be percent-encoded resulting in "0%7C59". When using the same user name in a URL path it must be percent-encoded a second time resulting in "0%257C59" | string                          |
+| **Path** | **name** _required_                    | User's name, may contain contain any combination of the characters \[a-z A-Z 0-9 - + . @ %\], when creating a user any other characters must be percent encoded, see: <https://en.wikipedia.org/wiki/Percent-encoding>. When passing a user name in a URL path it must be escaped again using percent encoding for example if a user is created with the name "0\|59", the '|' character must first be percent-encoded resulting in "0%7C59". When using the same user name in a URL path it must be percent-encoded a second time resulting in "0%257C59" | string                          |
 | **Body** | **user configuration data** _optional_ | Provision the user configuration data in JSON format in the body                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | [User\_model](#%5Fuser%5Fmodel) |
 
 ### [](#responses-2)Responses
@@ -151,7 +151,7 @@ Content-Length: 63
 
 ## [](#lbl-schema)Schema
 
-This section shows Sync Gateway’s database security configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
+This section shows Sync Gateway's database security configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
 
 The configuration settings described here are provisioned through the Admin REST API — see as shown in [Database Security](rest-api-admin.md#/Database%5FSecurity).
 

@@ -3,7 +3,7 @@ title: Migrating to SDK 3 API
 description: The 3.0 API breaks the existing 2.0 APIs in order to provide a
   number of improvements. Collections and Scopes are introduced.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.8@dotnet-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -26,7 +26,7 @@ The concept of a `Cluster` and a `Bucket` remain the same, but a fundamental new
 
 Note that the SDKs include the feature from SDK 3.0, to allow easier migration.
 
-In the previous SDK generation, particularly with the `KeyValue` API, the focus has been on the codified concept of a `Document`. Documents were read and written and had a certain structure, including the `id`/`key`, content, expiry (`ttl`), and so forth. While the server still operates on the logical concept of documents, we found that this model in practice didn’t work so well for client code in certain edge cases. As a result we have removed the `Document` class/structure completely from the API. The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`. This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.
+In the previous SDK generation, particularly with the `KeyValue` API, the focus has been on the codified concept of a `Document`. Documents were read and written and had a certain structure, including the `id`/`key`, content, expiry (`ttl`), and so forth. While the server still operates on the logical concept of documents, we found that this model in practice didn't work so well for client code in certain edge cases. As a result we have removed the `Document` class/structure completely from the API. The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`. This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.
 
 As an example here is a KeyValue document fetch:
 
@@ -43,7 +43,7 @@ Compare this to a SQL++ (formerly N1QL) query:
 IQueryResult<dynamic> result = await cluster.QueryAsync<dynamic>("select 1 = 1", QueryOptions.Create().Timeout(TimeSpan.FromSeconds(3)));
 ```
 
-Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`. Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON. You’ll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.
+Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`. Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON. You'll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.
 
 The KV API extends the concept of the serializer to the `Transcoder`. Since you can also store non-JSON data inside a document, the `Transcoder` allows the writing of binary data as well. It handles the object/entity encoding and decoding, and if it happens to deal with JSON makes uses of the configured `Serializer` internally. See the _Serialization and Transcoding_ section below for details.
 
@@ -69,7 +69,7 @@ Please see the [Release Notes](sdk-release-notes.md) for up-to-date information.
 
 The Couchbase .NET SDK is compatible with [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 2.0 and .NET Standard 2.1, via the currently supported Microsoft .NET SDKs. Currently, that includes [.NET 6.0 and later](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) for .NET Standard 2.1 and [.NET Framework 4.6.2 and later](https://learn.microsoft.com/en-us/lifecycle/products/microsoft-net-framework) for .NET Standard 2.0\. The [.NET Standard documentation](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) and [.NET Standard version chart](https://dotnet.microsoft.com/platform/dotnet-standard#versions) may be useful to help understand other available options.
 
-Couchbase strongly recommends using the [latest LTS version of .NET that’s officially supported](https://versionsof.net/) by both Microsoft and Couchbase. Other .NET implementations may work, but aren’t tested, and are outside the scope of technical support.
+Couchbase strongly recommends using the [latest LTS version of .NET that's officially supported](https://versionsof.net/) by both Microsoft and Couchbase. Other .NET implementations may work, but aren't tested, and are outside the scope of technical support.
 
 ### [](#dependencies)Dependencies
 
@@ -142,7 +142,7 @@ cluster = await Cluster.ConnectAsync(config);
 
 The SDK offers a configuration API for customizing bootstrapping, timeouts, reliability and performance tuning. Configuration options have changed since the 2.x release. See the [configuration section](../ref/client-settings.md) for specifics.
 
-At the end of this guide you’ll find a [reference](#configurations-options-reference) that describes the SDK 2 environment options and their SDK 3 equivalents where applicable.
+At the end of this guide you'll find a [reference](#configurations-options-reference) that describes the SDK 2 environment options and their SDK 3 equivalents where applicable.
 
 ### [](#authentication)Authentication
 
@@ -229,13 +229,13 @@ cluster.Dispose();
 `Collections` will be generally available with an upcoming Couchbase Server release, but the SDK already encodes it in its API to be future-proof. If you are using a Couchbase Server version which does not support `Collections` such as 6.0, always use the `DefaultCollection()` method to access the KV API; it will map to the full bucket.
 
 > [!IMPORTANT]
-> You’ll notice that `BucketAsync(String)` returns immediately, even if the bucket resources are not completely opened. This means that the subsequent `Get` operation may be dispatched even before the connection is opened in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout. In this example case, you’ll see network socket connection failures.
+> You'll notice that `BucketAsync(String)` returns immediately, even if the bucket resources are not completely opened. This means that the subsequent `Get` operation may be dispatched even before the connection is opened in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout. In this example case, you'll see network socket connection failures.
 
 Also note you will now find Query, Search, and Analytics at the `Cluster` level. This is where they logically belong as they are Cluster level services as opposed to KV which is bucket specific. If you are using Couchbase Server 6.5 or later, you will be able to perform cluster-level queries even if no bucket is open. If you are using an earlier version of the cluster you must open at least one bucket, otherwise cluster-level queries will fail.
 
 ## [](#async-and-await-by-default)Async and Await by Default
 
-SDK 2 followed a pattern of having a `Method()` and a `MethodAsync()` as was the common approach in most C# code at the time. Subsequently, it has become more common in contemporary C# code for all methods to return a Task from all asynchronous methods. This is now considered to be the best practice. Read more about it in MSDN’s post [Async All the Way](https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming#async-all-the-way). With this change, the SDK follows the same idioms in the base class library’s HttpClient. The application then waits as appropriate on these calls with either the `await` keyword or by calling the `.Wait()` method, depending on how it fits into the rest of the applciation.
+SDK 2 followed a pattern of having a `Method()` and a `MethodAsync()` as was the common approach in most C# code at the time. Subsequently, it has become more common in contemporary C# code for all methods to return a Task from all asynchronous methods. This is now considered to be the best practice. Read more about it in MSDN's post [Async All the Way](https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming#async-all-the-way). With this change, the SDK follows the same idioms in the base class library's HttpClient. The application then waits as appropriate on these calls with either the `await` keyword or by calling the `.Wait()` method, depending on how it fits into the rest of the applciation.
 
 ## [](#serialization-and-transcoding)Serialization and Transcoding
 
@@ -273,7 +273,7 @@ __Table 1\. SDK 2.x Document vs. SDK 3.x Transcoder\*__
 
 Serializers and transcoders can also be customized and overwritten on a per-operation basis, please see the appropriate documentation section for details.
 
-The JSON `Transcoders` use a `Serializer` underneath. While a transcoder can handle many different storage types, the serializer is specialized for JSON encoding and decoding. On all JSON-only APIs (i.e. Sub-doc, Query, Search,…​) you’ll only find a `Serializer`, not a `Transcoder`, in the operation options. Usually there is no need to override it unless you want to provide your own implementation (i.e. if you have your own POCO mapping json logic in place, and want to reuse it).
+The JSON `Transcoders` use a `Serializer` underneath. While a transcoder can handle many different storage types, the serializer is specialized for JSON encoding and decoding. On all JSON-only APIs (i.e. Sub-doc, Query, Search,…​) you'll only find a `Serializer`, not a `Transcoder`, in the operation options. Usually there is no need to override it unless you want to provide your own implementation (i.e. if you have your own POCO mapping json logic in place, and want to reuse it).
 
 ## [](#exception-handling)Exception Handling
 
@@ -335,7 +335,7 @@ When migrating your SDK 2 exception handling code to SDK 3, make sure to wrap ev
 
 Configuring and consuming logs has not greatly changed.
 
-The SDK is still compatible with multiple loggers and works well with the .NET Core Runtime abstraction interface in Microsoft.Extensions.Logging. The biggest impact you’ll see from it is that the log messages now look very structured and contain contextual information where possible.
+The SDK is still compatible with multiple loggers and works well with the .NET Core Runtime abstraction interface in Microsoft.Extensions.Logging. The biggest impact you'll see from it is that the log messages now look very structured and contain contextual information where possible.
 
 The logger may be configured from the ClusterOptions.
 
@@ -634,7 +634,7 @@ Here is a top level exception, for _the index does not exist_:
 Exception of type 'Couchbase.Core.Exceptions.IndexNotFoundException' was thrown.
 ```
 
-If you want to be absolutely sure that you didn’t get only partial data, you can check the error map:
+If you want to be absolutely sure that you didn't get only partial data, you can check the error map:
 
 ```csharp
 var result  = await cluster.SearchQueryAsync("indexname", new QueryStringQuery("airports"),

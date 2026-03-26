@@ -4,7 +4,7 @@ description: Audit Logging provides tools for administrators to track
   operational irregularities and to support regulatory and security compliance
   standards.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/security/pages/audit-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:security:audit-logging.adoc[]
 ---
 
@@ -33,7 +33,7 @@ Logs are immutable and cannot be altered once recorded. Viewing and managing aud
 
 There is only one audit log file active at a time, which is periodically rotated based on the following properties:
 
-* `logging.audit.rotation.localtime` \- If set to `true`, your log files will use the computer’s local time to format the backup timestamp.
+* `logging.audit.rotation.localtime` \- If set to `true`, your log files will use the computer's local time to format the backup timestamp.
 * `logging.audit.rotation.max_age` \- The maximum number of days to retain old log files.
 * `logging.audit.rotation.max_size` \- The maximum size in MB of the log file before it gets rotated.
 * `logging.audit.rotation.rotated_logs_size_limit` \- The maximum size in MB of log files before deletion.
@@ -71,7 +71,7 @@ The table below lists common audit event properties with corresponding descripti
 | ----------------- | ------------------ | -------------------------------------------------------------------------------------------------------------- |
 | "id"              | Integer            | The unique identifier of the event.                                                                            |
 | "cid"             | Integer            | Context id for an individual request related events                                                            |
-| "description"     | String             | The name of the event in an action-based language: e.g. “User was created”.                                    |
+| "description"     | String             | The name of the event in an action-based language: e.g. "User was created".                                    |
 | "db"              | String             | Name of database the event originated from.                                                                    |
 | "real\_userid"    | Object             | Contains key-value pairs for "domain" and "user" (specifying the id). Can be user specified or Server roles.   |
 | "local"           | Object             | Contains key-value pairs for "ip" and incoming "port", for the node on which the event was processed.          |

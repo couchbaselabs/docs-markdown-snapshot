@@ -4,7 +4,7 @@ description: Monitoring and profiling SQL++ queries, Query Service nodes, and
   corresponding system resources is important for smoother operational
   performance and efficiency of the system.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-manage/monitoring-n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-manage/monitoring-n1ql-query.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:cloud:n1ql:n1ql-manage/monitoring-n1ql-query.adoc[]
 
 # Manage and Monitor Queries
 
-> Monitoring and profiling SQL++ queries, Query Service nodes, and corresponding system resources is important for smoother operational performance and efficiency of the system. In fact, often it’s vital for diagnosing and troubleshooting issues such as query performance, resource bottlenecks, and overloading of various services. 
+> Monitoring and profiling SQL++ queries, Query Service nodes, and corresponding system resources is important for smoother operational performance and efficiency of the system. In fact, often it's vital for diagnosing and troubleshooting issues such as query performance, resource bottlenecks, and overloading of various services. 
 
 System keyspaces provide various monitoring details and statistics about individual queries and the Query Service. When running on a cluster with multiple query nodes, stats about all queries on all query nodes are collected in the Query management and monitoring system keyspaces.
 
@@ -272,7 +272,7 @@ For query plan field names and meanings, see [Query Profiling Details](#monitor-
 
 ## [](#sys-prepared)Monitor and Manage Prepared Statements
 
-The `system:prepareds` catalog provides data about the known prepared statements and their state in a query node’s prepared statement cache. For each prepared statement, this catalog provides information such as name, statement, query plan, last use time, number of uses, and so on.
+The `system:prepareds` catalog provides data about the known prepared statements and their state in a query node's prepared statement cache. For each prepared statement, this catalog provides information such as name, statement, query plan, last use time, number of uses, and so on.
 
 A prepared statement is created and stored relative to the current [query context](../n1ql-intro/queriesandresults.md#query-context). You can create multiple prepared statements with the same name, each stored relative to a different query context. This enables you to run multiple instances of the same application against different datasets.
 
@@ -408,7 +408,7 @@ Getting prepared statements, as described in [Get Prepared Statements](#sys-prep
 }
 ```
 
-In this example, the names of the prepared statements are identical, but they’re associated with different query contexts.
+In this example, the names of the prepared statements are identical, but they're associated with different query contexts.
 
 | **1** | The name of the prepared statement for the default query context        |
 | ----- | ----------------------------------------------------------------------- |
@@ -663,12 +663,12 @@ When a query executes a user-defined function, profiling information is availabl
 
 When profiling is enabled:
 
-* If you’re using the Data API or the cbq shell, query profiling information is returned with the query results.
-* If you’re using the Query tab, query profiling information is not returned with the query results.
+* If you're using the Data API or the cbq shell, query profiling information is returned with the query results.
+* If you're using the Query tab, query profiling information is not returned with the query results.
 
 Phases Profile
 
-If you’re using the Data API or the cbq shell, the following statistics are returned when `profile` is set to `phases`:
+If you're using the Data API or the cbq shell, the following statistics are returned when `profile` is set to `phases`:
 
 ```json
 {
@@ -724,7 +724,7 @@ If you’re using the Data API or the cbq shell, the following statistics are re
 
 Timings Profile
 
-If you’re using the Data API or the cbq shell, the following statistics are returned when `profile` is set to `timings`:
+If you're using the Data API or the cbq shell, the following statistics are returned when `profile` is set to `timings`:
 
 ```json
 {
@@ -937,7 +937,7 @@ Within these system catalogs, not all statements have a `meta().plan` attribute.
 > When request profiling is set to `timings`, profiling information is likely to use 100KB+ per entry in the `system:completed_requests` keyspace.
 > 
 > * Due to the added overhead of running both profiling and [logging](../../clusters/monitoring/monitoring.md#activity-logs), turn on both of them only when needed. Running only one of them continuously has no noticeable affect on performance.
-> * Profiling does not carry any extra cost beyond memory for completed requests, so it’s fine to run it continuously.
+> * Profiling does not carry any extra cost beyond memory for completed requests, so it's fine to run it continuously.
 
 Plan Details
 

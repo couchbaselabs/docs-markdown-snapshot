@@ -1,7 +1,7 @@
 ---
 title: Configure Prometheus Metrics Collection
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/howto-prometheus.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::howto-prometheus.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:2.6@operator::howto-prometheus.adoc[]
 
 # Configure Prometheus Metrics Collection
 
-> You can set up the Autonomous Operator to use the Couchbase Exporter or Couchbase Server’s native support for metrics collection. The Couchbase Exporter is a ["sidecar" container](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/#how-pods-manage-multiple-containers) that is injected into each Couchbase Server pod. Couchbase native support for metric collection exposes an Prometheus compatible endpoint on all Pods without the use of 3rd party tools. Couchbase native support is available for Couchbase Server versions 7.0 or higher and is the recommended way for collecting metrics with Prometheus. 
+> You can set up the Autonomous Operator to use the Couchbase Exporter or Couchbase Server's native support for metrics collection. The Couchbase Exporter is a ["sidecar" container](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/#how-pods-manage-multiple-containers) that is injected into each Couchbase Server pod. Couchbase native support for metric collection exposes an Prometheus compatible endpoint on all Pods without the use of 3rd party tools. Couchbase native support is available for Couchbase Server versions 7.0 or higher and is the recommended way for collecting metrics with Prometheus. 
 
 ## [](#overview)Overview
 
@@ -178,7 +178,7 @@ spec:
 
 Important Considerations
 
-* You can enable/disable Prometheus metric collection at any time during the cluster’s lifecycle. However, since `Pod` resources are immutable, enabling or disabling metric collection will require a rolling upgrade of the cluster.
+* You can enable/disable Prometheus metric collection at any time during the cluster's lifecycle. However, since `Pod` resources are immutable, enabling or disabling metric collection will require a rolling upgrade of the cluster.
 * Only official Prometheus images provided by Couchbase are supported (with the exception of user-supplied images that specifically enable [customized metrics](#customizing-metrics)).  
 In addition, you should ensure that your image source is trusted. The sidecar container requires access to the Couchbase cluster administrative credentials in order to login and perform collection. Granting these credentials to arbitrary code is potentially harmful.
 

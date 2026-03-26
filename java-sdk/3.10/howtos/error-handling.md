@@ -3,7 +3,7 @@ title: Handling Errors
 description: Errors are inevitable. That's why the SDK has very extensive error
   handling and retry capabilties
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@java-sdk:howtos:error-handling.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:3.10@java-sdk:howtos:error-handling.adoc[]
 
 # Handling Errors
 
-> Errors are inevitable. That’s why the SDK has very extensive error handling and retry capabilties which are focussed on one goal: keeping your application available as best as possible even in the face of (transient) failures. 
+> Errors are inevitable. That's why the SDK has very extensive error handling and retry capabilties which are focussed on one goal: keeping your application available as best as possible even in the face of (transient) failures. 
 
-Unfortunately, the SDK alone can’t make all the decisions needed since it lacks the understanding of your application domain. In most cases transparent retry is the best choice, but maybe sometimes you need to fail quickly and switch over to an alternate data source. On this page you will learn about basic and advanced error handling mechanisms, as well as the fundamentals that hold them all together.
+Unfortunately, the SDK alone can't make all the decisions needed since it lacks the understanding of your application domain. In most cases transparent retry is the best choice, but maybe sometimes you need to fail quickly and switch over to an alternate data source. On this page you will learn about basic and advanced error handling mechanisms, as well as the fundamentals that hold them all together.
 
 ## [](#error-handling-fundamentals)Error Handling Fundamentals
 
@@ -59,7 +59,7 @@ The full reference for the `ErrorContext` can be found [at the bottom of the pag
 * The document in question had the ID `airline_10226` and we used the `travel-sample` bucket.
 * It has been retried 14 times and the reason was always `ENDPOINT_NOT_AVAILABLE`.
 
-We’ll discuss retry reasons later in this document, but `ENDPOINT_NOT_AVAILABLE` signals that we could not send the operation over the socket because it was not connected/available. Since we now know that the socket had issues, we can inspect the logs to see if we find anything related:
+We'll discuss retry reasons later in this document, but `ENDPOINT_NOT_AVAILABLE` signals that we could not send the operation over the socket because it was not connected/available. Since we now know that the socket had issues, we can inspect the logs to see if we find anything related:
 
 ```none
 2020-10-16T10:28:48.717+0200 WARN  endpoint:523 - [com.couchbase.endpoint][EndpointConnectionFailedEvent][2691us] Connect attempt 7 failed because of AnnotatedConnectException: finishConnect(..) failed: Connection refused: /127.0.0.1:11210 {"bucket":"travel-sample","channelId":"5B36B0DB00000001/000000006C7CDB48","circuitBreaker":"DISABLED","coreId":"0x5b36b0db00000001","local":"127.0.0.1:49895","remote":"127.0.0.1:11210","type":"KV"}
@@ -69,11 +69,11 @@ Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refus
 //	... (rest of stack omitted) ...
 ```
 
-Looks like we tried to connect to the server, but the connection got refused. Next step would be to triage the socket issue on the server side, but in this case it’s not needed since I just stopped the server for this experiment. Time to start it up again and jump to the next section!
+Looks like we tried to connect to the server, but the connection got refused. Next step would be to triage the socket issue on the server side, but in this case it's not needed since I just stopped the server for this experiment. Time to start it up again and jump to the next section!
 
 ### [](#request-cancellations)Request Cancellations
 
-Since we’ve covered timeouts already, the other remaining special exception is the `RequestCanceledException`. It will be thrown in the following cases:
+Since we've covered timeouts already, the other remaining special exception is the `RequestCanceledException`. It will be thrown in the following cases:
 
 * The `RetryStrategy` determined that the `RetryReason` must not be retried (covered later).
 * Too many requests are being stuck waiting to be retried (signaling backpressure).
@@ -81,7 +81,7 @@ Since we’ve covered timeouts already, the other remaining special exception is
 
 There are potentially other reasons as well, but where it originates is not as important as the information it conveys. If you get a `RequestCanceledException`, it means the SDK is not able to further retry the operation and it is terminated before the timeout interval.
 
-Transparently retrying should only be done if the `RetryStrategy` has been customized and you are sure that the retried operation hasn’t performed any side-effects on the server that can lead to data loss. Most of the time the logs need to be inspected after the fact to figure out what went wrong.
+Transparently retrying should only be done if the `RetryStrategy` has been customized and you are sure that the retried operation hasn't performed any side-effects on the server that can lead to data loss. Most of the time the logs need to be inspected after the fact to figure out what went wrong.
 
 To aid with debugging after the fact, the `RequestCanceledException` also contains an `ErrorContext`, very similar to what has been discussed in the timeout section above.
 
@@ -93,7 +93,7 @@ This distinction is important when the SDK sends the operation to the server and
 
 If it is idempotent though, the SDK will transparently retry the operation since it has a chance of succeeding eventually. Depending on the type of request, it might be able to send it to another node or the socket connection re-established before the operation times out.
 
-If the operation needs to be retried before it is sent onto the network or after the SDK received a response, the idempotency doesn’t matter and other factors are taken into account. The following picture illustrates when idempotency is important in the request lifecycle:
+If the operation needs to be retried before it is sent onto the network or after the SDK received a response, the idempotency doesn't matter and other factors are taken into account. The following picture illustrates when idempotency is important in the request lifecycle:
 
 ![Request Lifecycle With Idempotence](_images/request-lifecycle-idempotent.png) 
 
@@ -134,7 +134,7 @@ With the SDK retrying all transparently retryable exceptions already (unless you
 
 ### [](#handling-exceptions-in-the-blocking-api)Handling Exceptions in the blocking API
 
-Let’s consider one of the simpler examples - loading a document via Key/Value - to illustrate different `try/catch` strategies.
+Let's consider one of the simpler examples - loading a document via Key/Value - to illustrate different `try/catch` strategies.
 
 First, if you do not anticipate the document to not be present, it is likely that you are treating a `DocumentNotFoundException` as an error that is fatal. In this case you can either propagate the `CouchbaseException` up your call stack, or rethrow it with a custom exception (here we define an arbitrary `DatabaseException`):
 
@@ -164,7 +164,7 @@ try {
 
 Please refer to each individual method (javadoc) for more information about which exceptions are thrown on top of the `TimeoutException` and `RequestCanceledException`.
 
-Now that we’ve covered falling back to another method or propagating the error, we also need to touch on retrying. As mentioned previously, the SDK will retry as much as it can, but in some cases it cannot know if an operation is retryable or not without the additional context you have as an application developer.
+Now that we've covered falling back to another method or propagating the error, we also need to touch on retrying. As mentioned previously, the SDK will retry as much as it can, but in some cases it cannot know if an operation is retryable or not without the additional context you have as an application developer.
 
 As an example, in your application you know that a particular document is only ever written by one app, so there is no harm in retrying an upsert operation in case of failure:
 
@@ -350,7 +350,7 @@ __Table 1\. RetryReason Reference__
 
 Depending on the operation the `ErrorContext` can be very different, and it also changes over time as we adjust settings to be more user-friendly and improve debugability.
 
-The following table provides best-effort guidance explanation to most of the fields you’ll find in practice. Please note that we do not provide any stability guarantees on the names and values at this point (consider it **volatile**):
+The following table provides best-effort guidance explanation to most of the fields you'll find in practice. Please note that we do not provide any stability guarantees on the names and values at this point (consider it **volatile**):
 
 __Table 2\. ErrorContext Reference__
 | Name               | Description                                                                                                                                                          |

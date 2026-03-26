@@ -1,7 +1,7 @@
 ---
 title: Couchbase TLS
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/concept-tls.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::concept-tls.adoc[]
 ---
 
@@ -68,7 +68,7 @@ Cert-Manager TLS Topology
 
 ![tls cert manager](_images/tls-cert-manager.png)
 
-Cert-manager generates TLS keys and certificates using the `kubernetes.io/tls`, and additionally supplies a `ca.crt` field in the secret, so you don’t need to worry about providing it manually via the CA pool.
+Cert-manager generates TLS keys and certificates using the `kubernetes.io/tls`, and additionally supplies a `ca.crt` field in the secret, so you don't need to worry about providing it manually via the CA pool.
 
 The `ca.crt` field is not respected — if provided — in the client secret. The root CA pool can be used to support a different client signing CA. See [Kubernetes Native TLS](#kubernetes-native-tls) for additional details on multiple root CA support.
 
@@ -93,7 +93,7 @@ This bespoke domain specific format is inflexible and incompatible with any 3rd 
 
 ## [](#node-to-node-encryption)Node-to-Node Encryption
 
-The Operator supports Couchbase Server’s node-to-node encryption feature. Secure network layer transport between pods is not secure by default, and needs to be manually enabled. To enable node-to-node encryption, TLS must be Operator managed.
+The Operator supports Couchbase Server's node-to-node encryption feature. Secure network layer transport between pods is not secure by default, and needs to be manually enabled. To enable node-to-node encryption, TLS must be Operator managed.
 
 The following modes are available:
 
@@ -178,7 +178,7 @@ data:
    /var/run/secrets/couchbase.com/couchbase-tls/tls-passphrase-private-key  (3)
 ```
 
-| **1** | The scripts receives the passphrase as encrypted by a public key from the Operator’s own self-generated keypair. |
+| **1** | The scripts receives the passphrase as encrypted by a public key from the Operator's own self-generated keypair. |
 | ----- | ---------------------------------------------------------------------------------------------------------------- |
 | **2** | Server is instructed to decrypt the passphrase argument.                                                         |
 | **3** | Server uses the Operator generated private key to decrypt the passphrase.                                        |

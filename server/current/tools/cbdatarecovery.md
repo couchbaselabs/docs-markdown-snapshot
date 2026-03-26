@@ -1,7 +1,7 @@
 ---
 title: cbdatarecovery
 editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/tools/pages/cbdatarecovery.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:tools:cbdatarecovery.adoc[]
 ---
 
@@ -112,7 +112,7 @@ Only transfer data where the value matches a particular regular expression. The 
 
 \--replace-ttl <type>
 
-Sets a new expiration (time-to-live) value for the specified keys. This parameter can either be set to "none", "all" or "expired" and should be used along with the --replace-ttl-with flag. If "none" is supplied then the TTL values are not changed. If "all" is specified then the TTL values for all keys are replaced with the value of the --replace-ttl-with flag. If "expired" is set then only keys which have already expired will have the TTL’s replaced.
+Sets a new expiration (time-to-live) value for the specified keys. This parameter can either be set to "none", "all" or "expired" and should be used along with the --replace-ttl-with flag. If "none" is supplied then the TTL values are not changed. If "all" is specified then the TTL values for all keys are replaced with the value of the --replace-ttl-with flag. If "expired" is set then only keys which have already expired will have the TTL's replaced.
 
 \--replace-ttl-with <timestamp>
 
@@ -120,11 +120,11 @@ Updates the expiration for the keys specified by the --replace-ttl parameter. Th
 
 \--include-data <collection\_strings>
 
-Only transfer data included in this comma list of collection strings. Note that this flag can’t be specified at the same time `--exclude-data`.
+Only transfer data included in this comma list of collection strings. Note that this flag can't be specified at the same time `--exclude-data`.
 
 \--exclude-data <collection\_strings>
 
-Don’t transfer the data for the buckets/scopes/collections in this comma separated list of collection strings. Note that this flag can’t be specified at the same time as `--include-data`.
+Don't transfer the data for the buckets/scopes/collections in this comma separated list of collection strings. Note that this flag can't be specified at the same time as `--include-data`.
 
 \--vbucket-state <state>
 
@@ -136,7 +136,7 @@ Specifies the number of concurrent clients to use when transferring data. Fewer 
 
 \--force-updates
 
-Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer. By default updates are not forced and all updates use Couchbase’s conflict resolution mechanism to ensure that if newer data exists on the cluster that is not overwritten by older restore data.
+Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer. By default updates are not forced and all updates use Couchbase's conflict resolution mechanism to ensure that if newer data exists on the cluster that is not overwritten by older restore data.
 
 \--create-missing-collections
 
@@ -276,7 +276,7 @@ Currently, only the following key types are supported:
 
 ## [](#automatic-collection-creation)AUTOMATIC COLLECTION CREATION
 
-By design, users may not recreate the `_default` collection once it has been deleted. Therefore, this means that the `_default` collection can’t (and won’t) be recreated if it’s missing. Before performing a transfer, a check will take place to see if the `_default` collection will be required when it’s missing. If this is the case, the command will exit early and you will be required to remap the `_default` collection using the `--map-data` flag.
+By design, users may not recreate the `_default` collection once it has been deleted. Therefore, this means that the `_default` collection can't (and won't) be recreated if it's missing. Before performing a transfer, a check will take place to see if the `_default` collection will be required when it's missing. If this is the case, the command will exit early and you will be required to remap the `_default` collection using the `--map-data` flag.
 
 ## [](#REMAPPING)REMAPPING
 
@@ -284,14 +284,14 @@ During a transfer, scopes/collections can be remapped from one location to anoth
 
 * You may not remap the `_default` scope (discussed in THE DEFAULT SCOPE).
 * You may not restore users while remapping scopes/collections, the restoring of users will be skipped.
-* You may only remap scopes/collections at the same level meaning scopes may be remapped to other scopes, and collections to other collections, however, a scope can’t be remapped to a collection or vice versa.
+* You may only remap scopes/collections at the same level meaning scopes may be remapped to other scopes, and collections to other collections, however, a scope can't be remapped to a collection or vice versa.
 * Scopes/collections may only be remapped within the same bucket. For example the mapping `bucket1.scope.collection=bucket2.scope.collection` is invalid.
 * Scopes/collections may only be remapped once. For example the mapping `bucket1.scope1=bucket1.scope2,bucket1.scope1=bucket1.scope3` is invalid.
 * Remapping may only take place at one level at once meaning that if a parent bucket/scope is already remapped, the child scopes/collections may not also be remapped. For example the mapping `bucket1.scope1=bucket1.scope2,bucket1.scope1.collection1=bucket1.scope3.collection9`is invalid.
 
 ### [](#remapping-a-scopecollection-without-renaming)REMAPPING A SCOPE/COLLECTION WITHOUT RENAMING
 
-During a transfer, it’s possible for a scope/collection to encounter a conflict (for example, because it has been recreated). It may not be preferable to rename the scope/collection during the transfer.
+During a transfer, it's possible for a scope/collection to encounter a conflict (for example, because it has been recreated). It may not be preferable to rename the scope/collection during the transfer.
 
 For this reason, the `--map-data` flag, allows you to remap a scope/collection to itself; this indicates that the scope/collection that exists in the target (with a different id) should be treated as the same.
 
@@ -303,19 +303,19 @@ Using the `--map-data` flag with the argument `bucket._default.collection1=bucke
 
 ### [](#the-default-scope)THE DEFAULT SCOPE
 
-As mentioned in AUTOMATIC COLLECTION CREATION, it’s not possible to recreate the `_default` scope/collection. This means you can’t remap the `_default`scope because the tool may be unable to create a destination scope/collection. This may be worked around by remapping each collection inside the `_default`scope.
+As mentioned in AUTOMATIC COLLECTION CREATION, it's not possible to recreate the `_default` scope/collection. This means you can't remap the `_default`scope because the tool may be unable to create a destination scope/collection. This may be worked around by remapping each collection inside the `_default`scope.
 
 ### [](#bucket-to-collection-remapping)BUCKET TO COLLECTION REMAPPING
 
-As discussed in REMAPPING, it’s not possible to remap data at different levels; buckets must be remapped to buckets, scopes to scopes and collections to collections. However, there is one supported edge case, which is remapping a bucket into a collection to allow migration from a collection unaware to collection aware datasets.
+As discussed in REMAPPING, it's not possible to remap data at different levels; buckets must be remapped to buckets, scopes to scopes and collections to collections. However, there is one supported edge case, which is remapping a bucket into a collection to allow migration from a collection unaware to collection aware datasets.
 
 To remap a bucket into a collection using `--map-data` you may supply `--map-data bucket._default._default=bucket.scope.collection`. This functionality is compatible with cross bucket mapping, for example you may also supply `--map-data bucket1._default._default=bucket2.scope.collection`.
 
-Note that once you’ve provided a mapping to remap a bucket into a collection you may not remap that bucket elsewhere. For example `--map-data bucket1._default._default=bucket2.scope.collection,bucket1=bucket3` is invalid.
+Note that once you've provided a mapping to remap a bucket into a collection you may not remap that bucket elsewhere. For example `--map-data bucket1._default._default=bucket2.scope.collection,bucket1=bucket3` is invalid.
 
 ### [](#remapping-multiple-data-sources-into-a-single-target-source)REMAPPING MULTIPLE DATA SOURCES INTO A SINGLE TARGET SOURCE
 
-As outlined in the rules discussed in REMAPPING, it’s not possible to remap a bucket/scope/collection multiple times, however, it is possible to remap to a single destination multiple times. For example the mapping `bucket1=dest,bucket2=dest,bucket3=dest` is valid.
+As outlined in the rules discussed in REMAPPING, it's not possible to remap a bucket/scope/collection multiple times, however, it is possible to remap to a single destination multiple times. For example the mapping `bucket1=dest,bucket2=dest,bucket3=dest` is valid.
 
 Although valid, this manor of remapping is dangerous and can result in data not being transferred due to conflicting key spaces. If this style of remapping is detected a warning will be printed before proceeding.
 
@@ -325,7 +325,7 @@ Operations (commands or sub-commands) which connect to a cluster are not support
 
 For example, performing an import/export, making a backup or performing a restore whilst changing the TLS configuration/security settings is unsupported.
 
-These types of changes (e.g. changing the TLS mode to strict) are not expected to be time consuming so it’s generally expected that operations should be started after completing the configuration change.
+These types of changes (e.g. changing the TLS mode to strict) are not expected to be time consuming so it's generally expected that operations should be started after completing the configuration change.
 
 Please note that this does not include rebalances; operations may be performed during a rebalance. The reason for this distinction, is that major cluster configuration changes are generally quick, whilst rebalances for large data sets may be time consuming.
 
@@ -373,7 +373,7 @@ Copied all data in 505ms (Avg. 11.06MB/Sec)                                     
 | Received | Errored | Skipped | Received | Errored | Skipped | Received | Errored | Skipped |
 | 15749    | 0       | 0       | 0        | 0       | 0       | 0        | 0       | 0       |
 
-To recover only a subset of the available buckets, the `--include-data` and `--exclude-flags` may be used. Note that these flags are mutually exclusive meaning they can’t be used at the same time.
+To recover only a subset of the available buckets, the `--include-data` and `--exclude-flags` may be used. Note that these flags are mutually exclusive meaning they can't be used at the same time.
 
 $ cbdatarecovery -c 172.20.1.1 -u Administrator -p asdasd -d /opt/couchbase/lib/couchbase/data --include-data travel-sample
 Recovering to '172.20.1.1'
@@ -447,7 +447,7 @@ Copied all data in 199ms (Avg. 5.31MB/Sec)                                      
 | Received | Errored | Skipped | Received | Errored | Skipped | Received | Errored | Skipped |
 | 7971     | 0       | 0       | 0        | 0       | 0       | 0        | 0       | 0       |
 
-When recovering data to a different cluster or a cluster which has changed over time, it’s possible for some scopes/collections to have been dropped. This may cause the recovery to fail because the required scopes/collections no longer exist. The `--auto-create-collections` flag can be used to automatically create any missing scopes/collections.
+When recovering data to a different cluster or a cluster which has changed over time, it's possible for some scopes/collections to have been dropped. This may cause the recovery to fail because the required scopes/collections no longer exist. The `--auto-create-collections` flag can be used to automatically create any missing scopes/collections.
 
 $ cbdatarecovery -c 172.20.1.1 -u Administrator -p asdasd -d /opt/couchbase/lib/couchbase/data --auto-create-collections
 Recovering to '172.20.1.1'
@@ -533,7 +533,7 @@ Copied all data in 188ms (Avg. 10.33MB/Sec)                                     
 | Received | Errored | Skipped | Received | Errored | Skipped | Received | Errored | Skipped |
 | 15893    | 0       | 0       | 0        | 0       | 0       | 0        | 0       | 0       |
 
-When recovering data to a cluster which has changed over time, it’s possible for one or more target scopes/collections to have been recreated. The `--map-data` flag can be used to recover data to a scope/collection whose id has changed (but the name remains the same).
+When recovering data to a cluster which has changed over time, it's possible for one or more target scopes/collections to have been recreated. The `--map-data` flag can be used to recover data to a scope/collection whose id has changed (but the name remains the same).
 
 $ cbdatarecovery -c 172.20.1.1 -u Administrator -p asdasd -d /opt/couchbase/lib/couchbase/data \
     --map-data travel-sample.inventory=travel-sample.inventory
@@ -579,7 +579,7 @@ Copied all data in 401ms (Avg. 10.31MB/Sec)                                     
 | Received | Errored | Skipped | Received | Errored | Skipped | Received | Errored | Skipped |
 | 15749    | 0       | 0       | 0        | 0       | 0       | 0        | 0       | 0       |
 
-When recovering encrypted data, you’ll need to provide the encryption-related flags.
+When recovering encrypted data, you'll need to provide the encryption-related flags.
 
 $ cbdatarecovery -c 172.20.1.1 -u Administrator -p asdasd \
     -d /opt/couchbase/lib/couchbase/data \
@@ -607,7 +607,7 @@ Copied all data in 505ms (Avg. 11.06MB/Sec)                                     
 | Received | Errored | Skipped | Received | Errored | Skipped | Received | Errored | Skipped |
 | 15749    | 0       | 0       | 0        | 0       | 0       | 0        | 0       | 0       |
 
-Note that `--gosecrets-path` is only needed if you’re using a non-standard path for the gosecrets executable.
+Note that `--gosecrets-path` is only needed if you're using a non-standard path for the gosecrets executable.
 
 If the data files have been moved to a different location, the paths in the gosecrets.cfg file will need to be updated.
 

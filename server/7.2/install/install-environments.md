@@ -3,7 +3,7 @@ title: Additional Requirements
 description: Depending on your local configuration, some components of Couchbase
   Server may have additional system requirements.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/install-environments.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:install:install-environments.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.2@server:install:install-environments.adoc[]
 
 ## [](#java-runtime-environment-jre-analytics-service-only)Java Runtime Environment (JRE) — Analytics Service Only
 
-The Analytics Service requires a Java Runtime Environment to be installed. Only [HotSpot-based JVMs](https://openjdk.java.net/groups/hotspot/), which includes the ones provided by OpenJDK and Oracle’s JDK, are supported.
+The Analytics Service requires a Java Runtime Environment to be installed. Only [HotSpot-based JVMs](https://openjdk.java.net/groups/hotspot/), which includes the ones provided by OpenJDK and Oracle's JDK, are supported.
 
 OpenJDK 11 is installed when you install Couchbase Server — you do not need to install any additional prerequisites to use the Analytics service.
 

@@ -1,7 +1,7 @@
 ---
 title: Contractions
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/contractions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::contractions.adoc[]
 ---
 
@@ -30,19 +30,19 @@ Do not use informal contractions like `wanna` or `gonna`.
 
 Do not use complex contractions like:
 
-* could’ve
-* might’ve
-* must’ve
-* should’ve
-* what’ll
-* what’re
-* what’ve
-* we’ve
-* who’d
-* who’ll
-* who’ve
-* would’ve
-* you’ve
+* could've
+* might've
+* must've
+* should've
+* what'll
+* what're
+* what've
+* we've
+* who'd
+* who'll
+* who've
+* would've
+* you've
 
 ## [](#acceptable-contractions)Acceptable Contractions
 
@@ -50,15 +50,15 @@ When writing technical documentation for Couchbase, you can only use the followi
 
 | Contraction | Short For…​           |
 | ----------- | --------------------- |
-| it’s        | it is; it has         |
-| that’s      | that is; that has     |
-| there’s     | there is; there has   |
-| they’d      | they had; they would  |
-| they’ll     | they will; they shall |
-| they’re     | they are              |
-| what’s      | what is; what has     |
-| where’s     | where is; where has   |
-| who’s       | who is; who has       |
-| you’d       | you had; you would    |
-| you’ll      | you will; you shall   |
-| you’re      | you are               |
+| it's        | it is; it has         |
+| that's      | that is; that has     |
+| there's     | there is; there has   |
+| they'd      | they had; they would  |
+| they'll     | they will; they shall |
+| they're     | they are              |
+| what's      | what is; what has     |
+| where's     | where is; where has   |
+| who's       | who is; who has       |
+| you'd       | you had; you would    |
+| you'll      | you will; you shall   |
+| you're      | you are               |

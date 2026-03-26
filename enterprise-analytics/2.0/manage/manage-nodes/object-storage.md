@@ -3,7 +3,7 @@ title: Setting Up With Object Storage
 description: This page describes how to set up Couchbase Enterprise Analytics
   with Object Storage.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/object-storage.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:manage-nodes/object-storage.adoc[]
 ---
 
@@ -45,7 +45,7 @@ Create the **Access key ID** and **Secret access key** for the bucket in Storage
 
 ### [](#configure-s3-access-credentials)Configure S3 Access Credentials
 
-You should place the credentials file in the '.aws' directory in the 'Couchbase' user’s home directory. For example, `/home/couchbase/.aws/credentials` & `chmod’d` to `600` as a security best practice. Make sure to enter the credentials under the default profile. For more details, refer to the [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html). You can verify that each node was properly configured using AWS CLI:
+You should place the credentials file in the '.aws' directory in the 'Couchbase' user's home directory. For example, `/home/couchbase/.aws/credentials` & `chmod’d` to `600` as a security best practice. Make sure to enter the credentials under the default profile. For more details, refer to the [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html). You can verify that each node was properly configured using AWS CLI:
 
 ```none
 aws s3 ls s3://bucket/prefix/ --endpoint-url https://storagegrid-endpoint.com

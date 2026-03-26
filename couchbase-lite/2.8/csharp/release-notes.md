@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Lite on C#.Net
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/csharp/pages/release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:csharp:release-notes.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:2.8@couchbase-lite:csharp:release-notes.adoc[]
 
 > Description — _Couchbase Lite on C#.Net_  
 > _Abstract — This content describes the key features and changes implemented by release 2.8 of Couchbase Lite on C#.Net_  
-> Related Content — [What’s New](../../current/cbl-whatsnew.md) | [Compatibility](../../current/csharp/compatibility.md) | [Supported OS](../../current/csharp/supported-os.md)
+> Related Content — [What's New](../../current/cbl-whatsnew.md) | [Compatibility](../../current/csharp/compatibility.md) | [Supported OS](../../current/csharp/supported-os.md)
 
 ## [](#maint-2)2.8.6 — August 2021
 
@@ -87,7 +87,7 @@ _Quick Links_: [New Features](#new-features-2-8-0) **|** [Improvements](#improve
 
 #### [](#peer-to-peer-synchronization)Peer-to-Peer Synchronization
 
-Using Couchbase Lite’s Peer-to-Peer Synchronization solution, you can build offline-first applications on edge devices that directly collaborate in secure bi-directional database synchronization without depending on centralized cloud-based control.
+Using Couchbase Lite's Peer-to-Peer Synchronization solution, you can build offline-first applications on edge devices that directly collaborate in secure bi-directional database synchronization without depending on centralized cloud-based control.
 
 The solution provides an out-of-the-box implementation of a websocket based listener for use in peer-to-peer applications communicating over in IP-based networks.
 
@@ -149,7 +149,7 @@ The API has been enhanced with the following changes:
 * [CBL-530](https://issues.couchbase.com/browse/CBL-530) — Certain keys in a query can cause segmentation faults
 * [CBL-529](https://issues.couchbase.com/browse/CBL-529) — Cannot create an offset query without limit
 * [CBL-396](https://issues.couchbase.com/browse/CBL-396) — Platform WebSocket code should manage HTTP cookies - .NET
-* [CBL-358](https://issues.couchbase.com/browse/CBL-358) — xsockets doesn’t account for POSIX variations
+* [CBL-358](https://issues.couchbase.com/browse/CBL-358) — xsockets doesn't account for POSIX variations
 
 ### [](#support-notices-2-8-0)Support Notices
 
@@ -189,7 +189,7 @@ Product Notes
 * [Release Notes](#couchbase-lite:csharp:{cbl-pg-releasenotes})
 * [Compatibility](../../current/csharp/compatibility.md)
 * [Supported OS](../../current/csharp/supported-os.md)
-* [What’s New](../../current/cbl-whatsnew.md)
+* [What's New](../../current/cbl-whatsnew.md)
 
 ###### [](#-2)
 

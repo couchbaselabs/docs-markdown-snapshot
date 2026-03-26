@@ -2,7 +2,7 @@
 title: Create a Search Index with the REST API and curl/HTTP
 description: You can create a Search index with the Search Service API.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-search-index-rest-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:create-search-index-rest-api.adoc[]
 ---
 
@@ -20,7 +20,7 @@ You must create a Search index before you can [run a search](simple-search-rest-
 * You have the Search Service enabled on a node in your database.
 * You have a bucket with scopes and collections in your database.
 * Your user account has the **Search Admin** role for the bucket where you want to create the index.
-* You’ve installed the Couchbase command-line tool (CLI).
+* You've installed the Couchbase command-line tool (CLI).
 * You have the hostname or IP address for your database.
 
 ## [](#procedure)Procedure
@@ -36,7 +36,7 @@ curl -s -XPUT -H "Content-Type: application/json" \
     -d \  
 ```
 4. Enter the JSON payload for the settings you want in your index.  
-Don’t include the [uuid](search-index-params.md#uuid) or [sourceUUID](search-index-params.md#sourceuuid) parameters.  
+Don't include the [uuid](search-index-params.md#uuid) or [sourceUUID](search-index-params.md#sourceuuid) parameters.  
 > [!TIP]  
 > If you remove the [uuid](search-index-params.md#uuid) and [sourceUUID](search-index-params.md#sourceuuid) parameters, you can copy the Search index definition JSON payload from the Couchbase Server Web Console to use in your REST API call. For more information about how to create an index with the UI, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md).  
 In the following example, the JSON payload creates a simple index named `landmark-content-index` on the `travel-sample` bucket. It creates a type mapping for the `inventory.landmark` collection, with a child field, `content`:  

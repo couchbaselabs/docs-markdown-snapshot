@@ -1,7 +1,7 @@
 ---
 title: MultiPoint Query
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-queryshape-multipoint.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-queryshape-multipoint.adoc[]
 ---
 
@@ -82,11 +82,11 @@ Containment rules for the MultiPoint Query with other indexed GeoJSON shapes in 
 
 | Contains (relation)Document Shape | MultiPoint (GeoShape)                                                                                                                                                 |
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Point                             | NA. A point can’t contain a multipoint.                                                                                                                               |
-| LineString                        | NA. A linestring can’t contain a multipoint.                                                                                                                          |
+| Point                             | NA. A point can't contain a multipoint.                                                                                                                               |
+| LineString                        | NA. A linestring can't contain a multipoint.                                                                                                                          |
 | Polygon                           | Contains when all of the query points in the multipoint array lie within the area of the polygon.                                                                     |
 | MultiPoint                        | Contains when all of the query points in the multipoint array overlap with any of the many points in the multipoint array in the document.                            |
-| MultiLineString                   | NA. A multi linestring can’t contain a multipoint.                                                                                                                    |
+| MultiLineString                   | NA. A multi linestring can't contain a multipoint.                                                                                                                    |
 | MultiPolygon                      | Contains when all of the query points in the multipoint array lie within the area of any of the polygons in the multipolygon array in the document.                   |
 | GeometryCollection                | Contains when all of the query points in the multipoint array overlap with any of the heterogeneous (above 6) shapes in the geometrycollection array in the document. |
 | Circle                            | Contains when all of the query points in the multipoint array lie within the area of the circular region in the document.                                             |

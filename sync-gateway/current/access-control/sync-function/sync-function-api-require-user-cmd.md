@@ -2,7 +2,7 @@
 title: requireUser()
 description: Requiring Sync Gateway user
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/sync-function/sync-function-api-require-user-cmd.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:access-control:sync-function/sync-function-api-require-user-cmd.adoc[]
 ---
 
@@ -33,7 +33,7 @@ Use the `requireUser()` function to reject document updates that are not made by
 
 The function signals rejection by throwing an exception, so the rest of the sync function will not be run.
 
-When validating a document, you should treat all properties of the `doc` parameter as _untrusted_. That is because it **is** the object that you’re validating. This may sound obvious, but it can be easy to make mistakes, like calling `requireUser(doc.owners)` instead of `requireUser(oldDoc.owners)`.
+When validating a document, you should treat all properties of the `doc` parameter as _untrusted_. That is because it **is** the object that you're validating. This may sound obvious, but it can be easy to make mistakes, like calling `requireUser(doc.owners)` instead of `requireUser(oldDoc.owners)`.
 
 When using one document property to validate another, look up that property in `oldDoc`, not `doc`!
 
@@ -49,7 +49,7 @@ requireUser(["snej", "jchris", "tleyden"]); (2)
 
 | **1** | Throw an error if the user is not "snej":                 |
 | ----- | --------------------------------------------------------- |
-| **2** | Throw an error if user’s name is not in the list username |
+| **2** | Throw an error if user's name is not in the list username |
 
 ---
 

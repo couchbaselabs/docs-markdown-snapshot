@@ -2,7 +2,7 @@
 title: SG Replicate
 description: SG Replicate protocol supports inter-Sync Gateway replication
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/legacy-sg-replicate.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::legacy-sg-replicate.adoc[]
 ---
 
@@ -50,7 +50,7 @@ We support the ability to run replications between two Sync Gateway clusters. SG
 
 * Can only replicates SG databases that are hosted on recent versions of Sync Gateway (after commit 50d30eb3d on March 7, 2014)
 * In deployments with multiple Sync Gateway nodes, only _one_ of the Sync Gateways should be configured for replications. If multiple Sync Gateways are configured for replications, it could substantially increase the amount of duplicate work, and therefore should be avoided. The limitation is that the system is not guaranteed to be Highly Available: if the Sync Gateway that is chosen to drive the replication goes down or is otherwise removed from the system, then the replications will stop.
-* Replication between Sync Gateway databases doesn’t support automatic conflict resolution even when the no-conflicts mode is enabled (i.e ["allow\_conflicts": false](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-allow%5Fconflicts)). Apps will continue to rely on the 1.x REST APIs to asynchronously detect and resolve conflicts. The `allow_conflicts` property must be true in both source and target sync gateways. When running two Sync Gateway clusters with the no-conflicts mode enabled, cross-cluster document conflicts will result in that document no longer being replicated. Deployments must implement a custom conflict resolver in an external app as specified [here](sync-sgreplicate-resolving-conflicts-legacy.md). To avoid this, the application must ensure concurrent, cross-cluster updates are not made to a given document.
+* Replication between Sync Gateway databases doesn't support automatic conflict resolution even when the no-conflicts mode is enabled (i.e ["allow\_conflicts": false](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-allow%5Fconflicts)). Apps will continue to rely on the 1.x REST APIs to asynchronously detect and resolve conflicts. The `allow_conflicts` property must be true in both source and target sync gateways. When running two Sync Gateway clusters with the no-conflicts mode enabled, cross-cluster document conflicts will result in that document no longer being replicated. Deployments must implement a custom conflict resolver in an external app as specified [here](sync-sgreplicate-resolving-conflicts-legacy.md). To avoid this, the application must ensure concurrent, cross-cluster updates are not made to a given document.
 * Delta-sync is disabled
 * Replication State is not configurable . It will default to running state.
 * Purge-on-removal — document removals are ignored by target and not purged.
@@ -126,7 +126,7 @@ If you want to run replications as soon as Sync Gateway starts, you can define r
 
 One-shot replications are always run asynchronously even if the `async` property is not set to true.
 
-A One-shot replication that references a local database for either source or target, will be run after a short delay (5 seconds) in order to allow the local REST API’s to come up. Replications may be given a user defined `replication_id` otherwise Sync Gateway will generate a random UUID. Replications defined in config may not contain the `cancel` property.
+A One-shot replication that references a local database for either source or target, will be run after a short delay (5 seconds) in order to allow the local REST API's to come up. Replications may be given a user defined `replication_id` otherwise Sync Gateway will generate a random UUID. Replications defined in config may not contain the `cancel` property.
 
 ```javascript
 {
@@ -232,7 +232,7 @@ This will cancel an active replication with a `replication_id` of "my-one-shot-r
 }
 ```
 
-This will cancel a replication that was started with same "source" and "target" values as those in the cancel request. By omitting the "continuous" property it’s value will default to **false**, a replication must also have been started as a one-shot to match.
+This will cancel a replication that was started with same "source" and "target" values as those in the cancel request. By omitting the "continuous" property it's value will default to **false**, a replication must also have been started as a one-shot to match.
 
 ```javascript
 {

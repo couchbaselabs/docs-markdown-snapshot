@@ -3,7 +3,7 @@ title: ALTER BUCKET
 description: The ALTER BUCKET statement enables you to update an existing
   bucket's configuration.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/alterbucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/alterbucket.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:server:n1ql:n1ql-language-reference/alterbucket.adoc[]
 
 # ALTER BUCKET
 
-> The ALTER BUCKET statement enables you to update an existing bucket’s configuration. 
+> The ALTER BUCKET statement enables you to update an existing bucket's configuration. 
 
 ## [](#purpose)Purpose
 

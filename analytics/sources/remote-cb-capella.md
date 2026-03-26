@@ -1,7 +1,7 @@
 ---
 title: Stream Data from Couchbase Capella
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/remote-cb-capella.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sources:remote-cb-capella.adoc[]
 ---
 
@@ -47,7 +47,7 @@ To create a remote collection to receive data from a Couchbase Capella operation
 2. In the **Collection Name** field, enter a name for your Capella Analytics collection.
 3. In the **Configure Data Details** fields, select the names of the **Bucket**, **Scope**, and **Collection** you want to shadow.
 4. Optionally, enter an expression in the **WHERE clause** field to filter the documents in the source collection. Do not include the `WHERE` keyword, and supply only a deterministic expression. For example, `activity = "eat"`.
-5. Click **Create Collection**. Your collection appears in the explorer’s **Data** section underneath its database and scope.
+5. Click **Create Collection**. Your collection appears in the explorer's **Data** section underneath its database and scope.
 
 To create a remote collection using a `CREATE COLLECTION` statement, see [CREATE a Remote Collection](../sqlpp/5%5Fddl%5Fremote.md).
 

@@ -2,7 +2,7 @@
 title: Support Notices
 description: Couchbase Lite on C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/c/pages/supportnotices.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@couchbase-lite:c:supportnotices.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.1@couchbase-lite:c:supportnotices.adoc[]
 # Support Notices
 
 > Description — _Couchbase Lite on C_  
-> Related Content — [What’s New](#cbl-whatsnew.adoc)
+> Related Content — [What's New](#cbl-whatsnew.adoc)
 
 ## [](#support-notices)Support Notices
 

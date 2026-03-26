@@ -2,7 +2,7 @@
 title: Create a Search Index with the REST API and curl/HTTP
 description: You can create a Search index with the Search Service API.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/create-search-index-rest-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:search:create-search-index-rest-api.adoc[]
 ---
 
@@ -21,7 +21,7 @@ You must create a Search index before you can [run a search](simple-search-rest-
 * You have a bucket with scopes and collections in your cluster. For more information about how to create a bucket, see [Create a Bucket](../manage/manage-buckets/create-bucket.md).
 * Your user account has the [Search Admin](../learn/security/roles.md#search-admin) role for the bucket where you want to create the index.
 * You have installed the Couchbase command-line tool (CLI).
-* You have the hostname or IP address for the node in your cluster where you’re running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../manage/manage-nodes/list-cluster-nodes.md).
+* You have the hostname or IP address for the node in your cluster where you're running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../manage/manage-nodes/list-cluster-nodes.md).
 
 ## [](#procedure)Procedure
 

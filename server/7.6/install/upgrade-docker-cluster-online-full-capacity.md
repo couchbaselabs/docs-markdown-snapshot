@@ -1,7 +1,7 @@
 ---
 title: Upgrade an Online Docker Cluster, Full Capacity
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/upgrade-docker-cluster-online-full-capacity.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:install:upgrade-docker-cluster-online-full-capacity.adoc[]
 ---
 
@@ -29,7 +29,7 @@ For information on node-addition, see [Clusters](../learn/clusters-and-availabil
 
 ## [](#prepare-the-cluster)1\. Prepare the Cluster
 
-Carry out a _full_ backup of the cluster’s data. This can be done using the [REST-API](../rest-api/backup-trigger-backup.md) or the [Backup Service](../manage/manage-backup-and-restore/manage-backup-and-restore.md).
+Carry out a _full_ backup of the cluster's data. This can be done using the [REST-API](../rest-api/backup-trigger-backup.md) or the [Backup Service](../manage/manage-backup-and-restore/manage-backup-and-restore.md).
 
 ## [](#create-the-spare-node)2\. Create the Spare Node
 
@@ -70,7 +70,7 @@ You cannot re-use existing volumes when replacing a docker container, so it is n
 
 **This does mean that it is not possible to upgrade a Docker Couchbase container with only a single node available for use.**
 
-To prevent unusable volumes from building up during upgrades, it’s important to delete the unused volumes during the process to decrease the chances of running out of disk space.
+To prevent unusable volumes from building up during upgrades, it's important to delete the unused volumes during the process to decrease the chances of running out of disk space.
 
 ## [](#upgrade-the-node-container)6\. Upgrade the Node Container
 
@@ -106,7 +106,7 @@ Now repeat steps from \[[Section 4](#remove-node-for-upgrading)\] to \[[Section 
 
 ## [](#remove-the-spare-node)9\. Remove the Spare Node
 
-The upgraded administration node can be used to remove the spare node from the cluster and rebalance the cluster. Once this has been done, then the `docker` command can be used to remove the spare node’s container and volume.
+The upgraded administration node can be used to remove the spare node from the cluster and rebalance the cluster. Once this has been done, then the `docker` command can be used to remove the spare node's container and volume.
 
 ```console
 docker rm -f sparenode

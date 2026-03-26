@@ -1,7 +1,7 @@
 ---
 title: New in 3.2
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/ROOT/pages/cbl-whatsnew.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite::cbl-whatsnew.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.2@couchbase-lite::cbl-whatsnew.adoc[]
 
 > [!NOTE]
 > Couchbase Lite 3.0 introduces some breaking changes.  
-> If you’re upgrading from 2.x, refer to the appropriate upgrade page — see: [Upgrading](#lbl-upgrade).  
+> If you're upgrading from 2.x, refer to the appropriate upgrade page — see: [Upgrading](#lbl-upgrade).  
 > You should be able to upgrade from 3.0.x to 3.1.x without manual intervention.
 
 ## [](#release-3-2-4-june-2025)Release 3.2.4 (June 2025)
@@ -29,9 +29,9 @@ Couchbase Lite Release 3.2.4 introduces fixes and enhancements for:
 
 Couchbase Lite 3.2.3 introduces Reactive APIs in Swift. The Reactive APIs enable you map Couchbase Lite documents directly to Swift models, and then bind a model to a view representing the user interface. The user interface is automatically updated when the underlying data changes. The new Reactive APIs provide the following benefits:
 
-* Native adherence to Swift’s Codable protocol, enabling automatic encoding and decoding between Couchbase Lite documents and Swift codable model objects. You can retrieve documents from the collection as decodable model objects. You can also save, delete, and purge model objects encoded as documents in the collection.
+* Native adherence to Swift's Codable protocol, enabling automatic encoding and decoding between Couchbase Lite documents and Swift codable model objects. You can retrieve documents from the collection as decodable model objects. You can also save, delete, and purge model objects encoded as documents in the collection.
 * The ability to decode Couchbase SQL++ query results directly into model objects. This makes queries observable, so that you can refresh the application automatically as the results change.
-* Access to the Combine framework and the Observation framework, enabling you to publish change notifications whenever a query result changes, or documents in a collection change, or a replicator’s status changes.
+* Access to the Combine framework and the Observation framework, enabling you to publish change notifications whenever a query result changes, or documents in a collection change, or a replicator's status changes.
 
 For more information about Reactive APIs in Swift, see:
 
@@ -190,7 +190,7 @@ Read more at:
 
 ## [](#see-also)See also
 
-[What’s new in previous version 3.1](../3.1/cbl-whatsnew.md)
+[What's new in previous version 3.1](../3.1/cbl-whatsnew.md)
 
 ### [](#couchbase-lite-release-notes)Couchbase Lite Release Notes
 

@@ -4,7 +4,7 @@ description: When a document in an existing collection is about to expire, use
   the Eventing Service to create an archived copy of that document in a
   different collection.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-docarchive.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-examples-docarchive.adoc[]
 ---
 
@@ -23,7 +23,7 @@ This example is similar to the [Create Documents After Expiration](eventing-exam
 
 The `OnUpdate` JavaScript handler runs whenever a document is created or mutated. The Eventing Function calls a Timer, which executes a callback function 2 minutes before a document expires and archives an identical document with the same key in a specified target bucket.
 
-The original document in the source bucket does not change, but is deleted following the bucket’s expiration date.
+The original document in the source bucket does not change, but is deleted following the bucket's expiration date.
 
 ## [](#prerequisites)Prerequisites
 
@@ -32,7 +32,7 @@ Before trying out the examples on this page, you must first:
 * Import the `tavel-sample` sample bucket.
 * Create two new buckets called `bulk` and `rr100` with a minimum size of 100MB.
 * Inside the `bulk` bucket, create two keyspaces called `bulk.data.source` and `bulk.data.target`.
-* Update the `source` collection’s TTL (Time-to-Live) to **600**.
+* Update the `source` collection's TTL (Time-to-Live) to **600**.
 * Inside the `rr100` bucket, create one keyspace called `rr100.eventing.metadata`.
 
 For more information about creating buckets, scopes, and collections, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
@@ -105,7 +105,7 @@ function DocTimerCallback(context) {
 ```
 8. Click **Create function** to create your Eventing Function.
 
-The `OnUpdate` handler creates a Timer that fires 2 minutes before the document’s expiration time.
+The `OnUpdate` handler creates a Timer that fires 2 minutes before the document's expiration time.
 
 ### [](#deploy-the-eventing-function)Deploy the Eventing Function
 
@@ -115,7 +115,7 @@ Deploy your Eventing Function:
 2. Click **More Options (⋮)** next to **archive\_before\_expiry**.
 3. Click **Deploy** to deploy your Function.
 
-After it’s deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
+After it's deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
 
 ### [](#insert-documents-into-source-bucket)Insert Documents into Source Bucket
 
@@ -151,4 +151,4 @@ To check that your Eventing Function is running properly and archiving documents
 5. Go to **Data Tools** **Eventing**.
 6. Click the **archive\_before\_expiry** function. The number under **Successes** should have doubled to 3936.
 
-If you wait a few more minutes until the 120 second expiry window is reached, the documents inside the **source** collection are no longer accessible because of the collection’s pre-defined TTL. The 1968 archived documents are still in the **target** collection, but the original documents in the **source** collection have expired.
+If you wait a few more minutes until the 120 second expiry window is reached, the documents inside the **source** collection are no longer accessible because of the collection's pre-defined TTL. The 1968 archived documents are still in the **target** collection, but the original documents in the **source** collection have expired.

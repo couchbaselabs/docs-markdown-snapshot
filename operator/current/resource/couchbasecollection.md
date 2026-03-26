@@ -1,7 +1,7 @@
 ---
 title: CouchbaseCollection Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbasecollection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::resource/couchbasecollection.adoc[]
 ---
 
@@ -143,7 +143,7 @@ History defines whether change history is retained for the collection. If this f
 
 #### [](#description-10)Description
 
-MaxTTL defines how long a document is permitted to exist for, without modification, until it is automatically deleted. This field takes precedence over any TTL defined at the bucket level. This is a default, and maximum time-to-live and may be set to a lower value by the client. If the client specifies a higher value, then it is truncated to the maximum durability. Documents are removed by Couchbase, after they have expired, when either accessed, the expiry pager is run, or the bucket is compacted. When set to 0, then documents are not expired by default. This field must either be a duration in the range 0-2147483648s or "-1", defaulting to 0\. If set to "-1", the collection’s bucket will be prevented from setting a default expiration on the collection’s documents. While this field can be changed on the CRD, it will not be updated on the collection if the Couchbase Server version is pre 7.6.0\. More info: <https://golang.org/pkg/time/#ParseDuration>.
+MaxTTL defines how long a document is permitted to exist for, without modification, until it is automatically deleted. This field takes precedence over any TTL defined at the bucket level. This is a default, and maximum time-to-live and may be set to a lower value by the client. If the client specifies a higher value, then it is truncated to the maximum durability. Documents are removed by Couchbase, after they have expired, when either accessed, the expiry pager is run, or the bucket is compacted. When set to 0, then documents are not expired by default. This field must either be a duration in the range 0-2147483648s or "-1", defaulting to 0\. If set to "-1", the collection's bucket will be prevented from setting a default expiration on the collection's documents. While this field can be changed on the CRD, it will not be updated on the collection if the Couchbase Server version is pre 7.6.0\. More info: <https://golang.org/pkg/time/#ParseDuration>.
 
 ### [](#couchbasecollections-spec-name)couchbasecollections.spec.name
 

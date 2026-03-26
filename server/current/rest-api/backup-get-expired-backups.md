@@ -3,7 +3,7 @@ title: Get Expired Backup Information
 description: The Backup Service REST API lets you retrieve information about the
   expired backups in a repository.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-get-expired-backups.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:backup-get-expired-backups.adoc[]
 ---
 
@@ -54,7 +54,7 @@ Full Admin, Backup Full Admin, or Read-Only Admin roles.
 ## [](#example)Examples
 
 > [!NOTE]
-> The following examples assume you’re running the curl command from a node that is running the Backup Service.
+> The following examples assume you're running the curl command from a node that is running the Backup Service.
 
 The following call returns the details of expired backups for the active repository `repoNewForPrune`:
 

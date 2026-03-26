@@ -2,7 +2,7 @@
 title: dcp
 description: Shows statistics for Database Change Protocol (DCP).
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-dcp.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbstats/cbstats-dcp.adoc[]
 ---
 
@@ -34,7 +34,7 @@ __Table 1\. Consumer connection statistics__
 | ------------------- | ------------------------------------------------------ |
 | connected           | True if this client is connected                       |
 | created             | Creation time of the DCP connection                    |
-| pending\_disconnect | True if we’re hanging up on this client                |
+| pending\_disconnect | True if we're hanging up on this client                |
 | reserved            | True if the DCP stream is reserved                     |
 | supports\_ack       | True if the connection uses flow control               |
 | total\_acked\_bytes | The number of bytes that the consumer has acknowledged |
@@ -89,7 +89,7 @@ Producer and notifier connection statistics (producer-level statistics)
 | last\_sent\_time    | The last time items have been sent.                                                           |
 | noop\_enabled       | Indicates whether this connection sends noops.                                                |
 | noop\_wait          | Indicates whether this connection is waiting for a noop response from the consumer.           |
-| pending\_disconnect | True if we’re hanging up on this client.                                                      |
+| pending\_disconnect | True if we're hanging up on this client.                                                      |
 | reserved            | True if the DCP stream is reserved.                                                           |
 | supports\_ack       | True if the connection uses flow control.                                                     |
 | total\_acked\_bytes | The number of bytes that have been acknowledged by the consumer when flow control is enabled. |
@@ -107,7 +107,7 @@ This example shows a request for all DCP-related statistics.
 
 # ./cbstats 10.5.2.54:11210 dcp
 
-Here’s some output from the command. The output is quite lengthy, so this sample is truncated.
+Here's some output from the command. The output is quite lengthy, so this sample is truncated.
 
 ep_dcp_count:                                                                               6
  ep_dcp_items_remaining:                                                                     0

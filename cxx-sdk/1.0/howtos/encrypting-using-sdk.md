@@ -3,7 +3,7 @@ title: Field Level Encryption from the SDK
 description: The Field Level Encryption library enables encryption and
   decryption of JSON fields, to support FIPS-140-2 compliance.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.0@cxx-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -56,7 +56,7 @@ HashiCorp Vault Transit integration requires [Spring Vault](https://docs.spring.
 
 ## [](#configuration)Configuration
 
-To enable Field-Level Encryption, supply a `CryptoManager` when [configuring the Java SDK’s ClusterEnvironment](managing-connections.md#cluster-environment).
+To enable Field-Level Encryption, supply a `CryptoManager` when [configuring the Java SDK's ClusterEnvironment](managing-connections.md#cluster-environment).
 
 ```java
 Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::example$EncryptingUsingSDK.java[]
@@ -71,13 +71,13 @@ Two modes of operation are available:
 
 ### [](#data-binding-example)Data Binding Example
 
-Sensitive fields of your data classes can be annotated with `@Encrypted`. Let’s use this class as an example:
+Sensitive fields of your data classes can be annotated with `@Encrypted`. Let's use this class as an example:
 
 ```java
 Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::example$EncryptingUsingSDK.java[]
 ```
 
-Now let’s create an employee record and save it to Couchbase:
+Now let's create an employee record and save it to Couchbase:
 
 ```java
 Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::example$EncryptingUsingSDK.java[]
@@ -101,7 +101,7 @@ Because `contentAsObject()` does not decrypt anything, the expected output is so
 }
 ```
 
-Now let’s read the employee record using data binding:
+Now let's read the employee record using data binding:
 
 ```java
 Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::example$EncryptingUsingSDK.java[]
@@ -113,7 +113,7 @@ This prints `true`.
 
 The code that enables encryption/decryption during data binding is packaged as a Jackson module called `EncryptionModule`. You can register this module with any Jackson `ObjectMapper`.
 
-You’ll need to do this if you want to supply your own customized ObjectMapper for the Java SDK to use when serializing documents. Here’s how to configure the cluster environment to use a custom JSON serializer backed by your own ObjectMapper with support for Field-Level Encryption:
+You'll need to do this if you want to supply your own customized ObjectMapper for the Java SDK to use when serializing documents. Here's how to configure the cluster environment to use a custom JSON serializer backed by your own ObjectMapper with support for Field-Level Encryption:
 
 ```java
 Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::example$EncryptingUsingSDK.java[]
@@ -144,13 +144,13 @@ then either encrypted or unencrypted values will be accepted during deserializat
 
 The AEAD\_AES\_256\_CBC\_HMAC\_SHA512 algorithm included in this library uses encryption keys that are 64 bytes long.
 
-Here’s an example that shows how to create a Java key store file containing a suitable encryption key:
+Here's an example that shows how to create a Java key store file containing a suitable encryption key:
 
 ```java
 Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::example$EncryptingUsingSDK.java[]
 ```
 
-And here’s how to use that file to create a `Keyring` for use with Couchbase Field-Level Encryption:
+And here's how to use that file to create a `Keyring` for use with Couchbase Field-Level Encryption:
 
 ```java
 Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::example$EncryptingUsingSDK.java[]
@@ -161,7 +161,7 @@ Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc -
 > [!WARNING]
 > SDK 2 cannot read fields encrypted by SDK 3\.
 
-It’s inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled a maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
+It's inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled a maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
 
 SDK 3 requires additional configuration to read fields encrypted by SDK 2\. The rest of this section describes how to configure Field-Level Encryption in SDK 3 for backwards compatibility with SDK 2.
 

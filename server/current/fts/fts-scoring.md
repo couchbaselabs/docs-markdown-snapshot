@@ -1,7 +1,7 @@
 ---
 title: Scoring
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-scoring.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:fts:fts-scoring.adoc[]
 ---
 
@@ -66,7 +66,7 @@ The following sample query response shows the **score** field for each document 
 
 `tf-idf` is used as a weighting factor in a search for information retrieval and text mining. The `tf–idf` value increases proportionally to the number of times a word appears in the document, and it is offset by the number of documents in the collection or scope that contains the word.
 
-Search engines often use the variations of `tf-idf` weighting scheme as a tool in scoring and ranking a document’s relevance for a given query. The tf-idf scoring for a document relevancy is done on the basis of per-partition index, which means that documents across different partitions may have different scores.
+Search engines often use the variations of `tf-idf` weighting scheme as a tool in scoring and ranking a document's relevance for a given query. The tf-idf scoring for a document relevancy is done on the basis of per-partition index, which means that documents across different partitions may have different scores.
 
 When bleve scores a document, it sums a set of sub scores to reach the final score. The scores across different searches are not directly comparable as the scores are directly dependent on the search criteria. So, changing the search criteria, like terms, boost factor etc. can vary the score.
 
@@ -110,7 +110,7 @@ It is often observed that users are using Full-Text Search for the exact match q
 
 Text relevancy score does not matter when the user is looking for exact or more targeted searches with many predicates or when the dataset size is small.
 
-In such a case, FTS unnecessarily uses more resources in calculating the relevancy score. Users can, however, optimize the query performance by skipping the scoring. Users may skip the scoring by passing a “score”: “none” option in the search request.
+In such a case, FTS unnecessarily uses more resources in calculating the relevancy score. Users can, however, optimize the query performance by skipping the scoring. Users may skip the scoring by passing a "score": "none" option in the search request.
 
 ### [](#example-3)Example
 

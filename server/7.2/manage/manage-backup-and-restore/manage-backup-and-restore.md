@@ -3,7 +3,7 @@ title: Manage Backup and Restore
 description: Couchbase Server allows one or more buckets, and selected subsets
   of their data, to be backed up, restored, and archived.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-backup-and-restore/manage-backup-and-restore.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:manage:manage-backup-and-restore/manage-backup-and-restore.adoc[]
 ---
 
@@ -74,7 +74,7 @@ This brings up the **Select Plan** dialog, which initially appears as follows:
 ![selectPlanDialog](../_images/manage-backup-restore/selectPlanDialog.png)
 2. Specify whether to use a default or a custom plan. A _plan_ determines what kind of backup is to occur, affecting what data, and on what schedule. Predefined plans are provided, named **\_hourly\_backups** and **\_daily\_backups**: as their names indicate, these provide backups that are respectively hourly and daily. The **\_hourly\_backups** plan appears as the default selection.  
 (For more information, see [Default Plans](#default-plans), below.)  
-Left-click on the control that appears at the right-hand side of the **Select plan** dialog’s interactive text-field. A pull-down menu appears, as follows:  
+Left-click on the control that appears at the right-hand side of the **Select plan** dialog's interactive text-field. A pull-down menu appears, as follows:  
 ![selectPlanDialogPullDownMenuInitial](../_images/manage-backup-restore/selectPlanDialogPullDownMenuInitial.png)  
 Three options are thus provided. The first two are **\_daily\_backups** and **\_hourly\_backups**. The third option is **\+ Create new plan**: select this option:  
 ![selectPlanDialogPullDownMenuSelection](../_images/manage-backup-restore/selectPlanDialogPullDownMenuSelection.png)  
@@ -157,7 +157,7 @@ Using Couchbase Web Console, the history of backups to a specified repository ca
 
 ![inspectBackupsButton](../_images/manage-backup-restore/inspectBackupsButton.png) 
 
-This displays the **Backup** facility’s **Repository** screen, which appears as follows:
+This displays the **Backup** facility's **Repository** screen, which appears as follows:
 
 ![inspectBackupsScreen](../_images/manage-backup-restore/inspectBackupsScreen.png) 
 
@@ -215,7 +215,7 @@ The **Inline Diff** view is now provided:
 
 ### [](#delete-backups)Delete Backups
 
-By means of the **Backup** facility’s **Data** screen, individual backups can be deleted. At the extreme right of the row for each listed backup, a garbage-can icon appears:
+By means of the **Backup** facility's **Data** screen, individual backups can be deleted. At the extreme right of the row for each listed backup, a garbage-can icon appears:
 
 ![inspectBackupsIndividualRow](../_images/manage-backup-restore/inspectBackupsIndividualRow.png) 
 
@@ -320,7 +320,7 @@ The **Restore** dialog is now displayed:
 ![restoreAdvancedOptionsInitial](../_images/manage-backup-restore/restoreAdvancedOptionsInitial.png)  
 These fields allow selection of documents to be restored on the basis of the data they contain. Documents that meet the specified criteria are included in the data-restoration; those that do not are omitted from it.  
 Use of these fields is optional: if all data in the specified backups is to be restored, leave these fields blank. If only some data should be restored, proceed as follows:  
-In the **Filter Keys** field, add a _regular expression_ that must be matched by a document’s _key_, if the document is to be included in the restoration. For example, `^airline` ensures that only a document whose key begins with the string `airline` is included.  
+In the **Filter Keys** field, add a _regular expression_ that must be matched by a document's _key_, if the document is to be included in the restoration. For example, `^airline` ensures that only a document whose key begins with the string `airline` is included.  
 In the **Filter Values** field, add a regular expression that must be matched by a _value_ within the document, if the document is to be included in the restoration. For example, `MIL*` ensures that only a document that contains at least one key-value pair whose value contains the string `MIL` followed by zero of more characters is to be included in the restoration. (See [Regular Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular%5FExpressions) and [Regular-Expressions.info](https://www.regular-expressions.info/), for further information.)  
 In the **Map Data** field, indicate whether the data is to be restored to its original or to a different bucket. If this field is left blank, data is restored to its original bucket: note that this bucket must continue to exist on the cluster. If data is to be restored to a different bucket, that bucket must either already have been defined on the cluster, or must be created by means of the **Auto-create bucket** option, described below.  
 For example, if data to be restored from `travel-sample` should be restored to `ts`, enter `travel-sample=ts`.  
@@ -357,7 +357,7 @@ The button now changes into a **Resume** button. Left-click on this whenever bac
 
 When a repository should no longer receive fresh backups, the repository can be _archived_. This means that it remains available, with all its data; but no longer receives modifications. To archive a repository, proceed as follows;
 
-1. Access the repository that is to be archived in the **Repositories** view of the **Backup** screen, and expand the row for the repository by left-clicking on the repository’s row. When the row has expanded, left-click on the **Archive** button:  
+1. Access the repository that is to be archived in the **Repositories** view of the **Backup** screen, and expand the row for the repository by left-clicking on the repository's row. When the row has expanded, left-click on the **Archive** button:  
 ![archiveButton](../_images/manage-backup-restore/archiveButton.png)  
 This brings up the **Archive Repository** dialog, which appears as follows:  
 ![archiveRepositoryDialog](../_images/manage-backup-restore/archiveRepositoryDialog.png)  
@@ -381,7 +381,7 @@ Therefore, to delete a repository, and the backups it contains, proceed as follo
 2. Access the archived repository, in the **Archived Repositories** panel that appears in the **Repositories** view of the **Backup** screen, and open the row for the repository, by left-clicking on it.
 3. Left-click on the **Delete** button. The **Delete Repositories** dialog now appears:  
 ![deleteRepositories](../_images/manage-backup-restore/deleteRepositories.png)  
-The dialog provides two options for deletion. If the **Delete backup data files** checkbox is checked, the deletion is irreversible: the archived information no longer exists on disk. If the checkbox is unchecked (which is the default), the deleted archive’s contents continue to exist on disk, even though no longer explicitly tracked by the Backup Service, and so can be recovered subsequently; as described below, in [Import Repositories](#import-repositories).  
+The dialog provides two options for deletion. If the **Delete backup data files** checkbox is checked, the deletion is irreversible: the archived information no longer exists on disk. If the checkbox is unchecked (which is the default), the deleted archive's contents continue to exist on disk, even though no longer explicitly tracked by the Backup Service, and so can be recovered subsequently; as described below, in [Import Repositories](#import-repositories).  
 To delete the archive while allowing the contents to continue to exist on disk, enter the name of the archive in the **Confirm Repository ID** field, leave the **Delete backup data files** checkbox unchecked, and left-click on **Delete**. Subsequently, the archived repository is no longer maintained by the Backup Service, and no longer appears in the **Archived Repositories** panel.
 
 ## [](#import-repositories)Import Repositories
@@ -415,7 +415,7 @@ All plans created for the Backup Service can be reviewed, by left-clicking on th
 
 ![plansTab](../_images/manage-backup-restore/plansTab.png)
 
-This displays the **Backup** screen’s **Plans** view:
+This displays the **Backup** screen's **Plans** view:
 
 ![plansScreen](../_images/manage-backup-restore/plansScreen.png)
 
@@ -434,7 +434,7 @@ At the right-hand side of each row, a garbage-can icon is displayed. To delete a
 The Backup Service provides two plans by default, which are **\_daily\_backups** and **\_hourly\_backups**:
 
 * The **\_daily\_backups** plan backs up data for _all_ services, every day. A _full_ backup is performed on Monday, and an incremental on each other day. The previous weeks' backups are merged every Sunday, and the previous 28 days' backups are merged every 28 days.
-* The **\_hourly\_backups** plan backs up data for _all_ services, ever hour. Every backup is incremental. Each day at midnight, all the previous days' backups are merged. The previous week’s backups are merged every Sunday, and the previous 28 days' backups are merged every 28 days.
+* The **\_hourly\_backups** plan backs up data for _all_ services, ever hour. Every backup is incremental. Each day at midnight, all the previous days' backups are merged. The previous week's backups are merged every Sunday, and the previous 28 days' backups are merged every 28 days.
 
 ## [](#review-scheduling-options)Review Scheduling-Options
 
@@ -456,7 +456,7 @@ Alternatively scheduled merges and backups can be configured by accessing the co
 
 The pull-down menu thus displayed contains three kinds of scheduling option. One is the default, **Weekly Calendar**. Another is by means of _time-units_: which are **Minutes**, **Hours**, **Days**, and **Weeks**. If a unit is specified, an appropriate integer must be entered into the **Frequency** field, to indicate the number of time-units that must elapse between repetitions of the task. If **Minutes** are specified, only the minutes portion of the time entered into the **Time** field is used — as the starting point, every hour, for the task sequence; with the task being repeated throughout the hour as many times as specified in the **Frequency** field. If **Hours** are specified, the task is first performed at the time specified in the **Time** field, and then repeated as specified in the **Frequency** field. If **Days** or **Weeks** are specified, the task is performed as scheduled, at the time specified in the **Time** field. (A full example of using **Minutes** as time-units is provided above, in [Schedule Backups](#schedule-backups).)
 
-A third option is by means of _days_: such as **Monday**, **Tuesday**, and so on. If a day is selected, an appropriate integer must be entered into the **Frequency** field, to indicate the number of instances of the day’s occurrence that should elapse before the task is performed. For instance, if **Monday** and **3** are specified, the task is performed on the first Monday, then two Mondays elapse, and then the task is performed again on the fourth Monday; and so on. The time at which the task is commenced is that specified in the **Time** field.
+A third option is by means of _days_: such as **Monday**, **Tuesday**, and so on. If a day is selected, an appropriate integer must be entered into the **Frequency** field, to indicate the number of instances of the day's occurrence that should elapse before the task is performed. For instance, if **Monday** and **3** are specified, the task is performed on the first Monday, then two Mondays elapse, and then the task is performed again on the fourth Monday; and so on. The time at which the task is commenced is that specified in the **Time** field.
 
 ## [](#use-cloud-storage)Use Cloud Storage
 
@@ -472,7 +472,7 @@ The fields are as follows:
 * **Provider**. To use either S3 or S3-compatible storage, select **AWS**.
 * **Cloud Bucket**. The bucket in the cloud to which data will be backed up.
 * **Path Prefix**. The path of the archive, within the cloud bucket. This should take the form `/path/inside/the/bucket`.
-* **Cloud Auth Type**The type of authentication to be used when communicating with the cloud provider. The options are **ID and key** (which means that an ID and key will indeed be required for communication to be successful) and **Instance metadata service** (which means that credentials will be sought from the metadata service running in the node’s virtual machine). Each option assumes that appropriate configuration procedures for the cloud environment have been followed.
+* **Cloud Auth Type**The type of authentication to be used when communicating with the cloud provider. The options are **ID and key** (which means that an ID and key will indeed be required for communication to be successful) and **Instance metadata service** (which means that credentials will be sought from the metadata service running in the node's virtual machine). Each option assumes that appropriate configuration procedures for the cloud environment have been followed.
 * **Credential ID**. The credential ID for the store. For AWS, this is the _access key id_. If **Instance metadata service** has been specified as the value for **Cloud Auth Type**, this field is inapplicable, and is no longer displayed.
 * **Credential Key**. The secret key for the store. For AWS, this is the _AWS secret access key_. If **Instance metadata service** has been specified as the value for **Cloud Auth Type**, this field is inapplicable, and is no longer displayed.
 * **Region**. The AWS Region for the repository. For example, `us-east-1`, `us-west-2`.

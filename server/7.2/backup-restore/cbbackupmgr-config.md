@@ -2,7 +2,7 @@
 title: cbbackupmgr config
 description: Creates and configures a new backup repository
 editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-config.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:backup-restore:cbbackupmgr-config.adoc[]
 ---
 
@@ -61,11 +61,11 @@ The name of the new backup repository.
 
 \--include-data <collection\_string\_list>
 
-Modifies the repository configuration to backup only the data specified in the <collection\_string\_list>. This flag takes a comma separated list of collection strings and can’t be specified at the same time as `--exclude-data`. Note that including data at the scope/collection level is an Enterprise Edition feature.
+Modifies the repository configuration to backup only the data specified in the <collection\_string\_list>. This flag takes a comma separated list of collection strings and can't be specified at the same time as `--exclude-data`. Note that including data at the scope/collection level is an Enterprise Edition feature.
 
 \--exclude-data <collection\_string\_list>
 
-Modifies the repository configuration to skip restoring the data specified in the <collection\_string\_list>. This flag takes a comma separated list of collection strings and can’t be specified at the same time as `--include-data`. Note that excluding data at the scope/collection level is an Enterprise Edition feature.
+Modifies the repository configuration to skip restoring the data specified in the <collection\_string\_list>. This flag takes a comma separated list of collection strings and can't be specified at the same time as `--include-data`. Note that excluding data at the scope/collection level is an Enterprise Edition feature.
 
 \--disable-views
 
@@ -117,7 +117,7 @@ Specifies the name of the creator of the repository. This information will be re
 
 \--point-in-time
 
-(BETA) This enables Point in Time feature. Which is currently in Beta and is not supported, this should only be used in test environments. When it’s enabled cbbackupmgr will get historical data from the cluster. This will allow restoring to a single point in time. This will increase the amount of space needed to store the backup. The cluster also has to have Point In Time configured to use this feature.
+(BETA) This enables Point in Time feature. Which is currently in Beta and is not supported, this should only be used in test environments. When it's enabled cbbackupmgr will get historical data from the cluster. This will allow restoring to a single point in time. This will increase the amount of space needed to store the backup. The cluster also has to have Point In Time configured to use this feature.
 
 ### [](#cloud-integration)Cloud integration
 
@@ -135,7 +135,7 @@ Multiple cloud providers are supported, see the list below for more information.
 
 \--obj-staging-dir <staging\_dir>
 
-When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it’s not treated as a persistent store) and is only used during the backup. NOTE: Do not use `/tmp` as the `obj-staging-dir`. See `Disk requirements` in [cbbackupmgr-cloud](cbbackupmgr-cloud.md) for more information.
+When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it's not treated as a persistent store) and is only used during the backup. NOTE: Do not use `/tmp` as the `obj-staging-dir`. See `Disk requirements` in [cbbackupmgr-cloud](cbbackupmgr-cloud.md) for more information.
 
 #### [](#optional-2)Optional
 
@@ -263,7 +263,7 @@ The key used to connect to the key management service. It can also be provided v
 
 ## [](#examples)EXAMPLES
 
-The config command is used to create a backup repository and define the repositories backup configuration. In the examples below, the backup archive is located at /data/backups. Since this is the first backup repository we are creating in a new backup archive, we need to ensure that /data/backups is an empty directory. Archives are created automatically if an archive doesn’t already exist at the archive path, but are only created if the directory at that path is empty. In order to create a backup repository called "example" with the default configuration use the following command:
+The config command is used to create a backup repository and define the repositories backup configuration. In the examples below, the backup archive is located at /data/backups. Since this is the first backup repository we are creating in a new backup archive, we need to ensure that /data/backups is an empty directory. Archives are created automatically if an archive doesn't already exist at the archive path, but are only created if the directory at that path is empty. In order to create a backup repository called "example" with the default configuration use the following command:
 
 $ cbbackupmgr config -a /data/backups -r example
 

@@ -1,7 +1,7 @@
 ---
 title: Couchbase User RBAC
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-user-rbac.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::concept-user-rbac.adoc[]
 ---
 
@@ -112,7 +112,7 @@ spec:
 
 The example above demonstrates the creation of a Couchbase Server RBAC group which grants the `cluster_admin` role to all LDAP users within the reference group.
 
-Note that you’ll need to have LDAP connectivity configured in the `CouchbaseCluster` resource in order use this functionality.
+Note that you'll need to have LDAP connectivity configured in the `CouchbaseCluster` resource in order use this functionality.
 
 ## [](#managing-users)Managing Users
 
@@ -120,9 +120,9 @@ A user is created when it is bound to group. A user is also deleted whenever its
 
 ### [](#label-selection)Label Selection
 
-If you have more than one `CouchbaseCluster` resource deployed in the same namespace, you’ll need to use [resource label selection](concept-label-selection.md) to ensure that users and groups get created on the correct cluster. Like with other Couchbase custom resources, this means specifying a label for RBAC resources which matches the corresponding label selector of the `CouchbaseCluster` resource that you want the resources aggregated to.
+If you have more than one `CouchbaseCluster` resource deployed in the same namespace, you'll need to use [resource label selection](concept-label-selection.md) to ensure that users and groups get created on the correct cluster. Like with other Couchbase custom resources, this means specifying a label for RBAC resources which matches the corresponding label selector of the `CouchbaseCluster` resource that you want the resources aggregated to.
 
-It’s recommended that you start by adding a label selector to the `CouchbaseCluster` resource.
+It's recommended that you start by adding a label selector to the `CouchbaseCluster` resource.
 
 ```yaml
 apiVersion: couchbase.com/v2
@@ -158,7 +158,7 @@ metadata:
     cluster: my-cluster
 ```
 
-Note that `CouchbaseRoleBinding` resources don’t support labels and don’t directly utilize label selection. Instead, the Kubernetes Operator looks at the names of the users and groups specified in the `CouchbaseRoleBinding` resource. If those names match the `CouchbaseUser` and `CouchbaseGroup` resources that are both being selected by the same cluster, then they will be bound together. Therefore, so long as the `CouchbaseUser` and `CouchbaseGroup` resources have the same label, the users and groups specified in the `CouchbaseRoleBinding` resource will be bound together.
+Note that `CouchbaseRoleBinding` resources don't support labels and don't directly utilize label selection. Instead, the Kubernetes Operator looks at the names of the users and groups specified in the `CouchbaseRoleBinding` resource. If those names match the `CouchbaseUser` and `CouchbaseGroup` resources that are both being selected by the same cluster, then they will be bound together. Therefore, so long as the `CouchbaseUser` and `CouchbaseGroup` resources have the same label, the users and groups specified in the `CouchbaseRoleBinding` resource will be bound together.
 
 > [!NOTE]
 > Users and groups must match the labels of the same cluster when being bound together, otherwise a scheduling conflict will occur if one cluster is only selecting a user but not selecting the group it belongs to.

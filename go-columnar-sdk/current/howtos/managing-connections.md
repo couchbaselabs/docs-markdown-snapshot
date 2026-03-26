@@ -3,7 +3,7 @@ title: Managing Connections
 description: This section describes how to connect the Go Columnar SDK to a
   Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:go-columnar-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -35,7 +35,7 @@ A connection to a Couchbase Server cluster is represented by a `Cluster` object.
 ```
 
 > [!NOTE]
-> Capella’s root certificate is **not** signed by a well known Certificate Authority. However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust.
+> Capella's root certificate is **not** signed by a well known Certificate Authority. However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust.
 
 ### [](#connection-strings)Connection Strings
 
@@ -61,4 +61,4 @@ We strongly recommend that the client and server [are in the same LAN-like envir
 
 ### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 
-Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\].
+Some DNS caching providers (notably, home routers) can't handle an SRV record that's large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\].

@@ -2,7 +2,7 @@
 title: Maven Coordinates
 description: How to get the Java Analytics SDK from Maven Central.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:java-analytics-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -23,7 +23,7 @@ Use your favorite dependency management tool to include the SDK in your project:
 * Gradle (Kotlin)
 * Gradle (Groovy)
 
-For [Maven](https://maven.apache.org), add this to the `dependencies` section of your project’s `pom.xml` file:
+For [Maven](https://maven.apache.org), add this to the `dependencies` section of your project's `pom.xml` file:
 
 ```xml
 <dependency>
@@ -35,13 +35,13 @@ For [Maven](https://maven.apache.org), add this to the `dependencies` section of
 
 Refer to the [Maven Documentation](https://maven.apache.org/guides/introduction/introduction-to-the-pom.html/) for more information regarding the structure of the `pom.xml` file.
 
-For a [Gradle](https://gradle.org/) script written in Kotlin, add this line to the `dependencies` section of your project’s `build.gradle.kts` file:
+For a [Gradle](https://gradle.org/) script written in Kotlin, add this line to the `dependencies` section of your project's `build.gradle.kts` file:
 
 ```kotlin
 implementation("com.couchbase.client:couchbase-analytics-java-client:1.0.0")
 ```
 
-For a [Gradle](https://gradle.org/) script written in Groovy, add this line to the `dependencies` section of your project’s `build.gradle` file:
+For a [Gradle](https://gradle.org/) script written in Groovy, add this line to the `dependencies` section of your project's `build.gradle` file:
 
 ```groovy
 implementation 'com.couchbase.client:couchbase-analytics-java-client:1.0.0'
@@ -49,7 +49,7 @@ implementation 'com.couchbase.client:couchbase-analytics-java-client:1.0.0'
 
 ## [](#using-a-snapshot-version)Using a Snapshot Version
 
-Couchbase publishes pre-release snapshot artifacts to the Sonatype OSS Snapshot Repository. If you wish to use a snapshot version, you’ll need to tell your build tool about this repository.
+Couchbase publishes pre-release snapshot artifacts to the Sonatype OSS Snapshot Repository. If you wish to use a snapshot version, you'll need to tell your build tool about this repository.
 
 * Maven
 * Gradle (Kotlin)
@@ -94,4 +94,4 @@ repositories {
 ```
 
 > [!CAUTION]
-> Couchbase does not provide support for snapshot artifacts. We don’t recommend using them unless you’re working closely with Couchbase Support to verify a particular issue has been resolved prior to release.
+> Couchbase does not provide support for snapshot artifacts. We don't recommend using them unless you're working closely with Couchbase Support to verify a particular issue has been resolved prior to release.

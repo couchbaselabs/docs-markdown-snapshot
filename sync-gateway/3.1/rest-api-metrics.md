@@ -2,7 +2,7 @@
 title: Metrics REST API
 description: Description of the Sync Gateway Metrics Rest API
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/rest-api-metrics.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::rest-api-metrics.adoc[]
 ---
 
@@ -12,18 +12,18 @@ link: xref:3.1@sync-gateway::rest-api-metrics.adoc[]
 # Metrics REST API
 
 > Description of the Sync Gateway Metrics Rest API  
-> Use the API explorer to find out more about Sync Gateway’s endpoints by functionality.
+> Use the API explorer to find out more about Sync Gateway's endpoints by functionality.
 
 Related _REST API_ topics: [Public REST API](rest-api.md) | [Admin REST API](rest-api-admin.md) | [Use the REST API?](#rest-api-client-app.adoc) | [Monitor](stats-monitoring.md) | [Prometheus Integration](stats-prometheus.md)
 
 > [!IMPORTANT]
 > Content Blocking
 > 
-> Couchbase Mobile’s API documentation utilizes [Swagger UI](https://swagger.io/tools/swagger-ui/)to deliver an interactive and dynamic user experience. The page will not function correctly if your organization’s security policies restricts access to this type of content — instead see the alternate statics page [Metrics REST API (Static Page)](rest%5Fapi%5Fmetrics%5Fstatic.md)
+> Couchbase Mobile's API documentation utilizes [Swagger UI](https://swagger.io/tools/swagger-ui/)to deliver an interactive and dynamic user experience. The page will not function correctly if your organization's security policies restricts access to this type of content — instead see the alternate statics page [Metrics REST API (Static Page)](rest%5Fapi%5Fmetrics%5Fstatic.md)
 
 ## [](#introduction)Introduction
 
-Sync Gateway makes collecting performance data easy and secure by providing a Metrics REST API. It exposes Sync Gateway’s stats on two endpoints, which deliver the same data in one of two formats:
+Sync Gateway makes collecting performance data easy and secure by providing a Metrics REST API. It exposes Sync Gateway's stats on two endpoints, which deliver the same data in one of two formats:
 
 * The `_metrics` endpoint returns Sync Gateway statistics in [Prometheus![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#prometheus) format.  
 For example: `GET host:4986/_metrics`  

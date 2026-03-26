@@ -3,7 +3,7 @@ title: Query
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@java-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -45,7 +45,7 @@ The Couchbase Query Service makes use of [_indexes_](../../../server/current/lea
 
 From Couchbase Server 7.6 onwards, CRUD operations (such as `CREATE`, `INSERT`, and `SELECT`) and `JOIN` can be performed against the Query Service without an index (primary or secondary). This uses a [sequential scan](../../../server/current/indexes/query-without-index.md#sequential-scans), relying on a KV range scan to deliver the keys.
 
-Sequential scans are best suited to small collections where key order is unimportant, or where the overhead of maintaining an index can’t be justified. For larger collections and greater performance, define the appropriate indexes to speed up your queries. For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan.
+Sequential scans are best suited to small collections where key order is unimportant, or where the overhead of maintaining an index can't be justified. For larger collections and greater performance, define the appropriate indexes to speed up your queries. For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan.
 
 Creating the right index, with the right keys, right order, and right expression is critical to query performance in any database system. A Primary Index on the document keys will give you better search performance than trying to query without index, but well-chosen secondary indexes will make all the difference to query performance.
 
@@ -64,7 +64,7 @@ CREATE INDEX ix_name ON `users`(name);
 CREATE INDEX ix_email ON `users`(email);
 ```
 
-This would allow you to query the _users_ bucket regarding a document’s `name` or `email` properties, thus:
+This would allow you to query the _users_ bucket regarding a document's `name` or `email` properties, thus:
 
 ```sqlpp
 SELECT name, email FROM `users` WHERE name="Monty Python" OR email="monty@python.org";

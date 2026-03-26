@@ -1,7 +1,7 @@
 ---
 title: Helm Deployment
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/helm-setup-guide.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::helm-setup-guide.adoc[]
 ---
 
@@ -29,11 +29,11 @@ The recommendation, for more complex scenarios, is to manage the operator direct
 
 [Helm 3.1+](https://github.com/helm/helm/releases%29) is required when installing the official Couchbase Helm Chart.
 
-Follow Helm’s [official steps](https://helm.sh/docs/intro/install/) for installing `helm` on your particular operating system.
+Follow Helm's [official steps](https://helm.sh/docs/intro/install/) for installing `helm` on your particular operating system.
 
 ## [](#add-the-chart-repository)Add the Chart Repository
 
-Before you can start using the Couchbase Helm Chart, you’ll need to add the chart repository to your `helm` installation:
+Before you can start using the Couchbase Helm Chart, you'll need to add the chart repository to your `helm` installation:
 
 ```console
 helm repo add couchbase https://couchbase-partners.github.io/helm-charts/
@@ -97,7 +97,7 @@ Customizing the chart installation allows you to do two things:
 1. Specify which components will be deployed
 2. Configure the deployed components
 
-The Couchbase Helm Chart is capable of installing and configuring the Autonomous Operator, Admission Controller, Couchbase cluster, and Sync Gateway. Enabling and configuring each component is accomplished by [overriding](https://helm.sh/docs/chart%5Ftemplate%5Fguide/values%5Ffiles/) the default values in the Couchbase Helm Chart’s [values.yaml file](helm-couchbase-config.md).
+The Couchbase Helm Chart is capable of installing and configuring the Autonomous Operator, Admission Controller, Couchbase cluster, and Sync Gateway. Enabling and configuring each component is accomplished by [overriding](https://helm.sh/docs/chart%5Ftemplate%5Fguide/values%5Ffiles/) the default values in the Couchbase Helm Chart's [values.yaml file](helm-couchbase-config.md).
 
 There are two methods for specifying overrides during chart installation: `--values` and `--set`.
 
@@ -107,7 +107,7 @@ There are two methods for specifying overrides during chart installation: `--val
 The `--values` option is the preferred method because it allows you to keep your overrides in a YAML file, rather than specifying them all on the command line.
 
 1. Create a YAML file and add your overrides to it.  
-Here’s an example called `myvalues.yaml`:  
+Here's an example called `myvalues.yaml`:  
 ```yaml  
 couchbaseOperator:  
   imagePullPolicy: Always  
@@ -116,7 +116,7 @@ couchbaseOperator:
 ```console  
 helm install my-release --values myvalues.yaml couchbase/couchbase-operator  
 ```  
-The values in your overrides file (`myvalues.yaml`) will override their counterparts in the chart’s `values.yaml` file. Any values in `values.yaml` that weren’t overridden will keep their defaults.
+The values in your overrides file (`myvalues.yaml`) will override their counterparts in the chart's `values.yaml` file. Any values in `values.yaml` that weren't overridden will keep their defaults.
 
 If you only need to make minor customization, you can specify them on the command line by using the `--set` option. For example:
 
@@ -133,7 +133,7 @@ cluster:
       size: 5
 ```
 
-Any values in `values.yaml` that weren’t overridden will keep their defaults.
+Any values in `values.yaml` that weren't overridden will keep their defaults.
 
 > [!IMPORTANT]
 > As stated above, Helm works by override-only, with the chart providing various defaults. If you want to override a whole key in the chart, or replace it with another key, then you must _explicitly disable the default_ in addition to adding the new one.
@@ -161,7 +161,7 @@ install:
 
 For example, if you wanted to have a Helm release that exclusively managed the Autonomous Operator and Admission Controller, then you would override the value for `couchbaseCluster` with a value of `false`, leaving only `couchbaseOperator: true` and `admissionController: true`, and all others `false`. Likewise, if you already had the Autonomous Operator and Admission Controller deployed in your environment, and you just wanted to deploy a Couchbase cluster, then you would override the values for `couchbaseOperator` and `admissionController` with a value of `false`, leaving only `couchbaseCluster: true`, and all others `false`.
 
-Even though the Couchbase Helm Chart has full configuration parameters for each component, if a component is disabled in the `install` section, then that component’s configuration parameters are ignored.
+Even though the Couchbase Helm Chart has full configuration parameters for each component, if a component is disabled in the `install` section, then that component's configuration parameters are ignored.
 
 ### [](#users)Users
 
@@ -261,7 +261,7 @@ helm install my-release -f tls_values.yaml couchbase/couchbase-operator
 
 ### [](#deploying-multiple-chart-instances-releases)Deploying Multiple Chart Instances (Releases)
 
-The example installation commands on this page assume the default namespace is used (these commands don’t specify the `-n` option). This is important to note because the Couchbase Helm Chart deploys both the Autonomous Operator and the Admission Controller by default, _and these components should not be deployed more than once in the same namespace_.
+The example installation commands on this page assume the default namespace is used (these commands don't specify the `-n` option). This is important to note because the Couchbase Helm Chart deploys both the Autonomous Operator and the Admission Controller by default, _and these components should not be deployed more than once in the same namespace_.
 
 _The Admission Controller should only be deployed once per Kubernetes cluster_ as indicated in [Selective Deployment](#selective-deployment) and in the [operator architecture](concept-operator.md#dynamic-admission-controller). To prevent deployment of the Admission Controller by the Couchbase Helm Chart, you can set the `install.admissionController=false` parameter either in the values file or on the command line:
 
@@ -269,7 +269,7 @@ _The Admission Controller should only be deployed once per Kubernetes cluster_ a
 helm install my-release --set install.admissionController=false couchbase/couchbase-operator
 ```
 
-If you install the default Couchbase Helm Chart multiple times in the same namespace, then you’ll end up with multiple instances of the Autonomous Operator and the Admission Controller, which will cause errors in your deployments.
+If you install the default Couchbase Helm Chart multiple times in the same namespace, then you'll end up with multiple instances of the Autonomous Operator and the Admission Controller, which will cause errors in your deployments.
 
 In addition, the example installation commands on this page also specify `my-release` as the name for the [chart release](https://helm.sh/docs/glossary/#release). If you plan to use Helm to install multiple instances (releases) of the Couchbase Helm Chart, you should consider giving each release a unique name to help you more easily identify the resources that are associated with each release.
 
@@ -304,4 +304,4 @@ helm install my-release --version 2.1.0 couchbase/couchbase-operator
 ```
 
 > [!NOTE]
-> If you’re having trouble finding or installing a specific version of a chart, use the `helm repo update` command to ensure that you have the latest list of charts.
+> If you're having trouble finding or installing a specific version of a chart, use the `helm repo update` command to ensure that you have the latest list of charts.

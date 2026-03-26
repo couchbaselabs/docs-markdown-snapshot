@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/n1ql-queries-with-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.11@go-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:2.11@go-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 
 > You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. Querying can solve typical programming tasks such as finding a user profile by email address, facebook login, or user ID. 
 
-Our query service uses [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql), which will be fairly familiar to anyone who’s used any dialect of SQL. [Further resources](#<em>additional%5Fresources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](../../../server/current/n1ql/n1ql-language-reference/index.md), or just dive in with a query against our travel sample data set. In this case, the one thing that you need to know is that in order to make a Bucket queryable, it must have at least one index defined. You can define a \_primary index on a bucket. When a primary index is defined you can issue non-covered queries on the bucket as well.
+Our query service uses [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql), which will be fairly familiar to anyone who's used any dialect of SQL. [Further resources](#<em>additional%5Fresources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](../../../server/current/n1ql/n1ql-language-reference/index.md), or just dive in with a query against our travel sample data set. In this case, the one thing that you need to know is that in order to make a Bucket queryable, it must have at least one index defined. You can define a \_primary index on a bucket. When a primary index is defined you can issue non-covered queries on the bucket as well.
 
 Use [cbq](#8.0@server::tools/cbq-shell.html), our interactive Query shell. Open it, and enter the following:
 
@@ -32,7 +32,7 @@ Note that building indexes is covered in more detail on the [Query concept page]
 
 ## [](#getting-started)Getting Started
 
-After familiarizing yourself with the basics on how the SQL++ query language works and how to query it from the UI you can use it from the Go SDK. Here’s a complete example of doing an query and handling the results:
+After familiarizing yourself with the basics on how the SQL++ query language works and how to query it from the UI you can use it from the Go SDK. Here's a complete example of doing an query and handling the results:
 
 ```golang
 	opts := gocb.ClusterOptions{
@@ -83,7 +83,7 @@ After familiarizing yourself with the basics on how the SQL++ query language wor
 > [!NOTE]
 > When using a Couchbase version < 6.5 you must create a valid Bucket connection using `cluster.Bucket(name)` before you can use SQL++.
 
-Let’s break it down. A query is always performed at the `Cluster` level, using the `Query` method. It takes the statement as a required argument and then allows to provide additional options if needed (in the example above, no options are specified).
+Let's break it down. A query is always performed at the `Cluster` level, using the `Query` method. It takes the statement as a required argument and then allows to provide additional options if needed (in the example above, no options are specified).
 
 Once a result returns you can iterate the returned rows and/or access the `QueryMetaData` associated with the query.
 

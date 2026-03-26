@@ -3,7 +3,7 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.8/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.8@scala-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -19,7 +19,7 @@ This page covers using our operational Scala SDK to connect to the Analytics Ser
 > [!TIP]
 > Analytics SDKs
 > 
-> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase's analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
 > 
 > Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](../../../home/columnar-sdk.md) for more information.
 
@@ -31,7 +31,7 @@ The analytics service is available in [Capella operational](../../../cloud/clust
 
 After familiarizing yourself with our [introductory primer](../../../server/7.6/analytics/primer-beer.md), in particular creating a dataset and linking it to a bucket to shadow the operational data, try Couchbase Analytics using the Scala SDK. Intentionally, the API for analytics is very similar to that of the query service.
 
-Before starting, here’s all imports used in the following examples:
+Before starting, here's all imports used in the following examples:
 
 ```scala
 import com.couchbase.client.scala._
@@ -44,7 +44,7 @@ import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 ```
 
-Here’s a complete example of doing an analytics query and handling the results:
+Here's a complete example of doing an analytics query and handling the results:
 
 ```scala
 val query = """select "hello" as greeting;"""
@@ -57,11 +57,11 @@ rows match {
 }
 ```
 
-Let’s break this down. First, we get the results in the form of a `Try[AnalyticsResult]`. The Scala SDK returns `Try` rather than throwing exceptions, to allow you to handle errors in a functional way. A `Try` can either be a `Success(AnalyticsResult)` if the query was successfully executed, or `Failure(Throwable)` if something went wrong.
+Let's break this down. First, we get the results in the form of a `Try[AnalyticsResult]`. The Scala SDK returns `Try` rather than throwing exceptions, to allow you to handle errors in a functional way. A `Try` can either be a `Success(AnalyticsResult)` if the query was successfully executed, or `Failure(Throwable)` if something went wrong.
 
-An `AnalyticsResult` contains various things of interest, such as metrics, but the main thing we’re interested in are the rows (results). They’re fetched with the `allRowsAs` call. Note that the `flatMap` means the `allRowsAs` call will only be attempted if the initial query was successful. Otherwise `rows` will contain the `Failure(Throwable)` from the query result.
+An `AnalyticsResult` contains various things of interest, such as metrics, but the main thing we're interested in are the rows (results). They're fetched with the `allRowsAs` call. Note that the `flatMap` means the `allRowsAs` call will only be attempted if the initial query was successful. Otherwise `rows` will contain the `Failure(Throwable)` from the query result.
 
-Here we’re fetching rows converted into `JsonObject`, but as with SQL++ (formerly N1QL) there’s many more options available. Rows can be returned as JSON representations from multiple third party Scala libraries, such as Circe, directly as case classes, and more. Please see [JSON Libraries](json.md) for full details.
+Here we're fetching rows converted into `JsonObject`, but as with SQL++ (formerly N1QL) there's many more options available. Rows can be returned as JSON representations from multiple third party Scala libraries, such as Circe, directly as case classes, and more. Please see [JSON Libraries](json.md) for full details.
 
 Finally, we pattern match on the `rows` to find whether the operations were successful. We check explicitly for `AnalyticsError` which indicates an error from the analytics service. There can be other errors returned, please see [Error Handling](error-handling.md) for details.
 
@@ -145,7 +145,7 @@ cluster.analyticsQuery(stmt) match {
 
 The Scala SDK provides three SDKs (documented further on [Choosing an API](concurrent-async-apis.md)):
 
-* The blocking API you’ve seen so far, that returns an `AnalyticsResult` containing all rows.
+* The blocking API you've seen so far, that returns an `AnalyticsResult` containing all rows.
 * An async API that returns a `Future[AnalyticsResult]`, which also contains all rows. This can be accessed like this:
 
 ```scala
@@ -175,9 +175,9 @@ The recommended solution is to use the reactive API. Reactive programming is a s
 The Scala SDK exposes primitives from the [Project Reactor](https://projectreactor.io/) library, most notably `Mono` and `Flux`. We strongly recommend [learning](https://projectreactor.io/learn) a little of this library first, and the following examples will assume basic familiarity with Reactor.
 
 > [!NOTE]
-> You’ll see both `reactor.core.scala.publisher` and `reactor.core.publisher` imports available for Reactor. Use the former, it is the Scala-optimized variant that the Scala SDK will return.
+> You'll see both `reactor.core.scala.publisher` and `reactor.core.publisher` imports available for Reactor. Use the former, it is the Scala-optimized variant that the Scala SDK will return.
 
-Here’s how to perform a query and stream the results using the reactive API:
+Here's how to perform a query and stream the results using the reactive API:
 
 ```scala
 val stmt =

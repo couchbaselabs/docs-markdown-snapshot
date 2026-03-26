@@ -2,7 +2,7 @@
 title: Compatibility
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/compatibility.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::compatibility.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.8@sync-gateway::compatibility.adoc[]
 # Compatibility
 
 > Couchbase Sync Gateway  
-> Covers Couchbase Sync Gateway’s compatibility with Couchbase Server and Couchbase Lite
+> Covers Couchbase Sync Gateway's compatibility with Couchbase Server and Couchbase Lite
 
 ## [](#sync-gateway-and-couchbase-server)Sync Gateway and Couchbase Server
 
@@ -43,7 +43,7 @@ __Table 1\. Sync Gateway/Couchbase Server Compatibility Matrix__
 > [!NOTE]
 > Couchbase Server Bucket Types
 > 
-> Use only **Couchbase** bucket types in _Couchbase for Mobile and Edge_. We do not support the use of Couchbase Server’s **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../server/current/learn/buckets-memory-and-storage/buckets.md).
+> Use only **Couchbase** bucket types in _Couchbase for Mobile and Edge_. We do not support the use of Couchbase Server's **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../server/current/learn/buckets-memory-and-storage/buckets.md).
 
 ## [](#sync-gateway-and-couchbase-lite)Sync Gateway and Couchbase Lite
 

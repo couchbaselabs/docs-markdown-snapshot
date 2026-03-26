@@ -3,7 +3,7 @@ title: Deploy Couchbase Sync Gateway Using AWS Marketplace
 description: Couchbase partners with Amazon to provide a packaged solution on
   AWS Marketplace.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cloud/pages/couchbase-aws-syncgateway-deployment.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cloud:couchbase-aws-syncgateway-deployment.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Couchbase Sync Gateway is available through AWS Marketplace with hourly pricing,
 
 ## [](#prerequisites)Prerequisites
 
-* You need an AWS account. If you don’t have one, [sign up](https://aws.amazon.com/) for one before proceeding.
+* You need an AWS account. If you don't have one, [sign up](https://aws.amazon.com/) for one before proceeding.
 * You should review the [best practices](couchbase-cloud-deployment.md#aws-best-practices) for deploying Couchbase Server on AWS.
 * A Couchbase Server cluster deployed and running. You need the Cluster DNS or IP address where the server is running, the Couchbase username, Couchbase password. You also need the name of the bucket configured to use with Couchbase Sync Gateway.
 * If you have deployed the Couchbase cluster via the AWS Marketplace experience, you can get the Cluster DNS/IP from this [step](couchbase-aws-marketplace.md#logging-in). Follow the steps documented [here](#sync-gateway::get-started-prepare.adoc#step-1create-a-bucket) to configure the server to work with Couchbase Sync Gateway. The main steps are setting up the bucket, setting up an RBAC user, and ensuring that the network access is set up correctly.
@@ -35,7 +35,7 @@ Couchbase Sync Gateway is available through AWS Marketplace with hourly pricing,
 ![aws marketplace Sync Gateway Continue to Subscribe](_images/aws/deploying/aws-marketplace-Sync-Gateway-Continue-to-Subscribe.png)
 3. On the Subscribe to this software screen, accept the terms and conditions for this software.  
 ![aws marketplace Sync Gateway Accept Terms](_images/aws/deploying/aws-marketplace-Sync-Gateway-Accept-Terms.png)
-4. Once your request is processed, you’ll be able to proceed by clicking **Continue to Configuration**.  
+4. Once your request is processed, you'll be able to proceed by clicking **Continue to Configuration**.  
 ![aws marketplace Sync Gateway Continue to Configuration](_images/aws/deploying/aws-marketplace-Sync-Gateway-Continue-to-Configuration.png)
 5. Configure the software by selecting CloudFormation Template from the **Fulfillment option** drop down.  
 ![aws marketplace Sync Gateway Select the Fulfilment option](_images/aws/deploying/aws-marketplace-Sync-Gateway-Select-the-Fulfilment-option.png)

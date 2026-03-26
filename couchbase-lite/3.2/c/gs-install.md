@@ -2,7 +2,7 @@
 title: Install Couchbase Lite for C
 description: Installing Couchbase Lite for C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/c/pages/gs-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite:c:gs-install.adoc[]
 ---
 
@@ -173,8 +173,8 @@ To install the Couchbase for C libraries on macOS from a downloaded release pack
 3. Within _Xcode_:
 
   1. **Create** a new project
-  2. **Add** `<path/to>/include` to the project’s _Header Search Path_
-  3. **Add** `<path/to>/lib` to the project’s _Library Search Path_
+  2. **Add** `<path/to>/include` to the project's _Header Search Path_
+  3. **Add** `<path/to>/lib` to the project's _Library Search Path_
   4. **Drag** `libcblite-community.dylib` into your Xcode project. Then, within the dialog:
 
     1. **Select** _Create Directory References If Needed_
@@ -376,7 +376,7 @@ Couchbase Lite for C is available on the platforms shown in the tables below.
 
 ### [](#release-3-2-4)Couchbase Lite Release 3.2.4
 
-_Couchbase Lite for C_ is available for all [Supported Platforms](supported-os.md). You can obtain downloads for _Linux_ and _macOS_ from the links here in the downloads table. Ensure you select the correct package for your application’s compiler and architecture.
+_Couchbase Lite for C_ is available for all [Supported Platforms](supported-os.md). You can obtain downloads for _Linux_ and _macOS_ from the links here in the downloads table. Ensure you select the correct package for your application's compiler and architecture.
 
 Alternatively, check the [install](gs-install.md)page for instructions on how to get the software using a package manager.
 
@@ -514,7 +514,7 @@ Please use the [Debian .deb download](#debian-3-2-4) choosing the appropriate ve
 
 ### [](#vs-release-1-0-0)Vector Search Release 1.0.0
 
-_Couchbase Lite Vector Search - C_ is available for all [Supported Platforms](supported-os.md). You can obtain downloads for _Linux_ and _macOS_ from the links here in the downloads table. Ensure you select the correct package for your application’s compiler and architecture.
+_Couchbase Lite Vector Search - C_ is available for all [Supported Platforms](supported-os.md). You can obtain downloads for _Linux_ and _macOS_ from the links here in the downloads table. Ensure you select the correct package for your application's compiler and architecture.
 
 Alternatively, check the [install](gs-install.md)page for instructions on how to get the software using a package manager.
 

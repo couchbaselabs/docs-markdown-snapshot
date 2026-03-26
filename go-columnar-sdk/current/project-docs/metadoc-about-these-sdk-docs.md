@@ -3,7 +3,7 @@ title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:go-columnar-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
@@ -38,13 +38,13 @@ Large as this docset is, it can only cover a subset of the complete Columnar SDK
 
 The Getting Started section contains tutorial pages — in intention, if not always in style — covering [how to install and start using](../hello-world/start-using-sdk.md) the SDK.
 
-It also contains information on connecting to the database, and a section of troubleshooting information for when the application code is remote from the database — such as developing an app on your laptop, with the Cluster in the Cloud Service Provider’s Zone some distance away — a set-up not supported in production, but typical in development or evaluation.
+It also contains information on connecting to the database, and a section of troubleshooting information for when the application code is remote from the database — such as developing an app on your laptop, with the Cluster in the Cloud Service Provider's Zone some distance away — a set-up not supported in production, but typical in development or evaluation.
 
 ## [](#querying-your-data)Querying Your Data
 
 * [Querying Your Data](../concept-docs/querying-your-data.md)
 
-The heart of the Columnar Service — real-time OLAP querying, with Couchbase’s familiar SQL++ query language.
+The heart of the Columnar Service — real-time OLAP querying, with Couchbase's familiar SQL++ query language.
 
 ## [](#sdk-deployment)SDK Deployment
 
@@ -56,7 +56,7 @@ A section on those non-programmatic considerations — [compatibility guides](co
 
 * [Reference Pages](../ref/index.md)
 
-The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the Go SDK’s API. Any error here should be filed directly against the individual SDKs bug tracker — via the GitHub issues on <https://github.com/couchbase/couchbase-columnar-go-client — >; although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
+The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the Go SDK's API. Any error here should be filed directly against the individual SDKs bug tracker — via the GitHub issues on <https://github.com/couchbase/couchbase-columnar-go-client — >; although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
 
 The first link in the navigation for the Reference Section is to the API Guide for the _latest version_ of the SDK. Links to previous versions can be found with the [Release Notes](columnar-sdk-release-notes.md).
 
@@ -64,7 +64,7 @@ Other reference material includes the [Client Settings](../ref/client-settings.m
 
 ## [](#another-route-through)Another Route Through?
 
-Each page contains several links to related pages in the docs, as well as to relevant sections of the latest generated API docs. Links are made to cover as many common user journeys as we could think of. For cases where we didn’t anticipate your needs, every page in each SDK is linked from the left-hand navigation, and the paragraphs above detail the broad purpose of these groupings and some of their content.
+Each page contains several links to related pages in the docs, as well as to relevant sections of the latest generated API docs. Links are made to cover as many common user journeys as we could think of. For cases where we didn't anticipate your needs, every page in each SDK is linked from the left-hand navigation, and the paragraphs above detail the broad purpose of these groupings and some of their content.
 
 ### [](#site-search)Site Search
 

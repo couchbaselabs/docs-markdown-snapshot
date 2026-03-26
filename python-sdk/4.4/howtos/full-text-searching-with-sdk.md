@@ -3,7 +3,7 @@ title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.4@python-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -60,7 +60,7 @@ except CouchbaseException as ex:
 > [!NOTE]
 > When using a Couchbase version < 6.5 you must create a valid Bucket connection using `cluster.bucket(name)` before you can use Search.
 
-Let’s break it down. The `search_query` API takes the name of the index and the type of query as required arguments and then allows to provide additional options if needed (in the example above, no options are specified).
+Let's break it down. The `search_query` API takes the name of the index and the type of query as required arguments and then allows to provide additional options if needed (in the example above, no options are specified).
 
 Once a result returns you can iterate over the returned rows, and/or access the `search.metadata` associated with the query.
 
@@ -128,7 +128,7 @@ The FTS APIs exist at both the `Cluster` and `Scope` levels.
 
 This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
-It’s important to use the `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
+It's important to use the `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
 
 ## [](#vector-search)Vector Search
 
@@ -150,7 +150,7 @@ request = search.SearchRequest.create(vector_search)
 result = scope.search('vector-index', request)
 ```
 
-Let’s break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
+Let's break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
 
 The `VectorSearch` allows us to perform one or more `VectorQuery` s.
 

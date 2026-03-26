@@ -3,7 +3,7 @@ title: Access Data
 description: You can set up different data sources to work with sample data in
   Capella Analytics.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/intro/pages/examples.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:intro:examples.adoc[]
 ---
 
@@ -26,7 +26,7 @@ Use the procedures on this page to create Capella Analytics collections for thes
 
 ## [](#prerequisites)Prerequisites
 
-* If you’re just getting started with Capella Analytics, make sure that you [created a Couchbase Capella account](../../cloud/get-started/create-account.md#sign-up-free-trial).
+* If you're just getting started with Capella Analytics, make sure that you [created a Couchbase Capella account](../../cloud/get-started/create-account.md#sign-up-free-trial).
 * Create a project and Capella Analytics cluster. For more information about how to set up your project and cluster in Capella Analytics, see [Create a Cluster](../admin/prepare-project.md).
 * If you want to work with the [beer-sample dataset](#beer-sample), you must have a Capella operational cluster deployed. This cluster is the remote data source for the sample data in the example. For more information about how to create a Capella operational cluster, see [Create A Paid Cluster](../../cloud/clusters/create-database.md).
 * To follow along with the examples on this page, you must have the [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner) role in your organization, or one of the following [project roles](../../cloud/projects/project-roles.md) for the project that contains your cluster:
@@ -58,7 +58,7 @@ To work with this dataset in Capella Analytics you create a standalone collectio
 
 ### [](#populate-a-standalone-collection)Populate a Standalone Collection
 
-1. Use the query editor’s **Query Context** lists to select the `sampleAnalytics` database and `Commerce` scope.
+1. Use the query editor's **Query Context** lists to select the `sampleAnalytics` database and `Commerce` scope.
 2. In the query editor, begin an INSERT INTO statement as follows:  
 ```SQL++  
   INSERT INTO customers (  
@@ -66,7 +66,7 @@ To work with this dataset in Capella Analytics you create a standalone collectio
 > [!TIP]  
 > If you type in the statement instead of copying and pasting this example, the query editor automatically supplies the closing parenthesis `)`.
 3. [Open the customers data](https://docs.couchbase.com/server/current/analytics/%5Fattachments/CommerceCustomers.json), select the contents of the page and copy it.
-4. To complete the statement, return to the query editor and paste the JSON document in between the parentheses. You’ll need to add the closing parenthesis `)` if you used copy and paste to supply the `INSERT INTO` statement.
+4. To complete the statement, return to the query editor and paste the JSON document in between the parentheses. You'll need to add the closing parenthesis `)` if you used copy and paste to supply the `INSERT INTO` statement.
 5. Run the query to populate the `customers` collection.
 6. To verify that the collection contains data now, run the following query:  
 ```SQL++  
@@ -96,7 +96,7 @@ After the import finishes, you can choose to import sample queries to work with 
 
 You can import the Couchbase `beer-sample` dataset into a Capella operational cluster or self-managed Couchbase Server cluster. This dataset consists of a single collection, which contains data on beers and breweries.
 
-Set up [remote collections](../sources/manage-remote.md) to hold shadow copies of the `beer-sample` data in Capella Analytics. Use WHERE clauses to create multiple collections on Capella Analytics, instead of creating only a single collection to match what’s in your remote data source in your Capella operational cluster or Couchbase Server.
+Set up [remote collections](../sources/manage-remote.md) to hold shadow copies of the `beer-sample` data in Capella Analytics. Use WHERE clauses to create multiple collections on Capella Analytics, instead of creating only a single collection to match what's in your remote data source in your Capella operational cluster or Couchbase Server.
 
 Any Capella Analytics collections that use a WHERE clause apply that clause on an ongoing basis to continuously filter your incoming data event stream. Only documents that meet the WHERE clause criteria are upserted into your Capella Analytics collection.
 
@@ -135,7 +135,7 @@ country = "Belgium"
 country = "France"
 18. To start shadowing data from your Capella operational cluster in Capella Analytics, click **Connect Link**.  
 > [!NOTE]  
-> You’ll incur charges for usage after you connect this link.
+> You'll incur charges for usage after you connect this link.
 19. Click **Yes, Continue**.
 20. Close the link creation pane.
 21. Verify that your `brewBelgium` collection now contains a shadow copy of the data sourced from Capella by running the following query, with your query context set to **remoteCapella** and **remoteBeer**:  

@@ -4,7 +4,7 @@ description: The Couchbase Node.js SDK enables you to interact with a Couchbase
   Server or Capella cluster from the Node.js runtime, using TypeScript or
   JavaScript.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.3/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@nodejs-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -318,13 +318,13 @@ We will update this function as we go along the steps in this guide.
 
 ### [](#connect)Connect
 
-Connect to your cluster by calling the `connect()` function and pass it your connection details. The basic connection details that you’ll need are given below — for more background information, see [Managing Connections](../howtos/managing-connections.md).
+Connect to your cluster by calling the `connect()` function and pass it your connection details. The basic connection details that you'll need are given below — for more background information, see [Managing Connections](../howtos/managing-connections.md).
 
 * Couchbase Capella (JavaScript)
 * Couchbase Capella (TypeScript)
 * Local Couchbase Server
 
-From version 4.1, the Node.js SDK includes Capella’s standard certificates by default, so you don’t need any additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
+From version 4.1, the Node.js SDK includes Capella's standard certificates by default, so you don't need any additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
 
 ```javascript
 const clusterConnStr = 'couchbases://cb.<your-endpoint>.cloud.couchbase.com'
@@ -347,7 +347,7 @@ When accessing Capella from a different Wide Area Network or Availability Zone, 
 > [!CAUTION]
 > The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change.
 
-From version 4.1, the Node.js SDK includes Capella’s standard certificates by default, so you don’t need any additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
+From version 4.1, the Node.js SDK includes Capella's standard certificates by default, so you don't need any additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
 
 ```typescript
   const clusterConnStr: string =
@@ -588,7 +588,7 @@ Query Results:
 
 ## [](#next-steps)Next Steps
 
-Now you’re up and running, try one of the following:
+Now you're up and running, try one of the following:
 
 * Our [Travel Sample Application](sample-application.md) demonstrates all the basics you need to know;
 * Explore [Key Value Operations](../howtos/kv-operations.md) against a document database;
@@ -607,7 +607,7 @@ Couchbase welcomes community contributions to the Node.js SDK. The Node.js SDK s
 
 ### [](#troubleshooting)Troubleshooting
 
-* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you’re running the SDK on your laptop against a Capella cluster, see further information on:
+* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you're running the SDK on your laptop against a Capella cluster, see further information on:
 
   * Notes on [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
   * [Network Requirements](../project-docs/compatibility.md#network-requirements).

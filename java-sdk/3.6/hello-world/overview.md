@@ -1,7 +1,7 @@
 ---
 title: Couchbase Java SDK 3.6
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.6/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@java-sdk:hello-world:overview.adoc[]
 ---
 
@@ -103,4 +103,4 @@ Project Docs
 > [!TIP]
 > Capella Columnar SDKs
 > 
-> SDKs for [Capella Columnar](../../../analytics/intro/intro.md) — Couchbase’s analytical database (RT-OLAP) for real time apps and operational intelligence — are in development, and will be arriving first for the Java, Node.js, and Python platforms.
+> SDKs for [Capella Columnar](../../../analytics/intro/intro.md) — Couchbase's analytical database (RT-OLAP) for real time apps and operational intelligence — are in development, and will be arriving first for the Java, Node.js, and Python platforms.

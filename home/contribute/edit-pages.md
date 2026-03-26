@@ -1,7 +1,7 @@
 ---
 title: Edit Existing Documentation
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/edit-pages.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:edit-pages.adoc[]
 ---
 
@@ -26,7 +26,7 @@ In general, to edit an existing page of the documentation in VS Code:
 3. Select the folder on your computer where you [cloned the documentation repository](set-up-repository.md).
 4. Click **Select Folder**.  
 > [!TIP]  
-> If you enabled the **Open with Code** context menu action when you installed VS Code, you can quickly open a repository from your file explorer instead of following these steps. Open the folder in the file explorer, and from the top level of the repository’s directory, right-click and click **Open with Code**.
+> If you enabled the **Open with Code** context menu action when you installed VS Code, you can quickly open a repository from your file explorer instead of following these steps. Open the folder in the file explorer, and from the top level of the repository's directory, right-click and click **Open with Code**.
 5. [Create a new working branch](create-branches.md) for your documentation changes.
 6. Click ![The Explorer icon from the VS Code editor. It shows 2 overlapping pieces of paper.](_images/explorer.png) **Explorer**.
 7. In the Explorer pane, locate the file for the page, partial, or example you want to edit.
@@ -42,7 +42,7 @@ To check your edits, [configure and build a local test site](test-site.md).
 
 ## [](#use-find-and-replace)Use Find and Replace
 
-To speed up making edits to multiple instances of a word, attribute, link, or other text in a file, use VS Code’s **Find and Replace** feature.
+To speed up making edits to multiple instances of a word, attribute, link, or other text in a file, use VS Code's **Find and Replace** feature.
 
 To use Find and Replace:
 
@@ -58,7 +58,7 @@ To use Find and Replace:
   2. To replace every instance in a specific file in your search results, point to a filename in your results, and next to the file path, click **Replace All** when it appears.
   3. To replace individual instances in your search results, point to a result, and click **Replace** when it appears.
 
-VS Code’s Find and Replace supports case and whole word matching, as well as regular expressions.
+VS Code's Find and Replace supports case and whole word matching, as well as regular expressions.
 
 You can also click **…​ (Toggle Search Details)** to add or remove directories or individual files from your search results.
 

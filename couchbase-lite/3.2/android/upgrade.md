@@ -1,7 +1,7 @@
 ---
 title: Upgrade
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/android/pages/upgrade.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite:android:upgrade.adoc[]
 ---
 
@@ -287,7 +287,7 @@ For example, if a new minor version such as CBL 3.1.0 is released the release no
 
 **Full Downgrade Support** \- Downgrades between patch releases are supported. Users can safely downgrade between different patch versions within the same minor release.
 
-For example, if you’re running CBL 3.1.6 you can downgrade to CBL 3.1.4 or CBL 3.1.3 without issues.
+For example, if you're running CBL 3.1.6 you can downgrade to CBL 3.1.4 or CBL 3.1.3 without issues.
 
 ## [](#related-content)Related Content
 

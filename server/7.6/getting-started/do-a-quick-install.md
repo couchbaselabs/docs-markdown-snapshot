@@ -3,7 +3,7 @@ title: Do a Quick Install
 description: First-time users can get Couchbase Server running simply and
   rapidly by using Docker.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/getting-started/pages/do-a-quick-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:getting-started:do-a-quick-install.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:7.6@server:getting-started:do-a-quick-install.adoc[]
 > First-time users can get Couchbase Server running simply and rapidly by using Docker. Once you install Docker, you can use a single command to download and install a pre-configured version of Couchbase Server Enterprise Edition on your computer. 
 
 > [!NOTE]
-> The Docker container image that is used in this topic is meant to set up a 'sandbox' version of Couchbase Server. It’s based on the Enterprise Edition and contains scripts that automatically configure several Couchbase components during installation. Although this particular image works great for a demo, it is not meant for production. For information about installing Couchbase Server in production, see [Couchbase Server Deployment Options](../install/get-started.md).
+> The Docker container image that is used in this topic is meant to set up a 'sandbox' version of Couchbase Server. It's based on the Enterprise Edition and contains scripts that automatically configure several Couchbase components during installation. Although this particular image works great for a demo, it is not meant for production. For information about installing Couchbase Server in production, see [Couchbase Server Deployment Options](../install/get-started.md).
 
 ## [](#initialize-cluster-web-console)Install Couchbase Server
 
@@ -38,7 +38,7 @@ When you run the command, Docker downloads and installs Couchbase Server. You sh
 Starting Couchbase Server -- Web UI available at http://<ip>:8091
 and logs available in /opt/couchbase/var/lib/couchbase/logs
 
-From this point onward, don’t close the console while you’re using Couchbase Server; this terminates both Docker and Couchbase Server.
+From this point onward, don't close the console while you're using Couchbase Server; this terminates both Docker and Couchbase Server.
 
 You must now configure the server and load the `travel-sample` dataset.
 

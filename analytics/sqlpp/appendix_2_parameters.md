@@ -2,7 +2,7 @@
 title: Performance Tuning
 description: This topic describes options for Capella Analytics query performance tuning.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/appendix_2_parameters.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sqlpp:appendix_2_parameters.adoc[]
 ---
 
@@ -47,7 +47,7 @@ ORDER BY ARRAY_LENGTH(o.o_items) DESC;
 
 The following parameter enables you to specify whether the query optimizer should use any applicable array indexes to speed up scanning of data collections.
 
-When this setting is `true`, the query optimizer attempts to use array indexes if they’re available. You can set this parameter to `false` to make the query optimizer skip array indexes.
+When this setting is `true`, the query optimizer attempts to use array indexes if they're available. You can set this parameter to `false` to make the query optimizer skip array indexes.
 
 **compiler.arrayindex**: A Boolean specifying whether array indexes will be considered as an access method for applicable queries. The default value is `true`.
 
@@ -161,7 +161,7 @@ SET `compiler.cbo` "true";
 You can supply hints to the cost-based optimizer using a hint comment. These enable you to specify the behavior of the cost-based optimizer for individual queries.
 
 > [!TIP]
-> Generally speaking, you should rely on the optimizer to generate the optimal query plan. Optimizer hints may be useful to nudge the query optimizer in specific—hopefully rare—situations where it’s not able to come up with the optimal plan.
+> Generally speaking, you should rely on the optimizer to generate the optimal query plan. Optimizer hints may be useful to nudge the query optimizer in specific—hopefully rare—situations where it's not able to come up with the optimal plan.
 
 ### [](#productivity%5Fhint)Productivity Hint
 
@@ -392,6 +392,6 @@ WHERE c.c_nationkey /*+ indexnl */ = fn(n.n_nationkey)
 
 `fn()` is a function that returns the same data type as the type specified in the index for the inner table (customer). Usually, `fn()` is one of the following: to\_string(), to\_double(), or to\_bigint().
 
-The type of the outer table’s join column (n\_nationkey) is not known at compile time, therefore you cannot select the index join cannot if the join predicate is just:
+The type of the outer table's join column (n\_nationkey) is not known at compile time, therefore you cannot select the index join cannot if the join predicate is just:
 
 `c.c_nationkey /*+ indexnl */ = n.n_nationkey`

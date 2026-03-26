@@ -2,7 +2,7 @@
 title: Fleece C API
 description: Introducing the key concepts of the Fleece C API
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/c_fleece.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:c:c_fleece.adoc[]
 ---
 
@@ -28,19 +28,19 @@ Simple values will be about the same size as JSON. Complex ones may be much smal
 * Efficient to convert into native objects:  
 Numbers are binary, strings are raw UTF-8 without quoting, binary data is not base64-encoded. Storing repeated values once means they only need to be converted into native objects once.
 * Appendable:  
-Fleece is what’s known as a persistent data structure. A Fleece document can be mutated by appending data to it. The mutation is in effect a delta, so it’s usually much smaller than the original document. And the original document is unchanged, which is great for concurrency as well as (simple) version control.  
+Fleece is what's known as a persistent data structure. A Fleece document can be mutated by appending data to it. The mutation is in effect a delta, so it's usually much smaller than the original document. And the original document is unchanged, which is great for concurrency as well as (simple) version control.  
 For more information, see  
 [Fleece on GitHub](https://github.com/couchbaselabs/fleece) | [Using Fleece](https://github.com/couchbaselabs/fleece/wiki/Using-Fleece) | [Fleece Header File](https://github.com/couchbaselabs/fleece/blob/master/API/fleece/Fleece.h)
 
 ## [](#values)Values
 
-Fleece’s data types are almost identical to those of JSON, with the notable addition of binary data types.
+Fleece's data types are almost identical to those of JSON, with the notable addition of binary data types.
 
 Basically Fleece provides seven data types: _null_, _boolean_, _numbers_, _strings_, _arrays_, _dictionaries_, and _data_. Arrays can contain any data type and dictionaries have strings as keys, with values of any data type.
 
 The basic Fleece data type is **FLValue**, an opaque pointer reference to a value of any type.
 
-Use the _FLValue\_GetType_ API to check the value’s actual type and _FLValue\_As<Type Name>_ to get the actual value as shown in [Use FLValue](#ex-flvalue)
+Use the _FLValue\_GetType_ API to check the value's actual type and _FLValue\_As<Type Name>_ to get the actual value as shown in [Use FLValue](#ex-flvalue)
 
 Use FLValue
 
@@ -68,7 +68,7 @@ Another basic Fleece data type, _FLSlice_ a simple struct consisting of a pointe
 
 ### [](#flstring)FLString
 
-_FLString_ is a typedef of FLSlice, which explicitly represents a string value. Use the _FLSTR(“Some String”)_ macro to create an FLString from a string literal — see: [Create an FLString](#ex-flstr)
+_FLString_ is a typedef of FLSlice, which explicitly represents a string value. Use the _FLSTR("Some String")_ macro to create an FLString from a string literal — see: [Create an FLString](#ex-flstr)
 
 Create an FLString
 
@@ -81,7 +81,7 @@ CBLDatabase* db = CBLDatabase_Open( (FLSTR("my-database"), NULL, &err); (1)
 
 ### [](#flsliceresultflstringresult)FLSliceResult/FLStringResult
 
-FLSlice doesn’t imply an ownership of memory. However, _FLSliceResult_/_FLStringResult_ is an FLSlice type which _does_ own memory and is reference-counted.  
+FLSlice doesn't imply an ownership of memory. However, _FLSliceResult_/_FLStringResult_ is an FLSlice type which _does_ own memory and is reference-counted.  
 
 In general, whenever an FLSliceResult/FLStringResult is returned from an API call, you are responsible for calling FLSliceResult\_Release when you are done using it.
 
@@ -168,7 +168,7 @@ doSomethingWith(myDict);
 FLMutableDict_Release(myDict); (1)
 ```
 
-| **1** | don’t forget to release resources once you have finished with them |
+| **1** | don't forget to release resources once you have finished with them |
 | ----- | ------------------------------------------------------------------ |
 
 ## [](#lbl-fleece-arrays)Arrays

@@ -2,7 +2,7 @@
 title: Back Up and Restore with Command Line Tools
 description: Use Couchbase command line tools to manage ad hoc backups.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/cli-backup-restore.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:cli-backup-restore.adoc[]
 ---
 
@@ -26,15 +26,15 @@ For data migration between Couchbase clusters, [Cross Data Center Replication (X
 
 All procedures and examples on this page assume the following:
 
-* You have [configured cluster access](#clusters:manage-cluster-users.adoc) by creating cluster access credentials. You’ll need the username and password for the cluster credentials to connect to the cluster.
-* You have [added your IP address](allow-ip-address.md) to the cluster’s list of allowed IPs.
+* You have [configured cluster access](#clusters:manage-cluster-users.adoc) by creating cluster access credentials. You'll need the username and password for the cluster credentials to connect to the cluster.
+* You have [added your IP address](allow-ip-address.md) to the cluster's list of allowed IPs.
 * You have [downloaded your security certificate](../get-started/create-account.md#next-steps) for your cluster.
 * You have [downloaded and installed](../reference/command-line-tools.md) the command line tools package.
 
 All procedures and examples on this page assume the following:
 
-* You have [configured cluster access](manage-database-users.md) by creating cluster access credentials. You’ll need the username and password for the cluster credentials to connect to the cluster.
-* You have [added your IP address](allow-ip-address.md) to the cluster’s list of allowed IPs.
+* You have [configured cluster access](manage-database-users.md) by creating cluster access credentials. You'll need the username and password for the cluster credentials to connect to the cluster.
+* You have [added your IP address](allow-ip-address.md) to the cluster's list of allowed IPs.
 * You have [downloaded your security certificate](../get-started/create-account.md#next-steps) for your cluster.
 * You have [downloaded and installed](../reference/command-line-tools.md) the command line tools package.
 * You have set the following `--disable` options when you created your repository:  
@@ -86,7 +86,7 @@ With Capella clusters running Couchbase Server 7.2, use the following `--disable
 > [!WARNING]
 > If you did not set these `--disable` options when you created your repository, you must add them to the `cbbackupmgr restore` command when you restore a backup form your repository to Capella.
 
-If you’re restoring data backed up from a self-managed cluster to a Capella cluster with `cbbackupmgr restore`, use `--disable-views`. Capella clusters do not support [views](#7.1@server:learn:views/views-basics.adoc).
+If you're restoring data backed up from a self-managed cluster to a Capella cluster with `cbbackupmgr restore`, use `--disable-views`. Capella clusters do not support [views](#7.1@server:learn:views/views-basics.adoc).
 
 If you want to restore a backup of the `beer-sample` and `gamesim-sample` data sets, you must use `--disable-views`.
 
@@ -176,7 +176,7 @@ To build the indexes in your cluster:
 
 This example uses `cbbackupmgr` CLI to migrate data from a self-managed cluster to a provisioned cluster.
 
-A self-managed cluster can be either an Enterprise or Community Edition cluster. If you’re using the Community Edition of Couchbase Server, you need to use the `cbbackupmgr` CLI from the command line tools package to restore to the Capella provisioned cluster. You can also use the `cbbackupmgr` CLI from the command line tools package for backup.
+A self-managed cluster can be either an Enterprise or Community Edition cluster. If you're using the Community Edition of Couchbase Server, you need to use the `cbbackupmgr` CLI from the command line tools package to restore to the Capella provisioned cluster. You can also use the `cbbackupmgr` CLI from the command line tools package for backup.
 
 ### [](#backup-a-self-managed-cluster)Backup a Self-Managed Cluster
 
@@ -225,9 +225,9 @@ To build the indexes in your cluster:
 
 ## [](#allowed-ips-tips)Allowed IPs Tips
 
-If you’re running `cbbackupmgr` CLI from a VPC-peered environment, the Capella connection string may resolve to a private IP address in your environment. In this situation, you do not need to add the IP address of the machine you’re running `cbbackupmgr` on to the Capella cluster’s list of allowed IPs.
+If you're running `cbbackupmgr` CLI from a VPC-peered environment, the Capella connection string may resolve to a private IP address in your environment. In this situation, you do not need to add the IP address of the machine you're running `cbbackupmgr` on to the Capella cluster's list of allowed IPs.
 
-If you have a private endpoint set up in your Capella provisioned cluster, and you’re using the Capella private endpoint DNS name to connect, you do not need to add the IP address of the machine you’re running `cbbackupmgr` on to the list of allowed IPs.
+If you have a private endpoint set up in your Capella provisioned cluster, and you're using the Capella private endpoint DNS name to connect, you do not need to add the IP address of the machine you're running `cbbackupmgr` on to the list of allowed IPs.
 
 Example private endpoint DNS name connection:  
 `couchbases://private-endpoint.iml6stsfy4njxkx0.cloud.couchbase.com`
@@ -253,9 +253,9 @@ Other specific restore options are shown in the following table:
 | \--exclude-data | Exclude specific buckets, scopes, and collections from the restore.                                                                                                                                                     | \--exclude-data bucket2.scope1                            |
 | \--threads      | Specify the number of concurrent clients to use during backup or restore. The default is 1\. More clients means more resource usage. The value should not exceed the number of CPUs on the machine running cbbackupmgr. | \--threads 4                                              |
 
-There are other `cbbackupmgr restore` options. For example, if the backup you’re restoring also includes [Search indexes](../search/search.md), you may want to restore the data first, followed by restoring the Search indexes. If you restore the data and the Search indexes concurrently, the restore starts by creating the Search indexes, followed by the restore data, which puts a very high load on the Search nodes.
+There are other `cbbackupmgr restore` options. For example, if the backup you're restoring also includes [Search indexes](../search/search.md), you may want to restore the data first, followed by restoring the Search indexes. If you restore the data and the Search indexes concurrently, the restore starts by creating the Search indexes, followed by the restore data, which puts a very high load on the Search nodes.
 
-GSI indexes do not have the same issue as the Search indexes because they’re restored deferred. The index definitions are restored, but the indexes are not built. You must build the GSI indexes manually after the restore completes.
+GSI indexes do not have the same issue as the Search indexes because they're restored deferred. The index definitions are restored, but the indexes are not built. You must build the GSI indexes manually after the restore completes.
 
 To disable restoring Search indexes, add the following disable options to your `cbbackupmgr restore` command:  
 `--disable-ft-indexes and --disable-ft-alias`

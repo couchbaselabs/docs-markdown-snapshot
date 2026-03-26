@@ -3,7 +3,7 @@ title: Document
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.9/modules/concept-docs/pages/documents.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@kotlin-sdk:concept-docs:documents.adoc[]
 ---
 
@@ -60,7 +60,7 @@ In Couchbase documents are stored using one of the operations: `upsert`, `insert
 
 Documents can be retrieved using the `get` operation, and finally removed using the `remove` operations.
 
-Since Couchbase’s KV store may be thought of as a distributed hashmap or dictionary, the following code samples are explanatory of Couchbase’ update operations in pseudo-code:
+Since Couchbase's KV store may be thought of as a distributed hashmap or dictionary, the following code samples are explanatory of Couchbase' update operations in pseudo-code:
 
 ```cpp
 map<string,object> KV_STORE;
@@ -148,7 +148,7 @@ docid                CAS=0x8234c3c0f213, Flags=0x0. Size=16
 
 Once a document is retrieved, it is accessible in the native format by which it was stored; meaning that if you stored the document as a list, it is now available as a list again. The SDK will automatically deserialize the document from its stored format (usually JSON) to a native language type. It is possible to store and retrieve non-JSON documents as well, using a [transcoder](nonjson.md).
 
-You can also modify a document’s expiration time while retrieving it; this is known as _get-and-touch_ and allows you to keep temporary data alive while retrieving it in one atomic and efficient operation.
+You can also modify a document's expiration time while retrieving it; this is known as _get-and-touch_ and allows you to keep temporary data alive while retrieving it in one atomic and efficient operation.
 
 Documents can also be retrieved with SQL++. While SQL++ is generally used for secondary queries, it can also be used to retrieve documents by their primary keys (ID) (though it is recommended to use the key-value API if the ID is known). Lookups may be done either by comparing the `META(from-term).id` or by using the `USE KEYS` \[...\] keyword:
 
@@ -228,7 +228,7 @@ You can also use [sub-document counter operations](subdocument-operations.md) to
 
 ### [](#use-cases)Use Cases
 
-The SDK provides a high-level abstraction over the simple `incr()`/`decr()` of Couchbase Server’s memcached binary protocol, using `collections.binary()`. This enables you to work with counters using `get()` and `upsert()` operations — allowing, _inter alia_, the use of durability options with the operations. You will find several ways of working with counters [in the API docs](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/kv/CounterAccessor.html#increment%28com.couchbase.client.core.Core,com.couchbase.client.core.msg.kv.IncrementRequest,java.lang.String,com.couchbase.client.java.kv.PersistTo,com.couchbase.client.java.kv.ReplicateTo%29%28java.lang.String,long%29).
+The SDK provides a high-level abstraction over the simple `incr()`/`decr()` of Couchbase Server's memcached binary protocol, using `collections.binary()`. This enables you to work with counters using `get()` and `upsert()` operations — allowing, _inter alia_, the use of durability options with the operations. You will find several ways of working with counters [in the API docs](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/kv/CounterAccessor.html#increment%28com.couchbase.client.core.Core,com.couchbase.client.core.msg.kv.IncrementRequest,java.lang.String,com.couchbase.client.java.kv.PersistTo,com.couchbase.client.java.kv.ReplicateTo%29%28java.lang.String,long%29).
 
 ## [](#expiry)Expiration Overview
 
@@ -236,7 +236,7 @@ Most data in a cluster is there to be persisted and long-lived. However, the nee
 
 In databases without a built-in expiration feature, dealing with transient data may be cumbersome. To provide "expiration" semantics, applications are forced to record a time stamp in a record, and then upon each access of the record check the time stamp and, if invalid, delete it.
 
-Since some logically ‘expired’ documents might never be accessed by the application, to ensure that temporary records do not persist and occupy storage, a scheduled process is typically also employed to scan the database for expired entries routinely, and to purge those entries that are no longer valid.
+Since some logically 'expired' documents might never be accessed by the application, to ensure that temporary records do not persist and occupy storage, a scheduled process is typically also employed to scan the database for expired entries routinely, and to purge those entries that are no longer valid.
 
 Workarounds such as those described above are not required for Couchbase, as it allows applications to declare the lifetime of a given document, eliminating the need to embed "validity" information in documents and eliminating the need for a routine "purge" of logically expired data.
 
@@ -246,10 +246,10 @@ When an application attempts to access a document which has already expired, the
 
 By default, Couchbase documents do not expire. However, the expiration value may be set for the _upsert_, _replace_, and _insert_ operations when modifying data.
 
-Couchbase offers two additional operations for setting the document’s expiration without modifying its contents:
+Couchbase offers two additional operations for setting the document's expiration without modifying its contents:
 
 * The _get-and-touch_ operation allows an application to retrieve a document while modifying its expiration time. This method is useful when reading session data from the cluster: since accessing the data is indicative of it still being "alive", _get-and-touch_ provides a natural way to extend its lifetime.
-* The _touch_ operation allows an application to modify a document’s expiration time without otherwise accessing the document. This method is useful when an application is handling a user session but does not need to access the cluster (for example, if a particular document is already cached locally).
+* The _touch_ operation allows an application to modify a document's expiration time without otherwise accessing the document. This method is useful when an application is handling a user session but does not need to access the cluster (for example, if a particular document is already cached locally).
 
 Code snippets for setting document expiration can be found on the [data operations page](../howtos/kv-operations.md#document-expiration). This page also covers the nuances of setting relative or absolute document expiry times — all SDKs support duration, but options for setting an absolute timestamp vary by SDK and release version.
 

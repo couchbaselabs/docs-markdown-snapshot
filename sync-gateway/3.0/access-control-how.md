@@ -4,7 +4,7 @@ description: How to implement Sync Gateway access controls using Configuration
   File, Admin REST API and-or the Sync Function to manage documents, users,
   roles and channels
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/access-control-how.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::access-control-how.adoc[]
 ---
 
@@ -28,17 +28,17 @@ There are a number of ways in which you can control document distribution and us
 
 Ways to configure access
 
-* Legacy Pre 3.0: Use the [Legacy Configuration Properties](configuration-properties-legacy.md) file’s [admin\_user\_channels](configuration-properties-legacy.md#databases-user-admin-channels)
+* Legacy Pre 3.0: Use the [Legacy Configuration Properties](configuration-properties-legacy.md) file's [admin\_user\_channels](configuration-properties-legacy.md#databases-user-admin-channels)
 * Dynamically
 
   * At the time of user creation with Admin REST Endpoint [{db}/\_user/{name}](rest-api-admin.md#/user/put%5F%5Fdb%5F%5F%5Fuser%5F%5Fname%5F) using `admin_channel`
-  * Using the Sync Function’s [access()](sync-function-api-access-cmd.md).
+  * Using the Sync Function's [access()](sync-function-api-access-cmd.md).
 
 Example 1\. Control Points
 
 ![channel access grant all](_images/channel-access-grant-all.png) 
 
-| **1** | Documents are assigned to channel using the Sync Function’s [channel()](sync-function-api-channel-cmd.md) API.    |
+| **1** | Documents are assigned to channel using the Sync Function's [channel()](sync-function-api-channel-cmd.md) API.    |
 | ----- | ----------------------------------------------------------------------------------------------------------------- |
 | **2** | User and-or roles are granted access to channels by one of the means defined in [Ways to configure access](#lst1) |
 
@@ -234,14 +234,14 @@ See also: [/{db}/\_role/{name}](rest-api-admin.md#/role/put%5F%5Fdb%5F%5F%5Frole
 
 Sync Function
 
-You can also use the Sync Function’s [role()](sync-function-api-role-cmd.md) function to assign users to roles programmatically.
+You can also use the Sync Function's [role()](sync-function-api-role-cmd.md) function to assign users to roles programmatically.
 
 In this use case, where role assignment is done dynamically via the sync function, the role(s) to which user is assigned can be identified in two ways:
 
 * By document content — the role can be derived or specified as a property within the document body.
 * By user defined XATTR (3.0+) — the role can be specified within a special user-defined XATTR associated with the document — see: [Use XATTRs for Access Grants](access-control-how-use-xattrs-for-access-grants.md)
 
-Note that both role and user must already exist. Nonexistent roles don’t cause an error, but have no effect on the user’s access privileges.
+Note that both role and user must already exist. Nonexistent roles don't cause an error, but have no effect on the user's access privileges.
 
 ```javascript
 role ("Edge1User", "role:Edge1");
@@ -322,7 +322,7 @@ $ curl -vX PUT "http://localhost:4985/mydatabase/_user/{user}" -H (1)
 | ----- | ------------------------------------------------------- |
 | **2** | Here we add _Channel1_ and _Channel3_ to the user       |
 
-You can also use the Sync Function’s [access()](sync-function-api-access-cmd.md) function to allow channel access to roles and-or users programmatically.
+You can also use the Sync Function's [access()](sync-function-api-access-cmd.md) function to allow channel access to roles and-or users programmatically.
 
 In the case where channel assignment is done dynamically via the sync function, the channel(s) to which user/role is assigned is identified in two ways:
 
@@ -332,7 +332,7 @@ In the case where channel assignment is done dynamically via the sync function, 
 * Version 3.x
 * All Versions
 
-Here we are using a specific XATTR to determine which users need access to the document’s contents — for more on how to configure ths see [Use XATTRs for Access Grants](access-control-how-use-xattrs-for-access-grants.md).
+Here we are using a specific XATTR to determine which users need access to the document's contents — for more on how to configure ths see [Use XATTRs for Access Grants](access-control-how-use-xattrs-for-access-grants.md).
 
 ```javascript
 function (doc, oldDoc, meta) { (1)
@@ -355,7 +355,7 @@ function (doc, oldDoc, meta) { (1)
 | **2** | Access the meta parameter object to check an xattr exists on this document                                                   |
 | **3** | Use the content of the xattr to define the channels setting for this document                                                |
 
-Here we are using the document content (`type`) to determine which users need access to the document’s contents.
+Here we are using the document content (`type`) to determine which users need access to the document's contents.
 
 ```javascript
 function (doc, olddoc) {
@@ -376,7 +376,7 @@ function (doc, olddoc) {
 
 | **1** | Here we add access to channel _channel1_ to the user _Edge1User_                                                                                                                                                                                       |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **2** | The access() function can also operate on roles. If a user name string begins with role: then the remainder of the string is interpreted as a role name. **NOTE** There’s no ambiguity here, because : is an illegal character in a user or role name. |
+| **2** | The access() function can also operate on roles. If a user name string begins with role: then the remainder of the string is interpreted as a role name. **NOTE** There's no ambiguity here, because : is an illegal character in a user or role name. |
 | **3** | Here we allow access to the channel _channel2_ for the role _Edge2_                                                                                                                                                                                    |
 
 Add a channel to a user in the configuration file. This method is convenient for testing and to get started. Use the **Admin REST API** for production systems.
@@ -465,7 +465,7 @@ function (doc, oldDoc) {
 
 Example 7\. Helper Function examples
 
-Here we show various ways to use some of the Sync Function API’s helper functions:
+Here we show various ways to use some of the Sync Function API's helper functions:
 
 ```javascript
 requireUser("snej") (1)
@@ -507,7 +507,7 @@ Use the Admin REST API to see the:
 
 The `all_channels` property of a user account determines the channels a user can access. Its value is derived from the union of:
 
-* The user’s `admin_channels` property, which is set using the Admin REST API.
+* The user's `admin_channels` property, which is set using the Admin REST API.
 * The channels the user has been granted access to by [access()](sync-function-api-access-cmd.md) calls from sync functions invoked for current revisions of documents.
 * The `all_channels` properties of any roles the user belongs to. These are themselves computed using the above rules.
 
@@ -527,7 +527,7 @@ The [output](#ex-output) shows that the user `pupshaw` has access to the followi
 
 | **1** | all through its own admin\_channels setting             |
 | ----- | ------------------------------------------------------- |
-| **2** | hoopy through the froods role’s admin\_channels setting |
+| **2** | hoopy through the froods role's admin\_channels setting |
 
 ```json
 {
@@ -556,7 +556,7 @@ curl http://localhost:4985/db/_role/frood
 
 The output shows that the role `froods` has access to the following channels:
 
-| **1** | hoopy through its role’s admin\_channels setting |
+| **1** | hoopy through its role's admin\_channels setting |
 | ----- | ------------------------------------------------ |
 
 ```json
@@ -612,7 +612,7 @@ Sync Gateway exposes a single user-definable XATTR for this purpose. Learn how t
 
 ### [](#lbl-config)Configuration
 
-Name the XATTR (see: [user\_xattr\_key](configuration-schema-database.md#databases-this%5Fdb-user%5Fxattr%5Fkey)) to be used for channel routing by defining it using the Admin REST API’s [Database Configuration](configuration-schema-database.md) — see: [Example 8](#ex-config).
+Name the XATTR (see: [user\_xattr\_key](configuration-schema-database.md#databases-this%5Fdb-user%5Fxattr%5Fkey)) to be used for channel routing by defining it using the Admin REST API's [Database Configuration](configuration-schema-database.md) — see: [Example 8](#ex-config).
 
 The actual value of this XATTR can be anything that enables the Sync Function to make an appropriate access grant. Its data type can be string, array, object — any valid JSON that meets the required use case.
 
@@ -750,7 +750,7 @@ namespace examples
 
 | **1**  | This is required to make the MutateInSpec class available, providing access to sub-documents, of which metadata is a special class |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| **2**  | This string’s value is what we want this document’s XATTR to be called                                                             |
+| **2**  | This string's value is what we want this document's XATTR to be called                                                             |
 | **3**  | This array contains the channels we want to include as the XATTR value                                                             |
 | **4**  | Here we get all documents that we want to set the XATTR on (type = 'hotel' in this instance)                                       |
 | **5**  | Check if the XATTR has been defined yet                                                                                            |

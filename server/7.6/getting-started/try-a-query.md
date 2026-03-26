@@ -4,7 +4,7 @@ description: Now that you have a basic understanding of buckets, scopes and
   collections, and documents, you can try querying them using SQL++, the
   Couchbase Server query language.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/getting-started/pages/try-a-query.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:getting-started:try-a-query.adoc[]
 ---
 
@@ -29,7 +29,7 @@ In Couchbase Server 7.0 and later, documents are stored in _collections_, which 
 
 `namespace:bucket.scope.collection`
 
-Here’s an example of a basic SQL++ query and the JSON document it returns. The following query asks for the country that is associated with the airline _Excel Airways_ in the collection `` default:`travel-sample`.inventory.airline ``.
+Here's an example of a basic SQL++ query and the JSON document it returns. The following query asks for the country that is associated with the airline _Excel Airways_ in the collection `` default:`travel-sample`.inventory.airline ``.
 
 ```sqlpp
 SELECT a.country FROM default:`travel-sample`.inventory.airline a
@@ -50,7 +50,7 @@ The results:
 
 The country is thus specified as `United Kingdom`.
 
-To save you from having to enter the full path of the collection for every query, you can specify the _query context_ using the SDK, REST, cbq, or the Query Workbench in the Web Console. You can then reference a collection using its relative path. We’ll cover this in more detail in the following sections.
+To save you from having to enter the full path of the collection for every query, you can specify the _query context_ using the SDK, REST, cbq, or the Query Workbench in the Web Console. You can then reference a collection using its relative path. We'll cover this in more detail in the following sections.
 
 ## [](#run-cbq)Try the Interactive Query Shell
 
@@ -184,7 +184,7 @@ The results:
 }
 ```
 
-In the cbq shell, you can set the _query context_ by setting the `query_context` parameter. For example, the following cbq command sets the query context to `travel-sample.inventory`. (Note that with this command, you don’t need to enclose any part of the path with backticks; and the `default:` namespace is always optional.)
+In the cbq shell, you can set the _query context_ by setting the `query_context` parameter. For example, the following cbq command sets the query context to `travel-sample.inventory`. (Note that with this command, you don't need to enclose any part of the path with backticks; and the `default:` namespace is always optional.)
 
 ```sqlpp
 \SET -query_context travel-sample.inventory;
@@ -224,7 +224,7 @@ The results now appear in the **Results** panel:
 
 ![The Query results showing query results](_images/queryResultsJSON.png) 
 
-As you can see, a single document was found to match your specified criterion — again, it’s the document whose `name` value is `40-Mile Air`.
+As you can see, a single document was found to match your specified criterion — again, it's the document whose `name` value is `40-Mile Air`.
 
 On the Query Workbench, you can set the _query context_ by selecting a bucket and scope from the drop-down at the top right of the Query Editor. You can then reference a collection using just its relative path.
 
@@ -235,7 +235,7 @@ On the Query Workbench, you can set the _query context_ by selecting a bucket an
 * Execute SQL++ queries programmatically using the official Couchbase SDKs:  
 [C](../../../c-sdk/current/howtos/n1ql-queries-with-sdk.md) | [.NET](../../../dotnet-sdk/current/howtos/n1ql-queries-with-sdk.md) | [Go](../../../go-sdk/current/howtos/sqlpp-queries-with-sdk.md) | [Java](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md) | [Node.js](../../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md) | [PHP](../../../php-sdk/current/howtos/n1ql-queries-with-sdk.md) | [Python](#3.0@python-sdk:howtos:n1ql-queries-with-sdk.adoc) | [Scala](../../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)
 * [SQL++ Query Language Tutorial](https://query-tutorial.couchbase.com/tutorial/#1): Provides interactive web modules where you can learn about SQL++ without having Couchbase Server installed in your own environment. The modules are self-contained and let you modify and run sample queries. The tutorial covers `SELECT` statements in detail, including examples of `JOIN`, `NEST`, `GROUP BY`, and other typical clauses.
-* [SQL++ Cheat Sheet](http://docs.couchbase.com/files/Couchbase-N1QL-CheatSheet.pdf): Provides a concise summary of the basic syntax elements of SQL++. Print it out and keep it on your desk where it’ll be handy for quick reference.
+* [SQL++ Cheat Sheet](http://docs.couchbase.com/files/Couchbase-N1QL-CheatSheet.pdf): Provides a concise summary of the basic syntax elements of SQL++. Print it out and keep it on your desk where it'll be handy for quick reference.
 * [SQL++ Language Reference](../n1ql/n1ql-language-reference/index.md): Describes the SQL++ language structure, including syntax and usage.
 * [Couchbase Webinars](https://www.couchbase.com/resources/webinars): Live and recorded presentations by Couchbase engineers and product managers that highlight features and use-cases of Couchbase Server, including SQL++.
 * [Couchbase Blog](https://blog.couchbase.com/) for blogs on various topics including architecture, data modeling, latest Couchbase product features, and more.

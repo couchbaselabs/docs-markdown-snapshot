@@ -3,7 +3,7 @@ title: Upgrading Sync Gateway
 description: This page documents various implementation details and
   functionalities to consider when performing an upgrade to Sync Gateway 4.0.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/upgrading.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway::upgrading.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Related _Application Deployment_ topics: [Prepare](start-here/get-started-prepar
 
 A rolling upgrade is the recommended method to upgrade a Sync Gateway cluster. At a high level, a rolling upgrade consists of the following steps:
 
-1. The load balancer configuration stops any HTTP traffic to the node you’re upgrading.
+1. The load balancer configuration stops any HTTP traffic to the node you're upgrading.
 2. The upgrade runs on the given node.
 3. The load balancer configuration resumes traffic to the upgraded node.
 
@@ -66,7 +66,7 @@ Step 2
 
 ### [](#use-persistent-configuration)Use Persistent Configuration
 
-The use of 3.x’s Persistent Configuration feature is strongly recommended. It’s the default operational mode when starting sync gateway.
+The use of 3.x's Persistent Configuration feature is strongly recommended. It's the default operational mode when starting sync gateway.
 
 The feature provides a smooth upgrade path for existing users by automatically converting their existing configuration files to the new persistent configuration format.
 
@@ -85,7 +85,7 @@ You should also:
 * Verify that, if your existing configuration has multiple databases, all of the **server** fields used to connect to **Couchbase Server** match.  
 Although the connection credentials used may differ between databases, Sync Gateway only uses the **first** set of credentials for the bootstrap configuration file.  
 > [!NOTE]  
-> Sync Gateway cannot automatically upgrade configurations that have multiple distinct server fields within the configuration file, and you’ll need to manually create their own bootstrap configuration.
+> Sync Gateway cannot automatically upgrade configurations that have multiple distinct server fields within the configuration file, and you'll need to manually create their own bootstrap configuration.
 
 #### [](#process-2)Process
 
@@ -124,9 +124,9 @@ To opt-out of this, you can configure [api.api.admin\_interface\_authentication]
 ## [](#couchbase-server-upgrade-paths)Couchbase Server Upgrade Paths
 
 > [!NOTE]
-> When upgrading your Couchbase Server from 4.x to 5.x, remember to create a Sync Gateway RBAC user on the server — see: [Configure Server for Sync Gateway](start-here/get-started-prepare.md#configure-server.html) — and to include the user’s credentials username/password in you Sync-Gateway-Config.json file.
+> When upgrading your Couchbase Server from 4.x to 5.x, remember to create a Sync Gateway RBAC user on the server — see: [Configure Server for Sync Gateway](start-here/get-started-prepare.md#configure-server.html) — and to include the user's credentials username/password in you Sync-Gateway-Config.json file.
 
-All of the different upgrade paths mentioned above assume that you’re running a compatible Couchbase Server version — see [Compatibility Matrix](product-notes/compatibility.md).
+All of the different upgrade paths mentioned above assume that you're running a compatible Couchbase Server version — see [Compatibility Matrix](product-notes/compatibility.md).
 
 Three commonly used upgrade approaches exist for Couchbase Server. Depending on the one you choose, there may be additional consideration to keep in mind when using Sync Gateway:
 
@@ -165,12 +165,12 @@ Couchbase Server stores extended attributes as part of the document and replicat
 
 You can access extended attributes via the SDKs using the sub-document API, via command-line tools, and via views.
 
-They’re also accessible from SQL++ in Couchbase Server 5.5 or above with the `().xattrs` property. For example, `SELECT meta().xattrs._sync from travel-sample where Meta().id = "user::demo";`.
+They're also accessible from SQL++ in Couchbase Server 5.5 or above with the `().xattrs` property. For example, `SELECT meta().xattrs._sync from travel-sample where Meta().id = "user::demo";`.
 
 > [!WARNING]
 > Sync Gateway maintains the sync metadata internally and its structure can change at any time. Applications should not use it to drive business logic. Sync Gateway does not support the direct SQL++ query in production environments.
 
-The [raw](rest-api/rest%5Fapi%5Fadmin.md#tag/Document/operation/get%5Fkeyspace-%5Fraw-docid)endpoint on Sync Gateway’s Admin REST API returns both the document and its associated mobile metadata.
+The [raw](rest-api/rest%5Fapi%5Fadmin.md#tag/Document/operation/get%5Fkeyspace-%5Fraw-docid)endpoint on Sync Gateway's Admin REST API returns both the document and its associated mobile metadata.
 
 ### [](#configuration-changes)Configuration Changes
 

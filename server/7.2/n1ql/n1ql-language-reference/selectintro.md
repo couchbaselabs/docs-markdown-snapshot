@@ -4,7 +4,7 @@ description: With the SELECT statement, you can query and manipulate JSON data.
   You can select, join, project, nest, unnest, group, and sort in a single
   SELECT statement.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/selectintro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/selectintro.adoc[]
 ---
 
@@ -290,7 +290,7 @@ Results
 ]
 ```
 
-Let’s consider [another example](#example%5F2) which finds the number of distinct airports where AA has routes. In this example:
+Let's consider [another example](#example%5F2) which finds the number of distinct airports where AA has routes. In this example:
 
 * Documents from the `airline` keyspace are on the left side of the JOIN, and documents from the `route` keyspace are on the right side.
 * The WHERE clause predicate `airline.iata = "AA"` is on the left side keyspace `airline`.
@@ -360,7 +360,7 @@ When querying a keyspace with nested documents, SELECT provides an easy way to t
 
 #### [](#dot-notation)Dot Notation
 
-The following query looks for the schedule, and accesses the flight id for the destination airport "ALG". Since a given flight has multiple schedules, the attribute `schedule` is an array containing all schedules for the specified flight. You can access the individual array elements using the array indexes. For brevity, we’re limiting the number of results in the query to 1.
+The following query looks for the schedule, and accesses the flight id for the destination airport "ALG". Since a given flight has multiple schedules, the attribute `schedule` is an array containing all schedules for the specified flight. You can access the individual array elements using the array indexes. For brevity, we're limiting the number of results in the query to 1.
 
 Query
 
@@ -577,7 +577,7 @@ Results
 
 The optimizer attempts to select an appropriate secondary index for a query based on the filters in the WHERE clause. If it cannot select a secondary query, the query service falls back on the primary index for the keyspace.
 
-By default, secondary indexes don’t index a document if the leading index key is MISSING in the document. This means that when a query selects a field which is MISSING in some documents, the optimizer will not be able to choose a secondary index which uses that field as a leading key. There are two ways to resolve this:
+By default, secondary indexes don't index a document if the leading index key is MISSING in the document. This means that when a query selects a field which is MISSING in some documents, the optimizer will not be able to choose a secondary index which uses that field as a leading key. There are two ways to resolve this:
 
 * In the query, use a WHERE clause to filter out any documents where the required field is MISSING. The minimum filter you can use to do this is `IS NOT MISSING`. This is usually only necessary in queries which do not otherwise have a WHERE clause; for example, some GROUP BY and aggregate queries.
 * In the index definition, use the `INCLUDE MISSING` modifier in the leading index key, to index documents where the specified key is missing. For more information, see [INCLUDE MISSING Clause](createindex.md#include-missing).

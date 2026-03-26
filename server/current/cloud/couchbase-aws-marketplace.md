@@ -3,7 +3,7 @@ title: Deploy Couchbase Server Using AWS Marketplace
 description: Couchbase partners with Amazon to provide a packaged solution on
   AWS Marketplace.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cloud/pages/couchbase-aws-marketplace.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cloud:couchbase-aws-marketplace.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Couchbase is available through AWS Marketplace with hourly pricing, or through a
 
 ## [](#before-you-begin)Before You Begin
 
-* You need an AWS account. If you don’t have one, [sign up](https://aws.amazon.com/) for one before proceeding.
+* You need an AWS account. If you don't have one, [sign up](https://aws.amazon.com/) for one before proceeding.
 * You should review the [best practices](couchbase-cloud-deployment.md#aws-best-practices) for deploying Couchbase Server on AWS.
 
 ## [](#deploying-couchbase-server)Deploying Couchbase Server
@@ -33,7 +33,7 @@ Couchbase is available through AWS Marketplace with hourly pricing, or through a
 ![aws marketplace couchbase ee](_images/aws/deploying/aws-marketplace-couchbase-ee.png)
 3. On the Subscribe to this software screen, accept the terms and conditions for this software.  
 ![aws marketplace couchbase ee subscription public terms](_images/aws/deploying/aws-marketplace-couchbase-ee-subscription-public-terms.png)
-4. Once your request is processed, you’ll be able to proceed by clicking **Continue to Configuration**.  
+4. Once your request is processed, you'll be able to proceed by clicking **Continue to Configuration**.  
 ![aws marketplace couchbase terms conditions](_images/aws/deploying/aws-marketplace-couchbase-terms-conditions.png)
 5. Configure the software by selecting CloudFormation Template from the **Fulfillment option** drop down. You can also customize the Couchbase Server version and the region where the software will be deployed. Then click **Continue to Launch**.  
 ![aws marketplace couchbase ee configure 5](_images/aws/deploying/aws-marketplace-couchbase-ee-configure-5.png)

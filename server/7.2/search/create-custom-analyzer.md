@@ -4,7 +4,7 @@ description: Create a custom analyzer with the Couchbase Server Web Console to
   modify the input text from a Search query or Search index and improve search
   results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-custom-analyzer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:create-custom-analyzer.adoc[]
 ---
 
@@ -17,8 +17,8 @@ link: xref:7.2@server:search:create-custom-analyzer.adoc[]
 
 ## [](#prerequisites)Prerequisites
 
-* You’ve created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md).
-* You’ve logged in to the Couchbase Server Web Console.
+* You've created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md).
+* You've logged in to the Couchbase Server Web Console.
 
 ## [](#procedure)Procedure
 

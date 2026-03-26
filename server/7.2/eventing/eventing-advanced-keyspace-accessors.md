@@ -3,7 +3,7 @@ title: Advanced Keyspace Accessors
 description: <em>Advanced Keyspace Accessors</em> make it possible to access
   advanced KV functionality using the following built-in operators.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-advanced-keyspace-accessors.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:eventing:eventing-advanced-keyspace-accessors.adoc[]
 ---
 
@@ -29,11 +29,11 @@ The following Advanced Keyspace Accessors are supported:
 
 These seven (7) Advanced Keyspace Accessors make it possible to utilize and leverage CAS directly and/or set a document expiration (or TTL) in the Data Service (or KV) via Eventing plus perform distributed atomic counter operations.
 
-For example rather than blindly relying on the Basic Keyspace Accessors for an upsert like operation ‘src\_col\[id\_str\] = some\_doc’ the Advanced Accessors allow you to resolve contention (or possible contention) with JavaScript driven logic in your Eventing Function.
+For example rather than blindly relying on the Basic Keyspace Accessors for an upsert like operation 'src\_col\[id\_str\] = some\_doc' the Advanced Accessors allow you to resolve contention (or possible contention) with JavaScript driven logic in your Eventing Function.
 
-* If the document doesn’t exist you can use ‘couchbase.insert(src\_col, {"id: id\_str}, some\_doc)’ and check the return value for success
-* You can use ‘couchbase.upsert(src\_col, {"id: id\_str}, some\_doc)’ to update a document if it already exists. If the document doesn’t exist, then a new document will be created. Check the return value to see if the operation was successful.
-* If the document exists you can use ‘couchbase.replace(src\_col, {"id: id\_str, "cas": current\_cas}, some\_doc)’ and check the return value for success or a CAS mismatch.
+* If the document doesn't exist you can use 'couchbase.insert(src\_col, {"id: id\_str}, some\_doc)' and check the return value for success
+* You can use 'couchbase.upsert(src\_col, {"id: id\_str}, some\_doc)' to update a document if it already exists. If the document doesn't exist, then a new document will be created. Check the return value to see if the operation was successful.
+* If the document exists you can use 'couchbase.replace(src\_col, {"id: id\_str, "cas": current\_cas}, some\_doc)' and check the return value for success or a CAS mismatch.
 
 To view complete examples including JavaScript, input mutations, output mutations and/or log messages for each Advanced Bucket Accessor refer to [Scriptlets: Advanced Accessor Handlers](eventing-examples.md#examples-scriptlets-advanced-accessors) in the examples section of the documentation.
 
@@ -41,7 +41,7 @@ To view complete examples including JavaScript, input mutations, output mutation
 
 For Eventing Functions that listen to multiple collections via a wildcard of `*` for the scope and/or the collection, an additional parameter is required if the binding used by the Advanced Keyspace Accessor also contains a wildcard of `*` for the scope and/or the collection.
 
-* ‘couchbase.insert(src\_col, {"id: id\_str, "keyspace":{"bucket\_name": "bkt01","scope\_name":"scp01","collection\_name":"col01"}}, some\_doc)’
+* 'couchbase.insert(src\_col, {"id: id\_str, "keyspace":{"bucket\_name": "bkt01","scope\_name":"scp01","collection\_name":"col01"}}, some\_doc)'
 
 The example above adds a _keyspace_ to the _meta_ object to specify win which keyspace the insert is to take place. Note as of 7.1.1 the entry points of OnUpdate() and OnDelete() provide _meta.keyspace_ with every mutation. For a detailed example refer to the multiCollectionEventing example in [Scriptlets: Advanced Accessor Handlers](eventing-examples.md#examples-scriptlets-advanced-accessors)
 
@@ -70,7 +70,7 @@ function OnUpdate(doc, meta) {
 
 Couchbase Server 7.0.2In version 7.0.2 an optional third parameter **{"cache": true}** enables a bucket backed cache to hold the document for at most 1 second. This cache exists on each eventing node and is shared across all Eventing Functions (or threads) on the same node.
 
-The performance is typically 18X-25X faster than reading data directly from the Data Service (or KV). A common use case is to load near static data such as a lookup table from the Data Service where the external data is needed on every document mutation to drive the Eventing Function’s business logic.
+The performance is typically 18X-25X faster than reading data directly from the Data Service (or KV). A common use case is to load near static data such as a lookup table from the Data Service where the external data is needed on every document mutation to drive the Eventing Function's business logic.
 
 This cache has RYOW (read your own write) semantics. This implies that a thread of execution writing and then subsequently reading the same document with **{"cache": true}** will always retreive the value just written.
 
@@ -440,7 +440,7 @@ The positional parameter (denoted by _meta_ in the prototype above) represents t
   ```  
   This parameter is only required if you are using a _binding_ with a wildcard for the scope and/or the collection.
   * _meta.cas (type: string)_  
-  This is an optional parameter that specifies the CAS value to be used as a pre-condition for the operation. If the document’s CAS value does not match the CAS value specified here, the operation will fail, setting the parameter _cas\_mismatch_ to true in the error object of the return object.
+  This is an optional parameter that specifies the CAS value to be used as a pre-condition for the operation. If the document's CAS value does not match the CAS value specified here, the operation will fail, setting the parameter _cas\_mismatch_ to true in the error object of the return object.
   * _meta.expiry\_date (type: Date)_  
   This is an optional parameter. If specified, it must be of JavaScript _Date_ object type. The document updated by this operation will be marked to expire at the specified time. If no expiration is provided, and if the document had a prior expiration set, the prior expiration will be cleared.
 * _doc (type: any JSON serializable))_  
@@ -575,7 +575,7 @@ The positional parameter (denoted by _meta_ in the prototype above) represents t
   ```  
   This parameter is only required if you are using a _binding_ with a wildcard for the scope and/or the collection.
   * _meta.cas (type: string)_  
-  This is an optional parameter that specifies the CAS value to be used as a pre-condition for the operation. If the document’s CAS value does not match the CAS value specified here, the operation will fail, setting the parameter _cas\_mismatch_ to true in the error object of the return object.
+  This is an optional parameter that specifies the CAS value to be used as a pre-condition for the operation. If the document's CAS value does not match the CAS value specified here, the operation will fail, setting the parameter _cas\_mismatch_ to true in the error object of the return object.
 * _result – the return value (type: Object)_  
 The return object indicates success/failure of the operation, and the metadata of the operation, or the error details if failure.
 

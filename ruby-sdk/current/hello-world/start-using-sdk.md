@@ -2,7 +2,7 @@
 title: Start Using the Ruby SDK
 description: A quick start guide to get you up and running with Couchbase and the Ruby SDK.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ruby-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:ruby-sdk:hello-world:start-using-sdk.adoc[]
 
 > A quick start guide to get you up and running with Couchbase and the Ruby SDK. 
 
-The Couchbase Ruby SDK allows you to connect to a Couchbase cluster from Ruby. The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase’s binary protocols.
+The Couchbase Ruby SDK allows you to connect to a Couchbase cluster from Ruby. The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase's binary protocols.
 
 Ruby SDK supports [currently maintained Ruby versions](https://www.ruby-lang.org/en/downloads/branches/), and recommends the latest stable version where possible (currently 3.3 as of March 2024).
 
@@ -167,12 +167,12 @@ require "couchbase"
 
 ### [](#connect)Connect
 
-Connect to your cluster by calling the `Cluster.connect()` method and pass it your connection details. The basic connection details that you’ll need are given below — for more background information, see [Managing Connections](../howtos/managing-connections.md).
+Connect to your cluster by calling the `Cluster.connect()` method and pass it your connection details. The basic connection details that you'll need are given below — for more background information, see [Managing Connections](../howtos/managing-connections.md).
 
 * Capella Connection
 * Local Server Connection
 
-From version 3.3, the Ruby SDK includes Capella’s standard certificates by default, so you do not need to additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
+From version 3.3, the Ruby SDK includes Capella's standard certificates by default, so you do not need to additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
 
 ```ruby
 # Update these credentials for your Capella instance!
@@ -211,9 +211,9 @@ bucket = cluster.bucket("travel-sample")
 > [!TIP]
 > WaitUntilReady()
 > 
-> For some of the SDKs, such as [Java](../../../java-sdk/current/hello-world/start-using-sdk.md#opening-a-bucket), you’ll see a recommendation to use `waitUntilReady()`, which ensures that the bucket resource is fully loaded before proceeding.
+> For some of the SDKs, such as [Java](../../../java-sdk/current/hello-world/start-using-sdk.md#opening-a-bucket), you'll see a recommendation to use `waitUntilReady()`, which ensures that the bucket resource is fully loaded before proceeding.
 > 
-> Although this is an element of the [SDK bootstrapping RFC](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0048-sdk3-bootstrapping.md), it’s not required for successful operation of the "wrapper" SDKs (Node.js, PHP, Python, and Ruby — wrappers over the C++ SDK), as `Cluster.connect()` blocks until bootstrap is complete and a cluster config is seen. Any bootstrap errors are returned there.
+> Although this is an element of the [SDK bootstrapping RFC](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0048-sdk3-bootstrapping.md), it's not required for successful operation of the "wrapper" SDKs (Node.js, PHP, Python, and Ruby — wrappers over the C++ SDK), as `Cluster.connect()` blocks until bootstrap is complete and a cluster config is seen. Any bootstrap errors are returned there.
 
 ### [](#add-and-retrieve-documents)Add and Retrieve Documents
 
@@ -274,7 +274,7 @@ cluster.disconnect
 
 ## [](#next-steps)Next Steps
 
-Now you’re up and running, try one of the following:
+Now you're up and running, try one of the following:
 
 * Our [Travel Sample Application](sample-application.md) demonstrates all the basics you need to know;
 * Explore [Data Operations](../howtos/kv-operations.md) against a document database;
@@ -289,7 +289,7 @@ Couchbase welcomes community contributions to the Ruby SDK. The Ruby SDK source 
 
 ### [](#troubleshooting)Troubleshooting
 
-* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you’re running the SDK on your laptop against a Capella cluster, see further information on:
+* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you're running the SDK on your laptop against a Capella cluster, see further information on:
 
   * Notes on [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
   * [Network Requirements](../project-docs/compatibility.md#network-requirements).

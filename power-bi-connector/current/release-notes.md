@@ -2,7 +2,7 @@
 title: Release Notes
 description: Release notes for the Couchbase Power BI Connector.
 editUrl: https://github.com/couchbase/docs-connectors-power-bi/edit/release/1.2/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:power-bi-connector::release-notes.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:power-bi-connector::release-notes.adoc[]
 
 > Release notes for the Couchbase Power BI Connector. 
 
-The [Couchbase Power BI Connector](index.md) provides integration between Microsoft’s Power BI interactive data visualization platform and either Couchbase Analytics Service (CBAS) or tabular views of your Capella columnar collections or query results.
+The [Couchbase Power BI Connector](index.md) provides integration between Microsoft's Power BI interactive data visualization platform and either Couchbase Analytics Service (CBAS) or tabular views of your Capella columnar collections or query results.
 
 For self-managed CBAS, the Power BI connector requires Couchbase Server 7.2.4 or newer.
 

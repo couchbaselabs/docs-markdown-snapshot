@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.0/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:python-analytics-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -177,7 +177,7 @@ __Table 1\. Available Query Options__
 | Name                                                              | Description                                                                                                                          |
 | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | client\_context\_id: Optional\[str\]                              | An optional identifier for the query.                                                                                                |
-| deserializer: Optional\[Deserializer\]                            | Sets the deserializer applied to results. If not specified, defaults to the cluster’s default deserializer, DefaultJsonDeserializer. |
+| deserializer: Optional\[Deserializer\]                            | Sets the deserializer applied to results. If not specified, defaults to the cluster's default deserializer, DefaultJsonDeserializer. |
 | named\_parameters: Optional\[Dict\[str, JSONType\]\]              | Values to use for named placeholders in query.                                                                                       |
 | positional\_parameters: Optional\[Iterable\[JSONType\]\]          | Values to use for positional placeholders in query.                                                                                  |
 | query\_context: Optional\[str\]                                   | Specifies the context within which this query should be executed.                                                                    |

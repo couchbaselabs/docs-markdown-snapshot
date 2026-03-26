@@ -1,7 +1,7 @@
 ---
 title: Adding Security
 editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/develop/java/adding-security.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:todo-app:develop/java/adding-security.adoc[]
 ---
 
@@ -10,13 +10,13 @@ link: xref:tutorials:todo-app:develop/java/adding-security.adoc[]
 
 # Adding Security
 
-In this lesson you’ll learn how to add security to your Couchbase Mobile application. You’ll implement authentication and define access control, data validation, and access grant policies.
+In this lesson you'll learn how to add security to your Couchbase Mobile application. You'll implement authentication and define access control, data validation, and access grant policies.
 
 ## [](#user-authentication)User Authentication
 
 ### [](#install-sync-gateway)Install Sync Gateway
 
-Users are created with a name/password on Sync Gateway which can then be used on the Couchbase Lite replicator to authenticate as a given user. You can create users by hardcoding the user’s name/password in the configuration file. Create a new file called **sync-gateway-config.json** with the following.
+Users are created with a name/password on Sync Gateway which can then be used on the Couchbase Lite replicator to authenticate as a given user. You can create users by hardcoding the user's name/password in the configuration file. Create a new file called **sync-gateway-config.json** with the following.
 
 ```json
 {
@@ -130,7 +130,7 @@ pusher.start();
 puller.start();
 ```
 
-The `CBLAuthenticator` class has static methods for each authentication method supported by Couchbase Lite. Here, you’re passing the name/password to the `basicAuthenticatorWithName` method. The object returned by this method can be set on the replication’s `authenticator` property.
+The `CBLAuthenticator` class has static methods for each authentication method supported by Couchbase Lite. Here, you're passing the name/password to the `basicAuthenticatorWithName` method. The object returned by this method can be set on the replication's `authenticator` property.
 
 #### [](#try-it-out-2)Try it out
 
@@ -174,13 +174,13 @@ private Boolean mLoginFlowEnabled = true;
 
 center-image />
 
-> **Note:** You can remove the local database and check if the pull replication retrieves the documents now present on Sync Gateway. Using File Explorer, type `%LOCALAPPDATA%` into the location bar and press enter, then delete the database **user1.cblite2**. Then restart the app and you’ll notice that the Today list isn’t displayed. That is, the list document wasn’t replicated from Sync Gateway to Couchbase Lite. Indeed, the document is not routed to a channel that the user has access to. **Channel** and **access** are new terms so don’t worry, we’ll cover what they mean in the next section. 
+> **Note:** You can remove the local database and check if the pull replication retrieves the documents now present on Sync Gateway. Using File Explorer, type `%LOCALAPPDATA%` into the location bar and press enter, then delete the database **user1.cblite2**. Then restart the app and you'll notice that the Today list isn't displayed. That is, the list document wasn't replicated from Sync Gateway to Couchbase Lite. Indeed, the document is not routed to a channel that the user has access to. **Channel** and **access** are new terms so don't worry, we'll cover what they mean in the next section. 
 
-> **Note:** You can remove the local database and check if the pull replication retrieves the documents now present on Sync Gateway. On macOS, use the [SimPholders](https://simpholders.com/) utility app to quickly find the data directory of the application and delete the database called **user1** on iOS, or you can use the adb shell to navigate to the application’s data folder and delete it on Android. Then restart the app and you’ll notice that the Today list isn’t displayed. That is, the list document wasn’t replicated from Sync Gateway to Couchbase Lite. Indeed, the document is not routed to a channel that the user has access to. **Channel** and **access** are new terms so don’t worry, we’ll cover what they mean in the next section. 
+> **Note:** You can remove the local database and check if the pull replication retrieves the documents now present on Sync Gateway. On macOS, use the [SimPholders](https://simpholders.com/) utility app to quickly find the data directory of the application and delete the database called **user1** on iOS, or you can use the adb shell to navigate to the application's data folder and delete it on Android. Then restart the app and you'll notice that the Today list isn't displayed. That is, the list document wasn't replicated from Sync Gateway to Couchbase Lite. Indeed, the document is not routed to a channel that the user has access to. **Channel** and **access** are new terms so don't worry, we'll cover what they mean in the next section. 
 
 ## [](#access-control)Access Control
 
-In order to give different users access to different documents, you must write a sync function. The sync function lives in the configuration file of Sync Gateway. It’s a JavaScript function and every time a new document, revision or deletion is added to a database, the sync function is called and given a chance to examine the document.
+In order to give different users access to different documents, you must write a sync function. The sync function lives in the configuration file of Sync Gateway. It's a JavaScript function and every time a new document, revision or deletion is added to a database, the sync function is called and given a chance to examine the document.
 
 You can use different API methods to route documents to channels, grant users access to channels and even assign roles to users. Access rules generally follow the order shown on the image below: write permissions, validation, routing, read permissions.
 
@@ -194,7 +194,7 @@ You can use different API methods to route documents to channels, grant users ac
 The Sync Function takes two arguments:
 
 * **doc:** The current revision being processed.
-* **oldDoc:** The parent revisions if it’s an update operation and `null` if it’s a create operation.
+* **oldDoc:** The parent revisions if it's an update operation and `null` if it's a create operation.
 
 Each document type will have different access control rules associated with it. So the first operation is to ensure the document has a type property. Additionally, once a document is created, its type cannot change. The code below implements those 2 validation rules.
 
@@ -256,13 +256,13 @@ function(doc, oldDoc){
 }
 ```
 
-As shown above, you can define inner functions to encapsulate logic used throughout the sync function. This makes your code more readable and follows the DRY principle (Don’t Repeat Yourself).
+As shown above, you can define inner functions to encapsulate logic used throughout the sync function. This makes your code more readable and follows the DRY principle (Don't Repeat Yourself).
 
 #### [](#try-it-out-3)Try it out
 
 1. Open the Sync menu on the Admin UI <http://localhost:4985/%5Fadmin/db/todo/sync>.
 2. Copy the code snippet above in the Sync Function text area.
-3. Click the **Deploy To Server** button. It will update Sync Gateway with the new config but it doesn’t persist the changes to the filesystem.
+3. Click the **Deploy To Server** button. It will update Sync Gateway with the new config but it doesn't persist the changes to the filesystem.
 4. Add two documents through the REST API. One with the `type` property and the second document without it. Notice that the user credentials (**user1/pass**) are passed in the URL.  
 ```bash  
 curl -vX POST 'http://user1:pass@localhost:4984/todo/_bulk_docs' \
@@ -308,7 +308,7 @@ Similarly, the owner field is taken from oldDoc if doc is a deletion revision. T
 
 1. Open the Sync menu on the Admin UI <http://localhost:4985/%5Fadmin/db/todo/sync>.
 2. Copy the changes above in the Sync Function text area to replace the `/* Write access */` block.
-3. Click the **Deploy To Server** button. It will update Sync Gateway with the new config but it doesn’t persist the changes to the filesystem.
+3. Click the **Deploy To Server** button. It will update Sync Gateway with the new config but it doesn't persist the changes to the filesystem.
 4. Add two documents through the REST API. The request is sent as a user (**user1/pass**). One document is a list for user1 and another is a list for user2.  
 ```bash  
 curl -vX POST 'http://user1:pass@localhost:4984/todo/_bulk_docs' \
@@ -353,7 +353,7 @@ if (!isDelete()) {
 
 1. Open the Sync menu on the Admin UI <http://localhost:4985/%5Fadmin/db/todo/sync>.
 2. Copy the changes above in the Sync Function text area to replace the `/* Validation */` block.
-3. Click the **Deploy To Server** button. It will update Sync Gateway with the new config but it doesn’t persist the changes to the filesystem.
+3. Click the **Deploy To Server** button. It will update Sync Gateway with the new config but it doesn't persist the changes to the filesystem.
 
 **Challenge:** Persist documents using curl until it gets persisted and Sync Gateway returns a **201 Created** status code.
 
@@ -372,13 +372,13 @@ channel(moderators);
 
 1. Open the Sync menu on the Admin UI <http://localhost:4985/%5Fadmin/db/todo/sync>.
 2. Copy the changes above in the Sync Function text area to replace the `/* Routing */` block.
-3. Click the **Live Preview Mode** button. This mode doesn’t restart Sync Gateway but will use the updated Sync Function for testing purposes. Click the **random** button to pick a document at random and run it through the sync function again. It re-calculates the routing to channels and access grants. This time, the owner (user1) has access to its own list’s channel.
+3. Click the **Live Preview Mode** button. This mode doesn't restart Sync Gateway but will use the updated Sync Function for testing purposes. Click the **random** button to pick a document at random and run it through the sync function again. It re-calculates the routing to channels and access grants. This time, the owner (user1) has access to its own list's channel.
 4. Both documents are saved and mapped to the corresponding channels in the Admin UI.  
 ![image88](../../_images/image88.png)
 
 ### [](#read-access)Read Access
 
-The last step in writing access control rules for a document type is to allow read access to channels. The following code grants the owner and users that are moderators access to the list’s channel.
+The last step in writing access control rules for a document type is to allow read access to channels. The following code grants the owner and users that are moderators access to the list's channel.
 
 ```javascript
 /* Read Access */
@@ -392,9 +392,9 @@ access(role:moderator, task-list. + doc._id);
 
 1. Open the Sync menu on the Admin UI <http://localhost:4985/%5Fadmin/db/todo/sync>.
 2. Copy the changes above in the Sync Function text area to replace the `/* Read access */` block.
-3. Click the **Live Preview Mode** button. This mode doesn’t restart Sync Gateway but will use the updated Sync Function for testing purposes. Click the **random** button to pick a document at random and run it through the sync function again. It re-calculates the routing to channels and access grants. This time, the owner (user1) has access to its own list’s channel.  
+3. Click the **Live Preview Mode** button. This mode doesn't restart Sync Gateway but will use the updated Sync Function for testing purposes. Click the **random** button to pick a document at random and run it through the sync function again. It re-calculates the routing to channels and access grants. This time, the owner (user1) has access to its own list's channel.  
 ![image38](../../_images/image38.png)
 
 ## [](#conclusion)Conclusion
 
-Well done! You’ve completed this lesson on adding authentication, writing a sync function and adding database encryption. Feel free to share your feedback, findings or ask any questions on the forums.
+Well done! You've completed this lesson on adding authentication, writing a sync function and adding database encryption. Feel free to share your feedback, findings or ask any questions on the forums.

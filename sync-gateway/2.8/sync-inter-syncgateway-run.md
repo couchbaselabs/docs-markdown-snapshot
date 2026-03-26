@@ -2,7 +2,7 @@
 title: Initialize Inter-Sync Gateway Replications
 description: Initializing and running inter-Sync Gateway replication
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/sync-inter-syncgateway-run.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::sync-inter-syncgateway-run.adoc[]
 ---
 
@@ -58,7 +58,7 @@ Example 1\. Replication Characteristics Highlights
 * inter-Sync Gateway replications introduced in Sync Gateway 2.8 as well as SG-Replicate can run on the same node, but you must ensure that they each have a different `replication_id`.
 * The user under which replication is being run must have read and write access to the data being replicated.
 * Exponential backoff when connection lost; this can be customized using the [max\_backoff\_time](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep-max%5Fbackoff%5Ftime) configuration setting.
-* replications will continue trying to connect for 30 minutes following authentication failure (including user-invalid/doesn’t exist).
+* replications will continue trying to connect for 30 minutes following authentication failure (including user-invalid/doesn't exist).
 * Running replications can be stopped. Stopped replications can be (re)Started.
 * If ALL the Sync Gateway nodes in a source or target Sync Gateway cluster go down in the middle of continuous replication, by default, the system should pick up from the last document that was successfully processed by both sides when the replication/cluster is restarted
 * REST ONLY
@@ -101,9 +101,9 @@ This table summarize all the available configurable items. It includes a link to
 
 | Name and Link                                                                                                                                                      | Summary                                                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [adhoc](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep-adhoc)                                             | REST API ONLYUse the Admin REST API’s adhoc parameter to specify that a replication is ad hoc rather than persistent.                                |
+| [adhoc](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep-adhoc)                                             | REST API ONLYUse the Admin REST API's adhoc parameter to specify that a replication is ad hoc rather than persistent.                                |
 | [batch\_size](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep-batch%5Fsize)                                | Use batch\_size to specify the number of changes to be included in a single batch during replication.                                                |
-| [cancel](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep-cancel)                                           | REST API ONLYUse the Admin REST API’s cancel parameter only when you want to want to cancel an existing active replication.                          |
+| [cancel](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep-cancel)                                           | REST API ONLYUse the Admin REST API's cancel parameter only when you want to want to cancel an existing active replication.                          |
 | [conflict\_resolution\_type](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep-conflict%5Fresolution%5Ftype) | Use conflict\_resolution\_type to specify how Sync Gateway should resolve conflicts. By default the automatic conflict resolution policy is applied. |
 | [continuous](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep-continuous)                                   | Use continuous to specify whether this replication will run continuously, or be one-shot.                                                            |
 | [custom\_conflict\_resolver](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep-custom%5Fconflict%5Fresolver) | Use custom\_conflict\_resolver to provide the Javascript function used to resolve conflicts if "conflict\_resolution\_type": "custom".               |
@@ -158,11 +158,11 @@ It creates a replication with the replication\_ID of `db1-rep-id1-pull-oneshot` 
 | **7**  | Apply a custom conflict resolution policy.                                                                                                       |
 | **8**  | Provide a working Javascript function to apply the required resolution policy.                                                                   |
 | **9**  | By setting continuous=false, we are creating a one-shot replication. We could also have omitted this parameter as it defaults to false.          |
-| **10** | Don’t use delta-sync; the default behavior.                                                                                                      |
+| **10** | Don't use delta-sync; the default behavior.                                                                                                      |
 | **11** | Filter documents by channel.                                                                                                                     |
 | **12** | Replicate only those documents tagged with the channel names "user1".                                                                            |
 | **13** | Wait no more than 5 minutes between retries after network failure; default behavior.                                                             |
-| **14** | Don’t purge following removal of a channel; the default behavior.                                                                                |
+| **14** | Don't purge following removal of a channel; the default behavior.                                                                                |
 | **15** | Start the replicator immediately and on Sync Gateway node re(start);. We could also have omitted this parameter as this is the default behavior. |
 
 This is an example of a replication definition as you might submit it to the Admin REST API.using `curl`. Its purpose is to illustrate all configurable items in use and so should not be considered a working example.
@@ -202,11 +202,11 @@ curl --location --request POST 'http://localhost:4985/db1-local/_replication/db1
 | **6**  | Apply a custom conflict resolution policy.                                                                                                                                    |
 | **7**  | Provide a working Javascript function to apply the required resolution policy.                                                                                                |
 | **8**  | By setting continuous=false, we are creating a one-shot replication. We could also have omitted this parameter as it defaults to false.                                       |
-| **9**  | Don’t use delta-sync; the default behavior.                                                                                                                                   |
+| **9**  | Don't use delta-sync; the default behavior.                                                                                                                                   |
 | **10** | Filter documents by channel.                                                                                                                                                  |
 | **11** | Replicate only those documents tagged with the channel names "user1".                                                                                                         |
 | **12** | Wait no more than 5 minutes between retries after network failure; default behavior.                                                                                          |
-| **13** | Don’t purge following removal of a channel; the default behavior.                                                                                                             |
+| **13** | Don't purge following removal of a channel; the default behavior.                                                                                                             |
 | **14** | Start the replicator immediately and on Sync Gateway node re(start);. We could also have omitted this parameter as this is the default behavior.                              |
 | **15** | Setting adhoc=false marks this as a persistent replication. The definition will survive Sync Gateway node restarts. This the default behaviour if this parameter is omitted.+ |
 | **16** | Set cancel=true to cancel an initialized replication; otherwise you can omit this parameter.                                                                                  |

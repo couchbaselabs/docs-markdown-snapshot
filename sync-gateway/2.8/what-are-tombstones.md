@@ -2,7 +2,7 @@
 title: Tombstones
 description: About Sync Gateway <em>Tombstones</em>.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/what-are-tombstones.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::what-are-tombstones.adoc[]
 ---
 
@@ -65,7 +65,7 @@ Document operations also have a different impact on tombstones when Shared Bucke
 | Removes the document and metadata                              | Removes the document and metadata    |
 | **Deleting a document body in the bucket (SDK, N1QL, expiry)** |                                      |
 | Removes the document and metadata                              | Creates a tombstone                  |
-| **Purging a document’s metadata (on Couchbase Server)**        |                                      |
+| **Purging a document's metadata (on Couchbase Server)**        |                                      |
 | N/A                                                            | Removes the tombstone metadata       |
 
 ## [](#what-you-can-do-with-tombstones)What you can do with tombstones
@@ -73,7 +73,7 @@ Document operations also have a different impact on tombstones when Shared Bucke
 Whether your synchronizations are purely sync gateway or you use Couchbase Lite, you wil need to manage tombstone artefacts (see [Working with tombstones](managing-tombstones.md)):
 
 * Remove tombstones — you need to purge them, manually or automatically
-* Clear Sync Gateway’s in-memory channel caches by ejecting
+* Clear Sync Gateway's in-memory channel caches by ejecting
 
 ## [](#see-also)See also:
 

@@ -3,7 +3,7 @@ title: Grouping and Aggregate Pushdowns
 description: SQL++ Pushdowns optimize the performance of SQL++ queries by
   supporting grouping and aggregate expressions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/indexes/pages/groupby-aggregate-performance.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:indexes:groupby-aggregate-performance.adoc[]
 ---
 
@@ -39,7 +39,7 @@ This reduction step reduces the amount of data transfer and disk I/O, resulting 
 * High scalability
 * Low TCO
 
-Let’s compare query performance with and without grouping and aggregate pushdown. Consider the following generic example index and query:
+Let's compare query performance with and without grouping and aggregate pushdown. Consider the following generic example index and query:
 
 CREATE INDEX _idxexpr_ ON _keyspaceref_ (_a_);
 
@@ -60,7 +60,7 @@ With grouping and aggregate pushdown, this simple generic query typically execut
 
 The query plan shows the accelerated aggregation details. For details, see [Appendix: Query Plan Fields](#section%5Fbpf%5Fwjf%5Fycb).
 
-Here’s how a query executes when the indexer handles the grouping and aggregation. Note that the query engine does not fetch any data from the data service (KV service).
+Here's how a query executes when the indexer handles the grouping and aggregation. Note that the query engine does not fetch any data from the data service (KV service).
 
 ![Query execution process, showing grouping and aggregation pushed down to the indexer](_images/GBAP_55execution-05aec3830817f8e60dd350b4eb0987179aa6c10f.svg) 
 
@@ -196,7 +196,7 @@ GROUP BY geo.lat, geo.lon
 HAVING SUM(id) > 100;
 ```
 
-In this case, the predicates are on the leading keys up to and including the array key. Therefore, indexer can efficiently do the grouping as seen by the optimal plan below. It’s important to note the array index key is created with a `DISTINCT` modifier (not the `ALL` modifier) to get this optimization and that the `SATISFIES` clause in the `ANY` predicate must be that of equality (that is, `v = "%a%"`).
+In this case, the predicates are on the leading keys up to and including the array key. Therefore, indexer can efficiently do the grouping as seen by the optimal plan below. It's important to note the array index key is created with a `DISTINCT` modifier (not the `ALL` modifier) to get this optimization and that the `SATISFIES` clause in the `ANY` predicate must be that of equality (that is, `v = "%a%"`).
 
 ![Visual plan with 3 steps: IndexScan3 using idx_grp_add_distinct, Filter, and Project with 4 terms](_images/GBAP_ExD_Plan.png) 
 
@@ -537,7 +537,7 @@ Results
 | **1** | The "partial": true line means it was pre-aggregated. |
 | ----- | ----------------------------------------------------- |
 
-Example 3\. List the number of landmarks by latitude and the state it’s in
+Example 3\. List the number of landmarks by latitude and the state it's in
 
 Use `COUNT(country)` for the total number of landmarks at each latitude. At a particular latitude, the `state` will be the same; but an aggregate function on it is needed, so `MIN()` or `MAX()` is used to return the original value.
 
@@ -662,7 +662,7 @@ GROUP BY LOWER(_a_);
 
 For comparison, the below index and query combination will yield pre-aggregated results.
 
-Pre-aggregated Syntax — the GROUP BY and Index keys don’t match
+Pre-aggregated Syntax — the GROUP BY and Index keys don't match
 
 CREATE INDEX _idxoperation_ ON _keyspaceref_ (_a_, _b_, _c_);
 
@@ -673,7 +673,7 @@ GROUP BY UPPER(_a_);
 
 Example 5\. A field with an expression
 
-Let’s say the distance of a flight feels like "nothing" when it’s direct, but feels like the true distance when there is one layover. Then we can list and group by flight distances by calculating the distance multiplied by the stops it makes.
+Let's say the distance of a flight feels like "nothing" when it's direct, but feels like the true distance when there is one layover. Then we can list and group by flight distances by calculating the distance multiplied by the stops it makes.
 
 Index
 
@@ -764,7 +764,7 @@ Results
 
 Example 6\. An operation on a field
 
-Let’s say the distance of a flight feels like "nothing" when it’s direct, but feels like the true distance when there is one layover. Then we can list and group by the uppercase of the airport codes and listing the flight distances by calculating the distance multiplied by the stops it makes along with the total distance.
+Let's say the distance of a flight feels like "nothing" when it's direct, but feels like the true distance when there is one layover. Then we can list and group by the uppercase of the airport codes and listing the flight distances by calculating the distance multiplied by the stops it makes along with the total distance.
 
 Index
 
@@ -2020,13 +2020,13 @@ In the query plan:
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
 | aggregates    | Array of Aggregate objects, and each object represents one aggregate function. The absence of this item means there is no Aggregate function.                                                                                                                            | aggregates                                                 |
 | ... aggregate | Aggregate operation.                                                                                                                                                                                                                                                     | COUNT                                                      |
-| ... depends   | List of index key positions the GROUP BY expression depends on, starting with 0.                                                                                                                                                                                         | 0 (because it’s the 1st item)                              |
+| ... depends   | List of index key positions the GROUP BY expression depends on, starting with 0.                                                                                                                                                                                         | 0 (because it's the 1st item)                              |
 | ... expr      | Group expression or an aggregate expression.                                                                                                                                                                                                                             | "cover ((\`landmark\`.\`activity\`))"                      |
 | ... id        | Unique ID given internally and will be used in index\_projection                                                                                                                                                                                                         | 2                                                          |
 | ... keypos    | Key Position to use the Index expr or the query expr. A value > -1 means the group key exactly matches the corresponding index keys, where 0 is the 1st index key. A value of -1 means the group key does not match the index key and uses the query expression instead. | 0 (because it matches the 1st index key)                   |
-| depends       | List of index key positions the GROUP BY expression depends on, starting with 0.                                                                                                                                                                                         | 0 (because it’s the 1st item)                              |
+| depends       | List of index key positions the GROUP BY expression depends on, starting with 0.                                                                                                                                                                                         | 0 (because it's the 1st item)                              |
 | group         | Array of GROUP BY objects, and each object represents one group key. The absence of this item means there is no GROUP BY clause.                                                                                                                                         | group                                                      |
-| ... depends   | Index key position of a single GROUP BY expression                                                                                                                                                                                                                       | 0 (because it’s the 1st GROUP BY key)                      |
+| ... depends   | Index key position of a single GROUP BY expression                                                                                                                                                                                                                       | 0 (because it's the 1st GROUP BY key)                      |
 | ... expr      | Single GROUP BY expression.                                                                                                                                                                                                                                              | "cover ((\`landmark\`.\`activity\`))"                      |
 | ... id        | Unique ID given internally and will be used in index\_projection                                                                                                                                                                                                         | 0                                                          |
 | ... keypos    | Key Position to use the Index expr or the query expr. A value > -1 means the group key exactly matches the corresponding index keys, where 0 is the 1st index key. A value of -1 means the group key does not match the index key and uses the query expression instead. | 0 (because it matches the 1st key in the index expression) |
@@ -2127,13 +2127,13 @@ __Table 2\. GROUP BY Query Plan__
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | aggregates    | Array of Aggregate objects, and each object represents one aggregate function. The absence of this item means there is no Aggregate function.                                                                                                                            | aggregates                                                                                       |
 | ... aggregate | Aggregate operation.                                                                                                                                                                                                                                                     | MAX                                                                                              |
-| ... depends   | List of index key positions the GROUP BY expression depends on, starting with 0.                                                                                                                                                                                         | 2 (because it’s the 3rd item)                                                                    |
+| ... depends   | List of index key positions the GROUP BY expression depends on, starting with 0.                                                                                                                                                                                         | 2 (because it's the 3rd item)                                                                    |
 | ... expr      | Group expression or an aggregate expression.                                                                                                                                                                                                                             | round(cover (((\`landmark\`. \`geo\`).\`lat\`)))                                                 |
 | ... id        | Unique ID given internally and will be used in index\_projection                                                                                                                                                                                                         | 4                                                                                                |
 | ... keypos    | Key Position to use the Index expr or the query expr. A value > -1 means the group key exactly matches the corresponding index keys, where 0 is the 1st index key. A value of -1 means the group key does not match the index key and uses the query expression instead. | \-1 (because the index has the field geo.lat but the query adds the ROUND() function to geo.lat) |
 | depends       | List of index key positions the GROUP BY expression depends on, starting with 0.                                                                                                                                                                                         | 0, 1, 2                                                                                          |
 | group         | Array of GROUP BY objects, and each object represents one group key. The absence of this item means there is no GROUP BY clause.                                                                                                                                         | group                                                                                            |
-| ... depends   | Index key position of a single GROUP BY expression, starting with 0.                                                                                                                                                                                                     | 0 (because it’s the 1st GROUP BY key)                                                            |
+| ... depends   | Index key position of a single GROUP BY expression, starting with 0.                                                                                                                                                                                                     | 0 (because it's the 1st GROUP BY key)                                                            |
 | ... expr      | Single GROUP BY expression.                                                                                                                                                                                                                                              | \`landmark\`.\`country\`                                                                         |
 | ... id        | Unique ID given internally and will be used in index\_projection.                                                                                                                                                                                                        | 0                                                                                                |
 | ... keypos    | Key Position to use the Index expr or the query expr. A value > -1 means the group key exactly matches the corresponding index keys, where 0 is the 1st index key. A value of -1 means the group key does not match the index key and uses the query expression instead. | 0 (because it matches the first key in the index expression)                                     |
@@ -2145,17 +2145,17 @@ __Table 3\. Aggregate Query Plan__
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
 | aggregates    | Array of Aggregate objects, and each object represents one aggregate function. The absence of this item means there is no Aggregate function.                                                                                                                            | aggregates                                                          |
 | ... aggregate | Aggregate operation.                                                                                                                                                                                                                                                     | SUM                                                                 |
-| ... depends   | List of index key positions the GROUP BY expression depends on, starting with 0.                                                                                                                                                                                         | 2 (because it’s the 3rd item)                                       |
+| ... depends   | List of index key positions the GROUP BY expression depends on, starting with 0.                                                                                                                                                                                         | 2 (because it's the 3rd item)                                       |
 | ... expr      | Group expression or an aggregate expression.                                                                                                                                                                                                                             | "abs(round(cover (((\`landmark\`.\`geo\`).\`lat\`))))"              |
 | ... id        | Unique ID given internally and will be used in index\_projection                                                                                                                                                                                                         | 4                                                                   |
-| ... keypos    | Key Position to use the Index expr or the query expr. A value > -1 means the group key exactly matches the corresponding index keys, where 0 is the 1st index key. A value of -1 means the group key does not match the index key and uses the query expression instead. | 2 (because the query’s 3rd key exactly matches the index’s 3rd key) |
+| ... keypos    | Key Position to use the Index expr or the query expr. A value > -1 means the group key exactly matches the corresponding index keys, where 0 is the 1st index key. A value of -1 means the group key does not match the index key and uses the query expression instead. | 2 (because the query's 3rd key exactly matches the index's 3rd key) |
 | depends       | List of index key positions the GROUP BY expression depends on, starting with 0.                                                                                                                                                                                         | 0, 1, 2                                                             |
 | group         | Array of GROUP BY objects, and each object represents one group key. The absence of this item means there is no GROUP BY clause.                                                                                                                                         | group                                                               |
-| ... depends   | Index key position of a single GROUP BY expression, starting with 0.                                                                                                                                                                                                     | 0 (because it’s the 1st GROUP BY key)                               |
+| ... depends   | Index key position of a single GROUP BY expression, starting with 0.                                                                                                                                                                                                     | 0 (because it's the 1st GROUP BY key)                               |
 | ... expr      | Single GROUP BY expression.                                                                                                                                                                                                                                              | "cover ((\`landmark\`.\`country\`))"                                |
 | ... id        | Unique ID given internally and will be used in index\_projection.                                                                                                                                                                                                        | 0                                                                   |
 | ... keypos    | Key Position to use the Index expr or the query expr. A value > -1 means the group key exactly matches the corresponding index keys, where 0 is the 1st index key. A value of -1 means the group key does not match the index key and uses the query expression instead. | 0 (because it matches the 1st key in the index expression)          |
-| ... depends   | Index key position of a single GROUP BY expression, starting with 0.                                                                                                                                                                                                     | 1 (because it’s the 2nd GROUP BY key)                               |
+| ... depends   | Index key position of a single GROUP BY expression, starting with 0.                                                                                                                                                                                                     | 1 (because it's the 2nd GROUP BY key)                               |
 | ... expr      | Single GROUP BY expression.                                                                                                                                                                                                                                              | "cover ((\`landmark\`.\`state\`))"                                  |
 | ... id        | Unique ID given internally and will be used in index\_projection.                                                                                                                                                                                                        | 1                                                                   |
 | ... keypos    | Key Position to use the Index expr or the query expr. A value > -1 means the group key exactly matches the corresponding index keys, where 0 is the 1st index key. A value of -1 means the group key does not match the index key and uses the query expression instead. | 1 (because it matches the 2nd key in the index expression)          |

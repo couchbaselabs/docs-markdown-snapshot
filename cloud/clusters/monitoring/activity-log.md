@@ -3,7 +3,7 @@ title: View Activity Logs
 description: Capella Activity Logs provide audit trails of events in your
   organization, project, and cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/activity-log.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:monitoring/activity-log.adoc[]
 ---
 
@@ -48,7 +48,7 @@ Activity Logs include the following information for each logged event:
 
 ## [](#filter-activity-logs)Filter Activity Logs
 
-Use filtering to choose what events appear in an Activity Log based on the user, cluster, project, event severity, event tag, and time range. You can combine multiple filters to narrow down what you’re looking for. The available filters depend on which Activity Log you’re viewing. For example, when viewing the Activity Log for a cluster you won’t be able to filter by cluster or project.
+Use filtering to choose what events appear in an Activity Log based on the user, cluster, project, event severity, event tag, and time range. You can combine multiple filters to narrow down what you're looking for. The available filters depend on which Activity Log you're viewing. For example, when viewing the Activity Log for a cluster you won't be able to filter by cluster or project.
 
 Filter by time range
 
@@ -80,11 +80,11 @@ For a list of all the alerts that appear in the Activity Log and their tags, see
 
 ## [](#alert-flyout)View Events
 
-To view the details of an event shown in the Activity Log, click the event’s name.
+To view the details of an event shown in the Activity Log, click the event's name.
 
 When you view an event, you can:
 
-* Click the cluster’s name to open the cluster where the event occured.
+* Click the cluster's name to open the cluster where the event occured.
 * Click the **Open chart image** link to open a metric chart in a new browser tab. This chart shows metrics related to the event for the time period before and when the event occurred.
 * Click **Create Support Ticket** to create a support ticket related to that open event.
 

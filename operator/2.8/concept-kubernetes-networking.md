@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Networking
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/concept-kubernetes-networking.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@operator::concept-kubernetes-networking.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:2.8@operator::concept-kubernetes-networking.adoc[]
 
 # Kubernetes Networking
 
-> Networking in a Kubernetes environment is complex. It’s up to the end user to select a container network interface (CNI) compatible plugin to provide connectivity between pods and the wider world. The choice of plugin has effects on how Couchbase Server can be used and how it must be configured via the Operator. 
+> Networking in a Kubernetes environment is complex. It's up to the end user to select a container network interface (CNI) compatible plugin to provide connectivity between pods and the wider world. The choice of plugin has effects on how Couchbase Server can be used and how it must be configured via the Operator. 
 
 ## [](#stateful-vs-stateless-deployments)Stateful vs Stateless Deployments
 
@@ -22,7 +22,7 @@ If a pod instance of Couchbase Server were to be deleted, the goal would be to r
 
 ## [](#network-options)Network Options
 
-There are two types of network options that you can choose from for your deployment: _Routed networking_ or _overlay networking_. The choice is entirely up to you, unless you’re deploying on a particular container service that limits these options.
+There are two types of network options that you can choose from for your deployment: _Routed networking_ or _overlay networking_. The choice is entirely up to you, unless you're deploying on a particular container service that limits these options.
 
 Please refer to the [Couchbase Networking concepts](concept-couchbase-networking.md) page to understand how Kubernetes networking affects your options when designing your network architecture.
 
@@ -32,7 +32,7 @@ Routed networking is by far the simplest approach. A Kubernetes deployment consi
 
 The pod network is a network prefix which is split between Kubernetes nodes and used for the allocation of pod IP addresses. For example, consider `10.0.0.0/16`; the first Kubernetes node will receive the `10.0.0.0/24` prefix for pod allocation, the second `10.0.1.0/24`, and so on.
 
-In order for a pod on the first node to talk to the second, routing tables are needed to direct traffic. The packet will leave the first node via its default route and arrive at the upstream router, as it doesn’t know about the location of the destination `10.0.1.0/24` network. The router, however, _does_ have this information. It has a routing entry saying that to get to subnet `10.0.1.0/24`, send it to the node at `172.16.0.3/24`.
+In order for a pod on the first node to talk to the second, routing tables are needed to direct traffic. The packet will leave the first node via its default route and arrive at the upstream router, as it doesn't know about the location of the destination `10.0.1.0/24` network. The router, however, _does_ have this information. It has a routing entry saying that to get to subnet `10.0.1.0/24`, send it to the node at `172.16.0.3/24`.
 
 In order to establish a connection between two node networks, all you need to do is establish a VPN connection between the two routers. Remote network prefixes can be defined either statically or dynamically via a protocol such as Border Gateway Protocol (BGP).
 
@@ -99,9 +99,9 @@ Routing Black Holes
 
 ![Routing black holes](_images/BlackHoles.png)
 
-In the previous diagram, we illustrate what happens when a VIP address range aliases with another addressable entity on the network. A client, is able to directly connect to a pod from outside of the Kubernetes cluster. The client’s address in the packet is 10.32.0.7.
+In the previous diagram, we illustrate what happens when a VIP address range aliases with another addressable entity on the network. A client, is able to directly connect to a pod from outside of the Kubernetes cluster. The client's address in the packet is 10.32.0.7.
 
-When the pod tries to respond to the client, there is a problem in that the Kubernetes cluster’s VIP range aliases with that of the client. Instead of routing the reply back to the client, a service that aliases with the client’s IP address intercepts the reply, and the reply is most likely dropped entirely.
+When the pod tries to respond to the client, there is a problem in that the Kubernetes cluster's VIP range aliases with that of the client. Instead of routing the reply back to the client, a service that aliases with the client's IP address intercepts the reply, and the reply is most likely dropped entirely.
 
 ## [](#network-policies)Network Policies
 

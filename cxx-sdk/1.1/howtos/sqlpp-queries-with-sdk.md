@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.1@cxx-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -19,7 +19,7 @@ On this page we dive straight into using the Query Service API from the C++ SDK.
 
 > You can query for documents in Couchbase using the SQL++ query language (formerly N1QL), a language based on SQL, but designed for structured and flexible JSON documents. 
 
-Our query service uses SQL++, which will be fairly familiar to anyone who’s used any dialect of SQL. [Additional Resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](#6.5@server:n1ql:n1ql-language-reference/index.adoc).
+Our query service uses SQL++, which will be fairly familiar to anyone who's used any dialect of SQL. [Additional Resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](#6.5@server:n1ql:n1ql-language-reference/index.adoc).
 
 > [!TIP]
 > SQL++ Compared to Key-Value
@@ -28,7 +28,7 @@ Our query service uses SQL++, which will be fairly familiar to anyone who’s us
 
 ## [](#getting-started)Getting Started
 
-Let’s get started by pulling in all the imports needed in the examples below:
+Let's get started by pulling in all the imports needed in the examples below:
 
 ```c++
 #include <couchbase/cluster.hxx>
@@ -44,7 +44,7 @@ Let’s get started by pulling in all the imports needed in the examples below:
 #include <iostream>
 ```
 
-Then we connect to a Couchbase cluster, as usual (of course, change the address and credentials to match your own cluster’s):
+Then we connect to a Couchbase cluster, as usual (of course, change the address and credentials to match your own cluster's):
 
 ```c++
 auto options = couchbase::cluster_options(username, password);
@@ -71,14 +71,14 @@ Note that building indexes is covered in more detail on the [Query concept page]
 
 ## [](#a-simple-query)A Simple Query
 
-Here’s the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
+Here's the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
 
 ```c++
 std::string statement = "SELECT * from `travel-sample` LIMIT 10;";
 const auto [err, result] = cluster.query(statement, {}).get();
 ```
 
-(Note that we won’t be covering the SQL++ language itself in any detail here, but if you’re familiar with SQL you’ll see it’s very similar.)
+(Note that we won't be covering the SQL++ language itself in any detail here, but if you're familiar with SQL you'll see it's very similar.)
 
 The C++ SDK returns a `couchbase::error` instance that wraps an `std::error_code` rather than throwing exceptions. You can check whether an error occurred like this:
 
@@ -111,7 +111,7 @@ if (err) {
 ```
 
 > [!NOTE]
-> All of the examples here use the simplest of the two asynchronous APIs provided by the C++ SDK, which returns an `std::future`. There’s also a callback-based asynchronous API. See [Choosing an API](#concurrent-async-apis) for more details.
+> All of the examples here use the simplest of the two asynchronous APIs provided by the C++ SDK, which returns an `std::future`. There's also a callback-based asynchronous API. See [Choosing an API](#concurrent-async-apis) for more details.
 
 ## [](#placeholder-and-named-arguments)Placeholder and Named Arguments
 
@@ -162,7 +162,7 @@ Queries take an optional `scan_consistency` parameter that enables a tradeoff be
 * With scan consistency set to `request_plus`, all outstanding document changes and index updates are processed before the query is run. Select this when consistency is always more important than performance.
 * For a middle ground, `at_plus` is a "read your own write" (RYOW) option, which means it just waits for the documents that you specify to be indexed.
 
-Here’s how to specify the `request_plus` scan consistency level:
+Here's how to specify the `request_plus` scan consistency level:
 
 ```c++
 const auto [err, result] = cluster

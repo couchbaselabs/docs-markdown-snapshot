@@ -1,7 +1,7 @@
 ---
 title: Cluster Monitor checkers
 editUrl: https://github.com/couchbaselabs/cbmultimanager/edit/0.2.x/docs/modules/ROOT/pages/checkers.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cbmultimanager::checkers.adoc[]
 ---
 
@@ -34,7 +34,7 @@ link: xref:cbmultimanager::checkers.adoc[]
 
 ### [](#CB90005)Server Quota (CB90005)
 
-**Background**: Each Couchbase Server node has a memory quota, which limits how much memory it is allowed to use. We recommend that this is set no higher than 80-90% of the host’s memory, otherwise the operating system may not have enough memory remaining to function.
+**Background**: Each Couchbase Server node has a memory quota, which limits how much memory it is allowed to use. We recommend that this is set no higher than 80-90% of the host's memory, otherwise the operating system may not have enough memory remaining to function.
 
 **Condition**: Memory allocated to Couchbase Server nodes is greater than 80% of the hosts' memory.
 
@@ -178,7 +178,7 @@ link: xref:cbmultimanager::checkers.adoc[]
 
 ### [](#CB90059)Developer Preview (CB90059)
 
-**Background**: Developer Preview provides early access to features which may become generally available (“GA”) in future releases and enables you to experiment with these features to get a sense of how they work. However, this mode is unsupported, so it should not be used in production.
+**Background**: Developer Preview provides early access to features which may become generally available ("GA") in future releases and enables you to experiment with these features to get a sense of how they work. However, this mode is unsupported, so it should not be used in production.
 
 **Condition**: Cluster is in Developer Preview mode.
 
@@ -213,7 +213,7 @@ Note that this list of ports is different to the ports needed for application cl
 
 ### [](#CB90069)Imbalanced Index Partitions (CB90069)
 
-**Background**: If an index partition is hashed on an invalid field, it results in one partition being larger than the partitions on other Index Service nodes. This means a large chunk of a node’s memory will be used by the Index Service which can then cause the `indexer` process to be killed by the Linux OOM killer.
+**Background**: If an index partition is hashed on an invalid field, it results in one partition being larger than the partitions on other Index Service nodes. This means a large chunk of a node's memory will be used by the Index Service which can then cause the `indexer` process to be killed by the Linux OOM killer.
 
 **Condition**: An Index Service node contains an index partition which is 20% larger than partitions for the same index on other nodes.
 
@@ -339,7 +339,7 @@ Note that this list of ports is different to the ports needed for application cl
 
 **Condition**: A node has less than 4GB of RAM.
 
-**Remediation**: Upgrade the node’s hardware.
+**Remediation**: Upgrade the node's hardware.
 
 **Further Reading**: [System Resource Requirements](https://docs.couchbase.com/server/current/install/pre-install.html)
 
@@ -363,7 +363,7 @@ Note that this list of ports is different to the ports needed for application cl
 
 ### [](#CB90044)Managed Process Crash (CB90044)
 
-**Background**: Babysitter is part of Couchbase Server’s cluster manager which is responsible for maintaining a variety of Couchbase Server processes. If any of the processes managed by the babysitter die, it is responsible for restarting them.
+**Background**: Babysitter is part of Couchbase Server's cluster manager which is responsible for maintaining a variety of Couchbase Server processes. If any of the processes managed by the babysitter die, it is responsible for restarting them.
 
 **Condition**: A process managed by babysitter crashes.
 
@@ -451,7 +451,7 @@ Even if Couchbase Server processes are not themselves killed, OOM killer activit
 
 **Condition**: Resident ratio below 10%. Upgraded to an alert if it is below 5%.
 
-**Remediation**: Increase the bucket’s memory quota.
+**Remediation**: Increase the bucket's memory quota.
 
 **Further Reading**: [Memory](https://docs.couchbase.com/server/current/learn/buckets-memory-and-storage/memory.html)
 
@@ -467,11 +467,11 @@ Even if Couchbase Server processes are not themselves killed, OOM killer activit
 
 ### [](#CB90017)Bucket Memory Usage (CB90017)
 
-**Background**: If a bucket’s memory usage crosses the high water mark, ejection will be triggered. By default, the high water mark is set to 85% of the bucket’s quota. If the bucket’s memory usage exceeds this for a long period of time, it is possible that not enough data can be ejected to bring it down below the low water mark, and there is a risk of an out-of-memory condition.
+**Background**: If a bucket's memory usage crosses the high water mark, ejection will be triggered. By default, the high water mark is set to 85% of the bucket's quota. If the bucket's memory usage exceeds this for a long period of time, it is possible that not enough data can be ejected to bring it down below the low water mark, and there is a risk of an out-of-memory condition.
 
-**Condition**: The bucket’s memory usage is at or above 95% of its quota for more than 5 seconds.
+**Condition**: The bucket's memory usage is at or above 95% of its quota for more than 5 seconds.
 
-**Remediation**: Increase the bucket’s memory quota.
+**Remediation**: Increase the bucket's memory quota.
 
 **Further Reading**: [Memory](https://docs.couchbase.com/server/current/learn/buckets-memory-and-storage/memory.html)
 

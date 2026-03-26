@@ -2,7 +2,7 @@
 title: Compatibility
 description: Couchbase Lite framework and Sync Gateway compatibility
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/swift/pages/compatibility.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:swift:compatibility.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:2.8@couchbase-lite:swift:compatibility.adoc[]
 
 > Description — _Couchbase Lite framework and Sync Gateway compatibility_  
 > _Abstract — This content identifies the compatibility of Couchbase Lite on Swift with Sync Gateway, together with the operating systems upon which it is supported._  
-> Related Content — [What’s New](../../current/cbl-whatsnew.md) | [Release Notes](#couchbase-lite:swift:{cbl-pg-releasenotes}) | [Supported OS](../../current/swift/supported-os.md)
+> Related Content — [What's New](../../current/cbl-whatsnew.md) | [Release Notes](#couchbase-lite:swift:{cbl-pg-releasenotes}) | [Supported OS](../../current/swift/supported-os.md)
 
 ## [](#couchbase-litesync-gateway-matrix)Couchbase Lite/Sync Gateway Matrix
 
@@ -67,7 +67,7 @@ Product Notes
 * [Release Notes](#couchbase-lite:swift:{cbl-pg-releasenotes})
 * [Compatibility](../../current/swift/compatibility.md)
 * [Supported OS](../../current/swift/supported-os.md)
-* [What’s New](../../current/cbl-whatsnew.md)
+* [What's New](../../current/cbl-whatsnew.md)
 
 ###### [](#-2)
 

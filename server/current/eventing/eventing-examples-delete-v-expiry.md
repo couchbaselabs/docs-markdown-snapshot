@@ -2,7 +2,7 @@
 title: Delete v Expiry
 description: Differentiate between a deletion or an expiration
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-examples-delete-v-expiry.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:eventing:eventing-examples-delete-v-expiry.adoc[]
 ---
 
@@ -34,7 +34,7 @@ You will need to run _cbc_ (the command-line KV client) or alternatively an SDK 
 
 **Procedure**:
 
-1. The example requires a document to be created in the 'source' collection with a key of **SampleDocument2**, a value of **{'a\_key': 'a\_value'}**, and most importantly that the document’s expiration (or TTL) set to 600 seconds or 10 minutes).  
+1. The example requires a document to be created in the 'source' collection with a key of **SampleDocument2**, a value of **{'a\_key': 'a\_value'}**, and most importantly that the document's expiration (or TTL) set to 600 seconds or 10 minutes).  
 There are several methods to make a test document with an expiration set. The easiest is most likely using SQL++. However you can use _cbc_ or any Couchbase SDK (the command-line KV client is compiled from the C SDK). For example you can use a Python script or a complied Java program.
 
   * SQL++ UPDATE
@@ -137,9 +137,9 @@ public class DocExpiryTestCC {
 Download the proper SDK and then compile and run one of the above Java programs  
 For information on the Couchbase Java SDK, refer to [Start Using the Java SDK](../../../java-sdk/current/hello-world/start-using-sdk.md).
 2. You now have a document in collection 'source' (keyspace `bulk`.`data`.`source`) with an expiration set.
-3. To verify that your new document was created, access the **Couchbase Web Console** \> **Documents** page and click the **Documents** then select the keyspace `bulk`.`data`.`source`. The new document gets displayed automatically (as this page will attempt to list the first few items). You will see one (1) document in the `bulk`.`data`.`source` keyspace (this will disappear on the document’s expiry of 10 minutes).  
+3. To verify that your new document was created, access the **Couchbase Web Console** \> **Documents** page and click the **Documents** then select the keyspace `bulk`.`data`.`source`. The new document gets displayed automatically (as this page will attempt to list the first few items). You will see one (1) document in the `bulk`.`data`.`source` keyspace (this will disappear on the document's expiry of 10 minutes).  
 ![del v expiry 05 buckets](_images/del_v_expiry_05_buckets.png)
-4. \[Optional Step\] Click on the document’s id, **SampleDocument2** to view the documents Data and also the documents Metadata information. Note that the "expiration" field in the Metadata is non-zero (set to a Unix timestamp in seconds since epoch).
+4. \[Optional Step\] Click on the document's id, **SampleDocument2** to view the documents Data and also the documents Metadata information. Note that the "expiration" field in the Metadata is non-zero (set to a Unix timestamp in seconds since epoch).
 5. From the **Couchbase Web Console** \> **Eventing** page, click **ADD FUNCTION**, to add a new Function. The **ADD FUNCTION** dialog appears.
 6. In the **ADD FUNCTION** dialog, for individual Function elements provide the below information:
 
@@ -185,7 +185,7 @@ For information on the Couchbase Java SDK, refer to [Start Using the Java SDK](.
 
   * You may see document count of one or zero depending in the Bucket **bulk** if the expiry pager has run.  
   ![del v expiry 04 view bkt](_images/del_v_expiry_04_view_bkt.png)
-13. Click on the **Documents** in the UI you will see one (1) document in the `bulk`.`data`.`source` keyspace (this will disappear on the document’s expiry of 10 minutes). If the expiration on the document SampleDocument2 has occurred there will be no documents found.  
+13. Click on the **Documents** in the UI you will see one (1) document in the `bulk`.`data`.`source` keyspace (this will disappear on the document's expiry of 10 minutes). If the expiration on the document SampleDocument2 has occurred there will be no documents found.  
 ![del v expiry 04b view doc](_images/del_v_expiry_04b_view_doc.png)
 14. Access the **Couchbase Web Console** \> **Buckets** page for a second time.
 
@@ -195,12 +195,12 @@ For information on the Couchbase Java SDK, refer to [Start Using the Java SDK](.
 
   * You should see the following statistics under the Deployment Statistics:  
   ![del v expiry 04 expiration](_images/del_v_expiry_04_expiration.png)
-16. Click the "Log" link for **delete\_v\_expiry** to view the activity (the "**Log**" link will appear in the upper right of the Function’s controls once the function is deployed).
+16. Click the "Log" link for **delete\_v\_expiry** to view the activity (the "**Log**" link will appear in the upper right of the Function's controls once the function is deployed).
 
   * You should see that the document has expired.  
   2022-05-10T15:07:46.442-07:00 [INFO] "doc expired:" "SampleDocument2"  
   ![del v expiry 05 log expired](_images/del_v_expiry_05_log_expired.png)
-17. Now let’s create another document and perform a normal delete on it. Access the **Couchbase Web Console** \> **Buckets** page and click the **Scopes and Collections** link of the **bulk** bucket.
+17. Now let's create another document and perform a normal delete on it. Access the **Couchbase Web Console** \> **Buckets** page and click the **Scopes and Collections** link of the **bulk** bucket.
 
   * Click **Documents** in the upper right banner for the **data** scope.
   * Select the keyspace **bulk**, **data**, **source**
@@ -220,7 +220,7 @@ For information on the Couchbase Java SDK, refer to [Start Using the Java SDK](.
 
   * You should see following statistics under the Deployment Statistics:  
   ![del v expiry 06 deletion](_images/del_v_expiry_06_deletion.png)
-20. Click the "Log" link for **delete\_v\_expiry** to view the activity (the "**Log**" link will appear in the upper right of the Function’s controls once the function is deployed).
+20. Click the "Log" link for **delete\_v\_expiry** to view the activity (the "**Log**" link will appear in the upper right of the Function's controls once the function is deployed).
 
   * Here we see the document was deleted.  
   2022-05-10T15:10:18.565-07:00 [INFO] "doc deleted:" "SampleDocument3"  

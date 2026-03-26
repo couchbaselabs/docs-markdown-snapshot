@@ -1,7 +1,7 @@
 ---
 title: Configure Automated Backup and Restore
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/howto-backup.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::howto-backup.adoc[]
 ---
 
@@ -44,7 +44,7 @@ spec:
 
 ### [](#grant-backup-permissions)Grant Backup Permissions
 
-Backup Pods need read-only access to Kubernetes resources such as `Pods`, `CronJobs`, and `Jobs`. They also need write access to Events and the `CouchbaseBackup`/`CouchbaseBackupRestore` custom resources. Without these resources, backup jobs will still run as scheduled, but they will ultimately fail as the pods won’t have the required permissions.
+Backup Pods need read-only access to Kubernetes resources such as `Pods`, `CronJobs`, and `Jobs`. They also need write access to Events and the `CouchbaseBackup`/`CouchbaseBackupRestore` custom resources. Without these resources, backup jobs will still run as scheduled, but they will ultimately fail as the pods won't have the required permissions.
 
 You can use the [cao](tools/cao.md) tool to create the resources that grant the required permissions. The following command creates the necessary resources in the default namespace:
 
@@ -154,7 +154,7 @@ A `CouchbaseBackupRestore` resource behaves differently from a `CouchbaseBackup`
 
 In the example above, the `CouchbaseBackupRestore` resource configuration is restoring the first backup in the repository `"cb-example-2020-02-12T19_00_03"`. The first backup in any repository will be a full backup since the Autonomous Operator performs a full backup of the cluster after the creation of each backup repository.
 
-If you don’t know the name of the backup repository that you want to restore from, you can find the name without having to explore the contents of a Persistent Volume Claim by simply referring to the [couchbasebackups.status](resource/couchbasebackup.md#couchbasebackups-status) object of the existing `CouchbaseBackup` resource.
+If you don't know the name of the backup repository that you want to restore from, you can find the name without having to explore the contents of a Persistent Volume Claim by simply referring to the [couchbasebackups.status](resource/couchbasebackup.md#couchbasebackups-status) object of the existing `CouchbaseBackup` resource.
 
 You also have the option to restore a range of backups from the latest backup repository.
 
@@ -269,7 +269,7 @@ spec:
 
 ## [](#monitor-and-manage-backups)Monitor and Manage Backups
 
-It’s important to regularly monitor backup performance to ensure you’re backing up all the required data within your desired time window.
+It's important to regularly monitor backup performance to ensure you're backing up all the required data within your desired time window.
 
 For the simplest overview, run `get` commands on the `CouchbaseBackup` resources.
 
@@ -512,7 +512,7 @@ spec:
 | **1** | The nodeSelector field defines which Kubernetes nodes the pods running the automated backup process will be constrained to. In this case we have specified that backup pods will be constrained to running on nodes of instanceType large.                                                                                                                                                                                                                                                    |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | If your Kubernetes environment requires it, you can set requests and limits for the pods that run the backup and restore jobs.                                                                                                                                                                                                                                                                                                                                                                |
-| **3** | If you have more than one CouchbaseCluster resource deployed in the same namespace, you’ll need to use [resource label selection](concept-label-selection.md) to ensure that CouchbaseBackup and CouchbaseBackupRestore resources get created on the correct cluster. Like with other Couchbase custom resources, this means specifying a label for RBAC resources which matches the corresponding label selector of the CouchbaseCluster resource that you want the resources aggregated to. |
+| **3** | If you have more than one CouchbaseCluster resource deployed in the same namespace, you'll need to use [resource label selection](concept-label-selection.md) to ensure that CouchbaseBackup and CouchbaseBackupRestore resources get created on the correct cluster. Like with other Couchbase custom resources, this means specifying a label for RBAC resources which matches the corresponding label selector of the CouchbaseCluster resource that you want the resources aggregated to. |
 | **4** | Tolerations are applied to pods, and allow (but do not require) the pods to be scheduled onto nodes with matching taints. With taints and tolerations, you can grant backup pods exclusive access to specific nodes. In this example, if we wish to run all backup pods on a dedicated node and isolate them from the rest of the Autonomous Operator pods, we can do this by tainting a node with the key-value of app:cbbackup and defining a matching toleration.                          |
 
 Further reference on all of these fields can be found in the [couchbaseclusters.spec.backup](resource/couchbasecluster.md#couchbaseclusters-spec-backup) resource configuration. For more overall information please see [Couchbase Scheduling and Isolation](#concept-scheduling).
@@ -595,7 +595,7 @@ spec:
 
 ### [](#configure-instance-metadata-authentication)Configure Instance Metadata Authentication
 
-To allow backup to automatically use the instance metadata API for authentication, enable the [couchbasebackups.spec.objectStore.useIAM](resource/couchbasebackup.md#couchbasebackups-spec-objectstore-useiam) parameter. By default this is disabled. When using Azure and GCP this is all that’s required, for AWS a secret with the region key set must be provided.
+To allow backup to automatically use the instance metadata API for authentication, enable the [couchbasebackups.spec.objectStore.useIAM](resource/couchbasebackup.md#couchbasebackups-spec-objectstore-useiam) parameter. By default this is disabled. When using Azure and GCP this is all that's required, for AWS a secret with the region key set must be provided.
 
 ```yaml
 apiVersion: couchbase/v2
@@ -715,7 +715,7 @@ data:
 If you are using Couchbase Operator version 2.4.0 or higher, and Couchbase Operator Backup 1.3.2 version or higher, the ability to backup/restore using a [generic ephemeral volumes](https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/#generic-ephemeral-volumes) volume is available. This can only be used when backing up or restoring from a remote cloud store and may be useful for high availability setups. To enable ephemeral staging volumes for backup set [couchbasebackups.spec.ephemeralVolume](resource/couchbasebackup.md#couchbasebackups-spec-ephemeralvolume) to true, defaults to false. Both [couchbasebackups.spec.storageClassName](resource/couchbasebackup.md#couchbasebackups-spec-storageclassname) and [couchbasebackups.spec.size](resource/couchbasebackup.md#couchbasebackups-spec-size) will apply to the ephemeral PVC.
 
 > [!NOTE]
-> When enabled, the backup PVC will share it’s lifecycle with the backup/restore pod, and will not be removed until the pod is removed. It may be useful to tweak [couchbasebackups.spec.failedJobsHistoryLimit](resource/couchbasebackup.md#couchbasebackups-spec-failedjobshistorylimit) and [couchbasebackups.spec.successfulJobsHistoryLimit](resource/couchbasebackup.md#couchbasebackups-spec-successfuljobshistorylimit) to reduce the number of extraneous ephemeral volumes.
+> When enabled, the backup PVC will share it's lifecycle with the backup/restore pod, and will not be removed until the pod is removed. It may be useful to tweak [couchbasebackups.spec.failedJobsHistoryLimit](resource/couchbasebackup.md#couchbasebackups-spec-failedjobshistorylimit) and [couchbasebackups.spec.successfulJobsHistoryLimit](resource/couchbasebackup.md#couchbasebackups-spec-successfuljobshistorylimit) to reduce the number of extraneous ephemeral volumes.
 
 ```yaml
 apiVersion: couchbase/v2

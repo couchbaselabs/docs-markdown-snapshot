@@ -2,7 +2,7 @@
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase Lite on Swift
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/swift/pages/gs-build.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite:swift:gs-build.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:3.3@couchbase-lite:swift:gs-build.adoc[]
 ## [](#quick-steps)Quick Steps
 
 1. Create a new Swift project as outlined in [Install](gs-install.md)
-2. Open the new project’s **ViewController.swift** module in Xcode
+2. Open the new project's **ViewController.swift** module in Xcode
 3. Replace the boiler-plate code with the code shown in [Example 1](#ex-starter-code)
 4. Build and run the 'app'  
 You should see — [Figure 1](#img-starter-code) — the document ID and property printed to the 'console log', indicating that a document was created successfully persisted to the database, updated and queried.

@@ -3,7 +3,7 @@ title: Passive Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/android/pages/p2psync-websocket-using-passive.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:android:p2psync-websocket-using-passive.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.0@couchbase-lite:android:p2psync-websocket-using-passive.adoc[]
 
 # Passive Peer
 
-> Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
+> Description — _Couchbase Lite's Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — How to set up a Listener to accept a Replicator connection and sync using peer-to-peer_  
 > Related Content — [API Reference](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
@@ -51,7 +51,7 @@ Subsequent sections provide additional details, and examples for the main config
 You should configure and initialize a listener for each Couchbase Lite database instance you want to sync. There is no limit on the number of listeners you may configure — [Example 1](#simple-listener-initialization) shows a simple initialization and configuration process.
 
 > [!TIP]
-> You must include the initializer `CouchbaseLite.init(context)` such that it is executed (once only) prior to initializing the replicator; for example in your app’s `onCreate()` method.
+> You must include the initializer `CouchbaseLite.init(context)` such that it is executed (once only) prior to initializing the replicator; for example in your app's `onCreate()` method.
 
 Example 1\. Listener configuration and initialization
 
@@ -137,7 +137,7 @@ You can find [Android API References](http://docs.couchbase.com/mobile/3.0.15/co
 
 **This phase is optional:** If the listener is initialized on a well known URL endpoint (for example, a static IP Address or well known DNS address) then you can configure active peers to connect to those.
 
-Prior to initiating the listener you may execute a peer discovery phase. For the passive peer, this involves advertising the service using, for example _Network Service Discovery_ (see: <https://developer.android.com/training/connect-devices-wirelessly/nsd>) and waiting for an invite from the active peer. The connection is established once the passive peer has authenticated and accepted an active peer’s invitation.
+Prior to initiating the listener you may execute a peer discovery phase. For the passive peer, this involves advertising the service using, for example _Network Service Discovery_ (see: <https://developer.android.com/training/connect-devices-wirelessly/nsd>) and waiting for an invite from the active peer. The connection is established once the passive peer has authenticated and accepted an active peer's invitation.
 
 ## [](#initialize-the-listener-configuration)Initialize the Listener Configuration
 
@@ -262,7 +262,7 @@ If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous 
 The auto-generated anonymous self-signed identity is saved in secure storage for future use to obviate the need to re-generate it.
 
 > [!NOTE]
-> Typically, you will configure the listener’s TLS Identity once during initial launch and re-use it (from secure storage on any subsequent starts.
+> Typically, you will configure the listener's TLS Identity once during initial launch and re-use it (from secure storage on any subsequent starts.
 
 Here are some example code snippets showing:
 
@@ -356,7 +356,7 @@ In this section: [Use Basic Authentication](#use-basic-authentication) | [Using 
 
 Define how the server (listener) will authenticate the client as one it is prepared to interact with.
 
-Whilst client authentication is optional, Couchbase lite provides the necessary tools to implement it. Use the [URLEndpointListenerConfiguration](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html) class’s [setAuthenticator](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setAuthenticator-com.couchbase.lite.ListenerAuthenticator-) method to specify how the client-supplied credentials are to be authenticated.
+Whilst client authentication is optional, Couchbase lite provides the necessary tools to implement it. Use the [URLEndpointListenerConfiguration](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html) class's [setAuthenticator](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setAuthenticator-com.couchbase.lite.ListenerAuthenticator-) method to specify how the client-supplied credentials are to be authenticated.
 
 Valid options are:
 
@@ -525,11 +525,11 @@ __Table 1\. Expected system behavior__
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | true       | Ignored                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | TLS is disabled; all communication is plain text.                                                                                                                                                                            |
 | false      | set to nil                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | The system will auto generate an _anonymous_ self signed cert. Active peers (clients) should be configured to accept self-signed certificates. Communication is encrypted                                                    |
-| false      | Set to server identity generated from a self- or CA-signed certificate On first use — Bring your own certificate and private key; for example, using the [TLSIdentity](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html) class’s [createIdentity()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html#createIdentity-boolean-java.util.Map-java.util.Date-java.lang.String-) method to add it to the secure storage. Each time — Use the server identity from the certificate stored in the secure storage; for example, using the [TLSIdentity](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html) class’s [getIdentity()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html#getIdentity-java.lang.String-) method with the alias you want to retrieve.. | System will use the configured identity. Active peers will validate the server certificate corresponding to the TLSIdentity (as long as they are configured to not skip validation — see [TLS Security](#lbl-tls-security)). |
+| false      | Set to server identity generated from a self- or CA-signed certificate On first use — Bring your own certificate and private key; for example, using the [TLSIdentity](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html) class's [createIdentity()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html#createIdentity-boolean-java.util.Map-java.util.Date-java.lang.String-) method to add it to the secure storage. Each time — Use the server identity from the certificate stored in the secure storage; for example, using the [TLSIdentity](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html) class's [getIdentity()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html#getIdentity-java.lang.String-) method with the alias you want to retrieve.. | System will use the configured identity. Active peers will validate the server certificate corresponding to the TLSIdentity (as long as they are configured to not skip validation — see [TLS Security](#lbl-tls-security)). |
 
 ## [](#lbl-start-listener)Start Listener
 
-Once you have completed the Listener’s configuration settings you can initialize the Listener instance and start it running — see: [Example 12](#initialize-and-start-listener)
+Once you have completed the Listener's configuration settings you can initialize the Listener instance and start it running — see: [Example 12](#initialize-and-start-listener)
 
 Example 12\. Initialize and start listener
 
@@ -575,7 +575,7 @@ thisListener.start(); (2)
 
 ## [](#monitor-listener)Monitor Listener
 
-Use the Listener’s `[getStatus](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/URLEndpointListener.html#getStatus--)` property/method to get counts of total and active connections — see: [Example 13](#get-connection-counts).
+Use the Listener's `[getStatus](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/URLEndpointListener.html#getStatus--)` property/method to get counts of total and active connections — see: [Example 13](#get-connection-counts).
 
 You should note that these counts can be extremely volatile. So, the actual number of active connections may have changed, by the time the `[ConnectionStatus](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ConnectionStatus.html)` class returns a result.
 
@@ -599,7 +599,7 @@ int activeConnectionCount =
 
 ## [](#stop-listener)Stop Listener
 
-It is best practice to check tha status of the listener’s connections and stop only when you have confirmed that there are no active connections — see [Example 13](#get-connection-counts).
+It is best practice to check tha status of the listener's connections and stop only when you have confirmed that there are no active connections — see [Example 13](#get-connection-counts).
 
 Example 14\. Stop listener using `stop` method
 

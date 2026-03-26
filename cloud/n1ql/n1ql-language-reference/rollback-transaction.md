@@ -2,7 +2,7 @@
 title: ROLLBACK TRANSACTION
 description: The ROLLBACK TRANSACTION statement enables you to rollback a transaction.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/rollback-transaction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/rollback-transaction.adoc[]
 ---
 
@@ -22,7 +22,7 @@ This statement may only be used within a transaction.
 When you rollback the entire transaction, this statement removes all savepoints within the transaction.
 
 > [!NOTE]
-> If you’re using the cbq shell, and a transaction fails for any reason, you must use the `ROLLBACK TRANSACTION` statement to remove the transaction context and reset the transaction ID.
+> If you're using the cbq shell, and a transaction fails for any reason, you must use the `ROLLBACK TRANSACTION` statement to remove the transaction context and reset the transaction ID.
 
 ## [](#syntax)Syntax
 

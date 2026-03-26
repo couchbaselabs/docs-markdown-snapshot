@@ -2,7 +2,7 @@
 title: Create a Search Index
 description: Create a Search index to get started with the Search Service in your database.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-search-indexes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:create-search-indexes.adoc[]
 ---
 
@@ -19,7 +19,7 @@ You can create a Search index with:
 * The [Search Service REST API](#api).
 
 > [!TIP]
-> If you’re new to developing with the Search Service, [create a Search index with the UI](create-search-index-ui.md). You can copy the Search index definition JSON payload from the UI to create your index [with the REST API](create-search-index-rest-api.md).
+> If you're new to developing with the Search Service, [create a Search index with the UI](create-search-index-ui.md). You can copy the Search index definition JSON payload from the UI to create your index [with the REST API](create-search-index-rest-api.md).
 
 ## [](#ui)Creating a Search Index with the Web Console
 
@@ -43,7 +43,7 @@ The Web Console also has a Quick Index editor.
 
 You can use the Quick Index editor to create a Search index by selecting fields from a document from your database.
 
-You can edit an index that you created with the Quick Index editor in the standard editor later. You can’t edit an index that you created with the standard editor in the Quick Index editor.
+You can edit an index that you created with the Quick Index editor in the standard editor later. You can't edit an index that you created with the standard editor in the Quick Index editor.
 
 For more information about how to create an index with the Quick Index editor, see [Create a Search Index with the Quick Editor](create-quick-index.md).
 

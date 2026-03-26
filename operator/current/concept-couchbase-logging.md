@@ -1,7 +1,7 @@
 ---
 title: Couchbase Server Logging
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-couchbase-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::concept-couchbase-logging.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Couchbase Server produces a [variety](../../server/current/manage/manage-logging
 
 By default, Couchbase cluster deployments process logs within the Couchbase Server container. When a Couchbase cluster deployment is configured to use [persistent volumes](concept-persistent-volumes.md) — as is [recommended](best-practices.md#storage) for all production deployments — log files are written to either the `default` or `logs` volume.
 
-When using default logging, logs cannot be collected from the Couchbase Server container’s standard console output, as is [typical](https://kubernetes.io/docs/concepts/cluster-administration/logging/) in Kubernetes environments. Instead, the Kubernetes Operator package is distributed with a support tool — [cao](tools/cao.md) — which can be used to collect a log snapshot at any time. This tool is often used for collecting resources, logs, and events from the Kubernetes cluster for use in Couchbase Support requests. It is also capable of collecting just Couchbase-related logs via its `--collectinfo` option.
+When using default logging, logs cannot be collected from the Couchbase Server container's standard console output, as is [typical](https://kubernetes.io/docs/concepts/cluster-administration/logging/) in Kubernetes environments. Instead, the Kubernetes Operator package is distributed with a support tool — [cao](tools/cao.md) — which can be used to collect a log snapshot at any time. This tool is often used for collecting resources, logs, and events from the Kubernetes cluster for use in Couchbase Support requests. It is also capable of collecting just Couchbase-related logs via its `--collectinfo` option.
 
 The [cao](tools/cao.md) tool only captures a snapshot of the current logs at the time it was run, and is not intended to capture 100% of all logs at all times (rotated log files are not included in the snapshot). In addition, the tool requires `pods/exec` permissions in order to execute log collection scripts and run the [cbcollect\_info](../../server/current/cli/cbcollect-info-tool.md) command locally on each pod belonging to a Couchbase cluster, which may not be desirable for security and performance reasons. To avoid these limitations, you can choose to configure [log forwarding](#log-forwarding) as an alternative method for logging.
 
@@ -28,7 +28,7 @@ Learn More
 
 ## [](#log-forwarding)Log Forwarding
 
-Log forwarding can be used in addition to, or as an alternative for, [default logging](#default-logging). Although Couchbase Server doesn’t natively support log forwarding, the Kubernetes Operator can optionally deploy and manage a third-party log processor on each Couchbase pod that enables Couchbase Server logs to be forwarded to the log processor’s standard console output as well as other destinations. Forwarding logs to standard console output is desirable since it allows for [simple debugging](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/#examine-pod-logs) and standards-based integration with centralized log management systems running in the Kubernetes cluster.
+Log forwarding can be used in addition to, or as an alternative for, [default logging](#default-logging). Although Couchbase Server doesn't natively support log forwarding, the Kubernetes Operator can optionally deploy and manage a third-party log processor on each Couchbase pod that enables Couchbase Server logs to be forwarded to the log processor's standard console output as well as other destinations. Forwarding logs to standard console output is desirable since it allows for [simple debugging](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/#examine-pod-logs) and standards-based integration with centralized log management systems running in the Kubernetes cluster.
 
 ### [](#how-log-forwarding-works)How Log Forwarding Works
 
@@ -57,11 +57,11 @@ Log forwarding can be enabled via the [CouchbaseCluster](resource/couchbaseclust
 
 The default, Couchbase-supplied log processor image provides several benefits, such as built-in _parsers_, _filters_, and optional log _redaction_ (another type of filtering), as well as the ability to restart Fluent Bit without having to restart the entire pod, thus providing better performance and higher availability than the standard Fluent Bit image. The built-in parsers and filters are stored in individual configuration files, which are then combined to provide the default [_main configuration_](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file) deployed by the Kubernetes Operator. Alternatively, these built-in parsers and filters can be selectively invoked by a custom, user-supplied main configuration that can be used instead of the default one provided by the Kubernetes Operator.
 
-The default log forwarding configuration outputs log events to the `logging` container’s standard console output. However, a custom configuration can include more than one output, allowing specific logs to be [routed](https://docs.fluentbit.io/manual/concepts/data-pipeline/router) to different — even multiple — destinations.
+The default log forwarding configuration outputs log events to the `logging` container's standard console output. However, a custom configuration can include more than one output, allowing specific logs to be [routed](https://docs.fluentbit.io/manual/concepts/data-pipeline/router) to different — even multiple — destinations.
 
 ### [](#log-parsing)Log Parsing
 
-Couchbase logs generally store events in unstructured, sometimes multi-line formats. Since this type of unstructured data can’t readily be used by standard log processors, Couchbase logs need to be [_parsed_](https://docs.fluentbit.io/manual/concepts/data-pipeline/parser) into _structured_ key-value pairs before events can be adequately filtered, mutated, and forwarded by a log processor like Fluent Bit.
+Couchbase logs generally store events in unstructured, sometimes multi-line formats. Since this type of unstructured data can't readily be used by standard log processors, Couchbase logs need to be [_parsed_](https://docs.fluentbit.io/manual/concepts/data-pipeline/parser) into _structured_ key-value pairs before events can be adequately filtered, mutated, and forwarded by a log processor like Fluent Bit.
 
 The default log processor image provides built-in default parsers for several Couchbase logs. These built-in parsers primarily use regular expressions (regex) to extract the _timestamp_, _log level_, and _message_ of a particular event, though a few of the logs have some extra fields extracted. For those logs with multi-line output, the parser attempts to capture everything up to the next log statement. In some cases this includes large content (e.g. Java thread dumps), but this is all treated as part of the log message. (User-provided second-stage parsing or filtering can be done, but is not provided by default; a downstream log tool could also do further analysis.)
 
@@ -133,7 +133,7 @@ When Couchbase Server writes an event to a log file, it encases certain [sensiti
 
 Log redaction is currently facilitated by a [LUA filter](https://docs.fluentbit.io/manual/pipeline/filters/lua) that leverages a Couchbase-supplied [LUA script](https://github.com/couchbase/couchbase-fluent-bit/blob/main/redaction/redaction.lua) and a third-party [SHA-1 hashing library](https://github.com/mpeterv/sha1), both of which are included in the default log processor image. The LUA filter hashes and replaces the contents of the `<ud>…​</ud>` tags in each log event. When log redaction is configured for a Couchbase deployment, a worker thread on each Kubernetes node is dedicated to handling the LUA parsing.
 
-Log redaction isn’t enabled by default, and therefore must be [enabled and configured](howto-couchbase-log-forwarding.md#configuring-log-redaction) by an administrator. The following are some important notes worth considering when enabling log redaction:
+Log redaction isn't enabled by default, and therefore must be [enabled and configured](howto-couchbase-log-forwarding.md#configuring-log-redaction) by an administrator. The following are some important notes worth considering when enabling log redaction:
 
 * Log redaction may hash away useful identifiers for things like internal usage, making debugging more difficult.
 * Running a regex and string substitution can be resource-intensive, which has performance implications for both the log processor and Couchbase Server.

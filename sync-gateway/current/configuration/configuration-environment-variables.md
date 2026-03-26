@@ -2,7 +2,7 @@
 title: Configuration Environment Variables
 description: Using environment variables in the configuration of Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-environment-variables.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:configuration:configuration-environment-variables.adoc[]
 ---
 
@@ -25,7 +25,7 @@ The use of environment variables within the configuration file increases the fle
 
 ## [](#syntax)Syntax
 
-To use environment variables in your configuration file, insert the variable name — prefixed by a `$` symbol — wherever you would normally put the configuration value you’re substituting for — see [Example 1](#ex-syntax).
+To use environment variables in your configuration file, insert the variable name — prefixed by a `$` symbol — wherever you would normally put the configuration value you're substituting for — see [Example 1](#ex-syntax).
 
 You can define inline default values using the notation `${var:-default}`. Sync Gateway uses the default value if the referenced environment variable is empty or undefined.
 
@@ -73,7 +73,7 @@ Insert the required environment variable references in a [Bootstrap Configuratio
 
 Sync Gateway replaces each variable occurrence before parsing the configuration file at startup.
 
-The variables are immutable. This means changes to the values of the environment variables are not detected by Sync Gateway while it’s running. Such changes only become effective after a restart of Sync Gateway.
+The variables are immutable. This means changes to the values of the environment variables are not detected by Sync Gateway while it's running. Such changes only become effective after a restart of Sync Gateway.
 
 Any references to undefined variables found in the configuration cause sync gateway to throw an error. This prevents sync gateway from processing an invalid configuration.
 
@@ -98,7 +98,7 @@ export USERNAME=Administrator
 export PASSWORD='pa$$word' (1)
 ```
 
-| **1** | Use quotes to prevent interpolation of the literal string’s $ symbols, or use "pa\\$\\$word" |
+| **1** | Use quotes to prevent interpolation of the literal string's $ symbols, or use "pa\\$\\$word" |
 | ----- | -------------------------------------------------------------------------------------------- |
 
 ```dos
@@ -108,7 +108,7 @@ set PASSWORD='pa$$word' (2)
 
 | **1** | Permanently set the USERNAME variable. Note setx does not require the \= symbol                                                                                                                                                    |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | Sets the PASSWORD variable, but only for the duration of the current 'Command Line' session. This may not be what you want. Note we use single-quotes because of the password value’s $$ symbols, alternatively use "pa\\$\\$word" |
+| **2** | Sets the PASSWORD variable, but only for the duration of the current 'Command Line' session. This may not be what you want. Note we use single-quotes because of the password value's $$ symbols, alternatively use "pa\\$\\$word" |
 
 1. Open a _System Properties_ panel
 2. On the _Advanced System Settings_ tab, select **Environment Variables**  
@@ -120,7 +120,7 @@ $ENV:USERNAME=Administrator
 $ENV:PASSWORD='pa$$word' (1)
 ```
 
-| **1** | Note we use single-quotes because of the password value’s $$ symbols, or use "pa\`$\`$word" |
+| **1** | Note we use single-quotes because of the password value's $$ symbols, or use "pa\`$\`$word" |
 | ----- | ------------------------------------------------------------------------------------------- |
 
 ---

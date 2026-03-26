@@ -3,7 +3,7 @@ title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Rust SDK.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:rust-sdk:hello-world:start-using-sdk.adoc[]
 
 > Install, connect, try. A quick start guide to get you up and running with Couchbase and the Rust SDK. 
 
-Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let’s look at those data operations, and installing the Rust SDK.
+Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let's look at those data operations, and installing the Rust SDK.
 
 Upsert with a Unique ID
 
@@ -37,7 +37,7 @@ match result {
 }
 ```
 
-`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We’ll explore creating and retrieving data records in more detail [below](#create-read-update-delete)(and touch lightly upon a little of Rust’s functional programming approach as we go), after walking through a quick installation.
+`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We'll explore creating and retrieving data records in more detail [below](#create-read-update-delete)(and touch lightly upon a little of Rust's functional programming approach as we go), after walking through a quick installation.
 
 ## [](#before-you-start)Before You Start
 
@@ -46,7 +46,7 @@ Couchbase Capella, our Database-as-a-Service, lets you get on with what matters,
 * Couchbase Capella
 * Self-Managed Couchbase Server
 
-If you haven’t already got a cluster set up, the easiest route is to [sign up to Couchbase Capella and deploy a free tier cluster](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
+If you haven't already got a cluster set up, the easiest route is to [sign up to Couchbase Capella and deploy a free tier cluster](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
 
 Install Couchbase Server locally, or in your private Cloud:
 
@@ -62,7 +62,7 @@ Install Couchbase Server locally, or in your private Cloud:
   * [Azure Marketplace](../../../server/current/cloud/couchbase-azure-marketplace.md)
   * [GCP Marketplace](../../../server/current/cloud/couchbase-gcp-cloud-launcher.md)
 
-For the example code below to run, you’ll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
+For the example code below to run, you'll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
 
 ### [](#prerequisites)Prerequisites
 
@@ -89,7 +89,7 @@ The code examples also assume:
 
 ## [](#installation)Installation
 
-More details of the installation process are in the [full installation guide](../project-docs/sdk-full-installation.md). In most cases, given the above prerequisites, it’s a simple matter of the following:
+More details of the installation process are in the [full installation guide](../project-docs/sdk-full-installation.md). In most cases, given the above prerequisites, it's a simple matter of the following:
 
 ```none
 cargo add couchbase
@@ -101,7 +101,7 @@ To make development easier, Couchbase plugins are available for VSCode and the I
 
 ### [](#grab-the-code)Grab the Code
 
-If you’re all set up and in a real hurry, just grab this code sample and add in your Capella details.
+If you're all set up and in a real hurry, just grab this code sample and add in your Capella details.
 
 Complete Hello World code sample \[**Click to open or collapse the listing**\] 
 
@@ -236,7 +236,7 @@ pub async fn capella_sample() -> Result<(), ExamplesError> {
 Otherwise, read on as we introduce the CRUD API and connection to Capella or self-managed Couchbase Server.
 
 > [!TIP]
-> There’s a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown.
+> There's a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown.
 
 ## [](#connect-to-your-database)Connect to your Database
 
@@ -287,7 +287,7 @@ let cluster = timeout(
 ```
 
 > [!NOTE]
-> `Cluster.connect` returns a `Result<Cluster, Error>`. You’ll see examples later of how to better handle a `Result`, but for simplicity here we’ll assume the operation succeeded and get the result as a `Cluster` using `.unwrap`.
+> `Cluster.connect` returns a `Result<Cluster, Error>`. You'll see examples later of how to better handle a `Result`, but for simplicity here we'll assume the operation succeeded and get the result as a `Cluster` using `.unwrap`.
 
 For a deeper look at connection options, read [Managing Connections](../howtos/managing-connections.md).
 
@@ -323,7 +323,7 @@ Couchbase documents are organized into buckets, scopes, and collections. [CRUD o
 
 ### [](#json)JSON
 
-We’ll create a snippet of JSON to work with, using the `serde_json` JSON library, but you can use any library that can serialize to `serde::Serialize`. You can also use any value that is already serialized into a `Vec<u8>` using the `<operation_namne>_raw` set of functions.
+We'll create a snippet of JSON to work with, using the `serde_json` JSON library, but you can use any library that can serialize to `serde::Serialize`. You can also use any value that is already serialized into a `Vec<u8>` using the `<operation_namne>_raw` set of functions.
 
 ```rust
 let doc = json!({"status": "awesome"});
@@ -333,7 +333,7 @@ let doc = json!({"status": "awesome"});
 
 `insert` and `upsert` will both create a new document. The difference between the two is that if a document with that key already exists, the `insert` operation will fail, while the `upsert` operation will succeed, replacing the content.
 
-We need to provide a unique ID as the key, and we’ll use a UUID here:
+We need to provide a unique ID as the key, and we'll use a UUID here:
 
 Creating a new document
 
@@ -351,7 +351,7 @@ timeout(
 
 The `get` method reads a document from a collection.
 
-Now let’s get the data back (this example does not follow best practices due to the use of `.unwrap`):
+Now let's get the data back (this example does not follow best practices due to the use of `.unwrap`):
 
 ```rust
 let result = collection.get(&doc_id, None).await.unwrap();
@@ -362,11 +362,11 @@ let status = status.as_str().unwrap();
 println!("Couchbase is ${status}");
 ```
 
-Here we’re fetching the value for the key `docId`, converting that value to a `serde_json::Value` (a generic JSON object), , and then accessing the value of the **status** key as a String.
+Here we're fetching the value for the key `docId`, converting that value to a `serde_json::Value` (a generic JSON object), , and then accessing the value of the **status** key as a String.
 
 #### [](#better-error-handling)Better Error Handling
 
-There’s quite a lot of error handling code here to do something quite simple - both `get` and `content_as` can return an error. One way to handle this better is to use the `?` operator to propagate errors up to the caller, like this:
+There's quite a lot of error handling code here to do something quite simple - both `get` and `content_as` can return an error. One way to handle this better is to use the `?` operator to propagate errors up to the caller, like this:
 
 ```rust
 let get_result = collection.get(&doc_id, None).await?;
@@ -401,7 +401,7 @@ match collection
 
 ### [](#replace-update-and-overloads)Replace (Update) and Overloads
 
-You’ll notice that most operations in the Rust SDK have an `Options` parameter. For instance:
+You'll notice that most operations in the Rust SDK have an `Options` parameter. For instance:
 
 The replace method updates the value of an existing document
 
@@ -421,7 +421,7 @@ timeout(
 ```
 
 > [!CAUTION]
-> When you replace a document, it’s usually good practice to use [optimistic locking](../howtos/kv-operations.md#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
+> When you replace a document, it's usually good practice to use [optimistic locking](../howtos/kv-operations.md#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
 
 ### [](#remove-delete)Remove (Delete)
 
@@ -444,9 +444,9 @@ Documents are organized into collections — collections of documents that belon
 
 For example, imagine you have two types of documents: customers and invoices. You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
 
-Each document belongs to exactly one collection. A document’s ID is unique _within_ the collection.
+Each document belongs to exactly one collection. A document's ID is unique _within_ the collection.
 
-Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection’s name is unique within the scope.
+Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection's name is unique within the scope.
 
 More details can be found on the [Data Model page](../concept-docs/data-model.md).
 

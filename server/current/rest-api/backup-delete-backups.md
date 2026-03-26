@@ -3,7 +3,7 @@ title: Delete a Backup
 description: The Backup Service REST API supports the deletion of backups, from
   a specified, active repository.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-delete-backups.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:backup-delete-backups.adoc[]
 ---
 
@@ -33,7 +33,7 @@ The `username` and `password` must identify an administrator with the Full Admin
 
 The `disable_safe_remove_check` parameter is optional. It allows you to delete a backup that has incremental backups depending on it.
 
-* If set to `true`, the Backup Service won’t check if the backup is safe to delete. If the selected backup has dependent incremental backups, the Backup Service will delete the backup without warning.
+* If set to `true`, the Backup Service won't check if the backup is safe to delete. If the selected backup has dependent incremental backups, the Backup Service will delete the backup without warning.
 * If set to `false`, the Backup Service checks if the backup is safe to delete before proceeding. The Backup Service checks if the selected backup has dependent incremental backups. The default value is `false`.
 
 > [!CAUTION]

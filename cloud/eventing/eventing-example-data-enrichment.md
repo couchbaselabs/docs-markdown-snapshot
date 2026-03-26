@@ -2,7 +2,7 @@
 title: Improve Document Searchability
 description: Make searching documents easier by adding new attributes to existing documents.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-example-data-enrichment.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-example-data-enrichment.adoc[]
 ---
 
@@ -114,7 +114,7 @@ Deploy your Eventing Function:
 2. Click **More Options (⋮)** next to **case\_1\_enrich\_ips**.
 3. Click **Deploy** to deploy your Function.
 
-After it’s deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
+After it's deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
 
 ### [](#check-the-results-in-the-target-collection)Check the Results in the Target Collection
 
@@ -224,7 +224,7 @@ Deploy your Eventing Function:
 2. Click **More Options (⋮)** next to **case\_2\_enrich\_ips**.
 3. Click **Deploy** to deploy your Function.
 
-After it’s deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
+After it's deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
 
 ### [](#check-the-results-in-the-source-collection)Check the Results in the Source Collection
 

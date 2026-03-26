@@ -1,7 +1,7 @@
 ---
 title: Data Topology Save, Restore and Synchronization
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/concept-data-save-restore.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::concept-data-save-restore.adoc[]
 ---
 
@@ -37,7 +37,7 @@ This is where the save, restore and synchronization features come in to play.
 
 Data topology save and restore does what it sounds like: allows data topology (buckets, scopes and collections), to be saved as a file, then restored to a Couchbase cluster.
 
-Data topology is read directly from the Couchbase cluster being saved, and therefore is not constrained by resources whether managed or not — what’s live on the cluster is what’s considered.
+Data topology is read directly from the Couchbase cluster being saved, and therefore is not constrained by resources whether managed or not — what's live on the cluster is what's considered.
 
 When data topology is restored to the cluster, two things happen, resources representing the data topology are atomically applied to the cluster, and management of those resources is enabled. After this point, any manual modifications to the data topology will be reverted by the Operator as per usual.
 
@@ -97,7 +97,7 @@ couchbasecluster/my-cluster updated
 This demonstrates a number of features, and benefits of using this tooling:
 
 * Feedback is given to the user so you can review changes before applying them.
-* You can back out of a change if it’s not as desired.
+* You can back out of a change if it's not as desired.
 * Each resource listed has an action that will be performed to conform the cluster to the save file:
 
   * `create`: the resource is new and will be created.
@@ -126,7 +126,7 @@ This section gives a technical breakdown of how a save file is restored to a Cou
 
 #### [](#data-model)Data Model
 
-You should be familiar with the concepts of [buckets, scopes and collections](concept-scopes-and-collections.md). If we took the naive approach of modeling this as is, then we’d end up with a forest of trees — buckets contain scopes and collections, there are multiple buckets. This is an inefficient model for our purposes, so instead we introduce a root node, then our forest becomes a single tree.
+You should be familiar with the concepts of [buckets, scopes and collections](concept-scopes-and-collections.md). If we took the naive approach of modeling this as is, then we'd end up with a forest of trees — buckets contain scopes and collections, there are multiple buckets. This is an inefficient model for our purposes, so instead we introduce a root node, then our forest becomes a single tree.
 
 Restore Data Model
 
@@ -140,7 +140,7 @@ Second, the Couchbase cluster is polled for its current data topology, essential
 
 #### [](#sub-tree-splicing)Sub-tree Splicing
 
-When merging trees together in the next phase, it’s far easier to consider full-trees, where at each level of the tree, the resource types are the same. When provided with a full-tree, this can just be left as-is.
+When merging trees together in the next phase, it's far easier to consider full-trees, where at each level of the tree, the resource types are the same. When provided with a full-tree, this can just be left as-is.
 
 Sub-trees however need to be "attached" to some point in the hierarchy, yielding an _effective requested tree_.
 
@@ -205,8 +205,8 @@ Once completed, the Operator can be told to synchronize data topology. This will
 > [!NOTE]
 > As this feature is completely controlled by the Operator, there are a number of things to be aware of:
 > 
-> 1. The Operator will never modify user managed custom resources (e.g. `CouchbaseCluster`, `CouchbaseBucket`, etc). These resources are intended solely for management by users — either manually, or through life-cycle managers. To modify a resource specification would be to alter the managing entity’s original intent, and is not allowed in Kubernetes. Operator modifications would also be reverted by any automated life-cycle manager.
-> 2. The Operator will never delete user managed custom resources. Like modification, deletion may go against the user’s intent, or be reverted by a life-cycle manager. It also may result in accidental data loss.
+> 1. The Operator will never modify user managed custom resources (e.g. `CouchbaseCluster`, `CouchbaseBucket`, etc). These resources are intended solely for management by users — either manually, or through life-cycle managers. To modify a resource specification would be to alter the managing entity's original intent, and is not allowed in Kubernetes. Operator modifications would also be reverted by any automated life-cycle manager.
+> 2. The Operator will never delete user managed custom resources. Like modification, deletion may go against the user's intent, or be reverted by a life-cycle manager. It also may result in accidental data loss.
 
 ## [](#related-links)Related Links
 

@@ -2,7 +2,7 @@
 title: Install the Couchbase Analytics Connector on Tableau Server
 description: The Couchbase Analytics Connector can be installed on Tableau Server.
 editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/setup-tableau-server.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tableau-connector::setup-tableau-server.adoc[]
 ---
 
@@ -41,7 +41,7 @@ Once the changes have been applied, launch Tableau Server and go to **Home** **N
 
 ## [](#ssl)Set Up SSL Support for Tableau Server
 
-Usually, you won’t need to follow this section. There is no need to provide a certificate if you are connecting to Couchbase Capella, or using a certificate from a public certificate authority. Certificates of well-known public certification authorities as well as Couchbase Capella are trusted by default.
+Usually, you won't need to follow this section. There is no need to provide a certificate if you are connecting to Couchbase Capella, or using a certificate from a public certificate authority. Certificates of well-known public certification authorities as well as Couchbase Capella are trusted by default.
 
 To configure SSL support for Tableau Connector:
 

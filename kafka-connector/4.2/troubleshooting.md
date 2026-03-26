@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
 editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.2/modules/ROOT/pages/troubleshooting.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@kafka-connector::troubleshooting.adoc[]
 ---
 
@@ -16,16 +16,16 @@ If you try to run multiple connect workers on the same machine, you may see this
 
 ### [](#how-to-run-multiple-workers)How to run multiple workers on the same machine?
 
-You’ll need to assign a different REST port to each worker.
+You'll need to assign a different REST port to each worker.
 
 One solution is to use a different config file for each worker, with each config file specifying a different port. By default this file is called `connect-standalone.properties` or `connect-distributed.properties`. Create a copy of this file for each worker. In each file, set the `rest.port` property to a unique port.
 
-### [](#not-running-multiple-workers)But I’m not running multiple workers!
+### [](#not-running-multiple-workers)But I'm not running multiple workers!
 
-Maybe the Confluent `connect` service is running? The `connect` service is essentially a connector worker running in distributed mode. Unless you’re experimenting with running the connector in distributed mode, you can probably just stop this service:
+Maybe the Confluent `connect` service is running? The `connect` service is essentially a connector worker running in distributed mode. Unless you're experimenting with running the connector in distributed mode, you can probably just stop this service:
 
 ```bash
 confluent local services connect stop
 ```
 
-If you’re sure it’s not the Confluent `connect` service that’s causing the port conflict, it’s possible that some other software is using port 8083\. In that case, you can [tell the worker to use a different port](#how-to-run-multiple-workers).
+If you're sure it's not the Confluent `connect` service that's causing the port conflict, it's possible that some other software is using port 8083\. In that case, you can [tell the worker to use a different port](#how-to-run-multiple-workers).

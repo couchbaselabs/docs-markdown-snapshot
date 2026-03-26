@@ -3,7 +3,7 @@ title: Sub-Document Operations
 description: <em>Sub-document</em> operations can be used to efficiently access
   <em>parts</em> of documents.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.4@nodejs-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -131,7 +131,7 @@ Inserting a sub-document
   }
 ```
 
-Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutate-in_ API. Here’s an example of one which replaces one path and removes another.
+Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutate-in_ API. Here's an example of one which replaces one path and removes another.
 
 ```javascript
 await collection.mutateIn('customer123', [
@@ -142,7 +142,7 @@ await collection.mutateIn('customer123', [
 
 Mutate with store semantics
 
-The `storeSemantics` option can be used to define the document storage semantics for a _mutate-in_ operation. In this particular example we use the `Upsert` semantics, which means the document will be updated if it exists, and created if it doesn’t. Note that when a document is updated, only the specified paths will be modified.
+The `storeSemantics` option can be used to define the document storage semantics for a _mutate-in_ operation. In this particular example we use the `Upsert` semantics, which means the document will be updated if it exists, and created if it doesn't. Note that when a document is updated, only the specified paths will be modified.
 
 ```javascript
 try {
@@ -414,7 +414,7 @@ result.forEach((res) => {
 })
 ```
 
-You may want to use `lookupInAllReplicas` to build a consensus, but it’s more likely that you’ll make use of `lookupInAnyReplica` as a fallback to a `lookupIn`, when the active node times out.
+You may want to use `lookupInAllReplicas` to build a consensus, but it's more likely that you'll make use of `lookupInAnyReplica` as a fallback to a `lookupIn`, when the active node times out.
 
 ## [](#cas-semantics)CAS Semantics
 
@@ -438,7 +438,7 @@ await collection.mutateIn('customer123', [
 
 Even when modifying the _same_ part of the document, operations will not necessarily conflict. For example, two concurrent _subdoc-array-append_ operations to the same array will both succeed, never overwriting the other.
 
-While CAS is no longer so strongly required to ensure document updates are preserved, as Sub-Doc reduces the chance of losing a mutation, it may still be needed to ensure document state remains consistent over multiple invocations of _mutate-in_: Sometimes it’s important to ensure the entire document didn’t change state since the last operation, such as in the case _subdoc-remove_ operations to ensure that the element being removed was not already replaced by something else.
+While CAS is no longer so strongly required to ensure document updates are preserved, as Sub-Doc reduces the chance of losing a mutation, it may still be needed to ensure document state remains consistent over multiple invocations of _mutate-in_: Sometimes it's important to ensure the entire document didn't change state since the last operation, such as in the case _subdoc-remove_ operations to ensure that the element being removed was not already replaced by something else.
 
 ```javascript
 await collection.mutateIn(

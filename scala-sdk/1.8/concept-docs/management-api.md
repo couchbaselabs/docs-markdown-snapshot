@@ -2,7 +2,7 @@
 title: Managing Couchbase Clusters from the SDK
 description: Cluster management from the SDK.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.8/modules/concept-docs/pages/management-api.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.8@scala-sdk:concept-docs:management-api.adoc[]
 ---
 
@@ -21,7 +21,7 @@ The Couchbase Scala SDK has a management API to provision clusters. This is not 
 
 The SDK lets you programmatically create _users_, assign them _roles_ and associated _privileges_, and remove them from the system.
 
-This is an overview of the user management API’s capabilities.
+This is an overview of the user management API's capabilities.
 
 ### [](#creating-a-user)Creating a User
 
@@ -41,14 +41,14 @@ UserSettings {
     Role[] roles;
 }
 
-The object contains three data-members. The first is a _String_ that specifies the user’s password: this must be provided. The second is a _String_ that specifies the user’s name (for example, `John Smith`): this is optional, and so may be omitted. The third is an array of _Role_ objects: this must be specified. Each _Role_ object takes the following form:
+The object contains three data-members. The first is a _String_ that specifies the user's password: this must be provided. The second is a _String_ that specifies the user's name (for example, `John Smith`): this is optional, and so may be omitted. The third is an array of _Role_ objects: this must be specified. Each _Role_ object takes the following form:
 
 Role {
     String role;
     String bucket_name;
 }
 
-The object’s two data-members are both _Strings_, and must both be specified. The _String_ specified as the role must correspond to a role supported by Couchbase Server. The _String_ specified as the bucket\_name must either correspond to a bucket currently defined on Couchbase Server; or be the asterisk character (_\*_), meaning _all buckets_.
+The object's two data-members are both _Strings_, and must both be specified. The _String_ specified as the role must correspond to a role supported by Couchbase Server. The _String_ specified as the bucket\_name must either correspond to a bucket currently defined on Couchbase Server; or be the asterisk character (_\*_), meaning _all buckets_.
 
 The method returns a _boolean_, which is `true` if the operation is successful, otherwise `false`.
 
@@ -67,7 +67,7 @@ User {
     Role[] roles;
 }
 
-The name is the full name of the user. The id is the user’s ID. The domain is either `local` or `external`. Each Role object in the Role-array has the form already described above, in _Creating a User_.
+The name is the full name of the user. The id is the user's ID. The domain is either `local` or `external`. Each Role object in the Role-array has the form already described above, in _Creating a User_.
 
 ### [](#getting-a-user)Getting a User
 
@@ -84,7 +84,7 @@ User {
     Role[] roles;
 }
 
-The name is the full name of the user. The id is the user’s ID. The domain is either `local` or `external`. Each Role object in the Role-array has the form described above, in _Creating a User_.
+The name is the full name of the user. The id is the user's ID. The domain is either `local` or `external`. Each Role object in the Role-array has the form described above, in _Creating a User_.
 
 ### [](#removing-a-user)Removing a User
 
@@ -92,4 +92,4 @@ The basic form of the method used to remove users is as follows:
 
 boolean removeUser (String userid)
 
-The method’s sole argument is the id of the user to be removed from the system, specified as a _String_. The method returns a _boolean_, whose value is `true` if the operation is successful, otherwise `false`.
+The method's sole argument is the id of the user to be removed from the system, specified as a _String_. The method returns a _boolean_, whose value is `true` if the operation is successful, otherwise `false`.

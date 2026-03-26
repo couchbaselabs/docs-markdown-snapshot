@@ -2,7 +2,7 @@
 title: Viewing Conflict Logs
 description: View and access conflict logs from the conflict collection.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-viewing-conflict-logs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:clusters-and-availability/xdcr-viewing-conflict-logs.adoc[]
 ---
 
@@ -17,7 +17,7 @@ When enabling XDCR conflict logging, you must specify the [Conflict Log Collecti
 
 The following sections have examples of how to access, process, or locate information within conflict log documents using SQL++ queries, an Eventing function, and a KV Range Scan. While these are some common methods, other options exist for viewing or processing conflict log records, such as using Couchbase Kafka Connect to stream these documents to an application for further processing.
 
-After XDCR logs a conflict, it does not modify or remove the conflict records. You’re responsible for managing and deleting them when no longer needed. Each conflict record has 3 documents. You can find the following in the Conflict Record Document (CRD) of the conflict collection:
+After XDCR logs a conflict, it does not modify or remove the conflict records. You're responsible for managing and deleting them when no longer needed. Each conflict record has 3 documents. You can find the following in the Conflict Record Document (CRD) of the conflict collection:
 
 * A conflict event record in the CRD `id` with the prefix `crd_`.
 * A copy of the source document in the CRD `srcDoc.id` with the prefix `src_`.
@@ -49,7 +49,7 @@ CREATE INDEX `idx_crd_timestamp_docId` ON `conflictlogs`.`bucket1`.`applogs`(SUB
 ```  
 > [!NOTE]  
 > * When creating custom indexes, `META().id` is already a part of the index key.  
-> * When querying, if you use underscore in comparison strings, make sure you use the escape character, so that it’s used as an exact comparison instead of a wildcard comparison. For example, `WHERE META().id LIKE “crd\\_%”`.
+> * When querying, if you use underscore in comparison strings, make sure you use the escape character, so that it's used as an exact comparison instead of a wildcard comparison. For example, `WHERE META().id LIKE “crd\\_%”`.
 
 Query example 1: List all `docId` that had conflicts between 2 time periods
 
@@ -134,7 +134,7 @@ The query result is as follows:
 
 ## [](#using-eventing-for-conflict-logs)Using Eventing to Process Conflict Logs
 
-If you do not like the 3 documents format of the conflict record, then you can create a single document from the 3 documents (`crd_`, `src_`, `tgt_`) for easier processing by using Eventing. Here, it’s assumed that the documents are small. If the documents are large such that the combined 3 documents are larger than the maximum [size limit](size-limitations.md), you can copy only a subset of the fields from the `src_` and `tgt_` documents to the custom single document.
+If you do not like the 3 documents format of the conflict record, then you can create a single document from the 3 documents (`crd_`, `src_`, `tgt_`) for easier processing by using Eventing. Here, it's assumed that the documents are small. If the documents are large such that the combined 3 documents are larger than the maximum [size limit](size-limitations.md), you can copy only a subset of the fields from the `src_` and `tgt_` documents to the custom single document.
 
 Another effect of creating your own conflict document as shown in the Eventing example is that the new document that you create will not have the system extended attribute (`{"_xdcr_conflict": true}`). This system extended attribute is what prevents the conflict documents, created by XDCR, from being replicated. As a result, the new combined conflict log document will have the `docId` (or doc key) of your preference, and if needed, it can be replicated.
 

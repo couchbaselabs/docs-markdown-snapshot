@@ -2,7 +2,7 @@
 title: Cluster Addressing and Topology Management
 description: ""
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/cluster-connectivity-topology-management.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:manage:manage-nodes/cluster-connectivity-topology-management.adoc[]
 ---
 
@@ -140,7 +140,7 @@ This check is in addition to access checks performed before writes. It allows de
 
 The `rebalanceEjectDelaySeconds` setting controls the minimum delay (in seconds) before a node is ejected from the cluster during rebalance out. This delay ensures clients and load balancers have adequate time to stop routing traffic to the node, minimizing failures during topology changes.
 
-Configure `rebalanceEjectDelaySeconds` according to your cluster’s addressing method:
+Configure `rebalanceEjectDelaySeconds` according to your cluster's addressing method:
 
 #### [](#active-load-balancer-3)Active Load Balancer
 
@@ -159,7 +159,7 @@ Set to at least `DNS TTL (Time-to-Live) × 2`
 
 This accounts for DNS caching behavior, ensuring clients have sufficient time to expire cached IP addresses of the removed node before it is ejected.
 
-Adjust this setting carefully to align with your environment’s load balancer polling intervals, DNS TTL values, and client caching behavior to minimize disruption.
+Adjust this setting carefully to align with your environment's load balancer polling intervals, DNS TTL values, and client caching behavior to minimize disruption.
 
 ## [](#topology-change-procedures)Topology Change Procedures
 
@@ -185,7 +185,7 @@ A rebalance in operation is used to add one or more nodes to the Enterprise Anal
 
 1. Add node to Enterprise Analytics cluster & initiate rebalance.
 2. Wait for rebalance completion.
-3. Add node’s IP to DNS A records.
+3. Add node's IP to DNS A records.
 4. It may take up to DNS TTL seconds for client applications to start to use new node.
 
 > [!NOTE]
@@ -211,7 +211,7 @@ A rebalance out operation is used to remove one or more nodes from the Enterpris
 
 #### [](#dns-only-5)DNS-Only
 
-1. Remove node’s IP from DNS A records.
+1. Remove node's IP from DNS A records.
 2. Start rebalance out.
 3. Node will remain usable for a minimum of `rebalanceEjectDelaySeconds` ([details](#rebalanceEjectDelaySeconds)).
 4. Node terminates upon rebalance completion.
@@ -252,7 +252,7 @@ Failover Procedures by Addressing Model
 1. Node is automatically or manually failed over.
 2. Node terminates, responsibilities from the failed node is transferred to surviving nodes.
 3. Requests routed to the failed node will get connection refused, which will trigger the SDK to retry another IP in the DNS record.
-4. Remove the node’s IP from the DNS record unless it is being added back to the cluster.
+4. Remove the node's IP from the DNS record unless it is being added back to the cluster.
 
 ### [](#failover-node-unreachable-by-quorum-e-g-network-partition)Failover - Node Unreachable by Quorum (e.g. Network Partition)
 
@@ -299,7 +299,7 @@ Failover Procedures by Addressing Model
   1. `cloudAccessPreemptiveRefreshIntervalSeconds` if the node is still able to access cloud storage, or…​
   2. up to `cloudAccessRefreshHaltTimeoutSeconds` if it is not.
 4. Requests routed to the failed node will get connection refused, which will trigger the SDK to retry another IP in the DNS record.
-5. Remove the node’s IP from the DNS record unless it is being added back to the cluster.
+5. Remove the node's IP from the DNS record unless it is being added back to the cluster.
 
 > [!NOTE]
 > * Running queries involving the failed node will fail upon node failover. Most queries utilize all nodes on the cluster, and therefore will fail on the failover.

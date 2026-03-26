@@ -3,7 +3,7 @@ title: Verifying the Couchbase Server Installation
 description: Testing the connection to Couchbase Server can be performed in a
   number of different ways.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/testing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:install:testing.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:7.6@server:install:testing.adoc[]
 
 Connecting to the Couchbase Server Web Console with a Web browser provides basic confirmation that a node is available.
 
-On all platforms, you can access the Web Console by connecting to the embedded Web server on port 8091\. For example, if your server can be identified on your network as `serverA`, you can access the Web Console by going to `http://serverA:8091/` or `http://<serverA's-IP-address>:8091/`. (If you set up Couchbase Server on a port other than `8091`, go to that specified port.) You should clear your browser’s cache before attempting to access to the Web Console.
+On all platforms, you can access the Web Console by connecting to the embedded Web server on port 8091\. For example, if your server can be identified on your network as `serverA`, you can access the Web Console by going to `http://serverA:8091/` or `http://<serverA's-IP-address>:8091/`. (If you set up Couchbase Server on a port other than `8091`, go to that specified port.) You should clear your browser's cache before attempting to access to the Web Console.
 
 If you are logged into the node itself, you can go to `http://localhost:8091`. You can also use the `couchbase-cli` command to query node to confirm that it is available.
 

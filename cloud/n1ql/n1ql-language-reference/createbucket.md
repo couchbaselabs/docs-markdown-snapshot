@@ -2,7 +2,7 @@
 title: CREATE BUCKET
 description: The CREATE BUCKET statement enables you to create a bucket.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/createbucket.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/createbucket.adoc[]
 ---
 
@@ -59,7 +59,7 @@ Use the optional `WITH` clause to specify additional options for the bucket.
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 > [!NOTE]
-> When using `with-fields`, if you set a value for `ramQuota`, the bucket’s configured with that value as its memory quota. However, if you do not specify a value for `ramQuota`, its value is determined as follows:
+> When using `with-fields`, if you set a value for `ramQuota`, the bucket's configured with that value as its memory quota. However, if you do not specify a value for `ramQuota`, its value is determined as follows:
 > 
 > * If `storageBackend` is set to `magma` and `numVBuckets` is set to `1024`, then `ramQuota` is set to `1024 MiB`.
 > * In all other cases, `ramQuota` is set to `100 MiB`.

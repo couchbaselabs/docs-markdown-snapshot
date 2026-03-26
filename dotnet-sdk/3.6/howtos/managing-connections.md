@@ -2,7 +2,7 @@
 title: Managing Connections
 description: This section describes how to connect the .NET SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@dotnet-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -114,7 +114,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### [](#injecting-couchbase-buckets)Injecting Couchbase Buckets
 
-To get a couchbase bucket, simply inject `IBucketNamedProvider` and call `GetBucketAsync`. Be sure that you don’t dispose the IBucket, it’s a singleton that will be reused through the application.
+To get a couchbase bucket, simply inject `IBucketNamedProvider` and call `GetBucketAsync`. Be sure that you don't dispose the IBucket, it's a singleton that will be reused through the application.
 
 ```csharp
 public class HomeController : Controller
@@ -214,7 +214,7 @@ Once you have done this you can use Cluster level services like Query and Analyt
 
 ### [](#shutdown)Shutdown
 
-During application shutdown it’s best to close the Couchbase connections gracefully. You can do this using the `ICouchbaseLifetimeService`.\` For Asp.Net Core, you can call this service from the `ApplicationStopped` cancellation token of `IHostApplicationLifetime`.
+During application shutdown it's best to close the Couchbase connections gracefully. You can do this using the `ICouchbaseLifetimeService`.\` For Asp.Net Core, you can call this service from the `ApplicationStopped` cancellation token of `IHostApplicationLifetime`.
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime applicationLifetime)
@@ -249,16 +249,16 @@ Couchbase Server Enterprise Edition and Couchbase Capella support full encryptio
 
 ### [](#couchbase-capella)Couchbase Capella
 
-The .NET SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
+The .NET SDK bundles Capella's standard root certificate by default. This means you don't need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
 > [!NOTE]
-> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK when using .NET 6.0 or later, it is trusted by default. .NET Framework clients will have to add it to the Windows certificate store.
+> Capella's root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK when using .NET 6.0 or later, it is trusted by default. .NET Framework clients will have to add it to the Windows certificate store.
 
 ### [](#couchbase-server)Couchbase Server
 
 As of SDK 3.4, if you connect to a Couchbase Server cluster with a root certificate issued by a trusted CA (Certificate Authority), you no longer need to configure this in the `ClusterOptions`.
 
-The cluster’s root certificate just needs to be issued by a CA whose certificate is in your system trust store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
+The cluster's root certificate just needs to be issued by a CA whose certificate is in your system trust store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
 
 > [!IMPORTANT]
 > Prior to .NET SDK 3.7.2, the SDK sets `ClusterOptions.ForceIpAsTargetHost` to `true` by default, which means it will send the IP as the target host during TLS authentication. This will cause a certificate name mismatch. As a workaround, for .NET SDK 3.7.1 and earlier, you need to set `ClusterOptions.ForceIpAsTargetHost` to `false` for the above to work.
@@ -317,7 +317,7 @@ For development, do the following steps to install the certificate:
 
 #### [](#importing-the-certificate-into-gnulinux)Importing the Certificate into GNU/Linux
 
-Although different distributions differ slightly in the details of their certificate handling, they will be similar to one of the two patterns below. Refer to your distribution’s documentation for precise instructions.
+Although different distributions differ slightly in the details of their certificate handling, they will be similar to one of the two patterns below. Refer to your distribution's documentation for precise instructions.
 
 * Debian and Ubuntu
 * RHEL and CentOS
@@ -364,7 +364,7 @@ $ sudo update-ca-trust extract
 
 #### [](#certificate-verification)Certificate Verification
 
-If you want to verify it’s actually working, you can use a tool like **tcpdump**. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
+If you want to verify it's actually working, you can use a tool like **tcpdump**. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
 
 E..e..@.@.............+......q{...#..Y.....
 .E...Ey........9........................id{"key":"value"}
@@ -377,7 +377,7 @@ E.....@.@.............+....Z.'yZ..#........
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 
-As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it’s good practice to always enable DNS-SRV on the client.
+As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it's good practice to always enable DNS-SRV on the client.
 
 The following steps are necessary to make it work:
 
@@ -421,7 +421,7 @@ var cluster = await Cluster.ConnectAsync(new ClusterOptions
     .WithCredentials("Administrator", "password"));
 ```
 
-If the DNS SRV records could not be loaded properly you’ll get the exception logged and the given host name will be used as a A record lookup.
+If the DNS SRV records could not be loaded properly you'll get the exception logged and the given host name will be used as a A record lookup.
 
     [INF] Error trying to retrieve DNS SRV entries. (addddf06)
     DnsClient.DnsResponseException: Query 63320 => _couchbase._tcp.10.143.200.101 IN SRV on 2001:4860:4860::8888:53 failed with an error.
@@ -481,7 +481,7 @@ We strongly recommend that the client and server [are in the same LAN-like envir
 
 ### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 
-Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
+Some DNS caching providers (notably, home routers) can't handle an SRV record that's large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
 
 ## [](#additional-resources)Additional Resources
 

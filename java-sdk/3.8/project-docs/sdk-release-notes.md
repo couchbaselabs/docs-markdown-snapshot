@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Java Client.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.8@java-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -298,7 +298,7 @@ __Table 9\. Optional Artifact Version Compatibility__
 #### [](#improvements-8)Improvements
 
 * [JVMCBC-1576](https://jira.issues.couchbase.com/browse/JVMCBC-1576): Bumped `protobuf` version from `3.23.2` to `3.25.5`.
-* [JCBC-2167](https://jira.issues.couchbase.com/browse/JCBC-2167): When using the Reactive API, it’s now possible to specify the default Scheduler results are published on. The new `ClusterEnvironment.Builder.publishOnScheduler(Supplier<Scheduler>)` method takes a supplier that the SDK invokes every time you subscribe to a Mono/Flux. The supplier is invoked by the same thread that does the subscription.  
+* [JCBC-2167](https://jira.issues.couchbase.com/browse/JCBC-2167): When using the Reactive API, it's now possible to specify the default Scheduler results are published on. The new `ClusterEnvironment.Builder.publishOnScheduler(Supplier<Scheduler>)` method takes a supplier that the SDK invokes every time you subscribe to a Mono/Flux. The supplier is invoked by the same thread that does the subscription.  
 > [!WARNING]  
 > This new configuration option is `volatile` API, meaning it could change without notice as we refine it based on your feedback.
 * [JCBC-2169](https://jira.issues.couchbase.com/browse/JCBC-2169): QueryMetrics now has a useful `.toString()` method.
@@ -393,7 +393,7 @@ __Table 12\. Optional Artifact Version Compatibility__
 #### [](#improvements-11)Improvements
 
 * [JVMCBC-1547](https://issues.couchbase.com/browse/JVMCBC-1547): Updated DnsJava to 3.6.0.
-* [JCBC-2157](https://issues.couchbase.com/browse/JCBC-2157): Transaction settings are now configurable using the same callback pattern used by other environment settings. Here’s an example of the new syntax:  
+* [JCBC-2157](https://issues.couchbase.com/browse/JCBC-2157): Transaction settings are now configurable using the same callback pattern used by other environment settings. Here's an example of the new syntax:  
 ```java  
 Cluster cluster = Cluster.connect(  
   connectionString,  
@@ -442,7 +442,7 @@ __Table 13\. Optional Artifact Version Compatibility__
 
 #### [](#bugfixes)Bugfixes
 
-* [JVMCBC-1530](https://issues.couchbase.com/browse/JVMCBC-1530): Deprecated the `com.couchbase.client.core.error.QueryException` class. This exception is from the SDK 3 API’s beta development, and has never been thrown in a GA version of a Couchbase SDK.
+* [JVMCBC-1530](https://issues.couchbase.com/browse/JVMCBC-1530): Deprecated the `com.couchbase.client.core.error.QueryException` class. This exception is from the SDK 3 API's beta development, and has never been thrown in a GA version of a Couchbase SDK.
 * [JVMCBC-1534](https://issues.couchbase.com/browse/JVMCBC-1534): Fixed possible `DURABILITY_INVALID_LEVEL` if `Durability.NONE` is used with transactions.
 
 ### [](#version-3-7-0-15-june-2024)Version 3.7.0 (15 June 2024)
@@ -527,7 +527,7 @@ __Table 16\. Optional Artifact Version Compatibility__
 
 #### [](#bugfixes-2)Bugfixes
 
-* [JVMCBC-1506](https://issues.couchbase.com/browse/JVMCBC-1506): Reduced the rate at which messages appear in the server’s `http_access.log` when a user provides valid credentials but does not have permission to access the bucket.
+* [JVMCBC-1506](https://issues.couchbase.com/browse/JVMCBC-1506): Reduced the rate at which messages appear in the server's `http_access.log` when a user provides valid credentials but does not have permission to access the bucket.
 * [JVMCBC-1512](https://issues.couchbase.com/browse/JVMCBC-1512): Updated Service in Cluster Configuration if only the port is changed.
 
 ### [](#version-3-6-1-5-april-2024)Version 3.6.1 (5 April 2024)
@@ -553,7 +553,7 @@ __Table 17\. Optional Artifact Version Compatibility__
 
 #### [](#improvements-16)Improvements
 
-* [JVMCBC-1477](https://issues.couchbase.com/browse/JVMCBC-1477): Reduced the rate at which messages appear in the server’s `http_access.log` when invalid credentials are provided resulting in 401 errors. Issues resulting in 403 errors will be handled in a future release.
+* [JVMCBC-1477](https://issues.couchbase.com/browse/JVMCBC-1477): Reduced the rate at which messages appear in the server's `http_access.log` when invalid credentials are provided resulting in 401 errors. Issues resulting in 403 errors will be handled in a future release.
 * [JVMCBC-1498](https://issues.couchbase.com/browse/JVMCBC-1498): The fields of a `SearchRow` from a Full-Text Search result are now included in the output of `SearchRow.toString()`.
 * [JVMCBC-1499](https://issues.couchbase.com/browse/JVMCBC-1499): Disabled DNS SRV caching. The SDK now responds quicker to DNS changes in dynamic environments like Kubernetes.
 * [JVMCBC-1500](https://issues.couchbase.com/browse/JVMCBC-1500): Added `EventingFunctionLanguageCompatibility.VERSION_7_2_0`.
@@ -598,8 +598,8 @@ __Table 18\. Optional Artifact Version Compatibility__
 * [JVMCBC-1487](https://issues.couchbase.com/browse/JVMCBC-1487): Upgraded reactor-core from 3.5.8 to 3.6.3.
 * [JVMCBC-1488](https://issues.couchbase.com/browse/JVMCBC-1488): Upgraded Jackson from 2.16.0 to 2.16.1.
 * [JVMCBC-1489](https://issues.couchbase.com/browse/JVMCBC-1489): Upgraded Netty from 4.1.101 to 4.1.107.
-* [JVMCBC-1491](https://issues.couchbase.com/browse/JVMCBC-1491): `Collection.scan()` methods are now part of the SDK’s committed public API. These methods do range-scans of documentIds. This feature requires Couchbase Server 7.6 or later.
-* [JVMCBC-1493](https://issues.couchbase.com/browse/JVMCBC-1493): `Collection.lookupInAnyReplica()` and `Collection.lookupInAllReplicas()` are now part of the SDK’s committed public API. These methods do sub-document lookups against replicas. This feature requires Couchbase Server 7.6 or later.
+* [JVMCBC-1491](https://issues.couchbase.com/browse/JVMCBC-1491): `Collection.scan()` methods are now part of the SDK's committed public API. These methods do range-scans of documentIds. This feature requires Couchbase Server 7.6 or later.
+* [JVMCBC-1493](https://issues.couchbase.com/browse/JVMCBC-1493): `Collection.lookupInAnyReplica()` and `Collection.lookupInAllReplicas()` are now part of the SDK's committed public API. These methods do sub-document lookups against replicas. This feature requires Couchbase Server 7.6 or later.
 
 #### [](#bugfixes-3)Bugfixes
 
@@ -701,8 +701,8 @@ __Table 21\. Optional Artifact Version Compatibility__
 
 #### [](#bugfixes-6)Bugfixes
 
-* [JVMCBC-1433](https://issues.couchbase.com/browse/JVMCBC-1433): The SDK can now connect to Memcached buckets whose names contain the percent (`%`) character. (We’d like to take this opportunity to remind everyone that Memcached buckets are deprecated in favor of Ephemeral buckets.)
-* [JVMCBC-1437](https://issues.couchbase.com/browse/JVMCBC-1437): With Couchbase Server versions that support updating a collection’s max expiry, it’s now possible to clear the expiry by passing `Duration.ZERO` for the new value.
+* [JVMCBC-1433](https://issues.couchbase.com/browse/JVMCBC-1433): The SDK can now connect to Memcached buckets whose names contain the percent (`%`) character. (We'd like to take this opportunity to remind everyone that Memcached buckets are deprecated in favor of Ephemeral buckets.)
+* [JVMCBC-1437](https://issues.couchbase.com/browse/JVMCBC-1437): With Couchbase Server versions that support updating a collection's max expiry, it's now possible to clear the expiry by passing `Duration.ZERO` for the new value.
 * [JVMCBC-1441](https://issues.couchbase.com/browse/JVMCBC-1441): The SDK now handles an additional error case for `IndexNotFoundException`.
 * [JVMCBC-1442](https://issues.couchbase.com/browse/JVMCBC-1442): Fixed a dependency issue with `tracing-opentelemetry` module.
 
@@ -872,7 +872,7 @@ __Table 26\. Optional Artifact Version Compatibility__
 
 * [JCBC-2077](https://issues.couchbase.com/browse/JCBC-2077): Upcoming Couchbase server release 7.6 will support having SQL++ queries read from replicas, in scenarios where the active is unavailable (such as failover). This improves availability, though users should be aware that they may be reading stale data. The option is activated with `scope.query("…​", queryOptions().useReplica(true))`, and is disabled by default. It will only work against 7.6 and above: against older server versions, it will raise a `FeatureNotAvailableException`.
 * [JVMCBC-1322](https://issues.couchbase.com/browse/JVMCBC-1322): The `waitUntilReady()` method now logs additional diagnostic information to the `com.couchbase.core.WaitUntilReady` logging category at `DEBUG` level.
-* [JCBC-2059](https://issues.couchbase.com/browse/JCBC-2059): If a `Cluster` becomes eligible for garbage collection, and you haven’t called `cluster.disconnect()` yet, the SDK now logs a warning and disconnects the cluster for you. This prevent the abandoned cluster’s network connections from living forever. Please do not rely on this "auto-disconnect" feature. It’s always better to call `cluster.disconnect()` as soon as you’re done talking to the cluster, so the network connections and other resources get released right away.
+* [JCBC-2059](https://issues.couchbase.com/browse/JCBC-2059): If a `Cluster` becomes eligible for garbage collection, and you haven't called `cluster.disconnect()` yet, the SDK now logs a warning and disconnects the cluster for you. This prevent the abandoned cluster's network connections from living forever. Please do not rely on this "auto-disconnect" feature. It's always better to call `cluster.disconnect()` as soon as you're done talking to the cluster, so the network connections and other resources get released right away.
 * [JCBC-2076](https://issues.couchbase.com/browse/JCBC-2076): `Collection.touch` now has an additional overload that allows specifying the expiry as an `Instant` instead of a `Duration`.
 
 ### [](#version-3-4-7-12-june-2023)Version 3.4.7 (12 June 2023)
@@ -908,7 +908,7 @@ __Table 27\. Optional Artifact Version Compatibility__
 
 #### [](#bugs)Bugs
 
-* [JVMCBC-1283](https://issues.couchbase.com/browse/JVMCBC-1283): A faceted Full-Text Search result’s `SearchNumericRange.min()` and `max()` methods now correctly return null instead of zero when the respective range endpoint is unbounded.
+* [JVMCBC-1283](https://issues.couchbase.com/browse/JVMCBC-1283): A faceted Full-Text Search result's `SearchNumericRange.min()` and `max()` methods now correctly return null instead of zero when the respective range endpoint is unbounded.
 * [JVMCBC-1288](https://issues.couchbase.com/browse/JVMCBC-1288): Fixed a regression in Couchbase Java SDK 3.4.5 and Scala SDK 1.4.5 that prevented Full-Text Search result rows from including an explanation when requested.
 * [JVMCBC-1292](https://issues.couchbase.com/browse/JVMCBC-1292): Removed `META-INF/versions/9/module-info.class` from the `core-io` jar. This file was associated with an improperly repackaged dependency, and never should have been there.
 
@@ -998,7 +998,7 @@ __Table 30\. Optional Artifact Version Compatibility__
 
 #### [](#improvements-29)Improvements
 
-* [JCBC-2050](https://issues.couchbase.com/browse/JCBC-2050): Coordinates in Full-Text Search geographic queries can now be specified using a staged builder, so it’s harder to accidentally swap the latitude and longitude components. Example usage:
+* [JCBC-2050](https://issues.couchbase.com/browse/JCBC-2050): Coordinates in Full-Text Search geographic queries can now be specified using a staged builder, so it's harder to accidentally swap the latitude and longitude components. Example usage:
 
 ```none
 Coordinate eiffelTower = Coordinate.lat(48.858093).lon(2.294694);
@@ -1114,7 +1114,7 @@ __Table 33\. Optional Artifact Version Compatibility__
 * [JCBC-1984](https://issues.couchbase.com/browse/JCBC-1984): KV range scan functionality (`collection.scan()`) added at @Stability.Volatile level. Users are encouraged to experiment with the feature and provide feedback ahead of its formal release in 3.5.0.
 * [JCBC-2018](https://issues.couchbase.com/browse/JCBC-2018): Make Core and CoreEnvironment Autocloseable.
 * [JCBC-2009](https://issues.couchbase.com/browse/JCBC-2009): Fixed an issue where ArraySetOptions was extending CommonDatastructureOptions incorrectly.
-* [JCBC-2021](https://issues.couchbase.com/browse/JCBC-2021): Diagnostics for an endpoint now include the state of the endpoint’s circuit breaker.
+* [JCBC-2021](https://issues.couchbase.com/browse/JCBC-2021): Diagnostics for an endpoint now include the state of the endpoint's circuit breaker.
 * [JCBC-2027](https://issues.couchbase.com/browse/JCBC-2027): The `ClusterEnvironment.Builder` methods that take a `Builder` are deprecated in favor of the overloads that take a `Consumer<Builder>`. For example, `ioConfig(IoConfig.Builder)` is deprecated in favor of `ioConfig(Consumer<IoConfig.Builder>)`. The methods that take a `Consumer<Builder>` are preferable because they allow customizing the config without clobbering the previous values.
 * [JCBC-2028](https://issues.couchbase.com/browse/JCBC-2028): `Cluster.connect` now throws an `IllegalArgumentException` if you pass a pre-built `ClusterEnvironment` and a connection string incompatible with the environment. Before this change, an incompatibility was logged as a warning, and the connection string scheme and parameters were ignored. `ConnectionStringIgnoredEvent` is now deprecated, since the SDK never publishes it anymore.
 
@@ -1125,7 +1125,7 @@ __Table 33\. Optional Artifact Version Compatibility__
 #### [](#bugs-6)Bugs
 
 * [JVMCBC-1157](https://issues.couchbase.com/browse/JVMCBC-1157): The SDK no longer rejects a `PersistTo` requirement in a bucket using the Magma storage engine. Before this change, the SDK would refuse the request because it misidentified Magma buckets as ephemeral (unable to persist documents).
-* [JVMCBC-1167](https://issues.couchbase.com/browse/JVMCBC-1167): If you call `CancellationErrorContext.getWaitUntilReadyContext()` on an error context that didn’t come from a "wait until ready" request, the method is now guaranteed to return null instead of sometimes throwing a `ClassCastException`.
+* [JVMCBC-1167](https://issues.couchbase.com/browse/JVMCBC-1167): If you call `CancellationErrorContext.getWaitUntilReadyContext()` on an error context that didn't come from a "wait until ready" request, the method is now guaranteed to return null instead of sometimes throwing a `ClassCastException`.
 * [JCBC-2024](https://issues.couchbase.com/browse/JCBC-2024): Fixed a memory leak in ManagerMessageHandler.
 * [JVMCBC-1247](https://issues.couchbase.com/browse/JVMCBC-1247): The SDK now throws `InvalidArgumentException: Failed to parse connection string` if the connection string has a syntax error. For example, the following connection string is malformed, because the `couchbase://` part is repeated: `couchbase://foo.example.com,couchbase://bar.example.com`. The correct way to include multiple addresses in a connection string is to specify the scheme only once, and to join addresses with commas, like: `couchbase://foo.example.com,bar.example.com`
 
@@ -1157,7 +1157,7 @@ __Table 34\. Optional Artifact Version Compatibility__
 * [JVMCBC-1102](https://issues.couchbase.com/browse/JVMCBC-1102): Added support for serverless execution environments including AWS Lambda.
 * [JCBC-2004](https://issues.couchbase.com/browse/JCBC-2004): Changed `AuthenticationFailureException` error message to indicate that bucket hibernation is now a potential cause. Bucket hibernation is a feature coming in a future Couchbase release.
 * [JCBC-1979](https://issues.couchbase.com/browse/JCBC-1979): A transactional `ctx.insert()` now consistently raises a `DocumentAlreadyExistsException` if the document already exists. If this is caught, the transaction is now allowed to continue.
-* [JVMCBC-1144](https://issues.couchbase.com/browse/JVMCBC-1144): If your Couchbase Server cluster’s root certificate is signed by a well-known certificate authority whose certificate is included in the JVM’s trust store, it’s no longer necessary to configure the certificate in the securityConfig settings.
+* [JVMCBC-1144](https://issues.couchbase.com/browse/JVMCBC-1144): If your Couchbase Server cluster's root certificate is signed by a well-known certificate authority whose certificate is included in the JVM's trust store, it's no longer necessary to configure the certificate in the securityConfig settings.
 * [JVMCBC-1154](https://issues.couchbase.com/browse/JVMCBC-1154): Maintenance dependency bump.
 
 #### [](#bugs-7)Bugs
@@ -1338,7 +1338,7 @@ __Table 39\. Optional Artifact Version Compatibility__
 
 * [JCBC-1929](https://issues.couchbase.com/browse/JCBC-1929): Integrated transactions library into SDK.
 * [JVMCBC-1070](https://issues.couchbase.com/browse/JVMCBC-1070): Bundled public Capella CA certificate.
-* [JVMCBC-1074](https://issues.couchbase.com/browse/JVMCBC-1074): If you try to connect to Capella without enabling TLS, now you’ll get an exception that says TLS is required (instead of an `UnknownHostException`).
+* [JVMCBC-1074](https://issues.couchbase.com/browse/JVMCBC-1074): If you try to connect to Capella without enabling TLS, now you'll get an exception that says TLS is required (instead of an `UnknownHostException`).
 * [JVMCBC-1076](https://issues.couchbase.com/browse/JVMCBC-1076): Deprecated `Event.createdAt()` in favor of a version that returns an `Instant`.
 * [JVMCBC-1078](https://issues.couchbase.com/browse/JVMCBC-1078): Made `schedulerThreadCount` customizable.
 * [JVMCBC-1079](https://issues.couchbase.com/browse/JVMCBC-1079): Added ConnectionString SDK 3 compatibility attributes.
@@ -1432,7 +1432,7 @@ __Table 41\. Optional Artifact Version Compatibility__
 * [JVMCBC-1068](https://issues.couchbase.com/browse/JVMCBC-1068): Added explicit handling of `FeatureNotAvailable` for Magma on CE.
 * [JVMCBC-1069](https://issues.couchbase.com/browse/JVMCBC-1069): Added explicit handling of `FeatureNotAvailable` for Query CE.
 * [JCBC-1916](https://issues.couchbase.com/browse/JCBC-1916): Updated the Analytics Management API Javadocs.
-* [JCBC-1917](https://issues.couchbase.com/browse/JCBC-1917): You can now configure properties of the `ClusterEnvironment` without having to build and shut down the environment. The new `ClusterOptions.environment(Consumer<ClusterEnvironment.Builder>)` method lets you configure properties of a `ClusterEnvironment` owned by the Cluster, so you don’t need to manage the environment yourself. Example usage:
+* [JCBC-1917](https://issues.couchbase.com/browse/JCBC-1917): You can now configure properties of the `ClusterEnvironment` without having to build and shut down the environment. The new `ClusterOptions.environment(Consumer<ClusterEnvironment.Builder>)` method lets you configure properties of a `ClusterEnvironment` owned by the Cluster, so you don't need to manage the environment yourself. Example usage:
 
 Cluster cluster = Cluster.connect("localhost", clusterOptions(username, password)
     .environment(env -> env.ioConfig().captureTraffic(ServiceType.MANAGER)));
@@ -2103,7 +2103,7 @@ The supported and tested dependencies for this release are:
 
 #### [](#bug-fixes-19)Bug Fixes
 
-* [JCBC-1647](https://issues.couchbase.com/browse/JCBC-1647): Deprecated `EjectionPolicy` in favor of `EvictionPolicyType`. And added the "noEviction" and "nruEviction" policies used by ephemeral buckets. This fixed a but where the BucketManager didn’t recognize ephemeral bucket ejection values. Users can now set a non-default ejection policy when creating an ephemeral bucket.
+* [JCBC-1647](https://issues.couchbase.com/browse/JCBC-1647): Deprecated `EjectionPolicy` in favor of `EvictionPolicyType`. And added the "noEviction" and "nruEviction" policies used by ephemeral buckets. This fixed a but where the BucketManager didn't recognize ephemeral bucket ejection values. Users can now set a non-default ejection policy when creating an ephemeral bucket.
 * [JCBC-1668](https://issues.couchbase.com/browse/JCBC-1668): Fixes an NPE when `toString` or `fieldsAs` is called when no fields are present in the result. In this case just null should now be returned, instead of a NPE deep down in the Jackson serializer stack.
 * [JVMCBC-870](https://issues.couchbase.com/browse/JVMCBC-870): A bug in the chunk response parser prohibited responses meant that View reduce responses were never completed, and as a result timed out on the user side. The completion of view results with reduce enabled has now been fixed.
 

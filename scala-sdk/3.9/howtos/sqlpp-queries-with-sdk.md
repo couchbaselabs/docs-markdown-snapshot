@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@scala-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -19,7 +19,7 @@ On this page we dive straight into using the Query Service API from the Scala SD
 
 > You can query for documents in Couchbase using the SQL++ query language (formerly N1QL), a language based on SQL, but designed for structured and flexible JSON documents. 
 
-Our query service uses SQL++, which will be fairly familiar to anyone who’s used any dialect of SQL. [Additional Resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](#6.5@server:n1ql:n1ql-language-reference/index.adoc).
+Our query service uses SQL++, which will be fairly familiar to anyone who's used any dialect of SQL. [Additional Resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](#6.5@server:n1ql:n1ql-language-reference/index.adoc).
 
 > [!TIP]
 > SQL++ Compared to Key-Value
@@ -28,7 +28,7 @@ Our query service uses SQL++, which will be fairly familiar to anyone who’s us
 
 ## [](#getting-started)Getting Started
 
-Let’s get started by pulling in all the imports needed in the examples below:
+Let's get started by pulling in all the imports needed in the examples below:
 
 ```scala
 import com.couchbase.client.scala._
@@ -42,7 +42,7 @@ import scala.concurrent.Future
 import scala.util.{Failure, Success, Try}
 ```
 
-Then we connect to a Couchbase cluster, as usual (of course, change the address and credentials to match your own cluster’s):
+Then we connect to a Couchbase cluster, as usual (of course, change the address and credentials to match your own cluster's):
 
 ```scala
     val cluster = Cluster.connect("localhost", "Administrator", "password").get
@@ -62,14 +62,14 @@ Note that building indexes is covered in more detail on the [Query concept page]
 
 ## [](#a-simple-query)A Simple Query
 
-Here’s the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
+Here's the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
 
 ```scala
 val statement = """select * from `travel-sample` limit 10;"""
 val result: Try[QueryResult] = cluster.query(statement)
 ```
 
-(Note that we won’t be covering the SQL++ language itself in any detail here, but if you’re familiar with SQL you’ll see it’s very similar.)
+(Note that we won't be covering the SQL++ language itself in any detail here, but if you're familiar with SQL you'll see it's very similar.)
 
 The Scala SDK returns `Try` rather than throwing exceptions, to allow you to handle errors in a functional way. A `Try` can either be a `Success(QueryResult)` if the SQL++ statement was successfully executed, or `Failure(Throwable)` if something went wrong. It can be pattern matched on like this:
 
@@ -97,7 +97,7 @@ Other things rowsAs can convert to are:
 
 Please see [this guide](json.md) for more information on the supported ways of working with JSON.
 
-Of course, it wouldn’t be Scala if we couldn’t elegantly combine the operations above more concisely:
+Of course, it wouldn't be Scala if we couldn't elegantly combine the operations above more concisely:
 
 ```scala
 cluster
@@ -111,7 +111,7 @@ cluster
 ```
 
 > [!NOTE]
-> Most of the examples here use the simplest of the three APIs provided by the Scala SDK, which blocks until the operation is performed. There’s also an asynchronous API that is based around Scala `Future`, and a streaming reactive API, for which we’ll see an example later.
+> Most of the examples here use the simplest of the three APIs provided by the Scala SDK, which blocks until the operation is performed. There's also an asynchronous API that is based around Scala `Future`, and a streaming reactive API, for which we'll see an example later.
 
 ## [](#placeholder-and-named-arguments)Placeholder and Named Arguments
 
@@ -155,7 +155,7 @@ Queries take an optional `scanConsistency` parameter that enables a tradeoff bet
 * With scan consistency set to `RequestPlus`, all outstanding document changes and index updates are processed before the query is run. Select this when consistency is always more important than performance.
 * For a middle ground, `AtPlus` is a "read your own write" (RYOW) option, which means it just waits for the documents that you specify to be indexed.
 
-Here’s how to specify the `RequestPlus` scan consistency level:
+Here's how to specify the `RequestPlus` scan consistency level:
 
 ```scala
       val result = cluster.query(
@@ -187,7 +187,7 @@ result match {
 
 The Scala SDK supports returning SQL++ results directly as Scala case classes.
 
-A small amount of boilerplate is required to tell the SDK how to convert your case class to/from JSON. There are more details available [here](json.md#case-classes), but the short version is to add a `Codec` in the case class’s companion object like this:
+A small amount of boilerplate is required to tell the SDK how to convert your case class to/from JSON. There are more details available [here](json.md#case-classes), but the short version is to add a `Codec` in the case class's companion object like this:
 
 ```scala
 case class Address(line1: String)
@@ -197,7 +197,7 @@ object User {
 }
 ```
 
-Now you’re free to pull out the results directly as your case class:
+Now you're free to pull out the results directly as your case class:
 
 ```scala
 
@@ -218,7 +218,7 @@ val users = cluster
 
 As mentioned earlier, the Scala SDK provides three SDKs (documented further on [Choosing an API](concurrent-async-apis.md)):
 
-* The blocking API you’ve seen so far, that returns a `QueryResult` containing all rows.
+* The blocking API you've seen so far, that returns a `QueryResult` containing all rows.
 * An async API that returns a `Future[QueryResult]`, which also contains all rows. This can be accessed like this:
 
 ```scala
@@ -248,9 +248,9 @@ The recommended solution is to use the reactive API. Reactive programming is a s
 The Scala SDK exposes primitives from the [Project Reactor](https://projectreactor.io/) library, most notably `Mono` and `Flux`. We strongly recommend [learning](https://projectreactor.io/learn) a little of this library first, and the following examples will assume basic familiarity with Reactor.
 
 > [!NOTE]
-> You’ll see both `reactor.core.scala.publisher` and `reactor.core.publisher` imports available for Reactor. Use the former, it is the Scala-optimized variant that the Scala SDK will return.
+> You'll see both `reactor.core.scala.publisher` and `reactor.core.publisher` imports available for Reactor. Use the former, it is the Scala-optimized variant that the Scala SDK will return.
 
-Here’s how to perform a query and stream the results using the reactive API:
+Here's how to perform a query and stream the results using the reactive API:
 
 ```scala
 val stmt = """select `travel-sample`.* from `travel-sample`;"""

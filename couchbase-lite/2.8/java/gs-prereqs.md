@@ -3,7 +3,7 @@ title: Couchbase Lite on Java&#8201;&#8212;&#8201;Prerequisites
 description: Couchbase Lite on Java -- a framework for developing offline-first
   Java applications for mobile and edge
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/java/pages/gs-prereqs.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:java:gs-prereqs.adoc[]
 ---
 
@@ -74,7 +74,7 @@ When unpacked the package contains the following:
 
 1. Download the _zip_ file from the [Couchbase Downloads](https://www.couchbase.com/downloads?family=mobile) page.
 2. Unpack the downloaded file to a location accessible to — and usable by — your chosen **build** environment.  
-We’ll refer to that location — `<your dir>/couchbase-lite-java-2.8.3` — as the `<pathToCbl>`.
+We'll refer to that location — `<your dir>/couchbase-lite-java-2.8.3` — as the `<pathToCbl>`.
 3. Include the following dependency in your `build.gradle` file, you can remove any Couchbase Lite Maven references:  
 ```Java  
 Dependencies {  
@@ -112,7 +112,7 @@ Web Service/Tomcat
 1. Copy the _native libraries_ (`<pathToCbl>/support`) to a location accessible to — and usable by — your build and runtime environments.
 2. Add the following libraries to the `LD_LIBRARY_PATH` in \`$CATALINA\_BASE/bin/setenv.sh:  
 > [!NOTE]  
-> If the setenv.sh file doesn’t exist, you will need to create a new file.  
+> If the setenv.sh file doesn't exist, you will need to create a new file.  
 ```bashrc  
 LD_LIBRARY_PATH=<pathToCbl>/support/linux/x86_64/:$LD_LIBRARY_PATH  
 ```

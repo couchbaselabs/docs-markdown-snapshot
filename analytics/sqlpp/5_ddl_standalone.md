@@ -3,7 +3,7 @@ title: CREATE a Standalone Collection
 description: This topic describes how you use the <code>CREATE</code> statement
   to create a standalone collection in Capella Analytics.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_standalone.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sqlpp:5_ddl_standalone.adoc[]
 ---
 
@@ -58,7 +58,7 @@ FieldType
 
 ## [](#example)Example
 
-The following example creates a standalone collection that is similar to the collections you can create for the sample Commerce data. In this example, you instruct the system to generate the primary keys for the data you’ll add to this collection. See [Install the Commerce Dataset](../intro/examples.md#Install).
+The following example creates a standalone collection that is similar to the collections you can create for the sample Commerce data. In this example, you instruct the system to generate the primary keys for the data you'll add to this collection. See [Install the Commerce Dataset](../intro/examples.md#Install).
 
 ```SQL++
  CREATE COLLECTION sampleAnalytics.Commerce.locations

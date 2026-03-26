@@ -4,7 +4,7 @@ description: Index partitioning enables you to increase aggregate query
   performance by dividing and spreading a large index of documents across
   multiple nodes, horizontally scaling out an index as needed.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/index-partitioning.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/index-partitioning.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:server:n1ql:n1ql-language-reference/index-partitioning.adoc[]
 
 # Index Partitioning
 
-Index partitioning enables you to increase aggregate query performance by dividing and spreading a large index of documents across multiple nodes, horizontally scaling out an index as needed. The system partitions the index across a number of index nodes using a hash partitioning strategy in a way that’s transparent to queries.
+Index partitioning enables you to increase aggregate query performance by dividing and spreading a large index of documents across multiple nodes, horizontally scaling out an index as needed. The system partitions the index across a number of index nodes using a hash partitioning strategy in a way that's transparent to queries.
 
 Benefits of a partitioned index include:
 
@@ -75,7 +75,7 @@ Composite Vector indexes and Hyperscale Vector indexes support further options. 
 
 ## [](#partition-keys)Partition Keys
 
-Partition keys are made up of one or more terms, with each term being the document key, a document field, or an expression of document key or field. The partition keys are hashed to generate a partition ID for each document. The partition ID is then used to identify the partition in which the document’s index keys would reside.
+Partition keys are made up of one or more terms, with each term being the document key, a document field, or an expression of document key or field. The partition keys are hashed to generate a partition ID for each document. The partition ID is then used to identify the partition in which the document's index keys would reside.
 
 The partition keys should be immutable: their values should not change once the document is created. For example, in the `landmark` keyspace, the field named `activity` almost never changes, and is therefore a good candidate for partition key. If the partition keys have changed, then the corresponding document should be deleted and recreated with the new partition keys.
 
@@ -116,7 +116,7 @@ With `meta().id` as the partition key, the index keys are evenly distributed amo
 
 ## [](#partition-keys-range-query)Choose Partition Keys for Range Query
 
-An application has the option to choose the partition key that can minimize latency on a range query for a partitioned index. For example, let’s say a query has an equality predicate based on the field `sourceairport` and `destinationairport`. If the index is also partitioned by the index keys on `sourceairport` and `destinationairport`, then the query will only need to read a single partition for the given pair of `sourceairport` and `destinationairport`. In this case, the application can maintain a low query latency while allowing the partitioned index to scale out as needed.
+An application has the option to choose the partition key that can minimize latency on a range query for a partitioned index. For example, let's say a query has an equality predicate based on the field `sourceairport` and `destinationairport`. If the index is also partitioned by the index keys on `sourceairport` and `destinationairport`, then the query will only need to read a single partition for the given pair of `sourceairport` and `destinationairport`. In this case, the application can maintain a low query latency while allowing the partitioned index to scale out as needed.
 
 To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 

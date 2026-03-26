@@ -3,7 +3,7 @@ title: Add Autocomplete to Your Application
 description: Use autocomplete to add suggestions for a user's Search query as
   they type in your application.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/search-query-auto-complete-code.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:search-query-auto-complete-code.adoc[]
 ---
 
@@ -12,16 +12,16 @@ link: xref:7.2@server:search:search-query-auto-complete-code.adoc[]
 
 # Add Autocomplete to Your Application
 
-> Use autocomplete to add suggestions for a user’s Search query as they type in your application. 
+> Use autocomplete to add suggestions for a user's Search query as they type in your application. 
 
 After you [create and configure a Search index that supports autocomplete](search-query-auto-complete-ui.md), configure your application to return results from the Search Service.
 
 ## [](#prerequisites)Prerequisites
 
-* You’ve deployed the Search Service on a node in your database.
+* You've deployed the Search Service on a node in your database.
 * You have a bucket with scopes and collections in your database.
 * Your user account has the **Search Admin** role for the bucket where you want to create the index.
-* You’ve created a compatible Search index. For more information, see [Configure an Autocomplete Search Index](search-query-auto-complete-ui.md).
+* You've created a compatible Search index. For more information, see [Configure an Autocomplete Search Index](search-query-auto-complete-ui.md).
 
 ## [](#procedure)Procedure
 

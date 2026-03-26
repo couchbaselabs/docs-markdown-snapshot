@@ -2,7 +2,7 @@
 title: Install Couchbase Lite for C
 description: Installing Couchbase Lite for C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/c/pages/gs-install.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:c:gs-install.adoc[]
 ---
 
@@ -98,7 +98,7 @@ Development
 sudo apt install libcblite-dev-community  
 ```
 
-That’s it. At this point, you are ready to start building the [Getting Started](gs-build.md) app, or doing your own thing with _Couchbase Lite for C_
+That's it. At this point, you are ready to start building the [Getting Started](gs-build.md) app, or doing your own thing with _Couchbase Lite for C_
 
 ### [](#lbl-deb)Using .deb Package
 
@@ -117,7 +117,7 @@ Use your package manager to install from a local `.deb` file.
   sudo apt install ./libcblite  
   sudo apt install ./libcblite-dev  
   ```
-3. That’s it.  
+3. That's it.  
 You just need to pass the `-lcblite` command-line flag to the compiler when you build.
 
 At this point, you are ready to start building the [Getting Started](gs-build.md) app, or doing your own thing with _Couchbase Lite for C_
@@ -157,8 +157,8 @@ To install the Couchbase for C libraries on macOS from a downloaded release pack
 3. Within _Xcode_:
 
   1. **Create** a new project
-  2. **Add** `<path/to>/include` to the project’s _Header Search Path_
-  3. **Add** `<path/to>/lib` to the project’s _Library Search Path_
+  2. **Add** `<path/to>/include` to the project's _Header Search Path_
+  3. **Add** `<path/to>/lib` to the project's _Library Search Path_
   4. **Drag** `libcblite-community.dylib` into your Xcode project. Then, within the dialog:
 
     1. **Select** _Create Directory References If Needed_

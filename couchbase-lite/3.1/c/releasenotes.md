@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Lite on C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/c/pages/releasenotes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@couchbase-lite:c:releasenotes.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:3.1@couchbase-lite:c:releasenotes.adoc[]
 
 > Description — _Couchbase Lite on C_  
 > _Abstract — This content describes the key features and changes implemented by release 3.1 of Couchbase Lite on C_  
-> Related Content — [What’s New](#cbl-whatsnew.adoc) | [Compatibility](compatibility.md) | [Supported Platforms](supported-os.md)
+> Related Content — [What's New](#cbl-whatsnew.adoc) | [Compatibility](compatibility.md) | [Supported Platforms](supported-os.md)
 
 ## [](#maint-3-1-10)3.1.10 — November 2024
 
@@ -159,7 +159,7 @@ Version 3.1.0 for C delivers the following features and enhancements:
 
 ### [](#scopes-and-collections)Scopes and Collections
 
-Couchbase Mobile’s cloud-to-edge support for scopes and collections allows application developers to organize and logically isolate data.
+Couchbase Mobile's cloud-to-edge support for scopes and collections allows application developers to organize and logically isolate data.
 
 Independent lifecycle management and fine-grained security control simplifies the deployment of multi-tenant and high-application density cloud-to-edge applications at scale.
 

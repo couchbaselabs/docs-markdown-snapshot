@@ -4,7 +4,7 @@ description: Couchbase Server supports <em>data compression</em> in its
   communications with internal and external clients, and in its internal
   handling of items.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/buckets-memory-and-storage/compression.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:buckets-memory-and-storage/compression.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:7.6@server:learn:buckets-memory-and-storage/compression.adoc[]
 
 The compression of data allows RAM and disk-space to be used with increased efficiency. It may also reduce consumption of network bandwidth. Higher consumption of CPU resources may result.
 
-Compression, provided by the open-source library [Snappy](http://en.wikipedia.org/wiki/Snappy%5F%28compression%29), is applied to items based on the client’s capabilities, on the compression _mode_ established by the user for the given bucket, and on a required minimum size for the document _before_ compression, in relation to its size _after_ compression (referred to as the _compression ratio_).
+Compression, provided by the open-source library [Snappy](http://en.wikipedia.org/wiki/Snappy%5F%28compression%29), is applied to items based on the client's capabilities, on the compression _mode_ established by the user for the given bucket, and on a required minimum size for the document _before_ compression, in relation to its size _after_ compression (referred to as the _compression ratio_).
 
 Compression is available only in Couchbase Enterprise Edition, and can be applied only to Couchbase and Ephemeral buckets. Compression applies to both binary and JSON items.
 
@@ -33,7 +33,7 @@ Couchbase Server may (depending on the mode of the bucket) store items in compre
 
 ## [](#compression-modes)Compression Modes
 
-Each bucket is configured to support one of three _modes_. After a client has communicated its ability to send and receive compressed data, the server’s running of compression and decompression routines depends on the mode supported by the specified bucket. The modes are as follows:
+Each bucket is configured to support one of three _modes_. After a client has communicated its ability to send and receive compressed data, the server's running of compression and decompression routines depends on the mode supported by the specified bucket. The modes are as follows:
 
 * **Off**: Provides the behavior of Couchbase Server pre-5.5\. On receipt of a compressed item, Couchbase Server decompresses the item when storing in memory; and recompresses it when storing on disk. Couchbase Server sends the item in uncompressed form. This mode is assigned by default to buckets _upgraded_ from a previous version of Couchbase Server. The mode is recommended for use where clients cannot benefit from compression, and where neither memory-resources nor network-bandwidth will be negatively impacted by the size and quantity of items to be handled. Note also that this is the only mode under which Memcached buckets operate.
 * **Passive**: On receipt of a compressed item, Couchbase Server stores it in compressed form both in memory and on disk. Couchbase Server sends the item back to the client in compressed form if this is requested by the client; otherwise, it sends the item back in uncompressed form. On receipt of an uncompressed item, Couchbase Server stores it in memory in uncompressed form, and stores it on disk in compressed form. It returns the item to the client in uncompressed form. This mode is assigned by default to _new_ buckets, in Couchbase Server 5.5 and beyond. It supports clients that themselves handle compression, and additionally allows Couchbase Server to limit its use of memory-resources and network-bandwidth. At the same time, it does not force Couchbase Server to use CPU resources for the compression and decompression of items that clients do not themselves require in compressed form.

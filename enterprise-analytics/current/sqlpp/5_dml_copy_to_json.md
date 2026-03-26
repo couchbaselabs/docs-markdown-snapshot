@@ -5,7 +5,7 @@ description: This topic describes how you use <code>COPY TO</code> statements to
   collection--out to an external data store such as Amazon S3 or Azure Blob
   Storage.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_dml_copy_to_json.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sqlpp:5_dml_copy_to_json.adoc[]
 ---
 
@@ -222,7 +222,7 @@ OverClause
 You supply an optional **`OverClause`** to specify output partitioning with a `PartitionClause` and ordering with an `OrderClause`. This is similar to the `OVER` clause of a [WINDOW statement](3%5Fquery.md#Over%5Fclauses).
 
 * If you specify a `PartitionClause`, Enterprise Analytics evaluates the `Output_Path_Expr` once per logical data partition and refers to aliases if defined by an `AS` sub-clause.
-* If you do not specify a `PartitionClause`, Enterprise Analytics evaluates the `OutputPathExpr` once for the whole `COPY TO` output dataset. That’s, all of the files end up in the same directory.
+* If you do not specify a `PartitionClause`, Enterprise Analytics evaluates the `OutputPathExpr` once for the whole `COPY TO` output dataset. That's, all of the files end up in the same directory.
 
 You use the `OrderClause` to define output object order, either within each partition or for the whole dataset.
 

@@ -2,7 +2,7 @@
 title: Eventing&#8201;&#8212;&#8201;Server Compatibility
 description: How Sync Gateway works with Couchbase Server's Eventing feature
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/server-compatibility/pages/server-compatibility-eventing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:server-compatibility:server-compatibility-eventing.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:sync-gateway:server-compatibility:server-compatibility-eventing.adoc[
 
 # Eventing&#8201;&#8212;&#8201;Server Compatibility
 
-> How Sync Gateway works with Couchbase Server’s Eventing feature  
+> How Sync Gateway works with Couchbase Server's Eventing feature  
 
 _Related topics_: [Buckets](server-compatibility-buckets.md) | [Collections](server-compatibility-collections.md) | [Eventing](server-compatibility-eventing.md) | [Transactions](server-compatibility-transactions.md) | [XDCR](server-compatibility-xdcr.md) | [Backup and restore](server-compatibility-backups.md)
 
@@ -27,7 +27,7 @@ Couchbase Server provides the backing data store for Sync Gateway.
 > [!TIP]
 > See: [Compatibility Matrix](../product-notes/compatibility.md) for version compatibility information.
 
-Couchbase Server’s [Couchbase Eventing Service](../../../server/current/eventing/eventing-overview.md) feature provides a framework to operate on changes to data in real time.
+Couchbase Server's [Couchbase Eventing Service](../../../server/current/eventing/eventing-overview.md) feature provides a framework to operate on changes to data in real time.
 
 This page provides details on how [Couchbase Eventing Service](../../../server/current/eventing/eventing-overview.md) relates to data changes in the Couchbase Mobile ecosystem.
 
@@ -104,10 +104,10 @@ You can use Eventing and Sync Gateway connected to the same bucket when Eventing
 You should write your Eventing function to be idempotent so that it produces the same result when it processes the same mutation more than once. This is necessary because:
 
 * When Sync Gateway makes a single document update directly, such as those replicated from Couchbase Lite, it generates a single server mutation that writes both the document body and the metadata.  
-When an update originates outside of Couchbase mobile, Sync Gateway generates multiple mutations because it must update both the document’s body and its `_sync` metadata (XATTRs).
-* Eventing detects these mutations and invokes its `OnUpdate` handler for each one; whether it’s for the modified body of the document, Sync Gateway metadata, or both. It’s here that you need to code the function to apply the same update once only. One way to do this is to use the crc64 function call to identify when an update is to the Sync Gateway metadata only — see: [Eventing — crc64()](../../../server/current/eventing/eventing-language-constructs.md#crc64%5Fcall) for more on how to do this.
+When an update originates outside of Couchbase mobile, Sync Gateway generates multiple mutations because it must update both the document's body and its `_sync` metadata (XATTRs).
+* Eventing detects these mutations and invokes its `OnUpdate` handler for each one; whether it's for the modified body of the document, Sync Gateway metadata, or both. It's here that you need to code the function to apply the same update once only. One way to do this is to use the crc64 function call to identify when an update is to the Sync Gateway metadata only — see: [Eventing — crc64()](../../../server/current/eventing/eventing-language-constructs.md#crc64%5Fcall) for more on how to do this.
 
-_Eventing_ prevents inadvertent use of its functions on _Sync Gateway_ read-write buckets. You’ll see the following warning if you try to do this:  
+_Eventing_ prevents inadvertent use of its functions on _Sync Gateway_ read-write buckets. You'll see the following warning if you try to do this:  
 `SyncGateway is enabled on: <bucket-name>, deployment of source bucket mutating handler will cause Intra Bucket Recursion`
 
 ---

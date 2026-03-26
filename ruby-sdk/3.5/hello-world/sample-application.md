@@ -4,7 +4,7 @@ description: Discover how to program interactions with the Couchbase Server via
   the Data, Query, and Search services -- using the Travel Sample Application
   with the built-in Travel Sample data Bucket.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/hello-world/pages/sample-application.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.5@ruby-sdk:hello-world:sample-application.adoc[]
 ---
 
@@ -54,7 +54,7 @@ You can now try out searching for flights, booking flights, and searching for ho
 
 The backend code shows Couchbase Ruby SDK in action with Query and Search, but also how to plug together all of the elements and build an application with Couchbase Server and the Ruby SDK.
 
-Here’s the airport search code, which checks to see whether the search term for the query string is a three or four letter FAA or ICAO abbreviation, and if not searches for it as an airport name:
+Here's the airport search code, which checks to see whether the search term for the query string is a three or four letter FAA or ICAO abbreviation, and if not searches for it as an airport name:
 
 ```ruby
 def get_airports(search_param)

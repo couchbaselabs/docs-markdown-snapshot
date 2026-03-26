@@ -2,7 +2,7 @@
 title: Memory
 description: Couchbase Server memory-management ensures high performance and scalability.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/memory.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:buckets-memory-and-storage/memory.adoc[]
 ---
 
@@ -17,12 +17,12 @@ link: xref:server:learn:buckets-memory-and-storage/memory.adoc[]
 
 You must configure your memory quota allocations for each service in Couchbase Server, except for the [Query Service](../services-and-indexes/services/query-service.md) and [Backup Service](../services-and-indexes/services/backup-service.md). You can change the availability of memory resources in your cluster based on how you assign your services to each node.
 
-The memory quota you allocate for a service applies to every instance of that service across your cluster. For example, if you allocate 2048 MB to the [Analytics Service](../services-and-indexes/services/analytics-service.md), and you run the Analytics Service on three of a cluster’s five nodes, each instance of the service has 2048 MB of memory.
+The memory quota you allocate for a service applies to every instance of that service across your cluster. For example, if you allocate 2048 MB to the [Analytics Service](../services-and-indexes/services/analytics-service.md), and you run the Analytics Service on three of a cluster's five nodes, each instance of the service has 2048 MB of memory.
 
 > [!NOTE]
-> You can’t allocate different amounts of memory for different instances of the same service in a cluster.
+> You can't allocate different amounts of memory for different instances of the same service in a cluster.
 
-Couchbase recommends that you allocate no more than 90% of a node’s memory (80% on nodes with a small amount of total memory) to a server and its services.
+Couchbase recommends that you allocate no more than 90% of a node's memory (80% on nodes with a small amount of total memory) to a server and its services.
 
 The firm limits for server memory allocation can be calculated by:
 
@@ -32,11 +32,11 @@ where `total_memory` is the maximum memory on the node in GiB.
 
 The [Data Service](../services-and-indexes/services/data-service.md) must run on at least one node in any cluster. Every [bucket](#buckets.adoc) you create on a node has its own memory quota. The available memory for a bucket comes from the quota you assign to the Data Service. For more information on bucket memory quotas, see the [Bucket Memory Quotas](#bucket-memory) section.
 
-When you add a new node, you can use the same configuration and services from the first node in the cluster. You can also choose to customize the new node’s settings and change its assigned services.
+When you add a new node, you can use the same configuration and services from the first node in the cluster. You can also choose to customize the new node's settings and change its assigned services.
 
 For more information about how to add nodes and allocate memory to a service when you initialize a cluster, see [Create a Cluster](../../manage/manage-nodes/create-cluster.md).
 
-The **Memory Quotas** panel in the [General settings screen](../../manage/manage-settings/general-settings.md) of the Couchbase Server Web Console lists all the services running on a cluster. It also shows the memory allocated to each service. You can use the panel to change the memory allocations in your cluster. If a change doesn’t meet the required minimum or exceeds the available memory for a cluster, the Memory Quotas panel displays an error.
+The **Memory Quotas** panel in the [General settings screen](../../manage/manage-settings/general-settings.md) of the Couchbase Server Web Console lists all the services running on a cluster. It also shows the memory allocated to each service. You can use the panel to change the memory allocations in your cluster. If a change doesn't meet the required minimum or exceeds the available memory for a cluster, the Memory Quotas panel displays an error.
 
 The following table contains the minimum required memory quotas for each service in Couchbase Server:
 
@@ -48,7 +48,7 @@ The following table contains the minimum required memory quotas for each service
 | Analytics | 1024                         |
 | Eventing  | 256                          |
 
-The Query Service and the Backup Service don’t require an administrator-specified memory quota.
+The Query Service and the Backup Service don't require an administrator-specified memory quota.
 
 ## [](#bucket-memory)Bucket Memory Quotas
 
@@ -78,7 +78,7 @@ Warmup behavior controls how and when data is loaded from disk into memory after
 
 Choosing the appropriate warmup behavior lets you balance between quicker bucket availability and having more data pre-loaded for immediate access after a restart.
 
-On a given Data Service node, a bucket’s data is loaded in accordance with determinations made by the _access scanner_.
+On a given Data Service node, a bucket's data is loaded in accordance with determinations made by the _access scanner_.
 
 The access scanner periodically identifies the most frequently used keys and writes them to an access log. During server warmup, Couchbase Server uses this log to prioritize loading the most-accessed documents into memory. By default, the access scanner runs every 24 hours at 10:00 AM GMT, but you can adjust its schedule to minimize performance impact and avoid conflicts with index updates.
 
@@ -103,7 +103,7 @@ You can configure the warmup process using the REST API. For more information, s
 
 ## [](#ejection)Ejection
 
-If a bucket’s memory use gets close to its memory quota, the Data Service may eject data from memory. See [Memory Watermarks](#watermarks) for more information about how Couchbase Server manages memory use. You assign an ejection policy (also known as an eviction method) to each bucket that determines if and how the Data Service ejects data from memory. Couchbase and Ephemeral buckets each have their own ejection policies.
+If a bucket's memory use gets close to its memory quota, the Data Service may eject data from memory. See [Memory Watermarks](#watermarks) for more information about how Couchbase Server manages memory use. You assign an ejection policy (also known as an eviction method) to each bucket that determines if and how the Data Service ejects data from memory. Couchbase and Ephemeral buckets each have their own ejection policies.
 
 > [!NOTE]
 > Capella refers to Couchbase buckets as Memory and Disk buckets, and Ephemeral buckets as Memory Only buckets.
@@ -112,7 +112,7 @@ The two ejection policies available for Couchbase buckets are:
 
 Value-only
 
-The Data Service only ejects a document’s data when it ejects it from memory. It keeps the document’s keys and metadata in memory. Retaining the keys and metadata help limit the performance impact of ejecting the document from memory. This is the default policy for Couchbase buckets. Choose this method if you need better performance, but be aware that it uses more system memory.
+The Data Service only ejects a document's data when it ejects it from memory. It keeps the document's keys and metadata in memory. Retaining the keys and metadata help limit the performance impact of ejecting the document from memory. This is the default policy for Couchbase buckets. Choose this method if you need better performance, but be aware that it uses more system memory.
 
 Full
 
@@ -134,9 +134,9 @@ Eject data when RAM is full
 If the bucket approaches its memory quota, the Data Service ejects documents to make space for new data. It chooses the documents to eject based on the Not Recently Used (NRU) algorithm. This algorithm uses metadata to determine which documents have not been accessed recently.
 
 > [!IMPORTANT]
-> Data ejected from an Ephemeral bucket is lost because it’s never persisted to disk.
+> Data ejected from an Ephemeral bucket is lost because it's never persisted to disk.
 > 
-> Ejecting data from a Couchbase bucket does not remove the data from disk, so it’s still available. The only effect is that the next access to the data is slower because the Data Service has to read it from disk instead of from memory.
+> Ejecting data from a Couchbase bucket does not remove the data from disk, so it's still available. The only effect is that the next access to the data is slower because the Data Service has to read it from disk instead of from memory.
 
 ### [](#changing-ejection-policy)Changing the Ejection Policy of a Couchbase Bucket
 
@@ -148,23 +148,23 @@ You can change the ejection policy of an existing bucket. When you change the ej
   * Swap rebalance each node in the cluster running the Data Service.
   * Perform a graceful failover followed by a delta or full recovery and rebalance of each node running the Data Service.
 
-You may want to change the ejection policy of a bucket if you’re changing the storage engine it uses. For example, suppose you’re changing a bucket from using the [Couchstore](storage-engines.md#storage-engine-couchstore) to the [Magma](storage-engines.md#storage-engine-magma). Then you should consider changing the ejection policy to Full Ejection, which is better for buckets with low memory to storage ratios. See [Migrate a Bucket’s Storage Backend](../../manage/manage-buckets/migrate-bucket.md) for more information about migrating a bucket to a different storage engine.
+You may want to change the ejection policy of a bucket if you're changing the storage engine it uses. For example, suppose you're changing a bucket from using the [Couchstore](storage-engines.md#storage-engine-couchstore) to the [Magma](storage-engines.md#storage-engine-magma). Then you should consider changing the ejection policy to Full Ejection, which is better for buckets with low memory to storage ratios. See [Migrate a Bucket's Storage Backend](../../manage/manage-buckets/migrate-bucket.md) for more information about migrating a bucket to a different storage engine.
 
 > [!NOTE]
 > If you change the ejection policy while performing a backend storage migration, you must use a full recovery when you recover a node after a graceful failover. The storage migration requires the full recovery to complete its migration. You also cannot allow Couchbase Server to restart the bucket after changing the ejection policy during a migration.
 
-See [Change a Bucket’s Ejection Policy](../../manage/manage-buckets/change-ejection-policy.md) for more information about changing a bucket’s ejection policy.
+See [Change a Bucket's Ejection Policy](../../manage/manage-buckets/change-ejection-policy.md) for more information about changing a bucket's ejection policy.
 
 ### [](#watermarks)Memory Watermarks
 
-For each bucket, Couchbase Server manages available memory using two watermarks: `memoryLowWatermark` and `memoryHighWatermark`. The `memoryHighWatermark` watermark is the threshold where Couchbase Server takes action to prevent the bucket from exceeding its memory allocation. When memory use reaches this watermark, the Data Service ejects items if the bucket’s ejection policy allows item ejection. It continues ejecting items until the bucket’s memory use drops to the `memoryLowWatermark` watermark. If ejection cannot free enough space, the Data Service stops ingesting data, sends error messages to clients, and displays an insufficient memory notification. When enough memory becomes available, data ingestion resumes.
+For each bucket, Couchbase Server manages available memory using two watermarks: `memoryLowWatermark` and `memoryHighWatermark`. The `memoryHighWatermark` watermark is the threshold where Couchbase Server takes action to prevent the bucket from exceeding its memory allocation. When memory use reaches this watermark, the Data Service ejects items if the bucket's ejection policy allows item ejection. It continues ejecting items until the bucket's memory use drops to the `memoryLowWatermark` watermark. If ejection cannot free enough space, the Data Service stops ingesting data, sends error messages to clients, and displays an insufficient memory notification. When enough memory becomes available, data ingestion resumes.
 
 > [!NOTE]
 > The settings `mem_high_wat`, and `mem_low_wat` are no longer supported through `cbepctl`. These settings are replaced by new settings `memoryLowWatermark` and `memoryHighWatermark`, which can be configured using REST APIs.
 
 Couchbase Server selects items for ejection based on metadata that shows whether the item is Not Recently Used (NRU). If an item was not used recently, it becomes a candidate for ejection.
 
-The relationship of `memoryLowWatermark` and `memoryHighWatermark` to the bucket’s overall memory quota is illustrated as follows:
+The relationship of `memoryLowWatermark` and `memoryHighWatermark` to the bucket's overall memory quota is illustrated as follows:
 
 ![tunableMemory](../_images/buckets-memory-and-storage/tunableMemory.png) 
 

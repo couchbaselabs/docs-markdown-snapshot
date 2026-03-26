@@ -4,7 +4,7 @@ description: A Couchbase-Server <em>cluster</em> consists of one or more
   <em>nodes</em>, each of which is a system running an instance of Couchbase
   Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/node-management-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-nodes/node-management-overview.adoc[]
 ---
 
@@ -27,7 +27,7 @@ A Couchbase Server node is a physical or virtual machine that hosts a single ins
 * Recovering a node, following failover.
 * Modifying services on nodes, to add or remove Multi-Dimensional Scaling (MDS) services, and rebalancing.
 * Applying node-to-node encryption, to ensure security of communications across the cluster.
-* Changing the cluster’s address family.
+* Changing the cluster's address family.
 
 ## [](#prerequisites)Prerequisites
 

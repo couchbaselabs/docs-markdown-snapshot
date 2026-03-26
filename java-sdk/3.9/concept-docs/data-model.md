@@ -3,7 +3,7 @@ title: Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/concept-docs/pages/data-model.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@java-sdk:concept-docs:data-model.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.9@java-sdk:concept-docs:data-model.adoc[]
 
 # Data Model
 
-> Couchbase’s use of JSON as a storage format allows powerful search and query over documents. Several data structures are supported by the SDK, including map, list, queue, and set. 
+> Couchbase's use of JSON as a storage format allows powerful search and query over documents. Several data structures are supported by the SDK, including map, list, queue, and set. 
 
 Data structures in Couchbase are similar in concept to data structures in the Java Collections Framework:
 
@@ -56,7 +56,7 @@ Map<String, String> myMap = collection.map("name", String.class);
 
 ### [](#limitations)Limitations
 
-The Map interface requires the "put" and "remove" methods to return the previous value associated with the key. To implement this behavior, CouchbaseMap needs to make at least 2 subdocument requests: one request to get the current value, and a second request to update it. If the document changes between these two requests, the code retries up to the `casMismatchRetries` limit, after which it gives up and throws an exception. If the return values of `put` and `remove` are never actually used, you could end up making a lot of unnecessary requests. There’s also the potential for exceptions if concurrent map updates are extremely frequent.
+The Map interface requires the "put" and "remove" methods to return the previous value associated with the key. To implement this behavior, CouchbaseMap needs to make at least 2 subdocument requests: one request to get the current value, and a second request to update it. If the document changes between these two requests, the code retries up to the `casMismatchRetries` limit, after which it gives up and throws an exception. If the return values of `put` and `remove` are never actually used, you could end up making a lot of unnecessary requests. There's also the potential for exceptions if concurrent map updates are extremely frequent.
 
 > [!TIP]
 > For many use cases, the [Sub-Document API](../howtos/subdocument-operations.md) will be a useful and possibly better altermative to `CouchbaseMap`.

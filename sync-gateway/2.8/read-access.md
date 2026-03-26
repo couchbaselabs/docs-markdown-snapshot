@@ -2,7 +2,7 @@
 title: Read Access
 description: How to handle read-access
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/read-access.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::read-access.adoc[]
 ---
 
@@ -20,9 +20,9 @@ _Related access-control topics_: [Sync function](../current/access-control/sync-
 
 Every _user_ and _role_ has a set of channels that they are allowed to read.
 
-A user can only read documents that are in at least one of the user’s channels (or the channels of roles that user has.)
+A user can only read documents that are in at least one of the user's channels (or the channels of roles that user has.)
 
-After a user is granted access to a new channel, the changes feed incorporates all existing documents in that channel, even those from earlier sequences than the current request’s `since` parameter. That way the next pull request retrieves all documents to which the user now has access.
+After a user is granted access to a new channel, the changes feed incorporates all existing documents in that channel, even those from earlier sequences than the current request's `since` parameter. That way the next pull request retrieves all documents to which the user now has access.
 
 ## [](#add-access)Add Access
 
@@ -58,7 +58,7 @@ In this example:
 | **2** | The channel\_id property names the associated channel, with which the actual chat messages are tagged |
 | **3** | The members property lists the users who have access to that channel.                                 |
 
-The `access()` function can also operate on roles. If a user name string begins with `role:` then the remainder of the string is interpreted as a role name. There’s no ambiguity here, because ":" is an illegal character in a user or role name.
+The `access()` function can also operate on roles. If a user name string begins with `role:` then the remainder of the string is interpreted as a role name. There's no ambiguity here, because ":" is an illegal character in a user or role name.
 
 Because anonymous requests are authenticated as the user "GUEST", you can make a channel and its documents public by calling `access` with a username of `GUEST`.
 
@@ -74,16 +74,16 @@ A user can be granted access to a channel through the `admin_channels` property 
 
 Revoking access to a channel can cause a user to lose access to documents, if s/he no longer has access to any channels those documents are in.
 
-However, the replicator does _not_ currently delete such documents that have already been synced to a user’s device (although future changes to those documents will not be replicated.) This is a design limitation of Sync Gateway that may be resolved in the future.
+However, the replicator does _not_ currently delete such documents that have already been synced to a user's device (although future changes to those documents will not be replicated.) This is a design limitation of Sync Gateway that may be resolved in the future.
 
-* A GET request to a document not assigned to one or more of the user’s available channels fails with a 403 error.
+* A GET request to a document not assigned to one or more of the user's available channels fails with a 403 error.
 * The `_all_docs` property is filtered to return only documents that are visible to the user.
 * The `_changes` property ignores requests (via the `channels` parameter) for channels not visible to the user.
 
 ## [](#inspect-read-access)Inspect Read Access
 
 You can use the admin REST API to see what channels a user has access to. Issue an [/{db}/\_user/{name}](../current/rest-api/rest-api-admin.md#/database/get
-%5F%5Fdb%5F%5F%5Fall%5Fdocs) request. Here’s an example of the response. The output shows that the user `pupshaw` has access to channels `all` and `hoopy`.
+%5F%5Fdb%5F%5F%5Fall%5Fdocs) request. Here's an example of the response. The output shows that the user `pupshaw` has access to channels `all` and `hoopy`.
 
 ```json
 {
@@ -106,7 +106,7 @@ You can use the admin REST API to see what channels a user has access to. Issue 
 
 The `all_channels` property of a user account determines which channels the user can access. Its value is derived from the union of:
 
-* The user’s `admin_channels` property, which is settable via the admin REST API.
+* The user's `admin_channels` property, which is settable via the admin REST API.
 * The channels that user has been given access to by `access()` calls from sync functions invoked for current revisions of documents.
 * The `all_channels` properties of all roles the user belongs to, which are themselves computed according to the above two rules.
 

@@ -3,7 +3,7 @@ title: DROP INDEX
 description: The DROP INDEX statement allows you to drop a named primary index
   or a secondary index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/dropindex.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/dropindex.adoc[]
 ---
 
@@ -49,7 +49,7 @@ Specifies the index type. (Optional) Refer to [USING Clause](#index-using) below
 
 ### [](#if-exists)IF EXISTS Clause
 
-The optional `IF EXISTS` clause enables the statement to complete successfully when the specified index doesn’t exist. If the index does not exist within the specified keyspace, then:
+The optional `IF EXISTS` clause enables the statement to complete successfully when the specified index doesn't exist. If the index does not exist within the specified keyspace, then:
 
 * If this clause is not present, an error is generated.
 * If this clause is present, the statement does nothing and completes without error.
@@ -164,11 +164,11 @@ bucket
 
 scope
 
-(Optional) An [identifier](identifiers.md) that refers to the [scope name](../n1ql-intro/sysinfo.md#logical-hierarchy) of the keyspace. If omitted, the bucket’s default scope is used.
+(Optional) An [identifier](identifiers.md) that refers to the [scope name](../n1ql-intro/sysinfo.md#logical-hierarchy) of the keyspace. If omitted, the bucket's default scope is used.
 
 collection
 
-(Optional) An [identifier](identifiers.md) that refers to the [collection name](../n1ql-intro/sysinfo.md#logical-hierarchy) of the keyspace. If omitted, the default collection in the bucket’s default scope is used.
+(Optional) An [identifier](identifiers.md) that refers to the [collection name](../n1ql-intro/sysinfo.md#logical-hierarchy) of the keyspace. If omitted, the default collection in the bucket's default scope is used.
 
 For example, `` def_type ON default:`travel-sample` `` indicates the `def_type` index on the default collection in the default scope in the `` default:`travel-sample` `` bucket.
 

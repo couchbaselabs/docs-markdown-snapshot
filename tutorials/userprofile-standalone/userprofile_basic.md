@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Couchbase Lite Fundamentals"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile/edit/standalone/content/modules/userprofile-standalone/pages/userprofile_basic.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:userprofile-standalone:userprofile_basic.adoc[]
 ---
 
@@ -46,7 +46,7 @@ Download the latest version from the [Mac App Store](https://itunes.apple.com/us
 * git (Optional)  
 This is required if you would prefer to pull the source code from GitHub repo.
 
-  * Create a [free github account](https://github.com) if you don’t already have one
+  * Create a [free github account](https://github.com) if you don't already have one
   * git can be downloaded from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## [](#app-overview)App Overview
@@ -84,7 +84,7 @@ sh install_tutorial.sh 3.0.0 (1)
 | **1** | Where 3.0.0 is the required Couchbase Lite release number. |
 | ----- | ---------------------------------------------------------- |
 
-Next, let’s verify the installation.
+Next, let's verify the installation.
 
 Try it Out
 
@@ -243,7 +243,7 @@ fileprivate func deregisterForDatabaseChanges() {
 ### [](#try-it-out)Try It Out
 
 * The app should be running in the simulator
-* Log into the app with any email Id and password. Let’s use the values _"[demo@example.com](mailto:demo@example.com)"_ and _"password"_ for user Id and password fields respectively. If this is the first time that the user is signing in, a new Database will be created. If not, the user’s existing database will be opened.
+* Log into the app with any email Id and password. Let's use the values _"[demo@example.com](mailto:demo@example.com)"_ and _"password"_ for user Id and password fields respectively. If this is the first time that the user is signing in, a new Database will be created. If not, the user's existing database will be opened.
 * Confirm that the console log output has a message similar to the one below. In my example, I am logging in with a user email Id of _"[demo@example.com](mailto:demo@example.com)"_.  
 ```bash  
 Will open/create DB  at path Will open/create DB  at path /Users/priya.rajagopal/Library/Developer/CoreSimulator/Devices/E4E62394-9940-4AF8-92FC-41E3C794B216/data/Containers/Data/Application/65EAD047-B29A-400C-803F-F799BAE99CBA/Library/Application Support/demo@example.com  
@@ -344,7 +344,7 @@ A [The User Profile Document](#lbl-user-profile-document) is created for the use
 
 ### [](#deleting-a-document)Deleting a Document
 
-We don’t delete a Document in this sample app. However, deletion of a document is pretty straightforward and this is how you would do it.
+We don't delete a Document in this sample app. However, deletion of a document is pretty straightforward and this is how you would do it.
 
 ```swift
 if let doc = db.document(withID: idOfDocToRemove) {

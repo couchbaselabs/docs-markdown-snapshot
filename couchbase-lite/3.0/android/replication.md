@@ -3,7 +3,7 @@ title: Data Sync using Sync Gateway
 description: Couchbase Lite for Android -- Synchronizing data changes between
   local and remote databases using Sync Gateway
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/android/pages/replication.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:android:replication.adoc[]
 ---
 
@@ -52,7 +52,7 @@ Couchbase Mobile uses a replication protocol based on WebSockets for replication
 
 Incompatibilities
 
-Couchbase Lite’s replication protocol is **incompatible** with CouchDB-based databases. And since Couchbase Lite 2.x+ only supports the new protocol, you will need to run a version of Sync Gateway that supports it — see: [Compatibility](compatibility.md).
+Couchbase Lite's replication protocol is **incompatible** with CouchDB-based databases. And since Couchbase Lite 2.x+ only supports the new protocol, you will need to run a version of Sync Gateway that supports it — see: [Compatibility](compatibility.md).
 
 Legacy Compatibility
 
@@ -65,7 +65,7 @@ You can find further information in our blog: [Introducing the Data Replication 
 
 ### [](#lbl-repl-ord)Ordering
 
-To optimize for speed, the replication protocol doesn’t guarantee that documents will be received in a particular order. So we don’t recommend to rely on that when using the replication or database change listeners for example.
+To optimize for speed, the replication protocol doesn't guarantee that documents will be received in a particular order. So we don't recommend to rely on that when using the replication or database change listeners for example.
 
 Couchbase Lite \[[1](#%5Ffootnotedef%5F1 "View footnote.")\] spins up multiple executors. Unless mitigated, for example by using a custom executor, this policy can result in too many threads being spun up.
 
@@ -318,7 +318,7 @@ thisReplicator.start(false); (10)
 
 | **1** | get endpoint for target DB                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | Use the [ReplicatorConfiguration](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html) class’s constructor — [ReplicatorConfiguration( database, endpoint)](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#ReplicatorConfiguration-com.couchbase.lite.Database-com.couchbase.lite.Endpoint-) — to initialize the replicator configuration with the local database — see also: [Configure Target](#lbl-cfg-tgt) |
+| **2** | Use the [ReplicatorConfiguration](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html) class's constructor — [ReplicatorConfiguration( database, endpoint)](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#ReplicatorConfiguration-com.couchbase.lite.Database-com.couchbase.lite.Endpoint-) — to initialize the replicator configuration with the local database — see also: [Configure Target](#lbl-cfg-tgt) |
 | **3** | The default is to auto-purge documents that this user no longer has access to — see: [Auto-purge on Channel Access Revocation](#anchor-auto-purge-on-revoke). Here we over-ride this behavior by setting its flag false.                                                                                                                                                                                                                                                                                                                  |
 | **4** | Configure how the client will authenticate the server. Here we say connect only to servers presenting a self-signed certificate. By default, clients accept only servers presenting certificates that can be verified using the OS bundled Root CA Certificates — see: [Server Authentication](#lbl-svr-auth).                                                                                                                                                                                                                            |
 | **5** | Configure the client-authentication credentials (if required). These are the credential the client will present to sync gateway if requested to do so.Here we configure to provide _Basic Authentication_ credentials. Other options are available — see: [Client Authentication](#lbl-client-auth).                                                                                                                                                                                                                                      |
@@ -339,8 +339,8 @@ Use the Initialize and define the replication configuration with local and remot
 
 The constructor provides:
 
-* the name of the local database to be sync’d
-* the server’s URL (including the port number and the name of the remote database to sync with)  
+* the name of the local database to be sync'd
+* the server's URL (including the port number and the name of the remote database to sync with)  
 It is expected that the app will identify the IP address and URL and append the remote database name to the URL endpoint, producing for example: `wss://10.0.2.2:4984/travel-sample`  
 The URL scheme for web socket URLs uses `ws:` (non-TLS) or `wss:` (SSL/TLS) prefixes. To use cleartext, un-encrypted, network traffic (`http://` and-or `ws://`), include `android:usesCleartextTraffic="true"` in the `application` element of the manifest as shown on [android.com](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted).  
 **This not recommended in production**.
@@ -372,7 +372,7 @@ final ReplicatorConfiguration thisConfig
 
 Here we define the direction and type of replication we want to initiate.
 
-We use `[ReplicatorConfiguration](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html)` class’s [replicatorType](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setReplicatorType-com.couchbase.lite.AbstractReplicatorConfiguration.ReplicatorType-) and `[continuous](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setContinuous-boolean-)` parameters, to tell the replicator:
+We use `[ReplicatorConfiguration](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html)` class's [replicatorType](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setReplicatorType-com.couchbase.lite.AbstractReplicatorConfiguration.ReplicatorType-) and `[continuous](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setContinuous-boolean-)` parameters, to tell the replicator:
 
 * The type (or direction) of the replication: `**PUSH_AND_PULL**`; `PULL`; `PUSH`
 * The replication mode, that is either of:
@@ -409,7 +409,7 @@ thisConfig.setContinuous(false); // default value
 
 ### [](#lbl-cfg-keep-alive)Retry Configuration
 
-Couchbase Lite for Android’s replication retry logic assures a resilient connection.
+Couchbase Lite for Android's replication retry logic assures a resilient connection.
 
 The replicator minimizes the chance and impact of dropped connections by maintaining a heartbeat; essentially pinging the Sync Gateway at a configurable interval to ensure the connection remains alive.
 
@@ -422,9 +422,9 @@ The REST API provides configurable control over this replication retry logic usi
 __Table 1\. Replication Retry Configuration Properties__
 | Property                                                                                                                                                                      | Use cases                                                                                                                                                                                                                         | Description                                                                                                                                                                                                                                                                                                                                          |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [setHeartbeat()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicatorConfiguration.html#setHeartbeat-long-)                   | Reduce to detect connection errors sooner Align to load-balancer or proxy keep-alive interval — see Sync Gateway’s topic [Load Balancer - Keep Alive](../../../sync-gateway/current/deploy/load-balancer.md#websocket-connection) | The interval (in seconds) between the heartbeat pulses. Default: The replicator pings the Sync Gateway every 300 seconds.                                                                                                                                                                                                                            |
+| [setHeartbeat()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicatorConfiguration.html#setHeartbeat-long-)                   | Reduce to detect connection errors sooner Align to load-balancer or proxy keep-alive interval — see Sync Gateway's topic [Load Balancer - Keep Alive](../../../sync-gateway/current/deploy/load-balancer.md#websocket-connection) | The interval (in seconds) between the heartbeat pulses. Default: The replicator pings the Sync Gateway every 300 seconds.                                                                                                                                                                                                                            |
 | [setMaxAttempts()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicatorConfiguration.html#setMaxAttempts-int-)                | Change this to limit or extend the number of retry attempts.                                                                                                                                                                      | The maximum number of retry attempts Set this to zero (0) to prevent any retry attempt The retry attempt count is reset when the replicator is able to connect and replicate Default values are: Single-shot replication = 9; Continuous replication = maximum integer value Negative values generate a Couchbase exception InvalidArgumentException |
-| [setMaxAttemptWaitTime()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicatorConfiguration.html#setMaxAttemptWaitTime-long-) | Change this to adjust the interval between retries.                                                                                                                                                                               | The maximum interval between retry attempts Whilst you can configure the **maximum permitted** wait time, each individual interval is calculated by the replicator’s exponential backoff algorithm and is not configurable. Default value: 300 seconds (5 minutes) Zero or negative values generate a Couchbase exception, InvalidArgumentException. |
+| [setMaxAttemptWaitTime()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicatorConfiguration.html#setMaxAttemptWaitTime-long-) | Change this to adjust the interval between retries.                                                                                                                                                                               | The maximum interval between retry attempts Whilst you can configure the **maximum permitted** wait time, each individual interval is calculated by the replicator's exponential backoff algorithm and is not configurable. Default value: 300 seconds (5 minutes) Zero or negative values generate a Couchbase exception, InvalidArgumentException. |
 
 When necessary you can adjust any or all of those configurable values — see: [Example 4](#ex-repl-retry) for how to do this.
 
@@ -495,13 +495,13 @@ To authorize with Sync Gateway, an associated user must first be created. Sync G
 
 Define the credentials your app (the client) is expecting to receive from the Sync Gateway (the server) in order to ensure it is prepared to continue with the sync.
 
-Note that the client cannot authenticate the server if TLS is turned off. When TLS is enabled (Sync Gateway’s default) the client _must_ authenticate the server. If the server cannot provide acceptable credentials then the connection will fail.
+Note that the client cannot authenticate the server if TLS is turned off. When TLS is enabled (Sync Gateway's default) the client _must_ authenticate the server. If the server cannot provide acceptable credentials then the connection will fail.
 
 Use `[ReplicatorConfiguration](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html)` properties [setAcceptOnlySelfSignedServerCertificate](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setAcceptOnlySelfSignedServerCertificate-boolean-) and [setPinnedServerCertificate](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setPinnedServerCertificate-byte:A-), to tell the replicator how to verify server-supplied TLS server certificates.
 
 * If there is a pinned certificate, nothing else matters, the server cert must **exactly** match the pinned certificate.
 * If there are no pinned certs and [setAcceptOnlySelfSignedServerCertificate](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setAcceptOnlySelfSignedServerCertificate-boolean-) is `true` then any self-signed certificate is accepted. Certificates that are not self signed are rejected, no matter who signed them.
-* If there are no pinned certificates and [setAcceptOnlySelfSignedServerCertificate](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setAcceptOnlySelfSignedServerCertificate-boolean-) is `false` (default), the client validates the server’s certificates against the system CA certificates. The server must supply a chain of certificates whose root is signed by one of the certificates in the system CA bundle.
+* If there are no pinned certificates and [setAcceptOnlySelfSignedServerCertificate](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setAcceptOnlySelfSignedServerCertificate-boolean-) is `false` (default), the client validates the server's certificates against the system CA certificates. The server must supply a chain of certificates whose root is signed by one of the certificates in the system CA bundle.
 
 Example 6\. Set Server TLS security
 
@@ -783,7 +783,7 @@ By default, Couchbase Lite gets all the channels to which the configured user ac
 
 This behavior is suitable for most apps that rely on [user authentication](../../../sync-gateway/current/security/authentication-users.md)and the [sync function](../../../sync-gateway/current/access-control/sync-function/sync-function-api.md)to specify which data to pull for each user.
 
-Optionally, it’s also possible to specify a comma-separated list of channel names on Couchbase Lite’s replicator configuration object. In this case, the replication from Sync Gateway will only pull documents tagged with those channels.
+Optionally, it's also possible to specify a comma-separated list of channel names on Couchbase Lite's replicator configuration object. In this case, the replication from Sync Gateway will only pull documents tagged with those channels.
 
 ### [](#anchor-auto-purge-on-revoke)Auto-purge on Channel Access Revocation
 
@@ -792,7 +792,7 @@ Optionally, it’s also possible to specify a comma-separated list of channel na
 
 #### [](#new-outcome)New outcome
 
-By default, when a user loses access to a channel all documents in the channel (that do not also belong to any of the user’s other channels) are auto-purged from the local database (in devices belonging to the user).
+By default, when a user loses access to a channel all documents in the channel (that do not also belong to any of the user's other channels) are auto-purged from the local database (in devices belonging to the user).
 
 #### [](#prior-outcome)Prior outcome
 
@@ -808,7 +808,7 @@ Users may lose access to channels in a number of ways:
 * User is removed from a role
 * A channel is removed from a role the user is assigned to
 
-By default, when a user loses access to a channel, the next Couchbase Lite Pull replication auto-purges all documents in the channel from local Couchbase Lite databases (on devices belonging to the user) **unless** they belong to any of the user’s other channels — see: [Table 2](#tbl-revoke-behavior).
+By default, when a user loses access to a channel, the next Couchbase Lite Pull replication auto-purges all documents in the channel from local Couchbase Lite databases (on devices belonging to the user) **unless** they belong to any of the user's other channels — see: [Table 2](#tbl-revoke-behavior).
 
 Documents that exist in multiple channels belonging to the user (even if they are not actively replicating that channel) are not auto-purged unless the user loses access to all channels.
 
@@ -863,8 +863,8 @@ __Table 4\. Impact of Pull-Filters__
 | purge\_on\_removal setting | Pull Filter                                                                                         |                                                                                                    |
 | -------------------------- | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | Not Defined                | Defined to filter removals/revoked docs                                                             |                                                                                                    |
-| disabled                   | Doc remains in local database App notified of “accessRemoved” if a _Documentlistener_ is registered |                                                                                                    |
-| enabled (DEFAULT)          | Doc is auto purged App notified of “accessRemoved” if _Documentlistener_ registered                 | Doc remains in local database App notified of “Rejected Rev(403)” if _Documentlistener_ registered |
+| disabled                   | Doc remains in local database App notified of "accessRemoved" if a _Documentlistener_ is registered |                                                                                                    |
+| enabled (DEFAULT)          | Doc is auto purged App notified of "accessRemoved" if _Documentlistener_ registered                 | Doc remains in local database App notified of "Rejected Rev(403)" if _Documentlistener_ registered |
 
 ### [](#lbl-repl-delta)Delta Sync
 
@@ -885,7 +885,7 @@ In this section
 
 ### [](#lbl-repl-start)Start Replicator
 
-Use the `[Replicator](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/Replicator.html)` class’s [ReplicatorConfiguration(config)](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/Replicator.html#Replicator-com.couchbase.lite.ReplicatorConfiguration-) constructor, to initialize the replicator with the configuration you have defined. You can, optionally, add a change listener (see [Monitor](#lbl-repl-mon)) before starting the replicator running using [start()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#start-boolean-).
+Use the `[Replicator](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/Replicator.html)` class's [ReplicatorConfiguration(config)](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/Replicator.html#Replicator-com.couchbase.lite.ReplicatorConfiguration-) constructor, to initialize the replicator with the configuration you have defined. You can, optionally, add a change listener (see [Monitor](#lbl-repl-mon)) before starting the replicator running using [start()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#start-boolean-).
 
 Example 11\. Initialize and run replicator
 
@@ -974,7 +974,7 @@ else
 }
 ```
 
-| **1** | Set start’s reset option to true.The default false is shown here for completeness only; it is unlikely you would explicitly use it in practice. |
+| **1** | Set start's reset option to true.The default false is shown here for completeness only; it is unlikely you would explicitly use it in practice. |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ## [](#lbl-repl-mon)Monitor
@@ -983,7 +983,7 @@ In this section
 
 [Change Listeners](#lbl-repl-chng) | [Replicator Status](#lbl-repl-status) | [Monitor Document Changes](#lbl-repl-evnts) | [Documents Pending Push](#lbl-repl-pend)
 
-You can monitor a replication’s status by using a combination of [Change Listeners](#lbl-repl-chng) and the `replication.status.activity` property — see; [getActivityLevel()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorStatus.html#getActivityLevel%28%29). This enables you to know, for example, when the replication is actively transferring data and when it has stopped.
+You can monitor a replication's status by using a combination of [Change Listeners](#lbl-repl-chng) and the `replication.status.activity` property — see; [getActivityLevel()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorStatus.html#getActivityLevel%28%29). This enables you to know, for example, when the replication is actively transferring data and when it has stopped.
 
 You can also choose to monitor document changes — see: [Monitor Document Changes](#lbl-repl-evnts).
 
@@ -994,7 +994,7 @@ Use this to monitor changes and to inform on sync progress; this is an optional 
 > [!TIP]
 > Best Practice
 > 
-> Don’t forget to save the token so you can remove the listener later
+> Don't forget to save the token so you can remove the listener later
 
 Use the [Replicator](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/Replicator.html) class to add a change listener as a callback to the Replicator ([addChangeListener()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#addChangeListener-java.util.concurrent.Executor-com.couchbase.lite.ReplicatorChangeListener-)) — see: [Example 13](#ex-repl-mon). You will then be asynchronously notified of state changes.
 
@@ -1182,7 +1182,7 @@ replicator.removeChangeListener(token);
 
 #### [](#document-access-removal-behavior)Document Access Removal Behavior
 
-When access to a document is removed on Sync Gateway (see: Sync Gateway’s [Sync Function](../../../sync-gateway/current/access-control/sync-function/sync-function-api.md)), the document replication listener sends a notification with the `AccessRemoved` flag set to `true` and subsequently purges the document from the database.
+When access to a document is removed on Sync Gateway (see: Sync Gateway's [Sync Function](../../../sync-gateway/current/access-control/sync-function/sync-function-api.md)), the document replication listener sends a notification with the `AccessRemoved` flag set to `true` and subsequently purges the document from the database.
 
 ### [](#lbl-repl-pend)Documents Pending Push
 
@@ -1333,7 +1333,7 @@ Android Kotlin developers can also take advantage of Flows and LiveData to monit
 
 ## [](#load-balancers)Load Balancers
 
-Couchbase Lite \[[3](#%5Ffootnotedef%5F3 "View footnote.")\] uses WebSockets as the communication protocol to transmit data. Some load balancers are not configured for WebSocket connections by default (NGINX for example); so it might be necessary to explicitly enable them in the load balancer’s configuration (see [Load Balancers](../../../sync-gateway/current/deploy/load-balancer.md)).
+Couchbase Lite \[[3](#%5Ffootnotedef%5F3 "View footnote.")\] uses WebSockets as the communication protocol to transmit data. Some load balancers are not configured for WebSocket connections by default (NGINX for example); so it might be necessary to explicitly enable them in the load balancer's configuration (see [Load Balancers](../../../sync-gateway/current/deploy/load-balancer.md)).
 
 By default, the WebSocket protocol uses compression to optimize for speed and bandwidth utilization. The level of compression is set on Sync Gateway and can be tuned in the configuration file ([replicator\_compression](../../../sync-gateway/current/configuration/configuration-properties-legacy.md#replicator%5Fcompression)).
 
@@ -1349,7 +1349,7 @@ For the 3.02\. release, changes have been made to the way certificates on the ho
 
 | Prior to CBL3.0.2 | The pinned certificate was only compared with the leaf certificate of the host. This is not always suitable as leaf certificates are usually valid for shorter periods of time. |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CBL-3.0.2+        | The pinned certificate will be compared against any certificate in the server’s certificate chain.                                                                              |
+| CBL-3.0.2+        | The pinned certificate will be compared against any certificate in the server's certificate chain.                                                                              |
 
 The following steps describe how to configure certificate pinning between Couchbase Lite and Sync Gateway.
 
@@ -1424,7 +1424,7 @@ Example 21\. Protocol Mismatch
 CouchbaseLite Replicator ERROR: {Repl#2} Got LiteCore error: WebSocket error 1006 "connection closed abnormally"
 ```
 
-If Sync Gateway is configured with a self signed certificate, and your app points to a `wss` scheme but the replicator configuration isn’t using the certificate you will encounter an error with status code `5011` — see: [Example 22](#ex-5011)
+If Sync Gateway is configured with a self signed certificate, and your app points to a `wss` scheme but the replicator configuration isn't using the certificate you will encounter an error with status code `5011` — see: [Example 22](#ex-5011)
 
 Example 22\. Certificate Mismatch or Not Found
 

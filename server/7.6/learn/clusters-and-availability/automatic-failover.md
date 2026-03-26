@@ -6,7 +6,7 @@ description: One or more nodes can be failed over automatically when they become
   checks are done to maintain data safety; i.e. that no data loss occurs as a
   result of failover.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/automatic-failover.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:clusters-and-availability/automatic-failover.adoc[]
 ---
 
@@ -35,9 +35,9 @@ For information on managing auto-failover, see the information provided for Couc
 
 ## [](#failover-events)Failover Events
 
-Auto-failover occurs in response to failed/failing events. Auto-failover applies to the node — it’s the node that fails over regardless of the triggering event. There are specific types of events that trigger auto-failover processing. However, auto-failover will only actually occur if all of the checks (constraints and policies) for auto-failover pass.
+Auto-failover occurs in response to failed/failing events. Auto-failover applies to the node — it's the node that fails over regardless of the triggering event. There are specific types of events that trigger auto-failover processing. However, auto-failover will only actually occur if all of the checks (constraints and policies) for auto-failover pass.
 
-The constraints and policies checked after the triggering event are described in [Auto-Failover Constraints](#auto-failover-constraints) and [Service-Specific Auto-Failover Policy](#failover-policy) sections. For example, despite the triggering event, an auto-failover of a node may be prevented due to the lack of a quorum or because there aren’t any other nodes running a service that exists on the node to be auto-failed over.
+The constraints and policies checked after the triggering event are described in [Auto-Failover Constraints](#auto-failover-constraints) and [Service-Specific Auto-Failover Policy](#failover-policy) sections. For example, despite the triggering event, an auto-failover of a node may be prevented due to the lack of a quorum or because there aren't any other nodes running a service that exists on the node to be auto-failed over.
 
 Below are the types of events that can trigger auto-failover processing on a node:
 
@@ -66,7 +66,7 @@ The list below describes other conditions that must be met for an auto-failover 
 
 * If the majority of nodes in the cluster can form a quorum to initiate failover, following the failure of one of the nodes. For example, given a cluster of 18 nodes, _10_ nodes are required for the quorum; and given a cluster of 17 nodes, _9_ nodes are required for the quorum.
 
-  * In the event of certain disk read/write issues it is important to also consider the efficacy of the nodes in the cluster. Should a node encounter such an issue, particularly an issue causing extreme disk slowness, and the disk encountering the issue is shared between the Data Service and the Cluster Manager, then this node is unlikely to be able to participate in this quorum. The idea of a quorum should be extended beyond “nodes that can communicate with one another” to “nodes that can communicate with one another and and can reliably read from, and write to, their respective disks”.  
+  * In the event of certain disk read/write issues it is important to also consider the efficacy of the nodes in the cluster. Should a node encounter such an issue, particularly an issue causing extreme disk slowness, and the disk encountering the issue is shared between the Data Service and the Cluster Manager, then this node is unlikely to be able to participate in this quorum. The idea of a quorum should be extended beyond "nodes that can communicate with one another" to "nodes that can communicate with one another and and can reliably read from, and write to, their respective disks".  
   Note that in the event of some disk read/writes issues the Cluster Manager may instead become completely unresponsive to the other nodes in the Cluster. In such a scenario an auto-failover should be possible provided that all other constraints are met.
   * In the event of certain disk read/write issues on the orchestrator node, particularly extreme disk slowness, it may not be possible to perform an auto-failover at all. The orchestrator node is in charge of orchestrating failover and, as such, must be part of the quorum of nodes required to perform the failover.
 * Only up to an administrator-specified maximum number of nodes. After this maximum number of auto-failovers has been reached, no further auto-failover occurs, until the count is manually reset by the administrator, or until a rebalance is successfully performed. Note, however, that the count can be manually reset, or a rebalance performed, prior to the maximum number being reached.
@@ -145,7 +145,7 @@ If node #1 becomes unresponsive, auto-failover can be triggered. This is due to 
 | #4   | Index                |  
 If node #1, #2, or #3 becomes unresponsive, auto-failover can be triggered. In each case, this is due to _Data Service Preference_, which applies auto-failover based on the policy for the Data Service, irrespective of other services on the unresponsive node.  
 Note that in the case of node #2, this allows an Index Service node to be automatically failed over.  
-If node #4 becomes unresponsive, then the auto-failover of the node will be triggered, as the index service supports Auto-Failover, independent of the Data service. Please note, in this scenario, the Index Service Auto-Failover will only happen if the action doesn’t result in any indexes or partition loss.  
+If node #4 becomes unresponsive, then the auto-failover of the node will be triggered, as the index service supports Auto-Failover, independent of the Data service. Please note, in this scenario, the Index Service Auto-Failover will only happen if the action doesn't result in any indexes or partition loss.  
 > [!WARNING]  
 > If an index does not have a replica and is co-located on a Data Service node that is failed over, then the index will be lost.
 
@@ -178,7 +178,7 @@ At this point, the cluster is likely to be in an unbalanced state; therefore, a 
 
 Couchbase Server provides _durability_, which ensures the greatest likelihood of data-writes surviving unexpected anomalies, such as node-outages. The auto-failover maximum should be established to support guarantees of durability.
 
-There are other settings that support guarantees of durability during auto-failover, as explained in [Preserving Durable Writes](#learn:data:durability.adoc#preserving-durable-writes). In Couchbase Enterprise Server 7.2+, auto-failover can be configured not to occur if a node’s failover might result in the loss of durably written data, as explained in [Protection Guarantees and Automatic Failover](#learn:data:durability.adoc#protection-guarantees-and-automatic-failover).
+There are other settings that support guarantees of durability during auto-failover, as explained in [Preserving Durable Writes](#learn:data:durability.adoc#preserving-durable-writes). In Couchbase Enterprise Server 7.2+, auto-failover can be configured not to occur if a node's failover might result in the loss of durably written data, as explained in [Protection Guarantees and Automatic Failover](#learn:data:durability.adoc#protection-guarantees-and-automatic-failover).
 
 The Preserve Durable Writes setting is a global setting that applies to all buckets in the cluster — the setting can be enabled and disabled from the UI Settings page (see [Node Availability](#manage:manage-settings:general-settings.adoc#node-availability)) or using the REST API for [Enabling and Disabling Auto-Failover](#rest-api:rest-cluster-autofailover-enable.html) settings.
 

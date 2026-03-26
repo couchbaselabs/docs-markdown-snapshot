@@ -4,7 +4,7 @@ description: A transaction is an atomic unit of work that contains one or more
   operations. It is a group of operations that is either committed to the
   database together, or undone from the database.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/data/transactions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:data/transactions.adoc[]
 ---
 
@@ -23,7 +23,7 @@ Couchbase transactions support ACID properties for protected actions on the data
 
 **Consistency** — Couchbase transactions ensure that the database moves from one consistent state to another and all derived artifacts such as indexes are updated automatically (though asynchronously from the transaction). Note that the traditional definition of consistency is not relevant as there are no foreign key constraints in Couchbase.
 
-**Isolation** — Couchbase transactions guarantee that the changes made in a transaction are not visible until the transaction is committed. This is the ‘Read Committed’ level of isolation.
+**Isolation** — Couchbase transactions guarantee that the changes made in a transaction are not visible until the transaction is committed. This is the 'Read Committed' level of isolation.
 
 * The isolation provided to transactional reads is stricter than Read Committed — it is Monotonic Atomic View (MAV). Monotonic Atomic View ensures that all effects of a previously committed transaction are observed i.e. after commit a transaction is never partially observed.
 * Lost Updates are always prevented by checking against the CAS value which behaves like an optimistic lock.
@@ -58,7 +58,7 @@ When query DML statements are used within a transaction, [request\_plus](../../n
 
 ## [](#using-transactions)Using Transactions
 
-Consider a basic debit and credit transaction to transfer $1000.00 from Beth’s account to Andy’s account with an ACID transaction.
+Consider a basic debit and credit transaction to transfer $1000.00 from Beth's account to Andy's account with an ACID transaction.
 
 ```java
 transactions.run((txnctx) -> {
@@ -154,7 +154,7 @@ A transaction can end when one of the following conditions are true:
 * A commit operation is executed — `ctx.commit()` in the example above.
 * A rollback is executed — `ctx.rollback()`, or by executing the [ROLLBACK TRANSACTION](../../n1ql/n1ql-language-reference/rollback-transaction.md) statement.
 * Transaction callback completes successfully, in which case the transaction is committed implicitly.
-* The application encounters an issue that can’t be resolved, in which case the transaction is automatically rolled back.
+* The application encounters an issue that can't be resolved, in which case the transaction is automatically rolled back.
 * A transaction expiry also results in a rollback.
 
 ### [](#savepoint)Savepoint
@@ -190,7 +190,7 @@ Finally, when transactions are being used with XDCR, the following are strongly 
 
 ## [](#transaction-mechanics)Transaction Mechanics
 
-Consider the transaction example to transfer funds from Beth’s account to Andy’s account.
+Consider the transaction example to transfer funds from Beth's account to Andy's account.
 
 Assuming that the 2 documents involved in this transaction live in two different nodes, here are the high-level steps that the transaction follows:
 
@@ -222,7 +222,7 @@ Note that if an application is not running, then this cleanup is also not runnin
 
 The cleanup process is detailed in [Asynchronous Cleanup](../../../../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md#asynchronous-cleanup).
 
-In Steps 4 and 5 in the illustration above, the documents “userA” and “userB” are unstaged, i.e., removed from xAttrs and replaced with the document body.
+In Steps 4 and 5 in the illustration above, the documents "userA" and "userB" are unstaged, i.e., removed from xAttrs and replaced with the document body.
 
 ### [](#committing)Committing
 
@@ -230,9 +230,9 @@ Only once the application logic (lambda) has successfully run to conclusion, wil
 
 After this atomic commit point is reached, the individual documents are committed (or "unstaged"). This provides an eventually consistent commit for non-transactional actors (including standard Key-Value reads). Transactions will begin reading the post-transactional version of documents as soon as the ATR entry is changed to committed.
 
-In Step 4 in the illustration above, the transaction attempt is marked as “Committed” in the ATR and the list of document ids involved in the transaction is updated.
+In Step 4 in the illustration above, the transaction attempt is marked as "Committed" in the ATR and the list of document ids involved in the transaction is updated.
 
-In Step 7 in the illustration above, the transaction attempt is marked as “Completed” and is removed from the ATR.
+In Step 7 in the illustration above, the transaction attempt is marked as "Completed" and is removed from the ATR.
 
 ## [](#permissions)Permissions
 
@@ -245,13 +245,13 @@ Refer to [Roles](../security/roles.md) for details.
 > [!NOTE]
 > Query Mode
 > 
-> When a transaction executes a query statement, the transaction enters query mode, which means that the query is executed with the user’s query permissions. Any key-value operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
+> When a transaction executes a query statement, the transaction enters query mode, which means that the query is executed with the user's query permissions. Any key-value operations which are executed by the transaction _after_ the query statement are _also_ executed with the user's query permissions. These may or may not be different to the user's data permissions; if they are different, you may get unexpected results.
 
 ## [](#custom-metadata-collections)Custom Metadata Collections
 
 By default, metadata documents are created in the default collection of the bucket of the first mutated document in the transaction.
 
-The metadata documents contain, for documents involved in each transaction, the document’s key and the name of the bucket, scope, and collection it exists on.
+The metadata documents contain, for documents involved in each transaction, the document's key and the name of the bucket, scope, and collection it exists on.
 
 In cases where deployments need a more granular way of organizing and sharing data across buckets, scopes, and collections, a custom metadata collection with appropriate RBAC permissions can be used to control visibility. You can also use a custom metadata collection if you wish to remove the default collection.
 
@@ -275,7 +275,7 @@ For more information, see [Custom Metadata Collections](../../../../java-sdk/cur
 * The number of writes required by a transactional update is greater than the number required for a non-transactional update. Thus transactional updates may be less performant than non-transactional updates.  
 Note that data within a single document is always updated atomically (without the need for transactions): therefore,whenever practical, design your data model such that a single document holds values that need to be updated atomically.
 * Non-transactional updates should not be made to any document involved in a transaction while the transaction is itself in progress. In certain cases, the interaction can interfere with the integrity of the transactional updates; in other cases the interaction can cause the non-transactional update to be overwritten.
-* When using Query statements in a transaction, we recommend that you limit the number of mutations within a transaction as the delta table grows with every mutation resulting in increased memory usage. Use the “memory-quota” setting in the query service to manage the amount of memory consumed by delta tables.  
+* When using Query statements in a transaction, we recommend that you limit the number of mutations within a transaction as the delta table grows with every mutation resulting in increased memory usage. Use the "memory-quota" setting in the query service to manage the amount of memory consumed by delta tables.  
 For ETL-like loads or massive updates that need ACID guarantees, consider using [single query transactions](../../../../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md#single-query-transactions) directly from the Query Workbench, CLI, or cbq. Single query transactions, also referred to as _implicit transactions_, do not require a delta table to be maintained.
 
 ## [](#deployment-considerations)Deployment Considerations

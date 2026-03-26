@@ -2,7 +2,7 @@
 title: New In 4.0
 description: Couchbase Sync Gateway -- What's new in the latest release
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/whatsnew.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway::whatsnew.adoc[]
 ---
 
@@ -11,11 +11,11 @@ link: xref:sync-gateway::whatsnew.adoc[]
 
 # New In 4.0
 
-> Couchbase Sync Gateway — What’s new in the latest release  
+> Couchbase Sync Gateway — What's new in the latest release  
 > This content covers the new features introduced in Sync Gateway 4.0
 
 > [!CAUTION]
-> Sync Gateway 4.0 introduces some breaking changes. If you’re upgrading from 3.x, see [Upgrading Sync Gateway](upgrading.md).
+> Sync Gateway 4.0 introduces some breaking changes. If you're upgrading from 3.x, see [Upgrading Sync Gateway](upgrading.md).
 
 ## [](#overview-of-sync-gateway-4-0)Overview of Sync Gateway 4.0
 
@@ -25,7 +25,7 @@ This architectural change enables true active-active mobile cluster deployments 
 
 ## [](#cross-data-center-replication-xdcr-interoperability)Cross Data Center Replication (XDCR) Interoperability
 
-* **Bi-directional XDCR between mobile clusters**Sync Gateway now supports two way active-active replication using Couchbase Server’s XDCR across mobile clusters. This enables active-active deployments with high availability and no downtime during fail over or disaster recovery.
+* **Bi-directional XDCR between mobile clusters**Sync Gateway now supports two way active-active replication using Couchbase Server's XDCR across mobile clusters. This enables active-active deployments with high availability and no downtime during fail over or disaster recovery.
 * **Unified versioning of documents compatible with both XDCR and Mobile products**. Allows for new deployment architectures and consistent conflict resolution.
 
 For more information, see [XDCR — Server Compatibility](server-compatibility/server-compatibility-xdcr.md) and [Bi-directional XDCR Between Mobile Clusters](server-compatibility/server-compatibility-xdcr-mobile.md).
@@ -33,7 +33,7 @@ For more information, see [XDCR — Server Compatibility](server-compatibility/s
 ## [](#conflict-resolution-with-version-vectors)Conflict Resolution with Version Vectors
 
 * Sync Gateway 4.0 leverages version vector–based conflict resolution for XDCR.
-* By default, Sync Gateway resolves conflicts using `Last Write Wins` (LWW), with the option to use Couchbase Server’s custom conflict resolution (CCR).
+* By default, Sync Gateway resolves conflicts using `Last Write Wins` (LWW), with the option to use Couchbase Server's custom conflict resolution (CCR).
 * Developers can extend with custom conflict resolvers to meet application-specific needs.
 
 This ensures consistency across mobile and server data while maintaining performance during high-volume replication.
@@ -57,7 +57,7 @@ Sync Gateway 4.0.3 optimizes channel cache processing to improve throughput in h
 
 ## [](#see-also)See Also
 
-[What’s new in previous version 3.3](../3.3/whatsnew.md).
+[What's new in previous version 3.3](../3.3/whatsnew.md).
 
 ### [](#sync-gateway-release-notes)Sync Gateway Release Notes
 

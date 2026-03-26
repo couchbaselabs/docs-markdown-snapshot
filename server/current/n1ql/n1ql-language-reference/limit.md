@@ -3,7 +3,7 @@ title: LIMIT clause
 description: The LIMIT clause specifies the maximum number of documents to be
   returned in a resultset by a SELECT statement.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/limit.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/limit.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:server:n1ql:n1ql-language-reference/limit.adoc[]
 
 ## [](#purpose)Purpose
 
-When you don’t need the entire resultset, use the `LIMIT` clause to specify the maximum number of documents to be returned in a resultset by a `SELECT` query.
+When you don't need the entire resultset, use the `LIMIT` clause to specify the maximum number of documents to be returned in a resultset by a `SELECT` query.
 
 The `LIMIT` and `OFFSET` clauses are evaluated after the `ORDER BY` clause.
 

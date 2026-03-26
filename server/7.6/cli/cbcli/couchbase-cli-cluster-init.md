@@ -2,7 +2,7 @@
 title: cluster-init
 description: Initializes a Couchbase Server cluster
 editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-cluster-init.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:cli:cbcli/couchbase-cli-cluster-init.adoc[]
 ---
 
@@ -88,7 +88,7 @@ Specifies the services to start on this cluster. You may not change the services
 
 \--update-notifications
 
-Specifies whether or not software update notifications and sharing of system performance information should be enabled. To enable notifications set this flag to "1". To disable notifications set this flag to "0". By default it’s enabled and notifications will be displayed in the Couchbase web console when a new version of Couchbase Server is available. This system also collects information about use and experience with the product every time an administrator interacts with the administrator user interface. It collects configuration, usage and performance data, including cluster information (such as settings and configuration, software version, cluster ID, load levels, and resource quotas), and browser and network information (such as IP address, inferred geolocation only at the city level, and browser type). This does not allow Couchbase to track your specific interactions or usage of Couchbase Server. Couchbase, Inc never accesses or collects any data stored within Couchbase Server. This feature can be disabled at any time by using 'couchbase-cli-setting-notification.' For more information on this feature, please see the “Couchbase Server Privacy FAQ” in the product documentation, which supplements the Couchbase Privacy Policy available online. This feature is only available in Couchbase Enterprise Edition.
+Specifies whether or not software update notifications and sharing of system performance information should be enabled. To enable notifications set this flag to "1". To disable notifications set this flag to "0". By default it's enabled and notifications will be displayed in the Couchbase web console when a new version of Couchbase Server is available. This system also collects information about use and experience with the product every time an administrator interacts with the administrator user interface. It collects configuration, usage and performance data, including cluster information (such as settings and configuration, software version, cluster ID, load levels, and resource quotas), and browser and network information (such as IP address, inferred geolocation only at the city level, and browser type). This does not allow Couchbase to track your specific interactions or usage of Couchbase Server. Couchbase, Inc never accesses or collects any data stored within Couchbase Server. This feature can be disabled at any time by using 'couchbase-cli-setting-notification.' For more information on this feature, please see the "Couchbase Server Privacy FAQ" in the product documentation, which supplements the Couchbase Privacy Policy available online. This feature is only available in Couchbase Enterprise Edition.
 
 \--ip-family
 

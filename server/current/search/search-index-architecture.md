@@ -3,7 +3,7 @@ title: Search Index Architecture
 description: The Search Service works together with the Data Service to process
   and index your data for Search.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/search-index-architecture.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:search:search-index-architecture.adoc[]
 ---
 
@@ -36,7 +36,7 @@ The inverted index, term dictionary, or the vector index are stored in [Search I
 
 The Search Service uses batches to process data that comes in from [DCP](../learn/clusters-and-availability/intra-cluster-replication.md#database-change-protocol) and the [Data Service](#server:learn:services-and-indexes:services/data-service.adoc). DCP and Data Service changes are introduced gradually, based on available memory on Search Service nodes.
 
-The Search Service can merge batches into a single batch before they’re sent to the disk write queue, to reduce the resources required for batch processing.
+The Search Service can merge batches into a single batch before they're sent to the disk write queue, to reduce the resources required for batch processing.
 
 The Search Service maintains index snapshots on each Search index partition. These snapshots contain a representation of document mutations on either a write queue, or in storage.
 
@@ -44,7 +44,7 @@ The Search Service maintains index snapshots on each Search index partition. The
 
 If the Search Service loses connection to the Data Service, the Search Service sends a connection request from the last update, or sequence number, of updates it persisted.
 
-If the index snapshots on the Search Service are too far ahead compared to the Data Service’s sequence numbers, the Search Service recovers sequence numbers from earlier index snapshots. The Search Service then creates stream requests to bring the data in your Search indexes back in sync with the Data Service.
+If the index snapshots on the Search Service are too far ahead compared to the Data Service's sequence numbers, the Search Service recovers sequence numbers from earlier index snapshots. The Search Service then creates stream requests to bring the data in your Search indexes back in sync with the Data Service.
 
 ## [](#segments)Search Index Segments
 
@@ -54,13 +54,13 @@ All Search indexes contain a root index snapshot, or the collection of segments 
 
 The data in newer segments can overwrite the data in older segments. The Search Service maintains time-spaced snapshots to support partial index rollbacks, in case of data sync issues between the Data Service and the Search Service. See [Losing Connection with the Data Service](#lost-connection).
 
-The stale segments in a snapshot are eventually removed by the Search Service’s persister or merger routines — unless these segments are needed to restore an index snapshot.
+The stale segments in a snapshot are eventually removed by the Search Service's persister or merger routines — unless these segments are needed to restore an index snapshot.
 
 The persister reads in-memory segments from the disk write queue and flushes them to disk, completing batch operations as part of [Synchronization with Database Change Protocol (DCP) and the Data Service](#sync). The merger flushes consolidated files to disk and updates the root index snapshot.
 
 The persister and merger interact to continuously flush and merge new in-memory segments to disk, and remove stale segments.
 
-Segments are marked as stale when they’re replaced by a new merged segment created by the merger. Stale segments are deleted when they’re no longer used by any new queries.
+Segments are marked as stale when they're replaced by a new merged segment created by the merger. Stale segments are deleted when they're no longer used by any new queries.
 
 ## [](#search-request-processing)Search Request Processing
 

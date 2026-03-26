@@ -2,7 +2,7 @@
 title: Indexing your Data
 description: Couchbase Lite database data model concepts - indexes
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/csharp/pages/indexing.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:csharp:indexing.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:2.8@couchbase-lite:csharp:indexing.adoc[]
 
 ## [](#introduction)Introduction
 
-Before we begin querying documents, let’s briefly mention the importance of having an appropriate and balanced approach to indexes.
+Before we begin querying documents, let's briefly mention the importance of having an appropriate and balanced approach to indexes.
 
 Creating indexes can speed up the performance of queries. A query will typically return results more quickly if it can take advantage of an existing database index to search, narrowing down the set of documents to be examined.
 

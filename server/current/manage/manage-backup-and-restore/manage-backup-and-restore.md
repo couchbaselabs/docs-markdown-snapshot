@@ -3,7 +3,7 @@ title: Manage Backup and Restore
 description: Couchbase Server allows one or more buckets, and selected subsets
   of their data, to be backed up, restored, and archived.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-backup-and-restore/manage-backup-and-restore.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-backup-and-restore/manage-backup-and-restore.adoc[]
 ---
 
@@ -68,7 +68,7 @@ To schedule one or more backups, proceed as follows:
 To add a repository, click the **ADD REPOSITORY** tab, at the upper right of the screen. This opens the **Select Plan** dialog.
 2. Specify whether to use a default or a custom plan. A _plan_ determines what kind of backup is to occur, affecting what data, and on what schedule. Predefined plans are provided, named **\_hourly\_backups** and **\_daily\_backups**: as their names indicate, these provide backups that are respectively hourly and daily. The **\_hourly\_backups** plan appears as the default selection.  
 (For more information, see [Default Plans](#default-plans), below.)  
-Click the control that appears at the right-hand side of the **Select plan** dialog’s interactive text-field. A pull-down menu appears with the following options:
+Click the control that appears at the right-hand side of the **Select plan** dialog's interactive text-field. A pull-down menu appears with the following options:
 
   * **\_daily\_backups**
   * **\_hourly\_backups**
@@ -77,7 +77,7 @@ Click the control that appears at the right-hand side of the **Select plan** dia
 Along with an additional option to create a new plan.  
 Select **+Create new plan.**  
 This establishes the string **\+ Create new plan** within the interactive text field; and modifies the **Select Plan** dialog to create a new plan.
-3. Create a custom plan. In the **Name** field of the **Select Plan** dialog, enter a name for the plan that’s to be created. The name must be unique across the cluster, can only use the characters `[`, `]`, `A` to `Z`, `a` to `z`, `_` and `-`; and must not start with either `_` or `-`.  
+3. Create a custom plan. In the **Name** field of the **Select Plan** dialog, enter a name for the plan that's to be created. The name must be unique across the cluster, can only use the characters `[`, `]`, `A` to `Z`, `a` to `z`, `_` and `-`; and must not start with either `_` or `-`.  
 Then, optionally, add a description for the plan in the **Description** field.  
 Next, specify the services for which data will be backed up. Click **Services** to display the list of Couchbase Services.  
 To specify that only data for the Data and Index Services should be backed up, clear the boxes for all the other services.  
@@ -91,7 +91,7 @@ In the **Start Time** field, specify a time of day at which the task is to be ru
 In the **Type** field, specify the task to be performed, by accessing the control at the right-hand side of the field. This displays the following pull-down menu:  
 Select **Backup**, from the pull-down menu. Then, in the **Frequency** field, specify the frequency with which the task should be performed. The field only accepts integers: these must be between 1 and 200 inclusive. To specify that the task be performed hourly, enter **1**.  
 See [Review Scheduling Options](#review-scheduling-options) for an overview of all task-scheduling options.  
-To complete specification of the task, determine whether the backup to be performed is **Full** or **Incremental**. If it’s to be **Full**, select **Full Backup**. If it’s to be **Incremental** (as should be the case in the current example), leave **Full Backup** cleared.  
+To complete specification of the task, determine whether the backup to be performed is **Full** or **Incremental**. If it's to be **Full**, select **Full Backup**. If it's to be **Incremental** (as should be the case in the current example), leave **Full Backup** cleared.  
 At this stage, if another task is to be specified, the **Add Task** control should be clicked on: this expands the dialog further, and provides another set of task-specification fields. If the task already added is to be removed, left-click on the **Cancel** button: this discards the data that has been added for the task, and closes the task-panel. If the specification of the plan is to be abandoned, left-click on the **Cancel** tab, at the lower right. If the specification for the task is to be retained and used, and no other task is to be specified (as is the case in the current example), left-click on the **Next** button:  
 This brings up the **Create Repository** dialog, which appears as follows:  
 ![createRepositoryDialogInitial](../_images/manage-backup-restore/createRepositoryDialogInitial.png)
@@ -143,7 +143,7 @@ This indicates that an immediate backup has been triggered.
 
 Using Couchbase Web Console, the history of backups to a specified repository can be reviewed. Left-click on the row of a repository to expand it vertically. Then, left-click on the **Inspect Backups** button
 
-This displays the **Backup** facility’s **Repository** screen, which appears as follows:
+This displays the **Backup** facility's **Repository** screen, which appears as follows:
 
 ![inspectBackupsScreen](../_images/manage-backup-restore/inspectBackupsScreen.png) 
 
@@ -165,7 +165,7 @@ Clicking on the row for the `inventory` scope displays the individual collection
 
 The upper panel of the **Data** screen provides interactive fields labelled **Key** and **Search Path**. These can be used to search for a specific document within the repository. Optionally, the subset of backups within the repository can be specified, by means of the **Start** and **End** fields. For example, by accessing the control at the left-hand side of the **Start** field, a pull-down menu is displayed: this lists backups any one of which can be used as the starting point for the search.
 
-For example, type a known document key into the **Key** field — such as `airline_10`. Then, enter the bucket name into the **Search Path** field. You must explicitly specify both the scope and collection unless you’re using the default scope and collection. In that case, explicit;y setting the defaults is optional. For example, `travel-sample._default._default`.
+For example, type a known document key into the **Key** field — such as `airline_10`. Then, enter the bucket name into the **Search Path** field. You must explicitly specify both the scope and collection unless you're using the default scope and collection. In that case, explicit;y setting the defaults is optional. For example, `travel-sample._default._default`.
 
 When a search is expressed to include all backups of the bucket for the `inventory` scope and `airline` collection, the panels appear as follows:
 
@@ -255,7 +255,7 @@ You can retain backups in a repository for a specified period of time by setting
 
 The backups that meet both the following conditions, are successfully deleted through pruning:
 
-* That backup’s retention period is expired. Means, the number of days specified in its retention period have passed.
+* That backup's retention period is expired. Means, the number of days specified in its retention period have passed.
 * No incremental backups dependent on this backup.
 
 You can Prune backups in a repository in one of the following ways:
@@ -286,7 +286,7 @@ To manually schedule a Prune task, do the following:
 3. Create a **Backup** task, as explained in [Schedule Backups](#schedule-backups).  
 > [!NOTE]  
 > * Every Prune task must be associated with a Backup task.  
-> * Pruning won’t delete backups that have incremental backups depending on them. To delete such backups, use [Delete Backups](#delete-backups).
+> * Pruning won't delete backups that have incremental backups depending on them. To delete such backups, use [Delete Backups](#delete-backups).
 4. To create a **Prune** task, click **Add Task**, and do the following:
 
   * Enter a name for the pruning task in the **Task Name** field.
@@ -308,7 +308,7 @@ To prune backups on demand, follow these steps:
 
 1. Go to the **Backup** screen and select the repository.
 2. To examine the backups in the repository, click **Inspect Backups**.  
-Examine the expiry status of the backups in the repository. If the backups have reached their retention period, they’re marked as _Expired_.  
+Examine the expiry status of the backups in the repository. If the backups have reached their retention period, they're marked as _Expired_.  
 > [!NOTE]  
 > Only expired backups can be pruned.
 3. Go back to the **Backup** screen with repositories, select the repository, and click **Prune**.  
@@ -333,7 +333,7 @@ Backup retention lets you configure the Backup Service to automatically delete o
 You can set a retention period for a repository when creating it or editing it later. After creating a repository, you can set a custom retention period for its individual backups.
 
 > [!NOTE]
-> * If a retention period is not set for a backup, the repository’s default retention period applies automatically on all individual backups of that repository.
+> * If a retention period is not set for a backup, the repository's default retention period applies automatically on all individual backups of that repository.
 > * By default, the retention period is set to 0, which is an indefinite period. As a result, Prune tasks do not automatically delete any backups. You need to configure a value greater than 0 for a retention period to enable automatic deletion.
 
 **Prerequisites:**
@@ -351,7 +351,7 @@ To set the retention period for a repository, follow these steps:
   * [Schedule a Prune task using default plans](#using-default-pruning-plan).
   * [Create and schedule a Prune task](#creating-new-pruning-task).  
   > [!NOTE]  
-  > Pruning won’t delete backups that have incremental backups depending on them.
+  > Pruning won't delete backups that have incremental backups depending on them.
 3. Click **Next**.
 4. Select **Retention** on the **Create Repository** dialog.  
 ![set retention period](../_images/manage-backup-restore/set-retention-period.png)
@@ -364,7 +364,7 @@ To set the retention period for a repository, follow these steps:
 The **Backup** screen lists the new repository with its default retention period.
 
 > [!NOTE]
-> When you have set the retention period for the repository but haven’t created a pruning task, the repository is listed with a warning icon. When you have not set the retention period for a repository, the repository indicates it.
+> When you have set the retention period for the repository but haven't created a pruning task, the repository is listed with a warning icon. When you have not set the retention period for a repository, the repository indicates it.
 
 ### [](#set-retention-period-after-repo-creation)Set Retention Period after Creating a Repository
 
@@ -381,7 +381,7 @@ To set the retention period for an existing repository, follow these steps:
 
 > [!NOTE]
 > * The new retention value applies to existing backups at the time of the backup creation.
-> * If you set a retention value that’s shorter than the original value, existing backups may be pruned according to the new retention period.
+> * If you set a retention value that's shorter than the original value, existing backups may be pruned according to the new retention period.
 
 ### [](#set-retention-period-for-a-backup)Set Retention Period for a Specific Backup
 
@@ -394,7 +394,7 @@ The **Edit Backup Retention** dialog appears.
 4. Specify the new retention period, in days, for the backup in the **New Retention** field.
 5. Click **Edit Retention** to save the changes.
 
-The backup’s retention period will now override the repository’s default retention period.
+The backup's retention period will now override the repository's default retention period.
 
 To set the retention period for a backup using the REST API, see [Retain a Backup](../../rest-api/backup-retention.md).
 
@@ -418,7 +418,7 @@ This task calls for a backup to occur every hour. Next, left-click on the **Add 
 The **Type** of the task **MergeTask** has been specified as **Merge**, with a frequency of four hours. Note the fields **Merge Offset Start** and **Merge Offset End**, which respectively specify the relative start and end points of each merge that will be performed. An offset start of **0** indicates that each merge will start with backups made on the current day, if such backups exist. An offset end of **2** indicates that each merge will end with backups that were made 2 days before the specified start-day, if such backups exist. If backups were not made every day during the specified period, as many as can be found will be merged.  
 A detailed, diagrammatic explanation of **Merge Offset Start** and **Merge Offset End** is provided in [Specifying Merge Offsets](../../learn/services-and-indexes/services/backup-service.md#specifying-merge-offsets).  
 Left-click on the **Next** button:
-4. When the **Create Repository** dialog appears, enter the **ID** of the repository you’re creating, the name of the **Bucket** that is being backed up, the appropriate value of **Storage Locations** (here, **Filesystem**), and the on-disk location of the repository-archive. (Note that this on-disk location must be accessible to _all_ Backup Service nodes in the cluster.) For example:  
+4. When the **Create Repository** dialog appears, enter the **ID** of the repository you're creating, the name of the **Bucket** that is being backed up, the appropriate value of **Storage Locations** (here, **Filesystem**), and the on-disk location of the repository-archive. (Note that this on-disk location must be accessible to _all_ Backup Service nodes in the cluster.) For example:  
 ![createRepositoryForMerge](../_images/manage-backup-restore/createRepositoryForMerge.png)  
 Left-click on the **Add** button. The new repository now appears in the **Repositories** view of the **Backup** screen:
 
@@ -465,30 +465,30 @@ To restore a backup:
 4. Choose the method you want to use to authenticate with the target cluster. You can use either Plain (a username and password) or a client certificate and key. After making your choice, supply the credentials for the target cluster.
 5. In the **Start** and **End** fields, choose the start and end range of backups you want to restore.
 6. If you want to restore users and groups, expand **Users** and click **Restore users and User Groups**. You can also choose whether the backed-up users and groups overwrite any identically named existing ones.
-7. If you want to select which service’s data gets restored, expand the **Services** section and select or clear services you want.
+7. If you want to select which service's data gets restored, expand the **Services** section and select or clear services you want.
 8. Expand the **Advanced Restore Options** if you want to:
 
   * Filter what data Couchbase Server restores.
-  * Restore a bucket’s data to a different bucket.
+  * Restore a bucket's data to a different bucket.
   * Control how the restore handles [expiration](../../learn/data/expiration.md) TTL values.
   * Configure details about the bucket and collections being restored.  
 All the fields in this section are optional. See [Advanced Restore Options](#advanced%5Frestore%5Foptions) for more information.
 9. Click **Restore** to start the restore process. A green pop-up briefly appears to verify that the restore task has started.
 
-To monitor an ongoing restore, click the **Task History** button in the repository’s entry in the **Repositories** tab. The active restore task appears under the **Tasks** section.
+To monitor an ongoing restore, click the **Task History** button in the repository's entry in the **Repositories** tab. The active restore task appears under the **Tasks** section.
 
 ![newBucketWithRestoredData](../_images/manage-backup-restore/newBucketWithRestoredData.png)
 
 After the restore tasks finishes, you can see whether it succeeded or failed under the **Results** section.
 
 > [!NOTE]
-> If the restore task completes while you’re viewing **Task History**, it does not appear under the **Results** section until you click **Refresh Tasks**.
+> If the restore task completes while you're viewing **Task History**, it does not appear under the **Results** section until you click **Refresh Tasks**.
 
 To learn how to restore a backup using the command line, see [cbbackupmgr restore](../../backup-restore/cbbackupmgr-restore.md).
 
 ### [](#advanced%5Frestore%5Foptions)Advanced Restore Options
 
-Expanding the **Restore** dialog’s **Advanced Restore Options** section shows you fields where you can control:
+Expanding the **Restore** dialog's **Advanced Restore Options** section shows you fields where you can control:
 
 * Data filtering
 * How TTL values are interpreted
@@ -514,9 +514,9 @@ For example, if you enter `MIL*` in this field, the restore task only restores a
 
 Map Data
 
-Lets you have the restore task restore a backed-up bucket’s data to a different bucket. If you leave this field blank, the restore task restores data into same bucket from which it was backed up.
+Lets you have the restore task restore a backed-up bucket's data to a different bucket. If you leave this field blank, the restore task restores data into same bucket from which it was backed up.
 
-If you want a bucket’s data to be saved in a bucket of a different name, enter the original bucket’s name, an equal sign (`=`) and the target bucket’s name. For example to restore all data backed up from the `travel-sample` bucket into a bucket named `ts`, enter `travel-sample=ts` into the **Map Data** field.
+If you want a bucket's data to be saved in a bucket of a different name, enter the original bucket's name, an equal sign (`=`) and the target bucket's name. For example to restore all data backed up from the `travel-sample` bucket into a bucket named `ts`, enter `travel-sample=ts` into the **Map Data** field.
 
 The target bucket must exist on the target cluster or you must enable [**Auto-create Buckets**](#auto-create-buckets).
 
@@ -526,9 +526,9 @@ Exclude Data
 
 These fields let you limit the restoration to a subset of the buckets, scopes, and collections in the backup. The **Include Data** has the restore task restore just the buckets, collections, and scopes that you list in this field. The **Exclude Data** field restores all data in the backup except the buckets or collections you list in this field.
 
-To include or exclude buckets, add their names in a comma-separated list to the **Include Data** or **Exclude Data** fields. For example, suppose the backups you’re restoring contain four buckets named `bucket1`, `bucket2`, `bucket3`, and `bucket4`. Then entering `bucket1,bucket4` in the **Include Data** field has the restore task restore just the data from `bucket1` and `bucket4`. In this case, you could instead enter `bucket2,bucket3` in the **Exclude Data** field to get the same result.
+To include or exclude buckets, add their names in a comma-separated list to the **Include Data** or **Exclude Data** fields. For example, suppose the backups you're restoring contain four buckets named `bucket1`, `bucket2`, `bucket3`, and `bucket4`. Then entering `bucket1,bucket4` in the **Include Data** field has the restore task restore just the data from `bucket1` and `bucket4`. In this case, you could instead enter `bucket2,bucket3` in the **Exclude Data** field to get the same result.
 
-You can specify a scope to be included in or excluded from the restore by listing its bucket name, followed by a period, and then the scope name. Similarly, to include or exclude a collection, specify the name of its bucket, scope, and its collection name joined by periods. For example, to exclude the `route` collection in the `travel-sample` bucket’s `inventory` scope, enter `travel-sample.inventory.route` in **Exclude Data**.
+You can specify a scope to be included in or excluded from the restore by listing its bucket name, followed by a period, and then the scope name. Similarly, to include or exclude a collection, specify the name of its bucket, scope, and its collection name joined by periods. For example, to exclude the `route` collection in the `travel-sample` bucket's `inventory` scope, enter `travel-sample.inventory.route` in **Exclude Data**.
 
 See [Scopes and Collections](../../learn/data/scopes-and-collections.md) for an overview of scopes and collections.
 
@@ -536,16 +536,16 @@ Replace TTL
 
 Replace TTL with
 
-These fields let you choose how the restore task handles time to live (TTL) values in the documents it’s restoring. The **Replace TTL** list controls when the restore task applies the date you enter into the **Replace TTL with** field to the documents it’s restoring. The settings in this list are:
+These fields let you choose how the restore task handles time to live (TTL) values in the documents it's restoring. The **Replace TTL** list controls when the restore task applies the date you enter into the **Replace TTL with** field to the documents it's restoring. The settings in this list are:
 
-* **none**: The restore task does not change the TTL value in the value in the backup. If the document’s expiration time is in the past, Couchbase Server marks it as deleted soon after the restore task restores it.
+* **none**: The restore task does not change the TTL value in the value in the backup. If the document's expiration time is in the past, Couchbase Server marks it as deleted soon after the restore task restores it.
 * **expired**: If a document being restored has an expiration date in the past, the restore task sets its TTL to the value you supply in **Replace TTL with**.
 * **all**: The restore task applies the new TTL you supply in **Replace TTL with** to all documents it restores. It even applies the new value to restored documents that had a TTL of `0` (no expiration) in the backup.  
 The value you supply in **Replace TTL with** field must be either:
 * `0` : No TTL value is set for the document. The document does not expire unless the bucket or collection containing it has a non-zero `maxTTL` value. See [Expiration](../../learn/data/expiration.md).
 * A string containing an [RFC3339](http://https://www.rfc-editor.org/rfc/rfc3339) time stamp. All documents to which the restore task applies this value will expire when on the date and time you set.  
 > [!NOTE]  
-> The **Replace TTL with** field does not prevent you from entering a timestamp in the past. Entering a date in the past results in any documents that the restore task applies the field’s value to being deleted by Couchbase Server soon after restoration.
+> The **Replace TTL with** field does not prevent you from entering a timestamp in the past. Entering a date in the past results in any documents that the restore task applies the field's value to being deleted by Couchbase Server soon after restoration.
 
 Force Updates
 
@@ -553,10 +553,10 @@ By default, the restore task does not overwrite an existing document that has a 
 
 Auto-remove Collections
 
-When checked, the restore task drops scopes and collections that currently exist in buckets but had been dropped prior to the backup’s creation. The restore task knows which scopes and collections have been dropped because the backup contains the tombstones of these dropped objects. For a scope or collection to be dropped when you enable **Auto-remove Collections**, its ID must match the ID of a dropped scope or collection as well as matching its name. Just matching the name of a deleted scope or collection is not enough to have the restore task drop it.
+When checked, the restore task drops scopes and collections that currently exist in buckets but had been dropped prior to the backup's creation. The restore task knows which scopes and collections have been dropped because the backup contains the tombstones of these dropped objects. For a scope or collection to be dropped when you enable **Auto-remove Collections**, its ID must match the ID of a dropped scope or collection as well as matching its name. Just matching the name of a deleted scope or collection is not enough to have the restore task drop it.
 
 > [!NOTE]
-> This option is only useful for situations where you’re dropping and recreating buckets. For example, suppose you make a backup of a bucket where you had dropped scopes or collections. Then, later, you drop the bucket and recreate it and its scopes and collections (including the ones you had previously deleted) in precisely the same order that you had created them in the original bucket. In this case, the scopes and collections will have the same IDs that they had in the original bucket and therefore in the backup. Finally, if you restore the backup to the bucket with **Auto-remove Collections** selected, the restore task deletes scopes and collections that match the IDs of deleted ones in the backup.
+> This option is only useful for situations where you're dropping and recreating buckets. For example, suppose you make a backup of a bucket where you had dropped scopes or collections. Then, later, you drop the bucket and recreate it and its scopes and collections (including the ones you had previously deleted) in precisely the same order that you had created them in the original bucket. In this case, the scopes and collections will have the same IDs that they had in the original bucket and therefore in the backup. Finally, if you restore the backup to the bucket with **Auto-remove Collections** selected, the restore task deletes scopes and collections that match the IDs of deleted ones in the backup.
 
 Auto-create Buckets
 
@@ -574,7 +574,7 @@ The button now changes into a **Resume** button. Left-click on this whenever bac
 
 When a repository should no longer receive fresh backups, the repository can be _archived_. This means that it remains available, with all its data; but no longer receives modifications. To archive a repository, proceed as follows;
 
-1. Access the repository that is to be archived in the **Repositories** view of the **Backup** screen, and expand the row for the repository by left-clicking on the repository’s row. When the row has expanded, left-click on the **Archive** button:  
+1. Access the repository that is to be archived in the **Repositories** view of the **Backup** screen, and expand the row for the repository by left-clicking on the repository's row. When the row has expanded, left-click on the **Archive** button:  
 The displayed dialog contains a notification, warning that no further backups or merges will be possible to the repository, once it has been archived.
 2. Confirm the repository to be archived. Enter its name into the **Confirm repository ID to archive** field. Then, enter the intended name of the _archived_ version of the repository into the **New ID** field. The dialog now appears as follows:  
 ![archiveRepositoryDialogComplete](../_images/manage-backup-restore/archiveRepositoryDialogComplete.png)  
@@ -593,7 +593,7 @@ Therefore, to delete a repository, and the backups it contains, proceed as follo
 2. Access the archived repository, in the **Archived Repositories** panel that appears in the **Repositories** view of the **Backup** screen, and open the row for the repository, by left-clicking on it.
 3. Left-click on the **Delete** button. The **Delete Repositories** dialog now appears:  
 ![deleteRepositories](../_images/manage-backup-restore/deleteRepositories.png)  
-The dialog provides two options for deletion. If the **Delete backup data files** checkbox is checked, the deletion is irreversible: the archived information no longer exists on disk. If the checkbox is unchecked (which is the default), the deleted archive’s contents continue to exist on disk, even though no longer explicitly tracked by the Backup Service, and so can be recovered subsequently; as described below, in [Import Repositories](#import-repositories).  
+The dialog provides two options for deletion. If the **Delete backup data files** checkbox is checked, the deletion is irreversible: the archived information no longer exists on disk. If the checkbox is unchecked (which is the default), the deleted archive's contents continue to exist on disk, even though no longer explicitly tracked by the Backup Service, and so can be recovered subsequently; as described below, in [Import Repositories](#import-repositories).  
 To delete the archive while allowing the contents to continue to exist on disk, enter the name of the archive in the **Confirm Repository ID** field, leave the **Delete backup data files** checkbox unchecked, and left-click on **Delete**. Subsequently, the archived repository is no longer maintained by the Backup Service, and no longer appears in the **Archived Repositories** panel.
 
 ## [](#import-repositories)Import Repositories
@@ -623,7 +623,7 @@ For further details, left-click on the row to make it expand vertically:
 
 All plans created for the Backup Service can be reviewed, by left-clicking on the **Plans** tab, on the upper, horizontal navigation bar of the **Backup** screen:
 
-This displays the **Backup** screen’s **Plans** view:
+This displays the **Backup** screen's **Plans** view:
 
 ![plansScreen](../_images/manage-backup-restore/plansScreen.png)
 
@@ -642,7 +642,7 @@ At the right-hand side of each row, a garbage-can icon is displayed. To delete a
 The Backup Service provides the following default plans.
 
 * The **\_daily\_backups** plan backs up data for _all_ services, every day. A _full_ backup is performed on Monday, and an incremental on each other day. The previous weeks' backups are merged every Sunday, and the previous 28 days' backups are merged every 28 days.
-* The **\_hourly\_backups** plan backs up data for _all_ services, ever hour. Every backup is incremental. Each day at midnight, all the previous days' backups are merged. The previous week’s backups are merged every Sunday, and the previous 28 days' backups are merged every 28 days.
+* The **\_hourly\_backups** plan backs up data for _all_ services, ever hour. Every backup is incremental. Each day at midnight, all the previous days' backups are merged. The previous week's backups are merged every Sunday, and the previous 28 days' backups are merged every 28 days.
 * The **\_daily\_full\_backups\_with\_incrementals** plan performs full backups for all services every day and incremental backups every hour, and runs a prune every day. You must set an appropriate retention period for backups of this plan.
 * The **\_weekly\_full\_backups\_with\_incrementals** plan performs full backups for all services every week and incremental backups every 6 hours, and runs a prune every day. You must set an appropriate retention period for backups of this plan.
 
@@ -666,7 +666,7 @@ Alternatively scheduled merges and backups can be configured by accessing the co
 
 The pull-down menu thus displayed contains three kinds of scheduling option. One is the default, **Weekly Calendar**. Another is by means of _time-units_: which are **Minutes**, **Hours**, **Days**, and **Weeks**. If a unit is specified, an appropriate integer must be entered into the **Frequency** field, to indicate the number of time-units that must elapse between repetitions of the task. If **Minutes** are specified, only the minutes portion of the time entered into the **Time** field is used — as the starting point, every hour, for the task sequence; with the task being repeated throughout the hour as many times as specified in the **Frequency** field. If **Hours** are specified, the task is first performed at the time specified in the **Time** field, and then repeated as specified in the **Frequency** field. If **Days** or **Weeks** are specified, the task is performed as scheduled, at the time specified in the **Time** field. (A full example of using **Minutes** as time-units is provided above, in [Schedule Backups](#schedule-backups).)
 
-A third option is by means of _days_: such as **Monday**, **Tuesday**, and so on. If a day is selected, an appropriate integer must be entered into the **Frequency** field, to indicate the number of instances of the day’s occurrence that should elapse before the task is performed. For instance, if **Monday** and **3** are specified, the task is performed on the first Monday, then two Mondays elapse, and then the task is performed again on the fourth Monday; and so on. The time at which the task is commenced is that specified in the **Time** field.
+A third option is by means of _days_: such as **Monday**, **Tuesday**, and so on. If a day is selected, an appropriate integer must be entered into the **Frequency** field, to indicate the number of instances of the day's occurrence that should elapse before the task is performed. For instance, if **Monday** and **3** are specified, the task is performed on the first Monday, then two Mondays elapse, and then the task is performed again on the fourth Monday; and so on. The time at which the task is commenced is that specified in the **Time** field.
 
 ## [](#use-cloud-storage)Use Cloud Storage
 
@@ -705,7 +705,7 @@ The path of the archive, within the cloud bucket. This should take the form `/pa
 
 Cloud Auth Type
 
-The type of authentication to be used when communicating with the cloud provider. The options are **ID and key** (which means that an ID and key will indeed be required for communication to be successful) and **Instance metadata service** (which means that credentials will be sought from the metadata service running in the node’s virtual machine). Each option assumes that appropriate configuration procedures for the cloud environment have been followed.
+The type of authentication to be used when communicating with the cloud provider. The options are **ID and key** (which means that an ID and key will indeed be required for communication to be successful) and **Instance metadata service** (which means that credentials will be sought from the metadata service running in the node's virtual machine). Each option assumes that appropriate configuration procedures for the cloud environment have been followed.
 
 Credential ID
 
@@ -816,7 +816,7 @@ Now, you will create a short shell script, using te oauth credentials you retrie
   Provider  
   This should remain set as `GCP`.  
   Cloud Bucket  
-  The name of the bucket on the `GCP` service you’re backing up to.  
+  The name of the bucket on the `GCP` service you're backing up to.  
   Cloud Auth Type  
   This can be either `ID and Key` or `Instance Metadata Service`.  
   > [!NOTE]  
@@ -832,7 +832,7 @@ Now, you will create a short shell script, using te oauth credentials you retrie
 
 ---  
   Metadata Service  
-  If you’re using a GCP virtual machine to hold your backup, then you can make use of the GCP VM service account with the `Metadata Service` authorization type.
+  If you're using a GCP virtual machine to hold your backup, then you can make use of the GCP VM service account with the `Metadata Service` authorization type.
 
     1. Ensure that the service account that are using on [Google Cloud](https://cloud.google.com/) has `Access scopes` set to `Set access for each API`.  
       ![gcpServiceAccountSetup](../_images/manage-backup-restore/gcpServiceAccountSetup.png)

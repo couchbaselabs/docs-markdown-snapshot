@@ -1,7 +1,7 @@
 ---
 title: Spark SQL Integration
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.3/modules/ROOT/pages/spark-sql.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@spark-connector::spark-sql.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.3@spark-connector::spark-sql.adoc[]
 
 > Spark SQL allows accessing Query and Analytics in powerful and convenient ways. 
 
-All query examples presented on this page at least require a primary index on the `travel-sample` data set - or on each collection respectively. If you haven’t done so already, you can create a primary index by executing this N1QL statement: `` CREATE PRIMARY INDEX ON `travel-sample` ``.
+All query examples presented on this page at least require a primary index on the `travel-sample` data set - or on each collection respectively. If you haven't done so already, you can create a primary index by executing this N1QL statement: `` CREATE PRIMARY INDEX ON `travel-sample` ``.
 
 To use the analytics examples, corresponding datasets or collection mappings should be created.
 

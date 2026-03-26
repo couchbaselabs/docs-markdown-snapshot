@@ -3,7 +3,7 @@ title: Deploy Couchbase Server Using Azure Marketplace
 description: Couchbase partners with Microsoft to provide a packaged solution on
   Azure Marketplace.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cloud/pages/couchbase-azure-marketplace.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cloud:couchbase-azure-marketplace.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Couchbase is available through Azure Marketplace with hourly pricing, or through
 
 ## [](#before-you-begin)Before You Begin
 
-* You need a Microsoft Azure account. If you don’t have one, [sign up](https://azure.microsoft.com/en-us/free/) for one before proceeding.
+* You need a Microsoft Azure account. If you don't have one, [sign up](https://azure.microsoft.com/en-us/free/) for one before proceeding.
 * You should review the [best practices](couchbase-cloud-deployment.md#azure-best-practices) for deploying Couchbase Server on Azure.  
 > [!NOTE]  
 > The free trial version of Azure has limits on the number of resources that can be be deployed. Upgrading to a Pay-As-You-Go subscription will increase resource quotas, and it also allows you to open a support ticket in the Azure portal to request even higher quotas should you need them.
@@ -37,7 +37,7 @@ The Couchbase Enterprise product page provides a quick overview of the product o
 ![azure marketplace couchbase enterprise](_images/azure/deploying/azure-marketplace-couchbase-enterprise.png)
 3. To deploy Couchbase Enterprise on Microsoft Azure, click **Get it Now**.  
 There are two [plans](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/couchbase.couchbase-enterprise?tab=PlansAndPrice) that you can choose from: BYOL and Hourly Pricing.
-4. Once you select a plan (we’ve selected Hourly Pricing for this example), you are redirected to portal.azure.com. If you’re not already logged in to Azure Portal, you will need to authenticate yourself before proceeding to the next step.  
+4. Once you select a plan (we've selected Hourly Pricing for this example), you are redirected to portal.azure.com. If you're not already logged in to Azure Portal, you will need to authenticate yourself before proceeding to the next step.  
 ![azure portal cb home](_images/azure/deploying/azure-portal-cb-home.png)  
 > [!TIP]  
 > You can also land on this page directly if you have access to Azure Portal and need not go through the initial steps of navigating to this page from the Azure Marketplace.
@@ -47,10 +47,10 @@ There are two [plans](https://azuremarketplace.microsoft.com/en-us/marketplace/a
 
 | Field Name     | Description                                                                                                                                                                                                                                                                                                          |
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Admin Username | The Admin user name and password you provide on this screen will be used to log in to Couchbase and also to SSH into your machines. Microsoft blacklists a number of user names including 'Administrator', so you’ll need to provide a different user name.                                                          |
+| Admin Username | The Admin user name and password you provide on this screen will be used to log in to Couchbase and also to SSH into your machines. Microsoft blacklists a number of user names including 'Administrator', so you'll need to provide a different user name.                                                          |
 | Admin Password | The Admin user name and password you provide on this screen will be used to log in to Couchbase and also to SSH into your machines. The password must satisfy at least three of the following four conditions: Contains a lower case letter Contains an upper case letter Contains a numeric value Contains a symbol |
 | Subscription   |                                                                                                                                                                                                                                                                                                                      |
-| Resource Group | The resource group is a logical container for all the things you’ll be deploying such as VM scale sets, disks, etc. Provide a name for the resource group if you choose to create a new one, or select an existing one from the drop-down.                                                                           |
+| Resource Group | The resource group is a logical container for all the things you'll be deploying such as VM scale sets, disks, etc. Provide a name for the resource group if you choose to create a new one, or select an existing one from the drop-down.                                                                           |
 | Location       | Microsoft Azure has a wide range of locations available. Pick a location where you want your cluster to be deployed.                                                                                                                                                                                                 |
 7. Configure the Couchbase Cluster.  
 ![azure portal cb configure cluster](_images/azure/deploying/azure-portal-cb-configure-cluster.png)  
@@ -68,7 +68,7 @@ You can also choose to **Download the templates and parameters** to deploy later
 > [!TIP]  
 > Take a look at the sample templates and instructions to deploy the templates that are available [here](https://github.com/couchbase-partners/azure-resource-manager-couchbase). Note that these templates are provided as a starting point for and may be customized as needed. Note that additional post deployment setup may be required.  
 ![azure portal cb summary](_images/azure/deploying/azure-portal-cb-summary.png)
-9. On the final screen, you’re presented with the Microsoft Azure and Couchbase End User License Agreements (EULA). Review the license agreements and click **Purchase** if you agree to the terms and conditions.  
+9. On the final screen, you're presented with the Microsoft Azure and Couchbase End User License Agreements (EULA). Review the license agreements and click **Purchase** if you agree to the terms and conditions.  
 ![azure portal cb buy hourly](_images/azure/deploying/azure-portal-cb-buy-hourly.png)
 10. Deployment begins right after you click Purchase and is indicated by the blue **Deploying Couchbase** tile on your screen. You can click on the **Deploying Couchbase** tile to examine the progress closely.  
 ![azure portal cb deploying](_images/azure/deploying/azure-portal-cb-deploying.png)  
@@ -111,7 +111,7 @@ Couchbase simplifies scaling on Microsoft Azure by using virtual machine scale s
 ![azure cb cluster vm server](_images/azure/scaling/azure-cb-cluster-vm-server.png)
 2. Click **Scaling** under Settings and move the slider on the instance count up (or down) as needed.  
 ![azure cb vm server scaling save new config](_images/azure/scaling/azure-cb-vm-server-scaling-save-new-config.png)
-3. Click **Save**. You’ll see a notification that the autoscale configuration is being updated.  
+3. Click **Save**. You'll see a notification that the autoscale configuration is being updated.  
 > [!IMPORTANT]  
 > Do not enable autoscale.  
 Go to Instances to see the updated instance count. In a few minutes, the additional instances will be up and running.  

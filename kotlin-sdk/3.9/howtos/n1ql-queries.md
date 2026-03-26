@@ -2,7 +2,7 @@
 title: Query
 description: You can query for documents in Couchbase using the SQL++ query language.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.9/modules/howtos/pages/n1ql-queries.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@kotlin-sdk:howtos:n1ql-queries.adoc[]
 ---
 
@@ -210,13 +210,13 @@ val queryResult: QueryResult = cluster
     .execute()
 ```
 
-A prepared statement is not always faster than an adhoc query. Sometimes the server can make a better plan for an adhoc query than for a prepared statement. It’s good to measure the performance of your query, so you know if it’s good to use a prepared statement.
+A prepared statement is not always faster than an adhoc query. Sometimes the server can make a better plan for an adhoc query than for a prepared statement. It's good to measure the performance of your query, so you know if it's good to use a prepared statement.
 
 ## [](#read-only)Read-Only Queries
 
-If a query does not change data, it’s good to tell the SDK the query is "read-only."
+If a query does not change data, it's good to tell the SDK the query is "read-only."
 
-The server ensures a read-only query does not change data. If a read-only query fails, the SDK retries it because it knows it’s safe to retry.
+The server ensures a read-only query does not change data. If a read-only query fails, the SDK retries it because it knows it's safe to retry.
 
 To run a read-only query, pass `readonly = true` to the `query` method, like this:
 
@@ -237,7 +237,7 @@ When you change a document in Couchbase, it takes time for the Query service to 
 
 By default, the Query service does not wait. It only searches documents that were already indexed when the query started. This is called "unbounded" scan consistency.
 
-This is the default value for the `query` method’s `consistency` parameter.
+This is the default value for the `query` method's `consistency` parameter.
 
 ### [](#scan-consistency-request-plus)Request Plus
 
@@ -270,11 +270,11 @@ val queryResult: QueryResult = cluster
 
 ## [](#client-context-id)Client Context ID
 
-Each query has a "client context ID" that helps with debugging. If you know a query’s ID, you can search for the ID in the Couchbase Server logs or a network trace.
+Each query has a "client context ID" that helps with debugging. If you know a query's ID, you can search for the ID in the Couchbase Server logs or a network trace.
 
-The ID can be any string. It’s good for the ID to be different every time you execute a query. If you do not set the ID, the SDK uses a different random UUID every time.
+The ID can be any string. It's good for the ID to be different every time you execute a query. If you do not set the ID, the SDK uses a different random UUID every time.
 
-In this example, the client context ID includes the name of an application user, so it’s easy to search for all queries related to the user.
+In this example, the client context ID includes the name of an application user, so it's easy to search for all queries related to the user.
 
 Setting the client context ID
 

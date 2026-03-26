@@ -1,6 +1,6 @@
 ---
 editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/generated-sink-config-reference.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:kafka-connector::generated-sink-config-reference.adoc[]
 ---
 
@@ -82,7 +82,7 @@ If true, you must also tell the connector which certificate to trust. Specify a 
 
 ### [](#couchbase.enable.hostname.verification)`couchbase.enable.hostname.verification`
 
-Set this to `false` to disable TLS hostname verification for Couchbase connections. Less secure, but might be required if for some reason you can’t issue a certificate whose Subject Alternative Names match the hostname used to connect to the server. Only disable if you understand the impact and can accept the risks.
+Set this to `false` to disable TLS hostname verification for Couchbase connections. Less secure, but might be required if for some reason you can't issue a certificate whose Subject Alternative Names match the hostname used to connect to the server. Only disable if you understand the impact and can accept the risks.
 
 * Type: boolean
 * Default: `true`
@@ -236,7 +236,7 @@ The fully-qualified class name of the sink handler to use. The sink handler dete
 
 The built-in handlers are: `com.couchbase.connect.kafka.handler.sink.UpsertSinkHandler`, `com.couchbase.connect.kafka.handler.sink.N1qlSinkHandler`, and `com.couchbase.connect.kafka.handler.sink.SubDocumentSinkHandler`.
 
-You can customize the sink connector’s behavior by implementing your own SinkHandler.
+You can customize the sink connector's behavior by implementing your own SinkHandler.
 
 * Type: class
 * Default: `com.couchbase.connect.kafka.handler.sink.UpsertSinkHandler`
@@ -304,7 +304,7 @@ A value of `0` (the default) means the connector will terminate immediately when
 > This retry timeout is distinct from the KV timeout (which you can set via `couchbase.env.*`). The KV timeout affects an individual write attempt, while the retry timeout spans multiple attempts and makes the connector resilient to more kinds of transient failures.
 
 > [!TIP]
-> Try not to confuse this with the Kafka Connect framework’s built-in `errors.retry.timeout` config property, which applies only to failures occurring _before_ the framework delivers the record to the Couchbase connector.
+> Try not to confuse this with the Kafka Connect framework's built-in `errors.retry.timeout` config property, which applies only to failures occurring _before_ the framework delivers the record to the Couchbase connector.
 
 * Since: 4.1.4
 * Type: string
@@ -332,7 +332,7 @@ The default value of `NONE` means a write is considered successful as soon as it
 
 For Couchbase Server versions prior to 6.5, this is how you require the connector to verify a write is persisted to disk on a certain number of replicas before considering the write successful.
 
-If you’re using Couchbase Server 6.5 or later, we recommend using the `couchbase.durability` property instead.
+If you're using Couchbase Server 6.5 or later, we recommend using the `couchbase.durability` property instead.
 
 * Type: string
 * Default: `NONE`
@@ -343,7 +343,7 @@ If you’re using Couchbase Server 6.5 or later, we recommend using the `couchba
 
 For Couchbase Server versions prior to 6.5, this is how you require the connector to verify a write has reached the memory of a certain number of replicas before considering the write successful.
 
-If you’re using Couchbase Server 6.5 or later, we recommend using the `couchbase.durability` property instead.
+If you're using Couchbase Server 6.5 or later, we recommend using the `couchbase.durability` property instead.
 
 * Type: string
 * Default: `NONE`

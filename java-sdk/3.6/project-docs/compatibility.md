@@ -4,7 +4,7 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.6/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@java-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -156,7 +156,7 @@ __Recommended Spring Data Couchbase per Server Version Matrix__
 | **Server 7.0 - 7.6** | **Compatible**        | **Recommended**                    |
 
 > [!NOTE]
-> Check the Spring Data Couchbase’s compile dependencies — older versions may link an out-of-date version of the SDK in their dependencies list, although a supported version should be in the `updates`. Please make sure that you are using a supported version of the Couchbase Java SDK, prefereably the latest version, which will contain any available bug fixes. Using the latest Spring Data Couchbase should ensure that this is so.
+> Check the Spring Data Couchbase's compile dependencies — older versions may link an out-of-date version of the SDK in their dependencies list, although a supported version should be in the `updates`. Please make sure that you are using a supported version of the Couchbase Java SDK, prefereably the latest version, which will contain any available bug fixes. Using the latest Spring Data Couchbase should ensure that this is so.
 
 ### [](#api-version)API Version
 

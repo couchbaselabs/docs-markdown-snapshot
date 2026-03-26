@@ -1,7 +1,7 @@
 ---
 title: Creating a Dynamic Index via the REST API
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-REST-dynamic.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-creating-index-from-REST-dynamic.adoc[]
 ---
 
@@ -88,7 +88,7 @@ If you successfully create the index you should a response liekt the follwoing
 
 ## [](#test-the-dynamic-index-with-a-simple-query)Test the Dynamic Index with a simple query
 
-Request the first 10 item closet to a longitude of `-2.235143` and a latitude of `53.482358`. The target-field `geo` is specified, as is a `distance` of `100` miles: this is the radius within which target-locations must reside for their documents to be returned. Don’t worry about newlines when you paste the text.
+Request the first 10 item closet to a longitude of `-2.235143` and a latitude of `53.482358`. The target-field `geo` is specified, as is a `distance` of `100` miles: this is the radius within which target-locations must reside for their documents to be returned. Don't worry about newlines when you paste the text.
 
 ```command
 curl -s -XPOST -H "Content-Type: application/json" \

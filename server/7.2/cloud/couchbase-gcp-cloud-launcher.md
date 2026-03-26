@@ -3,7 +3,7 @@ title: Deploy Couchbase Server Using GCP Marketplace
 description: Couchbase partners with Google to provide a packaged solution on
   GCP Marketplace.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cloud/pages/couchbase-gcp-cloud-launcher.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cloud:couchbase-gcp-cloud-launcher.adoc[]
 ---
 
@@ -14,13 +14,13 @@ link: xref:7.2@server:cloud:couchbase-gcp-cloud-launcher.adoc[]
 
 > Couchbase partners with Google to provide a packaged solution on GCP Marketplace. This solution is based on Google Deployment Manager templates that incorporate the latest features and best practices for deploying Couchbase Server on Google Cloud Platform. 
 
-Couchbase Server on GCP Marketplace provides one of the fastest and easiest ways to get up and running on Google Cloud Platform. Google Deployment Manager templates are developed in close collaboration with Google in order to adopt the latest features and best practices. These templates leverage Google’s globally flat network for extremely secure geographical replication.
+Couchbase Server on GCP Marketplace provides one of the fastest and easiest ways to get up and running on Google Cloud Platform. Google Deployment Manager templates are developed in close collaboration with Google in order to adopt the latest features and best practices. These templates leverage Google's globally flat network for extremely secure geographical replication.
 
 Couchbase is available through GCP Marketplace with hourly pricing, or through a Bring Your Own License (BYOL) model.
 
 ## [](#before-you-begin)Before You Begin
 
-* You need a Google account with access to Google Cloud Platform. If you don’t have one, [sign up](https://console.cloud.google.com/getting-started) for one before proceeding.
+* You need a Google account with access to Google Cloud Platform. If you don't have one, [sign up](https://console.cloud.google.com/getting-started) for one before proceeding.
 * You should review the [best practices](couchbase-cloud-deployment.md#gcp-best-practices) for deploying Couchbase Server on GCP.  
 > [!NOTE]  
 > The free trial version of GCP has limits on the number of resources that can be be deployed. You can proactively request quota adjustments from the [Quotas](https://console.cloud.google.com/projectselector/iam-admin/quotas) page in the Cloud Platform Console.
@@ -57,7 +57,7 @@ Couchbase is available through GCP Marketplace with hourly pricing, or through a
 > Note the Couchbase Username and Password displayed on the screen.  
 ![gcp new couchbase ee deploy done](_images/gcp/deploying/gcp-new-couchbase-ee-deploy-done.png)
 
-That’s it! It may take a short while for Couchbase to be up and running.
+That's it! It may take a short while for Couchbase to be up and running.
 
 At this point a number of Instance Group Managers have been deployed. It may take several minutes for the VMs that the Instance Group Managers manage to start, and for their start-up scripts to complete installing and configuring Couchbase.
 
@@ -78,7 +78,7 @@ You can log in to the Couchbase cluster and explore the items created.
   > If you forgot to note the credentials, you can retrieve them by examining the Custom metadata > startup-script for the server instance template.  
   >  
   > ![gcp instance template startup script](_images/gcp/logging-in/gcp-instance-template-startup-script.png)  
-  The dashboard shows the current view of the cluster. If you’ve gotten to this step quickly, the cluster may still be adding nodes and rebalance may be in progress. Once the process complete, the dashboard will look something like the following screen capture.  
+  The dashboard shows the current view of the cluster. If you've gotten to this step quickly, the cluster may still be adding nodes and rebalance may be in progress. Once the process complete, the dashboard will look something like the following screen capture.  
   ![gcp web console dashboard](_images/gcp/logging-in/gcp-web-console-dashboard.png)  
   Click the Servers tab to explore the server nodes that have been created.  
   ![gcp web console servers](_images/gcp/logging-in/gcp-web-console-servers.png)  
@@ -102,7 +102,7 @@ Scaling Couchbase is simplified greatly on Google Cloud Platform. This section d
 2. On the **Details** tab, click **Edit Group** and edit the number of instances.  
 ![gcp server instance group details](_images/gcp/scaling/gcp-server-instance-group-details.png)  
 ![gcp server instance group edit number](_images/gcp/scaling/gcp-server-instance-group-edit-number.png)
-3. Click **Save**. You’ll see a notification that the group is being updated.  
+3. Click **Save**. You'll see a notification that the group is being updated.  
 ![gcp server instance updating](_images/gcp/scaling/gcp-server-instance-updating.png)  
 Once updated, you can see the updated number of instances reflected on the server Instance group Details tab.  
 ![gcp server instance updated](_images/gcp/scaling/gcp-server-instance-updated.png)  

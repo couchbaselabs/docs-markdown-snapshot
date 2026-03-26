@@ -1,7 +1,7 @@
 ---
 title: General Principles of Couchbase Style
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/general.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::general.adoc[]
 ---
 
@@ -23,12 +23,12 @@ The following are some general principles of writing in the Couchbase Style:
 
 Use American English spelling, not British or Canadian English. The Vale automated spellcheck uses an American English dictionary.
 
-If you need to check the spelling of a word, see the [Merriam-Webster’s Collegiate Dictionary, Eleventh Edition](https://www.merriam-webster.com/).
+If you need to check the spelling of a word, see the [Merriam-Webster's Collegiate Dictionary, Eleventh Edition](https://www.merriam-webster.com/).
 
 If Vale flags a product name or other technical industry term as incorrect:
 
-* If it’s a phrase or single word that must have specific capitalization, add it to the `Vocab\Couchbase\accept.txt` file.
-* If it’s a phrase that needs a specific arrangement of hyphens or spaces and the capitalization does not matter, add it to the `Couchbase\Terminology.yml` Vale Style.
+* If it's a phrase or single word that must have specific capitalization, add it to the `Vocab\Couchbase\accept.txt` file.
+* If it's a phrase that needs a specific arrangement of hyphens or spaces and the capitalization does not matter, add it to the `Couchbase\Terminology.yml` Vale Style.
 
 ## [](#write-in-the-present-tense)Write in the Present Tense
 
@@ -44,13 +44,13 @@ For more information, see [Present tense](https://developers.google.com/style/te
 
 You can address the user as `you`.
 
-Do not use the first person. Vale flags the use of any first person plurals (we, our, us, let’s) in your text. Do not use any third person gendered pronouns.
+Do not use the first person. Vale flags the use of any first person plurals (we, our, us, let's) in your text. Do not use any third person gendered pronouns.
 
 For more information, see [Second person](https://developers.google.com/style/person) in the Google Developer Style Guide.
 
 | Acceptable                                                                                            | Not Acceptable                                                                                                                                                                                            |
 | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| You can change the **Description** for your cluster from the **Settings** page.                       | We can change the **Description** for a cluster from the **Settings** page. Let’s change our cluster’s description.                                                                                       |
+| You can change the **Description** for your cluster from the **Settings** page.                       | We can change the **Description** for a cluster from the **Settings** page. Let's change our cluster's description.                                                                                       |
 | A **Project Owner** can create, modify, and delete buckets. You can create a maximum of 30 buckets. a | A **Project Owner** can create, modify, and delete buckets. He can create a maximum of 30 buckets. A **Project Owner** can create, modify, and delete buckets. He/she can create a maximum of 30 buckets. |
 
 ## [](#use-active-voice)Use Active Voice
@@ -74,8 +74,8 @@ Make sure to also use **strong** verbs. Avoid:
 
 Here are some tips to help you with active voice:
 
-* Think about what’s actually doing the action you’re describing. Emphasize the actor.
-* Find or push back for more information if you cannot identify the actor. Ask the developer what’s actually doing what in a scenario.
+* Think about what's actually doing the action you're describing. Emphasize the actor.
+* Find or push back for more information if you cannot identify the actor. Ask the developer what's actually doing what in a scenario.
 * If the sentence does not make sense in active voice or you lose the correct emphasis, you can use the passive voice.
 
 For more information about active voice, see [Active voice](https://developers.google.com/style/voice) in the Google Developer Style Guide.

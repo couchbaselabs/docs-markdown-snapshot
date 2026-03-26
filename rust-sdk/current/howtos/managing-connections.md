@@ -2,7 +2,7 @@
 title: Managing Connections
 description: This section describes how to connect the Rust SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -77,7 +77,7 @@ let cluster = Cluster::connect(
 ```
 
 > [!TIP]
-> You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
+> You don't need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ### [](#waiting-for-bootstrap-completion)Waiting for Bootstrap Completion
 
@@ -129,10 +129,10 @@ Both Couchbase Capella, and the [Enterprise Edition](../../../server/current/int
 * Couchbase Capella
 * Self-Managed Couchbase Server
 
-The Rust SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
+The Rust SDK bundles Capella's standard root certificate by default. This means you don't need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
 > [!NOTE]
-> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
+> Capella's root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
 
 You can provide a certificate:
 
@@ -173,7 +173,7 @@ let cluster = Cluster::connect(
 .await?;
 ```
 
-If you want to verify it’s actually working, you can use a tool like `tcpdump`. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
+If you want to verify it's actually working, you can use a tool like `tcpdump`. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
 
 E..e..@.@.............+......q{...#..Y.....
 .E...Ey........9........................id{"key":"value"}
@@ -186,7 +186,7 @@ E.....@.@.............+....Z.'yZ..#........
 
 ## [](#alternate-addresses-and-custom-ports)Alternate Addresses and Custom Ports
 
-If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT’d environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
+If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT'd environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
 
 On the server side, each server node must be configured to advertise its external address as well as any custom port mapping. This is done with the [setting-alternate-address CLI command](https://docs.couchbase.com/server/6.5/cli/cbcli/couchbase-cli-setting-alternate-address.html) introduced in Couchbase Server 6.5\. A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
 
@@ -203,7 +203,7 @@ In many cases the client is able to automatically select the correct set of addr
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 
-As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it’s good practice to always enable DNS-SRV on the client.
+As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it's good practice to always enable DNS-SRV on the client.
 
 The following steps are necessary to make it work:
 
@@ -246,7 +246,7 @@ opts = opts.dns_options(DnsOptions::new(socket).timeout(Duration::from_secs(1)))
 > [!CAUTION]
 > In the developer preview of the SDK, this feature is not part of the stable [Committed](../project-docs/compatibility.md#interface-stability) API. To enable it requires use of the `unstable-dns-options` — see the API reference for further information.
 
-If the DNS SRV records could not be loaded properly you’ll get an error logged and the given host name will be used as a A record lookup. Also, if you pass in more than one node, DNS SRV bootstrap will not be initiated:
+If the DNS SRV records could not be loaded properly you'll get an error logged and the given host name will be used as a A record lookup. Also, if you pass in more than one node, DNS SRV bootstrap will not be initiated:
 
 ## [](#working-in-the-cloud)Working in the Cloud
 
@@ -256,7 +256,7 @@ We strongly recommend that the client and server [are in the same LAN-like envir
 
 ### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 
-Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
+Some DNS caching providers (notably, home routers) can't handle an SRV record that's large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
 
 ## [](#next-steps)Next Steps
 

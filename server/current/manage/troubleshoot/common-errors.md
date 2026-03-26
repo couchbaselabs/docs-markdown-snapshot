@@ -2,7 +2,7 @@
 title: Common Errors
 description: Common errors that occur during management of Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/troubleshoot/common-errors.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:troubleshoot/common-errors.adoc[]
 ---
 
@@ -128,8 +128,8 @@ Then looking at the design document, you see it could never work, as values are 
 One important question to answer is, why do you see the errors when querying with `stale=false` but do not see them when querying with `stale=update_after` (default) or `stale=ok`? Consider these points:
 
 * `stale=false` means: trigger an index update/build, and wait until it that update/build finishes, then start streaming the view results. For this example, index build/update failed, so the client gets an error, describing why it failed, from all nodes where it failed.
-* `stale=update_after` means start streaming the index contents immediately and after trigger an index update (if the index is not up to date already), so query responses won’t see indexing errors as they do for the `stale=false` scenario. For this particular example, the error happened during the initial index build, so the index was empty when the view queries arrived in the system, whence the empty result set.
-* `stale=ok` is very similar to (2), except it doesn’t trigger index updates.
+* `stale=update_after` means start streaming the index contents immediately and after trigger an index update (if the index is not up to date already), so query responses won't see indexing errors as they do for the `stale=false` scenario. For this particular example, the error happened during the initial index build, so the index was empty when the view queries arrived in the system, whence the empty result set.
+* `stale=ok` is very similar to (2), except it doesn't trigger index updates.
 
 Finally, index build/update errors, related to user Map/Reduce functions, can be found in a dedicated log file that exists per node and has a filename matching mapreduce\_errors.#. For example, from node 1, the file \*mapreduce\_errors.1 contained:
 
@@ -178,9 +178,9 @@ Make sure that you either have or modify your process that builds your OSs to do
 
 Kernel TCP/IP memory settings
 
-The Linux kernel has a global parameter named `tcp_mem` that sets limits on the TCP/IP stack’s memory use. With an intense network workload, the TCP/IP stack could reach 1 of the thresholds defined by this setting. When it reaches the pressure threshold, the TCP/IP stack starts taking steps to reduce its memory use. These steps could cause the node to experience higher network latency and limited throughput.
+The Linux kernel has a global parameter named `tcp_mem` that sets limits on the TCP/IP stack's memory use. With an intense network workload, the TCP/IP stack could reach 1 of the thresholds defined by this setting. When it reaches the pressure threshold, the TCP/IP stack starts taking steps to reduce its memory use. These steps could cause the node to experience higher network latency and limited throughput.
 
-If the TCP/IP stack’s memory use continues to increase to the maximum threshold, the node could start dropping packets or refusing connections. In addition, the kernel logs Out Of Memory (OOM) errors to the system logs, such as:
+If the TCP/IP stack's memory use continues to increase to the maximum threshold, the node could start dropping packets or refusing connections. In addition, the kernel logs Out Of Memory (OOM) errors to the system logs, such as:
 
 ```console
 TCP: out of memory -- consider tuning tcp_mem

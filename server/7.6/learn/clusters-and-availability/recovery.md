@@ -4,7 +4,7 @@ description: "After a node has been failed over, it can be <em>recovered</em>:
   that is, added back into the cluster from which it was failed over, by means
   of the <em>rebalance</em> operation."
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/recovery.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:clusters-and-availability/recovery.adoc[]
 ---
 
@@ -31,17 +31,17 @@ _Full_ recovery involves removing all pre-existing data from, and assigning new 
 * All existing vBuckets and documents are removed from the node.
 * If GSI Indexes reside on the node, they are left unmodified during the rebalance process.
 * A new set of vBuckets and documents is assigned to the node.
-* When the node’s vBuckets are all up to date, and the rebalance process concludes, the node recommences the serving of data. If GSI Indexes reside on the node, they become active, and are updated by the Index Service as appropriate.
+* When the node's vBuckets are all up to date, and the rebalance process concludes, the node recommences the serving of data. If GSI Indexes reside on the node, they become active, and are updated by the Index Service as appropriate.
 
 ## [](#delta-recovery)Delta Recovery
 
-_Delta_ recovery maintains and resynchronizes a node’s pre-existing data. Therefore, when this option is applied:
+_Delta_ recovery maintains and resynchronizes a node's pre-existing data. Therefore, when this option is applied:
 
 * No existing vBucket or document is removed from the node.
 * All existing data is loaded into memory.
 * The point at which mutations to node-data most recently stopped is determined. Then, vBuckets are duly updated from that point; based on the data-changes that have since occurred, elsewhere on the cluster.
 * If GSI Indexes reside on the node, they are left unmodified during the rebalance process.
-* When the node’s vBuckets are all up to date, and the rebalance process concludes, the node recommences the serving of data. If GSI Indexes reside on the node, they become active, and are updated by the Index Service as appropriate (this includes updates that correspond to whatever mutations were made by the Data Service while the node was in a failed over state).
+* When the node's vBuckets are all up to date, and the rebalance process concludes, the node recommences the serving of data. If GSI Indexes reside on the node, they become active, and are updated by the Index Service as appropriate (this includes updates that correspond to whatever mutations were made by the Data Service while the node was in a failed over state).
 
 ### [](#delta-recovery-requirements)Delta-Recovery Requirements
 
@@ -64,9 +64,9 @@ In some cases, when Delta recovery is attempted, and all the requirements listed
 
 ## [](#recovery-performance)Recovery Performance
 
-In many cases, Delta recovery is faster than Full recovery; since a significant quantity of usable data already resides on the node, and therefore does not require network-transfer: only updates made since the node’s last-recorded mutation need to be accessed from other nodes in the cluster.
+In many cases, Delta recovery is faster than Full recovery; since a significant quantity of usable data already resides on the node, and therefore does not require network-transfer: only updates made since the node's last-recorded mutation need to be accessed from other nodes in the cluster.
 
-However, in cases where the node’s memory-footprint is extremely large, and data exceeds bucket memory-quotas, the memory-management overhead potentially entailed by Delta recovery might imply Full recovery’s taking less time overall.
+However, in cases where the node's memory-footprint is extremely large, and data exceeds bucket memory-quotas, the memory-management overhead potentially entailed by Delta recovery might imply Full recovery's taking less time overall.
 
 Note that in Couchbase Server 6.5 and later, a [scan](../services-and-indexes/indexes/index-scans.md) can be requested from each index, as soon as the index has warmed up — the recovery does not need to be fully complete. This can reduce the downtime during recovery.
 

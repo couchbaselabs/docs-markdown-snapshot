@@ -3,7 +3,7 @@ title: Conditional Functions for Numbers
 description: Conditional functions evaluate expressions to determine if the
   values and formulas meet the specified condition.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/condfunnum.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/condfunnum.adoc[]
 ---
 
@@ -80,7 +80,7 @@ This function has a synonym `IF_NAN()`.
 
 ### [](#description-2)Description
 
-Evaluates a list of expressions and returns the first valid number that’s not NaN (Not a Number).
+Evaluates a list of expressions and returns the first valid number that's not NaN (Not a Number).
 
 The function ignores `MISSING` and NaN values. If it encounters `NULL` or any other non-number before finding a valid number, the function returns `NULL`.
 
@@ -140,7 +140,7 @@ This function has a synonym `IF_NAN_OR_INF()`.
 
 ### [](#description-3)Description
 
-Evaluates a list of expressions and returns the first number that’s neither NaN (Not a Number) nor infinite.
+Evaluates a list of expressions and returns the first number that's neither NaN (Not a Number) nor infinite.
 
 The function skips `MISSING`, NaN, and infinite values. If it encounters `NULL` or any other non-number before finding a valid number, the function returns `NULL`.
 
@@ -154,12 +154,12 @@ expr1, expr2, …​
 
 The function returns 1 of the following:
 
-* The first number that’s neither NaN nor infinite.
+* The first number that's neither NaN nor infinite.
 * `NULL` if it encounters `NULL` or a non-number before finding such a number.
 
 ### [](#example-3)Example
 
-Example 3\. Find a number that’s neither NaN nor infinite from a list of values
+Example 3\. Find a number that's neither NaN nor infinite from a list of values
 
 Query
 
@@ -200,7 +200,7 @@ This function has a synonym `NAN_IF()`.
 
 ### [](#description-4)Description
 
-Compares 2 expressions and returns `NaN` (Not a Number) if they’re equal; otherwise, it returns the value of the first expression.
+Compares 2 expressions and returns `NaN` (Not a Number) if they're equal; otherwise, it returns the value of the first expression.
 
 ### [](#arguments-4)Arguments
 
@@ -222,7 +222,7 @@ The function returns 1 of the following:
 
 ### [](#example-4)Example
 
-Example 4\. Compare 2 values and return NaN if they’re equal
+Example 4\. Compare 2 values and return NaN if they're equal
 
 Query
 
@@ -250,7 +250,7 @@ This function has a synonym `NEGINF_IF()`.
 
 ### [](#description-5)Description
 
-Compares 2 expressions and returns negative infinity if they’re equal; otherwise, it returns the value of the first expression.
+Compares 2 expressions and returns negative infinity if they're equal; otherwise, it returns the value of the first expression.
 
 ### [](#arguments-5)Arguments
 
@@ -272,7 +272,7 @@ The function returns 1 of the following:
 
 ### [](#example-5)Example
 
-Example 5\. Compare 2 values and return negative infinity if they’re equal
+Example 5\. Compare 2 values and return negative infinity if they're equal
 
 Query
 
@@ -300,7 +300,7 @@ This function has a synonym `POSINF_IF()`.
 
 ### [](#description-6)Description
 
-Compares 2 expressions and returns positive infinity if they’re equal; otherwise, it returns the value of the first expression.
+Compares 2 expressions and returns positive infinity if they're equal; otherwise, it returns the value of the first expression.
 
 ### [](#arguments-6)Arguments
 
@@ -322,7 +322,7 @@ The function returns 1 of the following:
 
 ### [](#example-6)Example
 
-Example 6\. Compare 2 values and return positive infinity if they’re equal
+Example 6\. Compare 2 values and return positive infinity if they're equal
 
 Query
 

@@ -5,7 +5,7 @@ description: In the event of data-loss, the <strong>cbrecovery</strong> tool can
   previously created with XDCR, and copies appropriate subsets of their data
   back onto the original source-cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-xdcr/recover-data-with-xdcr.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:manage:manage-xdcr/recover-data-with-xdcr.adoc[]
 ---
 
@@ -48,7 +48,7 @@ Check the checkboxes to the left of the two nodes that are to be failed over, an
 ![failoverMultipleNodes](../_images/manage-xdcr/failoverMultipleNodes.png)  
 This brings up a warning notification concerning **Unsafe Mode**:  
 ![unsafeModeWarning2](../_images/manage-xdcr/unsafeModeWarning2.png)  
-A detailed explanation of this warning is provided in [Hard Failover of Multiple Nodes](../manage-nodes/failover-hard.md#hard-failover-of-multiple-nodes). Essentially, the warning indicates that because of majority of the cluster’s nodes will now be failed over, data will be lost.  
+A detailed explanation of this warning is provided in [Hard Failover of Multiple Nodes](../manage-nodes/failover-hard.md#hard-failover-of-multiple-nodes). Essentially, the warning indicates that because of majority of the cluster's nodes will now be failed over, data will be lost.  
 To continue with the hard failover, check (once again) the checkboxes for the nodes that are to be failed over, and then left-click on the **Failover Nodes: Unsafe Mode** button, at the lower-right of the dialog. The unsafe failover now proceeds. Subsequently, the cluster has been reduced to a single node:  
 ![clusterFollowingUnsafeFailover](../_images/manage-xdcr/clusterFollowingUnsafeFailover.png)
 2. Before attempting to recover the lost data, restore capacity to the local cluster, as appropriate. The illustration below shows the two nodes that were previously lost, cleansed of all data, powered up, and in the process of being re-added into the cluster:  

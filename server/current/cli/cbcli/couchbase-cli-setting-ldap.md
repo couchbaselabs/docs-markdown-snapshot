@@ -2,7 +2,7 @@
 title: setting-ldap
 description: Configure LDAP
 editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-setting-ldap.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbcli/couchbase-cli-setting-ldap.adoc[]
 ---
 
@@ -94,7 +94,7 @@ Enable or disable certificate validation when connecting to LDAP server.
 
 \--ldap-cacert <path>
 
-CA certificate to be used for server’s certificate validation, required if certificate validation is not disabled
+CA certificate to be used for server's certificate validation, required if certificate validation is not disabled
 
 \--request-timeout <ms>
 
@@ -102,11 +102,11 @@ The timeout for LDAP requests in milliseconds.
 
 \--user-dn-query <query>
 
-LDAP query to get user’s DN. Must contain at least one instance of %u Example: ou=Users,dc=example??one?(uid=%u)
+LDAP query to get user's DN. Must contain at least one instance of %u Example: ou=Users,dc=example??one?(uid=%u)
 
 \--user-dn-template <template>
 
-Template to construct user’s DN. Must contain at least one instance of %u Example: uid=%u,ou=Users,dc=example
+Template to construct user's DN. Must contain at least one instance of %u Example: uid=%u,ou=Users,dc=example
 
 \--user-dn-advanced <path>
 
@@ -157,7 +157,7 @@ The client TLS key. This is used with '--ldap-client-cert' flag for certificate 
 
 \--group-query <query>
 
-LDAP query, to get the users' groups by username in RFC4516 format. The %u and %D placeholders can be used, for username and user’s DN respectively. If attribute is present in the query, the list of attribute values in the search result is considered as list of user’s groups (single entry result is expected): for example: '%D?memberOf?base'. If the attribute is not present in the query, every returned entry is considered a group, for example: 'ou=groups,dc=example,dc=com??one?(member=%D)'
+LDAP query, to get the users' groups by username in RFC4516 format. The %u and %D placeholders can be used, for username and user's DN respectively. If attribute is present in the query, the list of attribute values in the search result is considered as list of user's groups (single entry result is expected): for example: '%D?memberOf?base'. If the attribute is not present in the query, every returned entry is considered a group, for example: 'ou=groups,dc=example,dc=com??one?(member=%D)'
 
 \--enable-nested-groups <0|1>
 

@@ -2,7 +2,7 @@
 title: DROP GROUP
 description: The DROP GROUP statement enables you to delete a group.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/dropgroup.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/dropgroup.adoc[]
 ---
 
@@ -36,7 +36,7 @@ drop-group ::= 'DROP' 'GROUP' ('IF' 'EXISTS' )? groupname
 
 ### [](#if-exists)IF EXISTS Clause
 
-The optional `IF EXISTS` clause enables the statement to complete successfully when the specified group doesn’t exist. If a group with the same name does not exist, then:
+The optional `IF EXISTS` clause enables the statement to complete successfully when the specified group doesn't exist. If a group with the same name does not exist, then:
 
 * If this clause is not present, an error is generated.
 * If this clause is present, the statement does nothing and completes without error.

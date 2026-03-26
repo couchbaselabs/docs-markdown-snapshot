@@ -3,7 +3,7 @@ title: Supported Operating System Versions
 description: Couchbase Lite on C -- the OS and SDK versions on which this
   framework is supported
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/supported-os.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:c:supported-os.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:couchbase-lite:c:supported-os.adoc[]
 # Supported Operating System Versions
 
 > Description — _Couchbase Lite on C — the OS and SDK versions on which this framework is supported_  
-> Related Content — [What’s New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
+> Related Content — [What's New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
 
 ## [](#officially-supported-versions)Officially Supported Versions
 
@@ -34,7 +34,7 @@ Couchbase Lite for C is available on the platforms shown in the tables below.
 > [!IMPORTANT]
 > These requirements are for the **C/C++ SDK** on Android. Use the C/C++ SDK when using Qt or other C++ frameworks.
 > 
-> If you’re developing with the **Java/Kotlin SDK** on Android, see [Couchbase Lite for Android - Supported OS Versions](../android/supported-os.md#officially-supported-versions).
+> If you're developing with the **Java/Kotlin SDK** on Android, see [Couchbase Lite for Android - Supported OS Versions](../android/supported-os.md#officially-supported-versions).
 
 | API | x86                        | x64                        | ARM 32                     | ARM 64                     |
 | --- | -------------------------- | -------------------------- | -------------------------- | -------------------------- |

@@ -1,7 +1,7 @@
 ---
 title: Sync
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/android/develop/sync.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:android/develop/sync.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Sync Gateway uses channels to make it easy to share a database between a large n
 
 In the [Sync Gateway installation](../installation/index.md)section, we walked you through the steps to launch Sync Gateway with a specific config file.
 
-Open the sync-gateway-config-travelsample.json file located at <https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-config-travelsample.json>. It includes the `sync function` which is a JavaScript function whose source code is stored in the Sync Gateway’s database configuration file.
+Open the sync-gateway-config-travelsample.json file located at <https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-config-travelsample.json>. It includes the `sync function` which is a JavaScript function whose source code is stored in the Sync Gateway's database configuration file.
 
 ```javascript
 /* Routing */
@@ -82,8 +82,8 @@ Couchbase Mobile \[[3](#%5Ffootnotedef%5F3 "View footnote.")\] replication proto
 
 The replication process can be `continuous` or `one shot`.
 
-* In “Continuous” replication mode, the changes are continually synchronized between the client and Sync Gateway in real time.
-* In “One shot” mode, the changes are synchronized once and the connection between the client and server disconnects. When any future changes need to be pushed up or pulled down, the client must start a new replication.
+* In "Continuous" replication mode, the changes are continually synchronized between the client and Sync Gateway in real time.
+* In "One shot" mode, the changes are synchronized once and the connection between the client and server disconnects. When any future changes need to be pushed up or pulled down, the client must start a new replication.
 
 Open the file `app/src/android/java/…​/util/DatabaseManager.java`. We will review the method `startPushAndPullReplicationForCurrentUser(String username, String password)`.
 
@@ -157,7 +157,7 @@ replicator.start();
 
 Try it out (Mobile App)
 
-1. Log into the Travel Sample Mobile app as “demo” user and password as “password”. This user must be created via the travel sample web backend.
+1. Log into the Travel Sample Mobile app as "demo" user and password as "password". This user must be created via the travel sample web backend.
 2. Tap the "airline" button to make a flight reservation. Both the "From" and "To" airports and flight dates are already set.
 3. Tap the "lookup" button
 4. From list of flights, select the first flight listing — see [Figure 1](#fig-android-push). This automatically confirms the booking.
@@ -169,7 +169,7 @@ Figure 1\. Lookup Flights
 Try it out (Web App)
 
 1. Access the Travel Sample Python Web app. The URL would be <http://localhost:8080>. If you did cloud based install, please replace `localhost` in the URL with the IP Address of the cloud instance of the web app.
-2. Log into the web app as “demo” user with password as “password”
+2. Log into the web app as "demo" user with password as "password"
 3. Use the "Booked" tab to navigate to the list of booked flights
 4. Confirm that you see the flight that you reserved via the mobile app in your list of flights in the web app
 
@@ -182,14 +182,14 @@ Figure 2\. View Booked Flights
 Try it out (Web App)
 
 1. Access the Travel Sample Python Web app. The URL would be <http://localhost:8080>. If you did cloud based install, please replace `localhost` in the URL with the IP Address of the cloud instance of the web app.
-2. Log into the web app as “demo” user with password as “password”
+2. Log into the web app as "demo" user with password as "password"
 3. Make a flight reservation by clicking the "Flights" tab
-4. Enter “From” airport as "Seattle" and select the airport from drop down menu.
-5. Enter “To” airport as "San Francisco" and select the airport from drop down menu.
+4. Enter "From" airport as "Seattle" and select the airport from drop down menu.
+5. Enter "To" airport as "San Francisco" and select the airport from drop down menu.
 6. Enter From and Return Travel Dates
 7. Click on "Search" button
 8. From list of flights, select the first flight listing by clicking on the corresponding "Add to Basket" button
-9. Confirm the booking by clicking on the "Basket" tab to view the flight selections and then click on the “Buy” button
+9. Confirm the booking by clicking on the "Basket" tab to view the flight selections and then click on the "Buy" button
 10. The "Booked" tab should show the confirmed flight reservations — see: [Figure 3](#fig-android-pull-repl)
 
 ![travel app pull](../../_images/travel-app-pull.gif) 
@@ -198,7 +198,7 @@ Figure 3\. Pull Replication
 
 Try it out (Mobile App)
 
-1. Log into the Travel Sample Mobile app as “demo” user and password as “password”
+1. Log into the Travel Sample Mobile app as "demo" user and password as "password"
 2. Confirm that you see the flight that you reserved via the web app in your list of flights in the mobile app
 
 ---

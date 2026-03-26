@@ -3,7 +3,7 @@ title: Capella Root Certificates
 description: Capella automatically generates a root certificate to allow you to
   connect to your cluster from an external application.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/security-certificates.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:security:security-certificates.adoc[]
 ---
 
@@ -25,9 +25,9 @@ To download or copy the root certificate from your Capella cluster:
 3. Click **Download** or **Copy**.
 
 > [!TIP]
-> If you’re connecting using one of the Couchbase SDKs, you should not need a certificate for your cluster. Authentication and trust should be automatically handled by the SDK.
+> If you're connecting using one of the Couchbase SDKs, you should not need a certificate for your cluster. Authentication and trust should be automatically handled by the SDK.
 > 
-> If you run into issues, you can download the Capella root certificate and add it as a trusted certificate in your application’s trust store.
+> If you run into issues, you can download the Capella root certificate and add it as a trusted certificate in your application's trust store.
 > 
 > For more information about connecting and authenticating with a certificate through an SDK, see:
 > 

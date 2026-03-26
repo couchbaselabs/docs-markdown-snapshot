@@ -2,7 +2,7 @@
 title: Installing Couchbase Lite on Android
 description: How to install Couchbase Lite on Android
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/android/pages/gs-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite:android:gs-install.adoc[]
 ---
 
@@ -70,7 +70,7 @@ Java - Community
 3. Check you have `mavenCentral()` in `repositories` (or in `settings.gradle`)
 4. Build the project and it will pull Couchbase Lite down.
 
-That’s it! You''re all set to begin developing powerful Couchbase Lite applications.
+That's it! You''re all set to begin developing powerful Couchbase Lite applications.
 
 Now, try the [Getting Started](gs-build.md) application, which demonstrates use of key CRUD functionality.
 

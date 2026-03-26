@@ -1,7 +1,7 @@
 ---
 title: Analyzers - Search Functions
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-analyzers-search-functions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:fts:fts-analyzers-search-functions.adoc[]
 ---
 
@@ -34,7 +34,7 @@ The user can explicitly specify the search query context in the following three 
 1. Explicitly specify the analyzer to use in the query (to match with that specified in the index).  
 Example 1  
 SEARCH(keyspace, {"match": "xyz", "field": "abc", "analyzer": "en"})
-2. Specify index name within the options argument of the SEARCH function, so this index’s mapping is picked up during the verification process  
+2. Specify index name within the options argument of the SEARCH function, so this index's mapping is picked up during the verification process  
 Example 2  
 SEARCH(keyspace, {"match": "xyz", "field": "abc"}, {"index": "fts-index-1"})
 3. Specify the index mapping itself as a JSON object within the options argument of the SEARCH function, which is used directly for the verification process  

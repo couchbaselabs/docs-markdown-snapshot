@@ -3,7 +3,7 @@ title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the Node.js SDK.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.5@nodejs-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -33,7 +33,7 @@ $ npm i cbfieldcrypt
 
 The Node.js Field-Level Encryption library works on the principle of `Encrypters` and `Decrypters` which can be packaged within a `Provider`, as well as a custom [Transcoder](transcoders-nonjson.md). `Encrypters` and `Decrypters` are registered with a `CryptoManager` and are then used at serialization/deserialization time to encrypt and decrypt fields.
 
-Here we’ll go through an example of setting up and using the Node Field-Level Encryption library.
+Here we'll go through an example of setting up and using the Node Field-Level Encryption library.
 
 To begin we need to create a couple of keys, you should **not** use the `InsecureKeyring` other than for evaluation purposes and should keep your keys secure.
 
@@ -128,7 +128,7 @@ const schema = mgr.newCryptoSchema({
 })
 ```
 
-Now let’s create a person document and save it to Couchbase:
+Now let's create a person document and save it to Couchbase:
 
 ```javascript
   const person = {
@@ -188,7 +188,7 @@ The expected output is something like:
 }
 ```
 
-Now let’s decrypt the person document and output the result.
+Now let's decrypt the person document and output the result.
 
 ```javascript
 const decryptedDoc = schema.decrypt(encryptedDoc)
@@ -225,7 +225,7 @@ The output is now:
 > [!WARNING]
 > SDK API 2 (used in Node.js SDK 2._x_) cannot read fields encrypted by SDK API 3 (used in Node.js SDK 3._x_ and 4._x_). Learn more about [migrating from SDK API 2 to SDK API 3](../project-docs/migrating-sdk-code-to-3.n.md).
 
-It’s inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
+It's inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
 
 SDK API 3 requires additional configuration to read fields encrypted by SDK API 2\. The rest of this section describes how to configure Field-Level Encryption in SDK API 3 for backwards compatibility with SDK API 2.
 

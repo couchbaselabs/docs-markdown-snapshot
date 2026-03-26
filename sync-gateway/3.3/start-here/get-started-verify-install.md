@@ -3,7 +3,7 @@ title: Verify a Sync Gateway Install
 description: Configure and verify your <em>Sync Gateway</em> installation;
   securely sync enterprise data from cloud to edge!
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/start-here/pages/get-started-verify-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@sync-gateway:start-here:get-started-verify-install.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:3.3@sync-gateway:start-here:get-started-verify-install.adoc[]
 # Verify a Sync Gateway Install
 
 > Configure and verify your _Sync Gateway_ installation; securely sync enterprise data from cloud to edge!  
-> This is **Step 4** in the _Start Here!_ topic group. Here we will verify that you can connect your _sync gateway_ to a _Couchbase Server_ and synchronize changes whether made in Couchbase Server or through sync gateway’s REST API.
+> This is **Step 4** in the _Start Here!_ topic group. Here we will verify that you can connect your _sync gateway_ to a _Couchbase Server_ and synchronize changes whether made in Couchbase Server or through sync gateway's REST API.
 
 Related _Start Here!_ topics: [Introduction](../introduction.md) | [Prepare](get-started-prepare.md) | [Install](get-started-install.md)
 
@@ -72,7 +72,7 @@ About the Configuration Properties:
 | **2** | Here we provide the credentials for the RBAC user that you created on the Couchbase Server Admin Console — see [Configure Server for Sync Gateway](get-started-prepare.md#configure-server)                                   |
 | **3** | Here we opt to ignore CA Cert verification of the certificate presented by the server; allowing for example use of self-signed certificate. The connection is unverified but encrypted.                                       |
 | **4** | Optionally, you can choose to run without TLS, by setting this value false. In that case you should also use the plaintext URI couchbase://localhost to connect.                                                              |
-| **5** | Define your logging requirements:Here we set general diagnostic console logs on. If you’re having issues then refer to [Logging](../manage/logging.md) for how to tune diagnostics to provide additional troubleshooting help |
+| **5** | Define your logging requirements:Here we set general diagnostic console logs on. If you're having issues then refer to [Logging](../manage/logging.md) for how to tune diagnostics to provide additional troubleshooting help |
 
 Start Sync Gateway
 
@@ -109,7 +109,7 @@ If there are issues then check the [Console Logs](../manage/logging.md#lbl-conso
 We can now use the Admin REST API to add a database to our sync gateway cluster.
 
 > [!NOTE]
-> The `curl` commands on this page requires basic authentication using the `api_admin` Couchbase Server RBAC user’s credentials we created in Step 2 of [Create RBAC users](get-started-prepare.md#step-2create-rbac-user). You can create the digest by taking a Base64 of `username:password`. For example:
+> The `curl` commands on this page requires basic authentication using the `api_admin` Couchbase Server RBAC user's credentials we created in Step 2 of [Create RBAC users](get-started-prepare.md#step-2create-rbac-user). You can create the digest by taking a Base64 of `username:password`. For example:
 > 
 > ```console
 > DIGEST=`echo -n sync_gateway:password | base64`
@@ -119,7 +119,7 @@ We can now use the Admin REST API to add a database to our sync gateway cluster.
 > curl --header "Authorization: Basic $DIGEST" ...
 > ```
 
-The `curl` command shown in [Example 2](#ex-add-sgw-db) below a `traveldb` database pointing to the Couchbase Server’s `travel-sample` bucket.
+The `curl` command shown in [Example 2](#ex-add-sgw-db) below a `traveldb` database pointing to the Couchbase Server's `travel-sample` bucket.
 
 Example 2\. Add a Sync Gateway Database
 
@@ -144,7 +144,7 @@ We can now create a sync gateway user and role to allow secure access during rep
 
 ### [](#add-a-role)Add a role
 
-The `curl` command shown in [Example 3](#ex-add-role) requires basic authentication using the `api_admin` Couchbase Server RBAC user’s credentials we created in Step 2 of [Create RBAC users](get-started-prepare.md#step-2create-rbac-user). It adds a role called `stdrole`.
+The `curl` command shown in [Example 3](#ex-add-role) requires basic authentication using the `api_admin` Couchbase Server RBAC user's credentials we created in Step 2 of [Create RBAC users](get-started-prepare.md#step-2create-rbac-user). It adds a role called `stdrole`.
 
 Example 3\. Add a Sync Gateway Role
 
@@ -164,13 +164,13 @@ curl  --location --request PUT 'http://127.0.0.1:4985/traveldb/_role/stdrole' \(
       }'
 ```
 
-| **1** | Here we identify the name of the sync gateway database — traveldbThe action, \_role andThe role’s name stdrole                  |
+| **1** | Here we identify the name of the sync gateway database — traveldbThe action, \_role andThe role's name stdrole                  |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Now we identify the channels accessible to users assigned this role; these will be used by the Sync Function to control access. |
 
 ### [](#add-the-user)Add the user
 
-The `curl` command shown in [Example 4](#ex-add-user) requires basic authentication using the `api_admin` Couchbase Server RBAC user’s credentials we created in Step 2 of [Create RBAC users](get-started-prepare.md#step-2create-rbac-user). It adds a user called `sgwuser1`.
+The `curl` command shown in [Example 4](#ex-add-user) requires basic authentication using the `api_admin` Couchbase Server RBAC user's credentials we created in Step 2 of [Create RBAC users](get-started-prepare.md#step-2create-rbac-user). It adds a user called `sgwuser1`.
 
 Example 4\. Add a Sync Gateway User
 
@@ -195,13 +195,13 @@ curl  --location -g --request POST 'http://localhost:4985/traveldb/_user/' \(1)
 | **1** | Here we identify the name of the sync gateway database — traveldb and the required object, \_user                                                                       |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | The user/password credential represented in the _Authorization_ header relate to the Sync Gateway admin user                                                            |
-| **3** | Here we give the credentials of the user we want to create. So, the user’s name sgwuser1 and required password. If we omit the password a random password is generated. |
+| **3** | Here we give the credentials of the user we want to create. So, the user's name sgwuser1 and required password. If we omit the password a random password is generated. |
 | **4** | Now we identify any roles accessible to this user; it will inherit any channels associated with the role(s).                                                            |
 | **5** | Now we identify any channels accessible to this user, in addition to those inherited from the role; these will be used by the Sync Function to control access.          |
 
 ## [](#verify-the-crud-cycle)Verify the CRUD Cycle
 
-Here we will use CURL and sync gateway’s REST API to
+Here we will use CURL and sync gateway's REST API to
 
 1. [Create a New Document:](#lbl-crud-crt) Use the API to add a document and check the document on Couchbase Server
 2. [Get a Document Using the API:](#lbl-crud-get) Read the document back from Couchbase Server using the sync gateway API
@@ -391,7 +391,7 @@ To verify that document changes have been replicated, you can:
 
 Now you know sync gateway is deployed and operational. So, you can explore more complex scenarios with confidence.
 
-Maybe you want to learn more about sync gateway’s [Bootstrap Configuration](../configuration/configuration-schema-bootstrap.md) or how to [Sync with Couchbase Server](../sync/sync-with-couchbase-server.md). Or perhaps you want to explore how to:
+Maybe you want to learn more about sync gateway's [Bootstrap Configuration](../configuration/configuration-schema-bootstrap.md) or how to [Sync with Couchbase Server](../sync/sync-with-couchbase-server.md). Or perhaps you want to explore how to:
 
 * Implement access controls for users and data — see: [Users](../access-control/users.md), [Roles](../access-control/roles.md) and the [Sync Function](../access-control/sync-function/sync-function.md) that ties it all together.
 * Implement secure connectivity using TLS/SSL, which is described in [User Authentication](../security/authentication-users.md) and [TLS Certificate Authentication](../security/authentication-certs.md)

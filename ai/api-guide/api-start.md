@@ -4,7 +4,7 @@ description: To get started with the Couchbase Capella APIs for AI Services, you
   must create an API key. An API key authenticates and authorizes you to access
   the APIs.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-start.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:api-guide:api-start.adoc[]
 ---
 
@@ -109,7 +109,7 @@ To generate a Management API key at the organization level:
   1. To allow a specific IP address or block, in the **Add IP / CIDR Block** field, enter the IP address or CIDR notation.
   2. To add your current IP address block, click **Add Current IP Address**.
 10. Click **Add**.
-11. When you’re ready, click **Generate Key**.  
+11. When you're ready, click **Generate Key**.  
 The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.  
 > [!WARNING]  
 > You must copy or download the API key token now. When you leave this page, you will not be able to copy or download the API key token again.
@@ -130,7 +130,7 @@ To generate a Management API key at the project level:
   1. To allow a specific IP address or block, in the **Add IP / CIDR Block** field, enter the IP address or CIDR notation.
   2. To add your current IP address, click **Add Current IP Address**.
 9. Click **Add**.
-10. When you’re ready, click **Generate Key**.  
+10. When you're ready, click **Generate Key**.  
 The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.  
 > [!WARNING]  
 > You must copy or download the API key token now. After leaving this page, you cannot copy or download the API key token.
@@ -176,11 +176,11 @@ Each Model Service API key has access to Capella models deployed in the same AWS
 
 When you create an API key, you must associate it with 1 of the AWS regions used by your models.
 
-If all your models are deployed in the same region, you can use a single API key to access all of them. If your models are deployed across different regions, you’ll need to create a separate API key for each region.
+If all your models are deployed in the same region, you can use a single API key to access all of them. If your models are deployed across different regions, you'll need to create a separate API key for each region.
 
 #### [](#value-adds)Value Adds and Security Features
 
-When you create an API key, it’s configured based on the **Value Adds** and **Security Features** that you enabled during model deployment. If you later change these or enable additional ones, any existing API keys associated with that model will no longer work. To restore access, you need to [create a new Model Service API key](#generate-model-keys).
+When you create an API key, it's configured based on the **Value Adds** and **Security Features** that you enabled during model deployment. If you later change these or enable additional ones, any existing API keys associated with that model will no longer work. To restore access, you need to [create a new Model Service API key](#generate-model-keys).
 
 Only the following **Value Adds** and **Security Features** affect API key compatibility:
 
@@ -204,7 +204,7 @@ For each API key, you can grant access from:
 
 ### [](#view-model-keys)View Model Service API Keys
 
-To display your region’s API keys:
+To display your region's API keys:
 
 1. In the Capella UI, go to **AI Services** **Access Control**.
 
@@ -228,10 +228,10 @@ To generate a Model Service API key:
   2. Click **Add Current IP Address** to add your current IP address.
   3. Click **Allow Access from Anywhere** to allow any IP address to access models with this API key.
 8. Click **Add Allowed IP Address**.
-9. When you’re ready, click **Generate API Key**.  
+9. When you're ready, click **Generate API Key**.  
 The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.  
 > [!WARNING]  
-> You must copy or download the API key token now. When you leave this page, you’ll not be able to copy or download the API key token again.
+> You must copy or download the API key token now. When you leave this page, you'll not be able to copy or download the API key token again.
 10. To download the API key token, click **Download Key**. The key is saved by your browser in a file called `<name>-api-key-token.txt`, where `<name>` is the name of the API key.
 11. To copy either the API key ID or the API key token to the clipboard, click the copy icon () next to the field.
 

@@ -1,7 +1,7 @@
 ---
 title: Getting Started (Scala)
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/getting-started.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:spark-connector::getting-started.adoc[]
 ---
 
@@ -50,7 +50,7 @@ object Quickstart {
 }
 ```
 
-If you are not familiar with Scala, this is the equivalent to Java’s `public static void main(String[] args)` method. The following code goes inside the `main` body.
+If you are not familiar with Scala, this is the equivalent to Java's `public static void main(String[] args)` method. The following code goes inside the `main` body.
 
 When it comes to Spark, you always need to set up a configuration and initialize the `SparkSession`. The following snippet does that and also provides the necessary properties to connect to the Couchbase cluster. Please adjust the values to fit your environment.
 
@@ -66,7 +66,7 @@ val spark = SparkSession
   .getOrCreate()
 ```
 
-In this configuration, we are using the JVM-local spark master to run our jobs. We’re using a Couchbase Capella cluster (the Couchbase Spark Connector works against all varieties of Couchbase cluster), and we use the user `username` with a password of `password`.
+In this configuration, we are using the JVM-local spark master to run our jobs. We're using a Couchbase Capella cluster (the Couchbase Spark Connector works against all varieties of Couchbase cluster), and we use the user `username` with a password of `password`.
 
 ## [](#creating-and-saving-rdds)Creating and saving RDDs
 
@@ -138,7 +138,7 @@ spark
   .foreach(println)
 ```
 
-The `println` this time will show the results of the mutations, returning the Scala SDK’s `MutationResult` for each successful mutation.
+The `println` this time will show the results of the mutations, returning the Scala SDK's `MutationResult` for each successful mutation.
 
 Next up is an introduction into Query/Analytics and DataFrames.
 
@@ -147,7 +147,7 @@ Next up is an introduction into Query/Analytics and DataFrames.
 DataFrames, in its essence, are RDDs with a Schema. They are represented in the SparkSQL `Row` type.
 
 > [!NOTE]
-> You need to at least have a primary index created on the `travel-sample` bucket to make the following examples work. If you haven’t done already, perform a `` CREATE PRIMARY INDEX ON `travel-sample` `` query.
+> You need to at least have a primary index created on the `travel-sample` bucket to make the following examples work. If you haven't done already, perform a `` CREATE PRIMARY INDEX ON `travel-sample` `` query.
 
 Because a `DataFrame` is like an `RDD` but with a schema and Couchbase is a schemaless database at its heart, you need a way to either define or infer a schema. The connector has built-in schema inference, but if you have a large or diverse data set, you need to give it some clues on filtering (or use scopes and collections with Server 7.0 and later).
 
@@ -222,7 +222,7 @@ only showing top 10 rows
 
 ## [](#working-with-datasets)Working with Datasets
 
-A Dataset is a distributed collection of data. `Dataset` is a new interface added in Spark 1.6 that provides the benefits of RDDs (strong typing, ability to use powerful lambda functions) with the benefits of Spark SQL’s optimized execution engine.
+A Dataset is a distributed collection of data. `Dataset` is a new interface added in Spark 1.6 that provides the benefits of RDDs (strong typing, ability to use powerful lambda functions) with the benefits of Spark SQL's optimized execution engine.
 
 The following example creates a Dataset out of a Dataframe and maps it to a case class. It then uses the case class to extract fields out of the result set in a typesafe way:
 

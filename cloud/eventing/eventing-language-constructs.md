@@ -2,7 +2,7 @@
 title: Language Constructs
 description: Language constructs are the fundamental units of a language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-language-constructs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-language-constructs.adoc[]
 ---
 
@@ -56,7 +56,7 @@ See [Advanced Keyspace Accessors](eventing-advanced-keyspace-accessors.md) for m
 
 ### [](#logging)Logging
 
-The `log()` function allows Eventing Functions to log user-defined messages. `log()` statements are logged in each Eventing Function’s log file.
+The `log()` function allows Eventing Functions to log user-defined messages. `log()` statements are logged in each Eventing Function's log file.
 
 `log()` does not throw exceptions.
 
@@ -106,7 +106,7 @@ You must close each result set with the `close()` method, which stops the underl
 
 SQL++ is not syntactically part of the JavaScript language. Eventing transpiles the Eventing Function code to identify SQL++ statements and convert them to a standard JavaScript function call. This call then returns an iterable object with a `close()` method.
 
-To use a JavaScript variable in a query statement, you must use `$<variable>`. This parameter is substituted in the query by the corresponding JavaScript variable’s runtime value.
+To use a JavaScript variable in a query statement, you must use `$<variable>`. This parameter is substituted in the query by the corresponding JavaScript variable's runtime value.
 
 You cannot use the `meta.id` expression in the query statement. Instead, you must use `var id = meta.id`.
 
@@ -167,7 +167,7 @@ function OnUpdate(doc, meta) {
 }
 ```
 
-You can use Constant alias bindings in your Function’s settings to access global constants within a Function’s JavaScript. For example, a Constant alias of `debug` with a value of `true` or `false` behaves in the same way as the statement `const debug = true`.
+You can use Constant alias bindings in your Function's settings to access global constants within a Function's JavaScript. For example, a Constant alias of `debug` with a value of `true` or `false` behaves in the same way as the statement `const debug = true`.
 
 ### [](#asynchrony)Asynchrony
 
@@ -421,7 +421,7 @@ function OnDelete(meta,options) {
 }
 ```
 
-In versions of Couchbase Server before version 6.6.0, the optional argument `options` is not present and the entry point for the handler is `OnDelete(meta)`. The entry point is still supported, but using it means you’re unable to differentiate deletion from expiration.
+In versions of Couchbase Server before version 6.6.0, the optional argument `options` is not present and the entry point for the handler is `OnDelete(meta)`. The entry point is still supported, but using it means you're unable to differentiate deletion from expiration.
 
 ```javascript
 function OnDelete(meta) {

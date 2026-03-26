@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@dotnet-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -42,7 +42,7 @@ var result = await cluster.QueryAsync<dynamic>(
 ```
 
 > [!CAUTION]
-> **When running an application using Prepared Statements through the .NET SDK** — if you plan to upgrade Couchbase Server from 6.0.x or earlier to 6.5.0 or later, and are running a version of the .NET SDK prior to [3.0.1](../project-docs/sdk-release-notes.md#version-3-0-1-13-may-2020), you will need to [restart the app or otherwise work around](#7.1@server:install:upgrade-strategy-for-features.adoc#prepared-statements) a change in the Server’s behaviour.
+> **When running an application using Prepared Statements through the .NET SDK** — if you plan to upgrade Couchbase Server from 6.0.x or earlier to 6.5.0 or later, and are running a version of the .NET SDK prior to [3.0.1](../project-docs/sdk-release-notes.md#version-3-0-1-13-may-2020), you will need to [restart the app or otherwise work around](#7.1@server:install:upgrade-strategy-for-features.adoc#prepared-statements) a change in the Server's behaviour.
 
 ## [](#indexes)Indexes
 
@@ -64,7 +64,7 @@ CREATE INDEX ix_name ON `travel-sample`.inventory.hotel(name);
 CREATE INDEX ix_email ON `travel-sample`.inventory.hotel(email);
 ```
 
-This would allow you to query the _travel-sample_ bucket’s hotel collection regarding a document’s `name` or `email` properties, thus:
+This would allow you to query the _travel-sample_ bucket's hotel collection regarding a document's `name` or `email` properties, thus:
 
 ```n1ql
 SELECT name, email
@@ -72,7 +72,7 @@ FROM `travel-sample`.inventory.hotel
 WHERE name="Glasgow Grand Central" OR email="grandcentralhotel@example.com";
 ```
 
-You can also query a bucket’s default collection, as with this straight-forward example for a _users_ bucket.
+You can also query a bucket's default collection, as with this straight-forward example for a _users_ bucket.
 
 ```n1ql
 CREATE INDEX ix_users_name ON `users`(name);

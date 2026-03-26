@@ -3,7 +3,7 @@ title: Sync Function Reference
 description: About Sync Gateway <em>Roles</em> and their part in secure
   cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/sync-function.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::sync-function.adoc[]
 ---
 
@@ -29,7 +29,7 @@ The sync function should be a focus of any security review of your application.
 
 The Sync Function exposes a number of helper functions to control access — see reference information in [Sync Function API](sync-function-api.md). For example, to grant a user access to a channel use the [access()](sync-function-api-access-cmd.md) helper function in the Sync Function.
 
-The `access()` function can also operate on roles. If a user name string begins with role: then the remainder of the string is interpreted as a role name. There’s no ambiguity here, because ":" is an illegal character in a user or role name.
+The `access()` function can also operate on roles. If a user name string begins with role: then the remainder of the string is interpreted as a role name. There's no ambiguity here, because ":" is an illegal character in a user or role name.
 
 Because anonymous requests are authenticated as the user "GUEST", you can make a channel and its documents public by calling access with a username of GUEST.
 
@@ -70,13 +70,13 @@ The sync function arguments are:
 
 | Name            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| doc             | This object references the content of the document that is being saved. It matches the JSON saved by the Couchbase Lite application and replicated to Sync Gateway. The document’s \_id property contains the document ID The document’s \_rev property is the new revision ID. If the document is being deleted, it will have a \_deleted property with the value true.                                                                                                           |
+| doc             | This object references the content of the document that is being saved. It matches the JSON saved by the Couchbase Lite application and replicated to Sync Gateway. The document's \_id property contains the document ID The document's \_rev property is the new revision ID. If the document is being deleted, it will have a \_deleted property with the value true.                                                                                                           |
 | oldDoc          | If the document has been saved before, this object references the revision being replaced; otherwise it is null. **Note:** In the case of a document with conflicts, the current provisional winning revision is passed in oldDoc. Your implementation of the sync function can omit the oldDoc parameter if you do not need it (JavaScript ignores extra parameters passed to a function).                                                                                        |
 | meta (optional) | From 3.0 the Sync Function includes support for a new meta argument. This argument references the user defined XATTR that you can use to hold access grant data. The referenced object can include items such as channels or roles. So instead of embedding channel information directly within the document body, users can specify the user-defined XATTR associated with the document — see [Use XATTRs for Access Grants](access-control-how-use-xattrs-for-access-grants.md). |
 
 ## [](#configuration)Configuration
 
-If you don’t supply a sync function, Sync Gateway uses the [default Sync Function](configuration-schema-database.md#database-sync).
+If you don't supply a sync function, Sync Gateway uses the [default Sync Function](configuration-schema-database.md#database-sync).
 
 Example 2\. Configuring a Sync Function
 
@@ -131,7 +131,7 @@ Our requirements for this example are:
 | **1** | That all documents have the following properties: _creator_, _writers_, _title_ _channels_                           |
 | ----- | -------------------------------------------------------------------------------------------------------------------- |
 | **2** | That we allow only create and-or delete access to users with the role editor                                         |
-| **3** | That we only allow changes, including deletions, to be made by users identified in the document’s _writers_ property |
+| **3** | That we only allow changes, including deletions, to be made by users identified in the document's _writers_ property |
 | **4** | That the _creator_ is immutable                                                                                      |
 | **5** | That we will assign the document to the channel(s) identified within the documents contents or metadata (v3.0+).     |
 
@@ -290,7 +290,7 @@ Use the `channel()` function to route the document to the named channel(s).
 The channel function can be called zero or more times from the sync function, for any document.
 
 > [!NOTE]
-> Channels don’t have to be predefined.  
+> Channels don't have to be predefined.  
 > A channel implicitly comes into existence when a document is routed to it.
 
 Routing changes have no effect until the document is actually saved in the database, so if the sync function first calls `channel()` or `access()`, but then rejects the update, the channel and access changes will not occur.
@@ -345,7 +345,7 @@ The **active** revision of the document is tombstoned.
 
 If there is another non-tombstoned revision for this document (i.e a conflict) it will become the active revision.
 
-The tombstoned revision will be purged when the server’s metadata purge interval is reached.
+The tombstoned revision will be purged when the server's metadata purge interval is reached.
 
 Disabled
 
@@ -359,7 +359,7 @@ The purge of the document does not cause it to be deleted on any other database.
 
 #### [](#inspect-a-document-expiry-value)Inspect a Document Expiry Value
 
-You can retrieve a document’s expiration time, as it is returned in the response of GET [/{db}/{doc}](rest-api.md#/document/get<em>db</em><em>doc</em>) using `show_exp=true` as the querystring.
+You can retrieve a document's expiration time, as it is returned in the response of GET [/{db}/{doc}](rest-api.md#/document/get<em>db</em><em>doc</em>) using `show_exp=true` as the querystring.
 
 ```bash
 curl -X GET "http://localhost:4985/ourdb/ourdoc?show_exp=true" -H "accept: application/json"
@@ -398,7 +398,7 @@ The function signals rejection by throwing an exception, so the rest of the sync
 
 Note that `requireAccess()` will only recognize grants made explicitly using a channel name (not by a wildcard).
 
-So, if a user was granted access using only the [all channels wildcard](channels.md#lbl-all-channels)\] (`*`), then `requireAccess('anychannelname')'` will fail because the user wasn’t granted access to that channel (only to the `*` channel).
+So, if a user was granted access using only the [all channels wildcard](channels.md#lbl-all-channels)\] (`*`), then `requireAccess('anychannelname')'` will fail because the user wasn't granted access to that channel (only to the `*` channel).
 
 ### [](#use-5)Use
 
@@ -414,7 +414,7 @@ if (oldDoc) {
 
 | **1** | Throw an exception unless the user has access to read the "events" channel:                                   |
 | ----- | ------------------------------------------------------------------------------------------------------------- |
-| **2** | Throw an exception unless the user can read one of the channels in the previous revision’s channels property: |
+| **2** | Throw an exception unless the user can read one of the channels in the previous revision's channels property: |
 
 ## [](#lbl-require-admin)requireAdmin()
 
@@ -455,7 +455,7 @@ Use the `requireRole()` function to reject document updates that are not made by
 
 | Argument | Description                                                                                                                                                                                                                                                                                                                               |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| rolename | Must be a string identifying a role, or an array of strings identifying multiple roles; the function is applied to each role in the array. If the value resolves to null the function result is a no-op. **Note** — Role names must always be prefixed with role:; an exception is thrown if a role name doesn’t conform with this rule.. |
+| rolename | Must be a string identifying a role, or an array of strings identifying multiple roles; the function is applied to each role in the array. If the value resolves to null the function result is a no-op. **Note** — Role names must always be prefixed with role:; an exception is thrown if a role name doesn't conform with this rule.. |
 
 ### [](#context-5)Context
 
@@ -495,7 +495,7 @@ Use the `requireUser()` function to reject document updates that are not made by
 
 The function signals rejection by throwing an exception, so the rest of the sync function will not be run.
 
-When validating a document, you should treat all properties of the `doc` parameter as _untrusted_. That is because it **is** the object that you’re validating. This may sound obvious, but it can be easy to make mistakes, like calling `requireUser(doc.owners)` instead of `requireUser(oldDoc.owners)`.
+When validating a document, you should treat all properties of the `doc` parameter as _untrusted_. That is because it **is** the object that you're validating. This may sound obvious, but it can be easy to make mistakes, like calling `requireUser(doc.owners)` instead of `requireUser(oldDoc.owners)`.
 
 When using one document property to validate another, look up that property in `oldDoc`, not `doc`!
 
@@ -511,7 +511,7 @@ requireUser(["snej", "jchris", "tleyden"]); (2)
 
 | **1** | Throw an error if the user is not "snej":                 |
 | ----- | --------------------------------------------------------- |
-| **2** | Throw an error if user’s name is not in the list username |
+| **2** | Throw an error if user's name is not in the list username |
 
 ## [](#lbl-role)role()
 
@@ -530,14 +530,14 @@ Use the `role()` function to add a role to a user. This indirectly gives them ac
 
 | Argument | Description                                                                                                                                                                                                                                                                                                                               |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| rolename | Must be a string identifying a role, or an array of strings identifying multiple roles; the function is applied to each role in the array. If the value resolves to null the function result is a no-op. **Note** — Role names must always be prefixed with role:; an exception is thrown if a role name doesn’t conform with this rule.. |
+| rolename | Must be a string identifying a role, or an array of strings identifying multiple roles; the function is applied to each role in the array. If the value resolves to null the function result is a no-op. **Note** — Role names must always be prefixed with role:; an exception is thrown if a role name doesn't conform with this rule.. |
 | username | Must be a string identifying a user, or an array of strings identifying multiple users; the function is applied to each user in the array. If the value resolves to null the function result is a no-op.                                                                                                                                  |
 
 ### [](#context-7)Context
 
-This function affects the user’s ability to revise documents, if the access function requires role membership to validate certain types of changes. Its use is similar to `access`.
+This function affects the user's ability to revise documents, if the access function requires role membership to validate certain types of changes. Its use is similar to `access`.
 
-Nonexistent roles don’t cause an error, but have no effect on the user’s access privileges.
+Nonexistent roles don't cause an error, but have no effect on the user's access privileges.
 
 > [!TIP]
 > You can create roles retrospectively. As soon as a role is created, any pre-existing references to it take effect.
@@ -575,9 +575,9 @@ No arguments
 
 ### [](#context-8)Context
 
-You enforce the validity of document structure by checking the necessary constraints and throwing an exception if they’re not met.
+You enforce the validity of document structure by checking the necessary constraints and throwing an exception if they're not met.
 
-In validating a document, you’ll often need to compare the new revision to the old one, to check for illegal changes in state. For example, some properties may be immutable after the document is created, or may be changeable only by certain users, or may only be allowed to change in certain ways. That’s why the current document contents are given to the sync function, as the `oldDoc` parameter.
+In validating a document, you'll often need to compare the new revision to the old one, to check for illegal changes in state. For example, some properties may be immutable after the document is created, or may be changeable only by certain users, or may only be allowed to change in certain ways. That's why the current document contents are given to the sync function, as the `oldDoc` parameter.
 
 We recommend that you not create invalid documents in the first place. As much as possible, your app logic and validation function should prevent invalid documents from being created locally. The server-side sync function validation should be seen as a fail-safe and a guard against malicious access.
 

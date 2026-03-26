@@ -3,7 +3,7 @@ title: Manage Logging
 description: The <em>Logging</em> facility allows a record to be maintained of
   important events that occur on Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-logging/manage-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-logging/manage-logging.adoc[]
 ---
 
@@ -66,7 +66,7 @@ When all required information has been entered, to start information-collection,
 
 ## [](#getting-a-cluster-summary)Getting a Cluster Summary
 
-A summary of the cluster’s status can be acquired by means of the link at the lower right of the **Collect Information** panel:
+A summary of the cluster's status can be acquired by means of the link at the lower right of the **Collect Information** panel:
 
 ![getClusterSummaryLink](../_images/manage-logging/getClusterSummaryLink.png) 
 
@@ -261,7 +261,7 @@ To retrieve log information use the `/diag` and `/sasl_logs` [REST endpoints](..
 
 ## [](#adjust-threshold-slow-op-logging)Adjusting Threshold for Logging Slow Operations
 
-It is possible to examine and/or alter the logging threshold for slow-running operations. This is done using the `mcctl` command that comes packaged with the Couchbase server installation. The command only gets or sets information for the node it’s run on.
+It is possible to examine and/or alter the logging threshold for slow-running operations. This is done using the `mcctl` command that comes packaged with the Couchbase server installation. The command only gets or sets information for the node it's run on.
 
 ### [](#getting-threshold-details)Getting Threshold Details
 
@@ -375,7 +375,7 @@ The default values are loaded from the file: `/opt/couchbase/etc/couchbase/kv/op
 }
 ```
 
-These values can be overriden by creating another file in the `/opt/couchbase/etc/couchbase/kv/opcode-attributes.d` directory. The easiest way to do this is to copy the existing settings file into the directory, making sure that there isn’t an existing file in the directory:
+These values can be overriden by creating another file in the `/opt/couchbase/etc/couchbase/kv/opcode-attributes.d` directory. The easiest way to do this is to copy the existing settings file into the directory, making sure that there isn't an existing file in the directory:
 
 ```bash
 cd /opt/couchbase/etc/couchbase/kv/

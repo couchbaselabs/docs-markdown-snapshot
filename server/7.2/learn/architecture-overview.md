@@ -3,7 +3,7 @@ title: Overview
 description: A high-level summary of Couchbase Server technology, and an
   overview of information provided by other pages in this section.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/architecture-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:architecture-overview.adoc[]
 ---
 
@@ -42,7 +42,7 @@ The full list of services provided is as follows:
 
 ### [](#additional-overview-information)Additional Overview Information
 
-Further information on Couchbase Server’s technology high-points and business benefits can be found in [Couchbase Server](../introduction/intro.md).
+Further information on Couchbase Server's technology high-points and business benefits can be found in [Couchbase Server](../introduction/intro.md).
 
 ## [](#about-this-section)About This Section
 

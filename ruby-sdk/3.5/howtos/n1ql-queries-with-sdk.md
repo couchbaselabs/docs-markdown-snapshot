@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/howtos/pages/n1ql-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.5@ruby-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:3.5@ruby-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 
 > You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. Querying can solve typical programming tasks such as finding a user profile by email address, facebook login, or user ID. 
 
-Our query service uses SQL++ (formerly N1QL), which will be fairly familiar to anyone who’s used any dialect of SQL. [Further resources](#additional%5Fresources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](#7.1@server:n1ql:n1ql-language-reference/index.adoc), or just dive in with a query against our travel sample data set. In this case, the one thing that you need to know is that in order to make a Bucket queryable, it must have at least one index defined. You can define a _primary_ index on a bucket. When a primary index is defined you can issue non-covered queries on the bucket as well.
+Our query service uses SQL++ (formerly N1QL), which will be fairly familiar to anyone who's used any dialect of SQL. [Further resources](#additional%5Fresources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](#7.1@server:n1ql:n1ql-language-reference/index.adoc), or just dive in with a query against our travel sample data set. In this case, the one thing that you need to know is that in order to make a Bucket queryable, it must have at least one index defined. You can define a _primary_ index on a bucket. When a primary index is defined you can issue non-covered queries on the bucket as well.
 
 Use [cbq](#7.1@server::tools/cbq-shell.html), our interactive Query shell. Open it, and enter the following:
 
@@ -32,7 +32,7 @@ Note that building indexes is covered in more detail on the [Query concept page]
 
 ## [](#a-simple-query)A Simple Query
 
-Here’s the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
+Here's the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
 
 ```ruby
 options = Cluster::QueryOptions.new

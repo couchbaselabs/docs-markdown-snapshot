@@ -1,7 +1,7 @@
 ---
 title: Images and Diagrams
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/images-diagrams.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::images-diagrams.adoc[]
 ---
 
@@ -40,7 +40,7 @@ If the concept topic is a basic, introductory guide to the UI, then consider add
 
 How-tos and Tutorials
 
-Do not add a screenshot for every step in a task. You do not need to add a screenshot to show the result of an action, unless it’s unexpected, unusual, or hard to explain through text.
+Do not add a screenshot for every step in a task. You do not need to add a screenshot to show the result of an action, unless it's unexpected, unusual, or hard to explain through text.
 
 Reference
 
@@ -48,19 +48,19 @@ Avoid images in reference topics.
 
 In all cases, make sure that your screenshot specifically shows what you need to show to the user. Frame the image well and do not show unnecessary or distracting parts of the UI. Avoid showing any information that could be subject to change or would be difficult to keep consistent over time.
 
-Avoid capturing screenshots of UI that’s not yet stable and in a state of rapid change.
+Avoid capturing screenshots of UI that's not yet stable and in a state of rapid change.
 
 If you need to show more of the UI and highlight a specific area, use an annotation.
 
 ### [](#screenshot-annotations)Screenshot Annotations
 
-Try to avoid annotations where possible. Make sure that your screenshot is useful and highlights what you’re trying to show to the user without too much extra information.
+Try to avoid annotations where possible. Make sure that your screenshot is useful and highlights what you're trying to show to the user without too much extra information.
 
 If you need to add annotations to a screenshot, use a transparent rectangle with a solid border.
 
-The rectangle’s border should have a 5px width with no rounded corners. The inside of the rectangle should be transparent.
+The rectangle's border should have a 5px width with no rounded corners. The inside of the rectangle should be transparent.
 
-Use Couchbase Red for the rectangle’s border:
+Use Couchbase Red for the rectangle's border:
 
 **Hex**: #EA2328 **CMYK**: 1 99 100 0 **RGB**: 234 35 40
 

@@ -2,7 +2,7 @@
 title: "Appendix 3: Variable Bindings and Name Resolution"
 description: A description of variable bindings and name resolution.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/appendix_3_resolution.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:analytics:appendix_3_resolution.adoc[]
 ---
 
@@ -11,11 +11,11 @@ link: xref:7.6@server:analytics:appendix_3_resolution.adoc[]
 
 # Appendix 3: Variable Bindings and Name Resolution
 
-In this Appendix, we’ll look at how variables are bound and how names are resolved. Names can appear in every clause of a query. Sometimes a name consists of just a single identifier, e.g., `region` or `revenue`. More often a name will consist of two identifiers separated by a dot, e.g., `customer.address`. Occasionally a name may have more than two identifiers, e.g., `policy.owner.address.zipcode`. _Resolving_ a name means determining exactly what the (possibly multi-part) name refers to. It is necessary to have well-defined rules for how to resolve a name in cases of ambiguity. (In the absence of schemas, such cases arise more commonly, and also differently, than they do in SQL.)
+In this Appendix, we'll look at how variables are bound and how names are resolved. Names can appear in every clause of a query. Sometimes a name consists of just a single identifier, e.g., `region` or `revenue`. More often a name will consist of two identifiers separated by a dot, e.g., `customer.address`. Occasionally a name may have more than two identifiers, e.g., `policy.owner.address.zipcode`. _Resolving_ a name means determining exactly what the (possibly multi-part) name refers to. It is necessary to have well-defined rules for how to resolve a name in cases of ambiguity. (In the absence of schemas, such cases arise more commonly, and also differently, than they do in SQL.)
 
 The basic job of each clause in a query block is to bind variables. Each clause sees the variables bound by previous clauses and may bind additional variables. Names are always resolved with respect to the variables that are bound ("in scope") at the place where the name use in question occurs. It is possible that the name resolution process will fail, which may lead to an empty result or an error message.
 
-One important bit of background: When the system is reading a query and resolving its names, it has a list of all the available dataverses and datasets. As a result, it knows whether `a.b` is a valid name for dataset `b` in dataverse `a`. However, the system does not in general have knowledge of the schemas of the data inside the datasets; remember that this is a much more open world. As a result, in general the system cannot know whether any object in a particular dataset will have a field named `c`. These assumptions affect how errors are handled. If you try to access dataset `a.b` and no dataset by that name exists, you will get an error and your query will not run. However, if you try to access a field `c` in a collection of objects, your query will run and return `missing` for each object that doesn’t have a field named `c` \- this is because it’s possible that some object (someday) could have such a field.
+One important bit of background: When the system is reading a query and resolving its names, it has a list of all the available dataverses and datasets. As a result, it knows whether `a.b` is a valid name for dataset `b` in dataverse `a`. However, the system does not in general have knowledge of the schemas of the data inside the datasets; remember that this is a much more open world. As a result, in general the system cannot know whether any object in a particular dataset will have a field named `c`. These assumptions affect how errors are handled. If you try to access dataset `a.b` and no dataset by that name exists, you will get an error and your query will not run. However, if you try to access a field `c` in a collection of objects, your query will run and return `missing` for each object that doesn't have a field named `c` \- this is because it's possible that some object (someday) could have such a field.
 
 ## [](#Binding%5Fvariables)Binding Variables
 
@@ -31,7 +31,7 @@ Examples:
 `GROUP BY salary + bonus AS total_pay`  
 `SELECT MAX(price) AS highest_price`  
 An `AS` subclause always binds the name (as a variable) to the result of the expression (or, in the case of a `FROM` clause, to the _individual members_ of the collection identified by the expression).  
-It’s always a good practice to use the keyword `AS` when defining an alias or iteration variable. However, as in SQL, the syntax allows the keyword `AS` to be omitted. For example, the `FROM` clause above could have been written like this:  
+It's always a good practice to use the keyword `AS` when defining an alias or iteration variable. However, as in SQL, the syntax allows the keyword `AS` to be omitted. For example, the `FROM` clause above could have been written like this:  
 `FROM customer c, order o`  
 Omitting the keyword `AS` does not affect the binding of variables. The FROM clause in this example binds variables c and o whether the keyword AS is used or not.  
 In certain cases, a variable is automatically bound even if no alias or variable-name is specified. Whenever an expression could have been followed by an AS subclause, if the expression consists of a simple name or a path expression, that expression binds a variable whose name is the same as the simple name or the last step in the path expression. Here are some examples:  
@@ -113,7 +113,7 @@ WHERE pay > 1000
 SELECT e.name, pay
 ORDER BY pay
 
-Note that in the phrase _expr1_ `JOIN` _expr2_ `ON` _expr3_, variables defined in _expr1_ are visible in _expr3_ but not in _expr2_. Here’s an example that will not work:
+Note that in the phrase _expr1_ `JOIN` _expr2_ `ON` _expr3_, variables defined in _expr1_ are visible in _expr3_ but not in _expr2_. Here's an example that will not work:
 
 FROM orders AS o JOIN o.items AS i ON 1 = 1
 
@@ -135,11 +135,11 @@ The rules for resolving the leftmost identifier in a `FROM` clause (including a 
   * (1A): If the identifier matches a variable-name that is in scope, it resolves to the binding of that variable. (Note that in the case of a subquery, an in-scope variable might have been bound in an outer query block; this is called a correlated subquery).
   * (1B): Otherwise, if the identifier is the first part of a two-part name like `a.b`, the name is treated as `dataverse.dataset`. If the identifier stands alone as a one-part name, it is treated as the name of a dataset in the default dataverse. If the designated dataset exists then the identifier is resolved to that dataset, othwerise if a view with given name exists then the identifier is resolved to that view, otherwise if a synonym with given name exists then the identifier is resolved to the target dataset or the target view of that synonym (potentially recursively if this synonym points to another synonym). An error will result if the designated dataset, view, or a synonym with this name does not exist.  
   Datasets and views take precedence over synonyms, so if both a dataset (or a view) and a synonym have the same name then the resolution is to the dataset. Note that there cannot be a dataset and a view with the same name.
-2. _Elsewhere in a query block_: In clauses other than `FROM`, a name typically identifies a field of some object. For example, if the expression `a.b` is in a `SELECT` or `WHERE` clause, it’s likely that `a` represents an object and `b` represents a field in that object.  
+2. _Elsewhere in a query block_: In clauses other than `FROM`, a name typically identifies a field of some object. For example, if the expression `a.b` is in a `SELECT` or `WHERE` clause, it's likely that `a` represents an object and `b` represents a field in that object.  
 The rules for resolving the leftmost identifier in clauses other than the ones listed in Rule 1 are:
 
   * (2A): If the identifier matches a variable-name that is in scope, it resolves to the binding of that variable. (In the case of a correlated subquery, the in-scope variable might have been bound in an outer query block).
-  * (2B): (The "Single Variable Rule"): Otherwise, if the `FROM` clause in the current query block binds exactly one variable, the identifier is treated as a field access on the object bound to that variable. For example, in the query `FROM customer SELECT address`, the identifier address is treated as a field in the object bound to the variable `customer`. At runtime, if the object bound to `customer` has no `address` field, the `address` expression will return `missing`. If the `FROM` clause in the current query block binds multiple variables, name resolution fails with an "ambiguous name" error. If there’s no `FROM` clause in the current query block, name resolution fails with an "undefined identifier" error. Note that the Single Variable Rule searches for bound variables only in the current query block, not in outer (containing) blocks. The purpose of this rule is to permit the compiler to resolve field-references unambiguously without relying on any schema information. Also note that variables defined by `LET` clauses do not participate in the resolution process performed by this rule.  
+  * (2B): (The "Single Variable Rule"): Otherwise, if the `FROM` clause in the current query block binds exactly one variable, the identifier is treated as a field access on the object bound to that variable. For example, in the query `FROM customer SELECT address`, the identifier address is treated as a field in the object bound to the variable `customer`. At runtime, if the object bound to `customer` has no `address` field, the `address` expression will return `missing`. If the `FROM` clause in the current query block binds multiple variables, name resolution fails with an "ambiguous name" error. If there's no `FROM` clause in the current query block, name resolution fails with an "undefined identifier" error. Note that the Single Variable Rule searches for bound variables only in the current query block, not in outer (containing) blocks. The purpose of this rule is to permit the compiler to resolve field-references unambiguously without relying on any schema information. Also note that variables defined by `LET` clauses do not participate in the resolution process performed by this rule.  
   Exception: In a query that has a `GROUP BY` clause, the Single Variable Rule does not apply in any clauses that occur after the `GROUP BY` because, in these clauses, the variables bound by the `FROM` clause are no longer in scope. In clauses after `GROUP BY`, only Rule (2A) applies.
 3. In an `ORDER BY` clause following a `UNION ALL` expression:  
 The leftmost identifier is treated as a field-access on the objects that are generated by the `UNION ALL`. For example:  
@@ -155,7 +155,7 @@ In the result of this query, objects that have a foo field will be ordered by th
 
 This section explains how Couchbase Analytics resolves database entity references in the FROM clause — that is, when the first identifier is not a variable reference. This explanation also applies to resolving database entity references in DDL statements.
 
-A database entity reference (or _qualified name_) may consist of an optional Analytics scope name, and the database entity’s local name, separated by a dot.
+A database entity reference (or _qualified name_) may consist of an optional Analytics scope name, and the database entity's local name, separated by a dot.
 
 * The Analytics scope name may consist of one or two identifiers, separated by a dot.
 * The local name consists of a single identifier.
@@ -187,8 +187,8 @@ For more details, refer to [Analytics Query Parameters](query-params.md).
 
 The database entity reference is resolved according to the following rules:
 
-1. If the database entity reference contains multiple identifiers, all identifiers except the last are assumed to refer to the Analytics scope, and the last identifier is assumed to be the database entity’s local name. Analytics attempts to find the database entity using the specified scope and local name. If the database entity is not found, an error is generated.
-2. If the database entity reference only contains one identifier, this is assumed to be the database entity’s local name.
+1. If the database entity reference contains multiple identifiers, all identifiers except the last are assumed to refer to the Analytics scope, and the last identifier is assumed to be the database entity's local name. Analytics attempts to find the database entity using the specified scope and local name. If the database entity is not found, an error is generated.
+2. If the database entity reference only contains one identifier, this is assumed to be the database entity's local name.
 
   1. If the USE statement has been used to specify an Analytics scope, Analytics attempts to find the database entity using the scope provided by the USE statement and the specified local name.
   2. Otherwise, if the `query_context` parameter has been set, Analytics attempts to find the database entity using the scope provided by the query context and the specified local name.

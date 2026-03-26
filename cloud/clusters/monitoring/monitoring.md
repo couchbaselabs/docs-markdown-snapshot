@@ -3,7 +3,7 @@ title: Monitor Clusters
 description: Couchbase Capella provides a variety of monitoring tools to assess
   the performance, health, and stability of your cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/monitoring.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:monitoring/monitoring.adoc[]
 ---
 
@@ -29,13 +29,13 @@ These dashboards display a range of cluster metrics through the [Overview](#clus
 
 ### [](#cluster-overview)Cluster Overview
 
-The **Cluster Overview** dashboard provides a general summary of your cluster’s metrics, including a quick view of its configuration, Health Advisor status, and recent entries from the Activity Log.
+The **Cluster Overview** dashboard provides a general summary of your cluster's metrics, including a quick view of its configuration, Health Advisor status, and recent entries from the Activity Log.
 
 For more information, see [View Cluster Overview](#clusters:clusters:monitoring/metrics-dashboard.adoc#cluster-overview).
 
 ### [](#workload-monitoring)Workload Dashboards
 
-The **Workload Monitoring** dashboards identify key metrics for monitoring the state and workload of your cluster’s Services and nodes.
+The **Workload Monitoring** dashboards identify key metrics for monitoring the state and workload of your cluster's Services and nodes.
 
 Workload monitoring is available for:
 
@@ -56,7 +56,7 @@ For more information, see [View Metrics Explorer](metrics-dashboard.md#metrics-e
 
 ## [](#health-advisor)Health Advisor
 
-The Capella Health Advisor provides a proactive, weekly review of your cluster’s health by analyzing trends and patterns over a week at a time. It highlights potential issues, offers reactive observations, and recommends optimizations to improve stability, performance, and resource efficiency across your operational cluster.
+The Capella Health Advisor provides a proactive, weekly review of your cluster's health by analyzing trends and patterns over a week at a time. It highlights potential issues, offers reactive observations, and recommends optimizations to improve stability, performance, and resource efficiency across your operational cluster.
 
 Capella Health Advisor is only available for paid operational clusters deployed with the **Developer Pro** or **Enterprise** plan.
 
@@ -98,7 +98,7 @@ Each event in Capella has one or more tags. Tags categorize events, allowing you
 
 ## [](#alerts)Alerts
 
-Capella generates an alert when there’s an event with a warning or critical severity.
+Capella generates an alert when there's an event with a warning or critical severity.
 
 To [receive alerts](alerts.md) from Capella, you can:
 

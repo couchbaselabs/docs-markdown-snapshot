@@ -3,7 +3,7 @@ title: Generate Credit Card Transaction Alerts
 description: Use an Eventing Function to generate high-risk alerts whenever a
   customer makes certain credit card transactions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-high-risk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-examples-high-risk.adoc[]
 ---
 
@@ -14,15 +14,15 @@ link: xref:cloud:eventing:eventing-examples-high-risk.adoc[]
 
 > Use an Eventing Function to generate high-risk alerts whenever a customer makes certain credit card transactions. 
 
-This page walks you through generating high-risk transaction alerts whenever a credit card transaction exceeds the customer’s available credit limit or are made in a foreign currency.
+This page walks you through generating high-risk transaction alerts whenever a credit card transaction exceeds the customer's available credit limit or are made in a foreign currency.
 
 The `OnUpdate` JavaScript handler listens to mutations or data changes within a specified `register` collection. When you create or modify data in a document of the type `transaction` inside the `register` collection, the Eventing Function executes its JavaScript code.
 
 The Eventing Function then:
 
-* Looks up details from the customer’s card information, like date, spending limits, location, and default currency. This data is collected from the `register` collection and has the type `card`.
+* Looks up details from the customer's card information, like date, spending limits, location, and default currency. This data is collected from the `register` collection and has the type `card`.
 * Looks up the exchange rates for the date of the transaction. This data is collected from the `register` collection and has the type `exchange_rates`.
-* Transforms the currency of the transaction and the currency of the spending limit into USD, following the correct date’s exchange rate.
+* Transforms the currency of the transaction and the currency of the spending limit into USD, following the correct date's exchange rate.
 * Determines if the customer exceeded the spending threshold.
 * Determines if the purchase was made in a foreign currency.
 * Generates a new document for high-risk transactions that contains transaction information and calculated data.
@@ -48,7 +48,7 @@ This example walks you through how to create an Eventing Function to cascade del
 
 ### [](#flush-items-from-the-ui)Flush Items from the UI
 
-Flushing clears a bucket of all documents and resets it to an empty state while maintaining the bucket’s configuration and settings.
+Flushing clears a bucket of all documents and resets it to an empty state while maintaining the bucket's configuration and settings.
 
 To enable Capella to flush documents:
 
@@ -193,7 +193,7 @@ function nformat(n, width, prec) {
 ```
 8. Click **Create function** to create your Eventing Function.
 
-When a change happens to the data inside the source collection, the `OnUpdate` handler is triggered and checks if the transaction amount is under the customer’s credit limit and if the transaction has been made in a foreign currency. If any of these conditions are true, the Eventing Function flags the transaction as a high-risk transaction.
+When a change happens to the data inside the source collection, the `OnUpdate` handler is triggered and checks if the transaction amount is under the customer's credit limit and if the transaction has been made in a foreign currency. If any of these conditions are true, the Eventing Function flags the transaction as a high-risk transaction.
 
 The Eventing Function then copies the transaction to the `review` bucket. The `OnUpdate` handler:
 
@@ -317,7 +317,7 @@ To deploy your Eventing Function:
 2. Click **More Options (⋮)** next to **high\_risk\_txns**.
 3. Click **Deploy** to deploy your Function.
 
-After it’s deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
+After it's deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
 
 The Eventing Function reads the data you loaded into the `register` collection and creates 40 new high-risk transaction alert documents in the `review` collection.
 
@@ -339,7 +339,7 @@ To check that the document in the `review` collection has been updated:
 
 1. Go to **Data Tools** **Documents**.
 2. Select the keyspace `bulk.data.review` in the **Get documents from** list. You should see 40 new high-risk alert documents in the `review` collection.
-3. Click one of the 40 documents to open the **Edit Document** dialog. The JSON document indicates that a credit card transaction was either made in a currency different than USD, or that it has surpassed the customer’s credit limit.  
+3. Click one of the 40 documents to open the **Edit Document** dialog. The JSON document indicates that a credit card transaction was either made in a currency different than USD, or that it has surpassed the customer's credit limit.  
 ```json  
 {  
   "type": "transaction",  

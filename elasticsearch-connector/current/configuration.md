@@ -1,7 +1,7 @@
 ---
 title: Configuration
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/configuration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:elasticsearch-connector::configuration.adoc[]
 ---
 
@@ -13,14 +13,14 @@ link: xref:elasticsearch-connector::configuration.adoc[]
 > A description of the sections and properties defined in the sample connector config file `$CBES_HOME/config/example-connector.toml` ([view on GitHub](https://github.com/couchbase/couchbase-elasticsearch-connector/blob/4.4.14/src/dist/config/example-connector.toml)), followed by a description of the Consul configuration options specific to Autonomous Operations mode. 
 
 > [!TIP]
-> If this is your first time working with the TOML config file format, check out Nate Finch’s excellent [Intro to TOML](https://npf.io/2014/08/intro-to-toml/), or the [official specification](https://github.com/toml-lang/toml).
+> If this is your first time working with the TOML config file format, check out Nate Finch's excellent [Intro to TOML](https://npf.io/2014/08/intro-to-toml/), or the [official specification](https://github.com/toml-lang/toml).
 
 > [!NOTE]
 > Some configuration properties are filesystem paths. The base for a relative path is the connector installation directory.
 
 ## [](#group-membership)Group Membership
 
-First, let’s define some terminology:
+First, let's define some terminology:
 
 connector instance
 
@@ -65,7 +65,7 @@ totalMembers = 1 (3)
 
 ## [](#logging)Logging
 
-The connector’s log output is controlled by the `log4j2.xml` file in the `config` directory. Please see the [Log4j 2 configuration reference](https://logging.apache.org/log4j/2.x/manual/configuration.html) for more information, including how to activate [Automatic Reconfiguration](https://logging.apache.org/log4j/2.x/manual/configuration.html#AutomaticReconfiguration).
+The connector's log output is controlled by the `log4j2.xml` file in the `config` directory. Please see the [Log4j 2 configuration reference](https://logging.apache.org/log4j/2.x/manual/configuration.html) for more information, including how to activate [Automatic Reconfiguration](https://logging.apache.org/log4j/2.x/manual/configuration.html#AutomaticReconfiguration).
 
 The connector config file has additional options for controlling higher-level logging features:
 
@@ -136,7 +136,7 @@ pathToPassword = 'secrets/elasticsearch-client-cert-password.toml'
 
 ## [](#couchbase)Couchbase
 
-Here’s where the Couchbase connection parameters and credentials are specified.
+Here's where the Couchbase connection parameters and credentials are specified.
 
 ```toml
 [couchbase]
@@ -178,9 +178,9 @@ defaultCheckpoint = 'ZERO' (13)
 
 ### [](#couchbase-env)Custom Couchbase settings
 
-The connector uses the Couchbase Java SDK to save checkpoint documents in Couchbase. The SDK’s "cluster environment" settings may be specified in the connector config file.
+The connector uses the Couchbase Java SDK to save checkpoint documents in Couchbase. The SDK's "cluster environment" settings may be specified in the connector config file.
 
-Here’s an example that tunes the checkpoint I/O timeout settings and disables native libraries:
+Here's an example that tunes the checkpoint I/O timeout settings and disables native libraries:
 
 ```toml
 [couchbase.env] (1)
@@ -209,7 +209,7 @@ flowControlBuffer = '16mb' (2)
 persistencePollingInterval = '100ms' (3)
 ```
 
-| **1** | Disabling compression uses more network bandwidth and increases Couchbase Server’s CPU usage. Enabling compression increases the connector’s CPU usage.                                                                                                                                            |
+| **1** | Disabling compression uses more network bandwidth and increases Couchbase Server's CPU usage. Enabling compression increases the connector's CPU usage.                                                                                                                                            |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | The flow control buffer limits how much data Couchbase will send before waiting for the connector to acknowledge the data has been processed. The recommended size is between 10 MiB ("10m") and 50 MiB ("50m").                                                                                   |
 | **3** | To propagate changes immediately, disable persistence polling by setting this to '0ms'. A non-zero duration tells the connector to defer propagation until the change is persisted on all Couchbase replicas. Longer intervals reduce network traffic at the cost of increased end-to-end latency. |
@@ -220,7 +220,7 @@ persistencePollingInterval = '100ms' (3)
 > [!CAUTION]
 > Make sure to allocate enough memory to the Elasticsearch connector process to accommodate the flow control buffer, otherwise the connector might run out of memory under heavy load. Read on for details.
 
-There’s a separate flow control buffer for each node in the Couchbase cluster. When calculating how much memory to allocate to the Elasticsearch connector, multiply the flow control buffer size by the number of Couchbase nodes, then multiply by 2\. This is the amount of memory required for the flow control buffer (not counting the connector’s baseline memory usage).
+There's a separate flow control buffer for each node in the Couchbase cluster. When calculating how much memory to allocate to the Elasticsearch connector, multiply the flow control buffer size by the number of Couchbase nodes, then multiply by 2\. This is the amount of memory required for the flow control buffer (not counting the connector's baseline memory usage).
 
 ## [](#elasticsearch)Elasticsearch
 
@@ -270,14 +270,14 @@ concurrentRequests = 2 (4)
 > A bulk request is full when _either_ the `bytes` limit _or_ the `actions` limit is reached, whichever comes first.
 
 > [!CAUTION]
-> Actual bulk request size may exceed the `bytes` limit by approximately the size of a single document. Make sure the limit configured here is **well under** the Elasticsearch cluster’s [http.max\_content\_length](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html#%5Fsettings%5F2) setting.
+> Actual bulk request size may exceed the `bytes` limit by approximately the size of a single document. Make sure the limit configured here is **well under** the Elasticsearch cluster's [http.max\_content\_length](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html#%5Fsettings%5F2) setting.
 
 ### [](#document-structure)Document Structure
 
 You control whether the Couchbase document is indexed verbatim, or whether it is transformed to include Couchbase metadata. If you decide to include metadata, it will be in a top-level field of the Elasticsearch document, with a field name of your choice. You also control whether the Couchbase document content is at the top level of the Elasticsearch document, or nested inside field named `doc`.
 
 > [!NOTE]
-> The connector does not replicate a document’s extended attributes (xattrs).
+> The connector does not replicate a document's extended attributes (xattrs).
 
 ```toml
 [elasticsearch.docStructure]
@@ -292,7 +292,7 @@ wrapCounters = false (3)
 | **3** | If false, ignore Couchbase counter documents. If true, replicate them as Object nodes like {"value":<counter>}                                                                                                                           |
 
 > [!TIP]
-> The defaults mimic the behavior of version 3.x of the connector. If you don’t care about metadata, you can make the Elasticsearch document identical to the Couchbase document by setting `documentContentAtTopLevel = true` and `metadataFieldName = ''`.
+> The defaults mimic the behavior of version 3.x of the connector. If you don't care about metadata, you can make the Elasticsearch document identical to the Couchbase document by setting `documentContentAtTopLevel = true` and `metadataFieldName = ''`.
 
 > [!CAUTION]
 > If you set `documentContentAtTopLevel = true`, be sure to omit metadata or select a metadata field name that does not conflict with any document fields.
@@ -307,7 +307,7 @@ The order of type definitions is significant. If a document matches more than on
 
 ### [](#type-definition-defaults)Type Definition Defaults
 
-Here’s where you can specify the default values for all type definitions. This may be useful, for example, if you want to write all documents to the same index, or send them all through the same pipeline. The default values can be overridden by specific type definitions, which we’ll look at in just a moment.
+Here's where you can specify the default values for all type definitions. This may be useful, for example, if you want to write all documents to the same index, or send them all through the same pipeline. The default values can be overridden by specific type definitions, which we'll look at in just a moment.
 
 ```toml
 [elasticsearch.typeDefaults]
@@ -323,7 +323,7 @@ matchOnQualifiedKey = false (5)
 | **2** | Send matching documents though this pipeline. Empty string ('') means "no pipeline".                                                                                                                                                                                                         |
 | **3** | If true, ignore matching documents entirely.                                                                                                                                                                                                                                                 |
 | **4** | If true, never delete matching documents from Elasticsearch.                                                                                                                                                                                                                                 |
-| **5** | If true, the prefix and regex properties described in the next section match against the qualified document ID, which includes the document’s scope and collection. Otherwise, they match against just the document ID. For example, "scope.collection.documentId" versus just "documentId". |
+| **5** | If true, the prefix and regex properties described in the next section match against the qualified document ID, which includes the document's scope and collection. Otherwise, they match against just the document ID. For example, "scope.collection.documentId" versus just "documentId". |
 
 #### [](#document-matching-rules)Document matching rules
 
@@ -338,11 +338,11 @@ A type definition with a `prefix` field matches any document whose ID starts wit
 A type definition with a `regex` field matches any document whose ID fully matches the given [Java regular expression](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html).
 
 > [!TIP]
-> If the regular expression contains a capturing group named "index", the captured value will be used as the destination index. We’ll see an example of this shortly.
+> If the regular expression contains a capturing group named "index", the captured value will be used as the destination index. We'll see an example of this shortly.
 
 ### [](#sample-type-definitions)Sample Type Definitions
 
-The first sample definition we’ll look at is one you should include whenever the Couchbase Sync Gateway is present. It ignores any Sync Gateway metadata documents based on their ID prefix.
+The first sample definition we'll look at is one you should include whenever the Couchbase Sync Gateway is present. It ignores any Sync Gateway metadata documents based on their ID prefix.
 
 #### [](#ignore-sync-gateway-metadata)Ignore Sync Gateway Metadata
 
@@ -357,11 +357,11 @@ ignore = true (2)
 | **2** | Any matched documents will be ignored completely.                                                   |
 
 > [!NOTE]
-> Did you notice that unlike the config sections we’ve looked at so for, the `[[elasticsearch.type]]` section name is enclosed in **double brackets**? This indicates it’s a repeated element. You can declare any number of these sections, and each one will define an additional type.
+> Did you notice that unlike the config sections we've looked at so for, the `[[elasticsearch.type]]` section name is enclosed in **double brackets**? This indicates it's a repeated element. You can declare any number of these sections, and each one will define an additional type.
 
 #### [](#prefix-match)Prefix Match
 
-Here’s another type definition that uses `prefix` matching. This time, instead of ignoring the matched documents, the connector will write them to the "airlines" index using the [ingestion pipeline](https://www.elastic.co/blog/new-way-to-ingest-part-1) named "audit".
+Here's another type definition that uses `prefix` matching. This time, instead of ignoring the matched documents, the connector will write them to the "airlines" index using the [ingestion pipeline](https://www.elastic.co/blog/new-way-to-ingest-part-1) named "audit".
 
 ```toml
 [[elasticsearch.type]]
@@ -379,7 +379,7 @@ pipeline = 'audit' (2)
 
 #### [](#regular-expression-match)Regular Expression Match
 
-Now let’s look at a type definition that matches document IDs using a [Java regular expression](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html) instead of a literal prefix.
+Now let's look at a type definition that matches document IDs using a [Java regular expression](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html) instead of a literal prefix.
 
 ```toml
 [[elasticsearch.type]]
@@ -392,7 +392,7 @@ index = 'ports'
 
 #### [](#index-inference)Index Inference
 
-Finally, here’s the promised example of using a regular expression with a capturing group named "index" to set the index based on document ID.
+Finally, here's the promised example of using a regular expression with a capturing group named "index" to set the index based on document ID.
 
 ```toml
 [[elasticsearch.type]]
@@ -456,7 +456,7 @@ routing = '/airlineid' (3)
 ignoreDeletes = true (4)
 ```
 
-| **1** | It’s just a coincidence that airline route documents are being used to demonstrate custom routing.                                        |
+| **1** | It's just a coincidence that airline route documents are being used to demonstrate custom routing.                                        |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Must specify the same index as parent document.                                                                                           |
 | **3** | A JSON pointer to the field to use for Elasticsearch routing. This is how the child document gets routed to the same shard as its parent. |
@@ -464,7 +464,7 @@ ignoreDeletes = true (4)
 
 ## [](#rejection-log)Rejection Log
 
-When Elasticsearch rejects a document (usually due to a type mapping error) the connector writes a rejection log entry document to Elasticsearch. The log entry’s document ID is the ID of the rejected Couchbase document.
+When Elasticsearch rejects a document (usually due to a type mapping error) the connector writes a rejection log entry document to Elasticsearch. The log entry's document ID is the ID of the rejected Couchbase document.
 
 __Table 1\. Rejection Log Entry Fields__
 | Field Name | Type   | Description                                        |
@@ -485,7 +485,7 @@ index = 'cbes-rejects' (1)
 | ----- | ------------------------------------------------ |
 
 > [!TIP]
-> If you’re running multiple connector groups, you may wish to use a separate rejection log index for each group.
+> If you're running multiple connector groups, you may wish to use a separate rejection log index for each group.
 
 ## [](#hosted-services)Connecting to Hosted Services
 
@@ -503,7 +503,7 @@ username = 'database-account-username' (1)
 # other properties...
 ```
 
-| **1** | The username of a database user account with read access for the source bucket, and read/write access for the connector’s metadata bucket/collection. |
+| **1** | The username of a database user account with read access for the source bucket, and read/write access for the connector's metadata bucket/collection. |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 Make sure to use the credentials of a database user account, _not_ your Capella website credentials.
@@ -517,7 +517,7 @@ Make sure to use the credentials of a database user account, _not_ your Capella 
 ### [](#elastic-cloud)Elastic Cloud
 
 > [!CAUTION]
-> This is an experimental feature. If you’d like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum.
+> This is an experimental feature. If you'd like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum.
 
 Starting with version 4.4.5, the connector supports Elastic Cloud, the Software-as-a-Service offering from Elastic.
 
@@ -552,7 +552,7 @@ password = 'your-elastic-cloud-api-key'
 ### [](#amazon-opensearch-service)Amazon OpenSearch Service
 
 > [!CAUTION]
-> This is an experimental feature. If you’d like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum.
+> This is an experimental feature. If you'd like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum.
 
 Starting with version 4.4.5, the connector supports Amazon OpenSearch Service.
 
@@ -587,7 +587,7 @@ The connector configuration may reference environment variables.
 
 Variable substitution happens in a separate step before the TOML is parsed. Values are replaced verbatim, without regard to context. When using variables in string values, make sure the result conforms to the [TOML string syntax](https://github.com/toml-lang/toml#string).
 
-Here’s an example with completely made up config properties, and placeholders that reference environment variables `NAME`, `AGE`, and `FAVORITE_COLOR`:
+Here's an example with completely made up config properties, and placeholders that reference environment variables `NAME`, `AGE`, and `FAVORITE_COLOR`:
 
 ```toml
 name = '${NAME}' (1)
@@ -610,7 +610,7 @@ When running the connector in Autonomous Operations mode, you can configure how 
 
 In Autonomous Operations mode, the connector configuration is stored in Consul. The connector needs to know how to talk to Consul before it can read the connector configuration.
 
-The example file included in the connector distribution is called `$CBES_HOME/config/consul.toml`. Here’s what it looks like:
+The example file included in the connector distribution is called `$CBES_HOME/config/consul.toml`. Here's what it looks like:
 
 ```toml
 [consul]
@@ -622,4 +622,4 @@ deregisterCriticalServiceAfter = '168h' (3)
 | **1** | Access Control List Token to include in all Consul requests. You should not typically need to set this value. Instead, configure the local Consul agent to use a token when talking to the Consul cluster. The default value is an empty string, in which case the token sent to the Consul server will be determined by the Consul agent. This example configuration shows how to read the token from the CBES\_CONSUL\_ACL\_TOKEN environment variable if present, falling back to empty string if the variable is not set. If you prefer not to use an environment variable, you can specify the ACL token directly instead.                                                                                                     |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | **_(Since 4.4.1)_** Whether to automatically remove the service registration from Consul when the connector exits cleanly. If not specified, defaults to true.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **3** | **_(Since 4.4.1)_** How long Consul should wait before automatically removing the service definition for a connector that fails its health check or shuts down due to an error. Valid time units are "m" for minutes or "h" for hours. If not specified, defaults to 168 hours (7 days). According to the [Consul documentation](https://www.consul.io/api-docs/agent/check#register-check): The minimum timeout is 1 minute, and the process that reaps critical services runs every 30 seconds, so it may take slightly longer than the configured timeout to trigger the deregistration. This should generally be configured with a timeout that’s much, much longer than any expected recoverable outage for the given service. |
+| **3** | **_(Since 4.4.1)_** How long Consul should wait before automatically removing the service definition for a connector that fails its health check or shuts down due to an error. Valid time units are "m" for minutes or "h" for hours. If not specified, defaults to 168 hours (7 days). According to the [Consul documentation](https://www.consul.io/api-docs/agent/check#register-check): The minimum timeout is 1 minute, and the process that reaps critical services runs every 30 seconds, so it may take slightly longer than the configured timeout to trigger the deregistration. This should generally be configured with a timeout that's much, much longer than any expected recoverable outage for the given service. |

@@ -3,7 +3,7 @@ title: Configure Access Control and Data Validation
 description: Access Control and Data Validation is vital to the security of your
   App Endpoint.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/access-control-data-validation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::app-endpoints/access-control-data-validation.adoc[]
 ---
 
@@ -28,7 +28,7 @@ The examples used on this page will make use of the `channel()` API call. Channe
 
 ## [](#procedure)Procedure
 
-You can access the Access Control and Data Validation function for an App Endpoint through the App Endpoint’s configuration screen:
+You can access the Access Control and Data Validation function for an App Endpoint through the App Endpoint's configuration screen:
 
 1. From the App Services screen, select an App Service, and click the **App Endpoints** tab.  
 In the **App Endpoints** page, select an App Service Endpoint.
@@ -41,7 +41,7 @@ Figure 1\. Select Linked Collections
 Figure 2\. Updating the Access Control and Data Validation Function  
 The provided JavaScript function executes every time a new revision/update is made to a document.  
 > [!NOTE]  
-> Couchbase recommends thoroughly checking the validity of the function as it will affect each document’s operations that are passing through an App Endpoint. You can restore the function to its original default by clicking **Restore to Default**.
+> Couchbase recommends thoroughly checking the validity of the function as it will affect each document's operations that are passing through an App Endpoint. You can restore the function to its original default by clicking **Restore to Default**.
 
 ## [](#the-access-control-and-data-validation-function)The Access Control and Data Validation Function
 
@@ -57,7 +57,7 @@ The function arguments are:
 
 | Name              | Description                                                                                                                                                                                                                                                                                                                                                                 |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| doc               | This object references the content of the document that is being saved. It matches the JSON saved by the Couchbase Lite application and replicated to the App Service. The document’s \_id property contains the document ID The document’s \_rev property is the new revision ID. If the document is being deleted, it will have a \_deleted property with the value true. |
+| doc               | This object references the content of the document that is being saved. It matches the JSON saved by the Couchbase Lite application and replicated to the App Service. The document's \_id property contains the document ID The document's \_rev property is the new revision ID. If the document is being deleted, it will have a \_deleted property with the value true. |
 | oldDoc (optional) | If the document has been saved before, this object references the revision being replaced; otherwise it is null. In the case of a document with conflicts, the current provisional winning revision is passed in oldDoc.                                                                                                                                                    |
 | meta (optional)   | This argument references the user-defined XATTR that you can use to hold access grant data. The referenced object can include items such as channels or roles. So, instead of embedding channel information directly within the document body, users can specify the user-defined XATTR associated with the document.                                                       |
 
@@ -158,7 +158,7 @@ If `oldDoc` is not passed to the function, then a new document is being created.
 
 If `oldDoc` is passed to the function, we know that document is being modified. In this example:
 
-* Only users in the existing doc’s writers list can change a document
+* Only users in the existing doc's writers list can change a document
 * The 'creator' property is immutable.
 
 ```javascript

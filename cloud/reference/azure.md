@@ -2,7 +2,7 @@
 title: Microsoft Azure
 description: Couchbase Capella supports deploying clusters onto Microsoft Azure.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/azure.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:reference:azure.adoc[]
 ---
 
@@ -17,7 +17,7 @@ Couchbase Capella provides fully managed Couchbase Server clusters that you can 
 
 ## [](#supported-regions)Supported Regions
 
-Couchbase Capella’s fully managed DBaaS supports the following Azure regions.
+Couchbase Capella's fully managed DBaaS supports the following Azure regions.
 
 * North America
 * South America
@@ -65,9 +65,9 @@ Couchbase Capella’s fully managed DBaaS supports the following Azure regions.
 
 ## [](#availability-zones)Availability Zones
 
-All the Microsoft Azure regions that Capella supports have Availability Zones. Availability Zones are data centers that Azure groups together within a region. They’re maintained in separate physical locations within a region and isolated from failures in other zones.
+All the Microsoft Azure regions that Capella supports have Availability Zones. Availability Zones are data centers that Azure groups together within a region. They're maintained in separate physical locations within a region and isolated from failures in other zones.
 
-Capella can automatically distribute cluster nodes across multiple Availability Zones in a region for the highest availability. For example, a 3-node cluster could deploy 1 node to each of the 3 Availability Zones in a region. A failure in 1 of these Availability Zones wouldn’t impact the other 2 nodes that could remain in operation.
+Capella can automatically distribute cluster nodes across multiple Availability Zones in a region for the highest availability. For example, a 3-node cluster could deploy 1 node to each of the 3 Availability Zones in a region. A failure in 1 of these Availability Zones wouldn't impact the other 2 nodes that could remain in operation.
 
 Except for free tier operational clusters, Capella clusters deploy with a minimum of 3 [nodes](#nodes). Clusters deployed with Azure use Couchbase Server 7.1 or later, which supports [unequal server groups](#learn:clusters-and-availability:groups.adoc#server-groups-and-vbuckets).
 
@@ -89,7 +89,7 @@ Customize the clusters you deploy with Microsoft Azure to fit your requirements 
 Clusters have a minimum of 3 nodes and a maximum of 27.
 
 > [!NOTE]
-> As they’re intended for evaluation purposes only, free tier operational clusters only include 1 node.
+> As they're intended for evaluation purposes only, free tier operational clusters only include 1 node.
 
 Clusters consist of Service Groups that include the services deployed and system resources. Each Service Group has a node quantity representing the number of nodes in the cluster with that configuration. Individual Service Groups can have between 2 and 27 nodes but cannot collectively exceed 27\. The Service Group that includes the [Data Service](../clusters/data-service/data-service.md) requires at least 3 nodes.
 
@@ -126,7 +126,7 @@ The following compute configuration options are available for clusters on Micros
 
 The Capella clusters you deploy onto Azure can use Premium SSDs (v1) or Ultra disks.
 
-When using Azure’s Premium SSDs (v1), the amount of storage available per node in your cluster depends on the chosen disk type. For example, if you want the 256 GiB of storage, you could choose the P15 disk configuration. If you’re using the Ultra Disk type, you can choose between fixed storage size options.
+When using Azure's Premium SSDs (v1), the amount of storage available per node in your cluster depends on the chosen disk type. For example, if you want the 256 GiB of storage, you could choose the P15 disk configuration. If you're using the Ultra Disk type, you can choose between fixed storage size options.
 
 > [!NOTE]
 > Free tier operational clusters only allow 10 GB of data storage.

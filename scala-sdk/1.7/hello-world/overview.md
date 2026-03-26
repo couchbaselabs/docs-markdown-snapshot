@@ -1,7 +1,7 @@
 ---
 title: Couchbase Scala SDK 1.7
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.7/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.7@scala-sdk:hello-world:overview.adoc[]
 ---
 
@@ -16,7 +16,7 @@ The Couchbase Scala SDK allows Scala applications to access a Couchbase cluster 
 
 [Quickstart Guide](start-using-sdk.md) | [Release Notes](../project-docs/sdk-release-notes.md) | [Scala SDK API Reference](https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html)
 
-What’s the point of a fast and scalable database if it’s not easy to develop for? Couchbase gives you the Scala APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
+What's the point of a fast and scalable database if it's not easy to develop for? Couchbase gives you the Scala APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
 
 * Data Ops (CRUD)
 * SQL++ Query (OLTP)
@@ -50,10 +50,10 @@ Installing the SDK via Scala Build Tool
 libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.7.8"
 ```
 
-The links below will take you where you want to go — as will the navigation on the left-hand side of this page. But if you don’t know exactly where you need to go, try one of the following:
+The links below will take you where you want to go — as will the navigation on the left-hand side of this page. But if you don't know exactly where you need to go, try one of the following:
 
 * Our [Quickstart Guide](start-using-sdk.md) introduces the SDK with a quick install, and CRUD examples against the Data Service.
-* Couchbase’s familiar SQL-family query language and fuzzy search options (including vector search) are introduced on the [Querying Your Data](../concept-docs/querying-your-data.md) page.
+* Couchbase's familiar SQL-family query language and fuzzy search options (including vector search) are introduced on the [Querying Your Data](../concept-docs/querying-your-data.md) page.
 * The Scala SDK docs are, necessarily, just a sub-set [Scala SDK API Reference](https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html) — and a complete reference of all APIs can be found there.
 * For a fuller orientation, there is a [guide to the Scala SDK docs](../project-docs/metadoc-about-these-sdk-docs.md)
 
@@ -113,6 +113,6 @@ This page covers using our operational Scala SDK to connect to the Analytics Ser
 > [!TIP]
 > Analytics SDKs
 > 
-> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase's analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
 > 
 > Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](../../../home/columnar-sdk.md) for more information.

@@ -2,7 +2,7 @@
 title: Compatibility
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/product-notes/pages/compatibility.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:product-notes:compatibility.adoc[]
 ---
 
@@ -12,10 +12,10 @@ link: xref:sync-gateway:product-notes:compatibility.adoc[]
 # Compatibility
 
 > Couchbase Sync Gateway  
-> Covers Couchbase Sync Gateway’s compatibility with Couchbase Server and Couchbase Lite
+> Covers Couchbase Sync Gateway's compatibility with Couchbase Server and Couchbase Lite
 
 > [!WARNING]
-> **Couchbase Lite 4.0 with Sync Gateway 3.2.0 and 3.3.0 is unsupported.**Use Sync Gateway 4.0 for Couchbase Lite 4.0 compatibility. See [What’s New](../whatsnew.md) for details.
+> **Couchbase Lite 4.0 with Sync Gateway 3.2.0 and 3.3.0 is unsupported.**Use Sync Gateway 4.0 for Couchbase Lite 4.0 compatibility. See [What's New](../whatsnew.md) for details.
 
 ## [](#sync-gateway-and-couchbase-server)Sync Gateway and Couchbase Server
 
@@ -56,7 +56,7 @@ __Table 1\. Sync Gateway/Couchbase Server Compatibility Matrix__
 > [!IMPORTANT]
 > Couchbase Server Bucket Types
 > 
-> Use only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server’s **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../../server/current/learn/buckets-memory-and-storage/buckets.md).
+> Use only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server's **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../../server/current/learn/buckets-memory-and-storage/buckets.md).
 
 **Compatibility with Couchbase Server 5.0-7.0**
 

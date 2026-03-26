@@ -1,7 +1,7 @@
 ---
 title: Create a Kafka Pipeline Link
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/remote-kafka.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sources:remote-kafka.adoc[]
 ---
 
@@ -18,7 +18,7 @@ After you create a remote link, you must create one or more collections to recei
 
 Your Capella Analytics account must have either the [Project Owner](../admin/auth/auth-ui.md#project-owner-role) or [Project Manager](../admin/auth/auth-ui.md#project-cluster-manager-role) role to be able to create a link and its associated collection. In addition, you must also have the necessary credentials to read data from the Kafka topic or topics you want to stream into Capella Analytics.
 
-To connect to a Kafka data streaming service, you provide the broker URL or URLs and the authentication type to use with its credentials. For data that’s in a format other than JSON, you also provide the schema registry to use and its details.
+To connect to a Kafka data streaming service, you provide the broker URL or URLs and the authentication type to use with its credentials. For data that's in a format other than JSON, you also provide the schema registry to use and its details.
 
 Capella Analytics supports Confluent Cloud Kafka and Amazon Managed Streaming for Apache Kafka (Amazon MSK) as Kafka sources:
 

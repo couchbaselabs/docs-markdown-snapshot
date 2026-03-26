@@ -1,7 +1,7 @@
 ---
 title: Introduction
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/introduction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:introduction.adoc[]
 ---
 
@@ -17,7 +17,7 @@ This step-by-step tutorial describes a Couchbase Lite Travel application for mob
 * Users can search and make flight reservations using the application and-or the Python web application.  
 Flight reservations made in the app are available even when the app is disconnected from the server.
 * Flight reservations made using any of the client apps are automatically synced with other clients through Sync Gateway.
-* Users can access Couchbase Lite’s Full Text Search features to find hotels using either the app or the Python web application.
+* Users can access Couchbase Lite's Full Text Search features to find hotels using either the app or the Python web application.
 
 The following functionality is also available:
 

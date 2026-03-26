@@ -2,7 +2,7 @@
 title: Sequence Operators
 description: Sequence operators enable you to return a value from a sequence.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/sequenceops.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/sequenceops.adoc[]
 ---
 
@@ -35,8 +35,8 @@ You can specify a different maximum or minimum value for a sequence.
 
 A sequence may permit cycling. In this case, the sequence behaves as follows:
 
-* If the sequence is ascending, then when it reaches the maximum value, it continues from the minimum value — which may be different to the sequence’s specified starting value.
-* If the sequence is descending, then when it reaches the minimum value, it continues from the maximum value — which may be different to the sequence’s specified starting value.
+* If the sequence is ascending, then when it reaches the maximum value, it continues from the minimum value — which may be different to the sequence's specified starting value.
+* If the sequence is descending, then when it reaches the minimum value, it continues from the maximum value — which may be different to the sequence's specified starting value.
 
 If a sequence does not permit cycling, then when it reaches the maximum or minimum value, it generates an error.
 

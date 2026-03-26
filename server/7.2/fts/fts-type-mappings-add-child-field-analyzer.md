@@ -1,7 +1,7 @@
 ---
 title: Child Field Analyzer
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-type-mappings-add-child-field-analyzer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-type-mappings-add-child-field-analyzer.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:7.2@server:fts:fts-type-mappings-add-child-field-analyzer.adoc[]
 
 # Child Field Analyzer
 
-An analyzer optionally to be used for the field. The list of available analyzers can be displayed by means of the field’s pull-down menu, and can be selected from.
+An analyzer optionally to be used for the field. The list of available analyzers can be displayed by means of the field's pull-down menu, and can be selected from.
 
 ## [](#example)Example
 

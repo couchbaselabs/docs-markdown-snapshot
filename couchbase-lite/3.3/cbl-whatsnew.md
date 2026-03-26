@@ -1,7 +1,7 @@
 ---
 title: New in 3.3
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/ROOT/pages/cbl-whatsnew.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite::cbl-whatsnew.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.3@couchbase-lite::cbl-whatsnew.adoc[]
 
 > [!NOTE]
 > Couchbase Lite 3.0 introduces some breaking changes.  
-> If you’re upgrading from 2.x, refer to the appropriate upgrade page — see: [Upgrading](#lbl-upgrade).  
+> If you're upgrading from 2.x, refer to the appropriate upgrade page — see: [Upgrading](#lbl-upgrade).  
 > You should be able to upgrade from 3.2.x to 3.3.x without manual intervention.
 
 ## [](#release-3-3-2-february-2026)Release 3.3.2 (February 2026)
@@ -54,7 +54,7 @@ For more information about Multipeer Replicator, see:
 
 ## [](#see-also)See also
 
-[What’s new in previous version 3.2](../3.2/cbl-whatsnew.md)
+[What's new in previous version 3.2](../3.2/cbl-whatsnew.md)
 
 ### [](#couchbase-lite-release-notes)Couchbase Lite Release Notes
 

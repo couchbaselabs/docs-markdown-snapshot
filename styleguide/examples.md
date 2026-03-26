@@ -1,7 +1,7 @@
 ---
 title: Code Examples
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/examples.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::examples.adoc[]
 ---
 
@@ -17,7 +17,7 @@ When adding a code example:
 Do
 
 * Make it relevant and applicable to your explanation.
-* Make sure it’s a working code sample that the user could use in their own projects.
+* Make sure it's a working code sample that the user could use in their own projects.
 * Put the code example in its own separate file.
 * Use the correct format for [Code Placeholders](placeholders.md).
 
@@ -101,4 +101,4 @@ When you need to explain a larger code example:
 1. Show the full example and provide a brief explanation.
 2. Create a smaller code example out of the larger block of code.
 3. Provide a more detailed explanation for the smaller code example.
-4. Repeat Steps 2 and 3 until you’ve explained the code.
+4. Repeat Steps 2 and 3 until you've explained the code.

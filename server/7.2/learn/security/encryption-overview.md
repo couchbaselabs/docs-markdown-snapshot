@@ -2,7 +2,7 @@
 title: Encryption
 description: Couchbase Server uses <em>encryption</em>, to protect data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/security/encryption-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:security/encryption-overview.adoc[]
 ---
 
@@ -34,7 +34,7 @@ This allows data to pass in encrypted form between nodes, between clusters, and 
 
   * [Certificates](certificates.md) provides an overview of certificates and their management.
   * [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md) explains the practical steps towards configuring certificates for Couchbase Server. This page also provides information on working with different versions of SSL/TLS, and on supported _ciphers_.
-  * [Configure Client Certificates](../../manage/manage-security/configure-client-certificates.md) describes how to create a certificate to allow a client’s secure access to Couchbase Server.
+  * [Configure Client Certificates](../../manage/manage-security/configure-client-certificates.md) describes how to create a certificate to allow a client's secure access to Couchbase Server.
   * [Enable Client-Certificate Handling](../../manage/manage-security/enable-client-certificate-handling.md) explains how to configure Couchbase Server to accept communications from clients that wish to authenticate and communicate securely by means of certificates.
   * [Certificate Rotation](../../manage/manage-security/rotate-server-certificates.md) provides steps whereby server certificates can be _rotated_ periodically, to ensure optimal security.
   * [Certificate Error Handling](../../manage/manage-security/handle-certificate-errors.md) explains how to handle errors related to certificate-based secure communication.

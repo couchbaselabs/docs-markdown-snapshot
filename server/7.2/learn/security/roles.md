@@ -3,7 +3,7 @@ title: Roles
 description: A Couchbase <em>role</em> permits one or more <em>resources</em> to
   be accessed according to defined <em>privileges</em>.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/security/roles.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:security/roles.adoc[]
 ---
 
@@ -43,11 +43,11 @@ For detailed information on scopes and collections, see [Scopes and Collections]
 Couchbase Server _users_ can largely be categorized as _administrators_, _developers_, and _applications_. Each user-category is supported by a different subset of roles.
 
 * _Administrators_. Able to log into Couchbase Web Console and perform administrative tasks; but unable to read or write data.  
-The administrative tasks available are divided into multiple `admin` roles. For example, the **Cluster Admin** role allows the management of all cluster features except security; while the **Read-Only Admin** role allows only the reading of statistics; and the **Bucket Admin** role allows management only of one or more buckets. See the **Admin** roles listed below for full details. Note that depending on the administrator’s assigned roles, the content of Couchbase Web Console changes: for example, the entire **Security** screen is only visible to **Full Admin** administrators; and to administrators who possess both the **Local User Security Admin** and the **External User Security Admin** roles.
+The administrative tasks available are divided into multiple `admin` roles. For example, the **Cluster Admin** role allows the management of all cluster features except security; while the **Read-Only Admin** role allows only the reading of statistics; and the **Bucket Admin** role allows management only of one or more buckets. See the **Admin** roles listed below for full details. Note that depending on the administrator's assigned roles, the content of Couchbase Web Console changes: for example, the entire **Security** screen is only visible to **Full Admin** administrators; and to administrators who possess both the **Local User Security Admin** and the **External User Security Admin** roles.
 * _Applications_. Able to read or write data; but unable to log into Couchbase Web Console, or in any way modify cluster-settings. For example, the **Data Reader** and **Data Writer** roles allows data to be respectively read and written to one or more collections, within one or more scopes, within one or more buckets. Other application-intended roles are **Application Access**, **Data Writer**, **Data Backup & Restore**, and **Data Monitor**. See below for details on each.
 * _Developers_. Can be given a selection of roles, allowing the right degree of data and console access. For example, the **Read-Only Admin** role allows the reading of cluster-statistics, while the **Data Read** and **Data Write** roles allow access to data on one or more buckets.
 
-The following list contains all roles supported by Couchbase Server, _Enterprise Edition_. Each role is explained by means of a description and (in most cases) a table: the table lists the privileges in association with resources. The header of each table states the role’s **name**, followed by its _alias name_ in parentheses: alias names are used in commands and queries. In each table-body, where a privilege is associated with a resource, this is indicated with a check-mark. Where a privilege is not associated with a resource (or where association would not be applicable), this is indicated with a cross. Resources not referred to in a particular table have no privileges associated with them in the context of the role being described.
+The following list contains all roles supported by Couchbase Server, _Enterprise Edition_. Each role is explained by means of a description and (in most cases) a table: the table lists the privileges in association with resources. The header of each table states the role's **name**, followed by its _alias name_ in parentheses: alias names are used in commands and queries. In each table-body, where a privilege is associated with a resource, this is indicated with a check-mark. Where a privilege is not associated with a resource (or where association would not be applicable), this is indicated with a cross. Resources not referred to in a particular table have no privileges associated with them in the context of the role being described.
 
 Note that some roles grant access to Couchbase Web Console; while others do not. The set of features displayed within the console varies, according to role.
 
@@ -373,7 +373,7 @@ The **Sync Gateway** role (which is a _Mobile_ role) allows full access to data 
 
 ## [](#sync-gateway-configurator)Sync Gateway Architect
 
-The **Sync Gateway Architect** role (which is a _Mobile_ role) allows management of Sync Gateway databases; and of Sync Gateway users and roles; and allows access to Sync Gateway’s `/metrics` endpoint. The role does not allow access to Couchbase Web Console; and does not allow reading of application data. For information on Sync Gateway users and roles, see [Access Control Concepts](http://docs.couchbase.com/sync-gateway/3.0/access-control-concepts.html).
+The **Sync Gateway Architect** role (which is a _Mobile_ role) allows management of Sync Gateway databases; and of Sync Gateway users and roles; and allows access to Sync Gateway's `/metrics` endpoint. The role does not allow access to Couchbase Web Console; and does not allow reading of application data. For information on Sync Gateway users and roles, see [Access Control Concepts](http://docs.couchbase.com/sync-gateway/3.0/access-control-concepts.html).
 
 | Role: Sync Gateway Architect (sync\_gateway\_configurator) |                                         |                                         |                                         |                                         |
 | ---------------------------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
@@ -421,7 +421,7 @@ The **Sync Gateway Replicator** role (which is a _Mobile_ role) allows managemen
 
 ## [](#sync-gateway-dev-ops)Sync Gateway Dev Ops
 
-The **Sync Gateway Dev Ops** role (which is a _Mobile_ role) allows management of Sync Gateway node-level configuration; and allows access to Syn Gateway’s `/metrics` endpoint, for Prometheus integration. The role does not allow access to Couchbase Web Console.
+The **Sync Gateway Dev Ops** role (which is a _Mobile_ role) allows management of Sync Gateway node-level configuration; and allows access to Syn Gateway's `/metrics` endpoint, for Prometheus integration. The role does not allow access to Couchbase Web Console.
 
 | Role: Sync Gateway Dev Ops (sync\_gateway\_dev\_ops) |                                         |                                         |                                         |                                         |
 | ---------------------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |

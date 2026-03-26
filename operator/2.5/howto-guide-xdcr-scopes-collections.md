@@ -3,7 +3,7 @@ title: "How-to Guide: XDCR with Scopes and Collections"
 description: A how-to guide on configuring cross data center replication (XDCR)
   using the Autonomous Operator.
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/howto-guide-xdcr-scopes-collections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::howto-guide-xdcr-scopes-collections.adoc[]
 ---
 
@@ -139,7 +139,7 @@ spec:
 
 Upon completion of the above steps, XDCR will be configured on the source cluster to replicate the data of the `source` bucket to the `destination` bucket in the remote cluster.
 
-To verify that, login to the Web UI, and go to the XDCR section, you’ll see it configured as shown in the image below.
+To verify that, login to the Web UI, and go to the XDCR section, you'll see it configured as shown in the image below.
 
 ![xdcr replications](_images/xdcr-replications.png) 
 

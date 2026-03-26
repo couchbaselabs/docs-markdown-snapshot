@@ -3,7 +3,7 @@ title: Handling Errors in Javascript Functions
 description: Error handling in Javascript user-defined functions use the same
   standard exception mechanism as part of the language standard.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/javascript-udfs/pages/handling-errors-javascript-udf.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:javascript-udfs:handling-errors-javascript-udf.adoc[]
 ---
 
@@ -53,9 +53,9 @@ then an error object is returned:
 ]
 ```
 
-In most cases, it’s a lot better if the Javascript function itself can handle errors that are likely to occur. This gives the developer the option of responding with a more user-friendly message, or taking an alternative course of action.
+In most cases, it's a lot better if the Javascript function itself can handle errors that are likely to occur. This gives the developer the option of responding with a more user-friendly message, or taking an alternative course of action.
 
-The following function will add an airline record, but will return an `failure` message if the attempt isn’t successful.
+The following function will add an airline record, but will return an `failure` message if the attempt isn't successful.
 
 ```javascript
 function addAirlineWithCheckReturn(id, name, callsign, country) {
@@ -250,7 +250,7 @@ function addAirlineWithCheck(id, name, callsign, country) {
 }
 ```
 
-| **1** | The error object contains a JSON string (message) detailing the nature of the error. It is much easier to interrogate the message if it’s converted back into a JSON object on its own. This code will send back the entire message structure. |
+| **1** | The error object contains a JSON string (message) detailing the nature of the error. It is much easier to interrogate the message if it's converted back into a JSON object on its own. This code will send back the entire message structure. |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ```json
@@ -272,7 +272,7 @@ function addAirlineWithCheck(id, name, callsign, country) {
 ]
 ```
 
-Once we know the structure of the error message, there’s no reason why we can’t carry out alternative actions depending on the type of error encountered:
+Once we know the structure of the error message, there's no reason why we can't carry out alternative actions depending on the type of error encountered:
 
 ```javascript
 function addAirlineWithCheck(id, name, callsign, country) {

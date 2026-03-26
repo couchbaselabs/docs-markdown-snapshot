@@ -3,7 +3,7 @@ title: XDCR enableCrossClusterVersioning
 description: Enabling Cross Cluster Versioning allows XDCR to add metadata to
   each replicated document.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-enable-crossclusterversioning.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:clusters-and-availability/xdcr-enable-crossclusterversioning.adoc[]
 ---
 
@@ -74,7 +74,7 @@ For information about modifying the bucket property `versionPruningWindowHrs` th
 
 * **XDCR Active-Active with Sync Gateway**: The bi-directional, active-active replication with Sync Gateway 4.0 or a later version and XDCR requires enabling Cross Cluster Versioning.  
 For more information, including important limitations, see [XDCR Active-Active with Sync Gateway](xdcr-active-active-sgw.md).  
-For more information about how Sync Gateway 4.0 or a later version works with Couchbase Server’s XDCR, see [XDCR - Server Compatibility](../../../../sync-gateway/current/server-compatibility/server-compatibility-xdcr.md).  
+For more information about how Sync Gateway 4.0 or a later version works with Couchbase Server's XDCR, see [XDCR - Server Compatibility](../../../../sync-gateway/current/server-compatibility/server-compatibility-xdcr.md).  
 > [!NOTE]  
 > To set up XDCR bi-directional replication with Sync Gateway (SGW), the minimum required version for Server is 7.6.6 and SGW is 4.0.0\.
 * **XDCR Conflict Logging**: XDCR Conflict Logging requires enabling Cross Cluster Versioning. For more information, see [XDCR Conflict Logging Feature](xdcr-conflict-logging-feature.md).  

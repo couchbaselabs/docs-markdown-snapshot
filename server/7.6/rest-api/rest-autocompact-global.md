@@ -3,7 +3,7 @@ title: "Auto-Compaction: Global"
 description: Auto-compaction settings can be established and retrieved for the
   entire cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-autocompact-global.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:rest-autocompact-global.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.6@server:rest-api:rest-autocompact-global.adoc[]
 
 ## [](#description)Description
 
-The _global_ auto-compaction settings are the default settings used for each newly created bucket. Whenever changes are made to the global settings, these changes apply to all buckets created subsequently. The changes also apply immediately to all existing buckets that were created with the default settings and have continued to use them until this point. Note, however, that once a bucket’s settings are _individually_ modified, the bucket’s settings will no longer be affected by changes to the global settings.
+The _global_ auto-compaction settings are the default settings used for each newly created bucket. Whenever changes are made to the global settings, these changes apply to all buckets created subsequently. The changes also apply immediately to all existing buckets that were created with the default settings and have continued to use them until this point. Note, however, that once a bucket's settings are _individually_ modified, the bucket's settings will no longer be affected by changes to the global settings.
 
 Auto-compaction settings for the cluster can be established and retrieved by the _Full Admin_ and _Cluster Admin_ roles; and can be retrieved by the _Read-Only Admin_ role.
 

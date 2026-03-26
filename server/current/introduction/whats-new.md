@@ -2,7 +2,7 @@
 title: What&#8217;s New in Version 8.0
 description: Couchbase is the modern database for enterprise applications.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/introduction/pages/whats-new.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:introduction:whats-new.adoc[]
 ---
 
@@ -59,7 +59,7 @@ Couchbase Server 8.0 introduces several new features for the Data Service.
 
 #### [](#whats-new-magma-vbuckets)Magma with 128 vBuckets is the New Default Storage Engine
 
-If you do not specify a storage engine for a new Couchbase bucket, Couchbase Server Enterprise Edition 8.0 uses Magma with 128 vBuckets as the storage engine. This new storage engine option has a minimum memory quota requirement of 100MiB compared to the original 1024 vBucket Magma bucket’s requirement of 1GiB. See [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md) for more information about storage engines.
+If you do not specify a storage engine for a new Couchbase bucket, Couchbase Server Enterprise Edition 8.0 uses Magma with 128 vBuckets as the storage engine. This new storage engine option has a minimum memory quota requirement of 100MiB compared to the original 1024 vBucket Magma bucket's requirement of 1GiB. See [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md) for more information about storage engines.
 
 > [!IMPORTANT]
 > This is a default behavior change.
@@ -74,7 +74,7 @@ This feature:
 
 * Can help reduce the chances of or severity of data breaches.
 * Is transparent to the database users. Couchbase Server automatically decrypts data when reading it from disk and encrypts it when writing to disk.
-* Supports using third-party key management services such as Amazon’s Key Management Service and those compliant with Key Management Interoperability Protocol.
+* Supports using third-party key management services such as Amazon's Key Management Service and those compliant with Key Management Interoperability Protocol.
 
 For more information about native encryption at rest, see [Native Encryption at Rest](../learn/security/native-encryption-at-rest-overview.md).
 
@@ -89,7 +89,7 @@ You can enable a cluster-level option that allows durable writes to succeed even
 > [!WARNING]
 > Potential Data Loss
 > 
-> Enabling this feature degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure. This setting makes durable writes during a failover no more safe from data loss as an asynchronous write. It also means transactions do not provide the same guarantees when this feature is off. Use this setting only in special cases such as when you’re performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible.
+> Enabling this feature degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure. This setting makes durable writes during a failover no more safe from data loss as an asynchronous write. It also means transactions do not provide the same guarantees when this feature is off. Use this setting only in special cases such as when you're performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible.
 
 See [Auto-Failover and Ephemeral Buckets](../learn/clusters-and-availability/automatic-failover.md#auto-failover-and-ephemeral-buckets) for more information about this feature.
 
@@ -99,7 +99,7 @@ The new Warmup behavior setting, configured using `warmupBehavior` in the REST A
 
 This setting replaces multiple warmup threshold parameters with a single configuration point:
 
-* **background (default):** The bucket becomes fully available as soon as required metadata is loaded from storage. The bucket’s cache is then filled in the background until memory usage reaches the low watermark (`memoryLowWatermark`).
+* **background (default):** The bucket becomes fully available as soon as required metadata is loaded from storage. The bucket's cache is then filled in the background until memory usage reaches the low watermark (`memoryLowWatermark`).
 * **blocking:** This is the original behavior. The bucket becomes read-available as soon as required metadata is loaded from storage, then continues filling the cache until memory usage reaches the low watermark (`memoryLowWatermark`). The bucket becomes fully available only after this point.
 * **none:** Disables warmup. The bucket becomes fully available as soon as required metadata is loaded from storage. The cache remains empty.
 
@@ -112,8 +112,8 @@ The REST API now includes the per-bucket setting `warmupBehavior`. The previous 
 #### [](#other-data-service-features)Other Data Service Features
 
 * Memcached buckets have been removed. If your cluster contains Memcached buckets, you must remove them and replace them with ephemeral buckets before you can upgrade to Couchbase Server 8.0.
-* You can now change the eviction policy of a Couchbase bucket without the bucket restarting. To do this, you must use the REST API, and you must take additional steps for the new setting to take effect. See [Change a Bucket’s Ejection Policy](../manage/manage-buckets/change-ejection-policy.md) for more information.
-* You can now change the eviction policy of an ephemeral bucket. The new setting takes effect immediately, unlike Couchstore buckets. See [Change a Bucket’s Ejection Policy](../manage/manage-buckets/change-ejection-policy.md) for more information.
+* You can now change the eviction policy of a Couchbase bucket without the bucket restarting. To do this, you must use the REST API, and you must take additional steps for the new setting to take effect. See [Change a Bucket's Ejection Policy](../manage/manage-buckets/change-ejection-policy.md) for more information.
+* You can now change the eviction policy of an ephemeral bucket. The new setting takes effect immediately, unlike Couchstore buckets. See [Change a Bucket's Ejection Policy](../manage/manage-buckets/change-ejection-policy.md) for more information.
 * Previously, Couchbase Server would refuse to automatically failover a node if it had an ephemeral bucket without replicas. You can now configure Couchbase Server to allow these automatic failovers. When these failovers happen, Couchbase Server creates a new empty ephemeral bucket on another node to take the place of the bucket on the failed node. See [Auto-Failover and Ephemeral Buckets](../learn/clusters-and-availability/automatic-failover.md#auto-failover-and-ephemeral-buckets).
 
 ### [](#non-data-services)Non-Data Services
@@ -192,7 +192,7 @@ For more information, see [Incoming Replications](../manage/manage-xdcr/incoming
 
 #### [](#xdcrdiffer-diagnostic-utility)xdcrDiffer Diagnostic Utility
 
-The xdcrDiffer diagnostic utility is a command-line tool that helps administrators compare document data between source and target clusters participating in XDCR. It identifies differences in document content, metadata, or presence across clusters to verify replication accuracy and consistency. This utility is included in the Server installation package for convenient access. In the earlier Couchbase Server versions, you’d build this utility from source using the xdcrDiffer GitHub repository.
+The xdcrDiffer diagnostic utility is a command-line tool that helps administrators compare document data between source and target clusters participating in XDCR. It identifies differences in document content, metadata, or presence across clusters to verify replication accuracy and consistency. This utility is included in the Server installation package for convenient access. In the earlier Couchbase Server versions, you'd build this utility from source using the xdcrDiffer GitHub repository.
 
 For more information, see [xdcrDiffer Utility](../manage/manage-xdcr/xdcr-differ.md).
 
@@ -385,7 +385,7 @@ Couchbase Server 8.0 release has key Eventing enhancements.
 
 #### [](#ondeploy-handler)OnDeploy Handler
 
-This feature introduces a new handler OnDeploy in the Eventing function’s app code. The OnDeploy handler runs once when an Eventing function is deployed or resumed, before any mutations are processed. It supports the same JavaScript capabilities as the OnUpdate and OnDelete handlers. Use OnDeploy for one-time setup tasks such as registering a Timer or initializing resources required by the Eventing function.
+This feature introduces a new handler OnDeploy in the Eventing function's app code. The OnDeploy handler runs once when an Eventing function is deployed or resumed, before any mutations are processed. It supports the same JavaScript capabilities as the OnUpdate and OnDelete handlers. Use OnDeploy for one-time setup tasks such as registering a Timer or initializing resources required by the Eventing function.
 
 For more information, see [Eventing onDeploy handler](../eventing/eventing-language-constructs.md#ondeploy%5Fhandler).
 

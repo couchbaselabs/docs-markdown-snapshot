@@ -1,7 +1,7 @@
 ---
 title: Rotate the Administrator Password
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-admin-password-rotation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::howto-admin-password-rotation.adoc[]
 ---
 
@@ -16,7 +16,7 @@ Password rotation is an essential part of maintaining high levels of security wi
 
 ## [](#choosing-and-preparing-a-new-password)Choosing and Preparing a New Password
 
-The first step to rotating a password is to generate a new one. It’s recommended that you delegate this task to a dedicated tool that is good at this task. For the following demonstration we will use `apg`:
+The first step to rotating a password is to generate a new one. It's recommended that you delegate this task to a dedicated tool that is good at this task. For the following demonstration we will use `apg`:
 
 ```console
 $ apg -M SNCL -m 32 -n 1

@@ -3,7 +3,7 @@ title: USING AI
 description: The USING AI statement allows you to generate SQL++ queries from
   natural language prompts.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/using-ai.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/using-ai.adoc[]
 ---
 
@@ -65,7 +65,7 @@ Use the optional `FLEXINDEX` or `FTS` keyword to generate a query that uses an F
 | **keyspaces** _optional_ | One or more keyspaces for the request. Can be one of the following: A string matching the [natural\_context](../n1ql-manage/query-settings.md#natural%5Fcontext) specification. An array of comma-separated strings. If specified, this value overrides the [natural\_context](../n1ql-manage/query-settings.md#natural%5Fcontext) request-level parameter.                                                                                                                                                                                                                                                                                                                                                                                      | String or an array of strings |
 | **orgId** _optional_     | Couchbase Capella organization ID for the request. If specified, this value overrides the [natural\_orgid](../n1ql-manage/query-settings.md#natural%5Forgid) request-level parameter. To find your organization ID, log in to your Couchbase Capella account and check the URL in your web browser. The organization ID is the oid parameter in the URL. For example, in the URL https://cloud.couchbase.com/databases?oid=5c670d3e-12a3-456b-7c89-123456789ab, the organization ID is 5c670d3e-12a3-456b-7c89-123456789ab.                                                                                                                                                                                                                      | String                        |
 | **execute** _optional_   | Indicates if the generated statement should be executed automatically. If TRUE, the Query Service executes the generated statement and returns the results. This applies only if the statement is a SELECT query. For other statement types, such as INSERT, UPDATE, DELETE, UPSERT, or CREATE FUNCTION, the statement is not executed, even if execute is TRUE. See [Example 5](#example-5). If FALSE, the generated statement is returned, but not executed. **Default:** TRUE                                                                                                                                                                                                                                                                 | Boolean                       |
-| **output** _optional_    | A string specifying the type of output to generate. Possible values are: sql — Generates a standard SQL++ query. jsudf — Generates a CREATE FUNCTION statement. You can use this to create a SQL++ managed JavaScript user-defined function. The Query Service does not execute the CREATE FUNCTION, even if execute is TRUE. You must run the generated statement separately to create the function. ftssql — Generates a SQL++ query optimized for FTS or flex indexes. The Query Service appends a USE INDEX (USING FTS) clause to all FROM keyspaces in the generated query. This enables the query to use a flex index if it’s available. The statement returns an error if you specify a value not included in this list. **Default:** sql | String                        |
+| **output** _optional_    | A string specifying the type of output to generate. Possible values are: sql — Generates a standard SQL++ query. jsudf — Generates a CREATE FUNCTION statement. You can use this to create a SQL++ managed JavaScript user-defined function. The Query Service does not execute the CREATE FUNCTION, even if execute is TRUE. You must run the generated statement separately to create the function. ftssql — Generates a SQL++ query optimized for FTS or flex indexes. The Query Service appends a USE INDEX (USING FTS) clause to all FROM keyspaces in the generated query. This enables the query to use a flex index if it's available. The statement returns an error if you specify a value not included in this list. **Default:** sql | String                        |
 
 > [!TIP]
 > You can prefix a USING AI statement with EXPLAIN or ADVISE to get the query plan or index recommendations for your generated query. See [Example 9](#example-9).
@@ -114,7 +114,7 @@ cbq> \set;
 
  ...
 
-Similarly, if you’re sending requests directly to a REST endpoint from a shell, be mindful of how you provide the password and whether it will be recorded in the shell history. Consider using a method like the following to prompt for the password:
+Similarly, if you're sending requests directly to a REST endpoint from a shell, be mindful of how you provide the password and whether it will be recorded in the shell history. Consider using a method like the following to prompt for the password:
 
 echo -n "Enter your password: "
 read -s p
@@ -331,7 +331,7 @@ Response
 }
 ```
 
-If you examine the `hotel` keyspace, you’ll see that this document was not inserted, even though `execute` was set to `TRUE`. This is because the Query Service executes the generated statement only if it’s a SELECT query.
+If you examine the `hotel` keyspace, you'll see that this document was not inserted, even though `execute` was set to `TRUE`. This is because the Query Service executes the generated statement only if it's a SELECT query.
 
 Example 6\. USING AI with the Flex Index hint
 

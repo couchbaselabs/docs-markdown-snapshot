@@ -3,7 +3,7 @@ title: vBuckets
 description: <em>vBuckets</em> are virtual buckets that help distribute data
   effectively across a cluster, and support replication across multiple nodes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/buckets-memory-and-storage/vbuckets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:buckets-memory-and-storage/vbuckets.adoc[]
 ---
 
@@ -18,13 +18,13 @@ link: xref:7.6@server:learn:buckets-memory-and-storage/vbuckets.adoc[]
 
 Couchbase Server allows users and applications to save data, in binary or JSON format, in named _buckets_. Each bucket therefore contains _keys_ and associated _values_. See [Buckets](buckets.md), for detailed information.
 
-Within the memory and storage management system of Couchbase Server, both Couchbase and Ephemeral buckets are implemented as _vBuckets_, 1024 of which are created for every bucket (except on MacOS, where the number is 64). vBuckets are distributed evenly across the memory and storage facilities of the cluster; and the bucket’s items are distributed evenly across its vBuckets. This evenness of distribution ensures that all instances of the [Data Service](../services-and-indexes/services/data-service.md) take an approximately equal share of the workload, in terms of numbers of documents to maintain, and operations to handle.
+Within the memory and storage management system of Couchbase Server, both Couchbase and Ephemeral buckets are implemented as _vBuckets_, 1024 of which are created for every bucket (except on MacOS, where the number is 64). vBuckets are distributed evenly across the memory and storage facilities of the cluster; and the bucket's items are distributed evenly across its vBuckets. This evenness of distribution ensures that all instances of the [Data Service](../services-and-indexes/services/data-service.md) take an approximately equal share of the workload, in terms of numbers of documents to maintain, and operations to handle.
 
 The 1024 vBuckets that implement a defined bucket are referred to as _active_ vBuckets. If a bucket is replicated, each replica is implemented as a further 1024 (or 64) vBuckets, referred to as _replica_ vBuckets. Thus, a bucket configured on Linux to be replicated twice results in a total of 3072 vBuckets, distributed across the cluster. _Write_ operations are performed only on _active_ vBuckets. Most _read_ operations are performed on _active_ vBuckets, though items can also be read from _replica_ vBuckets when necessary.
 
 Note that vBuckets are sometimes referred to as _shards_.
 
-Items are written to and retrieved from vBuckets by means of a _CRC32_ hashing algorithm, which is applied to the item’s key, and so produces the number of the vBucket in which the item resides. vBuckets are mapped to individual nodes by the Cluster Manager: the mapping is constantly updated and made generally available to SDK and other clients.
+Items are written to and retrieved from vBuckets by means of a _CRC32_ hashing algorithm, which is applied to the item's key, and so produces the number of the vBucket in which the item resides. vBuckets are mapped to individual nodes by the Cluster Manager: the mapping is constantly updated and made generally available to SDK and other clients.
 
 The relationships between a bucket, its keys (and their associated values), the hashing algorithm, vBuckets, server-mappings, and servers, is illustrated below:
 

@@ -2,7 +2,7 @@
 title: Certificate Management API
 description: The REST API can be used to manage the root and node certificates of a cluster.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-certificate-management.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:reference:rest-certificate-management.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:enterprise-analytics:reference:rest-certificate-management.adoc[]
 
 Enterprise Analytics supports the use of x.509 certificates, for clients and servers. The REST API allows the server certificates to be managed. From a management perspective, server certificates can be considered to be of two kinds:
 
-* _Root_ certificates. At least one root certificate exists for each cluster. Any number of root certificates can be uploaded: together, these constitute the cluster’s _trust store_. Each root certificate contains the public key of a Certificate Authority (CA).  
+* _Root_ certificates. At least one root certificate exists for each cluster. Any number of root certificates can be uploaded: together, these constitute the cluster's _trust store_. Each root certificate contains the public key of a Certificate Authority (CA).  
 Enterprise Analytics uses its list of trusted certificates to verify:
 
   * Client certificates (when client certificate authentication is enabled: for information, see [Enable Client-Certificate Handling](../manage/manage-security/enable-client-certificate-handling.md)).

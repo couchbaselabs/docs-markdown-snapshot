@@ -1,7 +1,7 @@
 ---
 title: Inter-Kubernetes Networking with Forwarded DNS
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/tutorial-remote-dns.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::tutorial-remote-dns.adoc[]
 ---
 
@@ -118,7 +118,7 @@ rtt min/avg/max/mdev = 47.739/47.772/47.799/0.180 ms
 | ----- | -------------------------------------------- |
 | **2** | Target pod exists in 10.1.0.0/16 (Cluster 2) |
 
-If you are not able to establish a connection, refer to your platform provider’s documentation.
+If you are not able to establish a connection, refer to your platform provider's documentation.
 
 ## [](#configuring-coredns)Configuring CoreDNS
 
@@ -236,7 +236,7 @@ Forwarding rules can be customized as desired per the [CoreDNS documentation](ht
 
 ### [](#testing-coredns)Testing CoreDNS
 
-For the following demonstration we’ve installed the Operator and a Couchbase cluster into the remote namespace on the remote Kubernetes cluster. Much like the ping test we performed earlier, we can now test DNS and ensure we can see the remote resources:
+For the following demonstration we've installed the Operator and a Couchbase cluster into the remote namespace on the remote Kubernetes cluster. Much like the ping test we performed earlier, we can now test DNS and ensure we can see the remote resources:
 
 ```console
 $ ip a

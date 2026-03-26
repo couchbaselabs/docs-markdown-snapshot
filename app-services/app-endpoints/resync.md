@@ -1,7 +1,7 @@
 ---
 title: Resync your App Endpoint
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/resync.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::app-endpoints/resync.adoc[]
 ---
 
@@ -42,7 +42,7 @@ If the Access Control Function is changed, App Services can reprocess all existi
 
 * The modifications to your Access Control Function only impact write security and not routing or access.
 * You only want the changes to channel or access rules to apply to documents written after the change was made.
-* In the Resync state, no user’s full access privileges are known until all documents have been scanned.
+* In the Resync state, no user's full access privileges are known until all documents have been scanned.
 
 > [!IMPORTANT]
 > During the resync process the App Endpoint will be offline, during this period no end user requests will be processed, which will impact data synchronization between your mobile and IoT applications and Server.

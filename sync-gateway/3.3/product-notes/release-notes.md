@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/product-notes/pages/release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@sync-gateway:product-notes:release-notes.adoc[]
 ---
 
@@ -67,7 +67,7 @@ None for this release.
 
 ### [](#fixed-issues-3)Fixed Issues
 
-* [CBG-4973 - Don’t set SameSite=None when no TLS is used](https://jira.issues.couchbase.com/browse/CBG-4973)
+* [CBG-4973 - Don't set SameSite=None when no TLS is used](https://jira.issues.couchbase.com/browse/CBG-4973)
 * [CBG-4941 - Couchbase Lite 4.0 is allowed to connect to Sync Gateway 3.3.0](https://jira.issues.couchbase.com/browse/CBG-4941)
 
 ### [](#enhancements-3)Enhancements
@@ -109,12 +109,12 @@ Version 3.3.0 of Sync Gateway also delivers the following features and enhanceme
 
 ### [](#maint-3-3-0)Fixed Issues
 
-* [CBG-3933 — rotated\_logs\_size\_limit not used by ConsoleLogger’s FileOutput](https://jira.issues.couchbase.com/browse/CBG-3933)
+* [CBG-3933 — rotated\_logs\_size\_limit not used by ConsoleLogger's FileOutput](https://jira.issues.couchbase.com/browse/CBG-3933)
 * [CBG-3935 — Documents with invalid inline \_sync metadata cause panic during import](https://jira.issues.couchbase.com/browse/CBG-3935)
 * [CBG-3947 — make config polling more resilient to timeout errors](https://jira.issues.couchbase.com/browse/CBG-3947)
 * [CBG-4067 — Timeout error will release document sequence as unused](https://jira.issues.couchbase.com/browse/CBG-4067)
 * [CBG-4186 — ISGR replicators reaching max\_backoff with a reconnection error will not transition to stop](https://jira.issues.couchbase.com/browse/CBG-4186)
-* [CBG-4216 — Pending unused sequences shouldn’t update high cache sequence](https://jira.issues.couchbase.com/browse/CBG-4216)
+* [CBG-4216 — Pending unused sequences shouldn't update high cache sequence](https://jira.issues.couchbase.com/browse/CBG-4216)
 * [CBG-4236 — Default log file permissions changed from 644 to 600](https://jira.issues.couchbase.com/browse/CBG-4236)
 * [CBG-4309 — Missing janitor kick in cbgt rollback](https://jira.issues.couchbase.com/browse/CBG-4309)
 * [CBG-4322 — sgcollect\_info: logs duplicated or repeated](https://jira.issues.couchbase.com/browse/CBG-4322)
@@ -132,9 +132,9 @@ Version 3.3.0 of Sync Gateway also delivers the following features and enhanceme
 * [CBG-4554 — import feed: not all DCP streams are open after pindex reconciliation](https://jira.issues.couchbase.com/browse/CBG-4554)
 * [CBG-4562 — calling GET /db/\_session/sessionID returns invalidated session](https://jira.issues.couchbase.com/browse/CBG-4562)
 * [CBG-4570 — Audit events for database audit are enabled when no per db audit logging config is set](https://jira.issues.couchbase.com/browse/CBG-4570)
-* [CBG-4572 — Blip will leak nextFrameToSend goroutines if non ack’d messages are queued](https://jira.issues.couchbase.com/browse/CBG-4572)
+* [CBG-4572 — Blip will leak nextFrameToSend goroutines if non ack'd messages are queued](https://jira.issues.couchbase.com/browse/CBG-4572)
 * [CBG-4597 — caching dcp feed does not utilize network connstr option](https://jira.issues.couchbase.com/browse/CBG-4597)
-* [CBG-4603 — Better handling of pushed deltas when a client doesn’t have access to its parent revision](https://jira.issues.couchbase.com/browse/CBG-4603)
+* [CBG-4603 — Better handling of pushed deltas when a client doesn't have access to its parent revision](https://jira.issues.couchbase.com/browse/CBG-4603)
 * [CBG-4619 — Documents created with \_attachments property in value fail to sync](https://jira.issues.couchbase.com/browse/CBG-4619)
 * [CBG-4654 — Server MgmtRequest panics on request failure](https://jira.issues.couchbase.com/browse/CBG-4654)
 * [CBG-4662 — Resync performance degrades over time](https://jira.issues.couchbase.com/browse/CBG-4662)
@@ -147,7 +147,7 @@ Version 3.3.0 of Sync Gateway also delivers the following features and enhanceme
 * [CBG-603 — Throttle changes notify broadcasts under high load to reduce CPU overhead and mutex contention](https://jira.issues.couchbase.com/browse/CBG-603)
 * [CBG-2838 — Aggregate system:indexes lookups for collections](https://jira.issues.couchbase.com/browse/CBG-2838)
 * [CBG-3692 — Log username for login attempt when user is disabled](https://jira.issues.couchbase.com/browse/CBG-3692)
-* [CBG-3693 — Log username for login attempt when OIDC user doesn’t exist and auto-register is disabled](https://jira.issues.couchbase.com/browse/CBG-3693)
+* [CBG-3693 — Log username for login attempt when OIDC user doesn't exist and auto-register is disabled](https://jira.issues.couchbase.com/browse/CBG-3693)
 * [CBG-3694 — Log username for invalid POST /\_session login attempts](https://jira.issues.couchbase.com/browse/CBG-3694)
 * [CBG-4006 — Increase retention time for stats logs](https://jira.issues.couchbase.com/browse/CBG-4006)
 * [CBG-4017 — Update go-oidc and go-jose dependencies](https://jira.issues.couchbase.com/browse/CBG-4017)

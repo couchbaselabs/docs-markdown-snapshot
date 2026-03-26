@@ -4,7 +4,7 @@ description: Deploy edge clients in a mixed configuration, with HTTP clients
   accessing data through the REST API and Couchbase Lite clients supporting
   offline-first data synchronization.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/sync/pages/edge-sync-cbl.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-edge-server:sync:edge-sync-cbl.adoc[]
 ---
 
@@ -32,7 +32,7 @@ You can use Couchbase Lite API support for secure, bi-directional,synchronizatio
 
 To deploy Couchbase Edge Server in a mixed configuration with Couchbase Lite clients supporting offline-first data synchronization downstream and HTTP clients accessing data upstream through the REST API:
 
-* If you’re using a self-signed certificate, Couchbase Lite requires a copy of the server’s certificate to set as a pinned cert in the replicator attributes, see [certificate pinning](../../../couchbase-lite/current/c/replication.md#lbl-cert-pinning).
+* If you're using a self-signed certificate, Couchbase Lite requires a copy of the server's certificate to set as a pinned cert in the replicator attributes, see [certificate pinning](../../../couchbase-lite/current/c/replication.md#lbl-cert-pinning).
 * `database.enable_client_sync` must not be set to `false` in your [configuration schema](../configuration/edge-server-configuration.md#json-schema).
 * You must have created an App Service connected to the Couchbase Capella database you want to replicate.
 * You must have created an App Endpoint connected to the App Service, with access to the collections you want to replicate.
@@ -43,7 +43,7 @@ To deploy Couchbase Edge Server in a mixed configuration with Couchbase Lite cli
 
 ## [](#push-changes-to-couchbase-edge-server)Push Changes To Couchbase Edge Server
 
-You can monitor changes in a keyspace using the keyspaces’s changes feed. The changes feed is based on _sequences_, which are abstract integer counters applied to documents. The changes feed returns the metadata (and optionally the contents) of documents that have changed since a specified sequence.
+You can monitor changes in a keyspace using the keyspaces's changes feed. The changes feed is based on _sequences_, which are abstract integer counters applied to documents. The changes feed returns the metadata (and optionally the contents) of documents that have changed since a specified sequence.
 
 Couchbase Edge Server adopts a "push, not poll" approach to changes using two methods:
 
@@ -60,7 +60,7 @@ You can configure Edge Server so that replication starts automatically when Edge
 
 For more information about continuous replication, see [Start Replication Automatically](../rest-based-access/replication.md#start-replication-automatically).
 
-You can also start replication using the REST API. You don’t need to set up reduplication in the configuration file to do this. Instead, you pass the replication options in the JSON request body.
+You can also start replication using the REST API. You don't need to set up reduplication in the configuration file to do this. Instead, you pass the replication options in the JSON request body.
 
 For more information, see [REST API Replication](../rest-based-access/replication.md#start-replication-with-the-rest-api).
 

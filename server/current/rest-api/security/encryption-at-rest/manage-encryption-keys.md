@@ -3,7 +3,7 @@ title: Manage Encryption-at-Rest Keys
 description: You must create encryption-at-rest keys before you can have
   Couchbase Server encrypt data as it saves it to disk.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/manage-encryption-keys.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:security/encryption-at-rest/manage-encryption-keys.adoc[]
 ---
 
@@ -85,7 +85,7 @@ The following roles let you view all keys, including keys that can encrypt other
 * [Read-Only Admin](../../../learn/security/roles.md#read-only-admin)
 * [Security Admin](../../../learn/security/roles.md#security%5Fadmin)
 
-The following roles let you view keys that can encrypt data in buckets. Some of the role’s ability to read keys depends on whether you have rights to access the bucket. For example, the Data Reader role only grants you access to keys that can encrypt data in buckets you have read access to.
+The following roles let you view keys that can encrypt data in buckets. Some of the role's ability to read keys depends on whether you have rights to access the bucket. For example, the Data Reader role only grants you access to keys that can encrypt data in buckets you have read access to.
 
 * [Full Admin](../../../learn/security/roles.md#admin)
 * [Read-Only Admin](../../../learn/security/roles.md#read-only-admin)
@@ -232,12 +232,12 @@ All keys have the following fields:
 > [!NOTE]  
 > The `type` also contains the encryption algorithm used for the encryption-at-rest key. Currently, this is always `aes-key-256`.
 
-The `data` object defines the KMS-specific details for each encryption key. You’ll notice different fields for each type of key:
+The `data` object defines the KMS-specific details for each encryption key. You'll notice different fields for each type of key:
 
 Keys managed by Couchbase Server
 
 * The `keys` list contains the current and expired encryption keys. The other key types have their contents stored within the remote KMS.
-* The `autorotation` field indicates whether Couchbase Server automatically rotates the key. When set to `` true` ``, additional fields, such as `data.rotationIntervalInDays` and `nextRotationTime` show details of the key’s rotation. \*
+* The `autorotation` field indicates whether Couchbase Server automatically rotates the key. When set to `` true` ``, additional fields, such as `data.rotationIntervalInDays` and `nextRotationTime` show details of the key's rotation. \*
 
 Keys managed by a KMIP-compatible KMS
 
@@ -307,7 +307,7 @@ EOF
 ```
 
 > [!NOTE]
-> Updating a key has the same required fields as the creating a new key. For example, you must supply the `name` field, even if you want the key’s name to remain the same. Couchbase Server sets any value you do not supply in the update call to the default value (if any) or is left empty, overwriting any existing value.
+> Updating a key has the same required fields as the creating a new key. For example, you must supply the `name` field, even if you want the key's name to remain the same. Couchbase Server sets any value you do not supply in the update call to the default value (if any) or is left empty, overwriting any existing value.
 
 Path Parameters
 
@@ -381,11 +381,11 @@ Fields
 
 * `keyARN`: The [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html) that identifies the encryption key in the AWS KMS.
 * `region` (optional): The region hosting your AWS KMS.
-* `useIMDS` (Boolean, optional): Whether to use Amazon’s [Instance Metadata Service (IMD)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html) when contacting the AWS KMS. Set this to `true` when your cluster runs on AWS EC2 instances. Defaults to `false`.
+* `useIMDS` (Boolean, optional): Whether to use Amazon's [Instance Metadata Service (IMD)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html) when contacting the AWS KMS. Set this to `true` when your cluster runs on AWS EC2 instances. Defaults to `false`.
 
-You must give Couchbase Server a way to authenticate with the AWS KMS. See Amazon’s [KMS key access and permissions](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) for details of configuring authentication.
+You must give Couchbase Server a way to authenticate with the AWS KMS. See Amazon's [KMS key access and permissions](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) for details of configuring authentication.
 
-You can use [IAM policies](https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html) to allow Couchbase Server to transparently connect to the AWS KMS. If you configure IAM, you do not need any additional authentication configuration within Couchbase Server. Always use this method if your database runs on an AWS EC2 cluster. It’s also possible to configure IAM for your cluster when it’s not running in AWS. See the AWS documentation for using [IAM Roles Anywhere](https://docs.aws.amazon.com/IAM/latest/UserGuide/id%5Froles%5Fcommon-scenarios%5Fnon-aws.html).
+You can use [IAM policies](https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html) to allow Couchbase Server to transparently connect to the AWS KMS. If you configure IAM, you do not need any additional authentication configuration within Couchbase Server. Always use this method if your database runs on an AWS EC2 cluster. It's also possible to configure IAM for your cluster when it's not running in AWS. See the AWS documentation for using [IAM Roles Anywhere](https://docs.aws.amazon.com/IAM/latest/UserGuide/id%5Froles%5Fcommon-scenarios%5Fnon-aws.html).
 
 The other authentication method is to use three optional parameters to pass Couchbase Server the necessary credentials in several files. These files must exist on all servers in your cluster.
 
@@ -436,7 +436,7 @@ Fields
 * `host`: The URL for the KMS.
 * `reqTimeoutMs` (integer, optional): The timeout for network communication with the KMS in milliseconds. Defaults to 1000.
 * `keyPath`: Absolute path on each server to the private key Couchbase Server uses to authenticate with the KMS. This key file must be in PEM format.
-* `keyPassphrase` (optional): The private key’s passphrase, if it has one.
+* `keyPassphrase` (optional): The private key's passphrase, if it has one.
 * `encryptionApproach`: Controls which system performs the decryption of keys. Can be one of the following values:
 
   * `"useGet"`: Couchbase Server retrieves the encryption key from the KMS and uses it to decrypt local DEKs and encryption keys.
@@ -444,9 +444,9 @@ Fields
 * `certPath`: The absolute path on all servers to the certificate to use when authenticating with the KMS. The certificate file must be in PEM format.
 * `caSelection` (optional): Where to look for certificates when verifying the identity of the KMS. Can be one of the following values:
 
-  * `"useSysAndCbCa"` (default): Use the certificates in both the operating system’s and Couchbase Server’s trust stores.
-  * `"useSysCa"`: Use the certificates in the operating system’s trust store.
-  * `"useCbCa"`: Use the certificates in Couchbase Server’s trust store.
+  * `"useSysAndCbCa"` (default): Use the certificates in both the operating system's and Couchbase Server's trust stores.
+  * `"useSysCa"`: Use the certificates in the operating system's trust store.
+  * `"useCbCa"`: Use the certificates in Couchbase Server's trust store.
   * `"skipServerCertVerification"`: Skip verification of the KMS.  
   > [!CAUTION]  
   > Not verifying the identity of the KMS is insecure.
@@ -454,8 +454,8 @@ Fields
 
   * `"nodeSecretManager"` (default): Couchbase Server encrypts the passphrase using the [master password](../../../manage/manage-security/manage-system-secrets.md#setting-the-master-password).
   * `"encryptionKey"`: Use a KEK-enabled encryption key to encrypt the passphrase. If you choose this option, you must also supply the `encryptionApproachKeyId` parameter.
-* `activeKey.kmipId`: The ID of the encryption key stored in the KMS. The format of this value depends on the KMS. It’s often in the form of a UUID or a friendly name.
-* `encryptionWithKeyId` (integer): The `id` attribute of the encryption key Couchbase Server uses to encrypt the private key’s passphrase when storing it locally. See [List Encryption-at-Rest Keys](#list-keys) to learn how to get an encryption key’s `id`. Required if you set `encryptWith` to `encryptionKey`.
+* `activeKey.kmipId`: The ID of the encryption key stored in the KMS. The format of this value depends on the KMS. It's often in the form of a UUID or a friendly name.
+* `encryptionWithKeyId` (integer): The `id` attribute of the encryption key Couchbase Server uses to encrypt the private key's passphrase when storing it locally. See [List Encryption-at-Rest Keys](#list-keys) to learn how to get an encryption key's `id`. Required if you set `encryptWith` to `encryptionKey`.
 
 > [!NOTE]
 > Couchbase Server does not verify the information you give it during key creation. It only attempts to connect to the KMS when you assign the key to encrypt something. See [Test an Encryption-at-Rest Key](#test-key) to learn how to test the key.
@@ -487,7 +487,7 @@ Fields
 
 ### [](#create-privs)Required Privileges
 
-The role you need to create or update keys depends on what the key you’re creating or updating can encrypt:
+The role you need to create or update keys depends on what the key you're creating or updating can encrypt:
 
 For keys that can encrypt audit, configuration, or log data or can encrypt other encryption-at-rest keys (KEKs), you must have one or more of the following roles:
 
@@ -972,11 +972,11 @@ Fields
 
 * `keyARN`: The [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html) that identifies the encryption key in the AWS KMS.
 * `region` (optional): The region hosting your AWS KMS.
-* `useIMDS` (Boolean, optional): Whether to use Amazon’s [Instance Metadata Service (IMD)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html) when contacting the AWS KMS. Set this to `true` when your cluster runs on AWS EC2 instances. Defaults to `false`.
+* `useIMDS` (Boolean, optional): Whether to use Amazon's [Instance Metadata Service (IMD)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html) when contacting the AWS KMS. Set this to `true` when your cluster runs on AWS EC2 instances. Defaults to `false`.
 
-You must give Couchbase Server a way to authenticate with the AWS KMS. See Amazon’s [KMS key access and permissions](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) for details of configuring authentication.
+You must give Couchbase Server a way to authenticate with the AWS KMS. See Amazon's [KMS key access and permissions](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) for details of configuring authentication.
 
-You can use [IAM policies](https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html) to allow Couchbase Server to transparently connect to the AWS KMS. If you configure IAM, you do not need any additional authentication configuration within Couchbase Server. Always use this method if your database runs on an AWS EC2 cluster. It’s also possible to configure IAM for your cluster when it’s not running in AWS. See the AWS documentation for using [IAM Roles Anywhere](https://docs.aws.amazon.com/IAM/latest/UserGuide/id%5Froles%5Fcommon-scenarios%5Fnon-aws.html).
+You can use [IAM policies](https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html) to allow Couchbase Server to transparently connect to the AWS KMS. If you configure IAM, you do not need any additional authentication configuration within Couchbase Server. Always use this method if your database runs on an AWS EC2 cluster. It's also possible to configure IAM for your cluster when it's not running in AWS. See the AWS documentation for using [IAM Roles Anywhere](https://docs.aws.amazon.com/IAM/latest/UserGuide/id%5Froles%5Fcommon-scenarios%5Fnon-aws.html).
 
 The other authentication method is to use three optional parameters to pass Couchbase Server the necessary credentials in several files. These files must exist on all servers in your cluster.
 
@@ -1027,7 +1027,7 @@ Fields
 * `host`: The URL for the KMS.
 * `reqTimeoutMs` (integer, optional): The timeout for network communication with the KMS in milliseconds. Defaults to 1000.
 * `keyPath`: Absolute path on each server to the private key Couchbase Server uses to authenticate with the KMS. This key file must be in PEM format.
-* `keyPassphrase` (optional): The private key’s passphrase, if it has one.
+* `keyPassphrase` (optional): The private key's passphrase, if it has one.
 * `encryptionApproach`: Controls which system performs the decryption of keys. Can be one of the following values:
 
   * `"useGet"`: Couchbase Server retrieves the encryption key from the KMS and uses it to decrypt local DEKs and encryption keys.
@@ -1035,9 +1035,9 @@ Fields
 * `certPath`: The absolute path on all servers to the certificate to use when authenticating with the KMS. The certificate file must be in PEM format.
 * `caSelection` (optional): Where to look for certificates when verifying the identity of the KMS. Can be one of the following values:
 
-  * `"useSysAndCbCa"` (default): Use the certificates in both the operating system’s and Couchbase Server’s trust stores.
-  * `"useSysCa"`: Use the certificates in the operating system’s trust store.
-  * `"useCbCa"`: Use the certificates in Couchbase Server’s trust store.
+  * `"useSysAndCbCa"` (default): Use the certificates in both the operating system's and Couchbase Server's trust stores.
+  * `"useSysCa"`: Use the certificates in the operating system's trust store.
+  * `"useCbCa"`: Use the certificates in Couchbase Server's trust store.
   * `"skipServerCertVerification"`: Skip verification of the KMS.  
   > [!CAUTION]  
   > Not verifying the identity of the KMS is insecure.
@@ -1045,15 +1045,15 @@ Fields
 
   * `"nodeSecretManager"` (default): Couchbase Server encrypts the passphrase using the [master password](../../../manage/manage-security/manage-system-secrets.md#setting-the-master-password).
   * `"encryptionKey"`: Use a KEK-enabled encryption key to encrypt the passphrase. If you choose this option, you must also supply the `encryptionApproachKeyId` parameter.
-* `activeKey.kmipId`: The ID of the encryption key stored in the KMS. The format of this value depends on the KMS. It’s often in the form of a UUID or a friendly name.
-* `encryptionWithKeyId` (integer): The `id` attribute of the encryption key Couchbase Server uses to encrypt the private key’s passphrase when storing it locally. See [List Encryption-at-Rest Keys](#list-keys) to learn how to get an encryption key’s `id`. Required if you set `encryptWith` to `encryptionKey`.
+* `activeKey.kmipId`: The ID of the encryption key stored in the KMS. The format of this value depends on the KMS. It's often in the form of a UUID or a friendly name.
+* `encryptionWithKeyId` (integer): The `id` attribute of the encryption key Couchbase Server uses to encrypt the private key's passphrase when storing it locally. See [List Encryption-at-Rest Keys](#list-keys) to learn how to get an encryption key's `id`. Required if you set `encryptWith` to `encryptionKey`.
 
 > [!NOTE]
 > Couchbase Server does not verify the information you give it during key creation. It only attempts to connect to the KMS when you assign the key to encrypt something. See [Test an Encryption-at-Rest Key](#test-key) to learn how to test the key.
 
 ### [](#test-changes-privs)Required Privileges
 
-The role you need to test changes to a key depends on what the key you’re testing can encrypt:
+The role you need to test changes to a key depends on what the key you're testing can encrypt:
 
 For keys that can encrypt audit, configuration, or log data or can encrypt other encryption-at-rest keys (KEKs), you must have one or more of the following roles:
 
@@ -1173,7 +1173,7 @@ The `id` attribute of the key you want to delete.
 
 ### [](#del-privs)Required Privileges
 
-The role you need to delete a key depends on what the key you’re deleting can encrypt:
+The role you need to delete a key depends on what the key you're deleting can encrypt:
 
 For keys that can encrypt audit, configuration, or log data or can encrypt other encryption-at-rest keys (KEKs), you must have one or more of the following roles:
 

@@ -2,7 +2,7 @@
 title: Revisions
 description: About Sync Gateway's use of Revisions, Revision Trees and Revision Caches.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/manage/pages/revisions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@sync-gateway:manage:revisions.adoc[]
 ---
 
@@ -11,8 +11,8 @@ link: xref:3.3@sync-gateway:manage:revisions.adoc[]
 
 # Revisions
 
-> About Sync Gateway’s use of Revisions, Revision Trees and Revision Caches.  
-> Revisions are at the heart of Couchbase Mobile’s ability to respond flexibly and securely to changing data from server to edge.
+> About Sync Gateway's use of Revisions, Revision Trees and Revision Caches.  
+> Revisions are at the heart of Couchbase Mobile's ability to respond flexibly and securely to changing data from server to edge.
 
 ## [](#introduction)Introduction
 
@@ -35,7 +35,7 @@ Each change to a document (even its creation and deletion) is recorded as a [rev
 
 Couchbase creates a revision whenever a document is created, updated or deleted. Each revision is given a unique _Revision ID_ in addition to the _Document ID_.
 
-The _revisions_ are contained within a document’s _metadata_, as a [revision tree](#lbl-revtree).
+The _revisions_ are contained within a document's _metadata_, as a [revision tree](#lbl-revtree).
 
 Sync Gateway uses a _revision id_ to resolve conflicts arising when making concurrent changes to replicated copies of distributed data. It comprises two parts:
 
@@ -50,7 +50,7 @@ The revisions for each document form a _revision tree_ within its metadata.
 
 This revision tree comprises all revisions made to the document throughout its lifetime to date, in sequence. The _current revision_ (the most recent version of the document) being the tip of the tree, the _leaf_ node.
 
-A revision tree’s growth is unlimited. So Couchbase periodically removes obsolete revisions to maintain performance levels. This process is known as [Revision Pruning](#lbl-prune).
+A revision tree's growth is unlimited. So Couchbase periodically removes obsolete revisions to maintain performance levels. This process is known as [Revision Pruning](#lbl-prune).
 
 ## [](#lbl-prune)Revision Pruning
 
@@ -73,7 +73,7 @@ The algorithm allows the branch to retain a configurable number of revisions (re
 
 ### [](#lbl-rtctrl)Controls
 
-You can vary the number of retained revisions using the Configuration File’s [revs\_limit](../configuration/configuration-schema-database.md#database-revs%5Flimit)setting.
+You can vary the number of retained revisions using the Configuration File's [revs\_limit](../configuration/configuration-schema-database.md#database-revs%5Flimit)setting.
 
 The algorithm keeps the configured number of revisions (`revs_limit`) in the shortest non-tombstoned branch and removes all older revisions from that branch. For applications using Couchbase Lite 2.x+ with automatic conflict resolution, low `revs_limit` values, even as low as 1, provide optimal performance and storage efficiency.
 
@@ -158,7 +158,7 @@ Use the [rev\_cache.size](../configuration/configuration-schema-database.md#data
 
 When the revision cache is full, Sync Gateway will remove older document revisions to make room for newer ones.
 
-By adjusting this setting you can fine-tune Sync Gateway’s memory consumption. This can be useful when working on servers with limited memory and in cases when Sync Gateway creates and-or updated many new documents relative to the number of read operations.
+By adjusting this setting you can fine-tune Sync Gateway's memory consumption. This can be useful when working on servers with limited memory and in cases when Sync Gateway creates and-or updated many new documents relative to the number of read operations.
 
 #### [](#cache-maximum-memory)Cache Maximum Memory
 

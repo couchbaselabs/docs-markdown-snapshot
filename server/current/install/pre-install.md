@@ -4,7 +4,7 @@ description: Although resource requirements depend on the size and resource
   demands of your Couchbase deployment, there are some minimum and recommended
   specifications that you should follow.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/pre-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:pre-install.adoc[]
 ---
 
@@ -35,7 +35,7 @@ Couchbase Server has the following requirements when running on x86 processors:
 > [!NOTE]
 > For all storage configuration, network file systems such as CIFS and NFS are not supported.
 
-The recommendations in the table are a baseline that do not take into account the services you’ll run on your nodes. Each service adds its own requirements. See [Sizing Guidelines](sizing-general.md) to see the additional requirements for each service.
+The recommendations in the table are a baseline that do not take into account the services you'll run on your nodes. Each service adds its own requirements. See [Sizing Guidelines](sizing-general.md) to see the additional requirements for each service.
 
 #### [](#avx2-requirement-for-x86-processors)Instruction Set Requirements for x86 Processors
 
@@ -54,7 +54,7 @@ grep -q -i 'avx2' /proc/cpuinfo && \
      echo "Processor has AVX2" || echo "AVX2 not found"
 ```
 
-If the command returns the text `Processor has AVX2`, your processor meets Couchbase Server’s AVX2 requirement. If the command returns `AVX2 not found`, your processor does not have AVX2 instructions, so it is not supported.
+If the command returns the text `Processor has AVX2`, your processor meets Couchbase Server's AVX2 requirement. If the command returns `AVX2 not found`, your processor does not have AVX2 instructions, so it is not supported.
 
 > [!NOTE]
 > The Rosetta feature of MacOS lets you run x86 binaries on Apple Silicon. Rosetta in versions of MacOS earlier than Sequoia (version 15, released in September of 2024) does not implement the AVX2 instructions. While Rosetta in MacOS Sequoia does support AVX2 instructions, running on this platform may result in slower performance because the instructions are emulated instead of being native. For the best performance on Apple Silicon systems, use the native Apple Silicon build of Couchbase Server instead of the x86 build running in Rosetta.
@@ -75,13 +75,13 @@ Couchbase Server has the following requirements when running on ARM-based platfo
 > [!NOTE]
 > For all storage configuration, network file systems such as CIFS and NFS are not supported.
 
-The recommendations in the table ae a baseline that do not take into account the services you’ll run on your nodes. Each service adds its own requirements. See [Sizing Guidelines](sizing-general.md) to see the additional requirements for each service.
+The recommendations in the table ae a baseline that do not take into account the services you'll run on your nodes. Each service adds its own requirements. See [Sizing Guidelines](sizing-general.md) to see the additional requirements for each service.
 
 ## [](#clock-source-linux)Clock Source on Linux
 
 The Query Service uses the OS monotonic clock for profiling and network timeout purposes.
 
-The Linux kernel uses the Clock Source to obtain the current clock value. It stores this information in `/sys/devices/system/clocksource/clocksource0/current_clocksource`. Several clock sources exist (TSC, XEN, and others) which are used depending on the hardware clock capabilities and the OS installation. The XEN source, which is the default on AWS setups, can use up to 25% of all available CPU time to obtain the current timestamp. The TSC clock source, on the other hand, has a low CPU cost. Therefore, you should change the clock source to TSC if it’s set to anything else.
+The Linux kernel uses the Clock Source to obtain the current clock value. It stores this information in `/sys/devices/system/clocksource/clocksource0/current_clocksource`. Several clock sources exist (TSC, XEN, and others) which are used depending on the hardware clock capabilities and the OS installation. The XEN source, which is the default on AWS setups, can use up to 25% of all available CPU time to obtain the current timestamp. The TSC clock source, on the other hand, has a low CPU cost. Therefore, you should change the clock source to TSC if it's set to anything else.
 
 Check the clock source on your Linux OS using the following command:
 

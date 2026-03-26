@@ -2,7 +2,7 @@
 title: cbbackupmgr config
 description: Creates and configures a new backup repository
 editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-config.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:backup-restore:cbbackupmgr-config.adoc[]
 ---
 
@@ -61,11 +61,11 @@ The name of the new backup repository.
 
 \--include-data <collection\_string\_list>
 
-Modifies the repository configuration to backup only the data specified in the <collection\_string\_list>. This flag takes a comma separated list of collection strings and can’t be specified at the same time as `--exclude-data`. Note that including data at the scope/collection level is an Enterprise Edition feature.
+Modifies the repository configuration to backup only the data specified in the <collection\_string\_list>. This flag takes a comma separated list of collection strings and can't be specified at the same time as `--exclude-data`. Note that including data at the scope/collection level is an Enterprise Edition feature.
 
 \--exclude-data <collection\_string\_list>
 
-Modifies the repository configuration to skip restoring the data specified in the <collection\_string\_list>. This flag takes a comma separated list of collection strings and can’t be specified at the same time as `--include-data`. Note that excluding data at the scope/collection level is an Enterprise Edition feature.
+Modifies the repository configuration to skip restoring the data specified in the <collection\_string\_list>. This flag takes a comma separated list of collection strings and can't be specified at the same time as `--include-data`. Note that excluding data at the scope/collection level is an Enterprise Edition feature.
 
 \--disable-bucket-config
 
@@ -150,7 +150,7 @@ Multiple cloud providers are supported, see the list below for more information.
 
 \--obj-staging-dir <staging\_dir>
 
-When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it’s not treated as a persistent store) and is only used during the backup.
+When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it's not treated as a persistent store) and is only used during the backup.
 
 > [!NOTE]
 > Do not use `/tmp` as the `obj-staging-dir`.  
@@ -288,7 +288,7 @@ The path to a file containing the authentication credentials for the key managem
 
 ## [](#examples)EXAMPLES
 
-The config command is used to create a backup repository and define the repositories backup configuration. In the examples below, the backup archive is located at /data/backups. Since this is the first backup repository we are creating in a new backup archive, we need to ensure that /data/backups is an empty directory. Archives are created automatically if an archive doesn’t already exist at the archive path, but are only created if the directory at that path is empty. In order to create a backup repository called "example" with the default configuration use the following command:
+The config command is used to create a backup repository and define the repositories backup configuration. In the examples below, the backup archive is located at /data/backups. Since this is the first backup repository we are creating in a new backup archive, we need to ensure that /data/backups is an empty directory. Archives are created automatically if an archive doesn't already exist at the archive path, but are only created if the directory at that path is empty. In order to create a backup repository called "example" with the default configuration use the following command:
 
 $ cbbackupmgr config -a /data/backups -r example
 
@@ -330,11 +330,11 @@ When a backup repository is created, it should only be modified by the cbbackupm
 
 ## [](#nested-archives)NESTED ARCHIVES
 
-When creating a new archive, `cbbackupmgr` will ensure that no existing archives exist in the provided directory, however, it won’t check the parent directories to see if the given directory is already an archive.
+When creating a new archive, `cbbackupmgr` will ensure that no existing archives exist in the provided directory, however, it won't check the parent directories to see if the given directory is already an archive.
 
 directory 'stats' doesn't appear to be a bucket backup, archive doesn't appear to have the expected format; multiple archives may be nested. See the 'NESTED ARCHIVES' section of the config documentation for more information
 
-This may lead to errors such as the one above. To ensure this doesn’t happen, archives should not be created within other archives (nested archives). To resolve this error, move the nested archive directory out of the parent.
+This may lead to errors such as the one above. To ensure this doesn't happen, archives should not be created within other archives (nested archives). To resolve this error, move the nested archive directory out of the parent.
 
 ## [](#environment-and-configuration-variables)ENVIRONMENT AND CONFIGURATION VARIABLES
 

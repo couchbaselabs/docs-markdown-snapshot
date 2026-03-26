@@ -1,7 +1,7 @@
 ---
 title: Upgrade a Full-Capacity, Online Cluster
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/upgrade-cluster-online-full-capacity.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:install:upgrade-cluster-online-full-capacity.adoc[]
 ---
 
@@ -114,7 +114,7 @@ For Couchbase Server Enterprise Edition, run the following command:
 apt-mark hold couchbase-server  
 ```  
 (For Couchbase Server Community edition, specify `couchbase-server-community`, instead of `couchbase-server`).
-8. Assuming that the `couchbase-server.service` service was _stopped_ on the node to be upgraded prior to that node’s upgrade, restart the service.  
+8. Assuming that the `couchbase-server.service` service was _stopped_ on the node to be upgraded prior to that node's upgrade, restart the service.  
 Note that if the service was also _disabled_, it must be _re-enabled_, prior to being started. To re-enable the service, if necessary, enter the following command:  
 ```bash  
 systemctl enable --now couchbase-server.service  

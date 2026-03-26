@@ -3,7 +3,7 @@ title: Cost-Based Optimizer for Analytics
 description: The cost-based optimizer for Analytics uses samples to choose the
   optimal plan to execute a query.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/5b_cbo.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:analytics:5b_cbo.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:7.2@server:analytics:5b_cbo.adoc[]
 
 # Cost-Based Optimizer for Analytics
 
-The execution plan for a query involves many possible operations: scan, join, filter, and so on. When planning for a query’s execution, there are usually several possible choices for each operation, including the use of different indexes or different join methods. Some of the choices will be faster and more efficient than others. The cost-based optimizer (CBO) aims to choose the most efficient option for each.
+The execution plan for a query involves many possible operations: scan, join, filter, and so on. When planning for a query's execution, there are usually several possible choices for each operation, including the use of different indexes or different join methods. Some of the choices will be faster and more efficient than others. The cost-based optimizer (CBO) aims to choose the most efficient option for each.
 
 When generating an execution plan, the cost-based optimizer can do the following:
 
@@ -20,7 +20,7 @@ When generating an execution plan, the cost-based optimizer can do the following
 2. Join method: the optimizer can choose between nested-loop joins, hash joins, and hash broadcast joins. For hash joins, the optimizer can choose which side of the join should be the build side or the probe side.
 3. Join enumeration: the optimizer can consider different join orders, and rewrite the query to use the optimal join order.
 
-The cost-based optimizer for Analytics uses sample data taken randomly from each Analytics collection. At query planning time, the optimizer queries the samples, based on the query’s single-collection predicates, in order to estimate the number of qualifying objects in each base collection for the query.
+The cost-based optimizer for Analytics uses sample data taken randomly from each Analytics collection. At query planning time, the optimizer queries the samples, based on the query's single-collection predicates, in order to estimate the number of qualifying objects in each base collection for the query.
 
 The optimizer uses these results to predict the cardinality of each predicate. It uses the cardinality to estimate the cost of different access paths, then compares the estimated cost of the alternatives in order to generate a query execution plan with the lowest expected cost.
 
@@ -38,7 +38,7 @@ Before you can use the cost-based optimizer with a query, you must first gather 
 
 You must gather a sample from each Analytics collection that you want to query. You can only gather an optimizer sample from an Analytics collection, not from an Analytics view.
 
-You must periodically refresh the sample for each collection, based on the collection’s rate of change and how frequently you need to query each collection.
+You must periodically refresh the sample for each collection, based on the collection's rate of change and how frequently you need to query each collection.
 
 The query language provides ANALYZE statements which enable you to manage cost-based optimizer samples.
 
@@ -99,8 +99,8 @@ Metadata for cost-based optimizer samples can be found in the `` Metadata.`Index
 
 The Index catalog entry for a cost-based optimizer sample contains the following extra fields specific to samples:
 
-* **SampleSeed**: The sample’s seed.
-* **SampleCardinalityTarget**: The sample’s size.
+* **SampleSeed**: The sample's seed.
+* **SampleCardinalityTarget**: The sample's size.
 * **SourceCardinality**: The total number of objects in the collection when it was sampled.
 * **SourceAvgItemSize**: The average object size (in bytes) in the collection when it was sampled.
 

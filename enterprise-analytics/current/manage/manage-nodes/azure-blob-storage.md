@@ -3,7 +3,7 @@ title: Configuring Azure Blob Storage
 description: You can set up Couchbase Enterprise Analytics to use Azure Blob
   Storage as its storage solution.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/azure-blob-storage.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:manage:manage-nodes/azure-blob-storage.adoc[]
 ---
 
@@ -35,7 +35,7 @@ To set up Enterprise Analytics to use Azure Blob Storage from the UI:
 2. Provide the following details:
 
   * Enter the **Blob service endpoint** for your Azure storage account. This is typically found in the Azure portal.
-  * Enter the **Container (Bucket) Name** for the container that’s used within the specific storage account endpoint.
+  * Enter the **Container (Bucket) Name** for the container that's used within the specific storage account endpoint.
   * Enter the **Prefix** (Optional) within that container where EA stores all of its data.
 
 ### [](#set-up-a-cluster-using-the-rest-api)Set Up a Cluster Using the REST API

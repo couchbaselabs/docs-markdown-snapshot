@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Background App Refresh"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile/edit/backgroundfetch/content/modules/userprofile/pages/background-fetch.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:userprofile-couchbase-mobile:userprofile:background-fetch.adoc[]
 ---
 
@@ -27,7 +27,7 @@ You can learn more about the Sync Gateway [here](https://developer.couchbase.com
 
 This tutorial assumes familiarity with building swift apps with Xcode and with Couchbase Lite.
 
-* You must have completed the "user profile" tutorial on **sync**. If you haven’t already done so, please complete the following tutorial first
+* You must have completed the "user profile" tutorial on **sync**. If you haven't already done so, please complete the following tutorial first
 
   * [Fundamentals of Sync](https://docs.couchbase.com/tutorials/userprofile-couchbase-mobile/sync/userprofile/userprofile%5Fsync.html) using Couchbase Lite and Sync Gateway
 * iOS (Xcode 11+)
@@ -36,7 +36,7 @@ This tutorial assumes familiarity with building swift apps with Xcode and with C
   * NOTE: If you are on an older version of Xcode that you must retain for your other development needs, you can make a copy of your existing version of Xcode and install Xcode 10\. So you can have multiple versions of Xcode on your Mac.
 * git (Optional) This is required if you would prefer to pull the source code from GitHub repo.
 
-  * Create a [free github account](https://github.com) if you don’t already have one
+  * Create a [free github account](https://github.com) if you don't already have one
   * git can be downloaded from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * curl HTTP client
 
@@ -79,7 +79,7 @@ You have two options
   sh install_11.sh  
 ```
 
-let’s verify the installation
+let's verify the installation
 
 ### [](#try-it-out)Try it Out
 
@@ -97,7 +97,7 @@ Follow the steps outlined in the [Sync Tutorial](https://docs.couchbase.com/tuto
 
 Note that the walrus must is a development-only mode used for testing/demonstration purposes. It must be **never** used in production.
 
-Now, let’s verify the installation
+Now, let's verify the installation
 
 ### [](#try-it-out-2)Try it Out
 
@@ -158,7 +158,7 @@ Setting up the app for one-shot replication is very similar to continuous replic
 ```swift  
 func startOneShotPullReplicationForCurrentUser(completionHandler:@escaping(_ doneStatus:Bool)->Void) {  
 ```
-* Let’s examine the replicator configuration  
+* Let's examine the replicator configuration  
 ```swift  
 let dbUrl = remoteUrl.appendingPathComponent(kDBName)  
 let config = ReplicatorConfiguration.init(database: db, target: URLEndpoint.init(url:dbUrl))  

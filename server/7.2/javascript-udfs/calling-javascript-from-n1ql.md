@@ -2,7 +2,7 @@
 title: Calling JavaScript from SQL++ User-Defined Functions
 description: Using a SQL++ User-Defined Function to call JavaScript functions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/javascript-udfs/pages/calling-javascript-from-n1ql.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:javascript-udfs:calling-javascript-from-n1ql.adoc[]
 ---
 
@@ -19,7 +19,7 @@ Before you can call a JavaScript function, you must first create a SQL++ User-De
 
 If you are unfamiliar with creating User-Defined Functions to call JavaScript, then the [guide](../guides/javascript-udfs.md) is the best place to start.
 
-In this section, we’re going to take a closer look at concepts around SQL++ User-Defined Functions, such as variadic parameter lists.
+In this section, we're going to take a closer look at concepts around SQL++ User-Defined Functions, such as variadic parameter lists.
 
 ## [](#scopes-and-sql-user-defined-functions)Scopes and SQL++ User-Defined Functions
 

@@ -3,7 +3,7 @@ title: View Monitoring Dashboards
 description: Couchbase Capella provides monitoring dashboards with metrics for
   each cluster so you can view and monitor cluster performance.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/metrics-dashboard.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:monitoring/metrics-dashboard.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:cloud:clusters:monitoring/metrics-dashboard.adoc[]
 > [!NOTE]
 > The [Metrics Explorer](#metrics-explorer-dashboard) dashboard is still available for you to view cluster metrics. Use this dashboard to add or remove specific metrics according to your monitoring needs.
 
-The metrics available on the **Monitoring** dashboards provide insight into your cluster’s performance and can help identify runtime outliers. These dashboards can help you investigate intermittent issues with multi-metric views and adjustable timeframes.
+The metrics available on the **Monitoring** dashboards provide insight into your cluster's performance and can help identify runtime outliers. These dashboards can help you investigate intermittent issues with multi-metric views and adjustable timeframes.
 
 Capella has the following real-time monitoring dashboards:
 
@@ -38,9 +38,9 @@ These monitoring dashboards show metric charts with the following elements:
 
 ## [](#cluster-overview)View Cluster Overview
 
-The **Cluster Overview** dashboard presents a general summary of your cluster’s metrics, health status, and configuration settings. It displays key cluster workload insights, along with summaries from Health Advisor and the Activity Log.
+The **Cluster Overview** dashboard presents a general summary of your cluster's metrics, health status, and configuration settings. It displays key cluster workload insights, along with summaries from Health Advisor and the Activity Log.
 
-To get an overview of your cluster’s status and metrics, go to **Monitoring** **Cluster Overview**.
+To get an overview of your cluster's status and metrics, go to **Monitoring** **Cluster Overview**.
 
 You can adjust the metric charts by timeframe. For more information, see [Adjust Metrics](#use-metrics).
 
@@ -59,7 +59,7 @@ You can explore the breakdown of these metrics in following dashboards:
 * [Query Service](#query-service)
 * [Node Metrics](#node-metrics)
 
-Use the data from these dashboards to support your cluster’s performance, troubleshoot failures, and optimize resource allocation.
+Use the data from these dashboards to support your cluster's performance, troubleshoot failures, and optimize resource allocation.
 
 ### [](#data-service)Data Service
 
@@ -130,7 +130,7 @@ You can adjust the metric charts by timeframe. For more information, see [Adjust
 
 The **Metrics Explorer** dashboard provides a customizable collection of Service and node level metrics of your operational cluster.
 
-You can select from a list of available cluster metrics, including those for your cluster’s Services and nodes. Adjust your dashboard by adding or removing the metrics that suit your specific monitoring needs. You can customize the view to support detailed performance analysis and targeted troubleshooting workflows.
+You can select from a list of available cluster metrics, including those for your cluster's Services and nodes. Adjust your dashboard by adding or removing the metrics that suit your specific monitoring needs. You can customize the view to support detailed performance analysis and targeted troubleshooting workflows.
 
 You can adjust the charts by timeframe and resolution. For more information, see [Adjust Metrics](#use-metrics).
 
@@ -163,7 +163,7 @@ Metrics appear highlighted when on the dashboard.
 > * **7d** \- 2520 seconds (42 minutes)
 > * **30d** \- 10800 seconds (3 hours)
 
-Moving your mouse pointer over a metric chart provides date, time, and resource information for the part of the chart you’re pointing at. You can also zoom in on areas of a chart by clicking and dragging your pointer over the region you want to focus on.
+Moving your mouse pointer over a metric chart provides date, time, and resource information for the part of the chart you're pointing at. You can also zoom in on areas of a chart by clicking and dragging your pointer over the region you want to focus on.
 
 Zooming in on a chart updates the [timeframe](#timeframes) to match your current selection for all metrics on the dashboard.
 

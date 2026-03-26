@@ -1,7 +1,7 @@
 ---
 title: Manage Your Data
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/data-service.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:data-service/data-service.adoc[]
 ---
 
@@ -32,9 +32,9 @@ Buckets are protected by role-based access control (RBAC). Buckets can only be a
 
 Couchbase Capella uses scopes and collections to categorize and organize documents within a bucket. Collections are data containers within a bucket, while scopes are mechanisms to group multiple collections. Each cluster can have up to 1000 scopes and 1000 collections.
 
-Every bucket automatically includes the `_default` scope that itself contains the `_default` collection. Any document that’s created within a bucket that does not reference a scope or collection is saved in the `_default` collection within the `_default` scope.
+Every bucket automatically includes the `_default` scope that itself contains the `_default` collection. Any document that's created within a bucket that does not reference a scope or collection is saved in the `_default` collection within the `_default` scope.
 
-You cannot delete a bucket’s `_default` scope. While you can delete the `_default` collection, there is no actual advantage in deleting it. The `_default` collection is there to help group and organize documents without a set scope. If you delete it, you’ll not be able to recreate or recover it later.
+You cannot delete a bucket's `_default` scope. While you can delete the `_default` collection, there is no actual advantage in deleting it. The `_default` collection is there to help group and organize documents without a set scope. If you delete it, you'll not be able to recreate or recover it later.
 
 Role-based access control (RBAC) is used to protect scopes and collections. Only project members with the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Cluster Manager](../../projects/project-roles.md#project-cluster-manager-role) project roles can administer them.
 

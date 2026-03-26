@@ -2,7 +2,7 @@
 title: Data Definition Language (DDL)
 description: A description of the DDLs in Couchbase Analytics.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/5_ddl.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:analytics:5_ddl.adoc[]
 ---
 
@@ -104,7 +104,7 @@ An index is a materialized access path for data in an Analytics collection. You 
 For each JSON document ingested into an Analytics collection, the system computes the indexed key for each index. The index key of a secondary index is computed as follows:
 
 * The target field values are extracted from the JSON document according to the specified path of fields;
-* For non-numeric typed index fields (i.e., the specified type is `STRING`), if the specified type of the field is the same as the actual field value’s type, the value becomes part of the indexed key, otherwise the indexed key cannot be built;
+* For non-numeric typed index fields (i.e., the specified type is `STRING`), if the specified type of the field is the same as the actual field value's type, the value becomes part of the indexed key, otherwise the indexed key cannot be built;
 * For numeric typed index fields (i.e., the specified type is `DOUBLE` or `BIGINT`), the actual field value can be cast to the specified type and it becomes part of the indexed key. If the cast is impossible, the indexed key cannot be built;
 
 After the indexed key has been built, it is inserted into the secondary index. In case the index key cannot be built, there is no entry made in the index for this object.
@@ -351,7 +351,7 @@ Within an `ArrayIndexElement`, the UNNEST keyword denotes a field or nested fiel
 
 The `IndexField` consists of a `NestedField` that specifies a field path into the indexed JSON document, and a type identifier.
 
-The `IndexUnknown` modifier enables you to specify whether to make an entry or not in a standard (non-array) index when the indexed key’s value is NULL or MISSING. The following table outlines the behavior of INCLUDE UNKNOWN KEY and EXCLUDE UNKNOWN KEY:
+The `IndexUnknown` modifier enables you to specify whether to make an entry or not in a standard (non-array) index when the indexed key's value is NULL or MISSING. The following table outlines the behavior of INCLUDE UNKNOWN KEY and EXCLUDE UNKNOWN KEY:
 
 | Modifier            | All keys NULL or MISSING | Some keys NULL or MISSING | No NULL or MISSING |
 | ------------------- | ------------------------ | ------------------------- | ------------------ |

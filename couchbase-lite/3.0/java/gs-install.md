@@ -3,7 +3,7 @@ title: Couchbase Lite on Java&#8201;&#8212;&#8201;Installing
 description: Couchbase Lite on Java -- a framework for developing offline-first
   Java applications for mobile and edge
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/java/pages/gs-install.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:java:gs-install.adoc[]
 ---
 
@@ -40,7 +40,7 @@ Include the following in your Gradle `build.gradle` or Maven `pom.xml` file, as 
 Check you have `mavenCentral()` in `repositories` (or in `settings.gradle`).  
 Maven automatically checks its own repo for dependencies.
 
-That’s it! You’re all set to begin developing powerful Couchbase Lite applications.
+That's it! You're all set to begin developing powerful Couchbase Lite applications.
 
 Now, try the [Getting Started](gs-build.md) application, which demonstrates use of key CRUD functionality.
 
@@ -70,11 +70,11 @@ You need to deploy the Couchbase Lite `support` library, which is available _onl
 3. Include the content shown in [Example 1](#ex-bgf1) in your app-level `build.gradle` file
 4. Open the project folder in Intellij IDEA and import the gradle settings.  
 > [!TIP]  
-> If you don’t have auto-import set for Gradle projects, then accept the **Import Gradle Project** prompt that is displayed bottom-right of the screen  
+> If you don't have auto-import set for Gradle projects, then accept the **Import Gradle Project** prompt that is displayed bottom-right of the screen  
 > Note the Gradle menu at the extreme right of the screen:  
 ![GradleMenuWebApp](_images/GradleMenuWebApp.png)
 
-That’s it. You’re all set to start building your own _Couchbase Lite_ on Java applications — see [Build and Run](gs-build.md) for an example of how to do that.
+That's it. You're all set to start building your own _Couchbase Lite_ on Java applications — see [Build and Run](gs-build.md) for an example of how to do that.
 
 Example 1\. build.gradle file content
 
@@ -144,9 +144,9 @@ repositories {
 ### [](#using-maven)Using Maven
 
 1. Include the content shown in [Example 2](#ex-bmf1) in your `pom.xml` file in the root of your project folder
-2. That’s it — just add your own code
+2. That's it — just add your own code
 
-You’re all set to start building your own _Couchbase Lite_ on Java applications — see [Build and Run](gs-build.md) for an example of how to do that.
+You're all set to start building your own _Couchbase Lite_ on Java applications — see [Build and Run](gs-build.md) for an example of how to do that.
 
 Example 2\. pom.xml file content
 
@@ -233,7 +233,7 @@ In our examples here we build and deploy web apps using a gradle plugin based on
 
 ### [](#bmkMultCblJapps)Multiple Web Apps
 
-Each web application has its own \*class loader (WebappX). This loads the classes, jars, and resources found in the application’s `WEB-INF/classes` and `WEB-INF/lib` folders, together with any shared jar files from `$CATALINA_BASE/lib` — see [tomcat documentation](https://tomcat.apache.org/tomcat-9.0-doc/class-loader-howto.html) for more.
+Each web application has its own \*class loader (WebappX). This loads the classes, jars, and resources found in the application's `WEB-INF/classes` and `WEB-INF/lib` folders, together with any shared jar files from `$CATALINA_BASE/lib` — see [tomcat documentation](https://tomcat.apache.org/tomcat-9.0-doc/class-loader-howto.html) for more.
 
 So, if you are running multiple Couchbase Lite web applications, deploy your _Couchbase Lite_ on Java library `<pathToCbl>/libs` to `$CATALINA_BASE/lib`. This means you do not need to deploy it in each web app and **minimizes the size of each app**.
 
@@ -260,13 +260,13 @@ gradle init
 3. Open the project folder in Intellij IDEA and import the gradle settings.
 
 > [!TIP]
-> If you don’t have auto-import set for Gradle projects, then accept the **Import Gradle Project** prompt that is displayed bottom-right of the screen.  
+> If you don't have auto-import set for Gradle projects, then accept the **Import Gradle Project** prompt that is displayed bottom-right of the screen.  
 > Note the Gradle menu at the extreme right of the screen:  
 > image::GradleMenuWebApp.png\[,300\]
 
 If you want to deploy your app to a local tomcat container then see [\[Deploying a WAR file to tomcat\]](#Deploying a WAR file to tomcat)
 
-That’s it. You’re all set to start building your own _Couchbase Lite_ on Java applications — see [Building a Getting Started App](gs-build.md) for an example of how to do that.
+That's it. You're all set to start building your own _Couchbase Lite_ on Java applications — see [Building a Getting Started App](gs-build.md) for an example of how to do that.
 
 Example 3\. build.gradle file content
 
@@ -332,7 +332,7 @@ To deploy your web app to a local Tomcat instance you need to generate a WAR fil
 > The generated war file will be at <PROJECT ROOT>/build/libs.
 2. Deploy the war file to Tomcat, by copying it to $CATALINA\_BASE/webapps  
 > [!TIP]  
-> You can also use Tomcat’s Manager App to deploy the war file — see [Tomcat’s Manager App](https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html) documentation for more detail.
+> You can also use Tomcat's Manager App to deploy the war file — see [Tomcat's Manager App](https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html) documentation for more detail.
 3. To use common class loader approach to load Couchbase Lite libraries, copy all of the Couchbase Lite jar files in $CATALINA\_BASE/lib.  
 > [!NOTE]  
 > For linux platform see also — _Using Native Libraries for Linux_ in [Prerequisites](gs-prereqs.md)

@@ -2,7 +2,7 @@
 title: Querying Your Data
 description: Choosing the right service to query your data.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/concept-docs/pages/querying-your-data.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@scala-sdk:concept-docs:querying-your-data.adoc[]
 ---
 
@@ -15,14 +15,14 @@ link: xref:3.10@scala-sdk:concept-docs:querying-your-data.adoc[]
 
 The data service stores your documents, but is the best route to retrieving them?
 
-SQL++ is a SQL-family language, and an easy way for anyone familiar with Relational Databases (RDBMS) to work with documents stored in Couchbase — if you’re sure that’s the service that you want, jump to our [Query Howto doc](../howtos/sqlpp-queries-with-sdk.md).
+SQL++ is a SQL-family language, and an easy way for anyone familiar with Relational Databases (RDBMS) to work with documents stored in Couchbase — if you're sure that's the service that you want, jump to our [Query Howto doc](../howtos/sqlpp-queries-with-sdk.md).
 
 Couchbase also has a powerful Search Service, supporting similarity and hybrid search, combining text, vector, range, and geospatial search. [Search functions](../../../server/current/n1ql/n1ql-language-reference/searchfun.md) enable you to use Search queries directly within a SQL++ query.
 
 > [!TIP]
 > SQL++ or CRUD API?
 > 
-> Maybe you’d prefer to retrieve whole documents and work on them as objects in Scala, or do this after running just a few queries, reducing the number of Query and Index Service nodes you need on your Capella (or self-managed) cluster. Whether you go through the Data Service, or Query, you’ll find that both follow the typical DML (Data Manipulation Language) patterns that you encounter in the relational database world. See the [Data Service section](data-durability-acid-transactions.md) for information on CRUD with the Data Service, with its fast binary protocol.
+> Maybe you'd prefer to retrieve whole documents and work on them as objects in Scala, or do this after running just a few queries, reducing the number of Query and Index Service nodes you need on your Capella (or self-managed) cluster. Whether you go through the Data Service, or Query, you'll find that both follow the typical DML (Data Manipulation Language) patterns that you encounter in the relational database world. See the [Data Service section](data-durability-acid-transactions.md) for information on CRUD with the Data Service, with its fast binary protocol.
 
 ## [](#your-use-case)Your Use Case
 
@@ -42,7 +42,7 @@ This page covers using our operational Scala SDK to connect to the Analytics Ser
 > [!TIP]
 > Analytics SDKs
 > 
-> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase's analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
 > 
 > Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](../../../home/columnar-sdk.md) for more information.
 
@@ -81,19 +81,19 @@ Use this API for low concurrency batch queries where latency is not a critical a
 
 From Couchbase Server 7.6 onwards, CRUD operations (such as `CREATE`, `INSERT`, and `SELECT`) and `JOIN` can be performed against the Query Service without an index (primary or secondary). This uses a [sequential scan](../../../server/current/indexes/query-without-index.md#sequential-scans), relying on a KV range scan to deliver the keys.
 
-Sequential scans are best suited to small collections where key order is unimportant, or where the overhead of maintaining an index can’t be justified. For larger collections and greater performance, define the appropriate indexes to speed up your queries. For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan.
+Sequential scans are best suited to small collections where key order is unimportant, or where the overhead of maintaining an index can't be justified. For larger collections and greater performance, define the appropriate indexes to speed up your queries. For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan.
 
 Read on to learn more about the Query and Index services.
 
 ## [](#query-index)Query & Index
 
-If you are familiar with SQL, Couchbase’s SQL++ dialect will hold few surprises. Combining semi-flexible schema with SQL works well in a lot of use cases, but do remember that our Data Service is even faster if you do already know the keys.
+If you are familiar with SQL, Couchbase's SQL++ dialect will hold few surprises. Combining semi-flexible schema with SQL works well in a lot of use cases, but do remember that our Data Service is even faster if you do already know the keys.
 
 ### [](#index)Index
 
 There are three things important in database systems: performance, performance, performance.
 
-Creating the right index, with the right keys, right order, and right expression is critical to query performance in any database system. That’s true for Couchbase as well. See the [Querying with SQL++](n1ql-query.md) page for an in depth look at indexes — but essentially a Primary Index on the document keys will give you better search performance than trying to [query without index](#query-without-index), but well-chosen secondary indexes will make all the difference to query performance.
+Creating the right index, with the right keys, right order, and right expression is critical to query performance in any database system. That's true for Couchbase as well. See the [Querying with SQL++](n1ql-query.md) page for an in depth look at indexes — but essentially a Primary Index on the document keys will give you better search performance than trying to [query without index](#query-without-index), but well-chosen secondary indexes will make all the difference to query performance.
 
 ### [](#query)Query
 

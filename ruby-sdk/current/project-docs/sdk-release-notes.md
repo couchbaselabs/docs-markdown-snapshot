@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Ruby Client.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ruby-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -384,7 +384,7 @@ Fixes
 New features and enhancements
 
 * [CXXCBC-456](https://issues.couchbase.com/browse/CXXCBC-456): Updated configuration logic when 0x0d (`EConfigOnly`) status code is received to have the SDK request new configuration and send current operation to retry orchestrator ([#523](https://github.com/couchbaselabs/couchbase-cxx-client/pull/523)).
-* [CXXCBC-191](https://issues.couchbase.com/browse/CXXCBC-191): Index Key Encoding ([#519](https://github.com/couchbaselabs/couchbase-cxx-client/pull/519)) — in line with the [rfc](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0054-sdk3-management-apis.md), the `fields` paramaeter is now remamed to keys in the Public API’s `create_index()`, and each index key provided to `create_index()` is encoded by surrounding them with backticks.
+* [CXXCBC-191](https://issues.couchbase.com/browse/CXXCBC-191): Index Key Encoding ([#519](https://github.com/couchbaselabs/couchbase-cxx-client/pull/519)) — in line with the [rfc](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0054-sdk3-management-apis.md), the `fields` paramaeter is now remamed to keys in the Public API's `create_index()`, and each index key provided to `create_index()` is encoded by surrounding them with backticks.
 
 Fixes
 
@@ -703,7 +703,7 @@ gem install couchbase -v 3.4.0
   * [CXXCBC-293](https://issues.couchbase.com/browse/CXXCBC-293): Performance improvements:
 
     * Speed up UUID serialization to string ([#346](https://github.com/couchbaselabs/couchbase-cxx-client/pull/346))
-    * Don’t allow to copy `mcbp_message` objects ([#345](https://github.com/couchbaselabs/couchbase-cxx-client/pull/345))
+    * Don't allow to copy `mcbp_message` objects ([#345](https://github.com/couchbaselabs/couchbase-cxx-client/pull/345))
     * Avoid extra allocation and initialization ([#344](https://github.com/couchbaselabs/couchbase-cxx-client/pull/344))
 * Build system fixes:
 
@@ -734,11 +734,11 @@ gem install couchbase -v 3.4.0
 * [CXXCBC-251](https://issues.couchbase.com/browse/CXXCBC-251): Fix snappy decompression for `get_replica` ([#296](https://github.com/couchbaselabs/couchbase-cxx-client/pull/296))
 * [CXXCBC-253](https://issues.couchbase.com/browse/CXXCBC-253): `query_options` not setting `scope_qualifier` ([#300](https://github.com/couchbaselabs/couchbase-cxx-client/pull/300))
 * [SDKQE-2761](https://issues.couchbase.com/browse/SDKQE-2761): Fix failures in serverless mode ([#274](https://github.com/couchbaselabs/couchbase-cxx-client/pull/274))
-* Don’t log expected warnings in DNS resolver ([#294](https://github.com/couchbaselabs/couchbase-cxx-client/pull/294))
+* Don't log expected warnings in DNS resolver ([#294](https://github.com/couchbaselabs/couchbase-cxx-client/pull/294))
 
 ##### [](#resource-management-and-performance-fixes)Resource management and performance fixes
 
-* [CXXCBC-225](https://issues.couchbase.com/browse/CXXCBC-225): Don’t throw exceptions when socket options cannot be set ([#270](https://github.com/couchbaselabs/couchbase-cxx-client/pull/270))
+* [CXXCBC-225](https://issues.couchbase.com/browse/CXXCBC-225): Don't throw exceptions when socket options cannot be set ([#270](https://github.com/couchbaselabs/couchbase-cxx-client/pull/270))
 
 ##### [](#build-system-fixes)Build system fixes
 
@@ -761,7 +761,7 @@ gem install couchbase -v 3.4.0
 * [CXXCBC-179](https://issues.couchbase.com/browse/CXXCBC-179): fix parsing responses with chunked meta trailer ([#191](https://github.com/couchbaselabs/couchbase-cxx-client/pull/191))
 * [CXXCBC-170](https://issues.couchbase.com/browse/CXXCBC-170): add extra check for missing CA for TLS connections ([#197](https://github.com/couchbaselabs/couchbase-cxx-client/pull/197))
 * [CXXCBC-182](https://issues.couchbase.com/browse/CXXCBC-182): add extra check for keywords in query index fields ([#196](https://github.com/couchbaselabs/couchbase-cxx-client/pull/196))
-* [CXXCBC-173](https://issues.couchbase.com/browse/CXXCBC-173): complete streaming lexer even if pointer didn’t match ([#195](https://github.com/couchbaselabs/couchbase-cxx-client/pull/195))
+* [CXXCBC-173](https://issues.couchbase.com/browse/CXXCBC-173): complete streaming lexer even if pointer didn't match ([#195](https://github.com/couchbaselabs/couchbase-cxx-client/pull/195))
 * [CXXCBC-212](https://issues.couchbase.com/browse/CXXCBC-212): reprepare and retry query on 4040, 4050 and 4070 ([#257](https://github.com/couchbaselabs/couchbase-cxx-client/pull/257))
 * [CXXCBC-174](https://issues.couchbase.com/browse/CXXCBC-174): reduce scope of the http request lock ([#259](https://github.com/couchbaselabs/couchbase-cxx-client/pull/259))
 * [CXXCBC-176](https://issues.couchbase.com/browse/CXXCBC-176): ignore 'is\_primary' for named primary indexes when dropping ([#202](https://github.com/couchbaselabs/couchbase-cxx-client/pull/202))

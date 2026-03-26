@@ -2,7 +2,7 @@
 title: Errors and Diagnostics
 description: When the unexpected happens, take a step-by-step approach.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/concept-docs/pages/errors.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.9@go-sdk:concept-docs:errors.adoc[]
 ---
 
@@ -41,7 +41,7 @@ Further discussion of handling ambiguous results can be found in our [Durability
 
 ## [](#health-check)Health Check
 
-Distributed systems are not easy to debug. One cause of errors to try to eliminate, or quickly diagnose to deal with, is those caused by the network. Our [Health Check API](health-check.md) offers status and diagnostics on your cluster’s network, and can be used, for example, to diagnose network latencies that are behind timeout errors.
+Distributed systems are not easy to debug. One cause of errors to try to eliminate, or quickly diagnose to deal with, is those caused by the network. Our [Health Check API](health-check.md) offers status and diagnostics on your cluster's network, and can be used, for example, to diagnose network latencies that are behind timeout errors.
 
 ## [](#threshold-orphan-logging)Threshold & Orphan Logging
 

@@ -1,7 +1,7 @@
 ---
 title: Travel Mobile App
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/android/installation/travel-mobile-app.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:android/installation/travel-mobile-app.adoc[]
 ---
 
@@ -30,7 +30,7 @@ git clone -b master --depth 1 https://github.com/couchbaselabs/mobile-travel-sam
 
 ## [](#configure-app-to-connect-to-backend)Configure App to connect to Backend
 
-You will have to update the URLs specified in the app to connect to the backend If you haven’t done so already, complete the steps outlined in the "Backend Installation" to install your Couchbase Server, Sync Gateway and Python web backend app.
+You will have to update the URLs specified in the app to connect to the backend If you haven't done so already, complete the steps outlined in the "Backend Installation" to install your Couchbase Server, Sync Gateway and Python web backend app.
 
 ### [](#updating-the-web-backend-url)Updating the web backend URL
 

@@ -4,7 +4,7 @@ description: When covering indexes and index pushdowns are not available, the
   Query Service may use early filtering, early ordering, and early pagination to
   improve the query response time.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/learn/pages/services-and-indexes/indexes/early-filters-and-pagination.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:services-and-indexes/indexes/early-filters-and-pagination.adoc[]
 ---
 
@@ -174,7 +174,7 @@ This query does not run too slowly, since the predicate `city = "Paris"` is push
 | ----- | -------------------------------------------------------------------------------- |
 | **2** | After the pushdown, the Query service fetches documents from the Data service.   |
 
-Now let’s consider the case when the filter is not on the index key exactly, but applies a function on top of the index key.
+Now let's consider the case when the filter is not on the index key exactly, but applies a function on top of the index key.
 
 Example 3\. Early filtering
 

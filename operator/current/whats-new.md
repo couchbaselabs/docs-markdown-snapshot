@@ -1,7 +1,7 @@
 ---
 title: What&#8217;s New?
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/whats-new.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::whats-new.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Couchbase Kubernetes Operator 2.9 adds support for Couchbase Server 8.0 features
 
 ### [](#support-for-couchbase-server-8-0-features)Support for Couchbase Server 8.0 Features
 
-Couchbase Server 8.0 introduces several key features, listed in [What’s New in Version 8.0](../../server/current/introduction/whats-new.md), which are now configurable through Couchbase Kubernetes Operator 2.9\. These are the highlights:
+Couchbase Server 8.0 introduces several key features, listed in [What's New in Version 8.0](../../server/current/introduction/whats-new.md), which are now configurable through Couchbase Kubernetes Operator 2.9\. These are the highlights:
 
 * **Encryption at Rest:** Added support for a new `CouchbaseEncryptionKey` custom resource to manage encryption keys and to specify which keys are used for each unit, such as buckets, configuration data, and logs.
 * **Magma as the Default Storage Engine:** In Couchbase Server 8.0, Magma with 128 vBuckets is the default storage engine for new buckets. Therefore, for CouchbaseBuckets, now the default storage engine is `magma` and the vBucketCount is `128`. Couchbase recommends setting the vBucket count to `1024` for high-throughput workloads.
@@ -29,7 +29,7 @@ Couchbase Server 8.0 introduces several key features, listed in [What’s New in
 
 ### [](#manual-intervention-required-mir-mode)Manual Intervention Required (MIR) Mode
 
-The MirWatchdog is an out-of-band check that provides additional alerting. It’s used when the Operator cannot reconcile a cluster due to reasons outside its control and requires manual user intervention. Scenarios include TLS expiration, Couchbase authentication errors, and rebalance failures.
+The MirWatchdog is an out-of-band check that provides additional alerting. It's used when the Operator cannot reconcile a cluster due to reasons outside its control and requires manual user intervention. Scenarios include TLS expiration, Couchbase authentication errors, and rebalance failures.
 
 This feature is disabled by default but can be enabled and configured by using the `mirWatchdog` field in the CouchbaseCluster CRD.
 
@@ -62,5 +62,5 @@ The following are additional important improvements:
 
 ## [](#more-information)More Information
 
-* [What’s New in Couchbase Server Version 8.0](../../server/current/introduction/whats-new.md)
+* [What's New in Couchbase Server Version 8.0](../../server/current/introduction/whats-new.md)
 * [Couchbase Server Release Notes Version 8.0](../../server/current/release-notes/relnotes.md)

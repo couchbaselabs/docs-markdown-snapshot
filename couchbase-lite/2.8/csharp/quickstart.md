@@ -3,7 +3,7 @@ title: Couchbase Lite on C#.Net
 description: Start your Couchbase for Mobile and Edge adventure, get up and
   running with Couchbase Lite
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/csharp/pages/quickstart.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:csharp:quickstart.adoc[]
 ---
 
@@ -62,7 +62,7 @@ Key Concepts
 
 Product Notes
 
-* [What’s New](../../current/cbl-whatsnew.md)
+* [What's New](../../current/cbl-whatsnew.md)
 * [Release Notes](#couchbase-lite:csharp:release-notes.adoc)
 * [Compatibility](../../current/csharp/compatibility.md)
 * [Supported OS](../../current/csharp/supported-os.md)

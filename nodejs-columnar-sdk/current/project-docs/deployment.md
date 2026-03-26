@@ -2,7 +2,7 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-columnar-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:nodejs-columnar-sdk:project-docs:deployment.adoc[]
 
 > Transition from dev environment to prod, and keep up with the latest fixes. 
 
-One of Couchbase’s strengths is speedy response, so deployment of apps should be in the same region as your Capella Columnar cluster.
+One of Couchbase's strengths is speedy response, so deployment of apps should be in the same region as your Capella Columnar cluster.
 
 We always recommend the [latest version](columnar-sdk-release-notes.md#latest-release) of the SDK. This not only contains the latest security updates and bug fixes, but will be compatible with the latest Couchbase Server release — Capella always runs a recent version of Couchbase Server.
 
@@ -29,10 +29,10 @@ The Node.js Columnar SDK docs note whenever a shortcut is being taken, but here 
 * Geographical separation of app server and database
 * Skipping certificate verification
 
-The best way to accommodate developing an application that is to be deployed to production is to use the platform’s default approach for configuration files.
+The best way to accommodate developing an application that is to be deployed to production is to use the platform's default approach for configuration files.
 
 > [!WARNING]
-> Don’t Mix Columnar & Operational SDKs.
+> Don't Mix Columnar & Operational SDKs.
 > 
 > Do not combine the Node.js Columnar SDK with the Node.js Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
 > 

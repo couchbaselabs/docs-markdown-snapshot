@@ -3,7 +3,7 @@ title: Import Filter Configuration
 description: Using Sync Gateway's Admin REST API and the Import Filter function
   to configure access
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-schema-import-filter.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:configuration:configuration-schema-import-filter.adoc[]
 ---
 
@@ -21,7 +21,7 @@ link: xref:sync-gateway:configuration:configuration-schema-import-filter.adoc[]
 
 Using an import filter improves efficiency when working with large datasets:
 
-* You define import filters at the collection level to retrieve only the relevant documents you need rather than the entire dataset. The import filter determines which documents Sync Gateway can import, evaluating the application’s requirements and applying these criteria to all future changes.
+* You define import filters at the collection level to retrieve only the relevant documents you need rather than the entire dataset. The import filter determines which documents Sync Gateway can import, evaluating the application's requirements and applying these criteria to all future changes.
 * By reducing the amount of data to process, an import filter improves the performance of your queries and analysis. Sync Gateway imports all documents by default, so use an import filter unless you have specific requirements otherwise.
 
 For more information, see [Import filter](../sync/import-processing.md).
@@ -69,7 +69,7 @@ For more information, see [Database Configuration Schema](configuration-schema-d
 | scopename      | Represents the name of each scope                                                                                                                                       |
 | collections    | Contains different collections within each scope                                                                                                                        |
 | collectionname | Represents the name of each collection within a scope.                                                                                                                  |
-| import\_filter | Determines whether to import a document. The function checks the document’s type property. If it’s not 'mobile', the function returns false, otherwise it returns true. |
+| import\_filter | Determines whether to import a document. The function checks the document's type property. If it's not 'mobile', the function returns false, otherwise it returns true. |
 
 ### [](#example)Example
 
@@ -110,7 +110,7 @@ curl -X PUT "http://localhost:4985/froglist/_config/import_filter" \
 
 ## [](#%5FImport%5Ffilter)Schema
 
-This section describes Sync Gateway’s import filter configuration in schema format to assist with constructing JSON models for use with the Admin REST API.
+This section describes Sync Gateway's import filter configuration in schema format to assist with constructing JSON models for use with the Admin REST API.
 
 The configuration settings are provisioned through the [Database Configuration](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) endpoints.
 
@@ -120,7 +120,7 @@ The `import_filter` determines whether to make a document written to the Couchba
 
 You should provision the filter as a JavaScript function in the request body of a call to the Admin Rest API endpoint `PUT {db}/_config/import_filter`.
 
-Set the header’s content type to `content-Type: application/javascript`.
+Set the header's content type to `content-Type: application/javascript`.
 
 The function takes the document body as parameter and returns a boolean to indicate whether to import the document.
 

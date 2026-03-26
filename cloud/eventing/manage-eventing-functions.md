@@ -2,7 +2,7 @@
 title: Manage Eventing Functions
 description: Use the Capella UI to manage the Eventing Functions in your cluster.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/manage-eventing-functions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:manage-eventing-functions.adoc[]
 ---
 
@@ -62,7 +62,7 @@ To export an Eventing Function:
 
 You can use Function logs to identify and capture activities and errors related to your business logic through user-defined messages specific to each Eventing Function.
 
-The content of the Function logs depends on the logic of the `log(…​)` statements you added inside the Function handler’s JavaScript code.
+The content of the Function logs depends on the logic of the `log(…​)` statements you added inside the Function handler's JavaScript code.
 
 To check the logs of your deployed Function:
 
@@ -75,7 +75,7 @@ To check the logs of your deployed Function:
   * Refresh the log data
   * Copy the log data to your clipboard
 
-## [](#edit-javascript)Edit a Function’s JavaScript Code
+## [](#edit-javascript)Edit a Function's JavaScript Code
 
 > [!NOTE]
 > You can only edit the JavaScript code of an Eventing Function when that Function is paused or undeployed.
@@ -93,10 +93,10 @@ To edit the settings of your Eventing Function:
 
 1. Go to **Data Tools** **Eventing**.
 2. Click **Settings** next to the Function you want to edit the settings for.
-3. Edit the available settings. You can also edit the Function’s bindings and JavaScript code.
+3. Edit the available settings. You can also edit the Function's bindings and JavaScript code.
 4. Click **Save**.
 
-If your Eventing Function is in a deployed state, you can only edit some of its settings. To edit a larger number of your Function’s settings, undeploy or pause your Function.
+If your Eventing Function is in a deployed state, you can only edit some of its settings. To edit a larger number of your Function's settings, undeploy or pause your Function.
 
 | Field                             | Description                                                                                |
 | --------------------------------- | ------------------------------------------------------------------------------------------ |

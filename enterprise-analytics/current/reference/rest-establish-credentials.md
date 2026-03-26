@@ -3,7 +3,7 @@ title: Establishing Credentials
 description: By means of the REST API, credentials can be established for the
   administrator who is provisioning a new, single-node cluster.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-establish-credentials.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:reference:rest-establish-credentials.adoc[]
 ---
 
@@ -20,7 +20,7 @@ POST /settings/web
 
 ## [](#description)Description
 
-Establishes username and password for the administrator who’s setting up a new, single-node cluster. The administrator has Full Admin permissions, but will not appear as a listed administrator in the Security window of Couchbase Web Console. The administrator will be able to add other administrators, with specific roles, including administrators with Full Admin permissions: all will appear in the Security window of Couchbase Web Console.
+Establishes username and password for the administrator who's setting up a new, single-node cluster. The administrator has Full Admin permissions, but will not appear as a listed administrator in the Security window of Couchbase Web Console. The administrator will be able to add other administrators, with specific roles, including administrators with Full Admin permissions: all will appear in the Security window of Couchbase Web Console.
 
 During the process of provisioning a new single-node cluster, prior to the establishing of a username and password, no authentication is required to execute the APIs that support provisioning. This permits [Naming a Node](rest-name-node.md), [Naming a Cluster](rest-name-cluster.md), [Configuring Memory](rest-configure-memory.md), and [Assigning Services](#reference:rest-set-up-services.adoc) to be performed without any username or password being specified. However, once a username and password have been established, all further calls, including those used in provisioning, require authentication.
 

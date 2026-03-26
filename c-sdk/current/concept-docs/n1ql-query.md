@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:c-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -56,7 +56,7 @@ CREATE INDEX ix_name ON `users`(name);
 CREATE INDEX ix_email ON `users`(email);
 ```
 
-This would allow you to query the _users_ bucket regarding a document’s `name` or `email` properties, thus:
+This would allow you to query the _users_ bucket regarding a document's `name` or `email` properties, thus:
 
 ```n1ql
 SELECT name, email FROM `users` WHERE name="Monty Python" OR email="monty@python.org";

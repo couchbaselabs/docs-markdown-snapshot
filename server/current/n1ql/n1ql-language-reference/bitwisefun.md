@@ -2,7 +2,7 @@
 title: Bitwise Functions
 description: All Bit/Binary functions can only operate on 64-bit signed integers.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/bitwisefun.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/bitwisefun.adoc[]
 ---
 
@@ -17,7 +17,7 @@ All Bit/Binary functions can only operate on 64-bit signed integers.
 > All non-integer numbers and other data types result in null.
 
 > [!NOTE]
-> Couchbase Server uses two’s complement representation.
+> Couchbase Server uses two's complement representation.
 
 When looking at the value in binary form, bit 1 is the Least Significant Bit (LSB) and bit 32 is the Most Significant Bit (MSB).
 
@@ -545,7 +545,7 @@ Results
 ]
 ```
 
-This results in -9223372036854775807 (1100 0000 0000 0000 0000 0000 0000 0000 in binary) because the two 1-bits wrapped right, around to the Most Significant Digit position and changed the integer’s sign to negative.
+This results in -9223372036854775807 (1100 0000 0000 0000 0000 0000 0000 0000 in binary) because the two 1-bits wrapped right, around to the Most Significant Digit position and changed the integer's sign to negative.
 
 SHIFT-3
 

@@ -1,7 +1,7 @@
 ---
 title: <code>CouchbaseCluster</code> Services
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/reference-couchbasecluster-services.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::reference-couchbasecluster-services.adoc[]
 ---
 
@@ -16,7 +16,7 @@ The service names are based on the cluster name. For the purposes of demonstrati
 
 ## [](#couchbase)`couchbase`
 
-The first service that is created, it creates endpoints for every Couchbase node in the cluster on administration ports 8091 and 18091\. It is a headless service so doesn’t create a virtual IP or offer any load balancing.
+The first service that is created, it creates endpoints for every Couchbase node in the cluster on administration ports 8091 and 18091\. It is a headless service so doesn't create a virtual IP or offer any load balancing.
 
 It is responsible for generating stable DNS names which can persist across pod failure and recreation in the case where persistent volumes are being used. These DNS names are also the method the Operator uses to access Couchbase APIs for cluster management purposes.
 

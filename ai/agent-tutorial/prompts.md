@@ -2,7 +2,7 @@
 title: About Prompts and Prompt Engineering
 description: Learn how prompts, context, and orchestration work together in agentic apps.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/prompts.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:agent-tutorial:prompts.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:ai:agent-tutorial:prompts.adoc[]
 
 In an agentic app, the Large Language Model (LLM) is the reasoning engine. The LLM does not automatically know what to do but instead relies on the prompt it receives. The prompt is the input that tells the LLM:
 
-* What role it’s playing.
+* What role it's playing.
 * What tools it can use.
 * What the user wants.
 * What context is relevant right now.
@@ -27,12 +27,12 @@ Understanding prompts and how they evolve during a workflow helps take away some
 
 ## [](#what-goes-into-a-prompt)What Goes Into a Prompt?
 
-A prompt is more than just the user’s request. It’s a structured input assembled by the orchestration layer and contains multiple things.
+A prompt is more than just the user's request. It's a structured input assembled by the orchestration layer and contains multiple things.
 
 | Component             | Description                                     | Example                                                   |
 | --------------------- | ----------------------------------------------- | --------------------------------------------------------- |
 | User input            | The goal or request from the user.              | Plan me a trip to Rome.                                   |
-| System role / persona | Instructions about how the LLM should behave.   | You’re a helpful travel assistant.                        |
+| System role / persona | Instructions about how the LLM should behave.   | You're a helpful travel assistant.                        |
 | Context               | Memory, retrieved knowledge, or current state.  | User prefers budget airlines, vegetarian meals.           |
 | Tools                 | What the LLM can call or interact with.         | You can use the Flights API and Hotels API.               |
 | Guardrails            | Rules and constraints that the LLM must follow. | Never book without confirmation. Stay under $1500 budget. |
@@ -53,7 +53,7 @@ Capella AI Services can help you manage your prompts using the [Agent Catalog](.
 
 ## [](#guardrails)Guardrails
 
-Guardrails are rules that keep the agent safe, reliable, and aligned with user expectations. They’re included in the prompt itself, enforced programmatically by the orchestration layer, or both.
+Guardrails are rules that keep the agent safe, reliable, and aligned with user expectations. They're included in the prompt itself, enforced programmatically by the orchestration layer, or both.
 
 Guardrails protect against:
 
@@ -74,7 +74,7 @@ Guardrails help make sure the LLM does not go off track whether by accident or t
 
 For more information about guardrails on the Capella Model Service, see [Configure Guardrails and Security](../build/model-service/configure-guardrails-security.md).
 
-## [](#the-orchestration-layers-role)The Orchestration Layer’s Role
+## [](#the-orchestration-layers-role)The Orchestration Layer's Role
 
 The orchestration layer is responsible for building and updating the prompt as the workflow progresses. It decides:
 
@@ -85,7 +85,7 @@ The orchestration layer is responsible for building and updating the prompt as t
 
 ## [](#how-agentic-apps-differ-from-traditional-apps)How Agentic Apps Differ from Traditional Apps
 
-For experienced developers, you can think of the prompt as an evolution of a state object in a traditional app. Instead of storing values in variables to decribe the app’s state, an evolving prompt tells the LLM what state the app is in.
+For experienced developers, you can think of the prompt as an evolution of a state object in a traditional app. Instead of storing values in variables to decribe the app's state, an evolving prompt tells the LLM what state the app is in.
 
 * In a traditional app, the structure of the state (variables, objects) and the logic is explicit.
 * In an agentic app, the state is flattened into natural language (the prompt), and the LLM applies reasoning to decide what to do.

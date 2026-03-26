@@ -1,7 +1,7 @@
 ---
 title: Information Dialogs
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/info-dialogs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ui-ux::info-dialogs.adoc[]
 ---
 
@@ -16,7 +16,7 @@ They can provide information about a complication or recommended course of actio
 
 An information dialog can contain an [error message](error-messages.md).
 
-## [](#add-a-title-thats-a-statement)Add a Title That’s a Statement
+## [](#add-a-title-thats-a-statement)Add a Title That's a Statement
 
 The title of an information dialog is a statement. It should tell the user what the system did or what happened.
 

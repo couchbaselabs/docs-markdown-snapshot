@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Node.js Client.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.3/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@nodejs-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -215,8 +215,8 @@ $ npm install couchbase@4.5.0
 * [CXXCBC-681](https://jira.issues.couchbase.com/browse/CXXCBC-681): No longer storing entire `transaction_get_result` in staged mutations, reducing memory use ([#757](https://github.com/couchbase/couchbase-cxx-client/pull/757)).
 * [CXXCBC-682](https://jira.issues.couchbase.com/browse/CXXCBC-682): Transaction replace/insert result now includes post-op content ([#756](https://github.com/couchbase/couchbase-cxx-client/pull/756)).
 * [CXXCBC-683](https://jira.issues.couchbase.com/browse/CXXCBC-683): Transactions replace now uses CAS from given `TransactionsGetResult` when the document is a staged insert ([#763](https://github.com/couchbase/couchbase-cxx-client/pull/763)).
-* [CXXCBC-688](https://jira.issues.couchbase.com/browse/CXXCBC-688): Don’t convert Public API TOF from lambda to Core API’s TOF, rely on internal state ([#765](https://github.com/couchbase/couchbase-cxx-client/pull/765)).
-* [CXXCBC-690](https://jira.issues.couchbase.com/browse/CXXCBC-690): Don’t move `staged_mutation` item when capturing it in `commit_doc` lambdas ([#767](https://github.com/couchbase/couchbase-cxx-client/pull/767)).
+* [CXXCBC-688](https://jira.issues.couchbase.com/browse/CXXCBC-688): Don't convert Public API TOF from lambda to Core API's TOF, rely on internal state ([#765](https://github.com/couchbase/couchbase-cxx-client/pull/765)).
+* [CXXCBC-690](https://jira.issues.couchbase.com/browse/CXXCBC-690): Don't move `staged_mutation` item when capturing it in `commit_doc` lambdas ([#767](https://github.com/couchbase/couchbase-cxx-client/pull/767)).
 
 ## [](#node-js-sdk-4-4-releases)Node.js SDK 4.4 Releases
 
@@ -320,7 +320,7 @@ $ npm install couchbase@4.4.4
 * [JSCBC-1289](https://jira.issues.couchbase.com/browse/JSCBC-1289): Analytics index management link connect/disconnect updated to match RFC.
 * [JSCBC-1290](https://jira.issues.couchbase.com/browse/JSCBC-1290), [JSCBC-1291](https://jira.issues.couchbase.com/browse/JSCBC-1291), [JSCBC-1292](https://jira.issues.couchbase.com/browse/JSCBC-1292): Analytics index management link APIs now correctly return `InvalidArgumentError` rather than `CouchbaseError`.
 * [JSCBC-1294](https://jira.issues.couchbase.com/browse/JSCBC-1294): User management APIs now correctly return `InvalidArgumentError` rather than `CouchbaseError`.
-* [JSCBC-1295](https://jira.issues.couchbase.com/browse/JSCBC-1295): User management’s `upsertUser` was not being properly applied to all members of any groups passed to it. This has now been fixed.
+* [JSCBC-1295](https://jira.issues.couchbase.com/browse/JSCBC-1295): User management's `upsertUser` was not being properly applied to all members of any groups passed to it. This has now been fixed.
 * [JSCBC-1296](https://jira.issues.couchbase.com/browse/JSCBC-1296): User management `` getUser’s `passwordChanged `` field for an external user war returning an `Invalid Date`. The internal logic for this has been updated, with an undefined field now allowed, and the problem is fixed.
 * [JSCBC-1298](https://jira.issues.couchbase.com/browse/JSCBC-1298): Removing the chained `promise.then().callback()` in `PromiseHelper` will now prevent the double invocation of the callback.
 
@@ -1476,7 +1476,7 @@ $ npm install couchbase@3.0.3
 * [JSCBC-757](http://issues.couchbase.com/browse/JSCBC-757): Fixed CreateCollection parameters not matching specification.
 * [JSCBC-698](http://issues.couchbase.com/browse/JSCBC-698): Fixed MutateIn placeholders not being handled correctly.
 * [JSCBC-751](http://issues.couchbase.com/browse/JSCBC-751): Fixed documentation of SearchIndexManager.
-* [JSCBC-754](http://issues.couchbase.com/browse/JSCBC-754): Don’t swap in a bucket name when none is used.
+* [JSCBC-754](http://issues.couchbase.com/browse/JSCBC-754): Don't swap in a bucket name when none is used.
 * Updated all dependencies to latest versions.
 * Updated to libcouchbase 3.0.2
 * Various other minor fixes.

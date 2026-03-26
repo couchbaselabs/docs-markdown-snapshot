@@ -2,7 +2,7 @@
 title: Cancel or Overwrite a Timer
 description: Create, cancel, and overwrite Timers.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-cancel-overwrite-timer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-examples-cancel-overwrite-timer.adoc[]
 ---
 
@@ -20,8 +20,8 @@ The Timer callback function relies on a control document which, if mutated, cont
 This page contains the following:
 
 * An example where a control document is created or mutated, which creates a Timer. This Timer fires every 60 seconds and writes a document to another collection. The original document in the source collection does not change.
-* An example where a control document is mutated, which cancels any existing Timer with a reference that matches the control document’s `meta.id`.
-* An example where a control document is mutated, which overwrites any existing Timer with a reference that matches the control document’s `meta.id`. This is similar to cancelling a Timer that already exists, and then creating a new Timer that fires 60 seconds after it has been overwritten.
+* An example where a control document is mutated, which cancels any existing Timer with a reference that matches the control document's `meta.id`.
+* An example where a control document is mutated, which overwrites any existing Timer with a reference that matches the control document's `meta.id`. This is similar to cancelling a Timer that already exists, and then creating a new Timer that fires 60 seconds after it has been overwritten.
 
 ## [](#prerequisites)Prerequisites
 
@@ -137,7 +137,7 @@ Deploy your Eventing Function:
 2. Click **More Options (⋮)** next to **cancel\_overwrite\_timer**.
 3. Click **Deploy** to deploy your Function.
 
-After it’s deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
+After it's deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
 
 ## [](#example-create-a-timer-and-allow-the-timer-to-fire)Example: Create a Timer and Allow the Timer to Fire
 
@@ -179,7 +179,7 @@ To check that a new document has been created in the target collection:
 
 1. Go to **Data Tools** **Documents**.
 2. Select the keyspace `bulk.data.target` in the **Get documents from** list.
-3. Click **type\_of\_interest::1** to open the **Edit Document** dialog. The JSON document includes data written by the Timer’s callback.  
+3. Click **type\_of\_interest::1** to open the **Edit Document** dialog. The JSON document includes data written by the Timer's callback.  
 ```json  
 {  
   "docId": "type_of_interest::1",  
@@ -320,7 +320,7 @@ To check that a new document has been created in the target collection:
 
 1. Go to **Data Tools** **Documents**.
 2. Select the keyspace `bulk.data.target` in the **Get documents from** list.
-3. Click **type\_of\_interest::1** to open the **Edit Document** dialog. The JSON document includes data written by the Timer’s callback.  
+3. Click **type\_of\_interest::1** to open the **Edit Document** dialog. The JSON document includes data written by the Timer's callback.  
 ```json  
 {  
   "docId": "type_of_interest::1 ",  

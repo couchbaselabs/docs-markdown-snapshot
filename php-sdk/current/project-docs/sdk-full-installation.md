@@ -2,7 +2,7 @@
 title: Full Installation
 description: Installation instructions, and download archive for the Couchbase PHP Client.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:php-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:php-sdk:project-docs:sdk-full-installation.adoc[]
 
 For release notes, download links, and installation methods for [earlier releases of the Couchbase PHP Client](#older-releases), see below.
 
-The Couchbase PHP SDK generally tracks PHP’s own [supported versions](https://www.php.net/supported-versions.php), and recommends the most recent "Active Support" version, except as specified in our documentation and especially the [release notes](sdk-release-notes.md).
+The Couchbase PHP SDK generally tracks PHP's own [supported versions](https://www.php.net/supported-versions.php), and recommends the most recent "Active Support" version, except as specified in our documentation and especially the [release notes](sdk-release-notes.md).
 
 As of June 2024, these versions are PHP 8.3 (Latest Active Support), 8.2 (Active Support), and 8.1 (Security Support) — see the table below for [supported versions and dates](#php-version-compatibility).
 
@@ -40,7 +40,7 @@ For more details regarding platform support refer to the [Compatibility page](co
 > 
 > If you have any issues setting this up, see the tips mentioned when you run `brew info openssl`.
 
-Now, install the Couchbase PHP SDK through your PHP distribution’s `pecl` command:
+Now, install the Couchbase PHP SDK through your PHP distribution's `pecl` command:
 
 ```console
 $ pecl install couchbase
@@ -61,13 +61,13 @@ Then follow the [post-installation steps](#post-installation).
 > 
 > Older versions of Debian and Ubuntu ship with an older version of GCC — and RHEL and CentOS also lack a supported version of PHP.
 > 
-> Workarounds are available for installing a newer build chain for RHEL and CentOS with [EPEL](https://fedoraproject.org/wiki/EPEL), but this may not be within your company’s policy, so also take a look at container options.
+> Workarounds are available for installing a newer build chain for RHEL and CentOS with [EPEL](https://fedoraproject.org/wiki/EPEL), but this may not be within your company's policy, so also take a look at container options.
 
 #### [](#alpine-linux)Alpine Linux
 
 **Alpine Linux** is very slim and uses `musl libc` and the `apk` package manager. As a result, the installation is a little different from other Unix-Like systems, and `pecl` equivalent packages are used instead.
 
-Using `apk`, you would install your preferred `php` version, install `libcouchbase`, and then install the equivalent `pecl` package for the version of `php` that you’re using.
+Using `apk`, you would install your preferred `php` version, install `libcouchbase`, and then install the equivalent `pecl` package for the version of `php` that you're using.
 
 ```console
 $ apk add php81
@@ -96,7 +96,7 @@ Loaded Configuration File:         /usr/local/etc/php/8.1/php.ini
 Scan for additional .ini files in: /usr/local/etc/php/8.1/conf.d  
 Additional .ini files parsed:      (none)  
 ```
-2. Insert a line in the `php.ini` file specifying the extension to be loaded; this should be in the `[PHP]` section. If you don’t know where that is, simply search for existing commented or uncommented `extension=` entries in the file.  
+2. Insert a line in the `php.ini` file specifying the extension to be loaded; this should be in the `[PHP]` section. If you don't know where that is, simply search for existing commented or uncommented `extension=` entries in the file.  
 ```ini  
 extension=json      ; not needed with PHP 8.0.0+  
 extension=couchbase  
@@ -115,7 +115,7 @@ $ composer --version
 Composer version 2.3.5 2022-04-13 16:43:00
 ```
 
-To add Couchbase to your project’s dependency list, simply update your `composer.json` file with the following dependencies:
+To add Couchbase to your project's dependency list, simply update your `composer.json` file with the following dependencies:
 
 ```json
 "require": {

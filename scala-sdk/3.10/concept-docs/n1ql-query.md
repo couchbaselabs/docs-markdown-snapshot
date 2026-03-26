@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@scala-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -53,7 +53,7 @@ The Couchbase query service makes use of [_indexes_](../../../server/current/lea
 
 From Couchbase Server 7.6 onwards, CRUD operations (such as `CREATE`, `INSERT`, and `SELECT`) and `JOIN` can be performed against the Query Service without an index (primary or secondary). This uses a [sequential scan](../../../server/current/indexes/query-without-index.md#sequential-scans), relying on a KV range scan to deliver the keys.
 
-Sequential scans are best suited to small collections where key order is unimportant, or where the overhead of maintaining an index can’t be justified. For larger collections and greater performance, define the appropriate indexes to speed up your queries. For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan.
+Sequential scans are best suited to small collections where key order is unimportant, or where the overhead of maintaining an index can't be justified. For larger collections and greater performance, define the appropriate indexes to speed up your queries. For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan.
 
 Creating the right index, with the right keys, right order, and right expression is critical to query performance in any database system. A Primary Index on the document keys will give you better search performance than trying to query without index, but well-chosen secondary indexes will make all the difference to query performance.
 
@@ -72,7 +72,7 @@ CREATE INDEX ix_name ON `travel-sample`.inventory.hotel(name);
 CREATE INDEX ix_email ON `travel-sample`.inventory.hotel(email);
 ```
 
-This would allow you to query the _travel-sample_ bucket’s hotel collection regarding a document’s `name` or `email` properties, thus:
+This would allow you to query the _travel-sample_ bucket's hotel collection regarding a document's `name` or `email` properties, thus:
 
 ```sqlpp
 SELECT name, email
@@ -153,7 +153,7 @@ For SQL++, the default consistency is `not_bounded`.
 
 For SQL++, the default consistency is `not_bounded`.
 
-Here’s how to specify the `RequestPlus` scan consistency level:
+Here's how to specify the `RequestPlus` scan consistency level:
 
 ```scala
 val result = cluster.query(

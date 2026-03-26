@@ -3,7 +3,7 @@ title: Managing Connections
 description: This section describes how to connect the Node.js Columnar SDK to a
   Columnar cluster.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-nodejs/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-columnar-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:nodejs-columnar-sdk:howtos:managing-connections.adoc[]
 Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to a Capella Columnar cluster. This page is a wider look at the topic.
 
 > [!WARNING]
-> Don’t Mix Columnar & Operational SDKs.
+> Don't Mix Columnar & Operational SDKs.
 > 
 > Do not combine the Node.js Columnar SDK with the Node.js Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
 > 
@@ -42,7 +42,7 @@ async function main() {
 ```
 
 > [!NOTE]
-> Capella’s root certificate is **not** signed by a well known Certificate Authority. However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust.
+> Capella's root certificate is **not** signed by a well known Certificate Authority. However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust.
 
 ### [](#connection-strings)Connection Strings
 
@@ -68,4 +68,4 @@ We strongly recommend that the client and server [are in the same LAN-like envir
 
 ### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 
-Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\].
+Some DNS caching providers (notably, home routers) can't handle an SRV record that's large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\].

@@ -3,7 +3,7 @@ title: Reactive APIs
 description: The Reactive APIs are enhanced APIs for Swift that streamline data
   modeling and enable reactive programming patterns.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/reactive.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:swift:reactive.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:couchbase-lite:swift:reactive.adoc[]
 
 > The Reactive APIs are enhanced APIs for Swift that streamline data modeling and enable reactive programming patterns. 
 
-The Reactive APIs are designed for developers building apps with SwiftUI, Combine, or Swift’s new Observation framework. They provide two tightly integrated capabilities:
+The Reactive APIs are designed for developers building apps with SwiftUI, Combine, or Swift's new Observation framework. They provide two tightly integrated capabilities:
 
 * **Codable protocol compatibility** — enables automatic mapping between Couchbase Lite documents and Swift model objects using the [Codable](https://developer.apple.com/documentation/swift/codable) protocol, reducing boilerplate and improving type safety.
 * **Change publishers** — provides [Combine](https://developer.apple.com/documentation/combine) and [Observation](https://developer.apple.com/documentation/observation) publishers for observing changes to queries, documents, and collections, enabling SwiftUI views and view models to react automatically to underlying data updates.
@@ -134,7 +134,7 @@ For API details, see [Document Management](https://docs.couchbase.com/mobile/4.0
 
 The Reactive APIs enable you to decode Couchbase SQL++ query results directly into model objects. This makes queries observable, so that you can refresh the application automatically as the results change.
 
-With prior solutions such as [Live Queries](query-live.md), you need to trigger user interface updates manually inside the listener. This can lead to complex and difficult-to-maintain state management. With the Reactive APIs, you can use SwiftUI’s minimalistic and declarative approach to manage querying and updating the user interface.
+With prior solutions such as [Live Queries](query-live.md), you need to trigger user interface updates manually inside the listener. This can lead to complex and difficult-to-maintain state management. With the Reactive APIs, you can use SwiftUI's minimalistic and declarative approach to manage querying and updating the user interface.
 
 To make query results observable, the model object only needs to conform to the decodable protocol, and does not require a document ID property annotated with the `@DocumentID` property wrapper.
 
@@ -148,7 +148,7 @@ SELECT meta().id AS id, title FROM _default.tasks
 
 ### [](#get-a-query-result-as-decodable)Get a Query Result as Decodable
 
-To get a query’s result as a decodable model object:
+To get a query's result as a decodable model object:
 
 * Use the `data` function with the query result.
 * Specify the decodable model type.
@@ -164,11 +164,11 @@ for result in results {
 For API details, see [ReadOnlyArrayProtocol](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Result.html#/ReadOnlyArrayProtocol).
 
 > [!NOTE]
-> When saving a document model decoded from the query’s result, the document associated with the model will be retrieved during the save time. As a result, the document may not be the same document during the query time if the document has been changed.
+> When saving a document model decoded from the query's result, the document associated with the model will be retrieved during the save time. As a result, the document may not be the same document during the query time if the document has been changed.
 
 ### [](#get-all-query-results-as-decodable)Get All Query Results as Decodable
 
-To get all a query’s results as an array of a decodable model objects:
+To get all a query's results as an array of a decodable model objects:
 
 * Use the `data` function with the query result set.
 * Specify the decodable model type.
@@ -181,7 +181,7 @@ tasks = try query.execute().data(as: Task.self)
 For API details, see [ResultSet](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/ResultSet.html).
 
 > [!WARNING]
-> Getting all the query’s results as an array of decodable model objects may take a long time and consume a large amount of memory, depending on the data size and the number of results.
+> Getting all the query's results as an array of decodable model objects may take a long time and consume a large amount of memory, depending on the data size and the number of results.
 
 ### [](#datakey)Specify a Data Key
 
@@ -258,7 +258,7 @@ For API details, see [Combine Publisher](https://docs.couchbase.com/mobile/4.0.3
 
 ### [](#publish-replicator-changes)Publish Replicator Changes
 
-To get a publisher that emits `ReplicatorChange` events when a replicator’s status changes:
+To get a publisher that emits `ReplicatorChange` events when a replicator's status changes:
 
 * Use the `changePublisher` function with the replicator.
 * Optionally, specify the dispatch queue on which the changes are to be delivered. By default, the main queue is used.

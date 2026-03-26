@@ -3,7 +3,7 @@ title: Deployment
 description: This article covers different aspects of using Sync Gateway and
   Couchbase Server during production.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/deployment.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::deployment.adoc[]
 ---
 
@@ -34,7 +34,7 @@ Replicator node
 
 if you are using SG Replicate then there will be one designated replicator node whose configuration is different than the rest of the nodes — see [SG-Replicate](#sync-gateway::legacy-sg-replicate.adoc).
 
-Sync Gateway nodes are "shared-nothing," so they don’t need to coordinate any state or even know about each other. With multiple Sync Gateways, we recommend placing this cluster behind a load balancer server to coordinate connection requests in clients (see the [Load Balancer](load-balancer.md) guide).
+Sync Gateway nodes are "shared-nothing," so they don't need to coordinate any state or even know about each other. With multiple Sync Gateways, we recommend placing this cluster behind a load balancer server to coordinate connection requests in clients (see the [Load Balancer](load-balancer.md) guide).
 
 ## [](#channel-and-revision-cache)Channel and Revision Cache
 
@@ -56,7 +56,7 @@ There are two categories of settings:
 
 Keep in mind the following notes on performance:
 
-* Sync Gateway nodes don’t keep any local state, so they don’t require any disk.
+* Sync Gateway nodes don't keep any local state, so they don't require any disk.
 * Sync Gateway nodes maintain a channel and revision metadata cache in RAM. Tuning the cache values in the configuration file can speed up the performance (see [Channel and Revision Cache](#channel-and-revision-cache)).
 * Sync Gateway is designed for multiprocessing. It uses lightweight threads and asynchronous I/O. Therefore, adding more CPU cores to a Sync Gateway node can speed it up.
 * As is typical with databases, writes are going to put a greater load on the system than reads. In particular, every write operation gets processed by the [Sync Function](../current/access-control/sync-function/sync-function.md) and triggers notifications to other clients with read access, who then perform reads to get the new data.

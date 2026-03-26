@@ -2,7 +2,7 @@
 title: Preparing for Couchbase Lite on Android
 description: Prerequisites for the installation of Couchbase Lite
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/gs-prereqs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:android:gs-prereqs.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:couchbase-lite:android:gs-prereqs.adoc[]
 > [!IMPORTANT]
 > The requirements listed below are for the **Java/Kotlin SDK** on Android (Minimum API Level **22**).
 > 
-> If you’re developing with the **C/C++ SDK** on Android, the minimum API Level is **24**. For C/C++ SDK requirements, see [Couchbase Lite for C - Android Requirements](../c/supported-os.md#android).
+> If you're developing with the **C/C++ SDK** on Android, the minimum API Level is **24**. For C/C++ SDK requirements, see [Couchbase Lite for C - Android Requirements](../c/supported-os.md#android).
 
 The [Supported OS Versions](supported-os.md#supported-os-versions) lists certified Android versions. Couchbase does not test against, nor guarantee support for, uncertified Android versions such as versions built from source.
 

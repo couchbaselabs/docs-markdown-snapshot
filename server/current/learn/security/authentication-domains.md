@@ -4,7 +4,7 @@ description: "To access Couchbase Server, users must be authenticated: this can
   occur in either the <em>local</em> or the <em>external</em> authentication
   domain."
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/authentication-domains.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:security/authentication-domains.adoc[]
 ---
 
@@ -26,13 +26,13 @@ This includes:
 * The Full Administrator for Couchbase Server.
 * Locally Defined Users, which are explicitly created by a Couchbase Server administrator; and each feature a username and password unique within the Local domain.
 * Internal Components within Couchbase Server that support core functionality (for example, indexing, searching, and replicating), and run with full administrative privileges.
-* Generated Users, which are created by Couchbase Server as part of the upgrade process from pre-5.0 to 5.0 and post-5.0 versions; each in correspondence with a legacy bucket. Each Generated User is assigned a _username_ that is identical to the bucket-name; and either a _password_ that is identical to the bucket’s pre-5.0 password, or _no password_, if the bucket did not feature a password. Generated Users are created to ensure that legacy applications can continue to access legacy buckets after upgrade to 5.0 or post-5.0, with the same username-password combination being used for authentication.  
+* Generated Users, which are created by Couchbase Server as part of the upgrade process from pre-5.0 to 5.0 and post-5.0 versions; each in correspondence with a legacy bucket. Each Generated User is assigned a _username_ that is identical to the bucket-name; and either a _password_ that is identical to the bucket's pre-5.0 password, or _no password_, if the bucket did not feature a password. Generated Users are created to ensure that legacy applications can continue to access legacy buckets after upgrade to 5.0 or post-5.0, with the same username-password combination being used for authentication.  
 Note that from release 7.6, Couchbase Server no longer supports {sqlpp) operations on buckets without password specification.
 
 * _External_: Contains either or both of the following:
 
   * Users that are explicitly registered on Couchbase Server as _external_; as supported either by _LDAP_, _Security Assertion Markup Language (SAML)_, or _PAM_. Usernames and passwords are defined and stored remotely; with the usernames also stored on Couchbase Server. Note that external usernames do not clash with local usernames.
-  * Users that aren’t defined or registered on Couchbase Server can be defined externally in either an LDAP server or a SAML provider. For these external users to authenticate, Couchbase Server must have either _Native LDAP Support_ with _LDAP Group Support_ or _SAML Support_ enabled.  
+  * Users that aren't defined or registered on Couchbase Server can be defined externally in either an LDAP server or a SAML provider. For these external users to authenticate, Couchbase Server must have either _Native LDAP Support_ with _LDAP Group Support_ or _SAML Support_ enabled.  
   For LDAP-based users, if one or more of their LDAP Groups has been _mapped_ to a corresponding Couchbase-Server user-group, the user can be authenticated on the LDAP server, and then be granted the roles assigned to each of the user-groups to which a mapping has been made.  
   Similarly, Administrators can map Couchbase groups and roles to SAML attributes. When users authenticate using a SAML IdP, Couchbase Server grants them the groups and roles in defined in these SAML attributes.
 
@@ -65,7 +65,7 @@ Couchbase Server allows Native LDAP to be configured by means of the [UI](../../
 
 ### [](#introduction-to-ldap-groups)LDAP Groups
 
-LDAP allows users to be members of _LDAP Groups_. When a user authenticates with LDAP, a list of the user’s LDAP groups is returned to Couchbase Server. If an LDAP group has previously been _mapped_ to a Couchbase-Server group, the user inherits the roles assigned to the Couchbase-Server group. Note that LDAP Groups thus allow users _not_ registered on Couchbase Server — even as _external_ — to be authorized.
+LDAP allows users to be members of _LDAP Groups_. When a user authenticates with LDAP, a list of the user's LDAP groups is returned to Couchbase Server. If an LDAP group has previously been _mapped_ to a Couchbase-Server group, the user inherits the roles assigned to the Couchbase-Server group. Note that LDAP Groups thus allow users _not_ registered on Couchbase Server — even as _external_ — to be authorized.
 
 ### [](#native-ldap-auth-sequence)Native LDAP Authentication and Authorization Sequence
 
@@ -79,8 +79,8 @@ If authentication has succeeded, the authentication-process is thereby concluded
 
 1. Couchbase Server checks whether an _external_ user, with the specified username, has previously been added to Couchbase Server. If such an external user is located, Couchbase Server determines which roles have been assigned to the user: first, it checks for roles that have been _directly_ assigned to the user; and secondly, it checks for roles assigned to the user by means of _group membership_. (For information on granting roles to users directly and by means of groups, see [Manage Users, Groups, and Roles](../../manage/manage-security/manage-users-and-roles.md).) The user is granted the privileges that correspond to each of their assigned roles.
 2. If _LDAP Group Support_ has been enabled, Couchbase Server again contacts the LDAP server: this time, in order to retrieve a list of the LDAP groups of which the user is a member. Note that this step is performed irrespective of whether the user has been determined to be an _external_ user on Couchbase Server. See [Group Authorization Enablement](../../manage/manage-security/configure-ldap.md#group-authorization-enablement), for detailed information on configuring LDAP Group Support.
-3. Couchbase Server determines whether one or more of the user’s LDAP groups have been _mapped_ to existing Couchbase-Server user-groups. Wherever a mapping exists, the user is granted (in addition to whatever privileges they may have already been granted as an _external_ user) the privileges that correspond to all roles assigned to the Couchbase-Server user-group. (For information on mapping LDAP groups to Couchbase-Server user-groups, see [Map LDAP Groups to Couchbase-Server Roles](../../manage/manage-security/configure-ldap.md#map-ldap-groups-to-couchbase-server-roles).)  
-If any granted privilege supports the user’s intended action, the action is permitted; otherwise, the action is prohibited.
+3. Couchbase Server determines whether one or more of the user's LDAP groups have been _mapped_ to existing Couchbase-Server user-groups. Wherever a mapping exists, the user is granted (in addition to whatever privileges they may have already been granted as an _external_ user) the privileges that correspond to all roles assigned to the Couchbase-Server user-group. (For information on mapping LDAP groups to Couchbase-Server user-groups, see [Map LDAP Groups to Couchbase-Server Roles](../../manage/manage-security/configure-ldap.md#map-ldap-groups-to-couchbase-server-roles).)  
+If any granted privilege supports the user's intended action, the action is permitted; otherwise, the action is prohibited.
 
 For detailed, step-by-step accounts of how to configure these procedures, see [Configure LDAP](../../manage/manage-security/configure-ldap.md).
 
@@ -88,7 +88,7 @@ For detailed, step-by-step accounts of how to configure these procedures, see [C
 
 LDAP provides a convenient way of managing authentication and authorization for human users. However, LDAP may be less appropriate for the authentication and authorization of _application identities_. This is because:
 
-* Couchbase Server must access the LDAP server for initial authentication; thereby adding a potentially undesirable latency to the application’s establishment of a full connection with Couchbase Server.
+* Couchbase Server must access the LDAP server for initial authentication; thereby adding a potentially undesirable latency to the application's establishment of a full connection with Couchbase Server.
 * If the LDAP server is unavailable, the application cannot be authenticated or authorized. In such circumstances, Couchbase Server, even though it may itself still be available, cannot grant data-access to the application.
 
 Therefore, to avoid both latency and risk of unavailability, applications should authenticate and authorize with Couchbase Server _locally_.
@@ -107,7 +107,7 @@ For details on configuring `saslauthd` to support external authentication by LDA
 
 ### [](#introduction-to-pam-based-authentication)saslauthd and PAM
 
-_Pluggable Authentication Modules_ (PAM) provide an authentication framework that allows multiple, low-level authentication schemes to be used by a single API. The _Enterprise Edition_ of Couchbase Server, running on Linux, supports administrator-authentication through PAM’s _Linux password-module_.
+_Pluggable Authentication Modules_ (PAM) provide an authentication framework that allows multiple, low-level authentication schemes to be used by a single API. The _Enterprise Edition_ of Couchbase Server, running on Linux, supports administrator-authentication through PAM's _Linux password-module_.
 
 Used with the _Enterprise Edition_ of Couchbase Server, the PAM _Linux password-module_ provides:
 
@@ -130,17 +130,17 @@ SAML authentication offers these features:
 
 * _Single Sign On_ (SSO) lets users avoid repeated username and password prompts for every service they sign in to. Instead, the user authenticates once with the IdP when first connecting to a service. This initial authentication starts a session for the user with the IdP. While the session is active, when the user connects to a service that uses the IdP, it authenticates them without prompting for a username and password. SSO also means users have fewer usernames and passwords to memorize.
 * Most IdPs implement _Two-Factor Authentication_ (2FA). 2FA increases security by requiring users to prove their identity with more than just a username and password. For example, 2FA can require users to enter a number sent to them via a mobile text message or from an authentication app on their mobile phone.
-* SAML lets administrators centralize user authentication by defining users once in the IdP, instead of having to create an account for each service. They can assign the users privileges for any service that uses the IdP for authentication. When an administrator removes a user’s privileges, services automatically end the user’s active sessions.
+* SAML lets administrators centralize user authentication by defining users once in the IdP, instead of having to create an account for each service. They can assign the users privileges for any service that uses the IdP for authentication. When an administrator removes a user's privileges, services automatically end the user's active sessions.
 
 ### [](#mapping-of-groups-and-roles-with-saml-authentication)Mapping of Groups and Roles With SAML Authentication
 
 When a user authenticates with an IdP, the IdP sends the user back to Couchbase Server with a SAML-formatted message containing their authentication information. Included within this message are attributes defined for the user by the IdP. You can choose to map two of these attributes to define the Couchbase Server groups and roles for user.
 
-If you map attributes for the user’s groups and roles, you can manage Web Console users entirely within the IdP. In this case, you do not need to create Web Console users in Couchbase Server’s external authentication domain.
+If you map attributes for the user's groups and roles, you can manage Web Console users entirely within the IdP. In this case, you do not need to create Web Console users in Couchbase Server's external authentication domain.
 
-Couchbase Server combines the following settings to determine a SAML-authenticated user’s roles:
+Couchbase Server combines the following settings to determine a SAML-authenticated user's roles:
 
-* If the authenticated user matches a Couchbase user account defined in the external authentication domain, Couchbase Server grants the authenticated user the account’s roles and groups.
+* If the authenticated user matches a Couchbase user account defined in the external authentication domain, Couchbase Server grants the authenticated user the account's roles and groups.
 * If you mapped a SAML attribute to Couchbase groups, then Couchbase Server grants the authenticated user the roles assigned to the groups listed in the attribute.
 * If you mapped a SAML attribute to Couchbase roles, then Couchbase Server grants the authenticated user the roles listed in the attribute.
 

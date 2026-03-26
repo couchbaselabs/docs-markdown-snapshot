@@ -2,7 +2,7 @@
 title: hash
 description: Provides information about the vBucket hash tables.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbstats/cbstats-hash.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cli:cbstats/cbstats-hash.adoc[]
 ---
 
@@ -22,9 +22,9 @@ cbstats [hostname]:11210 hash detail
 
 ## [](#description)Description
 
-Requesting these stats does affect performance, so don’t do it too regularly, but it’s useful for debugging certain types of performance issues. For example, if your hash table is tuned to have too few buckets for the data load within it, the `max_depth` will be too large, and performance will suffer.
+Requesting these stats does affect performance, so don't do it too regularly, but it's useful for debugging certain types of performance issues. For example, if your hash table is tuned to have too few buckets for the data load within it, the `max_depth` will be too large, and performance will suffer.
 
-It is also possible to get more detailed hash tables stats by using ‘hash detail’. This prints per-vbucket stats. Each stat is prefixed with `vb_` followed by a number, a colon, then the individual stat name. For example, the stat representing the size of the hash table for vbucket 0 is `vb_0:size=.`
+It is also possible to get more detailed hash tables stats by using 'hash detail'. This prints per-vbucket stats. Each stat is prefixed with `vb_` followed by a number, a colon, then the individual stat name. For example, the stat representing the size of the hash table for vbucket 0 is `vb_0:size=.`
 
 ## [](#options)Options
 

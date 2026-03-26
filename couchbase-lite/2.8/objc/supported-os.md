@@ -3,7 +3,7 @@ title: Supported Operating System Versions
 description: Couchbase Lite on Objective-C -- the OS and SDK versions on which
   this framework is supported
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/objc/pages/supported-os.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:objc:supported-os.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:2.8@couchbase-lite:objc:supported-os.adoc[]
 # Supported Operating System Versions
 
 > Description — _Couchbase Lite on Objective-C — the OS and SDK versions on which this framework is supported_  
-> Related Content — [What’s New](../../current/cbl-whatsnew.md) | [Release Notes](#couchbase-lite:objc:{cbl-pg-releasenotes}) | [Compatibility](../../current/objc/compatibility.md)
+> Related Content — [What's New](../../current/cbl-whatsnew.md) | [Release Notes](#couchbase-lite:objc:{cbl-pg-releasenotes}) | [Compatibility](../../current/objc/compatibility.md)
 
 ## [](#officially-supported-versions)Officially Supported Versions
 
@@ -25,7 +25,7 @@ The following table identifies the supported platforms.
 | macOS    | 10.12.6 (High Sierra) |
 
 > [!NOTE]
-> Couchbase Lite for Objective-C provides native support for both Apple’s Mac Catalyst and the Apple M1 chip. You will need to download our `xcframeworks` version to take advantage of this — see <https://www.couchbase.com/downloads?family=mobile> .
+> Couchbase Lite for Objective-C provides native support for both Apple's Mac Catalyst and the Apple M1 chip. You will need to download our `xcframeworks` version to take advantage of this — see <https://www.couchbase.com/downloads?family=mobile> .
 
 ## [](#deprecated-versions)Deprecated Versions
 
@@ -44,7 +44,7 @@ Product Notes
 * [Release Notes](#couchbase-lite:objc:{cbl-pg-releasenotes})
 * [Compatibility](../../current/objc/compatibility.md)
 * [Supported OS](../../current/objc/supported-os.md)
-* [What’s New](../../current/cbl-whatsnew.md)
+* [What's New](../../current/cbl-whatsnew.md)
 
 ###### [](#-2)
 

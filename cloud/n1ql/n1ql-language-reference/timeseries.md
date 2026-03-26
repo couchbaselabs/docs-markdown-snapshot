@@ -2,7 +2,7 @@
 title: _TIMESERIES Function
 description: The _TIMESERIES function enables you to query time series data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/timeseries.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/timeseries.adoc[]
 ---
 
@@ -72,7 +72,7 @@ A query containing date-time range predicates in both the \_TIMESERIES function 
 
 Example 1\. Query regular time series data
 
-The following query selects time series data for mean temperatures in the specified time range. Each time series document contains a month’s data.
+The following query selects time series data for mean temperatures in the specified time range. Each time series document contains a month's data.
 
 ```sqlpp
 WITH docs AS (
@@ -146,7 +146,7 @@ Results
 
 Example 2\. Query regular time series data with multiple data points
 
-The following query selects time series data for daily low and high temperatures in the specified time range. Each time series document contains a month’s data.
+The following query selects time series data for daily low and high temperatures in the specified time range. Each time series document contains a month's data.
 
 ```sqlpp
 WITH docs AS (
@@ -247,7 +247,7 @@ To view the results as a chart:
 
 Example 3\. Query irregular time series data
 
-The following query selects time series data for house sales and prices in the specified time range. Each time series document contains a decade’s data. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
+The following query selects time series data for house sales and prices in the specified time range. Each time series document contains a decade's data. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
 
 ```sqlpp
 WITH docs AS (

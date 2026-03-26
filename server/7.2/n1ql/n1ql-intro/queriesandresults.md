@@ -3,7 +3,7 @@ title: SQL++ Queries and Results
 description: An overview of common concepts that you will need to understand in
   order to use the Query service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-intro/queriesandresults.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-intro/queriesandresults.adoc[]
 ---
 
@@ -28,7 +28,7 @@ You can use standard `GROUP BY`, `ORDER BY`, `LIMIT`, and `OFFSET` clauses as we
 
 The result for each query is a set of JSON documents. The returned document set is not required to be uniform, though it can be. A `SELECT` statement that specifies a fixed set of attribute (column) names results in a uniform set of documents and a `SELECT` statement that specifies the wild card (\*) results in a non-uniform result set. The only guarantee is that every returned document meets the query criteria.
 
-Here’s a sample query and the result returned:
+Here's a sample query and the result returned:
 
 Query
 
@@ -132,7 +132,7 @@ In order to make a keyspace queryable, it must have at least one index defined.
 
 * You can define a _primary index_ on a keyspace. Primary indexes are based on the unique key of every item in a specified collection. A primary index is intended to be used for simple queries, which have no filters or predicates.
 * You can also create a _secondary index_ on specific fields in a keyspace. Secondary indexes, often referred to as Global Secondary Indexes or GSIs, constitute the principal means of indexing documents to be accessed by the Query Service.  
-For example, creating a secondary index on the `name` and `email` fields in the `users` keyspace would allow you to query the keyspace regarding a document’s `name` or `email` properties.
+For example, creating a secondary index on the `name` and `email` fields in the `users` keyspace would allow you to query the keyspace regarding a document's `name` or `email` properties.
 
 Indexes help improve the performance of a query. When an index includes the actual values of all the fields specified in the query, the index covers the query and eliminates the need to fetch the actual values from the Data Service. An index, in this case, is called a covering index and the query is called a covered query.
 

@@ -2,7 +2,7 @@
 title: Run a Search With a Search Index
 description: Run a Search query to search and return the contents of a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/run-searches.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:search:run-searches.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:server:search:run-searches.adoc[]
 
 > Run a Search query to search and return the contents of a Search index. 
 
-If you use the default search result [sorting](search-request-params.md#sort) of `_score`, a document’s [score](#scoring) determines where it appears in your search results.
+If you use the default search result [sorting](search-request-params.md#sort) of `_score`, a document's [score](#scoring) determines where it appears in your search results.
 
 > [!NOTE]
 > You must [create a Search index](create-search-indexes.md) before you can run a search with the Search Service.
@@ -38,11 +38,11 @@ As of Couchbase Server version 8.0, you can choose between 2 scoring algorithms 
 For more information about how to set your scoring model, see [Set Search Index Advanced Settings](set-advanced-settings.md#scoring%5Fmodel).
 
 > [!TIP]
-> Scoring can also change based on whether you’re using synonyms in your Search index. For more information, see [Running a Search for Synonyms](synonyms/synonyms-search.md#run-synonym-search).
+> Scoring can also change based on whether you're using synonyms in your Search index. For more information, see [Running a Search for Synonyms](synonyms/synonyms-search.md#run-synonym-search).
 
 ### [](#tf-idf)tf-idf Search Scoring
 
-To determine a document’s score in search results, the Search Service can use the [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) algorithm. `tf-idf` increases the score of a document based on term frequency, or the number of times a term occurs in a document divided by the total number of terms in the document. It penalizes document frequency, or how often a term appears across all documents.
+To determine a document's score in search results, the Search Service can use the [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) algorithm. `tf-idf` increases the score of a document based on term frequency, or the number of times a term occurs in a document divided by the total number of terms in the document. It penalizes document frequency, or how often a term appears across all documents.
 
 The `tf-idf` score is calculated at a partition level in a Search index.
 
@@ -70,13 +70,13 @@ As of Couchbase Server version 8.0, you can choose to use the [bm25](https://en.
 * Diminishing returns for a term that continues to frequently appear in documents, based on a saturation parameter (`k1`).
 * An adjustment to the resulting score, based on the total length of the current document field, divided by a normalized average length of the field across all documents (`b`).
 
-The value of `k1` limits just how much a single query term’s frequency can affect the scoring of a document. `k1` reduces the effect of term repetition and the risk of documents with excessively repeated content inflating your relevance scores. For example, spam or clickbait content would have reduced scores in `bm25` over the same document sentence being scored with `tf-idf`.
+The value of `k1` limits just how much a single query term's frequency can affect the scoring of a document. `k1` reduces the effect of term repetition and the risk of documents with excessively repeated content inflating your relevance scores. For example, spam or clickbait content would have reduced scores in `bm25` over the same document sentence being scored with `tf-idf`.
 
 The Search Service chooses reasonable defaults for the value of `k1` and `b`.
 
 Unlike `tf-idf`, `bm25` rewards term frequency, but penalizes document frequency.
 
-The calculation for a basic Search query is still based on the document’s score for a query multiplied by any [boost](search-request-params.md#boost) parameters:
+The calculation for a basic Search query is still based on the document's score for a query multiplied by any [boost](search-request-params.md#boost) parameters:
 
 hit_score = (query_1_boost * query_1_hit_score) + (query_2_boost * query_2_hit_score)
 

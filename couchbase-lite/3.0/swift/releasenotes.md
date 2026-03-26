@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Lite on Swift
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/swift/pages/releasenotes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:swift:releasenotes.adoc[]
 ---
 
@@ -85,7 +85,7 @@ Version 3.0.2 of Couchbase Lite for Swift delivers a number of fixes and enhance
 * [CBL-3222](https://issues.couchbase.com/browse/CBL-3222) — [Enable F\_BARRIERFSYNC in SQLite](https://issues.couchbase.com/browse/CBL-3222)
 * [CBL-3090](https://issues.couchbase.com/browse/CBL-3090) — [Push large database test could fail](https://issues.couchbase.com/browse/CBL-3090)
 * [CBL-3040](https://issues.couchbase.com/browse/CBL-3040) — [QueryParser wrong for a case of JOIN](https://issues.couchbase.com/browse/CBL-3040)
-* [CBL-3017](https://issues.couchbase.com/browse/CBL-3017) — [Cookies set in Headers are replaced with Session Authenticator’s cookies](https://issues.couchbase.com/browse/CBL-3017)
+* [CBL-3017](https://issues.couchbase.com/browse/CBL-3017) — [Cookies set in Headers are replaced with Session Authenticator's cookies](https://issues.couchbase.com/browse/CBL-3017)
 * [CBL-2884](https://issues.couchbase.com/browse/CBL-2884) — [evpos is missing in the changed attachment body when using delta sync](https://issues.couchbase.com/browse/CBL-2884)
 
 #### [](#known-issues-3)Known Issues
@@ -130,7 +130,7 @@ _Quick Links_
 
 #### [](#sqln1ql-query-strings)SQL++/N1QL Query Strings
 
-Couchbase Lite’s SQL++ for Mobile query API vastly simplifies the integration of Couchbase Lite within hybrid/cross platform apps.
+Couchbase Lite's SQL++ for Mobile query API vastly simplifies the integration of Couchbase Lite within hybrid/cross platform apps.
 
 N1QL for Mobile is an implementation of the emerging SQL-for-JSON query language specification (SQL++). It provides native, hybrid and cross-platform mobile app developers with a consistent, convenient and flexible interface to query JSON documents within the embedded database using a SQL-based syntax. This means developers can reuse queries across platforms, reducing development, testing and maintenance costs.
 
@@ -162,7 +162,7 @@ The API is enhanced to allow replicator listeners to be added at any point witho
 
 ### [](#other-enhancements)Other Enhancements
 
-* [CBL-2633](https://issues.couchbase.com//browse/CBL-2633) — [Update support level and message note of Database’saveBlob() and getBlob() API](https://issues.couchbase.com//browse/CBL-2633)
+* [CBL-2633](https://issues.couchbase.com//browse/CBL-2633) — [Update support level and message note of Database'saveBlob() and getBlob() API](https://issues.couchbase.com//browse/CBL-2633)
 * [CBL-2628](https://issues.couchbase.com//browse/CBL-2628) — [Change away from using SELECT when open socket](https://issues.couchbase.com//browse/CBL-2628)
 * [CBL-2549](https://issues.couchbase.com//browse/CBL-2549) — [Expose BlobType, BlobContentType, BlobDigest keys in Swift](https://issues.couchbase.com//browse/CBL-2549)
 * [CBL-2546](https://issues.couchbase.com//browse/CBL-2546) — [CBLError description is missing](https://issues.couchbase.com//browse/CBL-2546)
@@ -176,8 +176,8 @@ The API is enhanced to allow replicator listeners to be added at any point witho
 * [CBL-2358](https://issues.couchbase.com//browse/CBL-2358) — [Add function for creating FLMutableDict/Array from JSON](https://issues.couchbase.com//browse/CBL-2358)
 * [CBL-2292](https://issues.couchbase.com//browse/CBL-2292) — [Update mobile n1ql test suite](https://issues.couchbase.com//browse/CBL-2292)
 * [CBL-2064](https://issues.couchbase.com//browse/CBL-2064) — [Implement Encrypted Property Feature](https://issues.couchbase.com//browse/CBL-2064)
-* [CBL-2043](https://issues.couchbase.com//browse/CBL-2043) — [Implement Maintenance’s Optimize Options](https://issues.couchbase.com//browse/CBL-2043)
-* [CBL-2038](https://issues.couchbase.com//browse/CBL-2038) — [Change QueryBuilder’s ATAN2(X, Y) to ATAN2(Y, X)](https://issues.couchbase.com//browse/CBL-2038)
+* [CBL-2043](https://issues.couchbase.com//browse/CBL-2043) — [Implement Maintenance's Optimize Options](https://issues.couchbase.com//browse/CBL-2043)
+* [CBL-2038](https://issues.couchbase.com//browse/CBL-2038) — [Change QueryBuilder's ATAN2(X, Y) to ATAN2(Y, X)](https://issues.couchbase.com//browse/CBL-2038)
 * [CBL-1976](https://issues.couchbase.com//browse/CBL-1976) — [Set EnableAutoPurge to C4Replicator options](https://issues.couchbase.com//browse/CBL-1976)
 * [CBL-1972](https://issues.couchbase.com//browse/CBL-1972) — [Channel Access Revocation](https://issues.couchbase.com//browse/CBL-1972)
 * [CBL-1941](https://issues.couchbase.com//browse/CBL-1941) — [maxRetries should now count attempts instead of retries](https://issues.couchbase.com//browse/CBL-1941)
@@ -195,7 +195,7 @@ The API is enhanced to allow replicator listeners to be added at any point witho
 * [CBL-1714](https://issues.couchbase.com//browse/CBL-1714) — [Refactor POSIX error domain codes to be platform independent](https://issues.couchbase.com//browse/CBL-1714)
 * [CBL-1710](https://issues.couchbase.com//browse/CBL-1710) — [Update to use setProgressLevel API in Replicator](https://issues.couchbase.com//browse/CBL-1710)
 * [CBL-1666](https://issues.couchbase.com//browse/CBL-1666) — [Allow apps to trigger SQLite index optimization directly](https://issues.couchbase.com//browse/CBL-1666)
-* [CBL-1650](https://issues.couchbase.com//browse/CBL-1650) — [CBL doesn’t purge channel removals when removal revision already exists in CBL](https://issues.couchbase.com//browse/CBL-1650)
+* [CBL-1650](https://issues.couchbase.com//browse/CBL-1650) — [CBL doesn't purge channel removals when removal revision already exists in CBL](https://issues.couchbase.com//browse/CBL-1650)
 * [CBL-1584](https://issues.couchbase.com//browse/CBL-1584) — [Replicator Retry Logic](https://issues.couchbase.com//browse/CBL-1584)
 * [CBL-1581](https://issues.couchbase.com//browse/CBL-1581) — [Reserve Property Keys](https://issues.couchbase.com//browse/CBL-1581)
 * [CBL-1567](https://issues.couchbase.com//browse/CBL-1567) — [Ensure c4log\_enableFatalExceptionBacktrace is called](https://issues.couchbase.com//browse/CBL-1567)
@@ -390,7 +390,7 @@ None for this release.
 
 * [CBL-2583](https://issues.couchbase.com//browse/CBL-2583) — [Replication unable to continue after termination between rev and ack](https://issues.couchbase.com//browse/CBL-2583)
 * [CBL-2579](https://issues.couchbase.com//browse/CBL-2579) — [409 retry can result in invalid remote ancestor ID](https://issues.couchbase.com//browse/CBL-2579)
-* [CBL-2512](https://issues.couchbase.com//browse/CBL-2512) — [Replicator won’t stop](https://issues.couchbase.com//browse/CBL-2512)
+* [CBL-2512](https://issues.couchbase.com//browse/CBL-2512) — [Replicator won't stop](https://issues.couchbase.com//browse/CBL-2512)
 * [CBL-2478](https://issues.couchbase.com//browse/CBL-2478) — [Tear down DBAccess on stopped instead of on release](https://issues.couchbase.com//browse/CBL-2478)
 * [CBL-2405](https://issues.couchbase.com//browse/CBL-2405) — [Hung in call to c4socket\_closed](https://issues.couchbase.com//browse/CBL-2405)
 * [CBL-2325](https://issues.couchbase.com//browse/CBL-2325) — [REST \_replicate throws errro](https://issues.couchbase.com//browse/CBL-2325)
@@ -411,7 +411,7 @@ None for this release.
 * [CBL-1438](https://issues.couchbase.com//browse/CBL-1438) — [WSA codes not properly handled by bio\_return\_value](https://issues.couchbase.com//browse/CBL-1438)
 * [CBL-1362](https://issues.couchbase.com//browse/CBL-1362) — [Harmless unused property in ReplicatorConfiguration](https://issues.couchbase.com//browse/CBL-1362)
 * [CBL-1225](https://issues.couchbase.com//browse/CBL-1225) — [Testfest : unshare the docs does not replicate to CBL](https://issues.couchbase.com//browse/CBL-1225)
-* [CBL-862](https://issues.couchbase.com//browse/CBL-862) — [CBL 2.7 and later doesn’t catch Illegal top-level key like "\_id"](https://issues.couchbase.com//browse/CBL-862)
+* [CBL-862](https://issues.couchbase.com//browse/CBL-862) — [CBL 2.7 and later doesn't catch Illegal top-level key like "\_id"](https://issues.couchbase.com//browse/CBL-862)
 * [CBL-708](https://issues.couchbase.com//browse/CBL-708) — [Conflicting revision bodies are not removed after resolution](https://issues.couchbase.com//browse/CBL-708)
 * [CBL-462](https://issues.couchbase.com//browse/CBL-462) — [Continuous push attempts to replicate purged documents](https://issues.couchbase.com//browse/CBL-462)
 * [CBL-220](https://issues.couchbase.com//browse/CBL-220) — [Windows cannot handle dates before 1970 with C API](https://issues.couchbase.com//browse/CBL-220)
@@ -447,7 +447,7 @@ None specified in this release
 
 #### [](#ongoing)Ongoing
 
-Apple’s macOS is supported ONLY for testing and development purposes.
+Apple's macOS is supported ONLY for testing and development purposes.
 
 ## [](#related-content)Related Content
 
@@ -458,7 +458,7 @@ Product Notes
 * [Release Notes](releasenotes.md)
 * [Compatibility](compatibility.md)
 * [Supported Platforms](supported-os.md)
-* [What’s New](#cbl-whatsnew.adoc)
+* [What's New](#cbl-whatsnew.adoc)
 
 ###### [](#-2)
 

@@ -3,7 +3,7 @@ title: Start Here!
 description: If you are a first-time user, you can get a quick introduction to
   using Couchbase Server just by reading this section.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/getting-started/pages/start-here.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:getting-started:start-here.adoc[]
 ---
 
@@ -12,11 +12,11 @@ link: xref:server:getting-started:start-here.adoc[]
 
 # Start Here!
 
-> If you are a first-time user, you can get a quick introduction to using Couchbase Server just by reading this section. In a few brief steps, you’ll get direct experience with installing, running, and performing interactive queries on the server. 
+> If you are a first-time user, you can get a quick introduction to using Couchbase Server just by reading this section. In a few brief steps, you'll get direct experience with installing, running, and performing interactive queries on the server. 
 
 ## [](#initialize-cluster-web-console)Steps for First-Time Users
 
-The following steps will guide you through some of the key aspects of Couchbase Server. At the conclusion of the _Getting Started_ sequence, you’ll have reached an excellent starting point for further, more detail-driven activities.
+The following steps will guide you through some of the key aspects of Couchbase Server. At the conclusion of the _Getting Started_ sequence, you'll have reached an excellent starting point for further, more detail-driven activities.
 
 __Table 1\. Getting Started Sequence for First-Time Users__
 | Step       | Topic                                                      |

@@ -3,7 +3,7 @@ title: Inter-Sync Gateway Replication
 description: Use inter-Sync Gateway replication to keep clusters in different
   mobile data centers in sync.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/sync-inter-syncgateway-overview.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::sync-inter-syncgateway-overview.adoc[]
 ---
 
@@ -26,9 +26,9 @@ _Other related topics_: [Configuration Properties](../current/configuration/conf
 
 ## [](#introduction)Introduction
 
-Couchbase Sync Gateway’s _[Inter-Sync Gateway Replication![glossary icon](images/icons/glossaryIconImage2.png)](glossary.md#inter-sync-gateway-replication)_ feature supports _[cloud-to-edge![glossary icon](images/icons/glossaryIconImage2.png)](glossary.md#cloud-to-edge) synchronization_ use cases, where data changes must be synchronized between a centralized cloud cluster and a large number of edge clusters whilst still enforcing fine grained access control. This is an increasingly important enterprise-level requirement.
+Couchbase Sync Gateway's _[Inter-Sync Gateway Replication![glossary icon](images/icons/glossaryIconImage2.png)](glossary.md#inter-sync-gateway-replication)_ feature supports _[cloud-to-edge![glossary icon](images/icons/glossaryIconImage2.png)](glossary.md#cloud-to-edge) synchronization_ use cases, where data changes must be synchronized between a centralized cloud cluster and a large number of edge clusters whilst still enforcing fine grained access control. This is an increasingly important enterprise-level requirement.
 
-In the architecture diagram ([Figure 1](#icr-architecture)), the replicator on the active Sync Gateway node ensures that any database changes made to documents in either [Sync Gateway database![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#sync-gateway-database) instance are replicated to the other Sync Gateway instance, in accordance with the replication’s configuration — see [replications](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep) for configuration details.
+In the architecture diagram ([Figure 1](#icr-architecture)), the replicator on the active Sync Gateway node ensures that any database changes made to documents in either [Sync Gateway database![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#sync-gateway-database) instance are replicated to the other Sync Gateway instance, in accordance with the replication's configuration — see [replications](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep) for configuration details.
 
 ![icr replication overview](_images/icr-replication-overview.svg) 
 
@@ -66,7 +66,7 @@ _In this section_: [Context](#context) | [Protocol](#protocol) | [Types of Repli
 
 Sync Gateway supports the ability to run replications between Sync Gateway clusters using a new websockets based protocol, with the [active replicator![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#active-replicator) [synchronizing![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#sync-function) changes between two [Sync Gateway databases![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#sync-gateway-database).
 
-All replications are based on a [replication definition![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#replication-definition) provided either to the Admin REST API or in Sync Gateway’s configuration file (JSON).
+All replications are based on a [replication definition![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#replication-definition) provided either to the Admin REST API or in Sync Gateway's configuration file (JSON).
 
 Replications always involve at least one local database. Sync Gateway does not enable replication between two _remote_ nodes, because replications are defined at database level and so at least one database will be local.
 
@@ -132,7 +132,7 @@ Support for Basic Authentication using username and password credentials is prov
 
 #### [](#access-control)Access Control
 
-Data access control is provided by Sync Gateway’s [sync function![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#sync-function) and the username/password credentials. All replicated documents pass through this function ensuring that access permissions are adhered to.
+Data access control is provided by Sync Gateway's [sync function![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#sync-function) and the username/password credentials. All replicated documents pass through this function ensuring that access permissions are adhered to.
 
 _Related configuration elements_: [databases](../current/configuration/configuration-properties-legacy.md#databases) | [sync](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-sync)  
 _Related how-to_: [Sync Function](../current/access-control/sync-function/sync-function.md) | [Sync Function](../current/access-control/sync-function/sync-function.md)
@@ -162,7 +162,7 @@ _Related replication definition elements_: [max\_backoff\_time](../current/confi
 
 Inter-Sync Gateway Replication provides built-in High Availability (HA) support. It uses _node distribution_ to ensure all running replications are uniformly distributed across all available nodes, regardless of their originating node.
 
-A replication runs on only one node at any given time. When a node fails, the system automatically distributes that node’s replications across any available alternative nodes (providing the replication has been configured on multiple nodes).
+A replication runs on only one node at any given time. When a node fails, the system automatically distributes that node's replications across any available alternative nodes (providing the replication has been configured on multiple nodes).
 
 > [!TIP]
 > To use high-availability, configure the same replication on at least two Sync Gateway nodes.
@@ -278,7 +278,7 @@ Scenario
 * Sync Gateway designates _Node 1_ run both _Replication Id 1_ and _Replication Id 2_
 * LATER . . . when _Node 2_ is added . . .
 
-  * Sync Gateway select one of the _Node 1_ replications to run on _Node 2_; let’s say it chooses _Replication Id 2_
+  * Sync Gateway select one of the _Node 1_ replications to run on _Node 2_; let's say it chooses _Replication Id 2_
   * Sync Gateway stops _Replication Id 2_ on _Node 1_
   * Sync Gateway starts _Replication Id 2_ on _Node 2_.
 

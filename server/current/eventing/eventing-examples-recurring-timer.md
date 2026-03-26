@@ -2,7 +2,7 @@
 title: Recurring Timer
 description: Demonstrate a recurring Eventing Timer.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-examples-recurring-timer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:eventing:eventing-examples-recurring-timer.adoc[]
 ---
 
@@ -173,7 +173,7 @@ For complete details on how to set up your keyspaces refer to [creating buckets]
   ![recurring timer 04 log active2](_images/recurring_timer_04_log_active2.png)
 4. Close the Function Log dialog again. Then, to check the results of the callback, access the **Couchbase Web Console** \> **Documents** page then select the keyspace `bulk`.`data`.`source`
 
-  * Edit the new output status document **cur\_recurring\_timer::1** (note the last\_update field is in UTC) and you will see the data written by the Timer’s callback:  
+  * Edit the new output status document **cur\_recurring\_timer::1** (note the last\_update field is in UTC) and you will see the data written by the Timer's callback:  
   {  
     "last_update": "2021-07-18T17:56:10.707Z"  
   }

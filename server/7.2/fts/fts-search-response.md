@@ -3,7 +3,7 @@ title: Search Response
 description: Full Text Search provides a <em>response object</em>, which
   contains detailed information on the results of the search.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-search-response.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-search-response.adoc[]
 ---
 
@@ -38,7 +38,7 @@ The default sort order is based on _score_ (relevance) where the results are ord
 
 #### [](#example)Example
 
-Here’s an example query that fetches results from the 11th onwards to the 15th that have been ordered by _score_.
+Here's an example query that fetches results from the 11th onwards to the 15th that have been ordered by _score_.
 
 {
   "query": {
@@ -91,7 +91,7 @@ Here are some examples using `search_after/search_before` over sort key "\_id" (
 ```
 
 > [!NOTE]
-> A Full Text Search request that doesn’t carry any pagination settings will return the first 10 results (`"size: 10", "from": 0`) ordered by _score_ sequentially from the highest to lowest.
+> A Full Text Search request that doesn't carry any pagination settings will return the first 10 results (`"size: 10", "from": 0`) ordered by _score_ sequentially from the highest to lowest.
 
 ### [](#pagination-tips-and-recommendations)Pagination tips and recommendations
 
@@ -112,13 +112,13 @@ This solution requires a few preconditions be met:
 
 A common solution to this is to always include the document ID as the final sort criteria.
 
-For example, if you want to sort by \[“name”, “-age”\], instead of sort by \[“name”, “-age”, "\_id”\].
+For example, if you want to sort by \["name", "-age"\], instead of sort by \["name", "-age", "\_id"\].
 
 With `search_after`/`search_before` paginations, the heap memory requirement of deeper page searches is made proportional to the requested page size alone. So it reduces the heap memory requirement of deeper page searches significantly down from the offset+from values.
 
 ## [](#fields)Fields
 
-You can search multi-Collection indexes using the same old search requests. Since a multi-Collection index contains data from multiple source Collections, it’s useful to know the source Collection of their relevant hits.
+You can search multi-Collection indexes using the same old search requests. Since a multi-Collection index contains data from multiple source Collections, it's useful to know the source Collection of their relevant hits.
 
 With multi-Collection indexes, each hit in the search results contains information about the Collection to which it belongs. This source Collection detail is available in the Fields section of each hit under the key \_$c. See the image below for an example.
 
@@ -150,7 +150,7 @@ You can specify the value of the `sort` field as an array of strings. These can 
 If multiple fields are included in the array, the sorting of documents begins according to their values for the field whose name is first in the array.  
 If any number of these values are identical, their documents are sorted again, this time according to their values for the field whose name is second; then, if any number of these values are identical, their documents are sorted a third time, this time according to their values for the field whose name is third; and so on.  
 Any document-field may be specified to hold the value on which sorting is to be based, provided that the field has been indexed in some way, whether dynamically or specifically.  
-The default sort-order is _ascending_. If a field-name is prefixed with the `-` character, that field’s results are sorted in _descending_ order.
+The default sort-order is _ascending_. If a field-name is prefixed with the `-` character, that field's results are sorted in _descending_ order.
 * `_id`: Refers to the document identifier. Whenever encountered in the array, causes sorting to occur by document identifer.
 * `_score`: Refers to the score assigned the document in the result-set. Whenever encountered in the array, causes sorting to occur by score.
 
@@ -399,7 +399,7 @@ The following sample query response shows the **score** field for each document 
 
 `tf-idf` is used as a weighting factor in a search for information retrieval and text mining. The `tf–idf` value increases proportionally to the number of times a word appears in the document, and it is offset by the number of documents in the collection or scope that contains the word.
 
-Search engines often use the variations of `tf-idf` weighting scheme as a tool in scoring and ranking a document’s relevance for a given query. The tf-idf scoring for a document relevancy is done on the basis of per-partition index, which means that documents across different partitions may have different scores.
+Search engines often use the variations of `tf-idf` weighting scheme as a tool in scoring and ranking a document's relevance for a given query. The tf-idf scoring for a document relevancy is done on the basis of per-partition index, which means that documents across different partitions may have different scores.
 
 When bleve scores a document, it sums a set of sub scores to reach the final score. The scores across different searches are not directly comparable as the scores are directly dependent on the search criteria. So, changing the search criteria, like terms, boost factor etc. can vary the score.
 
@@ -443,7 +443,7 @@ It is often observed that users are using Full-Text Search for the exact match q
 
 Text relevancy score does not matter when the user is looking for exact or more targeted searches with many predicates or when the dataset size is small.
 
-In such a case, FTS unnecessarily uses more resources in calculating the relevancy score. Users can, however, optimize the query performance by skipping the scoring. Users may skip the scoring by passing a “score”: “none” option in the search request.
+In such a case, FTS unnecessarily uses more resources in calculating the relevancy score. Users can, however, optimize the query performance by skipping the scoring. Users may skip the scoring by passing a "score": "none" option in the search request.
 
 #### [](#example-8)Example
 
@@ -671,21 +671,21 @@ It would not make sense to use it on a unique field like an ID.
 * **Field**: The field over which you want to gather the facet information.
 * **Size**: The number of top categories per partition to be considered for the facet results.  
 For example, size - 3 ⇒ facets results returns the top 3 categories across all partitions and merges them as the final result.  
-Varying size value varies the count value of each facet and the “others” value as well. This is due to the fact that when the size is varied, some of the categories fall out of the top “n” and into the “others” category.  
+Varying size value varies the count value of each facet and the "others" value as well. This is due to the fact that when the size is varied, some of the categories fall out of the top "n" and into the "others" category.  
 > [!NOTE]  
 > It is recommended to keep the size reasonably large, close to the number of unique terms to get consistent results.
 * **Numeric Range Facet**: A numeric range facet works by the user defining their own buckets (numeric ranges).  
 The facet then counts how many of the matching documents fall into a particular bucket for a particular field.  
-Along with the two fields from term facet, “numeric\_ranges” field has to include all the numeric ranges for the faceted field.  
-“Numeric\_ranges” could possibly be an array of ranges and each entry of it must specify either min, max or both for the range.
+Along with the two fields from term facet, "numeric\_ranges" field has to include all the numeric ranges for the faceted field.  
+"Numeric\_ranges" could possibly be an array of ranges and each entry of it must specify either min, max or both for the range.
 
   * **Name**: Name for the facet.
   * **Min**: The lower bound value of this range.
   * **Max**: The upper bound value of this range.
 * **Date Range Facet**: The Date Range facet is same as numeric facet, but on dates instead of numbers. Full text search and Bleve expect dates to be in the format specified by [RFC-3339](https://www.ietf.org/rfc/rfc3339.txt), which is a specific profile of ISO-8601 that is more restrictive.  
-Along with the two fields from term facet, “date\_ranges” field has to include all the numeric ranges for the faceted field.  
-The facet ranges go under a field named “date\_ranges”.  
-“date\_ranges” could possibly be an array of ranges and each entry of it must specify either start, end or both for the range.
+Along with the two fields from term facet, "date\_ranges" field has to include all the numeric ranges for the faceted field.  
+The facet ranges go under a field named "date\_ranges".  
+"date\_ranges" could possibly be an array of ranges and each entry of it must specify either start, end or both for the range.
 
   * **Name**: Name for the facet.
   * **Start**: Start date for this range.
@@ -802,7 +802,7 @@ facets": {
 
 #### [](#date-range-facet)Date Range Facet
 
-Computes facet on the ‘updated’ field that has 2 values old and new
+Computes facet on the 'updated' field that has 2 values old and new
 
 ```consle
 curl -XPOST -H "Content-Type: application/json" -u username:password http://<node>:8094/api/index/bix/query -d '{
@@ -999,7 +999,7 @@ This object returns the value of the field that was matched. However, unlike the
 
 Sort
 
-This field contains an array of one or more values that were used to sort the search results. Documents that don’t have a value in the index for a particular field used in sorting will return a series of non-printable Unicode characters: `\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd`.
+This field contains an array of one or more values that were used to sort the search results. Documents that don't have a value in the index for a particular field used in sorting will return a series of non-printable Unicode characters: `\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd`.
 
 ### [](#total%5Fhits)Total\_hits
 
@@ -1062,7 +1062,7 @@ If one or more of the index partitions failed to cater to the request, the user 
 __Table 2\. Partial Error Details__
 | Partial Error                                   | Description                                                                                                                                  |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| context deadline exceeded                       | request wasn’t processed/responded-to by the partition in the requested time period                                                          |
+| context deadline exceeded                       | request wasn't processed/responded-to by the partition in the requested time period                                                          |
 | no planPIndexes for indexName                   | FTS node in the process of a rebalance, partitions are being moved                                                                           |
 | bleve: pindex\_consistency mismatched partition | RYOW failure - received data from a vbucket with a different UUID while waiting on a sequence number - possibly due to KV rebalance/failover |
 | pindex not available                            | one or more primary index partitions (that do not have replicas) have been failed over (need to rebalance to set them up again)              |

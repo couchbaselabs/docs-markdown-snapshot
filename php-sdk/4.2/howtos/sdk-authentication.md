@@ -3,7 +3,7 @@ title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@php-sdk:howtos:sdk-authentication.adoc[]
 ---
 
@@ -59,8 +59,8 @@ $bucket = $cluster->bucket("travel-sample");
 
 Note the options passed into the connection string:
 
-* `truststorepath` specifies the path (on the local filesystem) to the server’s SSL certificate truststore. The trust store is optional, and when missing, the library will use `certpath` as the location for verification, and expect any extra certificates to be concatenated in there.
-* `certpath` specifies the path (on the local filesystem) to the server’s SSL certificate.
+* `truststorepath` specifies the path (on the local filesystem) to the server's SSL certificate truststore. The trust store is optional, and when missing, the library will use `certpath` as the location for verification, and expect any extra certificates to be concatenated in there.
+* `certpath` specifies the path (on the local filesystem) to the server's SSL certificate.
 * `keypath` specifies the path (on the local filesystem) to the client SSL private key.
 
 ## [](#ldap)LDAP

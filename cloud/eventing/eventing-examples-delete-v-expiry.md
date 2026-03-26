@@ -3,7 +3,7 @@ title: Differentiate between Expiration and Deletion
 description: Differentiate between document deletion and document expiration in
   Eventing Function logs.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-delete-v-expiry.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-examples-delete-v-expiry.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:eventing:eventing-examples-delete-v-expiry.adoc[]
 
 > Differentiate between document deletion and document expiration in Eventing Function logs. 
 
-The `OnDelete` handler in an Eventing Function runs whenever a document is deleted or has expired. The Function accesses the `expired` field of the handler’s second optional argument, and logs whether a document was deleted or expired from a collection.
+The `OnDelete` handler in an Eventing Function runs whenever a document is deleted or has expired. The Function accesses the `expired` field of the handler's second optional argument, and logs whether a document was deleted or expired from a collection.
 
 ## [](#prerequisites)Prerequisites
 
@@ -58,7 +58,7 @@ To use a SQL++ statement in the Query Workbench:
 UPSERT INTO `bulk`.`data`.`source` (KEY, VALUE) VALUES ("SampleDocument2", {"a_key":"a_value"}, {"expiration":600});
 ```
 
-For information about setting a document’s expiration time with SQL++, see [Insert a document with expiration](../n1ql/n1ql-language-reference/insert.md#insert-document-with-expiration).
+For information about setting a document's expiration time with SQL++, see [Insert a document with expiration](../n1ql/n1ql-language-reference/insert.md#insert-document-with-expiration).
 
 The KV client method depends on your operating system.
 
@@ -214,7 +214,7 @@ Deploy your Eventing Function:
 2. Click **More Options (⋮)** next to **delete\_v\_expiry**.
 3. Click **Deploy** to deploy your Function.
 
-After it’s deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
+After it's deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
 
 ### [](#check-document-expiration)Check Document Expiration
 

@@ -3,7 +3,7 @@ title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and the RAG framework.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.0@cxx-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
@@ -30,7 +30,7 @@ couchbase::search_request request(couchbase::vector_search(couchbase::vector_que
 auto [err, res] = scope.search("vector-index", request).get();
 ```
 
-Let’s break this down. We create a `search_request`, which can contain a traditional FTS query `search_query` and/or the new `vector_search`. Here we are just using the latter.
+Let's break this down. We create a `search_request`, which can contain a traditional FTS query `search_query` and/or the new `vector_search`. Here we are just using the latter.
 
 The `vector_search` allows us to perform one or more `vector_query` s.
 

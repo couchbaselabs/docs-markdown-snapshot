@@ -3,7 +3,7 @@ title: all
 description: The <code>all</code> command provides information on memory,
   queues, persistence, and vBuckets.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-all.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbstats/cbstats-all.adoc[]
 ---
 
@@ -66,12 +66,12 @@ This following table describes some of the statistics returned by `cbstats all`.
 | curr\_items                          | Num items in active vbuckets (temp + live).                                                                                                                                        |
 | curr\_temp\_items                    | Num temp items in active vbuckets.                                                                                                                                                 |
 | curr\_items\_tot                     | Num current items including those not active (replica, dead and pending states).                                                                                                   |
-| ep\_kv\_size                         | Memory used to store item metadata, keys and values, no matter the vBucket’s state. If an item’s value is ejected, this stats will be decremented by the size of the item’s value. |
+| ep\_kv\_size                         | Memory used to store item metadata, keys and values, no matter the vBucket's state. If an item's value is ejected, this stats will be decremented by the size of the item's value. |
 | ep\_value\_size                      | Memory used to store values for resident keys                                                                                                                                      |
 | ep\_overhead                         | Extra memory used by transient data like persistence queues, replication queues, checkpoints, etc.                                                                                 |
 | ep\_mem\_low\_wat                    | Low water mark for auto-evictions.                                                                                                                                                 |
 | ep\_mem\_high\_wat                   | High water mark for auto-evictions.                                                                                                                                                |
-| ep\_total\_cache\_size               | The total byte size of all items, no matter the vBucket’s state, no matter if an item’s value is ejected.                                                                          |
+| ep\_total\_cache\_size               | The total byte size of all items, no matter the vBucket's state, no matter if an item's value is ejected.                                                                          |
 | ep\_oom\_errors                      | Number of times unrecoverable OOMs happened while processing operations.                                                                                                           |
 | ep\_tmp\_oom\_errors                 | Number of times temporary OOMs happened while processing operations.                                                                                                               |
 | ep\_mem\_tracker\_enabled            | True if memory usage tracker is enabled.                                                                                                                                           |

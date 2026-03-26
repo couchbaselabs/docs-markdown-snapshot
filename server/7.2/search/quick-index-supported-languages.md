@@ -3,7 +3,7 @@ title: Quick Index Supported Languages
 description: When you create an index and add a text field with the Quick Index
   editor, you need to specify a language for the text.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/quick-index-supported-languages.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:quick-index-supported-languages.adoc[]
 ---
 
@@ -20,7 +20,7 @@ The following language options are available for Quick Index text fields:
 
 | Language Option               | Description                                                                                                              |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Unknown/Various               | Select this option if the text in the field contains multiple languages, or doesn’t match another language option.       |
+| Unknown/Various               | Select this option if the text in the field contains multiple languages, or doesn't match another language option.       |
 | English                       | Select this option if the text in the field is in English.                                                               |
 | Arabic                        | Select this option if the text in the field is in Arabic.                                                                |
 | Chinese, Japanese, and Korean | Select this option if the text in the field is in Chinese, Japanese, or Korean.                                          |

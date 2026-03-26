@@ -3,7 +3,7 @@ title: View the Activity Log for a Capella Analytics Cluster
 description: Activity logs provide an audit trail of events in your Capella
   Analytics cluster.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/monitoring/view-activity.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:admin:monitoring/view-activity.adoc[]
 ---
 
@@ -36,7 +36,7 @@ To view an activity log:
   * **Tag** to filter by the [tags](#event-tags) of the events.
   * The date and time pickers **To** and **From** to filter by a specific time range.
 
-You can combine multiple filters to narrow down what you’re looking for.
+You can combine multiple filters to narrow down what you're looking for.
 
 ## [](#view-an-event)View an Event
 

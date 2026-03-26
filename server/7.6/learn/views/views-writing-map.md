@@ -3,7 +3,7 @@ title: Map Function
 description: Map functions create a mapping between input data (JSON objects)
   and  data displayed in the view results (output).
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/views/views-writing-map.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:views/views-writing-map.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Every document in the Couchbase bucket for the view is submitted to the `map()` 
 
 The `map()` function is supplied two arguments by the views processor. The first argument is the JSON document data. The optional second argument is the associated metadata for the document, such as the expiration, flags, and revision information.
 
-The map function outputs zero or more ‘rows’ of information using an `emit()` function. Each call to the `emit()` function is equivalent to a row of data in the view result. The `emit()` function can be called multiple times within the single pass of the `map()` function. This functionality enables you to create views that may expose information stored in a compound format within a single stored JSON record, for example generating a row for each item in an array.
+The map function outputs zero or more 'rows' of information using an `emit()` function. Each call to the `emit()` function is equivalent to a row of data in the view result. The `emit()` function can be called multiple times within the single pass of the `map()` function. This functionality enables you to create views that may expose information stored in a compound format within a single stored JSON record, for example generating a row for each item in an array.
 
 The map function is the most critical part of any view as it provides the logical mapping between the input fields of the individual objects stored within Couchbase to the information output when the view is accessed.
 
@@ -55,7 +55,7 @@ The `emit()` function accepts two arguments, the key and the value for each reco
 The emitted key is used by Couchbase Server both for sorting and querying the content in the database.  
 The key can be formatted in a variety of ways, including as a string or compound value (such as an array or JSON object). The content and structure of the key is important, because it is through the emitted key structure that information is selected within the view.  
 All views are output in a sorted order according to the content and structure of the key. Keys using a numeric value are sorted numerically, for strings, UTF-8 is used. Keys can also support compound values such as arrays and hashes.  
-The key content is used for querying by using a combination of this sorting process and the specification of either an explicit key or key range within the query specification. For example, if a view outputs the `RECIPE TITLE` field as a key, you could obtain all the records matching ‘Lasagne’ by specifying that only the keys matching ‘Lasagne’ are returned.
+The key content is used for querying by using a combination of this sorting process and the specification of either an explicit key or key range within the query specification. For example, if a view outputs the `RECIPE TITLE` field as a key, you could obtain all the records matching 'Lasagne' by specifying that only the keys matching 'Lasagne' are returned.
 * `value`  
 The value is the information that you want to output in each view row. The value can be anything, including both static data, fields from your JSON objects, and calculated values or strings based on the content of your JSON objects.
 

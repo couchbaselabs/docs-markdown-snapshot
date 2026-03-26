@@ -2,7 +2,7 @@
 title: Access Control Model
 description: An introduction to access control in Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/access-control-model.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::access-control-model.adoc[]
 ---
 
@@ -67,7 +67,7 @@ Users may lose access to documents for many reasons, including:
 * The User is removed from a role
 * A role the user belongs to is revoked access to channel
 
-By default, when a user loses access to a channel, the next Couchbase Lite Pull replication auto-purges all documents in the channel from local Couchbase Lite databases (on devices belonging to the user) **unless** they belong to any of the user’s other channels — see: [Table 1](#tbl-sgw-behavior).
+By default, when a user loses access to a channel, the next Couchbase Lite Pull replication auto-purges all documents in the channel from local Couchbase Lite databases (on devices belonging to the user) **unless** they belong to any of the user's other channels — see: [Table 1](#tbl-sgw-behavior).
 
 __Table 1\. Sync Gateway behavior following access revocation__
 | System State     | Impact on Sync                                                                        |                                                                                                                                               |

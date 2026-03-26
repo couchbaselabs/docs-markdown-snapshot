@@ -2,7 +2,7 @@
 title: Migration
 description: Migration Guide for migrating from Couchbase Lite 3.2.x / 3.3.x to 4.0.0
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/ROOT/pages/migration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite::migration.adoc[]
 ---
 
@@ -19,7 +19,7 @@ This guide provides step-by-step instructions for upgrading from Couchbase Lite 
 
 Starting in Couchbase Lite 3.1.0, scope and collections were introduced to better organize documents within a database. At that time, document operations performed directly through the Database object for the default collection, such as get, save, delete, purge, count, set or get expiration, index management, and listeners, were deprecated.
 
-In 4.0.0, all deprecated document APIs in the Database class have been removed. To work with documents in the default collection, retrieve the default collection from the database and use the collection’s methods instead.
+In 4.0.0, all deprecated document APIs in the Database class have been removed. To work with documents in the default collection, retrieve the default collection from the database and use the collection's methods instead.
 
 * Swift
 * Objective-C

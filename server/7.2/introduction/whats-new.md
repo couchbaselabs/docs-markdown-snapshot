@@ -4,7 +4,7 @@ description: Couchbase is the modern database for enterprise applications.
   Couchbase Server 7.2 combines the strengths of relational databases with the
   flexibility, performance, and scale of Couchbase.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/introduction/pages/whats-new.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:introduction:whats-new.adoc[]
 ---
 
@@ -21,13 +21,13 @@ For information about platform support changes, deprecation notifications, notab
 
 The following new features are provided in this release.
 
-### [](#new-features-727)What’s new in 7.2.7
+### [](#new-features-727)What's new in 7.2.7
 
 * The following new platforms are supported.
 
   * Windows Server 2025
 
-### [](#new-features-726)What’s new in 7.2.6
+### [](#new-features-726)What's new in 7.2.6
 
 * The following new platforms are supported.
 
@@ -41,7 +41,7 @@ The following new features are provided in this release.
 | cm\_rebalance\_in\_progress   | Boolean value showing if a cluster rebalance is currently in progress.                |
 | cm\_rebalance\_total          | The number of rebalance results (initiated, completed, failed, interrupted, stopped). |
 
-### [](#new-features-720)What’s new in 7.2
+### [](#new-features-720)What's new in 7.2
 
 * The following new platforms are supported:
 

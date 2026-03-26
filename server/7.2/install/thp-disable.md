@@ -3,7 +3,7 @@ title: Disabling Transparent Huge Pages (THP)
 description: Transparent huge pages (THP) is a memory management system that is
   enabled by default in most Linux operating systems.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/thp-disable.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:install:thp-disable.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:7.2@server:install:thp-disable.adoc[]
 
 In Linux operating systems, _huge pages_ is a feature that provides a way for the CPU and OS to create pre-allocated contiguous memory space, and which is designed to improve application performance. _Transparent huge pages (THP)_ is a Linux OS feature that automates the creation of contiguous memory space and conceals much of the complexity of using actual huge pages on systems with large amounts of memory.
 
-THP is enabled by default in most Linux operating systems, and functions very well for most applications and processes. However, THP is detrimental to Couchbase’s performance (as it is for nearly all databases that tend to have sparse rather than contiguous memory access patterns).
+THP is enabled by default in most Linux operating systems, and functions very well for most applications and processes. However, THP is detrimental to Couchbase's performance (as it is for nearly all databases that tend to have sparse rather than contiguous memory access patterns).
 
 Since we tend to have more random, sparse data access, we allocate pages that can remain mostly empty. This leads to memory fragmentation as portions of memory are not used but still accounted for in the RSS.
 
@@ -28,7 +28,7 @@ Therefore, you must disable THP on Linux systems to ensure the optimal performan
 
 In Linux operating systems, _huge pages_ is a feature that provides a way for the CPU and OS to create pre-allocated contiguous memory space, and which is designed to improve application performance. _Transparent huge pages (THP)_ is a Linux OS feature that automates the creation of contiguous memory space and conceals much of the complexity of using actual huge pages on systems with large amounts of memory.
 
-THP is enabled by default in most Linux operating systems, and functions very well for most applications and processes. However, THP is detrimental to Couchbase’s performance (as it is for nearly all databases that tend to have sparse rather than contiguous memory access patterns).
+THP is enabled by default in most Linux operating systems, and functions very well for most applications and processes. However, THP is detrimental to Couchbase's performance (as it is for nearly all databases that tend to have sparse rather than contiguous memory access patterns).
 
 You must disable THP on Linux systems to ensure the optimal performance of Couchbase Server.
 

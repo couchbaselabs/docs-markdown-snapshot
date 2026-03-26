@@ -2,7 +2,7 @@
 title: Index Storage Settings
 description: All indexes in Couchbase Capella use the Couchbase Plasma storage engine.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/storage-modes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:indexes:storage-modes.adoc[]
 ---
 
@@ -23,7 +23,7 @@ Couchbase Capella index storage supports indexes for both Couchbase buckets and 
 
 The standard global secondary index uses a B-Tree index and keeps the optimal working set of data in the buffer. This means the total size of the index can be much bigger than the amount of memory available in each index node.
 
-Standard index-storage is supported by the Plasma storage engine. Plasma is highly scalable and performant storage engine that’s optimized specifically for indexes. Compaction is handled automatically.
+Standard index-storage is supported by the Plasma storage engine. Plasma is highly scalable and performant storage engine that's optimized specifically for indexes. Compaction is handled automatically.
 
 ## [](#plasma-memory-enhancements)Plasma Memory Enhancements
 

@@ -1,7 +1,7 @@
 ---
 title: Progress Messages
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/progress-messages.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ui-ux::progress-messages.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:ui-ux::progress-messages.adoc[]
 
 Use a progress message to inform a user that a process has started.
 
-Try to be explicit about what’s starting the process, or what the process is.
+Try to be explicit about what's starting the process, or what the process is.
 
-If appropriate, use a verb ending in -ing to describe what the process is that’s starting.
+If appropriate, use a verb ending in -ing to describe what the process is that's starting.
 
 For example:
 

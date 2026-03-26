@@ -3,7 +3,7 @@ title: Enabling and Disabling Auto-Failover
 description: Send a POST message to the <code>/settings/autoFailover</code>
   endpoint to change auto-failover settings.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-cluster-autofailover-enable.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rest-cluster-autofailover-enable.adoc[]
 ---
 
@@ -52,15 +52,15 @@ If you want to use a low setting, test a representative workload before setting 
 
 * `maxCount`: Sets the maximum number of nodes Couchbase Server can auto-failover at a time. Once this number of nodes has been auto-failed over, Couchbase Server does not auto-failover more nodes until you reset the count or resolve the auto-failovers with a rebalance to recover or remove the failed-over nodes. The maximum value can be up to the number of configured nodes. The default value is 1\. This parameter is optional, and is only supported by Couchbase Server Enterprise Edition. This parameter and its values are ignored if the value for the `enabled` parameter is `false`.
 * `failoverOnDataDiskIssues[enabled]`: Sets whether Couchbase Server performs auto-failovers on nodes where the data disk read or write attempts have resulted in errors continuously throughout at least 60% of the time-period set in `failoverOnDataDiskIssues[timePeriod]`. The default value for `failoverOnDataDiskIssues[enabled]` is `false`. When you set this value to `true`, you must also supply a value for `failoverOnDataDiskIssues[timePeriod]`.
-* `failoverOnDataDiskIssues[timePeriod]`: Sets the period of time in seconds that a node’s data disk can return errors before Couchbase Server performs an auto-failover. The valid range for this value is between 5 and 3600 seconds. If you set `failoverOnDataDiskIssues[enabled]` is to `true`, you must also supply a value for this parameter.  
+* `failoverOnDataDiskIssues[timePeriod]`: Sets the period of time in seconds that a node's data disk can return errors before Couchbase Server performs an auto-failover. The valid range for this value is between 5 and 3600 seconds. If you set `failoverOnDataDiskIssues[enabled]` is to `true`, you must also supply a value for this parameter.  
 If `failoverOnDataDiskIssues[enabled]` is _not_ specified, but `failoverOnDataDiskIssues[timePeriod]` _is_ specified, the following error message is generated: `The value of "failoverOnDataDiskIssues[enabled]" must be true or false`.  
 If you supply a value for this parameter while `failoverOnDataDiskIssues[enabled]` is `false`, Couchbase Server ignores the setting.
 * `canAbortRebalance`. Sets whether Couchbase Server can perform an auto-failover while a rebalance is taking place. This parameter is optional, and is only available in Couchbase Enterprise Edition. The value can be either `true` (the default) or `false`. Couchbase Server ignores this setting if you set `enabled` to `false`.
 
 * `failoverPreserveDurabilityMajority`. Sets whether Couchbase Server refuses to auto-failover a node if doing so could result in the loss of durably written data. Can be `true` or `false` (the default). For information, see [Preserving Durable Writes](../learn/data/durability.md#preserving-durable-writes).
 * `failoverOnDataDiskNonResponsiveness[enabled]`: Sets whether Couchbase Server performs an auto-failover on a node when the data disk has not completed an operation in the period set by `failoverOnDataDiskNonResponsiveness[timePeriod]`. The default value is `false`. When you set this value to `true`, you must also supply a value for `failoverOnDataDiskNonResponsiveness[timePeriod]`.
-* `failoverOnDataDiskNonResponsiveness[timePeriod]`: Sets the period of time in seconds that a node’s data disk has to be unresponsive before Couchbase Server performs an auto-failover. The valid range for this value is between 5 and 3600 seconds. If you set `failoverOnDataDiskNonResponsiveness[enabled]` to `true`, you must also supply a value for this parameter.
-* `allowFailoverEphemeralNoReplicas`: Sets whether Couchbase Server can auto-failover a node that contains vBuckets for an unreplicated ephemeral bucket. The default value is `false`, which means Couchbase Server does not perform an auto-failover on a node that contains vBuckets for an unreplicated ephemeral bucket . When you set this value to `true`, Couchbase Server can perform an auto-failover on the node even through it results in the loss of the data from the ephemeral bucket’s vBuckets on the node. This setting is only available in Couchbase Server Enterprise Edition.
+* `failoverOnDataDiskNonResponsiveness[timePeriod]`: Sets the period of time in seconds that a node's data disk has to be unresponsive before Couchbase Server performs an auto-failover. The valid range for this value is between 5 and 3600 seconds. If you set `failoverOnDataDiskNonResponsiveness[enabled]` to `true`, you must also supply a value for this parameter.
+* `allowFailoverEphemeralNoReplicas`: Sets whether Couchbase Server can auto-failover a node that contains vBuckets for an unreplicated ephemeral bucket. The default value is `false`, which means Couchbase Server does not perform an auto-failover on a node that contains vBuckets for an unreplicated ephemeral bucket . When you set this value to `true`, Couchbase Server can perform an auto-failover on the node even through it results in the loss of the data from the ephemeral bucket's vBuckets on the node. This setting is only available in Couchbase Server Enterprise Edition.
 
 ## [](#required-permissions)Required Permissions
 
@@ -113,4 +113,4 @@ curl -X POST -u Administrator:password \
 * To retrieve the current auto-failover setting using the REST API, see [Retrieving Auto-Failover Settings](rest-cluster-autofailover-settings.md).
 * To manage auto-failover using the command line, see [setting-autofailover](../cli/cbcli/couchbase-cli-setting-autofailover.md) command.
 * To learn how to manage auto-failover with Couchbase Server Web Console, see [Node Availability](../manage/manage-settings/general-settings.md#node-availability).
-* To learn how to change a bucket’s durability settings, see [Creating and Editing Buckets](rest-bucket-create.md).
+* To learn how to change a bucket's durability settings, see [Creating and Editing Buckets](rest-bucket-create.md).

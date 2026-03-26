@@ -2,7 +2,7 @@
 title: Couchbase Lite JavaScript Release Notes
 description: Couchbase Lite JavaScript release notes
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/releasenotes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::releasenotes.adoc[]
 ---
 
@@ -30,9 +30,9 @@ None for this release.
 #### [](#known-issues)Known Issues
 
 * [CBL-7593 — date\_diff\_str behavior inconsistent with server](https://jira.issues.couchbase.com/browse/CBL-7593)
-* [CBL-7647 — Query results don’t have Blobs](https://jira.issues.couchbase.com/browse/CBL-7647)
+* [CBL-7647 — Query results don't have Blobs](https://jira.issues.couchbase.com/browse/CBL-7647)
 * [CBL-7648 — ReplicatorConfig.database is not type-compatible with Database<CustomConfig>](https://jira.issues.couchbase.com/browse/CBL-7648)
-* [CBL-7649 — Database.exists() doesn’t exist](https://jira.issues.couchbase.com/browse/CBL-7649)
+* [CBL-7649 — Database.exists() doesn't exist](https://jira.issues.couchbase.com/browse/CBL-7649)
 
 ### [](#breaking-changes)Breaking Changes
 
@@ -43,7 +43,7 @@ None for this release.
 None for this release.
 
 > [!NOTE]
-> For an overview of the latest features offered in Couchbase Lite JavaScript, see [What’s New](whats-new.md).
+> For an overview of the latest features offered in Couchbase Lite JavaScript, see [What's New](whats-new.md).
 
 ## [](#related-content)Related Content
 

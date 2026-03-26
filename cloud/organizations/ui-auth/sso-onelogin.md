@@ -5,7 +5,7 @@ description: Configure Single Sign-On (SSO) between OneLogin and Couchbase
   managing separate credentials. This integration enables streamlined access
   management while maintaining enterprise-grade security.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/sso-onelogin.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:organizations:ui-auth/sso-onelogin.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:organizations:ui-auth/sso-onelogin.adoc[]
 
 # Set Up Capella SSO Using OneLogin
 
-> Configure Single Sign-On (SSO) between OneLogin and Couchbase Capella to allow your organization’s users to authenticate securely without managing separate credentials. This integration enables streamlined access management while maintaining enterprise-grade security. 
+> Configure Single Sign-On (SSO) between OneLogin and Couchbase Capella to allow your organization's users to authenticate securely without managing separate credentials. This integration enables streamlined access management while maintaining enterprise-grade security. 
 
 ## [](#prerequisites)Prerequisites
 
@@ -89,7 +89,7 @@ With the application created in OneLogin, you need to create a realm in Capella 
   For more information, see [Map User Roles](manage-role-mapping.md).
   4. Choose to turn on or off group mapping.  
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
-  If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
+  If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project's **Collaborators** tab.
 4. Click **Create Realm**.  
 Capella creates the new realm with an auto-generated name.  
 > [!IMPORTANT]  
@@ -102,7 +102,7 @@ Now that you have created the realm, you must finish configuring the OneLogin ap
 1. In OneLogin, click **Configuration**.
 2. Copy the following fields from your Capella realm configuration to the OneLogin configuration:  
 > [!TIP]  
-> To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
+> To find this information for your organization's Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
 
 | Capella Field |                                                 | OneLogin Fields |
 | ------------- | ----------------------------------------------- | --------------- |
@@ -171,7 +171,7 @@ When adding additional scopes, separate each entry with a space.
   For more information, see [Map User Roles](manage-role-mapping.md).
   2. Choose to turn on or off group mapping.  
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
-  If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
+  If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project's **Collaborators** tab.
 6. Click **Create Realm**.  
 Capella creates the new realm with an auto-generated name.  
 > [!IMPORTANT]  
@@ -184,11 +184,11 @@ Now that you have created the realm, you must finish configuring the OneLogin ap
 1. In OneLogin, click **Configuration** and view the **Application details**.
 2. Copy information from your Capella realm configuration to the OneLogin configuration:  
 > [!TIP]  
-> To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
+> To find this information for your organization's Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
 
 | Capella Field |                | OneLogin Fields |
 | ------------- | -------------- | --------------- |
-| Callback URL  | Redirect URI’s |                 |
+| Callback URL  | Redirect URI's |                 |
 3. Click **Save**.
 4. In the OneLogin Admin panel, click **SSO**.
 5. Change the **Token Endpoint Authentication Method** to `POST`.

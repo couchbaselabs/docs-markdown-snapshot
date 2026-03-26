@@ -2,7 +2,7 @@
 title: New in 3.0
 description: Couchbase Sync Gateway -- What's new in the latest release
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/whatsnew.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::whatsnew.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:3.0@sync-gateway::whatsnew.adoc[]
 
 # New in 3.0
 
-> Couchbase Sync Gateway — What’s new in the latest release  
+> Couchbase Sync Gateway — What's new in the latest release  
 > This content covers the new features introduced in Sync Gateway 3.0
 
 > [!CAUTION]

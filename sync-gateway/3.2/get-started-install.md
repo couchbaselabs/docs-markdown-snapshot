@@ -3,7 +3,7 @@ title: Install Sync Gateway
 description: Install a <em>Sync Gateway</em> instance; securely sync enterprise
   data from cloud to edge.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/get-started-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::get-started-install.adoc[]
 ---
 
@@ -38,7 +38,7 @@ This initial configuration has limited functionality. It is intended primarily t
 
 ## [](#configuration)Configuration
 
-Sync Gateway’s initial setup uses configuration details from a file its install script creates (`sync_gateway.json`, or `serviceconfig.json` on Windows).
+Sync Gateway's initial setup uses configuration details from a file its install script creates (`sync_gateway.json`, or `serviceconfig.json` on Windows).
 
 To provide your own configuration to Sync Gateway, you can either:
 
@@ -104,9 +104,9 @@ __Table 1\. Default Installation Locations__
 | Content             | Location                                | Example                                                                                    |
 | ------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------ |
 | Binaries            | The installation directory              | /opt/couchbase-sync-gateway/bin/                                                           |
-| Configuration files | The sync\_gateway user’s home directory | /home/sync\_gateway/sync\_gateway.json                                                     |
+| Configuration files | The sync\_gateway user's home directory | /home/sync\_gateway/sync\_gateway.json                                                     |
 | Example Configs     | The installation directory              | /opt/couchbase-sync-gateway/examples/                                                      |
-| Log files           | The sync\_gateway user’s home directory | /home/sync\_gateway/logs/                                                                  |
+| Log files           | The sync\_gateway user's home directory | /home/sync\_gateway/logs/                                                                  |
 | Scripts             | The installation directory              | /opt/couchbase-sync-gateway/service/                                                       |
 | Service             | systemd library                         | /lib/systemd/system/sync\_gateway.service or /usr/lib/systemd/system/sync\_gateway.service |
 
@@ -265,9 +265,9 @@ SERVICE_NAME: SyncGateway
 
 To change the default configuration file path of an existing Sync Gateway service you need to edit the service descriptor.
 
-For Windows, the configuration path is provided as a command line parameter embedded within the `SyncGateway` service’s `binpath`.
+For Windows, the configuration path is provided as a command line parameter embedded within the `SyncGateway` service's `binpath`.
 
-One way to edit the `binpath` value is to use Windows' _Service Control Manager’s_ command line utility `sc.exe config`. See the [Syntax of the sc.exe Command](#lbl-syntax) and an example of the command in use in [Example 1](#ex-windows-scexe).
+One way to edit the `binpath` value is to use Windows' _Service Control Manager's_ command line utility `sc.exe config`. See the [Syntax of the sc.exe Command](#lbl-syntax) and an example of the command in use in [Example 1](#ex-windows-scexe).
 
 Syntax of the sc.exe Command
 
@@ -359,9 +359,9 @@ __Table 3\. Default Installation Locations__
 | Content             | Location                                | Example                                                         |
 | ------------------- | --------------------------------------- | --------------------------------------------------------------- |
 | Binaries            | The installation directory              | /opt/couchbase-sync-gateway/bin/                                |
-| Configuration files | The sync\_gateway user’s home directory | /users/sync\_gateway/                                           |
+| Configuration files | The sync\_gateway user's home directory | /users/sync\_gateway/                                           |
 | Examples            | The installation directory              | /opt/couchbase-sync-gateway/examples/                           |
-| Log files           | The sync\_gateway user’s home directory | /users/sync\_gateway/logs/                                      |
+| Log files           | The sync\_gateway user's home directory | /users/sync\_gateway/logs/                                      |
 | Scripts             | The installation directory              | /opt/couchbase-sync-gateway/service/                            |
 | Service             | Library directory                       | /Library/LaunchDaemons/com.couchbase.mobile.sync\_gateway.plist |
 

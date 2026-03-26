@@ -1,7 +1,7 @@
 ---
 title: Couchbase Resource Label Selection
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-label-selection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::concept-label-selection.adoc[]
 ---
 
@@ -20,7 +20,7 @@ All of the Couchbase resources outside of the main `CouchbaseCluster` type are c
 
 ## [](#default-selection-behavior)Default Selection Behavior
 
-Let’s take the `CouchbaseBucket` resource for example. By default, when bucket management is enabled in the `CouchbaseCluster`, but no label selector is defined, the Kubernetes Operator will select and aggregate any "label-less" bucket resources for management on the cluster. Refer to diagram below:
+Let's take the `CouchbaseBucket` resource for example. By default, when bucket management is enabled in the `CouchbaseCluster`, but no label selector is defined, the Kubernetes Operator will select and aggregate any "label-less" bucket resources for management on the cluster. Refer to diagram below:
 
 ![selection default](_images/selection-default.png) 
 
@@ -36,9 +36,9 @@ While you might desire the sharing of resources for the purposes of reducing con
 
 ## [](#using-resource-labels)Using Resource Labels
 
-To properly use resource labels, you’ll need to specify a label for each resource, as well as a corresponding label selector for each `CouchbaseCluster` resource.
+To properly use resource labels, you'll need to specify a label for each resource, as well as a corresponding label selector for each `CouchbaseCluster` resource.
 
-It’s recommended that you start by adding a label selector to the `CouchbaseCluster` resource.
+It's recommended that you start by adding a label selector to the `CouchbaseCluster` resource.
 
 ```yaml
 apiVersion: couchbase.com/v2
@@ -64,7 +64,7 @@ metadata:
     cluster: my-cluster
 ```
 
-The reason for defining the label selector first is that without a label selector defined, the Kubernetes Operator will immediately aggregate any unlabeled resources to the `CouchbaseCluster` once it’s deployed. As discussed in the previous section, this can have deleterious effects if you have more than one `CouchbaseCluster` resource already deployed in the same namespace. However, by deploying the `CouchbaseCluster` resource with the bucket label selector `cluster: my-cluster` in this example, you can ensure that the cluster will only select `CouchbaseBucket` resources that have the matching `cluster: my-cluster` label.
+The reason for defining the label selector first is that without a label selector defined, the Kubernetes Operator will immediately aggregate any unlabeled resources to the `CouchbaseCluster` once it's deployed. As discussed in the previous section, this can have deleterious effects if you have more than one `CouchbaseCluster` resource already deployed in the same namespace. However, by deploying the `CouchbaseCluster` resource with the bucket label selector `cluster: my-cluster` in this example, you can ensure that the cluster will only select `CouchbaseBucket` resources that have the matching `cluster: my-cluster` label.
 
 ![selection label selection basic](_images/selection-label-selection-basic.png) 
 

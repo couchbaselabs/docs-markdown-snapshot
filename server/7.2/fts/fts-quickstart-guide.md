@@ -3,7 +3,7 @@ title: Search Service Quick Start Guide
 description: Following appropriate preparations, full text searches can be
   performed in a number of ways.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-quickstart-guide.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-quickstart-guide.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:7.2@server:fts:fts-quickstart-guide.adoc[]
 
 The user interface for Full Text Search is provided by the Couchbase Web Console.
 
-* Ensure that Couchbase Server has the Search service appropriately enabled. The service must be enabled for a given node as part of that node’s initial configuration. Refer to Create a Cluster for information.
+* Ensure that Couchbase Server has the Search service appropriately enabled. The service must be enabled for a given node as part of that node's initial configuration. Refer to Create a Cluster for information.
 * You must have permission to log into the console, load sample data, create indexes, create search indexes, and perform searches. For information on Role-Based Access Control, see [Authorization](../learn/security/authorization-overview.md).
 * The example(s) provided assume that you have can load or have loaded the `travel-sample` dataset. You will perform your Search operations on the data under this bucket. For instructions on how to load this sample dataset, see [Sample Buckets](../manage/manage-settings/install-sample-buckets.md).
 * The Couchbase Web Console by accessing `http://localhost:8091` or if remote `http://${CB_HOSTNAME}:8091` where **CB\_HOSTNAME** is an environment variable set to a FQDN or an IP address for a node on your Couchbase cluster.
@@ -54,7 +54,7 @@ Search queries (Full Text, Geospatial, Numeric, and other) can be performed with
 
 * The Couchbase Web Console. This UI can also be used to create indexes and analyzers. Refer to [Searching from the UI](fts-searching-from-the-UI.md) for information.
 * The Couchbase REST API. Refer to [Searching with the REST API](fts-searching-with-curl-http-requests.md#Searching-with-the-REST-API-%28cURL/HTTP%29) for information. Refer also to [Search API](../rest-api/rest-fts.md) for REST reference details.
-* The Couchbase SDK. This supports several languages, and allows Search queries to be performed with each. Refer to the SDK’s [Java Search Overview](../../../java-sdk/current/concept-docs/full-text-search-overview.md) page for information. Note that the [Searching from the Java SDK](../../../java-sdk/current/howtos/full-text-searching-with-sdk.md) page for the _Java_ SDK provides an extensive code-example that demonstrates multiple options for performing searches.
+* The Couchbase SDK. This supports several languages, and allows Search queries to be performed with each. Refer to the SDK's [Java Search Overview](../../../java-sdk/current/concept-docs/full-text-search-overview.md) page for information. Note that the [Searching from the Java SDK](../../../java-sdk/current/howtos/full-text-searching-with-sdk.md) page for the _Java_ SDK provides an extensive code-example that demonstrates multiple options for performing searches.
 * The SQL++ Search functions. These enable you to perform a full text search as part of a SQL++ query. Refer to [Search Functions](../n1ql/n1ql-language-reference/searchfun.md) for information.
 
 ## [](#establishing-demonstration-indexes)Accessing the Search service via the Java SDK

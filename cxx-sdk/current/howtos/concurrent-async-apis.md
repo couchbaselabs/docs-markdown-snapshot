@@ -3,7 +3,7 @@ title: Async APIs
 description: The Couchbase C&#43;&#43; SDK allows the use, and mixing, of two
   asynchronous APIs.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cxx-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -23,7 +23,7 @@ The C++ SDK provides two asynchronous APIs, which can be freely mixed:
 
 The future-based API returns a C++ `std::future<T>`, representing the execution of an asynchronous task and the promise of a future result.
 
-Here’s what a simple upsert looks like, fetching the result with `std::future<T>::get()`:
+Here's what a simple upsert looks like, fetching the result with `std::future<T>::get()`:
 
 ```c++
 auto content = tao::json::value{
@@ -65,4 +65,4 @@ collection.upsert("document-key", content, {}, [](auto err, auto res) {
 
 So which API should you choose?
 
-It’s really down to you and the needs of your application. If you’re already writing code using callbacks then it may make sense to continue that way. The callback-based API provides an easy and intuitive way to chain operations together, whereas the future-based API provides a clean and modern way to access results of asynchronous operations. And you can use different APIs at different times.
+It's really down to you and the needs of your application. If you're already writing code using callbacks then it may make sense to continue that way. The callback-based API provides an easy and intuitive way to chain operations together, whereas the future-based API provides a clean and modern way to access results of asynchronous operations. And you can use different APIs at different times.

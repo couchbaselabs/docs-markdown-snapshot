@@ -3,7 +3,7 @@ title: Couchbase Lite on Java&#8201;&#8212;&#8201;Prerequisites
 description: Couchbase Lite on Java -- a framework for developing offline-first
   Java applications for mobile and edge
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/java/pages/gs-prereqs.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@couchbase-lite:java:gs-prereqs.adoc[]
 ---
 
@@ -51,7 +51,7 @@ Normally, the simplest way to set this is through the shell variable `LD_LIBRARY
 * Web Service/Tomcat
 * Desktop
 
-Add the variables to your `$CATALINA_BASE/bin/setenv.sh`. (If the setenv.sh file doesn’t exist, you will need to create a new file.)
+Add the variables to your `$CATALINA_BASE/bin/setenv.sh`. (If the setenv.sh file doesn't exist, you will need to create a new file.)
 
 ```bashrc
 LD_LIBRARY_PATH=<lib-directory>/support/libC++:<lib-directory>/support/libicu:$LD_LIBRARY_PATH

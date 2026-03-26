@@ -2,7 +2,7 @@
 title: Security
 description: Couchbase Server can be rendered highly secure.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/security/security-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:security/security-overview.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:7.2@server:learn:security/security-overview.adoc[]
 Couchbase Server can be rendered highly secure, so as to preserve the privacy and integrity of data, and account for access-attempts. The security facilities provided cover:
 
 * _Authentication_: All administrators, users, and applications (all formally considered _users_) must authenticate, in order to gain server-access. Users can be authenticated by means of either the _local_ or an _external_ password-registry. Authentication can be achieved by either passing credentials directly to the server, or by using a client certificate, in which the credentials are embedded. Connections can be secured by means of _SCRAM_ and _TLS_. See [Authentication](authentication.md).
-* _Authorization_: Couchbase Server uses _Role-Based Access Control_ (RBAC), to associate users with specifically assigned _roles_, these themselves corresponding to system-defined _privileges_, which allow degrees of access to specific system-resources. On authentication, a user’s roles are determined: if they allow the form of system-access the user is attempting, access is granted; otherwise, it is denied. See [Authorization](authorization-overview.md).
+* _Authorization_: Couchbase Server uses _Role-Based Access Control_ (RBAC), to associate users with specifically assigned _roles_, these themselves corresponding to system-defined _privileges_, which allow degrees of access to specific system-resources. On authentication, a user's roles are determined: if they allow the form of system-access the user is attempting, access is granted; otherwise, it is denied. See [Authorization](authorization-overview.md).
 * _Auditing_: Actions performed on Couchbase Server can be _audited_. This allows administrators to ensure that system-management tasks are being appropriately performed. See [Auditing](auditing.md).
 * _Encryption_: Data is encoded such that it is non-readable, other than by authorized parties who possess the appropriate means of _decryption_. Prior to decryption, therefore, encrypted data can be securely saved or transmitted. This ensures the privacy of user-data, and the integrity of servers and their clients. See [Encryption](encryption-overview.md).
 

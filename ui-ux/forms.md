@@ -1,7 +1,7 @@
 ---
 title: Forms
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/forms.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ui-ux::forms.adoc[]
 ---
 
@@ -25,7 +25,7 @@ For example, with address information, a user would expect to input:
 5. Their country
 6. Their postal or zip code
 
-Do not violate the user’s expectations with the form order.
+Do not violate the user's expectations with the form order.
 
 ## [](#use-section-titles-to-shorten-field-names)Use Section Titles to Shorten Field Names
 
@@ -35,7 +35,7 @@ For example, if asking for a billing address, you could title the section **Bill
 
 ## [](#use-labels-hint-text-and-tooltips)Use Labels, Hint Text, and Tooltips
 
-Aim to remove uncertainty about what information you’re requesting and how the user needs to provide it.
+Aim to remove uncertainty about what information you're requesting and how the user needs to provide it.
 
 This includes giving the user valid examples for the information and its formatting.
 

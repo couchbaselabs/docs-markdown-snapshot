@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Couchbase C&#43;&#43; Client.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cxx-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -141,7 +141,7 @@ This is the first GA release of the 1.3 C++ SDK.
 #### [](#improvements)Improvements
 
 * [CXXCBC-719](https://jira.issues.couchbase.com/browse/CXXCBC-719): **Enhanced Tracing** — Added top-level spans in the Public API for all KV and HTTP operations, providing better observability into operation lifecycle.
-* [CXXCBC-750](https://jira.issues.couchbase.com/browse/CXXCBC-750): **Internal Tracer for Wrapper SDKs** — Added internal tracer interface (`tracer_wrapper::wrapped()`) for use by wrapper SDKs that want to integrate with the SDK’s tracing.
+* [CXXCBC-750](https://jira.issues.couchbase.com/browse/CXXCBC-750): **Internal Tracer for Wrapper SDKs** — Added internal tracer interface (`tracer_wrapper::wrapped()`) for use by wrapper SDKs that want to integrate with the SDK's tracing.
 * [CXXCBC-742](https://jira.issues.couchbase.com/browse/CXXCBC-742): **cbc-query Improvements** — Enhanced error reporting with JSON-encoded error context for query failures.
 * [CXXCBC-771](https://jira.issues.couchbase.com/browse/CXXCBC-771): **Credentials Update Restrictions** — `cluster::update_credentials()` now prevents switching between authenticator types (e.g., password to certificate) to avoid unexpected behavior.
 * [CXXCBC-768](https://jira.issues.couchbase.com/browse/CXXCBC-768): **DNS-SRV Refresh Fix** — Fixed an issue where `bucket_not_found` errors during bootstrap would trigger unnecessary DNS-SRV record refresh loops.
@@ -431,8 +431,8 @@ This is a first GA release of the 1.1 C++ SDK.
 
 #### [](#transactions)Transactions
 
-* [CXXCBC-688](https://jira.issues.couchbase.com/browse/CXXCBC-688): Don’t convert Public API TOF from lambda to Core API’s TOF, rely on internal state ([#765](https://github.com/couchbase/couchbase-cxx-client/pull/765)).
-* [CXXCBC-690](https://jira.issues.couchbase.com/browse/CXXCBC-690): Don’t move `staged_mutation` item when capturing it in `commit_doc` lambdas ([#767](https://github.com/couchbase/couchbase-cxx-client/pull/767)).
+* [CXXCBC-688](https://jira.issues.couchbase.com/browse/CXXCBC-688): Don't convert Public API TOF from lambda to Core API's TOF, rely on internal state ([#765](https://github.com/couchbase/couchbase-cxx-client/pull/765)).
+* [CXXCBC-690](https://jira.issues.couchbase.com/browse/CXXCBC-690): Don't move `staged_mutation` item when capturing it in `commit_doc` lambdas ([#767](https://github.com/couchbase/couchbase-cxx-client/pull/767)).
 * [CXXCBC-683](https://jira.issues.couchbase.com/browse/CXXCBC-683): Transactions replace now uses CAS from given `TransactionsGetResult` when the document is a staged insert ([#763](https://github.com/couchbase/couchbase-cxx-client/pull/763)).
 * [CXXCBC-682](https://jira.issues.couchbase.com/browse/CXXCBC-682): Transaction replace/insert result now includes post-op content ([#756](https://github.com/couchbase/couchbase-cxx-client/pull/756)).
 * [CXXCBC-645](https://jira.issues.couchbase.com/browse/CXXCBC-645), [CXXCBC-689](https://jira.issues.couchbase.com/browse/CXXCBC-689), [CXXCBC-687](https://jira.issues.couchbase.com/browse/CXXCBC-687): Implemented `get_multi_*` APIs for transactions ([#761](https://github.com/couchbase/couchbase-cxx-client/pull/761), [#764](https://github.com/couchbase/couchbase-cxx-client/pull/764), [#766](https://github.com/couchbase/couchbase-cxx-client/pull/766)).

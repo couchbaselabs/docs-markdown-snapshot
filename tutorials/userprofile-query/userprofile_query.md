@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Couchbase Lite Query"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile/edit/query/content/modules/userprofile-query/pages/userprofile_query.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:userprofile-query:userprofile_query.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:tutorials:userprofile-query:userprofile_query.adoc[]
 
 ## [](#introduction)Introduction
 
-Couchbase Lite brings powerful querying and Full-Text-Search(FTS) capabilities to the edge. The new query interface is based on [N1QL](https://www.couchbase.com/products/n1ql), Couchbase’s declarative query language that extends [SQL](https://www.sqlite.org/index.html) for JSON. If you are familiar with SQL, you will feel right at home with the semantics of the new API. The query API is designed using the [Fluent API Design Pattern](https://en.wikipedia.org/wiki/Fluent%5Finterface), and it uses method cascading to read to like a Domain Specific Language (DSL). This makes the interface very intuitive and easy to understand.
+Couchbase Lite brings powerful querying and Full-Text-Search(FTS) capabilities to the edge. The new query interface is based on [N1QL](https://www.couchbase.com/products/n1ql), Couchbase's declarative query language that extends [SQL](https://www.sqlite.org/index.html) for JSON. If you are familiar with SQL, you will feel right at home with the semantics of the new API. The query API is designed using the [Fluent API Design Pattern](https://en.wikipedia.org/wiki/Fluent%5Finterface), and it uses method cascading to read to like a Domain Specific Language (DSL). This makes the interface very intuitive and easy to understand.
 
 Couchbase Lite can be used as a standalone embedded database within your mobile app.
 
@@ -37,7 +37,7 @@ Download the latest version from the [Mac App Store](https://itunes.apple.com/us
 * git (Optional)  
 This is required if you would prefer to pull the source code from GitHub repo.
 
-  * Create a [free github account](https://github.com) if you don’t already have one
+  * Create a [free github account](https://github.com) if you don't already have one
   * git can be downloaded from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## [](#app-overview)App Overview
@@ -82,7 +82,7 @@ sh install_tutorial.sh 3.0.0 (1)
 | **1** | Where 3.0.0 is the required Couchbase Lite release number. |
 | ----- | ---------------------------------------------------------- |
 
-Next, let’s verify the installation.
+Next, let's verify the installation.
 
 Try it Out
 
@@ -229,7 +229,7 @@ if !fileManager.fileExists(atPath: universityFolderPath) {
 // Set the folder path for the CBLite DB  
 options.directory = universityFolderPath  
 ```
-* Then we determine if the "universities" database already exists at the specified location. It would not be present if this is the first time we are using the app, in which case, we locate the _"universities.cblite"_ resource in the App’s main bundle and we copy it over to the Database folder.  
+* Then we determine if the "universities" database already exists at the specified location. It would not be present if this is the first time we are using the app, in which case, we locate the _"universities.cblite"_ resource in the App's main bundle and we copy it over to the Database folder.  
 If the database is already present at the specified Database location, we simply open the database.  
 ```swift  
 // Load the prebuilt "universities" database if it does not exist as the specified folder  
@@ -284,7 +284,7 @@ Try Out the App
 
 The app should be running in the simulator.
 
-1. Log into the app with any email Id and password. Let’s use the values _"[demo@example.com](mailto:demo@example.com)"_ and _"password"_ for user Id and password fields respectively. If this is the first time that _any_ user is signing in to the app, the pre-built database will be loaded from the App Bundle. In addition, new user-specific Database will be created / opened.
+1. Log into the app with any email Id and password. Let's use the values _"[demo@example.com](mailto:demo@example.com)"_ and _"password"_ for user Id and password fields respectively. If this is the first time that _any_ user is signing in to the app, the pre-built database will be loaded from the App Bundle. In addition, new user-specific Database will be created / opened.
 2. Confirm that the console log output has a message similar to the one shown in [Example 5](#ex-sample-output). This output also indicates the location of the Prebuilt database as well as the Database for the user. This would be within the _Application Support_ folder see: [Figure 3](#img-dbloc)  
 In this example, we are logging in with a user email Id of _"[demo@example.com](mailto:demo@example.com)"_.
 3. Open the folder in your Finder app and verify that a Database with name _"univerities"_ exists along with a user specific Database with name _"userprofile"_

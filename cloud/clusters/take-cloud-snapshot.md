@@ -3,7 +3,7 @@ title: Take or Schedule a Cluster Backup
 description: You can take an on-demand cluster backup to back up your entire
   Couchbase Capella cluster, or schedule backups.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/take-cloud-snapshot.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:take-cloud-snapshot.adoc[]
 ---
 
@@ -73,7 +73,7 @@ By default, Capella shows a schedule to take cluster backups every 4 hours and k
 
 ## [](#next-steps)Next Steps
 
-If you set a schedule for your cluster backups, Capella starts your schedule at the time you specified in UTC. Using your cloud service provider’s snapshot service, Capella takes a backup of your cluster at the interval set in the schedule.
+If you set a schedule for your cluster backups, Capella starts your schedule at the time you specified in UTC. Using your cloud service provider's snapshot service, Capella takes a backup of your cluster at the interval set in the schedule.
 
 If you want to stop taking cluster backups on a schedule, click **Delete Schedule**.
 

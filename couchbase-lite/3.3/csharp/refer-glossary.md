@@ -2,7 +2,7 @@
 title: Glossary
 description: Couchbase Lite Glossary of Terms
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/csharp/pages/refer-glossary.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite:csharp:refer-glossary.adoc[]
 ---
 
@@ -30,7 +30,7 @@ The term _active peer_, refers to the initiating peer in any peer-to-peer sync. 
 
 Checkpoint
 
-A _Checkpoint_, in _Couchbase Mobile_ terms, is a “save state” on a replicator, used to enable a restart at the last success-point in the event of a failure during a replication.
+A _Checkpoint_, in _Couchbase Mobile_ terms, is a "save state" on a replicator, used to enable a restart at the last success-point in the event of a failure during a replication.
 
 The checkpoint itself is a (meta)document that describes how far in the replication process a given replicator has progressed.
 

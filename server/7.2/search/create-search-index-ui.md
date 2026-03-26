@@ -2,7 +2,7 @@
 title: Create a Basic Search Index with the Web Console
 description: You can create a Search index with the Couchbase Server Web Console.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-search-index-ui.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:create-search-index-ui.adoc[]
 ---
 
@@ -17,10 +17,10 @@ You must create a Search index before you can [run a search](simple-search-ui.md
 
 ## [](#prerequisites)Prerequisites
 
-* You’ve deployed the Search Service on a node in your database.
+* You've deployed the Search Service on a node in your database.
 * You have a bucket with scopes and collections in your database.
 * Your user account has the **Search Admin** role for the bucket where you want to create the index.
-* You’ve logged in to the Couchbase Server Web Console.
+* You've logged in to the Couchbase Server Web Console.
 
 ## [](#procedure)Procedure
 
@@ -40,7 +40,7 @@ To create a Search index with the Couchbase Server Web Console:
 
 ## [](#next-steps)Next Steps
 
-This basic index includes all documents from the bucket and scope you selected. You can run a search against this index, but it’s recommended that you customize your index to improve performance and reduce the index size.
+This basic index includes all documents from the bucket and scope you selected. You can run a search against this index, but it's recommended that you customize your index to improve performance and reduce the index size.
 
 For more information about how to customize an index, see [Customize a Search Index with the Web Console](customize-index.md).
 

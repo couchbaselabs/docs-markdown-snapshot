@@ -1,7 +1,7 @@
 ---
 title: Ordered Lists
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/ordered-list.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::ordered-list.adoc[]
 ---
 
@@ -21,12 +21,12 @@ The user would not be able to click the **Create Search Index** button if they d
 
 The order of the steps matters.
 
-You must use an ordered list to write out the steps in a [procedure topic](writing-procedures.md). It’s okay to have a procedure that only contains 1 step.
+You must use an ordered list to write out the steps in a [procedure topic](writing-procedures.md). It's okay to have a procedure that only contains 1 step.
 
 You can also use an ordered list in a [concept topic](writing-concepts.md) if:
 
 * The order of things in the list matters.
-* You’re describing a series of procedures or larger tasks a user must complete to accomplish a goal.
+* You're describing a series of procedures or larger tasks a user must complete to accomplish a goal.
 
 Use a period (`.`) to render an item as an ordered list item. The number of periods sets the depth of the list item.
 

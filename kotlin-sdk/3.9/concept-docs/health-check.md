@@ -3,7 +3,7 @@ title: Health Check
 description: Health Check provides ping() and diagnostics() tests for the health
   of the network and the cluster.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.9/modules/concept-docs/pages/health-check.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@kotlin-sdk:concept-docs:health-check.adoc[]
 ---
 
@@ -148,7 +148,7 @@ If the ping is performed at the bucket level, the Key/Value and View sockets are
 
 ## [](#diagnostics)Diagnostics
 
-Performing a `diagnostics()` call at the `Cluster` level is conceptually different from a ping, but still very useful. It returns information about the current state of all the connections inside the SDK without actually performing any I/O. So if you haven’t done any operations against a service with a pool (i.e. Query) you might not see any sockets show up.
+Performing a `diagnostics()` call at the `Cluster` level is conceptually different from a ping, but still very useful. It returns information about the current state of all the connections inside the SDK without actually performing any I/O. So if you haven't done any operations against a service with a pool (i.e. Query) you might not see any sockets show up.
 
 Similar to ping, you can turn a diagnostics result into JSON. The following code and output shows a state directly after bootstrap, without performing any query operations:
 
@@ -180,7 +180,7 @@ Similar to ping, you can turn a diagnostics result into JSON. The following code
 }
 ```
 
-If you perform a query and look at the diagnostics again, you’ll see them show up in the report:
+If you perform a query and look at the diagnostics again, you'll see them show up in the report:
 
 ```json
 {

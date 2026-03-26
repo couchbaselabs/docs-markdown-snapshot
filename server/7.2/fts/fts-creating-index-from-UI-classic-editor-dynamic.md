@@ -1,7 +1,7 @@
 ---
 title: Classic Editor
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-UI-classic-editor-dynamic.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-creating-index-from-UI-classic-editor-dynamic.adoc[]
 ---
 
@@ -20,7 +20,7 @@ This example [Creating a Dynamic Index](#main) covers creating an index that dyn
 
 # [](#main)Creating a Dynamic Index
 
-This section describes creating and Index on a bucket’s collection across **all fields in the a collection**.
+This section describes creating and Index on a bucket's collection across **all fields in the a collection**.
 
 This is equivalent to the [Creating a Legacy Index](fts-creating-index-from-UI-classic-editor-legacy.md#main).
 
@@ -34,12 +34,12 @@ To create the desired index through the Classic Editor:
 Enter **test\_dynamic** as the name of the Search index you are creating in the **Index Name** text-box.  
 ![fts index name dynamic](_images/fts-index-name-dynamic.png)
 * Select the bucket **travel-sample** from the **Bucket** pull-down menu.  
-Use the pull-down menu provided for the Bucket field, on the upper-right, and select a bucket that you are allowed to access to via the cluster’s RBAC settings.  
+Use the pull-down menu provided for the Bucket field, on the upper-right, and select a bucket that you are allowed to access to via the cluster's RBAC settings.  
 ![fts index name and bucket dynamic](_images/fts-index-name-and-bucket-dynamic.png)
 * Select the checkbox **\[X\] Use non-default scope/collections**  
 This allows your index to stream mutations from one or more non-default collections under the selected bucket and scope.  
 ![fts select dynamic scope collections](_images/fts-select-dynamic-scope-collections.png)
-* You will see a newly visible pull-down menu provided for the **Scope** field, under the **\[X\] Use non-default scope/collections** checkbox, and select a bucket that you are allowed to access to via the cluster’s RBAC settings.  
+* You will see a newly visible pull-down menu provided for the **Scope** field, under the **\[X\] Use non-default scope/collections** checkbox, and select a bucket that you are allowed to access to via the cluster's RBAC settings.  
 For this example leave the setting as **\_default** which which is used to migrate bucket based data into the collections paradigm.
 * Under **Type Mapings**, unselect the checkbox **\[ \] default | dynamic**.  
 This is required as this type mapping (the default mapping) is only valid for the <bucket>.\_default.\_default which is typically used to upgrade a 6.X server from a bucket into a more powerful collections paradigm. In this example we will do the equivlent but on a per collections basis.  
@@ -66,7 +66,7 @@ This is all you need to specify in order to create a more advanced index for tes
 
 In the **Couchbase Web Console** \> **Search** page.
 
-* Click on the index you just created (named "landmark-content-index") to expand the Index’s controls.
+* Click on the index you just created (named "landmark-content-index") to expand the Index's controls.
 * In the text area of the search box enter **+view +food +beach** this will search on all three keywords
 * Click on the blue **Search** button. You will get documents from only collection landmark and due to the options you selected you will see highlighted words in your results.  
 ![fts index dynamic search](_images/fts-index-dynamic-search.png)

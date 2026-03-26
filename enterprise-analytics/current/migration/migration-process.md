@@ -3,7 +3,7 @@ title: Migration
 description: This section provides a step-by-step guide for migrating your data
   and applications to Couchbase Capella Analytics or Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/migration/pages/migration-process.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:migration:migration-process.adoc[]
 ---
 
@@ -45,7 +45,7 @@ For more information, see [Set Up an External Data Source](../sources/manage-ext
 
 ## [](#schema-design-naming-convention-and-bi-tools)Schema Design, Naming Convention, and BI tools
 
-Before migrating your data and integrating BI tools, it’s important to plan your schema design and query migration. This ensures optimal performance, compatibility, and a seamless transition to Capella Analytics or Enterprise Analytics. The complexity of schema design and query migration depends on several factors. Some factors are the structure of existing data, differences between Analytics Service and Capella Analytics or Enterprise Analytics environments, and specific requirements of your applications.
+Before migrating your data and integrating BI tools, it's important to plan your schema design and query migration. This ensures optimal performance, compatibility, and a seamless transition to Capella Analytics or Enterprise Analytics. The complexity of schema design and query migration depends on several factors. Some factors are the structure of existing data, differences between Analytics Service and Capella Analytics or Enterprise Analytics environments, and specific requirements of your applications.
 
 * Data Hierarchy
 * Schema Conversion Guidelines
@@ -70,7 +70,7 @@ In Analytics Service for Capella Operational and Couchbase Server, an Analytics 
 
 For more information, see [Data Definition Language (DDL)](../../../server/current/analytics/5%5Fddl.md).
 
-It’s important to understand how you can map data entities from Analytics Service to Capella Analytics or Enterprise Analytics. You can determine this mapping based on how the Analytics Service’s scopes simulate the Data Service’s bucket and scope hierarchy.
+It's important to understand how you can map data entities from Analytics Service to Capella Analytics or Enterprise Analytics. You can determine this mapping based on how the Analytics Service's scopes simulate the Data Service's bucket and scope hierarchy.
 
 * 2-Part Analytics Service Scope:
 

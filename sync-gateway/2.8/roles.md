@@ -3,7 +3,7 @@ title: Roles
 description: About Sync Gateway <em>Roles</em> and their part in secure
   cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/roles.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::roles.adoc[]
 ---
 
@@ -27,7 +27,7 @@ A _User_ account can be assigned to zero or more roles. A user inherits the chan
 
 You access roles through the Admin REST API much like users are accessed, through URLs of the form [/{db}/\_role/{name}](../current/rest-api/rest-api-admin.md#/role). Role resources have a subset of the properties that users do: `name`, `admin_channels`, `all_channels`.
 
-Roles have a separate namespace from users, so it’s legal to have a user and a role with the same name.
+Roles have a separate namespace from users, so it's legal to have a user and a role with the same name.
 
 Admin REST API
 

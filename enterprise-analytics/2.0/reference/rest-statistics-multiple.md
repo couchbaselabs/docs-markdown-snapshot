@@ -3,7 +3,7 @@ title: Getting Multiple Statistics
 description: The REST API allows cluster-statistics to be retrieved for multiple
   metrics, in a single call.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-statistics-multiple.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:reference:rest-statistics-multiple.adoc[]
 ---
 
@@ -22,7 +22,7 @@ POST /pools/default/stats/range
 
 This method and URI allow cluster-statistics to be retrieved, based on the specification of one or more _metrics_. Statistics can be further defined through the specifying of _functions_; and/or _labels_ with values. Metrics, functions, labels, and values are expressed as an array of JSON objects; which is provided as data accompanying the call.
 
-An instance of _Prometheus_ runs on each node of the cluster; and the metrics for each node are duly stored in that node’s instance of Prometheus.
+An instance of _Prometheus_ runs on each node of the cluster; and the metrics for each node are duly stored in that node's instance of Prometheus.
 
 ## [](#curl-syntax)Curl Syntax
 

@@ -4,7 +4,7 @@ description: Use a Capella Structured Data Workflow to automatically generate
   embedding vectors from JSON data in an Amazon S3 Bucket. Use embedding vectors
   for similarity searches on your data.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/vectorize-structured-data-s3.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:build:vectorization-service/vectorize-structured-data-s3.adoc[]
 ---
 
@@ -27,7 +27,7 @@ To generate your embeddings, you can use a model [hosted by the Capella Model Se
 * If you want to use a model hosted on Capella, you must have:
 
   * Deployed a Capella embedding model. For more information, see [Deploy an Embedding Model](../model-service/deploy-embed-model.md).
-  * Your model’s **API Key ID** and **API Key Token**. For more information about API keys for Capella models, see [Get Started with Capella AI Services APIs](../../api-guide/api-start.md).
+  * Your model's **API Key ID** and **API Key Token**. For more information about API keys for Capella models, see [Get Started with Capella AI Services APIs](../../api-guide/api-start.md).
 * If you want to use a model hosted by OpenAI, you have your OpenAI API Key. For more information about how to find your OpenAI API Key, see [the OpenAI Help Center](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
 * You have deployed an operational cluster that has the following:
 
@@ -77,7 +77,7 @@ To configure a new Amazon S3 bucket:
 1. Click **Add New S3 Bucket Integration**.
 2. In the **Integration Name** field, enter a name to use to identify your credentials and make it easier to manage them from the [Integrations page](../../admin/manage-ai-integrations.md).
 3. Enter the details and credentials for accessing your Amazon S3 bucket.  
-It’s recommended to use read-only credentials for your S3 bucket. Make sure you have your **Access Key ID** and its **Secret Access Key**.  
+It's recommended to use read-only credentials for your S3 bucket. Make sure you have your **Access Key ID** and its **Secret Access Key**.  
 > [!TIP]  
 > You can also choose to use temporary credentials, supported by a session token. For more information about configuring temporary credentials and session tokens, see [the AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id%5Fcredentials%5Ftemp%5Fuse-resources.html).
 4. Click **Add Credentials**.
@@ -126,7 +126,7 @@ To use a Capella Model:
 
 1. Click **Capella Model**.
 2. Select the name of the model you want to use in this workflow.
-3. Upload or manually enter your embedding model’s **API Key ID** and **API Key Token**. For more information about API keys for Capella models, see [Get Started with Capella AI Services APIs](../../api-guide/api-start.md).
+3. Upload or manually enter your embedding model's **API Key ID** and **API Key Token**. For more information about API keys for Capella models, see [Get Started with Capella AI Services APIs](../../api-guide/api-start.md).
 4. (Optional) Choose whether to set up **Private Networking** for your Capella embedding model. For more information about Private Networking for AI Services, see [Add an AWS PrivateLink Connection](../../security/add-aws-privatelink.md).
 5. Click **Next**.
 6. Continue with the rest of the [Procedure](#procedure).

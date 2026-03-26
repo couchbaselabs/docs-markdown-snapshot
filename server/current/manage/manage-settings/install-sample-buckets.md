@@ -3,7 +3,7 @@ title: Sample Buckets
 description: You can install buckets containing example scopes, collections, and
   documents that you can experiment with.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/install-sample-buckets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-settings/install-sample-buckets.adoc[]
 ---
 
@@ -31,7 +31,7 @@ From the **Settings** screen, select the **Sample Buckets** tab. The **Sample Bu
 
 ![settings samples](../_images/manage-settings/settings-samples.png) 
 
-If one or more sample buckets are already loaded, they’re listed under the **Installed Samples** section of the page.
+If one or more sample buckets are already loaded, they're listed under the **Installed Samples** section of the page.
 
 See [Manage Users and Roles](../manage-security/manage-users-and-roles.md) to learn how to assign roles to users to grant access to the sample buckets.
 

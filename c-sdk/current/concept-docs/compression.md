@@ -2,7 +2,7 @@
 title: Compression
 description: Data compression to reduce traffic costs from app to Server.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/concept-docs/pages/compression.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:c-sdk:concept-docs:compression.adoc[]
 ---
 
@@ -25,13 +25,13 @@ The document must be below 20MiB in size in both compressed and uncompressed for
 > This size limit is enforced by Couchbase Server (6.5 and earlier); in practice it will affect very few users, as most JSON documents are considerably smaller. A compressed doument of just under 20MB, which is greater than 20,971,520 bytes (20 MiB) when uncompressed, will be rejected by the server as follows:
 > 
 > * Couchbase Server decompresses the document to check that it is valid JSON, and is correctly compressed with _Snappy_, and at this point measures it against `max data size` (20 MiB).
-> * If the decompressed value’s size exceeds this limit, the mutation is failed with a "too big" error code (E2BIG code 3).
+> * If the decompressed value's size exceeds this limit, the mutation is failed with a "too big" error code (E2BIG code 3).
 > 
 > Therefore, where necessary, enforce document size limits in your application on _uncompressed_ documents.
 
 ## [](#operating-modes)Operating Modes
 
-The three modes in which compression can be used, “off”, “passive” and “active”, are per bucket configuration settings on the cluster. Depending on how it is set, the HELLO negotiation will fail or succeed. The `HELLO` flag for compression has the value `0x0a` and is defined as:
+The three modes in which compression can be used, "off", "passive" and "active", are per bucket configuration settings on the cluster. Depending on how it is set, the HELLO negotiation will fail or succeed. The `HELLO` flag for compression has the value `0x0a` and is defined as:
 
 PROTOCOL_BINARY_FEATURE_SNAPPY = 0x0a
 
@@ -56,5 +56,5 @@ To safeguard against the case of several thousand documents stealing CPU time to
 
 * For Java, to disable compression from client to server, [set compressionMinSize to max int (2147483647)](http://docs.couchbase.com/sdk-api/couchbase-core-io-1.6.0/com/couchbase/client/core/env/DefaultCoreEnvironment.Builder.html#compressionMinSize-int-). Alternatively, to disable compression in both directions, set the Java system property `com.couchbase.snappyEnabled` to `False`.
 * For .NET, Snappy compression is not currently supported.
-* For SDKs using LCB’s connstr (Node.js, PHP, Python), override the default with `"compression=off"` in your connection string. Additionally, for Python you can set the `couchbase.bucket.Bucket.compression` property to `COMPRESS_NONE`.
+* For SDKs using LCB's connstr (Node.js, PHP, Python), override the default with `"compression=off"` in your connection string. Additionally, for Python you can set the `couchbase.bucket.Bucket.compression` property to `COMPRESS_NONE`.
 * For Go, can also be disabled by using `compression=off` in the connection string.

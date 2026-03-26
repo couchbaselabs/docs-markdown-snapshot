@@ -1,7 +1,7 @@
 ---
 title: Setting Up Secure Connections
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/secure-connections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:elasticsearch-connector::secure-connections.adoc[]
 ---
 
@@ -24,7 +24,7 @@ This guide shows how to obtain the root certificates, and how to tell the connec
 
 You will need:
 
-* Couchbase Server **Enterprise Edition** if you’re connecting securely to a self-hosted Couchbase Server cluster. You can download and evaluate Enterprise Edition for free.
+* Couchbase Server **Enterprise Edition** if you're connecting securely to a self-hosted Couchbase Server cluster. You can download and evaluate Enterprise Edition for free.
 * The Certificate Authority (CA) certificates used by your Couchbase Server and/or Elasticsearch clusters.
 
 > [!TIP]
@@ -38,33 +38,33 @@ The steps for getting the Couchbase certificate are different depending on wheth
 * Couchbase Server
 
 > [!TIP]
-> The Capella CA certificate is included in the connector, and the connector trusts it by default unless you specify another trust source. If you’re connecting to a Capella cluster, all you have to do is enable TLS by setting the `secureConnection` property in the `[couchbse]` config section to `true`. You can skip the rest of this section, or continue reading to learn how to trust a Capella CA certificate other than the one included in the connector.
+> The Capella CA certificate is included in the connector, and the connector trusts it by default unless you specify another trust source. If you're connecting to a Capella cluster, all you have to do is enable TLS by setting the `secureConnection` property in the `[couchbse]` config section to `true`. You can skip the rest of this section, or continue reading to learn how to trust a Capella CA certificate other than the one included in the connector.
 
 Log into the Capella admin website and navigate to your cluster. Click on the "Connect" tab and scroll down to "Security Certificates." Download the "Root Certificate."
 
 Log into the admin console and navigate to **Security** **Certificates**. Copy the "Trusted Root Certificates" (there might be only one). Create a new text file called `couchbase-ca.pem` and paste the certificates into this file.
 
 > [!TIP]
-> Unless you’re working in a local development environment, it’s important to transfer the CA certificate using a secure channel, so you know you’re getting the correct certificate. If you are unable to access the admin console securely over HTTPS, copy the CA certificate from a server node using SSH or some other secure mechanism.
+> Unless you're working in a local development environment, it's important to transfer the CA certificate using a secure channel, so you know you're getting the correct certificate. If you are unable to access the admin console securely over HTTPS, copy the CA certificate from a server node using SSH or some other secure mechanism.
 
 ## [](#get-elasticsearch-cert)Get the Elasticsearch CA Certificate
 
 Elasticsearch must first be configured to require TLS/SSL. Please refer to the Elasticsearch documentation, specifically [Encrypting communications in Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/configuring-tls.html). Make sure you also follow the steps for [Encrypting HTTP Client Communications](https://www.elastic.co/guide/en/elasticsearch/reference/current/configuring-tls.html#tls-http).
 
-As you follow the instructions in the Elasticsearch documentation, you’ll generate a CA certificate for your Elasticsearch cluster. (Alternatively, you might decide to use a well-known public CA, or an internal CA managed by your organization). This CA certificate is the one you’ll configure the connector to use in the next step.
+As you follow the instructions in the Elasticsearch documentation, you'll generate a CA certificate for your Elasticsearch cluster. (Alternatively, you might decide to use a well-known public CA, or an internal CA managed by your organization). This CA certificate is the one you'll configure the connector to use in the next step.
 
 Verify Elasticsearch requires secure connections by opening `<https://localhost:9200>` in your web browser. (You might get a warning about an untrusted or self-signed certificate). If Elasticsearch is configured correctly, you should be prompted for your Elasticsearch credentials.
 
 ## [](#configure-the-connector)Configure the Connector
 
-In this final step, you’ll tell the connector where to locate the files containing the CA certificates for Couchbase and/or Elasticsearch.
+In this final step, you'll tell the connector where to locate the files containing the CA certificates for Couchbase and/or Elasticsearch.
 
 Search for the `[couchbase]` section and set the `secureConnection` property to `true`. Then set the `pathToCaCertificate` property to the path of the file containing the Couchbase CA certificate.
 
-A relative path is resolved using the connector installation directory as the base. This means you can put the `couchbase-ca.pem` file into the connector installation’s `config` subdirectory, and set the `[couchbase]` config section’s `pathToCaCertificate` property to `'config/couchbase-ca.pem'`.
+A relative path is resolved using the connector installation directory as the base. This means you can put the `couchbase-ca.pem` file into the connector installation's `config` subdirectory, and set the `[couchbase]` config section's `pathToCaCertificate` property to `'config/couchbase-ca.pem'`.
 
 > [!TIP]
-> If you’re connecting to Couchbase Capella, leave the `pathToCaCertificate` property blank to trust the Capella CA certificate bundled with the connector.
+> If you're connecting to Couchbase Capella, leave the `pathToCaCertificate` property blank to trust the Capella CA certificate bundled with the connector.
 
 Now search for the `[elasticsearch]` section and do the same thing, only this time set the `pathToCaCertificate` property to the path of the file containing the Elasticsearch CA certificate.
 

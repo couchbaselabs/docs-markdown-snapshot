@@ -2,7 +2,7 @@
 title: Deploy an Embedding Model
 description: Use the Capella Model Service to deploy embedding models for vectorizing text.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/deploy-embed-model.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:build:model-service/deploy-embed-model.adoc[]
 ---
 
@@ -29,7 +29,7 @@ An embedding model vectorizes text into numerical vectors that capture their sem
   2. Click **Type:All** and deselect the **LLM, Text to Text** option, or use the search bar to find a specific embedding model.
   3. Click the model you want to deploy.
   4. Click **Use Selected Model**.
-4. Enter a name for the embedding model that you’re deploying.
+4. Enter a name for the embedding model that you're deploying.
 5. Choose the AWS region where you want to deploy the model.
 6. Choose the compute and GPU size configuration to run the model.  
 The minimum supported compute size available for the model in your chosen region is the default.

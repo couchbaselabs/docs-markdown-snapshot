@@ -2,7 +2,7 @@
 title: Monitoring Queries
 description: This page explains how to monitor queries in Couchbase Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/monitoring-queries.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sources:monitoring-queries.adoc[]
 ---
 
@@ -15,7 +15,7 @@ The Monitor screen is a UI that allows you to monitor the current state of the A
 
 To display the Monitor, in the UI, select the **Workbench** tab and click **monitor** at the top of the page
 
-The Monitor screen shows the analytics queries that are Active or currently running and Completed or recently run. Statistics information for the Analytics Service is displayed at the bottom of the page. Different information may be shown depending on the user’s access control role.
+The Monitor screen shows the analytics queries that are Active or currently running and Completed or recently run. Statistics information for the Analytics Service is displayed at the bottom of the page. Different information may be shown depending on the user's access control role.
 
 The information about these queries is automatically updated every 5 seconds. To freeze the display updates, click **pause**. When paused, a **resume** button becomes available to let you restart automatic updates. You can sort the query information table by clicking on any of the column headers.
 

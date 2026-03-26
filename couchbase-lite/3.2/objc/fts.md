@@ -3,7 +3,7 @@ title: Using Full-Text Search
 description: Working with Couchbase Lite's data model  -- Querying the database
   using full text search
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/fts.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite:objc:fts.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.2@couchbase-lite:objc:fts.adoc[]
 
 # Using Full-Text Search
 
-> Description — _Working with Couchbase Lite’s data model — Querying the database using full text search_  
+> Description — _Working with Couchbase Lite's data model — Querying the database using full text search_  
 > Related Content — [Predictive Queries](querybuilder.md#lbl-predquery) | [Indexing](indexing.md) | [QueryBuilder](querybuilder.md)
 
 ## [](#overview)Overview
@@ -21,7 +21,7 @@ To run a full-text search (FTS) query, you must create a full-text index on the 
 
 You can choose to use SQL++ or QueryBuilder syntaxes to create and use FTS indexes.
 
-The following examples use the data model introduced in [Indexing](indexing.md). They create and use an FTS index built from the hotel’s `Overview` text.
+The following examples use the data model introduced in [Indexing](indexing.md). They create and use an FTS index built from the hotel's `Overview` text.
 
 ## [](#sql)SQL++
 
@@ -203,7 +203,7 @@ Query for the set of documents that contains the term "linux", and at least one 
 
 ## [](#ordering-results)Ordering Results
 
-It’s very common to sort full-text results in descending order of relevance. This can be a very difficult heuristic to define, but Couchbase Lite comes with a ranking function you can use.
+It's very common to sort full-text results in descending order of relevance. This can be a very difficult heuristic to define, but Couchbase Lite comes with a ranking function you can use.
 
 In the `OrderBy` array, use a string of the form `Rank(X)`, where `X` is the property or expression being searched, to represent the ranking of the result.
 

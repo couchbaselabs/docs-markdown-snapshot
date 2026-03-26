@@ -3,7 +3,7 @@ title: Request Tracing
 description: Collecting information about an individual request and its response
   is an essential feature of every observability stack.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/observability-tracing.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:dotnet-sdk:howtos:observability-tracing.adoc[]
 ---
 
@@ -81,7 +81,7 @@ The first thing you need to do is include an additional dependency which provide
 <PackageReference Include="Couchbase.Extensions.OpenTelemetry" Version="3.3.2" />
 ```
 
-You also need to include your downstream exporter of choice, in the following example we’ll use Zipkin tracing:
+You also need to include your downstream exporter of choice, in the following example we'll use Zipkin tracing:
 
 ```xml
 <PackageReference Include="OpenTelemetry.Exporter.Zipkin" Version="1.3.0" />

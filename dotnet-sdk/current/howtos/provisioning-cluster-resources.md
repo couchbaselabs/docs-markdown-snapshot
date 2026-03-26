@@ -3,7 +3,7 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:dotnet-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
@@ -213,7 +213,7 @@ You will find some of these described in the following section.
 
 ### [](#queryindexmanager)QueryIndexManager
 
-The `ICollectionQueryIndexManager` interface contains the means for managing indexes used for queries. It’s referenced through the `Collection.QueryIndexes` property.
+The `ICollectionQueryIndexManager` interface contains the means for managing indexes used for queries. It's referenced through the `Collection.QueryIndexes` property.
 
 ```csharp
 var cluster = await Cluster.ConnectAsync("couchbase://your-ip", "Administrator", "password");
@@ -225,11 +225,11 @@ var queryIndexMgr = collection.QueryIndexes;
 ```
 
 > [!NOTE]
-> The `ICollectionQueryIndexManager` can only manage indexes in the keyspace it’s set on. You must create another Query Manager interface to manage indexes on a different keyspace.
+> The `ICollectionQueryIndexManager` can only manage indexes in the keyspace it's set on. You must create another Query Manager interface to manage indexes on a different keyspace.
 
 Applications can use this manager to perform operations such as creating, deleting, and fetching _primary_ or _secondary_ indexes:
 
-* A _Primary_ index is built from a document’s key and is mostly suited for simple queries.
+* A _Primary_ index is built from a document's key and is mostly suited for simple queries.
 * A _Secondary_ index is the most commonly used type, and is suited for complex queries that require filtering on document fields.
 
 > [!NOTE]
@@ -273,7 +273,7 @@ catch (IndexExistsException)
 
 The `CreateIndexAsync()` method requires an index name to be provided, along with the fields to create the index on.
 
-Indexes can take a long time to build if they contain a lot of documents. In these situations, it’s ideal to build indexes in the background. To achieve this we can use the `Deferred` boolean option, and set it to `true`.
+Indexes can take a long time to build if they contain a lot of documents. In these situations, it's ideal to build indexes in the background. To achieve this we can use the `Deferred` boolean option, and set it to `true`.
 
 Deferring index creation
 
@@ -355,22 +355,22 @@ await viewMgr.UpsertDesignDocumentAsync(designDocument, DesignDocumentNamespace.
 ```
 
 > [!WARNING]
-> When you want to update an existing document with a new view (or a modification of a view’s definition), you can use the `UpsertDesignDocumentAsync` method.
+> When you want to update an existing document with a new view (or a modification of a view's definition), you can use the `UpsertDesignDocumentAsync` method.
 > 
 > However, this method needs the list of views in the document to be exhaustive, meaning that if you just create the new view definition as previously and add it to a new design document that you upsert, all your other views will be erased!
 > 
-> The solution is to perform a `GetDesignDocumentAsync`, add your view definition to the DesignDocument’s views list, then upsert it. This also works with view modifications, provided the change is in the `map` or `reduce` functions (just reuse the same name for the modified view), or for deletion of one out of several views in the document.
+> The solution is to perform a `GetDesignDocumentAsync`, add your view definition to the DesignDocument's views list, then upsert it. This also works with view modifications, provided the change is in the `map` or `reduce` functions (just reuse the same name for the modified view), or for deletion of one out of several views in the document.
 
 Note the use of `DesignDocumentNamespace.Development`, the other option is `DesignDocumentNamespace.Production`. This parameter specifies whether the design document should be created as development, or as production — with the former running over only a small fraction of the documents.
 
-Now that we’ve created a design document we can fetch it:
+Now that we've created a design document we can fetch it:
 
 ```csharp
 var designDocument = await viewMgr.GetDesignDocumentAsync("landmarks", DesignDocumentNamespace.Development);
 Console.WriteLine($"Design Document: {designDocument.Name}");
 ```
 
-We’ve created the design document using `DesignDocumentNamespace.Development` and now want to push it to production, we can do this with:
+We've created the design document using `DesignDocumentNamespace.Development` and now want to push it to production, we can do this with:
 
 ```csharp
 await viewMgr.PublishDesignDocumentAsync("landmarks");

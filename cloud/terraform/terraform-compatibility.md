@@ -3,7 +3,7 @@ title: Terraform Compatibility Guide
 description: Compatibility of Couchbase Capella Provider with Cloud Providers,
   Operating Systems, and processor architectures.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/terraform/pages/terraform-compatibility.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:terraform:terraform-compatibility.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Couchbase Capella Provider is compatible with Hashicorp Terraform 1.5.2 or newer
 
 ## [](#supported-os-and-architecture)Supported OS and Architecture
 
-As per HashiCorp’s recommendations, we fully support the following operating system / architecture combinations:
+As per HashiCorp's recommendations, we fully support the following operating system / architecture combinations:
 
 * Darwin / AMD64
 * Darwin / ARMv8

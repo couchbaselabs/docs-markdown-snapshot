@@ -3,7 +3,7 @@ title: Using Couchbase Transactions
 description: A practical guide to using Couchbase distributed ACID transactions
   with the Python SDK.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.4@python-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
@@ -237,7 +237,7 @@ cluster.transactions.run(txn_logic)
 
 ### [](#query-options)Query Options
 
-Query options can be provided via `TransactionQueryOptions`, which provides a subset of the options in the Python SDK’s `QueryOptions`.
+Query options can be provided via `TransactionQueryOptions`, which provides a subset of the options in the Python SDK's `QueryOptions`.
 
 ```python
 def txn_logic(ctx):
@@ -289,7 +289,7 @@ cluster.transactions.run(txn_logic)
 > [!IMPORTANT]
 > Query Mode
 > 
-> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user’s query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
+> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user's query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user's query permissions. These may or may not be different to the user's data permissions; if they are different, you may get unexpected results.
 
 ## [](#concurrent-operations)Concurrent Operations
 

@@ -1,7 +1,7 @@
 ---
 title: Bucket Backend Migration Documentation
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/reference-bucket-backend-migration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::reference-bucket-backend-migration.adoc[]
 ---
 
@@ -37,9 +37,9 @@ spec:
 
 ### [](#using-managed-couchbasebuckets-with-defaultstoragebackend-cluster-annotation)Using Managed CouchbaseBuckets with defaultStorageBackend cluster annotation
 
-A large number of buckets can be migrated at once by changing the default storage backend using the `cao.couchbase.com/buckets.defaultStorageBackend` annotation. This will only effect buckets that don’t explicity set spec.storageBackend. The default storage backend is `couchstore`, but this annotation can be used to override the default to `magma`
+A large number of buckets can be migrated at once by changing the default storage backend using the `cao.couchbase.com/buckets.defaultStorageBackend` annotation. This will only effect buckets that don't explicity set spec.storageBackend. The default storage backend is `couchstore`, but this annotation can be used to override the default to `magma`
 
-Example of a bucket that doesn’t set spec.storageBackend:
+Example of a bucket that doesn't set spec.storageBackend:
 
 ```yaml
 apiVersion: couchbase.com/v2

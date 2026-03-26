@@ -1,7 +1,7 @@
 ---
 title: Manage Bucket Backups
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-backup.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:manage-backup.adoc[]
 ---
 
@@ -30,7 +30,7 @@ To backup an entire cluster, see [Back Up and Restore An Entire Cluster](cloud-s
 
 ### [](#accessing-bucket-backups-in-the-capella-ui)Accessing Bucket Backups in the Capella UI
 
-You can access a cluster’s bucket backups from the **Backup** page.
+You can access a cluster's bucket backups from the **Backup** page.
 
 1. Open the **Backup** page for your cluster:
 
@@ -47,7 +47,7 @@ You can access a cluster’s bucket backups from the **Backup** page.
 
 #### [](#backup-summary)Bucket Backup Summary
 
-A cluster’s **Backups** page shows a summary of the latest backups per bucket that exist for the cluster. You can sort the backup information by bucket name.
+A cluster's **Backups** page shows a summary of the latest backups per bucket that exist for the cluster. You can sort the backup information by bucket name.
 
 Each bucket includes the following information about its most recent backup:
 
@@ -67,11 +67,11 @@ Each bucket includes the following information about its most recent backup:
 
 If you have a cluster that uses scheduled bucket backups, your bucket automatically backs up based on the chosen schedule.
 
-Couchbase recommends that you change each bucket’s Backup Schedule according to your [Recovery Time Objective](https://en.wikipedia.org/wiki/Recovery%5Ftime%5Fobjective) (RTO) and [Recovery Point Objective](https://en.wikipedia.org/wiki/Recovery%5Fpoint%5Fobjective) (RPO). For example, buckets in production clusters might require a much smaller backup window and a much longer backup retention time period than buckets in development clusters.
+Couchbase recommends that you change each bucket's Backup Schedule according to your [Recovery Time Objective](https://en.wikipedia.org/wiki/Recovery%5Ftime%5Fobjective) (RTO) and [Recovery Point Objective](https://en.wikipedia.org/wiki/Recovery%5Fpoint%5Fobjective) (RPO). For example, buckets in production clusters might require a much smaller backup window and a much longer backup retention time period than buckets in development clusters.
 
-You can edit a bucket’s backup schedule when [modifying a bucket](data-service/manage-buckets.md#edit-bucket) or from the **Backup** page for your cluster.
+You can edit a bucket's backup schedule when [modifying a bucket](data-service/manage-buckets.md#edit-bucket) or from the **Backup** page for your cluster.
 
-To change a bucket’s backup schedule from the **Backup** page:
+To change a bucket's backup schedule from the **Backup** page:
 
 1. Open the **Backup** page for your cluster:
 
@@ -85,7 +85,7 @@ To change a bucket’s backup schedule from the **Backup** page:
     1. Go to **Backups**.
 2. Select the bucket you want to change.
 3. Click **Edit Schedule**.
-4. If it’s not already selected, use the **Bucket** list to choose the bucket you want to change.  
+4. If it's not already selected, use the **Bucket** list to choose the bucket you want to change.  
 > [!TIP]  
 > Using the **Bucket** list, you can select multiple buckets to bulk edit backup schedules.
 5. Choose a backup schedule for the bucket according to the relative importance of the workload and data.
@@ -97,7 +97,7 @@ To change a bucket’s backup schedule from the **Backup** page:
   2. Choose **Set Weekly Schedule**.
   3. Choose the **Day of the week** when you want Capella to take the full backup. The default value is `Sunday`.
   4. Set the **Start at** time of day for the full backup.  
-  Select a **Start at** time when your application isn’t using Capella heavily unless you’ve chosen a cluster configuration with more capacity than you need.
+  Select a **Start at** time when your application isn't using Capella heavily unless you've chosen a cluster configuration with more capacity than you need.
   5. Use the **Incremental Every** list to set the frequency of incremental backups.  
   > [!TIP]  
   > If you change the **Start at** time, the next incremental backup might happen at a different time than you expect. Capella calculates the **Incremental Value** backward from the configured **Start at** time.  
@@ -129,14 +129,14 @@ An on-demand backup of a bucket is always a Full bucket backup. Capella schedule
   2. Select the cluster where you want to work with backups.
 
     1. Go to **Backups**.
-2. Select the bucket you’re creating an on-demand backup for.
+2. Select the bucket you're creating an on-demand backup for.
 3. Click **Backup Now**.
 4. Use the **Bucket** list to choose the buckets you want to back up.
 5. Click **Backup Now**.  
 There can be a slight delay while Capella schedules the bucket backup.  
 The [Activity Log](monitoring/activity-log.md) lists on-demand bucket backup events. This includes when a backup was triggered, when it started, and when it finished.
 
-The **Backup** page shows the details of a bucket’s backup when it’s done.
+The **Backup** page shows the details of a bucket's backup when it's done.
 
 ### [](#view-backup-details)View Bucket Backup Details
 
@@ -156,11 +156,11 @@ The **Backup** page shows the details of the most recent backup for each bucket 
 2. Select the bucket with the backups you want to view.  
 The bucket page lists recent backups grouped by the on-demand and scheduled backup types:  
 ![The ](_images/backup-all-backup-details.png)  
-Each bucket backup has the date and time it was created, the [backup type](backup-restore.md#backup-types), and the expiry time. A Scheduled bucket backup also includes a number for the backup’s position in the backup series.
+Each bucket backup has the date and time it was created, the [backup type](backup-restore.md#backup-types), and the expiry time. A Scheduled bucket backup also includes a number for the backup's position in the backup series.
 
 #### [](#view-bucket-backups-by-date)View Bucket Backups by Date
 
-A bucket’s page shows backups for the current backup cycle. To view backups that belong to previous cycles:
+A bucket's page shows backups for the current backup cycle. To view backups that belong to previous cycles:
 
 * Use the **From Date** date picker to select the start date for the backup cycle you want to view.  
 Choosing a new **From Date** automatically refreshes the page to show scheduled and on-demand bucket backups based on this new date.
@@ -190,7 +190,7 @@ You can manually delete a set of scheduled bucket backups or individual manual b
     1. Go to **Backups**.
 2. Select the bucket with the backups you want to delete.
 3. Click **Delete** for the bucket backup you want to delete.  
-If you’re deleting a scheduled series of bucket backups, delete the most recent backup.
+If you're deleting a scheduled series of bucket backups, delete the most recent backup.
 4. Confirm the bucket backup deletion request.
 
   1. Type `delete` into the provided field.
@@ -198,7 +198,7 @@ If you’re deleting a scheduled series of bucket backups, delete the most recen
 
 Exceeding the retention time
 
-If a bucket backup’s age is greater than the retention time set in the [Backup Schedule](#configure-automatic-backups), Capella automatically deletes the bucket backup.
+If a bucket backup's age is greater than the retention time set in the [Backup Schedule](#configure-automatic-backups), Capella automatically deletes the bucket backup.
 
 Deleting a cluster
 

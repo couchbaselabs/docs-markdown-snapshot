@@ -1,7 +1,7 @@
 ---
 title: Scale
 editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/deploy/scale.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:todo-app:deploy/scale.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:tutorials:todo-app:deploy/scale.adoc[]
 
 # Scale
 
-In this lesson you’ll learn how to scale Sync Gateway and Couchbase Server in real-time with zero downtime.
+In this lesson you'll learn how to scale Sync Gateway and Couchbase Server in real-time with zero downtime.
 
 ## [](#requirements)Requirements
 
@@ -66,4 +66,4 @@ curl localhost:8000
 
 ## [](#conclusion)Conclusion
 
-Well done! You’ve completed this lesson on scaling. Feel free to share your feedback, findings or ask any questions on the forums.
+Well done! You've completed this lesson on scaling. Feel free to share your feedback, findings or ask any questions on the forums.

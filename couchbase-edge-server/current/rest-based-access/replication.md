@@ -3,7 +3,7 @@ title: Manage Replication with Edge Server
 description: The replicate endpoint enables you to synchronize Edge Server with
   another server, for example Sync Gateway or Couchbase Capella App Services.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/replication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-edge-server:rest-based-access:replication.adoc[]
 ---
 
@@ -41,12 +41,12 @@ To configure automatic replication, use the top-level [replications](../configur
 | **target** _required_      | The destination database. \[[1](#fn-1)\]                                                                                                                                                                                                                                                                   | string                 |
 | **bidirectional**          | Set to true for bidirectional push/pull replication.                                                                                                                                                                                                                                                       | boolean                |
 | **continuous**             | Set to true for continuous replication.                                                                                                                                                                                                                                                                    | boolean                |
-| **collections** _optional_ | Specifies collections to replicate. If not given, only the default collection is replicated. \[[2](#fn-2)\] If it’s an array, each item must be a collection name. If it’s an object, the keys must be collection names and the values objects; each value may have its own channels and/or doc\_ids keys. | array / object         |
+| **collections** _optional_ | Specifies collections to replicate. If not given, only the default collection is replicated. \[[2](#fn-2)\] If it's an array, each item must be a collection name. If it's an object, the keys must be collection names and the values objects; each value may have its own channels and/or doc\_ids keys. | array / object         |
 | **channels**               | Channel filter, an array of Sync Gateway channel names. (Only if collections is missing.) \[[2](#fn-2)\]                                                                                                                                                                                                   | array                  |
 | **doc\_ids**               | An array of document IDs to be replicated. (Only if collections is missing.) \[[2](#fn-2)\]                                                                                                                                                                                                                | array                  |
 | **headers**                | Extra HTTP headers; keys are header names, values are header values. \[[2](#fn-2)\]                                                                                                                                                                                                                        | array                  |
-| **trusted\_root\_certs**   | The name of a file in PEM format containing one or more trusted root certificates. Use this if the remote server’s certificate is signed by a nonstandard certificate authority.                                                                                                                           | string                 |
-| **pinned\_cert**           | The name of a file in PEM format containing a copy of the remote server’s certificate. This certificate will be trusted, and will be the _only_ certificate allowed. This option is useful if the server uses a self-signed certificate.                                                                   | string                 |
+| **trusted\_root\_certs**   | The name of a file in PEM format containing one or more trusted root certificates. Use this if the remote server's certificate is signed by a nonstandard certificate authority.                                                                                                                           | string                 |
+| **pinned\_cert**           | The name of a file in PEM format containing a copy of the remote server's certificate. This certificate will be trusted, and will be the _only_ certificate allowed. This option is useful if the server uses a self-signed certificate.                                                                   | string                 |
 | **auth**                   | Authorization credentials.                                                                                                                                                                                                                                                                                 | [Authorization](#auth) |
 | **proxy**                  | HTTP proxy settings. \[[2](#fn-2)\]                                                                                                                                                                                                                                                                        | object                 |
 
@@ -58,7 +58,7 @@ To configure automatic replication, use the top-level [replications](../configur
 | **password**               | Password for HTTP Basic auth to remote server.                                          | string |
 | **session\_cookie**        | A Sync Gateway session cookie for authentication.                                       | string |
 | **openid\_token**          | An OpenID Connect token for authentication.                                             | string |
-| **tls\_client\_cert**      | This Edge Server’s TLS client certificate, for mTLS. (Requires tls\_client\_cert\_key.) | string |
+| **tls\_client\_cert**      | This Edge Server's TLS client certificate, for mTLS. (Requires tls\_client\_cert\_key.) | string |
 | **tls\_client\_cert\_key** | Private key of TLS client certificate. (Requires tls\_client\_cert.)                    | string |
 
 1. One of `source` or `target` must be a local database name; the other must be a remote `ws:` or `wss:` sync URL.
@@ -66,7 +66,7 @@ To configure automatic replication, use the top-level [replications](../configur
 
 ## [](#start-replication-with-the-rest-api)Start Replication with the REST API
 
-Alternatively, you can start replication using the REST API. You don’t need to set up reduplication in the configuration file to do this. Instead, you pass the replication options in the JSON request body.
+Alternatively, you can start replication using the REST API. You don't need to set up reduplication in the configuration file to do this. Instead, you pass the replication options in the JSON request body.
 
 The JSON request body uses the same format as the items in the [replications](../configuration/edge-server-configuration.md#replications) array in the configuration file. The only difference is that `trusted_root_certs` and `pinned_cert` should contain the certificate data in string form, not filenames.
 
@@ -83,11 +83,11 @@ To get the status of all active replications, changes feeds, and sync tasks, mak
 
 To get the status of all replications, make a GET call to the `_replicate` endpoint.
 
-To get the status of a particular replication, make a GET call to the `_replicate` endpoint with a path parameter whose value is the replication’s task ID.
+To get the status of a particular replication, make a GET call to the `_replicate` endpoint with a path parameter whose value is the replication's task ID.
 
 ## [](#stop-replication)Stop Replication
 
-To stop a replication, make a DELETE call to the `_replicate` endpoint with a path parameter whose value is the replication’s task ID.
+To stop a replication, make a DELETE call to the `_replicate` endpoint with a path parameter whose value is the replication's task ID.
 
 ## [](#examples)Examples
 

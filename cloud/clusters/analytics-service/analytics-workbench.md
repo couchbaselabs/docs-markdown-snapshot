@@ -3,7 +3,7 @@ title: Analytics Workbench
 description: The Analytics Workbench provides a rich graphical user interface to
   perform Analytics query development.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/analytics-service/analytics-workbench.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:analytics-service/analytics-workbench.adoc[]
 ---
 
@@ -30,7 +30,7 @@ For more information on Couchbase Analytics, see the [Analytics section](../../.
 
 ## [](#accessing-the-analytics-workbench)Accessing the Analytics Workbench
 
-If a cluster is running the [Analytics Service](analytics-service.md), the Analytics Workbench can be accessed under the cluster’s **Data Tools** **Analytics** tab.
+If a cluster is running the [Analytics Service](analytics-service.md), the Analytics Workbench can be accessed under the cluster's **Data Tools** **Analytics** tab.
 
 The **Analytics Workbench** consists of three working areas:
 
@@ -40,7 +40,7 @@ The **Analytics Workbench** consists of three working areas:
 
 ## [](#query-editor)Using the Analytics Query Editor
 
-The Query Editor is where you build and run queries. Enter a query into the Query Editor using the [SQL++ for Analytics](../../../server/current/analytics/1%5Fintro.md) language. Since large result sets can take a long time to display, it’s recommended that you use the [LIMIT](../../../server/current/analytics/3%5Fquery.md#Limit%5Fclauses) clause as part of your query when appropriate.
+The Query Editor is where you build and run queries. Enter a query into the Query Editor using the [SQL++ for Analytics](../../../server/current/analytics/1%5Fintro.md) language. Since large result sets can take a long time to display, it's recommended that you use the [LIMIT](../../../server/current/analytics/3%5Fquery.md#Limit%5Fclauses) clause as part of your query when appropriate.
 
 The Query Editor provides syntax highlighting: for easy viewing, SQL++ keywords, numbers, and string literals are differently colored.
 
@@ -138,7 +138,7 @@ You can scroll through the entire query history, and click on an individual quer
 * **Search history** — You can search the query history by entering text in the **Filter Queries** search box. All matching queries are displayed.
 * **Delete a specific entry** — Click the Trash icon next to a particular query to delete it from the history.  
 > [!TIP]  
-> This can be useful if you want a more manicured history for when you’re [exporting it](#export-query) for future use.
+> This can be useful if you want a more manicured history for when you're [exporting it](#export-query) for future use.
 * **Delete all entries** — Click **Clear** to delete the entire query history.
 
 ### [](#import-query)Import Query

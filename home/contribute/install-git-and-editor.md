@@ -1,7 +1,7 @@
 ---
 title: Install Git and an AsciiDoc Editor
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/install-git-and-editor.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:install-git-and-editor.adoc[]
 ---
 
@@ -20,15 +20,15 @@ To get started with authoring Couchbase documentation, you need to:
 
 The Couchbase documentation is stored on GitHub, so if you do not have a GitHub account, you need to [create one](https://github.com/join).
 
-If you’re an official member of the Documentation team, other team members should help add your GitHub to the correct organizations, groups, and repositories on GitHub. Couchbase does not provide you with a GitHub account.
+If you're an official member of the Documentation team, other team members should help add your GitHub to the correct organizations, groups, and repositories on GitHub. Couchbase does not provide you with a GitHub account.
 
 ## [](#install-git)Download and Install Git
 
-To clone and work with Git repositories on your device, or what’s known as local repositories, install Git using your operating system’s package manager. Alternatively, you can download it from the [Git project](https://git-scm.com/downloads).
+To clone and work with Git repositories on your device, or what's known as local repositories, install Git using your operating system's package manager. Alternatively, you can download it from the [Git project](https://git-scm.com/downloads).
 
 ### [](#install-github-desktop)Install GitHub Desktop
 
-If you’re more comfortable working with a visual interface for interacting with Git, instead of using the command line and a terminal, consider installing [GitHub Desktop](https://desktop.github.com/).
+If you're more comfortable working with a visual interface for interacting with Git, instead of using the command line and a terminal, consider installing [GitHub Desktop](https://desktop.github.com/).
 
 GitHub Desktop makes it easier to interact with Git and provides a fast way to [clone new repositories](set-up-repository.md#clone-the-repository) onto your computer.
 

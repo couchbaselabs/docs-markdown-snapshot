@@ -3,7 +3,7 @@ title: Data Sync Peer-to-Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/android/pages/p2psync-websocket.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:android:p2psync-websocket.adoc[]
 ---
 
@@ -12,13 +12,13 @@ link: xref:2.8@couchbase-lite:android:p2psync-websocket.adoc[]
 
 # Data Sync Peer-to-Peer
 
-> Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
-> _Abstract — An introduction to Couchbase Lite’s Peer-to-Peer Synchronization and its concepts._  
+> Description — _Couchbase Lite's Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
+> _Abstract — An introduction to Couchbase Lite's Peer-to-Peer Synchronization and its concepts._  
 > Related Content — [API Reference](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/) | [Passive Peer](../../current/android/p2psync-websocket-using-passive.md) | [Active Peer](../../current/android/p2psync-websocket-using-active.md)
 
 ## [](#introduction)Introduction
 
-Couchbase Lite’s peer-to-peer synchronization solution offers secure storage and bidirectional synchronization of data between edge devices without the need for a centralized cloud-based control point.
+Couchbase Lite's peer-to-peer synchronization solution offers secure storage and bidirectional synchronization of data between edge devices without the need for a centralized cloud-based control point.
 
 The solution provides an out-of-the-box implementation of a websocket based listener for use in peer-to-peer applications communicating over in IP-based networks.
 
@@ -32,7 +32,7 @@ This implementation enables customers to:
 
 ## [](#overview)Overview
 
-At its most basic, peer-to-peer synchronization requires one peer to act as the listener to the other peer’s replicator.
+At its most basic, peer-to-peer synchronization requires one peer to act as the listener to the other peer's replicator.
 
 ![docs listener diagram](../_images/docs-listener-diagram.png) 
 
@@ -55,7 +55,7 @@ You can also learn more about how to implement peer-to-peer synchronization by r
 
 ## [](#features)Features
 
-Couchbase Lite for Android’s peer-to-peer synchronization solution provides support for cross-platform synchronization; for example, between Android and iOS devices.
+Couchbase Lite for Android's peer-to-peer synchronization solution provides support for cross-platform synchronization; for example, between Android and iOS devices.
 
 Each listener instance serves one Couchbase Lite database. But there is no hard limit on the number of listener instances that you can associate with a database.
 
@@ -166,7 +166,7 @@ this.replicator = new Replicator(config); (5)
 this.replicator.start(); (6)
 ```
 
-| **1** | Get the listener’s endpoint. Here we use a known URL, but it could be established dynamically in a discovery phase.                       |
+| **1** | Get the listener's endpoint. Here we use a known URL, but it could be established dynamically in a discovery phase.                       |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Initialize the replicator configuration with the database to be synchronized and the listener it is to synchronize with                   |
 | **3** | Configure the replicator to expect a self-signed certificate from the listener                                                            |
@@ -178,7 +178,7 @@ this.replicator.start(); (6)
 
 ### [](#urlendpointlistener)URLEndpointListener
 
-The `URLEndpointListener` is the listener for peer-to-peer synchronization. It acts like a passive replicator, in the same way that Sync Gateway does in a 'standard' replication. On the client side, the listener’s endpoint is used to point the replicator to the listener.
+The `URLEndpointListener` is the listener for peer-to-peer synchronization. It acts like a passive replicator, in the same way that Sync Gateway does in a 'standard' replication. On the client side, the listener's endpoint is used to point the replicator to the listener.
 
 Core functionalities of the listener are:
 
@@ -240,7 +240,7 @@ API Reference: [setTlsIdentity](http://docs.couchbase.com/mobile/2.8.4/couchbase
 
 authenticator
 
-Use this to specify the authenticator the listener uses to authenticate the client’s connection request. This should be set to one of the following:
+Use this to specify the authenticator the listener uses to authenticate the client's connection request. This should be set to one of the following:
 
 * ListenerPasswordAuthenticator
 * ListenerCertificateAuthenticator

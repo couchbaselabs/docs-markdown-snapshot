@@ -1,7 +1,7 @@
 ---
 title: Microlith deployment
 editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/deployment-microlith.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cmos::deployment-microlith.adoc[]
 ---
 
@@ -18,7 +18,7 @@ A single container can then be run on-premise or on a Kubernetes platform very e
 
 Figure 1\. Microlith overview
 
-Whilst on-premise customers may primarily be using native binaries, all supported OS’s for Couchbase Server can run containers easily. This also makes it easier to deploy as a self-contained image and easy to upgrade as well. We could produce an OS-specific package (e.g. RPM) with all necessary dependencies on the container runtime.
+Whilst on-premise customers may primarily be using native binaries, all supported OS's for Couchbase Server can run containers easily. This also makes it easier to deploy as a self-contained image and easy to upgrade as well. We could produce an OS-specific package (e.g. RPM) with all necessary dependencies on the container runtime.
 
 ## [](#customization)Customization
 

@@ -3,7 +3,7 @@ title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.2/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@python-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -128,7 +128,7 @@ except PathExistsException:
     print('Path exists, cannot use insert.')
 ```
 
-Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutate\_in_ API. Here’s an example of one which replaces one path and removes another.
+Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutate\_in_ API. Here's an example of one which replaces one path and removes another.
 
 ```python
 collection.mutate_in('customer123',(SD.remove('addresses.billing'),
@@ -349,7 +349,7 @@ for res in result:
         print(f'Exception={ex}')
 ```
 
-You may want to use `lookup_in_all_replicas` to build a consensus, but it’s more likely that you’ll make use of `lookup_in_any_replica` as a fallback to a `lookupIn`, when the active node times out.
+You may want to use `lookup_in_all_replicas` to build a consensus, but it's more likely that you'll make use of `lookup_in_any_replica` as a fallback to a `lookupIn`, when the active node times out.
 
 ## [](#concurrent-modifications)Concurrent Modifications
 
@@ -377,7 +377,7 @@ collection.mutate_in('customer123',
 
 ## [](#durability)Durability
 
-Couchbase’s [traditional 'client verified' durability](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), using `PersistTo` and `ReplicateTo`, is still available, particularly for talking to Couchbase Server 6.0 and earlier. Refer to the [API docs](https://docs.couchbase.com/sdk-api/couchbase-python-client/api/couchbase.html?highlight=durability#couchbase.durability.ClientDurability.%5F%5Finit%5F%5F) for the legacy API.
+Couchbase's [traditional 'client verified' durability](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), using `PersistTo` and `ReplicateTo`, is still available, particularly for talking to Couchbase Server 6.0 and earlier. Refer to the [API docs](https://docs.couchbase.com/sdk-api/couchbase-python-client/api/couchbase.html?highlight=durability#couchbase.durability.ClientDurability.%5F%5Finit%5F%5F) for the legacy API.
 
 ```python
 collection.mutate_in('key',

@@ -3,7 +3,7 @@ title: Client Settings
 description: The <code>ClusterOptions</code> class enables you to configure
   Python SDK options for bootstrapping, timeouts, reliability, and performance.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.2/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@python-sdk:ref:client-settings.adoc[]
 ---
 
@@ -33,7 +33,7 @@ The following sections cover all possible cluster options and explain their usag
 
 ### [](#security-options)Security Options
 
-By default the client will connect to Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition, it’s possible to secure the connection using TLS. For connecting to Couchbase Capella — our fully hosted cloud service — TLS is a prerequisite.
+By default the client will connect to Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition, it's possible to secure the connection using TLS. For connecting to Couchbase Capella — our fully hosted cloud service — TLS is a prerequisite.
 
 Name: **Enable Secure Connections**
 
@@ -111,9 +111,9 @@ Default: `auto`
 > [!NOTE]
 > The network value should be one of `auto`, `default`, or `external` (lower case).
 
-Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server’s network environment.
+Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server's network environment.
 
-By default the client will use a simple matching heuristic to determine which set of addresses to use (it will select the set of addresses that contains a seed node’s host and port).
+By default the client will use a simple matching heuristic to determine which set of addresses to use (it will select the set of addresses that contains a seed node's host and port).
 
 If you wish to override the heuristic, you can set this value to `default` if the client is running in the same network as the server, or `external` if the client is running in a different network.
 

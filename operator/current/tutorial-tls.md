@@ -1,7 +1,7 @@
 ---
 title: Creating TLS Certificates
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/tutorial-tls.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::tutorial-tls.adoc[]
 ---
 
@@ -111,7 +111,7 @@ Enter pass phrase for tls.key:  <passphrase>
 
 ### [](#private-key-formatting-legacy)Private Key Formatting (Legacy)
 
-Due to an [issue](https://issues.couchbase.com/browse/MB-24404) with Couchbase Server’s private key handling, server keys may need to be PKCS#1 formatted. This was addressed in Kubernetes Operator 2.2 (and this tutorial) with the implementation of [couchbaseclusters.spec.networking.tls.secretSource](resource/couchbasecluster.md#couchbaseclusters-spec-networking-tls-secretsource).
+Due to an [issue](https://issues.couchbase.com/browse/MB-24404) with Couchbase Server's private key handling, server keys may need to be PKCS#1 formatted. This was addressed in Kubernetes Operator 2.2 (and this tutorial) with the implementation of [couchbaseclusters.spec.networking.tls.secretSource](resource/couchbasecluster.md#couchbaseclusters-spec-networking-tls-secretsource).
 
 However, if you are using legacy TLS configuration with [couchbaseclusters.spec.networking.tls.static](resource/couchbasecluster.md#couchbaseclusters-spec-networking-tls-static), you will need to format the server keys in PKCS#1:
 

@@ -1,7 +1,7 @@
 ---
 title: Sync
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/swift/develop/sync.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:swift/develop/sync.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Sync Gateway uses channels to make it easy to share a database between a large n
 
 In the [backend installation](#{param-module}/installation/index.adoc)section, we walked you through the steps to launch Sync Gateway with a specific config file.
 
-Open the sync-gateway-config-travelsample.json file located at <https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-config-travelsample.json>. It includes the `sync function` which is a JavaScript function whose source code is stored in the Sync Gateway’s database configuration file.
+Open the sync-gateway-config-travelsample.json file located at <https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-config-travelsample.json>. It includes the `sync function` which is a JavaScript function whose source code is stored in the Sync Gateway's database configuration file.
 
 ```javascript
 /* Routing */
@@ -74,14 +74,14 @@ Replication is the process by which clients running Couchbase Lite synchronize d
 * Pull Replication is the process by which clients running Couchbase Lite download database changes from the remote (server) source database to the local target database
 * Push Replication is the process by which clients running Couchbase Lite upload database changes from the local source database to the remote (server) target database
 
-Couchbase Mobile’s replication protocol is implemented as a messaging protocol layered over WebSocket.
+Couchbase Mobile's replication protocol is implemented as a messaging protocol layered over WebSocket.
 
 ![replication 2 0](../../_images/replication-2-0.png)
 
-The replication process can be “continuous” or "\`one shot"\`.
+The replication process can be "continuous" or "\`one shot"\`.
 
-* In “Continuous” replication mode, the changes are continually synchronized between the client and Sync Gateway.
-* In “One shot” mode, the changes are synchronized once and the connection between the client and server disconnects. When any future changes need to be pushed up or pulled down, the client must start a new replication.
+* In "Continuous" replication mode, the changes are continually synchronized between the client and Sync Gateway.
+* In "One shot" mode, the changes are synchronized once and the connection between the client and server disconnects. When any future changes need to be pushed up or pulled down, the client must start a new replication.
 
 **Open the file**`DatabaseManager.swift`. We will review the method `func startPushAndPullReplicationForCurrentUser()`
 
@@ -144,7 +144,7 @@ The Replicator is configured with relevant authentication credentials. In the Tr
 config.authenticator = BasicAuthenticator(username: user, password: password)
 ```
 
-The Replicator is configured to **only** pull from current user’s channels. The list of channels that the user has access to is defined in the Sync Gateway configuration file as discussed in the [Data Routing](#data-routing) section.
+The Replicator is configured to **only** pull from current user's channels. The list of channels that the user has access to is defined in the Sync Gateway configuration file as discussed in the [Data Routing](#data-routing) section.
 
 ```swift
 // This should match what is specified in the sync gateway config
@@ -185,23 +185,23 @@ _pushPullRepl?.start()
 
 Try it out — Book a Flight
 
-1. Log into the Travel Sample Mobile app as “demo” user and password as “password”
+1. Log into the Travel Sample Mobile app as "demo" user and password as "password"
 2. Tap on "+" button to make a flight reservation
-3. Enter “From” airport as SFO and select the airport from drop down menu
-4. Enter “To” airport as DTW and select the airport from drop down menu
+3. Enter "From" airport as SFO and select the airport from drop down menu
+4. Enter "To" airport as DTW and select the airport from drop down menu
 5. Enter From (01/20/2020) and Return (02/20/2020) Dates
 6. Tap "lookup" button
 7. From list of flights, select the first flight listing
-8. Select “Confirm Booking” — see: [Figure 1](#fig-swift-bookflight)
+8. Select "Confirm Booking" — see: [Figure 1](#fig-swift-bookflight)
 
 ![ios push sync](../../_images/ios_push_sync.gif) 
 
 Figure 1\. Book a Flight in Mobile App
 
-Try it out — Check the Flight Details Sync’d
+Try it out — Check the Flight Details Sync'd
 
 1. Access the Travel Sample Python Web app. The URL would be <http://localhost:8080>. If you did cloud based install, please replace `localhost` in the URL with the IP Address of the cloud instance of the web app.
-2. Log into the web app as “demo” user with password as “password”
+2. Log into the web app as "demo" user with password as "password"
 3. Use the "Booked" tab to navigate to the list of booked flights
 4. Confirm that you see the flight that you reserved via the mobile app in your list of flights in the web app
 
@@ -214,14 +214,14 @@ Figure 2\. View Booking in WebApp
 Try it out — Book Flight in WebApp
 
 1. Access the Travel Sample Python Web app. The URL would be <http://localhost:8080>. If you did cloud based install, please replace `localhost` in the URL with the IP Address of the cloud instance of the web app.
-2. Log into the web app as “demo” user with password as “password”
+2. Log into the web app as "demo" user with password as "password"
 3. Make a flight reservation by clicking the "Flights" tab
-4. Enter “From” airport as "Seattle Tacoma Intl" and select the airport from drop down menu.
-5. Enter “To” airport as "San Francisco Intl" and select the airport from drop down menu.
+4. Enter "From" airport as "Seattle Tacoma Intl" and select the airport from drop down menu.
+5. Enter "To" airport as "San Francisco Intl" and select the airport from drop down menu.
 6. Enter From (20/01/2020) and Return (20/02/2020) Travel Dates
 7. Click on "Search" button
 8. From list of flights, select the first flight listing by clicking on the corresponding "Add to Basket" button
-9. Confirm the booking by clicking on the "Basket" tab to view the flight selections and then click on the “Buy” button
+9. Confirm the booking by clicking on the "Basket" tab to view the flight selections and then click on the "Buy" button
 10. The "Booked" tab should show the confirmed flight reservations — see: [Figure 3](#fig-swift-bookflightweb)
 
 ![travel app pull](../../_images/travel-app-pull.gif) 
@@ -230,7 +230,7 @@ Figure 3\. Book Flight in WebApp
 
 Try it out — Check Booking in Mobile App
 
-1. Log into the Travel Sample Mobile app as “demo” user and password as “password”
+1. Log into the Travel Sample Mobile app as "demo" user and password as "password"
 2. Confirm that you see the flight that you reserved via the web app in your list of flights in the mobile app
 
 ---

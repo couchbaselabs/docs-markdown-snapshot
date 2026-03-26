@@ -4,7 +4,7 @@ description: The Couchbase REST API can be used to initialize an individual
   node; and to provision it, so that it becomes a single-node cluster, to which
   further nodes can then be added.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-cluster-init-and-provisioning.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:reference:rest-cluster-init-and-provisioning.adoc[]
 ---
 
@@ -32,7 +32,7 @@ Once a newly installed instance of Enterprise Analytics has been started for the
   * A name for the entire cluster.
   * Services that will reside on the node, and their individual memory allocations.
   * A username and password for the administrator creating the cluster — the administrator will have Full Admin credentials.  
-  Once the username and password are established, the node is considered a fully provisioned single-node cluster, and the cluster’s instance of Couchbase Web Console can be accessed by means of user login.  
+  Once the username and password are established, the node is considered a fully provisioned single-node cluster, and the cluster's instance of Couchbase Web Console can be accessed by means of user login.  
   Following the establishment of username and password, the single-node cluster can no longer be initialized; nor can services be assigned to the node. If no services have been assigned prior to the username and password being assigned, the default list of services is assigned to the node, using the default memory allocations. See [Memory](#learn:buckets-memory-and-storage/memory.adoc).  
   Following the establishment of username and password, the node-name can continue to be assigned and reassigned, provided that the node remains a single-node cluster. Memory allocations and cluster name can also continue to be modified, including after the cluster has become a multi-node cluster.  
   If username and password are established _before_ the other provisioning APIs have been used, any such calls made subsequently must be authenticated: however, prior to username and password being established, the other provisioning APIs can be used without authentication. For information about roles, see [Roles](#learn:security/roles.adoc).

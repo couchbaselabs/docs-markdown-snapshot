@@ -3,7 +3,7 @@ title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging, orphan logging, and other span metrics.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/howtos/pages/slow-operations-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@php-sdk:howtos:slow-operations-logging.adoc[]
 ---
 
@@ -124,7 +124,7 @@ To see all the available options for the tracing settings refer to the [Tracing 
 
 Orphan response reporting acts as an auxiliary tool to the tracing and metrics capabilities. It does not expose an external API to the application and is very focused on its feature set.
 
-The way it works is that every time a response is in the process of being completed, when the SDK detects that the original caller is not listening anymore (likely because of a timeout), it will send this “orphan” response to a reporting utility which then aggregates it. and at regular intervals logs them in a specific format.
+The way it works is that every time a response is in the process of being completed, when the SDK detects that the original caller is not listening anymore (likely because of a timeout), it will send this "orphan" response to a reporting utility which then aggregates it. and at regular intervals logs them in a specific format.
 
 When the user then sees timeouts in their logs, they can go look at the output of the orphan reporter and correlate certain properties that aid debugging in production. For example, if a single node is slow but the rest of the cluster is responsive, this would be visible from orphan reporting.
 

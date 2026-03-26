@@ -3,7 +3,7 @@ title: Enterprise Analytics Web Console
 description: The features of Enterprise Analytics can be managed by means of
   Enterprise Analytics Web Console.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-ui/manage-ui.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:manage-ui/manage-ui.adoc[]
 ---
 
@@ -48,13 +48,13 @@ Detailed information about authenticating with Enterprise Analytics is provided 
 
 ## [](#understanding-the-dashboard)Understanding the Dashboard
 
-On the user’s successful login, the console displays the **Dashboard**. If this is the user’s first-time access, the interface displays a clean dashboard layout.
+On the user's successful login, the console displays the **Dashboard**. If this is the user's first-time access, the interface displays a clean dashboard layout.
 
 The display consists of several key areas:
 
 * A **banner** with interactive controls.
 * A **main panel**, which allows display of data and configuration fields.
-* A **left-hand navigation bar**, which allows the main panel’s content to be determined.
+* A **left-hand navigation bar**, which allows the main panel's content to be determined.
 * A **lower panel**, which displays current status on the cluster.
 
 These are described in detail below.
@@ -109,7 +109,7 @@ System notifications are shown, as required, in the lower left-hand corner of th
 
 Enterprise Analytics Web Console allows users to access features by clicking on _tabs_. Tabs are located:
 
-* _In the left-hand navigation bar_ \- Whenever a tab is clicked on, the appearance of the console’s _main panel_ changes, to display content for the selected feature.
+* _In the left-hand navigation bar_ \- Whenever a tab is clicked on, the appearance of the console's _main panel_ changes, to display content for the selected feature.
 * _In the upper, horizontal navigation bar_ \- This appears, for _some_ features, immediately above the main panel. Whenever a tab is clicked on, the appearance of the main panel changes, to display alternative content for the feature selected from the left-hand navigation bar.
 
 The remaining sections on this page describe in turn the features accessed by clicking on the tabs provided.
@@ -125,7 +125,7 @@ For a single-node cluster, a single row of information is displayed for the curr
 * **name** \- The name of the node, established during setup.
 * **group** \- The group of which the node is currently a member. For conceptual information about groups, see [Server Group Awareness](../../../../server/current/learn/clusters-and-availability/groups.md). For practical information about group management, see [Manage Groups](../manage-groups/manage-groups.md).
 * **CPU**, **RAM**, **swap**, **disk used** \- information about resource-consumption, on the specified node.
-* **Statistics** \- Click on this interactive option to display interactive statistics-charts for the database, on the console’s **Dashboard**.
+* **Statistics** \- Click on this interactive option to display interactive statistics-charts for the database, on the console's **Dashboard**.
 
 > [!NOTE]
 > Statistics are only available when at least one database has been installed.

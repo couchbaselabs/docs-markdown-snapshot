@@ -4,7 +4,7 @@ title: Install Couchbase Server on Red Hat Enterprise Linux, Oracle Linux, or
 description: Couchbase Server can be installed on Red Hat Enterprise Linux,
   Oracle Linux, or Amazon Linux 2023 for production and development use cases.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/rhel-suse-install-intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:rhel-suse-install-intro.adoc[]
 ---
 
@@ -19,15 +19,15 @@ Couchbase Server supports both root and non-root installations of Red Hat Enterp
 
 Use the instructions on this page to install Couchbase Server on Red Hat Enterprise Linux, Oracle Linux, or Amazon Linux 2023 using Couchbase-provided RPM packages. The instructions support both Enterprise and Community [editions](https://www.couchbase.com/products/editions).
 
-If you’re upgrading an existing Couchbase Server instance, see [Upgrading Couchbase Server](upgrade.md).
+If you're upgrading an existing Couchbase Server instance, see [Upgrading Couchbase Server](upgrade.md).
 
 ## [](#prerequisites-for-installation)Prerequisites for Installation
 
 Couchbase Server works out of the box with most OS configurations. However, the following are the prerequisites for installation:
 
 * Your system meets the [minimum requirements](pre-install.md) and that your operating system version is [supported](install-platforms.md).
-* You’re working from a clean system and that you have [uninstalled](install-uninstalling.md) any previous versions of Couchbase Server.  
-If you’re upgrading an existing installation of Couchbase Server, see [Upgrading Couchbase Server](upgrade.md).
+* You're working from a clean system and that you have [uninstalled](install-uninstalling.md) any previous versions of Couchbase Server.  
+If you're upgrading an existing installation of Couchbase Server, see [Upgrading Couchbase Server](upgrade.md).
 * For Oracle Linux, only the Red Hat Compatible Kernel (RHCK) is supported. The Unbreakable Enterprise Kernel (UEK) is not supported.
 * For production deployments, make sure to follow the [deployment guidelines](install-production-deployment.md) so that your systems and environment are properly sized and configured before installation.
 
@@ -67,7 +67,7 @@ Run the following command:
 ```console  
 sudo dnf install couchbase-server  
 ```  
-You’ll be prompted to start the download of Couchbase Server (plus any dependencies), as well as import several GPG keys. For each of these prompts, type `y` to accept and continue.  
+You'll be prompted to start the download of Couchbase Server (plus any dependencies), as well as import several GPG keys. For each of these prompts, type `y` to accept and continue.  
 To install a specific release
 
   1. List the available releases.  
@@ -84,13 +84,13 @@ To install a specific release
   ```  
   The following is an example of the installation command:  
   sudo dnf install couchbase-server-**8.0.0-3777**  
-  You’ll be prompted to start the download of Couchbase Server and its dependencies, and import several GPG keys. For each of these prompts, type `y` to accept and continue.  
+  You'll be prompted to start the download of Couchbase Server and its dependencies, and import several GPG keys. For each of these prompts, type `y` to accept and continue.  
 To install the latest release  
 Run the following command:  
 ```console  
 sudo dnf install couchbase-server-community  
 ```  
-You’ll be prompted to start the download of Couchbase Server and its dependencies, and import several GPG keys. For each of these prompts, type `y` to accept and continue.  
+You'll be prompted to start the download of Couchbase Server and its dependencies, and import several GPG keys. For each of these prompts, type `y` to accept and continue.  
 To install a specific release
 
   1. List the available releases.  
@@ -107,7 +107,7 @@ To install a specific release
   ```  
   The following is an example of the installation command:  
   sudo dnf install couchbase-server-community-**8.0.0-3777**  
-  You’ll be prompted to start the download of Couchbase Server and its dependencies, and import several GPG keys. For each of these prompts, type `y` to accept and continue.  
+  You'll be prompted to start the download of Couchbase Server and its dependencies, and import several GPG keys. For each of these prompts, type `y` to accept and continue.  
 After the installation is complete, Couchbase Server starts automatically. Couchbase Server continues to start automatically at run levels 2, 3, 4, and 5, and explicitly shuts down at run levels 0, 1, and 6\. You can use the `systemctl` command, a `service` on older operating systems, to start and stop the Couchbase Server service, and to verify the current status. For more information, see [Couchbase Server Startup and Shutdown](startup-shutdown.md).
 4. Open the Couchbase Web Console in a browser to [verify](testing.md) that the installation was successful and that the node is available.
 
@@ -158,7 +158,7 @@ For more information about non-root installation and upgrade, see [Establish Lim
 
 After you install and start Couchbase Server, initialize and provision a node.
 
-* If it’s the first node in a deployment, initialization and provisioning happens all at once when you create a cluster of one.  
+* If it's the first node in a deployment, initialization and provisioning happens all at once when you create a cluster of one.  
 For more information, see [Create a Cluster](../manage/manage-nodes/create-cluster.md).
 * If you already have an existing cluster, the node is initialized and provisioned when you add it to the cluster.
 

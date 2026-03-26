@@ -3,7 +3,7 @@ title: Couchbase Lite on Java&#8201;&#8212;&#8201;Prerequisites
 description: Couchbase Lite on Java -- a framework for developing offline-first
   Java applications for mobile and edge
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/java/pages/gs-prereqs.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:java:gs-prereqs.adoc[]
 ---
 
@@ -61,7 +61,7 @@ When unpacked the package contains the following:
 
 1. Download the _zip_ file from here — [Extend with Mobile](https://www.couchbase.com/downloads#extend-with-mobile).
 2. Unpack the downloaded file to a location accessible to — and usable by — your chosen **build** environment.  
-We’ll refer to that location — `<your dir>/couchbase-lite-java-3.0.15` — as the `<pathToCbl>`.
+We'll refer to that location — `<your dir>/couchbase-lite-java-3.0.15` — as the `<pathToCbl>`.
 3. Include the following dependency in your `build.gradle` file, you can remove any Couchbase Lite Maven references:  
 ```Java  
 Dependencies {  
@@ -91,7 +91,7 @@ In addition to setting-up your build environment, you also need to make the supp
 
 1. Copy the directory `<exploded-distribution-zip>/support` to a location accessible and executable by your build and runtime environments.  
 Unresolved include directive in modules/java/pages/\_partials/gs-additional-steps-for-linux.adoc - include::partial$directory-diagrams.adoc\[\]
-2. Add the paths of the directories `libc++` and `libicu` to `LD_LIBRARY_PATH` in \`$CATALINA\_BASE/bin/setenv.sh. (If the setenv.sh file doesn’t exist, you will need to create a new file.)  
+2. Add the paths of the directories `libc++` and `libicu` to `LD_LIBRARY_PATH` in \`$CATALINA\_BASE/bin/setenv.sh. (If the setenv.sh file doesn't exist, you will need to create a new file.)  
 ```bashrc  
 LD_LIBRARY_PATH=<lib-directory>/support/libc++:<lib-directory>/support/libicu:$LD_LIBRARY_PATH  
 ```

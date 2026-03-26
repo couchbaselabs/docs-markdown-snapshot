@@ -3,7 +3,7 @@ title: Install Couchbase Server
 description: Install and set up Couchbase Server to continue following the
   Student Record System tutorial.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/tutorials/pages/install-couchbase-server.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:tutorials:install-couchbase-server.adoc[]
 ---
 
@@ -46,7 +46,7 @@ Couchbase Server can run as its own cluster or join another cluster to form a mu
 To set up a cluster:
 
 1. Make sure your Couchbase Server is running.
-2. In your browser, go to `http://127.0.0.1:8091` to access your server’s configuration page.
+2. In your browser, go to `http://127.0.0.1:8091` to access your server's configuration page.
 3. Click **Setup New Cluster**.
 4. For your cluster name, enter **student-cluster**.
 5. For your username, enter **username**.

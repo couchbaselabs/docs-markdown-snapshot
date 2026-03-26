@@ -3,7 +3,7 @@ title: "How-to Guide: Data Topology Synchronization"
 description: A how-to guide on data topology synchronization with Couchbase
   Autonomous Operator.
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-guide-data-topology-sync.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::howto-guide-data-topology-sync.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:2.7@operator::howto-guide-data-topology-sync.adoc[]
 
 ## [](#overview)Overview
 
-In the following guide, we’ll show you how to discover the configuration of a Couchbase cluster in the form of Kubernetes resources, and how the Autonomous Operator manages those resources.
+In the following guide, we'll show you how to discover the configuration of a Couchbase cluster in the form of Kubernetes resources, and how the Autonomous Operator manages those resources.
 
 ## [](#prerequisites)Prerequisites
 
@@ -25,10 +25,10 @@ In the following guide, we’ll show you how to discover the configuration of a 
 
 In your Couchbase cluster load the `travel-sample` sample bucket. See [Load the Sample Dataset](../../server/current/getting-started/do-a-quick-install.md#load-the-sample-dataset) to learn how to load a sample bucket.
 
-On this cluster we’ll enable synchronization to discover the bucket and its scopes and collections in the form of Kubernetes resources.
+On this cluster we'll enable synchronization to discover the bucket and its scopes and collections in the form of Kubernetes resources.
 
 > [!NOTE]
-> For the purposes of this guide, we’ll be referring to an example cluster called `cb-example`. Substitute the name of the cluster with your own if necessary.
+> For the purposes of this guide, we'll be referring to an example cluster called `cb-example`. Substitute the name of the cluster with your own if necessary.
 
 ![data topology synchronized prereq buckets](_images/data-topology-synchronized-prereq-buckets.png) 
 
@@ -97,7 +97,7 @@ To check for completion status, you can wait until the condition is reported:
 $ kubectl wait --for=condition=Synchronized couchbasecluster/cb-example
 ```
 
-Once the synchronization is complete you’ll see the below output:
+Once the synchronization is complete you'll see the below output:
 
 Result
 
@@ -184,13 +184,13 @@ collection-4bbb3cbbc1fbe031b218a383a12c1cf0abefb3cfbbf43ad7679cc503035cf1d5   4m
 ```
 
 > [!NOTE]
-> Unlike save and restore, synchronization does not optimize the data topology Kubernetes resources. In a worst case scenario, where 1000’s of scopes and collections are in use, then you can expect synchronization to take several minutes due to the throttling of requests to the Kubernetes API to ensure fair use.
+> Unlike save and restore, synchronization does not optimize the data topology Kubernetes resources. In a worst case scenario, where 1000's of scopes and collections are in use, then you can expect synchronization to take several minutes due to the throttling of requests to the Kubernetes API to ensure fair use.
 
 ## [](#managing-synchronized-resources)Managing Synchronized Resources
 
 You must ensure synchronization has completed successfully before switching to managed mode. Failure to do so may result in backing resources not being created, and data loss.
 
-Now that we have confirmed synchronization has completed successfully, we can switch the cluster’s bucket management on:
+Now that we have confirmed synchronization has completed successfully, we can switch the cluster's bucket management on:
 
 ```console
 $ kubectl patch couchbasecluster cb-example --type=merge -p '{"spec":{"buckets":{"synchronize":false,"managed":true}}}'
@@ -202,11 +202,11 @@ From this point onward, any managed resources that are deleted or modified manua
 
 #### [](#oops-scenario)Oops Scenario
 
-Let’s check the scopes of the `travel-sample` bucket first. In the image below, we can see that there are a total of 7 scopes in this bucket.
+Let's check the scopes of the `travel-sample` bucket first. In the image below, we can see that there are a total of 7 scopes in this bucket.
 
 ![data topology synchronized resources](_images/data-topology-synchronized-resources.png) 
 
-Let’s assume a scenario where we deleted one of the scopes (`tenant_agent_00`) by mistake. If the resource was synchronized, the operator should be able to recover it.
+Let's assume a scenario where we deleted one of the scopes (`tenant_agent_00`) by mistake. If the resource was synchronized, the operator should be able to recover it.
 
 ![data topology synchronized drop scope](_images/data-topology-synchronized-drop-scope.png) 
 

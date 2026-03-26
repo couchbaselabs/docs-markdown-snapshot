@@ -1,7 +1,7 @@
 ---
 title: Set Up a Standalone Collection
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/manage-standalone-collection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sources:manage-standalone-collection.adoc[]
 ---
 
@@ -34,7 +34,7 @@ To create a standalone collection:
 1. In the UI, select the **Workbench** tab.
 2. Click **\+ standalone collection**.
 3. In the **Collection Name** field, enter a name for the collection.
-4. In the **database.scope** list, select a **Database** and the relevant **Scope** gets updated by default, or verify the supplied database and scope if you’re adding it to a specific scope. If you do not want to specify the primary key, make sure **Auto Generate UUID** is selected. If you want to specify the primary key, clear **Auto Generate UUID**, add the name in the **Name** field, select the type and click **Save**.
+4. In the **database.scope** list, select a **Database** and the relevant **Scope** gets updated by default, or verify the supplied database and scope if you're adding it to a specific scope. If you do not want to specify the primary key, make sure **Auto Generate UUID** is selected. If you want to specify the primary key, clear **Auto Generate UUID**, add the name in the **Name** field, select the type and click **Save**.
 5. Click **Save**.
 
 ## [](#work-with-a-standalone-collection)Work with a Standalone Collection

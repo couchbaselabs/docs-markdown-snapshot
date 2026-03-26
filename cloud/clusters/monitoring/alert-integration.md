@@ -3,7 +3,7 @@ title: Alert Integrations
 description: An alert integration lets Capella send metric‑based notifications
   to a third‑party tool using a webhook.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/alert-integration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:monitoring/alert-integration.adoc[]
 ---
 
@@ -27,7 +27,7 @@ Couchbase has verified the use of **ServiceNow** with the Capella alert integrat
 
 To send alert notifications from Capella to this and other third-party tools automatically:
 
-1. In your third-party tool of choice, set up the incoming webhook. You’ll need the URL and the authentication details.
+1. In your third-party tool of choice, set up the incoming webhook. You'll need the URL and the authentication details.
 2. In Capella, add an alert integration to the project.
 
 You can also view alert notifications in the Capella UI and receive them by email. See [Receive Alerts](alerts.md).
@@ -51,7 +51,7 @@ Filtering
 You can limit the notifications that an alert integration sends for the project. You can exclude specific clusters or App Services.
 
 > [!NOTE]
-> By default, an alert integration sends notifications for all of a project’s clusters and App Services that are on the paid Enterprise or Developer Pro plan. For clusters or App Services that are on the paid Basic plan, alerts are delivered only in the UI or by email.
+> By default, an alert integration sends notifications for all of a project's clusters and App Services that are on the paid Enterprise or Developer Pro plan. For clusters or App Services that are on the paid Basic plan, alerts are delivered only in the UI or by email.
 
 Authentication and Authorization Options
 
@@ -88,7 +88,7 @@ The payload of each message consists of the following JSON objects and keys:
 |               | severity    | Identifies the alert as either "critical" or "warning".                                                                                                   |
 |               | summary     | A brief description of the alert.                                                                                                                         |
 |               | description | A detailed description with potential causes and solutions. For more detailed information, see the [Alert Reference](../../reference/alert-reference.md). |
-| tenant        | id          | The unique identifier of the project’s tenant.                                                                                                            |
+| tenant        | id          | The unique identifier of the project's tenant.                                                                                                            |
 |               | name        | The user-defined name of the tenant.                                                                                                                      |
 | project       | id          | The unique identifier of the project that contains the affected cluster or App Service.                                                                   |
 |               | name        | The user-defined name of the project.                                                                                                                     |

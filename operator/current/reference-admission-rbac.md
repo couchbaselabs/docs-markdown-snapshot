@@ -1,7 +1,7 @@
 ---
 title: Dynamic Admission Controller RBAC Settings
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/reference-admission-rbac.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::reference-admission-rbac.adoc[]
 ---
 
@@ -71,6 +71,6 @@ _Required Permissions_: `get`, `list`
 > [!NOTE]
 > `Secret` and `StorageClass` resources are only interrogated — as described — for existence and correctness. The admission controller only performs `get` operations based on the names specified in the `CouchbaseCluster` specification. The `list` operation is only used by the admission controller to validate, if applicable, that a default storage class exists. These resources will never be leaked through logs and are never persisted by the admission controller.
 > 
-> If, however, your security policies declare that such permissions cannot be granted to an application, then they can be safely removed from the admission controller’s role. You will then no longer be informed about missing secrets and storage classes, incorrectly formatted secrets, and invalid TLS configurations.
+> If, however, your security policies declare that such permissions cannot be granted to an application, then they can be safely removed from the admission controller's role. You will then no longer be informed about missing secrets and storage classes, incorrectly formatted secrets, and invalid TLS configurations.
 > 
 > For further information on opting out of these checks, see the documentation for the [cao generate admission](tools/cao.md) command.

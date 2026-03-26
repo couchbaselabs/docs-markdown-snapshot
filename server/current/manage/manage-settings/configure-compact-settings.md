@@ -3,7 +3,7 @@ title: Auto-Compaction
 description: The auto-Compaction settings control if and when Couchbase Server
   compacts data files and view indexes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/configure-compact-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-settings/configure-compact-settings.adoc[]
 ---
 
@@ -46,10 +46,10 @@ See [Auto-Compaction Settings](#configure-auto-compaction-settings) for descript
 
 To change the auto-compaction settings for an existing bucket:
 
-1. In the **Buckets** page’s list of buckets, click the entry for the bucket you want to edit.
+1. In the **Buckets** page's list of buckets, click the entry for the bucket you want to edit.
 2. Click **Edit**.
 3. In the **Edit Bucket Settings** dialog, click **Show advanced bucket settings**.
-4. Under **Auto-Compaction**, select **Override the default auto-compaction settings?** if it’s not already selected. The dialog expands to show the Auto-Compaction settings. The settings are the same as those available in the [dialog for a new bucket](#auto%5Fcompact%5Fmagma). They depend on the storage backend used by the bucket.  
+4. Under **Auto-Compaction**, select **Override the default auto-compaction settings?** if it's not already selected. The dialog expands to show the Auto-Compaction settings. The settings are the same as those available in the [dialog for a new bucket](#auto%5Fcompact%5Fmagma). They depend on the storage backend used by the bucket.  
 See [Auto-Compaction Settings](#configure-auto-compaction-settings) for descriptions of the available settings.
 
 ### [](#for-no-override-buckets)Configure Default Auto-Compaction Settings
@@ -67,7 +67,7 @@ The default auto-compaction settings page appears as follows:
 
 ![auto compact defaultNewUI](../_images/manage-settings/auto-compact-defaultNewUI.png) 
 
-The auto-compaction settings for individual buckets is similar to the default settings page, but the available fields depend on the bucket’s storage-backend.
+The auto-compaction settings for individual buckets is similar to the default settings page, but the available fields depend on the bucket's storage-backend.
 
 > [!NOTE]
 > The Couchbase Server Community Edition auto-compaction settings contains fields to control [Index Fragmentation](#index-fragmentation). Couchbase Server Enterprise Edition does not have these settings.

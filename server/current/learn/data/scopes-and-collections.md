@@ -3,7 +3,7 @@ title: Scopes and Collections
 description: Couchbase Server provides <em>scopes</em> and <em>collections</em>;
   allowing documents to be categorized and organized, within a bucket.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/data/scopes-and-collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:data/scopes-and-collections.adoc[]
 ---
 
@@ -88,7 +88,7 @@ An _expiration_ value can be established on a collection: this determines the ma
 
 ## [](#change-history)Change History
 
-When _Magma_ storage is used for a bucket, the changes made to documents within the bucket’s collections can be recorded, in a _change history_. The change history resides on disk. Its capacity is administrator-specified. When the change history is full, old records are automatically removed (by means of compaction), to allow space for new records.
+When _Magma_ storage is used for a bucket, the changes made to documents within the bucket's collections can be recorded, in a _change history_. The change history resides on disk. Its capacity is administrator-specified. When the change history is full, old records are automatically removed (by means of compaction), to allow space for new records.
 
 For detailed information, see [Change History](change-history.md).
 

@@ -2,7 +2,7 @@
 title: Manage Billing Information
 description: Manage and audit billing information for your organization and clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/manage-billing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:billing:manage-billing.adoc[]
 ---
 
@@ -16,11 +16,11 @@ link: xref:cloud:billing:manage-billing.adoc[]
 > [!NOTE]
 > If you do not have a Couchbase Capella account, see [Create an Account and Deploy Your Free Tier Operational Cluster](../get-started/create-account.md).
 
-You can [view your billing and usage information](#access-billing) for Couchbase Capella from your organization’s **Billing** tab.
+You can [view your billing and usage information](#access-billing) for Couchbase Capella from your organization's **Billing** tab.
 
 To upgrade from a free tier operational plan to a paid Support Plan, see [Upgrade Your Account](upgrade-account.md).
 
-To change the Support Plan for your operational cluster, see [Change a Cluster’s Plan and Support Timezone](change-support-plan.md).
+To change the Support Plan for your operational cluster, see [Change a Cluster's Plan and Support Timezone](change-support-plan.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -28,7 +28,7 @@ To manage billing information in your organization, you must have the [Organizat
 
 ## [](#billing-contact)Update Your Billing Contact Information
 
-If you use Couchbase Capella Credits, Couchbase sends invoices and other billing-related notifications to your organization’s billing contact. The billing contact is different from a user with the [Organization Owner](../organizations/manage-organizations.md) role.
+If you use Couchbase Capella Credits, Couchbase sends invoices and other billing-related notifications to your organization's billing contact. The billing contact is different from a user with the [Organization Owner](../organizations/manage-organizations.md) role.
 
 To update your billing contact information, contact [Couchbase Sales](https://info.couchbase.com/Capella-Contact.html).
 
@@ -37,7 +37,7 @@ To update your billing contact information, contact [Couchbase Sales](https://in
 
 ## [](#update-default-cc)Update Your Default Credit Card
 
-You can update your default credit card at any time to change which card Couchbase bills for your organization’s usage. For more information about how Capella manages billing with credit cards, see [Credit Card Payments](billing.md#credit-cards).
+You can update your default credit card at any time to change which card Couchbase bills for your organization's usage. For more information about how Capella manages billing with credit cards, see [Credit Card Payments](billing.md#credit-cards).
 
 1. In the navigation breadcrumbs in the Capella UI, click your organization name.
 2. Go to **Billing** **Saved Cards**.
@@ -89,7 +89,7 @@ To delete a saved credit card from your organization:
 2. Go to **Billing** **Saved Cards**.
 3. On any saved credit card, click **More Options (⋮)** **Delete**.
 4. Confirm that you want to delete your saved credit card.  
-If you’re deleting your default credit card, you must select a new default credit card.
+If you're deleting your default credit card, you must select a new default credit card.
 5. Click **Delete Credit Card** or **Delete Default Card**.
 
 ## [](#see-also)See Also

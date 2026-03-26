@@ -4,7 +4,7 @@ description: To perform Cross Datacenter Replication (XDCR), you start by
   creating a <em>reference</em> to the target cluster and bucket that will
   receive the replicated data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-xdcr/create-xdcr-reference.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-xdcr/create-xdcr-reference.adoc[]
 ---
 
@@ -111,7 +111,7 @@ For more information, see the complete reference for the [xdcr-setup](../../cli/
 
 ## [](#create-an-xdcr-reference-with-the-rest-api)Create an XDCR Reference with the REST API
 
-Starting from the scenario defined above, in [Examples on This Page](#examples-on-this-page-create-reference), the REST API’s `POST /pools/default/remoteClusters` HTTP method and URI can be used to create an XDCR reference. (Note that optionally, prior to creating the reference, connectivity between source and target clusters can be checked, by means of the methods and URI described in [Checking Connections](../../rest-api/rest-xdcr-connection-precheck.md).)
+Starting from the scenario defined above, in [Examples on This Page](#examples-on-this-page-create-reference), the REST API's `POST /pools/default/remoteClusters` HTTP method and URI can be used to create an XDCR reference. (Note that optionally, prior to creating the reference, connectivity between source and target clusters can be checked, by means of the methods and URI described in [Checking Connections](../../rest-api/rest-xdcr-connection-precheck.md).)
 
 The reference is created as follows:
 
@@ -136,7 +136,7 @@ The output, if formatted, is as follows;
   "validateURI": "/pools/default/remoteClusters/10.144.210.102?just_validate=1"
 }
 
-To return a list of the cluster’s current references, use the method as follows:
+To return a list of the cluster's current references, use the method as follows:
 
 curl -i -X GET -u Administrator:password \
 http://10.144.210.101:8091/pools/default/remoteClusters

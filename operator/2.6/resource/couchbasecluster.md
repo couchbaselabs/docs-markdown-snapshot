@@ -1,7 +1,7 @@
 ---
 title: CouchbaseCluster Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.6.x/docs/user/modules/ROOT/pages/resource/couchbasecluster.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::resource/couchbasecluster.adoc[]
 ---
 
@@ -754,7 +754,7 @@ Key is the taint key that the toleration applies to. Empty means match all taint
 
 #### [](#description-35)Description
 
-Operator represents a key’s relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
 
 ### [](#couchbaseclusters-spec-backup-tolerations-tolerationseconds)couchbaseclusters.spec.backup.tolerations.tolerationSeconds
 
@@ -784,7 +784,7 @@ Value is the taint value the toleration matches to. If the operator is Exists, t
 
 #### [](#description-38)Description
 
-Deprecated: by CouchbaseBackup.spec.objectStore.useIAM UseIAMRole enables backup to fetch EC2 instance metadata. This allows the AWS SDK to use the EC2’s IAM Role for S3 access. UseIAMRole will ignore credentials in s3Secret.
+Deprecated: by CouchbaseBackup.spec.objectStore.useIAM UseIAMRole enables backup to fetch EC2 instance metadata. This allows the AWS SDK to use the EC2's IAM Role for S3 access. UseIAMRole will ignore credentials in s3Secret.
 
 ### [](#couchbaseclusters-spec-buckets)couchbaseclusters.spec.buckets
 
@@ -848,7 +848,7 @@ key is the label key that the selector applies to.
 
 #### [](#description-44)Description
 
-operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 ### [](#couchbaseclusters-spec-buckets-selector-matchexpressions-values)couchbaseclusters.spec.buckets.selector.matchExpressions.values
 
@@ -878,7 +878,7 @@ matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabe
 
 #### [](#description-47)Description
 
-Synchronize allows unmanaged buckets, scopes, and collections to be synchronized as Kubernetes resources by the Operator. This feature is intended for development only and should not be used for production workloads. The synchronization workflow starts with `spec.buckets.managed` being set to false, the user can manually create buckets, scopes, and collections using the Couchbase UI, or other tooling. When you wish to commit to Kubernetes resources, you must specify a unique label selector in the `spec.buckets.selector` field, and this field is set to true. The Operator will create Kubernetes resources for you, and upon completion set the cluster’s `Synchronized` status condition. Synchronizing will not create a Kubernetes resource for the Couchbase Server maintained \_system scope. You may then safely set `spec.buckets.managed` to true and the Operator will manage these resources as per usual. To update an already managed data topology, you must first set it to unmanaged, make any changes, and delete any old resources, then follow the standard synchronization workflow. The Operator can not, and will not, ever delete, or make modifications to resource specifications that are intended to be user managed, or managed by a life cycle management tool. These actions must be instigated by an end user. For a more complete experience, refer to the documentation for the `cao save` and `cao restore` CLI commands.
+Synchronize allows unmanaged buckets, scopes, and collections to be synchronized as Kubernetes resources by the Operator. This feature is intended for development only and should not be used for production workloads. The synchronization workflow starts with `spec.buckets.managed` being set to false, the user can manually create buckets, scopes, and collections using the Couchbase UI, or other tooling. When you wish to commit to Kubernetes resources, you must specify a unique label selector in the `spec.buckets.selector` field, and this field is set to true. The Operator will create Kubernetes resources for you, and upon completion set the cluster's `Synchronized` status condition. Synchronizing will not create a Kubernetes resource for the Couchbase Server maintained \_system scope. You may then safely set `spec.buckets.managed` to true and the Operator will manage these resources as per usual. To update an already managed data topology, you must first set it to unmanaged, make any changes, and delete any old resources, then follow the standard synchronization workflow. The Operator can not, and will not, ever delete, or make modifications to resource specifications that are intended to be user managed, or managed by a life cycle management tool. These actions must be instigated by an end user. For a more complete experience, refer to the documentation for the `cao save` and `cao restore` CLI commands.
 
 ### [](#couchbaseclusters-spec-cluster)couchbaseclusters.spec.cluster
 
@@ -1132,7 +1132,7 @@ AutoFailoverTimeout defines how long Couchbase server will wait between a pod be
 
 #### [](#description-68)Description
 
-ClusterName defines the name of the cluster, as displayed in the Couchbase UI. By default, the cluster name is that specified in the CouchbaseCluster resource’s metadata.
+ClusterName defines the name of the cluster, as displayed in the Couchbase UI. By default, the cluster name is that specified in the CouchbaseCluster resource's metadata.
 
 ### [](#couchbaseclusters-spec-cluster-data)couchbaseclusters.spec.cluster.data
 
@@ -1452,7 +1452,7 @@ SearchServiceMemQuota is the amount of memory that should be allocated to the se
 
 #### [](#description-93)Description
 
-EnableOnlineVolumeExpansion enables online expansion of Persistent Volumes. You can only expand a PVC if its storage class’s "allowVolumeExpansion" field is set to true. Additionally, Kubernetes feature "ExpandInUsePersistentVolumes" must be enabled in order to expand the volumes which are actively bound to Pods. Volumes can only be expanded and not reduced to a smaller size. See: <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#resizing-an-in-use-persistentvolumeclaim>If "EnableOnlineVolumeExpansion" is enabled for use within an environment that does not actually support online volume and file system expansion then the cluster will fallback to rolling upgrade procedure to create a new set of Pods for use with resized Volumes. More info: <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims>.
+EnableOnlineVolumeExpansion enables online expansion of Persistent Volumes. You can only expand a PVC if its storage class's "allowVolumeExpansion" field is set to true. Additionally, Kubernetes feature "ExpandInUsePersistentVolumes" must be enabled in order to expand the volumes which are actively bound to Pods. Volumes can only be expanded and not reduced to a smaller size. See: <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#resizing-an-in-use-persistentvolumeclaim>If "EnableOnlineVolumeExpansion" is enabled for use within an environment that does not actually support online volume and file system expansion then the cluster will fallback to rolling upgrade procedure to create a new set of Pods for use with resized Volumes. More info: <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims>.
 
 ### [](#couchbaseclusters-spec-enablepreviewscaling)couchbaseclusters.spec.enablePreviewScaling
 
@@ -1742,7 +1742,7 @@ Enabled is a boolean that enables the logging sidecar container.
 
 #### [](#description-119)Description
 
-A boolean which indicates whether the operator should manage the configuration or not. If omitted then this defaults to true which means the operator will attempt to reconcile it to default values. To use a custom configuration make sure to set this to false. Note that the ownership of any Secret is not changed so if a Secret is created externally it can be updated by the operator but it’s ownership stays the same so it will be cleaned up when it’s owner is.
+A boolean which indicates whether the operator should manage the configuration or not. If omitted then this defaults to true which means the operator will attempt to reconcile it to default values. To use a custom configuration make sure to set this to false. Note that the ownership of any Secret is not changed so if a Secret is created externally it can be updated by the operator but it's ownership stays the same so it will be cleaned up when it's owner is.
 
 ### [](#couchbaseclusters-spec-logging-server-sidecar)couchbaseclusters.spec.logging.server.sidecar
 
@@ -1960,7 +1960,7 @@ Image is the Cloud Native Gateway image to be used to run the sidecar container.
 
 #### [](#description-138)Description
 
-TLS defines the TLS configuration for the Cloud Native Gateway server including server and client certificate configuration, and TLS security policies. If no TLS config are explicitly provided, the operator generates/manages self-signed certs/keys and creates a k8s secret named `couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>` unique to a Couchbase cluster, which is volume mounted to the cb k8s pod. This action could be overidden at the outset or later, by using the below TLS config or generating the secret of same name as `couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>` with certificates conforming to the keys of well-known type "kubernetes.io/tls" with "tls.crt" and "tls.key". N.B. The secret is on per cluster basis so it’s advised to use the unique cluster name else would be ignored.
+TLS defines the TLS configuration for the Cloud Native Gateway server including server and client certificate configuration, and TLS security policies. If no TLS config are explicitly provided, the operator generates/manages self-signed certs/keys and creates a k8s secret named `couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>` unique to a Couchbase cluster, which is volume mounted to the cb k8s pod. This action could be overidden at the outset or later, by using the below TLS config or generating the secret of same name as `couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>` with certificates conforming to the keys of well-known type "kubernetes.io/tls" with "tls.crt" and "tls.key". N.B. The secret is on per cluster basis so it's advised to use the unique cluster name else would be ignored.
 
 ### [](#couchbaseclusters-spec-networking-cloudnativegateway-tls-serversecretname)couchbaseclusters.spec.networking.cloudNativeGateway.tls.serverSecretName
 
@@ -2332,7 +2332,7 @@ RootCAs defines a set of secrets that reside in this namespace that contain addi
 
 #### [](#description-171)Description
 
-SecretSource enables the user to specify a secret conforming to the Kubernetes TLS secret specification that is used for the Couchbase server certificate, and optionally the Operator’s client certificate, providing cert-manager compatibility without having to specify a separate root CA. A server CA certificate must be supplied by one of the provided methods. Certificates referred to must conform to the keys of well-known type "kubernetes.io/tls" with "tls.crt" and "tls.key". If the "tls.key" is an encrypted private key then the secret type can be the generic Opaque type since "kubernetes.io/tls" type secrets cannot verify encrypted keys.
+SecretSource enables the user to specify a secret conforming to the Kubernetes TLS secret specification that is used for the Couchbase server certificate, and optionally the Operator's client certificate, providing cert-manager compatibility without having to specify a separate root CA. A server CA certificate must be supplied by one of the provided methods. Certificates referred to must conform to the keys of well-known type "kubernetes.io/tls" with "tls.crt" and "tls.key". If the "tls.key" is an encrypted private key then the secret type can be the generic Opaque type since "kubernetes.io/tls" type secrets cannot verify encrypted keys.
 
 ### [](#couchbaseclusters-spec-networking-tls-secretsource-clientsecretname)couchbaseclusters.spec.networking.tls.secretSource.clientSecretName
 
@@ -2540,7 +2540,7 @@ AdminSecret is the name of a Kubernetes secret to use for administrator authenti
 
 #### [](#description-189)Description
 
-LDAP provides settings to authenticate and authorize LDAP users with Couchbase Server. When specified, the Operator keeps these settings in sync with Cocuhbase Server’s LDAP configuration. Leave empty to manually manage LDAP configuration.
+LDAP provides settings to authenticate and authorize LDAP users with Couchbase Server. When specified, the Operator keeps these settings in sync with Cocuhbase Server's LDAP configuration. Leave empty to manually manage LDAP configuration.
 
 ### [](#couchbaseclusters-spec-security-ldap-authenticationenabled)couchbaseclusters.spec.security.ldap.authenticationEnabled
 
@@ -2714,7 +2714,7 @@ TLSSecret is the name of a Kubernetes secret to use explcitly for LDAP ca cert. 
 
 #### [](#description-204)Description
 
-User to distinguished name (DN) mapping. If none is specified, the username is used as the user’s distinguished name. More info: <https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html>.
+User to distinguished name (DN) mapping. If none is specified, the username is used as the user's distinguished name. More info: <https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html>.
 
 ### [](#couchbaseclusters-spec-security-ldap-userdnmapping-query)couchbaseclusters.spec.security.ldap.userDNMapping.query
 
@@ -2754,7 +2754,7 @@ PodSecurityContext allows the configuration of the security context for all Couc
 
 #### [](#description-208)Description
 
-A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1\. The owning GID will be the FSGroup 2\. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3\. The permission bits are OR’d with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
+A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1\. The owning GID will be the FSGroup 2\. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3\. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
 
 ### [](#couchbaseclusters-spec-security-podsecuritycontext-fsgroupchangepolicy)couchbaseclusters.spec.security.podSecurityContext.fsGroupChangePolicy
 
@@ -2864,7 +2864,7 @@ The seccomp options to use by the containers in this pod. Note that this field c
 
 #### [](#description-219)Description
 
-localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet’s configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type.
+localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type.
 
 ### [](#couchbaseclusters-spec-security-podsecuritycontext-seccompprofile-type)couchbaseclusters.spec.security.podSecurityContext.seccompProfile.type
 
@@ -2886,7 +2886,7 @@ type indicates which kind of seccomp profile will be applied. Valid options are:
 
 #### [](#description-221)Description
 
-A list of groups applied to the first process run in each container, in addition to the container’s primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
+A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
 
 ### [](#couchbaseclusters-spec-security-podsecuritycontext-sysctls)couchbaseclusters.spec.security.podSecurityContext.sysctls
 
@@ -2930,7 +2930,7 @@ Value of a property to set.
 
 #### [](#description-225)Description
 
-The Windows specific settings applied to all containers. If unspecified, the options within a container’s SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.
+The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.
 
 ### [](#couchbaseclusters-spec-security-podsecuritycontext-windowsoptions-gmsacredentialspec)couchbaseclusters.spec.security.podSecurityContext.windowsOptions.gmsaCredentialSpec
 
@@ -2960,7 +2960,7 @@ GMSACredentialSpecName is the name of the GMSA credential spec to use.
 
 #### [](#description-228)Description
 
-HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod’s containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
+HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 
 ### [](#couchbaseclusters-spec-security-podsecuritycontext-windowsoptions-runasusername)couchbaseclusters.spec.security.podSecurityContext.windowsOptions.runAsUserName
 
@@ -3180,7 +3180,7 @@ The seccomp options to use by this container. If seccomp options are provided at
 
 #### [](#description-250)Description
 
-localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet’s configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type.
+localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type.
 
 ### [](#couchbaseclusters-spec-security-securitycontext-seccompprofile-type)couchbaseclusters.spec.security.securityContext.seccompProfile.type
 
@@ -3232,7 +3232,7 @@ GMSACredentialSpecName is the name of the GMSA credential spec to use.
 
 #### [](#description-255)Description
 
-HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod’s containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
+HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 
 ### [](#couchbaseclusters-spec-security-securitycontext-windowsoptions-runasusername)couchbaseclusters.spec.security.securityContext.windowsOptions.runAsUserName
 
@@ -3990,7 +3990,7 @@ A human readable message indicating details about the transition.
 
 #### [](#description-323)Description
 
-Unique, one-word, CamelCase reason for the condition’s last transition.
+Unique, one-word, CamelCase reason for the condition's last transition.
 
 ### [](#couchbaseclusters-status-conditions-status)couchbaseclusters.status.conditions.status
 

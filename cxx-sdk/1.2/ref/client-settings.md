@@ -3,7 +3,7 @@ title: Client Settings
 description: The <code>cluster_options</code> class enables you to configure C++
   SDK options for bootstrapping, timeouts, reliability, and performance.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.2@cxx-sdk:ref:client-settings.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:1.2@cxx-sdk:ref:client-settings.adoc[]
 
 Almost all configuration for the SDK can be specified through the `cluster_options` which are passed to the `cluster::connect` call in the SDK. In addition to this, some of these options can also be specified through the connection string.
 
-Cluster options are grouped into categories. For example, timeout options are configured using an instance of the `timeout_options` class, accessed via the `cluster_options` instance’s `timeouts()` getter.
+Cluster options are grouped into categories. For example, timeout options are configured using an instance of the `timeout_options` class, accessed via the `cluster_options` instance's `timeouts()` getter.
 
 Configuring timeout options
 
@@ -59,7 +59,7 @@ By default it has no preference set, and will select any available replica. This
 
 ## [](#security-options)Security Options
 
-By default, the client will connect to (self-managed) Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition of self-managed Couchbase Server, it’s possible to secure the connection using TLS.
+By default, the client will connect to (self-managed) Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition of self-managed Couchbase Server, it's possible to secure the connection using TLS.
 
 > [!NOTE]
 > Unless you use the `couchbases://` connection string scheme, none of the other security settings in this section have any effect. If you are using Capella, secure connection is the only option.
@@ -207,9 +207,9 @@ Default: `auto`
 > [!NOTE]
 > The system property value should be one of `auto`, `default`, or `external` (lower case).
 
-Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server’s network environment.
+Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server's network environment.
 
-By default the client will use a simple matching heuristic to determine which set of addresses to use (it will select the set of addresses that contains a seed node’s host and port).
+By default the client will use a simple matching heuristic to determine which set of addresses to use (it will select the set of addresses that contains a seed node's host and port).
 
 If you wish to override the heuristic, you can set this value to `default` if the client is running in the same network as the server, or `external` if the client is running in a different network.
 
@@ -256,7 +256,7 @@ For example, with a `min_ratio` of `0.83`, compression will only be used if the 
 
 ## [](#tracing-options)Tracing Options
 
-These options affect the client’s tracing behaviour.
+These options affect the client's tracing behaviour.
 
 Name: **Enabling Tracing**
 

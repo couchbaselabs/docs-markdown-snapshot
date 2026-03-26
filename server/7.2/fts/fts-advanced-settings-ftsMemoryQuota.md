@@ -1,7 +1,7 @@
 ---
 title: ftsMemoryQuota
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-advanced-settings-ftsMemoryQuota.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-advanced-settings-ftsMemoryQuota.adoc[]
 ---
 
@@ -16,13 +16,13 @@ Sparing enough RAM memory for the filesystem cache is crucial to override the ft
 
 The FTS Search service recommends a minimum of 512 MB memory-resident ratio for its index. However, users can spare more memory quota for a healthy resident ratio of the index. This lets the system have sufficient memory available to perform indexing, querying, or other lifecycle operations like rebalances, etc.
 
-Using the manager option, users can control the FTS/Search service’s memory quota at run time without a service reboot.
+Using the manager option, users can control the FTS/Search service's memory quota at run time without a service reboot.
 
 ## [](#spare-enough-memory-for-filesystem-cache)Spare enough memory for filesystem cache
 
 Another important aspect while configuring the Search memory quota is to leave sufficient leeway RAM for the Operating System to manage the file system cache.
 
-The Search’s internal text indexing library (bleve) uses memory mapping for the index files, so having enough RAM extra for the operating system helps in keeping the hot regions of index files in the file system cache memory.
+The Search's internal text indexing library (bleve) uses memory mapping for the index files, so having enough RAM extra for the operating system helps in keeping the hot regions of index files in the file system cache memory.
 
 This helps in better search performance. The usual guideline is to set the Search memory quota to 60-70% of the available RAM in a Search node.
 

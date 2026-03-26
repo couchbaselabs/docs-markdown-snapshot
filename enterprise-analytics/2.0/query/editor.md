@@ -3,7 +3,7 @@ title: Write and Run Queries
 description: To query data in Enterprise Analytics collections you use SQL++, a
   SQL-for-JSON language specification that is similar to SQL.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/query/pages/editor.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:query:editor.adoc[]
 ---
 
@@ -24,12 +24,12 @@ To use the Enterprise Analytics UI, you need the `**Enterprise Analytics Access*
 
 ## [](#query-editor)Using the Query Editor
 
-The query editor is where you build and run queries. You can use the query editor’s **Query Context** lists to set the database and scope you want a query to use.
+The query editor is where you build and run queries. You can use the query editor's **Query Context** lists to set the database and scope you want a query to use.
 
 You use SQL++ for Enterprise Analytics to write queries. For information about the SQL++ statements and syntax you use in Enterprise Analytics, see [DDL Statements](../sqlpp/5%5Fddl.md) and [DML Statements](../sqlpp/5%5Fdml.md).
 
 > [!TIP]
-> Since large result sets can take a long time to display, it’s recommended that you use the `LIMIT` clause as part of your query when appropriate.
+> Since large result sets can take a long time to display, it's recommended that you use the `LIMIT` clause as part of your query when appropriate.
 
 The query editor provides syntax highlighting. For easy viewing, SQL++ for Enterprise Analytics keywords, numbers, and string literals are differently colored.
 

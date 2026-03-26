@@ -3,7 +3,7 @@ title: Index Storage Settings
 description: "A Secondary Index can be saved in either of two ways:
   memory-optimized or standard."
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/indexes/pages/storage-modes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:indexes:storage-modes.adoc[]
 ---
 
@@ -42,7 +42,7 @@ To resume indexing operations on a node where the Indexer has paused due to low 
 * Flush buckets that have indexes. Flushing a bucket deletes all data in a bucket. Even if there are pending updates not yet processed, flushing causes all indexes to drop their own data.  
 Attempting to delete bucket data selectively during an out-of-memory condition does not succeed in decreasing memory usage. Without memory, such requested deletions cannot themselves be processed.
 
-In cases where recovery requires an Index Service node to be restarted, the node’s resident memory-optimized indexes are rebuilt from the snapshots retained on disk. Following the node’s restart, these indexes remain in the `Warmup` state until all information has been read into memory: then, final updates are made with the indexes in `Active` state. Once a rebuilt index is available, queries with `consistency=request_plus` or `consistency=at_plus` fail, if the specified timestamp exceeds the last timestamp processed by given index. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]However, queries with `consistency=unbounded` execute normally. For information on these settings, see [Index Availability and Performance](#services-and-indexes/indexes/index-replication.adoc).
+In cases where recovery requires an Index Service node to be restarted, the node's resident memory-optimized indexes are rebuilt from the snapshots retained on disk. Following the node's restart, these indexes remain in the `Warmup` state until all information has been read into memory: then, final updates are made with the indexes in `Active` state. Once a rebuilt index is available, queries with `consistency=request_plus` or `consistency=at_plus` fail, if the specified timestamp exceeds the last timestamp processed by given index. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]However, queries with `consistency=unbounded` execute normally. For information on these settings, see [Index Availability and Performance](#services-and-indexes/indexes/index-replication.adoc).
 
 ## [](#standard-index-storage)Standard Index Storage
 

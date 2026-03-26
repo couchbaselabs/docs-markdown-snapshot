@@ -2,7 +2,7 @@
 title: Use the Cost-Based Optimizer with Queries
 description: How to use the Cost-Based Optimizer and manage optimizer statistics.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/cbo.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:guides:cbo.adoc[]
 ---
 
@@ -75,7 +75,7 @@ For more information and examples, see [Configure Queries](../n1ql/n1ql-manage/q
 
 Before you can use the Cost-Based Optimizer with a query, you must first gather the statistics that it needs. The Query Service automatically gathers statistics whenever an index is created or built, and you can update statistics at any time.
 
-You can also configure a scheduled task to automatically check and update statistics using [Auto Update Statistics (AUS)](../n1ql/n1ql-language-reference/auto-update-statistics.md). During the scheduled window, AUS evaluates the existing statistics and updates them if they’re outdated. For more information on how to enable this feature and set the schedule, see [Enable and Schedule AUS](../n1ql/n1ql-language-reference/auto-update-statistics.md#enable-and-schedule-aus).
+You can also configure a scheduled task to automatically check and update statistics using [Auto Update Statistics (AUS)](../n1ql/n1ql-language-reference/auto-update-statistics.md). During the scheduled window, AUS evaluates the existing statistics and updates them if they're outdated. For more information on how to enable this feature and set the schedule, see [Enable and Schedule AUS](../n1ql/n1ql-language-reference/auto-update-statistics.md#enable-and-schedule-aus).
 
 When you use an index with a query, you typically create the index on the fields which the query uses to filter. To use the cost-based optimizer with that query, you must collect statistics on the same fields that you used to create the index.
 

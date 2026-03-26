@@ -3,7 +3,7 @@ title: Use Customer-Managed Encryption Keys (CMEK)
 description: Capella encrypts cluster volumes at rest. You can move control of
   the keys from Couchbase to your own key management system (KMS).
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/cmek.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:security:cmek.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:security:cmek.adoc[]
 
 > Capella encrypts cluster volumes at rest. You can move control of the keys from Couchbase to your own key management system (KMS). 
 
-By default, all clusters in Couchbase Capella use your cluster’s cloud provider KMS to encrypt cluster volumes at rest. Instead of using this Couchbase-managed solution, you can create your own encryption keys for data at rest using customer-managed encryption keys (CMEK). By managing your encryption keys, you control their configuration, rotation cycles, geographic storage location, and can directly revoke them.
+By default, all clusters in Couchbase Capella use your cluster's cloud provider KMS to encrypt cluster volumes at rest. Instead of using this Couchbase-managed solution, you can create your own encryption keys for data at rest using customer-managed encryption keys (CMEK). By managing your encryption keys, you control their configuration, rotation cycles, geographic storage location, and can directly revoke them.
 
 > [!NOTE]
 > Backups and CMEK
@@ -61,7 +61,7 @@ You must add and manage your keys through the Management API. Through the Manage
 * Associate a key with a cluster to enable encryption.
 * Disassociate a key with a cluster.
 
-For the details and requirements of each call, see the [Management API Reference](../management-api-reference/index.md). If you’re new to the Management API, see [Get Started with the Capella Operational Management API](../management-api-guide/management-api-start.md).
+For the details and requirements of each call, see the [Management API Reference](../management-api-reference/index.md). If you're new to the Management API, see [Get Started with the Capella Operational Management API](../management-api-guide/management-api-start.md).
 
 ### [](#prerequisites)Prerequisites
 
@@ -74,8 +74,8 @@ For the details and requirements of each call, see the [Management API Reference
 You cannot complete the full process to enable and use AWS CMEK without the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role. Other Management API key roles can only access some AWS CMEK features. For permission details for specific CMEK features, see the [Management API Reference](../management-api-reference/index.md).
 * You have:
 
-  * A symmetric encryption key in AWS KMS that’s in the same region as your cluster.
-  * The unique Capella AWS account ID that’s associated with your organization. Get this account ID by making a [GET - Get Cloud Accounts](../management-api-reference/index.md#tag/CMEK/operation/getCloudAccounts) call to the Couchbase Capella Management API.  
+  * A symmetric encryption key in AWS KMS that's in the same region as your cluster.
+  * The unique Capella AWS account ID that's associated with your organization. Get this account ID by making a [GET - Get Cloud Accounts](../management-api-reference/index.md#tag/CMEK/operation/getCloudAccounts) call to the Couchbase Capella Management API.  
   Use this account ID when adding CMEK to other AWS clusters in your organization.
   * A key policy with the following permissions:
 
@@ -84,7 +84,7 @@ You cannot complete the full process to enable and use AWS CMEK without the [Org
     * [Decrypt](https://docs.aws.amazon.com/kms/latest/APIReference/API%5FDecrypt.html)
     * [ReEncrypt\*](https://docs.aws.amazon.com/kms/latest/APIReference/API%5FReEncrypt.html)
     * [CreateGrant](https://docs.aws.amazon.com/kms/latest/APIReference/API%5FCreateGrant.html) with the `kms:GrantIsForAWSResource` condition set to the Capella AWS account ID associated with your organization.
-    * The principal set to the Capella AWS account ID that’s associated with your organization.  
+    * The principal set to the Capella AWS account ID that's associated with your organization.  
       Example  
       ```json  
       {  
@@ -126,12 +126,12 @@ You cannot complete the full process to enable and use GCP CMEK without the [Org
 
   * A symmetric encryption key in GCP KMS.
   * The Key Version Resource ID of your GCP KMS encryption key.
-  * The unique Capella Google service account ID that’s associated with your organization. Get this account ID by making a [GET - Get Cloud Accounts](../management-api-reference/index.md#tag/CMEK/operation/getCloudAccounts) call to the Couchbase Capella Management API.  
+  * The unique Capella Google service account ID that's associated with your organization. Get this account ID by making a [GET - Get Cloud Accounts](../management-api-reference/index.md#tag/CMEK/operation/getCloudAccounts) call to the Couchbase Capella Management API.  
   Use this service account ID when adding CMEK to other GCP clusters in your organization.
   * A service account on the key with the following permissions:
 
     * [Cloud KMS CryptoKey Encrypter/Decrypter](https://cloud.google.com/kms/docs/reference/permissions-and-roles#cloudkms.cryptoKeyEncrypterDecrypter)
-    * The principal set to the Capella Google service account ID that’s associated with your organization.  
+    * The principal set to the Capella Google service account ID that's associated with your organization.  
       Add the principal to your key in the following format:  
       rc-cluster-admin@<gcp-capella-project>.iam.gserviceaccount.com  
       Replace `<gcp-capella-project>` with the value of `"gcp-capella-project"` from the [GET - Get Cloud Accounts](../management-api-reference/index.md#tag/CMEK/operation/getCloudAccounts) Management API call.
@@ -205,7 +205,7 @@ curl --request POST \
   }'  
 ```
 
-To use CMEK on Azure, you need to get and configure Capella’s Azure CMEK application in your Azure tenant:
+To use CMEK on Azure, you need to get and configure Capella's Azure CMEK application in your Azure tenant:
 
 1. Enable CMEK for your organization:
 
@@ -244,16 +244,16 @@ az ad sp create --id $AZURE_APP_ID
 ```
 4. Do 1 of the following:
 
-  1. If you’re using Azure Role-Based Access Control for your keys, assign the [Key Vault Crypto Service Encryption User](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-portal#azure-built-in-roles-for-key-vault-data-plane-operations) role to this application ID as a service principal in your Key Vault’s Access Control (IAM).  
+  1. If you're using Azure Role-Based Access Control for your keys, assign the [Key Vault Crypto Service Encryption User](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-portal#azure-built-in-roles-for-key-vault-data-plane-operations) role to this application ID as a service principal in your Key Vault's Access Control (IAM).  
   For more information about how to assign roles in Azure, see [the Azure documentation](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal).
-  2. If you’re using a Vault access policy, assign the following **Key Permissions** in your access policy and assign them to the service principal:
+  2. If you're using a Vault access policy, assign the following **Key Permissions** in your access policy and assign them to the service principal:
 
     * **Key Management Operations > Get**
     * **Cryptographic Operations > Unwrap Key**
     * **Cryptographic Operations > Wrap Key**  
       For more information about how to create a Key Vault access policy, see [the Azure documentation](https://learn.microsoft.com/en-us/azure/key-vault/general/assign-access-policy?tabs=azure-portal).
 
-To use CMEK on Azure, you need to get and configure Capella’s Azure CMEK application in your Azure tenant, for each project where you want to use CMEK:
+To use CMEK on Azure, you need to get and configure Capella's Azure CMEK application in your Azure tenant, for each project where you want to use CMEK:
 
 1. Enable CMEK for your project:
 
@@ -294,9 +294,9 @@ az ad sp create --id $AZURE_APP_ID
 ```
 4. Do 1 of the following:
 
-  1. If you’re using Azure Role-Based Access Control for your keys, assign the [Key Vault Crypto Service Encryption User](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-portal#azure-built-in-roles-for-key-vault-data-plane-operations) role to this application ID as a service principal in your Key Vault’s Access Control (IAM).  
+  1. If you're using Azure Role-Based Access Control for your keys, assign the [Key Vault Crypto Service Encryption User](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-portal#azure-built-in-roles-for-key-vault-data-plane-operations) role to this application ID as a service principal in your Key Vault's Access Control (IAM).  
   For more information about how to assign roles in Azure, see [the Azure documentation](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal).
-  2. If you’re using a Vault access policy, assign the following **Key Permissions** in your access policy and assign them to the service principal:
+  2. If you're using a Vault access policy, assign the following **Key Permissions** in your access policy and assign them to the service principal:
 
     * **Key Management Operations > Get**
     * **Cryptographic Operations > Unwrap Key**
@@ -435,7 +435,7 @@ To apply a customer-managed encryption key to an existing cluster, make a [POST 
 * Your organization ID.
 * The ID of the project where you created your cluster.
 * The ID of the cluster you want to apply the encryption to.
-* The CMEK ID—​the Capella ID of the customer-managed encryption key you’re using.
+* The CMEK ID—​the Capella ID of the customer-managed encryption key you're using.
 
 > [!TIP]
 > The CMEK ID is in the response when you [add a new key](#add-cmek), and you can retrieve it by making a [GET - List Key Metadata](../management-api-reference/index.md#tag/CMEK/operation/getKeyMetadataList) or [GET - List Azure Key Metadata for Project](../management-api-reference/index.md#tag/CMEK/operation/getAzureKeyMetadataListForProject) call to the Capella Management API.
@@ -552,7 +552,7 @@ You can rotate customer-managed encryption keys once every 30 days. Contact Couc
 
 ### [](#azure-update-key)Update Your Key Version in Azure Key Vault
 
-If you’re using CMEK on Azure clusters, you can do an in-place rotation of your key in Azure Key Vault and generate a new version of your key. Capella will automatically handle the new key version.
+If you're using CMEK on Azure clusters, you can do an in-place rotation of your key in Azure Key Vault and generate a new version of your key. Capella will automatically handle the new key version.
 
 To manually update the key version for your Azure clusters:
 

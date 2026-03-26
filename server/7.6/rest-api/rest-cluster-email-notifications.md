@@ -4,7 +4,7 @@ description: Alerts can be configured; to be dispatched or displayed
   automatically by Couchbase Server, in order to notify users of specific issues
   and problems.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-cluster-email-notifications.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:rest-cluster-email-notifications.adoc[]
 ---
 
@@ -90,7 +90,7 @@ curl -X POST http://<ip-address-or-domain-name>:8091/settings/alert/sendTestEmai
 * `alerts`. A list of email-alert names. If the alert-name is included in the list, a corresponding email-alert will be sent as appropriate, when `enabled` is `true`. If the name of an alert is not included in the list, the email-alert is not dispatched. This parameter is optional. The default value contains all alerts: these are listed in [Available Alerts](../manage/manage-settings/configure-alerts.md#available-alerts).
 * `pop_up_alerts`. A list of pop-up-alert names. If the alert-name is included in the list, a corresponding pop-up alert will be displayed as appropriate, when `enabled` is `true`. If the name of an alert is not included in the list, the corresponding pop-up alert is not displayed. This parameter is optional. The default value contains all alerts: these are listed in [Available Alerts](../manage/manage-settings/configure-alerts.md#available-alerts).
 * `enabled`. Enables or disables alerts: the value can be `true` or `false` (the default). This parameter is optional. If alerts are enabled, any alert that appears in the list that is passed as the value of `alerts` or `pop_up_alerts` (see immediately below) will have an email and/or pop-up display generated as appropriate.
-* `certExpirationDays`. The number of days before a certificate’s expiration date that Couchbase Server sends an alert. Couchbase Server also sends an alert when a certificate expires. See [Certificate Expiration](../learn/security/certificates.md#certificate-expiration) for more information.
+* `certExpirationDays`. The number of days before a certificate's expiration date that Couchbase Server sends an alert. Couchbase Server also sends an alert when a certificate expires. See [Certificate Expiration](../learn/security/certificates.md#certificate-expiration) for more information.
 * `historyWarningThreshold`. Warns that the change history for one of the buckets is becoming full, across one or more vBuckets. (The size of the change history is administrator-specified for the whole bucket.) The value of `historyWarningThreshold` must be an integer that represents a percentage: the default value is `90`. When the percentage is exceeded for one or more vBuckets, an alert is generated. See [Creating and Editing Buckets](rest-bucket-create.md), for information on establishing the size of the change history.
 * `lowIndexerResidentPerc`. Warns that the Index Service is, on a given node, occupying a percentage of available memory that is below an established threshold, which is the value of `lowIndexerResidentPerc`. The default value is `10`.
 * `maxDiskUsedPerc`, `maxIndexerRamPerc`, and `maxOverheadPerc`. The maximum percentages for disk usage, memory consumption by the Index Service, and overhead. Values must be between `0` and `100`.

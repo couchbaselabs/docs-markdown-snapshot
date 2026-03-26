@@ -3,7 +3,7 @@ title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase
   Lite on Objective-C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/objc/pages/gs-build.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite:objc:gs-build.adoc[]
 ---
 
@@ -133,7 +133,7 @@ Before synchronizing documents to Sync Gateway you will need to disable App Tran
 
 ![info plist](_images/info-plist.png) 
 
-Append the following inside of the `<dict>` XML tags to disable Application Transport Security (ATS). The ATS must be disabled because the sample code snippet uses the WebSocket protocol (WS://) over the unencrypted HTTP protocol — and would conflict with ATS’s security requirements.
+Append the following inside of the `<dict>` XML tags to disable Application Transport Security (ATS). The ATS must be disabled because the sample code snippet uses the WebSocket protocol (WS://) over the unencrypted HTTP protocol — and would conflict with ATS's security requirements.
 
 ```xml
 <key>NSAppTransportSecurity</key>

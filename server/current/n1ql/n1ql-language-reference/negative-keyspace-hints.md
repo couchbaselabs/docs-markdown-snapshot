@@ -2,7 +2,7 @@
 title: Negative Keyspace Hints
 description: Negative hints direct the optimizer not to use certain indexes or join methods.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/negative-keyspace-hints.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/negative-keyspace-hints.adoc[]
 ---
 
@@ -111,7 +111,7 @@ The value of this property can be:
 
 ### [](#no-index-examples)Examples
 
-For the examples in this section, it’s assumed that the cost-based optimizer is active, and all optimizer statistics are up-to-date.
+For the examples in this section, it's assumed that the cost-based optimizer is active, and all optimizer statistics are up-to-date.
 
 To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
@@ -264,7 +264,7 @@ FROM hotel
 WHERE state = "Corse" OR state = "California";
 ```
 
-The optimizer omits the `hotel_state_fts_index` index from the query plan. If a qualified FTS index is available, it’s selected for the query. If none of the available FTS indexes are qualified, the available GSI indexes are considered instead.
+The optimizer omits the `hotel_state_fts_index` index from the query plan. If a qualified FTS index is available, it's selected for the query. If none of the available FTS indexes are qualified, the available GSI indexes are considered instead.
 
 ## [](#no%5Fuse%5Fnl)NO\_USE\_NL
 
@@ -460,7 +460,7 @@ The value of this property is the keyspace or alias to which this hint applies.
 
 ### [](#no-use-hash-examples)Examples
 
-For the examples in this section, it’s assumed that the cost-based optimizer is active, and all optimizer statistics are up-to-date.
+For the examples in this section, it's assumed that the cost-based optimizer is active, and all optimizer statistics are up-to-date.
 
 To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 

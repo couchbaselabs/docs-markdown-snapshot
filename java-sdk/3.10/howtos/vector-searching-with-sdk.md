@@ -3,7 +3,7 @@ title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@java-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:3.10@java-sdk:howtos:vector-searching-with-sdk.adoc[]
 
 Vector Search has been available in Couchbase Capella Operational and self-managed Server since version 7.6, using the Couchbase Search Service. Version 8.0 introduces vector query using Global Secondary Indexes (GSI), the Query Service index — using either a fast Hyperscale index, or a composite index to combine scalar queries with semantic search.
 
-For fast and scalable vector queries, use one of the above two GSI choices — detailed in the next section. If you don’t require the speed and scale of vector query with GSI, or need to combine vector, geo-spatial search, range search, and traditional fuzzy text searches, then consider [Vector Search With the Search Service](#vector-search-with-the-search-service).
+For fast and scalable vector queries, use one of the above two GSI choices — detailed in the next section. If you don't require the speed and scale of vector query with GSI, or need to combine vector, geo-spatial search, range search, and traditional fuzzy text searches, then consider [Vector Search With the Search Service](#vector-search-with-the-search-service).
 
 ## [](#vector-search-with-the-query-service-and-gsi)Vector Search With the Query Service and GSI
 
@@ -95,7 +95,7 @@ SearchRequest request = SearchRequest
 SearchResult result = scope.search("vector-index", request);
 ```
 
-Let’s break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
+Let's break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
 
 The `VectorSearch` allows us to perform one or more `VectorQuery` s.
 
@@ -127,7 +127,7 @@ If no prefilter is specified, the server executes the vector query on all indexe
                                         .setMatch("primary").setField("color_wheel_pos"))))
 ```
 
-Note that `numCandidates` sets how many similar vectors are returned. If it is not set, then the Cluster’s default of `3` will be used — this corresponds with `k` on the Server side, for K-Nearest Neighbors.
+Note that `numCandidates` sets how many similar vectors are returned. If it is not set, then the Cluster's default of `3` will be used — this corresponds with `k` on the Server side, for K-Nearest Neighbors.
 
 The prefilter can be any Search Query — from a simple match, as above, to a string query:
 

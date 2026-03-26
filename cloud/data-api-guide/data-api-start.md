@@ -3,7 +3,7 @@ title: Get Started with the Data API
 description: To get started with the Couchbase Capella Data API, you must create
   a cluster access credential and enable the Data API for the cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-start.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:data-api-guide:data-api-start.adoc[]
 ---
 
@@ -30,7 +30,7 @@ If you want to access the Data API through a private endpoint, do not activate V
 
 ### [](#ip-access-over-public-network)IP Access over Public Network
 
-To use the Data API over a public network, you must specify which IP addresses can access the Couchbase Capella cluster. For security, it’s recommended that clients should only be able to access the cluster from specific IP addresses.
+To use the Data API over a public network, you must specify which IP addresses can access the Couchbase Capella cluster. For security, it's recommended that clients should only be able to access the cluster from specific IP addresses.
 
 For each cluster, you can grant access from:
 
@@ -40,15 +40,15 @@ For each cluster, you can grant access from:
 
 Permitted IP addresses and address ranges must be in [IPv4](https://en.wikipedia.org/wiki/IPv4) format.
 
-If you’re accessing the Data API via a VPC Peering connection or a private endpoint, you do not need to permit access from the peered range of private IP addresses.
+If you're accessing the Data API via a VPC Peering connection or a private endpoint, you do not need to permit access from the peered range of private IP addresses.
 
 ## [](#prerequisites)Prerequisites
 
 The procedures on this page assume the following:
 
-* You have [configured cluster access](../clusters/manage-database-users.md#create-database-credentials) by creating a cluster access credential. You’ll need the username and password for the cluster credential to connect to the Data API.
-* You have [added your IP address](../clusters/allow-ip-address.md#accessing-allowed-ips-in-the-capella-ui) to the cluster’s list of allowed IPs, if required.
-* You’re not connecting from an IPv6-only environment — you need to be able to use the IPv4 records published for Capella clusters.
+* You have [configured cluster access](../clusters/manage-database-users.md#create-database-credentials) by creating a cluster access credential. You'll need the username and password for the cluster credential to connect to the Data API.
+* You have [added your IP address](../clusters/allow-ip-address.md#accessing-allowed-ips-in-the-capella-ui) to the cluster's list of allowed IPs, if required.
+* You're not connecting from an IPv6-only environment — you need to be able to use the IPv4 records published for Capella clusters.
 
 You can do all of this from a single location using the Connect page in the Capella UI, or the Management API.
 
@@ -61,7 +61,7 @@ In the Management API examples on this page:
 * `$clusterId` is the cluster ID.
 * `$apiKeySecret` is the API key secret, used as the Bearer token.
 
-The endpoints described on this page all have the same base path: `/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}`. For clarity, this is not shown in the instructions, but it’s included in the examples.
+The endpoints described on this page all have the same base path: `/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}`. For clarity, this is not shown in the instructions, but it's included in the examples.
 
 For details, see [Manage Deployments with the Capella Operational Management API](../management-api-guide/management-api-intro.md).
 
@@ -78,7 +78,7 @@ You can enable the Data API using the Capella UI or the Management API.
 4. If necessary, follow the instructions on screen to create a new cluster user.
 5. Click **Enable Data API**. When prompted, type `Yes` and click **Confirm**.
 6. Wait for Couchbase Capella to deploy the Data API. This may take several minutes.
-7. When the Data API is deployed, copy the **Data API Endpoint** — this is the base URL you’ll need to connect to the cluster.
+7. When the Data API is deployed, copy the **Data API Endpoint** — this is the base URL you'll need to connect to the cluster.
 8. If required, select **Enable Data API over VPC Peered Network**. This will incur extra charges.
 9. To get started with the Data API, choose a cluster user from the drop-down, and then copy the generated sample code. Replace `<<password>>` with the password you specified when you created the cluster access user.
 
@@ -128,7 +128,7 @@ curl -X GET "https://cloudapi.cloud.couchbase.com/v4/organizations/$organization
   -H "Accept: application/json" \
   -H "Authorization: Bearer $apiKeySecret"  
 ```
-5. Copy the connection string returned by [GET /dataAPI](../management-api-reference/index.md#tag/Data-API/operation/getDataAPIStatus) — this is the base URL you’ll need to connect to the cluster.
+5. Copy the connection string returned by [GET /dataAPI](../management-api-reference/index.md#tag/Data-API/operation/getDataAPIStatus) — this is the base URL you'll need to connect to the cluster.
 
 ## [](#disable-the-data-api)Disable the Data API
 

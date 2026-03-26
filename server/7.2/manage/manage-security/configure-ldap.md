@@ -4,7 +4,7 @@ description: Couchbase Server can be configured to authenticate users by means
   of LDAP; and to map the LDAP <em>groups</em> of which a user is a member to
   roles defined on Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-security/configure-ldap.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:manage:manage-security/configure-ldap.adoc[]
 ---
 
@@ -95,8 +95,8 @@ The upper area of the left panel of the **LDAP Configuration** dialog displays t
 Left-click on the control at the right-hand side of the **Encryption** field, to display the pull-down menu:  
 ![configureLDAPencryptionPullDownMenu](../_images/manage-security/configureLDAPencryptionPullDownMenu.png)  
 The options are **None** (to connect without encryption — this is insecure, and therefore is _not_ recommended), **TLS** (to connect to a TLS-encrypted port), and **StartTLSExtension** (to upgrade an existing connection).
-* **Certificate**. Whether to provide Couchbase Server with a copy of the LDAP server’s root certificate, so as to allow Couchbase Server to validate the LDAP server when connecting. This set of radio-buttons is enabled only if **TLS** or **StartTLSExtension** has been selected from the [Encryption](#encryption-pulldown-menu) pull-down menu.  
-The options are **None**, **Couchbase**, and **Paste Cert**. If **None** is selected, the LDAP server’s root certificate is _not_ provided to Couchbase Server: this option is insecure, and therefore _not_ recommended.  
+* **Certificate**. Whether to provide Couchbase Server with a copy of the LDAP server's root certificate, so as to allow Couchbase Server to validate the LDAP server when connecting. This set of radio-buttons is enabled only if **TLS** or **StartTLSExtension** has been selected from the [Encryption](#encryption-pulldown-menu) pull-down menu.  
+The options are **None**, **Couchbase**, and **Paste Cert**. If **None** is selected, the LDAP server's root certificate is _not_ provided to Couchbase Server: this option is insecure, and therefore _not_ recommended.  
 If **Couchbase** is selected, the root certificate for the Couchbase-Server cluster is used to validate the LDAP server: this assumes that the same root certificate is installed for both Couchbase Server and the LDAP server.
 
 **Paste Cert** should be selected if the LDAP server root certificate is _not_ the same certificate as has been installed for the Couchbase-Server cluster. When **Paste Cert** is selected, the panel expands vertically, to reveal the **LDAP Server Root Certificate** field:  
@@ -110,7 +110,7 @@ The text of the LDAP server root certificate should now be copied and pasted, in
 
 **Bind DN** requires the LDAP _Distinguished Name_ of the user who will perform user-search and groups synchronization. This user needs to have _read only_ access to the LDAP server, in order to be able to search for users and groups.
 
-**Password** requires input of the user’s password, as stored on the LDAP server.  
+**Password** requires input of the user's password, as stored on the LDAP server.  
   With data entered into these fields, the dialog might appear as follows:  
   ![configureLDAPhalfComplete](../_images/manage-security/configureLDAPhalfComplete.png)
   * **Client Certificate**. This option, which allows allows Couchbase Server to authenticate with LDAP by means of a client certificate, should be used only with an LDAP server that _does not_ expect the `SASL EXTERNAL` bind command to be sent, once a TLS connection has been established. Note, therefore, that this option _can_ be used with the _GSuite_ LDAP server.  
@@ -143,7 +143,7 @@ Selecting **LDAP Search** displays the following:
 
 ![ldapQuery](../_images/manage-security/ldapQuery.png) 
 
-Couchbase Server performs the specified LDAP [search operation](https://ldap.com/the-ldap-search-operation/) to get the user’s DN from LDAP server. **Base** is the _search base_ DN. **Filter** is the [search filter](https://ldap.com/ldap-filters/). For example, if **Base** is specified as `ou=users,dc=example,dc=com`, **Filter** as `(uid=%u)`, and the user has provided `exampleUser` to Couchbase Server as their username, Couchbase Server performs the following search, in order to obtain the user’s DN: `ou=users,dc=example,dc=com??one?(uid=exampleUser)`.
+Couchbase Server performs the specified LDAP [search operation](https://ldap.com/the-ldap-search-operation/) to get the user's DN from LDAP server. **Base** is the _search base_ DN. **Filter** is the [search filter](https://ldap.com/ldap-filters/). For example, if **Base** is specified as `ou=users,dc=example,dc=com`, **Filter** as `(uid=%u)`, and the user has provided `exampleUser` to Couchbase Server as their username, Couchbase Server performs the following search, in order to obtain the user's DN: `ou=users,dc=example,dc=com??one?(uid=exampleUser)`.
 
 **Scope** (as defined in [LDAP Search Scopes](https://ldapwiki.com/wiki/LDAP%20Search%20Scopes)) can be determined by a pulldown menu:
 
@@ -169,17 +169,17 @@ Switch on, to enable. This expands the dialog vertically, as follows:
 
 ![configureLDAPgroupsPanel](../_images/manage-security/configureLDAPgroupsPanel.png) 
 
-The LDAP groups of which a user is a member can be searched for by means of either the **User’s attributes** or an **LDAP Search**, each of which is provided as a radio-button option. Selection of either reveals a corresponding set of fields, in which information can be added. These are as follows.
+The LDAP groups of which a user is a member can be searched for by means of either the **User's attributes** or an **LDAP Search**, each of which is provided as a radio-button option. Selection of either reveals a corresponding set of fields, in which information can be added. These are as follows.
 
-#### [](#users-attributes)User’s Attributes
+#### [](#users-attributes)User's Attributes
 
-The **User’s attributes** radio-button is selected by default. This instructs Couchbase Server to assume that each LDAP user-record contains an attribute featuring the list of groups of which the user is a member. Couchbase Server therefore performs the following LDAP search: `<userDN>?<attribute>?one`.
+The **User's attributes** radio-button is selected by default. This instructs Couchbase Server to assume that each LDAP user-record contains an attribute featuring the list of groups of which the user is a member. Couchbase Server therefore performs the following LDAP search: `<userDN>?<attribute>?one`.
 
-The value of the specified `attribute` is treated as a list of groups. For example, if `attribute` is set in the **User Attribute** field to `memberOf`, Couchbase Server performs the following search for the specified user’s groups: `uid=exampleUser,dc=example,dc=com?memberOf?one`.
+The value of the specified `attribute` is treated as a list of groups. For example, if `attribute` is set in the **User Attribute** field to `memberOf`, Couchbase Server performs the following search for the specified user's groups: `uid=exampleUser,dc=example,dc=com?memberOf?one`.
 
 #### [](#traverse-nested-groups-for-user-attributes)Traverse Nested Groups, for User Attribute Search
 
-The **Traverse nested groups** checkbox, when checked, allows nested groups to be traversed by the search. Couchbase Server uses the same search to find groups of groups recursively (with each group’s DN being substituted for `%D`). If nested search is selected, `%u` cannot be used.
+The **Traverse nested groups** checkbox, when checked, allows nested groups to be traversed by the search. Couchbase Server uses the same search to find groups of groups recursively (with each group's DN being substituted for `%D`). If nested search is selected, `%u` cannot be used.
 
 Note that use of nested groups may significantly increase load on the LDAP server; and should therefore only be used if essential.
 
@@ -197,9 +197,9 @@ When the **LDAP Search** radio-button is selected, the **Query for Groups Using*
 
 ![ldapConfigurationLDAPquery](../_images/manage-security/ldapConfigurationLDAPquery.png) 
 
-Selection of **LDAP Search** instructs Couchbase Server to perform an LDAP [search operation](https://ldap.com/the-ldap-search-operation/), in order to retrieve a list of the user’s groups. **Base** is the _search base_ DN. **Filter** is the [search filter](https://ldap.com/ldap-filters/). **Scope**, accessed from a pulldown menu, can be **base**, **one** (the default), or **sub**.
+Selection of **LDAP Search** instructs Couchbase Server to perform an LDAP [search operation](https://ldap.com/the-ldap-search-operation/), in order to retrieve a list of the user's groups. **Base** is the _search base_ DN. **Filter** is the [search filter](https://ldap.com/ldap-filters/). **Scope**, accessed from a pulldown menu, can be **base**, **one** (the default), or **sub**.
 
-When the search is conducted, `%u` is replaced with the specified username; and `%D` is replaced with the user’s DN. For example, **Base** might be specified as `ou=groups,dc=example,dc=com`, **Filter** as `(member=%D)`, and **Scope** as `one-level`:
+When the search is conducted, `%u` is replaced with the specified username; and `%D` is replaced with the user's DN. For example, **Base** might be specified as `ou=groups,dc=example,dc=com`, **Filter** as `(member=%D)`, and **Scope** as `one-level`:
 
 ![ldapQueryDetail](../_images/manage-security/ldapQueryDetail.png) 
 

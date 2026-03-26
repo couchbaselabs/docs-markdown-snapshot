@@ -3,7 +3,7 @@ title: Install Enterprise Analytics Using Docker
 description: Enterprise Analytics can be installed using Couchbase-provided
   images from Docker Hub.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/getting-started-docker.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:install:getting-started-docker.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:enterprise-analytics:install:getting-started-docker.adoc[]
 
 > Enterprise Analytics can be installed using Couchbase-provided images from Docker Hub. 
 
-If you’re trying Enterprise Analytics for the first time and want to explore a Couchbase configuration, follow the [Get Started](../intro/do-a-quick-install.md#install-enterprise-analytics-using-docker) tutorial.
+If you're trying Enterprise Analytics for the first time and want to explore a Couchbase configuration, follow the [Get Started](../intro/do-a-quick-install.md#install-enterprise-analytics-using-docker) tutorial.
 
 You can install a pre-configured single-node deployment using Docker.
 
@@ -24,7 +24,7 @@ For more traditional Docker deployments:
 * [Deploy a Multi-Node Cluster with Containers](#section%5Fmsh%5Ffbl%5F42b)
 * [Deploy Multiple Clusters with Containers](#section%5Fdeploy%5Fmultiple%5Fclusters)
 
-If you’re looking for the Enterprise Analytics Docker image, you can find it on [Docker Hub](https://hub.docker.com/r/couchbase/enterprise-analytics).
+If you're looking for the Enterprise Analytics Docker image, you can find it on [Docker Hub](https://hub.docker.com/r/couchbase/enterprise-analytics).
 
 ## [](#section%5Fjvt%5Fzvj%5F42b)Deploy a Single-Node Cluster with Containers
 
@@ -37,15 +37,15 @@ To run a single-node cluster, deploy a single container for a single Enterprise 
 > * [Two-Node and Single-Node Clusters](single-two-node-clusters.md).
 
 1. Download and install Docker on the host computer.  
-To set up Docker on the host computer, see Docker’s [installation instructions](https://www.docker.com/get-started).
+To set up Docker on the host computer, see Docker's [installation instructions](https://www.docker.com/get-started).
 2. Install the official Enterprise Analytics container image.  
 ```console  
 $ docker run -d --name ea -p 8091:8091 -p 8095:8095 -p 18091:18091 -p 18095:18095 -p 11207:11207 -p 11210:11210 couchbase/enterprise-analytics  
 ```  
 Multiple instances with Docker  
-When running multiple instances on the same machine, make use of Docker’s `-p` option to map `external:internal` ports used by the container.  
+When running multiple instances on the same machine, make use of Docker's `-p` option to map `external:internal` ports used by the container.  
 For example:  
-`-p 9091:8091` instructs the container to map the external machine port `9091` to the container application’s port `8091`.  
+`-p 9091:8091` instructs the container to map the external machine port `9091` to the container application's port `8091`.  
 After you run the above command, Docker downloads and runs a single instance (`ea`) of the latest [official Enterprise Analytics container image](https://hub.docker.com/r/couchbase/enterprise-analytics) on your host computer. If a traditional installation of Enterprise Analytics is running locally on the host computer, the port mappings specified using the `-p` option might fail. Make sure that you stop any local instance of Enterprise Analytics before running this command.  
 For instructions on starting or stopping Enterprise Analytics, see [Start and Stop Enterprise Analytics](start-stop-cb-enterprise-analytics.md).  
 You can check the Docker logs to verify that the container has started.  
@@ -85,7 +85,7 @@ In this cluster deployment model, all node containers are placed on the same phy
 To set up a 3-node Couchbase cluster with all the containers running on 1 physical host:
 
 1. Download and install Docker on the host computer.  
-To set up Docker on the host computer, see Docker’s [installation instructions](https://www.docker.com/get-started).
+To set up Docker on the host computer, see Docker's [installation instructions](https://www.docker.com/get-started).
 2. Install 3 instances of the official Enterprise Analytics container image.  
 Make sure to run each of the following commands:  
 ```console  
@@ -122,7 +122,7 @@ $ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' e
 ```console  
 $ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ea2  
 ```  
-You’ll need these IP addresses later to add `ea1` and `ea2` into the cluster and since you’ll run the initial cluster setup from `ea3`, there is no need for its IP address.
+You'll need these IP addresses later to add `ea1` and `ea2` into the cluster and since you'll run the initial cluster setup from `ea3`, there is no need for its IP address.
 4. From a web browser, go to `http://localhost:8091`.
 5. Click **Setup New Cluster** and set up a new cluster.  
 For more information about creating a new cluster, see [Create a Cluster](../manage/manage-nodes/create-cluster.md).
@@ -142,7 +142,7 @@ In this cluster deployment model, each node container is placed on its own physi
 The following procedure explains how to set up a 3-node Couchbase cluster with each container running on its own physical host. All physical hosts must be able to discover each another on the same network and be able to communicate via the [required ports](cb-enterprise-analytics-ports.md).
 
 1. Download and install Docker on each host computer.  
-To set up Docker on each host computer, see Docker’s [installation instructions](https://www.docker.com/get-started).
+To set up Docker on each host computer, see Docker's [installation instructions](https://www.docker.com/get-started).
 2. On each of the 3 physical hosts, install the official Enterprise Analytics container image.  
 ```console  
 $ docker run -d --name ea -p 8091:8091 -p 8095:8095 -p 18091:18091 -p 18095:18095 -p 11207:11207 -p 11210:11210 couchbase/enterprise-analytics  
@@ -161,7 +161,7 @@ Starting Enterprise Analytics -- Web UI available at http://<ip>:8091
 ```console  
 docker inspect --format '{{ .NetworkSettings.IPAddress }}' ea  
 ```  
-You’ll need these IP addresses later to add each node into the cluster.
+You'll need these IP addresses later to add each node into the cluster.
 4. On 1 of the physical hosts, open a web browser and go to `http://localhost:8091` or `http://<node-ip>:8091` to access the Enterprise Analytics Web Console.
 5. Click **Setup New Cluster** and proceed through the setup wizard as normal.  
 For more information about how to create a new cluster, see [Create a Cluster](../manage/manage-nodes/create-cluster.md).
@@ -181,7 +181,7 @@ In this cluster deployment model, each cluster, running 1 or more nodes, is run 
 The following procedure explains how to set up 2 clusters, each in a separate container, all running on 1 physical host.
 
 1. Download and install Docker on the host computer.  
-To set up Docker on the host computer,see Docker’s [installation instructions](https://www.docker.com/get-started).
+To set up Docker on the host computer,see Docker's [installation instructions](https://www.docker.com/get-started).
 2. Install 2 instances of the official Enterprise Analytics container image.  
 Make sure to run each of the following commands:  
 ```console  
@@ -264,7 +264,7 @@ $ docker cp ~/.aws ea:/home/couchbase/.aws
 $ docker exec ea chown -R couchbase:couchbase /home/couchbase/.aws
 ```
 
-Caution:You’ll lose the credentials if you remove or restart the container.
+Caution:You'll lose the credentials if you remove or restart the container.
 
 * Pass Credentials via Environment Variables
 

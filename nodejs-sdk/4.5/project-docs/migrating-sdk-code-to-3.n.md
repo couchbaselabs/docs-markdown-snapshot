@@ -4,7 +4,7 @@ description: The SDK API 3 (used in Node.js SDK 3.x and 4.x) introduces breaking
   changes to the previous SDK API 2 APIs (used in Node.js SDK 2.x) in order to
   provide a number of improvements. Collections and Scopes are introduced.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.5@nodejs-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -49,7 +49,7 @@ __Table 1\. SDK API Versions__
 
 **SDK API 3.6**: Introduced support for base 64 encoded vector types alongside Server 7.6.2 (and Capella). General Availability of our C++ SDK — now available as a supported, stand-alone SDK, this SDK is also the core of our Node.js, PHP, Python, and Ruby SDKs.
 
-**SDK API 3.5**: Introduced support for Vector Search alongside Server 7.6 (and Capella). Adds scoped indexes to Search (for Vector Seach and traditional FTS). Read from Replica for Query and Sub-Doc operations. KV Range Scan for querying documents through the Data Service, even if you don’t know the document IDs (for use cases that require relatively low concurrency and tolerate relatively high latency). Transactions now implemented as a native library in all SDKs (except libcouchbase).
+**SDK API 3.5**: Introduced support for Vector Search alongside Server 7.6 (and Capella). Adds scoped indexes to Search (for Vector Seach and traditional FTS). Read from Replica for Query and Sub-Doc operations. KV Range Scan for querying documents through the Data Service, even if you don't know the document IDs (for use cases that require relatively low concurrency and tolerate relatively high latency). Transactions now implemented as a native library in all SDKs (except libcouchbase).
 
 **SDK API 3.4**: Introduced support for ARM v8 on Ubuntu 20.04, Transactions on Spring Data Couchbase, and compatibility with running in serverless environments, such as AWS λ. The `couchbase2://` connection string was introduced in Go 2.7, Java 3.5, Kotlin 1.2, and Scala 1.5, for Cloud Native Gateway with [Couchbase Autonomous Operator](../../../operator/current/overview.md) (from CAO 2.6.1).
 
@@ -71,7 +71,7 @@ The concept of a `Cluster` and a `Bucket` remain the same, but a fundamental new
 
 Note that the SDKs include the feature from SDK 3.0, to allow easier migration.
 
-In the previous SDK generation, particularly with the `KeyValue` API, the focus has been on the codified concept of a `Document`. Documents were read and written and had a certain structure, including the `id`/`key`, content, expiry (`ttl`), and so forth. While the server still operates on the logical concept of documents, we found that this model in practice didn’t work so well for client code in certain edge cases. As a result we have removed the `Document` class/structure completely from the API. The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`. This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.
+In the previous SDK generation, particularly with the `KeyValue` API, the focus has been on the codified concept of a `Document`. Documents were read and written and had a certain structure, including the `id`/`key`, content, expiry (`ttl`), and so forth. While the server still operates on the logical concept of documents, we found that this model in practice didn't work so well for client code in certain edge cases. As a result we have removed the `Document` class/structure completely from the API. The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`. This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.
 
 As an example here is a KeyValue document fetch:
 
@@ -101,7 +101,7 @@ async function queryNamed() {
 }
 ```
 
-Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`. Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON. You’ll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.
+Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`. Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON. You'll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.
 
 The KV API extends the concept of the serializer to the `Transcoder`. Since you can also store non-JSON data inside a document, the `Transcoder` allows the writing of binary data as well. It handles the object/entity encoding and decoding, and if it happens to deal with JSON makes uses of the configured `Serializer` internally. See the _Serialization and Transcoding_ section below for details.
 
@@ -211,7 +211,7 @@ cluster.close();
 `Collections` is generally available from Couchbase Server 7.0 release, but the SDK already encoded it in its API to be future-proof. If you are using a Couchbase Server version which does not support `Collections`, always use the `defaultCollection()` method to access the KV API; it will map to the full bucket.
 
 > [!IMPORTANT]
-> You’ll notice that `bucket(String)` returns immediately, even if the bucket resources are not completely opened. This means that the subsequent `get` operation may be dispatched even before the socket is open in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout (in this case, you’ll see socket connect rejections).
+> You'll notice that `bucket(String)` returns immediately, even if the bucket resources are not completely opened. This means that the subsequent `get` operation may be dispatched even before the socket is open in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout (in this case, you'll see socket connect rejections).
 
 Also note, you will now find Query, Search, and Analytics at the `Cluster` level. This is where they logically belong. If you are using Couchbase Server 6.5 or later, you will be able to perform cluster-level queries even if no bucket is open. If you are using an earlier version of the cluster you must open at least one bucket, otherwise cluster-level queries will fail.
 
@@ -219,7 +219,7 @@ Also note, you will now find Query, Search, and Analytics at the `Cluster` level
 
 In SDK API 2 the main method to control transcoding was through providing different `Document` instances (which in turn had their own transcoder associated), such as the `JsonDocument`. This only worked for the KV APIs though — Query, Search, Views, and other services exposed their JSON rows/hits in different ways. All of this has been unified in SDK API 3 under a single concept: serializers and transcoders.
 
-By default, all KV APIs transcode to and from JSON — you can also provide Javascript objects which you couldn’t in the past.
+By default, all KV APIs transcode to and from JSON — you can also provide Javascript objects which you couldn't in the past.
 
 ```javascript
 const  upsertResult = await collection.upsert("mydoc-id", { myvalue: "me"});
@@ -392,7 +392,7 @@ Much of the non-row metadata has been moved into a specific `QueryMetaData` sect
 
 It is no longer necessary to check for a specific error in the stream: if an error happened during processing it will throw an exception at the top level of the query. The reactive streaming API will terminate the rows' `Flux` with an exception as well as soon as it is discovered. This makes error handling much easier in both the blocking and non-blocking cases.
 
-While in SDK API 2 you had to manually check for errors (otherwise you’d get an empty row collection):
+While in SDK API 2 you had to manually check for errors (otherwise you'd get an empty row collection):
 
 ```javascript
 const queryResult = bucket.query(N1qlQuery.simple("select 1="));
@@ -491,7 +491,7 @@ if(res) console.log(res);
     });
 ```
 
-If you want to be absolutely sure that you didn’t get only partial data, you can check the error map:
+If you want to be absolutely sure that you didn't get only partial data, you can check the error map:
 
 ```javascript
 const ftsQuery =  couchbase.SearchQuery.match("airport");

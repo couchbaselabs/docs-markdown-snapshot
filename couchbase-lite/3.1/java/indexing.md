@@ -2,7 +2,7 @@
 title: Indexing your Data
 description: Working with Couchbase Lite's data model  --  Using indexes
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/java/pages/indexing.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@couchbase-lite:java:indexing.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:3.1@couchbase-lite:java:indexing.adoc[]
 
 # Indexing your Data
 
-> Description — _Working with Couchbase Lite’s data model — Using indexes_  
+> Description — _Working with Couchbase Lite's data model — Using indexes_  
 > Related Content — [Databases](database.md) | [Documents](document.md) | [Indexing](indexing.md) |
 
 ## [](#introduction)Introduction

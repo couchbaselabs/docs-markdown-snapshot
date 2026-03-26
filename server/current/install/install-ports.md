@@ -3,7 +3,7 @@ title: Couchbase Server Ports
 description: Couchbase Server uses multiple TCP ports to facilitate
   communication between server components, as well as with Couchbase clients.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/install-ports.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:install-ports.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Couchbase Server uses a default set of port numbers for all ports that it requir
 
 ### [](#ephemeral-ports)Ephemeral Ports
 
-An _ephemeral_ port is one temporarily allocated by a server’s operating system, as the source for an outgoing communication. Each operating system provides a default range of port numbers that can be assigned to ephemeral ports, when necessary. For Linux distributions, the typical range is 32768-61000\. Couchbase Server relies on the _full_ default range provided by each operating system: therefore, the default range should _not_ be reduced by the administrator; since the resulting lack of ephemeral ports may result in outgoing communications using _well-known_ ports instead (for example, _8091_); thereby preventing Couchbase-Server processes from binding to the well-known ports to which they are assigned.
+An _ephemeral_ port is one temporarily allocated by a server's operating system, as the source for an outgoing communication. Each operating system provides a default range of port numbers that can be assigned to ephemeral ports, when necessary. For Linux distributions, the typical range is 32768-61000\. Couchbase Server relies on the _full_ default range provided by each operating system: therefore, the default range should _not_ be reduced by the administrator; since the resulting lack of ephemeral ports may result in outgoing communications using _well-known_ ports instead (for example, _8091_); thereby preventing Couchbase-Server processes from binding to the well-known ports to which they are assigned.
 
 ### [](#couchbase-server-communication-paths)Couchbase Server Communication Paths
 
@@ -123,11 +123,11 @@ To Change Port Mapping
 
 1. [Install Couchbase Server](install-intro.md).
 2. [Stop the Couchbase Server service](startup-shutdown.md).
-3. For most ports, you’ll need to edit the Couchbase Server _static\_config_ file. (This will be wherever you put the path to _/couchbase/etc/couchbase/static\_config_ in multi-node installations.)  
+3. For most ports, you'll need to edit the Couchbase Server _static\_config_ file. (This will be wherever you put the path to _/couchbase/etc/couchbase/static\_config_ in multi-node installations.)  
 ```console  
 vi /opt/couchbase/etc/couchbase/static_config  
 ```  
-If you’re remapping the CAPI port (8092 / 18092) you’ll need to edit the _/opt/couchbase/etc/couchdb/default.d/capi.ini_ file and replace 8092 with the new port number.
+If you're remapping the CAPI port (8092 / 18092) you'll need to edit the _/opt/couchbase/etc/couchdb/default.d/capi.ini_ file and replace 8092 with the new port number.
 4. Add each custom port map entry on its own line, using the following format (enclosed in braces and terminated by a period):  
 ```console  
 {port-name, port-number}.  
@@ -136,8 +136,8 @@ For example, to change the REST API port from 8091 to 9000, you would add the fo
 ```console  
 {rest_port, 9000}.  
 ```  
-Once you’ve added all of your custom port mappings, save the file and close your text editor.
-5. If Couchbase Server was previously configured, you’ll need to delete the _/opt/couchbase/var/lib/couchbase/config/config.dat_ file and files in the _/opt/couchbase/var/lib/couchbase/config/chronicle/_ directory to remove the old configuration.  
+Once you've added all of your custom port mappings, save the file and close your text editor.
+5. If Couchbase Server was previously configured, you'll need to delete the _/opt/couchbase/var/lib/couchbase/config/config.dat_ file and files in the _/opt/couchbase/var/lib/couchbase/config/chronicle/_ directory to remove the old configuration.  
 ```console  
 rm -rf /opt/couchbase/var/lib/couchbase/config/config.dat  
 rm -rf /opt/couchbase/var/lib/couchbase/config/chronicle/*  

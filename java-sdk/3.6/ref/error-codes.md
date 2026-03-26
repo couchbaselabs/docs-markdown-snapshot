@@ -3,7 +3,7 @@ title: Error Messages
 description: The standardized error codes returned by the Couchbase Java SDK,
   from cloud connection to sub-document.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.6/modules/ref/pages/error-codes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@java-sdk:ref:error-codes.adoc[]
 ---
 
@@ -102,7 +102,7 @@ Raised when:
 
 ### [](#13-ambiguoustimeout)\# 13 AmbiguousTimeout
 
-Raised when a timeout occurs and we aren’t sure if the underlying operation has completed. This normally occurs because we sent the request to the server successfully, but timed out waiting for the response. Note that idempotent operations should never return this, as they do not have ambiguity.
+Raised when a timeout occurs and we aren't sure if the underlying operation has completed. This normally occurs because we sent the request to the server successfully, but timed out waiting for the response. Note that idempotent operations should never return this, as they do not have ambiguity.
 
 ### [](#14-unambiguoustimeout)\# 14 UnambiguousTimeout
 
@@ -311,7 +311,7 @@ ID Range 500 - 599
 
 ### [](#501-viewnotfound)\# 501 ViewNotFound
 
-Raised when Http status code 404 — reason or error contains “not\_found”.
+Raised when Http status code 404 — reason or error contains "not\_found".
 
 ### [](#502-designdocumentnotfound)\# 502 DesignDocumentNotFound
 

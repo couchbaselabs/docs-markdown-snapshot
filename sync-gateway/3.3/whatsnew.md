@@ -2,7 +2,7 @@
 title: New In 3.3
 description: Couchbase Sync Gateway -- What's new in the latest release
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/ROOT/pages/whatsnew.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@sync-gateway::whatsnew.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:3.3@sync-gateway::whatsnew.adoc[]
 
 # New In 3.3
 
-> Couchbase Sync Gateway — What’s new in the latest release  
+> Couchbase Sync Gateway — What's new in the latest release  
 > This content covers the new features introduced in Sync Gateway 3.3
 
 > [!WARNING]
@@ -57,7 +57,7 @@ Sync Gateway 3.3.3 optimizes channel cache processing to improve throughput in h
 
 ## [](#see-also)See Also
 
-[What’s new in previous version 3.2](../3.2/whatsnew.md).
+[What's new in previous version 3.2](../3.2/whatsnew.md).
 
 ### [](#sync-gateway-release-notes)Sync Gateway Release Notes
 

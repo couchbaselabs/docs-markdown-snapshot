@@ -3,7 +3,7 @@ title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.5/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.5@dotnet-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -124,7 +124,7 @@ await _collection.MutateInAsync("customer123", specs =>
 );
 ```
 
-Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here’s an example of one which replaces one path and removes another.
+Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here's an example of one which replaces one path and removes another.
 
 ```csharp
 await _collection.MutateInAsync("customer123", specs => {
@@ -328,7 +328,7 @@ await foreach (var replicaResult in result)
 }
 ```
 
-You may want to use `LookupInAllReplicas` to build a consensus, but it’s more likely that you’ll make use of `LookupInAnyReplica` as a fallback to a `LookupIn`, when the active node times out.
+You may want to use `LookupInAllReplicas` to build a consensus, but it's more likely that you'll make use of `LookupInAnyReplica` as a fallback to a `LookupIn`, when the active node times out.
 
 ## [](#concurrent-modifications)Concurrent Modifications
 
@@ -361,7 +361,7 @@ await _collection.MutateInAsync("player432",
 
 ## [](#durability)Durability
 
-Couchbase’s [traditional durability](#2.7@dotnet-sdk::durability.adoc), using `PersistTo` and `ReplicateTo`, is [still available](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), particularly for talking to Couchbase Server 6.0 and earlier:
+Couchbase's [traditional durability](#2.7@dotnet-sdk::durability.adoc), using `PersistTo` and `ReplicateTo`, is [still available](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), particularly for talking to Couchbase Server 6.0 and earlier:
 
 ```csharp
 await collection.MutateIn("key",

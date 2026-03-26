@@ -3,7 +3,7 @@ title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Java SDK.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.8@java-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:3.8@java-sdk:hello-world:start-using-sdk.adoc[]
 
 > Install, connect, try. A quick start guide to get you up and running with Couchbase and the Java SDK. 
 
-Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let’s look at those data operations, and installing the Java SDK.
+Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let's look at those data operations, and installing the Java SDK.
 
 Upsert with Replication set to [Majority Durablity](../concept-docs/data-durability-acid-transactions.md#durable-writes):
 
@@ -23,7 +23,7 @@ collection.upsert("my-document", JsonObject.create().put("doc", true),
     upsertOptions().durability(DurabilityLevel.MAJORITY));
 ```
 
-`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We’ll explore creating and retrieving data records in more detail [below](#create-read-update-delete)(and touch lightly upon a little of Java’s functional programming approach as we go), after walking through a quick installation.
+`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We'll explore creating and retrieving data records in more detail [below](#create-read-update-delete)(and touch lightly upon a little of Java's functional programming approach as we go), after walking through a quick installation.
 
 > [!TIP]
 > This page walks you through a quick installation, and CRUD examples against the Data Service. Elsewhere in this section you can find a fully worked-through [Quickstart in Couchbase with Spring Boot and Java](sample-application.md) and, for those new to document (NoSQL) databases, our [Student Record Tutorial](student-record-developer-tutorial.md).
@@ -35,7 +35,7 @@ Couchbase Capella, our Database-as-a-Service, lets you get on with what matters,
 * Couchbase Capella
 * Self-Managed Couchbase Server
 
-If you haven’t already got a cluster set up, the easiest route is to [sign up to Couchbase Capella and deploy a free tier cluster](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
+If you haven't already got a cluster set up, the easiest route is to [sign up to Couchbase Capella and deploy a free tier cluster](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
 
 Install Couchbase Server locally, or in your private Cloud:
 
@@ -51,7 +51,7 @@ Install Couchbase Server locally, or in your private Cloud:
   * [Azure Marketplace](../../../server/7.6/cloud/couchbase-azure-marketplace.md)
   * [GCP Marketplace](../../../server/7.6/cloud/couchbase-gcp-cloud-launcher.md)
 
-For the example code below to run, you’ll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
+For the example code below to run, you'll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
 
 ### [](#prerequisites)Prerequisites
 
@@ -108,7 +108,7 @@ To make development easier, Couchbase plugins are available for VSCode and the I
 
 ### [](#grab-the-code)Grab the Code
 
-If you’re all set up and in a real hurry, just grab this code sample and add in your Capella details.
+If you're all set up and in a real hurry, just grab this code sample and add in your Capella details.
 
 Complete Hello World code sample \[**Click to open or collapse the listing**\] 
 
@@ -241,7 +241,7 @@ public class Cloud {
 Otherwise, read on as we introduce the CRUD API and connection to Capella or self-managed Couchbase Server.
 
 > [!TIP]
-> There’s a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown.
+> There's a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown.
 
 ## [](#connect-to-your-database)Connect to your Database
 
@@ -291,7 +291,7 @@ Cluster cluster = Cluster.connect(
 );
 ```
 
-Couchbase’s large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../operator/current/concept-cloud-native-gateway.md):
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../operator/current/concept-cloud-native-gateway.md):
 
 ```scala
 Cluster cluster = Cluster.connect(
@@ -322,7 +322,7 @@ The `ClusterEnvironment.Builder` is covered more fully on the [Client Settings](
 > [!TIP]
 > Simpler Connection
 > 
-> There’s also a simpler version of `Cluster.connect()` for when you don’t need to customize the cluster environment:
+> There's also a simpler version of `Cluster.connect()` for when you don't need to customize the cluster environment:
 > 
 > ```java
 > // Alternatively, connect without customizing the cluster envionrment.
@@ -352,7 +352,7 @@ Couchbase documents are organized into buckets, scopes, and collections. [CRUD o
 
 ### [](#json)JSON
 
-We’ll create a snippet of JSON to work with, using the client’s own JSON library, but you can read about the Scala SDK’s support for other JSON libraries on the [JSON Modelling](../howtos/json.md) page.
+We'll create a snippet of JSON to work with, using the client's own JSON library, but you can read about the Scala SDK's support for other JSON libraries on the [JSON Modelling](../howtos/json.md) page.
 
 ```java
 JsonObject json = JsonObject.create().put("status", "awesome");
@@ -362,7 +362,7 @@ JsonObject json = JsonObject.create().put("status", "awesome");
 
 `insert` and `upsert` will both create a new document. The difference between the two is that if a document with that key already exists, the `insert` operation will fail, while the `upsert` operation will succeed, replacing the content.
 
-We need to provide a unique ID as the key, and we’ll use a UUID here:
+We need to provide a unique ID as the key, and we'll use a UUID here:
 
 Creating a new document
 
@@ -412,7 +412,7 @@ try {
 ```
 
 > [!CAUTION]
-> When you replace a document, it’s usually good practice to use [optimistic locking](../howtos/kv-operations.md#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
+> When you replace a document, it's usually good practice to use [optimistic locking](../howtos/kv-operations.md#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
 
 ### [](#remove-delete)Remove (Delete)
 
@@ -426,7 +426,7 @@ try {
 }
 ```
 
-Like `replace`, `remove` also optionally takes the CAS value if you want to make sure you are only removing the document if it hasn’t changed since you last fetched it.
+Like `replace`, `remove` also optionally takes the CAS value if you want to make sure you are only removing the document if it hasn't changed since you last fetched it.
 
 ## [](#data-modeling)Data Modeling
 
@@ -434,9 +434,9 @@ Documents are organized into collections — collections of documents that belon
 
 For example, imagine you have two types of documents: customers and invoices. You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
 
-Each document belongs to exactly one collection. A document’s ID is unique _within_ the collection.
+Each document belongs to exactly one collection. A document's ID is unique _within_ the collection.
 
-Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection’s name is unique within the scope.
+Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection's name is unique within the scope.
 
 More details can be found on the [Data Model page](../concept-docs/data-model.md).
 
@@ -458,7 +458,7 @@ More details can be found on the [Data Model page](../concept-docs/data-model.md
 
 ## [](#next-steps-2)Next Steps
 
-Now you’re up and running, try one of the following:
+Now you're up and running, try one of the following:
 
 * Our [Travel Sample Application](sample-application.md) demonstrates all the basics you need to know;
 * Explore [Key Value Operations](../howtos/kv-operations.md) (CRUD) against a document database;
@@ -475,7 +475,7 @@ Couchbase welcomes community contributions to the Java SDK. The SDK source code 
 
 ### [](#troubleshooting)Troubleshooting
 
-* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you’re running the SDK on your laptop against a Capella cluster, see further information on:
+* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you're running the SDK on your laptop against a Capella cluster, see further information on:
 
   * Notes on [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
   * [Network Requirements](../project-docs/compatibility.md#network-requirements).
@@ -485,4 +485,4 @@ Couchbase welcomes community contributions to the Java SDK. The SDK source code 
 > [!TIP]
 > Connecting to Cloud Native Gateway, for Kubernetes or OpenShift
 > 
-> Couchbase’s large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — read more on the [Connections](../howtos/managing-connections.md#cloud-native-gateway) page.
+> Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — read more on the [Connections](../howtos/managing-connections.md#cloud-native-gateway) page.

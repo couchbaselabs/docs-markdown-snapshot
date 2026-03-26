@@ -3,7 +3,7 @@ title: Starter Kits
 description: Starter kits are repositories containing example code to get you
   started with various development projects.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/getting-started/pages/starter-kits.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:getting-started:starter-kits.adoc[]
 ---
 
@@ -28,7 +28,7 @@ Start an EC2 instance and connect to the server using the Couchbase CLI.
 
 ## Couchbase Server with ASP.NET Core
 
-Create a “hello world” ASP.NET Core web application that uses Couchbase Server as the backend database.
+Create a "hello world" ASP.NET Core web application that uses Couchbase Server as the backend database.
 
 [Learn more](https://github.com/couchbase-guides/asp-net-core-mvc)
 
@@ -40,13 +40,13 @@ Create a Java application that uses Couchbase Server as the backend to store a J
 
 ## Couchbase with Node.js using Express Framework
 
-Create a “hello world” Node.js web application that uses Couchbase Server as the backend database.
+Create a "hello world" Node.js web application that uses Couchbase Server as the backend database.
 
 [Learn more](https://github.com/couchbase-guides/nodejs-express)
 
 ## Couchbase with NativeScript using Angular
 
-Create a “hello world” NativeScript mobile application that uses Couchbase Server, NativeScript, and Angular.
+Create a "hello world" NativeScript mobile application that uses Couchbase Server, NativeScript, and Angular.
 
 [Learn more](https://github.com/couchbase-guides/nativescript-angular)
 

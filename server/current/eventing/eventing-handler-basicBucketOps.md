@@ -3,7 +3,7 @@ title: "Function: Basic Bucket Ops"
 description: Perform the basic bucket operations where Eventing interacts with
   the Data service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-handler-basicBucketOps.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:eventing:eventing-handler-basicBucketOps.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:server:eventing:eventing-handler-basicBucketOps.adoc[]
 
 **Goal**: Perform the basic bucket operations where Eventing interacts with the Data service.
 
-* This function **basicBucketOps** merely demonstrates Eventing’s Basic Bucket Accessors or BucketOps.
+* This function **basicBucketOps** merely demonstrates Eventing's Basic Bucket Accessors or BucketOps.
 * Requires Eventing Storage (or metadata collection), a "source" collection, and a "destination" collection.
 * Needs a Binding of type Bucket Alias (as documented in the Scriptlet).
 * Will operate on any mutation where doc.type === "basic\_bkt\_ops".

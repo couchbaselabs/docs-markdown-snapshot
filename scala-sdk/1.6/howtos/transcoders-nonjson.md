@@ -2,7 +2,7 @@
 title: Transcoders &amp; Non-JSON Documents
 description: The Scala SDK supports common JSON document requirements out-of-the-box.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.6@scala-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
@@ -76,7 +76,7 @@ It only accepts Strings and `byte[]`.
 
 Say we want to serialize and deserialize some data with the JSON library uPickle\[<https://github.com/lihaoyi/upickle>\], and have the Scala SDK just passthrough the serialized data to and from Couchbase. We will look at better ways of doing this later, but here is one approach using `RawJsonTranscoder`.
 
-Since uPickle has already done the serialization work, we don’t want to use the default `JsonTranscoder`, as this will run the provided bytes needlessly through `DefaultJsonSerializer` (Jackson). Instead, RawJsonTranscoder is used, which just passes through the serialized bytes, and stores them in Couchbase with the JSON Common Flag set. Similarly, the same transcoder is used on reading the document, so the raw bytes can be retrieved in a String without going through `DefaultJsonSerializer` (Jackson).
+Since uPickle has already done the serialization work, we don't want to use the default `JsonTranscoder`, as this will run the provided bytes needlessly through `DefaultJsonSerializer` (Jackson). Instead, RawJsonTranscoder is used, which just passes through the serialized bytes, and stores them in Couchbase with the JSON Common Flag set. Similarly, the same transcoder is used on reading the document, so the raw bytes can be retrieved in a String without going through `DefaultJsonSerializer` (Jackson).
 
 ```scala
 
@@ -112,7 +112,7 @@ Since uPickle has already done the serialization work, we don’t want to use th
 It is most common to store JSON with Couchbase. However, it is possible to store non-JSON documents, such as raw binary data, perhaps using an concise binary encoding like [MessagePack](https://msgpack.org) or [CBOR](https://cbor.io/), in the Key-Value store.
 
 > [!NOTE]
-> It’s important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
+> It's important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
 
 Also note that some simple data types can be stored directly as JSON, without recourse to non-JSON transcoding. A valid JSON document can be a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value.
 
@@ -128,7 +128,7 @@ Note that this transcoder does not accept a serializer, and always performs stra
 | byte\[\] | Failure(IllegalArgumentException) | \-          |
 | Other T  | Failure(IllegalArgumentException) | \-          |
 
-Here’s an example of using the `RawStringTranscoder`:
+Here's an example of using the `RawStringTranscoder`:
 
 ```scala
 //       collection.upsert(
@@ -165,7 +165,7 @@ The RawBinaryTranscoder provides the ability for the user to explicitly store an
 | byte\[\] | Passthrough                       | Binary      |
 | Other T  | Failure(IllegalArgumentException) | \-          |
 
-Here’s an example of using the `RawBinaryTranscoder`:
+Here's an example of using the `RawBinaryTranscoder`:
 
 ```scala
 //     val content: Array[Byte] = "hello world".getBytes(StandardCharsets.UTF_8)
@@ -253,7 +253,7 @@ Both of these are marked `implicit object` and inside `object MyUser` so the com
 //       }
 ```
 
-Note we don’t need to change the transcoder for this example. The [table for JsonTranscoder](#default-behaviour) shows that it already does what we need: on serialization (in the `upsert`), it passes the `MyUser` object to the compiler-found serializer (`UserSerializer`) and stores the result in Couchbase with the JSON common flag. And on deserialization (in the `contentAs`), the raw bytes are passed to `UserDeserializer`, and resulting `MyUser` passed back to the application.
+Note we don't need to change the transcoder for this example. The [table for JsonTranscoder](#default-behaviour) shows that it already does what we need: on serialization (in the `upsert`), it passes the `MyUser` object to the compiler-found serializer (`UserSerializer`) and stores the result in Couchbase with the JSON common flag. And on deserialization (in the `contentAs`), the raw bytes are passed to `UserDeserializer`, and resulting `MyUser` passed back to the application.
 
 ### [](#selecting-a-serializer)Selecting a Serializer
 
@@ -301,7 +301,7 @@ The serializer is an implicit argument to any operation that requires one, and t
 
 ### [](#creating-a-custom-transcoder)Creating a Custom Transcoder
 
-Let’s look at a more complex example: encoding the JSON alternative, [MessagePack](https://msgpack.org). MessagePack is a compact binary data representation, so it should be stored with the binary Common Flag. The Common Flag is chosen by the transcoder, and none of the existing transcoders matches our needs (`RawBinaryTranscoder` does set the binary flag, but it passes data through directly rather than using a serializer). So we need to write one.
+Let's look at a more complex example: encoding the JSON alternative, [MessagePack](https://msgpack.org). MessagePack is a compact binary data representation, so it should be stored with the binary Common Flag. The Common Flag is chosen by the transcoder, and none of the existing transcoders matches our needs (`RawBinaryTranscoder` does set the binary flag, but it passes data through directly rather than using a serializer). So we need to write one.
 
 Start by creating a new serializer and deserializer for our case class, that uses MessagePack:
 

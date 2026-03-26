@@ -3,7 +3,7 @@ title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@scala-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -207,7 +207,7 @@ result match {
 }
 ```
 
-Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here’s an example of one which replaces one path and removes another.
+Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here's an example of one which replaces one path and removes another.
 
 ```scala
 val result = collection.mutateIn("customer123", Array(
@@ -427,7 +427,7 @@ results match {
 
 Errors from the replicas and the active are ignored, so if all fail (including if the document does not exist), an empty stream is returned.
 
-You may want to use `lookupInAllReplicas` to build a consensus, but it’s more likely that you’ll make use of `lookupInAnyReplica` as a fallback to a `lookupIn`, when the active node times out.
+You may want to use `lookupInAllReplicas` to build a consensus, but it's more likely that you'll make use of `lookupInAnyReplica` as a fallback to a `lookupIn`, when the active node times out.
 
 ## [](#concurrent-modifications)Concurrent Modifications
 
@@ -460,7 +460,7 @@ val result = collection.get("player432")
 
 ## [](#durability)Durability
 
-Couchbase’s [traditional durability](https://docs-archive.couchbase.com/java-sdk/2.7/durability.html), using `PersistTo` and `ReplicateTo`, is [still available](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), particularly for talking to Couchbase Server 6.0 and earlier:
+Couchbase's [traditional durability](https://docs-archive.couchbase.com/java-sdk/2.7/durability.html), using `PersistTo` and `ReplicateTo`, is [still available](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), particularly for talking to Couchbase Server 6.0 and earlier:
 
 ```scala
 val result = collection.mutateIn("key", Array(

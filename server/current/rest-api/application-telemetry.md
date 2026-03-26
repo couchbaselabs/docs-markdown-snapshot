@@ -3,7 +3,7 @@ title: Application Telemetry
 description: You can enable application telemetry to have Couchbase Server
   periodically collect telemetry from your clients that use the Couchbase SDK.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/application-telemetry.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:application-telemetry.adoc[]
 ---
 
@@ -44,7 +44,7 @@ Your Couchbase Server cluster and your clients must meet the following requireme
 | [Python](../../../python-sdk/current/hello-world/overview.md)  | 4.5                                                |
 | [Ruby](../../../ruby-sdk/current/hello-world/overview.md)      | 3.7                                                |
 | [Scala](../../../scala-sdk/current/hello-world/overview.md)    | 3.9                                                |
-* Your clients must be able to connect to the node’s management port to create the WebSocket connection for telemetry data collection. The default management port is 8091 for unencrypted connections and 18901 for encrypted connections. Make sure any firewall rules between your clients and the nodes allow traffic on the management port.
+* Your clients must be able to connect to the node's management port to create the WebSocket connection for telemetry data collection. The default management port is 8091 for unencrypted connections and 18901 for encrypted connections. Make sure any firewall rules between your clients and the nodes allow traffic on the management port.
 
 ## [](#http-methods)HTTP Methods
 
@@ -108,7 +108,7 @@ Returned if you do not have the proper roles to call this API. See [Required Pri
 
 ### [](#get-state-example)Examples
 
-The following example gets the cluster’s current application telemetry setting from the local node and pipes the result through `jq`.
+The following example gets the cluster's current application telemetry setting from the local node and pipes the result through `jq`.
 
 ```bash
  curl -sX GET -u Administrator:password \
@@ -218,7 +218,7 @@ Returned when the call is successful. A successful call also returns a JSON obje
 
 `400 Bad Request`
 
-Returned if you attempt to enable application telemetry on a cluster that’s running in mixed mode where some nodes are running a version earlier than 8.0\. All of the nodes in the cluster must be running version 8.0 or later to enable application telemetry. See [Prerequisites](#prerequisites) for more requirements.
+Returned if you attempt to enable application telemetry on a cluster that's running in mixed mode where some nodes are running a version earlier than 8.0\. All of the nodes in the cluster must be running version 8.0 or later to enable application telemetry. See [Prerequisites](#prerequisites) for more requirements.
 
 `403 Forbidden`
 

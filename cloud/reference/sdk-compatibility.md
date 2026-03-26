@@ -1,7 +1,7 @@
 ---
 title: SDK Compatibility With Capella
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/sdk-compatibility.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:reference:sdk-compatibility.adoc[]
 ---
 
@@ -34,4 +34,4 @@ The following minimum versions of Couchbase SDKs are supported by Capella (every
 
 We _strongly advise_ using the latest version of your preferred SDK. The recommended versions (other than the C SDK) carry the client certificate for Capella, simplifying connection to the Free Tier. Recent versions carry updates specifically for working with Capella, and new features such as Vector GSI — see the [SDK Release Notes](../../java-sdk/current/project-docs/sdk-release-notes.md) for details.
 
-Ideally, the client code should be running in the same LAN-like network (e.g. AWS Availability Zone) as the Couchbase Server nodes, although for development this is often not practical. See more on this in each SDK’s pages on [compatibility](../../java-sdk/current/project-docs/compatibility.md#network-requirements), settings for [Constrained Network Environments](../../java-sdk/current/ref/client-settings.md#commonly-used-options), and details of [Managing Connections](../../java-sdk/current/howtos/managing-connections.md#working-in-the-cloud).
+Ideally, the client code should be running in the same LAN-like network (e.g. AWS Availability Zone) as the Couchbase Server nodes, although for development this is often not practical. See more on this in each SDK's pages on [compatibility](../../java-sdk/current/project-docs/compatibility.md#network-requirements), settings for [Constrained Network Environments](../../java-sdk/current/ref/client-settings.md#commonly-used-options), and details of [Managing Connections](../../java-sdk/current/howtos/managing-connections.md#working-in-the-cloud).

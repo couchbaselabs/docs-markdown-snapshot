@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/product-notes/pages/release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:product-notes:release-notes.adoc[]
 ---
 
@@ -78,7 +78,7 @@ None for this release.
 
 ### [](#maint-4-0-1)Fixed Issues
 
-* [CBG-4972 — Don’t set SameSite=None when no TLS is used](https://jira.issues.couchbase.com/browse/CBG-4972)
+* [CBG-4972 — Don't set SameSite=None when no TLS is used](https://jira.issues.couchbase.com/browse/CBG-4972)
 
 ### [](#enhancements-3)Enhancements
 

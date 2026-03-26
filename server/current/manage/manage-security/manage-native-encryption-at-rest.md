@@ -3,7 +3,7 @@ title: Manage Native Encryption at Rest
 description: Couchbase Server's native encryption at rest protects sensitive
   data by encrypting it when writing it to disk.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-native-encryption-at-rest.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-security/manage-native-encryption-at-rest.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:server:manage:manage-security/manage-native-encryption-at-rest.adoc[]
 
 # Manage Native Encryption at Rest
 
-> Couchbase Server’s native encryption at rest protects sensitive data by encrypting it when writing it to disk. This feature is transparent to the database’s users. Couchbase Server automatically decrypts data when read from disk and encrypts it when writing it to disk. 
+> Couchbase Server's native encryption at rest protects sensitive data by encrypting it when writing it to disk. This feature is transparent to the database's users. Couchbase Server automatically decrypts data when read from disk and encrypts it when writing it to disk. 
 
 You can encrypt:
 
@@ -40,7 +40,7 @@ Couchbase Server only supports encrypting bucket data using an encryption at res
 
 For each key you create, you must choose a Key Management Service (KMS) that maintains the key for you. You have three options to choose from:
 
-* Amazon’s AWS KMS
+* Amazon's AWS KMS
 * Any KMS that implements the Key Management Interoperability Protocol (KMIP)
 * Couchbase Server
 
@@ -55,7 +55,7 @@ You must decide what data your encryption key can encrypt. You can create an enc
 > 
 > If any of these files are missing or located at a different path, encryption initialization or rebalance operations can fail. For example, the Client Private Key Path (PEM format) must exist at the same specified location on all nodes before you create or edit a KMIP key.
 
-You must have the proper privileges to create encryption keys. The role you need depends on what the key you’re creating can encrypt:
+You must have the proper privileges to create encryption keys. The role you need depends on what the key you're creating can encrypt:
 
 For keys that can encrypt audit, configuration, or log data or can encrypt other encryption-at-rest keys (KEKs), you must have one or more of the following roles:
 
@@ -93,7 +93,7 @@ To create an encryption key using the Couchbase Server Web Console:
 ![add encryption key uses](../_images/manage-security/add-encryption-key-uses.png)  
 If you want your key to only be able encrypt specific buckets, deselect **Data** and then select the buckets.  
 > [!IMPORTANT]  
-> If you’re creating an encryption key managed by a KMIP KMS or AWS KMS, only leave **Key Encryption Key (KEK)** selected. Then use the key to encrypt an encryption key managed by Couchbase Server. Do not assign an encryption key managed by a remote KMS to directly encrypt data. See [this caution](../../learn/security/native-encryption-at-rest-overview.md#aws-kms-caution) for more information.
+> If you're creating an encryption key managed by a KMIP KMS or AWS KMS, only leave **Key Encryption Key (KEK)** selected. Then use the key to encrypt an encryption key managed by Couchbase Server. Do not assign an encryption key managed by a remote KMS to directly encrypt data. See [this caution](../../learn/security/native-encryption-at-rest-overview.md#aws-kms-caution) for more information.
 6. Under **Key Type**, choose the KMS you want to manage your key. The option you choose changes the fields in the rest of the dialog.
 7. Depending on the KMS you chose, enter the details to complete creating the encryption key:
 
@@ -109,7 +109,7 @@ If you want your key to only be able encrypt specific buckets, deselect **Data**
 To use a KMIP-compatible KMS:
 
   1. Enter the host and port number for the KMS server and choose a timeout for network connections.
-  2. Choose which certificates to use when verifying the identity of the KMS. You can choose to not verify the KMS’s identity, however this is insecure.
+  2. Choose which certificates to use when verifying the identity of the KMS. You can choose to not verify the KMS's identity, however this is insecure.
   3. Enter the details for the client certificate Couchbase Server uses to authenticate with the KMS. This information includes how to encrypt the certificate passphrase.
   4. In the **KMIP Encryption/Decryption Approach** field, choose how Couchbase Server interacts with the KMS:
 
@@ -117,13 +117,13 @@ To use a KMIP-compatible KMS:
     * Select **Use KMIP native Encrypt/Decrypt operation** to have Couchbase Server send the encrypted DEKs to the KMS so it can decrypt them. This method is more secure, because the encryption key does not leave the KMS.  
 This option has Couchbase Server manage the key. To complete creating the key:
 
-  1. Choose whether you want to use the cluster’s master password or another encryption key to encrypt your new key. If you want to use another encryption key, it must be configured as a Key Encryption Key (KEK).
+  1. Choose whether you want to use the cluster's master password or another encryption key to encrypt your new key. If you want to use another encryption key, it must be configured as a Key Encryption Key (KEK).
   2. Decide whether you want Couchbase Server to cache the key. This setting lets Couchbase Server keep the key unencrypted in memory so it does not have to read and decrypt it for each encryption or decryption. Disabling this option increases processor resource use because Couchbase Server has to decrypt the key for each use. Disabling it does slightly improve security by reducing the chance of in-memory key exposure attacks.
   3. Decide whether you want to have the encryption-at-rest key auto rotate. If you choose to rotate it, enter how often to rotate, a date and time for the first rotation. See [Encryption Key Rotation and Expiration](#learn:secrutiy/native-encryption-at-rest-overview.adoc#rotation-expiration) for more information about key rotation.
 
 ### [](#create-an-encryption-key-using-the-rest-api)Create an Encryption Key Using the REST API
 
-The REST API’s `/settings/encryptionKeys` endpoint lets you create and manage encryption keys. To create an encryption key, send a POST containing details of the key to this endpoint.
+The REST API's `/settings/encryptionKeys` endpoint lets you create and manage encryption keys. To create an encryption key, send a POST containing details of the key to this endpoint.
 
 The following example shows how to create an encryption key managed by Couchbase Server using the REST API:
 
@@ -149,10 +149,10 @@ EOF
 Some of the parameters set in the example are:
 
 * `name`: the name you want to give the key.
-* `type`: the KMS you want to use to manage the key and the key’s encryption algprithm.
+* `type`: the KMS you want to use to manage the key and the key's encryption algprithm.
 * `usage`: the type of data the key can encrypt.
 
-The `data` object content depends on the KMS you chose. For keys managed by Couchbase Server, the `data` object’s content mainly set key rotation options. The example sets the `rotationIntervalInDays` to `90` and the date of the next rotation to July 1st 2025.
+The `data` object content depends on the KMS you chose. For keys managed by Couchbase Server, the `data` object's content mainly set key rotation options. The example sets the `rotationIntervalInDays` to `90` and the date of the next rotation to July 1st 2025.
 
 The output of running the previous example looks like this:
 
@@ -200,7 +200,7 @@ The following sections explain how to enable encryption for each type of data.
 
 To encrypt a bucket, you must have at least one encrytion-at-rest key configured to encrypt all buckets or the specific bucket you want to encrypt. See [Creating Encryption Keys](#create-keys) for more information about creating encryption-at-rest keys.
 
-Users with [Bucket Admin](../../learn/security/roles.md#bucket-admin) or [Cluster Admin](../../learn/security/roles.md#cluster-admin) roles can enable encryption for rest for buckets as long as an encryption key exists that’s allowed to encrypt the bucket.
+Users with [Bucket Admin](../../learn/security/roles.md#bucket-admin) or [Cluster Admin](../../learn/security/roles.md#cluster-admin) roles can enable encryption for rest for buckets as long as an encryption key exists that's allowed to encrypt the bucket.
 
 > [!NOTE]
 > Once you enable encryption for a bucket, Couchbase Server begins to encrypt data as it writes it. It does not encrypt the data that existed in the bucket before you enabled encryption. See [When Couchbase Server Encrypts Data](../../learn/security/native-encryption-at-rest-overview.md#when-data-is-encrypted) for more information when Couchbase Server encrypts and decrypts data.
@@ -243,7 +243,7 @@ curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
 -d encryptionAtRestKeyId=18
 ```
 
-If the bucket is already encrypted, Couchbase Server re-encrypts the bucket’s data encryption keys (DEKs) using the newly-assigned encryption key. If the bucket is not encrypted, Couchbase Server begins encrypting its data.
+If the bucket is already encrypted, Couchbase Server re-encrypts the bucket's data encryption keys (DEKs) using the newly-assigned encryption key. If the bucket is not encrypted, Couchbase Server begins encrypting its data.
 
 See [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md) for more information about creating and updating buckets using the REST API.
 
@@ -274,7 +274,7 @@ To Use an Encryption-at-Rest Key
 
 #### [](#change-audit-configuration-or-log-encryption-settings-via-the-rest-api)Change Audit, Configuration, or Log Encryption Settings via the REST API
 
-The REST API’s `/settings/security/encryptionAtRest` endpoint lets you change the settings for audit, configuration, and log data encryption. To change the settings, send a POST request to this endpoint with settings for each type of data you whose encryption you want to change. The following example shows how to enabled encryption at rest for audit data using an encryption-at-rest key whose `id` is `0`:
+The REST API's `/settings/security/encryptionAtRest` endpoint lets you change the settings for audit, configuration, and log data encryption. To change the settings, send a POST request to this endpoint with settings for each type of data you whose encryption you want to change. The following example shows how to enabled encryption at rest for audit data using an encryption-at-rest key whose `id` is `0`:
 
 ```bash
  curl -v -u Administrator:password \
@@ -298,7 +298,7 @@ To view the status of encryption at rest for a bucket using the Couchbase Server
 
 1. Click **Buckets** on the main menu.
 2. Click the name of the bucket whose encryption status you want to view.
-3. The encryption status appears next to the **Encryption At Rest** label under the bucket’s name.
+3. The encryption status appears next to the **Encryption At Rest** label under the bucket's name.
 4. For more details, hover over the eye icon next to the **Encryption At Rest** label.  
 ![An image of a popup showing that the buceket is fully encrypted and details of the data encryption keys (DEKS)"](../_images/manage-security/encryption-at-rest-details.png)
 
@@ -311,7 +311,7 @@ To view the status of encryption at rest for audit, configuration, and log data 
 
 ### [](#viewing-encryption-status-using-the-rest-api)Viewing Encryption Status Using the REST API
 
-To view the encryption status of buckets using the REST API, send a GET request to the `/pools/default/buckets` endpoint. View the `encryptionAtRestKeyId` field in the response to see the encryption status of each bucket. If it’s set to `-1`, the bucket is not encrypted. If it’s set to any other value, the bucket is encrypted and the value is the ID of the encryption key Couchbase Server uses to encrypt it. Additional details, such as the encrypted status of the data, are in the `encryptionAtRestInfo` object. See [rest-api:rest-bucket-summary.adoc](#rest-api:rest-bucket-summary.adoc) for more information about the `/pools/default/buckets` endpoint.
+To view the encryption status of buckets using the REST API, send a GET request to the `/pools/default/buckets` endpoint. View the `encryptionAtRestKeyId` field in the response to see the encryption status of each bucket. If it's set to `-1`, the bucket is not encrypted. If it's set to any other value, the bucket is encrypted and the value is the ID of the encryption key Couchbase Server uses to encrypt it. Additional details, such as the encrypted status of the data, are in the `encryptionAtRestInfo` object. See [rest-api:rest-bucket-summary.adoc](#rest-api:rest-bucket-summary.adoc) for more information about the `/pools/default/buckets` endpoint.
 
 The following example shows how to view the encryption status of the bucket bucket named `testBucket`. It pipes the REST API result through the `jq` command to format and filter the output to show just the `encryptionAtRestKeyId` and `encryptionAtRestInfo` fields:
 
@@ -339,7 +339,7 @@ To view the encryption status of audit, configuration, and log data using the RE
 
 ## [](#rotate-keys)Manually Rotate Encryption-at-rest Keys
 
-You can have Couchbase Server automatically rotate the encryption-at-rest keys it manages based on a schedule you set when creating the key. You can also manually have Couchbase Server rotate a key that it manages. To rotate an encryption-at-rest key managed by an external KMS, you must use the KMS’s tools to rotate the key, then have Couchbase Server re-encrypt DEKs with the new key.
+You can have Couchbase Server automatically rotate the encryption-at-rest keys it manages based on a schedule you set when creating the key. You can also manually have Couchbase Server rotate a key that it manages. To rotate an encryption-at-rest key managed by an external KMS, you must use the KMS's tools to rotate the key, then have Couchbase Server re-encrypt DEKs with the new key.
 
 The following sections explain the manual processes.
 
@@ -360,7 +360,7 @@ To manually rotate an encryption-at-rest key, send a POST request to the `/contr
 
 ### [](#manually-rotate-a-encryption-at-rest-key-managed-by-aws-kms)Manually Rotate a Encryption-at-rest Key Managed by AWS KMS
 
-To rotate an encryption-at-rest key managed by AWS KMS, you must use AWS’s tools to rotate the key. See [Rotate AWS KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html) to learn how to rotate keys in AWS KMS. Once you have rotated the key in AWS KMS, have Couchbase Server re-encrypt any DEKs encrypted with the previous version of the key.
+To rotate an encryption-at-rest key managed by AWS KMS, you must use AWS's tools to rotate the key. See [Rotate AWS KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html) to learn how to rotate keys in AWS KMS. Once you have rotated the key in AWS KMS, have Couchbase Server re-encrypt any DEKs encrypted with the previous version of the key.
 
 To re-encrypt the DEKs with the rotated key using the Couchbase Server Web Console:
 
@@ -373,7 +373,7 @@ To re-encrypt the DEKs using the REST API, send a POST request to the `/controll
 
 ### [](#manually-rotate-an-encryption-at-rest-key-managed-by-a-kmip-kms)Manually Rotate an Encryption-at-rest Key Managed by a KMIP KMS
 
-You must use the KMS’s tools to rotate the keys it manages. Couchbase Server cannot trigger the rotation of a key managed by an external KMS. Consult your KMS’s documentation to learn how to rotate its keys.
+You must use the KMS's tools to rotate the keys it manages. Couchbase Server cannot trigger the rotation of a key managed by an external KMS. Consult your KMS's documentation to learn how to rotate its keys.
 
 > [!NOTE]
 > When configuring external KMS integration, make sure that all required key and certificate files are present at the exact file paths specified during key creation. These files must exist on every node in the cluster, including any nodes added during a rebalance operation.
@@ -494,7 +494,7 @@ To learn how to drop DEKs for audit, configuration, or log data using the REST A
 
 ## [](#deleting-encryption-keys)Deleting Encryption Keys
 
-You can delete an encryption key using the Couchbase Server Web Console or the REST API. You can only delete an encryption key if it’s not used to encrypt data. If you want to delete a that’s in use, you must first assign any data or key that’s encrypted by it to a different key.
+You can delete an encryption key using the Couchbase Server Web Console or the REST API. You can only delete an encryption key if it's not used to encrypt data. If you want to delete a that's in use, you must first assign any data or key that's encrypted by it to a different key.
 
 ### [](#delete-an-encryption-at-rest-key-using-the-couchbase-server-web-console)Delete an Encryption-At-Rest Key Using the Couchbase Server Web Console
 

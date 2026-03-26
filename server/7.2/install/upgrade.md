@@ -3,7 +3,7 @@ title: Upgrade
 description: To upgrade a Couchbase-Server cluster means to upgrade the version
   of Couchbase Server that is running on every node.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/upgrade.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:install:upgrade.adoc[]
 ---
 
@@ -91,12 +91,12 @@ The server can be fixed by invoking the Windows Repair operation on the Couchbas
 
 ## [](#upgrade-community-enterprise)Upgrade from Community Edition to Enterprise
 
-If you’re currently operating a Couchbase Server cluster on Community Edition, you can upgrade it to Enterprise Edition by way of a [rolling online upgrade](upgrade-procedure-selection.md#online-upgrade). This involves switching out the Community Edition nodes with fresh, net-new Enterprise Edition nodes. Both 'swap rebalance' and 'remove and reblance' methods are supported. (Delta Recovery is not supported since the new nodes must be fresh Enterprise Edition installations without any pre-existing Community Edition data remaining on them.)
+If you're currently operating a Couchbase Server cluster on Community Edition, you can upgrade it to Enterprise Edition by way of a [rolling online upgrade](upgrade-procedure-selection.md#online-upgrade). This involves switching out the Community Edition nodes with fresh, net-new Enterprise Edition nodes. Both 'swap rebalance' and 'remove and reblance' methods are supported. (Delta Recovery is not supported since the new nodes must be fresh Enterprise Edition installations without any pre-existing Community Edition data remaining on them.)
 
 > [!NOTE]
 > Rolling upgrades from CE to EE are not supported if there are index service nodes running in the cluster.
 
-The Enterprise Edition nodes must be running the same version number of Couchbase Server as the Community Edition nodes that they are replacing, otherwise the upgrade may fail. This means you can’t upgrade to a newer version of Couchbase Server while also upgrading to Enterprise Edition during the same rolling upgrade.
+The Enterprise Edition nodes must be running the same version number of Couchbase Server as the Community Edition nodes that they are replacing, otherwise the upgrade may fail. This means you can't upgrade to a newer version of Couchbase Server while also upgrading to Enterprise Edition during the same rolling upgrade.
 
 If you want to upgrade from an older version of _Community Edition_ to a newer version of _Enterprise Edition_, you need to perform two separate upgrade procedures:
 
@@ -112,13 +112,13 @@ Figure 1\. Example Upgrade Path from Community to Enterprise
 Additional Notes about Upgrading from Community to Enterprise
 
 * Couchbase Server clusters _must_ be run either entirely on Enterprise Edition nodes, or entirely on Community Edition nodes.  
-Once you’ve upgraded one node to Enterprise Edition, you must upgrade all the other nodes before the cluster is considered as being in a steady, supportable state.
+Once you've upgraded one node to Enterprise Edition, you must upgrade all the other nodes before the cluster is considered as being in a steady, supportable state.
 * CE does not support index service rebalancing. So, when the cluster is running with one or more CE nodes, then the indexes hosted on nodes being removed may be lost.  
 Users can create equivalent indexes (same index with different name) on different nodes, to avoid loss of index functionality.
-* If a rolling online upgrade to Enterprise Edition isn’t possible in your environment, contact Couchbase for assistance.
+* If a rolling online upgrade to Enterprise Edition isn't possible in your environment, contact Couchbase for assistance.
 
 > [!IMPORTANT]
-> Remember that Enterprise Edition is not free to run in production. If you’re interested in upgrading to Couchbase Server Enterprise Edition, check out the [editions page](https://www.couchbase.com/products/editions).
+> Remember that Enterprise Edition is not free to run in production. If you're interested in upgrading to Couchbase Server Enterprise Edition, check out the [editions page](https://www.couchbase.com/products/editions).
 
 See [Upgrade Procedure-Selection](upgrade-procedure-selection.md), for a list of procedures that can be used when upgrading from Community Edition to Enterprise. Note, however, that _Graceful Failover_ for Data Service nodes, with _Delta Recovery_, is _not_ supported for such upgrades: instead, _removal_, _addition_, and _swap rebalance_ should be used; for all nodes.
 

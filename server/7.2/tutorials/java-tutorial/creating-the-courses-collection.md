@@ -4,7 +4,7 @@ description: Your first application created a single student record for the
   student collection. In this part, you're going to populate the course
   collection.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/creating-the-courses-collection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:tutorials:java-tutorial/creating-the-courses-collection.adoc[]
 ---
 
@@ -13,11 +13,11 @@ link: xref:7.2@server:tutorials:java-tutorial/creating-the-courses-collection.ad
 
 # Creating the Courses Collection
 
-> Your first application created a single student record for the student collection. In this part, you’re going to populate the course collection. 
+> Your first application created a single student record for the student collection. In this part, you're going to populate the course collection. 
 
 ## [](#populating-the-course-details-collection)Populating the course details collection
 
-You can use the same technique to build a store for the courses. Here’s a quick reminder of the course document structure:
+You can use the same technique to build a store for the courses. Here's a quick reminder of the course document structure:
 
 * art history
 * graphic design
@@ -47,17 +47,17 @@ You can use the same technique to build a store for the courses. Here’s a quic
 }
 ```
 
-The code should be familiar to you; there’s not much difference between writing to the course collection and writing to the student collection; you just have more records to deal with:
+The code should be familiar to you; there's not much difference between writing to the course collection and writing to the student collection; you just have more records to deal with:
 
 ```java
 Unresolved include directive in modules/tutorials/pages/java-tutorial/creating-the-courses-collection.adoc - include::java-sdk:student:example$InsertCourses.java[]
 ```
 
-| **1** | Note that you’re now writing to a different collection. |
+| **1** | Note that you're now writing to a different collection. |
 | ----- | ------------------------------------------------------- |
 
 > [!IMPORTANT]
-> Make sure that you’ve created the `course-collection` in the admin console before you attempt to run the program.
+> Make sure that you've created the `course-collection` in the admin console before you attempt to run the program.
 
 You can use maven to run the application:
 
@@ -71,4 +71,4 @@ Use the admin console to make sure the documents have been created in the correc
 
 ## [](#next-steps)Next steps
 
-So you’ve created a cluster, a bucket, a scope and two collections. You’ve also populated your collections with documents. Well, a database isn’t much use until we can retrieve information from it, which is what you’re going to take a look at in the [next part](retrieving-documents.md).
+So you've created a cluster, a bucket, a scope and two collections. You've also populated your collections with documents. Well, a database isn't much use until we can retrieve information from it, which is what you're going to take a look at in the [next part](retrieving-documents.md).

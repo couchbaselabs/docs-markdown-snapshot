@@ -3,7 +3,7 @@ title: Index Scans
 description: This section discusses how index spans are generated from query
   predicates and provides a number of examples.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/index-scans.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:services-and-indexes/indexes/index-scans.adoc[]
 ---
 
@@ -252,7 +252,7 @@ EXPLAIN SELECT meta().id FROM airline WHERE id > 10;
 SELECT meta().id FROM airline WHERE id <= 10;
 ```
 
-In this example, the predicate `id <= 10` is pushed to index scan. This query predicate doesn’t contain an explicit start value, so the start value will implicitly be the non-inclusive null value.
+In this example, the predicate `id <= 10` is pushed to index scan. This query predicate doesn't contain an explicit start value, so the start value will implicitly be the non-inclusive null value.
 
 | Span Range for | Low  | High | Inclusion |
 | -------------- | ---- | ---- | --------- |
@@ -285,7 +285,7 @@ EXPLAIN SELECT meta().id FROM airline WHERE id <= 10;
 SELECT meta().id FROM airline WHERE id < 10;
 ```
 
-In this example, the predicate `id < 10` is pushed to index scan. The query predicate doesn’t contain an explicit start value, so the start value will implicitly be the non-inclusive null value.
+In this example, the predicate `id < 10` is pushed to index scan. The query predicate doesn't contain an explicit start value, so the start value will implicitly be the non-inclusive null value.
 
 | Span Range for | Low  | High | Inclusion   |
 | -------------- | ---- | ---- | ----------- |
@@ -806,7 +806,7 @@ SELECT meta().id FROM airline
 WHERE name LIKE "%American%";
 ```
 
-In this example, the predicate `name LIKE "%American%"` is transformed and pushed to index scan. In this LIKE predicate '%' is the leading portion of the string, so we can’t push any portion of the string to the index service. `""` is the lowest string. `[]` is an empty array and is greater than every string value in the SQL++ collation order.
+In this example, the predicate `name LIKE "%American%"` is transformed and pushed to index scan. In this LIKE predicate '%' is the leading portion of the string, so we can't push any portion of the string to the index service. `""` is the lowest string. `[]` is an empty array and is greater than every string value in the SQL++ collation order.
 
 | Span Range for         | Low | High   | Inclusion |
 | ---------------------- | --- | ------ | --------- |
@@ -1308,7 +1308,7 @@ END;
 ### [](#ex29-equality-on-expr)Example 29: EQUALITY Predicate on Expression
 
 > [!NOTE]
-> The following examples don’t have the right indexes, or the queries need to be modified to produce an optimal plan.
+> The following examples don't have the right indexes, or the queries need to be modified to produce an optimal plan.
 
 ```sqlpp
 SELECT meta().id FROM airline WHERE abs(id) = 10;

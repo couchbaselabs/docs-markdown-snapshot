@@ -1,7 +1,7 @@
 ---
 title: Public Networking with External DNS
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/tutorial-public-addressability.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::tutorial-public-addressability.adoc[]
 ---
 
@@ -121,7 +121,7 @@ spec:
 EOF
 ```
 
-Let’s look at this deployment in a little more detail:
+Let's look at this deployment in a little more detail:
 
 | **1** | The spec.template.spec.serviceAccountName attribute ensures External DNS pods are running as the service account we set up. This grants the controller permission to poll resources and look for DDNS requests.                                                                                                                                                                                                                       |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -2,7 +2,7 @@
 title: User Authentication
 description: Access {sgw} securely to sync from cloud to edge
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/authentication-users.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::authentication-users.adoc[]
 ---
 
@@ -40,7 +40,7 @@ For other providers we recommend to use Custom Authentication or OpenID Connect.
 
 A special user account named `GUEST` applies to unauthenticated requests. Any request to the Public REST API that does not have an `Authorization` header or a session cookie is treated as coming from the `GUEST` account. This account and all anonymous access is disabled by default.
 
-To enable the GUEST account, set its `disabled` property to false. You might also want to give it access to some channels. If you don’t assign some channels to the GUEST account, anonymous requests won’t be able to access any documents. The following sample command enables the GUEST account and allows it access to a channel named public.
+To enable the GUEST account, set its `disabled` property to false. You might also want to give it access to some channels. If you don't assign some channels to the GUEST account, anonymous requests won't be able to access any documents. The following sample command enables the GUEST account and allows it access to a channel named public.
 
 ```bash
 $ curl -X PUT localhost:4985/$DB/_user/GUEST --data \
@@ -80,9 +80,9 @@ For other providers we recommend to use Custom Authentication or OpenID Connect.
 
 ## [](#custom-authentication)Custom Authentication
 
-It’s possible for an application server associated with a remote Couchbase Sync Gateway to provide its own custom form of authentication. Generally this will involve a particular URL that the app needs to post some form of credentials to; the App Server will verify those, then tell the Sync Gateway to create a new session for the corresponding user, and return session credentials in its response to the client app.
+It's possible for an application server associated with a remote Couchbase Sync Gateway to provide its own custom form of authentication. Generally this will involve a particular URL that the app needs to post some form of credentials to; the App Server will verify those, then tell the Sync Gateway to create a new session for the corresponding user, and return session credentials in its response to the client app.
 
-The following diagram shows an example architecture to support Google SignIn in a Couchbase Mobile application, the client sends an access token to the App Server where a server side validation is done with the Google API and a corresponding Sync Gateway user is then created if it’s the first time the user logs in. The last request creates a session.
+The following diagram shows an example architecture to support Google SignIn in a Couchbase Mobile application, the client sends an access token to the App Server where a server side validation is done with the Google API and a corresponding Sync Gateway user is then created if it's the first time the user logs in. The last request creates a session.
 
 ![custom auth flow](_images/custom-auth-flow.png) 
 
@@ -105,7 +105,7 @@ The HTTP response body contains the credentials of the session.
 * **name** corresponds to the `cookie_name`
 * **value** corresponds to the `session_id`
 * **path** is the hostname of the Sync Gateway
-* **expirationDate** corresponds to the cookie’s expiration time. The endpoint’s [API reference](rest%5Fapi%5Fadmin.md#tag/Session/operation/post%5Fdb-%5Fsession) contains more information about how the expiration time is automatically extended according to the user session activity.
+* **expirationDate** corresponds to the cookie's expiration time. The endpoint's [API reference](rest%5Fapi%5Fadmin.md#tag/Session/operation/post%5Fdb-%5Fsession) contains more information about how the expiration time is automatically extended according to the user session activity.
 * **secure** Whether the cookie should only be sent using a secure protocol (e.g. HTTPS)
 * **httpOnly** Whether the cookie should only be used when transmitting HTTP, or HTTPS, requests thus restricting access from other, non-HTTP APIs
 
@@ -200,7 +200,7 @@ With the implicit flow, the mechanism to refresh the token and Sync Gateway sess
 3. Sync Gateway returns a cookie session in the response header.
 4. The Sync Gateway cookie session is used on the replicator object.
 
-Sync Gateway sessions also have an expiration date. The replication `lastError` property will return a **401 Unauthorized** when it’s the case and then the application must retrieve create a new Sync Gateway session and set the new cookie on the replicator.
+Sync Gateway sessions also have an expiration date. The replication `lastError` property will return a **401 Unauthorized** when it's the case and then the application must retrieve create a new Sync Gateway session and set the new cookie on the replicator.
 
 A complete tutorial is available [here](https://docs.couchbase.com/tutorials/openid-connect-implicit-flow/index.html) for your reference.
 

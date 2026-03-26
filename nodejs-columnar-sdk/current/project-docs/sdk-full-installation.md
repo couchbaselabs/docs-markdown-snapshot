@@ -2,7 +2,7 @@
 title: Full Installation
 description: Installation instructions for the Node.js Columnar SDK.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-columnar-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -24,7 +24,7 @@ The Columnar Node.js SDK supports LTS versions of Node.js — these are 20 and 2
 We recommend using the most recent long-term support (LTS) version of Node.js — at the time of writing (October 2024) this is version 22.
 
 > [!WARNING]
-> Don’t Mix Columnar & Operational SDKs.
+> Don't Mix Columnar & Operational SDKs.
 > 
 > Do not combine the Node.js Columnar SDK with the Node.js Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
 > 
@@ -40,7 +40,7 @@ npm install couchbase-columnar
 
 ## [](#other-installation-methods)Other Installation Methods
 
-A select set of packages with prebuilt binaries are available on the [GitHub Releases page](https://github.com/couchbaselabs/columnar-nodejs-client/releases). If a packages is not available for your specific platform, See the [GitHub Building page](https://github.com/couchbaselabs/columnar-nodejs-client/blob/main/BUILDING.md) for details on how to build the SDK’s binary.
+A select set of packages with prebuilt binaries are available on the [GitHub Releases page](https://github.com/couchbaselabs/columnar-nodejs-client/releases). If a packages is not available for your specific platform, See the [GitHub Building page](https://github.com/couchbaselabs/columnar-nodejs-client/blob/main/BUILDING.md) for details on how to build the SDK's binary.
 
 ### [](#installing-from-a-downloaded-package)Installing from a Downloaded Package
 
@@ -52,7 +52,7 @@ To install the SDK from a package on the [GitHub Releases page](https://github.c
 
 ### [](#building-from-source)Building from Source
 
-If a compatible package is not available, the SDK’s binary will need to be built from source:
+If a compatible package is not available, the SDK's binary will need to be built from source:
 
 * Follow the steps on the [GitHub Building page](https://github.com/couchbaselabs/columnar-nodejs-client/blob/main/BUILDING.md).
 * After the build succeeds, the SDK can be used by running Node scripts from within the cloned repository — or the SDK can be installed via `npm`: `npm install <path to cloned repository>`.

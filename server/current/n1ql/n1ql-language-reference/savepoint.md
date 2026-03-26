@@ -2,7 +2,7 @@
 title: SAVEPOINT
 description: The SAVEPOINT statement enables you to set a savepoint within a transaction.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/savepoint.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/savepoint.adoc[]
 ---
 
@@ -21,9 +21,9 @@ You may only use this statement within a transaction.
 
 If you are using the Query REST API, you must set the [txid](../n1ql-manage/query-settings.md#txid) query parameter to specify the transaction ID.
 
-If you are using the Query Workbench, you don’t need to specify the transaction ID, as long as the statement is part of a multi-statement request. When you start a transaction within a multi-statement request, all statements within the request are assumed to be part of the same transaction until you rollback or commit the transaction.
+If you are using the Query Workbench, you don't need to specify the transaction ID, as long as the statement is part of a multi-statement request. When you start a transaction within a multi-statement request, all statements within the request are assumed to be part of the same transaction until you rollback or commit the transaction.
 
-Similarly, if you are using the cbq shell, you don’t need to specify the transaction ID. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
+Similarly, if you are using the cbq shell, you don't need to specify the transaction ID. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
 
 ## [](#syntax)Syntax
 

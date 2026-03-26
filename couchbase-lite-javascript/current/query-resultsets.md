@@ -2,7 +2,7 @@
 title: Query Resultsets
 description: Couchbase Lite JavaScript -- Working with Query Results
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/query-resultsets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::query-resultsets.adoc[]
 ---
 
@@ -346,7 +346,7 @@ for (const row of results) {
 SQL++ distinguishes between NULL and MISSING values:
 
 * **NULL** \- Explicitly set to null
-* **MISSING** \- Property doesn’t exist
+* **MISSING** \- Property doesn't exist
 
 Example 15\. NULL and MISSING handling
 
@@ -447,7 +447,7 @@ results.forEach(task => {
 ```
 
 > [!NOTE]
-> TypeScript result types are not runtime-checked. It’s your responsibility to ensure the type matches the actual query results.
+> TypeScript result types are not runtime-checked. It's your responsibility to ensure the type matches the actual query results.
 
 ## [](#processing-patterns)Result Processing Patterns
 
@@ -579,7 +579,7 @@ try {
 
 **Memory Management:**
 
-* Don’t store large result sets in memory unnecessarily
+* Don't store large result sets in memory unnecessarily
 * Process and release results as you go
 * Consider pagination for large datasets
 

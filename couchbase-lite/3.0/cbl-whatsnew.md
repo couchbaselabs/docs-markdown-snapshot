@@ -1,7 +1,7 @@
 ---
 title: What&#8217;s New
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/ROOT/pages/cbl-whatsnew.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite::cbl-whatsnew.adoc[]
 ---
 
@@ -50,7 +50,7 @@ Read More . . . [Couchbase Lite for Kotlin](android/kotlin.md)
 
 #### [](#sqln1ql-query-strings)SQL++/N1QL Query Strings
 
-Couchbase Lite’s SQL++ for Mobile query API vastly simplifies the integration of Couchbase Lite within hybrid/cross platform apps.
+Couchbase Lite's SQL++ for Mobile query API vastly simplifies the integration of Couchbase Lite within hybrid/cross platform apps.
 
 N1QL for Mobile is an implementation of the emerging SQL-for-JSON query language specification (SQL++). It provides native, hybrid and cross-platform mobile app developers with a consistent, convenient and flexible interface to query JSON documents within the embedded database using a SQL-based syntax. This means developers can reuse queries across platforms, reducing development, testing and maintenance costs.
 

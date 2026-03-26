@@ -2,7 +2,7 @@
 title: Run a Search With a Search Index
 description: Run a Search query to search and return the contents of a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/run-searches.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:search:run-searches.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:7.6@server:search:run-searches.adoc[]
 
 > Run a Search query to search and return the contents of a Search index. 
 
-If you use the default search result [sorting](search-request-params.md#sort) of `_score`, a document’s [score](#scoring) determines where it appears in your search results.
+If you use the default search result [sorting](search-request-params.md#sort) of `_score`, a document's [score](#scoring) determines where it appears in your search results.
 
 > [!NOTE]
 > You must [create a Search index](create-search-indexes.md) before you can run a search with the Search Service.
@@ -30,7 +30,7 @@ To run a Search query against multiple Search indexes at once, [Create a Search 
 
 ## [](#scoring)Scoring for Search Queries
 
-To determine a document’s score in search results, the Search Service uses the [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) algorithm. `tf-idf` increases the score of a document based on term frequency, or the number of times a term appears in a document divided by the total number of terms in the document. It penalizes document frequency, or how often a term appears across all documents.
+To determine a document's score in search results, the Search Service uses the [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) algorithm. `tf-idf` increases the score of a document based on term frequency, or the number of times a term appears in a document divided by the total number of terms in the document. It penalizes document frequency, or how often a term appears across all documents.
 
 The `tf-idf` score is calculated at a partition level in a Search index.
 

@@ -5,7 +5,7 @@ description: Configure Single Sign-On (SSO) between Okta and Couchbase Capella
   separate credentials. This integration enables streamlined access management
   while maintaining enterprise-grade security.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/sso-okta.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:organizations:ui-auth/sso-okta.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:organizations:ui-auth/sso-okta.adoc[]
 
 # Set Up Capella SSO Using Okta
 
-> Configure Single Sign-On (SSO) between Okta and Couchbase Capella to allow your organization’s users to authenticate securely without managing separate credentials. This integration enables streamlined access management while maintaining enterprise-grade security. 
+> Configure Single Sign-On (SSO) between Okta and Couchbase Capella to allow your organization's users to authenticate securely without managing separate credentials. This integration enables streamlined access management while maintaining enterprise-grade security. 
 
 ## [](#prerequisites)Prerequisites
 
@@ -51,7 +51,7 @@ Start by creating an App Integration in Okta. You need information from this ste
 
   1. **App Name**: Enter your desired application name.
   2. (Optional) **App logo**: Add the Capella logo.
-  3. (Optional) **App visibility**: Adjust if you don’t want to show the Capella app to users in Okta.
+  3. (Optional) **App visibility**: Adjust if you don't want to show the Capella app to users in Okta.
   4. Click **Next**.
 6. Configure the options on the **Configure SAML** page:
 
@@ -59,8 +59,8 @@ Start by creating an App Integration in Okta. You need information from this ste
 
 | Field                       | Value                                                                                            |
 | --------------------------- | ------------------------------------------------------------------------------------------------ |
-| Single Sign-On URL          | Enter a placeholder, such as https://placeholder. You’ll provide the real value in a later step. |
-| Audience URI (SP Entity ID) | Enter a placeholder, such as uri:placeholder. You’ll provide the real value in a later step.     |
+| Single Sign-On URL          | Enter a placeholder, such as https://placeholder. You'll provide the real value in a later step. |
+| Audience URI (SP Entity ID) | Enter a placeholder, such as uri:placeholder. You'll provide the real value in a later step.     |
   2. Click **Show Advanced Settings**.  
   Verify that the advanced settings have the following values:
 
@@ -122,7 +122,7 @@ With an Okta integration app created, you need to create a realm in Capella that
   For more information, see [Map User Roles](manage-role-mapping.md).
   4. Choose to turn on or off group mapping.  
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
-  If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
+  If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project's **Collaborators** tab.
 4. Click **Create Realm**.  
 Capella creates the new realm with an auto-generated name.  
 > [!IMPORTANT]  
@@ -141,7 +141,7 @@ Now that you have created the realm, you need to configure Okta to replace the p
 
   1. Copy the following fields from your Capella realm configuration to the Okta configuration:  
   > [!TIP]  
-  > To find this information for your organization’s Capella realm, first open the **Settings** **SSO** page. Listed on this page is the realm that you just created with an auto-generated name. Click the down arrow to show the realm information page.
+  > To find this information for your organization's Capella realm, first open the **Settings** **SSO** page. Listed on this page is the realm that you just created with an auto-generated name. Click the down arrow to show the realm information page.
 
 | Capella Field |                             | Okta Field |
 | ------------- | --------------------------- | ---------- |
@@ -174,8 +174,8 @@ Start by creating an App Integration in Okta. You need information from this ste
 6. Configure the **General Settings**:
 
   1. **App integration name**: Enter a meaningful name.
-  2. **Sign-in redirect URIs**: Leave unchanged for now—​you’ll add this later.
-  3. **Assignments** Select if you’d like to assign this application to all users or only a specified group. Make sure that you enroll all of your Capella organization users who use Okta.  
+  2. **Sign-in redirect URIs**: Leave unchanged for now—​you'll add this later.
+  3. **Assignments** Select if you'd like to assign this application to all users or only a specified group. Make sure that you enroll all of your Capella organization users who use Okta.  
   You can choose to skip this and do it at a later time. See the [Assign an app integration to a user](https://help.okta.com/en-us/Content/Topics/Provisioning/lcm/lcm-assign-app-user.htm) page of the Okta documentation for more detail.
   4. Click **Save**.
 
@@ -206,7 +206,7 @@ When adding additional scopes, separate each entry with a space.
   For more information, see [Map User Roles](manage-role-mapping.md).
   2. Choose to turn on or off group mapping.  
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
-  If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
+  If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project's **Collaborators** tab.
 6. Click **Create Realm**.  
 Capella creates the new realm with an auto-generated name.  
 > [!IMPORTANT]  
@@ -222,7 +222,7 @@ Now that you have created the realm, you need to configure Okta to replace the p
 2. Scroll down to the **General Settings** section and click **Edit**.
 3. Copy the following fields from your Capella realm configuration to the Okta configuration:  
 > [!TIP]  
-> To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
+> To find this information for your organization's Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
 
 | Capella Field |                       | Okta Fields |
 | ------------- | --------------------- | ----------- |

@@ -3,7 +3,7 @@ title: Manage Log Streaming with the Management API
 description: You can configure and manage log streaming for App Services using
   the Couchbase Capella Management API.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/manage-log-streaming.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::monitoring/manage-log-streaming.adoc[]
 ---
 
@@ -31,14 +31,14 @@ In the examples on this page:
 * `$appServiceId` is the App Service ID.
 * `$apiKeySecret` is the API key secret, used as the Bearer token.
 
-The endpoints described on this page all have the same base path: `/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}`. For clarity, this is not shown in the instructions, but it’s included in the examples.
+The endpoints described on this page all have the same base path: `/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}`. For clarity, this is not shown in the instructions, but it's included in the examples.
 
 ## [](#prerequisites)Prerequisites
 
 Before you configure log streaming for an App Service:
 
 * You must have deployed a [Couchbase Capella cluster](../../cloud/clusters/create-database.md) and a linked [App Service](../app-services/creating-an-app-service.md).
-* You must have set up your Log Collector and verified that it’s reachable. See [Supported Log Collector Providers](log-streaming.md#supported-providers).
+* You must have set up your Log Collector and verified that it's reachable. See [Supported Log Collector Providers](log-streaming.md#supported-providers).
 * You must understand the [resource considerations](log-streaming.md#resource-consideration) and cost implications of log streaming.
 
 ## [](#app-service-log-streaming)Configure Log Streaming for an App Service
@@ -355,7 +355,7 @@ curl -X DELETE "https://cloudapi.cloud.couchbase.com/v4/organizations/$organizat
   -H "Authorization: Bearer $apiKeySecret"
 ```
 
-## [](#app-endpoint-log-streaming)Change an App Endpoint’s Log Streaming Configuration
+## [](#app-endpoint-log-streaming)Change an App Endpoint's Log Streaming Configuration
 
 You can change the log streaming configuration on an App Endpoint to customize log levels and filters for specific endpoints.
 

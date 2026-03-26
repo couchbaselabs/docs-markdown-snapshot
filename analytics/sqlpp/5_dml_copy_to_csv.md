@@ -3,7 +3,7 @@ title: CSV
 description: This topic explains how to use the COPY TO statement to export data
   from a database to Amazon S3 or Google Cloud Storage (GCS) in CSV format.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_copy_to_csv.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sqlpp:5_dml_copy_to_csv.adoc[]
 ---
 
@@ -225,7 +225,7 @@ Following are the unsupported data types that cannot be used in CSV schema:
 
 ### [](#schema-mismatches-and-warnings)Schema Mismatches and Warnings
 
-In case of a schema mismatch between the expected schema versus the actual record’s schema, a warning is issued and returned as part of the final result. The system skips writing records with mismatches and continues to the next record.
+In case of a schema mismatch between the expected schema versus the actual record's schema, a warning is issued and returned as part of the final result. The system skips writing records with mismatches and continues to the next record.
 
 Examples of schema mismatches:
 

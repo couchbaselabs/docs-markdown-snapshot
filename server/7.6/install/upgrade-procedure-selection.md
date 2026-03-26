@@ -4,7 +4,7 @@ description: Multiple procedures are available for the upgrade of Couchbase
   Server. An appropriate procedure should be selected, based on a variety of
   factors.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/upgrade-procedure-selection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:install:upgrade-procedure-selection.adoc[]
 ---
 
@@ -71,11 +71,11 @@ If no additional machines are available to be used as _spare nodes_, it must be 
 
 #### [](#using-graceful-failover)Using Graceful Failover
 
-If it is possible to remove one or more Data Service nodes from the cluster, and run the cluster at reduced capacity for the duration of the upgrade procedure, [Graceful Failover](../manage/manage-nodes/failover-graceful.md) can be used to bring individual Data Service nodes out of the cluster, and so allow them to be upgraded. The Graceful Failover procedure ensures that all the cluster’s active vBuckets continue to be available, on the remaining Data Service nodes, after the node to be upgraded has been failed over. Subsequently, the upgraded node is restored to the cluster using [Delta Recovery](../learn/clusters-and-availability/recovery.md#delta-recovery).
+If it is possible to remove one or more Data Service nodes from the cluster, and run the cluster at reduced capacity for the duration of the upgrade procedure, [Graceful Failover](../manage/manage-nodes/failover-graceful.md) can be used to bring individual Data Service nodes out of the cluster, and so allow them to be upgraded. The Graceful Failover procedure ensures that all the cluster's active vBuckets continue to be available, on the remaining Data Service nodes, after the node to be upgraded has been failed over. Subsequently, the upgraded node is restored to the cluster using [Delta Recovery](../learn/clusters-and-availability/recovery.md#delta-recovery).
 
 The main advantages of Graceful Failover and Delta Recovery in this context are simpler management and a lower consumption of cluster-resources: since to upgrade a node, no _spare_ node is required, and no copying of data across nodes (such as is performed by rebalance) need occur. The main constraint of this option is that it can _only_ be used for nodes running the Data Service alone.
 
-Further considerations are provided in [Advantages and Disadvantages](../learn/clusters-and-availability/graceful-failover.md#advantages-and-disadvantages). (Note also that this option is not available when choosing to upgrade with _net-new_ systems — as in many Cloud-based deployments; since the new Data Service nodes do not have previous nodes’ data in place.)
+Further considerations are provided in [Advantages and Disadvantages](../learn/clusters-and-availability/graceful-failover.md#advantages-and-disadvantages). (Note also that this option is not available when choosing to upgrade with _net-new_ systems — as in many Cloud-based deployments; since the new Data Service nodes do not have previous nodes' data in place.)
 
 ## [](#summaries-of-upgrade-procedures)Summaries of Upgrade Procedures
 

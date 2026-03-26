@@ -1,7 +1,7 @@
 ---
 title: Couchbase Python SDK 4.2
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.2/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@python-sdk:hello-world:overview.adoc[]
 ---
 
@@ -29,7 +29,7 @@ print('Get result - value: {}; CAS: {}'.format(get_res.content, get_res.cas))
 # Get result - value: value; CAS: 1617046112012992512
 ```
 
-The Couchbase Python SDK allows Python applications to access a Couchbase cluster. The Python SDK uses the high-performance C++ library Couchbase++ to handle communicating to the cluster over Couchbase’s binary protocols.
+The Couchbase Python SDK allows Python applications to access a Couchbase cluster. The Python SDK uses the high-performance C++ library Couchbase++ to handle communicating to the cluster over Couchbase's binary protocols.
 
   
 ##  Using Your Database

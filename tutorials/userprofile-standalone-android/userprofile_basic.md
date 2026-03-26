@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Couchbase Lite Fundamentals"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-android/edit/standalone/content/modules/userprofile-standalone-android/pages/userprofile_basic.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:userprofile-standalone-android:userprofile_basic.adoc[]
 ---
 
@@ -47,7 +47,7 @@ This tutorial assumes familiarity with building Android apps using [Java](https:
 * git (Optional)  
 This is required if you would prefer to pull the source code from GitHub repo.
 
-  * Create a [free github account](https://github.com)if you don’t already have one.  
+  * Create a [free github account](https://github.com)if you don't already have one.  
   git can be downloaded from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## [](#app-overview)App Overview
@@ -141,7 +141,7 @@ if (imageViewBytes != null) {
 }
 ```
 
-The `Map<String, Object>` object functions are used as a data storage mechanism between the app’s UI and the backing functionality of the Couchbase Lite `Document` object.
+The `Map<String, Object>` object functions are used as a data storage mechanism between the app's UI and the backing functionality of the Couchbase Lite `Document` object.
 
 ## [](#basic-database-operations)Basic Database Operations
 
@@ -240,8 +240,8 @@ Try it out
 
 1. The app can be tested using a simulator/emulator or device.
 2. Log into the app with any username and password.  
-Let’s use the values _"demo@example.com"_ and _"password"_ for username and password fields respectively.  
-If this is the first time that the user is signing in, a new Couchbase Lite database will be created. If not, the user’s existing database will be opened.
+Let's use the values _"demo@example.com"_ and _"password"_ for username and password fields respectively.  
+If this is the first time that the user is signing in, a new Couchbase Lite database will be created. If not, the user's existing database will be opened.
 
 ## [](#document-operations)Document Operations
 
@@ -305,7 +305,7 @@ database.save(mutableDocument);
 
 ### [](#deleting-a-document)Deleting a Document
 
-We don’t delete a `Document` in this sample app. However, deletion of a document is pretty straightforward and this is how you would do it.
+We don't delete a `Document` in this sample app. However, deletion of a document is pretty straightforward and this is how you would do it.
 
 ```java
 var document = database.getDocument(id);

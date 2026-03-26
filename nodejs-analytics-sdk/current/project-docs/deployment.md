@@ -2,7 +2,7 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-analytics-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:nodejs-analytics-sdk:project-docs:deployment.adoc[]
 
 > Transition from dev environment to prod, and keep up with the latest fixes. 
 
-One of Couchbase’s strengths is speedy response, so deployment of apps should be in the same region as your Enterprise Analytics cluster.
+One of Couchbase's strengths is speedy response, so deployment of apps should be in the same region as your Enterprise Analytics cluster.
 
 We always recommend the [latest version](analytics-sdk-release-notes.md#latest-release) of the SDK. This not only contains the latest security updates and bug fixes, but will be compatible with the latest Enterprise Analytics release.
 
@@ -29,4 +29,4 @@ The Node.js Analytics SDK docs note whenever a shortcut is being taken, but here
 * Geographical separation of app server and database
 * Skipping certificate verification
 
-The best way to accommodate developing an application that is to be deployed to production is to use the platform’s default approach for configuration files.
+The best way to accommodate developing an application that is to be deployed to production is to use the platform's default approach for configuration files.

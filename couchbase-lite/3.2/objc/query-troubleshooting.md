@@ -2,7 +2,7 @@
 title: Query Troubleshooting
 description: Couchbase Lite Queries -- troubleshooting
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/query-troubleshooting.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite:objc:query-troubleshooting.adoc[]
 ---
 
@@ -12,14 +12,14 @@ link: xref:3.2@couchbase-lite:objc:query-troubleshooting.adoc[]
 # Query Troubleshooting
 
 > Description — _Couchbase Lite Queries — troubleshooting_  
-> _Abstract — This content describes how to use the Couchbase Lite on Objective-C Query API’s explain() method to examine a query_  
+> _Abstract — This content describes how to use the Couchbase Lite on Objective-C Query API's explain() method to examine a query_  
 > Related Content — [Predictive Queries](querybuilder.md#lbl-predquery) | [Live Queries](query-live.md) | [Indexing](indexing.md)
 
 ## [](#query-explain)Query Explain
 
 ### [](#using)Using
 
-Query’s [explain()](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-objc/Classes/CBLQuery.html#/c:objc%28cs%29CBLQuery%28im%29explain:) method can provide useful insight when you are trying to diagnose query performance issues and-or optimize queries. To examine how your query is working, either embed the call inside your app (see: [Example 1](#use-qe-app)), or use it interactively within a `cblite` shell (see: [Example 2](#use-qe-cblite)).
+Query's [explain()](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-objc/Classes/CBLQuery.html#/c:objc%28cs%29CBLQuery%28im%29explain:) method can provide useful insight when you are trying to diagnose query performance issues and-or optimize queries. To examine how your query is working, either embed the call inside your app (see: [Example 1](#use-qe-app)), or use it interactively within a `cblite` shell (see: [Example 2](#use-qe-cblite)).
 
 Example 1\. Using Query Explain in App
 
@@ -39,7 +39,7 @@ Example 1\. Using Query Explain in App
 
 | **1** | Construct your query as normal                                                     |
 | ----- | ---------------------------------------------------------------------------------- |
-| **2** | Call the query’s explain method; All output is sent to the application’s log file. |
+| **2** | Call the query's explain method; All output is sent to the application's log file. |
 
 Example 2\. Using Query Explain in cblite
 
@@ -83,7 +83,7 @@ This output ([Example 3](#qe-output)) comprises three main elements:
 
 ### [](#format)Format
 
-The query plan section of the output displays a tabular form of the translated query’s execution plan. It primarily shows how the data will be retrieved and, where appropriate, how it will be sorted for navigation and-or presentation purposes. For more on SQLite’s Explain Query Plan — see: <https://www.sqlite.org/eqp.html>
+The query plan section of the output displays a tabular form of the translated query's execution plan. It primarily shows how the data will be retrieved and, where appropriate, how it will be sorted for navigation and-or presentation purposes. For more on SQLite's Explain Query Plan — see: <https://www.sqlite.org/eqp.html>
 
 Example 4\. A Query Plan
 
@@ -109,17 +109,17 @@ __Table 1\. Retrieval methods__
 | Scan Index       | Here the query is able to retrieve the data by scanning all or part-of the index (for example when seeking to match values within a range). This type of query is slower than search, but at least benefits from the compact and ordered form of the index. |
 | Scan Table       | Here the query must scan the database table(s) to retrieve the required data. It is the slowest of these methods and will benefit most from some form of optimization.                                                                                      |
 
-When looking to optimize a query’s retrieval method, consider whether:
+When looking to optimize a query's retrieval method, consider whether:
 
 * Providing an additional index makes sense
-* You could use an existing index — perhaps by restructuring the query to minimize wildcard use, or the reliance on functions that modify the query’s interpretation of index keys (for example, 'lower')
-* You could reduce the data set being requested to minimize the query’s footprint on the database
+* You could use an existing index — perhaps by restructuring the query to minimize wildcard use, or the reliance on functions that modify the query's interpretation of index keys (for example, 'lower')
+* You could reduce the data set being requested to minimize the query's footprint on the database
 
 ### [](#order-group)Order and Group
 
 The `Use temp b-tree for` lines in the example indicate that the query requires sorting to cater for grouping and then sorting again to present the output results. Minimizing, if not eliminating, this ordering and re-ordering will obviously reduce the amount of time taken to process your query.
 
-Ask "is the grouping and-or ordering absolutely necessary?": if it isn’t, drop it or modify it to minimize its impact.
+Ask "is the grouping and-or ordering absolutely necessary?": if it isn't, drop it or modify it to minimize its impact.
 
 ## [](#queries-and-indexes)Queries and Indexes
 
@@ -159,7 +159,7 @@ So, if your analysis of the [Query Explain output](#qe-output) indicates a sub-o
 
 Like-based searches can use the index(es) only if:
 
-* The search-string doesn’t start with a wildcard
+* The search-string doesn't start with a wildcard
 * The primary search expression uses a property that is indexed key
 * The search-string is a constant known at run time) (that is, not a value derived during processing of the query)
 
@@ -198,7 +198,7 @@ Resulting Query Plan
 2|0|0| SCAN TABLE kv_default AS _doc
 ```
 
-By contrast, by removing the wildcard prefix `%` (in [Example 5](#like-no-wild-pfx-qry)), we see that the query plan’s retrieval method changes to become an index search. Where practical, simple changes like this can make significant differences in query performance.
+By contrast, by removing the wildcard prefix `%` (in [Example 5](#like-no-wild-pfx-qry)), we see that the query plan's retrieval method changes to become an index search. Where practical, simple changes like this can make significant differences in query performance.
 
 Example 5\. Like with No Wildcard-prefix
 
@@ -302,7 +302,7 @@ Try to minimize the amount of data retrieved. Reduce it down to the few properti
 
 Consider fetching details _lazily_. You could break complex queries into components. Returning just the doc-ids, then process the array of doc-ids using either the Document API or a query thats uses the array of doc-ids to return information.
 
-Consider using paging to minimize the data returned when the number of results returned is expected to be high. Getting the whole lot at once will be slow and resource intensive: Plus does anyone want to access them all in one go? Instead retrieve batches of information at a time, perhaps using `Where` method’s `limit( offset)` feature to set a starting point for each batch subsequent batch. Although, note that using query offsets becomes increasingly less effective as the overhead of skipping a growing number of rows each time increases. You can work around this, by instead using ranges of search-key values. If the last search-key value of batch one was 'x' then that could become the starting point for your next batch and-so-on.
+Consider using paging to minimize the data returned when the number of results returned is expected to be high. Getting the whole lot at once will be slow and resource intensive: Plus does anyone want to access them all in one go? Instead retrieve batches of information at a time, perhaps using `Where` method's `limit( offset)` feature to set a starting point for each batch subsequent batch. Although, note that using query offsets becomes increasingly less effective as the overhead of skipping a growing number of rows each time increases. You can work around this, by instead using ranges of search-key values. If the last search-key value of batch one was 'x' then that could become the starting point for your next batch and-so-on.
 
 Optimize document size in design. Smaller docs load more quickly. Break your data into logical linked units.
 

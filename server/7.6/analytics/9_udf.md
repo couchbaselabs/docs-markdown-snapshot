@@ -2,7 +2,7 @@
 title: User-Defined Functions
 description: A description of user-defined functions in Couchbase SQL++ for Analytics.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/9_udf.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:analytics:9_udf.adoc[]
 ---
 
@@ -17,7 +17,7 @@ Each user-defined function belongs to an Analytics scope. Within an Analytics sc
 
 You can query the `Function` Analytics collection within the `Metadata` Analytics scope to get metadata about all existing user-defined functions. Note that FUNCTION is a reserved keyword, so you need to delimit the name of the `Function` collection with backticks (\`).
 
-You can’t create a function in the `Metadata` scope.
+You can't create a function in the `Metadata` scope.
 
 ## [](#creating-a-function)Creating a Function
 
@@ -49,7 +49,7 @@ The `QualifiedName` specifies the name of the function to create. It consists of
 
 The optional `ScopeName` specifies the Analytics scope where the function is located. It may consist of one or two identifiers, separated by a dot.
 
-If you don’t specify an Analytics scope, then the scope containing the function is resolved according to the following rules:
+If you don't specify an Analytics scope, then the scope containing the function is resolved according to the following rules:
 
 1. If there is a preceding USE statement, the function is located in the Analytics scope specified by the USE statement.
 2. Otherwise, if the [query\_context](appendix%5F3%5Fresolution.md#Query%5Fcontext) parameter is set, the function is located in the Analytics scope specified by the query context.
@@ -219,7 +219,7 @@ The syntax for the function name, the parameter list, and the `OR REPLACE` and `
 
 ##### StringLiteral
 
-The external language specific identifier for the function to be bound to the created SQL++ for Analytics function. For example, a function name or part of a fully qualified method name. The exact usage will depend on each external language’s features and requirements.
+The external language specific identifier for the function to be bound to the created SQL++ for Analytics function. For example, a function name or part of a fully qualified method name. The exact usage will depend on each external language's features and requirements.
 
 ##### QualifiedName
 
@@ -281,7 +281,7 @@ Result
 
 You can invoke a user-defined function in the same way as any other ordinary function. You may optionally prefix the name of the function with the `ScopeName` of the Analytics scope containing the function.
 
-If you don’t specify an Analytics scope when calling a function, then the scope containing the function is resolved according to the following rules:
+If you don't specify an Analytics scope when calling a function, then the scope containing the function is resolved according to the following rules:
 
 1. If the function call is enclosed within the function body of another user-defined function, the scope is that of the enclosing function.
 2. Otherwise, if there is a preceding USE statement, the Analytics scope is specified by the USE statement.
@@ -372,7 +372,7 @@ The `QualifiedName` specifies the name of the function to delete. It consists of
 
 The optional `ScopeName` specifies the Analytics scope where the function is located. It may consist of one or two identifiers, separated by a dot.
 
-If you don’t specify an Analytics scope, then the scope containing the function is resolved according to the same rules that are used when creating a user-defined function.
+If you don't specify an Analytics scope, then the scope containing the function is resolved according to the same rules that are used when creating a user-defined function.
 
 ### [](#parameter-list-2)Parameter List
 

@@ -2,7 +2,7 @@
 title: cbbackupmgr backup
 description: Backs up data from a Couchbase cluster
 editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-backup.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:backup-restore:cbbackupmgr-backup.adoc[]
 ---
 
@@ -36,7 +36,7 @@ cbbackupmgr backup [--archive <archive_dir>] [--repo <repo_name>]
 
 ## [](#description)DESCRIPTION
 
-Backs up a Couchbase cluster into the backup repository specified. Before running the backup command, a backup repository must be created. See [cbbackupmgr-config](cbbackupmgr-config.md) for more details on creating a backup repository. The backup command uses information from the previous backup taken in order to backup all new data on a Couchbase cluster. If no previous backup exists then all data on the cluster is backed up. The backup is taken based on the backup repository’s backup configuration. Each backup will create a new folder in the backup repository. This folder will contain all data from the backup and is named to reflect the time that the backup was started.
+Backs up a Couchbase cluster into the backup repository specified. Before running the backup command, a backup repository must be created. See [cbbackupmgr-config](cbbackupmgr-config.md) for more details on creating a backup repository. The backup command uses information from the previous backup taken in order to backup all new data on a Couchbase cluster. If no previous backup exists then all data on the cluster is backed up. The backup is taken based on the backup repository's backup configuration. Each backup will create a new folder in the backup repository. This folder will contain all data from the backup and is named to reflect the time that the backup was started.
 
 As the backup runs, it tracks its progress which allows failed backups to be resumed from the point where they left off. If a backup fails before it is complete it is considered a partial backup. To attempt to complete the backup process, the backup may be resumed with the --resume flag. It may also be deleted and resumed from the previous successful backup with the --purge flag.
 
@@ -128,7 +128,7 @@ Force a full backup in the same backup repository. This can be used to more easi
 
 Native cloud integration is an Enterprise Edition feature which was introduced in Couchbase Server 6.6.0.
 
-Backing up directly to object store is only supported for Couchbase Server 6.6.0 and above. It’s likely that backing up older clusters will result in significantly higher memory consumption.
+Backing up directly to object store is only supported for Couchbase Server 6.6.0 and above. It's likely that backing up older clusters will result in significantly higher memory consumption.
 
 Multiple cloud providers are supported, see the list below for more information.
 
@@ -142,7 +142,7 @@ Multiple cloud providers are supported, see the list below for more information.
 
 \--obj-staging-dir <staging\_dir>
 
-When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it’s not treated as a persistent store) and is only used during the backup. NOTE: Do not use `/tmp` as the `obj-staging-dir`. See `Disk requirements` in [cbbackupmgr-cloud](cbbackupmgr-cloud.md) for more information.
+When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it's not treated as a persistent store) and is only used during the backup. NOTE: Do not use `/tmp` as the `obj-staging-dir`. See `Disk requirements` in [cbbackupmgr-cloud](cbbackupmgr-cloud.md) for more information.
 
 #### [](#optional-2)Optional
 
@@ -355,7 +355,7 @@ Backing up/restoring cluster level data with the `data_backup` role will cause p
 
 Error backing up cluster: {"message":"Forbidden. User needs one of the following permissions","permissions":["cluster.fts!read"]}
 
-When presented with an error message such as the one above, there’s two clear options.
+When presented with an error message such as the one above, there's two clear options.
 
 The first option is to provide the user with the required credentials using either the cli, REST API or Couchbase Server WebUI. This can be done by editing the user and adding the required role. See `Cluster Level` for more information about the required roles.
 
@@ -433,7 +433,7 @@ $ cbbackupmgr config -a /data/backups -r example
 $ cbbackupmgr backup -a /data/backups -r example \
  -c 172.23.10.5 -u Administrator -p password -t 16
 
-To force the creation of a full backup, use the `--full-backup` flag. This will result in cbbackupmgr streaming all the available data again. It’s expected that more disk space will be used and that the full backup will take longer than performing an incremental backup (the default).
+To force the creation of a full backup, use the `--full-backup` flag. This will result in cbbackupmgr streaming all the available data again. It's expected that more disk space will be used and that the full backup will take longer than performing an incremental backup (the default).
 
 In the example below, the first backup is implicitly a full backup, the second backup is an incremental (where no additional data needed to be backed up) and the third is a forced full backup (note that we backed up the same amount of items as the first backup).
 
@@ -478,7 +478,7 @@ The distinction between collection aware/unaware is simple; if you backup a clus
 
 The default behavior of backup for the cluster versions which support collections is to back up all available scopes/collections in a bucket.
 
-### [](#what-if-i-dont-want-to-use-collections)What if I don’t want to use collections?
+### [](#what-if-i-dont-want-to-use-collections)What if I don't want to use collections?
 
 This is perfectly valid use case and is supported by Couchbase Server and cbbackupmgr. When interacting with backups created of a collection aware cluster, cbbackupmgr will only output collection aware information if the backup contains a non-default collection manifest (which implies the use of collections).
 
@@ -500,13 +500,13 @@ The backup command will store everything that is persisted to disk on the Couchb
 
 ## [](#rollback)ROLLBACK
 
-During a backup, it’s possible for cbbackupmgr to receive a rollback from the cluster; this will be returned to you (the user) in the form of a message similar to `client received rollback, either purge this backup or create a new backup repository`.
+During a backup, it's possible for cbbackupmgr to receive a rollback from the cluster; this will be returned to you (the user) in the form of a message similar to `client received rollback, either purge this backup or create a new backup repository`.
 
 There are two sensible actions which can be taken at this point (which are briefly alluded in the above message):
 
 1) You can rerun the backup using the `--purge` flag, this will remove the failed backup creating a new incremental backup if possible, otherwise falling back to creating a full backup. 2) You could create a new backup repository and begin creating backups there, this method has the advantage of preserving any possible data which was backed up prior to receiving the rollback.
 
-In most cases, option one will be sufficient, however, if may be the case that the partial backup taken by cbbackupmgr contains data which you don’t want to delete. In this case, option two allows you to retain this data which could be restored using the `--restore-partial-backups` flag.
+In most cases, option one will be sufficient, however, if may be the case that the partial backup taken by cbbackupmgr contains data which you don't want to delete. In this case, option two allows you to retain this data which could be restored using the `--restore-partial-backups` flag.
 
 Note that the `--restore-partial-backups` flag is only supported for local backups; backups stored in object store which failed due to a rollback must be purged using the `--purge` flag.
 

@@ -3,7 +3,7 @@ title: "Query: Fundamentals"
 description: The Query Service supports the querying of data by means of the
   SQL++ query language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:query.adoc[]
 ---
 
@@ -22,7 +22,7 @@ To issue queries, you can use a Couchbase SDK, the REST API, or the tools provid
 
 Use the Query service for operational queries — for example, the front-end queries behind every page display or navigation.
 
-Use the Analytics service when you don’t know every aspect of the query in advance — for example, if the data access patterns change frequently, or you want to avoid creating an index for each data access pattern, or you want to run ad hoc queries for data exploration or visualization.
+Use the Analytics service when you don't know every aspect of the query in advance — for example, if the data access patterns change frequently, or you want to avoid creating an index for each data access pattern, or you want to run ad hoc queries for data exploration or visualization.
 
 Use the Full Text Search service when you want to take advantage of natural-language querying.
 
@@ -30,9 +30,9 @@ Use the Full Text Search service when you want to take advantage of natural-lang
 
 Couchbase Server can be queried using SQL++, the Couchbase Server query language. The Couchbase implementation of SQL++ was formerly known as [N1QL](https://www.couchbase.com/products/n1ql) (pronounced "nickel"), which derives its name from the non-first normal form of the data model.
 
-SQL++ is an expressive, powerful, and complete SQL dialect for querying, transforming, and manipulating JSON data. Based on SQL, it’s immediately familiar to developers who can quickly start developing rich applications.
+SQL++ is an expressive, powerful, and complete SQL dialect for querying, transforming, and manipulating JSON data. Based on SQL, it's immediately familiar to developers who can quickly start developing rich applications.
 
-## What’s Next
+## What's Next
 
 * [Running Queries](n1ql-intro/index.md)
 * [Tutorials](tutorial.md)

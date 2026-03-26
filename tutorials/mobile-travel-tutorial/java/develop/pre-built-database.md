@@ -1,7 +1,7 @@
 ---
 title: Pre-built database
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/java/develop/pre-built-database.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:java/develop/pre-built-database.adoc[]
 ---
 
@@ -12,11 +12,11 @@ link: xref:tutorials:mobile-travel-tutorial:java/develop/pre-built-database.adoc
 
 ## [](#starting-with-prebuilt-database)Starting with Prebuilt Database
 
-In this section, you will learn how to bundle a pre-built Couchbase Lite database in an application. It can be a lot more efficient to bundle static or semi-static content database in your application and install it on the first launch. Even if some of the content changes on the server after you create the app, the app’s first pull replication will bring the database up to date. Here, you will use a pre-built database that contains only airport and hotel documents. The code below moves the pre-built database from the bundled location to the Application Support directory.
+In this section, you will learn how to bundle a pre-built Couchbase Lite database in an application. It can be a lot more efficient to bundle static or semi-static content database in your application and install it on the first launch. Even if some of the content changes on the server after you create the app, the app's first pull replication will bring the database up to date. Here, you will use a pre-built database that contains only airport and hotel documents. The code below moves the pre-built database from the bundled location to the Application Support directory.
 
 **Open the file** `DbManager.java`We will review the `openUserDb(@Nonnull String username, @Nonnull char[] password)` method.
 
-This method first checks if a database file already exists for specific user. If it doesn’t exist it loads the database from the resources directory, unzips and copies it over to a folder created for ths user.
+This method first checks if a database file already exists for specific user. If it doesn't exist it loads the database from the resources directory, unzips and copies it over to a folder created for ths user.
 
 [DbManager.java](https://github.com/couchbaselabs/mobile-travel-sample/blob/master/java/TravelSample/src/main/java/com/couchbase/travelsample/db/DbManager.java#L196)
 
@@ -44,9 +44,9 @@ void openUserDb(@Nonnull String username, @Nonnull char[] password)
 
 Try it out
 
-1. Log into the Travel Sample Mobile app as “demo” user and password as “password”
+1. Log into the Travel Sample Mobile app as "demo" user and password as "password"
 2. Click on "FLIGHTS\`" button to make a flight reservation
-3. In the “From” airport text field, enter “London”
+3. In the "From" airport text field, enter "London"
 4. Confirm that you see a list of flights in the drop down menu.
 
 ![java prebuilt db](../../_images/java-prebuilt-db.gif)

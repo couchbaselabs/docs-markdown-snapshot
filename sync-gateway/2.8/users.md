@@ -3,7 +3,7 @@ title: Users
 description: About Sync Gateway <em>users</em> and their role in secure
   cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/users.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::users.adoc[]
 ---
 
@@ -28,7 +28,7 @@ You can authorize users and control their access to your database by creating us
 The user must be created on Sync Gateway before it can be used for authentication — see also: [User Authentication](../current/security/authentication-users.md).
 
 > [!NOTE]
-> Sync Gateway users and roles have no relationship to Couchbase Server’s [RBAC (Role-base Access Control) users](../../server/current/learn/security/authorization-overview.md).
+> Sync Gateway users and roles have no relationship to Couchbase Server's [RBAC (Role-base Access Control) users](../../server/current/learn/security/authorization-overview.md).
 
 You create Users through either the [Admin REST API](../current/rest-api/rest-api-admin.md) or [Configuration Properties](../current/configuration/configuration-properties-legacy.md).
 
@@ -46,7 +46,7 @@ The Admin REST API is for administrator use only, and hence is **not** accessibl
 
 Additionally, this API can be used in conjunction with a 3rd party server for the authentication process (see [Custom authentication](authentication-users.md#custom-authentication)).
 
-Lastly, Sync Gateway supports [OpenID Connect authentication](authentication-users.md#openid-connect). In this case, Sync Gateway can automatically create users for successfully authenticated users that don’t have an already existing user in Sync Gateway.
+Lastly, Sync Gateway supports [OpenID Connect authentication](authentication-users.md#openid-connect). In this case, Sync Gateway can automatically create users for successfully authenticated users that don't have an already existing user in Sync Gateway.
 
 Configuration file
 

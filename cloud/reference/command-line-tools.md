@@ -3,7 +3,7 @@ title: Command Line Tools
 description: Use Couchbase command line tools to import and export large amounts
   of data, and manage ad hoc backups.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/command-line-tools.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:reference:command-line-tools.adoc[]
 ---
 
@@ -150,7 +150,7 @@ For more information about IDE plugins, see the [Third Party Integrations page](
 To start using the command line tools, you must do the following:
 
 * [Copy the connection string](../get-started/connect.md) for your cluster.
-* [Configure cluster access](../clusters/manage-database-users.md) by creating cluster access credentials. You’ll need the username and password for the cluster credentials to connect to the cluster.
-* [Add your IP address](../clusters/allow-ip-address.md) to the cluster’s list of allowed IPs.
+* [Configure cluster access](../clusters/manage-database-users.md) by creating cluster access credentials. You'll need the username and password for the cluster credentials to connect to the cluster.
+* [Add your IP address](../clusters/allow-ip-address.md) to the cluster's list of allowed IPs.
 
 You can do all of this from a single location using the Connect page in the Capella UI. See [Connect To Your Cluster](../get-started/connect.md) and follow the instructions for the CLI tools.

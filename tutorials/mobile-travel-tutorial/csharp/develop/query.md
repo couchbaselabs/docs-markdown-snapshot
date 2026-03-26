@@ -1,7 +1,7 @@
 ---
 title: Query
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/develop/query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:csharp/develop/query.adoc[]
 ---
 
@@ -84,9 +84,9 @@ return results.Select(x => x.GetString("airportname")).Where(x => x != null).ToL
 
 Try it out
 
-1. Log into the Travel Sample Mobile app as “demo” user and password as “password”
+1. Log into the Travel Sample Mobile app as "demo" user and password as "password"
 2. Tap on "+"" button to make a flight reservation
-3. In the “From” airport textfield, enter "San""
+3. In the "From" airport textfield, enter "San""
 4. Verify that the first item in the drop down list is "San Diego Intl" — see: [Figure 1](#fig-net-flightsearch)
 
   * Note \*\* that this is not currently functioning in Xamarin iOS since the custom drop down view has not been implemented
@@ -143,7 +143,7 @@ private static readonly IExpression HotelsProperty = Expression.Property("hotels
 private static readonly IExpression HotelIdProperty = Meta.ID.From(HotelsDbName);
 ```
 
-Next, we use a function expression to find document’s whose `\_id` property is in the `hotels` array. And build the join expression.
+Next, we use a function expression to find document's whose `\_id` property is in the `hotels` array. And build the join expression.
 
 ```csharp
 // Static variable of the class

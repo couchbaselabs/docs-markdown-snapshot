@@ -4,7 +4,7 @@ description: Configuring <em>Sync Gateway</em> Pre-3.0 to provide secure
   cloud-to-edge synchronization of enterprise data using the standard, static,
   configuration file.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-properties-legacy.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:configuration:configuration-properties-legacy.adoc[]
 ---
 
@@ -22,11 +22,11 @@ Topic Group
 > [!IMPORTANT]
 > Legacy Configuration
 > 
-> You cannot use `collections` in Sync Gateway’s legacy Pre-3.0 configuration method. For current configuration details, see: [Configuration Overview](configuration-overview.md) and-or [Bootstrap Configuration](configuration-schema-bootstrap.md).
+> You cannot use `collections` in Sync Gateway's legacy Pre-3.0 configuration method. For current configuration details, see: [Configuration Overview](configuration-overview.md) and-or [Bootstrap Configuration](configuration-schema-bootstrap.md).
 
 ## [](#introduction)Introduction
 
-This page describes Sync Gateway’s legacy Pre-3.0 configuration method. It uses a centralized configuration file to hold all configuration settings in JSON form — see:[the schema](#lbl-schema) for the file contents.
+This page describes Sync Gateway's legacy Pre-3.0 configuration method. It uses a centralized configuration file to hold all configuration settings in JSON form — see:[the schema](#lbl-schema) for the file contents.
 
 > [!IMPORTANT]
 > Persistent Configuration is enabled by default from 3.0.
@@ -37,7 +37,7 @@ You can change many configuration settings using the [Admin REST API](../rest-ap
 
 ## [](#lbl-format)File Format
 
-The Configuration Properties file defines sync gateway’s runtime behavior. Its contents include, for example:
+The Configuration Properties file defines sync gateway's runtime behavior. Its contents include, for example:
 
 * Details of the connected Couchbase databases
 * How sync gateway conducts replications

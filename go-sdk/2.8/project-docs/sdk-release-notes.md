@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Go Client.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@go-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -150,7 +150,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 
 * [GOCBC-1577](https://issues.couchbase.com/browse/GOCBC-1577): Added support for vector search.
 * [GOCBC-1578](https://issues.couchbase.com/browse/GOCBC-1578): Updated connection parsing to default to port 18098 if not specified when `couchbase2` scheme is used.
-* [GOCBC-1608](https://issues.couchbase.com/browse/GOCBC-1608): Return `ErrFeatureNotAvailable` if requested search capabilities aren’t available.
+* [GOCBC-1608](https://issues.couchbase.com/browse/GOCBC-1608): Return `ErrFeatureNotAvailable` if requested search capabilities aren't available.
 * [GOCBC-1614](https://issues.couchbase.com/browse/GOCBC-1614): Updated SDK API volatility levels:
 
   * Moved Collection range scan to committed,
@@ -214,7 +214,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 
 #### [](#fixed-issues-8)Fixed Issues
 
-* [GOCBC-1573](https://issues.couchbase.com/browse/GOCBC-1573): Fixed issue where the SDK’s prepared query cache was not differentiating between queries which have the same statement but are in a different query context.
+* [GOCBC-1573](https://issues.couchbase.com/browse/GOCBC-1573): Fixed issue where the SDK's prepared query cache was not differentiating between queries which have the same statement but are in a different query context.
 * [GOCBC-1581](https://issues.couchbase.com/browse/GOCBC-1581): Fixed issue where the partition counts in `SearchMetrics` were not populated.
 * [GOCBC-1588](https://issues.couchbase.com/browse/GOCBC-1588): Fixed issue with the `couchbase2` mode where Conjunction, Disjunction, and Boolean search queries always failed with an 'invalid query' error.
 
@@ -393,7 +393,7 @@ Version 2.5.2 is a maintenance release for the Go SDK 2.5.
 
 #### [](#fixed-issues-16)Fixed Issues
 
-* [GOCBC-1320](https://issues.couchbase.com/browse/GOCBC-1320): Fixed issue where vbucket hashing function wasn’t masking out the 16th bit of the key.
+* [GOCBC-1320](https://issues.couchbase.com/browse/GOCBC-1320): Fixed issue where vbucket hashing function wasn't masking out the 16th bit of the key.
 
 ### [](#version-2-5-1-22-june-2022)Version 2.5.1 (22 June 2022)
 
@@ -619,8 +619,8 @@ Version 2.2.3 is a maintenance release for the Go SDK 2.2.0.
 
 * [GOCBC-1071](https://issues.couchbase.com/browse/GOCBC-1071): Updated SDK to use new protocol level changes for get collection id.
 * [GOCBC-1068](https://issues.couchbase.com/browse/GOCBC-1068): Dropped log level to warn for when applying a cluster config object is preempted.
-* [GOCBC-1079](https://issues.couchbase.com/browse/GOCBC-1079): During bootstrap don’t retry authentication if the error is request cancelled.
-* [GOCBC-1081](https://issues.couchbase.com/browse/GOCBC-1081): During CCCP polling don’t retry request if the error is request cancelled.
+* [GOCBC-1079](https://issues.couchbase.com/browse/GOCBC-1079): During bootstrap don't retry authentication if the error is request cancelled.
+* [GOCBC-1081](https://issues.couchbase.com/browse/GOCBC-1081): During CCCP polling don't retry request if the error is request cancelled.
 
 #### [](#fixed-issues-29)Fixed Issues
 
@@ -644,7 +644,7 @@ Version 2.2.2 is a maintenance release for the Go SDK 2.2.0.
 
 #### [](#fixed-issues-30)Fixed Issues
 
-* [GOCBC-1070](https://issues.couchbase.com/browse/GOCBC-1070): Fixed issue where `BucketManager` `FlushBucket` didn’t return `ErrBucketNotFound` when the bucket doesn’t exist.
+* [GOCBC-1070](https://issues.couchbase.com/browse/GOCBC-1070): Fixed issue where `BucketManager` `FlushBucket` didn't return `ErrBucketNotFound` when the bucket doesn't exist.
 * [GOCBC-1066](https://issues.couchbase.com/browse/GOCBC-1066): Fixed issue where shutting down cluster config polling could lead to a panic.
 
 ### [](#version-2-2-1-16-february-2021)Version 2.2.1 (16 February 2021)
@@ -741,7 +741,7 @@ Version 2.1.6 is a maintenance release for the Go SDK 2.1.0.
 
 #### [](#fixed-issues-35)Fixed Issues
 
-* [GOCBC-969](https://issues.couchbase.com/browse/GOCBC-969): Fixed issue where the SDK would attempt to parse query metrics even if they weren’t present.
+* [GOCBC-969](https://issues.couchbase.com/browse/GOCBC-969): Fixed issue where the SDK would attempt to parse query metrics even if they weren't present.
 * [GOCBC-976](https://issues.couchbase.com/browse/GOCBC-976): Fixed issue where custom transcoders were not supported for performing a get request with expiry.
 * [GOCBC-978](https://issues.couchbase.com/browse/GOCBC-978): Fixed issue where it was possible for more than one request to trigger switching from unknown to pending state for a given collection.
 * [GOCBC-981](https://issues.couchbase.com/browse/GOCBC-981): Fixed issue where setting the `network` connection string property to `default` would be discarded.

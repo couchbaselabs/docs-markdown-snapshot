@@ -2,7 +2,7 @@
 title: Audit Event Reference
 description: A complete list of the events audited by Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/audit-event-reference/pages/audit-event-reference.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:audit-event-reference:audit-event-reference.adoc[]
 ---
 
@@ -25,7 +25,7 @@ The current page lists all events that can be audited.
 
 The events listed in the following tables support the auditing of administrative and data changes, made on the cluster.
 
-In each table, the first column (at the left) features the event-group heading (thereby repeating the table’s title, so as to ensure readability throughout the longer tables). The second column provides the event name. The third column provides the id for the event. The fourth column provides a description of the event; the fifth describes whether it is _filterable_; and the sixth indicates whether the event is classified as Data or Admin.
+In each table, the first column (at the left) features the event-group heading (thereby repeating the table's title, so as to ensure readability throughout the longer tables). The second column provides the event name. The third column provides the id for the event. The fourth column provides a description of the event; the fifth describes whether it is _filterable_; and the sixth indicates whether the event is classified as Data or Admin.
 
 The tables — which are for the [REST API](#rest-api-event-list-table), the [Data Service](#data-service-event-list-table), [XDCR](#xdcr-event-list-table), the [Query and Index Services](#query-service-event-list-table), the [Search Service](#search-service-event-list-table), the [Eventing Service](#eventing-service-event-list-table), the [Analytics Service](#analytics-service-event-list-table), the [Backup Service](#backup-service-event-list-table), the [View Engine](#view-engine-event-list-table), and the [Audit](#audit-event-list-table) facility itself — are as follows.
 

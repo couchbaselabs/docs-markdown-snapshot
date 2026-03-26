@@ -3,7 +3,7 @@ title: AWS PrivateLink Connection
 description: Add an AWS PrivateLink connection that connects your Amazon Web
   Service (AWS) network with a Capella Analytics cluster.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/private-endpoint.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:admin:private-endpoint.adoc[]
 ---
 
@@ -113,7 +113,7 @@ This script contains the command to create the private endpoint in your AWS VPC.
   4. Click **Save**.
 12. In the [AWS VPC console](https://console.aws.amazon.com/vpc/), add an inbound rule for the private endpoint:
 
-  1. With the **Your VPCs** page open, find and record the **IPv4 CIDR** value for your VPC. You need this for later steps. In this example, it’s `10.0.0.0/16`:  
+  1. With the **Your VPCs** page open, find and record the **IPv4 CIDR** value for your VPC. You need this for later steps. In this example, it's `10.0.0.0/16`:  
   ![AWS VPC Dashboard](../../cloud/security/_images/aws-vpc-dashboard-for-ingress-rule.png)
   2. In the navigation pane, click **Endpoints**.
   3. Select your endpoint.
@@ -153,4 +153,4 @@ This script contains the command to create the private endpoint in your AWS VPC.
 
 ## [](#next-steps)Next Steps
 
-Verify the connection in Capella Analytics by reopening the cluster’s **Settings** **Private Endpoints** page. The new private endpoint shows a **Linked** status when the connection is complete. This status change can take several minutes after completing the configuration procedure.
+Verify the connection in Capella Analytics by reopening the cluster's **Settings** **Private Endpoints** page. The new private endpoint shows a **Linked** status when the connection is complete. This status change can take several minutes after completing the configuration procedure.

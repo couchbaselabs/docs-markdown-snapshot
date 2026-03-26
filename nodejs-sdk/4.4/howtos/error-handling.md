@@ -3,7 +3,7 @@ title: Handling Errors
 description: Errors are inevitable. The developer’s job is to be prepared for
   whatever is likely to come up
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.4@nodejs-sdk:howtos:error-handling.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:4.4@nodejs-sdk:howtos:error-handling.adoc[]
 
 # Handling Errors
 
-> Errors are inevitable. The developer’s job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. 
+> Errors are inevitable. The developer's job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. 
 
 Couchbase gives you a lot of flexibility, but it is recommended that you equip yourself with an understanding of the possibilities.
 
@@ -87,7 +87,7 @@ Couchbase provides optimistic concurrency using [CAS](concurrent-document-mutati
 
 ### [](#ambiguity)Ambiguity
 
-There are situations with any distributed system in which it is simply impossible to know for sure if the operation completed successfully or not. For example, your application requests that a new document be created on Couchbase Server. This completes, but, just before the server can notify the client that it was successful, a network switch dies and the application’s connection to the server is lost. The client will timeout waiting for a response and will raise a `TimeoutError`, but it’s ambiguous to the app whether the operation succeeded or not.
+There are situations with any distributed system in which it is simply impossible to know for sure if the operation completed successfully or not. For example, your application requests that a new document be created on Couchbase Server. This completes, but, just before the server can notify the client that it was successful, a network switch dies and the application's connection to the server is lost. The client will timeout waiting for a response and will raise a `TimeoutError`, but it's ambiguous to the app whether the operation succeeded or not.
 
 `TimeoutError` is one ambiguous error; another is `DurabilityAmbiguousError`, which can returned when performing a durable operation. This similarly indicates that the operation may or may not have succeeded: though when using durability you are guaranteed that the operation will either have been applied to all replicas, or none.
 
@@ -125,7 +125,7 @@ For instance, for inserts, they can simply be retried to see if they fail on `Do
   }
 ```
 
-That example is much closer to what an application will want to be doing. Let’s flesh it out further.
+That example is much closer to what an application will want to be doing. Let's flesh it out further.
 
 ### [](#non-idempotent-operations)Non-Idempotent Operations
 

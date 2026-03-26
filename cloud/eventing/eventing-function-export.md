@@ -2,7 +2,7 @@
 title: Exporting Functions
 description: Couchbase provides an option to export Functions as a JSON document.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-function-export.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-function-export.adoc[]
 ---
 
@@ -18,7 +18,7 @@ To export a Function:
 1. Access the **Couchbase Web Console** \> **Eventing** page.
 2. Click on any **function name** to expand the UI to show additional controls.  
 ![addfunc 04 newundeployed](_images/addfunc_04_newundeployed.png)
-3. Click on the **Export** button in the Function’s controls. The Function definition gets exported to your local file system.
+3. Click on the **Export** button in the Function's controls. The Function definition gets exported to your local file system.
 
 A sample exported file for the **case\_2\_enrich\_ips** function demonstrated in the [Data Enrichment](eventing-example-data-enrichment.md) Example is shown below. Ensure that you refrain from editing an exported file before importing the file back to the Couchbase cluster.
 

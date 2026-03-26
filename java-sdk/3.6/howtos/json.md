@@ -2,7 +2,7 @@
 title: JSON Modelling
 description: The Java SDK supports multiple options for working with JSON.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.6/modules/howtos/pages/json.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@java-sdk:howtos:json.adoc[]
 ---
 
@@ -13,20 +13,20 @@ link: xref:3.6@java-sdk:howtos:json.adoc[]
 
 ## [](#philosophy)Philosophy
 
-The Couchbase Server is a key-value store that’s agnostic to what’s stored, but it’s very common to store JSON.
+The Couchbase Server is a key-value store that's agnostic to what's stored, but it's very common to store JSON.
 
 The Java SDK has these main objectives for JSON:
 
-* Be usable 'out-of-the-box'. A simple JSON library is included, so you can get started right away. Bonus: it’s simple to use and very fast!
-* Be agnostic. Your application may already be using its own JSON representation, and it shouldn’t be forced to use the built-in JSON library. We use [Jackson](https://github.com/FasterXML/jackson) internally, so if you’re already using that popular ecosystem’s annotations you’re set to go. But you’re never locked into it, and you can use other libraries like [Gson](https://github.com/google/gson/) easily.
+* Be usable 'out-of-the-box'. A simple JSON library is included, so you can get started right away. Bonus: it's simple to use and very fast!
+* Be agnostic. Your application may already be using its own JSON representation, and it shouldn't be forced to use the built-in JSON library. We use [Jackson](https://github.com/FasterXML/jackson) internally, so if you're already using that popular ecosystem's annotations you're set to go. But you're never locked into it, and you can use other libraries like [Gson](https://github.com/google/gson/) easily.
 
 ## [](#getting-started)Getting Started
 
-The examples below assume you’re familiar with connecting to a Couchbase cluster using the Java SDK, and opening resources. Please check out [the Getting Started guide](#hello-world:start-using-sdk) for help with this.
+The examples below assume you're familiar with connecting to a Couchbase cluster using the Java SDK, and opening resources. Please check out [the Getting Started guide](#hello-world:start-using-sdk) for help with this.
 
 ### [](#inserting-a-simple-object)Inserting a simple object
 
-Let’s assume we have a very simple JSON structure we want to insert:
+Let's assume we have a very simple JSON structure we want to insert:
 
 ```json
 { 
@@ -35,7 +35,7 @@ Let’s assume we have a very simple JSON structure we want to insert:
 }
 ```
 
-Once we’ve connected to a Couchbase server and the bucket, scope, and collection that we want to write to, we know that inserting is as simple as:
+Once we've connected to a Couchbase server and the bucket, scope, and collection that we want to write to, we know that inserting is as simple as:
 
 ```java
 collection.upsert("arthur", json);
@@ -43,7 +43,7 @@ collection.upsert("arthur", json);
 
 But how do we model that JSON object?
 
-We mentioned the simple JSON library that we ship with the SDK, and let’s look at this first:
+We mentioned the simple JSON library that we ship with the SDK, and let's look at this first:
 
 ```java
 import com.couchbase.client.java.json.*;
@@ -57,7 +57,7 @@ JsonObject json = JsonObject.create()
 
 ### [](#retrieving)Retrieving
 
-Couchbase’s `Collection.get()` method returns a `GetResult` object, which can then be converted back into a `JsonObject`. In this example, we print the JSON back, and access one of the fields:
+Couchbase's `Collection.get()` method returns a `GetResult` object, which can then be converted back into a `JsonObject`. In this example, we print the JSON back, and access one of the fields:
 
 ```java
 JsonObject jsonResult = collection.get("arthur")
@@ -67,7 +67,7 @@ System.out.println(jsonResult);
 System.out.println(jsonResult.getString("name"));
 ```
 
-### [](#using-javas-map-data-structure)Using Java’s `Map` data structure
+### [](#using-javas-map-data-structure)Using Java's `Map` data structure
 
 The `JsonObject` is modelled on the classic Java `Map` data structure, and in fact is backed by one. So we can easily create an object from an existing Map:
 
@@ -94,7 +94,7 @@ Map<String, Object> result = collection.get("arthur")
   .contentAs(Map.class);
 ```
 
-While you are free to use Map, this is capable of storing any valid Java value, including ones that can’t be represented as JSON. JsonObject offers validation to make sure that only the relevant [datatypes](#datatypes) are stored, which will give you greater diagnostics and robustness.
+While you are free to use Map, this is capable of storing any valid Java value, including ones that can't be represented as JSON. JsonObject offers validation to make sure that only the relevant [datatypes](#datatypes) are stored, which will give you greater diagnostics and robustness.
 
 ### [](#inserting-a-json-string-or-json-file)Inserting a JSON string or `.json` file
 
@@ -117,7 +117,7 @@ String content  = new String(
 JsonObject json = JsonObject.fromJson(content);
 ```
 
-This might seem a little clumsy though: We’re reading a string, inflating it into a JsonObject, passing it to a serializer which will…​ turn it back into a string again to send over the network to the Couchbase server!
+This might seem a little clumsy though: We're reading a string, inflating it into a JsonObject, passing it to a serializer which will…​ turn it back into a string again to send over the network to the Couchbase server!
 
 We could instead simply pass it through with the Raw JSON Transcoder:
 
@@ -134,7 +134,7 @@ This approach could also be used to handle JSON created by other libraries such 
 
 ### [](#serializing-objects)Serializing objects
 
-It’s common to want to serialize your own objects, rather than creating Json programmatically or textually. Luckily our built-in JSON serializer makes light work of this task. Using this simple class:
+It's common to want to serialize your own objects, rather than creating Json programmatically or textually. Luckily our built-in JSON serializer makes light work of this task. Using this simple class:
 
 ```java
 public class Person {
@@ -157,7 +157,7 @@ We could insert the exact same JSON as before with:
 collection.upsert("arthur", new Person("Arthur", 42));
 ```
 
-It’s now trivial to return the data either as a JsonObject, exactly as we’ve done before, or indeed as a Person object:
+It's now trivial to return the data either as a JsonObject, exactly as we've done before, or indeed as a Person object:
 
 ```java
 Person person = collection.get("arthur")
@@ -166,7 +166,7 @@ Person person = collection.get("arthur")
 
 ### [](#ObjectMapper)More complex Object to JSON mapping
 
-Because the SDK’s serializer is backed by an industry standard library (Jackson), it is easy to model all kinds of Object to JSON mappings. Though the SDK automatically uses your version of Jackson when it finds the library on the CLASSPATH, you may wish to be explicit, or use an already configured ObjectMapper, as in this example:
+Because the SDK's serializer is backed by an industry standard library (Jackson), it is easy to model all kinds of Object to JSON mappings. Though the SDK automatically uses your version of Jackson when it finds the library on the CLASSPATH, you may wish to be explicit, or use an already configured ObjectMapper, as in this example:
 
 ```java
 import com.couchbase.client.java.env.ClusterEnvironment;
@@ -192,7 +192,7 @@ Cluster cluster = Cluster.connect(
     .environment(env));
 ```
 
-With this setup, we can then configure our classes as we wish. Here, we’ve just renamed the Java class and its fields in Spanish. But the generated JSON will have the same fields as before, for easy interoperability:
+With this setup, we can then configure our classes as we wish. Here, we've just renamed the Java class and its fields in Spanish. But the generated JSON will have the same fields as before, for easy interoperability:
 
 ```java
 public class Persona {
@@ -208,7 +208,7 @@ public class Persona {
 
 ## [](#datatypes)Modelling JSON datatypes in Java
 
-We’ve only looked at a few datatypes so far, JSON objects `{}`, strings, and integers. But the full range of JSON types can be expressed, with the obvious mappings to Java.
+We've only looked at a few datatypes so far, JSON objects `{}`, strings, and integers. But the full range of JSON types can be expressed, with the obvious mappings to Java.
 
 * string `"hello"`
 * integer `123`
@@ -218,7 +218,7 @@ We’ve only looked at a few datatypes so far, JSON objects `{}`, strings, and i
 * array: `JavaArray`, `List`
 * null
 
-In general, these values can be inserted as top-level values, or nested within an object or array. Let’s look at a few examples:
+In general, these values can be inserted as top-level values, or nested within an object or array. Let's look at a few examples:
 
 ### [](#nested-object)Nested object
 
@@ -243,7 +243,7 @@ JsonObject arthur = JsonObject.create()
 
 ### [](#top-level-values-other-than-jsonobject)Top level values other than JsonObject
 
-Although it’s common to use a JsonObject, or a JsonArray as the inserted value to couchbase, other values are supported.
+Although it's common to use a JsonObject, or a JsonArray as the inserted value to couchbase, other values are supported.
 
 For example, to insert a string value, we could simply:
 
@@ -266,11 +266,11 @@ JSON has no built-in representation of dates, so commonly they are represented a
 * a string-formatted [ISO-8601](https://www.w3.org/TR/NOTE-datetime) date
 * an offset in seconds or milliseconds from the Unix epoch 1 January 1970 UTC
 
-While it doesn’t matter which you choose (as long as you serialize and deserialize your Date object consistently!) it may make sense to store the dates in Couchbase in a format that can be easily manipulated using the [date functions in SQL++](#7.1@server:n1ql:n1ql-language-reference/datefun.adoc).
+While it doesn't matter which you choose (as long as you serialize and deserialize your Date object consistently!) it may make sense to store the dates in Couchbase in a format that can be easily manipulated using the [date functions in SQL++](#7.1@server:n1ql:n1ql-language-reference/datefun.adoc).
 
 Handily, as we can see on the same page, the [supported date formats](#7.1@server:n1ql:n1ql-language-reference$datefun.adoc#date-formats) are the usual convention in JSON.
 
-Let’s look at a brief example of how we might implement this, to serialize a new Event class:
+Let's look at a brief example of how we might implement this, to serialize a new Event class:
 
 ```java
 public  class Event {
@@ -283,7 +283,7 @@ public  class Event {
 }
 ```
 
-We’ll need a few extra imports:
+We'll need a few extra imports:
 
 ```java
 import java.time.*;
@@ -292,14 +292,14 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
 ```
 
-As we are controlling the serialization carefully, we’ll also want to register our own [ObjectMapper](#ObjectMapper) as above, and additionally configure some of the date handling properties:
+As we are controlling the serialization carefully, we'll also want to register our own [ObjectMapper](#ObjectMapper) as above, and additionally configure some of the date handling properties:
 
 ```java
 mapper.registerModule(new JavaTimeModule());
 mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 ```
 
-Now all this is set up we can simply serialize and deserialize our Event objects exactly as we’ve done before:
+Now all this is set up we can simply serialize and deserialize our Event objects exactly as we've done before:
 
 ```java
 Event towelday = new Event("Towel Day",
@@ -353,7 +353,7 @@ Though you will often be mapping objects to JSON according to a defined schema, 
 
 As we want to interrogate a specific Java object with well-defined semantics, we again want to specify the [ObjectMapper](#ObjectMapper) used.
 
-We can now convert the result to Jackson’s `JsonNode`, and use its rich set of methods to identify and handle arbitrary values:
+We can now convert the result to Jackson's `JsonNode`, and use its rich set of methods to identify and handle arbitrary values:
 
 ```java
 import com.fasterxml.jackson.databind.JsonNode;

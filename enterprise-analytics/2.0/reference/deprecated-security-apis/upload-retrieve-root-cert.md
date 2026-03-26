@@ -2,7 +2,7 @@
 title: Upload and Retrieve the Root Certificate
 description: The REST API can be used to upload and retrieve the cluster's root certificate.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/deprecated-security-apis/upload-retrieve-root-cert.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:reference:deprecated-security-apis/upload-retrieve-root-cert.adoc[]
 ---
 
@@ -11,12 +11,12 @@ link: xref:2.0@enterprise-analytics:reference:deprecated-security-apis/upload-re
 
 # Upload and Retrieve the Root Certificate
 
-> The REST API can be used to upload and retrieve the cluster’s root certificate. It can also be used to retrieve information about the cluster, by referencing a copy of the root certificate. These methods are deprecated in Enterprise Analytics. 
+> The REST API can be used to upload and retrieve the cluster's root certificate. It can also be used to retrieve information about the cluster, by referencing a copy of the root certificate. These methods are deprecated in Enterprise Analytics. 
 
 ## [](#http-method-and-uri)Http Methods and URIs
 
 > [!WARNING]
-> The APIs listed below for uploading and retrieving the cluster’s root certificate are deprecated. Users of Enterprise Analytics should use instead the APIs described in [Certificate Management API](../rest-certificate-management.md).
+> The APIs listed below for uploading and retrieving the cluster's root certificate are deprecated. Users of Enterprise Analytics should use instead the APIs described in [Certificate Management API](../rest-certificate-management.md).
 
 POST /controller/uploadClusterCA
 

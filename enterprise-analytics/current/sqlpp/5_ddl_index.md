@@ -3,7 +3,7 @@ title: CREATE INDEX Statements
 description: This topic describes how to use a <code>CREATE</code> statement to
   create an index on a remote or standalone collection.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sqlpp:5_ddl_index.adoc[]
 ---
 
@@ -137,7 +137,7 @@ The `IndexField` consists of a `NestedField` that specifies a field path into th
 
 IndexUnknown
 
-The `IndexUnknown` modifier enables you to specify whether you want the system to make an entry or not in a standard, non-array index when the indexed key’s value is NULL or MISSING.
+The `IndexUnknown` modifier enables you to specify whether you want the system to make an entry or not in a standard, non-array index when the indexed key's value is NULL or MISSING.
 
 > [!NOTE]
 > Array indexes cannot include NULL or MISSING values. For this reason, you must specify EXCLUDE UNKNOWN KEY when defining an array index.

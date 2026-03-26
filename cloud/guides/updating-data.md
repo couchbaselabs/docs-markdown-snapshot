@@ -2,7 +2,7 @@
 title: Update Documents
 description: How to update documents with a command line tool or an SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/updating-data.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:guides:updating-data.adoc[]
 ---
 
@@ -216,7 +216,7 @@ Result
 For more information, see [Mutating](https://couchbase.sh/docs/#%5Fmutating) in the Couchbase Shell documentation.
 
 1. Fetch an existing document and change some of its data.
-2. Use the `ReplaceAsync()` function to update a document in Couchbase. To ensure data has not been modified before executing the replace operation, pass the document’s `CAS` value to the method.
+2. Use the `ReplaceAsync()` function to update a document in Couchbase. To ensure data has not been modified before executing the replace operation, pass the document's `CAS` value to the method.
 
 A new `CAS` value is provided in the returned `MutationResult` object.
 
@@ -259,7 +259,7 @@ Click the  View button to see this code in context.
 For more information, see [CollectionExtensions](https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.KeyValue.CollectionExtensions.html).
 
 1. Fetch an existing document and change some of its data.
-2. Use the `replace()` method to update a document in Couchbase. To ensure data has not been modified before executing the replace operation, pass the document’s `CAS` value to the method.
+2. Use the `replace()` method to update a document in Couchbase. To ensure data has not been modified before executing the replace operation, pass the document's `CAS` value to the method.
 
 A new `CAS` value is provided in the returned `MutationResult` object.
 
@@ -303,7 +303,7 @@ Click the  View button to see this code in context.
 For more information, see [Collection](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/Collection.html).
 
 1. Fetch an existing document and change some of its data.
-2. Use the `replace()` function to update a document in Couchbase. To ensure data has not been modified before executing the replace operation, pass the document’s `CAS` value to the method.
+2. Use the `replace()` function to update a document in Couchbase. To ensure data has not been modified before executing the replace operation, pass the document's `CAS` value to the method.
 
 A new `CAS` value is provided in the returned `MutationResult` object.
 
@@ -345,7 +345,7 @@ Click the  View button to see this code in context.
 For more information, see [Collection](https://docs.couchbase.com/sdk-api/couchbase-node-client/classes/Collection.html).
 
 1. Fetch an existing document and change some of its data.
-2. Use the `replace()` function to update a document in Couchbase. To ensure data has not been modified before executing the replace operation, pass the document’s `CAS` value to the method.
+2. Use the `replace()` function to update a document in Couchbase. To ensure data has not been modified before executing the replace operation, pass the document's `CAS` value to the method.
 
 A new `CAS` value is provided in the returned `MutationResult` object.
 
@@ -385,7 +385,7 @@ For more information, see [Collection](https://docs.couchbase.com/sdk-api/couchb
 
 ## [](#updating-a-sub-document)Updating a Sub-Document
 
-To change a specific field inside a document, you can perform a Sub-Document operation. You can use either a Sub-Document upsert or replace operation depending on what’s required for your application.
+To change a specific field inside a document, you can perform a Sub-Document operation. You can use either a Sub-Document upsert or replace operation depending on what's required for your application.
 
 * cbsh
 * .NET

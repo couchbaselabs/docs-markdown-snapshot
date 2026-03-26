@@ -3,7 +3,7 @@ title: DELETE Statements
 description: This topic describes how you use <code>DELETE</code> statements to
   delete objects from a standalone collection.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_delete.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sqlpp:5_dml_delete.adoc[]
 ---
 
@@ -67,7 +67,7 @@ The output of the RETURNING clause is:
 
 WHERE
 
-The optional **`WHERE`** clause specifies a condition that the objects in the target collection must satisfy for the statement to delete them. It can include uncomplicated predicates as well as other subqueries referring to other existing collections. The default database for the `WHERE` expression is the target collection’s database. There’s one variable in scope for the `WHERE` expression. If specified, `OutputAlias` defines the variable’s name. Otherwise, the variable’s name is the target collection’s name.
+The optional **`WHERE`** clause specifies a condition that the objects in the target collection must satisfy for the statement to delete them. It can include uncomplicated predicates as well as other subqueries referring to other existing collections. The default database for the `WHERE` expression is the target collection's database. There's one variable in scope for the `WHERE` expression. If specified, `OutputAlias` defines the variable's name. Otherwise, the variable's name is the target collection's name.
 
 RETURNING
 

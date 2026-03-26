@@ -3,7 +3,7 @@ title: Couchbase EFCore Provider Limitations
 description: The Couchbase EFCore Provider is still evolving and does not
   currently support all features of EF Core or Couchbase.
 editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-limitations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:efcore-provider::entity-framework-core-limitations.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:efcore-provider::entity-framework-core-limitations.adoc[]
 
 * [Eager loading/fetching](https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager) — use the `Include` and/or `ThenInclude` methods to specify related data to be included in query results.
 * [Value generation](https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties?tabs=data-annotations) — auto-generated values for properties and or primary keys.
-* [Migrations](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli) — The migrations feature in EF Core provides a way to incrementally update the database schema to keep it in sync with the application’s data model while preserving existing data in the database.
+* [Migrations](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli) — The migrations feature in EF Core provides a way to incrementally update the database schema to keep it in sync with the application's data model while preserving existing data in the database.
 * [Table splitting](https://learn.microsoft.com/en-us/ef/core/modeling/table-splitting) — EF Core allows to map two or more entities to a single row. This is called table splitting or table sharing.
 * Any features not explicitly mentioned in this documentation
 
@@ -49,7 +49,7 @@ All async queries are expected to be awaited. Avoid using `Wait()` or `Result()`
 
 ## [](#subdocument-denormalization-not-supported)Subdocument (Denormalization) Not Supported
 
-The Couchbase EF Core Provider maps to Couchbase’s JSON document model, which is not a relational model. This means that some features of EF Core may not work as expected, and data may not be saved as expected. For example, if you have a one-to-many relationship and you delete the parent entity, the child entities may not be deleted as well. This is because Couchbase does not have the concept of foreign keys or cascading deletes.
+The Couchbase EF Core Provider maps to Couchbase's JSON document model, which is not a relational model. This means that some features of EF Core may not work as expected, and data may not be saved as expected. For example, if you have a one-to-many relationship and you delete the parent entity, the child entities may not be deleted as well. This is because Couchbase does not have the concept of foreign keys or cascading deletes.
 
 It is important to understand the limitations of the Couchbase EF Core Provider and to use it accordingly.
 

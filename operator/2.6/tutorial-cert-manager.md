@@ -1,7 +1,7 @@
 ---
 title: Using a Certificate Manager
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/tutorial-cert-manager.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::tutorial-cert-manager.adoc[]
 ---
 
@@ -31,7 +31,7 @@ Certificates are initially issued by cert-manager, then at a defined time before
 
 Certificates are stored in a Kubernetes `Secret` resource, broadly similar to the standard `kubernetes.io/tls` secret type. The one major difference is that, along with `tls.crt` and `tls.key` secret data, there is also a `ca.crt` copied in from the `Issuer`.
 
-(You may notice that this has heavily influenced the design of the Autonomous Operator’s TLS interface.)
+(You may notice that this has heavily influenced the design of the Autonomous Operator's TLS interface.)
 
 ## [](#before-we-begin)Before We Begin
 
@@ -40,7 +40,7 @@ Before continuing with this tutorial, please ensure the following:
 * You have installed cert-manager. Follow the official installation guides at [cert-manager.io](https://cert-manager.io/docs/installation/).
 * You have installed Autonomous Operator 2.2 or higher. This tutorial assumes that the installed resources are present, and also leverages the [cao](tools/cao.md) command line tool that comes with the Autonomous Operator binary package.  
 > [!NOTE]  
-> You can actually integrate/perform the steps in this tutorial as part of the process of installing the Autonomous Operator. However, for the sake of making the tutorial more straightforward, it is assumed that you’ve already performed a basic [installation](install-kubernetes.md) of the Autonomous Operator.
+> You can actually integrate/perform the steps in this tutorial as part of the process of installing the Autonomous Operator. However, for the sake of making the tutorial more straightforward, it is assumed that you've already performed a basic [installation](install-kubernetes.md) of the Autonomous Operator.
 
 Another thing to note is that all of the commands in this tutorial are run from the same, default, namespace. cert-manager runs cluster scoped, and can see Issuers and Certificates in any namespace, so you can use any namespace you desire. Before you begin the tutorial, make sure to configure your Kubernetes context to point to the namespace where you deploy Couchbase resources, or ensure you use the `--namespace` configuration flag with the given commands.
 
@@ -67,7 +67,7 @@ $ cat pki/ca.crt | base64 -w 0 (2)
 
 ### [](#create-an-issuer)Create an Issuer
 
-Next, we’ll create the CA’s `Secret` and `Issuer`. Start by creating two files — `ca-secret.yaml` and `ca-issuer.yaml` — with the following configurations:
+Next, we'll create the CA's `Secret` and `Issuer`. Start by creating two files — `ca-secret.yaml` and `ca-issuer.yaml` — with the following configurations:
 
 ca-secret.yaml
 
@@ -101,7 +101,7 @@ spec:
 | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
 | **2** | This is a reference to the CA secret we have just created containing the CA certificate and key pair.                         |
 
-Run the following commands to create the CA’s `Secret` and `Issuer`:
+Run the following commands to create the CA's `Secret` and `Issuer`:
 
 ```console
 $ kubectl apply -f ca-secret.yaml
@@ -117,7 +117,7 @@ The DAC [component](concept-operator.md#dynamic-admission-controller) of the Aut
 
 ### [](#uninstall-the-existing-dac)Uninstall the Existing DAC
 
-As mentioned in the [prerequisites](#before-we-begin) section, this tutorial assumes that you’ve already performed a basic [installation](install-kubernetes.md) of the Autonomous Operator. As part of the installation, you would have also installed the DAC. Before we can continue with the tutorial, we need to _uninstall_ the DAC. (Don’t worry, we’ll be re-installing it soon.)
+As mentioned in the [prerequisites](#before-we-begin) section, this tutorial assumes that you've already performed a basic [installation](install-kubernetes.md) of the Autonomous Operator. As part of the installation, you would have also installed the DAC. Before we can continue with the tutorial, we need to _uninstall_ the DAC. (Don't worry, we'll be re-installing it soon.)
 
 ```console
 $ cao delete admission
@@ -152,12 +152,12 @@ spec:
     name: ca (6)
 ```
 
-| **1** | This is the secret that will be generated containing the TLS certificate and key. The name used in this example is the same as the default one created by [cao](tools/cao.md) during standard [installation](install-kubernetes.md), so we’ll just reuse it to make integration simpler.                                                                                                                                                       |
+| **1** | This is the secret that will be generated containing the TLS certificate and key. The name used in this example is the same as the default one created by [cao](tools/cao.md) during standard [installation](install-kubernetes.md), so we'll just reuse it to make integration simpler.                                                                                                                                                       |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | The certificate will be issued immediately and will be valid for 6 hours.                                                                                                                                                                                                                                                                                                                                                                      |
 | **3** | The certificate will be reissued (rotated) 1 hour before the certificate expiration time.                                                                                                                                                                                                                                                                                                                                                      |
 | **4** | The certificate can be used as server authentication — the DAC is a HTTPS server.                                                                                                                                                                                                                                                                                                                                                              |
-| **5** | The certificate needs a subject alternative name that matches the network name used to connect to it. This name is comprised of _<service-name>_._<namespace>_.svc. The [cao](tools/cao.md) tool usually handles this for you, however, as TLS generation is delegated to a 3rd party, we need to be aware of it. Again, like the secret name, this is the default service name created by [cao](tools/cao.md), so we’ll just keep this as is. |
+| **5** | The certificate needs a subject alternative name that matches the network name used to connect to it. This name is comprised of _<service-name>_._<namespace>_.svc. The [cao](tools/cao.md) tool usually handles this for you, however, as TLS generation is delegated to a 3rd party, we need to be aware of it. Again, like the secret name, this is the default service name created by [cao](tools/cao.md), so we'll just keep this as is. |
 | **6** | The issuer, ca, refers to the CA we defined in the section [Creating a Common Configuration](#creating-a-common-configuration).                                                                                                                                                                                                                                                                                                                |
 
 Run the following command to create the `Certificate` resource:
@@ -167,7 +167,7 @@ $ kubectl apply -f admission-certificate-resource.yaml
 ```
 
 > [!NOTE]
-> This command will not succeed if the DAC is already installed. Ensure that you’ve followed the instructions in the section [Uninstall the Existing DAC](#uninstall-the-existing-dac) before running this command.
+> This command will not succeed if the DAC is already installed. Ensure that you've followed the instructions in the section [Uninstall the Existing DAC](#uninstall-the-existing-dac) before running this command.
 
 You can run the following command to check the status of the resource:
 
@@ -184,7 +184,7 @@ couchbase-operator-admission   True    couchbase-operator-admission   4s
 
 ### [](#update-the-dac-configuration-settings)Update the DAC Configuration Settings
 
-When you install the Autonomous Operator, the [cao](tools/cao.md) tool automatically creates a default TLS configuration for you. However, we don’t have to worry about this default configuration because we removed it entirely when we uninstalled the DAC in the section [Uninstall the Existing DAC](#uninstall-the-existing-dac). Therefore, in this next step, we will generate a brand new DAC configuration, modify it to make use of our managed certificates, and then submit it to Kubernetes to redeploy the DAC.
+When you install the Autonomous Operator, the [cao](tools/cao.md) tool automatically creates a default TLS configuration for you. However, we don't have to worry about this default configuration because we removed it entirely when we uninstalled the DAC in the section [Uninstall the Existing DAC](#uninstall-the-existing-dac). Therefore, in this next step, we will generate a brand new DAC configuration, modify it to make use of our managed certificates, and then submit it to Kubernetes to redeploy the DAC.
 
 Start by generating a copy of the default configuration template for the DAC:
 
@@ -194,7 +194,7 @@ $ cao generate admission > admission.yaml
 
 Open `admission.yaml` with your editor of choice.
 
-The first thing we’re going to do is _remove_ (delete) the `Secret` resource configuration from this file, as cert-manager is now managing it for us. The configuration that you need to remove looks like the following:
+The first thing we're going to do is _remove_ (delete) the `Secret` resource configuration from this file, as cert-manager is now managing it for us. The configuration that you need to remove looks like the following:
 
 ```yaml
 apiVersion: v1
@@ -209,7 +209,7 @@ metadata:
   name: couchbase-operator-admission
 ```
 
-Next, locate the `ValidatingWebhookConfiguration` resource. This needs to be updated to include the signing CA’s certificate. If you recall, when we [created the certificate issuer](#create-an-issuer), we configured its `Secret` with a `tls.crt` key. We simply need to copy this same `tls.crt` key into each instance of `caBundle` in the webhook resources.
+Next, locate the `ValidatingWebhookConfiguration` resource. This needs to be updated to include the signing CA's certificate. If you recall, when we [created the certificate issuer](#create-an-issuer), we configured its `Secret` with a `tls.crt` key. We simply need to copy this same `tls.crt` key into each instance of `caBundle` in the webhook resources.
 
 ```yaml
 apiVersion: admissionregistration.k8s.io/v1beta1
@@ -240,7 +240,7 @@ Error from server: error when creating "example/couchbase-cluster.yaml": admissi
 secret cb-example-auth referenced by spec.security.adminSecret must exist
 ```
 
-However, if you see something similar to the following, it means that the Kubernetes API isn’t able to validate your server certificate:
+However, if you see something similar to the following, it means that the Kubernetes API isn't able to validate your server certificate:
 
 ```console
 $ kubectl apply -f example/couchbase-cluster.yaml
@@ -251,7 +251,7 @@ If this is the case, check that the correct CA is installed in the webhooks, and
 
 ## [](#using-cert-manager-with-a-couchbase-cluster)Using cert-manager with a Couchbase Cluster
 
-The Autonomous Operator has been capable of rotating Couchbase Server certificates since version 2.0\. With the 2.2 release, we introduced the ability to use new certificate formats, in particular the standard form used by cert-manager. This allows the database’s TLS configuration to be specified in code, along with security policies. The key benefits of using this are 1.) oversight — the ability to peer review configuration; and 2.) auditing — providing simple, policy driven security constraints.
+The Autonomous Operator has been capable of rotating Couchbase Server certificates since version 2.0\. With the 2.2 release, we introduced the ability to use new certificate formats, in particular the standard form used by cert-manager. This allows the database's TLS configuration to be specified in code, along with security policies. The key benefits of using this are 1.) oversight — the ability to peer review configuration; and 2.) auditing — providing simple, policy driven security constraints.
 
 ### [](#create-the-couchbase-server-certificate)Create the Couchbase Server Certificate
 

@@ -1,7 +1,7 @@
 ---
 title: Poll Guides
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/pendo/modules/ROOT/pages/polls.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:pendo::polls.adoc[]
 ---
 
@@ -84,18 +84,18 @@ Titles must be in bold.
 
 In the subtitle for a Poll:
 
-| Description                                                                                      | Do                                                                                          | Don’t                                                                                                                     |
+| Description                                                                                      | Do                                                                                          | Don't                                                                                                                     |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | Write the subtitle as a specific question, asking the user to rate or provide specific feedback. | **How would you rate the Playground?** **What did you think of the new Import experience?** | Please provide a rating. Let us know how we did. Rate your experience?                                                    |
 | Write in sentence case.                                                                          | **What did you think of the new Query Workbench?**                                          | How Would You Rate The New Data Tools?                                                                                    |
 | Write subtitles in bold font.                                                                    | **How would you rate the Data API tutorial?**                                               | How would you rate the Data API tutorial?                                                                                 |
-| Don’t use any other punctuation aside from a question mark.                                      | **How would you rate the new Connect page?**                                                | How would you rate the new Connect page for SDKs, Couchbase Shell, and Import and Export tools. We want to hear from you! |
+| Don't use any other punctuation aside from a question mark.                                      | **How would you rate the new Connect page?**                                                | How would you rate the new Connect page for SDKs, Couchbase Shell, and Import and Export tools. We want to hear from you! |
 
 ### [](#hint-text)Hint Text
 
-Hint text provides guidance on what the user needs to enter or what they’re selecting on a Poll.
+Hint text provides guidance on what the user needs to enter or what they're selecting on a Poll.
 
-Don’t change the default hint text for a Poll guide.
+Don't change the default hint text for a Poll guide.
 
 ### [](#action-button)Action Button
 

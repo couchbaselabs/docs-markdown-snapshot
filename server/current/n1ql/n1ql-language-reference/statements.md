@@ -4,7 +4,7 @@ description: "Statements are the commands that make up a SQL++ query. They can
   be categorized into three main groups: data definition language, data control
   language, and data manipulation language."
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/statements.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/statements.adoc[]
 ---
 
@@ -49,7 +49,7 @@ Data definition language (DDL) statements enable you to create and modify databa
 
 ## [](#dcl)Data Control Language
 
-Data control language (DCL) statements enable you to control which users or groups have access to data, and what they’re permitted to do with that data.
+Data control language (DCL) statements enable you to control which users or groups have access to data, and what they're permitted to do with that data.
 
 [GRANT](grant.md)  
 [REVOKE](revoke.md)

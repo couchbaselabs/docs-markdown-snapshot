@@ -3,7 +3,7 @@ title: Migrating to SDK 3 API
 description: The SDK 3.x API used in Go SDK 2.x breaks the existing 2.x APIs
   (used in Go SDK 1.6) in order to provide a number of improvements.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.10@go-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -26,7 +26,7 @@ The concept of a `Cluster` and a `Bucket` remain the same, but a fundamental new
 
 Note that the SDKs include the feature from SDK 3.0, to allow easier migration.
 
-In the previous SDK generation, particularly with the `KeyValue` API, the focus has been on the codified concept of a `Document`. Documents were read and written and had a certain structure, including the `id`/`key`, content, expiry (`ttl`), and so forth. While the server still operates on the logical concept of documents, we found that this model in practice didn’t work so well for client code in certain edge cases. As a result we have removed the `Document` class/structure completely from the API. The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`. This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.
+In the previous SDK generation, particularly with the `KeyValue` API, the focus has been on the codified concept of a `Document`. Documents were read and written and had a certain structure, including the `id`/`key`, content, expiry (`ttl`), and so forth. While the server still operates on the logical concept of documents, we found that this model in practice didn't work so well for client code in certain edge cases. As a result we have removed the `Document` class/structure completely from the API. The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`. This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.
 
 As an example here is a KeyValue document fetch:
 
@@ -44,7 +44,7 @@ queryResult, err := cluster.Query("select 1=1", &gocb.QueryOptions{
 })
 ```
 
-Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`. Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON. You’ll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.
+Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`. Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON. You'll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.
 
 The KV API extends the concept of the serializer to the `Transcoder`. Since you can also store non-JSON data inside a document, the `Transcoder` allows the writing of binary data as well. It handles the object/entity encoding and decoding, and if it happens to deal with JSON makes uses of the configured `Serializer` internally. See the _Serialization and Transcoding_ section below for details.
 
@@ -154,7 +154,7 @@ getResult, err := collection.Get("key", &gocb.GetOptions{
 `Collections` are generally available from Couchbase Server version 7.0, which the SDK is already compatible with. If you are using a Couchbase Server version which does not support `Collections`, always use the `DefaultCollection()` method to access the KV API; it will map to the full bucket.
 
 > [!IMPORTANT]
-> You’ll notice that `Bucket(string)` returns immediately, even if the bucket resources are not completely opened. This means that the subsequent `Get` operation may be dispatched even before the socket is open in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout (in this case, you’ll see socket connect rejections).
+> You'll notice that `Bucket(string)` returns immediately, even if the bucket resources are not completely opened. This means that the subsequent `Get` operation may be dispatched even before the socket is open in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout (in this case, you'll see socket connect rejections).
 
 Also note, you will now find Query, Search, and Analytics at the `Cluster` level. This is where they logically belong. If you are using Couchbase Server 6.5 or later, you will be able to perform cluster-level queries even if no bucket is open. If you are using an earlier version of the cluster you must open at least one bucket, otherwise cluster-level queries will fail.
 
@@ -162,7 +162,7 @@ Also note, you will now find Query, Search, and Analytics at the `Cluster` level
 
 In SDK 2 the main method to control transcoding was through specfying unique Transcoder instances at the top-level. This concept has been extended to enable developers to specify per-operation Transcoder instances.
 
-Additionally, the default transcoder has been modified to no longer transcoder byte-arrays as a precaution against accidentally encoding strings as JSON or JSON as strings. A new LegacyTranscoder has been implemented which mirrors Go SDK 1.x’s behaviour.
+Additionally, the default transcoder has been modified to no longer transcoder byte-arrays as a precaution against accidentally encoding strings as JSON or JSON as strings. A new LegacyTranscoder has been implemented which mirrors Go SDK 1.x's behaviour.
 
 ### [](#encryption)Encryption
 

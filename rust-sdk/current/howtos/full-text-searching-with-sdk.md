@@ -3,7 +3,7 @@ title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -30,7 +30,7 @@ use futures::StreamExt;
 use serde_json::json;
 ```
 
-Search queries are executed at Cluster level (not bucket or collection). Here is a simple MatchQuery that looks for the text “swanky” using a defined index:
+Search queries are executed at Cluster level (not bucket or collection). Here is a simple MatchQuery that looks for the text "swanky" using a defined index:
 
 ```rust
 let result = scope
@@ -53,7 +53,7 @@ match result {
 }
 ```
 
-All simple query types are created in the same manner. Some have additional properties, which can be seen in common query type descriptions. Couchbase FTS’s [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted.
+All simple query types are created in the same manner. Some have additional properties, which can be seen in common query type descriptions. Couchbase FTS's [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted.
 
 > [!TIP]
 > Search Results Limit

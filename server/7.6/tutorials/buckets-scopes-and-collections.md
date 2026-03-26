@@ -3,7 +3,7 @@ title: Implement the Data Model
 description: Create a cluster and use buckets, scopes, and collections to
   partition your data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/tutorials/pages/buckets-scopes-and-collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:tutorials:buckets-scopes-and-collections.adoc[]
 ---
 
@@ -64,7 +64,7 @@ To create the second collection, follow the previous steps but name the collecti
 
 The two collections allow you to use the relational model and the document model at the same time to achieve the best design and performance possible.
 
-The `student-record-collection` contains student records, and each student record contains a list of that student’s enrollments. Unlike the standard relational model decomposition where a link table is created between students and courses, a document model stores the enrollments as part of the student records.
+The `student-record-collection` contains student records, and each student record contains a list of that student's enrollments. Unlike the standard relational model decomposition where a link table is created between students and courses, a document model stores the enrollments as part of the student records.
 
 The `course-record-collection`, on the other hand, uses the relational model to link the enrollment records to the course records they apply to. This allows you to retrieve other details like the full title of the course or the number of credits students receive upon completing the course.
 

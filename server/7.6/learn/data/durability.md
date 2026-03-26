@@ -3,7 +3,7 @@ title: Durability
 description: <em>Durability</em> ensures the greatest likelihood of data-writes
   surviving unexpected anomalies, such as node-outages.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/data/durability.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:data/durability.adoc[]
 ---
 
@@ -80,8 +80,8 @@ The lifecycle of a durable write is shown by the following, annotated diagram; w
 
 The annotations are as follows:
 
-1. Client 1 specifies durability requirements for a durable write, to change a key’s existing value from a to b.
-2. The Active Node receives the request, and the durable write process is initiated. Couchbase Server attempts to meet the client’s specified durability requirements.
+1. Client 1 specifies durability requirements for a durable write, to change a key's existing value from a to b.
+2. The Active Node receives the request, and the durable write process is initiated. Couchbase Server attempts to meet the client's specified durability requirements.
 3. During the durable write process, Client 2 performs a read on the value undergoing the durable write. Couchbase Server returns the value, a, that preceded the durable-write request.
 4. During the durable-write process, Client 3 attempts either a durable write or a regular write on the value that is already undergoing a durable write. Couchbase Server returns a `SYNC_WRITE_IN_PROGRESS` message, to indicate that the new write cannot occur.
 5. At the point the mutation has met the specified durability requirements, the Active Node commits the durable write, and sends a status response of `SUCCESS` to Client 1.
@@ -90,7 +90,7 @@ If Couchbase Server aborts a durable write, all mutations to active and replica 
 
 In some circumstances, rather than acknowledging to a client that the durable write has succeeded, Couchbase Server acknowledges an _ambiguous outcome_: for example, due to the client-specified timeout having elapsed. See [Handling Ambiguous Results](#handling-ambiguous-results), below.
 
-Subsequent to a durable write’s commitment and due acknowledgement, Couchbase Server continues the process of replication and persistence, until all active and replica vBuckets, both in memory and on disk, have been appropriately updated across all nodes.
+Subsequent to a durable write's commitment and due acknowledgement, Couchbase Server continues the process of replication and persistence, until all active and replica vBuckets, both in memory and on disk, have been appropriately updated across all nodes.
 
 ## [](#regular-writes)Regular Writes
 
@@ -116,7 +116,7 @@ If a client receives notification of an ambiguous result, and the attempted dura
 
 ## [](#rebalance)Rebalance
 
-The _rebalance_ process moves active and replica vBuckets across nodes, to ensure optimal availability. During the process, clients’ access to data is uninterrupted. The durable-write process is likewise uninterrupted by rebalance, and continues throughout the rebalance process.
+The _rebalance_ process moves active and replica vBuckets across nodes, to ensure optimal availability. During the process, clients' access to data is uninterrupted. The durable-write process is likewise uninterrupted by rebalance, and continues throughout the rebalance process.
 
 ## [](#performance)Performance
 
@@ -134,7 +134,7 @@ Couchbase-Server durability supports buckets with up to _two_ replicas. It does 
 
 [Automatic Failover](../clusters-and-availability/automatic-failover.md) removes a non-responsive node from the cluster automatically, following an administrator-configured timeout. Active vBuckets thereby lost are replaced by the promotion of replica vBuckets, on the surviving nodes. The maximum number of sequential automatic failovers is configurable by the administrator.
 
-In cases where commitment based on _persistToMajority_ has occurred, but no further propagation of the new data across the cluster has yet occurred, automatic failover of the nodes containing the new data results in the data’s loss — since no updated replica vBucket yet exists elsewhere on the cluster.
+In cases where commitment based on _persistToMajority_ has occurred, but no further propagation of the new data across the cluster has yet occurred, automatic failover of the nodes containing the new data results in the data's loss — since no updated replica vBucket yet exists elsewhere on the cluster.
 
 For example, if a bucket has two replicas, the total number of nodes on which the data resides is _three_; and the _majority_ of nodes, on which persistence must occur prior to commitment, is _two_. After commitment, if those two nodes become unresponsive, automatic failover, if configured to occur up to a maximum of two times, allows those two nodes to be failed over _before_ the durable write has been made persistent on the third node. In such a case, the durable write is lost, and the success message already delivered to the application rendered false.
 
@@ -142,7 +142,7 @@ To prevent this, and thereby maintain guaranteed protection, at least one of the
 
 #### [](#preserving-durable-writes)Preserving Durable Writes
 
-In Couchbase Enterprise Server 7.2+, auto-failover can be configured _not_ to occur if a node’s failover might result in the loss of durably written data. This is a _global_ configuration that affects _all_ buckets, regardless of their durability settings. The configuration causes a check to be performed on the non-communicative node: if the node passes the check, the node continues to be a candidate for auto-failover. Note that for auto-failover actually to occur, the additional requirements listed in [Automatic Failover](../clusters-and-availability/automatic-failover.md) must also be met.
+In Couchbase Enterprise Server 7.2+, auto-failover can be configured _not_ to occur if a node's failover might result in the loss of durably written data. This is a _global_ configuration that affects _all_ buckets, regardless of their durability settings. The configuration causes a check to be performed on the non-communicative node: if the node passes the check, the node continues to be a candidate for auto-failover. Note that for auto-failover actually to occur, the additional requirements listed in [Automatic Failover](../clusters-and-availability/automatic-failover.md) must also be met.
 
 If auto-failover is configured to preserve durable writes:
 

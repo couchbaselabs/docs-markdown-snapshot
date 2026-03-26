@@ -3,7 +3,7 @@ title: Best Practices
 description: Speed up your application development, with some best practices for
   using Couchbase SDKs.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/concept-docs/pages/best-practices.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.2@cxx-sdk:concept-docs:best-practices.adoc[]
 ---
 
@@ -14,11 +14,11 @@ link: xref:1.2@cxx-sdk:concept-docs:best-practices.adoc[]
 
 > Speed up your application development, with some best practices for using Couchbase SDKs. 
 
-From batching and reactive APIs, to unit tests and handling errors. There’s plenty that can be done to remove bottlenecks in development and in performance, and this page can be your checklist of areas not to neglect as you develop your app.
+From batching and reactive APIs, to unit tests and handling errors. There's plenty that can be done to remove bottlenecks in development and in performance, and this page can be your checklist of areas not to neglect as you develop your app.
 
 ## [](#security)Security
 
-But before worrying about bottlenecks, let’s put security concerns first.
+But before worrying about bottlenecks, let's put security concerns first.
 
 Security is a process, and not just a set of checkboxes — but
 
@@ -41,13 +41,13 @@ Users who have been assigned the **Admin** role for the cluster are able to crea
 
 ## [](#performance)Performance
 
-Couchbase’s Data Service uses a fast binary protocol, which will always outperform JSON streamed over HTTP from SQL++ queries. If you know the key (ID) of a document, then use the [Data Service](../howtos/kv-operations.md).
+Couchbase's Data Service uses a fast binary protocol, which will always outperform JSON streamed over HTTP from SQL++ queries. If you know the key (ID) of a document, then use the [Data Service](../howtos/kv-operations.md).
 
 If you need pessimistic logging, in particular if you need to lock documents for multi-document ACID transactions, then anything you can do at the schema level to reduce the number of documents locked simultaneously wil remvoe a bottleneck to updating the affected documents.
 
 ### [](#dealing-with-timeout-errors)Dealing with Timeout Errors
 
-* LAN-type connection of client and server is recommended in production, but WAN development is a reality pre-production. Ensure that you’re familiar with the [best timeout options for WAN environments](../ref/client-settings.md#constrained-network-environments), or at least set a [WAN development Configuration Profile](../ref/client-settings.md#wan-development).
+* LAN-type connection of client and server is recommended in production, but WAN development is a reality pre-production. Ensure that you're familiar with the [best timeout options for WAN environments](../ref/client-settings.md#constrained-network-environments), or at least set a [WAN development Configuration Profile](../ref/client-settings.md#wan-development).
 
 ### [](#concurrency-and-async-apis)Concurrency and Async APIs
 

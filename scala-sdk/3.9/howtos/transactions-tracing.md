@@ -2,7 +2,7 @@
 title: Tracing
 description: Tracing Couchbase Distributed ACID transactions.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/howtos/pages/transactions-tracing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@scala-sdk:howtos:transactions-tracing.adoc[]
 ---
 
@@ -23,7 +23,7 @@ Tracing should currently be regarded as 'developer preview' functionality, as th
 
 The application may wish to indicate that the transaction is part of a larger span — for instance, a user request. It can do this by passing that as a parent span.
 
-This can be done using the SDK’s `RequestTracer` abstraction as so:
+This can be done using the SDK's `RequestTracer` abstraction as so:
 
 ```scala
 val span = cluster.env.core.requestTracer.requestSpan("your-span-name", null)

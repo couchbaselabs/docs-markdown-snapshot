@@ -3,7 +3,7 @@ title: Modify Services and Rebalance
 description: Add or remove non-Data Services on existing nodes in a cluster and
   rebalance the cluster without adding or removing nodes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/modify-services-and-rebalance.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-nodes/modify-services-and-rebalance.adoc[]
 ---
 
@@ -31,7 +31,7 @@ You do not have to add or remove a node to add or remove a non-Data Service on a
 > You cannot add or remove the Data Service (kv) using this method. Adding or removing of the Data Service on an existing node is supported only through adding or removing nodes. For more information about adding or removing the Data Service on an existing node, see [Adding or Removing the Data Service on Existing Nodes](manage-data-service-and-rebalance.md).
 
 > [!WARNING]
-> When you modify (add or remove) services on existing nodes in a cluster, rebalance is triggered immediately to apply the changes. Removing a service instance reduces the cluster’s capacity for that service. For certain services, such as the Index Service, removing the service may result in loss of replicas or entire indexes if no replicas exist, which can cause queries to fail.
+> When you modify (add or remove) services on existing nodes in a cluster, rebalance is triggered immediately to apply the changes. Removing a service instance reduces the cluster's capacity for that service. For certain services, such as the Index Service, removing the service may result in loss of replicas or entire indexes if no replicas exist, which can cause queries to fail.
 > 
 > Removing all instances of a service deletes all data and metadata associated with that service, which means effectively removing the service from the cluster. For example, removing the last Index Service node deletes all indexes. For the Backup Service, physical backup repositories outside the cluster remain, but the Backup Service metadata about those repositories is deleted.
 
@@ -72,10 +72,10 @@ kv (Data Service) cannot be modified.
 > [!NOTE]  
 > Adding or removing any service triggers a rebalance operation.
 5. Click **Rebalance and Change Services**.  
-If you’re only removing services, adding new instances of services that already exist on the cluster, or adding the backup service, then rebalancing is triggered immediately.
+If you're only removing services, adding new instances of services that already exist on the cluster, or adding the backup service, then rebalancing is triggered immediately.
 6. If you are adding a service that is not already on the cluster, and if that service has a memory quota setting option, then the **New Service Settings** dialog appears. This dialog lists the services you selected to add, the existing active services, and their current memory quotas.
 
-  1. Enter the memory quota for each service you’re adding. You can also edit the memory quota for existing services.  
+  1. Enter the memory quota for each service you're adding. You can also edit the memory quota for existing services.  
   For the Index Service, choose either **Standard Global Secondary** or **Memory-Optimized**. For more information about index storage, see [Index Storage Settings](../../indexes/storage-modes.md).  
   For more information about managing memory quotas for services from the UI, see [Memory Quotas](../manage-settings/general-settings.md#memory-quotas).
   2. Click **Save Settings**.
@@ -114,7 +114,7 @@ These are the options for modifying non-data services:
 couchbase-cli rebalance -c 127.0.0.1 -u Administrator -p password --update-services --index-add node2
 * To remove the index service from `node3`, use the following command:  
 couchbase-cli rebalance -c 127.0.0.1 -u Administrator -p password --update-services --index-remove node3
-* Trying to remove a service that’s not present on the node results in an error. From the previous example, if `node3` was not running the index service, the following error occurs:  
+* Trying to remove a service that's not present on the node results in an error. From the previous example, if `node3` was not running the index service, the following error occurs:  
 ERROR: Node ns_1@node3 does not provide the index service
 
 For more information about the `couchbase-cli rebalance` command, see [rebalance](../../cli/cbcli/couchbase-cli-rebalance.md).

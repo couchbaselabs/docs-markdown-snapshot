@@ -3,7 +3,7 @@ title: Use Search Indexes with a Query
 description: The Flex Index feature enables you run a SQL++ query as a full-text
   search query, using a full-text index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/flex-indexes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/flex-indexes.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:server:n1ql:n1ql-language-reference/flex-indexes.adoc[]
 
 # Use Search Indexes with a Query
 
-> The Flex Index feature enables you run a SQL++ query as a full-text search query, using a full-text index. This means that you can write queries in SQL++ to leverage the Search service’s keyword search capabilities. 
+> The Flex Index feature enables you run a SQL++ query as a full-text search query, using a full-text index. This means that you can write queries in SQL++ to leverage the Search service's keyword search capabilities. 
 
 In Couchbase Server, a global secondary index (GSI) uses a B-tree structure for fast exact search, whereas full-text search (FTS) uses an inverted index to provide efficient term search. It is possible to perform a full-text search within a SQL++ query using [search functions](searchfun.md). However this requires you to write the full-text search using the FTS syntax.
 
@@ -31,7 +31,7 @@ For a general introduction to creating full-text indexes, refer to [Creating Ind
 
 ## [](#overview)Overview
 
-To understand how a SQL++ query can make use of a full-text index, it’s important to understand the differences between the semantics of SQL++ queries and full-text indexes, and the restrictions that arise from these differences.
+To understand how a SQL++ query can make use of a full-text index, it's important to understand the differences between the semantics of SQL++ queries and full-text indexes, and the restrictions that arise from these differences.
 
 ### [](#semantic-differences)Semantic Differences
 
@@ -349,7 +349,7 @@ WHERE LOWER(state) = "california" (1)
 
 #### [](#and)AND Expressions
 
-You can use an `AND` expression with a full-text index. Partial sargability is supported: this means that one or both of the requested child expressions must be indexed for the query to use a full-text index. If there’s a possibility of false positives, the query engine filters the results using KV fetches.
+You can use an `AND` expression with a full-text index. Partial sargability is supported: this means that one or both of the requested child expressions must be indexed for the query to use a full-text index. If there's a possibility of false positives, the query engine filters the results using KV fetches.
 
 Example 11\. AND expressions
 

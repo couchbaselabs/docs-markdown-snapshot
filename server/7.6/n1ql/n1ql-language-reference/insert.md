@@ -3,7 +3,7 @@ title: INSERT
 description: Use the INSERT statement to insert one or more new documents into
   an existing keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/insert.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/insert.adoc[]
 ---
 
@@ -465,7 +465,7 @@ INSERT INTO airline ( KEY, VALUE )
 
 Example 5\. Generate a unique key
 
-If you don’t require the document key to be in a specific format, you can use the function [UUID()](metafun.md#uuid) to generate a unique key, as shown here.
+If you don't require the document key to be in a specific format, you can use the function [UUID()](metafun.md#uuid) to generate a unique key, as shown here.
 
 Query
 

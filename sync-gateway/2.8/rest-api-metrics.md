@@ -2,7 +2,7 @@
 title: Metrics REST API
 description: Description of the Sync Gateway Metrics Rest API
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/rest-api-metrics.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::rest-api-metrics.adoc[]
 ---
 
@@ -12,13 +12,13 @@ link: xref:2.8@sync-gateway::rest-api-metrics.adoc[]
 # Metrics REST API
 
 > Description of the Sync Gateway Metrics Rest API  
-> Use the API explorer to find out more about Sync Gateway’s endpoints by functionality.
+> Use the API explorer to find out more about Sync Gateway's endpoints by functionality.
 
 Related _REST API_ topics: [Public REST API](../current/rest-api/rest-api.md) | [Admin REST API](../current/rest-api/rest-api-admin.md) | [Use the REST API?](#sync-gateway::rest-api-client-app.adoc) | [Monitor](../current/manage/stats-monitoring.md) | [Prometheus Integration](../current/deploy/stats-prometheus.md)
 
 ## [](#introduction)Introduction
 
-Sync Gateway makes collecting performance data easy and secure by providing a Metrics REST API. This API, separate from both the Public and Admin REST APIs, is available by default on port `4986` — see [Configuration](#lbl-act) for how to change this, if needed. It exposes Sync Gateway’s stats on two endpoints, which deliver the same data in one of two formats:
+Sync Gateway makes collecting performance data easy and secure by providing a Metrics REST API. This API, separate from both the Public and Admin REST APIs, is available by default on port `4986` — see [Configuration](#lbl-act) for how to change this, if needed. It exposes Sync Gateway's stats on two endpoints, which deliver the same data in one of two formats:
 
 * The `_metrics` endpoint returns Sync Gateway statistics in [Prometheus![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#prometheus) format.  
 For example: `GET host:4986/_metrics`  

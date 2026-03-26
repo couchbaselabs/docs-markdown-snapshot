@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on Objective-C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/releasenotes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite:objc:releasenotes.adoc[]
 ---
 
@@ -141,8 +141,8 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 * [CBL-5241 - Enhancement to Upsert performance when the number of docs increase](https://issues.couchbase.com/browse/CBL-5241)
 
 * [CBL-5265 - Include Privacy Manifest in the released library](https://issues.couchbase.com/browse/CBL-5265)
-* [CBL-5209 - Implement Collection’s database property](https://issues.couchbase.com/browse/CBL-5209)
-* [CBL-5203 - Implementation Collection’s full-name property](https://issues.couchbase.com/browse/CBL-5203)
+* [CBL-5209 - Implement Collection's database property](https://issues.couchbase.com/browse/CBL-5209)
+* [CBL-5203 - Implementation Collection's full-name property](https://issues.couchbase.com/browse/CBL-5203)
 * [CBL-5508 - Update Min macOS Support Version to 12.0](https://issues.couchbase.com/browse/CBL-5508)
 * [CBL-5487 - CBL ObjC Framework Warning about Double-quoted include](https://issues.couchbase.com/browse/CBL-5487)
 * [CBL-5374 - Change all Swift IndexConfiguration from class to struct](https://issues.couchbase.com/browse/CBL-5374)
@@ -174,14 +174,14 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 * [CBL-4913 - Fixed regression in pull of blobs/legacy attachment handling](https://issues.couchbase.com/browse/CBL-4913)
 * [CBL-5082 - Fixed crash in setting Housekeeper::\_doExpiration()](https://issues.couchbase.com/browse/CBL-5082)
 * [CBL-5033 - Fixed Puller revoked docs should queue with other revs](https://issues.couchbase.com/browse/CBL-5033)
-* [CBL-5044 - Don’t capture backtrace for OutOfRange error FLDictIterator\_Next](https://issues.couchbase.com/browse/CBL-5044)
+* [CBL-5044 - Don't capture backtrace for OutOfRange error FLDictIterator\_Next](https://issues.couchbase.com/browse/CBL-5044)
 * [CBL-5307 - Correctly updating remote revision when pulling the existing revision](https://issues.couchbase.com/browse/CBL-5307)
 * [CBL-5332 - Fixed crash during document expiration](https://issues.couchbase.com/browse/CBL-5332)
 * [CBL-5335 - Fixed array\_agg failures](https://issues.couchbase.com/browse/CBL-5335)
 * [CBL-5336 - Over the bound of FLDicIterator should be banned](https://issues.couchbase.com/browse/CBL-5336)
 * [CBL-5377 - Fixed MILLIS\_TO\_STRING is returning UTC instead of local time zone](https://issues.couchbase.com/browse/CBL-5377)
 * [CBL-5449 - Fixed Attachments flag is dropped when applying delta to incoming rev](https://issues.couchbase.com/browse/CBL-5449)
-* [CBL-5515 - Fixed Result alias can’t be used elsewhere in query](https://issues.couchbase.com/browse/CBL-5515)
+* [CBL-5515 - Fixed Result alias can't be used elsewhere in query](https://issues.couchbase.com/browse/CBL-5515)
 * [CBL-5540 - Fixed pthread\_mutex\_lock called on a destroyed mutex](https://issues.couchbase.com/browse/CBL-5540)
 * [CBL-5587 - Fixed Remote rev KeepBody flag could be cleared accidentally](https://issues.couchbase.com/browse/CBL-5587)
 * [CBL-5589 - Fixed N1QL Parser has exponential slowdown for redundant parentheses](https://issues.couchbase.com/browse/CBL-5589)
@@ -194,12 +194,12 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 * [CBL-4441 - Fixed Collection.addDocumentChangeListener() can fatal crash](https://issues.couchbase.com/browse/CBL-4441)
 * [CBL-4440 - Fixed CBLCollection could be leaked if document listener token is not removed](https://issues.couchbase.com/browse/CBL-4440)
 * [CBL-4429 - Fixed crash when starting multiple live queries concurrently](https://issues.couchbase.com/browse/CBL-4429)
-* [CBL-4512 - Fixed ListenerToken is not discardable in Collection’s add change listener functions](https://issues.couchbase.com/browse/CBL-4512)
+* [CBL-4512 - Fixed ListenerToken is not discardable in Collection's add change listener functions](https://issues.couchbase.com/browse/CBL-4512)
 * [CBL-4985 - Remap Changes LiteCore Log Domain to Database Domain](https://issues.couchbase.com/browse/CBL-4985)
 * [CBL-5399 - Fixed Close database might hang waiting for no active replicators or live queries](https://issues.couchbase.com/browse/CBL-5399)
 * [CBL-5418 - Ensure the network streams are disconnected before CBLWebSocket is deallocated](https://issues.couchbase.com/browse/CBL-5418)
 * [CBL-4582 - Fixed MutableDocument contains(key: String) returns wrong result](https://issues.couchbase.com/browse/CBL-4582)
-* [CBL-5075 - Fixed Replicator background task doesn’t take conflict resolution into account](https://issues.couchbase.com/browse/CBL-5075)
+* [CBL-5075 - Fixed Replicator background task doesn't take conflict resolution into account](https://issues.couchbase.com/browse/CBL-5075)
 * [CBL-5660 - Fixed Invalidated context may be used in query observer callback](https://issues.couchbase.com/browse/CBL-5660)
 * [CBL-4336 - Fixed Missing subscript function implementation in Collection class](https://issues.couchbase.com/browse/CBL-4336)
 * [CBL-6192 - Fixed Client Side Proxy CONNECT request is broken](https://issues.couchbase.com/browse/CBL-6192)
@@ -221,8 +221,8 @@ Version 3.2.0 Beta 1 for Objective-C delivers the following features and enhance
 
 ### [](#enhancements-6)Enhancements
 
-* [CBL-5209 - Implement Collection’s database property](https://issues.couchbase.com/browse/CBL-5209)
-* [CBL-5203 - Implementation of Collection’s full-name property](https://issues.couchbase.com/browse/CBL-5203)
+* [CBL-5209 - Implement Collection's database property](https://issues.couchbase.com/browse/CBL-5209)
+* [CBL-5203 - Implementation of Collection's full-name property](https://issues.couchbase.com/browse/CBL-5203)
 * [CBL-5378 - Update iOS Target Version to 12](https://issues.couchbase.com/browse/CBL-5378)
 * [CBL-5374 - Change all Swift IndexConfiguration from class to struct](https://issues.couchbase.com/browse/CBL-5374)
 * [CBL-5487 - CBL ObjC Framework Warning about Double-quoted include](https://issues.couchbase.com/browse/CBL-5487)
@@ -249,7 +249,7 @@ Version 3.2.0 Beta 1 for Objective-C delivers the following features and enhance
 * [CBL-4985 - Remap Changes LiteCore Log Domain to Database Domain](https://issues.couchbase.com/browse/CBL-4985)
 * [CBL-5399 - Close database might hang waiting for no active replicators or live queries](https://issues.couchbase.com/browse/CBL-5399)
 * [CBL-5418 - Ensure the network streams are disconnected before CBLWebSocket is dealloc](https://issues.couchbase.com/browse/CBL-5418)
-* [CBL-4512 - ListenerToken is not discardable in Collection’s add change listener functions](https://issues.couchbase.com/browse/CBL-4512)
+* [CBL-4512 - ListenerToken is not discardable in Collection's add change listener functions](https://issues.couchbase.com/browse/CBL-4512)
 * [CBL-4582 - MutableDocument contains(key: String) returns wrong result](https://issues.couchbase.com/browse/CBL-4582)
 * [CBL-4336 - Missing subscript function implementation in Collection class (Port)](https://issues.couchbase.com/browse/CBL-4336)
 * [CBL-4442 - Update Database API deprecation messages](https://issues.couchbase.com/browse/CBL-4442)
@@ -261,7 +261,7 @@ Version 3.2.0 Beta 1 for Objective-C delivers the following features and enhance
 * [CBL-5335 - array\_agg seem to fail under some circumstances](https://issues.couchbase.com/browse/CBL-5335)
 * [CBL-5332 - Crash during document expiration](https://issues.couchbase.com/browse/CBL-5332)
 * [CBL-5307 - Updating remote revision when pulling the existing revision](https://issues.couchbase.com/browse/CBL-5307)
-* [CBL-5044 - Don’t capture backtrace for OutOfRange error FLDictIterator\_Next](https://issues.couchbase.com/browse/CBL-5044)
+* [CBL-5044 - Don't capture backtrace for OutOfRange error FLDictIterator\_Next](https://issues.couchbase.com/browse/CBL-5044)
 * [CBL-5033 - Puller revoked docs should queue with other revs](https://issues.couchbase.com/browse/CBL-5033)
 * [CBL-5449 - Port - Attachments flag is dropped when applying delta to incoming rev](https://issues.couchbase.com/browse/CBL-5449)
 * [CBL-4536 - Error when saving documents with LiteCore error 17: must be called during a transaction](https://issues.couchbase.com/browse/CBL-4536)
@@ -294,21 +294,21 @@ None for this release
 
 ### [](#deprecations-6)Deprecations
 
-* [CBL-5491 - Default’s MAX\_ATTEMPT\_WAIT\_TIME and USE\_PLAIN\_TEXT are deprecated](https://issues.couchbase.com/browse/CBL-5491)
-* [CBL-4316 - Replicator’s getPendingDocumentIds() and isDocumentPending(String id) are deprecated](https://issues.couchbase.com/browse/CBL-4316)
-* [CBL-4315 - ReplicatorConfiguration’s filters and conflict resolver properties are deprecated](https://issues.couchbase.com/browse/CBL-4315)
+* [CBL-5491 - Default's MAX\_ATTEMPT\_WAIT\_TIME and USE\_PLAIN\_TEXT are deprecated](https://issues.couchbase.com/browse/CBL-5491)
+* [CBL-4316 - Replicator's getPendingDocumentIds() and isDocumentPending(String id) are deprecated](https://issues.couchbase.com/browse/CBL-4316)
+* [CBL-4315 - ReplicatorConfiguration's filters and conflict resolver properties are deprecated](https://issues.couchbase.com/browse/CBL-4315)
 * [CBL-4314 - ReplicatorConfiguration APIs with Database object are deprecated ](https://issues.couchbase.com/browse/CBL-4314)
 * [CBL-4313 - MessageEndpointListenerConfiguration APIs using Database object are deprecated](https://issues.couchbase.com/browse/CBL-4313)
 * [CBL-4312 - URLEndpointListenerConfiguration APIs using Database object are deprecated](https://issues.couchbase.com/browse/CBL-4312)
 * [CBL-4311 - QueryBuilder : isNullOrMissing() and notNullOrMissing() are deprecated](https://issues.couchbase.com/browse/CBL-4311)
-* [CBL-4310 - QueryBuilder : FullTextFunction’s rank(String index) and match(String index, String query) are deprecated](https://issues.couchbase.com/browse/CBL-4310)
-* [CBL-4309 - QueryBuilder : DataSource’s database() is deprecated](https://issues.couchbase.com/browse/CBL-4309)
-* [CBL-4307 - DocumentChange’s database property is deprecated](https://issues.couchbase.com/browse/CBL-4307)
+* [CBL-4310 - QueryBuilder : FullTextFunction's rank(String index) and match(String index, String query) are deprecated](https://issues.couchbase.com/browse/CBL-4310)
+* [CBL-4309 - QueryBuilder : DataSource's database() is deprecated](https://issues.couchbase.com/browse/CBL-4309)
+* [CBL-4307 - DocumentChange's database property is deprecated](https://issues.couchbase.com/browse/CBL-4307)
 * [CBL-4306 - DatabaseChange and DatabaseChangeListener are deprecated](https://issues.couchbase.com/browse/CBL-4306)
-* [CBL-4305 - Database’s removeChangeListener() is deprecated](https://issues.couchbase.com/browse/CBL-4305)
-* [CBL-4304 - Database’s Document APIs are deprecated](https://issues.couchbase.com/browse/CBL-4304)
-* [CBL-5331 - Deprecate Replicator’s removeChangeListener](https://issues.couchbase.com/browse/CBL-5331)
-* [CBL-5330 - Deprecate Replicator’s removeChangeListener](https://issues.couchbase.com/browse/CBL-5330)
+* [CBL-4305 - Database's removeChangeListener() is deprecated](https://issues.couchbase.com/browse/CBL-4305)
+* [CBL-4304 - Database's Document APIs are deprecated](https://issues.couchbase.com/browse/CBL-4304)
+* [CBL-5331 - Deprecate Replicator's removeChangeListener](https://issues.couchbase.com/browse/CBL-5331)
+* [CBL-5330 - Deprecate Replicator's removeChangeListener](https://issues.couchbase.com/browse/CBL-5330)
 
 > [!NOTE]
 > For an overview of the latest features offered in Couchbase Lite 3.2.0 Beta 1, see [New in 3.2](../cbl-whatsnew.md)

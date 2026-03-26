@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Couchbase Rust Client.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Version 1.0 of the Rust SDK implements the 3.9 [SDK API](compatibility.md#api-ve
 
 * The Couchbase Rust SDK 1.0 Client supports Rust 1.90+.
 
-More details of the installation process are in the [full installation guide](sdk-full-installation.md). In most cases, given the above prerequisites, it’s a simple matter of the following:
+More details of the installation process are in the [full installation guide](sdk-full-installation.md). In most cases, given the above prerequisites, it's a simple matter of the following:
 
 ```none
 cargo add couchbase

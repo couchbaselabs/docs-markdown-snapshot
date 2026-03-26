@@ -4,7 +4,7 @@ description: Virtualized platforms such as VMware, AWS/Azure/GCP, and Docker
   (containers) are popular ways of achieving hardware scalability to complement
   Couchbase Server's software scalability.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/best-practices-vm.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:best-practices-vm.adoc[]
 ---
 
@@ -13,13 +13,13 @@ link: xref:server:install:best-practices-vm.adoc[]
 
 # Deployment Considerations for Virtual Machines and Containers
 
-> Virtualized platforms such as VMware, AWS/Azure/GCP, and Docker (containers) are popular ways of achieving hardware scalability to complement Couchbase Server’s software scalability. 
+> Virtualized platforms such as VMware, AWS/Azure/GCP, and Docker (containers) are popular ways of achieving hardware scalability to complement Couchbase Server's software scalability. 
 
 When deploying Couchbase Server on a virtualized platform, some extra considerations should be made.
 
 **Avoid a Single Point of Failure**
 
-Couchbase Server’s resilience and high-availability are achieved through creating a cluster of independent nodes and replicating data between them so that any individual node failure doesn’t lead to loss of access to your data. In a virtualized environment, if you run multiple nodes on the same host or physical hardware, you are inadvertently re-introducing a single point of failure. In environments where you control the virtual machine (VM) placement, it is recommended that each Couchbase Server node runs on a different piece of physical hardware.
+Couchbase Server's resilience and high-availability are achieved through creating a cluster of independent nodes and replicating data between them so that any individual node failure doesn't lead to loss of access to your data. In a virtualized environment, if you run multiple nodes on the same host or physical hardware, you are inadvertently re-introducing a single point of failure. In environments where you control the virtual machine (VM) placement, it is recommended that each Couchbase Server node runs on a different piece of physical hardware.
 
 **Sizing a Virtualized Deployment**
 
@@ -40,7 +40,7 @@ Due to the fact that the VM is running on top of a hypervisor or container engin
 
 **Live Migration**
 
-Some virtualization environments allow VMs to be migrated between physical nodes and/or between storage backends. When moving the VM, there is the potential for small pauses and network disruption, which has the potential to affect the scheduler, which in turn could trigger a failover. When changing the backend storage, disk queues, compaction, or indexing may be affected, which could have a knock-on effect on general performance. Therefore, it is recommended that use Couchbase’s built-in rebalance mechanism for maintenance.
+Some virtualization environments allow VMs to be migrated between physical nodes and/or between storage backends. When moving the VM, there is the potential for small pauses and network disruption, which has the potential to affect the scheduler, which in turn could trigger a failover. When changing the backend storage, disk queues, compaction, or indexing may be affected, which could have a knock-on effect on general performance. Therefore, it is recommended that use Couchbase's built-in rebalance mechanism for maintenance.
 
 If it is absolutely necessary to perform a migration, then disable auto-failover beforehand and be prepared for a performance impact during the migration. Pausing, resuming, and snapshotting virtual machines can also have the same effect. These actions should only be performed on a Couchbase Server node which has been removed from the cluster.
 
@@ -57,7 +57,7 @@ By mapping the directory _/opt/couchbase/var_ to a directory outside the contain
 In a standard Docker environment using a union file system, leaving _/opt/couchbase/var_ inside the container results in some amount of performance degradation.
 
 > [!NOTE]
-> If you have SELinux enabled, mounting the host volumes in a container requires an extra step. Assuming you’re mounting the _\~/couchbase_ directory on the host file system, you need to run the following command once before running your first container on that host:
+> If you have SELinux enabled, mounting the host volumes in a container requires an extra step. Assuming you're mounting the _\~/couchbase_ directory on the host file system, you need to run the following command once before running your first container on that host:
 > 
 > mkdir ~/couchbase && chcon -Rt svirt_sandbox_file_t ~/couchbase
 

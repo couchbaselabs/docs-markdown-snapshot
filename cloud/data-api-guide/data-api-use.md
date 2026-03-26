@@ -2,7 +2,7 @@
 title: Make an API Call with the Data API
 description: How to make an API call with the Couchbase Capella Data API.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-use.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:data-api-guide:data-api-use.adoc[]
 ---
 
@@ -19,7 +19,7 @@ The procedures on this page assume the following:
 
 * The Data API is enabled for the cluster. You must have the base URL for the Data API.
 * You have a cluster access credential that has access to the required buckets, scopes, and collections. You must have saved the cluster access username and cluster access secret when you created the cluster access credential.
-* If you’re accessing the Data API from a public network, you have access to the Data API from your client’s IP address. Alternatively, you have enabled a VPC peering connection or a private endpoint to access the Data API.
+* If you're accessing the Data API from a public network, you have access to the Data API from your client's IP address. Alternatively, you have enabled a VPC peering connection or a private endpoint to access the Data API.
 
 To enable the Data API for the cluster, see [Get Started with the Data API](data-api-start.md).
 
@@ -138,7 +138,7 @@ curl "$BASEURL/v1/buckets/travel-sample/scopes/inventory/collections/hotel/docum
 
 curl also has an `--etag-save` option, which provides a convenient way of saving the CAS value. This example requests the protocol response headers instead, for clarity.
 
-The response is an ETag similar to the following. The ETag is the document’s CAS value.
+The response is an ETag similar to the following. The ETag is the document's CAS value.
 
 HTTP Response
 
@@ -152,7 +152,7 @@ You can use the CAS in a PUT or DELETE request for concurrency control.
 
 The following request checks whether the specified document within the specified bucket, scope, and collection has the expected CAS value. If so, it updates the document.
 
-This enables you to make sure that you’re applying your update to the correct revision of the document, in cases where the document may be updated by other processes concurrently.
+This enables you to make sure that you're applying your update to the correct revision of the document, in cases where the document may be updated by other processes concurrently.
 
 * `$BASEURL` is the base URL for the Data API.
 * `$USER` is the cluster access username.

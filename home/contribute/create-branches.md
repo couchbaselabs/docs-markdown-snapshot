@@ -1,7 +1,7 @@
 ---
 title: Create a New Working Branch
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/create-branches.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:create-branches.adoc[]
 ---
 
@@ -41,7 +41,7 @@ For example, if an issue or a fix only relates to the 7.0 version of a product, 
 * Name your working branch based on the ticket number for the issue.
 * Create a pull request (PR) for your working branch that targets your original base branch.
 
-If you’re ever unsure about the correct branch to use for an issue:
+If you're ever unsure about the correct branch to use for an issue:
 
 * Look for the **Affects versions** field on your assigned ticket
 * Ask another member of the Documentation team
@@ -71,7 +71,7 @@ VS Code might prompt you that the repository has been marked as unsafe:
 ![The Source Control panel in VS Code. The user has pointed to the top of the panel and brought up the additional context menu, and the More Actions button is highlighted.](_images/more-actions.png)
 8. Click **Checkout to…​**.
 9. [Choose the correct base branch for your new working branch](#base-branch).  
-You can select it from the list of branches or type to search for the correct branch. If this is the first time you’re choosing your base branch, the branch name must be prefixed with `origin/`.
+You can select it from the list of branches or type to search for the correct branch. If this is the first time you're choosing your base branch, the branch name must be prefixed with `origin/`.
 10. To get the latest copy of any changes on your base branch, click **Sync Changes**.
 11. Point to the **Source Control** label again and click **…​** (**More Actions…​**).
 12. Go to **Branch** **Create Branch…​**.

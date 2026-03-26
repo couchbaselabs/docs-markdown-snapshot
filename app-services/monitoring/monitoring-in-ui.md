@@ -2,7 +2,7 @@
 title: Monitor through the UI
 description: App Services and Endpoints can be monitored through the Capella UI.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/monitoring-in-ui.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::monitoring/monitoring-in-ui.adoc[]
 ---
 
@@ -43,7 +43,7 @@ Figure 2\. Show Underlying data for point on graph.
 
 ## [](#monitoring-an-app-endpoint-through-the-capella-ui)Monitoring an App Endpoint through the Capella UI
 
-Metrics data for an App Endpoint can be accessed through the App Endpoint’s configuration screen:
+Metrics data for an App Endpoint can be accessed through the App Endpoint's configuration screen:
 
 1. From the App Services screen, select an App Service, and click the **App Endpoints** tab.  
 In the **App Endpoints** page, select an App Service Endpoint.

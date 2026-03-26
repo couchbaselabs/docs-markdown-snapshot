@@ -2,7 +2,7 @@
 title: Audit Event Reference
 description: A complete list of the events audited by Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/audit-event-reference.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:reference:audit-event-reference.adoc[]
 ---
 
@@ -25,7 +25,7 @@ The current page lists all events that can be audited.
 
 The events listed in the following tables support the auditing of administrative and data changes, made on the cluster.
 
-In each table, the first column (at the left) features the event-group heading (thereby repeating the table’s title, so as to ensure readability throughout the longer tables). The second column provides the event name. The third column provides the id for the event. The fourth column provides a description of the event; the fifth describes whether it is _filterable_; and the sixth indicates whether the event is classified as Data or Admin.
+In each table, the first column (at the left) features the event-group heading (thereby repeating the table's title, so as to ensure readability throughout the longer tables). The second column provides the event name. The third column provides the id for the event. The fourth column provides a description of the event; the fifth describes whether it is _filterable_; and the sixth indicates whether the event is classified as Data or Admin.
 
 The tables — which are for the [REST API](#audit-event-reference:audit-event-reference.adoc#rest-api-event-list-table) and the [Analytics Service](#audit-event-reference:audit-event-reference.adoc#analytics-service-event-list-table) are as follows.
 

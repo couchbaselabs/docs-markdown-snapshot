@@ -1,7 +1,7 @@
 ---
 title: CouchbaseBackup Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbasebackup.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::resource/couchbasebackup.adoc[]
 ---
 
@@ -377,7 +377,7 @@ Variable references $(VAR\_NAME) are expanded using the previously defined envir
 
 #### [](#description-22)Description
 
-Source for the environment variable’s value. Cannot be used if value is not empty.
+Source for the environment variable's value. Cannot be used if value is not empty.
 
 ### [](#couchbasebackups-spec-env-valuefrom-configmapkeyref)couchbasebackups.spec.env.valueFrom.configMapKeyRef
 
@@ -503,7 +503,7 @@ Required: resource to select.
 
 #### [](#description-34)Description
 
-Selects a key of a secret in the pod’s namespace.
+Selects a key of a secret in the pod's namespace.
 
 ### [](#couchbasebackups-spec-env-valuefrom-secretkeyref-key)couchbasebackups.spec.env.valueFrom.secretKeyRef.key
 
@@ -929,7 +929,7 @@ Name of StorageClass to use.
 
 #### [](#description-71)Description
 
-Strategy defines how to perform backups. `full_only` will only perform full backups, and you must define a schedule in the `spec.full` field. `full_incremental`will perform periodic full backups, and incremental backups in between. You must define full and incremental schedules in the `spec.full` and `spec.incremental` fields respectively. `periodic_merge` will first create an immediate full backup, after that, it will only take incremental backups and then merge them. You must define incremental and merge schedules in the `spec.incremental` and `spec.merge` fields respectively. The initial full backup will be retried based on spec.backoffLimit, if it reaches this limit without success, then the incremental, merge cycles won’t run. Care should be taken to ensure full, incremental and merge schedules do not overlap, taking into account the backup time, as this will cause failures as the jobs attempt to mount the same backup volume. To cause a backup to occur immediately use `immediate_incremental` or `immediate_full` for incremental or full backups respectively. respectively. This field default to `full_incremental`. Info: <https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html>.
+Strategy defines how to perform backups. `full_only` will only perform full backups, and you must define a schedule in the `spec.full` field. `full_incremental`will perform periodic full backups, and incremental backups in between. You must define full and incremental schedules in the `spec.full` and `spec.incremental` fields respectively. `periodic_merge` will first create an immediate full backup, after that, it will only take incremental backups and then merge them. You must define incremental and merge schedules in the `spec.incremental` and `spec.merge` fields respectively. The initial full backup will be retried based on spec.backoffLimit, if it reaches this limit without success, then the incremental, merge cycles won't run. Care should be taken to ensure full, incremental and merge schedules do not overlap, taking into account the backup time, as this will cause failures as the jobs attempt to mount the same backup volume. To cause a backup to occur immediately use `immediate_incremental` or `immediate_full` for incremental or full backups respectively. respectively. This field default to `full_incremental`. Info: <https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html>.
 
 ### [](#couchbasebackups-spec-successfuljobshistorylimit)couchbasebackups.spec.successfulJobsHistoryLimit
 

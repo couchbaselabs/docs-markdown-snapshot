@@ -3,7 +3,7 @@ title: Live Query
 description: Working with Couchbase Lite's data model  -- Querying database data
   using live queries
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/java/pages/query-live.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:java:query-live.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.8@couchbase-lite:java:query-live.adoc[]
 
 # Live Query
 
-> Description — _Working with Couchbase Lite’s data model — Querying database data using live queries_  
+> Description — _Working with Couchbase Lite's data model — Querying database data using live queries_  
 > Related Content — [Predictive Query](#couchbase-lite:java:query-predictive.adoc) | [Indexing](../../current/java/indexing.md) | [Queries](../../current/java/querybuilder.md)
 
 ## [](#activating-a-live-query)Activating a Live Query

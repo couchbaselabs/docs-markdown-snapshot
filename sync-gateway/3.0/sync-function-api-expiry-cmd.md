@@ -2,7 +2,7 @@
 title: expiry()
 description: Setting an expiry value on a document in a local database
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/sync-function-api-expiry-cmd.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::sync-function-api-expiry-cmd.adoc[]
 ---
 
@@ -45,7 +45,7 @@ The **active** revision of the document is tombstoned.
 
 If there is another non-tombstoned revision for this document (i.e a conflict) it will become the active revision.
 
-The tombstoned revision will be purged when the server’s metadata purge interval is reached.
+The tombstoned revision will be purged when the server's metadata purge interval is reached.
 
 Disabled
 
@@ -59,7 +59,7 @@ The purge of the document does not cause it to be deleted on any other database.
 
 ### [](#inspect-a-document-expiry-value)Inspect a Document Expiry Value
 
-You can retrieve a document’s expiration time, as it is returned in the response of GET [/{db}/{doc}](rest-api.md#/document/get<em>db</em><em>doc</em>) using `show_exp=true` as the querystring.
+You can retrieve a document's expiration time, as it is returned in the response of GET [/{db}/{doc}](rest-api.md#/document/get<em>db</em><em>doc</em>) using `show_exp=true` as the querystring.
 
 ```bash
 curl -X GET "http://localhost:4985/ourdb/ourdoc?show_exp=true" -H "accept: application/json"

@@ -3,7 +3,7 @@ title: Save Views or Tabular Views
 description: You can save the results of queries that use selection syntax in a
   view or tabular view.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/views-tavs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:query:views-tavs.adoc[]
 ---
 
@@ -73,7 +73,7 @@ For example, you enter the following query:
 
 After you select **Save as View**, you click **Annotate for Tabular View**.
 
-Initially, your query results in the error "Tabular views can’t work with object or array fields. No view-usable fields found." Capella Analytics suggests query syntax to flatten the `"airline"` object.
+Initially, your query results in the error "Tabular views can't work with object or array fields. No view-usable fields found." Capella Analytics suggests query syntax to flatten the `"airline"` object.
 
 You re-try the query with the suggested syntax:
 

@@ -1,7 +1,7 @@
 ---
 title: Stream Data from Couchbase Server
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/remote-cb-server.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sources:remote-cb-server.adoc[]
 ---
 
@@ -21,13 +21,13 @@ Your Capella Analytics account must have either the [Project Owner](../admin/aut
 
 You need to take the following steps on your Couchbase Server database:
 
-* Configure your Couchbase Server cluster’s network to allow access from Capella Analytics. The steps you must take depend on how and where you deployed your Couchbase Server database. For example, suppose you deployed a self-managed Couchbase Server in AWS. Then to allow Capella Analytics to connect, create a VPC peering connection between the VPCs for your Capella Analytics database and the Couchbase Server cluster.
+* Configure your Couchbase Server cluster's network to allow access from Capella Analytics. The steps you must take depend on how and where you deployed your Couchbase Server database. For example, suppose you deployed a self-managed Couchbase Server in AWS. Then to allow Capella Analytics to connect, create a VPC peering connection between the VPCs for your Capella Analytics database and the Couchbase Server cluster.
 * Create a user and password for Capella Analytics to use when connecting. Give this user read/write permissions for all buckets and scopes you want to stream. See [Manage Users, Groups, and Roles](../../server/current/manage/manage-security/manage-users-and-roles.md).
 * Get the hostname or external IP address for one of the Couchbase Server nodes. You supply this value to Capella Analytics as the connection string.
-* Save a copy of the Couchbase Server’s cluster certificate. You can get the certificate from two places:
+* Save a copy of the Couchbase Server's cluster certificate. You can get the certificate from two places:
 
-  * Copy the certificate from the Couchbase Server Web Console’s **Security** **Certificate** page under the **Trusted Root Certificate**.
-  * Get the certificate by calling Couchbase Server’s [/pools/default/trustedCAs REST API](../../server/current/rest-api/get-trusted-cas.md).
+  * Copy the certificate from the Couchbase Server Web Console's **Security** **Certificate** page under the **Trusted Root Certificate**.
+  * Get the certificate by calling Couchbase Server's [/pools/default/trustedCAs REST API](../../server/current/rest-api/get-trusted-cas.md).
 * Note the names of the bucket, scope, and collection you want to stream to Capella Analytics.
 
 ## [](#link)Create a Link to a Couchbase Server Database
@@ -43,7 +43,7 @@ To create a remote link to a Couchbase Server database:
 7. In the **Couchbase Link Name** field, enter a name for the link.
 8. In the **Connection String** field, enter the hostname or IP address of one of the Couchbase Server nodes.
 9. Supply the authentication details. You may need to scroll to enter all required values.
-10. Select one of the encryption options. If you select either **Half** or **Full**, also paste Couchbase Server’s trusted root certificate in the **Remote Cluster Certificate** field.
+10. Select one of the encryption options. If you select either **Half** or **Full**, also paste Couchbase Server's trusted root certificate in the **Remote Cluster Certificate** field.
 11. Click **Save & Continue**. The link does not automatically connect to the remote source system. See [Connect or Disconnect a Remote Link](connect-link.md).
 
 You can now create a collection associated with the link.
@@ -58,7 +58,7 @@ Once you have created a link, create a remote collection to receive the data fro
 2. Select the Capella Analytics database and scope for the new collection and supply a name in the **Collection Name** field.
 3. In the **Source** fields, enter the names of the Couchbase **Bucket**, **Scope**, and **Collection** you want to shadow.
 4. Optionally, enter an expression in the **WHERE clause** field to filter the documents in the source collection. Do not include the `WHERE` keyword, and supply only a deterministic expression. For example, `activity = "eat"`.
-5. Click **Create Collection**. Your collection appears in the explorer’s **Data** section underneath its database and scope.
+5. Click **Create Collection**. Your collection appears in the explorer's **Data** section underneath its database and scope.
 
 You can choose to create additional linked collections by clicking **Create Another Collection**.
 

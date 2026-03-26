@@ -3,7 +3,7 @@ title: Handling Errors
 description: Errors are inevitable. The developer’s job is to be prepared for
   whatever is likely to come up
 editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:go-columnar-sdk:howtos:error-handling.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:go-columnar-sdk:howtos:error-handling.adoc[]
 
 # Handling Errors
 
-> Errors are inevitable. The developer’s job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. 
+> Errors are inevitable. The developer's job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. 
 
 The Go SDK works nicely with the [errors package](https://golang.org/pkg/errors/) to interrogate errors. Of course, you can also just log them and fail the operation.
 

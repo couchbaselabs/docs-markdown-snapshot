@@ -2,7 +2,7 @@
 title: Blobs
 description: Couchbase Lite database data model concepts - blobs
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/blob.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::blob.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Couchbase Lite for JavaScript uses _blobs_ to store the contents of images, othe
 
 The blob itself is not stored in the document. It is held in a separate content-addressable store indexed from the document and retrieved only on-demand.
 
-When a document is synchronized, the Couchbase Lite replicator adds an `_attachments` dictionary to the document’s properties if it contains a blob.
+When a document is synchronized, the Couchbase Lite replicator adds an `_attachments` dictionary to the document's properties if it contains a blob.
 
 ## [](#blob-objects)Blob Objects
 
@@ -28,14 +28,14 @@ The blob as an object appears in a document as a dictionary property.
 
 Other properties include `length` (the length in bytes), and optionally `contentType` (typically, its MIME type).
 
-The blob’s data (an image, audio or video content) is not stored in the document, but in a separate content-addressable store, indexed by the `digest` property — see [Using Blobs](#lbl-using).
+The blob's data (an image, audio or video content) is not stored in the document, but in a separate content-addressable store, indexed by the `digest` property — see [Using Blobs](#lbl-using).
 
 ### [](#constraints)Constraints
 
 * Couchbase Lite  
 Blobs can be arbitrarily large. They are only read on demand, not when you load the _document_.
 * Sync Gateway  
-The maximum content size is 20 MB per blob. If a document’s blob is over 20 MB, the document will be replicated but not the blob.
+The maximum content size is 20 MB per blob. If a document's blob is over 20 MB, the document will be replicated but not the blob.
 
 ## [](#lbl-using)Using Blobs
 

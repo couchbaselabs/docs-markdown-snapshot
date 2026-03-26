@@ -4,7 +4,7 @@ description: How to control read/write/delete access using Sync Gateway's Sync
   Function API to ensure secure access to data in cloud-to-edge enterprise data
   synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/access-control-how-control-document-access.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:access-control:access-control-how-control-document-access.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:sync-gateway:access-control:access-control-how-control-document-acces
 
 # Control Document Access
 
-> How to control read/write/delete access using Sync Gateway’s Sync Function API to ensure secure access to data in cloud-to-edge enterprise data synchronization.  
+> How to control read/write/delete access using Sync Gateway's Sync Function API to ensure secure access to data in cloud-to-edge enterprise data synchronization.  
 
 _Related topics_: [Create Role](access-control-how-create-roles.md) | [Create User](access-control-how-create-users.md) | [Add Role to User](access-control-how-assign-users-to-roles.md) | [Allow Access](access-control-how-control-document-access.md) | [Verify Access](access-control-how-verify-access.md) | [Write Access](access-control-how-control-document-access.md)
 
@@ -62,7 +62,7 @@ $ curl -vX PUT "http://localhost:4985/mydatabase/_user/{user}" -H (1)
 | ----- | ------------------------------------------------------------------------------------------------------- |
 | **2** | Here we add _Channel1_ and _Channel3_ to the user inside scope scopename and collection collectionname. |
 
-You can also use the Sync Function’s [access()](sync-function/sync-function-api-access-cmd.md) function to allow channel access to roles and-or users programmatically.
+You can also use the Sync Function's [access()](sync-function/sync-function-api-access-cmd.md) function to allow channel access to roles and-or users programmatically.
 
 In the case where channel assignment is done dynamically via the sync function, the channel(s) to which user/role is assigned is identified in two ways:
 
@@ -72,7 +72,7 @@ In the case where channel assignment is done dynamically via the sync function, 
 * Version 3.x
 * All Versions
 
-Here we are using a specific XATTR to determine which users need access to the document’s contents — for more on how to configure ths see [Use XATTRs for Access Grants](access-control-how-use-xattrs-for-access-grants.md).
+Here we are using a specific XATTR to determine which users need access to the document's contents — for more on how to configure ths see [Use XATTRs for Access Grants](access-control-how-use-xattrs-for-access-grants.md).
 
 ```javascript
 function (doc, oldDoc, meta) { (1)
@@ -95,7 +95,7 @@ function (doc, oldDoc, meta) { (1)
 | **2** | Access the meta parameter object to check an xattr exists on this document                                                   |
 | **3** | Use the content of the xattr to define the channels setting for this document                                                |
 
-Here we are using the document content (`type`) to determine which users need access to the document’s contents.
+Here we are using the document content (`type`) to determine which users need access to the document's contents.
 
 ```javascript
 function (doc, olddoc) {
@@ -116,7 +116,7 @@ function (doc, olddoc) {
 
 | **1** | Here we add access to channel _channel1_ to the user _Edge1User_                                                                                                                                                                                       |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **2** | The access() function can also operate on roles. If a user name string begins with role: then the remainder of the string is interpreted as a role name. **NOTE** There’s no ambiguity here, because : is an illegal character in a user or role name. |
+| **2** | The access() function can also operate on roles. If a user name string begins with role: then the remainder of the string is interpreted as a role name. **NOTE** There's no ambiguity here, because : is an illegal character in a user or role name. |
 | **3** | Here we allow access to the channel _channel2_ for the role _Edge2_                                                                                                                                                                                    |
 
 Add a channel to a user in the configuration file. This method is convenient for testing and to get started. Use the **Admin REST API** for production systems.
@@ -230,7 +230,7 @@ function (doc, oldDoc) {
 
 Example 3\. Helper Function examples
 
-Here we show various ways to use some of the Sync Function API’s helper functions:
+Here we show various ways to use some of the Sync Function API's helper functions:
 
 ```javascript
 requireUser("snej") (1)

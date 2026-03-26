@@ -2,7 +2,7 @@
 title: Manage Inter-Sync Gateway Replications
 description: Managing inter-Sync Gateway replications
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/sync/pages/sync-inter-syncgateway-manage.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:sync:sync-inter-syncgateway-manage.adoc[]
 ---
 
@@ -137,16 +137,16 @@ Success Response::
 
 ## [](#updating-a-replication)Updating a Replication
 
-You can update an existing replication’s definition, whether configured or initialized by Admin REST API, by providing the details you want to change in an API call ([Example 3](#update-replication-definition)). Changes will only be made to those parameters provided in the call.
+You can update an existing replication's definition, whether configured or initialized by Admin REST API, by providing the details you want to change in an API call ([Example 3](#update-replication-definition)). Changes will only be made to those parameters provided in the call.
 
 If you change the remote URI it must be to a valid URI.
 
 > [!TIP]
-> How do I change an existing replication’s definition details?
+> How do I change an existing replication's definition details?
 > 
 > Send a `PUT` request to the `_replication` endpoint. Specify just the changed items in the JSON body.
 
-Example 3\. Update a replication’s details
+Example 3\. Update a replication's details
 
 * Request
 * Response
@@ -270,7 +270,7 @@ curl --location --request GET "http://localhost:4985/db1-local/_replicationStatu
 --header 'Content-Type: application/json' \
 ```
 
-| **1** | This example’s criteria selects replications with any status (including errors), on local and remote nodes. The returned status details also include replication definition details. |
+| **1** | This example's criteria selects replications with any status (including errors), on local and remote nodes. The returned status details also include replication definition details. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 ```json
@@ -490,7 +490,7 @@ If required, you can override this behavior using the configurable option (`enab
 > [!NOTE]
 > The behavior of the config flag is the **reverse** of what is done on Couchbase Lite.
 
-Using this option auto-purges documents on the active Sync Gateway that are no longer accessible, unless a document belongs to another of replicating user’s channels. This applies even if they are not actively replicating that channel.
+Using this option auto-purges documents on the active Sync Gateway that are no longer accessible, unless a document belongs to another of replicating user's channels. This applies even if they are not actively replicating that channel.
 
 > [!TIP]
 > When `enable_auto_purge-true=true`, documents in revoked user channels are auto purged from Sync Gateway.
@@ -499,10 +499,10 @@ This is consistent with _Sync Gateway_'s handling of document access revocation 
 
 ### [](#access-reassignment)Access Reassignment
 
-Where a user loses access to a channel and is then reassigned access to a channel, any previously auto-purged documents still assigned to any of the user’s channels are automatically pulled down by the active Sync Gateway.
+Where a user loses access to a channel and is then reassigned access to a channel, any previously auto-purged documents still assigned to any of the user's channels are automatically pulled down by the active Sync Gateway.
 
 > [!NOTE]
-> This will not impact active nodes that have turned off auto-purge behavior. Auto-purged documents removed from a user’s channels subsequent to the purge will not be synced again.
+> This will not impact active nodes that have turned off auto-purge behavior. Auto-purged documents removed from a user's channels subsequent to the purge will not be synced again.
 
 If you want to control whether to sync previous auto purged versions of the document and do not want to pull down purged documents, you must remove the documents from all of the users channels to ensure they are not synced down again.
 
@@ -535,7 +535,7 @@ ISGR is configured to run as a non-admin user on active peer.
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | Active Sync Gateway (Local) (Running as non-admin user user1)                    | Passive Sync Gateway (Remote)                                        | Expected behavior when enable\_auto\_purge is TRUE                                                                                             |
 | User1 revoked access to channel                                                  | User2 revoked access to channel                                      | Previously synced documents for User2 are auto purged on local                                                                                 |
-| User1 revoked access to channel Sync Function includes requireAccess (“channel”) | User2 still has access to channel                                    | Config option has no impact. Previously synced documents for User2 remain on local Subsequent remote changes synced down are rejected by local |
+| User1 revoked access to channel Sync Function includes requireAccess ("channel") | User2 still has access to channel                                    | Config option has no impact. Previously synced documents for User2 remain on local Subsequent remote changes synced down are rejected by local |
 | User still has access to channel                                                 | User revoked access to channel Sync Function access policy is a Noop | Previously synced documents are auto purged on local                                                                                           |
 
 ---

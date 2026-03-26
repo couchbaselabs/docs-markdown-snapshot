@@ -2,7 +2,7 @@
 title: Browser and CLI Access
 description: Web and command line interfaces to Couchbase Server are available.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/hello-world/pages/cbc.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:c-sdk:hello-world:cbc.adoc[]
 ---
 
@@ -201,7 +201,7 @@ $ sudo dpkg -i libcouchbase3{-tools,-libevent,}_3.2.0*.deb libcouchbase-dev*.deb
 
 ## [](#installation-from-source)Installation from source
 
-You may install the library from source either by downloading a source archive, or by checking out the [git repository](https://github.com/couchbase/libcouchbase). Follow the instructions in the archive’s [README](https://github.com/couchbase/libcouchbase/blob/master/README.markdown) for further instructions.
+You may install the library from source either by downloading a source archive, or by checking out the [git repository](https://github.com/couchbase/libcouchbase). Follow the instructions in the archive's [README](https://github.com/couchbase/libcouchbase/blob/master/README.markdown) for further instructions.
 
 ## [](#installation-on-mac-os-x)Installation on Mac OS X
 

@@ -2,7 +2,7 @@
 title: Transcoders and Non-JSON Documents
 description: The Python SDK supports common JSON document requirements out-of-the-box.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@python-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
@@ -71,7 +71,7 @@ except (ValueFormatException, CouchbaseException) as ex:
     traceback.print_exc()
 ```
 
-Since orjson has already done the serialization work, we don’t want to use the default `JSONTranscoder`, as this will run the provided string needlessly through `json.loads`. Instead, `RawJSONTranscoder` is used, which just passes through the serialized bytes, and stores them in Couchbase with the JSON Common Flag set.
+Since orjson has already done the serialization work, we don't want to use the default `JSONTranscoder`, as this will run the provided string needlessly through `json.loads`. Instead, `RawJSONTranscoder` is used, which just passes through the serialized bytes, and stores them in Couchbase with the JSON Common Flag set.
 
 Similarly, the same transcoder is used on reading the document, so the raw bytes can be retrieved in a string without going through `json.dumps`. orjson can then be used for the deserialization.
 
@@ -90,7 +90,7 @@ assert decoded == user
 It is most common to store JSON with Couchbase. However, it is possible to store non-JSON documents, such as raw binary data.
 
 > [!NOTE]
-> It’s important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS (Search), analytics, and eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
+> It's important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS (Search), analytics, and eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
 
 Also note that some simple data types can be stored directly as JSON, without recourse to non-JSON transcoding. A valid JSON document can be a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value.
 
@@ -106,7 +106,7 @@ Note that this transcoder does not accept a serializer, and always performs stra
 | bytes/bytearray | ValueFormatException | \-          |
 | other           | ValueFormatException | \-          |
 
-Here’s an example of using the `RawStringTranscoder`:
+Here's an example of using the `RawStringTranscoder`:
 
 ```python
 transcoder = RawStringTranscoder()
@@ -133,7 +133,7 @@ The `RawBinaryTranscoder` provides the ability for the user to explicitly store 
 | bytes/bytearray | Passthrough          | Binary      |
 | other           | ValueFormatException | \-          |
 
-Here’s an example of using the `RawBinaryTranscoder`:
+Here's an example of using the `RawBinaryTranscoder`:
 
 ```python
 transcoder = RawBinaryTranscoder()
@@ -156,7 +156,7 @@ More advanced transcoding needs can be accomplished if the application implement
 
 ### [](#creating-a-custom-transcoder)Creating a Custom Transcoder
 
-Let’s look at a more complex example: encoding the JSON alternative, [MessagePack](https://msgpack.org). MessagePack is a compact binary data representation which is custom to our needs, so it should be stored with our with own Common Flag. The Common Flag is chosen by the transcoder, and none of the existing transcoders matches our needs (`RawBinaryTranscoder` does set the binary flag, but it passes data through directly rather than using a serializer, which could also cause issues if you access data through different SDKs). So we need to write one.
+Let's look at a more complex example: encoding the JSON alternative, [MessagePack](https://msgpack.org). MessagePack is a compact binary data representation which is custom to our needs, so it should be stored with our with own Common Flag. The Common Flag is chosen by the transcoder, and none of the existing transcoders matches our needs (`RawBinaryTranscoder` does set the binary flag, but it passes data through directly rather than using a serializer, which could also cause issues if you access data through different SDKs). So we need to write one.
 
 We create a transcoder that uses the `msgpack.packb`/`msgpack.unpackb` methods, and sets the our own Common Flag when storing the data:
 
@@ -192,7 +192,7 @@ class MessagePackTranscoder(Transcoder):
             raise
 ```
 
-Note the use of a private property `_CUSTOM_FLAGS`. We are setting the flags to our own value so that our data cannot be misread by any other SDK accessing the data. We’d have to implement our transcoder in those SDKs too. The `(1 << 24)` value actually corresponds to an internal SDK flag signifying that the datatype is private, we then encode our own `MPK` flag into it.
+Note the use of a private property `_CUSTOM_FLAGS`. We are setting the flags to our own value so that our data cannot be misread by any other SDK accessing the data. We'd have to implement our transcoder in those SDKs too. The `(1 << 24)` value actually corresponds to an internal SDK flag signifying that the datatype is private, we then encode our own `MPK` flag into it.
 
 Now we can use the new transcoder to seamlessly store MessagePack data in Couchbase Server:
 

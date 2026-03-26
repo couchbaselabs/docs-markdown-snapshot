@@ -4,7 +4,7 @@ description: Multiple procedures are available for the upgrade of Enterprise
   Analytics. An appropriate procedure should be selected, based on a variety of
   factors.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/upgrade-procedure-selection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:install:upgrade-procedure-selection.adoc[]
 ---
 
@@ -27,7 +27,7 @@ Use the information on this page to choose the right procedure based on your spe
 
 ## [](#upgrade-and-availability)Upgrades and Availability
 
-Upgrade of Enterprise Analytics occurs node by node. When every node has been upgraded to the latest version of Enterprise Analytics, the whole cluster is considered upgraded. To be upgraded, each node must be offline: this means that although it’s still **up** and **network-accessible**, it’s **not** part of a cluster that’s serving data. To upgrade all the nodes in the cluster, choose 1 of the following methods:
+Upgrade of Enterprise Analytics occurs node by node. When every node has been upgraded to the latest version of Enterprise Analytics, the whole cluster is considered upgraded. To be upgraded, each node must be offline: this means that although it's still **up** and **network-accessible**, it's **not** part of a cluster that's serving data. To upgrade all the nodes in the cluster, choose 1 of the following methods:
 
 Cluster Offline
 
@@ -57,13 +57,13 @@ Enterprise Analytics automatically performs a **Swap Rebalance** when all the fo
 Since the introduced nodes are recognized by Enterprise Analytics to have equivalent capacities and configurations to those that have been taken out, rebalance is performed as a **swap rebalance**; which largely confines its activity to the incoming and outgoing nodes. Thus, for example, if one Data Service node is removed and another added, the swap rebalance ensures that the vBucket layout of the outgoing node is created identically on the incoming node; with the layouts of other Data Service nodes not requiring modification.
 
 > [!NOTE]
-> Make sure you’re familiar with the effects of a rebalance on your Enterprise Analytics cluster. See [Rebalance](../reference/rest-rebalance-overview.md).
+> Make sure you're familiar with the effects of a rebalance on your Enterprise Analytics cluster. See [Rebalance](../reference/rest-rebalance-overview.md).
 
 #### [](#using-spare-nodes)Using Spare Nodes
 
 A swap rebalance requires introducing and removing an identical number and configuration of nodes. This requires using spare nodes.
 
-A **spare** node is any node that’s not currently a member of the cluster.
+A **spare** node is any node that's not currently a member of the cluster.
 
 For example, if you wanted to upgrade your Enterprise Analytics cluster 1 node at a time, you must introduce a spare node into the cluster to remove 1 of the existing nodes. The swap rebalance operation is limited to those 2 nodes. When the swap rebalance completes, the spare node takes over the role of the node you removed to upgrade.
 
@@ -77,7 +77,7 @@ If you can maintain acceptable performance, remove nodes from your cluster to up
 
 #### [](#using-failover)Using Failover
 
-If it’s possible to remove one or more Data Service nodes from the cluster, and run the cluster at reduced capacity for the duration of the upgrade procedure, [Failover](../manage/manage-nodes/fail-nodes-over.md) can be used to bring individual Data Service nodes out of the cluster, and so allow them to be upgraded. The Failover procedure ensures that all the cluster’s active vBuckets continue to be available, on the remaining Data Service nodes, after the node to be upgraded has been failed over. Subsequently, the upgraded node is restored to the cluster using [Recovery](../cli/couchbase-cli-recovery.md).
+If it's possible to remove one or more Data Service nodes from the cluster, and run the cluster at reduced capacity for the duration of the upgrade procedure, [Failover](../manage/manage-nodes/fail-nodes-over.md) can be used to bring individual Data Service nodes out of the cluster, and so allow them to be upgraded. The Failover procedure ensures that all the cluster's active vBuckets continue to be available, on the remaining Data Service nodes, after the node to be upgraded has been failed over. Subsequently, the upgraded node is restored to the cluster using [Recovery](../cli/couchbase-cli-recovery.md).
 
 The main advantages of Graceful Failover and Delta Recovery in this context are simpler management and a lower consumption of cluster-resources: since to upgrade a node, no **spare** node is required, and no copying of data across nodes (such as is performed by rebalance) need occur. The main constraint of this option is that it can **only** be used for nodes running the Data Service alone.
 
@@ -116,7 +116,7 @@ New features of Enterprise Analytics may not be available while the upgrade of a
 
 ### [](#offline-upgrade)Upgrade with Cluster Offline
 
-When an entire multi-node cluster is **offline**, it’s not accessible to applications, and therefore serves no data. A maintenance window must therefore be formally established prior to offline upgrade commencing.
+When an entire multi-node cluster is **offline**, it's not accessible to applications, and therefore serves no data. A maintenance window must therefore be formally established prior to offline upgrade commencing.
 
 During offline upgrade, even though the cluster serves no data, it continues to function as a cluster: individual nodes continue to be **up** and **network-accessible**; and continue to be recognized by their peers and by the [Cluster Manager](../../../server/current/learn/clusters-and-availability/cluster-manager.md) as cluster-members.
 

@@ -3,7 +3,7 @@ title: Node-to-Node Encryption
 description: Network traffic between the individual nodes of a Couchbase-Server
   cluster can be encrypted, in order to optimize cluster-internal security.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/node-to-node-encryption.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:clusters-and-availability/node-to-node-encryption.adoc[]
 ---
 
@@ -31,7 +31,7 @@ For practical steps towards set-up, see [Manage Node-to-Node Encryption](../../m
 
 ### [](#using-node-to-node-encryption)Using Node-to-Node Encryption
 
-Node-to-node encryption is disabled by default. Note that auto-failover must be switched off both for a change to be made to the cluster’s address-family, and for encryption to be enabled or disabled: auto-failover can be switched back on after the necessary changes have been made. (This requirement prevents nodes that are undergoing changes from being determined unresponsive during the process, and unnecessarily failed over.)
+Node-to-node encryption is disabled by default. Note that auto-failover must be switched off both for a change to be made to the cluster's address-family, and for encryption to be enabled or disabled: auto-failover can be switched back on after the necessary changes have been made. (This requirement prevents nodes that are undergoing changes from being determined unresponsive during the process, and unnecessarily failed over.)
 
 Note also that all Eventing functions must be _paused_ before node-to-node encryption for the cluster is enabled, disabled, or is established at a new level: this prevents loss of mutations. All paused Eventing functions should then be _resumed_, once changes to node-to-node encryption are complete. For information, see [eventing-function-setup](../../cli/cbcli/couchbase-cli-eventing-function-setup.md).
 

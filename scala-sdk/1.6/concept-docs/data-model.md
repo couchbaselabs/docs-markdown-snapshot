@@ -3,7 +3,7 @@ title: Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/concept-docs/pages/data-model.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.6@scala-sdk:concept-docs:data-model.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:1.6@scala-sdk:concept-docs:data-model.adoc[]
 
 # Data Model
 
-> Couchbase’s use of JSON as a storage format allows powerful search and query over documents. Several data structures are supported by the SDK, including map, list, queue, and set. 
+> Couchbase's use of JSON as a storage format allows powerful search and query over documents. Several data structures are supported by the SDK, including map, list, queue, and set. 
 
-The power to search, query, and easily work with data in Couchbase, comes from the choice of JSON as a storage format. Non-JSON storage is supported — see the [Binary Storage Documentation](nonjson.md) — including UTF-8 strings, raw sequences of bytes, and language specific serializations, however, only JSON is supported by [Query](n1ql-query.md). In Couchbase, JSON’s key-value structure allows the storage of collection data structures such as lists, maps, sets and queues — _see [below](#data-structures)_. JSON’s tree-like structure allows operations against [specific paths in the Document](subdocument-operations.md), and efficient support for these data structures.
+The power to search, query, and easily work with data in Couchbase, comes from the choice of JSON as a storage format. Non-JSON storage is supported — see the [Binary Storage Documentation](nonjson.md) — including UTF-8 strings, raw sequences of bytes, and language specific serializations, however, only JSON is supported by [Query](n1ql-query.md). In Couchbase, JSON's key-value structure allows the storage of collection data structures such as lists, maps, sets and queues — _see [below](#data-structures)_. JSON's tree-like structure allows operations against [specific paths in the Document](subdocument-operations.md), and efficient support for these data structures.
 
 ## [](#data-structures)Data Structures
 
@@ -30,7 +30,7 @@ These data structures are stored as JSON documents in Couchbase, and can therefo
 Using the data structures API may help your application in two ways:
 
 * **Simplicity**: Data structures provide high level operations by which you can deal with documents as if they were container data structures. Adding an item to a dictionary is expressed as `MapAdd`, rather than retrieving the entire document, modifying it locally, and then saving it back to the server.
-* **Efficiency**: Data structure operations don’t transfer the entire document across the network. Only the relevant data is exchanged between client and server, allowing for less network overhead and shorter latency.
+* **Efficiency**: Data structure operations don't transfer the entire document across the network. Only the relevant data is exchanged between client and server, allowing for less network overhead and shorter latency.
 
 > [!NOTE]
 > Besides the `IBucket` level data structure methods, there is a new namespace called `Couchbase.Collections` which contains implementations of some of the core interfaces in `System.Collection.Generics` such as `ISet<TValue>`, `IList<TValue>`, `IDictionary<Tkey, TValue>` and a `CouchbaseQueue` class. See section [The Couchbase.Collections Namespace](#couchbase-collections) below for more details.

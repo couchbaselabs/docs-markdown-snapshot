@@ -4,7 +4,7 @@ description: Specific requirements must be satisfied in order to ensure the
   successful creation of XDCR replications over different network
   configurations.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/xdcr-reference/pages/xdcr-security-and-networking.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:xdcr-reference:xdcr-security-and-networking.adoc[]
 ---
 
@@ -29,13 +29,13 @@ Each is explained below.
 
 Targets for XDCR replication can be specified with the standard port number `8091` or `18091`, as applicable. Targets _cannot_ be specified with the _Couchbase_ schemes _couchbase://_ and _couchbases://_, which are, instead, used to support the memcached protocol on ports `11210` and `11207`, respectively.
 
-Targets _can_, however, be specified with a _Fully Qualified Domain Name_ (_FQDN_) that is either tagged with one of the standard port numbers, or is untagged. In such cases, XDCR performs a [LookupSRV](https://go.dev/src/net/lookup.go) on the FQDN, using the local machine’s _DNS resolver_. LookupSRV obtains the appropriate name from a local DNS [SRV record](https://en.wikipedia.org/wiki/SRV%5Frecord): which is a specification of data in the Domain Name System that defines the _location_ (the hostname and port number) of a server for a particular service. When LookupSRV has returned the name, XDCR concatenates a standard port number to the name, and uses the resulting concatenation as the target-reference.
+Targets _can_, however, be specified with a _Fully Qualified Domain Name_ (_FQDN_) that is either tagged with one of the standard port numbers, or is untagged. In such cases, XDCR performs a [LookupSRV](https://go.dev/src/net/lookup.go) on the FQDN, using the local machine's _DNS resolver_. LookupSRV obtains the appropriate name from a local DNS [SRV record](https://en.wikipedia.org/wiki/SRV%5Frecord): which is a specification of data in the Domain Name System that defines the _location_ (the hostname and port number) of a server for a particular service. When LookupSRV has returned the name, XDCR concatenates a standard port number to the name, and uses the resulting concatenation as the target-reference.
 
-Consequently, resources named by means of the Couchbase schemes can be resolved to appropriate XDCR-target names: by first removing the _couchbase_ or _couchbases_ prefix, and then specifying the remaining symbol, which is the FQDN — so that LookupSRV resolves the FQDN to a name that XDCR can include in the ultimate target-reference. Note, however, that this does assume the target’s use of one of the standard port numbers — `8091` or `18091`.
+Consequently, resources named by means of the Couchbase schemes can be resolved to appropriate XDCR-target names: by first removing the _couchbase_ or _couchbases_ prefix, and then specifying the remaining symbol, which is the FQDN — so that LookupSRV resolves the FQDN to a name that XDCR can include in the ultimate target-reference. Note, however, that this does assume the target's use of one of the standard port numbers — `8091` or `18091`.
 
 ### [](#example)Example
 
-Suppose a resource is provided with the Couchbase scheme as follows: `couchbases://7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com`. The scheme’s prefix `couchbases://` can be removed, so as to leave an FQDN as follows: `7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com`. This FQDN can be specified by the administrator as the _hostname_ of the target cluster for XDCR replication.
+Suppose a resource is provided with the Couchbase scheme as follows: `couchbases://7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com`. The scheme's prefix `couchbases://` can be removed, so as to leave an FQDN as follows: `7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com`. This FQDN can be specified by the administrator as the _hostname_ of the target cluster for XDCR replication.
 
 Note that the command `nslookup -type=srv` can be used manually to determine whether this hostname corresponds to one or more true, DNS SVR records. The format of an SRV record is as follows:
 
@@ -81,7 +81,7 @@ A diagram of dual-network setup is provided in [Dual Network](../learn/clusters-
 
 ### [](#aws-and-cloud)AWS and Cloud
 
-If a cluster is established on a public cloud such as AWS, or is a Kubernetes cluster, and is intended to become the target for XDCR, the cluster must be configured with alternate addresses, to support the source cluster’s access. A diagram is provided in [Internal Network or Cloud Access](../learn/clusters-and-availability/connectivity.md#internal-network-or-cloud-access).
+If a cluster is established on a public cloud such as AWS, or is a Kubernetes cluster, and is intended to become the target for XDCR, the cluster must be configured with alternate addresses, to support the source cluster's access. A diagram is provided in [Internal Network or Cloud Access](../learn/clusters-and-availability/connectivity.md#internal-network-or-cloud-access).
 
 ## [](#specifying-addresses)Specifying Addresses
 
@@ -96,9 +96,9 @@ In each case:
 * An IP address or a qualified domain name can be specified. The name can optionally be tagged with the port number `8091` or `18091`.
 * If a specified IP address corresponds to the external address of the target cluster, the external address is used for the connection. If a specified IP address corresponds to the internal address of the target cluster, the internal address is used for the connection.  
 In either case, if the name is not tagged with a port number, the connection defaults to `8091`; unless a secure connection is specified in another field, in which case `18091` is used. (Note that the REST API provides a `network_type` parameter, which can be set to `external`, so as to enforce a secure connection: see [Setting a Reference](../rest-api/rest-xdcr-create-ref.md).)
-* If an FQDN is specified without a port number, LookupSRV is invoked on the FQDN, to match the FQDN to an appropriate target-name. If an FQDN is specified with one of the standard port numbers, `8091` and `18091`, the port number is stripped from the FQDN, and LookupSRV is invoked on the resulting symbol, to match the FQDN to an appropriate target-name. In either case, if a match is found, a connection is attempted, using the corresponding target-name. If no match is found, a connection is attempted, using the FQDN’s standard mapping to the internal or external IP address of a non-SRV target cluster.  
+* If an FQDN is specified without a port number, LookupSRV is invoked on the FQDN, to match the FQDN to an appropriate target-name. If an FQDN is specified with one of the standard port numbers, `8091` and `18091`, the port number is stripped from the FQDN, and LookupSRV is invoked on the resulting symbol, to match the FQDN to an appropriate target-name. In either case, if a match is found, a connection is attempted, using the corresponding target-name. If no match is found, a connection is attempted, using the FQDN's standard mapping to the internal or external IP address of a non-SRV target cluster.  
 (See [Handling Couchbase Schemes, using DNS SRV](#dnssrv), above.)  
-Note that if LookupSRV is attempted and fails, XDCR retries the connection, using the FQDN’s standard mapping: if the retry succeeds, the standard mapping continues to be used. Note that connectivity status for all of a source cluster’s defined references can be retrieved by means of the REST API: see [Getting a Reference](../rest-api/rest-xdcr-get-ref.md).
+Note that if LookupSRV is attempted and fails, XDCR retries the connection, using the FQDN's standard mapping: if the retry succeeds, the standard mapping continues to be used. Note that connectivity status for all of a source cluster's defined references can be retrieved by means of the REST API: see [Getting a Reference](../rest-api/rest-xdcr-get-ref.md).
 
 ## [](#using-certificates)Using Certificates
 
@@ -118,7 +118,7 @@ When a fully secure XDCR replication is configured, the source cluster should be
 
 As described in [Certificates](../learn/security/certificates.md), the authority of a networked entity, such as a cluster or an application, is, in a typical production context, represented by a _root_ certificate that has been provided by a known _Certificate Authority_. This root certificate (or _CA_) must be included in the _trust store_ of the target cluster. See [Using Multiple Root Certificates](../learn/security/using-multiple-cas.md) for information on the trust store, and see [Load Root Certificates](../rest-api/load-trusted-cas.md) for information on loading a CA into a trust store.
 
-Note that when the known authority’s CA has been successfully loaded, it is visible by means of Couchbase Web Console, as shown in the documentation for the [Certificates](../manage/manage-security/manage-security-settings.md#root-certificate-security-screen-display) security screen. If, on the target cluster, the CA is not visible here, it has not been loaded, and no fully secure replication will be supported.
+Note that when the known authority's CA has been successfully loaded, it is visible by means of Couchbase Web Console, as shown in the documentation for the [Certificates](../manage/manage-security/manage-security-settings.md#root-certificate-security-screen-display) security screen. If, on the target cluster, the CA is not visible here, it has not been loaded, and no fully secure replication will be supported.
 
 Each node in the target cluster must be represented by its own _node_ certificate. The CA for the target cluster must have been used to _digitally sign_ each node certificate: either directly, or (more likely) _indirectly_, by means of an _intermediate_ certificate. When signing is complete, each node certificate must be _concatenated_ with however many intermediate certificates have been used, to form a _certificate chain_, and then appropriately posted on the node it is representing.
 
@@ -146,6 +146,6 @@ See [Specify Root and Client Certificates, and Client Private Key](../manage/man
 
 ### [](#xdcr-certificates-and-containers)XDCR, Certificates, and Containers
 
-If either a source or a target cluster for an XDCR replication resides within a container, such as a Kubernetes pod, the container’s image must itself contain the trusted CA that is relied on for validating the cluster that is being connected to.
+If either a source or a target cluster for an XDCR replication resides within a container, such as a Kubernetes pod, the container's image must itself contain the trusted CA that is relied on for validating the cluster that is being connected to.
 
 Note that Couchbase _Operator_ has a _Dynamic Admissions Controller_ (DAC), which performs TLS certificate-generation and assignment, including rotation. Therefore, if DAC is being used, the Root Certificate referred to by the client when setting up a fully secure replication must be the one whose authority, on the server, is relied on for these DAC operations.

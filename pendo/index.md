@@ -1,7 +1,7 @@
 ---
 title: Welcome to the Couchbase Pendo Style Guide
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/pendo/modules/ROOT/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:pendo::index.adoc[]
 ---
 
@@ -19,4 +19,4 @@ Use this guide as a reference for Couchbase style when you need to write a new P
 This guide contains guidelines and boilerplate options for Guide content.
 
 > [!NOTE]
-> If you don’t agree with an element of the Pendo Style guide, raise a pull request against this repository or bring it up to the Couchbase Documentation team for discussion. This guide contains guidelines that can change to suit our needs, not unbreakable laws.
+> If you don't agree with an element of the Pendo Style guide, raise a pull request against this repository or bring it up to the Couchbase Documentation team for discussion. This guide contains guidelines that can change to suit our needs, not unbreakable laws.

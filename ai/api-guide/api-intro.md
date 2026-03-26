@@ -4,7 +4,7 @@ description: The Couchbase Capella Management API and the Model Serving API are
   secure REST APIs that enable you to provision, deploy, and configure Capella
   AI Services.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-intro.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:api-guide:api-intro.adoc[]
 ---
 
@@ -50,7 +50,7 @@ Exceptions to backward compatibility are as follows:
 
 ### [](#management-api-auth)Authentication and Authorization
 
-The Management API uses API keys for authentication and authorization. They’re required for accessing endpoints exposed by the Management API.
+The Management API uses API keys for authentication and authorization. They're required for accessing endpoints exposed by the Management API.
 
 Couchbase Capella associates API keys with [roles and permissions](../../cloud/organizations/organization-projects-overview.md). To access an endpoint, an API key must have the appropriate Capella roles. The [Management API reference guide](../../cloud/management-api-reference/index.md) lists the roles required for each endpoint.
 
@@ -91,7 +91,7 @@ Requests and response payloads are restricted to 18 MB.
 
 ## [](#model-service-api)The Model Service API
 
-The Model Service API is a secure, versioned inference REST API for Capella’s Model Service. Provided by Couchbase Capella AI Services, this API allows you to use your Large Language Models (LLMs) and embedding models. This includes sending inference requests and receiving outputs such as chats, completions, and embeddings.
+The Model Service API is a secure, versioned inference REST API for Capella's Model Service. Provided by Couchbase Capella AI Services, this API allows you to use your Large Language Models (LLMs) and embedding models. This includes sending inference requests and receiving outputs such as chats, completions, and embeddings.
 
 For a full Model Service API reference guide, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 
@@ -106,7 +106,7 @@ An update to the API may be a non-versioned bug fix, a patch update, a minor upd
 The Model Service API uses Model Service API keys for authentication and authorization. To access an endpoint, you must provide:
 
 * A Model Service API key.
-* A model’s connection string.
+* A model's connection string.
 
 #### [](#model-service-api-keys)Model Service API Keys
 
@@ -123,7 +123,7 @@ To authenticate a Model Service API call, pass the API key as a Bearer token in 
 The Model Service API uses a different base URL than the Management API. The base URL for the Model Service API is a unique string generated for every AI model you deploy. This unique string is labeled as:
 
 * The model connection string in the Management API.
-* A model’s **Model Endpoint** in the Capella UI.
+* A model's **Model Endpoint** in the Capella UI.
 
 ### [](#model-service-auditing)Auditing
 
@@ -145,7 +145,7 @@ Calls Rate Limit
 
 Token-Based Rate Limiting
 
-There’s no token-based limiting.
+There's no token-based limiting.
 
 Request Max Tokens
 

@@ -2,7 +2,7 @@
 title: Analyze Large Datasets
 description: Overview of the Couchbase Analytics Service
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/introduction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:analytics:introduction.adoc[]
 ---
 
@@ -25,9 +25,9 @@ The Analytics service enables you to create shadow copies of the data that you w
 
 The Couchbase Analytics approach has significant advantages compared to the commonly employed alternatives:
 
-* **Common data model:** Couchbase Analytics natively supports the same rich, flexible-schema document data model used for your operational data — you don’t have to force your data into a flat, predefined, relational model to analyze it.
+* **Common data model:** Couchbase Analytics natively supports the same rich, flexible-schema document data model used for your operational data — you don't have to force your data into a flat, predefined, relational model to analyze it.
 * **Workload isolation:** Operational query latency and throughput are protected from slow-downs due to your analytical query workload — but without the complexity of operating a separate analytical database.
-* **Data freshness:** Couchbase Analytics uses [DCP](../learn/clusters-and-availability/intra-cluster-replication.md#database-change-protocol), a fast memory-to-memory protocol that Couchbase Server nodes use to synchronize data among themselves — so Analytics runs on data that’s extremely current, without ETL (extract, transform, load) or other hassles and delays.
+* **Data freshness:** Couchbase Analytics uses [DCP](../learn/clusters-and-availability/intra-cluster-replication.md#database-change-protocol), a fast memory-to-memory protocol that Couchbase Server nodes use to synchronize data among themselves — so Analytics runs on data that's extremely current, without ETL (extract, transform, load) or other hassles and delays.
 * **High availability:** The shadowed Analytics data may be replicated up to 3 times. Each replica resides on a different Analytics node. The use of Analytics replicas ensures that, should an Analytics node fail over, the Analytics Service continues to work: one of the replicas is promoted to serve the shadow data that was stored on the failed over node.
 
 You can also create remote links to analyze data on remote Couchbase clusters, and also external links, to analyze data from external sources such as Amazon S3, Microsoft Azure Blob, or Google Cloud Storage.
@@ -36,7 +36,7 @@ You can also create remote links to analyze data on remote Couchbase clusters, a
 
 Use the Query service for operational queries — for example, the front-end queries behind every page display or navigation.
 
-Use the Analytics service when you don’t know every aspect of the query in advance — for example, if the data access patterns change frequently, or you want to avoid creating an index for each data access pattern, or you want to run ad hoc queries for data exploration or visualization.
+Use the Analytics service when you don't know every aspect of the query in advance — for example, if the data access patterns change frequently, or you want to avoid creating an index for each data access pattern, or you want to run ad hoc queries for data exploration or visualization.
 
 Use the Full Text Search service when you want to take advantage of natural-language querying.
 
@@ -44,10 +44,10 @@ Use the Full Text Search service when you want to take advantage of natural-lang
 
 Couchbase Analytics is queried using the SQL++ for Analytics query language, a next-generation declarative query language for JSON data. SQL++ for Analytics has much in common with SQL, but it also includes a small number of extensions that address the different data models that the two languages were designed to query. Compared to SQL, SQL++ for Analytics is much newer and targets the nested, schema-optional or even schemaless world of modern NoSQL systems.
 
-You may wonder why Couchbase Analytics uses a query language other than SQL++ for Query, the query language used by Couchbase Server’s Query service for operational data. In fact, SQL++ for Analytics and SQL++ for Query are very similar, with SQL++ for Analytics offering some additional advances beyond SQL++ for Query. The section [SQL++ for Analytics vs. SQL++ for Query](6%5Fn1ql.md) provides additional details.
+You may wonder why Couchbase Analytics uses a query language other than SQL++ for Query, the query language used by Couchbase Server's Query service for operational data. In fact, SQL++ for Analytics and SQL++ for Query are very similar, with SQL++ for Analytics offering some additional advances beyond SQL++ for Query. The section [SQL++ for Analytics vs. SQL++ for Query](6%5Fn1ql.md) provides additional details.
 
 For more details, refer to the [SQL++ for Analytics Reference](1%5Fintro.md) section.
 
-## [](#Whats%5Fnext)What’s Next
+## [](#Whats%5Fnext)What's Next
 
 Now you can continue to [Running Queries](run-query.md)to get familiar with the ways you can run a query or continue directly to the [Analytics Tutorial](primer-beer.md).

@@ -3,7 +3,7 @@ title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and the RAG framework.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.7/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.7@scala-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
@@ -30,7 +30,7 @@ val request = SearchRequest.vectorSearch(VectorSearch(VectorQuery("vector_field"
 val result: Try[SearchResult] = scope.search("vector-index", request)
 ```
 
-Let’s break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
+Let's break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
 
 The `VectorSearch` allows us to perform one or more `VectorQuery` s.
 

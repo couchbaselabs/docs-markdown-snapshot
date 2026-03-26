@@ -2,7 +2,7 @@
 title: Install Couchbase Lite on Swift
 description: Installing Couchbase Lite on Swift
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/gs-install.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:swift:gs-install.adoc[]
 ---
 
@@ -100,7 +100,7 @@ pod install
 * **Version 3.x and earlier:** <https://github.com/couchbase/couchbase-lite-ios.git>
 * **Version 4.0 and later:** <https://github.com/couchbase/couchbase-lite-swift.git>
 
-If you’re upgrading from 3.x to 4.0, you must update the repository URL in your Package.swift file or Xcode project settings.
+If you're upgrading from 3.x to 4.0, you must update the repository URL in your Package.swift file or Xcode project settings.
 
 For Enterprise Edition - continue using <https://github.com/couchbase/couchbase-lite-swift-ee.git>
 
@@ -112,7 +112,7 @@ See: [Example 1](#case-1) | [Example 2](#case-2)
 
 Example 1\. Use Case 1\. Include in Existing Swift Package
 
-Here we will add the `CouchbaseLiteSwift` dependency to your Parent Swift package — see: [Simple Manifest](#sample) for the sample manifest.
+Here you'll add the `CouchbaseLiteSwift` dependency to your Parent Swift package — see: [Simple Manifest](#sample) for the sample manifest.
 
 1. Add the CouchbaseLiteSwift package as dependency by including the following in the parent package manifest:  
 ```swift  
@@ -175,7 +175,7 @@ targets: [
 
 Example 2\. Use Case 2\. Include in Your App Project
 
-Here we will add `CouchbaseLiteSwift` directly into your app
+Here you'll add `CouchbaseLiteSwift` directly into your app
 
 1. Open the project to which you are going to add CouchbaseLiteSwift  
 ![spm 1](_images/spm-1.png)
@@ -234,11 +234,11 @@ binary "http://packages.couchbase.com/releases/couchbase-lite-vector-search/cart
 | **1** | Specify the required version number, here we use the latest version |
 | ----- | ------------------------------------------------------------------- |
 3. Run `carthage update --platform ios`.
-4. Drag **CouchbaseLiteSwift.xcframework** from **Carthage/Build/** to the Xcode navigator.
-5. Select **Project** **General** **Embedded Binary**, add **CouchbaseLiteSwift.xcframework** to this section.
+4. Drag **CouchbaseLiteVectorSearch.xcframework** from **Carthage/Build/** to the Xcode navigator.
+5. Select **Project** **General** **Embedded Binary**, add **CouchbaseLiteVectorSearch.xcframework** to this section.
 
 > [!NOTE]
-> The minimum required Cocoapods version is **1.15**
+> The minimum required CocoaPods version is **1.15**
 
 1. Install CocoaPods using the instructions here:  
 <https://guides.cocoapods.org/using/getting-started.html>
@@ -263,7 +263,7 @@ See: [Example 1](#case-1) | [Example 2](#case-2)
 
 Example 3\. Use Case 1\. Include in Existing Swift Package
 
-Here we will add the `CouchbaseLiteVectorSearch` package as a dependency to your Parent Swift package.
+Here you'll add the `CouchbaseLiteVectorSearch` package as a dependency to your Parent Swift package.
 
 1. Add the CouchbaseLiteVectorSearch package as a dependency by including the following in the parent package manifest:  
 ```swift  
@@ -284,7 +284,7 @@ targets: [
 
 Example 4\. Use Case 2\. Include in Your App Project
 
-Here we will add `CouchbaseLiteVectorSearch` directly into your app.
+Here you'll add `CouchbaseLiteVectorSearch` directly into your app.
 
 1. Open the project to which you are going to add CouchbaseLiteVectorSearch
 2. Open the Project Editor to add a dependency

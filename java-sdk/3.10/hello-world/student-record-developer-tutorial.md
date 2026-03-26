@@ -3,7 +3,7 @@ title: "Developer Tutorial: Student Record System"
 description: Learn how to create and deploy a student records database on
   Capella Operational and connect it to your application, using the Java SDK.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/hello-world/pages/student-record-developer-tutorial.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@java-sdk:hello-world:student-record-developer-tutorial.adoc[]
 ---
 
@@ -45,7 +45,7 @@ The model consists of three record types:
 
 In a relational model, the database contains a list of students and a list of courses. Each student can enroll in multiple courses.
 
-A student’s enrollment record is stored in a separate table called `enrollment`, which links that record to the courses they are enrolling in.
+A student's enrollment record is stored in a separate table called `enrollment`, which links that record to the courses they are enrolling in.
 
 ![student-record-erd](_images/student-record-erd-107b1252fd5db120a096e289c8c7f238150b57f0.svg) 
 
@@ -64,7 +64,7 @@ In this tutorial, the document model stores the list of enrollment records with 
 
 With JSON, you can change the structure of the document without having to rebuild schemas. For example, you can add a new field to store students' email addresses without migrating existing data to a new schema.
 
-In a document database, a student’s record and their course records can look similar to this:
+In a document database, a student's record and their course records can look similar to this:
 
 Student record
 
@@ -108,7 +108,7 @@ Graphic design course record
 }
 ```
 
-Hilary’s enrollment is stored in the same document as her student details, which means child information is stored with its parent. This structure lets you access and retrieve all of Hilary’s details with one search and without the need for complex table joins.
+Hilary's enrollment is stored in the same document as her student details, which means child information is stored with its parent. This structure lets you access and retrieve all of Hilary's details with one search and without the need for complex table joins.
 
 > [!NOTE]
 > You should not store a student with their course record as it can lead to data duplication and make it difficult to maintain your data. For example, you would need to access every single student record in your cluster to change the `credit-points`.
@@ -121,7 +121,7 @@ To create and deploy a cluster:
 
 1. Sign in to [Couchbase Capella](https://cloud.couchbase.com/).
 2. On the **Operational Clusters** page, click **Create Cluster**.
-3. Select **My First Project** as the project for your cluster. (If you’ve already created a project, you can select that instead.)
+3. Select **My First Project** as the project for your cluster. (If you've already created a project, you can select that instead.)
 4. Under **Cluster Option**, select **Free**.
 5. In the **Cluster Name** field, enter **student-cluster**.
 6. (Optional) Provide a description of your cluster.
@@ -167,7 +167,7 @@ To create the second collection, follow the above steps but use the existing `st
 
 The two collections allow you to use the relational model and the document model at the same time to achieve the best design and performance possible.
 
-The `student-record-collection` contains student records, and each student record contains a list of that student’s enrollments. Unlike the standard relational model decomposition where a link table is created between students and courses, a document model stores the enrollments as part of the student records.
+The `student-record-collection` contains student records, and each student record contains a list of that student's enrollments. Unlike the standard relational model decomposition where a link table is created between students and courses, a document model stores the enrollments as part of the student records.
 
 The `course-record-collection`, on the other hand, uses the relational model to link the enrollment records to the course records they apply to. This allows you to retrieve other details like the full title of the course or the number of credits students receive upon completing the course.
 
@@ -538,13 +538,13 @@ SELECT crc.* FROM `course-record-collection` crc WHERE crc.`credit-points` < 200
 
 The `id` field is not automatically returned when you retrieve all of your course information.
 
-The `id` is part of a document’s meta structure, and to retrieve it you must adjust your SQL++ query and run it again:
+The `id` is part of a document's meta structure, and to retrieve it you must adjust your SQL++ query and run it again:
 
 1. Enter the following query into your query editor:  
 ```sqlpp  
 SELECT META().id, crc.* FROM `course-record-collection` crc WHERE crc.`credit-points` < 200  
 ```  
-The `META()` function call returns any property contained inside the document’s metadata, including the ID.
+The `META()` function call returns any property contained inside the document's metadata, including the ID.
 2. Click **Run** to retrieve course records and their IDs.  
 ```json  
 [  
@@ -740,7 +740,7 @@ public class AddEnrollments {
 mvn exec:java -Dexec.mainClass="AddEnrollments" -Dexec.cleanupDaemonThreads=false  
 ```
 7. From the Capella UI, go to your student cluster.
-8. Go to the `student-record-collection` and click the document ID to see the new information you just added to Hilary’s student record.  
+8. Go to the `student-record-collection` and click the document ID to see the new information you just added to Hilary's student record.  
 ![Updated student record with course enrollment](_images/updated-student-record.png)
 
 If you come across errors in your console, see the [troubleshooting section](#roubleshooting).

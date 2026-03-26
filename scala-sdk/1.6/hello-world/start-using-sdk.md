@@ -3,7 +3,7 @@ title: Start Using the Scala SDK
 description: Get up and running quickly, installing the Couchbase Scala SDK, and
   running our Hello World example.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.6@scala-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -366,9 +366,9 @@ The following code samples assume:
 
 ## [](#step-by-step)Step by Step
 
-Here’s the above Hello World example, broken down into individual actions.
+Here's the above Hello World example, broken down into individual actions.
 
-First pull in all the imports we’ll be using:
+First pull in all the imports we'll be using:
 
 ```scala
 import com.couchbase.client.scala.durability.Durability
@@ -390,7 +390,7 @@ import scala.util.{Failure, Success, Try}
 
 ### [](#connect)Connect
 
-Now that you have the Scala client installed, try out the following to connect to a Couchbase cluster. The basic connection details that you’ll need are given below — for more background information, refer to the [Managing Connections page](../howtos/managing-connections.md#connection-strings).
+Now that you have the Scala client installed, try out the following to connect to a Couchbase cluster. The basic connection details that you'll need are given below — for more background information, refer to the [Managing Connections page](../howtos/managing-connections.md#connection-strings).
 
 * Couchbase Capella
 * Local Couchbase Server
@@ -463,7 +463,7 @@ val cluster = Cluster
 For developing locally on the same machine as Couchbase Server, your URI can be `couchbase://localhost` as shown here. For production deployments, you will want to use a secure server, with `couchbases://`.
 
 > [!NOTE]
-> `Cluster.connect` returns a `Try[Cluster]`, as the Scala client uses functional error handling and does not throw exceptions. You’ll see examples later of how to better handle a `Try`, but for simplicity here we’ll assume the operation succeeded and get the result as a `Cluster` using `.get`.
+> `Cluster.connect` returns a `Try[Cluster]`, as the Scala client uses functional error handling and does not throw exceptions. You'll see examples later of how to better handle a `Try`, but for simplicity here we'll assume the operation succeeded and get the result as a `Cluster` using `.get`.
 
 Following successful authentication, the bucket can be opened:
 
@@ -487,15 +487,15 @@ If you do not refer to a named collection, you can access the 'default collectio
 
 ### [](#json)JSON
 
-Now we can do some simple Key Value operations. First, let’s create some JSON.
+Now we can do some simple Key Value operations. First, let's create some JSON.
 
-The Scala SDK directly supports several popular JSON libraries, including [uPickle/uJson](https://github.com/lihaoyi/upickle), [Circe](https://circe.github.io/circe/), [Play Json](https://github.com/playframework/play-json), [Jawn](https://github.com/typelevel/jawn), and [Json4s](https://github.com/json4s/json4s) (if you’d like to see your favorite supported, please let us know). In addition you can supply JSON encoded into a `String` or `Array[Byte]`, opening the door to any JSON library; [Jsoniter](https://jsoniter.com/) and [Jackson](https://github.com/FasterXML/jackson) have been tested this way, but any should work.
+The Scala SDK directly supports several popular JSON libraries, including [uPickle/uJson](https://github.com/lihaoyi/upickle), [Circe](https://circe.github.io/circe/), [Play Json](https://github.com/playframework/play-json), [Jawn](https://github.com/typelevel/jawn), and [Json4s](https://github.com/json4s/json4s) (if you'd like to see your favorite supported, please let us know). In addition you can supply JSON encoded into a `String` or `Array[Byte]`, opening the door to any JSON library; [Jsoniter](https://jsoniter.com/) and [Jackson](https://github.com/FasterXML/jackson) have been tested this way, but any should work.
 
 You can also directly encode and decode Scala case classes to and from the SDK.
 
 To make things easy and to help get you started, the Scala SDK also bundles a home-grown small JSON library, which you are free to use instead of or alongside any of the other supported JSON libraries. The philosophy behind this library is to provide a very easy-to-use API and the fastest JSON implementation possible.
 
-These options are described in detail [here](../howtos/json.md), but to get us started let’s created some simple JSON using the built-in JsonObject library:
+These options are described in detail [here](../howtos/json.md), but to get us started let's created some simple JSON using the built-in JsonObject library:
 
 ```scala
 val json = JsonObject("status" -> "awesome")
@@ -503,7 +503,7 @@ val json = JsonObject("status" -> "awesome")
 
 ### [](#key-value-operations)Key-Value Operations
 
-And now let’s upsert it into Couchbase (upsert is an operation that will insert the document if it does not exist, or replace it if it does). We need to provide a unique ID for the JSON, and we’ll use a UUID here:
+And now let's upsert it into Couchbase (upsert is an operation that will insert the document if it does not exist, or replace it if it does). We need to provide a unique ID for the JSON, and we'll use a UUID here:
 
 ```scala
 val docId = UUID.randomUUID().toString
@@ -515,7 +515,7 @@ collection.upsert(docId, json) match {
 
 As mentioned above, the Scala SDK will not throw exceptions. Instead, methods that can error - such as the `upsert` above - will return a Scala `Try` result, which can either be a `Success` containing the result, or a `Failure` containing a _Throwable_ exception. The easiest way to handle a single operation is with pattern matching, as shown above.
 
-Now let’s get the data back (this example will look a little messy due the the nested handling of multiple `Try` results, but we’ll see how to clean it up shortly):
+Now let's get the data back (this example will look a little messy due the the nested handling of multiple `Try` results, but we'll see how to clean it up shortly):
 
 ```scala
 // Get a document
@@ -535,11 +535,11 @@ collection.get(docId) match {
 }
 ```
 
-Here we’re fetching the value for the key `docId`, converting that value to a `JsonObjectSafe` (a simple wrapper around `JsonObject` that returns `Try` results - see [here](../howtos/json.md#error-handling-and-jsonobjectsafe) for details), and then accessing the value of the **status** key as a String.
+Here we're fetching the value for the key `docId`, converting that value to a `JsonObjectSafe` (a simple wrapper around `JsonObject` that returns `Try` results - see [here](../howtos/json.md#error-handling-and-jsonobjectsafe) for details), and then accessing the value of the **status** key as a String.
 
 ### [](#better-error-handling)Better Error Handling
 
-All three of these operations could fail, so there’s quite a lot of error handling code here to do something quite simple. One way to improve on this is by using flatMap, like this:
+All three of these operations could fail, so there's quite a lot of error handling code here to do something quite simple. One way to improve on this is by using flatMap, like this:
 
 ```scala
 val result: Try[String] = collection
@@ -572,7 +572,7 @@ Either of these methods will stop on the first failed operation. So the final re
 
 ### [](#overloads)Overloads
 
-You’ll notice that most operations in the Scala SDK have two overloads. One will take an Options builder, which provides all possible options that operation takes. For instance:
+You'll notice that most operations in the Scala SDK have two overloads. One will take an Options builder, which provides all possible options that operation takes. For instance:
 
 ```scala
 collection.replace(
@@ -600,7 +600,7 @@ collection.replace(docId, json, durability = Durability.Majority) match {
 
 ## [](#next-steps)Next Steps
 
-Now you’re up and running, try one of the following:
+Now you're up and running, try one of the following:
 
 * Our [Travel Sample Application](sample-application.md) demonstrates all the basics you need to know;
 * Explore [Key Value Operations](../howtos/kv-operations.md) (CRUD) against a document database;
@@ -619,7 +619,7 @@ Couchbase welcomes community contributions to the Scala SDK. The SDK source code
 
 ### [](#troubleshooting)Troubleshooting
 
-* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you’re running the SDK on your laptop against a Capella cluster, see further information on:
+* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you're running the SDK on your laptop against a Capella cluster, see further information on:
 
   * Notes on [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
   * [Network Requirements](../project-docs/compatibility.md#network-requirements).

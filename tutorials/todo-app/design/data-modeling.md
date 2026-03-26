@@ -1,7 +1,7 @@
 ---
 title: Data Modeling
 editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/design/data-modeling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:todo-app:design/data-modeling.adoc[]
 ---
 
@@ -50,7 +50,7 @@ The document ID is the primary identifier of a document in the database. It can 
 
 ## [](#entity-relationship)Entity relationship
 
-There is a one-to-many relationship between the List and Task documents. A List can hold several Tasks but a Task can only belong to one List. In Couchbase Mobile, relationships between different entities (1:1, 1:many and many:many) are implemented by keeping a reference from the child to the parent model. The document ID serves as the reference (foreign key) since it is unique and doesn’t change. The image below adds a `list` property on the Task model.
+There is a one-to-many relationship between the List and Task documents. A List can hold several Tasks but a Task can only belong to one List. In Couchbase Mobile, relationships between different entities (1:1, 1:many and many:many) are implemented by keeping a reference from the child to the parent model. The document ID serves as the reference (foreign key) since it is unique and doesn't change. The image below adds a `list` property on the Task model.
 
 ![06 reference](../_images/06-reference.png)
 
@@ -65,4 +65,4 @@ Tasks can have an image attached to them. Attachments are also persisted to disc
 
 ## [](#conclusion)Conclusion
 
-Well done! You’ve completed this lesson on modeling the data in different documents and the relationships between them. In the next lesson you’ll learn how to design the security model for each type of document. Feel free to share your feedback, findings or ask any questions on the forums.
+Well done! You've completed this lesson on modeling the data in different documents and the relationships between them. In the next lesson you'll learn how to design the security model for each type of document. Feel free to share your feedback, findings or ask any questions on the forums.

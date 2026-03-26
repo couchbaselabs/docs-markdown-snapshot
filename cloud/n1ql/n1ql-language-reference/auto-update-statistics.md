@@ -3,7 +3,7 @@ title: Auto Update Statistics
 description: Auto Update Statistics (AUS) automatically refreshes optimizer
   statistics, ensuring accurate and cost-effective query plans.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/auto-update-statistics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/auto-update-statistics.adoc[]
 ---
 
@@ -34,7 +34,7 @@ AUS is available only in clusters running Couchbase Server version 8.0 or later.
 
 ## [](#how-aus-works)How AUS Works
 
-AUS is an opt-in feature that you must explicitly enable and schedule. Once it’s enabled and a schedule is set, all query nodes in the cluster participate in AUS, according to the same schedule.
+AUS is an opt-in feature that you must explicitly enable and schedule. Once it's enabled and a schedule is set, all query nodes in the cluster participate in AUS, according to the same schedule.
 
 ### [](#aus-task-execution)AUS Task Execution
 
@@ -51,7 +51,7 @@ Figure 1\. AUS process flow showing the evaluation and update phases
 
 ### [](#evaluation-phase)Evaluation Phase
 
-In this phase, AUS evaluates whether existing statistics are stale based on the [expiration policy](#expiration%5Fpolicy). For each index, AUS assess how much data has changed since the last update of the optimizer statistics for the index’s key expressions. If the percentage of change exceeds the defined threshold in the [expiration policy](#expiration%5Fpolicy), the statistics are marked as stale.
+In this phase, AUS evaluates whether existing statistics are stale based on the [expiration policy](#expiration%5Fpolicy). For each index, AUS assess how much data has changed since the last update of the optimizer statistics for the index's key expressions. If the percentage of change exceeds the defined threshold in the [expiration policy](#expiration%5Fpolicy), the statistics are marked as stale.
 
 Additionally, if configured to do so, this phase also identifies any indexed expressions that currently lack statistics and flags them for creation. You can control this setting using the `create_missing_statistics` attribute in the [system:aus](#system%5Faus) catalog.
 
@@ -106,7 +106,7 @@ Each attribute in the document represents a particular global configuration. The
 | **start\_time** _required_ | The start time of the AUS schedule in "HH:MM" format. The start\_time must be at least 30 minutes earlier than the end\_time. **Example:** "01:30"                                                  | String       |
 | **end\_time** _required_   | The end time of the AUS schedule in "HH:MM" format. The end\_time must be at least 30 minutes later than the start\_time. **Example:** "05:30"                                                      | String       |
 | **days** _required_        | An array of strings specifying the days on which the AUS schedule runs. Valid values include: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. **Example:** \["Saturday", "Sunday"\] | String array |
-| **timezone** _optional_    | The timezone that applies to the schedule’s start and end times. The value must be a valid IANA timezone string. **Default:** "UTC" **Example:** "US/Pacific"                                       | String       |
+| **timezone** _optional_    | The timezone that applies to the schedule's start and end times. The value must be a valid IANA timezone string. **Default:** "UTC" **Example:** "US/Pacific"                                       | String       |
 
 When changing the global configurations, it is important to consider the following:
 
@@ -143,7 +143,7 @@ Each attribute in the document represents a particular granular configuration. T
 | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | **enable** _optional_                      | Indicates whether AUS is enabled for the bucket, scope, collection.Set it to true to enable AUS for the keyspace. AUS settings are hierarchical and follow the order: cluster > bucket > scope > collection.If AUS is disabled at higher level, it cannot be enabled at a more granular level. However, if AUS is enabled at a higher level, it can be disabled at a more granular level. For example, If AUS is disabled for a bucket, it is automatically disabled for all scopes and collections within it. The setting cannot be overridden at the scope or collection level. If AUS is enabled for a bucket, it can be overridden at the scope and collection level.                                                           | Boolean |
 | **change\_percentage** _optional_          | The percentage of change to items within an index that must be exceeded for the statistics to be refreshed. The value must be an integer between 0 and 100. If set at a bucket level, this value applies to all scopes and collections within the bucket, unless overridden at a lower level. If set at a scope level, this value applies to all collections within the scope, unless overridden at a lower level. **Example:** 30                                                                                                                                                                                                                                                                                                  | Integer |
-| **update\_statistics\_timeout** _optional_ | The timeout period for the [UPDATE STATISTICS](updatestatistics.md) command. It’s a number representing a duration in seconds. If the command does not complete within this duration, it times out. If omitted, a default timeout value is calculated based on the number of samples used. If set for a keyspace, this timeout applies to every [UPDATE STATISTICS](updatestatistics.md) statement that AUS executes for that keyspace. If set at a bucket level, this timeout applies to all scopes and collections within the bucket, unless a different value is set at a lower level. If set at a scope level, this timeout applies to all collections within the scope, unless a different value is set at a collection level. | Number  |
+| **update\_statistics\_timeout** _optional_ | The timeout period for the [UPDATE STATISTICS](updatestatistics.md) command. It's a number representing a duration in seconds. If the command does not complete within this duration, it times out. If omitted, a default timeout value is calculated based on the number of samples used. If set for a keyspace, this timeout applies to every [UPDATE STATISTICS](updatestatistics.md) statement that AUS executes for that keyspace. If set at a bucket level, this timeout applies to all scopes and collections within the bucket, unless a different value is set at a lower level. If set at a scope level, this timeout applies to all collections within the scope, unless a different value is set at a collection level. | Number  |
 
 > [!NOTE]
 > * All SQL++ DMLs are allowed on this keyspace.
@@ -250,11 +250,11 @@ You can cancel AUS tasks that are currently running or scheduled to run.
 * [Cancel Next Scheduled AUS Tasks](#cancel%5Fnext%5Fscheduled%5Faus%5Ftasks)
 
 > [!CAUTION]
-> When cancelling AUS tasks, it’s important to include appropriate WHERE clauses to specify exactly which tasks you want to cancel. Make sure your filters target only the intended tasks, otherwise they might inadvertently cancel other tasks or delete task history.
+> When cancelling AUS tasks, it's important to include appropriate WHERE clauses to specify exactly which tasks you want to cancel. Make sure your filters target only the intended tasks, otherwise they might inadvertently cancel other tasks or delete task history.
 
 ### [](#cancel%5Frunning%5Faus%5Ftasks)Cancel Running AUS Tasks
 
-To cancel a running AUS task, delete its entry from the `system:tasks_cache` catalog. When you delete a task that’s in the `scheduled` or `running` state, AUS cancels the task and schedules the next one automatically.
+To cancel a running AUS task, delete its entry from the `system:tasks_cache` catalog. When you delete a task that's in the `scheduled` or `running` state, AUS cancels the task and schedules the next one automatically.
 
 To cancel all running AUS tasks, use the following DELETE statement:
 
@@ -262,7 +262,7 @@ To cancel all running AUS tasks, use the following DELETE statement:
 DELETE FROM system:tasks_cache WHERE class = "auto_update_statistics" AND state = "running";
 ```
 
-To cancel a running AUS task on a specific node, include the node’s address in the WHERE clause:
+To cancel a running AUS task on a specific node, include the node's address in the WHERE clause:
 
 ```sqlpp
 DELETE FROM system:tasks_cache
@@ -297,9 +297,9 @@ UPDATE system:aus SET schedule.days = ["Monday", "Wednesday", "Friday"];
 
 ## [](#manage-aus-load)Manage AUS Load
 
-When an AUS task runs, it can increase the load on the query node as it evaluates and updates statistics. Therefore, to minimize performance impact, it’s important to schedule AUS to best suit the workloads of your cluster.
+When an AUS task runs, it can increase the load on the query node as it evaluates and updates statistics. Therefore, to minimize performance impact, it's important to schedule AUS to best suit the workloads of your cluster.
 
-To prevent excessive load, the AUS task will not start if the query node’s load is too high during the scheduled window. In such cases, the task is skipped, and the next AUS task is scheduled.
+To prevent excessive load, the AUS task will not start if the query node's load is too high during the scheduled window. In such cases, the task is skipped, and the next AUS task is scheduled.
 
 ## [](#related-links)Related Links
 

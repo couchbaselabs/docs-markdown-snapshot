@@ -3,7 +3,7 @@ title: XDCR&#8201;&#8212;&#8201;Server Compatibility
 description: How Sync Gateway works with Couchbase Server's <em>Cross Data
   Center Replication</em> (<em>XDCR</em>).
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/server-compatibility-xdcr.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::server-compatibility-xdcr.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.1@sync-gateway::server-compatibility-xdcr.adoc[]
 
 # XDCR&#8201;&#8212;&#8201;Server Compatibility
 
-> How Sync Gateway works with Couchbase Server’s _Cross Data Center Replication_ (_XDCR_).  
+> How Sync Gateway works with Couchbase Server's _Cross Data Center Replication_ (_XDCR_).  
 > Sync Gateway is specifically designed for mobile synchronization, but there are use-cases where it can usefully be used alongside XDCR to provide a comprehensive solution.
 
 _Related topics_: **XDCR** | [Eventing](server-compatibility-eventing.md) | [Transactions](server-compatibility-transactions.md) | [Collections](server-compatibility-collections.md)
@@ -47,7 +47,7 @@ Figure 1\. Active-to-active mobile synchronization
 
 ## [](#lbl-xdcr)Cross Data Center Replication (XDCR)
 
-Like inter-Sync Gateway Replication, Couchbase Server’s Cross Data Center Replication ([XDCR](../../server/current/manage/manage-xdcr/xdcr-management-overview.md)) can be used to replicate between Couchbase Mobile clusters. XDCR replicates all of Sync Gateway’s metadata (\_sync xattr) along with associated documents.
+Like inter-Sync Gateway Replication, Couchbase Server's Cross Data Center Replication ([XDCR](../../server/current/manage/manage-xdcr/xdcr-management-overview.md)) can be used to replicate between Couchbase Mobile clusters. XDCR replicates all of Sync Gateway's metadata (\_sync xattr) along with associated documents.
 
 Your default preference for the replication of Couchbase Mobile changes should always be to use inter-Sync Gateway replication.
 

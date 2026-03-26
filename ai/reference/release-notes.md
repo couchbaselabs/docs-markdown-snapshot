@@ -1,7 +1,7 @@
 ---
 title: Capella AI Services Release Notes
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/reference/pages/release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:reference:release-notes.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:ai:reference:release-notes.adoc[]
 
 ## [](#november-2025-changelog)November 2025 Changelog
 
-* We’re excited to announce that Capella AI Services is now available.  
+* We're excited to announce that Capella AI Services is now available.  
 Hosted with AWS, Capella AI Services includes the following:
 
   * Data Processing Service  

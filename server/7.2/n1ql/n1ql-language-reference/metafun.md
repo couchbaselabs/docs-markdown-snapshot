@@ -3,7 +3,7 @@ title: Miscellaneous Utility Functions
 description: Miscellaneous utility functions enable you to perform tasks beyond
   the usual evaluation and transformation of data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/metafun.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/metafun.adoc[]
 ---
 
@@ -369,7 +369,7 @@ The return value is usually a number, depending on the datatype of the input exp
 | Array            | The number of elements — equivalent to [ARRAY\_LENGTH()](arrayfun.md#fn-array-length).          |
 | Binary           | The size of the binary object.                                                                  |
 | Boolean          | 1                                                                                               |
-| Number           | The number of characters in the number’s text representation.                                   |
+| Number           | The number of characters in the number's text representation.                                   |
 | MISSING          | missing                                                                                         |
 | NULL             | null                                                                                            |
 
@@ -436,7 +436,7 @@ This property is indexable.
 
 expiration
 
-Value representing a document’s expiration date. A value of 0 (zero) means no expiration date. For details, refer to [KV Operations](../../../../java-sdk/current/howtos/kv-operations.md#document-expiration).
+Value representing a document's expiration date. A value of 0 (zero) means no expiration date. For details, refer to [KV Operations](../../../../java-sdk/current/howtos/kv-operations.md#document-expiration).
 
 This property is indexable.
 
@@ -448,7 +448,7 @@ This property is not indexable. If you attempt to build an index on this propert
 
 id
 
-Value representing a document’s unique ID number.
+Value representing a document's unique ID number.
 
 This property is indexable.
 
@@ -460,7 +460,7 @@ This property is not indexable. If you attempt to build an index on this propert
 
 ### [](#return-value-8)Return Value
 
-The bare function returns a JSON object containing the specified document’s metadata. When the function is used with a property as part of a nested expression, the expression returns the JSON value of the property.
+The bare function returns a JSON object containing the specified document's metadata. When the function is used with a property as part of a nested expression, the expression returns the JSON value of the property.
 
 ### [](#examples-3)Examples
 
@@ -625,12 +625,12 @@ Array of \[`field_name`, `value`\] arrays for each field in the input object `ob
 
 * If `obj` has nested objects, then fields of such nested sub-objects are also explored and corresponding inner-array elements are produced.
 * If `obj` is an array, then each element of the array is explored and corresponding inner-array elements are produced.
-* If `obj` is a primitive data type of integer or string, then it returns NULL, as they don’t have a name.
+* If `obj` is a primitive data type of integer or string, then it returns NULL, as they don't have a name.
 * If `obj` is an array of primitive data types, then it returns an empty array `[]`.
 * If `obj` is an array of objects, then it returns an array of objects.
 
 > [!TIP]
-> If you wrap an array of primitive data types in an [object constructor](constructionops.md#object-construction), it’s treated as an object and returns an array; without the object constructor, it’s treated as an array of primitive data types and returns `[]`. For example, in [PAIRS() Example 2](#pairs-example2):
+> If you wrap an array of primitive data types in an [object constructor](constructionops.md#object-construction), it's treated as an object and returns an array; without the object constructor, it's treated as an array of primitive data types and returns `[]`. For example, in [PAIRS() Example 2](#pairs-example2):
 > 
 > * `PAIRS(public_likes)` returns `[]`
 > * `PAIRS({public_likes})` returns an array

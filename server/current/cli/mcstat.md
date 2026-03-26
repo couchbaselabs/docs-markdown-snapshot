@@ -3,7 +3,7 @@ title: mcstat
 description: The mcstat tool provides detailed information for a node, specified
   bucket, or for all buckets on a cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/mcstat.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:mcstat.adoc[]
 ---
 
@@ -30,7 +30,7 @@ The `options` are as follows:
 
 | Options                                                                                               | Description                                                                                                                                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| \-h\[=statkey\]\`or \`--help\[=statkey\]                                                              | Outputs possible statkey values with descriptions and indications of the stat’s scope and required privileges.                                                                                                        |
+| \-h\[=statkey\]\`or \`--help\[=statkey\]                                                              | Outputs possible statkey values with descriptions and indications of the stat's scope and required privileges.                                                                                                        |
 | \-h or \--hostname, with the parameter <hostname\[:port\]> (for IPv4), or \[address\]:port (for IPv6) | The name of the host (and optionally, the port number) to connect to. If no port number is specified, either a number specified with the \-p option, is used, or the default 11210 is used.                           |
 | \-p or \--port <port>                                                                                 | Optionally, the port number to connect to. If unspecified, the default 11210 is used.                                                                                                                                 |
 | \-b <bucketname>                                                                                      | The bucket whose statistics are to be retrieved. If not specified, an error is returned, unless the \-a option is specified.                                                                                          |

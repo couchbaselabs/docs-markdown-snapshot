@@ -2,7 +2,7 @@
 title: Builtin Functions
 description: A description of Couchbase SQL++ for Analytics builtin functions.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/8_builtin.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:analytics:8_builtin.adoc[]
 ---
 
@@ -1889,7 +1889,7 @@ object_add({"a": 1}, "b", 2);
 object_concat(obj1, obj2 ...)  
 object_concat(array)
 * Concatenates the input objects. This function has two possible syntaxes. The first requires any number of object arguments. The second requires a single array argument, containing any number of objects.  
-You can use the array syntax in situations where you don’t know ahead of time how many input objects there are to concatenate; or where you want to concatenate objects which are generated dynamically, for example by a subquery.
+You can use the array syntax in situations where you don't know ahead of time how many input objects there are to concatenate; or where you want to concatenate objects which are generated dynamically, for example by a subquery.
 * Arguments:
 
   * `obj1`, `obj2` …​: Objects, or expressions that evaluate to objects.
@@ -2890,7 +2890,7 @@ array_ifnull([null, 1, 2]);
 * Syntax:  
 array_insert(list, pos, val1, val2, ...)
 * Inserts the supplied values into the original array or multiset. Values can be NULL, meaning you can insert NULLs.  
-When the input is an array, the supplied values are inserted at the specified position. If the position is positive, the position before the first item is 0, the position before the second item is 1, and so on. If the position is negative, the position before the last item is -1, the position before the second-last item is -2, and so on. So for example, in the array \[5,6\], the valid positions are 0, 1, 2, -1, -2\. If the input array or multiset is empty, the only valid position is 0\. If the position is a floating-point number, it’s cast to integer.  
+When the input is an array, the supplied values are inserted at the specified position. If the position is positive, the position before the first item is 0, the position before the second item is 1, and so on. If the position is negative, the position before the last item is -1, the position before the second-last item is -2, and so on. So for example, in the array \[5,6\], the valid positions are 0, 1, 2, -1, -2\. If the input array or multiset is empty, the only valid position is 0\. If the position is a floating-point number, it's cast to integer.  
 When the input is a multiset, the location of the inserted values is undefined. The position must be less than the size of the multiset.
 * Arguments:
 
@@ -3747,8 +3747,8 @@ to_boolean(expr)
   * if the argument is `null` then `null` is returned
   * if the argument is of `boolean` type then it is returned as is
   * if the argument is of numeric type then `false` is returned if it is `0` or `NaN`, otherwise `true`
-  * if the argument is of `string` type then `false` is returned if it’s empty, otherwise `true`
-  * if the argument is of `array` or `multiset` type then `false` is returned if it’s size is `0`, otherwise `true`
+  * if the argument is of `string` type then `false` is returned if it's empty, otherwise `true`
+  * if the argument is of `array` or `multiset` type then `false` is returned if it's size is `0`, otherwise `true`
   * if the argument is of `object` type then `false` is returned if it has no fields, otherwise `true`
   * type error is raised for all other input types
 * Example:  
@@ -4497,7 +4497,7 @@ All Bit/Binary functions can only operate on 64-bit signed integers.
 > All non-integer numbers and other data types result in null.
 
 > [!NOTE]
-> The query language uses two’s complement representation.
+> The query language uses two's complement representation.
 
 When looking at the value in binary form, bit 1 is the Least Significant Bit (LSB) and bit 32 is the Most Significant Bit (MSB).
 
@@ -4728,7 +4728,7 @@ Circular right shift of the number 6 (0110 in binary) by two bits.
 { "BitSHIFT": BITSHIFT(6,-2,TRUE) };
 * The expected result is:  
 { "BitSHIFT": -9223372036854775807 }  
-This results in -9223372036854775807 (1100 0000 0000 0000 0000 0000 0000 0000 in binary) because the two 1-bits wrapped right, around to the Most Significant Digit position and changed the integer’s sign to negative.
+This results in -9223372036854775807 (1100 0000 0000 0000 0000 0000 0000 0000 in binary) because the two 1-bits wrapped right, around to the Most Significant Digit position and changed the integer's sign to negative.
 * Example 3:  
 Circular left shift of the number 524288 (1000 0000 0000 0000 0000 in binary) by 45 bits.  
 { "BitSHIFT": BITSHIFT(524288,45,TRUE) };

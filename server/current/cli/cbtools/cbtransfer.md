@@ -2,7 +2,7 @@
 title: cbtransfer
 description: Enables the transfer of Couchbase data from clusters and various file formats
 editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbtools/cbtransfer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbtools/cbtransfer.adoc[]
 ---
 
@@ -126,7 +126,7 @@ When specified the tool will not transfer data but only validate parameters, fil
 
 \-v,--verbose
 
-Verbose logging; more -v’s provide more verbosity. Max is -vvv
+Verbose logging; more -v's provide more verbosity. Max is -vvv
 
 \--silent
 
@@ -151,14 +151,14 @@ __Table 1\. cbtransfer -x options__
 | batch\_max\_bytes=400000 | Transfer this # of bytes per batch.                                                                                                                                                                                                                                                                        |
 | batch\_max\_size=1000    | Transfer this # of documents per batch.                                                                                                                                                                                                                                                                    |
 | cbb\_max\_mb=100000      | Split backup file on destination cluster if it exceeds the MiB.                                                                                                                                                                                                                                            |
-| conflict\_resolve=1      | By default, disable conflict resolution. This option doesn’t work in Couchbase Server versions 4.0 and 4.1 but will be re-implemented in version 4.1.1 and in subsequent versions.                                                                                                                         |
+| conflict\_resolve=1      | By default, disable conflict resolution. This option doesn't work in Couchbase Server versions 4.0 and 4.1 but will be re-implemented in version 4.1.1 and in subsequent versions.                                                                                                                         |
 | data\_only=0             | For value 1, transfer only data from a backup file or cluster.                                                                                                                                                                                                                                             |
 | design\_doc\_only=0      | For value 1, transfer only design documents from a backup file or cluster. Default: 0. Back up only design documents which include view and secondary index definitions from a cluster or bucket with the option design\_doc\_only=1. Restore only design documents with cbrestore -x design\_doc\_only=1. |
 | max\_retry=10            | Max number of sequential retries if the transfer fails.                                                                                                                                                                                                                                                    |
 | mcd\_compatible=1        | For value 0, display extended fields for stdout output.                                                                                                                                                                                                                                                    |
 | nmv\_retry=1             | 0 or 1, where 1 retries transfer after a NOT\_MY\_VBUCKET message. Default: 1.                                                                                                                                                                                                                             |
 | recv\_min\_bytes=4096    | Amount of bytes for every TCP/IP batch transferred.                                                                                                                                                                                                                                                        |
-| rehash=0                 | For value 1, rehash the partition id’s of each item. This is required when transferring data between clusters with different number of partitions, such as when transferring data from an Mac OS X server to a non-Mac OS X cluster.                                                                       |
+| rehash=0                 | For value 1, rehash the partition id's of each item. This is required when transferring data between clusters with different number of partitions, such as when transferring data from an Mac OS X server to a non-Mac OS X cluster.                                                                       |
 | report=5                 | Number batches transferred before updating progress bar in console.                                                                                                                                                                                                                                        |
 | report\_full=2000        | Number batches transferred before emitting progress information in console.                                                                                                                                                                                                                                |
 | seqno=0                  | By default, start seqno from beginning.                                                                                                                                                                                                                                                                    |

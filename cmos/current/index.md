@@ -1,7 +1,7 @@
 ---
 title: Couchbase Monitoring and Observability Stack
 editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cmos::index.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:cmos::index.adoc[]
 # Couchbase Monitoring and Observability Stack
 
 > [!CAUTION]
-> CMOS is provided as a Developer Preview. Developer Preview features and their use are subject to Couchbase’s “Non-GA Offering Supplemental Terms” set forth in the [License Agreement](https://www.couchbase.com/LA03012021). Developer Preview features may not be functionally complete and are not intended for production use. They are intended for development and testing purposes only.
+> CMOS is provided as a Developer Preview. Developer Preview features and their use are subject to Couchbase's "Non-GA Offering Supplemental Terms" set forth in the [License Agreement](https://www.couchbase.com/LA03012021). Developer Preview features may not be functionally complete and are not intended for production use. They are intended for development and testing purposes only.
 
 The intention of this repository is to provide a simple, out-of-the-box solution based on industry standard tooling to observe the state of your Couchbase cluster.
 

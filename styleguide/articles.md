@@ -1,7 +1,7 @@
 ---
 title: Articles (a, an, the)
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/articles.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::articles.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:styleguide::articles.adoc[]
 
 Use articles like **a**, **an**, and **the** in your writing.
 
-As stated in the [Google Developer’s Style Guide](https://developers.google.com/style/articles):
+As stated in the [Google Developer's Style Guide](https://developers.google.com/style/articles):
 
 **A** and **an** are indefinite articles and are used before a singular noun. They refer to any member of a group.
 

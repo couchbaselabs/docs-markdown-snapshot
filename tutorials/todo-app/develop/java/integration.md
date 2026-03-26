@@ -1,7 +1,7 @@
 ---
 title: Integration
 editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/develop/java/integration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:todo-app:develop/java/integration.adoc[]
 ---
 
@@ -10,13 +10,13 @@ link: xref:tutorials:todo-app:develop/java/integration.adoc[]
 
 # Integration
 
-In this lesson you’ll learn how to integrate Couchbase Mobile with external systems using Sync Gateway. You’ll use the changes stream for real-time streaming access to data changes and the bulk APIs for bulk import/export operations.
+In this lesson you'll learn how to integrate Couchbase Mobile with external systems using Sync Gateway. You'll use the changes stream for real-time streaming access to data changes and the bulk APIs for bulk import/export operations.
 
 ## [](#changes-stream)Changes stream
 
 ### [](#connecting)Connecting
 
-The changes stream returns a sorted list of changes made to documents in the database. It’s the primary API to get notified of changes as they are processed by Sync Gateway and persisted to Couchbase Server.
+The changes stream returns a sorted list of changes made to documents in the database. It's the primary API to get notified of changes as they are processed by Sync Gateway and persisted to Couchbase Server.
 
 Documents written to Sync Gateway are assigned a sequence value at write time. This sequence is used to order the changes feed. You can query the changes feed using a simple HTTP GET request to `/{db}/_changes` as shown below.
 
@@ -191,18 +191,18 @@ function processChanges(results) {
 }
 ```
 
-This code checks that the change is not a deletion and that the document type is task. If the `doc.task` property is either apple, coffee or potatoes then it reads the corresponding image as a Base64 string and sets it on the document’s `\_attachments` dictionary. Finally it persists the document with the attachment back to Sync Gateway using the `post_db_bulk_docs` method.
+This code checks that the change is not a deletion and that the document type is task. If the `doc.task` property is either apple, coffee or potatoes then it reads the corresponding image as a Base64 string and sets it on the document's `\_attachments` dictionary. Finally it persists the document with the attachment back to Sync Gateway using the `post_db_bulk_docs` method.
 
 #### [](#try-it-out-3)Try it out
 
-1. Run the application and make sure it’s replicating to Sync Gateway.
+1. Run the application and make sure it's replicating to Sync Gateway.
 2. Start the bot.  
 ```bash  
 node app.js  
 ```
-3. Add a task called Apple, Coffee or Potatoes and an image should appear after a few seconds. That’s the attachment that was added to Sync Gateway by the bot and in turn replicated to Couchbase Lite.  
+3. Add a task called Apple, Coffee or Potatoes and an image should appear after a few seconds. That's the attachment that was added to Sync Gateway by the bot and in turn replicated to Couchbase Lite.  
 ![image56](../../_images/image56.gif)
 
 ## [](#conclusion)Conclusion
 
-Well done! You’ve completed this lesson on integration by using the Stream API to subscribe to changes and the REST API to persist a document back to Sync Gateway. Feel free to share your feedback, findings or ask any questions on the forums.
+Well done! You've completed this lesson on integration by using the Stream API to subscribe to changes and the REST API to persist a document back to Sync Gateway. Feel free to share your feedback, findings or ask any questions on the forums.

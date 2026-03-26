@@ -2,7 +2,7 @@
 title: Support Notices
 description: Couchbase Lite on Java
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/java/pages/support-notices.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:java:support-notices.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.8@couchbase-lite:java:support-notices.adoc[]
 # Support Notices
 
 > Description — _Couchbase Lite on Java_  
-> Related Content — [What’s New](../../current/cbl-whatsnew.md)
+> Related Content — [What's New](../../current/cbl-whatsnew.md)
 
 ## [](#support-notices)Support Notices
 

@@ -3,7 +3,7 @@ title: Edit a Bucket
 description: Full, Cluster, and Bucket Administrators can edit a subset of the
   settings already established on an existing bucket.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-buckets/edit-bucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:manage:manage-buckets/edit-bucket.adoc[]
 ---
 
@@ -24,7 +24,7 @@ The **Buckets** screen now appears, showing the buckets that have already been d
 
 ![bucketsViewInitialEdit](../_images/manage-buckets/bucketsViewInitialEdit.png) 
 
-To edit the settings for a particular bucket, left-click on the bucket’s row in the UI. This expands the row, to display additional information:
+To edit the settings for a particular bucket, left-click on the bucket's row in the UI. This expands the row, to display additional information:
 
 ![bucketsViewWithExpandedBucketRow](../_images/manage-buckets/bucketsViewWithExpandedBucketRow.png) 
 
@@ -53,10 +53,10 @@ Only a subset of settings is available for modification, after the creation of a
 * **Compression Mode**: Whether and how compression is applied to data within the bucket. For information on available _modes_, and the effect of changing the mode of an existing bucket, see [Compression](../../learn/buckets-memory-and-storage/compression.md).
 * **Ejection Method**: The ejection policy used by a bucket. Can be changed for a Couchbase bucket only. Note that changing the ejection-policy forces a bucket-restart; resulting in the temporary inaccessibility of data, while the bucket warms up.
 * **Replicas**: The number of bucket-replicas to be maintained by the cluster. This number can be changed at any time for a Couchbase or Ephemeral bucket: however, a rebalance is required after a setting-change, in order to redistribute the correct number of replica-items across the cluster. Note that Couchbase-bucket _View Index Replicas_ cannot be enabled or disabled once a bucket has been created.
-* **Bucket Priority**: The priority to be assigned to the current bucket’s background tasks. Can be changed for Couchbase and Ephemeral buckets. Note that a priority-change invokes a bucket restart, resulting in the temporary inaccessibility of data, while the bucket warms up.
+* **Bucket Priority**: The priority to be assigned to the current bucket's background tasks. Can be changed for Couchbase and Ephemeral buckets. Note that a priority-change invokes a bucket restart, resulting in the temporary inaccessibility of data, while the bucket warms up.
 * **Minimum Durability Level**: Allows an appropriate durability level to be assigned to the bucket. Levels are accessed by means of a pull-down menu. The options are **none**, **majority**, **majorityAndPersistActive**, and **persistToMajority**. For information, see [Durability](../../learn/data/durability.md).
 * **Auto-Compaction**: When established, these settings, which determine the conditions under which data-compaction for the bucket is performed, override the cluster-wide defaults; as discussed in [Auto-Compaction](../manage-settings/configure-compact-settings.md). The full range of settings applies to and can be changed for Couchbase buckets; while only the **Metadata Purge Interval** applies to and can be changed for Ephemeral buckets.
-* **Flush**: This setting enables or disables the [Flush](flush-bucket.md) command for the current bucket. It can be changed at any time for all three types of bucket. Note that when flushing is enabled, left-clicking on the bucket’s display-row on the **Buckets** screen displays the **Flush** button:  
+* **Flush**: This setting enables or disables the [Flush](flush-bucket.md) command for the current bucket. It can be changed at any time for all three types of bucket. Note that when flushing is enabled, left-clicking on the bucket's display-row on the **Buckets** screen displays the **Flush** button:  
 ![flushBucketButton](../_images/manage-buckets/flushBucketButton.png)  
 If flushing is _disabled_, the **Flush** button does not appear.
 

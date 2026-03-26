@@ -4,7 +4,7 @@ description: Couchbase Server requires that administrators and applications
   <em>authenticate</em>, in order to gain access to data, settings, and
   statistics.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/usernames-and-passwords.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:security/usernames-and-passwords.adoc[]
 ---
 
@@ -80,7 +80,7 @@ The users managed by external systems, such as LDAP or SAML, must use the tools 
 
 ### [](#force-password-change)Force Password Change
 
-Administrators can enforce a password change on the user’s next login. This option is useful when issuing a temporary password or resetting a compromised account.
+Administrators can enforce a password change on the user's next login. This option is useful when issuing a temporary password or resetting a compromised account.
 
 Enforcing password change results in the following:
 

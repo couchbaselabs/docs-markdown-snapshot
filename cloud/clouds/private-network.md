@@ -4,7 +4,7 @@ description: Setting up a VPC peering connection enables your application to
   interact with Couchbase Capella over a private connection by co-locating them
   through VPC or VNet peering.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/private-network.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clouds:private-network.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:cloud:clouds:private-network.adoc[]
 
 > Setting up a VPC peering connection enables your application to interact with Couchbase Capella over a private connection by co-locating them through VPC or VNet peering. 
 
-You can configure a VPC peering connection from Couchbase Capella clusters hosted with AWS, GCP, or Microsoft Azure to your application’s VPC.
+You can configure a VPC peering connection from Couchbase Capella clusters hosted with AWS, GCP, or Microsoft Azure to your application's VPC.
 
 > [!CAUTION]
 > Capella does not support VPC peering connections between different cloud providers. For example, you cannot set up VPC peering between a Capella cluster hosted in GCP with an application hosted on AWS.

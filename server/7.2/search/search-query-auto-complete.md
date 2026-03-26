@@ -3,7 +3,7 @@ title: Use Autocomplete with the Search Service
 description: Add autocomplete to your application to provide a search
   engine-like experience for your database.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/search-query-auto-complete.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:search-query-auto-complete.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:7.2@server:search:search-query-auto-complete.adoc[]
 
 > Add autocomplete to your application to provide a search engine-like experience for your database. 
 
-Also known as auto suggest or type-ahead, autocomplete guesses potential matches for a user’s search input as they type.
+Also known as auto suggest or type-ahead, autocomplete guesses potential matches for a user's search input as they type.
 
 Autocomplete can provide a better user experience with search in your application.
 

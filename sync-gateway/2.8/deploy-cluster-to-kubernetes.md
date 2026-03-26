@@ -2,7 +2,7 @@
 title: Deploying a Sync Gateway Cluster
 description: Connect Sync Gateway to a Server Cluster Deployed with CAO 1.2.x
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/deploy-cluster-to-kubernetes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::deploy-cluster-to-kubernetes.adoc[]
 ---
 
@@ -16,13 +16,13 @@ link: xref:2.8@sync-gateway::deploy-cluster-to-kubernetes.adoc[]
 
 ## [](#how-to)How to
 
-Follow the instructions in this tutorial to connect Sync Gateway deployed on kubernetes to a Couchbase Server cluster — [Connect Sync Gateway to a Couchbase Cluster](#2.0@operator::tutorial-sync-gateway.adoc). See also the prerequisites in the tutorial’s [Connecting Sync Gateway to Server (Prerequisites)](#2.0@operator::tutorial-sync-gateway.adoc#prerequisites) section.
+Follow the instructions in this tutorial to connect Sync Gateway deployed on kubernetes to a Couchbase Server cluster — [Connect Sync Gateway to a Couchbase Cluster](#2.0@operator::tutorial-sync-gateway.adoc). See also the prerequisites in the tutorial's [Connecting Sync Gateway to Server (Prerequisites)](#2.0@operator::tutorial-sync-gateway.adoc#prerequisites) section.
 
 **If the Couchbase Server was deployed using Couchbase Autonomous Operater 1.2**, then the following deviations from those instructions apply:
 
-* You cannot configure Mutual TLS (mTLS, or two-way TLS) to connect to the Couchbase Server, although you _can_ use one-way TLS (see: the tutorial’s [Enabling TLS Connectivity to Couchbase Server](#2.0@operator::tutorial-sync-gateway.adoc#enabling-tls-connectivity-to-couchbase-server) section).
+* You cannot configure Mutual TLS (mTLS, or two-way TLS) to connect to the Couchbase Server, although you _can_ use one-way TLS (see: the tutorial's [Enabling TLS Connectivity to Couchbase Server](#2.0@operator::tutorial-sync-gateway.adoc#enabling-tls-connectivity-to-couchbase-server) section).
 * If you are using RBAC users to connect, you need to create the sync gateway user as shown in [Create an RBAC User](#2.8@sync-gateway::start/get-started-configure-server.adoc#step-2lbl-create-rbac-user).  
-This user is referenced in the tutorial’s [Configuring RBAC User for Sync Gateway](#2.0@operator::tutorial-sync-gateway.adoc#configuring-rbac-user-for-sync-gateway) section.
+This user is referenced in the tutorial's [Configuring RBAC User for Sync Gateway](#2.0@operator::tutorial-sync-gateway.adoc#configuring-rbac-user-for-sync-gateway) section.
 
 ## [](#related-content)Related Content
 

@@ -3,7 +3,7 @@ title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:dotnet-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -36,7 +36,7 @@ We will perform an FTS query here - see the [\[vector-search\]](#vector-search) 
 
 Search queries are executed at Cluster level. As of Couchbase Server 7.6, they can also be executed at the Scope level.
 
-Here is a simple MatchQuery that looks for the text “swanky” using a defined index:
+Here is a simple MatchQuery that looks for the text "swanky" using a defined index:
 
 ```csharp
 // as a cluster-level search
@@ -54,7 +54,7 @@ var searchResult = await scope.SearchAsync("index-hotel-description",
     new SearchOptions().Limit(10));
 ```
 
-All simple query types are created in the same manner, some have additional properties, which can be seen in common query type descriptions. Couchbase FTS’s [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted. Here is a date range query that looks for dates between 1st January 2021 and 31st January:
+All simple query types are created in the same manner, some have additional properties, which can be seen in common query type descriptions. Couchbase FTS's [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted. Here is a date range query that looks for dates between 1st January 2021 and 31st January:
 
 ```csharp
 var searchResult = await scope.SearchAsync("index-name",
@@ -132,4 +132,4 @@ The FTS APIs exist at both the `Cluster` and `Scope` levels.
 
 This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
-It’s important to use the `Cluster.SearchAsync()` for global indexes, and `Scope.SearchAsync()` for scoped indexes. (`Cluster.SearchQueryAsync()` is still available for compatibility with earlier versions of the SDK)
+It's important to use the `Cluster.SearchAsync()` for global indexes, and `Scope.SearchAsync()` for scoped indexes. (`Cluster.SearchQueryAsync()` is still available for compatibility with earlier versions of the SDK)

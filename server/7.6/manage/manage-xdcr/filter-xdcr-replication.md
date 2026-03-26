@@ -4,7 +4,7 @@ description: An XDCR replication can be <em>filtered</em>, by means of
   <em>expressions</em>; so that only selected documents are replicated from the
   source to the target cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-xdcr/filter-xdcr-replication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-xdcr/filter-xdcr-replication.adoc[]
 ---
 
@@ -19,9 +19,9 @@ link: xref:7.6@server:manage:manage-xdcr/filter-xdcr-replication.adoc[]
 
 XDCR Advanced Filtering allows a limited subset of documents to be replicated from the source bucket. An _expression_ is created, and used to identify documents that provide a match. The expression can be applied to:
 
-* The document’s key
+* The document's key
 * Fields and values in the document-body
-* The document’s extended attributes
+* The document's extended attributes
 
 This page explains the practical steps whereby filtering can be performed. Note that when entered by means of the [UI](#filter-an-xdcr-replication-with-the-ui), the expression can be a maximum of 250 bytes (characters) in length: this restriction does _not_ apply to expressions entered by means of the [CLI](#filter-an-xdcr-replication-with-the-cli) or the [REST API](#filter-an-xdcr-replication-with-the-rest-api).
 
@@ -59,7 +59,7 @@ To replicate only those documents whose key features the string _airport_, and w
 Note that the **Deletion Filters** and **Binary Documents** options are not used in this example. For details on how to use these options, see [Deletion Filters](#deletion-filters) and [Filtering Binary Documents](#filtering-binary-documents), below.
 5. Test the expression against a specified document.  
 Note that an expression _must_ be tested successfully, before it can be included as part of the replication: if an expression is specified and attemptedly saved without having been tested, the expression is ignored when saving occurs; and the replication is thus started in unfiltered form.  
-Enter the document’s _scope_, _collection_, and _id_ in the interactive field adjacent to the **Test Filter** button. Then, left-click on the **Test Filter** button. If the specified document provides a successful match, this is indicated to the right of the **Test Filter** button:  
+Enter the document's _scope_, _collection_, and _id_ in the interactive field adjacent to the **Test Filter** button. Then, left-click on the **Test Filter** button. If the specified document provides a successful match, this is indicated to the right of the **Test Filter** button:  
 ![filter xdcr test filter success](../_images/manage-xdcr/filter-xdcr-test-filter-success.png)  
 If the test fails, a `no match` notification is provided, in the same location.
 6. Left-click on the **Specify Scopes, Collections, and Mappings** toggle. The panel expands vertically:  
@@ -109,9 +109,9 @@ The **Binary Documents** option is used to specify whether binary documents shou
 
 * The behavior is identical to that of Couchbase-Server versions prior to 7.1.5, where the option did not exist.
 * If a filter expression is not provided, binary documents _are_ replicated.
-* If a filter expression _is_ provided, and the expression refers only to either the document’s _key_, or its _xattr_, or to both, the expression is applied, and the document is replicated if the expression permits.
-* If a filter expression is provided, and the expression refers only to the document’s body, the document _is_ replicated.
-* If a filter expression is provided, and the expression refers to the document’s _key_, or its _xattr_, or to both; and also refers to the document’s body; the document is _not_ replicated (regardless of whether the key or xattr might appear to permit replication).
+* If a filter expression _is_ provided, and the expression refers only to either the document's _key_, or its _xattr_, or to both, the expression is applied, and the document is replicated if the expression permits.
+* If a filter expression is provided, and the expression refers only to the document's body, the document _is_ replicated.
+* If a filter expression is provided, and the expression refers to the document's _key_, or its _xattr_, or to both; and also refers to the document's body; the document is _not_ replicated (regardless of whether the key or xattr might appear to permit replication).
 
 ### [](#editing-filters)Editing
 
@@ -173,7 +173,7 @@ For more information, see the complete reference for the [xdcr-replicate](../../
 
 ## [](#filter-an-xdcr-replication-with-the-rest-api)Filter an XDCR Replication with the REST API
 
-Starting from the scenario defined above, in [Examples on This Page](#examples-on-this-page-create-replication), the REST API’s `POST /controller/createReplication` HTTP method and URI can be used to create a filtered XDCR replication.
+Starting from the scenario defined above, in [Examples on This Page](#examples-on-this-page-create-replication), the REST API's `POST /controller/createReplication` HTTP method and URI can be used to create a filtered XDCR replication.
 
 The assumptions and requirements are identical to those described above, in [Filter an XDCR Replication with the CLI](#filter-an-xdcr-replication-with-the-cli).
 

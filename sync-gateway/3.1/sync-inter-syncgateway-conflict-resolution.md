@@ -2,7 +2,7 @@
 title: Enhanced Conflict Resolution
 description: About conflict resolution in inter-Sync Gateway replication
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/sync-inter-syncgateway-conflict-resolution.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::sync-inter-syncgateway-conflict-resolution.adoc[]
 ---
 
@@ -147,7 +147,7 @@ Your custom conflict resolver function should not terminate the replication when
 For example, your custom conflict resolver function should:
 
 * Skip the document causing the issue
-* Log a suitable warning level message. Include at least the skipped document’s Id and the sequence Id of the revision in error.
+* Log a suitable warning level message. Include at least the skipped document's Id and the sequence Id of the revision in error.
 
 Refer to log files when troubleshooting conflict resolution errors, to identify the document id and revision sequence in error.
 

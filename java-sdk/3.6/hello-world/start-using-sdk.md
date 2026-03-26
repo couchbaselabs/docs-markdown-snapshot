@@ -2,7 +2,7 @@
 title: Start Using the Java SDK
 description: A quick start guide to get you up and running with Couchbase and the Java SDK.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.6/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@java-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -23,12 +23,12 @@ In this guide, you will learn:
 
 ## [](#hello-couchbase)Hello Couchbase
 
-We will go through the code sample step by step, but for those in a hurry, here’s the complete code:
+We will go through the code sample step by step, but for those in a hurry, here's the complete code:
 
 * Couchbase Capella Sample
 * Local Couchbase Server
 
-If you are connecting to [Couchbase Capella](https://docs.couchbase.com/cloud/index.html), you’ll need to know the endpoint address, as well as a username and password.
+If you are connecting to [Couchbase Capella](https://docs.couchbase.com/cloud/index.html), you'll need to know the endpoint address, as well as a username and password.
 
 This example requires the Travel Sample Bucket. The Couchbase Capella free tier version comes with this bucket, and its Query indexes, loaded and ready.
 
@@ -202,7 +202,7 @@ import com.couchbase.client.java.query.*;
 import java.time.Duration;
 ```
 
-If you haven’t already, create an empty class and add a `main()` method.
+If you haven't already, create an empty class and add a `main()` method.
 
 ```java
 public class YourClassName {
@@ -237,12 +237,12 @@ In the following sections we will populate the `main()` method.
 
 ### [](#connect)Connect
 
-Connect to your cluster by calling the `Cluster.connect()` method and pass it your connection details. The basic connection details that you’ll need are given below — for more background information, see [Managing Connections](../howtos/managing-connections.md).
+Connect to your cluster by calling the `Cluster.connect()` method and pass it your connection details. The basic connection details that you'll need are given below — for more background information, see [Managing Connections](../howtos/managing-connections.md).
 
 * Couchbase Capella
 * Local Couchbase Server
 
-From version 3.3, the Java SDK includes Capella’s standard Certificate Authority (CA) certificates by default, so you don’t need any additional configuration. Capella requires TLS, which you can enable by using a connection string that starts with `couchbases://` (note the final 's').
+From version 3.3, the Java SDK includes Capella's standard Certificate Authority (CA) certificates by default, so you don't need any additional configuration. Capella requires TLS, which you can enable by using a connection string that starts with `couchbases://` (note the final 's').
 
 This example shows how to connect and customize the [Cluster Environment](../howtos/managing-connections.md#cluster-environment) settings.
 
@@ -279,7 +279,7 @@ Cluster cluster = Cluster.connect(
 > [!TIP]
 > Simpler Connection
 > 
-> There’s also a simpler version of `Cluster.connect()` for when you don’t need to customize the cluster environment:
+> There's also a simpler version of `Cluster.connect()` for when you don't need to customize the cluster environment:
 > 
 > ```java
 > // Alternatively, connect without customizing the cluster envionrment.
@@ -342,7 +342,7 @@ You can learn more about SQL++ queries on the [Query](../howtos/n1ql-queries-wit
 
 ### [](#execute)Execute!
 
-Now that you’ve completed all the steps, run the example via your IDE or through the command line. You should expect to see the following output:
+Now that you've completed all the steps, run the example via your IDE or through the command line. You should expect to see the following output:
 
 ```console
 mike
@@ -351,7 +351,7 @@ mike
 
 ## [](#next-steps)Next Steps
 
-Now you’re up and running, try one of the following:
+Now you're up and running, try one of the following:
 
 * Our [Travel Sample Application](sample-application.md) demonstrates all the basics you need to know;
 * Explore [Data Operations](../howtos/kv-operations.md) against a document database;
@@ -368,7 +368,7 @@ If you are planning to use Spring Data Couchbase, see the [notes on version comp
 
 ### [](#troubleshooting)Troubleshooting
 
-* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you’re running the SDK on your laptop against a Capella cluster, see further information on:
+* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you're running the SDK on your laptop against a Capella cluster, see further information on:
 
   * Notes on [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
   * [Network Requirements](../project-docs/compatibility.md#network-requirements).

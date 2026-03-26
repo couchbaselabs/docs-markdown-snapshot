@@ -1,7 +1,7 @@
 ---
 title: Release Notes for Couchbase Autonomous Operator 2.5
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::release-notes.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.5@operator::release-notes.adoc[]
 
 Autonomous Operator 2.5 release is primarily focused on platform updates, feature parity with Couchbase Server, improvements to Pod Management and Security, as well as a number of minor fixes.
 
-Take a look at the [What’s New](whats-new.md) page for a list of new features and improvements that are available in this release.
+Take a look at the [What's New](whats-new.md) page for a list of new features and improvements that are available in this release.
 
 ## [](#installation)Installation
 

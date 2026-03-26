@@ -3,7 +3,7 @@ title: Temporal Functions
 description: This topic describes the builtin SQL++ for Capella Analytics
   temporal functions.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/8_builtin_temp.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sqlpp:8_builtin_temp.adoc[]
 ---
 
@@ -348,7 +348,7 @@ date_part_str(date1, part)
 * Syntax:  
 date_range_millis(date1, date2, part [,n])
 * Generates an array of dates from the start date specified by `date1` and the end date specified by `date2`, as Epoch/UNIX timestamps. The difference between each subsequent generated date can be adjusted.  
-It’s possible to generate very large arrays using this function. In some cases the query engine may be unable to process all of these and cause excessive resource consumption. It’s therefore recommended that you first validate the inputs to this function to make sure that the generated result is a reasonable size.  
+It's possible to generate very large arrays using this function. In some cases the query engine may be unable to process all of these and cause excessive resource consumption. It's therefore recommended that you first validate the inputs to this function to make sure that the generated result is a reasonable size.  
 If the start date is greater than the end date passed to the function then an error is not thrown, but the result array is empty. You can generate an array of descending dates by setting the start date greater than the end date and specifying a negative value for `n`.
 * Arguments:
 
@@ -393,7 +393,7 @@ If the start date is greater than the end date passed to the function then an er
 * Syntax:  
 date_range_str(start_date, end_date, date_interval [, quantity_int ])
 * Generates an array of date strings between the start date and end date, calculated by the interval and quantity values. The input dates can be in any of the [supported date formats](../n1ql/n1ql-language-reference/datefun.html#date-formats).  
-It’s possible to generate very large arrays using this function. In some cases the query engine may be unable to process all of these and cause excessive resource consumption. It’s therefore recommended that you first validate the inputs of this function to make sure that the generated result is a reasonable size.  
+It's possible to generate very large arrays using this function. In some cases the query engine may be unable to process all of these and cause excessive resource consumption. It's therefore recommended that you first validate the inputs of this function to make sure that the generated result is a reasonable size.  
 If the `start_date` is greater than the `end_date`, an error is not thrown, but the result array is empty. You can generate an array of descending dates by setting the `start_date` greater than the `end_date` and specifying a negative value for `quantity_number`.  
 Both specified dates must have the same string format, otherwise `null` is returned. To make sure that both dates have the same format, you should use [date\_format\_str()](#datefun%5F%5Ffn-date-format-str).
 * Arguments:

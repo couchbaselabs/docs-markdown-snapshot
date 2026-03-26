@@ -3,7 +3,7 @@ title: Run a Vector Search with the REST API and curl/HTTP
 description: You can use the REST API and a curl command to run a search against
   a Vector Search index and return similar vectors.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/vector-search/pages/run-vector-search-rest-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:vector-search:run-vector-search-rest-api.adoc[]
 ---
 
@@ -27,7 +27,7 @@ For more information about how the Search Service scores documents in search res
 * You have a bucket with scopes and collections in your cluster. For more information about how to create a bucket, see [Create a Bucket](../../current/manage/manage-buckets/create-bucket.md).
 * Your user account has the **Search Admin** or **Search Reader** role.
 * You installed the Couchbase command-line tool (CLI).
-* You have the hostname or IP address for the node in your cluster where you’re running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../../current/manage/manage-nodes/list-cluster-nodes.md).
+* You have the hostname or IP address for the node in your cluster where you're running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../../current/manage/manage-nodes/list-cluster-nodes.md).
 * You have created a Vector Search index.  
 For more information about how to create a Vector Search index, see [Create a Vector Search Index with the Server Web Console](create-vector-search-index-ui.md) or [Create a Vector Search Index with the REST API and curl/HTTP](create-vector-search-index-rest-api.md).  
 > [!TIP]  

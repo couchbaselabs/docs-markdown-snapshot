@@ -5,7 +5,7 @@ description: The Couchbase Capella Data API is a secure REST API that enables
   access to the Query Service and the Search Service, so that you can run SQL++
   queries and full-text searches.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:data-api-guide:data-api-intro.adoc[]
 ---
 
@@ -36,7 +36,7 @@ Exceptions to backward compatibility are as follows:
 > [!NOTE]
 > Beta Features
 > 
-> From time to time, beta features may be added to the Data API. Beta features are early previews that are added to the Data API for evaluation only. They’re subject to change, and should not be used in production.
+> From time to time, beta features may be added to the Data API. Beta features are early previews that are added to the Data API for evaluation only. They're subject to change, and should not be used in production.
 > 
 > Beta features are clearly labelled in the Data API reference. They will be promoted to regular features in a future version.
 
@@ -54,7 +54,7 @@ The Data API uses cluster access credentials for authentication and authorizatio
 
 The access privileges specified for the cluster access credential determine the buckets, scopes, and collections that a client can access via the Data API.
 
-You must permit access to the cluster from the IP address of the Data API client. (If you’re accessing the Data API via a VPC Peering connection or a private endpoint, you do not need to permit access from the peered range of private IP addresses.)
+You must permit access to the cluster from the IP address of the Data API client. (If you're accessing the Data API via a VPC Peering connection or a private endpoint, you do not need to permit access from the peered range of private IP addresses.)
 
 To authenticate a Data API call, you must pass the cluster access credentials as the username and password, using HTTP Basic authentication.
 
@@ -62,7 +62,7 @@ To authenticate a Data API call, you must pass the cluster access credentials as
 
 To support concurrent requests, PUT and DELETE requests support optimistic concurrency control, using `If-Match` headers in combination with HTTP ETags (entity tags). Exceptions are noted in the endpoint descriptions. A typical pattern is to do a GET request on a specified resource, which returns an ETag value. You can then include the ETag value in a PUT request to update the resource.
 
-The ETag value for a document is equivalent to the document’s CAS (Compare and Swap) value.
+The ETag value for a document is equivalent to the document's CAS (Compare and Swap) value.
 
 ## [](#passthrough-proxy-requests)Passthrough Proxy Requests
 
@@ -81,7 +81,7 @@ You can access the passthrough Query Service and Search Service endpoints via th
 
 ## [](#billing)Billing
 
-You’ll incur charges when you enable the Data API for a cluster. You’ll incur an extra charge when both Data API and VPC Peering connections are enabled. Enabling private endpoint support with the Data API has no additional cost. For details of the charges associated with the Data API, see [Manage Your Billing](../billing/billing.md).
+You'll incur charges when you enable the Data API for a cluster. You'll incur an extra charge when both Data API and VPC Peering connections are enabled. Enabling private endpoint support with the Data API has no additional cost. For details of the charges associated with the Data API, see [Manage Your Billing](../billing/billing.md).
 
 ## [](#service-limits)Service Limits
 

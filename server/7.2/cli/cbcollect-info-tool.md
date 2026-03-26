@@ -3,7 +3,7 @@ title: cbcollect_info
 description: The <code class="cmd">cbcollect_info</code> tool provides detailed
   statistics for a specific node.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbcollect-info-tool.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cli:cbcollect-info-tool.adoc[]
 ---
 
@@ -53,7 +53,7 @@ __Table 2\. Output files__
 | cbcollect\_info.log                   | Contains information about the performance of cbcollect\_info.                                                                                                                                                                                                                                                             |
 | couchbase.log                         | Contains system-level information, primarily the result of shell commands. Generated at collection-time.                                                                                                                                                                                                                   |
 | ddocs.log                             | Contains the design documents for each bucket in JSON format, taken from the view file on disk.                                                                                                                                                                                                                            |
-| diag.log                              | A diagnostic summary of the cluster manager, obtained by downloading /diag output from the node’s running service.                                                                                                                                                                                                         |
+| diag.log                              | A diagnostic summary of the cluster manager, obtained by downloading /diag output from the node's running service.                                                                                                                                                                                                         |
 | kv\_trace.json                        | Metadata used for Phosphor KV tracing.                                                                                                                                                                                                                                                                                     |
 | ini.log                               | A dump of all ini configuration files.                                                                                                                                                                                                                                                                                     |
 | master\_events.log                    | Contains major events that have affected the cluster, like bucket creation, and rebalance information such as vBucket movement.                                                                                                                                                                                            |

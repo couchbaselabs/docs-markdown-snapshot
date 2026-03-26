@@ -3,7 +3,7 @@ title: View Statistics and Metrics
 description: This content covers the statistics and metrics collected and made
   available by Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/stats-monitoring.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:manage:stats-monitoring.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:sync-gateway:manage:stats-monitoring.adoc[]
 # View Statistics and Metrics
 
 > This content covers the statistics and metrics collected and made available by Sync Gateway  
-> Sync Gateway’s statistics and metrics provide under-the-hood data on the performance, resource utilization and health of it nodes. This is increasingly important as deployments scale to support a large numbers of connected mobile and edge components.
+> Sync Gateway's statistics and metrics provide under-the-hood data on the performance, resource utilization and health of it nodes. This is increasingly important as deployments scale to support a large numbers of connected mobile and edge components.
 
 Related _inter-syncgateway_ topics: [Legacy Pre-3.0 Configuration](../configuration/configuration-properties-legacy.md) | [Metrics REST API](../rest-api/rest-api-metrics.md) | [Prometheus Integration](../deploy/stats-prometheus.md)
 
@@ -21,7 +21,7 @@ Related _inter-syncgateway_ topics: [Legacy Pre-3.0 Configuration](../configurat
 
 Deployments are increasingly scaling to support large numbers of connected mobile and edge clients. This places added emphasis on the effective monitoring of the health and performance of Sync Gateway nodes.
 
-Sync Gateway’s Metrics REST API\_ facilitates the process of gathering this essential data by providing access to node metrics covering:
+Sync Gateway's Metrics REST API\_ facilitates the process of gathering this essential data by providing access to node metrics covering:
 
 * Performance
 * Resource utilization

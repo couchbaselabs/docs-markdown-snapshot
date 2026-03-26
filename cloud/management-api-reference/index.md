@@ -1,7 +1,7 @@
 ---
 title: Management API Reference
 editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/public/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:management-api-reference:index.adoc[]
 ---
 
@@ -2669,7 +2669,7 @@ Copy
 
 ## [](#tag/App-Endpoints/operation/putAppEndpoint)Update App Endpoint 
 
-Replaces a specified App Endpoint’s configurations such as Access Control function, Import Filter, Delta Sync, or user defined xattr key. The first OpenID Connect provider given will be set as the default provider for the App Endpoint. To change the default, please use the Change App Endpoint OIDC Default Provider endpoint. All fields are required, the App Endpoint and bucket names cannot be changed.
+Replaces a specified App Endpoint's configurations such as Access Control function, Import Filter, Delta Sync, or user defined xattr key. The first OpenID Connect provider given will be set as the default provider for the App Endpoint. To change the default, please use the Change App Endpoint OIDC Default Provider endpoint. All fields are required, the App Endpoint and bucket names cannot be changed.
 
 In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
 
@@ -3520,7 +3520,7 @@ Copy
 
 ## [](#tag/App-Endpoints/operation/putAccessFunction)Upsert custom Access Control and Validation function 
 
-Used to upsert a custom Access Control and Validation function for the given keyspace. This is a Javascript function specified at a keyspace, where a user’s read/write access is defined for documents in that particular keyspace. Every document mutation is processed by this function. If an Access Control function is not explicitly defined, a default is applied. [Read more.](https://docs.couchbase.com/cloud/app-services/deployment/access-control-data-validation.html?)
+Used to upsert a custom Access Control and Validation function for the given keyspace. This is a Javascript function specified at a keyspace, where a user's read/write access is defined for documents in that particular keyspace. Every document mutation is processed by this function. If an Access Control function is not explicitly defined, a default is applied. [Read more.](https://docs.couchbase.com/cloud/app-services/deployment/access-control-data-validation.html?)
 
 In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
 
@@ -5588,7 +5588,7 @@ Turn App Service off.
 
 Turn off an App Service to temporarily deactivate it and reduce its consumption of compute resources. The App Service itself and its related infrastructure will be removed once turned off.
 
-Any private endpoints configured on App Services will remain and will be available when App Service is turned back on. You will continue to incur costs for any private endpoints configured on App Services. If you don’t wish to incur these costs, you must explicitly disable private endpoint service and reinstate private endpoints when App Service is turned back on again.
+Any private endpoints configured on App Services will remain and will be available when App Service is turned back on. You will continue to incur costs for any private endpoints configured on App Services. If you don't wish to incur these costs, you must explicitly disable private endpoint service and reinstate private endpoints when App Service is turned back on again.
 
 Free tier App Service can only be turned off when the linked free tier cluster is turned off.
 
@@ -6222,7 +6222,7 @@ Copy
 
 ## [](#tag/App-Services/operation/getAppServiceCertificate)Get Public Certificate for App Service 
 
-The public certificate is a trusted Certificate Authority (CA) signed certificate. You can copy or download the endpoint’s SSL public certificate to bundle into your mobile application. Pinning your certificate to your App is not recommended as it can increase maintenance overhead and downtime risks. For more information, see [here](https://docs.couchbase.com/cloud/app-services/connect/connect-apps-to-endpoint.html#setting-up-the-connection).
+The public certificate is a trusted Certificate Authority (CA) signed certificate. You can copy or download the endpoint's SSL public certificate to bundle into your mobile application. Pinning your certificate to your App is not recommended as it can increase maintenance overhead and downtime risks. For more information, see [here](https://docs.couchbase.com/cloud/app-services/connect/connect-apps-to-endpoint.html#setting-up-the-connection).
 
 In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
 
@@ -10059,7 +10059,7 @@ Copy
 
 Lists the latest backup for all buckets in a cluster.
 
-Note: This endpoint doesn’t return queued backups and only returns ones that are actively being processed or are completed/failed.
+Note: This endpoint doesn't return queued backups and only returns ones that are actively being processed or are completed/failed.
 
 To learn more about backup and restore, see [Backup and Restore Data](https://docs.couchbase.com/cloud/clusters/backup-restore.html).
 
@@ -12103,7 +12103,7 @@ Copy
 
 List the backups belonging to a cluster.
 
-Note: This endpoint doesn’t return queued backups and only returns ones that are actively being processed or are completed/failed.
+Note: This endpoint doesn't return queued backups and only returns ones that are actively being processed or are completed/failed.
 
 To learn more about backup and restore, see [Backup and Restore Data](https://docs.couchbase.com/cloud/clusters/cloud-snapshots.html).
 
@@ -12733,7 +12733,7 @@ Copy
 
 Creates a restore job for a backup immediately.
 
-When multiple cross-regional cloud snapshots are available, a region of preference can be specified within the request payload to ensure optimal recovery in scenarios where the original snapshot in the cluster’s primary region is not restorable. In such cases, cross-regional copies serve as a reliable fallback to maintain data availability and minimize downtime. Selecting the geographically closest cross-regional snapshot among the available options helps reduce latency during data retrieval and significantly lowers data transfer costs due to shorter network paths.
+When multiple cross-regional cloud snapshots are available, a region of preference can be specified within the request payload to ensure optimal recovery in scenarios where the original snapshot in the cluster's primary region is not restorable. In such cases, cross-regional copies serve as a reliable fallback to maintain data availability and minimize downtime. Selecting the geographically closest cross-regional snapshot among the available options helps reduce latency during data retrieval and significantly lowers data transfer costs due to shorter network paths.
 
 If no preferred region order is specified, the system automatically selects the most suitable snapshot based on availability.
 
@@ -19418,7 +19418,7 @@ Retrieves the role assignment command or script to be executed in the Azure CLI 
   5. Confirm that you have a user with the Global Administrator Role.
   6. Add the Azure configuration details to allow peering access.
   7. Click Allow Peering Access - A new browser tab opens. Sign in to Azure if you have not already.
-  8. In Azure, accept Capella’s permissions request - The Azure permissions request page is open in the new browser tab and consent to the new permissions request. For more information refer \[docs\]- <https://docs.couchbase.com/cloud/clouds/vpc-peering/peer-azure.html>
+  8. In Azure, accept Capella's permissions request - The Azure permissions request page is open in the new browser tab and consent to the new permissions request. For more information refer \[docs\]- <https://docs.couchbase.com/cloud/clouds/vpc-peering/peer-azure.html>
 * On accepting the new permission, you automatically return to the Capella VNET peering page. The Capella VNET peering page shows a notice indicating that peering access is successful.
 * The Organization Owner should set this up once, then for network peering, use the public API -
 
@@ -19446,7 +19446,7 @@ _token_
 | tenantIdrequired                    | string The Azure tenant ID. To find your tenant ID, see [How to find your Azure Active Directory tenant ID](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-find-tenant).                                                                                               |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | subscriptionIdrequired              | string Subscription ID is a GUID that uniquely identifies your subscription to use Azure services. To find your subscription ID, see [Find your Azure subscription](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).  |
-| resourceGrouprequired               | string The resource group name holding the resource you’re connecting with Capella.                                                                                                                                                                                                 |
+| resourceGrouprequired               | string The resource group name holding the resource you're connecting with Capella.                                                                                                                                                                                                 |
 | vnetIdrequired                      | string The VNet ID is the name of the virtual network in Azure.                                                                                                                                                                                                                     |
 | vnetPeeringServicePrincipalrequired | string The enterprise application object ID for the Capella service principal. You can find the enterprise application object ID in Azure by selecting Azure Active Directory -> Enterprise applications. Next, select the application name, the object ID is in the Object ID box. |
 

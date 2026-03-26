@@ -2,7 +2,7 @@
 title: cbimport
 description: A utility for importing data into a Couchbase cluster
 editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/tools/pages/cbimport.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:tools:cbimport.adoc[]
 ---
 
@@ -56,7 +56,7 @@ The cbimport command is used to import data from various sources into a Couchbas
 
 If `cbimport` encounters an existing record in the bucket that has a document id that matches a record from the input source then it will overwrite the existing record with the document from the input source.
 
-New records (i.e., documents that don’t have an existing `id` in the target bucket) are added as new documents.
+New records (i.e., documents that don't have an existing `id` in the target bucket) are added as new documents.
 
 ## [](#operations-during-major-cluster-configuration-changes)OPERATIONS DURING MAJOR CLUSTER CONFIGURATION CHANGES
 
@@ -64,7 +64,7 @@ Operations (commands or sub-commands) which connect to a cluster are not support
 
 For example, performing an import/export, making a backup or performing a restore whilst changing the TLS configuration/security settings is unsupported.
 
-These types of changes (e.g. changing the TLS mode to strict) are not expected to be time consuming so it’s generally expected that operations should be started after completing the configuration change.
+These types of changes (e.g. changing the TLS mode to strict) are not expected to be time consuming so it's generally expected that operations should be started after completing the configuration change.
 
 Please note that this does not include rebalances; operations may be performed during a rebalance. The reason for this distinction, is that major cluster configuration changes are generally quick, whilst rebalances for large data sets may be time consuming.
 

@@ -5,7 +5,7 @@ description: One or more nodes can be failed over automatically when they become
   long as data safety is maintained;i.e. no data loss occurs as a result of
   failover.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/automatic-failover.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:clusters-and-availability/automatic-failover.adoc[]
 ---
 
@@ -106,7 +106,7 @@ If node #1 becomes unresponsive, auto-failover can be triggered. This is due to 
 | #4   | Index                |  
 If node #1, #2, or #3 becomes unresponsive, auto-failover can be triggered. In each case, this is due to _Data Service Preference_, which applies auto-failover based on the policy for the Data Service, irrespective of other services on the unresponsive node.  
 Note that in the case of node #2, this allows an Index Service node to be automatically failed over.  
-If node #4 becomes unresponsive, then the auto-failover of the node will be triggered, as the index service supports Auto-Failover, independent of the Data service. Please note, in this scenario, the Index Service Auto-Failover will only happen if the action doesn’t result in any indexes or partition loss.  
+If node #4 becomes unresponsive, then the auto-failover of the node will be triggered, as the index service supports Auto-Failover, independent of the Data service. Please note, in this scenario, the Index Service Auto-Failover will only happen if the action doesn't result in any indexes or partition loss.  
 > [!WARNING]  
 > If an index does not have a replica and is co-located on a Data Service node that is failed over, then the index will be lost.
 

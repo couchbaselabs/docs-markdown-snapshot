@@ -4,7 +4,7 @@ description: The Go SDK offers a synchronous blocking interface but this does
   not stop you from using it asynchronously, or from performing bulk operations
   concurrently.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@go-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:2.8@go-sdk:howtos:concurrent-async-apis.adoc[]
 
 The Go SDK is designed to be highly performant when used across numerous goroutines, this allows you to start numerous asynchronous goroutines which can all perform operations on the same SDK objects. Using goroutines to perform parallel operations against the SDK means that you can continue to call into the SDK via the standard API and you have all of the operation features available, such as durability.
 
-In the following examples we’ll look at loading the data from one of the Couchbase sample datasets, the beer dataset. This dataset is around 7300 JSON files, each file representing a document. This sample looks for the dataset in the default location for a Linux install, you can find the default locations for other operation systems in our [CLI reference](#https://docs.couchbase.com/server/7.1/cli/cli-intro.html).
+In the following examples we'll look at loading the data from one of the Couchbase sample datasets, the beer dataset. This dataset is around 7300 JSON files, each file representing a document. This sample looks for the dataset in the default location for a Linux install, you can find the default locations for other operation systems in our [CLI reference](#https://docs.couchbase.com/server/7.1/cli/cli-intro.html).
 
 First we need to connect to the server and create a cluster object:
 
@@ -45,7 +45,7 @@ First we need to connect to the server and create a cluster object:
 	}
 ```
 
-Once we have that in place then we can set up our goroutines. We’re using 24 goroutines so we can do up to 24 concurrent upsert operations. The `workChan` is used by the main goroutine to send documents to the "worker" goroutines which will perform the upserts. When all of the work is done and the `workChan` is exhausted the main goroutine will send on the `shutdownChan` before waiting for the `wg` `sync.WaitGroup` to complete. This allows us to wait for any work being performed in a "worker" to fully complete so we don’t accidentally drop any upserts.
+Once we have that in place then we can set up our goroutines. We're using 24 goroutines so we can do up to 24 concurrent upsert operations. The `workChan` is used by the main goroutine to send documents to the "worker" goroutines which will perform the upserts. When all of the work is done and the `workChan` is exhausted the main goroutine will send on the `shutdownChan` before waiting for the `wg` `sync.WaitGroup` to complete. This allows us to wait for any work being performed in a "worker" to fully complete so we don't accidentally drop any upserts.
 
 Here we can see setting up the goroutines ready to receive any work:
 
@@ -146,7 +146,7 @@ Batching operations allows you to make better utilization of your network and sp
 
 The bulk operations API allows you to send a batch of operations to the server in one SDK call. The SDK sends all of these operations sequentially but does not wait for responses between sending each request; e.g. rather than the typical request-response, request-response pattern that you might be used to, behind the scenes the SDK will do request, request, request — response, response, reponse. From your point of view as the user of the SDK this single SDK call will just be a normal blocking call. As well as the performance benefits of being able to pipeline another main tradeoff between using the bulk operations API and using goroutines is that of complexity (of handling channels and goroutines) against available operation options. The bulk API does not expose options per operation like the standard API, nor does it support features like durability.
 
-Using the same example as before (we’ll skip the connecting code as that’s the same) we’ll see that in the following examples we batch up the documents and then send them sequentially via the bulk API.
+Using the same example as before (we'll skip the connecting code as that's the same) we'll see that in the following examples we batch up the documents and then send them sequentially via the bulk API.
 
 Here we can see that we create a map containing 8 batches of documents which we populate instead of sending on a channel:
 
@@ -204,7 +204,7 @@ Here we can see that we create a map containing 8 batches of documents which we 
 	log.Printf("Loaded %d docs\n", numDocs)
 ```
 
-Once we’ve built up our batches we can send them via the `collection.Do` interface. We don’t need to wait for anything to finish in this example because we’ve used the blocking API. Note that we’re checking each individual operation for errors as well as the call to `Do`, this is because individual operations can either succeed or fail.
+Once we've built up our batches we can send them via the `collection.Do` interface. We don't need to wait for anything to finish in this example because we've used the blocking API. Note that we're checking each individual operation for errors as well as the call to `Do`, this is because individual operations can either succeed or fail.
 
 ```golang
 	for _, batch := range batches {

@@ -2,7 +2,7 @@
 title: Using the Legacy Logging API for Troubleshooting
 description: Couchbase Lite on Java -- Using Logs for Troubleshooting
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/java/pages/troubleshooting-logs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite:java:troubleshooting-logs.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:3.3@couchbase-lite:java:troubleshooting-logs.adoc[]
 > Constraints
 > 
 > * The retrieval of logs from the device is out of scope of this feature.
-> * This content applies to the post 2.5 versions. If you’re using a Couchbase Lite release prior to 2.5 see [Deprecated functionality](#pre-2x5-logging)
+> * This content applies to the post 2.5 versions. If you're using a Couchbase Lite release prior to 2.5 see [Deprecated functionality](#pre-2x5-logging)
 
 ## [](#introduction)Introduction
 
@@ -33,7 +33,7 @@ You can independently configure and control console logs, which provides a conve
 * [Custom logging](#lbl-custom-logs)  
 For greater flexibility you can implement a custom logging class using the [Logger](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/com/couchbase/lite/Logger.html) interface.
 
-In all instances, you control what’s logged and at what level using the [Log](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/com/couchbase/lite/Log.html) class.
+In all instances, you control what's logged and at what level using the [Log](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/com/couchbase/lite/Log.html) class.
 
 ## [](#lbl-console-logs)Console based logging
 
@@ -41,9 +41,9 @@ Console based logging is often used to facilitate troubleshooting during develop
 
 Console logs are your go-to resource for diagnostic information. You can fine-tune their diagnostic content to meet the needs of a particular debugging scenario, perhaps by increasing the verbosity and-or choosing to focus on messages from a specific domain; to better focus on the problem area.
 
-Changes to console logging are independent of file logging, so you can make change without compromising any files logging streams. Console logging enables by default. To change default settings use database’s [Log](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/com/couchbase/lite/Log.html) method to set the required values — see [Example 1](#eg-cons-log)
+Changes to console logging are independent of file logging, so you can make change without compromising any files logging streams. Console logging enables by default. To change default settings use database's [Log](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/com/couchbase/lite/Log.html) method to set the required values — see [Example 1](#eg-cons-log)
 
-You’ll primarily use `Database.log.getConsole()` to get the `ConsoleLogger` used to control console logging.
+You'll primarily use `Database.log.getConsole()` to get the `ConsoleLogger` used to control console logging.
 
 Example 1\. Change Console Logging Settings
 
@@ -61,13 +61,13 @@ Database.log.getConsole().setLevel(LogLevel.DEBUG); (1)
 
 File based logging disables by default — see: [Example 2](#eg-file-log) for how to enable it.
 
-You’ll primarily use [log.getFile()](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/com/couchbase/lite/Log.html) and [FileLogger](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/com/couchbase/lite/FileLogger.html) to control file-based logging.
+You'll primarily use [log.getFile()](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/com/couchbase/lite/Log.html) and [FileLogger](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/com/couchbase/lite/FileLogger.html) to control file-based logging.
 
 ### [](#formats)Formats
 
 Available file based logging formats:
 
-* Binary — most efficient for storage and performance. It’s the default for file based logging.  
+* Binary — most efficient for storage and performance. It's the default for file based logging.  
 Use this format and a decoder, such as **cbl-log**, to view them — see: [Decoding binary logs](#decoding-binary-logs).
 * Plaintext
 
@@ -75,7 +75,7 @@ Use this format and a decoder, such as **cbl-log**, to view them — see: [Decod
 
 As with console logging you can set the log level — see: the [FileLogger](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/com/couchbase/lite/FileLogger.html) class.
 
-With file based logging you can also use the [LogFileConfiguration](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/com/couchbase/lite/LogFileConfiguration.html) class’s properties to specify the:
+With file based logging you can also use the [LogFileConfiguration](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/com/couchbase/lite/LogFileConfiguration.html) class's properties to specify the:
 
 * log file path to the directory to store the log file Once this limit is exceeded, logging starts a new log file.
 * log file format  

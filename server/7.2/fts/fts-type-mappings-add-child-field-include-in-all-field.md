@@ -1,7 +1,7 @@
 ---
 title: "Child Field - Include in_all field:"
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-type-mappings-add-child-field-include-in-all-field.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-type-mappings-add-child-field-include-in-all-field.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:7.2@server:fts:fts-type-mappings-add-child-field-include-in-all-field
 
 When checked, the field is included in the definition of **\_all**, which is the field specified by default in the **Advanced** panel. When unchecked, the field is not included.
 
-Inclusion means when _query strings_ are used to specify searches, the text in the current field is searchable without the field name requiring a prefix. For Example, a search on description:modern can be accomplished simply by specifying the word ‘modern’. This is applicable for all query types and not just limited to query string query type.
+Inclusion means when _query strings_ are used to specify searches, the text in the current field is searchable without the field name requiring a prefix. For Example, a search on description:modern can be accomplished simply by specifying the word 'modern'. This is applicable for all query types and not just limited to query string query type.
 
 ## [](#example)Example
 

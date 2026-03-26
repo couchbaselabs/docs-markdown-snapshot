@@ -3,7 +3,7 @@ title: "Function: Shipping Notifier"
 description: Send notifications when an order scheduled to arrive, when it is
   shipped, and when it is delivered.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-shippingNotifier.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-handler-shippingNotifier.adoc[]
 ---
 
@@ -445,7 +445,7 @@ Note that with respect to the notifications that were created:
 
 * index 0 created a Timer that was fired immediately as it used a timer and was in the past.  
 notifyTs = 2020-08-26T14:00:00.000Z or Wed Aug 26 2020 07:00:00 GMT-0700 (Pacific Daylight Time)
-* index 1 was an event e.g. shipped was mutated to true (it didn’t need a Timer) and fired instantly.  
+* index 1 was an event e.g. shipped was mutated to true (it didn't need a Timer) and fired instantly.  
 shippedTs = 2021-07-19T04:21:38.000Z or Sun Jul 18 2021 21:21:38 GMT-0700 (Pacific Daylight Time)
-* index 2 was an event e.g. delivered was mutated to true (it didn’t need a Timer) and fired instantly.  
+* index 2 was an event e.g. delivered was mutated to true (it didn't need a Timer) and fired instantly.  
 deliveredTs = 2021-07-19T04:23:42.000Z or Sun Jul 18 2021 21:23:42 GMT-0700 (Pacific Daylight Time)

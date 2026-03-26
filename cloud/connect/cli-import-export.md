@@ -2,7 +2,7 @@
 title: Import and Export Data with Command Line Tools
 description: Use Couchbase command line tools to import and export large amounts of data.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/connect/pages/cli-import-export.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:connect:cli-import-export.adoc[]
 ---
 
@@ -24,8 +24,8 @@ Couchbase command line tools for Capella include [cbimport](../../server/current
 
 The procedures on this page assume the following:
 
-* You have [configured cluster access](../clusters/manage-database-users.md) by creating cluster access credentials. You’ll need the username and password for the cluster credentials to connect to the cluster.
-* You have [added your IP address](../clusters/allow-ip-address.md) to the cluster’s list of allowed IPs.
+* You have [configured cluster access](../clusters/manage-database-users.md) by creating cluster access credentials. You'll need the username and password for the cluster credentials to connect to the cluster.
+* You have [added your IP address](../clusters/allow-ip-address.md) to the cluster's list of allowed IPs.
 * You have [downloaded your security certificate](../get-started/create-account.md#next-steps) for your cluster.
 * You have [downloaded and installed](../reference/command-line-tools.md) the command line tools package.
 

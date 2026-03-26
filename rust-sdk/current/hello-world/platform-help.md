@@ -3,7 +3,7 @@ title: Setting Up Couchbase Rust SDK with rustup
 description: Discover how to get up and running developing applications with the
   Couchbase Rust SDK -- for those less familiar with Rust.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/hello-world/pages/platform-help.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:hello-world:platform-help.adoc[]
 ---
 
@@ -35,7 +35,7 @@ Installing the Rust Language
 $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-If you’ve installed `rustup` in the past, you can update it with:
+If you've installed `rustup` in the past, you can update it with:
 
 ```console
 $ rustup update
@@ -45,7 +45,7 @@ $ rustup update
 
 You will need a linker — which you most likely have installed already — and a C compiler, as several crates (Rust packages) depend on C code.
 
-For Ubuntu, these packages are usually installed as part of `build-essentials`. Otherwise, install your distribution’s prefered C compiler — usually `gcc`, but it may be `clang`.
+For Ubuntu, these packages are usually installed as part of `build-essentials`. Otherwise, install your distribution's prefered C compiler — usually `gcc`, but it may be `clang`.
 
 On OSX:
 
@@ -55,9 +55,9 @@ $ xcode-select --install
 
 ### [](#path)PATH
 
-The Rust toolchain — including `rustc`, `cargo`, and `rustup` — will be installed to the `~/.cargo/bin` directory. You will want to add this to your `$PATH` (using your platform’s preferred place for environmental variables, such as `.bashrc`).
+The Rust toolchain — including `rustc`, `cargo`, and `rustup` — will be installed to the `~/.cargo/bin` directory. You will want to add this to your `$PATH` (using your platform's preferred place for environmental variables, such as `.bashrc`).
 
-Once you’ve add to your path, restart the console, and test the installation with:
+Once you've add to your path, restart the console, and test the installation with:
 
 ```console
 $ rustc --version

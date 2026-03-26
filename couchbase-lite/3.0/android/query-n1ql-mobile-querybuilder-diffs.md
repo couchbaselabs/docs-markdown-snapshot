@@ -2,7 +2,7 @@
 title: SQL++ for Mobile&#8201;&#8212;&#8201;Differences from Querybuilder
 description: Differences between Couchbase Lite's Querybuilder and SQL++ for Mobile
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/android/pages/query-n1ql-mobile-querybuilder-diffs.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:android:query-n1ql-mobile-querybuilder-diffs.adoc[]
 ---
 
@@ -11,10 +11,10 @@ link: xref:3.0@couchbase-lite:android:query-n1ql-mobile-querybuilder-diffs.adoc[
 
 # SQL++ for Mobile&#8201;&#8212;&#8201;Differences from Querybuilder
 
-> Description — _Differences between Couchbase Lite’s Querybuilder and SQL++ for Mobile_  
+> Description — _Differences between Couchbase Lite's Querybuilder and SQL++ for Mobile_  
 > Related Content — [Predictive Queries](querybuilder.md#lbl-predquery) | [Live Queries](query-live.md) | [Indexing](indexing.md)
 
-Couchbase Lite’s SQL++ for Mobile supports all QueryBuilder features, except _Predictive Query_ and _Index_.  
+Couchbase Lite's SQL++ for Mobile supports all QueryBuilder features, except _Predictive Query_ and _Index_.  
 See [Table 1](#tbl-qbldr-diffs) for the features supported by SQL++ but not by QueryBuilder.
 
 __Table 1\. QueryBuilder Differences__

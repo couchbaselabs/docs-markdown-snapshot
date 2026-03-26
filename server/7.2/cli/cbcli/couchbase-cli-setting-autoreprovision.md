@@ -2,7 +2,7 @@
 title: setting-autoreprovision
 description: Modifies auto-reprovision settings
 editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbcli/couchbase-cli-setting-autoreprovision.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cli:cbcli/couchbase-cli-setting-autoreprovision.adoc[]
 ---
 
@@ -21,7 +21,7 @@ _couchbase-cli setting-autoreprovision_ [--cluster <url>] [--username <user>] [-
 
 ## [](#description)DESCRIPTION
 
-Auto-reprovisioning is used in order to prevent data loss in ephemeral buckets during failure scenarios when a node crashes and restarts quickly. Under this scenario auto-reprovisioning ensures that an ephemeral bucket’s replica vBuckets are promoted to active state. This mechanism is not needed for Couchbase buckets because a Couchbase buckets data is persisted to disk and can be loaded back into memory after a node restarts. Ephemeral buckets on the other hand completely lose their data when a node crashes and replicas must be relied upon in order to prevent data loss. If ephemeral buckets are not in use this setting has no effect on the cluster.
+Auto-reprovisioning is used in order to prevent data loss in ephemeral buckets during failure scenarios when a node crashes and restarts quickly. Under this scenario auto-reprovisioning ensures that an ephemeral bucket's replica vBuckets are promoted to active state. This mechanism is not needed for Couchbase buckets because a Couchbase buckets data is persisted to disk and can be loaded back into memory after a node restarts. Ephemeral buckets on the other hand completely lose their data when a node crashes and replicas must be relied upon in order to prevent data loss. If ephemeral buckets are not in use this setting has no effect on the cluster.
 
 Auto-reprovisioning can either be enabled or disabled. If you have ephemeral buckets it is always recommended that auto-reprovisioning is enabled otherwise the cluster will experience data loss if a node crashes or is restarted. Users can also specify the number of nodes that can be auto-reprovisioned before the cluster is rebalanced. An auto-reprovision event occurs if a cluster has at least one ephemeral bucket and a node crashes and restarts. If the number of crashes and restarts exceed the maximum number of nodes that can be auto-reprovisioned then the next crash and restart will result in data loss for all ephemeral buckets in the cluster.
 

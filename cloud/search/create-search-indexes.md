@@ -3,7 +3,7 @@ title: Create a Search Index
 description: Create a Search index to get started with the Search Service in
   your operational cluster.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-search-indexes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:create-search-indexes.adoc[]
 ---
 
@@ -22,7 +22,7 @@ You can create a Search index with:
 All Search indexes are built from a JSON payload. For more information about the available properties for a Search index JSON payload, see [Search Index JSON Properties](search-index-params.md).
 
 > [!TIP]
-> If you’re new to developing with the Search Service, [create a Search index with the UI](#ui). You can export the Search index definition JSON payload from the UI to [Import a Search Index Definition with the Capella UI](import-search-index.md).
+> If you're new to developing with the Search Service, [create a Search index with the UI](#ui). You can export the Search index definition JSON payload from the UI to [Import a Search Index Definition with the Capella UI](import-search-index.md).
 
 ## [](#ui)Creating a Search Index with the Capella UI
 
@@ -49,7 +49,7 @@ If you select **Enable Advanced Options** to enable Advanced Mode in the Search 
 * Creating [mappings](customize-index.md#type-mappings) for objects and fields that do not yet exist in your document schema
 * Configuring a [document filter](customize-index.md#type-identifiers)
 * As of Couchbase Server version 8.0, configuring a [synonym source](synonyms/synonyms-search.md)
-* As of Couchbase Server version 8.0, changing your Search index’s [scoring model](customize-index.md#scoring-model)
+* As of Couchbase Server version 8.0, changing your Search index's [scoring model](customize-index.md#scoring-model)
 
 All initial editing options remain available in Advanced Mode editing.
 

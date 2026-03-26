@@ -3,7 +3,7 @@ title: CREATE FUNCTION
 description: The <code>CREATE FUNCTION</code> statement enables you to create a
   user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/createfunction.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/createfunction.adoc[]
 ---
 
@@ -45,12 +45,12 @@ A global library may have the same name as a scoped library, and scoped librarie
 
 You can create user-defined functions at two different levels of the SQL++ [logical hierarchy](../n1ql-intro/queriesandresults.md#logical-hierarchy).
 
-* A global function is created within a namespace, at the same level as the buckets within the namespace. When you call a global function, any partial keyspace references within the function definition are resolved against the function’s namespace, regardless of the current [query context](../n1ql-intro/queriesandresults.md#query-context).  
+* A global function is created within a namespace, at the same level as the buckets within the namespace. When you call a global function, any partial keyspace references within the function definition are resolved against the function's namespace, regardless of the current [query context](../n1ql-intro/queriesandresults.md#query-context).  
 For example, when you call a global function `default:global()` which contains the keyspace reference `` `travel-sample` ``, the keyspace reference is always resolved within the context of the function to the `` default:`travel-sample` `` bucket.
-* A scoped function is created within a scope, at the same level as the collections within the scope. When you call a scoped function, any partial keyspace references within the function definition are resolved against the function’s scope, regardless of the current [query context](../n1ql-intro/queriesandresults.md#query-context).  
+* A scoped function is created within a scope, at the same level as the collections within the scope. When you call a scoped function, any partial keyspace references within the function definition are resolved against the function's scope, regardless of the current [query context](../n1ql-intro/queriesandresults.md#query-context).  
 For example, when you call a scoped function `` default:`travel-sample`.inventory.scope() `` which contains the keyspace reference `route`, the keyspace reference is always resolved within the context of the function to `` default:`travel-sample`.inventory.route ``.
 
-When you create a user-defined function, the current query context determines whether it’s created as a global function or a scoped function. If you want to create a user-defined function outside of the current query context, you must include the full path to the function when you specify the function name.
+When you create a user-defined function, the current query context determines whether it's created as a global function or a scoped function. If you want to create a user-defined function outside of the current query context, you must include the full path to the function when you specify the function name.
 
 Similarly, when you call a user-defined function, the current query context determines the path to the function. If you want to call a user-defined function outside of the current query context, you must include the full path to the function when you specify the function name.
 
@@ -79,7 +79,7 @@ For more information about user roles, see [Authorization](../../learn/security/
 
 ## [](#syntax)Syntax
 
-The `CREATE FUNCTION` statement takes a different syntax depending on the type of function you’re creating. See [Inline Functions](#create-function-inline) or [External Functions](#create-function-external) below.
+The `CREATE FUNCTION` statement takes a different syntax depending on the type of function you're creating. See [Inline Functions](#create-function-inline) or [External Functions](#create-function-external) below.
 
 ```ebnf
 create-function ::= create-function-inline | create-function-external
@@ -125,7 +125,7 @@ function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier
 
 ![Syntax diagram: see source code listing](../_images/n1ql-language-reference/function.png) 
 
-The function name specifies the name of the function to create. It’s recommended to use an unqualified identifier for the function name, such as `func1` or `` `func-1` ``. In this case, the function is created as a global function or a scoped function, depending on the current query context.
+The function name specifies the name of the function to create. It's recommended to use an unqualified identifier for the function name, such as `func1` or `` `func-1` ``. In this case, the function is created as a global function or a scoped function, depending on the current query context.
 
 To create a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to create a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``.
 
@@ -191,7 +191,7 @@ function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier
 
 ![Syntax diagram: see source code listing](../_images/n1ql-language-reference/function.png) 
 
-The function name specifies the name of the function to create. It’s recommended to use an unqualified identifier for the function name, such as `func1` or `` `func-1` ``. In this case, the function is created as a global function or a scoped function, depending on the current query context.
+The function name specifies the name of the function to create. It's recommended to use an unqualified identifier for the function name, such as `func1` or `` `func-1` ``. In this case, the function is created as a global function or a scoped function, depending on the current query context.
 
 To create a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to create a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``.
 
@@ -610,6 +610,6 @@ To view the geohash on a map, go to [Geohashes](https://www.movable-type.co.uk/s
 
 ---
 
-[1](#%5Ffootnoteref%5F1). In other words, you’re creating a global function, and a function with the same name already exists within the same namespace; or, you’re creating a scoped function, and a function with the same name already exists within the same scope. 
+[1](#%5Ffootnoteref%5F1). In other words, you're creating a global function, and a function with the same name already exists within the same namespace; or, you're creating a scoped function, and a function with the same name already exists within the same scope. 
 
 [2](#%5Ffootnoteref%5F2). Credit: <https://github.com/davetroy/geohash-js>

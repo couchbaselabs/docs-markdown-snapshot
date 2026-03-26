@@ -2,7 +2,7 @@
 title: Language Constructs
 description: The language constructs are fundamental units of a language.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-language-constructs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:eventing:eventing-language-constructs.adoc[]
 ---
 
@@ -38,7 +38,7 @@ function OnUpdate(doc, meta) {
 }
 ```
 
-Note the use of 'Constant alias' bindings in the Function’s settings can be used to provide global constants accessible within a Function’s JavaScript. For example you might have a Constant alias of _debug_ with a value of _true_ (or _false_) to control verbose logging this would behave just like adding a statement `const debug = true;` at the beginning of your JavaScript code.
+Note the use of 'Constant alias' bindings in the Function's settings can be used to provide global constants accessible within a Function's JavaScript. For example you might have a Constant alias of _debug_ with a value of _true_ (or _false_) to control verbose logging this would behave just like adding a statement `const debug = true;` at the beginning of your JavaScript code.
 
 ### [](#asynchrony)Asynchrony
 
@@ -58,7 +58,7 @@ Eventing Functions execute as server-side code on Couchbase Server similar to th
 
 Because Eventing Functions do not execute in the context of a browser, the extensions that browsers add to the core language, such as window methods, DOM events etc. are not available. The Couchbase Server prevents these browser extensions from executing in an Eventing Function. However a limited subset is added back (such as function timers in lieu of setTimeout, and curl calls in lieu of XHR).
 
-For example some code that runs in the browser is excluded from use in Eventing Functions. The ‘window’ term in the code **window.XMLHttpRequest()**, is not a server-side construct but is in the context of a browser and as such is not available to your Eventing Functions.
+For example some code that runs in the browser is excluded from use in Eventing Functions. The 'window' term in the code **window.XMLHttpRequest()**, is not a server-side construct but is in the context of a browser and as such is not available to your Eventing Functions.
 
 ```javascript
 function OnUpdate(doc, meta) {
@@ -144,7 +144,7 @@ Due to limitations in KV engine API, this operation cannot currently manipulate 
 
 ### [](#logging)Logging
 
-An additional function, log() has been introduced to the language, which allows Eventing Functions to log user defined messages. These log() statements will go the specific Eventing Function’s log file also known as the application log. The messages go files located in the Eventing data directory and do not contain any system log messages. The function takes a string to write to the file. If non-string types are passed, a best effort string representation will be logged, but the format of these may change over time. This function does not throw exceptions. For more information see [application logs](eventing-debugging-and-diagnosability.md#application-logs).
+An additional function, log() has been introduced to the language, which allows Eventing Functions to log user defined messages. These log() statements will go the specific Eventing Function's log file also known as the application log. The messages go files located in the Eventing data directory and do not contain any system log messages. The function takes a string to write to the file. If non-string types are passed, a best effort string representation will be logged, but the format of these may change over time. This function does not throw exceptions. For more information see [application logs](eventing-debugging-and-diagnosability.md#application-logs).
 
 ```javascript
 function OnUpdate(doc, meta) {
@@ -161,7 +161,7 @@ Top level SQL++ keywords, such as SELECT, UPDATE, INSERT and DELETE, are availab
 > [!NOTE]
 > SQL++ DML statements cannot manipulate documents in the same bucket as the Eventing Function is listening for mutations on to avoid recursion. Workaround: use the exposed data service KV map in your Eventing function.
 
-JavaScript variables can be referred by SQL++ statements using **$<variable>** syntax. Such parameters will be substituted with the corresponding JavaScript variable’s runtime value using SQL++ named parameters substitution facility.
+JavaScript variables can be referred by SQL++ statements using **$<variable>** syntax. Such parameters will be substituted with the corresponding JavaScript variable's runtime value using SQL++ named parameters substitution facility.
 
 When deploying the below Function with a feed boundary of "Everything" the same SQL++ statement will execute 7,303 times. If the feed boundary is configured to "From now" and you then mutate just one (1) document in the keyspace `beer-sample`.`_default`.`_default` only one (1) query will be executed. Also keep in mind that adding an optimal index can speed up the query performance by 24X.
 
@@ -305,7 +305,7 @@ function OnUpdate(doc, meta) {
 }
 ```
 
-The **crc64** function can be useful in cases like suppressing a duplicate mutation from the Sync Gateway (SG), when both the Sync Gateway & Eventing are leveraging the same bucket. Basically, Sync Gateway updates metadata of the document within the bucket, which in turn generates an event for Eventing to process. Eventing can’t differentiate between events from Sync Gateway and other events (doc updates via SDK, SQL++, and others). A workaround to this double mutation issue is possible via the **crc64()** function.
+The **crc64** function can be useful in cases like suppressing a duplicate mutation from the Sync Gateway (SG), when both the Sync Gateway & Eventing are leveraging the same bucket. Basically, Sync Gateway updates metadata of the document within the bucket, which in turn generates an event for Eventing to process. Eventing can't differentiate between events from Sync Gateway and other events (doc updates via SDK, SQL++, and others). A workaround to this double mutation issue is possible via the **crc64()** function.
 
 ```javascript
 function OnUpdate(doc, meta) {
@@ -438,7 +438,7 @@ For more information see the [Timers](#timers%5Fgeneral) section above and the d
 
 ## [](#reserved-words)Reserved Words
 
-Reserved words are words that cannot be used in a Eventing Function as a variable name, function name, or as a property in the Eventing Function’s JavaScript code. The following table lists the reserved words that you must refrain from using as they are used by the transpiler to integrate with Couchbase’s query language, SQL++ with Eventing.
+Reserved words are words that cannot be used in a Eventing Function as a variable name, function name, or as a property in the Eventing Function's JavaScript code. The following table lists the reserved words that you must refrain from using as they are used by the transpiler to integrate with Couchbase's query language, SQL++ with Eventing.
 
 | SQL++ Keywords |         |         |        |
 | -------------- | ------- | ------- | ------ |
@@ -450,7 +450,7 @@ Reserved words are words that cannot be used in a Eventing Function as a variabl
 
 **What Happens If You Use a Reserved Word?**
 
-Let’s say you try to create a new Eventing Function with JavaScript code using a reserved word for variable names, for function names, and as a property binding value. All three cases generate a deployment error.
+Let's say you try to create a new Eventing Function with JavaScript code using a reserved word for variable names, for function names, and as a property binding value. All three cases generate a deployment error.
 
 Reserved words as a variable name:
 
@@ -474,7 +474,7 @@ function grant(ip) {
 }
 ```
 
-During the Function deployment step, when the system validates the Eventing Function’s JavaScript code, it displays an error message such as the following:
+During the Function deployment step, when the system validates the Eventing Function's JavaScript code, it displays an error message such as the following:
 
 Sample Error Message - Deployment failed: Syntax error (<line and column numbers>)
 - grant is a reserved name in N1QLJs

@@ -2,7 +2,7 @@
 title: Collecting Logs
 description: Couchbase-Server logs can be collected, prior to inspection.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-manage-log-collection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:rest-api:rest-manage-log-collection.adoc[]
 ---
 
@@ -63,7 +63,7 @@ ns_1@<ip-address-or-domain-name>
 After log-collection has started, if `POST /controller/cancelLogsCollection` is executed, log-collection is stopped on all nodes that were specified by means of the `nodes` flag.
 * `logRedactionLevel`. The redaction-level for the logs. This must be either `none` (the default) or `partial`. If `partial` is specified, data such as usernames, keys, and values are redacted from the logs.
 * `logDir`. The pathname of the directory on each node into which logs are written. Each node must have this pathname. If a node does not have the pathname, or if the directory has insufficient space, or if the directory is not accessible by user `couchbase`, log-collection fails for that node.
-* `tmpDir`. The pathname of the directory on each node into which temporary files are written, during log-collection. If a node does not have the pathname, the operating system’s temporary directory is used instead. If the administrator-specified directory has insufficient space, or if the directory is not accessible by user `couchbase`, log-collection fails for that node.
+* `tmpDir`. The pathname of the directory on each node into which temporary files are written, during log-collection. If a node does not have the pathname, the operating system's temporary directory is used instead. If the administrator-specified directory has insufficient space, or if the directory is not accessible by user `couchbase`, log-collection fails for that node.
 * `logRedactionSalt`. Used optionally, to specify a string to be used as the salt, when `partial` redaction is specified; so as to increase redaction-security. If no salt is specified, a salt is automatically generated and applied by Couchbase Server.
 * `upload-host`. Used optionally, to specify, as a URL, the name of the host to which the zip file containing the collected logs is to be uploaded.
 * `upload-proxy`. Specifies a proxy that can be used for upload; in cases where the cluster has been deployed in a secure environment, and so does not have a direct, outbound connection to the internet.

@@ -4,7 +4,7 @@ description: Evaluate the overall performance and capacity goals that you have
   for Couchbase, and use that information to determine the necessary resources
   that you'll need in your deployment.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/sizing-general.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:install:sizing-general.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:7.2@server:install:sizing-general.adoc[]
 
 # Sizing Guidelines
 
-> Evaluate the overall performance and capacity goals that you have for Couchbase, and use that information to determine the necessary resources that you’ll need in your deployment. 
+> Evaluate the overall performance and capacity goals that you have for Couchbase, and use that information to determine the necessary resources that you'll need in your deployment. 
 
 When you plan to deploy a Couchbase Server cluster, perhaps the most common (and important) question that comes up is: how many nodes do I need and what size do they need to be?
 
@@ -94,13 +94,13 @@ Most deployments can achieve optimal performance with 1 Gbps interconnects, but 
 
 Data Service nodes handle data service operations, such as create/read/update/delete (CRUD). The sizing information provided below applies both to the _Couchstore_ and _Magma_ storage engines: however, the _differences_ between these storage engines should also be reviewed, before sizing is attempted. For information, see [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md).
 
-It’s important to keep use-cases and application workloads in mind since different application workloads have different resource requirements. For example, if your working set needs to be fully in memory, you might need large RAM size. On the other hand, if your application requires only 10% of data in memory, you will need disks with enough space to store all of the data, and that are fast enough for your read/write operations.
+It's important to keep use-cases and application workloads in mind since different application workloads have different resource requirements. For example, if your working set needs to be fully in memory, you might need large RAM size. On the other hand, if your application requires only 10% of data in memory, you will need disks with enough space to store all of the data, and that are fast enough for your read/write operations.
 
 You can start sizing the Data Service nodes by answering the following questions:
 
 1. Is the application primarily (or even exclusively) using individual document access?
 2. Do you plan to use XDCR?
-3. What’s your working set size and what are your data operation throughput and latency requirements?
+3. What's your working set size and what are your data operation throughput and latency requirements?
 
 Answers to the above questions can help you better understand the capacity requirement of your cluster and provide a better estimation for sizing.
 
@@ -229,7 +229,7 @@ __Table 10\. Storage engine and storage mode__
 
 A node that runs the Query Service executes queries for your application needs.
 
-Since the Query Service doesn’t need to persist data to disk, there are very minimal resource requirements for disk space and disk I/O. You only need to consider CPU and memory.
+Since the Query Service doesn't need to persist data to disk, there are very minimal resource requirements for disk space and disk I/O. You only need to consider CPU and memory.
 
 There are a few questions that will help size the cluster:
 
@@ -257,9 +257,9 @@ The Analytics Service is dependent on the Data Service and requires the Data ser
 
 ### [](#disk-types-and-partioning)Disk types and partioning
 
-During query execution, Analytics’s query engine attempts to concurrently read and process data from all data partitions. Because of that, the Input/Output Operations per Second (IOPS) of the actual physical disk in which each data partition resides plays a major role in determining the query execution time. Modern storage devices such as SSDs have much higher IOPS and can deal better with concurrent reads than HDDs. Therefore, having a single data partition on devices with high IOPS will not fully utilize their capabilities.
+During query execution, Analytics's query engine attempts to concurrently read and process data from all data partitions. Because of that, the Input/Output Operations per Second (IOPS) of the actual physical disk in which each data partition resides plays a major role in determining the query execution time. Modern storage devices such as SSDs have much higher IOPS and can deal better with concurrent reads than HDDs. Therefore, having a single data partition on devices with high IOPS will not fully utilize their capabilities.
 
-To simplify the setup of the typical case of a node having a single modern storage device, the Analytics service automatically creates multiple data partitions within the same storage device if and only if a single “Analytics Disk Path” is specified during the node initialization. The number of automatically created data partitions is based on this formula:
+To simplify the setup of the typical case of a node having a single modern storage device, the Analytics service automatically creates multiple data partitions within the same storage device if and only if a single "Analytics Disk Path" is specified during the node initialization. The number of automatically created data partitions is based on this formula:
 
 * `Maximum partitions to create = Min((Analytics Memory in MB / 1024), 16)`
 * `Actual created partitions = Min(node virtual cores, Maximum partitions to create)`
@@ -280,7 +280,7 @@ Because Eventing allows arbitrary code, JavaScript, to be written and run, it is
 
 For example, if you process 100K mutations per second and only match 1 out of 1000 patterns, then perform some intense computation on the matched 100 items in your Eventing Function, you need 100X less compute than if you performed the intense computation on each mutation.
 
-Eventing also can perform I/O to external REST endpoints via a synchronous HTTP/S cURL call. In this case, Eventing typically blocks on I/O and doesn’t need much CPU. However. if you want high throughput to overcome bandwidth, you will need more workers and thus more cores.
+Eventing also can perform I/O to external REST endpoints via a synchronous HTTP/S cURL call. In this case, Eventing typically blocks on I/O and doesn't need much CPU. However. if you want high throughput to overcome bandwidth, you will need more workers and thus more cores.
 
 8 vCPUs or 4 physical cores should be considered a good start for running a few Eventing Functions.
 
@@ -288,7 +288,7 @@ Eventing also can perform I/O to external REST endpoints via a synchronous HTTP/
 
 In general, the Eventing memory quota of 256 MB is sufficient for almost all workloads.
 
-When scaling up vertically by adding more workers (in the handler’s settings), you may see a stall in processing when the number exceeds 48 workers. In this case, raising the memory quota to 384 MB or even 512 would be justified. Do not add memory to the Eventing Service’s memory quota without a justified need as it can create resource issues.
+When scaling up vertically by adding more workers (in the handler's settings), you may see a stall in processing when the number exceeds 48 workers. In this case, raising the memory quota to 384 MB or even 512 would be justified. Do not add memory to the Eventing Service's memory quota without a justified need as it can create resource issues.
 
 ### [](#eventing-storage-collection-previously-metadata-bucket)Eventing Storage Collection (previously Metadata Bucket)
 
@@ -296,7 +296,7 @@ Eventing functions store less than 2048 docs per Function. If timers are not use
 
 However, if you use timers you will have to allocate an additional space of about 800 bytes + the size of the passed context (which is the state passed to the function when it is called in the future) per active timer.
 
-Let’s say you have a context of 200 bytes (total 1K/timer), then for 100,000 active timers you would need 100 MB of additional space in this bucket.
+Let's say you have a context of 200 bytes (total 1K/timer), then for 100,000 active timers you would need 100 MB of additional space in this bucket.
 
 As a best practice, we recommend that you keep this collection 100% resident. Note that this collection can be shared across all your Eventing Functions.
 

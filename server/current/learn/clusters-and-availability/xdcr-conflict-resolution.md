@@ -4,7 +4,7 @@ description: <em>XDCR Conflict Resolution</em> automatically synchronizes
   document-copies that have been modified in different ways at different
   locations.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-conflict-resolution.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:clusters-and-availability/xdcr-conflict-resolution.adoc[]
 ---
 
@@ -24,7 +24,7 @@ When a source document is modified, XDCR determines whether this revision of the
 
 ## [](#revision-id-based-conflict-resolution)Conflict Resolution Based on Sequence Number
 
-Conflicts can be resolved by referring to documents' _sequence numbers_. Sequence numbers are maintained per document, and are incremented on every document-update. A document’s sequence number is stored as a part of its _metadata_: specifically, as the value of the `rev` key (see [Documents](../../manage/manage-ui/manage-ui.md#console-documents), for details on how to inspect metadata). The sequence numbers of source and target documents are compared; and the document with the higher sequence number prevails. If both documents have the same sequence number, the conflict is resolved by comparing the following metadata-elements, in the order shown:
+Conflicts can be resolved by referring to documents' _sequence numbers_. Sequence numbers are maintained per document, and are incremented on every document-update. A document's sequence number is stored as a part of its _metadata_: specifically, as the value of the `rev` key (see [Documents](../../manage/manage-ui/manage-ui.md#console-documents), for details on how to inspect metadata). The sequence numbers of source and target documents are compared; and the document with the higher sequence number prevails. If both documents have the same sequence number, the conflict is resolved by comparing the following metadata-elements, in the order shown:
 
 1. CAS value
 2. Expiration (TTL) value

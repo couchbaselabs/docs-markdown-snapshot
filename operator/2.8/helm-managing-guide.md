@@ -1,7 +1,7 @@
 ---
 title: Helm Management Guide
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/helm-managing-guide.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@operator::helm-managing-guide.adoc[]
 ---
 
@@ -18,15 +18,15 @@ The sections on this page describe how to manage the Helm releases that make up 
 
 ## [](#modify-deployment)Modify a Deployment
 
-During the lifecycle of your deployment, it’s likely that you will want to make changes to your deployment’s configuration (e.g. add/remove nodes from a cluster, etc). To make configuration updates to a deployment, you’ll need to modify the release in Helm.
+During the lifecycle of your deployment, it's likely that you will want to make changes to your deployment's configuration (e.g. add/remove nodes from a cluster, etc). To make configuration updates to a deployment, you'll need to modify the release in Helm.
 
-To modify a release, you’ll specify overrides via the [\--values or --set options](helm-setup-guide.md#custom-installation) much like you did when you installed the Couchbase Helm Chart to begin with. However, when modifying a release, you use the `helm upgrade` command instead of `helm install`. For example:
+To modify a release, you'll specify overrides via the [\--values or --set options](helm-setup-guide.md#custom-installation) much like you did when you installed the Couchbase Helm Chart to begin with. However, when modifying a release, you use the `helm upgrade` command instead of `helm install`. For example:
 
 ```console
 helm upgrade --values myvalues.yaml <release-name> couchbase/couchbase-operator
 ```
 
-It’s important that you make your updates using the `helm upgrade` command instead of using `kubectl` or simply editing chart resources. This is to ensure that Helm can continue to update and manage all resources appropriately.
+It's important that you make your updates using the `helm upgrade` command instead of using `kubectl` or simply editing chart resources. This is to ensure that Helm can continue to update and manage all resources appropriately.
 
 ## [](#upgrade-a-deployment)Upgrade a Deployment
 
@@ -74,7 +74,7 @@ echo $(( `echo $cluster | wc -c`  * 6 ))
 #### [](#limitations)Limitations
 
 * It is not possible to upgrade the 1.2.x Kubernetes Operator chart to 2.x.x. If you have a previous installation of the Kubernetes Operator chart, you will need to [delete the release](#delete-deployment), as well as delete the CRD.
-* If you didn’t originally install the Kubernetes Operator using Helm, then you cannot upgrade the Kubernetes Operator using Helm. At this time, installations of the Kubernetes Operator that weren’t created with Helm cannot be ported over to using Helm.
+* If you didn't originally install the Kubernetes Operator using Helm, then you cannot upgrade the Kubernetes Operator using Helm. At this time, installations of the Kubernetes Operator that weren't created with Helm cannot be ported over to using Helm.
 
 ### [](#upgrading-a-couchbase-cluster)Upgrading a Couchbase Cluster
 

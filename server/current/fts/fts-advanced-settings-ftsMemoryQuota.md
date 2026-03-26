@@ -1,7 +1,7 @@
 ---
 title: ftsMemoryQuota
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-advanced-settings-ftsMemoryQuota.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:fts:fts-advanced-settings-ftsMemoryQuota.adoc[]
 ---
 
@@ -14,7 +14,7 @@ The `ftsMemoryQuota` setting controls the maximum usable memory, in MiB, availab
 
 You can configure the `ftsMemoryQuota` from the Couchbase Server Web Console at any time.
 
-If you’re using the Search Service as the only Service on a node, set the `ftsMemoryQuota` to 80% or less of the total available RAM for that node. This guideline leaves enough RAM for your operating system to manage its on-demand filesystem cache. The search process memory maps your index files to support fast access to indexed content.
+If you're using the Search Service as the only Service on a node, set the `ftsMemoryQuota` to 80% or less of the total available RAM for that node. This guideline leaves enough RAM for your operating system to manage its on-demand filesystem cache. The search process memory maps your index files to support fast access to indexed content.
 
 ## [](#configure-the-ftsmemoryquota)Configure the ftsMemoryQuota
 

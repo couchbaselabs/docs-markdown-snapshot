@@ -2,7 +2,7 @@
 title: Webhooks
 description: Introducing Sync Gateway events and event handling with Webhooks
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/webhooks.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::webhooks.adoc[]
 ---
 
@@ -19,7 +19,7 @@ Related _integration_ topics: [Changes Feed](changes-feed.md) | [Prometheus Inte
 > [!CAUTION]
 > Caveats
 > 
-> Webhooks post your application’s data, which might include user data, to URLs. Consider the security implications.
+> Webhooks post your application's data, which might include user data, to URLs. Consider the security implications.
 
 ## [](#introduction)Introduction
 
@@ -29,11 +29,11 @@ For example, by initiating the sending of notifications, or specialist audit pro
 
 This can be done using either the [changes feed](changes-feed.md) or `document_changed` events — see [Table 1](#tbl-scenarios) for a comparison of these scenarios.
 
-Sync Gateway’s **_webhook_** event handlers perform both document filtering, and HTTP POST operations, asynchronously.
+Sync Gateway's **_webhook_** event handlers perform both document filtering, and HTTP POST operations, asynchronously.
 
 In addition to providing the opportunity to integrate with external systems, this minimizes:
 
-* The performance impact on Sync Gateway’s regular processing
+* The performance impact on Sync Gateway's regular processing
 * The amount of Sync Gateway node CPU resources consumed by slow response times from the HTTP POST operations.
 
 ## [](#behavior)Behavior
@@ -42,11 +42,11 @@ Webhooks work on the push-cycle of a replication.
 
 If a _webhook_ event handler is defined:
 
-* Sync Gateway adds a `document_changed` event to the _event queue_ \[[1](#%5Ffootnotedef%5F1 "View footnote.")\] whenever it updates a document in a Couchbase Server bucket. These changes \[[2](#%5Ffootnotedef%5F2 "View footnote.")\] can arise from Sync Gateway’s Public REST API and-or Couchbase Lite push replications.
+* Sync Gateway adds a `document_changed` event to the _event queue_ \[[1](#%5Ffootnotedef%5F1 "View footnote.")\] whenever it updates a document in a Couchbase Server bucket. These changes \[[2](#%5Ffootnotedef%5F2 "View footnote.")\] can arise from Sync Gateway's Public REST API and-or Couchbase Lite push replications.
 * Whenever the _event queue_ contains a _data\_changed_ event, Sync Gateway spawns a process to:
 
   * FILTER — decide which changed documents to post.  
-  The event process executes the _webhook’s_ event handler (the `filter`) on the associated document. The filter determines which documents need to be POSTed.  
+  The event process executes the _webhook's_ event handler (the `filter`) on the associated document. The filter determines which documents need to be POSTed.  
   If there is no filter all document changes are passed to POST.
   * POST — send selected changed documents to the URL endpoint.  
   HTTP/HTTPS is used to POST the document changes selected by the filter to the defined _url_.
@@ -145,13 +145,13 @@ An event handler type
 
 Property name: [database.event\_handlers.document\_changed.handler](configuration-schema-database.md#database-event%5Fhandlers-document%5Fchanged-handler)
 
-Sets the event handler’s type; currently, this must be `webhook`.
+Sets the event handler's type; currently, this must be `webhook`.
 
 A timeout value
 
 Property name: [database.event\_handlers.document\_changed.timeout](configuration-schema-database.md#database-event%5Fhandlers-document%5Fchanged-timeout)
 
-Sets the time (in seconds) to wait for a response to the POST operation. It ensures that slow-running POST operations don’t cause the webhook event queue to back up. When the timeout limit is reached, Sync Gateway stops listening for a response and discards the operation.
+Sets the time (in seconds) to wait for a response to the POST operation. It ensures that slow-running POST operations don't cause the webhook event queue to back up. When the timeout limit is reached, Sync Gateway stops listening for a response and discards the operation.
 
 You should not need to adjust the default setting to tune performance.
 

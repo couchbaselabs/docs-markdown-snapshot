@@ -2,7 +2,7 @@
 title: Integrate a Custom Built Listener
 description: Couchbase Lite database peer-to-peer sync- integrate a custom built listener
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/c/pages/p2psync-custom.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@couchbase-lite:c:p2psync-custom.adoc[]
 ---
 
@@ -148,7 +148,7 @@ When data is received from the passive Peer via the Communication Framework, you
 
 ```
 
-The replication connection’s `receive` method is called. Which then processes the data to persist to the local database.
+The replication connection's `receive` method is called. Which then processes the data to persist to the local database.
 
 #### [](#passive-peer-3)Passive Peer
 

@@ -3,7 +3,7 @@ title: Verify a Sync Gateway Install
 description: Configure and verify your <em>Sync Gateway</em> installation;
   securely sync enterprise data from cloud to edge!
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/get-started-verify-install.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::get-started-verify-install.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:2.8@sync-gateway::get-started-verify-install.adoc[]
 # Verify a Sync Gateway Install
 
 > Configure and verify your _Sync Gateway_ installation; securely sync enterprise data from cloud to edge!  
-> This is **Step 4** in the _Start Here!_ topic group. Here we will verify that you can connect your _Sync Gateway_ to a _Couchbase Server_ and synchronize changes whether made in Couchbase Server or through Sync Gateway’s REST API.
+> This is **Step 4** in the _Start Here!_ topic group. Here we will verify that you can connect your _Sync Gateway_ to a _Couchbase Server_ and synchronize changes whether made in Couchbase Server or through Sync Gateway's REST API.
 
 Related _Start Here!_ topics: [Introduction](../current/introduction.md) | [Prepare](#sync-gateway::get-started-prepare.adoc) | [Install](#sync-gateway::get-started-install.adoc)
 
@@ -78,9 +78,9 @@ About the Configuration Properties
 | **2** | Provided the credentials for the RBAC user that you created on the Couchbase Server Admin Console — see [Configure Server for Sync Gateway](#sync-gateway::get-started-prepare.adoc#configure-server)                                                                                                           |
 | **3** | Set enable\_shared\_bucket\_access true to allow both Sync Gateway and Couchbase Server to make changes to the same bucket. This works in conjunction with import\_docs to facilitate the replication of changes whether made through Sync Gateway or externally by an App or Couchbase Server SDK for example. |
 | **4** | Set import\_docs true to allow import processing to take place on this Sync Gateway node, thereby integrating document changes made outside of Sync Gateway                                                                                                                                                     |
-| **5** | num\_index\_replicas is the number of index replicas stored in Couchbase Server — see [Indexing versus Views](../current/deploy/indexing.md). **NOTE:** If you’re running a single Couchbase Server node for development purposes the num\_index\_replicas must be set to 0.                                    |
+| **5** | num\_index\_replicas is the number of index replicas stored in Couchbase Server — see [Indexing versus Views](../current/deploy/indexing.md). **NOTE:** If you're running a single Couchbase Server node for development purposes the num\_index\_replicas must be set to 0.                                    |
 | **6** | Here users introduces a guest user with access to all channels and all documents                                                                                                                                                                                                                                |
-| **7** | Define your logging requirements:Here we set general diagnostic console logs on. If you’re having issues then refer to [Logging](../current/manage/logging.md) for how to tune diagnostics to provide additional troubleshooting help                                                                           |
+| **7** | Define your logging requirements:Here we set general diagnostic console logs on. If you're having issues then refer to [Logging](../current/manage/logging.md) for how to tune diagnostics to provide additional troubleshooting help                                                                           |
 
 ## [](#connect-to-sync-gateway)Connect to Sync Gateway
 
@@ -103,7 +103,7 @@ If there are issues then check the [Console Logs](logging.md#lbl-console-logs) f
 
 ## [](#verify-the-crud-cycle)Verify the CRUD Cycle
 
-Here we will use CURL and Sync Gateway’s REST API to
+Here we will use CURL and Sync Gateway's REST API to
 
 1. [Create a New Document:](#lbl-crud-crt) Use the API to add a document and check the document on Couchbase Server
 2. [Get a Document Using the API:](#lbl-crud-get) Read the document back from Couchbase Server using the Sync Gateway API
@@ -260,7 +260,7 @@ To verify that document changes have been replicated, you can:
 
 Now you know Sync Gateway is deployed and operational. So, you can explore more complex scenarios with confidence.
 
-Maybe you want to learn more about Sync Gateway’s [Configuration Schema](../current/configuration/configuration-properties-legacy.md) or how to [Sync with Couchbase Server](../current/sync/sync-with-couchbase-server.md). Or perhaps you want to explore how to:
+Maybe you want to learn more about Sync Gateway's [Configuration Schema](../current/configuration/configuration-properties-legacy.md) or how to [Sync with Couchbase Server](../current/sync/sync-with-couchbase-server.md). Or perhaps you want to explore how to:
 
 * Implement access controls for users and data — see: [Users](../current/access-control/users.md), [Roles](../current/access-control/roles.md) and the [Sync Function](../current/access-control/sync-function/sync-function.md) that ties it all together.
 * Implement secure connectivity using TLS/SSL, which is described in [User Authentication](../current/security/authentication-users.md) and [TLS Certificate Authentication](../current/security/authentication-certs.md)

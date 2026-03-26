@@ -2,7 +2,7 @@
 title: Error Handling
 description: Handling transaction errors with Couchbase.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/transactions-error-handling.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:dotnet-sdk:concept-docs:transactions-error-handling.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:dotnet-sdk:concept-docs:transactions-error-handling.adoc[]
 
 > Handling transaction errors with Couchbase. 
 
-Couchbase transactions will attempt to resolve many errors for you, through a combination of retrying individual operations and the application’s lambda. This includes some transient server errors, and conflicts with other transactions.
+Couchbase transactions will attempt to resolve many errors for you, through a combination of retrying individual operations and the application's lambda. This includes some transient server errors, and conflicts with other transactions.
 
 ## [](#transaction-errors)Transaction Errors
 

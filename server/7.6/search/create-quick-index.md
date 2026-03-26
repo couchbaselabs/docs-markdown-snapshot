@@ -3,7 +3,7 @@ title: Create a Search Index with the Quick Editor
 description: Use the Quick Index editor in the Couchbase Server Web Console to
   create a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/create-quick-index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:search:create-quick-index.adoc[]
 ---
 
@@ -29,7 +29,7 @@ You must create a Search index before you can [run a search](simple-search-ui.md
 
 ## [](#procedure)Procedure
 
-To use the Couchbase Server Web Console’s Quick Editor to create a Search index:
+To use the Couchbase Server Web Console's Quick Editor to create a Search index:
 
 1. Go to **Search**.
 2. Click **Quick Index**.
@@ -44,9 +44,9 @@ To use the Couchbase Server Web Console’s Quick Editor to create a Search inde
 7. In the **Select Fields** box, click a field in the document that you want to add to the index.  
 > [!TIP]  
 > You can randomly select a new document from your chosen keyspace by clicking **Refresh** above the **Select Fields** display.
-8. In the **Type** list, select the field’s data type.  
+8. In the **Type** list, select the field's data type.  
 For more information about the available data types, see [Field Data Types](field-data-types-reference.md).
-9. Set the field’s options.  
+9. Set the field's options.  
 For more information about the available field options, see [Quick Index Field Options](quick-index-field-options.md).
 10. Click **Add**.
 11. (Optional) Repeat the previous steps for each field you want to add to the Search index.
@@ -54,7 +54,7 @@ For more information about the available field options, see [Quick Index Field O
 
 ## [](#next-steps)Next Steps
 
-You can [customize your index](customize-index.md) with the standard Search index editor to improve your Search index’s performance and the quality of your search results.
+You can [customize your index](customize-index.md) with the standard Search index editor to improve your Search index's performance and the quality of your search results.
 
 > [!CAUTION]
 > If you edit your Search index with the [standard editor](create-search-index-ui.md), you cannot return to Quick Mode and keep any advanced settings.

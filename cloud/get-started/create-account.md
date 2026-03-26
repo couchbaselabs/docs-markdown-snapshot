@@ -2,7 +2,7 @@
 title: Create an Account and Deploy Your Free Tier Operational Cluster
 description: Create an account and start managing your data with Couchbase Capella.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/create-account.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:get-started:create-account.adoc[]
 ---
 
@@ -98,7 +98,7 @@ Couchbase Capella offers two ways to deploy your free tier operational cluster:
 
 ## [](#guided-setup)Get Started with Guided Setup
 
-If you’re new to Capella and want to see how operational clusters work with App Services, Capella provides an interactive guided setup that provisions both infrastructure types with sample data.
+If you're new to Capella and want to see how operational clusters work with App Services, Capella provides an interactive guided setup that provisions both infrastructure types with sample data.
 
 The guided setup creates:
 
@@ -150,7 +150,7 @@ Create and deploy your first operational cluster:
 
 ### [](#turn-cluster-on-off)Turn Your Operational Cluster On and Off
 
-If there’s no activity in your free tier operational cluster for more than 72 hours, Couchbase turns off the cluster and any linked App Services. This removes the cluster’s compute resources, but preserves it’s data and state. This also removes any linked App Service nodes and associated infrastructure, but preserves the state.
+If there's no activity in your free tier operational cluster for more than 72 hours, Couchbase turns off the cluster and any linked App Services. This removes the cluster's compute resources, but preserves it's data and state. This also removes any linked App Service nodes and associated infrastructure, but preserves the state.
 
 You can also turn off your free tier operational cluster using the UI:
 
@@ -165,7 +165,7 @@ You can also turn off your free tier operational cluster using the UI:
 
 To turn your free tier operational cluster back on, go to **Operational** **Home** and click **Turn On Cluster**.
 
-When you resume activity in your operational cluster, any linked App Services are also turned back on. If you’re unable to resume activity in your cluster, [contact Couchbase support](https://www.couchbase.com/contact/).
+When you resume activity in your operational cluster, any linked App Services are also turned back on. If you're unable to resume activity in your cluster, [contact Couchbase support](https://www.couchbase.com/contact/).
 
 To create or turn on an operational cluster, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator) role.
 
@@ -191,7 +191,7 @@ For more information, see [View Monitoring Dashboards](../clusters/monitoring/me
 
 ### [](#delete-your-free-tier-operational-cluster)Delete Your Free Tier Operational Cluster
 
-If there’s no activity in your free tier operational cluster for more than 30 days, Couchbase deletes the operational cluster and any linked App Services. Couchbase sends periodic emails after 72 hours of inactivity warning you that your free tier cluster is turned off and will delete after 30 days.
+If there's no activity in your free tier operational cluster for more than 30 days, Couchbase deletes the operational cluster and any linked App Services. Couchbase sends periodic emails after 72 hours of inactivity warning you that your free tier cluster is turned off and will delete after 30 days.
 
 To recreate your free tier operational cluster, see [create and deploy your free tier operational cluster](#getting-started).
 
@@ -231,7 +231,7 @@ For more information about using the `cbbackupmgr` tool, see [Backup a Free Tier
 
 For more information, use the Capella UI to learn more about the free tier features and compare to other Couchbase Capella plans:
 
-1. In the **Operational** tab, choose your operational cluster to go to your cluster’s page.
+1. In the **Operational** tab, choose your operational cluster to go to your cluster's page.
 2. Click the **Settings** tab.
 3. In the navigation menu, click **Plan**.
 4. Select, compare and review your Couchbase Capella plan.

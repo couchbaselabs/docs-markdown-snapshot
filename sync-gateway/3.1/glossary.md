@@ -2,7 +2,7 @@
 title: Glossary
 description: Sync Gateway Glossary of Terms
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/glossary.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::glossary.adoc[]
 ---
 
@@ -81,7 +81,7 @@ Back to [Index](#index)
 
 Checkpoint
 
-A _Checkpoint_, in _Couchbase Mobile_ terms, is a “save state” on a replicator, used to enable a restart at the last success-point in the event of a failure during a replication.
+A _Checkpoint_, in _Couchbase Mobile_ terms, is a "save state" on a replicator, used to enable a restart at the last success-point in the event of a failure during a replication.
 
 The checkpoint itself is a (meta)document that describes how far in the replication process a given replicator has progressed.
 
@@ -97,7 +97,7 @@ Each conflict resolver policy applies a different strategy:
 
 Default
 
-* Always applies Sync Gateway’s [Automatic conflict resolution policy](#auto-conflict-resolution-policy)
+* Always applies Sync Gateway's [Automatic conflict resolution policy](#auto-conflict-resolution-policy)
 * Configured using: `"conflict_resolution_type": "default"`
 
 Local Wins
@@ -252,7 +252,7 @@ The term _Persistent replication_ refers to replications that survive Sync Gatew
 
 Prometheus
 
-Prometheus is an open source systems monitoring and alerting platform and hosted by Cloud Native Computing Foundation. At the core of it is the Prometheus Server that is responsible for polling “Prometheus targets” for stats and storing it as time series data. Prometheus targets are statically configured or can be discovered by Prometheus.
+Prometheus is an open source systems monitoring and alerting platform and hosted by Cloud Native Computing Foundation. At the core of it is the Prometheus Server that is responsible for polling "Prometheus targets" for stats and storing it as time series data. Prometheus targets are statically configured or can be discovered by Prometheus.
 
 Back to [Index](#index)
 
@@ -265,7 +265,7 @@ The term _Replication definition_ refers to that set of elements (parameters or 
 Replication definitions are provided to Sync Gateway in 'JSON' format through either:
 
 * The Sync Gateway configuration file (`sync-gateway-config.json`)
-The Admin REST API’s _replication endpoint, using a utility such as `curl`, or an application such as \_Postman_. 
+The Admin REST API's _replication endpoint, using a utility such as `curl`, or an application such as \_Postman_. 
 
 _Replication definitions_ comprise the same elements in both the JSON configuration file and the Admin REST API; except configured replications cannot use `adhoc` or `cancel`.
 
@@ -308,7 +308,7 @@ A tombstone revision is essentially a marker indicating that a document has been
 
 Each Tombstone Revision comprises: document ID, revision ID and a \_deleted flag (value=true). They are created to allow all devices to see that a document has been deleted - particularly in the case of devices that may not be online continuously and therefore not syncing regularly.
 
-Every update — including deletes — creates a document revision. Deleted revisions are also known as _Tombstone_ revisions. They have the '“\_deleted”: true' property, are replicated, but are not returned if you do a query using, for example, Couchbase Lite.
+Every update — including deletes — creates a document revision. Deleted revisions are also known as _Tombstone_ revisions. They have the '"\_deleted": true' property, are replicated, but are not returned if you do a query using, for example, Couchbase Lite.
 
 +
 

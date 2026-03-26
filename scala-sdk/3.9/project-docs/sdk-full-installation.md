@@ -2,7 +2,7 @@
 title: Couchbase Scala SDK Installation
 description: Installation instructions for the Couchbase Scala Client.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@scala-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:3.9@scala-sdk:project-docs:sdk-full-installation.adoc[]
 
 > Installation instructions for the Couchbase Scala Client. 
 
-This page gives full installation instructions for the Scala SDK. In most cases, the [Quickstart Guide](../hello-world/start-using-sdk.md) should be enough to get you up and running if you’re in a hurry.
+This page gives full installation instructions for the Scala SDK. In most cases, the [Quickstart Guide](../hello-world/start-using-sdk.md) should be enough to get you up and running if you're in a hurry.
 
 ## [](#prerequisites)Prerequisites
 
@@ -101,7 +101,7 @@ There is a dedicated 2.13 build too, but from the 3.9.0 release we recommended 2
 
 ## [](#using-a-snapshot-version)Using a Snapshot Version
 
-Couchbase publishes pre-release snapshot artifacts to the Central Portal Snapshots Repository. If you wish to use a snapshot version, you’ll need to tell your build tool about this repository.
+Couchbase publishes pre-release snapshot artifacts to the Central Portal Snapshots Repository. If you wish to use a snapshot version, you'll need to tell your build tool about this repository.
 
 * Maven
 * Gradle (Groovy)

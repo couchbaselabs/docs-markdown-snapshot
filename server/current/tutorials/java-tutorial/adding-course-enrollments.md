@@ -2,7 +2,7 @@
 title: Add Course Enrollments
 description: Add enrollment information to the student records using the Couchbase SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/tutorials/pages/java-tutorial/adding-course-enrollments.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:tutorials:java-tutorial/adding-course-enrollments.adoc[]
 ---
 
@@ -102,7 +102,7 @@ public class AddEnrollments {
 mvn exec:java -Dexec.mainClass="AddEnrollments" -Dexec.cleanupDaemonThreads=false  
 ```
 6. Go to your Couchbase cluster in your browser.
-7. Go to the `student-record-collection` and click the **Edit** icon or the document ID to see the new information you just added to Hilary’s student record.  
+7. Go to the `student-record-collection` and click the **Edit** icon or the document ID to see the new information you just added to Hilary's student record.  
 ![Updated student record with course enrollment](../_images/updated-student-record.png)
 
 If you come across errors in your console, see the [troubleshooting page](tutorial-troubleshooting.md).

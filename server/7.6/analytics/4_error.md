@@ -2,7 +2,7 @@
 title: Errors
 description: A description of Couchbase SQL++ for Analytics errors.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/4_error.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:analytics:4_error.adoc[]
 ---
 
@@ -58,7 +58,7 @@ Referring to an undefined identifier can cause an error if the identifier cannot
 FROM customer AS c
 SELECT *
 
-If we have a typo as above in "customers" that misses the dataset name’s ending "s", we will get an identifier resolution error as follows:
+If we have a typo as above in "customers" that misses the dataset name's ending "s", we will get an identifier resolution error as follows:
 
 ERROR: Code: 1 "ASX1077: Cannot find dataset customer in dataverse Commerce nor an alias with name customer (in line 2, at column 7)"
 

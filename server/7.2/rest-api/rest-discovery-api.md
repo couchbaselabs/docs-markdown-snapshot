@@ -3,7 +3,7 @@ title: Prometheus Discovery API
 description: The discovery API generates a list of Couchbase Server nodes that
   tools such Prometheus can use to collect metrics.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-discovery-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:rest-api:rest-discovery-api.adoc[]
 ---
 
@@ -54,11 +54,11 @@ Controls how Couchbase Server returns the list of nodes in the response. When se
 
 network=\[default|external\]
 
-Controls which network address Couchbase Server uses in the list. When set to the default value of `default`, it uses the nodes’s default address. When set to `external`, it uses the node’s [alternate address](../learn/clusters-and-availability/connectivity.md#alternate-addresses).
+Controls which network address Couchbase Server uses in the list. When set to the default value of `default`, it uses the nodes's default address. When set to `external`, it uses the node's [alternate address](../learn/clusters-and-availability/connectivity.md#alternate-addresses).
 
 port=\[insecure|secure\]
 
-Controls which port Couchbase Server uses in the list of nodes. When set to the default `secure`, it uses the node’s secure port in the list. When set to `insecure`, it uses the node’s unencrypted port.
+Controls which port Couchbase Server uses in the list of nodes. When set to the default `secure`, it uses the node's secure port in the list. When set to `insecure`, it uses the node's unencrypted port.
 
 type=\[json|yaml\]
 

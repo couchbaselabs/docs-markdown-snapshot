@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Support
 editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.2/modules/ROOT/pages/cloud.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@kafka-connector::cloud.adoc[]
 ---
 
@@ -35,7 +35,7 @@ Once you have created a Cluster in Couchbase Capella, navigate to the `Connect` 
 
 ![Cloud UI](_images/cloud-ui.png) 
 
-Rename the downloaded file to `couchbase.pem`. (The name doesn’t really matter, but the rest of this guide refers to the Couchbase certificate file by that name.)
+Rename the downloaded file to `couchbase.pem`. (The name doesn't really matter, but the rest of this guide refers to the Couchbase certificate file by that name.)
 
 ## [](#connector-config)Configuring Version 4.0.5 and Later
 
@@ -43,7 +43,7 @@ Enable TLS by setting `**couchbase.enable.tls**` to `true`.
 
 Set the `**couchbase.trust.certificate.path**` property to the absolute filesystem path to `couchbase.pem`.
 
-Now you’re ready to connect to your Couchbase Capella cluster.
+Now you're ready to connect to your Couchbase Capella cluster.
 
 > [!TIP]
 > Alternatively, you can put the certificate in a trust store as decribed in the next section.
@@ -54,7 +54,7 @@ Prior to connector version 4.0.5, the certificate must live in a trust store.
 
 ### [](#add-the-certificate-to-a-trust-store)Add the certificate to a trust store
 
-The connector’s trust store is a Java keystore file containing the certificates the connector should trust. We’ll use the Java `keytool` command to create a keystore and populate it with the root certificates for Couchbase Capella.
+The connector's trust store is a Java keystore file containing the certificates the connector should trust. We'll use the Java `keytool` command to create a keystore and populate it with the root certificates for Couchbase Capella.
 
 To add the Couchbase Capella root certificate:
 
@@ -87,4 +87,4 @@ Set the `**couchbase.trust.store.path**` property to the absolute filesystem pat
 
 Configure `**couchbase.trust.store.password**` by providing the keystore password.
 
-Now you’re ready to connect to your Couchbase Capella cluster.
+Now you're ready to connect to your Couchbase Capella cluster.

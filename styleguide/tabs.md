@@ -1,7 +1,7 @@
 ---
 title: Tabs
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/tabs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::tabs.adoc[]
 ---
 
@@ -14,7 +14,7 @@ A tab is a named clickable element in the UI. It appears in a horizontal sequenc
 
 Tabs never appear vertically.
 
-A tab changes the information that’s displayed the UI. This could be for the whole application, or for a specific section.
+A tab changes the information that's displayed the UI. This could be for the whole application, or for a specific section.
 
 The UI highlights the currently selected tab for the user.
 

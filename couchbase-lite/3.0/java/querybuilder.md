@@ -2,7 +2,7 @@
 title: QueryBuilder
 description: How to use QueryBuilder to build effective queries with Couchbase Lite on Java
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/java/pages/querybuilder.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:java:querybuilder.adoc[]
 ---
 
@@ -21,7 +21,7 @@ link: xref:3.0@couchbase-lite:java:querybuilder.adoc[]
 
 Couchbase Lite for Java provides two ways to build and run database queries; the QueryBuilder API described in this topic and the [SQL++ for Mobile](query-n1ql-mobile.md).
 
-Database queries defined with the QueryBuilder API use query statements of the form shown in [Example 1](#ex-query-form). The structure and semantics of the query format are based on that of Couchbase’s [SQL++ query language](../../../server/current/learn/data/n1ql-versus-sql.md).
+Database queries defined with the QueryBuilder API use query statements of the form shown in [Example 1](#ex-query-form). The structure and semantics of the query format are based on that of Couchbase's [SQL++ query language](../../../server/current/learn/data/n1ql-versus-sql.md).
 
 Example 1\. Query Format
 
@@ -52,12 +52,12 @@ Query Components
 > [!TIP]
 > See the [Indexing](indexing.md) topic to learn more about indexing.
 
-Before we begin querying documents, let’s briefly mention the importance of having a query index. A query can only be fast if there’s a pre-existing database index it can search to narrow down the set of documents to examine — see: [Example 2](#ex-indexing), which shows how to create an index, and also the [Query Troubleshooting](query-troubleshooting.md) topic.
+Before we begin querying documents, let's briefly mention the importance of having a query index. A query can only be fast if there's a pre-existing database index it can search to narrow down the set of documents to examine — see: [Example 2](#ex-indexing), which shows how to create an index, and also the [Query Troubleshooting](query-troubleshooting.md) topic.
 
 > [!TIP]
 > See the [Indexing](indexing.md) topic to learn more about indexing.
 
-A query can only be fast if there’s a pre-existing database index it can search to narrow down the set of documents to examine — see: [Example 2](#ex-indexing), which shows how to create an index and our [Query Troubleshooting](query-troubleshooting.md) topic.
+A query can only be fast if there's a pre-existing database index it can search to narrow down the set of documents to examine — see: [Example 2](#ex-indexing), which shows how to create an index and our [Query Troubleshooting](query-troubleshooting.md) topic.
 
 However, every index has to be updated whenever a document is updated. So too many indexes can hurt performance.
 
@@ -539,7 +539,7 @@ Avignon
 
 Couchbase Lite documents support a [date type](#initializers) that internally stores dates in ISO 8601 with the GMT/UTC timezone.
 
-Couchbase Lite’s Query Builder API \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]includes four functions for date comparisons.
+Couchbase Lite's Query Builder API \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]includes four functions for date comparisons.
 
 `Function.StringToMillis(Expression.Property("date_time"))`
 
@@ -551,7 +551,7 @@ The input to this will be a validly formatted ISO 8601 `date_time` string. The e
 
 `Function.MillisToString(Expression.Property("date_time"))`
 
-The input for this is a numeric value representing milliseconds since the Unix epoch. The end result will be an expression (with string content representing the date and time as an ISO 8601 string in the device’s timezone) that can be further input into the query builder.
+The input for this is a numeric value representing milliseconds since the Unix epoch. The end result will be an expression (with string content representing the date and time as an ISO 8601 string in the device's timezone) that can be further input into the query builder.
 
 `Function.MillisToUTC(Expression.Property("date_time"))`
 
@@ -576,7 +576,7 @@ The result set format and its handling varies slightly depending on the type of 
 
 To process the results of a query, you first need to execute it using `Query.execute`.
 
-The execution of a Couchbase Lite for Java’s database query typically returns an array of results, a result set.
+The execution of a Couchbase Lite for Java's database query typically returns an array of results, a result set.
 
 * The result set of an aggregate, count-only, query is a key-value pair — see [Select Count-only](#lbl-count-sel) — which you can access using the count name as its key.
 * The result set of a query returning document properties is an array.  
@@ -642,7 +642,7 @@ Example 17\. Format of Result Set (All Properties)
 
 #### [](#result-set-access)Result Set Access
 
-In this case access the retrieved document properties by converting each row’s value, in turn, to a dictionary — as shown in [Example 18](#ex-all-acc).
+In this case access the retrieved document properties by converting each row's value, in turn, to a dictionary — as shown in [Example 18](#ex-all-acc).
 
 Example 18\. Using Document Properties (All)
 
@@ -804,7 +804,7 @@ Example 23\. Format of Result Set (Doc Id only)
 
 #### [](#result-set-access-3)Result Set Access
 
-In this case, access the required document’s properties by unpacking the `id` and using it to get the document from the database — see: [Example 24](#ex-id-acc).
+In this case, access the required document's properties by unpacking the `id` and using it to get the document from the database — see: [Example 24](#ex-id-acc).
 
 Example 24\. Using Returned Document Properties (Document Id)
 
@@ -986,7 +986,7 @@ If your query selects a sub-set of available properties then the JSON format wil
 
 Predictive Query enables Couchbase Lite queries to use machine learning, by providing query functions that can process document data (properties or blobs) via trained ML models.
 
-Let’s consider an image classifier model that takes a picture as input and outputs a label and probability.
+Let's consider an image classifier model that takes a picture as input and outputs a label and probability.
 
 ![predictive diagram](../_images/predictive-diagram.png) 
 

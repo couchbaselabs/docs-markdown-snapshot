@@ -4,7 +4,7 @@ description: Use virtualized platforms such as AWS and Docker containers to get
   hardware scalability and complement Enterprise Analytics's software
   scalability.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/vm-container-guidelines.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:install:vm-container-guidelines.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:2.0@enterprise-analytics:install:vm-container-guidelines.adoc[]
 
 # Deployment Considerations for Virtual Machines and Containers
 
-> Use virtualized platforms such as AWS and Docker containers to get hardware scalability and complement Enterprise Analytics’s software scalability. 
+> Use virtualized platforms such as AWS and Docker containers to get hardware scalability and complement Enterprise Analytics's software scalability. 
 
 When deploying Enterprise Analytics on a virtualized platform, some extra considerations should be made.
 
@@ -40,7 +40,7 @@ Due to the fact that the VM is running on top of a hypervisor or container engin
 
 Some virtualization environments allow you to migrate the VMs between physical nodes and storage backends. When moving the VM, there is the potential for small pauses and network disruption, which can affect the scheduler, and in turn could trigger a failover. When changing the backend storage, disk queues, compaction, or indexing may be affected, which could have a knock-on effect on general performance. Therefore, Couchbase recommends that you use its built-in rebalance mechanism for maintenance.
 
-If it’s necessary to perform a migration, then disable auto-failover beforehand and be prepared for a performance impact during the migration. Pausing, resuming, and snapshotting virtual machines can also have the same effect. These actions should only be performed on an Enterprise Analytics node which has been removed from the cluster.
+If it's necessary to perform a migration, then disable auto-failover beforehand and be prepared for a performance impact during the migration. Pausing, resuming, and snapshotting virtual machines can also have the same effect. These actions should only be performed on an Enterprise Analytics node which has been removed from the cluster.
 
 ## [](#additional-considerations-for-containers)Additional Considerations for Containers
 
@@ -55,7 +55,7 @@ By mapping the directory `/opt/enterprise-analytics/var` to a directory outside 
 In a standard Docker environment using a union filesystem, leaving `/opt/enterprise-analytics/var` inside the container results in some amount of performance degradation.
 
 > [!NOTE]
-> If you have SELinux enabled, mounting the host volumes in a container requires an extra step. Assuming you’re mounting the `~/couchbase` directory on the host filesystem, you need to run the following command once before running your first container on that host:
+> If you have SELinux enabled, mounting the host volumes in a container requires an extra step. Assuming you're mounting the `~/couchbase` directory on the host filesystem, you need to run the following command once before running your first container on that host:
 > 
 > mkdir ~/couchbase && chcon -Rt svirt_sandbox_file_t ~/couchbase
 
@@ -67,7 +67,7 @@ ulimit -n 40960        # nofile: max number of open files
 ulimit -c unlimited    # core: max core file size
 ulimit -l unlimited    # memlock: maximum locked-in-memory address space
 
-These `ulimit` settings are necessary when running under heavy load. If you’re just doing light testing and development, you can omit these settings. To set the ulimits in your container, you need to run Couchbase Docker containers with the following additional `--ulimit` flags:
+These `ulimit` settings are necessary when running under heavy load. If you're just doing light testing and development, you can omit these settings. To set the ulimits in your container, you need to run Couchbase Docker containers with the following additional `--ulimit` flags:
 
 docker run -d --ulimit nofile=40960:40960
 --ulimit core=100000000:100000000 --ulimit memlock=100000000:100000000

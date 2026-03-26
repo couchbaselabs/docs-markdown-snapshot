@@ -3,7 +3,7 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
@@ -49,7 +49,7 @@ Here is the list of parameters available for `BucketSettings`. The "Updatable" c
 | conflictResolutionType                  | ConflictResolutionType | The conflict resolution type to apply to conflicts on the bucket, defaults to SequenceNumber                                                                                                            | false                                                                                                                                                                                                                            |
 | replica\_indexes                        | bool                   | Whether or not to replicate indexes.                                                                                                                                                                    | false                                                                                                                                                                                                                            |
 | bucket\_type                            | BucketType             | The type of the bucket, required for creation.                                                                                                                                                          | false                                                                                                                                                                                                                            |
-| storage\_backend                        | StorageBackend         | The storage backend to be assigned to and used by the bucket.                                                                                                                                           | true (note: additional steps required to migrate a bucket’s storage backend. See [Migrate a Bucket’s Storage Backend](https://docs.couchbase.com/server/current/manage/manage-buckets/migrate-bucket.html) for more information) |
+| storage\_backend                        | StorageBackend         | The storage backend to be assigned to and used by the bucket.                                                                                                                                           | true (note: additional steps required to migrate a bucket's storage backend. See [Migrate a Bucket's Storage Backend](https://docs.couchbase.com/server/current/manage/manage-buckets/migrate-bucket.html) for more information) |
 | num\_vbuckets                           | u16                    | The number of vBuckets for this bucket.                                                                                                                                                                 | false                                                                                                                                                                                                                            |
 | history\_retention\_collection\_default | bool                   | Whether a change history is made for the bucket. This parameter is ignored unless the storageBackend is set to magma.                                                                                   | true                                                                                                                                                                                                                             |
 | history\_retention\_collection\_fault   | bool                   | Whether a change history is made for the bucket. This parameter is ignored unless the storageBackend is set to magma.                                                                                   | true                                                                                                                                                                                                                             |
@@ -268,7 +268,7 @@ let query_index_manager = collection.query_indexes();
 
 Applications can use this manager to perform operations such as creating, deleting, and fetching _primary_ or _secondary_ indexes:
 
-* A _Primary_ index is built from a document’s key and is mostly suited for simple queries.
+* A _Primary_ index is built from a document's key and is mostly suited for simple queries.
 * A _Secondary_ index is the most commonly used type, and is suited for complex queries that require filtering on document fields.
 
 > [!NOTE]

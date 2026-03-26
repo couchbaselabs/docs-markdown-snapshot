@@ -1,7 +1,7 @@
 ---
 title: Fuzzy Query
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-fuzzy.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-supported-queries-fuzzy.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:7.2@server:fts:fts-supported-queries-fuzzy.adoc[]
 A _fuzzy query_ matches terms within a specified _edit_ (or _Levenshtein_) distance: meaning that terms are considered to match when they are to a specified degree _similar_, rather than _exact_. A common prefix of a stated length may be also specified as a requirement for matching.
 
 > [!NOTE]
-> The fuzzy query is a non-analytic query, meaning it won’t perform any text analysis on the query text.
+> The fuzzy query is a non-analytic query, meaning it won't perform any text analysis on the query text.
 
 Fuzziness is specified by means of a single integer. A value of `0` indicates that the terms must be identical. The maximum value that you can specify is `2`. For example:
 

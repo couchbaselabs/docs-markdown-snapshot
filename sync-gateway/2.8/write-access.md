@@ -3,7 +3,7 @@ title: Write Security
 description: How to manage write-access in Sync Gateway to ensure secure
   cloud-to-edge synchronization of enterprize data.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/write-access.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::write-access.adoc[]
 ---
 
@@ -40,7 +40,7 @@ For document schema validation, you can write your own rules in the Sync Functio
 
 When a document is deemed invalid, you can simply call the built-in JavaScript [throw()](sync-function.md#throw) function to raise an exception and reject the revision — see [Example 2](#ex-reject).
 
-Rejected documents are not saved to the Sync Gateway database, so no access changes take effect. Instead an error code (usually 403 Forbidden) is returned to Couchbase Lite’s replicator.
+Rejected documents are not saved to the Sync Gateway database, so no access changes take effect. Instead an error code (usually 403 Forbidden) is returned to Couchbase Lite's replicator.
 
 Any other exception (including implicit ones thrown by the JavaScript runtime, like array bounds exceptions) will also prevent the document update. These will cause the gateway to return an HTTP `500 — Internal Error` status.
 
@@ -55,7 +55,7 @@ throw ({forbidden: "error message"}) (1)
 
 ## [](#check-for-write-access)Check for Write Access
 
-Use the Sync Function’s helper functions such as [requireUser()](sync-function.md#requireuserusername) or [requireRole()](sync-function.md#requirerolerolename) to specify the user(s) allowed to write a document — see [Example 3](#ex-check-write-access)
+Use the Sync Function's helper functions such as [requireUser()](sync-function.md#requireuserusername) or [requireRole()](sync-function.md#requirerolerolename) to specify the user(s) allowed to write a document — see [Example 3](#ex-check-write-access)
 
 Example 3\. Checking the User to Allow Write Access
 

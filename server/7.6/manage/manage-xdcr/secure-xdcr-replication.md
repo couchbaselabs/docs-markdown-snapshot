@@ -4,7 +4,7 @@ description: Securing a replication means that either the administrator password
   that is sent to the remote cluster, or both the password and the data itself,
   is transmitted securely.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-xdcr/secure-xdcr-replication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-xdcr/secure-xdcr-replication.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:7.6@server:manage:manage-xdcr/secure-xdcr-replication.adoc[]
 
 By default, for inter-cluster communications, XDCR transmits both password and data in non-secure form. Optionally, a secure connection can be enabled between clusters, in order to secure either password alone, or both password and data.
 
-Note that if the password received by the destination cluster requires authentication by an LDAP server, the destination cluster communicates with the LDAP server according to the destination cluster’s prior configuration. For details on configuration options, see [Configure LDAP](../manage-security/configure-ldap.md).
+Note that if the password received by the destination cluster requires authentication by an LDAP server, the destination cluster communicates with the LDAP server according to the destination cluster's prior configuration. For details on configuration options, see [Configure LDAP](../manage-security/configure-ldap.md).
 
 XDCR security is enabled either by SCRAM-SHA or by TLS — depending on the administrator-specified connection-type, and the server-version of the destination cluster. Use of TLS involves certificate management: for an overview of certificates, see [Certificates](../../learn/security/certificates.md). For specific details on how to prepare and handle certificates for servers and clients, see [Manage Certificates](../manage-security/manage-certificates.md).
 

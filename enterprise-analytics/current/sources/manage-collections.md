@@ -2,7 +2,7 @@
 title: Managing Enterprise Analytics Collections
 description: This page describes how to manage collections with the Analytics Workbench.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/manage-collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sources:manage-collections.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:enterprise-analytics:sources:manage-collections.adoc[]
 
 This page guides you how to create, delete, and view metadata for collections in Enterprise Analytics, including best practices for managing column limits and data structure optimization.
 
-## [](#whats-a-collection)What’s a Collection?
+## [](#whats-a-collection)What's a Collection?
 
 A collection is a data container within a scope that allows for the logical grouping of documents.
 
@@ -43,7 +43,7 @@ Each time you add a collection, Enterprise Analytics records its metadata in the
 Enterprise Analytics supports both column and row storage formats.
 
 > [!NOTE]
-> The system uses the column format by default and it’s recommended not to exceed 4,000 unique columns across all documents in a collection.
+> The system uses the column format by default and it's recommended not to exceed 4,000 unique columns across all documents in a collection.
 
 When JSON documents are ingested, each unique leaf node is interpreted as a distinct column. See the following example:
 

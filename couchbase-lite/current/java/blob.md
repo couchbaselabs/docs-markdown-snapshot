@@ -2,7 +2,7 @@
 title: Blobs
 description: Couchbase Lite database data model concepts - blobs
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/blob.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:java:blob.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Couchbase Lite for Java uses _blobs_ to store the contents of images, other medi
 
 The blob itself is not stored in the document. It is held in a separate content-addressable store indexed from the document and retrieved only on-demand.
 
-When a document is synchronized, the Couchbase Lite replicator adds an `_attachments` dictionary to the document’s properties if it contains a blob — see [Figure 1](#img-blob).
+When a document is synchronized, the Couchbase Lite replicator adds an `_attachments` dictionary to the document's properties if it contains a blob — see [Figure 1](#img-blob).
 
 ## [](#blob-objects)Blob Objects
 
@@ -28,18 +28,18 @@ The blob as an object appears in a document as dictionary property — see, for 
 
 Other properties include `length` (the length in bytes), and optionally `content_type` (typically, its MIME type).
 
-The blob’s data (an image, audio or video content) is not stored in the document, but in a separate content-addressable store, indexed by the `digest` property — see [Using Blobs](#lbl-using).
+The blob's data (an image, audio or video content) is not stored in the document, but in a separate content-addressable store, indexed by the `digest` property — see [Using Blobs](#lbl-using).
 
 ### [](#constraints)Constraints
 
 * Couchbase Lite  
 Blobs can be arbitrarily large. They are only read on demand, not when you load a the _document_.
 * sync gateway  
-The maximum content size is 20 MB per blob. If a document’s blob is over 20 MB, the document will be replicated but not the blob.
+The maximum content size is 20 MB per blob. If a document's blob is over 20 MB, the document will be replicated but not the blob.
 
 ## [](#lbl-using)Using Blobs
 
-The `Blob` API lets you access the blob’s data content as in-memory data (a `Data` object) or as an `InputStream`.
+The `Blob` API lets you access the blob's data content as in-memory data (a `Data` object) or as an `InputStream`.
 
 The code in [Example 1](#ex-blob) shows how you might add a blob to a document and save it to the database. Here we use `avatar` as the property key and a jpeg file as the blob data.
 
@@ -65,7 +65,7 @@ try (InputStream is = Utils.getAsset("avatar.jpg")) { (1)
 
 When a document containing a blob object is synchronized, the Couchbase Lite replicator generates an `_attachments` dictionary with an auto-generated name for each blob attachment. This is different to the `avatar` key and is used internally to access the blob content.
 
-If you view a sync’d blob document in {cbs} Admin Console, you will see something similar to [Figure 1](#img-blob), which shows the document with its generated `_attachments` dictionary, including the `digest`.
+If you view a sync'd blob document in {cbs} Admin Console, you will see something similar to [Figure 1](#img-blob), which shows the document with its generated `_attachments` dictionary, including the `digest`.
 
 ![attach replicated](../_images/attach-replicated.png) 
 

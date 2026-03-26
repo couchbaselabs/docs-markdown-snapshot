@@ -1,7 +1,7 @@
 ---
 title: What Does Good UX Content Look Like?
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/good-content.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ui-ux::good-content.adoc[]
 ---
 
@@ -22,13 +22,13 @@ Good UX writing content at Couchbase needs to adhere to these principles:
 
 We write content that has no typos or grammatical errors.
 
-We write content that’s factually correct, always.
+We write content that's factually correct, always.
 
 ## [](#consistent)Good UX Content is Consistent
 
 We use the same word or words to mean the same thing.
 
-We follow industry standards and conventions, but also our own. (That’s why we maintain a [word list](../styleguide/word-list.md)).
+We follow industry standards and conventions, but also our own. (That's why we maintain a [word list](../styleguide/word-list.md)).
 
 We adhere to our [voice and tone standards](voice.md).
 
@@ -36,13 +36,13 @@ We adhere to our [voice and tone standards](voice.md).
 
 We explain exactly what the user needs to know. We provide all information needed to be successful.
 
-Users always know where to go, what’s next, and what to do.
+Users always know where to go, what's next, and what to do.
 
 We do not sacrifice clarity for the sake of being brief - we take the space to explain what needs to be explained.
 
 ## [](#inclusive)Good UX Content is Inclusive and Accessible
 
-We write content that’s gender neutral and does not exclude or offend any groups of people. We respect all cultures and gender identities.
+We write content that's gender neutral and does not exclude or offend any groups of people. We respect all cultures and gender identities.
 
 We do not include slang or colloquialisms.
 

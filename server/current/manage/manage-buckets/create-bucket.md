@@ -3,7 +3,7 @@ title: Create a Bucket
 description: Full, Cluster, and Backup  Administrators can use Couchbase Web
   Console, the CLI, or the REST API to create a bucket.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/create-bucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-buckets/create-bucket.adoc[]
 ---
 
@@ -103,7 +103,7 @@ To configure advanced settings for a Couchbase bucket:
   2. To replicate view indexes and data from the bucket, select the **Replicate view indexes** checkbox.
 2. To set a [document expiration](../../learn/data/expiration.md) for documents in the bucket, under **Bucket Max Time-To-Live**, select the **Enable** checkbox.
 
-  1. In the **Seconds** field, enter the maximum time in seconds that a document can exist in the bucket before it’s deleted.  
+  1. In the **Seconds** field, enter the maximum time in seconds that a document can exist in the bucket before it's deleted.  
   > [!TIP]  
   > The maximum allowed value is 2147483647 seconds (68.096 years). You can only apply this setting to documents created after you change the configuration.
 3. Choose a **Compression Mode** for the bucket:
@@ -156,7 +156,7 @@ To configure advanced settings for an Ephemeral bucket:
   1. In the **Number of replica (backup) copies** list, select the number of replicas for the bucket.
 2. To set a [document expiration](../../learn/data/expiration.md) for documents in the bucket, under **Bucket Max Time-To-Live**, select the **Enable** checkbox.
 
-  1. In the **Seconds** field, enter the maximum number of seconds a document can exist in the bucket before it’s deleted.  
+  1. In the **Seconds** field, enter the maximum number of seconds a document can exist in the bucket before it's deleted.  
   > [!TIP]  
   > The maximum allowed value is 2147483648 seconds (68.096 years). You can only apply this setting to documents created after you change the configuration.
 3. Choose a **Compression Mode** for the bucket:

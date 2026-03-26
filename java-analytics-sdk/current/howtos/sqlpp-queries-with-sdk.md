@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:java-analytics-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -89,7 +89,7 @@ __Table 1\. Available Query Options__
 | clientContextId(@Nullable String clientContextId)          | An optional identifier for the query.                                                                                                                                      |
 | parameters(@Nullable Map<String,?> namedParameters)        | Specifies the values to use for named placeholders in the query statement.                                                                                                 |
 | parameters(@Nullable List<?> positionalParameters)         | Allows setting positional arguments for a parameterized query.                                                                                                             |
-| deserializer(@Nullable Deserializer deserializer)          | Sets the deserializer used by Row.as(java.lang.Class<T>) to convert query result rows into Java objects. If not specified, defaults to the cluster’s default deserializer. |
+| deserializer(@Nullable Deserializer deserializer)          | Sets the deserializer used by Row.as(java.lang.Class<T>) to convert query result rows into Java objects. If not specified, defaults to the cluster's default deserializer. |
 | scanWait(@Nullable Duration scanWait)                      | Allows customizing how long the query engine is willing to wait until the index catches up to whatever scan consistency is asked for in this query.                        |
 | scanConsistency(@Nullable ScanConsistency scanConsistency) | Sets a different scan consistency for this query.                                                                                                                          |
 | readOnly(@Nullable Boolean readOnly)                       | Specifies that this query should be executed in read-only mode, disabling the ability for the query to make any changes to the data.                                       |

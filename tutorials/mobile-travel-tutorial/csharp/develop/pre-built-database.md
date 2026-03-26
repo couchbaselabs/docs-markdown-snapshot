@@ -1,7 +1,7 @@
 ---
 title: Pre-built database
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/develop/pre-built-database.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:csharp/develop/pre-built-database.adoc[]
 ---
 
@@ -12,11 +12,11 @@ link: xref:tutorials:mobile-travel-tutorial:csharp/develop/pre-built-database.ad
 
 ## [](#starting-with-prebuilt-database)Starting with Prebuilt Database
 
-In this section, you will learn how to bundle a pre-built Couchbase Lite database in an application. It can be a lot more efficient to bundle static or semi-static content database in your application and install it on the first launch. Even if some of the content changes on the server after you create the app, the app’s first pull replication will bring the database up to date. Here, you will use a pre-built database that contains only airport and hotel documents. The code below moves the pre-built database from the bundled location to the platform default directory defined by Couchbase.
+In this section, you will learn how to bundle a pre-built Couchbase Lite database in an application. It can be a lot more efficient to bundle static or semi-static content database in your application and install it on the first launch. Even if some of the content changes on the server after you create the app, the app's first pull replication will bring the database up to date. Here, you will use a pre-built database that contains only airport and hotel documents. The code below moves the pre-built database from the bundled location to the platform default directory defined by Couchbase.
 
 **Open the file**`LoginModel.cs` and navigate to the `StartSessionAsync` method.
 
-This method first checks if a database file already exists. If it doesn’t exist it loads the database according to the logic for the platform (UWP from the Assets folder, iOS from the main bundle, Android from Assets)
+This method first checks if a database file already exists. If it doesn't exist it loads the database according to the logic for the platform (UWP from the Assets folder, iOS from the main bundle, Android from Assets)
 
 [DatabaseManager.csharp](https://github.com/couchbaselabs/mobile-travel-sample/blob/master/dotnet/TravelSample/TravelSample.Core/Models/LoginModel.cs#L54)
 
@@ -33,9 +33,9 @@ This method first checks if a database file already exists. If it doesn’t exis
 
 Try it out
 
-1. Log into the Travel Sample Mobile app as “demo” user and password as “password”
+1. Log into the Travel Sample Mobile app as "demo" user and password as "password"
 2. Tap on "+\`" button to make a flight reservation
-3. In the “From” airport textfield, enter “San”
+3. In the "From" airport textfield, enter "San"
 4. Confirm that the first item in the dropdown list of "San Diego Intl"  
 > [!NOTE]  
 > This is not currently functioning in Xamarin iOS since the custom drop down view has not been implemented

@@ -1,7 +1,7 @@
 ---
 title: Spark Structured Streaming Support
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/streaming.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:spark-connector::streaming.adoc[]
 ---
 
@@ -148,15 +148,15 @@ When a stream is started for the first time, a fundamental choice needs to be ma
 The connector looks for a saved initial offset which is stored inside the `checkpointLocation`. If not provided explicitly be user, spark will create a temporary directory automatically.
 
 > [!NOTE]
-> If it’s required to delete a current checkpoint location, please set `spark.sql.streaming.forceDeleteTempCheckpointLocation` to `true`. According to spark docs, deleting the temp checkpoint folder is best effort.
+> If it's required to delete a current checkpoint location, please set `spark.sql.streaming.forceDeleteTempCheckpointLocation` to `true`. According to spark docs, deleting the temp checkpoint folder is best effort.
 
 ## [](#persistence-polling-interval)Persistence Polling Interval
 
-When a Couchbase Server node fails over, documents on the failing node that haven’t been fully replicated may be "rolled back" to a previous state. To ensure consistency between Couchbase and the Spark Stream, the connector can defer publishing a document to Spark until it has been saved to disk on all replicas.
+When a Couchbase Server node fails over, documents on the failing node that haven't been fully replicated may be "rolled back" to a previous state. To ensure consistency between Couchbase and the Spark Stream, the connector can defer publishing a document to Spark until it has been saved to disk on all replicas.
 
 To enable this feature, specify a non-zero persistence polling interval (it is enabled by default). The interval is how frequently the connector asks each Couchbase node which changes have been fully replicated and persisted. This ensures consistency between Couchbase and Spark, at the cost of additional latency and bandwidth usage.
 
-To disable this feature, specify a zero duration (0). In this mode the connector publishes changes to Spark immediately, without waiting for replication. This is fast and uses less network bandwidth, but can result in publishing "phantom changes" that don’t reflect the actual state of a document in Couchbase after a failover.
+To disable this feature, specify a zero duration (0). In this mode the connector publishes changes to Spark immediately, without waiting for replication. This is fast and uses less network bandwidth, but can result in publishing "phantom changes" that don't reflect the actual state of a document in Couchbase after a failover.
 
 The property to modify the default (`100ms`) is `KeyValueOptions.StreamPersistencePollingInterval`.
 

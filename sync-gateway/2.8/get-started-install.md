@@ -3,7 +3,7 @@ title: Install Sync Gateway
 description: Install a <em>Sync Gateway</em> instance; securely sync enterprise
   data from cloud to edge.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/get-started-install.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::get-started-install.adoc[]
 ---
 
@@ -28,7 +28,7 @@ Steps in Getting Started
 
 [Introduction](../current/introduction.md)| [Prepare](#sync-gateway::get-started-prepare.adoc)| **Install**| [Verify](#sync-gateway::get-started-verify-install.adoc)
 
-In this Getting Started topic we cover how to install the Sync Gateway package on various common platforms and how to check the installation’s success.
+In this Getting Started topic we cover how to install the Sync Gateway package on various common platforms and how to check the installation's success.
 
 You can install Sync Gateway on any of the [supported operating systems](#sync-gateway::supported-environments.adoc).
 
@@ -42,7 +42,7 @@ By default Sync Gateway bases its initial setup on an example configuration file
 
 ## [](#using-your-own-configuration)Using Your Own Configuration
 
-Sync Gateway’s initial setup uses configuration details from a file its install script creates (`sync_gateway.json`, or `serviceconfig.json` on Windows).
+Sync Gateway's initial setup uses configuration details from a file its install script creates (`sync_gateway.json`, or `serviceconfig.json` on Windows).
 
 To provide your own configuration to Sync Gateway, you can either:
 
@@ -103,9 +103,9 @@ __Table 1\. Default Installation Locations__
 | Content             | Location                                | Example                                                                                    |
 | ------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------ |
 | Binaries            | The installation directory              | /opt/couchbase-sync-gateway/bin/                                                           |
-| Configuration files | The sync\_gateway user’s home directory | /home/sync\_gateway/sync\_gateway.json                                                     |
+| Configuration files | The sync\_gateway user's home directory | /home/sync\_gateway/sync\_gateway.json                                                     |
 | Example Configs     | The installation directory              | /opt/couchbase-sync-gateway/examples/                                                      |
-| Log files           | The sync\_gateway user’s home directory | /home/sync\_gateway/logs/                                                                  |
+| Log files           | The sync\_gateway user's home directory | /home/sync\_gateway/logs/                                                                  |
 | Scripts             | The installation directory              | /opt/couchbase-sync-gateway/service/                                                       |
 | Service             | systemd library                         | /lib/systemd/system/sync\_gateway.service or /usr/lib/systemd/system/sync\_gateway.service |
 
@@ -262,9 +262,9 @@ You can stop Sync Gateway instances started in this way by using Ctrl+C. There i
 
 To change the default configuration file path of an existing Sync Gateway service you need to edit the service descriptor.
 
-For Windows, the configuration path is provided as a command line parameter embedded within the `SyncGateway` service’s `binpath`.
+For Windows, the configuration path is provided as a command line parameter embedded within the `SyncGateway` service's `binpath`.
 
-One way to edit the `binpath` value is to use Windows' _Service Control Manager’s_ command line utility `sc.exe config`. See the [Syntax of the sc.exe Command](#lbl-syntax) and an example of the command in use in [Example 1](#ex-windows-scexe).
+One way to edit the `binpath` value is to use Windows' _Service Control Manager's_ command line utility `sc.exe config`. See the [Syntax of the sc.exe Command](#lbl-syntax) and an example of the command in use in [Example 1](#ex-windows-scexe).
 
 Syntax of the sc.exe Command
 
@@ -356,9 +356,9 @@ __Table 3\. Default Installation Locations__
 | Content             | Location                                | Example                                                         |
 | ------------------- | --------------------------------------- | --------------------------------------------------------------- |
 | Binaries            | The installation directory              | /opt/couchbase-sync-gateway/bin/                                |
-| Configuration files | The sync\_gateway user’s home directory | /users/sync\_gateway/                                           |
+| Configuration files | The sync\_gateway user's home directory | /users/sync\_gateway/                                           |
 | Examples            | The installation directory              | /opt/couchbase-sync-gateway/examples/                           |
-| Log files           | The sync\_gateway user’s home directory | /users/sync\_gateway/logs/                                      |
+| Log files           | The sync\_gateway user's home directory | /users/sync\_gateway/logs/                                      |
 | Scripts             | The installation directory              | /opt/couchbase-sync-gateway/service/                            |
 | Service             | Library directory                       | /Library/LaunchDaemons/com.couchbase.mobile.sync\_gateway.plist |
 

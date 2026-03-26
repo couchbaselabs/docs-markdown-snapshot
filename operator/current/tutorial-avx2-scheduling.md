@@ -1,7 +1,7 @@
 ---
 title: AVX2-Aware Scheduling for Couchbase Server
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/tutorial-avx2-scheduling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::tutorial-avx2-scheduling.adoc[]
 ---
 
@@ -468,7 +468,7 @@ spec:
 
 ## [](#a-complete-couchbasecluster-example)A Complete CouchbaseCluster Example
 
-Here’s a complete example combining all best practices.
+Here's a complete example combining all best practices.
 
 ```yaml
 apiVersion: v1

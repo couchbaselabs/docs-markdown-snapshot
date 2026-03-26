@@ -1,7 +1,7 @@
 ---
 title: cao
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.5.x/docs/user/modules/ROOT/pages/tools/cao.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::tools/cao.adoc[]
 ---
 
@@ -34,7 +34,7 @@ $ sudo mv ./cao /usr/local/bin/cao
 ```
 
 > [!NOTE]
-> On newer versions of macOS, you may encounter errors such as `cannot execute binary file` when trying to use the tools included in the Autonomous Operator package. If you encounter such an error, you’ll need to update your security settings as outlined in Apple’s [support article on macOS Gatekeeper](https://support.apple.com/en-us/HT202491). In System Preferences, click Security & Privacy, then click General. Click the lock and enter your password to make changes. Select App Store and identified developers under the header “Allow apps downloaded from.”
+> On newer versions of macOS, you may encounter errors such as `cannot execute binary file` when trying to use the tools included in the Autonomous Operator package. If you encounter such an error, you'll need to update your security settings as outlined in Apple's [support article on macOS Gatekeeper](https://support.apple.com/en-us/HT202491). In System Preferences, click Security & Privacy, then click General. Click the lock and enter your password to make changes. Select App Store and identified developers under the header "Allow apps downloaded from."
 
 1. Open a command prompt and go to the directory where the `cao` binary is located:  
 ```console  
@@ -63,7 +63,7 @@ Couchbase Autonomous Operator Utility Tool
 
 Runs the platform certification suite
 
-It’s impossible to officially test every combination of Kubernetes platform, CNI and CSI plugin in order to give confidence that your specific combination will work as intended with the Operator. To this end, the certify command will run a platform certification subset of the official Operator tests to give confidence that your plaform will work in a safe and supportable manner with managed Couchbase Server.
+It's impossible to officially test every combination of Kubernetes platform, CNI and CSI plugin in order to give confidence that your specific combination will work as intended with the Operator. To this end, the certify command will run a platform certification subset of the official Operator tests to give confidence that your plaform will work in a safe and supportable manner with managed Couchbase Server.
 
 The certification process is relatively invasive, so we recommend that this command be executed on a dedicated test Kubernetes cluster and not a production one.
 
@@ -265,7 +265,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -285,7 +285,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -775,7 +775,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -795,7 +795,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -831,7 +831,7 @@ Creates the dynamic admission controller.
 
 The DAC is designed to be deployed at the cluster scope (default). It monitors Couchbase resources as they are created and modified, accepting, or rejecting them, before they are persisted in etcd.
 
-Use of the DAC is encouraged as it will report any configuration errors that are specific to deployment of Couchbase resources that aren’t available by default in the Kubernetes API. For example, this includes validating memory quotas are satisfiable, TLS certificates are correctly configured, and any resources referenced actually exist.
+Use of the DAC is encouraged as it will report any configuration errors that are specific to deployment of Couchbase resources that aren't available by default in the Kubernetes API. For example, this includes validating memory quotas are satisfiable, TLS certificates are correctly configured, and any resources referenced actually exist.
 
 ### [](#examples-3)Examples
 
@@ -1036,7 +1036,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -1056,7 +1056,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -1092,7 +1092,7 @@ Creates backup roles.
 
 **Type**: string
 
-Adds the IAM Role ARN to the backup service account’s annotation. e.g arn:aws:iam::<ACCOUNT\_ID>:role/<IAM\_ROLE\_NAME>
+Adds the IAM Role ARN to the backup service account's annotation. e.g arn:aws:iam::<ACCOUNT\_ID>:role/<IAM\_ROLE\_NAME>
 
 ### [](#inherited-flags-4)Inherited Flags
 
@@ -1168,7 +1168,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -1188,7 +1188,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -1409,7 +1409,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -1429,7 +1429,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -1557,7 +1557,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -1577,7 +1577,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -1681,7 +1681,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -1701,7 +1701,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -1825,7 +1825,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -1845,7 +1845,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -1881,7 +1881,7 @@ Generates YAML for the dynamic admission controller.
 
 The DAC is designed to be deployed at the cluster scope (default). It monitors Couchbase resources as they are created and modified, accepting, or rejecting them, before they are persisted in etcd.
 
-Use of the DAC is encouraged as it will report any configuration errors that are specific to deployment of Couchbase resources that aren’t available by default in the Kubernetes API. For example, this includes validating memory quotas are satisfiable, TLS certificates are correctly configured, and any resources referenced actually exist.
+Use of the DAC is encouraged as it will report any configuration errors that are specific to deployment of Couchbase resources that aren't available by default in the Kubernetes API. For example, this includes validating memory quotas are satisfiable, TLS certificates are correctly configured, and any resources referenced actually exist.
 
 ### [](#examples-7)Examples
 
@@ -2086,7 +2086,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -2106,7 +2106,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -2142,7 +2142,7 @@ Generates YAML for backup jobs.
 
 **Type**: string
 
-Adds the IAM Role ARN to the backup service account’s annotation. e.g arn:aws:iam::<ACCOUNT\_ID>:role/<IAM\_ROLE\_NAME>
+Adds the IAM Role ARN to the backup service account's annotation. e.g arn:aws:iam::<ACCOUNT\_ID>:role/<IAM\_ROLE\_NAME>
 
 ### [](#inherited-flags-10)Inherited Flags
 
@@ -2218,7 +2218,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -2238,7 +2238,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -2459,7 +2459,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -2479,7 +2479,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -2507,7 +2507,7 @@ The name of the kubeconfig user to use
 
 ## [](#cao-restore-flags)cao restore \[flags\]
 
-Restore a cluster’s data topology
+Restore a cluster's data topology
 
 In a development environment it may be desirable to manually manage the data topology in a rapid and agile fashion, rather than use the native Kubernetes resource types we provide. For example you may wish to create buckets, scopes and collections using the UI, or an SDK, without having the overhead of change control, review and auditing of changes that using native resources would provide.
 
@@ -2515,7 +2515,7 @@ This command allows existing save data (as generated by 'cao save') to be applie
 
 A new, full tree of resources (buckets, scopes and collections) is created then atomically swapped with the old tree, providing roll back in the event of an error. Finally any old Kubernetes resources are automatically cleaned up.
 
-The atomic swap of resources is performed using label selectors, allowing restores when multiple Couchbase clusters are running in the same namespace. As a precaution, the tool will only function if your cluster’s buckets are unmanaged, there is no label selector set and there are no existing resources, or a label selector is already in use. It is your reponsibility to ensure that when multiple Couchbase clusters are running in the same namespace, they will not be affected by a restore operation e.g. they are not sharing any resources that may be modified or deleted. It is usually safest to run a single Couchbase cluster per-namespace.
+The atomic swap of resources is performed using label selectors, allowing restores when multiple Couchbase clusters are running in the same namespace. As a precaution, the tool will only function if your cluster's buckets are unmanaged, there is no label selector set and there are no existing resources, or a label selector is already in use. It is your reponsibility to ensure that when multiple Couchbase clusters are running in the same namespace, they will not be affected by a restore operation e.g. they are not sharing any resources that may be modified or deleted. It is usually safest to run a single Couchbase cluster per-namespace.
 
 All resources discovered when polling the Couchbase cluster will be backed by a Kubernetes resource, and managed by the Operator after a restore. You may manually disable management of a particular bucket or scope if you so wish.
 
@@ -2565,7 +2565,7 @@ Path restore data to. Default will restore all buckets, scopes and collections. 
 
 **Default**: merge
 
-Strategy to use when merging the save data with the current cluster’s data. When 'merge', this will retain any existing items that are in the current cluster, but not in the save. When 'replace', this will fully replace the existing items that exist in the current cluster, but don’t exist in the save. Merging protects the user from accidental data loss, whereas replacement may cause data loss, but ensures old data is purged to enforce data retention policies. This flag defaults to 'merge'.
+Strategy to use when merging the save data with the current cluster's data. When 'merge', this will retain any existing items that are in the current cluster, but not in the save. When 'replace', this will fully replace the existing items that exist in the current cluster, but don't exist in the save. Merging protects the user from accidental data loss, whereas replacement may cause data loss, but ensures old data is purged to enforce data retention policies. This flag defaults to 'merge'.
 
 ### [](#inherited-flags-12)Inherited Flags
 
@@ -2641,7 +2641,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -2661,7 +2661,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -2689,7 +2689,7 @@ The name of the kubeconfig user to use
 
 ## [](#cao-save-flags)cao save \[flags\]
 
-Save a cluster’s data topology
+Save a cluster's data topology
 
 In a development environment it may be desirable to manually manage the data topology in a rapid and agile fashion, rather than use the native Kubernetes resource types we provide. For example you may wish to create buckets, scopes and collections using the UI, or an SDK, without having the overhead of change control, review and auditing of changes that using native resources would provide.
 
@@ -2809,7 +2809,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -2829,7 +2829,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -2947,7 +2947,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -2967,7 +2967,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 
@@ -3071,7 +3071,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -3091,7 +3091,7 @@ If present, the namespace scope for this CLI request
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 

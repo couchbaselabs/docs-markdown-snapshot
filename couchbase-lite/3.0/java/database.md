@@ -2,7 +2,7 @@
 title: Databases
 description: Working with Couchbase Lite on Java databases
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/java/pages/database.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:java:database.adoc[]
 ---
 
@@ -89,7 +89,7 @@ Database database = new Database(DB_NAME, config);
 
 ### [](#persisting)Persisting
 
-Couchbase Lite does not persist the key. It is the application’s responsibility to manage the key and store it in a platform specific secure store such as Apple’s [Keychain](https://developer.apple.com/documentation/security/keychain%5Fservices) or Android’s [Keystore](https://developer.android.com/training/articles/keystore).
+Couchbase Lite does not persist the key. It is the application's responsibility to manage the key and store it in a platform specific secure store such as Apple's [Keychain](https://developer.apple.com/documentation/security/keychain%5Fservices) or Android's [Keystore](https://developer.android.com/training/articles/keystore).
 
 ### [](#opening)Opening
 
@@ -122,7 +122,7 @@ Database thisDB = new Database("db", thisConfig);
 
 From time to time it may be necessary to perform certain maintenance activities on your database, for example to compact the database file, removing unused documents and blobs no longer referenced by any documents.
 
-Couchbase Lite’s API provides the [Database.performMaintenance()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Database.html#performMaintenance-com.couchbase.lite.MaintenanceType-) method. The available maintenance operations, including `compact` are as shown in the enum [MaintenanceType](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/MaintenanceType.html) to accomplish this.
+Couchbase Lite's API provides the [Database.performMaintenance()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Database.html#performMaintenance-com.couchbase.lite.MaintenanceType-) method. The available maintenance operations, including `compact` are as shown in the enum [MaintenanceType](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/MaintenanceType.html) to accomplish this.
 
 This is a resource intensive operation and is not performed automatically. It should be run on-demand using the API. If in doubt, consult Couchbase support.
 

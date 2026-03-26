@@ -1,7 +1,7 @@
 ---
 title: Install the Operator on Kubernetes
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/install-kubernetes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::install-kubernetes.adoc[]
 ---
 
@@ -32,7 +32,7 @@ All commands in this guide are run as a system administrator account; they requi
 
 ## [](#certified-kubernetes-platforms)Certified Kubernetes Platforms
 
-There are numerous certified Kubernetes offerings that are conformant to the [CNCF Certified Kubernetes program](https://www.cncf.io/certification/software-conformance/). This program ensures that every vendor’s version of Kubernetes supports the required APIs, as do open source community versions.
+There are numerous certified Kubernetes offerings that are conformant to the [CNCF Certified Kubernetes program](https://www.cncf.io/certification/software-conformance/). This program ensures that every vendor's version of Kubernetes supports the required APIs, as do open source community versions.
 
 Couchbase runs its own certification suites on the most widely used vendors to ensure the Couchbase Kubernetes Operator is fully compatible and supported.
 

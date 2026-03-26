@@ -1,7 +1,7 @@
 ---
 title: Couchbase Networking
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-couchbase-networking.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::concept-couchbase-networking.adoc[]
 ---
 
@@ -151,4 +151,4 @@ In [Table 2](#table-sgw-exposed-features-limitations) above, the **Relationship 
   * **Remote** connections still work as expected and can be configured in accordance with the standard client connection [documentation](howto-client-sdks.md).
   * **Local** connections _do not_ work as expected, and Sync Gateway ends up selecting the "external" network interface. This causes network traffic to be sent through a load balancer, which can lead to significant financial costs with a cloud provider.  
   If you intend to use a **Local** connection, you can choose to mitigate the issue by connecting using only DNS addresses. This method requires that the connection string contain a list of the hostnames of all the Couchbase Server pods in the Couchbase cluster. This method of connectivity is highly discouraged, as it is not tolerant to Couchbase cluster pod topology changes. (Sync Gateway will be informed of any topology changes so long as it stays running. However, once it restarts, it will fail to reconnect because the connection string has the old topology.)
-* Sync Gateway 2.7.2 and lower don’t feature DNS SRV support at all, instead falling back to a DNS address record lookup. **Local** connections have the same limitations as they do in versions 2.7.3 and 2.8.0 above. **Remote** connections support high availability through round-robin DNS. (Note, however, that since this connection method runs over HTTP on port 8091, there is a potential risk of a denial of service should port 8091 ever experience too many connections at once.)
+* Sync Gateway 2.7.2 and lower don't feature DNS SRV support at all, instead falling back to a DNS address record lookup. **Local** connections have the same limitations as they do in versions 2.7.3 and 2.8.0 above. **Remote** connections support high availability through round-robin DNS. (Note, however, that since this connection method runs over HTTP on port 8091, there is a potential risk of a denial of service should port 8091 ever experience too many connections at once.)

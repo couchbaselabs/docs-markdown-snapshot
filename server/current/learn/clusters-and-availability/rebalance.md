@@ -3,7 +3,7 @@ title: Rebalance
 description: <em>Rebalance</em> redistributes data, indexes, event processing,
   and query processing among available nodes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/rebalance.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:clusters-and-availability/rebalance.adoc[]
 ---
 
@@ -24,7 +24,7 @@ See [Cluster Manager](cluster-manager.md), for information on the cluster map. S
 
 In Couchbase Server Version 7.6 and later, each bucket on the cluster (Couchbase or Ephemeral) can be assigned a _rank_. The value is an integer from `0` (the default) to `1000`, inclusive. Buckets with higher ranks are handled by the rebalance process _before_ buckets with lower ranks. For example, if a cluster hosts four buckets, which are named _A_, _B_, _C_, and _D_; and bucket _A_ is explicitly assigned a rank of `10`, while buckets _B_, _C_, and _D_ are left with the default rank of `0`; when rebalance occurs, the vBuckets for bucket _A_ are addressed first; then, vBuckets for the other buckets are addressed, with the Cluster Manager making determinations as to the appropriate handling-order for those other buckets.
 
-This assignment of `rank` allows a cluster’s most mission-critical data to be rebalanced with top priority.
+This assignment of `rank` allows a cluster's most mission-critical data to be rebalanced with top priority.
 
 Bucket _rank_ can be established with either the CLI (see [bucket-create](../../cli/cbcli/couchbase-cli-bucket-create.md) and [bucket-edit](../../cli/cbcli/couchbase-cli-bucket-edit.md)) or the REST API (see [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md)).
 
@@ -78,7 +78,7 @@ The total time for the move is termed _Move Time_.
 
 Since vBucket moves are highly resource-intensive, Couchbase Server allows the concurrency of such moves to be _limited_: a setting is provided that determines the maximum number of concurrent vBucket moves permitted on any node. The minimum value for the setting is `1`, the maximum `64`, the default `4`.
 
-A _move_ counts toward this restriction only when in the _backfill_ phase, as described above, in [Data Service Rebalance Phases](#data-service-rebalance-phases). The move may be of either an _active_ or a _replica_ vBucket. A node’s participation in the move may be as either a source or a target.
+A _move_ counts toward this restriction only when in the _backfill_ phase, as described above, in [Data Service Rebalance Phases](#data-service-rebalance-phases). The move may be of either an _active_ or a _replica_ vBucket. A node's participation in the move may be as either a source or a target.
 
 For example, if a node is at a given time the source for two moves in backfill phase, and is the target for two additional moves in backfill phase, and the setting stands at `4`, the node may participate in the backfill phase of no additional moves, until at least one of its current moves has completed its backfill phase.
 
@@ -106,9 +106,9 @@ Rebalance affects each service differently. The following sections describe how 
 
 The Index Service maintains a cluster-wide set of index definitions and metadata, which allows the redistribution of indexes and index replicas during a rebalance.
 
-The rebalance process considers the node’s CPU, RAM, and disk bandwidth to limit its effect on database performance.
+The rebalance process considers the node's CPU, RAM, and disk bandwidth to limit its effect on database performance.
 
-Couchbase Server either rebuilds indexes (using DCP-based method) in their new locations or moves index files between nodes [File-Based Rebalance or Shard Based Rebalance](rebalance-and-index-service.md#file-based-rebalance-fbr) during a rebalance, depending on the cluster’s index storage mode and on configuration settings.
+Couchbase Server either rebuilds indexes (using DCP-based method) in their new locations or moves index files between nodes [File-Based Rebalance or Shard Based Rebalance](rebalance-and-index-service.md#file-based-rebalance-fbr) during a rebalance, depending on the cluster's index storage mode and on configuration settings.
 
 For more information about the rebalance operation on Index Service, see [Index Rebalance](rebalance-and-index-service.md).
 
@@ -149,7 +149,7 @@ If there are _no_ Analytics replicas, and an Analytics node fails over, the Anal
 * If the Analytics node is recovered, the Analytics Service is resumed and ingestion of shadow data resumes from the point before the node failed over.
 * If the Analytics node is removed, the Analytics Service becomes active again after rebalance, but ingestion of shadow data must begin again from scratch.
 
-If there _are_ Analytics replicas, and an Analytics node fails over, the Analytics Service continues to work: one of the replicas is promoted to serve the shadow data that was stored on the failed over node. The Analytics Service only needs to rebuild any shadow data that isn’t already ingested from the Data Service, depending on the state of the promoted replica. In this case:
+If there _are_ Analytics replicas, and an Analytics node fails over, the Analytics Service continues to work: one of the replicas is promoted to serve the shadow data that was stored on the failed over node. The Analytics Service only needs to rebuild any shadow data that isn't already ingested from the Data Service, depending on the state of the promoted replica. In this case:
 
 * If the Analytics node is recovered, the shadow data on the recovered node is updated from the promoted replica, and it becomes the active partition again.
 * If the Analytics node is removed, the shadow data is redistributed among the remaining Analytics nodes in the cluster.

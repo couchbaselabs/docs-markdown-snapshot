@@ -3,7 +3,7 @@ title: Database Management
 description: Describes the various database management functions available to
   maintain an efficient sync gateway database
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/database-management.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway::database-management.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:sync-gateway::database-management.adoc[]
 # Database Management
 
 > Describes the various database management functions available to maintain an efficient sync gateway database  
-> Revisions are at the heart of Couchbase Mobile’s ability to respond flexibly and securely to changing data from server to edge.
+> Revisions are at the heart of Couchbase Mobile's ability to respond flexibly and securely to changing data from server to edge.
 
 ## [](#lbl-prune)Revision Pruning
 
@@ -34,7 +34,7 @@ On Sync Gateway, the pruning algorithm retains a configurable number of revision
 
 ### [](#lbl-rtctrl)Controls
 
-You can vary the number of retained revisions using the Configuration File’s [revs\_limit](configuration/configuration-schema-database.md#database-revs%5Flimit) setting.
+You can vary the number of retained revisions using the Configuration File's [revs\_limit](configuration/configuration-schema-database.md#database-revs%5Flimit) setting.
 
 So, for example, with a `revs_limit` of 1,000 the algorithm keeps the last 1,000 revisions in the shortest non-tombstoned branch and remove any others from that branch.
 
@@ -52,15 +52,15 @@ To learn more about revision pruning and database size management in general see
 
 ## [](#lbl-tomb-purge)Purging Tombstones
 
-Sync Gateway automatically purges tombstones from the bucket based on the server’s metadata purge interval.
+Sync Gateway automatically purges tombstones from the bucket based on the server's metadata purge interval.
 
-Tombstones can also be manually removed via Sync Gateway’s [/{keyspace}/\_purge](rest-api/rest%5Fapi%5Fadmin.md#tag/Document/operation/post%5Fkeyspace-%5Fpurge) endpoint.
+Tombstones can also be manually removed via Sync Gateway's [/{keyspace}/\_purge](rest-api/rest%5Fapi%5Fadmin.md#tag/Document/operation/post%5Fkeyspace-%5Fpurge) endpoint.
 
 Purging of tombstones is also required on Couchbase Lite. For example, you might decide that if a Couchbase Lite client deletes a document, you want to purge the document (on that device) as soon as the delete replicates to Sync Gateway.
 
 ## [](#lbl-tomb-cache)Cache Ejection
 
-Deleted/expired tombstones are not automatically ejected from Sync Gateway’s in-memory channel caches. See [Table 1](#tbl-tomb-cache), which shows when channel caches are ejected.
+Deleted/expired tombstones are not automatically ejected from Sync Gateway's in-memory channel caches. See [Table 1](#tbl-tomb-cache), which shows when channel caches are ejected.
 
 __Table 1\. Flushing Sync Gateway channel caches__
 | **TombstonePurged On** | Value of enable\_shared\_bucket\_access                                                   |                                                                                                                                                                                                                                   |
@@ -97,12 +97,12 @@ To this end, the Admin REST API provides a `/{db}/_resync` endpoint that enables
 
 ### [](#how)How
 
-To update the Sync Function and fully `resync`, you’re recommended to follow the steps in [Steps to Update and Resync](#steps-to-resync).
+To update the Sync Function and fully `resync`, you're recommended to follow the steps in [Steps to Update and Resync](#steps-to-resync).
 
 > [!NOTE]
 > This is an expensive operation because the new function must process every document in the database.
 
-The database cannot accept requests until this process completes because the database does not know any user’s full access privileges until it scans all documents. Therefore, the Sync Function update results in application downtime whilst the database is offline (that’s between the call to the `/{db}/_offline` and `/{db}/_online` endpoints in [Steps to Update and Resync](#steps-to-resync).
+The database cannot accept requests until this process completes because the database does not know any user's full access privileges until it scans all documents. Therefore, the Sync Function update results in application downtime whilst the database is offline (that's between the call to the `/{db}/_offline` and `/{db}/_online` endpoints in [Steps to Update and Resync](#steps-to-resync).
 
 Steps to Update and Resync
 
@@ -118,11 +118,11 @@ The message body of the response contains the number of changes that were made a
 
 #### [](#changing-channel-assignment)Changing Channel Assignment
 
-When running a resync operation, the context in the Sync Function is the admin user. For that reason, calling the methods `requireUser`, `requireAccess`, and `requireRole` always succeeds. You may be using these functions in production to govern write operations. But in a resync operation, all the documents are already written to the database. For that reason, it’s recommended to use resync for changing the assignment to channels only (i.e. reads).
+When running a resync operation, the context in the Sync Function is the admin user. For that reason, calling the methods `requireUser`, `requireAccess`, and `requireRole` always succeeds. You may be using these functions in production to govern write operations. But in a resync operation, all the documents are already written to the database. For that reason, it's recommended to use resync for changing the assignment to channels only (i.e. reads).
 
 #### [](#changing-write-security-only)Changing Write Security Only
 
-If the modifications to the Sync Function only impact write security (and not routing/access), you’ll not need to run the resync operation.
+If the modifications to the Sync Function only impact write security (and not routing/access), you'll not need to run the resync operation.
 
 #### [](#changing-channelaccess-rules)Changing Channel/Access Rules
 
@@ -130,13 +130,13 @@ If you want to change the channel/access rules, but only want those rules to app
 
 #### [](#access-revocation)Access Revocation
 
-If you change the sync function to revoke a user’s access to a document, the access only takes effect once a new revision to that document saves on Sync Gateway. Running a resync operation does not revoke access to that document.
+If you change the sync function to revoke a user's access to a document, the access only takes effect once a new revision to that document saves on Sync Gateway. Running a resync operation does not revoke access to that document.
 
 ### [](#database-availability)Database Availability
 
-If you need to ensure access to the database during the update, you can create a read-only backup of the Sync Gateway’s bucket beforehand, then run a secondary Sync Gateway on the backup bucket, in read-only mode. After the update is complete, switch to the main Gateway and bucket.
+If you need to ensure access to the database during the update, you can create a read-only backup of the Sync Gateway's bucket beforehand, then run a secondary Sync Gateway on the backup bucket, in read-only mode. After the update is complete, switch to the main Gateway and bucket.
 
-In a clustered environment with multiple Sync Gateway instances sharing the load, all the instances need to share the same configuration, so they all need to be taken offline either by stopping the process or taking them offline using the [/{db}/\_offline](rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Management/operation/post%5Fdb-%5Foffline) endpoint. After the configuration is updated, **one** instance should be brought up so it can update the database—​if more than one is running at this time, they’ll conflict with each other. After the first instance finishes opening the database, the others can be started.
+In a clustered environment with multiple Sync Gateway instances sharing the load, all the instances need to share the same configuration, so they all need to be taken offline either by stopping the process or taking them offline using the [/{db}/\_offline](rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Management/operation/post%5Fdb-%5Foffline) endpoint. After the configuration is updated, **one** instance should be brought up so it can update the database—​if more than one is running at this time, they'll conflict with each other. After the first instance finishes opening the database, the others can be started.
 
 ---
 

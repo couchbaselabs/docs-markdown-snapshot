@@ -3,7 +3,7 @@ title: Managing TLS Identities
 description: Couchbase Lite - this content covers how to manage TLS identities
   using Couchbase Lite
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/csharp/pages/p2p-managing-tls-id.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:csharp:p2p-managing-tls-id.adoc[]
 ---
 
@@ -49,7 +49,7 @@ listenerConfig.tlsIdentity = nil
 
 ## [](#import-a-cert)Import a Cert
 
-Use the [TLSIdentity](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.TLSIdentity.html) class’s [ImportIdentity()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.TLSIdentity.html#Couchbase%5FLite%5FP2P%5FTLSIdentity%5FImportIdentity%5FSystem%5FSecurity%5FCryptography%5FX509Certificates%5FX509Store%5FSystem%5FByte%5F%5F%5FSystem%5FString%5FSystem%5FString%5FSystem%5FString%5F) method to import a certificate that can be bundled with the app and-or added to the keychain.
+Use the [TLSIdentity](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.TLSIdentity.html) class's [ImportIdentity()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.TLSIdentity.html#Couchbase%5FLite%5FP2P%5FTLSIdentity%5FImportIdentity%5FSystem%5FSecurity%5FCryptography%5FX509Certificates%5FX509Store%5FSystem%5FByte%5F%5F%5FSystem%5FString%5FSystem%5FString%5FSystem%5FString%5F) method to import a certificate that can be bundled with the app and-or added to the keychain.
 
 1. First check the keychain to see if the identity already exists  
 ```C#  

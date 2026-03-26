@@ -1,7 +1,7 @@
 ---
 title: cbopinfo
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.5.x/docs/user/modules/ROOT/pages/tools/cbopinfo.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::tools/cbopinfo.adoc[]
 ---
 
@@ -37,7 +37,7 @@ $ sudo mv ./cbopinfo /usr/local/bin/cbopinfo
 ```
 
 > [!NOTE]
-> On newer versions of macOS, you may encounter errors such as `cannot execute binary file` when trying to use the tools included in the Autonomous Operator package. If you encounter such an error, you’ll need to update your security settings as outlined in Apple’s [support article on macOS Gatekeeper](https://support.apple.com/en-us/HT202491). In System Preferences, click Security & Privacy, then click General. Click the lock and enter your password to make changes. Select App Store and identified developers under the header “Allow apps downloaded from.”
+> On newer versions of macOS, you may encounter errors such as `cannot execute binary file` when trying to use the tools included in the Autonomous Operator package. If you encounter such an error, you'll need to update your security settings as outlined in Apple's [support article on macOS Gatekeeper](https://support.apple.com/en-us/HT202491). In System Preferences, click Security & Privacy, then click General. Click the lock and enter your password to make changes. Select App Store and identified developers under the header "Allow apps downloaded from."
 
 1. Open a command prompt and go to the directory where the `cbopinfo` binary is located:  
 ```console  
@@ -209,7 +209,7 @@ If true, opt-out of response compression for all requests to the server
 
 **Default**: false
 
-If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
 
 \--kubeconfig
 
@@ -261,7 +261,7 @@ Operator rest port
 
 **Default**: 0
 
-The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 
 \--server, -s
 

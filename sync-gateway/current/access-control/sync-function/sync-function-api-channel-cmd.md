@@ -2,7 +2,7 @@
 title: channel()
 description: Assigning Sync Gateway <em>channels</em>
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/sync-function/sync-function-api-channel-cmd.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:access-control:sync-function/sync-function-api-channel-cmd.adoc[]
 ---
 
@@ -44,7 +44,7 @@ function (doc, oldDoc, meta) {
 
 Here the function then calls the `channel` and passes in the name of the collection `(CollectionsName)` as an argument.
 
-By default, every document in the collection is automatically assigned to a channel with the same name as the collection. This system automatically creates a channel with the collection’s name. The assignment of all documents to the collection channel is functionally similar to assigning them to the [Star Channel](#2.7@sync-gateway-channels.adoc#star-channel).
+By default, every document in the collection is automatically assigned to a channel with the same name as the collection. This system automatically creates a channel with the collection's name. The assignment of all documents to the collection channel is functionally similar to assigning them to the [Star Channel](#2.7@sync-gateway-channels.adoc#star-channel).
 
 To override this, use a custom sync function or a Specified Default Sync Function.
 
@@ -64,7 +64,7 @@ Here is the default Sync Function when you have upgraded; it remains the same as
 The channel function can be called zero or more times from the sync function, for any document.
 
 > [!NOTE]
-> Channels don’t have to be predefined.  
+> Channels don't have to be predefined.  
 > A channel implicitly comes into existence when a document is routed to it.
 
 Routing changes have no effect until the document is actually saved in the database, so if the sync function first calls `channel()` or `access()`, but then rejects the update, the channel and access changes will not occur.

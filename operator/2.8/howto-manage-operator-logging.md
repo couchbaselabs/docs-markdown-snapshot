@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Operator Troubleshooting
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-manage-operator-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@operator::howto-manage-operator-logging.adoc[]
 ---
 
@@ -20,7 +20,7 @@ The Kubernetes Operator generates [logs](concept-operator-logging.md) that inclu
 
 This page provides information about how to collect and scrutinize logging information that is produced by the Kubernetes Operator. When troubleshooting the Kubernetes Operator, it is important to first rule out Kubernetes itself as the root cause of the problem. The Kubernetes [Troubleshooting Guide](https://kubernetes.io/docs/tasks/debug-application-cluster/troubleshooting/) contains a great deal of helpful information about debugging applications within a Kubernetes cluster.
 
-Familiarity with the [Operator’s configuration settings](reference-operator-configuration.md) can be helpful when troubleshooting the Kubernetes Operator.
+Familiarity with the [Operator's configuration settings](reference-operator-configuration.md) can be helpful when troubleshooting the Kubernetes Operator.
 
 ## [](#collecting-kubernetes-operator-logs)Collecting Kubernetes Operator Logs
 
@@ -89,7 +89,7 @@ $ oc logs deployment/couchbase-operator
 
 Since there is only one instance of the Kubernetes Operator in the deployment, the the underlying command will automatically select the correct pod and print the logs.
 
-If you’re troubleshooting the Kubernetes Operator, watch for the following messages which indicate that the Operator is unable to reconcile a Couchbase cluster into a desired state:
+If you're troubleshooting the Kubernetes Operator, watch for the following messages which indicate that the Operator is unable to reconcile a Couchbase cluster into a desired state:
 
 * Logs with `level=error`
 * Operator is unable to get cluster state after N retries

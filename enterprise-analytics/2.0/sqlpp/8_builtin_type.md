@@ -2,7 +2,7 @@
 title: Type Functions
 description: This topic describes the builtin SQL++ for Enterprise Analytics type functions.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/8_builtin_type.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sqlpp:8_builtin_type.adoc[]
 ---
 
@@ -345,8 +345,8 @@ to_boolean(expr)
   * `missing` if the argument is missing
   * `null` if the argument is `null`
   * if the argument is of `boolean` type then it is returned as is
-  * if the argument is of numeric type then `false` if it’s `0` or `NaN`, otherwise `true`
-  * if the argument is of `string` type then `false` if it’s empty, otherwise `true`
+  * if the argument is of numeric type then `false` if it's `0` or `NaN`, otherwise `true`
+  * if the argument is of `string` type then `false` if it's empty, otherwise `true`
   * if the argument is of `array` or `multiset` type then `false` if its size is `0`, otherwise `true`
   * if the argument is of `object` type then `false` if it has no fields, otherwise `true`
   * a type error results for all other input types
@@ -374,7 +374,7 @@ to_bigint(expr)
 
   * `missing` if the argument is missing
   * `null` if the argument is `null`
-  * if the argument is of `boolean` type, `1` if it’s `true`, `0` if it’s `false`
+  * if the argument is of `boolean` type, `1` if it's `true`, `0` if it's `false`
   * if the argument is of numeric integer type then it is returned as the same value of `bigint` type
   * if the argument is of numeric `float`/`double` type then it is converted to `bigint` type
   * if the argument is of `string` type and can be parsed as integer then that integer value is returned, otherwise `null`

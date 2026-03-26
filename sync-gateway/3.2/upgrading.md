@@ -3,7 +3,7 @@ title: Upgrading Sync Gateway
 description: This page documents various implementation details and
   functionalities to consider when performing an upgrade to Sync Gateway 3.2.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/upgrading.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::upgrading.adoc[]
 ---
 
@@ -30,7 +30,7 @@ Those steps are then repeated for each node in the Sync Gateway cluster.
 
 ### [](#use-persistent-configuration)Use Persistent Configuration
 
-The use of 3.x’s Persistent Configuration feature is strongly recommended. It is the default operational mode when starting Sync Gateway.
+The use of 3.x's Persistent Configuration feature is strongly recommended. It is the default operational mode when starting Sync Gateway.
 
 The feature provides a smooth upgrade path for existing users by automatically converting their existing configuration files to the new persistent configuration format.
 
@@ -118,7 +118,7 @@ Then, Sync Gateway will wait until indexes are available before starting to serv
 
 Sync Gateway 2.1 or above will **not** automatically remove the previously used design documents.
 
-Removal of the obsolete design documents is done via a call to the [/\_post\_upgrade](rest%5Fapi%5Fadmin.md#tag/Server/operation/post%5F%5Fpost%5Fupgrade) endpoint in Sync Gateway’s Admin REST API. This endpoint can be run in preview mode (`?preview=true`) to see which design documents would be removed.
+Removal of the obsolete design documents is done via a call to the [/\_post\_upgrade](rest%5Fapi%5Fadmin.md#tag/Server/operation/post%5F%5Fpost%5Fupgrade) endpoint in Sync Gateway's Admin REST API. This endpoint can be run in preview mode (`?preview=true`) to see which design documents would be removed.
 
 ## [](#1-x-to-2-x-using-views)1.x to 2.x Using Views
 
@@ -137,7 +137,7 @@ Downtime: No — a rolling upgrade
 
 ### [](#notes)Notes
 
-In 2.0, Sync Gateway’s design documents include the version number in the design document name. In this release for example, the design documents are named `_design/sync_gateway_2.0` and `_design/sync_housekeeping_2.0`.
+In 2.0, Sync Gateway's design documents include the version number in the design document name. In this release for example, the design documents are named `_design/sync_gateway_2.0` and `_design/sync_housekeeping_2.0`.
 
 On startup, Sync Gateway will check for the existence of these design documents, and only attempt to create them if they do not already exist. Then, Sync Gateway will wait until views are available and indexed before starting to serve requests. To evaluate this, Sync Gateway will issue a `stale=false&limit=1` query against the Sync Gateway views (channels, access and role\_access).
 
@@ -161,7 +161,7 @@ Example 1\. Logging output
 
 Sync Gateway 2.0 will **not** automatically remove the previous design documents.
 
-Removal of the obsolete design documents is done via a call to the [\_post\_upgrade](rest%5Fapi%5Fadmin.md#tag/Server/operation/post%5F%5Fpost%5Fupgrade) endpoint in Sync Gateway’s Admin REST API. This endpoint can be run in preview mode (`?preview=true`) to see which design documents would be removed.
+Removal of the obsolete design documents is done via a call to the [\_post\_upgrade](rest%5Fapi%5Fadmin.md#tag/Server/operation/post%5F%5Fpost%5Fupgrade) endpoint in Sync Gateway's Admin REST API. This endpoint can be run in preview mode (`?preview=true`) to see which design documents would be removed.
 
 ## [](#1-x-to-1-5)1.x to 1.5
 
@@ -175,7 +175,7 @@ Downtime: Possible downtime in a rolling upgrade; follow the steps below to avoi
 
 In this upgrade path, the upgrade process will trigger views in Couchbase Server to be re-indexed. During the re-indexing, operations that are dependent on those views will not be available. The main operations relying on views to be indexed are:
 
-* A user requests data that doesn’t reside in the [channel cache](configuration-properties-legacy.md#databases-this%5Fdb-cache-channel%5Fcache%5Fmax%5Flength).
+* A user requests data that doesn't reside in the [channel cache](configuration-properties-legacy.md#databases-this%5Fdb-cache-channel%5Fcache%5Fmax%5Flength).
 * A new channel or role is granted to a user in the [Sync Function](sync-function.md).
 
 The unavailability of those operations may result in some requests not being processed. The duration of the downtime will depend on the data set and frequency of replications with mobile clients. To avoid this downtime, it is possible to pre-build the view index before directing traffic to the upgraded node.
@@ -205,7 +205,7 @@ Example 2\. Design Document
 
 To avoid this downtime, you can publish the Design Document and build the index before starting Sync Gateway by using the Couchbase Server REST API. The following curl commands refer to a Sync Gateway 1.3 → Sync Gateway 1.4 upgrade but they apply to any upgrade of Sync Gateway or Accelerator.
 
-1. Start Sync Gateway 1.4 with Couchbase Server instance that **isn’t** your production environment. Then, copy the Design Document to a file with the following.  
+1. Start Sync Gateway 1.4 with Couchbase Server instance that **isn't** your production environment. Then, copy the Design Document to a file with the following.  
 ```bash  
 $ curl localhost:8092/<BUCKET_NAME>/_design/sync_gateway/ > ddoc.json  
 ```
@@ -221,13 +221,13 @@ This should return:
 ```bash  
 $ curl "http://localhost:8092/sync_gateway/_design/dev_sync_gateway/_view/role_access_vbseq?full_set=true&stale=false&limit=1"  
 ```  
-This may take some time to return, and you can track the index’s progress in the Couchbase Server UI. Note that this will consume disk space to build an almost duplicate index until the switch is made.
+This may take some time to return, and you can track the index's progress in the Couchbase Server UI. Note that this will consume disk space to build an almost duplicate index until the switch is made.
 4. Upgrade Sync Gateway. When Sync Gateway 1.4 starts, it will publish the new Design Document to Couchbase Server. This will match the Development Design Document we just indexed, so will be available immediately.
 
 ## [](#couchbase-server-upgrade-paths)Couchbase Server Upgrade Paths
 
 > [!NOTE]
-> When upgrading your Couchbase Server from 4.x to 5.x, remember to create a Sync Gateway RBAC user on the server — see: [Configure Server for Sync Gateway](get-started-prepare.md#configure-server.html) — and to include the user’s credentials username/password in you Sync-Gateway-Config.json file.
+> When upgrading your Couchbase Server from 4.x to 5.x, remember to create a Sync Gateway RBAC user on the server — see: [Configure Server for Sync Gateway](get-started-prepare.md#configure-server.html) — and to include the user's credentials username/password in you Sync-Gateway-Config.json file.
 
 All of the different upgrade paths mentioned above assume that you are running a compatible Couchbase Server version — see [Compatibility Matrix](compatibility.md).
 
@@ -236,20 +236,20 @@ There are three commonly used upgrade approaches for Couchbase Server. Depending
 | Approach                                     | Downtime                       | Additional Machine Requirements | Impact when using Sync Gateway                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | -------------------------------------------- | ------------------------------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Rolling Online Upgrade                       | None                           | Low                             | **Potential transient connection errors:** The Couchbase Server re-balance operations can result in transient connection errors between Couchbase Server and Sync Gateway, which could result in Sync Gateway performance degradation. **Potential for unexpected server errors during re-balance:** There is an increased potential to lose in-flight ops during a fail-over.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Upgrade Using Inter-Sync Gateway Replication | Small amount during switchover | High - duplicate entire cluster | Using an XDCR (Cross Data Center Replication) approach will incur some Sync Gateway downtime, but less than other approaches where Sync Gateway is shutdown during the entire Couchbase Server upgrade. It’s important to note that the XDCR replication must be a **one way** replication from the existing (source) Couchbase Server cluster to the new (target) Couchbase Server cluster, and that no other writes can happen on the new (target) Couchbase Server cluster other than the writes from the XDCR replication, and no Sync Gateway instances should be configured to use the new (target) Couchbase Server cluster until the last step in the process. Start XDCR to do a one way replication from the existing (source) Couchbase Server cluster to the new (target) Couchbase Server cluster running the newer version. Wait until the target Couchbase Server has caught up to all the writes in the source Couchbase Server cluster. Shutdown Sync Gateway to prevent any new writes from coming in. Wait until the target Couchbase Server has caught up to all the writes in the source Couchbase Server cluster — this should happen very quickly, since it will only be the residual writes in transit before the Sync Gateway shutdown. Reconfigure Sync Gateway to point to the target cluster. Restart Sync Gateway. Caveats: **Small amount of downtime during switchover:** Since there may be writes still in transit after Sync Gateway has been shutdown, there will need to be some downtime until the target Couchbase Server cluster is completely caught up. **XDCR should be monitored:** Make sure to monitor the XDCR relationship as per [XDCR docs](../../server/current/manage/manage-xdcr/xdcr-management-overview.md). |
+| Upgrade Using Inter-Sync Gateway Replication | Small amount during switchover | High - duplicate entire cluster | Using an XDCR (Cross Data Center Replication) approach will incur some Sync Gateway downtime, but less than other approaches where Sync Gateway is shutdown during the entire Couchbase Server upgrade. It's important to note that the XDCR replication must be a **one way** replication from the existing (source) Couchbase Server cluster to the new (target) Couchbase Server cluster, and that no other writes can happen on the new (target) Couchbase Server cluster other than the writes from the XDCR replication, and no Sync Gateway instances should be configured to use the new (target) Couchbase Server cluster until the last step in the process. Start XDCR to do a one way replication from the existing (source) Couchbase Server cluster to the new (target) Couchbase Server cluster running the newer version. Wait until the target Couchbase Server has caught up to all the writes in the source Couchbase Server cluster. Shutdown Sync Gateway to prevent any new writes from coming in. Wait until the target Couchbase Server has caught up to all the writes in the source Couchbase Server cluster — this should happen very quickly, since it will only be the residual writes in transit before the Sync Gateway shutdown. Reconfigure Sync Gateway to point to the target cluster. Restart Sync Gateway. Caveats: **Small amount of downtime during switchover:** Since there may be writes still in transit after Sync Gateway has been shutdown, there will need to be some downtime until the target Couchbase Server cluster is completely caught up. **XDCR should be monitored:** Make sure to monitor the XDCR relationship as per [XDCR docs](../../server/current/manage/manage-xdcr/xdcr-management-overview.md). |
 | Offline Upgrade                              | During entire upgrade          | None                            | Take Sync Gateway offline Upgrade Couchbase Server using any of the options mentioned in the [Upgrading Couchbase Server](../../server/current/install/upgrade.md) documentation. Bring Sync Gateway online                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 ## [](#sg-replicate-to-inter-sync-gateway)SG Replicate to Inter-Sync Gateway
 
 ### [](#out-of-the-box-behavior)Out of the box behavior
 
-Any [replications](configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep) ([continuous](configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep-continuous) or ad-hoc) pre-configured in the configuration file’s [databases](configuration-properties-legacy.md#databases) section will run using the SG Replicate protocol. This is subject to any compatibility constraints defined in the [Compatibility Matrix](compatibility.md).
+Any [replications](configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep) ([continuous](configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep-continuous) or ad-hoc) pre-configured in the configuration file's [databases](configuration-properties-legacy.md#databases) section will run using the SG Replicate protocol. This is subject to any compatibility constraints defined in the [Compatibility Matrix](compatibility.md).
 
 Existing replications implementing custom conflict resolution strategies (via the REST endpoint) will continue to function in the same manner as for SG Replicate replications after upgrade
 
 ### [](#upgrading-existing-replications)Upgrading existing replications
 
-To upgrade existing SG Replicate replications to Inter-Sync Gateway Replication, reconfigure them using Inter-Sync Gateway Replication’s [replications](configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep) property in the configuration file or the REST API — see [Upgrade Scenarios](#upgrade-strategies) for more.
+To upgrade existing SG Replicate replications to Inter-Sync Gateway Replication, reconfigure them using Inter-Sync Gateway Replication's [replications](configuration-properties-legacy.md#databases-this%5Fdb-replications-this%5Frep) property in the configuration file or the REST API — see [Upgrade Scenarios](#upgrade-strategies) for more.
 
 ### [](#post-upgrade-behavior)Post-upgrade behavior
 
@@ -278,7 +278,7 @@ Replication between two remote databases
 
 Replication between two remote databases is no longer supported.
 
-Sync Gateway will log an error and fail to start if a replication defined at the configuration’s root level does not involve at least one local database (source or target).
+Sync Gateway will log an error and fail to start if a replication defined at the configuration's root level does not involve at least one local database (source or target).
 
 Pushing to SG Replicate targets
 
@@ -432,7 +432,7 @@ To be eligible for re-use use in this way
 [DBG] Replicate+: Matched replication IDs for SGR1 checkpoint fallback: &{...}  
 [INF] Replicate: Got SGR1 checkpoint ID for fallback in replication "repl1-push": b8da8486df3093141f7ed225eb2b2afae88ca9ce  
 ```
-4. This prevents the SG Replicate replication from running, even though it’s configured.  
+4. This prevents the SG Replicate replication from running, even though it's configured.  
 ```none  
 [INF] Replicate: Replication "repl1-push" was upgraded, preventing startup of SG Replicate replication.  
 [INF] Replicate: Replication "repl1-pull" was upgraded, preventing startup of SG Replicate replication.  
@@ -475,7 +475,7 @@ They are also accessible from SQL++ in Couchbase Server 5.5 or above with the `(
 > [!WARNING]
 > The sync metadata is maintained internally by Sync Gateway and its structure can change at any time. It should not be used to drive business logic of applications. The direct use of the SQL++ query is unsupported and must not be used in production environments.
 
-The [raw](rest%5Fapi%5Fadmin.md#tag/Document/operation/get%5Fkeyspace-%5Fraw-docid)endpoint on Sync Gateway’s Admin REST API returns both the document and its associated mobile metadata.
+The [raw](rest%5Fapi%5Fadmin.md#tag/Document/operation/get%5Fkeyspace-%5Fraw-docid)endpoint on Sync Gateway's Admin REST API returns both the document and its associated mobile metadata.
 
 ### [](#configuration-changes)Configuration Changes
 

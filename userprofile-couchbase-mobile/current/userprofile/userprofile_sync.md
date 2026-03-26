@@ -1,6 +1,6 @@
 ---
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile/edit/backgroundfetch/content/modules/userprofile/pages/userprofile_sync.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:userprofile-couchbase-mobile:userprofile:userprofile_sync.adoc[]
 ---
 
@@ -44,7 +44,7 @@ This tutorial assumes familiarity with building swift apps with Xcode and with C
   * NOTE: If you are on an older version of Xcode that you must retain for your other development needs, you can make a copy of your existing version of Xcode and install Xcode 9.3\. So you can have multiple versions of Xcode on your Mac.
 * git (Optional) This is required if you would prefer to pull the source code from GitHub repo.
 
-  * Create a [free github account](https://github.com) if you don’t already have one
+  * Create a [free github account](https://github.com) if you don't already have one
   * git can be downloaded from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * curl HTTP client
 
@@ -88,7 +88,7 @@ You have two options
   sh install_9.sh  
 ```
 
-Now, let’s verify the installation
+Now, let's verify the installation
 
 ### [](#try-it-out)Try it Out
 
@@ -128,7 +128,7 @@ cd  /path/to/sync-gateway-installation/couchbase-sync-gateway/bin
 2018-05-07T15:25:03.031-04:00 Starting server on :4984 ...  
 ```
 
-Now, let’s verify the installation
+Now, let's verify the installation
 
 ### [](#try-it-out-2)Try it Out
 
@@ -320,10 +320,10 @@ function sync(doc, oldDoc) {
   }
 ```
 
-| **1** | Verify that the email property is not null. If it’s null, we throw a JS exception (see validateNotEmpty() function)                                               |
+| **1** | Verify that the email property is not null. If it's null, we throw a JS exception (see validateNotEmpty() function)                                               |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | If this a new document, then verify that the Id of the Document is of the required format (i.e. _"user::<email>"_). We throw an exception if that’s not the case. |
-| **3** | If this is a document update, then verify that the email property value has not changed. Again, we throw an exception if that’s not the case.                     |
+| **2** | If this a new document, then verify that the Id of the Document is of the required format (i.e. _"user::<email>"_). We throw an exception if that's not the case. |
+| **3** | If this is a document update, then verify that the email property value has not changed. Again, we throw an exception if that's not the case.                     |
 
 You can learn more about the Sync Function in this [guide](https://developer.couchbase.com/documentation/mobile/2.0/guides/sync-gateway/sync-function-api-guide/index.htm)
 
@@ -522,7 +522,7 @@ In this exercise, we will observe how changes made on one app are synced across 
 In this exercise, we will observe changes made via Sync Gateway are synced over to the apps
 
 * Make sure you complete [Exercise 1](#exercise-1). This is to ensure that you have the appropriate user profile document (with document Id of "user::<emailId>") created through the app and synced over to the Sync Gateway.
-* Open the command terminal and issue the following command to get the user profile document via GET Document REST API . We will be using `curl` to issue the request. If you haven’t done so, please install curl as indicated in the [Prerequisites](#prerequisites) section  
+* Open the command terminal and issue the following command to get the user profile document via GET Document REST API . We will be using `curl` to issue the request. If you haven't done so, please install curl as indicated in the [Prerequisites](#prerequisites) section  
 ```bash  
 curl -X GET \  
   http://localhost:4985/userprofile/user::demo@example.com \

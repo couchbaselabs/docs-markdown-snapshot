@@ -2,7 +2,7 @@
 title: Comparison Operators
 description: Comparison operators enable you to compare expressions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/comparisonops.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/comparisonops.adoc[]
 ---
 
@@ -119,8 +119,8 @@ is-expr ::= expr 'IS' 'NOT'? 'NULL' |
 | IS NOT VALUED        | Value for field not found. Value is NULL.                                                     | TRUE or FALSE                                                                                                                                                                                                                |
 | IS UNKNOWN           | Value for field is unknown, NULL, or missing.Equivalent to IS NOT VALUED/IS NOT KNOWN.        | TRUE OR FALSE                                                                                                                                                                                                                |
 | IS NOT UNKNOWN       | Value for field is known. Value is neither NULL nor missing.Equivalent to IS VALUED/IS KNOWN. | TRUE OR FALSE                                                                                                                                                                                                                |
-| IS DISTINCT FROM     | Compares two values to determine if they’re distinct.                                         | TRUE or FALSE TRUE if one value is NULL and the other is non-NULL. FALSE if both values are NULL. MISSING if either value is MISSING. The result of the comparison expr != expr if both values are non-NULL and non-MISSING. |
-| IS NOT DISTINCT FROM | Compares two values to determine if they’re not distinct.                                     | TRUE or FALSE FALSE if one value is NULL and the other is non-NULL. TRUE if both values are NULL. MISSING if either value is MISSING. The result of the comparison expr == expr if both values are non-NULL and non-MISSING. |
+| IS DISTINCT FROM     | Compares two values to determine if they're distinct.                                         | TRUE or FALSE TRUE if one value is NULL and the other is non-NULL. FALSE if both values are NULL. MISSING if either value is MISSING. The result of the comparison expr != expr if both values are non-NULL and non-MISSING. |
+| IS NOT DISTINCT FROM | Compares two values to determine if they're not distinct.                                     | TRUE or FALSE FALSE if one value is NULL and the other is non-NULL. TRUE if both values are NULL. MISSING if either value is MISSING. The result of the comparison expr == expr if both values are non-NULL and non-MISSING. |
 
 ### [](#examples-2)Examples
 

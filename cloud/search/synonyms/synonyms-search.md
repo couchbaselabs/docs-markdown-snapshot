@@ -3,7 +3,7 @@ title: Add Synonyms to a Search Index
 description: Add synonyms to a Search index to return matches for words with
   similar meanings when running a Search with the Search Service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/synonyms/synonyms-search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:synonyms/synonyms-search.adoc[]
 ---
 
@@ -31,7 +31,7 @@ For more information, see [Create a Synonym Collection and Documents](create-syn
 
 ## [](#run-synonym-search)Running a Search for Synonyms
 
-Synonym searches do not run recursively. If you run a Search query for a single term, the Search Service will not run cascading searches for synonyms of that term’s synonyms.
+Synonym searches do not run recursively. If you run a Search query for a single term, the Search Service will not run cascading searches for synonyms of that term's synonyms.
 
 For example, if you defined `fast` with the synonyms `quick` and `swift`, a search for `fast` returns results for `quick` and `swift`. It does not return results for synonyms of `quick` or `swift`, like `speedy` or `rapid`.
 

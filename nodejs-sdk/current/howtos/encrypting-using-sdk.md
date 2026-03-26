@@ -3,7 +3,7 @@ title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the Node.js SDK.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -19,7 +19,7 @@ For a high-level overview of this feature, see our [Encryption](../concept-docs/
 > [!TIP]
 > Native Encryption at Rest
 > 
-> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It’s a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
+> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It's a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
 
 ## [](#packaging)Packaging
 
@@ -38,7 +38,7 @@ $ npm i cbfieldcrypt
 
 The Node.js Field-Level Encryption library works on the principle of `Encrypters` and `Decrypters` which can be packaged within a `Provider`, as well as a custom [Transcoder](transcoders-nonjson.md). `Encrypters` and `Decrypters` are registered with a `CryptoManager` and are then used at serialization/deserialization time to encrypt and decrypt fields.
 
-Here we’ll go through an example of setting up and using the Node Field-Level Encryption library.
+Here we'll go through an example of setting up and using the Node Field-Level Encryption library.
 
 To begin we need to create a couple of keys, you should **not** use the `InsecureKeyring` other than for evaluation purposes and should keep your keys secure.
 
@@ -133,7 +133,7 @@ const schema = mgr.newCryptoSchema({
 })
 ```
 
-Now let’s create a person document and save it to Couchbase:
+Now let's create a person document and save it to Couchbase:
 
 ```javascript
   const person = {
@@ -193,7 +193,7 @@ The expected output is something like:
 }
 ```
 
-Now let’s decrypt the person document and output the result.
+Now let's decrypt the person document and output the result.
 
 ```javascript
 const decryptedDoc = schema.decrypt(encryptedDoc)

@@ -2,7 +2,7 @@
 title: Perform an Immediate Prune
 description: The Backup Service REST API allows an immediate prune to be triggered.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-trigger-prune.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:backup-trigger-prune.adoc[]
 ---
 
@@ -39,7 +39,7 @@ The `username` and `password` must identify an administrator with the Full Admin
 | 401 Unauthorized                                                                            | Authorization failure due to incorrect username or password.           |                                                                                                                                                                                                     |
 | 403 Forbidden, plus a JSON message explaining the minimum permissions.                      | The provided username has insufficient privileges to call this method. |                                                                                                                                                                                                     |
 | 404 Object Not Found                                                                        | Error in the URI path.                                                 |                                                                                                                                                                                                     |
-| 500 Could not retrieve the requested repository                                             | Error in Couchbase Server.                                             | {"status":500,"msg":"could not send task","extras":"failed bucket check for bucket 'travel-sample': bucket UUIDs don’t match bf5e2d0ec35e7957ed96509b8ed7e13f != 15b15c78439db91ba73f27ac4d6ba116"} |
+| 500 Could not retrieve the requested repository                                             | Error in Couchbase Server.                                             | {"status":500,"msg":"could not send task","extras":"failed bucket check for bucket 'travel-sample': bucket UUIDs don't match bf5e2d0ec35e7957ed96509b8ed7e13f != 15b15c78439db91ba73f27ac4d6ba116"} |
 
 ## [](#example)Example
 

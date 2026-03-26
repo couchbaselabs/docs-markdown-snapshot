@@ -2,7 +2,7 @@
 title: Query Service
 description: The Query Service supports the querying of data by means of SQL++.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/services-and-indexes/services/query-service.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:services-and-indexes/services/query-service.adoc[]
 ---
 
@@ -35,7 +35,7 @@ Query Execution Sequence
 
 Unresolved include directive in modules/learn/pages/services-and-indexes/services/query-service.adoc - include::indexes:partial$diagrams/query-service.puml[]
 
-When the Query Service receives the client’s SQL++ query, it immediately passes it to the Query Processor. The Query Processor first parses the query to validate the statement and then creates an execution plan for the request.
+When the Query Service receives the client's SQL++ query, it immediately passes it to the Query Processor. The Query Processor first parses the query to validate the statement and then creates an execution plan for the request.
 
 The Execution Engine then begins executing the plan. It performs Scan operations on the relevant index, using either the Index Service or the Search Service. Next, it performs Fetch operations to get the actual data from the Data Service, and then uses this data for Join operations.
 

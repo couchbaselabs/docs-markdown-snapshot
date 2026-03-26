@@ -1,7 +1,7 @@
 ---
 title: Manage Documents with the Capella UI
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/manage-documents.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:data-service/manage-documents.adoc[]
 ---
 
@@ -68,7 +68,7 @@ Toggle the following tabs:
 | Tab          | Description                                                                                                                                                                                                                                                               |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **JSON**     | Comprises a series of key-value pairs sometimes expressed as name-value pairs. You can make modifications to key-values.                                                                                                                                                  |
-| **Metadata** | View the document’s metadata. It’s not possible to edit a document’s metadata as Couchbase Capella generates it in association with each document when they’re saved. For more information, see [document metadata](../../../server/current/learn/data/data.md#metadata). |
+| **Metadata** | View the document's metadata. It's not possible to edit a document's metadata as Couchbase Capella generates it in association with each document when they're saved. For more information, see [document metadata](../../../server/current/learn/data/data.md#metadata). |
 4. Click **Save Document** to save your changes.
 
 ## [](#create-documents)Create Documents

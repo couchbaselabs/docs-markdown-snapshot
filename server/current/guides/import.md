@@ -2,7 +2,7 @@
 title: Import Data with an SDK
 description: How to import documents into Couchbase with an SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/import.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:guides:import.adoc[]
 ---
 
@@ -31,7 +31,7 @@ Data load essentially consists of the following steps:
 
 Clients access data by connecting to a Couchbase cluster over the network. The most common type of client is a Couchbase SDK, which is a full programmatic API that enables applications to take the best advantage of Couchbase. This developer guide focuses on the most commonly used SDKs, but full explanations and reference documentation for all SDKs is available.
 
-The command line clients also provide a quick and streamlined interface for access and are suitable if you just want to access an item without writing any code. For this guide, we’re especially interested in the `cbimport` tool.
+The command line clients also provide a quick and streamlined interface for access and are suitable if you just want to access an item without writing any code. For this guide, we're especially interested in the `cbimport` tool.
 
 > [!NOTE]
 > With some editions, the command line clients are provided as part of the installation of Couchbase Server. Assuming a default installation, you can find them in the following location, depending on your operating system:
@@ -78,7 +78,7 @@ id	type	name
 20012	airline	TSV-air-2
 ```
 
-JSON (.json) files are especially well suited to import into Couchbase, as it’s the default native datatype.
+JSON (.json) files are especially well suited to import into Couchbase, as it's the default native datatype.
 
 A .json file contains only one single value, so to give flexibility to import one or many values, format this as an **array** of the values you want to store.
 
@@ -294,7 +294,7 @@ public void importTSV() {
 }
 ```
 
-If you’re using the **Reactor API** then, as OpenCSV does not have a built-in converter, use the [Flux::generate](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#generate-java.util.concurrent.Callable-java.util.function.BiFunction-java.util.function.Consumer-) method to convert the CSV or TSV file into a stream:
+If you're using the **Reactor API** then, as OpenCSV does not have a built-in converter, use the [Flux::generate](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#generate-java.util.concurrent.Callable-java.util.function.BiFunction-java.util.function.Consumer-) method to convert the CSV or TSV file into a stream:
 
 ```java
 public void importCSV_batch() {
@@ -479,7 +479,7 @@ public void importJSON() {
 }
 ```
 
-If you’re using the **Reactor API** then, once you have read the JSON array, use the [Flux::fromIterable](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#fromIterable-java.lang.Iterable-) method to convert it into streams:
+If you're using the **Reactor API** then, once you have read the JSON array, use the [Flux::fromIterable](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#fromIterable-java.lang.Iterable-) method to convert it into streams:
 
 ```java
 public void importJSON_batch() {
@@ -523,7 +523,7 @@ public void importJSONL() {
 }
 ```
 
-If you’re using the **Reactor API** then open the JSONL file as a stream using the [Flux::using](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#using-java.util.concurrent.Callable-java.util.function.Function-java.util.function.Consumer-) method.
+If you're using the **Reactor API** then open the JSONL file as a stream using the [Flux::using](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#using-java.util.concurrent.Callable-java.util.function.Function-java.util.function.Consumer-) method.
 
 ```java
 public void importJSONL_batch() {
@@ -643,7 +643,7 @@ Scope scope = bucket.scope("inventory");
 collection = scope.collection("airline");
 ```
 
-If you’re using the [Reactive API](../../../java-sdk/current/howtos/concurrent-async-apis.md#reactive-programming-with-reactor), then use the reactive collection instead:
+If you're using the [Reactive API](../../../java-sdk/current/howtos/concurrent-async-apis.md#reactive-programming-with-reactor), then use the reactive collection instead:
 
 ```java
 reactiveCollection = collection.reactive();
@@ -693,7 +693,7 @@ To insert an imported document into the keyspace:
 3. Finally, use an upsert operation to the store the document.
 
 > [!TIP]
-> Use `upsert` rather than `insert` to upload the document even if the target key already has a value. This means that in the case of any error, it’s easy to make any required tweaks to the import file and re-run the whole import.
+> Use `upsert` rather than `insert` to upload the document even if the target key already has a value. This means that in the case of any error, it's easy to make any required tweaks to the import file and re-run the whole import.
 
 * .NET
 * Java
@@ -868,7 +868,7 @@ def upsert(row):
 
 For more information, see [Data Operations](../../../python-sdk/current/howtos/kv-operations.md).
 
-The Python SDK offers a set of batch operations which are marked as volatile as of SDK 3.2.3, which may be more efficient. Here’s a brief example for CSV:
+The Python SDK offers a set of batch operations which are marked as volatile as of SDK 3.2.3, which may be more efficient. Here's a brief example for CSV:
 
 ```python
 # multi operations volatile as of SDK 3.2.3

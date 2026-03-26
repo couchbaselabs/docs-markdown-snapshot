@@ -3,7 +3,7 @@ title: Use Scalar Columns to Filter Hyperscale Vector Index Scans
 description: You can reduce the number of vectors for a query that uses a
   Hyperscale Vector index by adding scalar values.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/hyperscale-filter.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:vector-index:hyperscale-filter.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:server:vector-index:hyperscale-filter.adoc[]
 
 # Use Scalar Columns to Filter Hyperscale Vector Index Scans
 
-> You can reduce the number of vectors for a query that uses a Hyperscale Vector index by adding scalar values. A Hyperscale Vector index has a single column that indexes the vector. However, you can include scalar values in the index that you can use to filter the vector search. The index stores these included values along with the vector, but they’re not indexed. 
+> You can reduce the number of vectors for a query that uses a Hyperscale Vector index by adding scalar values. A Hyperscale Vector index has a single column that indexes the vector. However, you can include scalar values in the index that you can use to filter the vector search. The index stores these included values along with the vector, but they're not indexed. 
 
 In your queries that use a Hyperscale Vector index, you add the included scalar values as predicates in the `WHERE` clause. During the index scan, Couchbase Server uses the included scalar values to filter out vectors that do not meet the filter restriction. If the filter matches the entry, Couchbase Server performs the more expensive vector comparison operation to determine the distance between the vector value and the search vector.
 

@@ -2,7 +2,7 @@
 title: Inserting Data with SQL++
 description: How to insert documents using SQL++.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/insert.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:guides:insert.adoc[]
 ---
 
@@ -31,7 +31,7 @@ If you want to try out the examples in this section, follow the instructions giv
 To insert a document by providing the value, use the INSERT statement with the VALUES clause:
 
 1. Use the INTO keyword to specify the keyspace into which the document is inserted.
-2. Optionally, use the bracketed KEY and VALUE keywords to specify that you’re inserting a document key and body.
+2. Optionally, use the bracketed KEY and VALUE keywords to specify that you're inserting a document key and body.
 3. Use the VALUES clause to specify the document key and the body of the document.
 4. If required, use the RETURNING clause specifies what the query returns when the document is inserted.
 

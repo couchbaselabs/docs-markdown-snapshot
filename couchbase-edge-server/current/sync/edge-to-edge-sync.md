@@ -6,7 +6,7 @@ description: Deploy multiple Edge Servers at the edge, each serving a subset of
   can also be leveraged to deploy Edge Servers in a primary-secondary
   configuration for High Availability (HA).
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/sync/pages/edge-to-edge-sync.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-edge-server:sync:edge-to-edge-sync.adoc[]
 ---
 
@@ -35,7 +35,7 @@ To configure Edge Server for REST-based access, see [Get Started with the REST A
 
 ## [](#push-changes-to-couchbase-edge-server)Push Changes to Couchbase Edge Server
 
-You can monitor changes in a keyspace using the keyspaces’s changes feed. The changes feed is based on _sequences_, which are abstract integer counters applied to documents. The changes feed returns the metadata (and optionally the contents) of documents that have changed since a specified sequence.
+You can monitor changes in a keyspace using the keyspaces's changes feed. The changes feed is based on _sequences_, which are abstract integer counters applied to documents. The changes feed returns the metadata (and optionally the contents) of documents that have changed since a specified sequence.
 
 Couchbase Edge Server adopts a "push, not poll" approach to changes using two methods:
 
@@ -52,7 +52,7 @@ You can configure Edge Server so that replication starts automatically when Edge
 
 For more information about continuous replication, see [Start Replication Automatically](../rest-based-access/replication.md#start-replication-automatically).
 
-You can also start replication using the REST API. You don’t need to set up reduplication in the configuration file to do this. Instead, you pass the replication options in the JSON request body.
+You can also start replication using the REST API. You don't need to set up reduplication in the configuration file to do this. Instead, you pass the replication options in the JSON request body.
 
 For more information, see [REST API Replication](../rest-based-access/replication.md#start-replication-with-the-rest-api).
 

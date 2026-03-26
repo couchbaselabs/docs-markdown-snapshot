@@ -2,7 +2,7 @@
 title: Getting a Single Statistic
 description: The REST API allows cluster-statistics to be retrieved from a single metric.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-statistics-single.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:rest-api:rest-statistics-single.adoc[]
 ---
 
@@ -21,7 +21,7 @@ GET /pools/default/stats/range/<metric_name>/[function-expression]
 
 This method and URI allow cluster-statistics to be retrieved, based on the specification of a single metric. Optionally, the cluster-statistics can be further defined through the specifying of a _function_; and/or _labels_ with values.
 
-An instance of _Prometheus_ runs on each node of the cluster; and the metrics for each node are duly stored in that node’s instance of Prometheus.
+An instance of _Prometheus_ runs on each node of the cluster; and the metrics for each node are duly stored in that node's instance of Prometheus.
 
 ## [](#curl-syntax)Curl Syntax
 

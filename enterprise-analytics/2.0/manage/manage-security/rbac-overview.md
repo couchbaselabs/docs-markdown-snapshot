@@ -3,7 +3,7 @@ title: Role Based Access Control (RBAC)
 description: For authorizing users, Enterprise Analytics provides <em>Role-Based
   Access Control</em>.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-security/rbac-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:manage-security/rbac-overview.adoc[]
 ---
 
@@ -43,7 +43,7 @@ Users can be added to Enterprise Analytics by the Full Administrator. Each user 
 
 A user can be assigned one or more roles by the Full Administrator. Each role is itself associated with a subset of privileges; a privilege being a form of action, such as Read, Write, Execute, or Manage. Each privilege is associated with a resource.
 
-For example, the Data Reader role features the Read privilege, which is applied to the data of a database. When a user has been assigned the Data Reader role, and attempts to gain read-access to the database’s data by submitting their credentials, Enterprise Analytics identifies the user, recognises their assigned role and privilege, and duly authorises read-access.
+For example, the Data Reader role features the Read privilege, which is applied to the data of a database. When a user has been assigned the Data Reader role, and attempts to gain read-access to the database's data by submitting their credentials, Enterprise Analytics identifies the user, recognises their assigned role and privilege, and duly authorises read-access.
 
 > [!NOTE]
 > Resource-access can optionally be specified by means of _parameterisation_. This means that a wildcard character has been used, during role-assignment, to specify that a privilege applies to all resource-instances within a resource-class: for example, to all databases.

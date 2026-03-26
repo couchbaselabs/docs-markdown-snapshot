@@ -4,7 +4,7 @@ description: Capella iQ is your partner in getting started with Couchbase
   Capella. Use it to generate SQL++ queries, sample data, build indexes, and
   more.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/capella-iq/get-started-with-iq.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:get-started:capella-iq/get-started-with-iq.adoc[]
 ---
 
@@ -25,12 +25,12 @@ Capella iQ is your partner in Capella, allowing you to work faster and assist yo
 
 * The organization owner has accepted the Capella iQ Supplemental Terms. For more information, see [Configure Capella iQ](configure-capellaiq.md#T&C).
 * A cluster with the Data, Index, and Query services. To create a cluster, see [Create A Paid Cluster](../../clusters/create-database.md).
-* If you’re using Capella iQ to create SDK code, you need [cluster access credentials](../../clusters/manage-database-users.md) to implement it.
-* (Optional) Import the Capella [sample data](../../clusters/data-service/import-data-documents.md#import-sample-data). If you’re using a free tier operational cluster, it already has the sample data.
+* If you're using Capella iQ to create SDK code, you need [cluster access credentials](../../clusters/manage-database-users.md) to implement it.
+* (Optional) Import the Capella [sample data](../../clusters/data-service/import-data-documents.md#import-sample-data). If you're using a free tier operational cluster, it already has the sample data.
 
 ## [](#open-capella-iq)Open Capella iQ
 
-Capella iQ is a part of the query editor in Capella’s Data Tools. As part of the Capella UI, the query editor is like an IDE you can use to work with data, documents, queries, indexes, and more.
+Capella iQ is a part of the query editor in Capella's Data Tools. As part of the Capella UI, the query editor is like an IDE you can use to work with data, documents, queries, indexes, and more.
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -102,7 +102,7 @@ The query output appears in the results area of the query editor. When you creat
 
 ## [](#generate-sample-data)Generate Sample Data
 
-You can ask Capella iQ to generate realistic sample data and insert it into your cluster. Generating sample data is helpful when testing configurations and learning about Capella. For example, suppose you’re building an application that requires data about national parks in the United States. You can use Capella iQ to populate your cluster with relevant data.
+You can ask Capella iQ to generate realistic sample data and insert it into your cluster. Generating sample data is helpful when testing configurations and learning about Capella. For example, suppose you're building an application that requires data about national parks in the United States. You can use Capella iQ to populate your cluster with relevant data.
 
 > [!TIP]
 > The provided prompts are for example purposes. With Capella iQ, you can format your prompts differently to get the same information.
@@ -138,7 +138,7 @@ After successfully running a query suggestion from Capella iQ, the prompt respon
 
 ![A prompt response showing the Favorite button.](../_images/iq/iQ-favorite.png) 
 
-Marking a query as a favorite lets you refer back to it and gives the option to include it as part of your prompts. Including a favorite query in your prompts can improve Capella iQ’s accuracy and usability across your chat sessions. For example, this is useful when working with JOINs. If you prompt Capella iQ to use a [JOIN](../../n1ql/n1ql-language-reference/join.md), you can save the successful query so that subsequent queries can reference this JOIN. You can then prompt Capella iQ without having to mention this JOIN.
+Marking a query as a favorite lets you refer back to it and gives the option to include it as part of your prompts. Including a favorite query in your prompts can improve Capella iQ's accuracy and usability across your chat sessions. For example, this is useful when working with JOINs. If you prompt Capella iQ to use a [JOIN](../../n1ql/n1ql-language-reference/join.md), you can save the successful query so that subsequent queries can reference this JOIN. You can then prompt Capella iQ without having to mention this JOIN.
 
 > [!NOTE]
 > Only one of your favorite queries can be included in your prompts.

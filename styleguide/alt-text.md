@@ -1,7 +1,7 @@
 ---
 title: Alt Text
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/alt-text.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::alt-text.adoc[]
 ---
 
@@ -29,11 +29,11 @@ To write effective alt text:
 
 Describe, plainly, the content of the image.
 
-Imagine that you were trying to describe it to someone who could not actually see the image for themselves. Write a meaningful description that suits the user’s context.
+Imagine that you were trying to describe it to someone who could not actually see the image for themselves. Write a meaningful description that suits the user's context.
 
 ## [](#concise)Be Concise
 
-You do not need to describe every detail - unless there’s important text that a user needs.
+You do not need to describe every detail - unless there's important text that a user needs.
 
 Give the most relevant, important details that a sighted user would get at a glance. The alt text needs to provide this same information.
 

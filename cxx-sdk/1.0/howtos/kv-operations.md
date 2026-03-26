@@ -4,7 +4,7 @@ description: Data service offers the simplest way to retrieve or mutate data
   where the key is known. Here we cover CRUD operations, document expiration,
   and optimistic locking with CAS.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.0@cxx-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -19,7 +19,7 @@ At its heart Couchbase Server is a high-performance key-value store, and the key
 
 A _document_ refers to an entry in the database (other databases may refer to the same concept as a _row_). A document has an ID (_primary key_ in other databases), which is unique to the document and by which it can be located. The document also has a value which contains the actual application data. See [the concept guide to _Documents_](../concept-docs/documents.md) for a deeper dive into documents in the Couchbase Data Platform.
 
-Before proceeding, make sure you’re familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK](../hello-world/start-using-sdk.md) section.
+Before proceeding, make sure you're familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK](../hello-world/start-using-sdk.md) section.
 
 The code samples below will use these imports:
 
@@ -37,13 +37,13 @@ The code samples below will use these imports:
 ```
 
 > [!TIP]
-> The Query Service can also be used to perform many single-document operations, but we very strongly recommend using the key-value API for this instead. It can be much more efficient as the request can go directly to the correct node, there’s no query parsing overhead, and it’s over the highly optimized memcached binary protocol.
+> The Query Service can also be used to perform many single-document operations, but we very strongly recommend using the key-value API for this instead. It can be much more efficient as the request can go directly to the correct node, there's no query parsing overhead, and it's over the highly optimized memcached binary protocol.
 
 ## [](#json)JSON
 
-The Couchbase Server is a key-value store that’s agnostic to what’s stored, but it’s very common to store JSON so most of the examples below will focus on that use-case.
+The Couchbase Server is a key-value store that's agnostic to what's stored, but it's very common to store JSON so most of the examples below will focus on that use-case.
 
-The SDK directly supports the [taoJSON](https://github.com/taocpp/json) library, which we’ll be using for these examples. taoJSON also provides the ability to encode or decode user-defined types.
+The SDK directly supports the [taoJSON](https://github.com/taocpp/json) library, which we'll be using for these examples. taoJSON also provides the ability to encode or decode user-defined types.
 
 In addition you can supply and receive JSON as a `std::string` or `std::vector<std::byte>`, opening the door to any JSON library.
 
@@ -62,7 +62,7 @@ auto [err, result] = collection.upsert("document-key", content).get();
 ```
 
 > [!NOTE]
-> All of the examples here use the simplest of the two asynchronous APIs provided by the C++ SDK, which returns an `std::future`. There’s also a callback-based asynchronous API. See [Choosing an API](#concurrent-async-apis) for more details.
+> All of the examples here use the simplest of the two asynchronous APIs provided by the C++ SDK, which returns an `std::future`. There's also a callback-based asynchronous API. See [Choosing an API](#concurrent-async-apis) for more details.
 
 The C++ SDK returns a `couchbase::error` instance that wraps an `std::error_code` rather than throwing exceptions. You can check whether an error occurred like this:
 
@@ -98,7 +98,7 @@ if (err.ec() == couchbase::errc::key_value::document_exists) {
 
 ## [](#retrieving-documents)Retrieving Documents
 
-We’ve tried upserting and inserting documents into Couchbase Server, let’s get them back:
+We've tried upserting and inserting documents into Couchbase Server, let's get them back:
 
 ```c++
 auto [err, result] = collection.get("document-key").get();
@@ -107,7 +107,7 @@ if (err) {
 }
 ```
 
-Of course if we’re getting a document we probably want to do something with the content:
+Of course if we're getting a document we probably want to do something with the content:
 
 ```c++
 // Create some initial JSON
@@ -168,19 +168,19 @@ if (upsert_err) {
 }
 ```
 
-There’s a couple of things to cover with the `replace` line.
+There's a couple of things to cover with the `replace` line.
 
-First, most of the methods in the C++ SDK take an 'options' parameter that contains optional parameters that have sensible defaults. One of them, `cas`, is provided here. We’ll see more throughout this document.
+First, most of the methods in the C++ SDK take an 'options' parameter that contains optional parameters that have sensible defaults. One of them, `cas`, is provided here. We'll see more throughout this document.
 
 ### [](#optimistic-locking)What is CAS?
 
-CAS, or Compare and Swap, is a form of optimistic locking. Every document in Couchbase has a CAS value, and it’s changed on every mutation. When you `get` a document you also get the document’s CAS, and then when it’s time to write the document, you send the same CAS back. If another agent has modified that document, the Couchbase Server can detect you’ve provided a now-outdated CAS, and return an error instead of mutating the document. This provides cheap, safe concurrency. See [this detailed description of CAS](concurrent-document-mutations.md) for further details.
+CAS, or Compare and Swap, is a form of optimistic locking. Every document in Couchbase has a CAS value, and it's changed on every mutation. When you `get` a document you also get the document's CAS, and then when it's time to write the document, you send the same CAS back. If another agent has modified that document, the Couchbase Server can detect you've provided a now-outdated CAS, and return an error instead of mutating the document. This provides cheap, safe concurrency. See [this detailed description of CAS](concurrent-document-mutations.md) for further details.
 
-In general, you’ll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent’s mutations.
+In general, you'll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent's mutations.
 
 ### [](#retrying-on-cas-failures)Retrying on CAS Failures
 
-But if we get a CAS mismatch, we usually just want to retry the operation. Let’s see a more advanced `replace` example that shows one way to handle this:
+But if we get a CAS mismatch, we usually just want to retry the operation. Let's see a more advanced `replace` example that shows one way to handle this:
 
 ```c++
 auto
@@ -275,7 +275,7 @@ if (err.ec() == couchbase::errc::key_value::document_not_found) {
 }
 ```
 
-The default is `durability_level::none`, in which the SDK will return as soon as Couchbase Server has the mutation available in-memory on the active node. This is the default for a reason: it’s the fastest mode, and the majority of the time is all the application needs.
+The default is `durability_level::none`, in which the SDK will return as soon as Couchbase Server has the mutation available in-memory on the active node. This is the default for a reason: it's the fastest mode, and the majority of the time is all the application needs.
 
 However, we recognize that there are times when the application needs that extra certainty that especially vital mutations have been successfully replicated, and the other durability options provide the means to achieve this.
 
@@ -336,7 +336,7 @@ if (err) {
 }
 ```
 
-Note that when updating the document, special care must be taken to avoid resetting the expiry to zero. Here’s how:
+Note that when updating the document, special care must be taken to avoid resetting the expiry to zero. Here's how:
 
 ```c++
 auto new_content = tao::json::value{ { "foo", "bar" } };
@@ -388,7 +388,7 @@ To support counter use-cases, a Couchbase document can be treated as an integer 
 Note that a counter cannot be below 0.
 
 > [!NOTE]
-> Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change
+> Increment & Decrement are considered part of the 'binary' API and as such may still be subject to change
 
 > [!TIP]
 > Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the `Touch()` method.
@@ -401,14 +401,14 @@ A counter must be incremented or decremented by only a single datacenter. Each d
 
 ## [](#kv-range-scan)KV Range Scan
 
-A range scan gives you documents from a collection, even if you don’t know the document IDs. This feature requires Couchbase Server 7.6 or newer.
+A range scan gives you documents from a collection, even if you don't know the document IDs. This feature requires Couchbase Server 7.6 or newer.
 
 > [!TIP]
 > KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 
-Here’s an example of a KV range scan that gets all documents in a collection:
+Here's an example of a KV range scan that gets all documents in a collection:
 
 KV Range Scan for all documents in a collection
 
@@ -428,7 +428,7 @@ if (err) {
 }
 ```
 
-| **1** | The ScanType.rangeScan() method has two nullable parameters: from and to. If you pass null like in this example, you’ll get all documents in the collection. These parameters are for advanced use cases; you probably won’t need to specify them. Instead, it’s more common to use the "prefix" scan type shown in the next example. |
+| **1** | The ScanType.rangeScan() method has two nullable parameters: from and to. If you pass null like in this example, you'll get all documents in the collection. These parameters are for advanced use cases; you probably won't need to specify them. Instead, it's more common to use the "prefix" scan type shown in the next example. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### [](#kv-range-scan-prefix)Prefix scan

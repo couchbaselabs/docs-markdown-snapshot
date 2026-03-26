@@ -2,7 +2,7 @@
 title: Add a Node and Rebalance
 description: A new Enterprise Analytics node can be added to an existing cluster.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/add-node-and-rebalance.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:manage:manage-nodes/add-node-and-rebalance.adoc[]
 ---
 
@@ -21,11 +21,11 @@ Following node-addition, _rebalance_ is required, to make the new node an active
 
 ### [](#connectivity-considerations)Connectivity Considerations
 
-When adding a node to a cluster, it’s important to follow the connectivity best practices outlined in [Cluster Connectivity and Topology Management](cluster-connectivity-topology-management.md). The scale out procedures vary based on the addressing model in use (Active Load Balancer, Passive Load Balancer, or DNS-Only). To minimize disruptions to client applications, ensure that you follow the procedures detailed in [Rebalance Out (Scale-In)](cluster-connectivity-topology-management.md#rebalance-out-scale-in) section.
+When adding a node to a cluster, it's important to follow the connectivity best practices outlined in [Cluster Connectivity and Topology Management](cluster-connectivity-topology-management.md). The scale out procedures vary based on the addressing model in use (Active Load Balancer, Passive Load Balancer, or DNS-Only). To minimize disruptions to client applications, ensure that you follow the procedures detailed in [Rebalance Out (Scale-In)](cluster-connectivity-topology-management.md#rebalance-out-scale-in) section.
 
 ### [](#node-addition-and-certificate-management)Node-Addition and Certificate-Management
 
-The examples on this page assume that the default, _system-generated_ certificates provided by Enterprise Analytics continue to be resident on the cluster and the node to be added. In a production or similar context, to ensure security, only administrator-configured certificates should be used on a cluster: these should rely on a well known _Certificate Authority_, whose certificate is loaded as the cluster’s _root_ certificate. (For more information, see [Default Certificates and Certificate Substitution](../../../../server/current/learn/security/certificates.md#server-certificates).)
+The examples on this page assume that the default, _system-generated_ certificates provided by Enterprise Analytics continue to be resident on the cluster and the node to be added. In a production or similar context, to ensure security, only administrator-configured certificates should be used on a cluster: these should rely on a well known _Certificate Authority_, whose certificate is loaded as the cluster's _root_ certificate. (For more information, see [Default Certificates and Certificate Substitution](../../../../server/current/learn/security/certificates.md#server-certificates).)
 
 In such a context, until compatible administrator-configured certificates have been loaded onto it, no node can be added to the cluster. Such activities need to be performed in addition to those shown by the examples on this page.
 
@@ -50,10 +50,10 @@ The examples in the subsections below show how to add the same node to the same 
 Proceed as follows:
 
 1. Bring up Enterprise Analytics Web Console, and log into cluster `127.0.0.1`, using the Full Administrator username and password. Access the **Servers** tab in the left-hand navigation bar. The **Servers** screen for the cluster displays the name of the only node currently in the cluster, `127.0.0.1`, plus additional information.
-2. Ensure that the node to be added has been started. This can be accomplished by checking the IP address and port number for the new node in the address bar of the browser. When you access the new node’s address, you’ll see a welcome interface indicating that Enterprise Analytics is installed and running on the new node, but has not yet been provisioned. Do not use this interface: instead, return to Enterprise Analytics Web Console for the cluster, `127.0.0.1`.
+2. Ensure that the node to be added has been started. This can be accomplished by checking the IP address and port number for the new node in the address bar of the browser. When you access the new node's address, you'll see a welcome interface indicating that Enterprise Analytics is installed and running on the new node, but has not yet been provisioned. Do not use this interface: instead, return to Enterprise Analytics Web Console for the cluster, `127.0.0.1`.
 3. In the **Servers** panel for the cluster, click on the **ADD SERVER** button at the upper right. The **Add Server Node** dialog is now displayed.  
 > [!NOTE]  
-> A warning provided at the top of the dialog - "If the node to be added has already been provisioned, the results of such provisioning will be eliminated and replaced on the node’s addition to the current cluster."
+> A warning provided at the top of the dialog - "If the node to be added has already been provisioned, the results of such provisioning will be eliminated and replaced on the node's addition to the current cluster."
 4. Specify the IP address of the node to be added in the **Server IP Address** field. A placeholder password must be specified in the **Password** field, even though the node has not yet been provisioned with one.
 
 Optionally, the **Customize disk storage paths (this node)** checkbox can be checked to display interactive fields that allow to modify the storage paths for the node. When checked, the dialog extends vertically to display interactive fields for **Metadata Disk** and **Cache Disk** data paths. For the current example, the displayed default paths do not need modification.
@@ -80,7 +80,7 @@ When the row for a node is open, as is the case here for `127.0.0.2`, informatio
 
 ### [](#rebalance-failure-notification)Rebalance Failure Notification
 
-If rebalance fails — for example, due to a node’s becoming non-responsive — Enterprise Analytics Web Console displays a notification message indicating the failure.
+If rebalance fails — for example, due to a node's becoming non-responsive — Enterprise Analytics Web Console displays a notification message indicating the failure.
 
 As this indicates, detailed information can be found by clicking on the **Logs** tab in the left-hand, vertical navigation bar. This brings up the **Logs** screen, containing detailed information about the rebalance failure, including error messages and timestamps.
 
@@ -121,7 +121,7 @@ To add a new Enterprise Analytics-node to an existing cluster, use the [server-a
 > [!NOTE]
 > This command requires that arguments be provided for its `--server-add-username` and `--server-add-password` flags.
 
-In this case, meaningful arguments do not exist, since the new node features an instance of Enterprise Analytics that’s running, but has not been provisioned with a username or password. Therefore, specify placeholder arguments. Additionally, specify that the `data` service be run on the node, once it’s part of the cluster.
+In this case, meaningful arguments do not exist, since the new node features an instance of Enterprise Analytics that's running, but has not been provisioned with a username or password. Therefore, specify placeholder arguments. Additionally, specify that the `data` service be run on the node, once it's part of the cluster.
 
 > [!NOTE]
 > A server to be added (as specified by the value of the `server-add` parameter) can be prefixed with the scheme `https://`, and/or with the port `8091`: if no scheme and no port is specified, `https://` and `8091` are used as defaults. The scheme `http://` cannot be used, nor can the port `8091`: addition must occur over a secure connection.
@@ -263,7 +263,7 @@ The output is as follows:
   "delta_recovery_buckets": "all"
 }
 
-This indicates that the status of `retry_rebalance` is `pending`; and provides a `rebalance_id` for the process, of `ff5845cdce693db2dce9a9308cbf885d`. This id can be used to cancel the retry. The output also lists the cluster’s nodes, indicates that `2` retry attempts are scheduled to occur if necessary after the current one, and indicates that `291` seconds are still to elapse before the pending retry.
+This indicates that the status of `retry_rebalance` is `pending`; and provides a `rebalance_id` for the process, of `ff5845cdce693db2dce9a9308cbf885d`. This id can be used to cancel the retry. The output also lists the cluster's nodes, indicates that `2` retry attempts are scheduled to occur if necessary after the current one, and indicates that `291` seconds are still to elapse before the pending retry.
 
 To cancel the pending retry, use the `POST /controller/cancelRebalanceRetry` http method and URI, specifying the retrieved `rebalance_id` as the endpoint:
 
@@ -282,4 +282,4 @@ Reference pages for these commands are provided at [Get Rebalance-Retry Status](
 
 ## [](#next-steps-after-adding-and-rebalancing)Next Steps
 
-As well as supporting a cluster’s adding a node to itself, Enterprise Analytics also supports a node’s joining itself to a cluster (which is essentially the same operation, but proceeding from the node, rather than from the cluster). See [Join a Cluster and Rebalance](join-cluster-and-rebalance.md) for details.
+As well as supporting a cluster's adding a node to itself, Enterprise Analytics also supports a node's joining itself to a cluster (which is essentially the same operation, but proceeding from the node, rather than from the cluster). See [Join a Cluster and Rebalance](join-cluster-and-rebalance.md) for details.

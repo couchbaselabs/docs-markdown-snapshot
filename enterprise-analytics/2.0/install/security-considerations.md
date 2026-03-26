@@ -3,7 +3,7 @@ title: Security Considerations
 description: Ensure that you follow security best practices throughout the
   deployment lifecycle.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/security-considerations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:install:security-considerations.adoc[]
 ---
 
@@ -16,11 +16,11 @@ link: xref:2.0@enterprise-analytics:install:security-considerations.adoc[]
 
 Security is important for every line of business. This topic summarizes some security best practices that you should consider both before and after you install Enterprise Analytics.
 
-While you’re setting up your environment, be sure to do the following:
+While you're setting up your environment, be sure to do the following:
 
 Use a firewall
 
-Firewalls offer a layer of defense against external threats and you should use them to safeguard the perimeters of your deployment. It’s a security best practice not to expose your Enterprise Analytics nodes to the Internet; instead, place your entire cluster behind a firewall.
+Firewalls offer a layer of defense against external threats and you should use them to safeguard the perimeters of your deployment. It's a security best practice not to expose your Enterprise Analytics nodes to the Internet; instead, place your entire cluster behind a firewall.
 
 Below are some guidelines for using firewall rules with Enterprise Analytics:
 

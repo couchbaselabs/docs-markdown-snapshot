@@ -1,7 +1,7 @@
 ---
 title: Tabbed Content
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/tabs.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:tabs.adoc[]
 ---
 
@@ -24,7 +24,7 @@ To add tabbed content to your docs page:
 :tabs:  
 :keywords: cmek, encryption, security, backups  
 ```
-2. If you’re going to add multiple tabs with the same options on your page, make sure to also add `:tabs-sync-option:`:  
+2. If you're going to add multiple tabs with the same options on your page, make sure to also add `:tabs-sync-option:`:  
 ```asciidoc  
 = Document Title  
 :page-topic-type: guide  
@@ -35,7 +35,7 @@ To add tabbed content to your docs page:
 :keywords: cmek, encryption, security, backups  
 ```  
 > [!NOTE]  
-> Tabs will not sync across your page if tab names are not an exact match. Make sure to use the same name for each tab for `tabs-sync-option` to work as expected and sync a user’s tab selection across the page.
+> Tabs will not sync across your page if tab names are not an exact match. Make sure to use the same name for each tab for `tabs-sync-option` to work as expected and sync a user's tab selection across the page.
 3. In your `.adoc` file, start the tabbed content by adding `[tabs]` to a content block:  
 ```asciidoc  
 [{tabs}]  

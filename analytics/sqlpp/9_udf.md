@@ -4,7 +4,7 @@ description: In SQL++ for Capella Analytics, user-defined functions enable you
   to name and reuse complex or repetitive expressions, including subqueries, in
   order to simplify your queries.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/9_udf.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sqlpp:9_udf.adoc[]
 ---
 
@@ -222,7 +222,7 @@ Result
 
 ## [](#transform-function)TRANSFORM FUNCTION
 
-Capella Analytics supports lightweight transformations on incoming data destined for remote collections. You can use SQL++ `TRANSFORM` User-Defined Functions (UDFs) to declaratively transform data objects before they’re stored in remote collections. The supported common transformations through UDFs include:
+Capella Analytics supports lightweight transformations on incoming data destined for remote collections. You can use SQL++ `TRANSFORM` User-Defined Functions (UDFs) to declaratively transform data objects before they're stored in remote collections. The supported common transformations through UDFs include:
 
 * Field operations and record filtering, such as:
 
@@ -239,7 +239,7 @@ Capella Analytics supports lightweight transformations on incoming data destined
 
 ### [](#create-transform-function)Create TRANSFORM FUNCTION
 
-A `TRANSFORM FUNCTION` is a specialized type of user-defined function (UDF) that’s created using the `CREATE TRANSFORM FUNCTION` statement. Its purpose is to perform an automatic, on-the-fly transformation of incoming data.
+A `TRANSFORM FUNCTION` is a specialized type of user-defined function (UDF) that's created using the `CREATE TRANSFORM FUNCTION` statement. Its purpose is to perform an automatic, on-the-fly transformation of incoming data.
 
 For an UDF to be a valid `TRANSFORM FUNCTION`, you must have the following conditions:
 
@@ -288,7 +288,7 @@ CREATE COLLECTION remote_hotel ON hotel AT my_remote_link APPLY FUNCTION project
 ```
 
 > [!NOTE]
-> You cannot modify or drop a `TRANSFORM FUNCTION` while it’s applied to any collection.
+> You cannot modify or drop a `TRANSFORM FUNCTION` while it's applied to any collection.
 
 ## [](#calling-a-function)Calling a Function
 
@@ -304,7 +304,7 @@ After determining the database and scope, Capella Analytics tries to find a user
 
 ### [](#examples)Examples
 
-The examples in this section assume that you’re using the database and scope `sampleAnalytics.Commerce`. See [Example Data](../intro/examples.md) to install the Commerce dataset.
+The examples in this section assume that you're using the database and scope `sampleAnalytics.Commerce`. See [Example Data](../intro/examples.md) to install the Commerce dataset.
 
 You can use [USE Statements](5%5Fddl%5Fuse.md) to set the default scope for the statement that follows it.
 
@@ -314,7 +314,7 @@ Example
   USE sampleAnalytics.Commerce;
 ```
 
-If you’re using the Capella Analytics UI, you can alternatively use the query editor’s **Query Context** lists to set the database and scope.
+If you're using the Capella Analytics UI, you can alternatively use the query editor's **Query Context** lists to set the database and scope.
 
 ![The Query Context lists](_images/workbench-context-set.png) 
 

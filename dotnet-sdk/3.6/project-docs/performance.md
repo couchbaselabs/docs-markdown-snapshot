@@ -2,7 +2,7 @@
 title: Performance Best Practices
 description: Performance best practices for Couchbase .NET applications.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/project-docs/pages/performance.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@dotnet-sdk:project-docs:performance.adoc[]
 ---
 
@@ -94,7 +94,7 @@ You can tune this by changing the batch size and the [parallel options](https://
 
 ### [](#use-batching)Use Batching
 
-If you are processing large amounts of documents, you’ll most likely want to batch the requests into smaller subsets instead of creating a huge set in memory. In fact, if the list is unbound, you may run into an `OutOfMemoryException` as you have consumed all of the memory allocated by the process.
+If you are processing large amounts of documents, you'll most likely want to batch the requests into smaller subsets instead of creating a huge set in memory. In fact, if the list is unbound, you may run into an `OutOfMemoryException` as you have consumed all of the memory allocated by the process.
 
 ```csharp
 var keys = Enumerable.Range(1, 100).Select(i => $"key{i}");
@@ -156,7 +156,7 @@ In all cases this anti-pattern should be not be used and instead all Tasks shoul
 
 ### [](#not-caching-the-bucket-andor-cluster-objects)Not Caching the Bucket and/or Cluster Objects
 
-This is possibly the worst performance killer of all: failing to properly cache and reuse the `Bucket` or `Cluster` objects. When we open the Cluster and Bucket objects, we create long-lived socket connections between the client and the server. There is cost associated with creating these connections, so we want them to be reused over and over. If we’re opening and closing these objects, we’re creating and the tearing down these connections — which causes latency, and may cause memory pressure.
+This is possibly the worst performance killer of all: failing to properly cache and reuse the `Bucket` or `Cluster` objects. When we open the Cluster and Bucket objects, we create long-lived socket connections between the client and the server. There is cost associated with creating these connections, so we want them to be reused over and over. If we're opening and closing these objects, we're creating and the tearing down these connections — which causes latency, and may cause memory pressure.
 
 The Couchbase SDK has a complementary [Dependency Injection (DI)](https://docs.couchbase.com/dotnet-sdk/current/howtos/managing-connections.html#connection-di)library that makes this trival to manage. Additionally, there are other ways of doing this manually in `Start.cs`, or for legacy applications, using `Application_Start` and `Application_End` handlers in the `Global.asax` file. We strongly recommend users of the SDK use the DI library approach as its the simplest and easiest to debug.
 
@@ -170,7 +170,7 @@ The current SDK comes with three different connection pools: The default `Channe
 
 In general, the default `ChannelConnectionPool` should do everything you need. The pool will scale up and down depending upon the values found in `ClusterOptions.NumKvConnections` (which has a default value of 2) and `ClusterOptions.MaxKvConnections` (which has a default value of 5). If both values are set to a number less than or equal to `1`, a `SingleConnectionPool` will be used and scaling will be disabled. We DO NOT suggest changing these values most cases. However, if you do, then you should perform some benchmarking to determine the effects of the change on the client and on the server. More connections does not necessarily mean better performance overall!
 
-The `SingleConnectionPool` is a very simple pool that contains exactly one connection. It’s useful for debugging connection related problems as it is has very few features and allows you to quickly isolate problems. It may also be suitable for some applications or micro-services that need to constrain the number of active connections. However, in general, we suggest using the `ChannelConnectionPool`. As mentioned above, setting both `ClusterOptions.NumKvConnections` and `ClusterOptions.MaxKvConnections` to a number less than or equal to `1` will cause the `SingleConnectionPool` to be used.
+The `SingleConnectionPool` is a very simple pool that contains exactly one connection. It's useful for debugging connection related problems as it is has very few features and allows you to quickly isolate problems. It may also be suitable for some applications or micro-services that need to constrain the number of active connections. However, in general, we suggest using the `ChannelConnectionPool`. As mentioned above, setting both `ClusterOptions.NumKvConnections` and `ClusterOptions.MaxKvConnections` to a number less than or equal to `1` will cause the `SingleConnectionPool` to be used.
 
 The `DataFlowConnectionPool` is a legacy pool and should not be used in new applications.
 

@@ -1,7 +1,7 @@
 ---
 title: Stream Data from Couchbase Capella
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/remote-cb-capella.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sources:remote-cb-capella.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:2.0@enterprise-analytics:sources:remote-cb-capella.adoc[]
 
 You need to take the following steps on your Couchbase Capella operational cluster:
 
-* To allow Enterprise Analytics to connect to a Couchbase Capella operational cluster, you must add the IP address of the Enterprise Analytics server to the Capella cluster’s "Allowed IP" list. For more information, see [Add an Allowed IP Address](../../../cloud/clusters/allow-ip-address.md).
+* To allow Enterprise Analytics to connect to a Couchbase Capella operational cluster, you must add the IP address of the Enterprise Analytics server to the Capella cluster's "Allowed IP" list. For more information, see [Add an Allowed IP Address](../../../cloud/clusters/allow-ip-address.md).
 * Get the hostname or external IP address for 1 of the Couchbase Capella cluster nodes. You supply this value to Enterprise Analytics as the hostname/IP address.
 * Create a user and password for Enterprise Analytics to use when connecting. Give this user read/write permissions for all buckets and scopes you want to stream. For more information, see [Create Cluster Access Credentials](../../../cloud/clusters/manage-database-users.md#create-database-credentials).
 * Save a copy of the Couchbase Capella cluster root certificate. You can find the certificate on the Capella UI at the **Security Certificate** page under **Settings**.
@@ -48,7 +48,7 @@ For more information, see [Use Your Capella Root Certificate](../../../cloud/sec
 1. In the UI, select the **Workbench** tab.
 2. Next to the link you created in [Create a Link to Couchbase Capella](#link), click **\+ collection**.
 3. In the **Collection Name** field, enter a name for the collection.
-4. In the **Database** list, select the required database and in the **Scope** list, select the required scope or verify the supplied database and scope if you’re adding it to a specific scope.
+4. In the **Database** list, select the required database and in the **Scope** list, select the required scope or verify the supplied database and scope if you're adding it to a specific scope.
 5. In the **Source bucket.scope.collection** field, select the source bucket, scope and collection.
 6. In the **Where (optional)** field, you can add an optional WHERE clause to filter documents in the dataset. Make sure you do not include the WHERE keyword.
 7. Click **Save**.

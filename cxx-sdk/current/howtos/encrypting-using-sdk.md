@@ -3,7 +3,7 @@ title: Field Level Encryption from the SDK
 description: The Field Level Encryption library enables encryption and
   decryption of JSON fields, to support FIPS-140-2 compliance.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cxx-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:cxx-sdk:howtos:encrypting-using-sdk.adoc[]
 > [!TIP]
 > Native Encryption at Rest
 > 
-> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It’s a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
+> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It's a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
 
 For a high-level overview of this feature, see [Field Level Encryption](../concept-docs/encryption.md).
 
@@ -49,7 +49,7 @@ CPMAddPackage(
 
 ## [](#configuration)Configuration
 
-To enable Field-Level Encryption, supply a `couchbase::crypto::manager` when [configuring the C++ SDK’s couchbase::cluster\_options](managing-connections.md#cluster-environment).
+To enable Field-Level Encryption, supply a `couchbase::crypto::manager` when [configuring the C++ SDK's couchbase::cluster\_options](managing-connections.md#cluster-environment).
 
 ```c++
 // Supply the crypto manager when connecting to the cluster.
@@ -99,7 +99,7 @@ struct person {
 };
 ```
 
-Now let’s create a `person` document and save it to Couchbase:
+Now let's create a `person` document and save it to Couchbase:
 
 > [!IMPORTANT]
 > Remember to use a crypto transcoder, such as `couchbase::crypto::default_transcoder`, when field encryption is required.
@@ -178,7 +178,7 @@ Because the default JSON transcoder does not decrypt anything, the expected outp
 }
 ```
 
-Now let’s read the `person` document using the crypto transcoder:
+Now let's read the `person` document using the crypto transcoder:
 
 ```c++
 // Decoding the content with the crypto transcoder will decrypt the encrypted fields.
@@ -248,7 +248,7 @@ This outputs the encrypted content of the document:
 }
 ```
 
-Now let’s read the document using the crypto transcoder:
+Now let's read the document using the crypto transcoder:
 
 ```c++
 // Decoding the content with the crypto transcoder will decrypt the encrypted fields.
@@ -268,4 +268,4 @@ This outputs the decrypted of the document:
 
 ## [](#further-reading)Further Reading
 
-* For a more detailed description of the C++ Encryption library’s API, and additional examples, see the [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-encryption-1.0.0/index.html).
+* For a more detailed description of the C++ Encryption library's API, and additional examples, see the [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-encryption-1.0.0/index.html).

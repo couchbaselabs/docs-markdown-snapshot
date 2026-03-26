@@ -1,7 +1,7 @@
 ---
 title: Install
 editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/deploy/install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:todo-app:deploy/install.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:tutorials:todo-app:deploy/install.adoc[]
 
 # Install
 
-In this lesson you’ll learn how to install Sync Gateway and Couchbase Server, our NoSQL database server.
+In this lesson you'll learn how to install Sync Gateway and Couchbase Server, our NoSQL database server.
 
 ## [](#requirements)Requirements
 
@@ -89,7 +89,7 @@ sudo ./install_sync_gateway.sh VM1
 ```bash  
 sudo tail -f /home/sync_gateway/logs/sync_gateway_error.log  
 ```
-5. Send an `/{db}/_all_docs` request with a user’s credentials. A user (**user1/pass**) is already defined in the Sync Gateway configuration file.  
+5. Send an `/{db}/_all_docs` request with a user's credentials. A user (**user1/pass**) is already defined in the Sync Gateway configuration file.  
 ```bash  
 curl -X GET 'http://user1:pass@localhost:4984/todo/_all_docs'  
 ```
@@ -110,7 +110,7 @@ With two Sync Gateway nodes you can now configure the reverse proxy and update t
 ```bash  
 sudo ./configure_nginx.sh VM2 VM3  
 ```
-4. Send an `/{db}/_all_docs` request with a user’s credentials to the NGINX port. A user (**user1/pass**) is already defined in the Sync Gateway configuration file.  
+4. Send an `/{db}/_all_docs` request with a user's credentials to the NGINX port. A user (**user1/pass**) is already defined in the Sync Gateway configuration file.  
 ```bash  
 curl -X GET 'http://user1:pass@localhost:8000/todo/_all_docs'  
 ```
@@ -119,7 +119,7 @@ curl -X GET 'http://user1:pass@localhost:8000/todo/_all_docs'
 
 ### [](#docker-cloud)Docker Cloud
 
-In this lesson you’ll learn how to deploy Couchbase Server and Sync Gateway on Docker Cloud behind a load balancer.
+In this lesson you'll learn how to deploy Couchbase Server and Sync Gateway on Docker Cloud behind a load balancer.
 
 #### [](#launch-node-cluster)Launch node cluster
 
@@ -127,7 +127,7 @@ Launch a node cluster with the following settings:
 
 * Provider: AWS
 * Region: us-east-1 (or whatever region makes sense for you)
-* VPC: Auto (if you don’t choose auto, you will need to customize your security group)
+* VPC: Auto (if you don't choose auto, you will need to customize your security group)
 * Type/Size: m3.medium or greater
 * IAM Roles: None
 
@@ -335,4 +335,4 @@ Congratulations! You have just setup a Couchbase Server + Sync Gateway cluster o
 
 #### [](#conclusion)Conclusion
 
-Well done! You’ve completed this lesson on installing Sync Gateway and Couchbase Server. In the next lesson you’ll learn how to perform an upgrade on Sync Gateway. Feel free to share your feedback, findings or ask any questions on the forums.
+Well done! You've completed this lesson on installing Sync Gateway and Couchbase Server. In the next lesson you'll learn how to perform an upgrade on Sync Gateway. Feel free to share your feedback, findings or ask any questions on the forums.

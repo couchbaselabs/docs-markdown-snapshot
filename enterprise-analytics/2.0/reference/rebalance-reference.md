@@ -4,7 +4,7 @@ description: Enterprise Analytics creates a <em>report</em> for every rebalance
   that is performed. This section explains how to obtain the report, and how to
   read it.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rebalance-reference.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:reference:rebalance-reference.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:2.0@enterprise-analytics:reference:rebalance-reference.adoc[]
 
 ## [](#Obtaining-a-rebalance-report)Obtaining a Rebalance Report
 
-Enterprise Analytics automatically creates a _rebalance report_ for every rebalance that occurs on the cluster. The report’s content consists of a JSON document, which provides statistics for every service that has been involved in the rebalance. On conclusion of the rebalance, the report can be accessed in any of the following ways:
+Enterprise Analytics automatically creates a _rebalance report_ for every rebalance that occurs on the cluster. The report's content consists of a JSON document, which provides statistics for every service that has been involved in the rebalance. On conclusion of the rebalance, the report can be accessed in any of the following ways:
 
 * By means of Couchbase Web Console, as described in [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md).
 * By means of the REST API, as described in [Getting Cluster Tasks](rest-get-cluster-tasks.md).
@@ -28,7 +28,7 @@ For more information about logging, see [Manage Logging](../manage/manage-loggin
 
 Each rebalance report consists of a JSON document whose principal object is `stage_info`. This itself contains an object corresponding to each rebalance _stage_: one stage has occurred for each of the services deployed on the cluster. Therefore, if all six services have been deployed, six stages occur in a successful rebalance; and objects for `analytics`, `eventing`, `search`, `index` `query`, and `data` are provided.
 
-Among the details provided for each service are the times at which rebalance-processes started and ended, the durations of rebalance-processes, and the numbers of documents already handled and still to be handled. When rebalance concludes successfully, a report is duly generated, with all fields corresponding to the successful completion of the rebalance-processes they represent. In cases where rebalance is interrupted (for example, by the user’s left-clicking the **Stop Rebalance** button, in Couchbase Web Console, or due to auto-failover), a generated report will describe a partially unsuccessful rebalance; indicating, in certain fields, an incomplete or unstarted rebalance-process, by means of the value `false`.
+Among the details provided for each service are the times at which rebalance-processes started and ended, the durations of rebalance-processes, and the numbers of documents already handled and still to be handled. When rebalance concludes successfully, a report is duly generated, with all fields corresponding to the successful completion of the rebalance-processes they represent. In cases where rebalance is interrupted (for example, by the user's left-clicking the **Stop Rebalance** button, in Couchbase Web Console, or due to auto-failover), a generated report will describe a partially unsuccessful rebalance; indicating, in certain fields, an incomplete or unstarted rebalance-process, by means of the value `false`.
 
 ## [](#standard-fields)Standard Fields
 

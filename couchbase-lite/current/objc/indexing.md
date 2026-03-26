@@ -2,7 +2,7 @@
 title: Indexes and Indexing
 description: Couchbase mobile database indexing concepts
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/indexing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:objc:indexing.adoc[]
 ---
 
@@ -81,9 +81,9 @@ CBLIndex *index = [CBLIndexBuilder valueIndexWithItems:@[type, name]];
 
 Couchbase Lite 3.2.2 introduced support for Partial Index - Partial Value and Partial Full-Text Indexes. The Partial Index can create a smaller index, potentially improving index and query performance. You can use Partial Index to specify a `WHERE` clause in your index configuration. If a where clause is specified, the database will index a document only when the where clause condition is met.
 
-Couchbase’s query optimizer uses [SQLite’s Partial Index rules about queries using Partial Indexes](https://www.sqlite.org/partialindex.html) to determine whether to use partial index in the query or not.
+Couchbase's query optimizer uses [SQLite's Partial Index rules about queries using Partial Indexes](https://www.sqlite.org/partialindex.html) to determine whether to use partial index in the query or not.
 
-Example 4\. Couchbase and SQLite’s Partial Index Rules
+Example 4\. Couchbase and SQLite's Partial Index Rules
 
 In general, Couchbase Lite follows the two rules, with a modification to the second rule.
 
@@ -129,7 +129,7 @@ Partial Value Index is a form of Partial Index in which a value is used in the `
 
 ### [](#partial-full-text-index)Partial Full-Text Index
 
-A key difference between a Partial Value Index and a Partial Full-Text Index is that a Partial Full-Text Index is not selected by SQLite’s query optimizer. Instead, it’s explicitly selected by the SQL++ `match(indexName, terms)` function, which runs a Full-Text Search query using the indexed properties. This means that a Partial Full-Text Index will always be used when the `match()` function is invoked, regardless of other predicates in the WHERE clause. For details, see [Using Full-Text Search](fts.md).
+A key difference between a Partial Value Index and a Partial Full-Text Index is that a Partial Full-Text Index is not selected by SQLite's query optimizer. Instead, it's explicitly selected by the SQL++ `match(indexName, terms)` function, which runs a Full-Text Search query using the indexed properties. This means that a Partial Full-Text Index will always be used when the `match()` function is invoked, regardless of other predicates in the WHERE clause. For details, see [Using Full-Text Search](fts.md).
 
 ```objc
     CBLFullTextIndexConfiguration* config = [[CBLFullTextIndexConfiguration alloc]
@@ -143,11 +143,11 @@ A key difference between a Partial Value Index and a Partial Full-Text Index is 
 
 ## [](#array-indexing)Array Indexing
 
-Couchbase Lite 3.2.1 introduced functionality to optimize querying arrays. [Array UNNEST](query-n1ql-mobile.md#lbl-unnest) to unpack arrays within a document to allow joins with the parent object, and array indexes for indexing unnested array’s values to allow more efficient queries with `UNNEST`.
+Couchbase Lite 3.2.1 introduced functionality to optimize querying arrays. [Array UNNEST](query-n1ql-mobile.md#lbl-unnest) to unpack arrays within a document to allow joins with the parent object, and array indexes for indexing unnested array's values to allow more efficient queries with `UNNEST`.
 
 ### [](#the-array-index)The Array Index
 
-An array index is a new type of the index for indexing nested array’s properties to allow querying with the `UNNEST` more efficiently.
+An array index is a new type of the index for indexing nested array's properties to allow querying with the `UNNEST` more efficiently.
 
 Below is an example array index configuration:
 
@@ -231,7 +231,7 @@ The query produces the following output:
 
 The output demonstrates retrieval of both primary and secondary contact numbers listed as type `"mobile"`.
 
-Here’s an example of creating an array index on a nested array containing dictionary values:
+Here's an example of creating an array index on a nested array containing dictionary values:
 
 ```objc
 CBLArrayIndexConfiguration* config = [[CBLArrayIndexConfiguration alloc] initWithPath: @"contacts[].phones" expressions: @[@"type"]];

@@ -3,7 +3,7 @@ title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the C++ SDK.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.1@cxx-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:1.1@cxx-sdk:hello-world:start-using-sdk.adoc[]
 
 > Install, connect, try. A quick start guide to get you up and running with Couchbase and the C++ SDK. 
 
-Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let’s look at those data operations, and installing the C++ SDK.
+Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let's look at those data operations, and installing the C++ SDK.
 
 Creating a new database entry with the C++ SDK, using `upsert()`
 
@@ -35,7 +35,7 @@ if (err) {
 }
 ```
 
-`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We’ll explore creating and retrieving data records in more detail [below](#create-read-update-delete), after walking through a quick installation.
+`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We'll explore creating and retrieving data records in more detail [below](#create-read-update-delete), after walking through a quick installation.
 
 ## [](#before-you-start)Before You Start
 
@@ -44,7 +44,7 @@ Couchbase Capella, our Database-as-a-Service, lets you get on with what matters,
 * Couchbase Capella
 * Self-Managed Couchbase Server
 
-If you haven’t already got a cluster set up, the easiest route is to [sign up to Couchbase Capella and deploy a free tier operational cluster](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
+If you haven't already got a cluster set up, the easiest route is to [sign up to Couchbase Capella and deploy a free tier operational cluster](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
 
 Install Couchbase Server locally, or in your private Cloud:
 
@@ -60,7 +60,7 @@ Install Couchbase Server locally, or in your private Cloud:
   * [Azure Marketplace](../../../server/7.6/cloud/couchbase-azure-marketplace.md)
   * [GCP Marketplace](../../../server/7.6/cloud/couchbase-gcp-cloud-launcher.md)
 
-For the example code below to run, you’ll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
+For the example code below to run, you'll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
 
 ### [](#prerequisites)Prerequisites
 
@@ -200,7 +200,7 @@ if (err) {
 ```
 
 > [!CAUTION]
-> When you replace a document, it’s usually good practice to use [optimistic locking](../howtos/kv-operations.md#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
+> When you replace a document, it's usually good practice to use [optimistic locking](../howtos/kv-operations.md#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
 
 ### [](#remove-delete)Remove (Delete)
 
@@ -225,9 +225,9 @@ Documents are organized into collections — collections of documents that belon
 
 For example, imagine you have two types of documents: customers and invoices. You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
 
-Each document belongs to exactly one collection. A document’s ID is unique _within_ the collection.
+Each document belongs to exactly one collection. A document's ID is unique _within_ the collection.
 
-Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection’s name is unique within the scope.
+Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection's name is unique within the scope.
 
 More details can be found on the [Data Model page](../concept-docs/data-model.md).
 

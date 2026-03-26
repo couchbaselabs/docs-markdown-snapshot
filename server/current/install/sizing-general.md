@@ -4,7 +4,7 @@ description: Evaluate the overall performance and capacity goals that you have
   for Couchbase, and use that information to determine the necessary resources
   that you'll need in your deployment.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/sizing-general.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:sizing-general.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:server:install:sizing-general.adoc[]
 
 # Sizing Guidelines
 
-> Evaluate the overall performance and capacity goals that you have for Couchbase, and use that information to determine the necessary resources that you’ll need in your deployment. 
+> Evaluate the overall performance and capacity goals that you have for Couchbase, and use that information to determine the necessary resources that you'll need in your deployment. 
 
 The most common and important questions you need to ask when deploying a new Couchbase Server cluster are how many nodes you need, and what size they need to be.
 
@@ -83,7 +83,7 @@ Requirements for your disk subsystem are:
 
 To better support Couchbase Server, keep in mind the following:
 
-* Disk space continues to grow if fragmentation ratio keeps climbing. To mitigate this, add enough buffer in your disk space to store all of the data. Monitor your cluster’s fragmentation ratio in the Couchbase Server Web Console and trigger compaction processes as needed.
+* Disk space continues to grow if fragmentation ratio keeps climbing. To mitigate this, add enough buffer in your disk space to store all of the data. Monitor your cluster's fragmentation ratio in the Couchbase Server Web Console and trigger compaction processes as needed.
 * Couchbase recommends using Solid State Drives (SSD) when possible. An SSD gives much better performance than a Hard Disk Drive (HDD) when it comes to disk throughput and latency.
 
 Network
@@ -98,7 +98,7 @@ Data Service nodes handle data service operations, such as create/read/update/de
 
 Couchbase recommends reviewing the differences between the available storage engines before attempting to size the Data Service nodes in your cluster. For information, see [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md).
 
-It’s important to keep use-cases and application workloads in mind since different application workloads have different resource requirements. For example, if your working set needs to be fully in-memory, your cluster might need more RAM. If your application requires only 10% of data in-memory, you need disks with enough space to store all of the data, and that are fast enough for your read/write operations.
+It's important to keep use-cases and application workloads in mind since different application workloads have different resource requirements. For example, if your working set needs to be fully in-memory, your cluster might need more RAM. If your application requires only 10% of data in-memory, you need disks with enough space to store all of the data, and that are fast enough for your read/write operations.
 
 ### [](#ram-sizing-for-data-service-nodes)RAM Sizing for Data Service Nodes
 
@@ -106,7 +106,7 @@ You can start sizing the Data Service nodes by answering the following questions
 
 * Is the application primarily using individual document access?
 * Do you plan to use XDCR?
-* What’s your working set size and what are your data operation throughput and latency requirements?
+* What's your working set size and what are your data operation throughput and latency requirements?
 
 Answers to the above questions can help you better understand the capacity requirement of your cluster and provide a better estimation for sizing.
 
@@ -159,18 +159,18 @@ This tells you that the RAM requirement for the whole cluster is 7 GB.
 
 ### [](#disk-sizing-for-data-service-nodes)Disk Sizing for Data Service Nodes
 
-A key concept to remember about Couchbase Server’s data storage is that it’s an append-only system. When an application mutates or deletes a document, the old version of the document is not immediately removed from disk. Instead, Couchbase Server marks them as stale. They remain on disk until a compaction process runs that reclaims the disk space. When sizing disk space for your cluster, you take this behavior into account by applying an append-only multiplier to your data size.
+A key concept to remember about Couchbase Server's data storage is that it's an append-only system. When an application mutates or deletes a document, the old version of the document is not immediately removed from disk. Instead, Couchbase Server marks them as stale. They remain on disk until a compaction process runs that reclaims the disk space. When sizing disk space for your cluster, you take this behavior into account by applying an append-only multiplier to your data size.
 
 When sizing disk space for the Data Service nodes, you first must determine the following information:
 
 * The total number of documents that you plan to store in the cluster. If this value constantly grows, consider the growth rate into the future when sizing.
 * The average size of each document.
-* Whether the documents can be compressed, and if they can, what compression ratio Couchbase Server can achieve. Couchbase Server always compresses documents when storing them on disk. See [Compression](../learn/buckets-memory-and-storage/compression.md) for more information about compression in Couchbase Server. Documents containing JSON data or binaries can be compressed. Binary data that’s already compressed (such as compressed images or videos) cannot be compressed further.  
+* Whether the documents can be compressed, and if they can, what compression ratio Couchbase Server can achieve. Couchbase Server always compresses documents when storing them on disk. See [Compression](../learn/buckets-memory-and-storage/compression.md) for more information about compression in Couchbase Server. Documents containing JSON data or binaries can be compressed. Binary data that's already compressed (such as compressed images or videos) cannot be compressed further.  
 Couchbase Server uses the [Snappy](https://en.wikipedia.org/wiki/Snappy%5F%28compression%29) compression algorithm, which prioritizes speed while still providing reasonable compression. You can estimate the compression ratio Couchbase Server can achieve for your data by compressing a sample set of documents using a snappy-based command line tool such as `snzip`. Otherwise, you can choose to use an estimated compression ratio of 0.7 for JSON documents.
 * The number of replicas for your buckets. See [Intra-Cluster Replication](../learn/clusters-and-availability/intra-cluster-replication.md) for more information about replicas.
 * The number of documents that you plan to delete each day. This number includes both the number of documents directly deleted by your applications and those that expire due to TTL (time to live) settings. See [Expiration](../learn/data/expiration.md) for more information about document expiration.  
-This value is important because in the short term, deletions actually take a bit more disk space rather than less. Because of Couchbase Server’s append-only system, the deleted documents remain on disk until a compaction process runs. Also, Couchbase Server creates a tombstone record for each deleted document. This record consumes a small amount of additional disk space.
-* The metadata purge interval you’ll use. This purge process removes tombstones that records the deletion of documents. The default purge interval is 3 days. For more information about the purge interval, see [Metadata Purge Interval](../manage/manage-settings/configure-compact-settings.md#tombstone-purge-interval).
+This value is important because in the short term, deletions actually take a bit more disk space rather than less. Because of Couchbase Server's append-only system, the deleted documents remain on disk until a compaction process runs. Also, Couchbase Server creates a tombstone record for each deleted document. This record consumes a small amount of additional disk space.
+* The metadata purge interval you'll use. This purge process removes tombstones that records the deletion of documents. The default purge interval is 3 days. For more information about the purge interval, see [Metadata Purge Interval](../manage/manage-settings/configure-compact-settings.md#tombstone-purge-interval).
 * Which storage engine your cluster will use. The storage engine affects the append-only multiplier that you use when sizing disk space. See [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md) for more information
 
 To determine the amount of storage you need in your cluster:
@@ -190,7 +190,7 @@ Where \\(F\_{\\text{append-multiplier}}\\) is the append-only multiplier. This v
   * For Couchstore storage engine, use an append-only multiplier of 3.
   * For Magma storage engine, use an append-only multiplier of 2.2.
 
-For example, suppose you’re planning a cluster with the following characteristics:
+For example, suppose you're planning a cluster with the following characteristics:
 
 * Total number of documents: 1,000,000
 * The average document size: 10,000 bytes.
@@ -367,12 +367,12 @@ You need to know the following variables for the formula:
 | Variable                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | \\(W\\)                 | The average size of your JSON documents, in KB.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| \\({\\text{f\_text}}\\) | A measure of the analyzed text from your JSON documents. You can omit this value if you’re using primarily keyword searches and do not have longer-form text fields that require an [analyzer](../search/customize-index.md#analyzers). You can use the following value ranges based on the kind of analyzed text you have in your index: **Product descriptions, titles and body snippets, support ticket descriptions**: 0.10-0.20 **Long note fields, email bodies, articles, knowledge-base content**: 0.20-0.40 **Log files, message streams, event payloads with large message fields**: 0.40-0.70 If you’re not sure about the size and complexity of the text fields in your documents and how they match to the example ranges, use a value of 0.25 to get a rough estimate. To get the most accurate values for \\({\\text{f\_text}}\\) and your RAM sizing calculations, contact Couchbase Support. |
+| \\({\\text{f\_text}}\\) | A measure of the analyzed text from your JSON documents. You can omit this value if you're using primarily keyword searches and do not have longer-form text fields that require an [analyzer](../search/customize-index.md#analyzers). You can use the following value ranges based on the kind of analyzed text you have in your index: **Product descriptions, titles and body snippets, support ticket descriptions**: 0.10-0.20 **Long note fields, email bodies, articles, knowledge-base content**: 0.20-0.40 **Log files, message streams, event payloads with large message fields**: 0.40-0.70 If you're not sure about the size and complexity of the text fields in your documents and how they match to the example ranges, use a value of 0.25 to get a rough estimate. To get the most accurate values for \\({\\text{f\_text}}\\) and your RAM sizing calculations, contact Couchbase Support. |
 | \\({\\text{m\_text}}\\) | A multiplier for calculating how the bytes in your documents translate into your Search index for analyzed text fields. For a good planning range, try a value between 0.12-0.35, increasing based on the complexity of your analyzed text fields. To get the most accurate values for \\({\\text{m\_text}}\\) and your RAM sizing calculations, contact Couchbase Support.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | \\({\\text{f\_kw}}\\)   | A measure of the keywords from your JSON documents. For a good planning range for a keyword search use case or a filter-heavy workload, use a value of 0.10. To get the most accurate values for \\({\\text{f\_kw}}\\) and your RAM sizing calculations, contact Couchbase Support.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | \\({\\text{m\_kw}}\\)   | A multiplier for calculating how the bytes in your documents translate into your Search index for keywords. For a good planning range, try a value between 0.10-0.18. To get the most accurate values for \\({\\text{m\_kw}}\\) and your RAM sizing calculations, contact Couchbase Support.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| \\(B\\)                 | The number of bytes needed for storing field values for your documents, if [store](../search/child-field-options-reference.md#store) is enabled for a child field mapping. If you’re not storing any field values in your Search index, set this value to 0.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| \\(D\\)                 | The additional overhead from adding [doc values](../search/child-field-options-reference.md#doc-values) to your Search index from a child field mapping. Use a value from 0-1. If you’re not using doc values in your Search index, set this value to 0.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| \\(B\\)                 | The number of bytes needed for storing field values for your documents, if [store](../search/child-field-options-reference.md#store) is enabled for a child field mapping. If you're not storing any field values in your Search index, set this value to 0.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| \\(D\\)                 | The additional overhead from adding [doc values](../search/child-field-options-reference.md#doc-values) to your Search index from a child field mapping. Use a value from 0-1. If you're not using doc values in your Search index, set this value to 0.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 If you want to add numeric and geospatial fields to your sizing estimate, change the formula to the following:
 
@@ -411,7 +411,7 @@ Then, you can calculate the total RAM required on a node for your use case with 
 
 ### [](#search-examples)Search Node Sizing Examples
 
-You’ll get the most accurate results by going through sizing with Couchbase Support, but you can use the following examples for a sizing estimate for a Search workload:
+You'll get the most accurate results by going through sizing with Couchbase Support, but you can use the following examples for a sizing estimate for a Search workload:
 
 * [High QPS and Keyword-Only Searches](#high-qps)
 * [Lower QPS with Higher Storage and a Larger Index](#low-qps)
@@ -479,7 +479,7 @@ Answer the following questions to help size the Query Service nodes on your clus
 
 Different queries have different resource requirements. A simple query might return results within milliseconds while a complex query may require several seconds.
 
-The formula used to calculate the number of queries that’s processed simultaneously is `CPU_cores * 4`. The formula used to calculate the maximum queue-length for queries is `CPU_cores * 256`. If you reach either limit, the system rejects additional queries with a 503 error.
+The formula used to calculate the number of queries that's processed simultaneously is `CPU_cores * 4`. The formula used to calculate the maximum queue-length for queries is `CPU_cores * 256`. If you reach either limit, the system rejects additional queries with a 503 error.
 
 ## [](#sizing-analytics-service-nodes)Sizing Analytics Service Nodes
 
@@ -489,7 +489,7 @@ The Analytics Service is dependent on the Data Service and requires the Data ser
 
 ### [](#data-space)Data space
 
-* Make sure that the data space for your Analytics Service nodes takes into account metadata replicas. The Analytics Service only replicates the metadata and not the actual data. There’s a small overhead for metadata replicas as metadata is generally small.
+* Make sure that the data space for your Analytics Service nodes takes into account metadata replicas. The Analytics Service only replicates the metadata and not the actual data. There's a small overhead for metadata replicas as metadata is generally small.
 * When evaluating a query, the Analytics engine uses temporary disk space. The type of query you want to run determines the required amount of temporary disk space.  
 For example, queries with heavy JOINs, aggregates, windowing, or additional predicates require more temporary disk space. Typically, the temporary disk space can be 2x the data space.
 * The percent of data shadowed, which is dependent on your use case.

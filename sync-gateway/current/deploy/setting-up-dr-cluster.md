@@ -3,7 +3,7 @@ title: Setting up Disaster Recovery
 description: How to set up a Sync Gateway mobile cluster for Disaster Recovery
   (DR) using Couchbase Server's Cross Data Center Replication (XDCR)
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/deploy/pages/setting-up-dr-cluster.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:deploy:setting-up-dr-cluster.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:sync-gateway:deploy:setting-up-dr-cluster.adoc[]
 
 # Setting up Disaster Recovery
 
-> How to set up a Sync Gateway mobile cluster for Disaster Recovery (DR) using Couchbase Server’s Cross Data Center Replication (XDCR)  
+> How to set up a Sync Gateway mobile cluster for Disaster Recovery (DR) using Couchbase Server's Cross Data Center Replication (XDCR)  
 
 ## [](#introduction)Introduction
 
@@ -63,7 +63,7 @@ To set up and maintain a disaster recovery cluster:
 
   1. Temporarily reconfigure the Sync Gateway cluster to connect to the Disaster Recovery cluster with the database in offline mode (`offline: true` in the database configuration) so that indexes are built asynchronously.
   2. After the indexes are created, reconfigure the Sync Gateway cluster to connect back to the Primary cluster.  
-  Creating all indexes beforehand reduces switching costs. If you skip this step, you’ll incur latency when Sync Gateway switches to the Disaster Recovery cluster and Sync Gateway rebuilds its indexes.
+  Creating all indexes beforehand reduces switching costs. If you skip this step, you'll incur latency when Sync Gateway switches to the Disaster Recovery cluster and Sync Gateway rebuilds its indexes.
 3. Start the **unidirectional** XDCR from the Primary cluster to the Disaster Recovery cluster.
 
 ![sgw xdcr dr same regn setup](../_images/sgw-xdcr-dr-same-regn-setup.png) 
@@ -72,7 +72,7 @@ Figure 2\. DR Cluster Setup (Clusters in Same Regions)
 
 Activation
 
-When you’re ready to switch to Disaster Recovery operations:
+When you're ready to switch to Disaster Recovery operations:
 
 1. Stop the replication (XDCR) from the Primary cluster to Disaster Recovery cluster.
 2. Reconfigure the Sync Gateway cluster to connect to the Disaster Recovery cluster instead of the Primary cluster.
@@ -97,7 +97,7 @@ To set up and maintain a disaster recovery cluster - see: [Figure 4](#fig-dr-dif
   1. Configure Sync Gateway to point to the Disaster Recovery cluster.
   2. Start the database in offline mode (`offline: true` in the database configuration) to build indexes asynchronously.
   3. Once indexes are created, shut down Sync Gateway on the Disaster Recovery cluster.  
-  This pre-initialization allows XDCR to maintain the indexes in the background during normal operations, reducing latency during disaster recovery activation. If you skip this step, you’ll incur latency when switching to the Disaster Recovery cluster as Sync Gateway rebuilds its indexes from scratch.
+  This pre-initialization allows XDCR to maintain the indexes in the background during normal operations, reducing latency during disaster recovery activation. If you skip this step, you'll incur latency when switching to the Disaster Recovery cluster as Sync Gateway rebuilds its indexes from scratch.
 2. \[**Critical step**\] Ensure **all** Sync Gateways in the Disaster Recovery cluster remain offline.
 3. Start the **unidirectional** XDCR from the Primary cluster to the Disaster Recovery cluster.
 
@@ -107,7 +107,7 @@ Figure 4\. DR Cluster Setup (Clusters in Different Regions)
 
 Activation
 
-When you’re ready to switch to Disaster Recovery operations — see: [Figure 5](#fig-dr-diff-regn-in-recovery):
+When you're ready to switch to Disaster Recovery operations — see: [Figure 5](#fig-dr-diff-regn-in-recovery):
 
 1. Stop Sync Gateway on the Primary cluster
 2. Stop the replication (XDCR) from the Primary cluster to the Disaster Recovery cluster.

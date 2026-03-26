@@ -3,7 +3,7 @@ title: String Functions
 description: String functions perform operations on a string input value and
   returns a string or other value.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/stringfun.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/stringfun.adoc[]
 ---
 
@@ -385,7 +385,7 @@ A string, or any valid [expression](index.md) which evaluates to a string, that 
 
 char
 
-\[Optional\] A string, or any valid [expression](index.md) which evaluates to a string, that represents the characters to trim from the input string. Each character in this string is trimmed from the input string — you don’t need to delimit the characters to trim. For example, specifying a character value of `"abc"` trims the characters "a", "b" and "c" from the start of the string.
+\[Optional\] A string, or any valid [expression](index.md) which evaluates to a string, that represents the characters to trim from the input string. Each character in this string is trimmed from the input string — you don't need to delimit the characters to trim. For example, specifying a character value of `"abc"` trims the characters "a", "b" and "c" from the start of the string.
 
 If omitted, the default is whitespace: space `" "`, tab `"\t"`, newline `"\n"`, formfeed `"\f"`, or carriage return `"\r"`.
 
@@ -1274,7 +1274,7 @@ A string, or any valid [expression](index.md) which evaluates to a string, that 
 
 char
 
-\[Optional\] A string, or any valid [expression](index.md) which evaluates to a string, that represents the characters to trim from the input string. Each character in this string is trimmed from the input string — you don’t need to delimit the characters to trim. For example, specifying a character value of `"abc"` trims the characters `"a"`, `"b"` and `"c"` from the start of the string.
+\[Optional\] A string, or any valid [expression](index.md) which evaluates to a string, that represents the characters to trim from the input string. Each character in this string is trimmed from the input string — you don't need to delimit the characters to trim. For example, specifying a character value of `"abc"` trims the characters `"a"`, `"b"` and `"c"` from the start of the string.
 
 If omitted, the default is whitespace: space `" "`, tab `"\t"`, newline `"\n"`, formfeed `"\f"`, or carriage return `"\r"`.
 
@@ -1747,7 +1747,7 @@ A string, or any valid [expression](index.md) which evaluates to a string, that 
 
 char
 
-\[Optional\] A string, or any valid [expression](index.md) which evaluates to a string, that represents the characters to trim from the input string. Each character in this string is trimmed from the input string — you don’t need to delimit the characters to trim. For example, specifying a character value of `"abc"` trims the characters `"a"`, `"b"` and `"c"` from the start of the string.
+\[Optional\] A string, or any valid [expression](index.md) which evaluates to a string, that represents the characters to trim from the input string. Each character in this string is trimmed from the input string — you don't need to delimit the characters to trim. For example, specifying a character value of `"abc"` trims the characters `"a"`, `"b"` and `"c"` from the start of the string.
 
 If omitted, the default is whitespace: space `" "`, tab `"\t"`, newline `"\n"`, formfeed `"\f"`, or carriage return `"\r"`.
 

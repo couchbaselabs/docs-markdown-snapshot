@@ -3,7 +3,7 @@ title: Date and Time Functions
 description: Working with Couchbase Lite's data model  -- Querying database data
   using date and time functions
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/java/pages/query-date-time.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:java:query-date-time.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.8@couchbase-lite:java:query-date-time.adoc[]
 
 # Date and Time Functions
 
-> Description — _Working with Couchbase Lite’s data model — Querying database data using date and time functions_  
+> Description — _Working with Couchbase Lite's data model — Querying database data using date and time functions_  
 > Related Content — [Predictive Query](#couchbase-lite:java:query-predictive.adoc) | [Live Query](../../current/java/query-live.md) | [Queries](../../current/java/querybuilder.md)
 
 ## [](#available-functions)Available Functions
@@ -31,7 +31,7 @@ The input to this will be a validly formatted ISO 8601 `date_time` string. The e
 
 `Function.MillisToString(Expression.Property("date_time"))`
 
-The input for this is a numeric value representing milliseconds since the Unix epoch. The end result will be an expression (with string content representing the date and time as an ISO 8601 string in the device’s timezone) that can be further input into the query builder.
+The input for this is a numeric value representing milliseconds since the Unix epoch. The end result will be an expression (with string content representing the date and time as an ISO 8601 string in the device's timezone) that can be further input into the query builder.
 
 `Function.MillisToUTC(Expression.Property("date_time"))`
 

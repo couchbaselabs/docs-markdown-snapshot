@@ -2,7 +2,7 @@
 title: dispatcher
 description: Gets statistics from the reader, writer, auxio, and nonio worker threads.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbstats/cbstats-dispatcher-job.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cli:cbstats/cbstats-dispatcher-job.adoc[]
 ---
 
@@ -29,7 +29,7 @@ The following stats are available for the workers and dispatchers:
 | --------- | -------------------------------------------------------------- |
 | cur\_time | The current timestamp.                                         |
 | runtime   | The amount of time it took for the job to run in milliseconds. |
-| state     | Thread’s current status: running, sleeping, etc.               |
+| state     | Thread's current status: running, sleeping, etc.               |
 | task      | The activity the thread ran during that time.                  |
 | waketime  | The time stamp when the job started.                           |
 

@@ -3,7 +3,7 @@ title: "Auto-Compaction: Per Bucket"
 description: Auto-compaction settings can be established and retrieved for
   individual buckets.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-autocompact-per-bucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rest-autocompact-per-bucket.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:server:rest-api:rest-autocompact-per-bucket.adoc[]
 
 ## [](#description)Description
 
-Auto-compaction settings can be modified for an existing bucket. Once this has occurred, the bucket’s auto-compaction settings will no longer be affected by changes to the global auto-compaction settings.
+Auto-compaction settings can be modified for an existing bucket. Once this has occurred, the bucket's auto-compaction settings will no longer be affected by changes to the global auto-compaction settings.
 
 Auto-compaction settings for a specific bucket can be established and retrieved by the _Full Admin_ and _Cluster Admin_ roles. Auto-compaction settings for a specific bucket can be retrieved by a _Bucket Admin_ role that applies to that bucket; and by the _Read-Only Admin_ role.
 

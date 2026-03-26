@@ -1,7 +1,7 @@
 ---
 title: Create a Kafka Pipeline Link
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/remote-kafka.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sources:remote-kafka.adoc[]
 ---
 
@@ -18,7 +18,7 @@ After you create a remote link, you must create 1 or more collections to receive
 
 Your Enterprise Analytics account must have the `**Enterprise Analytics Access**` role along with specific privileges to be able to create a link and its associated collection. In addition, you must also have the necessary credentials to read data from the Kafka topic or topics you want to stream into Enterprise Analytics.
 
-To connect to a Kafka data streaming service, you provide the broker URL or URLs and the authentication type to use with its credentials. For data that’s in a format other than JSON, you also provide the schema registry to use and its details.
+To connect to a Kafka data streaming service, you provide the broker URL or URLs and the authentication type to use with its credentials. For data that's in a format other than JSON, you also provide the schema registry to use and its details.
 
 Enterprise Analytics supports Confluent Cloud Kafka as Kafka sources:
 

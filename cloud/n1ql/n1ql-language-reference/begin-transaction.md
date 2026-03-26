@@ -2,7 +2,7 @@
 title: BEGIN TRANSACTION
 description: The BEGIN TRANSACTION statement enables you to begin a transaction.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/begin-transaction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/begin-transaction.adoc[]
 ---
 
@@ -52,7 +52,7 @@ The statement returns an object containing the following properties.
 | **nodeUUID** _required_ | The UUID of the Query node performing the transaction. | String |
 | **txid** _required_     | The transaction ID.                                    | String |
 
-If you’re using the cbq shell, you do not need to specify the transaction ID for any statements that form a part of the same transaction. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
+If you're using the cbq shell, you do not need to specify the transaction ID for any statements that form a part of the same transaction. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
 
 ## [](#example)Example
 

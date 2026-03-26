@@ -3,7 +3,7 @@ title: Monitoring Reference
 description: This reference lists the metric graphs displayed in the Capella UI
   Monitoring dashboards.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/monitoring-reference.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:reference:monitoring-reference.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:cloud:reference:monitoring-reference.adoc[]
 
 In the Capella UI, the **Monitoring** dashboards display a set of metric graphs, enabling users to monitor system performance in real time.
 
-For more information about Capella’s monitoring dashboards, see [View Monitoring Dashboards](../clusters/monitoring/metrics-dashboard.md). For more information about App Service’s monitoring dashboards, see [Monitor through the UI](../../app-services/monitoring/monitoring-in-ui.md).
+For more information about Capella's monitoring dashboards, see [View Monitoring Dashboards](../clusters/monitoring/metrics-dashboard.md). For more information about App Service's monitoring dashboards, see [Monitor through the UI](../../app-services/monitoring/monitoring-in-ui.md).
 
 This monitoring reference lists:
 

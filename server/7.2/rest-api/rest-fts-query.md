@@ -1,7 +1,7 @@
 ---
 title: Active Queries REST API
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-fts-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:rest-api:rest-fts-query.adoc[]
 ---
 
@@ -257,14 +257,14 @@ POST /api/query/{queryID}/cancel
 
 #### [](#description-3)Description
 
-Allows the user to cancel an active query that’s running longer than expected. This API is used along side the view active queries API to get the parameters `queryID` and `uuid` which will be used to cancel the query.
+Allows the user to cancel an active query that's running longer than expected. This API is used along side the view active queries API to get the parameters `queryID` and `uuid` which will be used to cancel the query.
 
 #### [](#parameters-3)Parameters
 
 | Type          | Name                   | Description                                                                                                                                                                                                                                  | Schema            |
 | ------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| **Query ID**  | **queryID** _required_ | The active query’s ID                                                                                                                                                                                                                        | integer           |
-| **Node UUID** | **uuid** _optional_    | Passed as a body parameter. uuid represents the active query’s coordinator node’s UUID, where the query will be canceled. This parameter allows the user to cancel a query anywhere in the system by specifying its coordinator node’s UUID. | string (duration) |
+| **Query ID**  | **queryID** _required_ | The active query's ID                                                                                                                                                                                                                        | integer           |
+| **Node UUID** | **uuid** _optional_    | Passed as a body parameter. uuid represents the active query's coordinator node's UUID, where the query will be canceled. This parameter allows the user to cancel a query anywhere in the system by specifying its coordinator node's UUID. | string (duration) |
 
 #### [](#example-http-request-3)Example HTTP request
 

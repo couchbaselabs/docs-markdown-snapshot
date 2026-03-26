@@ -2,7 +2,7 @@
 title: Calling SQL++ from JavaScript
 description: Executing SQL++ statements from Javascript functions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/javascript-udfs/pages/calling-n1ql-from-javascript.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:javascript-udfs:calling-n1ql-from-javascript.adoc[]
 ---
 
@@ -70,7 +70,7 @@ will generate an error because the `AddAirline()` function will attempt to alter
 
 As shown in the [examples above](#calling-statements-inline), embedded SQL++ statements return values which can be used later on in your code.
 
-The values returned from the statement calls are Javascript [iterators](https://www.w3schools.com/js/js%5Fobject%5Fiterables.asp): lists of values or documents returned from the database. In the next example, we’re going to retrieve a list of the hotels stored in the `travel-sample` database:
+The values returned from the statement calls are Javascript [iterators](https://www.w3schools.com/js/js%5Fobject%5Fiterables.asp): lists of values or documents returned from the database. In the next example, we're going to retrieve a list of the hotels stored in the `travel-sample` database:
 
 ```javascript
 function selectHotels() {

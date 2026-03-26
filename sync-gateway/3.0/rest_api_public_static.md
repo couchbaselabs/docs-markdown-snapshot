@@ -3,7 +3,7 @@ title: Public REST API (Static Page)
 description: Description of the Sync Gateway Public REST API, alternative
   representation as a static page
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/rest_api_public_static.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::rest_api_public_static.adoc[]
 ---
 
@@ -56,7 +56,7 @@ To remove an attachment from a document, simply update the `_attachments` dictio
 | HTTP Code | Description                                                                                   | Schema          |
 | --------- | --------------------------------------------------------------------------------------------- | --------------- |
 | **200**   | The message body contains the attachment, in the format specified in the Content-Type header. | string (binary) |
-| **304**   | Not Modified, the attachment wasn’t modified if ETag equals the If-None-Match header          | No Content      |
+| **304**   | Not Modified, the attachment wasn't modified if ETag equals the If-None-Match header          | No Content      |
 | **404**   | Not Found, the specified database, document or attachment was not found.                      | No Content      |
 
 #### [](#%5Fupdateattachment)Create or Update Specific Attachment
@@ -89,7 +89,7 @@ To remove an attachment from a document, simply update the `_attachments` dictio
 | HTTP Code | Description                                                              | Schema                 |
 | --------- | ------------------------------------------------------------------------ | ---------------------- |
 | **200**   | Operation completed successfully                                         | [Success](#%5Fsuccess) |
-| **409**   | Conflict, the document revision wasn’t specified or it’s not the latest. | No Content             |
+| **409**   | Conflict, the document revision wasn't specified or it's not the latest. | No Content             |
 
 ### [](#%5Fauthentication%5Fresource)Authentication
 
@@ -154,7 +154,7 @@ Your application is responsible for generating a Google token; this generally ne
 | HTTP Code | Description                                                                                    | Schema                 |
 | --------- | ---------------------------------------------------------------------------------------------- | ---------------------- |
 | **200**   | Session successfully created. The Set-Cookie response header contains the session credentials. | [Session](#%5Fsession) |
-| **401**   | Returns the Google response’s ErrorDescription                                                 | No Content             |
+| **401**   | Returns the Google response's ErrorDescription                                                 | No Content             |
 | **502**   | Invalid response from Google token verifier                                                    | No Content             |
 
 #### [](#%5Fgetopenid)OpenID Connect Authentication.
@@ -386,7 +386,7 @@ The JSON returned by the `_bulk_docs` operation consists of an array of JSON str
 | HTTP Code | Description                                                                                                                                       | Schema                                                           |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **201**   | Documents have been created or updated. The response object is an array with the status for each document submitted in the original request.      | < [Response 201](#%5Fupdatedocsinbulk%5Fresponse%5F201) \> array |
-| **409**   | The operation failed with a forbidden error. Probably because the document already exists in the database but a revision number wasn’t specified. | [Forbidden](#%5Fforbidden)                                       |
+| **409**   | The operation failed with a forbidden error. Probably because the document already exists in the database but a revision number wasn't specified. | [Forbidden](#%5Fforbidden)                                       |
 
 **Response 201**
 
@@ -403,7 +403,7 @@ POST /{db}/_bulk_get
 
 This request returns any number of documents, as individual bodies in a MIME multipart response.
 
-Each enclosed body contains one requested document. The bodies appear in the same order as in the request, but can also be identified by their X-Doc-ID and X-Rev-ID headers. A body for a document with no attachments will have content type application/json and contain the document itself. A body for a document that has attachments will be written as a nested multipart/related body. Its first part will be the document’s JSON, and the subsequent parts will be the attachments (each identified by a Content-Disposition header giving its attachment name.)
+Each enclosed body contains one requested document. The bodies appear in the same order as in the request, but can also be identified by their X-Doc-ID and X-Rev-ID headers. A body for a document with no attachments will have content type application/json and contain the document itself. A body for a document that has attachments will be written as a nested multipart/related body. Its first part will be the document's JSON, and the subsequent parts will be the attachments (each identified by a Content-Disposition header giving its attachment name.)
 
 ##### [](#parameters-13)Parameters
 
@@ -412,7 +412,7 @@ Each enclosed body contains one requested document. The bodies appear in the sam
 | **Path**  | **db** _required_          | Database name                                                                                                                                                                                                                                                                                          | string                                         |         |
 | **Query** | **attachments** _optional_ | Default is false. Include attachment bodies in response.                                                                                                                                                                                                                                               | boolean                                        | "false" |
 | **Query** | **revs** _optional_        | Default is false. Indicates whether to include a \_revisions property for each document in the response, which contains a revision history of the document. The length of the returned revision tree can be specified with the revs\_limit querystring parameter.                                      | boolean                                        | "false" |
-| **Query** | **revs\_limit** _optional_ | The number of revisions to include in the response from the document history. This parameter is only honoured if the revs=true querystring parameter is also sent in the request. If revs=true is specified and revs\_limit isn’t, the full revision history is returned.                              | integer                                        |         |
+| **Query** | **revs\_limit** _optional_ | The number of revisions to include in the response from the document history. This parameter is only honoured if the revs=true querystring parameter is also sent in the request. If revs=true is specified and revs\_limit isn't, the full revision history is returned.                              | integer                                        |         |
 | **Body**  | **BulkGetBody** _optional_ | List of documents being requested. Each array element is an object that must contain an id property giving the document ID. It may contain a rev property if a specific revision is desired. It may contain an atts\_since property (as in a single-document GET) to limit which attachments are sent. | [BulkGetBody](#%5Fgetdocsinbulk%5Fbulkgetbody) |         |
 
 **BulkGetBody**
@@ -432,7 +432,7 @@ Each enclosed body contains one requested document. The bodies appear in the sam
 | HTTP Code | Description                                                                                                                                                                                | Schema                                             |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------- |
 | **200**   | Request completed successfully                                                                                                                                                             | No Content                                         |
-| **301**   | Request failed with a forbidden error. This usually happens because the user requesting that document doesn’t have access to it. Access to documents is granted to users through channels. | [Response 301](#%5Fgetdocsinbulk%5Fresponse%5F301) |
+| **301**   | Request failed with a forbidden error. This usually happens because the user requesting that document doesn't have access to it. Access to documents is granted to users through channels. | [Response 301](#%5Fgetdocsinbulk%5Fresponse%5F301) |
 
 **Response 301**
 
@@ -476,7 +476,7 @@ Same as the GET /\_changes request except the parameters are in the JSON body.
 
 | Name                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Schema           |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| **active\_only** _optional_  | Default is false. When true, the changes response doesn’t include either deleted documents, or notification for documents that the user no longer has access to. **Default** : false                                                                                                                                                                                                                                                                                                                                                                                 | boolean          |
+| **active\_only** _optional_  | Default is false. When true, the changes response doesn't include either deleted documents, or notification for documents that the user no longer has access to. **Default** : false                                                                                                                                                                                                                                                                                                                                                                                 | boolean          |
 | **channels** _optional_      | A comma-separated list of channel names. The response will be filtered to only documents in these channels. (This parameter must be used with the sync\_gateway/bychannel filter parameter; see below.)                                                                                                                                                                                                                                                                                                                                                              | string           |
 | **doc\_ids** _optional_      | A list of document IDs as a valid JSON array. The response will be filtered to only documents with these IDs. (This parameter must be used with the \_doc\_ids filter parameter; see below.)                                                                                                                                                                                                                                                                                                                                                                         | < string > array |
 | **feed** _optional_          | Default is 'normal'. Specifies type of change feed. Valid values are normal, continuous, longpoll, websocket. **Default** : "normal"                                                                                                                                                                                                                                                                                                                                                                                                                                 | string           |
@@ -502,14 +502,14 @@ GET /{db}/_changes
 
 This request retrieves a sorted list of changes made to documents in the database, in time order of application.
 
-Each document appears at most once, ordered by its most recent change, regardless of how many times it’s been changed. This request can be used to listen for update and modifications to the database for post processing or synchronization. A continuously connected changes feed is a reasonable approach for generating a real-time log for most applications.
+Each document appears at most once, ordered by its most recent change, regardless of how many times it's been changed. This request can be used to listen for update and modifications to the database for post processing or synchronization. A continuously connected changes feed is a reasonable approach for generating a real-time log for most applications.
 
 ##### [](#parameters-15)Parameters
 
 | Type      | Name                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Schema           | Default      |
 | --------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------ |
 | **Path**  | **db** _required_            | Database name                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | string           |              |
-| **Query** | **active\_only** _optional_  | Default is false. When true, the changes response doesn’t include either deleted documents, or notification for documents that the user no longer has access to.                                                                                                                                                                                                                                                                                                                                                                                                      | boolean          | "false"      |
+| **Query** | **active\_only** _optional_  | Default is false. When true, the changes response doesn't include either deleted documents, or notification for documents that the user no longer has access to.                                                                                                                                                                                                                                                                                                                                                                                                      | boolean          | "false"      |
 | **Query** | **channels** _optional_      | A comma-separated list of channel names. The response will be filtered to only documents in these channels. (This parameter must be used with the sync\_gateway/bychannel filter parameter; see below.)                                                                                                                                                                                                                                                                                                                                                               | string           |              |
 | **Query** | **doc\_ids** _optional_      | A list of document IDs as a valid JSON array. The response will be filtered to only documents with these IDs. This parameter must be used with the filter=\_doc\_ids and feed=normal parameters.                                                                                                                                                                                                                                                                                                                                                                      | < string > array |              |
 | **Query** | **feed** _optional_          | Default is 'normal'. Specifies type of change feed. Valid values are normal, continuous, longpoll, websocket.                                                                                                                                                                                                                                                                                                                                                                                                                                                         | string           | "normal"     |
@@ -599,8 +599,8 @@ This request retrieves a document from a database.
 | **Path**  | **doc** _required_         | Document ID                                                                                                                                                                                                                                                                                                                                                                                                                              | string           |         |
 | **Query** | **attachments** _optional_ | Default is false. Include attachment bodies in response.                                                                                                                                                                                                                                                                                                                                                                                 | boolean          | "false" |
 | **Query** | **atts\_since** _optional_ | Include attachments only since specified revisions. Does not include attachments for specified revisions.                                                                                                                                                                                                                                                                                                                                | < string > array |         |
-| **Query** | **open\_revs** _optional_  | Option to fetch specified revisions of the document. The value can be all to fetch all leaf revisions or an array of revision numbers (i.e. open\_revs=\["rev1", "rev2"\]). Only [leaf revision](glossary.html) bodies that haven’t been pruned are guaranteed to be returned. If this option is specified the response will be in multipart format. Use the Accept: application/json request header to get the result as a JSON object. | < string > array |         |
-| **Query** | **rev** _optional_         | Revision identifier of the revision to get. By default, Sync Gateway returns the current revision. This parameter is generally only needed for conflict resolution. For example where the app might need to retrieve a conflicting leaf revision that isn’t the current revision.                                                                                                                                                        | string           |         |
+| **Query** | **open\_revs** _optional_  | Option to fetch specified revisions of the document. The value can be all to fetch all leaf revisions or an array of revision numbers (i.e. open\_revs=\["rev1", "rev2"\]). Only [leaf revision](glossary.html) bodies that haven't been pruned are guaranteed to be returned. If this option is specified the response will be in multipart format. Use the Accept: application/json request header to get the result as a JSON object. | < string > array |         |
+| **Query** | **rev** _optional_         | Revision identifier of the revision to get. By default, Sync Gateway returns the current revision. This parameter is generally only needed for conflict resolution. For example where the app might need to retrieve a conflicting leaf revision that isn't the current revision.                                                                                                                                                        | string           |         |
 | **Query** | **revs** _optional_        | Default is false. Indicates whether to include a \_revisions property for each document in the response, which contains a revision history of the document. The length of the returned revision tree can be specified with the revs\_limit querystring parameter.                                                                                                                                                                        | boolean          | "false" |
 | **Query** | **show\_exp** _optional_   | Whether to show the \_exp property in the response.                                                                                                                                                                                                                                                                                                                                                                                      | boolean          | "false" |
 
@@ -622,7 +622,7 @@ If you want to create a new document and let the software create an identifier, 
 
 If the document specified by doc does not exist, a new document is created and assigned the identifier specified in doc. If the document already exists, the document is updated with the JSON document in the message body and given a new revision. The maximum size allowed for a document is 20MB.
 
-Since Sync Gateway 1.3, an expiry property (`_exp`) can also be specified to purge the document after a given time. If **convergence** is enabled (introduced in Sync Gateway 1.5), the behavior of the expiry feature changes in the following way: when the expiry value is reached, instead of getting purged, the **active** revision of the document is tombstoned. If there is another non-tombstoned revision for this document (i.e a conflict) it will become the active revision. The tombstoned revision will be purged when the server’s metadata purge interval is reached.
+Since Sync Gateway 1.3, an expiry property (`_exp`) can also be specified to purge the document after a given time. If **convergence** is enabled (introduced in Sync Gateway 1.5), the behavior of the expiry feature changes in the following way: when the expiry value is reached, instead of getting purged, the **active** revision of the document is tombstoned. If there is another non-tombstoned revision for this document (i.e a conflict) it will become the active revision. The tombstoned revision will be purged when the server's metadata purge interval is reached.
 
 ##### [](#parameters-19)Parameters
 
@@ -676,9 +676,9 @@ GET /{db}/_local/{local_doc}
 
 This request retrieves a local document.
 
-Local document IDs begin with \_local/. Local documents are not replicated or indexed, don’t support attachments, and don’t save revision histories.
+Local document IDs begin with \_local/. Local documents are not replicated or indexed, don't support attachments, and don't save revision histories.
 
-In practice local documents mostly used by Couchbase Lite’s replicator, as a place to store replication checkpoint data.
+In practice local documents mostly used by Couchbase Lite's replicator, as a place to store replication checkpoint data.
 
 ##### [](#parameters-21)Parameters
 
@@ -701,9 +701,9 @@ PUT /{db}/_local/{local_doc}
 
 This request creates or updates a local document.
 
-Local document IDs begin with \_local/. Local documents are not replicated or indexed, don’t support attachments, and don’t save revision histories.
+Local document IDs begin with \_local/. Local documents are not replicated or indexed, don't support attachments, and don't save revision histories.
 
-In practice they are almost only used by the client’s replicator, as a place to store replication checkpoint data.
+In practice they are almost only used by the client's replicator, as a place to store replication checkpoint data.
 
 ##### [](#parameters-22)Parameters
 
@@ -726,7 +726,7 @@ DELETE /{db}/_local/{local_doc}
 
 This request deletes a local document.
 
-Local document IDs begin with \_local/. Local documents are not replicated or indexed, don’t support attachments, and don’t save revision histories. In practice they are almost only used by Couchbase Lite’s replicator, as a place to store replication checkpoint data.
+Local document IDs begin with \_local/. Local documents are not replicated or indexed, don't support attachments, and don't save revision histories. In practice they are almost only used by Couchbase Lite's replicator, as a place to store replication checkpoint data.
 
 ##### [](#parameters-23)Parameters
 
@@ -773,7 +773,7 @@ POST /{db}/_session
 
 If the credentials provided in the request body are valid, the session is created with an idle session timeout of 24 hours.
 
-An idle session timeout in the context of Sync Gateway is defined as the following: if 10% or more of the current expiration time has elapsed when a subsequent request with that session id is processed, the session’s expiry time is automatically updated to 24 hours from that time.
+An idle session timeout in the context of Sync Gateway is defined as the following: if 10% or more of the current expiration time has elapsed when a subsequent request with that session id is processed, the session's expiry time is automatically updated to 24 hours from that time.
 
 ##### [](#parameters-24)Parameters
 
@@ -870,8 +870,8 @@ This request deletes the session that currently authenticates the requests.
 | **revisionCache\_hits** _optional_         | Number of times a revision-cache lookup succeeded                                                     | object |
 | **revisionCache\_misses** _optional_       | Number of times a revision-cache lookup failed                                                        | object |
 | **revs\_added** _optional_                 | Number of revisions added to the database (including deletions)                                       | object |
-| **sequence\_gets** _optional_              | Number of times the database’s lastSequence was read                                                  | object |
-| **sequence\_reserves** _optional_          | Number of times the database’s lastSequence was incremented                                           | object |
+| **sequence\_gets** _optional_              | Number of times the database's lastSequence was read                                                  | object |
+| **sequence\_reserves** _optional_          | Number of times the database's lastSequence was incremented                                           | object |
 
 ### [](#%5Fforbidden)Forbidden
 
@@ -891,7 +891,7 @@ This request deletes the session that currently authenticates the requests.
 | **Auth** _optional_    | Authentication                                                                                                                                                                                                                                                | boolean |
 | **Bucket** _optional_  | Sync Gateway interactions with the bucket (verbose logging).                                                                                                                                                                                                  | boolean |
 | **CRUD** _optional_    | Updates made by Sync Gateway to documents (CRUD+ for verbose logging)                                                                                                                                                                                         | boolean |
-| **Cache** _optional_   | Interactions with Sync Gateway’s in-memory channel cache (Cache+ for verbose logging)                                                                                                                                                                         | boolean |
+| **Cache** _optional_   | Interactions with Sync Gateway's in-memory channel cache (Cache+ for verbose logging)                                                                                                                                                                         | boolean |
 | **Changes** _optional_ | Processing of \_changes requests (Changes+ for verbose logging)                                                                                                                                                                                               | boolean |
 | **DCP** _optional_     | DCP-feed processing (verbose logging)                                                                                                                                                                                                                         | boolean |
 | **Events** _optional_  | Event processing (webhooks) (Events+ for verbose logging)                                                                                                                                                                                                     | boolean |
@@ -931,7 +931,7 @@ Document ID
 
 | Name                   | Description                                                             | Schema                                             |
 | ---------------------- | ----------------------------------------------------------------------- | -------------------------------------------------- |
-| **changes** _optional_ | List of the document’s leafs. Each leaf object contains one field, rev. | < [changes](#%5Fchangesfeedrow%5Fchanges) \> array |
+| **changes** _optional_ | List of the document's leafs. Each leaf object contains one field, rev. | < [changes](#%5Fchangesfeedrow%5Fchanges) \> array |
 | **deleted** _optional_ | Indicate whether the row is deleted **Default** : false                 | boolean                                            |
 | **doc** _optional_     |                                                                         | object                                             |
 | **id** _optional_      | Document identifier                                                     | string                                             |
@@ -954,7 +954,7 @@ Document ID
 
 | Name                          | Description                      | Schema                                        |
 | ----------------------------- | -------------------------------- | --------------------------------------------- |
-| **my\_view\_name** _optional_ | The view’s map/reduce functions. | [my\_view\_name](#%5Fview%5Fmy%5Fview%5Fname) |
+| **my\_view\_name** _optional_ | The view's map/reduce functions. | [my\_view\_name](#%5Fview%5Fmy%5Fview%5Fname) |
 
 **my\_view\_name**
 
@@ -1073,7 +1073,7 @@ Context for this user.
 | Name                    | Description                                                                                                                                                                           | Schema |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
 | **channels** _optional_ | Key-value pairs with a channel name as the key and the sequence number that granted the user access to the channel as value. ! is the public channel and every user has access to it. | object |
-| **name** _optional_     | The user’s name.                                                                                                                                                                      | string |
+| **name** _optional_     | The user's name.                                                                                                                                                                      | string |
 
 ---
 

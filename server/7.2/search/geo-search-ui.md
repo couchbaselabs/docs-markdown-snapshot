@@ -3,7 +3,7 @@ title: Run a Geospatial Search Query with the Web Console
 description: Search for geospatial data in your Couchbase database with a
   compatible Search index and the Couchbase Server Web Console.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/geo-search-ui.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:geo-search-ui.adoc[]
 ---
 
@@ -16,10 +16,10 @@ link: xref:7.2@server:search:geo-search-ui.adoc[]
 
 ## [](#prerequisites)Prerequisites
 
-* You’ve deployed the Search Service on a node in your database.
+* You've deployed the Search Service on a node in your database.
 * You have a bucket with scopes and collections in your database.
 * Your user account has the **Search Admin** role for the bucket where you want to create the index.
-* You’ve logged in to the Couchbase Server Web Console.
+* You've logged in to the Couchbase Server Web Console.
 
 ## [](#procedure)Procedure
 
@@ -85,4 +85,4 @@ For example, the following query searches a geospatial field, `geo`, for any loc
 
 You can [customize your Search index](customize-index.md) to improve search results and performance.
 
-If you want to add autocomplete to your database’s search, see [Use Autocomplete with the Search Service](search-query-auto-complete.md).
+If you want to add autocomplete to your database's search, see [Use Autocomplete with the Search Service](search-query-auto-complete.md).

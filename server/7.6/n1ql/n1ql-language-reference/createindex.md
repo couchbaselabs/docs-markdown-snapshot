@@ -4,7 +4,7 @@ description: The CREATE INDEX statement allows you to create a secondary index.
   Secondary indexes contain a filtered or a full set of keys in a given
   keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/createindex.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/createindex.adoc[]
 ---
 
@@ -83,8 +83,8 @@ If the keyspace is a named collection, or the default collection in the default 
 | namespace  | (Optional) An [identifier](identifiers.md) that refers to the [namespace](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. Currently, only the default namespace is available. If the namespace name is omitted, the default namespace in the current session is used. |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | bucket     | (Required) An [identifier](identifiers.md) that refers to the [bucket name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace.                                                                                                                                           |
-| scope      | (Optional) An [identifier](identifiers.md) that refers to the [scope name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. If omitted, the bucket’s default scope is used.                                                                                            |
-| collection | (Optional) An [identifier](identifiers.md) that refers to the [collection name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. If omitted, the default collection in the bucket’s default scope is used.                                                             |
+| scope      | (Optional) An [identifier](identifiers.md) that refers to the [scope name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. If omitted, the bucket's default scope is used.                                                                                            |
+| collection | (Optional) An [identifier](identifiers.md) that refers to the [collection name](../n1ql-intro/queriesandresults.md#logical-hierarchy) of the keyspace. If omitted, the default collection in the bucket's default scope is used.                                                             |
 
 For example, `` default:`travel-sample` `` indicates the default collection in the default scope in the `travel-sample` bucket in the `default` namespace.
 
@@ -218,7 +218,7 @@ Partitioned indexes support further options. See [Index Partitioning](index-part
 ## [](#usage)Usage
 
 > [!NOTE]
-> It’s not recommended to create (or drop) secondary indexes when any node with a secondary index role is down, as this may result in duplicate index names.
+> It's not recommended to create (or drop) secondary indexes when any node with a secondary index role is down, as this may result in duplicate index names.
 
 ### [](#monitoring-indexes)Monitoring Indexes
 

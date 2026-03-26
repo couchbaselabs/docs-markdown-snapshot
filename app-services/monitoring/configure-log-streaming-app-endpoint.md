@@ -3,7 +3,7 @@ title: Configure Log Streaming for an App Endpoint
 description: Enhance your App Services log streaming with a granular set of Log
   Filters and Levels for each App Endpoint.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/configure-log-streaming-app-endpoint.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::monitoring/configure-log-streaming-app-endpoint.adoc[]
 ---
 
@@ -31,7 +31,7 @@ Log levels are inclusive, meaning e.g. the default Info level includes the infor
 
 Info (_default_)
 
-Logs messages about normal operations. Includes details on application level errors (such as HTTP 404, HTTP 403) that may merit user intervention, depending on the user’s application design.
+Logs messages about normal operations. Includes details on application level errors (such as HTTP 404, HTTP 403) that may merit user intervention, depending on the user's application design.
 
 Warning
 

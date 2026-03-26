@@ -1,7 +1,7 @@
 ---
 title: Capella Analytics Release Notes
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:release-notes:release-notes.adoc[]
 ---
 
@@ -58,7 +58,7 @@ For more information, see [Google Cloud Platform (GCP)](../reference/gcp.md).
 Capella Analytics now supports data ingestion from DynamoDB using the MOLO17 Gluesync connector.  
 For more information, see [Create a Collection for a Kafka Data Link](../sources/kafka-collection.md#create-a-collection-for-a-kafka-data-link).
 * Ordered Columns  
-Capella Analytics now supports ordered columns, ensuring that it preserves the column order specified in the user’s SELECT statement. This aligns with standard SQL behavior, providing consistency and predictability in query results.  
+Capella Analytics now supports ordered columns, ensuring that it preserves the column order specified in the user's SELECT statement. This aligns with standard SQL behavior, providing consistency and predictability in query results.  
 For more information, see [Select Clauses](../sqlpp/3%5Fquery.md#Select%5Fclauses).
 * Server RBAC  
 We are excited to introduce fine-grained access control in Capella Analytics using a robust roles and privileges model that enables granular, programmatic, and application-level data access on clusters. Access Control Accounts now secure automated and service-to-service interactions without being tied to individual users, while UI tools like the Workbench continue to use separate controls. This update reinforces least privilege principles, improves compliance, and streamlines auditing for enhanced security.  
@@ -82,7 +82,7 @@ For more information, see [Explore Results with iQ Insights](../query/iq-insight
 
 ## [](#october-2024-changelog)October 2024 Changelog
 
-* We’re pleased to announce the launch of Capella Analytics SDKs, offering programmatic access to the Capella Analytics service. Capella Analytics SDKs are initially available for the Java, Node.js, and Python platforms, and are tailored to the APIs offered by the Capella Analytics service.
+* We're pleased to announce the launch of Capella Analytics SDKs, offering programmatic access to the Capella Analytics service. Capella Analytics SDKs are initially available for the Java, Node.js, and Python platforms, and are tailored to the APIs offered by the Capella Analytics service.
 
 | Capella Analytics SDK         | Documentation                                                     | Quickstart Example                                                                          | SDK API Reference                                                                                         |
 | ----------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -92,7 +92,7 @@ For more information, see [Explore Results with iQ Insights](../query/iq-insight
 
 ## [](#august-2024-changelog)August 2024 Changelog
 
-* We’re pleased to announce the launch of Capella Analytics, a new offering designed to enable developers and data platform teams to build responsive analytic applications that can adapt to rapidly changing data needs. Capella Analytics is a NoSQL first analytics database as a service (Online Analytical Processing or OLAP).  
+* We're pleased to announce the launch of Capella Analytics, a new offering designed to enable developers and data platform teams to build responsive analytic applications that can adapt to rapidly changing data needs. Capella Analytics is a NoSQL first analytics database as a service (Online Analytical Processing or OLAP).  
 Capella Analytics offers the following features:
 
   * A column-oriented, Log-Structured Merge (LSM) plus B-tree structured storage engine built to expand the analytic performance and capacity of Capella. Capella Analytics has a shared-nothing compute and shared object storage architecture. Customers can scale compute resources independently of storage.

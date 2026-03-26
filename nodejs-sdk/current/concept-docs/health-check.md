@@ -3,7 +3,7 @@ title: Health Check
 description: Health Check provides ping() and diagnostics() tests for the health
   of the network and the cluster.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/concept-docs/pages/health-check.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-sdk:concept-docs:health-check.adoc[]
 ---
 
@@ -88,7 +88,7 @@ Note that `ping` is available both on the `Cluster` and the `Bucket` level. The 
 const result = await cluster.diagnostics()
 ```
 
-Typically, you’d pass the result through `JSON.stringify(diagResult.toJSON())` and get something like:
+Typically, you'd pass the result through `JSON.stringify(diagResult.toJSON())` and get something like:
 
 ```json
 {

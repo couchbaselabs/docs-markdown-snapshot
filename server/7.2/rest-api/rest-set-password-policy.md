@@ -5,7 +5,7 @@ description: The REST API allows the  <em>password policy</em> for a cluster to
   <code>GET</code> methods respectively, using the
   <code>/settings/passwordPolicy</code> URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-set-password-policy.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:rest-api:rest-set-password-policy.adoc[]
 ---
 
@@ -23,9 +23,9 @@ POST /settings/passwordPolicy
 
 ## [](#rest-password-policy-description)Description
 
-A cluster’s _password policy_ specifies a set of character-related requirements that must be met by all passwords whose definition occurs subsequent to the establishing of the policy. Previously defined passwords continue to be valid, even if they do not meet the requirements specified in the most recent policy.
+A cluster's _password policy_ specifies a set of character-related requirements that must be met by all passwords whose definition occurs subsequent to the establishing of the policy. Previously defined passwords continue to be valid, even if they do not meet the requirements specified in the most recent policy.
 
-To establish the cluster’s password policy, the user must have been assigned the Full Admin, the Local User Security Admin, or the External User Security Admin role.
+To establish the cluster's password policy, the user must have been assigned the Full Admin, the Local User Security Admin, or the External User Security Admin role.
 
 ## [](#curl-syntax)Curl Syntax
 
@@ -64,7 +64,7 @@ http://10.143.201.101:8091/settings/passwordPolicy \
 -d enforceDigits=true \
 -d enforceSpecialChars=true
 
-Following the call’s success, all newly defined passwords thus require a minimum length of eight characters; including one uppercase character, one lowercase character, one digit, and one special character.
+Following the call's success, all newly defined passwords thus require a minimum length of eight characters; including one uppercase character, one lowercase character, one digit, and one special character.
 
 The established settings can be retrieved as follows. Note that here, the call is piped to the [jq](https://stedolan.github.io/jq/) command, to enhance readability.
 

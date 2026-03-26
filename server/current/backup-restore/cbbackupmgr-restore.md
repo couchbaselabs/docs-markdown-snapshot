@@ -2,7 +2,7 @@
 title: cbbackupmgr restore
 description: Restores data from the backup archive to a Couchbase cluster
 editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-restore.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:backup-restore:cbbackupmgr-restore.adoc[]
 ---
 
@@ -116,11 +116,11 @@ The final backup to restore. See [START AND END](#START%5FAND%5FEND) for informa
 
 \--include-data <collection\_string\_list>
 
-Overrides the repository configuration to restore only the data specified in the <collection\_string\_list>. This flag takes a comma separated list of collection strings and can’t be specified at the same time as `--exclude-data`. Note that including data at the scope/collection level is an Enterprise Edition feature.
+Overrides the repository configuration to restore only the data specified in the <collection\_string\_list>. This flag takes a comma separated list of collection strings and can't be specified at the same time as `--exclude-data`. Note that including data at the scope/collection level is an Enterprise Edition feature.
 
 \--exclude-data <collection\_string\_list>
 
-Overrides the repository configuration to skip restoring the data specified in the <collection\_string\_list>. This flag takes a comma separated list of collection strings and can’t be specified at the same time as `--include-data`. Note that excluding data at the scope/collection level is an Enterprise Edition feature.
+Overrides the repository configuration to skip restoring the data specified in the <collection\_string\_list>. This flag takes a comma separated list of collection strings and can't be specified at the same time as `--include-data`. Note that excluding data at the scope/collection level is an Enterprise Edition feature.
 
 \--filter-keys
 
@@ -206,7 +206,7 @@ Skips restoring services that are not supported with Capella including: analytic
 
 \--force-updates
 
-Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer. By default updates are not forced and all updates use Couchbase’s conflict resolution mechanism to ensure that if newer data exists on the cluster that is not overwritten by older restore data.
+Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer. By default updates are not forced and all updates use Couchbase's conflict resolution mechanism to ensure that if newer data exists on the cluster that is not overwritten by older restore data.
 
 \--map-data <collection\_string\_mappings>
 
@@ -220,7 +220,7 @@ The argument expects a comma separated list of collection string mappings, e.g. 
 
 \--replace-ttl <type>
 
-Sets a new expiration (time-to-live) value for the specified keys. This parameter can either be set to "none", "all" or "expired" and should be used along with the --replace-ttl-with flag. If "none" is supplied then the TTL values are not changed. If "all" is specified then the TTL values for all keys are replaced with the value of the --replace-ttl-with flag. If "expired" is set then only keys which have already expired will have the TTL’s replaced. For more information about the behavior of `--replace-ttl`see the [REPLACE TTL](#REPLACE%5FTTL).
+Sets a new expiration (time-to-live) value for the specified keys. This parameter can either be set to "none", "all" or "expired" and should be used along with the --replace-ttl-with flag. If "none" is supplied then the TTL values are not changed. If "all" is specified then the TTL values for all keys are replaced with the value of the --replace-ttl-with flag. If "expired" is set then only keys which have already expired will have the TTL's replaced. For more information about the behavior of `--replace-ttl`see the [REPLACE TTL](#REPLACE%5FTTL).
 
 \--replace-ttl-with <timestamp>
 
@@ -260,11 +260,11 @@ Automatically resolve conflict by remapping all scopes/collections by name. Shou
 
 \--preserve-collection-settings
 
-Do not overwrite existing collection settings on the target cluster. By default, if a collection exists on both the backup and the target cluster but with different settings, the settings from the backup will overwrite the cluster’s settings. When this flag is specified, existing collection settings on the target cluster will be preserved.
+Do not overwrite existing collection settings on the target cluster. By default, if a collection exists on both the backup and the target cluster but with different settings, the settings from the backup will overwrite the cluster's settings. When this flag is specified, existing collection settings on the target cluster will be preserved.
 
 \--continue-on-cs-failure
 
-It’s possible that during a restore, a checksum validation will fail; in this case the restore will fail fast. Supplying this flag will mean that the restore will attempt to continue upon receiving a checksum failure. See [CHECKSUM FAILURE](#CHECKSUM%5FFAILURE)for more information.
+It's possible that during a restore, a checksum validation will fail; in this case the restore will fail fast. Supplying this flag will mean that the restore will attempt to continue upon receiving a checksum failure. See [CHECKSUM FAILURE](#CHECKSUM%5FFAILURE)for more information.
 
 \--restore-partial-backups
 
@@ -272,7 +272,7 @@ Allow a restore to continue when the final backup in the restore range is incomp
 
 \--purge
 
-If the last restore failed before it finished, then remove it’s progress (which is persisted to disk) then restart from zero. Note that only the restore progress is purge, no backup data will be removed.
+If the last restore failed before it finished, then remove it's progress (which is persisted to disk) then restart from zero. Note that only the restore progress is purge, no backup data will be removed.
 
 \--resume
 
@@ -294,7 +294,7 @@ Multiple cloud providers are supported, see the list below for more information.
 
 \--obj-staging-dir <staging\_dir>
 
-When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it’s not treated as a persistent store) and is only used during the backup.
+When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it's not treated as a persistent store) and is only used during the backup.
 
 > [!NOTE]
 > Do not use `/tmp` as the `obj-staging-dir`.  
@@ -324,7 +324,7 @@ The host/address of your object store.
 
 \--obj-read-only
 
-Enable read only mode. When interacting with a cloud archive modifications will be made e.g. a lockfile will be created, log rotation will take place and the modified logs will be uploaded upon completion of the subcommand. This flag disables these features should you wish to interact with an archive in a container where you lack write permissions. This flag should be used with caution and you should be aware that your logs will not be uploaded to the cloud. This means that it’s important that if you encounter an error you don’t remove you staging directory (since logs will still be created in there and collected by the `collect-logs` subcommand).
+Enable read only mode. When interacting with a cloud archive modifications will be made e.g. a lockfile will be created, log rotation will take place and the modified logs will be uploaded upon completion of the subcommand. This flag disables these features should you wish to interact with an archive in a container where you lack write permissions. This flag should be used with caution and you should be aware that your logs will not be uploaded to the cloud. This means that it's important that if you encounter an error you don't remove you staging directory (since logs will still be created in there and collected by the `collect-logs` subcommand).
 
 \--obj-no-ssl-verify
 
@@ -564,7 +564,7 @@ Backing up/restoring cluster level data with the `data_backup` role will cause p
 
 Error backing up cluster: {"message":"Forbidden. User needs one of the following permissions","permissions":["cluster.fts!read"]}
 
-When presented with an error message such as the one above, there’s two clear options.
+When presented with an error message such as the one above, there's two clear options.
 
 The first option is to provide the user with the required credentials using either the cli, REST API or Couchbase Server WebUI. This can be done by editing the user and adding the required role. See `Cluster Level` for more information about the required roles.
 
@@ -596,7 +596,7 @@ Backups created by these versions are still safe and usable, however, they must 
 
 ### [](#example)Example
 
-Imagine you have a backup created by a 6.0.x version of `cbbackupmgr`, this will use the `ForestDB` storage format. You’d like to restore this backup, however, the latest version no longer supports interacting with this format.
+Imagine you have a backup created by a 6.0.x version of `cbbackupmgr`, this will use the `ForestDB` storage format. You'd like to restore this backup, however, the latest version no longer supports interacting with this format.
 
 In this case, you could either:
 
@@ -611,7 +611,7 @@ Imagine the case where a backup contains one or more documents which have an exp
 
 ### [](#restoring-to-a-new-clusterbucket)RESTORING TO A NEW CLUSTER/BUCKET
 
-When restoring to a new cluster it’s expected that all the documents which match the all/expired condition will be restored with their new/updated ttl values.
+When restoring to a new cluster it's expected that all the documents which match the all/expired condition will be restored with their new/updated ttl values.
 
 ### [](#restoring-to-the-same-bucket)RESTORING TO THE SAME BUCKET
 
@@ -656,9 +656,9 @@ The `--force-updates` flag will affect all the documents being restored and not 
 
 The `--replace-ttl` and `--replace-ttl-with` flags only modify document-level TTL values. They do not modify collection-level or bucket-level maxTTL settings.
 
-Couchbase Server’s maxTTL setting acts as both a default expiration and an upper limit. If a document’s expiration is 0 (no expiry), the server applies the maxTTL as the expiration. If a document’s expiration exceeds the maxTTL, the server caps it at the maxTTL value. For example, restoring with `--replace-ttl all --replace-ttl-with 0` will not remove expiry from documents if the target collection has a maxTTL configured.
+Couchbase Server's maxTTL setting acts as both a default expiration and an upper limit. If a document's expiration is 0 (no expiry), the server applies the maxTTL as the expiration. If a document's expiration exceeds the maxTTL, the server caps it at the maxTTL value. For example, restoring with `--replace-ttl all --replace-ttl-with 0` will not remove expiry from documents if the target collection has a maxTTL configured.
 
-To achieve the desired TTL behavior, either modify the collection/bucket maxTTL settings after the restore, or configure the target cluster’s collections with the desired maxTTL settings beforehand and use the `--preserve-collection-settings` flag to prevent them from being overwritten.
+To achieve the desired TTL behavior, either modify the collection/bucket maxTTL settings after the restore, or configure the target cluster's collections with the desired maxTTL settings beforehand and use the `--preserve-collection-settings` flag to prevent them from being overwritten.
 
 ## [](#examples)EXAMPLES
 
@@ -906,12 +906,12 @@ Restore also allows filtering the data restored by document key and/or value by 
 $ cbbackupmgr restore -c http://127.0.0.1:8091 -u Administrator -p password \
  -a /data/backups -r beer --filter-keys '^21st_amendment_brewery_cafe.*'
 
-Restore also allows filtering by value. Let’s say we only want to restore documents that contain the JSON field `address`. This could be done by passing the regular expression `{.*"address":.*}` to the `--filter-values` flag as illustrated below.
+Restore also allows filtering by value. Let's say we only want to restore documents that contain the JSON field `address`. This could be done by passing the regular expression `{.*"address":.*}` to the `--filter-values` flag as illustrated below.
 
 $ cbbackupmgr restore -c http://127.0.0.1:8091 -u Administrator -p password \
  -a /data/backups -r beer --filter-values '{.*"address":.*}'
 
-Restore also allows overwriting users. Let’s say we want to restore all the users and overwrite any existing ones, as restore skips existing users by default. This could be done by passing the `--overwrite-users` flag as illustrated below.
+Restore also allows overwriting users. Let's say we want to restore all the users and overwrite any existing ones, as restore skips existing users by default. This could be done by passing the `--overwrite-users` flag as illustrated below.
 
 $ cbbackupmgr restore -c http://127.0.0.1:8091 -u Administrator -p password \
  -a /data/backups -r beer --overwrite-users
@@ -930,7 +930,7 @@ A checksum failure may occur during a restore and indicates that a document has 
 
 ## [](#automatic-collection-creation)AUTOMATIC COLLECTION CREATION
 
-By design, users may not recreate the `_default` collection once it has been deleted. Therefore, this means that the `_default` collection can’t (and won’t) be recreated if it’s missing. Before performing a transfer, a check will take place to see if the `_default` collection will be required when it’s missing. If this is the case, the command will exit early and you will be required to remap the `_default` collection using the `--map-data` flag.
+By design, users may not recreate the `_default` collection once it has been deleted. Therefore, this means that the `_default` collection can't (and won't) be recreated if it's missing. Before performing a transfer, a check will take place to see if the `_default` collection will be required when it's missing. If this is the case, the command will exit early and you will be required to remap the `_default` collection using the `--map-data` flag.
 
 ## [](#automatic-collection-deletion)AUTOMATIC COLLECTION DELETION
 
@@ -942,14 +942,14 @@ During a transfer, scopes/collections can be remapped from one location to anoth
 
 * You may not remap the `_default` scope (discussed in THE DEFAULT SCOPE).
 * You may not restore users while remapping scopes/collections, the restoring of users will be skipped.
-* You may only remap scopes/collections at the same level meaning scopes may be remapped to other scopes, and collections to other collections, however, a scope can’t be remapped to a collection or vice versa.
+* You may only remap scopes/collections at the same level meaning scopes may be remapped to other scopes, and collections to other collections, however, a scope can't be remapped to a collection or vice versa.
 * Scopes/collections may only be remapped within the same bucket. For example the mapping `bucket1.scope.collection=bucket2.scope.collection` is invalid.
 * Scopes/collections may only be remapped once. For example the mapping `bucket1.scope1=bucket1.scope2,bucket1.scope1=bucket1.scope3` is invalid.
 * Remapping may only take place at one level at once meaning that if a parent bucket/scope is already remapped, the child scopes/collections may not also be remapped. For example the mapping `bucket1.scope1=bucket1.scope2,bucket1.scope1.collection1=bucket1.scope3.collection9`is invalid.
 
 ### [](#remapping-a-scopecollection-without-renaming)REMAPPING A SCOPE/COLLECTION WITHOUT RENAMING
 
-During a transfer, it’s possible for a scope/collection to encounter a conflict (for example, because it has been recreated). It may not be preferable to rename the scope/collection during the transfer.
+During a transfer, it's possible for a scope/collection to encounter a conflict (for example, because it has been recreated). It may not be preferable to rename the scope/collection during the transfer.
 
 For this reason, the `--map-data` flag, allows you to remap a scope/collection to itself; this indicates that the scope/collection that exists in the target (with a different id) should be treated as the same.
 
@@ -961,31 +961,31 @@ Using the `--map-data` flag with the argument `bucket._default.collection1=bucke
 
 ### [](#the-default-scope)THE DEFAULT SCOPE
 
-As mentioned in AUTOMATIC COLLECTION CREATION, it’s not possible to recreate the `_default` scope/collection. This means you can’t remap the `_default`scope because the tool may be unable to create a destination scope/collection. This may be worked around by remapping each collection inside the `_default`scope.
+As mentioned in AUTOMATIC COLLECTION CREATION, it's not possible to recreate the `_default` scope/collection. This means you can't remap the `_default`scope because the tool may be unable to create a destination scope/collection. This may be worked around by remapping each collection inside the `_default`scope.
 
 ### [](#bucket-to-collection-remapping)BUCKET TO COLLECTION REMAPPING
 
-As discussed in REMAPPING, it’s not possible to remap data at different levels; buckets must be remapped to buckets, scopes to scopes and collections to collections. However, there is one supported edge case, which is remapping a bucket into a collection to allow migration from a collection unaware to collection aware datasets.
+As discussed in REMAPPING, it's not possible to remap data at different levels; buckets must be remapped to buckets, scopes to scopes and collections to collections. However, there is one supported edge case, which is remapping a bucket into a collection to allow migration from a collection unaware to collection aware datasets.
 
 To remap a bucket into a collection using `--map-data` you may supply `--map-data bucket._default._default=bucket.scope.collection`. This functionality is compatible with cross bucket mapping, for example you may also supply `--map-data bucket1._default._default=bucket2.scope.collection`.
 
-Note that once you’ve provided a mapping to remap a bucket into a collection you may not remap that bucket elsewhere. For example `--map-data bucket1._default._default=bucket2.scope.collection,bucket1=bucket3` is invalid.
+Note that once you've provided a mapping to remap a bucket into a collection you may not remap that bucket elsewhere. For example `--map-data bucket1._default._default=bucket2.scope.collection,bucket1=bucket3` is invalid.
 
 ### [](#remapping-multiple-data-sources-into-a-single-target-source)REMAPPING MULTIPLE DATA SOURCES INTO A SINGLE TARGET SOURCE
 
-As outlined in the rules discussed in REMAPPING, it’s not possible to remap a bucket/scope/collection multiple times, however, it is possible to remap to a single destination multiple times. For example the mapping `bucket1=dest,bucket2=dest,bucket3=dest` is valid.
+As outlined in the rules discussed in REMAPPING, it's not possible to remap a bucket/scope/collection multiple times, however, it is possible to remap to a single destination multiple times. For example the mapping `bucket1=dest,bucket2=dest,bucket3=dest` is valid.
 
 Although valid, this manor of remapping is dangerous and can result in data not being transferred due to conflicting key spaces. If this style of remapping is detected a warning will be printed before proceeding.
 
 ## [](#restoring-a-collection-aware-backup-to-a-collection-unaware-cluster)RESTORING A COLLECTION AWARE BACKUP TO A COLLECTION UNAWARE CLUSTER
 
-The restore sub-command supports restoring collection aware backups to collection unaware cluster. When restoring a collection aware backup to a cluster which doesn’t support collections, `cbbackupmgr` will restore the `_default._default` collection into the target bucket; no data will be transferred for any other collections.
+The restore sub-command supports restoring collection aware backups to collection unaware cluster. When restoring a collection aware backup to a cluster which doesn't support collections, `cbbackupmgr` will restore the `_default._default` collection into the target bucket; no data will be transferred for any other collections.
 
 This allows you to utilize a collection aware cluster, without using the collections feature and still be able to restore your data to a cluster which is running a previous version of Couchbase which is collection unaware.
 
 ## [](#discussion)DISCUSSION
 
-The restore command works by replaying the data recorded in backup files. During a restore each key-value pair backed up by cbbackupmgr will be sent to the cluster as either a "set" or "delete" operation. The restore command replays data from each file in order of backup time to guarantee that older backup data does not overwrite newer backup data. The restore command uses Couchbase’s conflict resolution mechanism by default to ensure this behavior. The conflict resolution mechanism can be disable by specifying the --force-updates flag when executing a restore.
+The restore command works by replaying the data recorded in backup files. During a restore each key-value pair backed up by cbbackupmgr will be sent to the cluster as either a "set" or "delete" operation. The restore command replays data from each file in order of backup time to guarantee that older backup data does not overwrite newer backup data. The restore command uses Couchbase's conflict resolution mechanism by default to ensure this behavior. The conflict resolution mechanism can be disable by specifying the --force-updates flag when executing a restore.
 
 Starting in Couchbase 4.6 each bucket can have different conflict resolution mechanisms. cbbackupmgr will backup all meta data used for conflict resolution, but since each conflict resolution mechanism is different cbbackupmgr will prevent restores to a bucket when the source and destination conflict resolution methods differ. This is done because by default cbbackupmgr will use the conflict resolution mechanism of the destination bucket to ensure an older value does not overwrite a newer value. If you want to restore a backup to a bucket with a different conflict resolution type you can do by using the --force-updates flag. This is allowed because forcing updates means that cbbackupmgr will skip doing conflict resolution on the destination bucket.
 

@@ -3,7 +3,7 @@ title: CREATE FUNCTION
 description: The <code>CREATE FUNCTION</code> statement enables you to create a
   user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/createfunction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/createfunction.adoc[]
 ---
 
@@ -25,9 +25,9 @@ There are two types of user-defined function:
 
 You can create user-defined functions at two different levels of the SQL++ [logical hierarchy](../n1ql-intro/sysinfo.md#logical-hierarchy).
 
-* A _global function_ is created within a namespace, at the same level as the buckets within the namespace. When you call a global function, any partial keyspace references within the function definition are resolved against the function’s namespace, regardless of the current [query context](../n1ql-intro/queriesandresults.md#query-context).  
+* A _global function_ is created within a namespace, at the same level as the buckets within the namespace. When you call a global function, any partial keyspace references within the function definition are resolved against the function's namespace, regardless of the current [query context](../n1ql-intro/queriesandresults.md#query-context).  
 For example, when you call a global function `default:global()` which contains the keyspace reference `` `travel-sample` ``, the keyspace reference is always resolved within the context of the function to the `` default:`travel-sample` `` bucket.
-* A _scoped function_ is created within a scope, at the same level as the collections within the scope. When you call a scoped function, any partial keyspace references within the function definition are resolved against the function’s scope, regardless of the current [query context](../n1ql-intro/queriesandresults.md#query-context).  
+* A _scoped function_ is created within a scope, at the same level as the collections within the scope. When you call a scoped function, any partial keyspace references within the function definition are resolved against the function's scope, regardless of the current [query context](../n1ql-intro/queriesandresults.md#query-context).  
 For example, when you call a scoped function `` default:`travel-sample`.inventory.scope() `` which contains the keyspace reference `route`, the keyspace reference is always resolved within the context of the function to `` default:`travel-sample`.inventory.route ``.
 
 When you create a user-defined function, the current query context determines whether it is created as a global function or a scoped function. If you want to create a user-defined function outside of the current query context, you must include the full path to the function when you specify the function name.

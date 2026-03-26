@@ -3,7 +3,7 @@ title: Install and Start Using the C SDK with Couchbase Server
 description: The Couchbase C SDK (libcouchbase - LCB) enables you to interact
   with a Couchbase Server cluster from the C language.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:c-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -192,7 +192,7 @@ $ sudo dpkg -i libcouchbase3{-tools,-libevent,}_3.2.0*.deb libcouchbase-dev*.deb
 
 ## [](#installation-from-source)Installation from source
 
-You may install the library from source either by downloading a source archive, or by checking out the [git repository](https://github.com/couchbase/libcouchbase). Follow the instructions in the archive’s [README](https://github.com/couchbase/libcouchbase/blob/master/README.markdown) for further instructions.
+You may install the library from source either by downloading a source archive, or by checking out the [git repository](https://github.com/couchbase/libcouchbase). Follow the instructions in the archive's [README](https://github.com/couchbase/libcouchbase/blob/master/README.markdown) for further instructions.
 
 ## [](#installation-on-mac-os-x)Installation on Mac OS X
 
@@ -243,11 +243,11 @@ cbc:
 ## [](#documentation-and-examples)Documentation and Examples
 
 * Small standalone examples can be found in the [github repository](https://github.com/couchbase/libcouchbase/tree/master/example).
-* Other Couchbase SDKs are written on top of the C SDK and show more complex usage of the library’s features:
+* Other Couchbase SDKs are written on top of the C SDK and show more complex usage of the library's features:
 
   * [Python SDK](https://github.com/couchbase/couchbase-python-client)
   * [Node.js SDK](https://github.com/couchbase/couchnode)
-* The library’s own `cbc` (<https://github.com/couchbase/libcouchbase/blob/master/tools/cbc.cc>) and `cbc-pillowfight` (<https://github.com/couchbase/libcouchbase/blob/master/tools/cbc-pillowfight.cc>) utilities. Note that these tools may use internal APIs not intended for public use.
+* The library's own `cbc` (<https://github.com/couchbase/libcouchbase/blob/master/tools/cbc.cc>) and `cbc-pillowfight` (<https://github.com/couchbase/libcouchbase/blob/master/tools/cbc-pillowfight.cc>) utilities. Note that these tools may use internal APIs not intended for public use.
 
 ## [](#hello-couchbase)Hello Couchbase
 
@@ -263,7 +263,7 @@ lcb_createopts_credentials(create_options, argv[2], strlen(argv[2]), argv[3], st
 
 If you are connecting to Couchbase Cloud rather than a local Couchbase Server, see the [Cloud section](#cloud-connections), below.
 
-Couchbase uses [Role Based Access Control (RBAC)](../../../server/current/learn/security/roles.md) to control access to resources. Here we will use the _Full Admin_ role created during installation of the Couchbase Data Platform. For production client code, you will want to use [more appropriate, restrictive settings](../howtos/managing-connections.md#rbac), but here we want to get you up and running quickly. If you’re developing client code on the same VM or machine as the Couchbase Server, your URI can be _localhost_.
+Couchbase uses [Role Based Access Control (RBAC)](../../../server/current/learn/security/roles.md) to control access to resources. Here we will use the _Full Admin_ role created during installation of the Couchbase Data Platform. For production client code, you will want to use [more appropriate, restrictive settings](../howtos/managing-connections.md#rbac), but here we want to get you up and running quickly. If you're developing client code on the same VM or machine as the Couchbase Server, your URI can be _localhost_.
 
 ```c
 lcb_STATUS rc; /* return code, that have to be checked */

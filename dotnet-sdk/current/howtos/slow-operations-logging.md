@@ -3,7 +3,7 @@ title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging, orphan logging, and other span metrics.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/slow-operations-logging.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:dotnet-sdk:howtos:slow-operations-logging.adoc[]
 ---
 
@@ -37,7 +37,7 @@ To configure threshold logging, adjust the [ThresholdRequestTracer](../ref/clien
 }
 ```
 
-The `total_count` represents the total amount of over-threshold recorded items in each interval per service. The number of entries in “top\_requests” is configured by the `sampleSize`. The service placeholder is replaced with each service — “kv”, “query”, etc. Each entry looks like this, with all fields populated:
+The `total_count` represents the total amount of over-threshold recorded items in each interval per service. The number of entries in "top\_requests" is configured by the `sampleSize`. The service placeholder is replaced with each service — "kv", "query", etc. Each entry looks like this, with all fields populated:
 
 ```json
 {

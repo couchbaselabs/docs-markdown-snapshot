@@ -3,7 +3,7 @@ title: Configuring System Secrets
 description: By means of the REST API, System Secrets can be configured, and the
   current configuration can be retrieved.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/system-secrets-configuration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:system-secrets-configuration.adoc[]
 ---
 
@@ -101,7 +101,7 @@ This output corresponds to the default settings.
 
 ### [](#specifying-a-custom-script-for-obtaining-the-master-pasword)Specifying a Custom Script for Obtaining the Master Pasword
 
-The following call specifies, as the value of `passwordCmd`, a path to a custom script, and provides the script’s required arguments.
+The following call specifies, as the value of `passwordCmd`, a path to a custom script, and provides the script's required arguments.
 
 curl -v -X POST http://localhost:8091/node/controller/secretsManagement/encryptionService \
 -u Administrator:password \

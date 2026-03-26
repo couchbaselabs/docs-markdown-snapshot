@@ -4,7 +4,7 @@ description: To secure network traffic, you can configure a private network
   connection between a Capella Analytics cluster and an Amazon Web Services
   (AWS) account through virtual private cloud (VPC) peering.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/vpc-peering.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:admin:vpc-peering.adoc[]
 ---
 
@@ -121,7 +121,7 @@ On success, the private network appears on the list of private networks. You may
   	}  
   }  
   ```
-9. Update the route table for your application’s VPC to make sure all traffic destined for your Capella Analytics cluster is appropriately routed:
+9. Update the route table for your application's VPC to make sure all traffic destined for your Capella Analytics cluster is appropriately routed:
 
   1. Identify the route table for your application VPC:  
   ![Finding the correct route table.](../../cloud/clouds/_images/pn9-route-table.png)
@@ -162,7 +162,7 @@ Non-authoritative answer:
 Name:    9qvj8x-f2oxhahtz.a-lxzt-gdkzoqfuu.cloud.couchbase.com  
 Address: 10.0.18.110  
 ```
-4. When the DNS resolution is working correctly, `nslookup` returns the private IP of the Capella node—​an IP from the cluster’s CIDR block. If the `nslookup` returns the public IP for this node and you’re using AWS, check that you have:
+4. When the DNS resolution is working correctly, `nslookup` returns the private IP of the Capella node—​an IP from the cluster's CIDR block. If the `nslookup` returns the public IP for this node and you're using AWS, check that you have:
 
   * Enabled DNS resolution
   * Enabled DNS hostnames
@@ -180,7 +180,7 @@ traceroute -T 9qvj8x-f2oxhahtz.a-lxzt-gdkzoqfuu.cloud.couchbase.com -p 18091
 traceroute to 9qvj8x-f2oxhahtz.a-lxzt-gdkzoqfuu.cloud.couchbase.com (10.0.18.110), 30 hops max, 60 byte packets  
  1  ip-10-0-18-110.us-west-2.compute.internal (10.0.18.110)  0.303 ms  0.288 ms  0.302 ms  
 ```
-2. The result from this `traceroute` should return quickly. If it’s slow, this can indicate issues with your routing. Validate the route table associated with the VPC to check that you have associated the correct CIDR block with the VPC peering connection.
+2. The result from this `traceroute` should return quickly. If it's slow, this can indicate issues with your routing. Validate the route table associated with the VPC to check that you have associated the correct CIDR block with the VPC peering connection.
 3. Use `curl` to validate that the node responding correctly over the private network:  
 ```console  
 $ curl -k https://9qvj8x-f2oxhahtz.a-lxzt-gdkzoqfuu.cloud.couchbase.com:18091  

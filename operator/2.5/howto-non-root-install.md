@@ -1,7 +1,7 @@
 ---
 title: Configure a Non-Root Install
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/howto-non-root-install.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::howto-non-root-install.adoc[]
 ---
 
@@ -30,6 +30,6 @@ spec:
     runAsUser: 1000 (2)
 ```
 
-| **1** | spec.securityContext.runAsNonRoot is not necessary to function, however illustrates that this field **must** be false. The Couchbase Server container image will be validated by kubelet to ensure it runs as a non-root user account when this is set to true. As the container doesn’t run as a non-root account the validation will fail. |
+| **1** | spec.securityContext.runAsNonRoot is not necessary to function, however illustrates that this field **must** be false. The Couchbase Server container image will be validated by kubelet to ensure it runs as a non-root user account when this is set to true. As the container doesn't run as a non-root account the validation will fail. |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | spec.securityContext.runAsUser is required, and will execute all processes as this user. The value must be 1000 as this maps to the couchbase user within the container image.                                                                                                                                                               |

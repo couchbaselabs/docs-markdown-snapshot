@@ -3,7 +3,7 @@ title: Index Rebalance Use Cases
 description: This page explains a few use cases of different Rebalance
   operations on Index nodes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/index-rebalance-use-cases.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:clusters-and-availability/index-rebalance-use-cases.adoc[]
 ---
 
@@ -68,9 +68,9 @@ For example, consider a cluster with 4 nodes N1, N2, N3, N4, and Optimize Index 
 
 1. Assume the source node N1 hosts shards S1 that includes index idx\_A, S7 and S10\. Assume node N2 hosts shards S2 that also includes idx\_A and S9.
 2. If shard affinity is enabled, entire shards move between nodes. During the swap rebalance, the planner initiates index movements for all these shards to the new destination nodes N5 and N6\. For example, S1 and S10 may move from N1 to N6, while S7 moves from N1 to N5.
-3. If shard affinity is not enabled, index movements aren’t restricted by shard grouping.
-4. There’s no one-to-one mapping between source and destination nodes. Indexes or shards can move from any of the source nodes to any of the destination nodes involved in the rebalance.  
-Nodes N3 and N4 aren’t involved in this index movement.
+3. If shard affinity is not enabled, index movements aren't restricted by shard grouping.
+4. There's no one-to-one mapping between source and destination nodes. Indexes or shards can move from any of the source nodes to any of the destination nodes involved in the rebalance.  
+Nodes N3 and N4 aren't involved in this index movement.
 
 #### [](#restart-swap-rebalance)Restarting a Swap Rebalance on Index Nodes
 
@@ -81,7 +81,7 @@ If a swap rebalance fails or is cancelled, you can start a new rebalance. The pl
 When you retry a failed or cancelled swap rebalance, Couchbase Server performs the following actions:
 
 1. The previous planning state is discarded; completed movements remain:  
-When a swap rebalance is cancelled or fails, Couchbase Server discards the planner’s movement plan and scheduling decisions. Index movements that complete successfully remain in place, while any partial or incomplete transfers are rolled back. The planner does not reuse the movement plan from the failed attempt.
+When a swap rebalance is cancelled or fails, Couchbase Server discards the planner's movement plan and scheduling decisions. Index movements that complete successfully remain in place, while any partial or incomplete transfers are rolled back. The planner does not reuse the movement plan from the failed attempt.
 2. A new rebalance request triggers a full re-planning cycle:  
 When you retry the rebalance, the rebalance planner creates a new swap-rebalance plan based on the current index placements. The planner does not reuse or resume any part of the previous plan. It treats this new plan as a fresh rebalance operation. It recalculates all movements between the nodes being removed and the nodes being added based on replica placement, resource balance, shard constraints, and cluster topology.
 3. The new plan may move indexes in a different pattern:  
@@ -145,7 +145,7 @@ An example of swap rebalance is as follows:
 ![fbr swap one on one](../_images/clusters-and-availability/fbr-swap-one-on-one.png) 
 
 1. Consider a cluster with nodes I1, I2, and I3, where you plan to replace the source node I1 with a new destination node N1.
-2. If I1 hosts indexes idx\_A and idx\_B, they’re moved to N1 using File-Based Rebalance. During the transfer, I1 continues to support Query Service.
+2. If I1 hosts indexes idx\_A and idx\_B, they're moved to N1 using File-Based Rebalance. During the transfer, I1 continues to support Query Service.
 3. After the rebalance completes, N1 becomes fully active, and I1 is removed from the cluster with no downtime.
 
 ### [](#failover-idx-nodes)Failover of Index Service Nodes
@@ -158,7 +158,7 @@ The following is how node failover affects the Index Service:
 4. If a rebalance is triggered while the node remains failed over, the system performs a replica repair. When a replica exists, it can be copied using File-Based Rebalance if shard affinity is enabled. If no replica exists, the index is lost.
 5. If the failed node recovers before a rebalance occurs, it can be added back to the cluster, and the next rebalance restores its indexes.
 
-The following examples explain how Couchbase Server handles node failover scenarios, both when replicas are available and when they’re not.
+The following examples explain how Couchbase Server handles node failover scenarios, both when replicas are available and when they're not.
 
 * [Failover With a Replica](#failover-with-replica)
 * [Failover With No Replica (Index Loss)](#failover-without-replica)
@@ -201,7 +201,7 @@ The node is marked for removal, and a rebalance is triggered.
 2. Before the source node goes offline, all its indexes move to other destination nodes in the cluster by using File-Based Rebalance, if shard affinity is enabled.
 3. The node is removed only after all index movements are complete. This process ensures that ongoing scans on the source node complete before removal, preventing any data loss or service interruption.
 
-The following examples explain how node removal and rebalance operations affect the Index Service, both when replicas are present and when they’re not.
+The following examples explain how node removal and rebalance operations affect the Index Service, both when replicas are present and when they're not.
 
 * [Removal and Rebalance-Out With Replicas](#removal-with-replica)
 * [Removal and Rebalance-Out Without Replicas](#removal-without-replica)

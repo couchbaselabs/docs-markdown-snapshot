@@ -3,7 +3,7 @@ title: Inter-Sync&#160;Gateway Replication Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage
   inter-Sync&#160;Gateway replications
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/configuration-schema-isgr.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::configuration-schema-isgr.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.0@sync-gateway::configuration-schema-isgr.adoc[]
 
 # Inter-Sync&#160;Gateway Replication Configuration
 
-> Using Sync Gateway’s Admin REST API to configure and manage inter-Sync Gateway replications  
+> Using Sync Gateway's Admin REST API to configure and manage inter-Sync Gateway replications  
 
 _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configuration-schema-bootstrap.md) | [Database](configuration-schema-database.md) | [Database Security](#configuration-schema-db-security&.adoc#8212;​page}) | [Access Control](configuration-schema-access-control.md) | [Import](configuration-schema-import-filter.md) | Inter-Sync Gateway Replication
 
@@ -43,7 +43,7 @@ PUT {db}/_config/_replication
 
 The _replication endpoint is used to manage both \_ad hoc_ and _persistent_ replication operations. 
 
-Using a PUT request you can update (or insert, if it doesn’t exist) a set of replication details.
+Using a PUT request you can update (or insert, if it doesn't exist) a set of replication details.
 
 **To cancel a replication**You can cancel continuous replications by adding the cancel field to the JSON request object and setting the value to true.
 
@@ -61,7 +61,7 @@ _Sync Gateway Roles Required (CBS 7.0.2 Developer Preview):_
 | -------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **Path** | **db** _required_              | Database name                                                                                                                                                                                                                                                                                               | string                                        |
 | **Path** | **replicationID** _required_   | If supplied, the <i>replicationID</i> parameter must be a valid replication id. If it is not supplied for a <i>new</i> replication\*, then a random UUID is generated.                                                                                                                                      | string                                        |
-| **Body** | **ReplicationBody** _optional_ | This replication request message body is a JSON document that comprises all the properties required to upsert a replication. If the replicationID matches an existing replication\_id then the values of any properties provided in the body are used to update the existing replication’s property values. | [Replication\_model](#%5Freplication%5Fmodel) |
+| **Body** | **ReplicationBody** _optional_ | This replication request message body is a JSON document that comprises all the properties required to upsert a replication. If the replicationID matches an existing replication\_id then the values of any properties provided in the body are used to update the existing replication's property values. | [Replication\_model](#%5Freplication%5Fmodel) |
 
 ## [](#responses)Responses
 
@@ -109,7 +109,7 @@ Content-Length: 235
 
 ## [](#replication)Schema
 
-This section shows Sync Gateway’s replication configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
+This section shows Sync Gateway's replication configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
 
 The configuration settings described here are provisioned through the [Replication](rest-api-admin.md#/Replication) endpoints.
 

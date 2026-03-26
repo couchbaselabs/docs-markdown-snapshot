@@ -3,7 +3,7 @@ title: Bootstrap Configuration
 description: Reference data on the contents of Sync Gateway's bootstrap
   configuration, which determines its run time behavior.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/configuration-schema-bootstrap.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::configuration-schema-bootstrap.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.1@sync-gateway::configuration-schema-bootstrap.adoc[]
 
 # Bootstrap Configuration
 
-> Reference data on the contents of Sync Gateway’s bootstrap configuration, which determines its run time behavior.  
+> Reference data on the contents of Sync Gateway's bootstrap configuration, which determines its run time behavior.  
 
 _Related topics_: [Overview](configuration-overview.md) | Bootstrap | [Database](configuration-schema-database.md) | [Database Security](#configuration-schema-db-security&.adoc#8212;​page}) | [Access Control](configuration-schema-access-control.md) | [Import](configuration-schema-import-filter.md) | [Inter-Sync Gateway Replication](configuration-schema-isgr.md)
 
@@ -23,7 +23,7 @@ _Related topics_: [Overview](configuration-overview.md) | Bootstrap | [Database]
 
 ## [](#introduction)Introduction
 
-The _Sync Gateway_ bootstrap configuration is provisioned in a JSON format file. The configuration properties define sync gateway’s runtime behavior. See the [schema](#lbl-schema) below for more details on these properties.
+The _Sync Gateway_ bootstrap configuration is provisioned in a JSON format file. The configuration properties define sync gateway's runtime behavior. See the [schema](#lbl-schema) below for more details on these properties.
 
 Sync gateway will look for the following configuration file unless you direct it otherwise:  
 `/home/sync_gateway/sync_gateway.json`

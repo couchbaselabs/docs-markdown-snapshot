@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on Java Desktop
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/releasenotes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:java:releasenotes.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Version 4.0.3 for Java delivers the following features and enhancements:
 ### [](#enhancements)Enhancements
 
 * [CBL-7750 — Update mbedTLS to 3.6.5](https://jira.issues.couchbase.com/browse/CBL-7750)
-* [CBL-7775 — Increase Replicator’s WebSocket PING / PONG timeout](https://jira.issues.couchbase.com/browse/CBL-7775)
+* [CBL-7775 — Increase Replicator's WebSocket PING / PONG timeout](https://jira.issues.couchbase.com/browse/CBL-7775)
 * [CBL-7667 — Add CouchbaseLite.shutdown() for clean JVM shutdown](https://jira.issues.couchbase.com/browse/CBL-7667)
 
 ### [](#fixed-issues)Fixed Issues
@@ -48,7 +48,7 @@ None for this release
 
 ### [](#fixed-issues-2)Fixed Issues
 
-* [CBL-7681 — Crash with 'Can’t retain immutable Value' Error after upgrading from 3.0.3 to 4.0.0](https://jira.issues.couchbase.com/browse/CBL-7681)
+* [CBL-7681 — Crash with 'Can't retain immutable Value' Error after upgrading from 3.0.3 to 4.0.0](https://jira.issues.couchbase.com/browse/CBL-7681)
 
 ### [](#known-issues-2)Known Issues
 
@@ -72,7 +72,7 @@ Version 4.0.0 for Java delivers the following features and enhancements:
 ### [](#enhancements-3)Enhancements
 
 * [CBL-7568 — New Version Vector Database](https://issues.couchbase.com/browse/CBL-7568)
-* [CBL-6569 — Disabled SQLite’s mmap by default](https://issues.couchbase.com/browse/CBL-6569)
+* [CBL-6569 — Disabled SQLite's mmap by default](https://issues.couchbase.com/browse/CBL-6569)
 * [CBL-7282 — Support timestamp property in Document](https://issues.couchbase.com/browse/CBL-7282)
 * [CBL-7286 — Support Last-Write-Win as the default conflict resolution algorithm for Replicator](https://issues.couchbase.com/browse/CBL-7286)
 * [CBL-7415 — Update Database APIs to Return or Throw NotOpen Error for Closed Database Cases](https://issues.couchbase.com/browse/CBL-7415)
@@ -86,7 +86,7 @@ Version 4.0.0 for Java delivers the following features and enhancements:
 
 ### [](#known-issues-3)Known Issues
 
-* [CBL-7572 — Database.Copy() doesn’t convert Self-Source-ID to the original Source ID](https://issues.couchbase.com/browse/CBL-7572)
+* [CBL-7572 — Database.Copy() doesn't convert Self-Source-ID to the original Source ID](https://issues.couchbase.com/browse/CBL-7572)
 * [CBL-7573 — Couchbase Lite 4.0 is allowed to connect to Sync Gateway 3.2.6/3.3.0](https://issues.couchbase.com/browse/CBL-7573)
 
 ### [](#breaking-changes-2)Breaking Changes
@@ -96,9 +96,9 @@ Version 4.0.0 for Java delivers the following features and enhancements:
 * [CBL-7295 — Removed: Deprecated Remove Change Listener APIs](https://issues.couchbase.com/browse/CBL-7295)
 * [CBL-7299 — Removed: Deprecated QueryBuilder APIs](https://issues.couchbase.com/browse/CBL-7299)
 * [CBL-7303 — Removed Deprecated Collection Management API from ReplicatorConfiguration](https://issues.couchbase.com/browse/CBL-7303)
-* [CBL-7307 — Removed: Deprecated TLSIdentity’s createIdentity with isServer boolean flag](https://issues.couchbase.com/browse/CBL-7307)
+* [CBL-7307 — Removed: Deprecated TLSIdentity's createIdentity with isServer boolean flag](https://issues.couchbase.com/browse/CBL-7307)
 * [CBL-7316 — Removed: Deprecated Logging APIs](https://issues.couchbase.com/browse/CBL-7316)
-* [CBL-7381 — Removed: DatabaseConfiguration’s mmapEnabled property](https://issues.couchbase.com/browse/CBL-7381)
+* [CBL-7381 — Removed: DatabaseConfiguration's mmapEnabled property](https://issues.couchbase.com/browse/CBL-7381)
 * [CBL-7393 — Removed: Deprecated Default Constants](https://issues.couchbase.com/browse/CBL-7393)
 * [CBL-7569 — Removed: Deprecated Replicator and Listener APIs](https://issues.couchbase.com/browse/CBL-7569)
 

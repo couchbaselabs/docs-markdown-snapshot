@@ -3,7 +3,7 @@ title: Create App Users
 description: Creating and editing App Users for a synchronized application using
   the Capella UI
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/security/create-user.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::security/create-user.adoc[]
 ---
 
@@ -31,7 +31,7 @@ Users can also be assigned to zero or more roles. A user inherits the channel ac
 > [!IMPORTANT]
 > App Users are now organized at the collection level instead of at the bucket level.
 
-In this section, we’ll show you how to create new users in App Services. Before you start, make sure you’re logged on to your Capella instance as an administrator.
+In this section, we'll show you how to create new users in App Services. Before you start, make sure you're logged on to your Capella instance as an administrator.
 
 1. Select your App Endpoint
 2. Select the **Security** tab.
@@ -47,7 +47,7 @@ From here, you can fill in the UserName, the password and set whether the user i
 
 At this point, you can also assign administration roles to your new user.
 
-When you’re ready, save the new user by clicking **CREATE APP USER**
+When you're ready, save the new user by clicking **CREATE APP USER**
 
 ![Successfully created app service user](../_images/user-management/create-app-user-success.png) 
 
@@ -61,7 +61,7 @@ Figure 3\. Edit user details
 
 From the Edit App User page, you can perform the following actions:
 
-* Changing the user’s password.
+* Changing the user's password.
 * Enabling or disabling the App User.
 
 > [!NOTE]

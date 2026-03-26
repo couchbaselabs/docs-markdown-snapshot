@@ -1,7 +1,7 @@
 ---
 title: What&#8217;s New?
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/whats-new.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@operator::whats-new.adoc[]
 ---
 
@@ -20,7 +20,7 @@ See [Couchbase Cluster Migration](concept-migration.md) for more details.
 
 ## [](#admission-controller-improvements)Admission Controller Improvements
 
-The Dynamic Admission Controller (DAC) will now warn if any cluster settings don’t match our [Best Practices for Production Deployments](best-practices.md#production-deployments).
+The Dynamic Admission Controller (DAC) will now warn if any cluster settings don't match our [Best Practices for Production Deployments](best-practices.md#production-deployments).
 
 The DAC will now prevent changes to the `CouchbaseCluster` spec while a hibernation is taking place. If hibernation is enabled while a cluster is migrating, upgrading, scaling, or rebalancing, that process will conclude before the cluster enters hibernation. The DAC will warn when this is the case, and it will be visible in the operator logs.
 

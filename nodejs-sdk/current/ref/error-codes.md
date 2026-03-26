@@ -3,7 +3,7 @@ title: Error Messages
 description: The standardized error codes returned by the Couchbase Node.js SDK,
   from cloud connection to sub-document.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/ref/pages/error-codes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-sdk:ref:error-codes.adoc[]
 ---
 
@@ -92,7 +92,7 @@ Raised when:
 
 ### [](#13-ambiguoustimeout)\# 13 AmbiguousTimeout
 
-Raised when a timeout occurs and we aren’t sure if the underlying operation has completed. This normally occurs because we sent the request to the server successfully, but timed out waiting for the response. Note that idempotent operations should never return this, as they do not have ambiguity.
+Raised when a timeout occurs and we aren't sure if the underlying operation has completed. This normally occurs because we sent the request to the server successfully, but timed out waiting for the response. Note that idempotent operations should never return this, as they do not have ambiguity.
 
 ### [](#14-unambiguoustimeout)\# 14 UnambiguousTimeout
 
@@ -301,7 +301,7 @@ ID Range 500 - 599
 
 ### [](#501-viewnotfound)\# 501 ViewNotFound
 
-Raised when Http status code 404 — reason or error contains “not\_found”.
+Raised when Http status code 404 — reason or error contains "not\_found".
 
 ### [](#502-designdocumentnotfound)\# 502 DesignDocumentNotFound
 
@@ -391,7 +391,7 @@ Below is a list of log messages that you may see if you hit DNS SRV issues. Thes
 couchnode:lcb:info (instance @ ../deps/lcb/src/instance.cc:202) DNS SRV lookup failed: LCB_ERR_UNKNOWN_HOST (1049). Ignore this if not relying on DNS SRV records +0ms
 ```
 
-Couldn’t look up
+Couldn't look up
 
 ```terminal
 couchnode:lcb:error (connection @ ../deps/lcb/src/lcbio/connect.cc:503) <8676842d-4e8b-4c5b-a44f-e0886f8c0bc1.dp.cloud.couchbase.com:11207> (SOCK=23609f0e7a32db36) Couldn't look up 8676842d-4e8b-4c5b-a44f-e0886f8c0bc1.dp.cloud.couchbase.com (nodename nor servname provided, or not known) [EAI=8] +0ms

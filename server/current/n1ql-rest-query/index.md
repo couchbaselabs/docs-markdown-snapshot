@@ -1,7 +1,7 @@
 ---
 title: Query Service REST API
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/n1ql-rest-query/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql-rest-query:index.adoc[]
 ---
 
@@ -280,7 +280,7 @@ curl -v $BASEPATH/query/service \
      -u $USER:$PASSWORD
 ```
 
-Because it’s sent as form data, the statement in this example avoids using a semicolon.
+Because it's sent as form data, the statement in this example avoids using a semicolon.
 
 POST request with parameters in JSON format
 
@@ -293,7 +293,7 @@ curl -v $BASEPATH/query/service \
      -u $USER:$PASSWORD
 ```
 
-Conversely, because it’s sent as a JSON object, the statement in this example can contain a semicolon.
+Conversely, because it's sent as a JSON object, the statement in this example can contain a semicolon.
 
 For more examples, see [Examples](../n1ql/n1ql-rest-api/examplesrest.md).
 

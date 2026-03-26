@@ -3,7 +3,7 @@ title: cbqueryreportgen
 description: The <code>cbqueryreportgen</code> tool returns the complete details
   of any Query service to generate reports.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbqueryreportgen.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbqueryreportgen.adoc[]
 ---
 
@@ -33,7 +33,7 @@ cbqueryreportgen [-<args>
 
 This tool is only available in Couchbase Server 8.0 and later.
 
-The `cbqueryreportgen` command connects to a Couchbase cluster and generates performance reports based on the Query Service’s AWR statistics.
+The `cbqueryreportgen` command connects to a Couchbase cluster and generates performance reports based on the Query Service's AWR statistics.
 
 The tool allows you to specify a time range for the report. You can specify 2 different time periods, allowing a report to be generated that compares query statistics over the different time periods. You can also specify the output file where the report must be saved. The output of the command is a report in HTML format.
 
@@ -77,7 +77,7 @@ For more information about how the specific command works, run `cbqueryreportgen
 
 ## [](#example)Example
 
-This example creates a report showing all of the statistics for a single day. The AWR repository is `travel-sample._default.awr`. It’s assumed that you have already specified this as the AWR repository, and created an index on the document key in the configured AWR location.
+This example creates a report showing all of the statistics for a single day. The AWR repository is `travel-sample._default.awr`. It's assumed that you have already specified this as the AWR repository, and created an index on the document key in the configured AWR location.
 
 ```sh
 cbqueryreportgen -c couchbase://localhost \

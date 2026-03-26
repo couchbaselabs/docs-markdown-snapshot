@@ -3,7 +3,7 @@ title: Managing TLS Identities
 description: Couchbase Lite - this content covers how to manage TLS identities
   using Couchbase Lite
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/swift/pages/p2p-managing-tls-id.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:swift:p2p-managing-tls-id.adoc[]
 ---
 
@@ -49,7 +49,7 @@ listenerConfig.tlsIdentity = nil
 
 ## [](#import-a-cert)Import a Cert
 
-Use the [TLSIdentity](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/TLSIdentity.html) class’s [importIdentity()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/TLSIdentity.html#/s:18CouchbaseLiteSwift11TLSIdentityC14importIdentity8withData8password5labelAC10Foundation0H0V%5FSSSgSStKFZ) method to import a certificate that can be bundled with the app and-or added to the keychain.
+Use the [TLSIdentity](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/TLSIdentity.html) class's [importIdentity()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/TLSIdentity.html#/s:18CouchbaseLiteSwift11TLSIdentityC14importIdentity8withData8password5labelAC10Foundation0H0V%5FSSSgSStKFZ) method to import a certificate that can be bundled with the app and-or added to the keychain.
 
 1. First check the keychain to see if the identity already exists  
 ```swift  

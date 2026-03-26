@@ -2,7 +2,7 @@
 title: Sync with Couchbase Server
 description: Use Sync Gateway to sync Couchbase Server changes securely from cloud to edge
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/sync-with-couchbase-server.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::sync-with-couchbase-server.adoc[]
 ---
 
@@ -27,7 +27,7 @@ Related _Sync_ topics: [Sync with Couchbase Lite](../current/sync/sync-using-app
 
 Sync Gateway uses the [Shared Bucket Access](#sba-feature) and [Import Processing](#import-process) features to synchronize document changes made through Couchbase Server with those made by Sync Gateway and Couchbase Lite clients, and vice versa \[[1](#%5Ffootnotedef%5F1 "View footnote.")\].
 
-* Shared Bucket Access — this is mechanism that enables Couchbase Server’s SDK applications, N1QL Queries, Sync Gateway and Couchbase Lite applications to read and write to the same bucket simultaneously — see: [Figure 1](#sgw-paths) and the configuration property [$dbname.enable\_shared\_bucket\_access](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-enable%5Fshared%5Fbucket%5Faccess)
+* Shared Bucket Access — this is mechanism that enables Couchbase Server's SDK applications, N1QL Queries, Sync Gateway and Couchbase Lite applications to read and write to the same bucket simultaneously — see: [Figure 1](#sgw-paths) and the configuration property [$dbname.enable\_shared\_bucket\_access](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-enable%5Fshared%5Fbucket%5Faccess)
 * Import Processing — is the mechanism by which Sync Gateway becomes aware of non-Sync Gateway data changes and then obtains the mobile metadata it requires to replicate those changes — see: [Import Processing](#import-process).
 
 ## [](#sba-feature)Shared Bucket Access
@@ -38,7 +38,7 @@ Figure 1\. Sync Gateway Data Access Paths
 
 ### [](#documents)Documents
 
-With bucket-sharing enabled, Couchbase Server documents can be inserted directly (using _N1QL_ or _SDKs_) or by using Sync Gateway’s [Public REST API](../current/rest-api/rest-api.md).
+With bucket-sharing enabled, Couchbase Server documents can be inserted directly (using _N1QL_ or _SDKs_) or by using Sync Gateway's [Public REST API](../current/rest-api/rest-api.md).
 
 Sync Gateway \[[2](#%5Ffootnotedef%5F2 "View footnote.")\] creates the metadata it needs by abstracting it from the SDK or N1QL applications reading and writing data directly to Couchbase Server buckets. It uses Couchbase Server XATTRs \[[3](#%5Ffootnotedef%5F3 "View footnote.")\] to store that metadata into an external document fragment — see [Extended Attributes (XATTR)](../../server/current/learn/data/extended-attributes-fundamentals.md).
 
@@ -51,7 +51,7 @@ The REST API will also include the following behavioral changes:
 
 Couchbase Server SDK/N1QL
 
-Use Sync Gateway’s REST API’s [/{db}/{docid}/{attachment}](../current/rest-api/rest-api-admin.md#/attachment) endpoints to manage attachments and blob data; you cannot use Couchbase Server SDKs to do this directly.
+Use Sync Gateway's REST API's [/{db}/{docid}/{attachment}](../current/rest-api/rest-api-admin.md#/attachment) endpoints to manage attachments and blob data; you cannot use Couchbase Server SDKs to do this directly.
 
 Standard practice would be to create the document using the SDK and then associate its blobs/attachments using the [Add/Update Attachment (/{db}/{docid}/{attachment})](../current/rest-api/rest-api-admin.md#/attachment/put%5F%5Fdb%5F%5F%5Fdoc%5F%5F%5Fattachment%5F) endpoint. You can see a practical example in this blog post — <https://blog.couchbase.com/store-sync-binary-data-attachments-blobs-couchbase-mobile>
 
@@ -65,19 +65,19 @@ Related Couchbase Lite content
 
 Using a WebApp
 
-Attachments can be accessed through Sync Gateway’s REST API using the [/{db}/{doc}/{attachment}](rest-api.md#/attachment/get%5F%5Fdb%5F%5F%5Fdoc%5F%5F%5Fattachment%5F) endpoint.
+Attachments can be accessed through Sync Gateway's REST API using the [/{db}/{doc}/{attachment}](rest-api.md#/attachment/get%5F%5Fdb%5F%5F%5Fdoc%5F%5F%5Fattachment%5F) endpoint.
 
 ### [](#tombstone-revisions)Tombstone Revisions
 
-Note that, with bucket-sharing enabled, [tombstone revision![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#tombstone-revision)s are **not** retained indefinitely; they are purged based on the server’s _metadata purge interval_.
+Note that, with bucket-sharing enabled, [tombstone revision![glossary icon](_images/icons/glossaryIconImage2.png)](glossary.md#tombstone-revision)s are **not** retained indefinitely; they are purged based on the server's _metadata purge interval_.
 
-To ensure tombstones are synced with clients, you should set the server’s metadata purge interval based on your expected replication frequency — see the [$dbname.enable\_shared\_bucket\_access](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-enable%5Fshared%5Fbucket%5Faccess) reference.
+To ensure tombstones are synced with clients, you should set the server's metadata purge interval based on your expected replication frequency — see the [$dbname.enable\_shared\_bucket\_access](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-enable%5Fshared%5Fbucket%5Faccess) reference.
 
 ### [](#accessing-sync-metadata)Accessing Sync Metadata
 
 Mobile metadata is not kept in the document, but in a system extended attribute (XATTR) in Couchbase Server.
 
-The N1QL query language \[[3](#%5Ffootnotedef%5F3 "View footnote.")\] supports the ability to query these extended attributes (XATTRS) and hence the document’s sync metadata — see: [Example 1](#simple-query).
+The N1QL query language \[[3](#%5Ffootnotedef%5F3 "View footnote.")\] supports the ability to query these extended attributes (XATTRS) and hence the document's sync metadata — see: [Example 1](#simple-query).
 
 Example 1\. Querying XATTRS-bsed sync metadata
 

@@ -4,7 +4,7 @@ description: To access Couchbase Server, users must be authenticated.
   <em>Authentication</em> is a process for identifying who is attempting to
   access a system.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/authentication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:security/authentication.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:7.6@server:learn:security/authentication.adoc[]
 
 # Authentication
 
-To access Couchbase Server, users must be authenticated. _Authentication_ is a process for identifying who is attempting to access a system. Subsequent to successful authentication, _authorization_ can be performed, whereby the user’s appropriate access-level is determined.
+To access Couchbase Server, users must be authenticated. _Authentication_ is a process for identifying who is attempting to access a system. Subsequent to successful authentication, _authorization_ can be performed, whereby the user's appropriate access-level is determined.
 
 Authentication can be performed by means of a _username_ and _password_, assigned to each administrator or application. Authentication can also be performed by means of _X.509 Certificates_: these support _Transport Layer Security_, by establishing the identity of a client or server through _digital signatures_. They also provide keys to support _on-the-wire_ encryption, according to the conventions of _Public Key Infrastructure_ (PKI).
 

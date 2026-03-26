@@ -3,7 +3,7 @@ title: Design a Location Path
 description: To make querying an external data source more efficient, you supply
   a location path that consists of prefixes.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/dynamic-prefixes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sources:dynamic-prefixes.adoc[]
 ---
 
@@ -131,7 +131,7 @@ FROM reviews
 WHERE year = 2022 AND month = "dec";
 ```
 
-By using dynamic prefixes in the collection’s path, the `WHERE` clause of each query acts first as a filter on the files to read, and then again as a filter on the results returned from each file.
+By using dynamic prefixes in the collection's path, the `WHERE` clause of each query acts first as a filter on the files to read, and then again as a filter on the results returned from each file.
 
 To use a dynamic prefix for the data in the `mobile/customer/1` through `mobile/customer/99999999` example, you could set up an external collection `customersCollection` with the path `mobile/customer/{customerId:int}`.
 

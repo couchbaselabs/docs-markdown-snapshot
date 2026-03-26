@@ -1,7 +1,7 @@
 ---
 title: Release Notes for Couchbase Kubernetes Operator 2.8
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@operator::release-notes.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.8@operator::release-notes.adoc[]
 
 Autonomous Operator 2.8 introduces our new Cluster Migration functionality well as a number of other improvements and minor fixes.
 
-Take a look at the [What’s New](whats-new.md) page for a list of new features and improvements that are available in this release.
+Take a look at the [What's New](whats-new.md) page for a list of new features and improvements that are available in this release.
 
 ## [](#installation)Installation
 
@@ -61,7 +61,7 @@ Couchbase Kubernetes Operator 2.8.0 was released in March 2025.
 
 #### [](#admission-controller-changes)Admission Controller Changes
 
-The Dynamic Admission Controller (DAC) will now warn if any cluster settings don’t match our [Best Practices for Production Deployments](best-practices.md#production-deployments).
+The Dynamic Admission Controller (DAC) will now warn if any cluster settings don't match our [Best Practices for Production Deployments](best-practices.md#production-deployments).
 
 The DAC will now prevent changes to the `CouchbaseCluster` spec while a hibernation is taking place. If hibernation is enabled while a cluster is migrating, upgrading, scaling, or rebalancing, that process will conclude before the cluster enters hibernation. The DAC will warn when this is the case, and it will be visible in the operator logs.
 
@@ -171,7 +171,7 @@ Operator container crashes when there is a managed Scope/Collection Group added 
 
 **[K8S-3617](https://jira.issues.couchbase.com/browse/K8S-3617)**
 
-It’s not possible to set [couchbaseclusters.spec.cluster.indexer.redistributeIndexes](resource/couchbasecluster.md#couchbaseclusters-spec-cluster-indexer-redistributeindexes) from True to False during a reconciliation.
+It's not possible to set [couchbaseclusters.spec.cluster.indexer.redistributeIndexes](resource/couchbasecluster.md#couchbaseclusters-spec-cluster-indexer-redistributeindexes) from True to False during a reconciliation.
 
 **[K8S-3908](https://jira.issues.couchbase.com/browse/K8S-3908)**
 

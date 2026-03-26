@@ -3,7 +3,7 @@ title: Creating and Editing Buckets
 description: Buckets can be created, and their configurations subsequently
   edited, with the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-bucket-create.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:rest-api:rest-bucket-create.adoc[]
 ---
 
@@ -212,7 +212,7 @@ If successful, the call returns a `202 Accepted` notification. No object is retu
 
 The _ejection policy_ to be assigned to and used by the bucket. (Note that _eviction_ is, in the current release, referred to as _ejection_; and this revised naming will continue to be used in future releases.) Policy-assignment depends on bucket type. For a _Couchbase_ bucket, the policy can be `valueOnly` (which is the default) or `fullEviction`. For an _Ephemeral_ bucket, the policy can be `noEviction` (which is the default) or `nruEviction`. No policy can be assigned to a _Memcached_ bucket.
 
-This value _can_ be modified, following bucket-creation. If such modification occurs, the bucket is restarted with the new setting: this may cause inaccessibility of data, during the bucket’s warm-up period.
+This value _can_ be modified, following bucket-creation. If such modification occurs, the bucket is restarted with the new setting: this may cause inaccessibility of data, during the bucket's warm-up period.
 
 Incorrect specification of an ejection policy returns an error-notification, such as `{"evictionPolicy":"Eviction policy must be either 'valueOnly' or 'fullEviction' for couchbase buckets"}`.
 
@@ -271,11 +271,11 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 
 ### [](#threadsnumber)threadsNumber
 
-The _priority_ for the bucket, as described in [Create a Bucket](../manage/manage-buckets/create-bucket.md#bucket-priority). Priority can be established as either _Low_ or _High_. To establish priority as _Low_ (which is the default), the value of `threadsNumber` must be `3`. To establish priority as _High_, the value must be `8`. If any other value is used, the value is ignored; and the bucket’s priority remains low.
+The _priority_ for the bucket, as described in [Create a Bucket](../manage/manage-buckets/create-bucket.md#bucket-priority). Priority can be established as either _Low_ or _High_. To establish priority as _Low_ (which is the default), the value of `threadsNumber` must be `3`. To establish priority as _High_, the value must be `8`. If any other value is used, the value is ignored; and the bucket's priority remains low.
 
 If this parameter is incorrectly specified, an error-notification such as the following is returned: `{"threadsNumber":"The number of threads must be an integer between 2 and 8"}`. (Note that, as indicated above, all values other than `3` and `8` are ignored.)
 
-This parameter _can_ be modified, following bucket-creation. If such modification occurs, the bucket is restarted with the new setting: this may cause inaccessibility of data, during the bucket’s warm-up period.
+This parameter _can_ be modified, following bucket-creation. If such modification occurs, the bucket is restarted with the new setting: this may cause inaccessibility of data, during the bucket's warm-up period.
 
 #### [](#example-threadsnumber-create)Example: Specifying a Bucket Priority, when Creating
 
@@ -361,12 +361,12 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 
 ### [](#maxttl)maxTTL
 
-Sets the bucket’s _maximum time to live_. The default value is `0`, which does not have documents automatically expire. It also does not affect expiration values you directly set on a document.
+Sets the bucket's _maximum time to live_. The default value is `0`, which does not have documents automatically expire. It also does not affect expiration values you directly set on a document.
 
 Setting this parameter to a non-zero value has two effects:
 
-* It sets a default expiration time for documents you create or mutate in the bucket. The bucket’s `maxTTL` value can be overridden by a `maxTTL` parameter set on the collection containing a document, or by directly setting an expiration on the document itself (except as explained in the next point).
-* It sets the maximum time in seconds a document can exist before it expires. You can explicitly set a document to expire before this time. Attempting to set a document to expire after this time has Couchbase Server set the document to expire in `maxTTL` seconds. As with setting a default expiration, a non-zero `maxTTL` setting on a document’s collection overrides the bucket’s `maxTTL` setting.
+* It sets a default expiration time for documents you create or mutate in the bucket. The bucket's `maxTTL` value can be overridden by a `maxTTL` parameter set on the collection containing a document, or by directly setting an expiration on the document itself (except as explained in the next point).
+* It sets the maximum time in seconds a document can exist before it expires. You can explicitly set a document to expire before this time. Attempting to set a document to expire after this time has Couchbase Server set the document to expire in `maxTTL` seconds. As with setting a default expiration, a non-zero `maxTTL` setting on a document's collection overrides the bucket's `maxTTL` setting.
 
 The maximum value is MAX32INT (`2147483647` seconds, or `68.096` years). Attempting to set `maxTTL` value greater than MAX32INT returns an the error: `{"maxTTL":"Max TTL must be an integer between 0 and 2147483647"}`.
 
@@ -426,7 +426,7 @@ For information on conflict resolution, see: [XDCR Conflict Resolution](../learn
 
 #### [](#example-conflictresolutiontype-create)Example: Specifying a Conflict Resolution Policy, when Creating
 
-A bucket’s conflict resolution policy can _only_ be specified when the bucket is created: attempts to change the setting subsequently are ignored.
+A bucket's conflict resolution policy can _only_ be specified when the bucket is created: attempts to change the setting subsequently are ignored.
 
 The following example creates a new bucket, named `testBucket`, specifying the `lww` conflict resolution policy.
 
@@ -795,4 +795,4 @@ For an overview of change history, see [Change History](../learn/data/change-his
 
 See [Roles](../learn/security/roles.md), for information on roles and privileges.
 
-For information on how to inspect a bucket’s current configuration, see [Getting All Bucket Information](rest-buckets-summary.md).
+For information on how to inspect a bucket's current configuration, see [Getting All Bucket Information](rest-buckets-summary.md).

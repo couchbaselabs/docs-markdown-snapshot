@@ -3,7 +3,7 @@ title: Couchbase Lite on Swift
 description: Start your Couchbase for Mobile and Edge adventure, get up and
   running with Couchbase Lite
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/swift/pages/index.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:swift:index.adoc[]
 ---
 
@@ -62,7 +62,7 @@ Key Concepts
 
 Product Notes
 
-* [What’s New](../../current/cbl-whatsnew.md)
+* [What's New](../../current/cbl-whatsnew.md)
 * [Release Notes](#couchbase-lite:swift:release-notes.adoc)
 * [Compatibility](../../current/swift/compatibility.md)
 * [Supported OS](../../current/swift/supported-os.md)

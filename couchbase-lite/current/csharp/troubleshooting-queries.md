@@ -2,7 +2,7 @@
 title: Troubleshooting Queries
 description: Couchbase Lite on C# -- Using query.explain()
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/troubleshooting-queries.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:csharp:troubleshooting-queries.adoc[]
 ---
 
@@ -12,14 +12,14 @@ link: xref:couchbase-lite:csharp:troubleshooting-queries.adoc[]
 # Troubleshooting Queries
 
 > Description — _Couchbase Lite on C# — Using query.explain()_  
-> _Abstract — This content describes how to use the Couchbase Lite on C#.Net Query API’s explain() method to examine a query_  
+> _Abstract — This content describes how to use the Couchbase Lite on C#.Net Query API's explain() method to examine a query_  
 > Related Content — [Using Logs](troubleshooting-logs.md) | [Predictive Queries](querybuilder.md#lbl-predquery) | [Live Queries](query-live.md) | [Indexing](indexing.md)
 
 ## [](#query-explain)Query Explain
 
 ### [](#usage)Usage
 
-Query’s [Explain()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.#Couchbase%5FLite%5F%5FQuery%5FIQuery%5FExplain) method can provide useful insight when you’re trying to diagnose query performance issues and-or optimize queries. To examine how your query is working, either embed the call inside your app (see: [Example 1](#use-qe-app)), or use it interactively within a `cblite` shell (see: [Example 2](#use-qe-cblite)).
+Query's [Explain()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.#Couchbase%5FLite%5F%5FQuery%5FIQuery%5FExplain) method can provide useful insight when you're trying to diagnose query performance issues and-or optimize queries. To examine how your query is working, either embed the call inside your app (see: [Example 1](#use-qe-app)), or use it interactively within a `cblite` shell (see: [Example 2](#use-qe-cblite)).
 
 Example 1\. Using Query Explain in App
 
@@ -37,7 +37,7 @@ Console.WriteLine(query.Explain()); (2)
 
 | **1** | Construct your query as normal                                                     |
 | ----- | ---------------------------------------------------------------------------------- |
-| **2** | Call the query’s explain method; All output is sent to the application’s log file. |
+| **2** | Call the query's explain method; All output is sent to the application's log file. |
 
 Example 2\. Using Query Explain in cblite
 
@@ -86,7 +86,7 @@ This output ([Example 3](#qe-output)) comprises 3 main elements:
 
 ### [](#format)Format
 
-The query plan section of the output displays a tabular form of the translated query’s execution plan. It primarily shows how SQLite retrieves the data and, where appropriate, how it sorts results for navigation and presentation purposes. For more on SQLite’s Explain Query Plan — see: <https://www.sqlite.org/eqp.html>
+The query plan section of the output displays a tabular form of the translated query's execution plan. It primarily shows how SQLite retrieves the data and, where appropriate, how it sorts results for navigation and presentation purposes. For more on SQLite's Explain Query Plan — see: <https://www.sqlite.org/eqp.html>
 
 Example 4\. A Query Plan
 
@@ -110,19 +110,19 @@ __Table 1\. Retrieval methods__
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Search           | Here the query can view the required data directly using keys into the index. Queries using the Search mode are the fastest.                                                                                                                                |
 | Scan Index       | Here the query is able to retrieve the data by scanning all or part-of the index (for example when seeking to match values within a range). This type of query is slower than search, but at least benefits from the compact and ordered form of the index. |
-| Scan Table       | Here the query must scan the database table(s) to retrieve the required data. It’s the slowest of these methods and benefits most from optimization.                                                                                                        |
+| Scan Table       | Here the query must scan the database table(s) to retrieve the required data. It's the slowest of these methods and benefits most from optimization.                                                                                                        |
 
-When looking to optimize a query’s retrieval method, consider whether:
+When looking to optimize a query's retrieval method, consider whether:
 
 * Providing an additional index makes sense
-* You could use an existing index — perhaps by restructuring the query to minimize wildcard use, or the reliance on functions that modify the query’s interpretation of index keys (for example, 'lower')
+* You could use an existing index — perhaps by restructuring the query to minimize wildcard use, or the reliance on functions that modify the query's interpretation of index keys (for example, 'lower')
 * You could reduce the dataset the query requests to minimize its footprint on the database
 
 ### [](#order-group)Order and Group
 
 The `Use temp b-tree for` lines in the example indicate that the query requires sorting to cater for grouping and then sorting again to present the output results. Minimizing, if not eliminating, this ordering and re-ordering obviously reduces the time taken to process the query.
 
-Ask "is the grouping and-or ordering absolutely necessary?": if it’s not, drop it or modify it to minimize its impact.
+Ask "is the grouping and-or ordering absolutely necessary?": if it's not, drop it or modify it to minimize its impact.
 
 ## [](#queries-and-indexes)Queries and Indexes
 
@@ -150,7 +150,7 @@ Searches that begin with or rely upon an inequality with the primary key are inh
 
 You may have noticed that sometimes a query runs faster on a second run, or after re-opening the database, or after deleting and recreating an index. This typically happens when SQL Query Optimizer has gathered sufficient stats to recognize a means of optimizing a sub-optimal query.
 
-If only those stats were available from the start. In fact they’re gathered after certain events, such as:
+If only those stats were available from the start. In fact they're gathered after certain events, such as:
 
 * Following index creation
 * On a database close
@@ -163,7 +163,7 @@ If your analysis of the [Query Explain output](#qe-output) indicates a sub-optim
 Like-based searches can use the index(es) only if:
 
 * The search-string does not start with a wildcard
-* The primary search expression uses a property that’s indexed key
+* The primary search expression uses a property that's indexed key
 * The search-string is a constant known at run time) (that is, not a value derived during processing of the query)
 
 To show this, you can use a modified query from the Mobile Travel Sample application, replacing an equality test with a 'LIKE'
@@ -194,7 +194,7 @@ Resulting Query Plan
 2|0|0| SCAN TABLE kv_default AS _doc
 ```
 
-By contrast, removing the wildcard prefix `%` (in [Example 5](#like-no-wild-pfx-qry)) changes the query plan’s retrieval method to an index search. Where practical, changes like this can make significant differences in query performance.
+By contrast, removing the wildcard prefix `%` (in [Example 5](#like-no-wild-pfx-qry)) changes the query plan's retrieval method to an index search. Where practical, changes like this can make significant differences in query performance.
 
 Example 5\. Like with No Wildcard-prefix
 
@@ -276,7 +276,7 @@ Try to minimize the amount of data retrieved. Limit it to the properties you do 
 
 Consider fetching details _lazily_. You could break complex queries into components. For example, return just the doc-ids first, then process the array of doc-ids using either the Document API or a query that uses the doc-ids to return detailed information.
 
-Consider using paging to minimize the data returned when the number of results returned is expected to be high. Getting the whole lot at once is slow and resource intensive. Instead, retrieve batches of information at a time, perhaps using the `Where` method’s `limit(offset)` feature to set a starting point for each subsequent batch.
+Consider using paging to minimize the data returned when the number of results returned is expected to be high. Getting the whole lot at once is slow and resource intensive. Instead, retrieve batches of information at a time, perhaps using the `Where` method's `limit(offset)` feature to set a starting point for each subsequent batch.
 
 > [!NOTE]
 > Using query offsets becomes less effective as the overhead of skipping a growing number of rows each time increases. You can work around this by using ranges of search-key values instead. If the last search-key value of batch 1 was 'x', that becomes the starting point for your next batch, and so on.

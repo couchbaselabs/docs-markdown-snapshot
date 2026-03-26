@@ -2,7 +2,7 @@
 title: Transaction Concepts
 description: A high-level overview of Distributed ACID Transactions with Couchbase.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/concept-docs/pages/transactions.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cxx-sdk:concept-docs:transactions.adoc[]
 ---
 
@@ -68,7 +68,7 @@ After this commit point is reached, the individual documents will be committed (
 
 When an exception is thrown, either by the application from the lambda, or by the transactions logic itself (e.g. on a failed operation), then that attempt is rolled back.
 
-The application’s lambda may or may not be retried, depending on the error that occurred. The general rule for retrying is whether the transaction is likely to succeed on a retry. For example, if this transaction is trying to write a document that is currently involved in another transaction (a write-write conflict), this will lead to a retry as that is likely a transient state. But if the transaction is trying to get a document that does not exist, it will not retry.
+The application's lambda may or may not be retried, depending on the error that occurred. The general rule for retrying is whether the transaction is likely to succeed on a retry. For example, if this transaction is trying to write a document that is currently involved in another transaction (a write-write conflict), this will lead to a retry as that is likely a transient state. But if the transaction is trying to get a document that does not exist, it will not retry.
 
 If the transaction is not retried then it will return a `couchbase::error` wrapping an `errc::transaction::failed` error code, and its `cause()` method can be used for more details on the failure.
 
@@ -112,7 +112,7 @@ Note this only applies to _writes_. Any non-transactional _reads_ concurrent wit
 
 As described earlier, transactions automatically create and use metadata documents. By default, these are created in the default collection of the bucket of the first mutated document in the transaction. Optionally, you can instead specify a collection to store the metadata documents. Most users will not need to use this functionality, and can continue to use the default behavior. They are provided for these use-cases:
 
-* The metadata documents contain, for documents involved in each transaction, the document’s key and the name of the bucket, scope and collection it exists on. In some deployments this may be sensitive data.
+* The metadata documents contain, for documents involved in each transaction, the document's key and the name of the bucket, scope and collection it exists on. In some deployments this may be sensitive data.
 * You wish to remove the default collections. Before doing this, you should ensure that all existing transactions using metadata documents in the default collections have finished.
 
 Custom metadata collections are enabled with:

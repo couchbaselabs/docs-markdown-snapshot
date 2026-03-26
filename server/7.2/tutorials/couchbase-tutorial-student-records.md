@@ -3,7 +3,7 @@ title: "Couchbase Tutorial: A Student Record System"
 description: A short tutorial that will guide the developer in downloading and
   installing Couchbase, then creating a database to store student records.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/couchbase-tutorial-student-records.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:tutorials:couchbase-tutorial-student-records.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.2@server:tutorials:couchbase-tutorial-student-records.adoc[]
 
 ## [](#introduction)Introduction
 
-Couchbase is a schema-less document database engine designed for high performance, scalability, and rapid development. During this tutorial, we’ll introduce you to some key concepts behind Couchbase and how they differ from traditional SQL database systems such as MySQL and Oracle. We’re going to examine the advantages of a schema-less engine by building a document database for storing student records.
+Couchbase is a schema-less document database engine designed for high performance, scalability, and rapid development. During this tutorial, we'll introduce you to some key concepts behind Couchbase and how they differ from traditional SQL database systems such as MySQL and Oracle. We're going to examine the advantages of a schema-less engine by building a document database for storing student records.
 
 > [!IMPORTANT]
 > This tutorial is designed for use with standalone or Docker installations of the Couchbase Server. If you wish to use [the Couchbase Capella cloud service](https://www.couchbase.com/products/capella) then you can run through the tutorials for [Getting Started with Couchbase Capella](https://docs.couchbase.com/cloud/get-started/get-started.html).
@@ -36,7 +36,7 @@ So what would this database look like under a relational compared to a document 
 
 ![student-record-erd](_images/student-record-erd-107b1252fd5db120a096e289c8c7f238150b57f0.svg) 
 
-Nothing too dramatic: the database contains a list of students and a list of courses. Each student can enrol on any number of courses, and the record of each of the student’s enrollments is stored in a separate table called `enrollment` which links to the student’s record and the courses he/she is enrolling on.
+Nothing too dramatic: the database contains a list of students and a list of courses. Each student can enrol on any number of courses, and the record of each of the student's enrollments is stored in a separate table called `enrollment` which links to the student's record and the courses he/she is enrolling on.
 
 The `enrollment` table highlights one of the problems with the relational database model: each table is based on a fixed schema that can only support a single data object type. You cannot store, for example, the enrollment records in the same table as the student, even though it may more natural to do so; after all, an `enrollment` cannot exist without a `student`, so why not store them together?
 
@@ -46,7 +46,7 @@ The document model gives you the same decomposition advantages as the relational
 
 ![student-document-database-design](_images/student-document-database-design-f437e457810966f04ff9fc2bc2ecdbb5327ce938.svg) 
 
-Here’s how the student record system might look as a document database.
+Here's how the student record system might look as a document database.
 
 student record
 
@@ -68,7 +68,7 @@ student record
 }
 ```
 
-The document is stored in JSON format, which allows for the storage of complex types such as arrays without decomposing them to a second table. JSON also allows the flexibility to change the structure of the document without having to rebuild schemas (as you would in a relational database system). A new field, let’s say to store email addresses, could be added to new documents without having to migrate existing data to a new schema. In this case, the list of `enrollment` records is stored with the student record. Each `enrollment` record holds a reference to the course it relates to.
+The document is stored in JSON format, which allows for the storage of complex types such as arrays without decomposing them to a second table. JSON also allows the flexibility to change the structure of the document without having to rebuild schemas (as you would in a relational database system). A new field, let's say to store email addresses, could be added to new documents without having to migrate existing data to a new schema. In this case, the list of `enrollment` records is stored with the student record. Each `enrollment` record holds a reference to the course it relates to.
 
 > [!NOTE]
 > It would be a very bad idea to store the course record with each student:
@@ -100,11 +100,11 @@ graphic design course record
 
 Couchbase uses a document model which stores each database record as a JSON document. The document can contain both simple scalar types, and complex types such as nested records and arrays.
 
-Hilary’s enrollments are stored in the same document as her student details. As well as being a more natural way to store child information with its parent, this structure allows for all of Hilary’s details (enrollments included) in one search, without the need for complex table joins to retrieve the enrollment information.
+Hilary's enrollments are stored in the same document as her student details. As well as being a more natural way to store child information with its parent, this structure allows for all of Hilary's details (enrollments included) in one search, without the need for complex table joins to retrieve the enrollment information.
 
 ## [](#next-steps)Next steps
 
-Okay, now that we’ve got the basic idea behind the document database model, let’s continue with a few exercises:
+Okay, now that we've got the basic idea behind the document database model, let's continue with a few exercises:
 
 | Step   | Tutorial                                                                              |
 | ------ | ------------------------------------------------------------------------------------- |
@@ -119,4 +119,4 @@ Okay, now that we’ve got the basic idea behind the document database model, le
 > [!TIP]
 > It is **strongly** recommended that you follow the sections in order.
 
-In the next part of the tutorial, you’re going to begin your exploration of Couchbase by [installing the Couchbase Server: Community edition](install-couchbase-server.md).
+In the next part of the tutorial, you're going to begin your exploration of Couchbase by [installing the Couchbase Server: Community edition](install-couchbase-server.md).

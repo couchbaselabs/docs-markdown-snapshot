@@ -4,7 +4,7 @@ description: The cost for App Services is based on the cost of the linked
   Cluster, and comprises a fixed cost, plus a variable amount based on the data
   usage.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/billing/billing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::billing/billing.adoc[]
 ---
 
@@ -33,4 +33,4 @@ After you deploy an App Service and it enters a running state, it becomes billab
 
 The first 1GiB of data processing per clock hour is not charged.
 
-App Services are not billed when they’re turned off.
+App Services are not billed when they're turned off.

@@ -3,7 +3,7 @@ title: Disabling Transparent Huge Pages (THP)
 description: Transparent huge pages (THP) is a memory management system that is
   enabled by default in most Linux operating systems.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/thp-disable.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:install:thp-disable.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:2.0@enterprise-analytics:install:thp-disable.adoc[]
 
 In Linux operating systems, THP is a feature that provides a way for the CPU and OS to create pre-allocated contiguous memory space to improve application performance. THP automates the creation of contiguous memory space and conceals much of the complexity of using actual huge pages on systems with large amounts of memory.
 
-THP is enabled by default in most Linux operating systems, and functions well for most applications and processes. However, THP is detrimental to Couchbase’s performance.
+THP is enabled by default in most Linux operating systems, and functions well for most applications and processes. However, THP is detrimental to Couchbase's performance.
 
 Since you tend to have more random, sparse data access, you allocate pages that can remain mostly empty. This leads to memory fragmentation as portions of memory are not used but still accounted for in the RSS. As a result, the data stored may be smaller while RSS can be more, increasing the risk of out-of-memory (OOM) conditions. Therefore, you must disable THP on Linux systems so that Enterprise Analytics performs optimally.
 
@@ -88,7 +88,7 @@ If you use `tuned` or `ktune` (for example, if you run Red Hat 7+) you must also
 
 ### [](#tuned-ktune)If Using `tuned` and `ktune`
 
-`tuned` and `ktune` are system monitoring and tuning tools available on Red Hat. When they’re in use on a system, you can use them to enable and disable THP.
+`tuned` and `ktune` are system monitoring and tuning tools available on Red Hat. When they're in use on a system, you can use them to enable and disable THP.
 
 To disable THP in `tuned` and `ktune`, you need to edit or create a new profile that sets THP to `never`.
 

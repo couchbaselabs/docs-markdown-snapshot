@@ -3,7 +3,7 @@ title: Data Sync using Sync Gateway
 description: Couchbase Lite JavaScript -- Synchronizing data changes between
   local and remote databases using Sync Gateway
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/replication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::replication.adoc[]
 ---
 
@@ -62,11 +62,11 @@ Couchbase Lite JavaScript uses a WebSocket-based replication protocol. The repli
 
 Incompatibilities
 
-Couchbase Lite’s replication protocol is **incompatible** with CouchDB-based databases and PouchDB’s replication protocol.
+Couchbase Lite's replication protocol is **incompatible** with CouchDB-based databases and PouchDB's replication protocol.
 
 ### [](#lbl-repl-ord)Ordering
 
-To optimize for speed, the replication protocol doesn’t guarantee that documents will be received in a particular order. We don’t recommend relying on document order when using replication or database change listeners.
+To optimize for speed, the replication protocol doesn't guarantee that documents will be received in a particular order. We don't recommend relying on document order when using replication or database change listeners.
 
 ## [](#scopes-and-collections)Scopes and Collections
 
@@ -79,7 +79,7 @@ The collections specified in the Couchbase Lite replicator setup must exist (bot
 During replication:
 
 1. If Sync Gateway config (or server) is updated to remove a collection that is being synced, the client replicator will be offline and will be stopped after the first retry. An error will be reported.
-2. If Sync Gateway config is updated to add a collection to a scope that is being synchronized, the replication will ignore the collection. The added collection will not automatically sync until the Couchbase Lite replicator’s configuration is updated.
+2. If Sync Gateway config is updated to add a collection to a scope that is being synchronized, the replication will ignore the collection. The added collection will not automatically sync until the Couchbase Lite replicator's configuration is updated.
 
 ### [](#default-collection)Default Collection
 
@@ -154,7 +154,7 @@ Initialize and define the replication configuration with local and remote databa
 The configuration provides:
 
 * The local database to be synced
-* The server’s URL (including the port number and the name of the remote database to sync with)
+* The server's URL (including the port number and the name of the remote database to sync with)
 * The URL scheme for WebSocket URLs uses `ws:` (non-TLS) or `wss:` (SSL/TLS) prefixes
 
 Example 2\. Add Target to Configuration
@@ -176,7 +176,7 @@ const replicatorConfig: ReplicatorConfig = {
 
 Define the direction and type of replication you want to initiate.
 
-Use the `ReplicatorConfig` object’s `replicatorType` and `continuous` parameters to specify:
+Use the `ReplicatorConfig` object's `replicatorType` and `continuous` parameters to specify:
 
 * The type (or direction) of the replication:
 
@@ -362,7 +362,7 @@ console.log('Replication started');
 
 ## [](#lbl-repl-mon)Monitor
 
-You can monitor a replication’s status by using change listeners and the `replicator.status` property. This enables you to know when the replication is actively transferring data and when it has stopped.
+You can monitor a replication's status by using change listeners and the `replicator.status` property. This enables you to know when the replication is actively transferring data and when it has stopped.
 
 ### [](#lbl-repl-chng)Change Listeners
 
@@ -371,7 +371,7 @@ Use change listeners to monitor replication progress. You can add a replicator c
 > [!TIP]
 > Best Practice
 > 
-> Remove listeners when they’re no longer needed to prevent memory leaks
+> Remove listeners when they're no longer needed to prevent memory leaks
 
 Example 9\. Monitor replication
 

@@ -1,7 +1,7 @@
 ---
 title: Couchbase Cluster Auto-scaling Best Practices
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/concept-couchbase-autoscaling-best-practices.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@operator::concept-couchbase-autoscaling-best-practices.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:2.8@operator::concept-couchbase-autoscaling-best-practices.adoc[]
 
 ## [](#how-to-use-this-page)How to Use This Page
 
-This page provides guidance on how to configure the Kubernetes Operator’s [auto-scaling feature](concept-couchbase-autoscaling.md) to effectively scale Couchbase clusters. Specifically, it discusses relevant _metrics_ for scaling individual Couchbase Services, and provides recommended settings based on internal benchmark testing performed by Couchbase.
+This page provides guidance on how to configure the Kubernetes Operator's [auto-scaling feature](concept-couchbase-autoscaling.md) to effectively scale Couchbase clusters. Specifically, it discusses relevant _metrics_ for scaling individual Couchbase Services, and provides recommended settings based on internal benchmark testing performed by Couchbase.
 
 Auto-scaling is a generic feature and it is possible to use other metrics and options outside those listed in these best practices. If you identify other metrics which you believe are more relevant to your application workload, we recommend that you consider the resources that require scaling, and that you test your specific scenarios with simulated workloads to ensure that your cluster scales as expected and meets the necessary service levels.
 
@@ -99,7 +99,7 @@ The following are general best practices that should be considered when configur
 * It is recommended that you _always_ specify a value for [couchbaseclusters.spec.autoscaleStabilizationPeriod](resource/couchbasecluster.md#couchbaseclusters-spec-autoscalestabilizationperiod).
 
   * When a valid value is set for this field, even if it is `0s`, the Horizontal Pod Autoscaler will be kept in [_maintenance mode_](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#implicit-maintenance-mode-deactivation) until the rebalance operation has completed.
-  * When no value is set for this field, the Horizontal Pod Autoscaler may request scaling at any point during the rebalance operation. This is almost never desirable, since metrics are more likely to be unstable than not; and although any scaling request made by the Horizontal Pod Autoscaler during a rebalance operation will not be honored until the current rebalance is complete, the risk remains that the request itself is based on invalid metrics that could’ve been avoided if the Horizontal Pod Autoscaler was in maintenance mode. Therefore, it is recommended that most users set the value of this field to at least `0s`, unless there is a high degree of confidence in the stability of a metric _during_ rebalance.  
+  * When no value is set for this field, the Horizontal Pod Autoscaler may request scaling at any point during the rebalance operation. This is almost never desirable, since metrics are more likely to be unstable than not; and although any scaling request made by the Horizontal Pod Autoscaler during a rebalance operation will not be honored until the current rebalance is complete, the risk remains that the request itself is based on invalid metrics that could've been avoided if the Horizontal Pod Autoscaler was in maintenance mode. Therefore, it is recommended that most users set the value of this field to at least `0s`, unless there is a high degree of confidence in the stability of a metric _during_ rebalance.  
 A general rule of thumb is to set this field to `0s` until a high degree of confidence is established in the stability of a metric during rebalance. Refer to [Couchbase Stabilization Period](concept-couchbase-autoscaling.md#couchbase-stabilization-period) in the concept documentation for additional information about this setting.
 
 ### [](#horizontalpodautoscaler-resource)`HorizontalPodAutoscaler` Resource
@@ -116,26 +116,26 @@ The following are general best practices that should be considered when configur
 
 ### [](#metric-bucket-memory-utilization)Metric: Bucket Memory Utilization
 
-Couchbase Server uses a fully integrated in-memory caching layer to provide high-speed access to bucket data. Every bucket has a [configurable memory quota](../../server/current/learn/buckets-memory-and-storage/buckets.md) that determines how much memory should be consistently maintained within the caching layer for each individual bucket. Each bucket’s individual memory quota is subtracted from the overall memory quota assigned to the Data Service.
+Couchbase Server uses a fully integrated in-memory caching layer to provide high-speed access to bucket data. Every bucket has a [configurable memory quota](../../server/current/learn/buckets-memory-and-storage/buckets.md) that determines how much memory should be consistently maintained within the caching layer for each individual bucket. Each bucket's individual memory quota is subtracted from the overall memory quota assigned to the Data Service.
 
 Data associated with _Couchbase_ buckets is stored in memory and persisted on disk, whereas data associated with _Ephemeral_ buckets is exclusively maintained in memory.
 
-* If a Couchbase bucket’s memory quota is exceeded, infrequently used data items are [ejected](../../server/current/learn/buckets-memory-and-storage/memory.md#ejection) from memory, leaving only the persisted copies of those data items on disk.
-* If an Ephemeral bucket’s memory quota is exceeded, one of the following will occur depending on how the bucket is configured:
+* If a Couchbase bucket's memory quota is exceeded, infrequently used data items are [ejected](../../server/current/learn/buckets-memory-and-storage/memory.md#ejection) from memory, leaving only the persisted copies of those data items on disk.
+* If an Ephemeral bucket's memory quota is exceeded, one of the following will occur depending on how the bucket is configured:
 
   * Resident data-items remain in memory, but requests to add new data are rejected until an administrator frees enough space to support continued data-ingestion
   * Resident data-items are ejected from memory to make way for new data (and because the data-items in Ephemeral buckets are not persisted on disk, they cannot be reacquired after ejection)
 
-If your goal is to prevent document ejection and maintain the active data-set for each bucket entirely within memory, then you must prevent each bucket’s memory utilization from ever reaching the high water mark. In practice this means that before the high water mark is reached, you must either increase the bucket’s memory quota, or scale out the cluster with additional nodes running the Data Service (thus increasing the total amount of memory reserved for all buckets).
+If your goal is to prevent document ejection and maintain the active data-set for each bucket entirely within memory, then you must prevent each bucket's memory utilization from ever reaching the high water mark. In practice this means that before the high water mark is reached, you must either increase the bucket's memory quota, or scale out the cluster with additional nodes running the Data Service (thus increasing the total amount of memory reserved for all buckets).
 
-The first solution — increasing the bucket’s memory quota — requires manual intervention and may not be possible if there is no reservable memory left on Data Service nodes. This makes the second solution — scaling out the number of Data Service nodes — much more desirable, and an ideal use-case for cluster auto-scaling.
+The first solution — increasing the bucket's memory quota — requires manual intervention and may not be possible if there is no reservable memory left on Data Service nodes. This makes the second solution — scaling out the number of Data Service nodes — much more desirable, and an ideal use-case for cluster auto-scaling.
 
 #### [](#recommendations)Recommendations
 
 Recommended metric: `cbbucketinfo_basic_quota_user_percent`
 
 * Provided by [Couchbase Prometheus Exporter](howto-prometheus.md)
-* Represents the percentage of memory used by a bucket in relation to the bucket’s quota
+* Represents the percentage of memory used by a bucket in relation to the bucket's quota
 
 * Recommended Settings
 * Example Configs
@@ -152,7 +152,7 @@ Based on internal benchmark testing, we believe the following settings provide a
 General notes:
 
 * Benchmark tests were based on buckets that had a 30% average write rate, 1 kilobyte average document sizes, and default compaction threshold.
-* The threshold needs to be set below the high water mark of the bucket’s memory quota, otherwise data may be ejected from memory before the cluster scales up.
+* The threshold needs to be set below the high water mark of the bucket's memory quota, otherwise data may be ejected from memory before the cluster scales up.
 
   * The threshold needs to be set low enough that the cluster has enough time to finish rebalancing before the high water mark is reached — preferably at or just below the low water mark, as it indicates that memory usage is moving toward a critical point.
 * You should consider setting a lower threshold for buckets with a higher average write rate or larger average doc sizes. This is because rebalance will take longer, thus increasing the risk of exceeding the high water mark.
@@ -256,7 +256,7 @@ General notes:
 * Scaling on CPU utilization is most effective for queries which are CPU-bound. The Query Service should be scaled at 10-20% below peak CPU usage. Our testing revealed 70% to be a good threshold when experiencing a peak of 90% CPU usage.
 
   * On average, an additional pod provided 5% CPU relief for workloads averaging 10 queries/sec at 500ms. Peak CPU should be less than 95% to ensure scaling will immediately improve CPU usage.
-* The default threshold tolerance of the [HPA scaling algorithm](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#algorithm-details) is 0.1\. Auto-scaling the Query Service will not perform well if the workload results in CPU usage deviating ±10% at your workload’s “steady state”. This is because auto-scaling will continually counterbalance itself over time. Therefore you should be mindful of this window when choosing a CPU scaling threshold. Note that the deviation becomes smaller as CPU threshold lowers, with the deviation being relatively ideal at the recommended 70% threshold.
+* The default threshold tolerance of the [HPA scaling algorithm](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#algorithm-details) is 0.1\. Auto-scaling the Query Service will not perform well if the workload results in CPU usage deviating ±10% at your workload's "steady state". This is because auto-scaling will continually counterbalance itself over time. Therefore you should be mindful of this window when choosing a CPU scaling threshold. Note that the deviation becomes smaller as CPU threshold lowers, with the deviation being relatively ideal at the recommended 70% threshold.
 
   * Using a `300s` HPA Stabilization Window (both `scaleUp` and `scaleDown`) is recommended in order to mitigate quick directional changes in scaling.
   * A high `600s` Couchbase Stabilization Period ensures additional nodes are fully acclimated to the workload.
@@ -328,20 +328,20 @@ The Index Service can be configured to use either the _standard_ or _memory-opti
 
   * If indexer memory usage goes above 95% of the Index Service memory quota, the indexer goes into the Paused mode on that node; and although the indexes remain in Active state, traffic is routed away from the node.
 
-If your goal it to maintain peak performance for all index storage types, then you must prevent the memory utilization of the Index Service from ever reaching the point that the indexer goes into the Paused mode. In practice this means that before the indexer becomes paused, you must either increase the Index Service’s memory quota, or scale out the cluster with additional nodes running the Index Service (thus increasing the amount of memory reserved for indexes on all nodes).
+If your goal it to maintain peak performance for all index storage types, then you must prevent the memory utilization of the Index Service from ever reaching the point that the indexer goes into the Paused mode. In practice this means that before the indexer becomes paused, you must either increase the Index Service's memory quota, or scale out the cluster with additional nodes running the Index Service (thus increasing the amount of memory reserved for indexes on all nodes).
 
-The first solution — increasing the Index Service’s memory quota — requires manual intervention and may not be possible if there is no reservable memory left on Index Service nodes. This makes the second solution — scaling out the number of Index Service nodes — much more desirable, and an ideal use-case for cluster auto-scaling.
+The first solution — increasing the Index Service's memory quota — requires manual intervention and may not be possible if there is no reservable memory left on Index Service nodes. This makes the second solution — scaling out the number of Index Service nodes — much more desirable, and an ideal use-case for cluster auto-scaling.
 
 #### [](#recommendations-3)Recommendations
 
 Recommended metric: `cbindex_ram_percent`
 
 * Provided by [Couchbase Prometheus Exporter](howto-prometheus.md)
-* Represents the amount of memory used by the Index Service as a percentage of the Index Service’s memory quota
+* Represents the amount of memory used by the Index Service as a percentage of the Index Service's memory quota
 
 The following considerations should be taken into account when scaling on this metric:
 
-* Indexes must be [partitioned](../../server/current/indexes/index-replication.md#index-partitioning) in order for the Index Service to be auto-scaled. Indexes that don’t utilize partitioning reside on a single node with underlying memory and compute resources that cannot be resized in-place after creation. You will need to delete and re-create any non-partitioned indexes before you can auto-scale the underlying Index nodes.
+* Indexes must be [partitioned](../../server/current/indexes/index-replication.md#index-partitioning) in order for the Index Service to be auto-scaled. Indexes that don't utilize partitioning reside on a single node with underlying memory and compute resources that cannot be resized in-place after creation. You will need to delete and re-create any non-partitioned indexes before you can auto-scale the underlying Index nodes.
 
   * When new Index nodes are added or removed from the cluster, the rebalance operation attempts to move the index partitions across available Index nodes in order to balance resource consumption. The Index Service will only attempt to balance resource consumption on a best try basis.
 * The index storage mode is controlled by [couchbaseclusters.spec.cluster.indexer.storageMode](resource/couchbasecluster.md#couchbaseclusters-spec-cluster-indexer-storagemode), and defaults to memory-optimized (`memory_optimized`). To configure the Index Service to use the standard index storage mode, set this field to `plasma`.
@@ -359,7 +359,7 @@ General notes:
 
 * Benchmark tests were based on memory-optimized indexes with a 30% write rate of 16 byte document sizes. Higher write rates or larger document sizes should use a threshold lower than 60% to account for longer rebalance times.
 * Index RAM distribution is uncertain and clusters may perform better when an even number of Index nodes are available.
-* Testing revealed that Index Service RAM usage didn’t always drop immediately when a single `index` node was added, but when a pair of nodes were added then RAM usage dropped.
+* Testing revealed that Index Service RAM usage didn't always drop immediately when a single `index` node was added, but when a pair of nodes were added then RAM usage dropped.
 
 > [!NOTE]
 > The examples below are incomplete configurations that are meant to show the implementation of the recommended settings within the relevant resources. For a more complete example of how to implement the recommended auto-scaling settings, refer to [Auto-scaling the Couchbase Index Service](tutorial-autoscale-index.md).

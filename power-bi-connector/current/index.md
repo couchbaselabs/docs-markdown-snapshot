@@ -3,7 +3,7 @@ title: Introduction
 description: The Couchbase Power BI Connector provides data visualization for
   the Couchbase platform, using Microsoft's data visualization software.
 editUrl: https://github.com/couchbase/docs-connectors-power-bi/edit/release/1.2/modules/ROOT/pages/index.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:power-bi-connector::index.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:power-bi-connector::index.adoc[]
 
 # Introduction
 
-> The Couchbase Power BI Connector provides data visualization for the Couchbase platform, using Microsoft’s data visualization software. 
+> The Couchbase Power BI Connector provides data visualization for the Couchbase platform, using Microsoft's data visualization software. 
 
 ## [](#overview)Overview
 
@@ -62,7 +62,7 @@ To install OpenSSL:
 ```console  
 openssl version  
 ```
-4. If the output indicates OpenSSL is not installed, rather than returning the version that you installed, you need to add the OpenSSL binary’s location to the `PATH` environment:
+4. If the output indicates OpenSSL is not installed, rather than returning the version that you installed, you need to add the OpenSSL binary's location to the `PATH` environment:
 
   1. Check `C:\Program Files` or use `Find` to locate the SSL binary — usually the path will be something like:  
   ```console  
@@ -87,7 +87,7 @@ To install the Couchbase ODBC driver:
 To install the Power BI Connector:
 
 1. Download `couchbase-powerbi-connector-1.2.101.mez` from <https://packages.couchbase.com/releases/couchbase-powerbi-connector/1.2/couchbase-powerbi-connector-1.2.101.mez>. For more information, see [Release Notes](release-notes.md).
-2. Follow [Microsoft’s guide](https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-connector-extensibility#custom-connectors) on configuring a custom connector.
+2. Follow [Microsoft's guide](https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-connector-extensibility#custom-connectors) on configuring a custom connector.
 
 ## [](#verify-the-connector-installation)Verify the Connector Installation
 
@@ -97,7 +97,7 @@ To verify if the Couchbase Power BI Connector is installed correctly:
 2. Go to **Get Data**.
 3. In the search box, enter `Couchbase Connector`.
 
-If the connector appears in the search results, it’s installed correctly.
+If the connector appears in the search results, it's installed correctly.
 
 ## [](#get-connection-details-and-certificates)Get Connection Details and Certificates
 
@@ -115,8 +115,7 @@ For Enterprise Analytics, you need to obtain the root certificate.
 
 1. Sign in to the Enterprise Analytics Web Console as an Administrator.
 2. In the left-hand menu, select **Security**.
-3. From the top menu, select **Certificates** to view the security certificates.  
-![access ea root certificate](_images/access-ea-root-certificate.png)
+3. From the top menu, select **Certificates** to view the security certificates.
 4. In the **Trusted Root Certificates** section, copy the certificate text starting from `BEGIN CERTIFICATE` to `END CERTIFICATE`.
 5. Save the text to an accessible file location (for example, `C:\Users\user\certificate.txt`).
 
@@ -128,8 +127,7 @@ For Capella Analytics, you need to obtain the public connection string, add an a
 2. Go to **Analytics** and select your cluster from the list.
 3. Next, click **Settings**.
 4. In the left-hand menu, click **Connection String**.
-5. Make a note of the **Public Connection String**.  
-![get capella columnar connection string](_images/get-capella-columnar-connection-string.png)
+5. Make a note of the **Public Connection String**.
 6. In the left-hand menu, click **Allowed IP Addresses**.
 
   * Add the IP address of the machine running Power BI to the allowlist.
@@ -146,8 +144,7 @@ For Couchbase Server, you need to obtain the root certificate.
 
 1. Sign in to the Couchbase Server Web Console as an Administrator.
 2. In the left-hand menu, select **Security**.
-3. From the top menu, select **Certificates** to view the security certificates.  
-![access root certificate](_images/access-root-certificate.png)
+3. From the top menu, select **Certificates** to view the security certificates.
 4. In the **Trusted Root Certificates** section, copy the certificate text starting from `BEGIN CERTIFICATE` to `END CERTIFICATE`.
 5. Save the text to an accessible file location (for example, `C:\Users\user\certificate.txt`).
 
@@ -158,8 +155,7 @@ For Capella Operational, you need to obtain the public connection string, add an
 1. Sign in to the Capella UI as an `Organization Owner` or `Project Owner`.
 2. Go to **Operational** and select your cluster from the list.
 3. Next, go to **Connect** **SDKs**.
-4. Make a note of the **Public Connection String**.  
-![copying connection string](_images/get-connection-string.png)
+4. Make a note of the **Public Connection String**.
 5. Add the IP address of the machine running Power BI to the allowlist.
 
   * To add your current IP address, use the **Add Current IP Address** option.
@@ -200,7 +196,7 @@ During configuration, you can also enable logging for the ODBC driver. The drive
 | **Scope:**               | (Optional) The scope from which the data must be extracted. Ensure that you do not include extraneous spaces or tabs when you enter the scope name.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | **SSL Mode:**            | Select Enable or Disable.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **Authentication:**      | Select an authentication method. Based on the SSL mode and authentication method you select, the required fields differ. SSL Mode Authentication Fields Description Disable Basic Username, Password Enter user credentials. Enable Basic Username, Password, Cluster Cert Path Enter user credentials and the path to the root certificate you downloaded from [Get Connection Details](#ea-connection-details). Disable LDAP Username, Password Enter LDAP directory credentials. For more information, see [Configure LDAP](../../enterprise-analytics/current/manage/manage-security/configure-ldap.md). Enable LDAP Username, Password, Cluster Cert Path Enter LDAP credentials and the path to the root certificate you downloaded from [Get Connection Details](#ea-connection-details). For more information, see [Configure LDAP](../../enterprise-analytics/current/manage/manage-security/configure-ldap.md). Enable Client Certificate Client Cert Path, Client Key Path, Cluster Cert Path Enter paths to your client certificate, private key, and root certificate you downloaded from [Get Connection Details](#ea-connection-details). For more information, see [Configure Client Certificates](../../enterprise-analytics/current/manage/manage-security/configure-client-certificates.md). Enable Client Certificate (Encrypted Key) Client Cert Path, Client Key Path, Key Password, Cluster Cert Path Enter paths to your certificates and encrypted key, including the key passphrase. For more information, see [Configure Client Certificates](../../enterprise-analytics/current/manage/manage-security/configure-client-certificates.md). Providing the **Username** and **Password** in the DSN configuration is optional. However, in the Power BI tool, you must provide these credentials when prompted. When entering the certificate path, use double slashes (\\\\) for the path separators. E.g., C:\\\\Users\\\\user\\\\certificate.txt |
-| **Advanced Parameters:** | Any additional parameters required for the connection. If no additional parameters are required, leave as the default. If you’re using an alternate (external) address, add the parameter network=external.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **Advanced Parameters:** | Any additional parameters required for the connection. If no additional parameters are required, leave as the default. If you're using an alternate (external) address, add the parameter network=external.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 8. Click **OK** to save the DSN and complete the setup.
 
 1. Open the **ODBC Data Source Administration** tool.
@@ -236,7 +232,7 @@ During configuration, you can also enable logging for the ODBC driver. The drive
 | **Scope:**               | The scope from which the data must be extracted.For two-part scopes, use a . to separate the two parts. For example, travel-sample.inventory. Ensure that you do not include extraneous spaces or tabs when you enter the scope name.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **SSL Mode:**            | Select Enable or Disable.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | **Authentication:**      | Select an authentication method. Based on the SSL mode and authentication method you select, the required fields differ. SSL Mode Authentication Fields Description Disable Basic Username, Password Enter user credentials. Enable Basic Username, Password, Cluster Cert Path Enter user credentials and the path to the root certificate you downloaded from [Get Connection Details](#server-connection-details). Disable LDAP Username, Password Enter LDAP directory credentials. For more information, see [Configure LDAP](../../server/current/manage/manage-security/configure-ldap.md). Enable LDAP Username, Password, Cluster Cert Path Enter LDAP credentials and the path to the root certificate you downloaded from [Get Connection Details](#server-connection-details). For more information, see [Configure LDAP](../../server/current/manage/manage-security/configure-ldap.md). Enable Client Certificate Client Cert Path, Client Key Path, Cluster Cert Path Enter paths to your client certificate, private key, and root certificate you downloaded from [Get Connection Details](#server-connection-details). For more information, see [Configure Client Certificates](../../server/current/manage/manage-security/configure-client-certificates.md). Enable Client Certificate (Encrypted Key) Client Cert Path, Client Key Path, Key Password, Cluster Cert Path Enter paths to your certificates and encrypted key, including the key passphrase. For more information, see [Configure Client Certificates](../../server/current/manage/manage-security/configure-client-certificates.md). Providing the **Username** and **Password** in the DSN configuration is optional. However, in the Power BI tool, you must provide these credentials when prompted. When entering the certificate path, use double slashes (\\\\) for the path separators. E.g., C:\\\\Users\\\\user\\\\certificate.txt |
-| **Advanced Parameters:** | Any additional parameters required for the connection. If no additional parameters are required, leave as the default. If you’re using an alternate (external) address, add the parameter network=external.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **Advanced Parameters:** | Any additional parameters required for the connection. If no additional parameters are required, leave as the default. If you're using an alternate (external) address, add the parameter network=external.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 8. Click **OK** to save the DSN and complete the setup.
 
 1. Open the **ODBC Data Source Administration** tool.
@@ -279,17 +275,13 @@ To add data from Couchbase data sources to Power BI:
 4. Select **Import** or **DirectQuery** as the **Data Connectivity mode** and click **OK**.
 5. Select an authentication method based on your ODBC DSN configuration.
 
-  * `Basic` \- If your DSN uses `Basic` or `LDAP` authentication, or if you’re connecting to Capella Analytics or Capella Operational. Enter your username and password.
+  * `Basic` \- If your DSN uses `Basic` or `LDAP` authentication, or if you're connecting to Capella Analytics or Capella Operational. Enter your username and password.
   * `Basic` (passphrase only) - If your DSN uses `Client Certificate (Encrypted Key)` authentication. Enter your private key passphrase and leave the username field empty.
   * `Anonymous` \- If your DSN uses `Client Certificate` authentication. No certificate details required as this option provides implicit authentication.
   * `Windows` \- If you want to authenticate with your Windows credentials.
 6. Click **Connect**.
 
 After connecting, Power BI displays a list of the tabular views in the database specified by your DSN. Select a view from the list and click **Load** to import it. You can then use various Power BI options to visualize the data.
-
-An example image of the `travel-sample` `airport_view`:
-
-![A data visualization in Power BI](_images/visualization.png) 
 
 ## [](#troubleshooting)Troubleshooting
 
@@ -301,7 +293,7 @@ If you notice performance issues, make sure ODBC tracing is disabled. Enable tra
 
 When creating the ODBC DSN or loading the ODBC driver, you might encounter the following error:
 
-![ODBC driver error](_images/ODBC-driver-error.png) 
+`Error code 126: The specified module could not be found (C:\Program Files\couchbase-odbc\bin\couchbaseodbcw.dil).`
 
 If this happens, try the following steps:
 
@@ -321,7 +313,7 @@ If this happens, try the following steps:
   * Open the tool and load `couchbaseodbcw.dll` and `couchbaseodbc.dll`.
   * Look for any entries marked as missing in the dependency tree.
 4. Make OpenSSL DLLs discoverable  
-If all the previous steps are correct, you can try copying the OpenSSL DLL files directly into the Couchbase ODBC driver folder. Sometimes Power BI cannot locate the OpenSSL dependencies at runtime, even if they’re installed.
+If all the previous steps are correct, you can try copying the OpenSSL DLL files directly into the Couchbase ODBC driver folder. Sometimes Power BI cannot locate the OpenSSL dependencies at runtime, even if they're installed.
 
   * Go to `C:\Software\OpenSSL-Win64\bin\`.
   * Copy these files:

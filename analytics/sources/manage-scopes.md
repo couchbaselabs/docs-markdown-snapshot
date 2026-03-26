@@ -4,7 +4,7 @@ description: Scopes are intermediary containers within a database to group
   related objects like collections, indexes, links, and functions. You can add
   or delete scopes using the UI or SQL++ for Capella Analytics statements.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/manage-scopes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sources:manage-scopes.adoc[]
 ---
 
@@ -20,8 +20,8 @@ link: xref:analytics:sources:manage-scopes.adoc[]
 To use the Capella Analytics UI to manage scopes, you need one of the following Capella roles:
 
 * [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner)
-* [Project Owner](../admin/auth/auth-ui.md#project-owner-role) for the project holding the cluster you’re working with.
-* [Data Writer](../admin/auth/auth-ui.md#project-cluster-data-reader-writer) for the project holding the cluster you’re working with.
+* [Project Owner](../admin/auth/auth-ui.md#project-owner-role) for the project holding the cluster you're working with.
+* [Data Writer](../admin/auth/auth-ui.md#project-cluster-data-reader-writer) for the project holding the cluster you're working with.
 
 ## [](#scope)Create a Scope
 

@@ -4,7 +4,7 @@ description: This topic provides an overview of the types of index that you can
   create using the Index Service, and explains how they help to query for data
   efficiently and improve query performance.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/indexing-and-query-perf.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:indexes:indexing-and-query-perf.adoc[]
 ---
 
@@ -62,10 +62,10 @@ CREATE PRIMARY INDEX ON airline;
 
 The Couchbase data layer enforces the uniqueness constraint on the document key. The primary index, like every other index, is maintained asynchronously. Use the primary index for full keyspace scans (primary scans) when the query does not have any filters (predicates) or when no other index or access path can be used.
 
-It’s not recommended to use primary keys for your production queries.
+It's not recommended to use primary keys for your production queries.
 
 > [!NOTE]
-> A primary index does not index any [transaction records](../../server/current/learn/data/transactions.md#additional-storage-use) that may be stored in a keyspace. This means that if you’re counting the number of documents in a keyspace, you may see slightly different results, depending on whether you’re using a primary index or not. See [Aggregate Functions](../n1ql/n1ql-language-reference/aggregatefun.md) and [Viewing the Data Insights](../clusters/query-service/query-workbench.md#insights-sidebar).
+> A primary index does not index any [transaction records](../../server/current/learn/data/transactions.md#additional-storage-use) that may be stored in a keyspace. This means that if you're counting the number of documents in a keyspace, you may see slightly different results, depending on whether you're using a primary index or not. See [Aggregate Functions](../n1ql/n1ql-language-reference/aggregatefun.md) and [Viewing the Data Insights](../clusters/query-service/query-workbench.md#insights-sidebar).
 
 Example 1\. Metadata for Primary Index
 
@@ -182,7 +182,7 @@ In the `route` keyspace, `schedule` is an array of objects with flight details.
 ]
 ```
 
-This command indexes the complete array and is useful only if you’re looking for the entire array.
+This command indexes the complete array and is useful only if you're looking for the entire array.
 
 ```sqlpp
 CREATE INDEX travel_schedule ON route(schedule);
@@ -190,7 +190,7 @@ CREATE INDEX travel_schedule ON route(schedule);
 
 ## [](#composite-secondary-index)Composite Secondary Index
 
-It’s common to have queries with multiple filters (predicates). In such cases, you want to use indexes with multiple keys so the indexes can return only the qualified document keys. Additionally, if a query references only the keys in the index, the query engine can answer the query from the index scan result without having to fetch from the data nodes. This is commonly used for performance optimization.
+It's common to have queries with multiple filters (predicates). In such cases, you want to use indexes with multiple keys so the indexes can return only the qualified document keys. Additionally, if a query references only the keys in the index, the query engine can answer the query from the index scan result without having to fetch from the data nodes. This is commonly used for performance optimization.
 
 ```sqlpp
 CREATE INDEX travel_info ON airline(name, id, icao, iata);
@@ -202,7 +202,7 @@ The keys to the secondary indexes can include document metadata (`meta().id`) ex
 
 ## [](#functional-index)Functional Index
 
-It’s common to have names in the database with a mix of upper and lower cases. When you need to search, say for the city "Villeneuve-sur-lot", you want to search for all uppercase and lowercase possibilities of it. In order to do so, first create an index using an expression or a function as the key. For example:
+It's common to have names in the database with a mix of upper and lower cases. When you need to search, say for the city "Villeneuve-sur-lot", you want to search for all uppercase and lowercase possibilities of it. In order to do so, first create an index using an expression or a function as the key. For example:
 
 ```sqlpp
 CREATE INDEX travel_cxname ON airport(LOWER(name));
@@ -317,7 +317,7 @@ JSON is hierarchical. At the top level, it can have scalar fields, objects, or a
 ]
 ```
 
-With a rich structure as seen in the array schedule, here’s how you index a particular array or a field within the sub-object.
+With a rich structure as seen in the array schedule, here's how you index a particular array or a field within the sub-object.
 
 ```sqlpp
 CREATE INDEX travel_sched ON route
@@ -326,7 +326,7 @@ CREATE INDEX travel_sched ON route
 
 This index key is an expression on the array to clearly reference only the elements that need to be indexed.
 
-* `schedule` — the array you’re dereferencing into.
+* `schedule` — the array you're dereferencing into.
 * `v` — the variable implicitly declared to reference each element/object within the array `schedule`.
 * `v.day` — the element within each object of the array `schedule`.
 
@@ -410,7 +410,7 @@ Results
 
 The `scan` section shows that this query uses the index created above.
 
-Because the key is a generalized expression, it provides the flexibility to apply additional logic and processing on the data before indexing. For example, you can create functional indexing on elements of each array. As you’re referencing individual fields of the object or element within the array, the index creation, size, and search are efficient.
+Because the key is a generalized expression, it provides the flexibility to apply additional logic and processing on the data before indexing. For example, you can create functional indexing on elements of each array. As you're referencing individual fields of the object or element within the array, the index creation, size, and search are efficient.
 
 The index `travel_sched` stores only the distinct values within an array. To store all elements of an array in an index, do not use the DISTINCT modifier to the expression.
 
@@ -501,12 +501,12 @@ For further information and examples, see [Covering Indexes](covering-indexes.md
 
 ## [](#hyperscale-vector-index)Hyperscale Vector Index
 
-Hyperscale Vector indexes are a type of [Secondary Index](#secondary-index) which contain a single vector field. They excel at indexing huge datasets that can scale into the billions of documents. They’re optimized for pure vector searches, offering the highest performance of any index for your AI applications.
+Hyperscale Vector indexes are a type of [Secondary Index](#secondary-index) which contain a single vector field. They excel at indexing huge datasets that can scale into the billions of documents. They're optimized for pure vector searches, offering the highest performance of any index for your AI applications.
 
 For further information and examples, see [Vector Search Using Hyperscale Vector Indexes](../vector-index/hyperscale-vector-index.md).
 
 ## [](#composite-vector-index)Composite Vector Index
 
-Composite Vector indexes are a type of [Composite Secondary Index](#composite-secondary-index) which contain a single vector field and one or more scalar fields. Your AI applications can use the index’s scalar fields to filter the dataset before performing a vector similarity search.
+Composite Vector indexes are a type of [Composite Secondary Index](#composite-secondary-index) which contain a single vector field and one or more scalar fields. Your AI applications can use the index's scalar fields to filter the dataset before performing a vector similarity search.
 
 For further information and examples, see [Filtered Search Using Composite Vector Indexes](../vector-index/composite-vector-index.md).

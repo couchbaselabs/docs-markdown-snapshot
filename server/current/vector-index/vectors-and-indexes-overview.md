@@ -2,7 +2,7 @@
 title: Use Vector Indexes for AI Applications
 description: This page is a high-level overview of vectors and how they work in indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/vectors-and-indexes-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:vector-index:vectors-and-indexes-overview.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:server:vector-index:vectors-and-indexes-overview.adoc[]
 
 # Use Vector Indexes for AI Applications
 
-> This page is a high-level overview of vectors and how they work in indexes. Couchbase Server supports several types of vector indexes. These indexes let you add similarity searches to your applications without relying on external services. If you’re already familiar with vectors, you can skip to the next page, [Choose the Right Vector Index](use-vector-indexes.md) for information about how to use vector indexes in your application. 
+> This page is a high-level overview of vectors and how they work in indexes. Couchbase Server supports several types of vector indexes. These indexes let you add similarity searches to your applications without relying on external services. If you're already familiar with vectors, you can skip to the next page, [Choose the Right Vector Index](use-vector-indexes.md) for information about how to use vector indexes in your application. 
 
 ## [](#about-vectors)About Vectors
 
@@ -19,7 +19,7 @@ Vectors are a numerical representation of complex unstructured data such as text
 
 ### [](#finding-semantically-similar-text-data)Finding Semantically Similar Text Data
 
-By comparing two vectors, you can find the similarity between the two pieces of data they represent. This similarity goes beyond just finding parts of the data that are identical (for example, finding similar words in two pieces of text). The vectors represent features such as the meaning of text rather than just superficial similarities. When two pieces of data have similar vectors, they’re semantically related (having similar meanings or subjects).
+By comparing two vectors, you can find the similarity between the two pieces of data they represent. This similarity goes beyond just finding parts of the data that are identical (for example, finding similar words in two pieces of text). The vectors represent features such as the meaning of text rather than just superficial similarities. When two pieces of data have similar vectors, they're semantically related (having similar meanings or subjects).
 
 For example, suppose you have three text articles. The first is about feral cats, the second about domestic cats, and the third is about the UNIX/Linux `cat` command. A text search for the term "cat" could return all three articles at the top of its search results due to their frequent use of the search term. However, that does not mean that the articles are all semantically related. By generating vectors for the articles and comparing them, you can determine any semantic relationship between them.
 
@@ -34,17 +34,17 @@ Vectors can be similar in a variety of ways. They may:
 Because the first two articles are about cats, their vectors point in a similar direction and are in a similar location in space. The third article, despite using the word "cat" as frequently as the two other articles, has a vector that has significant differences from the other two.
 
 > [!NOTE]
-> Some diagrams in this document (and in other discussions available on the web) show vectors in three dimensions. These diagrams are a simplification. The vectors used in AI applications have hundreds to thousands of dimensions. They’re easy for computers to handle but are rather difficult for humans to visualize. In addition, the vector dimension values in the diagrams show only 4 decimal places to conserve space. The floating point dimensional values of actual vectors often use 6 or 7 decimal places. When viewing these diagrams, remember that they only scratch the surface of the data encoded in a vector.
+> Some diagrams in this document (and in other discussions available on the web) show vectors in three dimensions. These diagrams are a simplification. The vectors used in AI applications have hundreds to thousands of dimensions. They're easy for computers to handle but are rather difficult for humans to visualize. In addition, the vector dimension values in the diagrams show only 4 decimal places to conserve space. The floating point dimensional values of actual vectors often use 6 or 7 decimal places. When viewing these diagrams, remember that they only scratch the surface of the data encoded in a vector.
 
 ### [](#using-vectors-to-find-similar-complex-data)Using Vectors to Find Similar Complex Data
 
-Vectors let you search for similarity in data that’s hard to search using traditional techniques. Image data, for example, is just a string of raw binary values. Matching portions of this data within two image files does not mean they’re of the same subject, or even have any resemblance. Also, comparing megabytes of raw image data is computationally expensive. Generating vectors of the images distills features of the image into a smaller, more manageable amount of data. It also emphasizes features of the images that viewers find important, such as shapes and textures. Comparing the vectors is more manageable and actually results in finding similar images.
+Vectors let you search for similarity in data that's hard to search using traditional techniques. Image data, for example, is just a string of raw binary values. Matching portions of this data within two image files does not mean they're of the same subject, or even have any resemblance. Also, comparing megabytes of raw image data is computationally expensive. Generating vectors of the images distills features of the image into a smaller, more manageable amount of data. It also emphasizes features of the images that viewers find important, such as shapes and textures. Comparing the vectors is more manageable and actually results in finding similar images.
 
 ## [](#embedding-vectors)Embedding Vectors
 
-Embedding is the process of generating vectors that represent a piece of complex unstructured data. You use an embedding model that’s specific to the type of data to generate a vector to represent it.
+Embedding is the process of generating vectors that represent a piece of complex unstructured data. You use an embedding model that's specific to the type of data to generate a vector to represent it.
 
-For example, to generate vectors from text, you can use models such as [Word2Vec](https://en.wikipedia.org/wiki/Word2vec), [Global Vectors for Word Representation (GloVe)](https://en.wikipedia.org/wiki/GloVe), or [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2). These models take into account the context around each portion of the text when generating a vector. This context is what captures the semantic meaning of the text and embeds it in the vector’s dimensions.
+For example, to generate vectors from text, you can use models such as [Word2Vec](https://en.wikipedia.org/wiki/Word2vec), [Global Vectors for Word Representation (GloVe)](https://en.wikipedia.org/wiki/GloVe), or [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2). These models take into account the context around each portion of the text when generating a vector. This context is what captures the semantic meaning of the text and embeds it in the vector's dimensions.
 
 To generate vectors from images, you use different embedding models such as a [Residual Neural Network (ResNet)](https://en.wikipedia.org/wiki/Residual%5Fneural%5Fnetwork). You can embed audio using a model such as OpenL3.
 
@@ -52,7 +52,7 @@ To generate vectors from images, you use different embedding models such as a [R
 
 ### [](#how-embedding-models-work)How Embedding Models Work
 
-Behind the scenes, embedding models use neural networks that mimic how the brain recognizes patterns. The neural nets distill the complex data into an array of floating point values. Beyond choosing an embedding model that’s appropriate for your data, you generally do not worry about how the model transforms data into a vector.
+Behind the scenes, embedding models use neural networks that mimic how the brain recognizes patterns. The neural nets distill the complex data into an array of floating point values. Beyond choosing an embedding model that's appropriate for your data, you generally do not worry about how the model transforms data into a vector.
 
 ### [](#embedding-model-compatibility)Embedding Model Compatibility
 
@@ -62,7 +62,7 @@ You can only compare the similarity of vectors generated by the same embedding m
 
 Couchbase Server does not implement any embedding models. You must use external embedding models to generate them and then store the resulting vectors in your documents. A common method of embedding vectors in your database is to call an [OpenAI Embedding API](https://openai.com/index/introducing-text-and-code-embeddings/) to generate vectors for your data. You then store the vector as an attribute in your document.
 
-Another option is to use Couchbase Capella along with Capella’s AI Services which integrates several embedding models. See [Capella AI Services](https://www.couchbase.com/products/ai-services/) for more information.
+Another option is to use Couchbase Capella along with Capella's AI Services which integrates several embedding models. See [Capella AI Services](https://www.couchbase.com/products/ai-services/) for more information.
 
 ## [](#vector%5Fsimilarity)Vector Similarity Metrics
 
@@ -72,7 +72,7 @@ Couchbase Server supports four metrics:
 
 ### [](#euclidean)Euclidean Distance
 
-Euclidean Distance (also known as L2) calculates the geometric distance between two vectors by finding the distance between the individual dimensions in the vectors. This method is most sensitive to the distance between the vectors in space, rather than their alignment. It’s also sensitive to the scale of the vectors, where the length of one vector versus the other affects the relationship between the vectors. Use this method when the actual distance of the vectors and their magnitudes are important. This method is useful if the distance between vectors represents a real-world value.
+Euclidean Distance (also known as L2) calculates the geometric distance between two vectors by finding the distance between the individual dimensions in the vectors. This method is most sensitive to the distance between the vectors in space, rather than their alignment. It's also sensitive to the scale of the vectors, where the length of one vector versus the other affects the relationship between the vectors. Use this method when the actual distance of the vectors and their magnitudes are important. This method is useful if the distance between vectors represents a real-world value.
 
 ![Three-dimensional plot showing two vectors with points along each vector joined by dotted lines, indicating the summing of corresponding points.](_images/euclidean-distance-example.svg) 
 
@@ -81,7 +81,7 @@ Euclidean Distance (also known as L2) calculates the geometric distance between 
 
 Euclidean Distance is useful for tasks such as:
 
-* 3D motion capture where you’re detecting similar positions or trajectories of joints or objects. In these applications, finding real-world values for thresholds is important.
+* 3D motion capture where you're detecting similar positions or trajectories of joints or objects. In these applications, finding real-world values for thresholds is important.
 * Geographic or spatial searches where you care about exact (and often real-world) distances.
 * Other cases where you use the results as filters in calculations that require the actual distance between the vectors.
 
@@ -102,7 +102,7 @@ Euclidean Squared Distance Formula
 
 Because it does not take the square root of the sums, Euclidean Squared Distance is faster to calculate than Euclidean Distance. However, it does not represent the actual distance between the vectors. The results of a vector search using L2 Squared as a metric always returns the same rankings that an L2 search returns. In cases where the dimensions of the vectors represent real-world values, L2 is more intuitive to use because it returns the actual distance between the vectors.
 
-Use this method when you need higher performance than Euclidean Distance. It’s better in cases when comparing literal distances is less important than performance and where having the ranking of search results is sufficient.
+Use this method when you need higher performance than Euclidean Distance. It's better in cases when comparing literal distances is less important than performance and where having the ranking of search results is sufficient.
 
 For example:
 
@@ -110,7 +110,7 @@ For example:
 
   * Searching for products that are visually similar to an image uploaded by a shopper.
   * Facial recognition.
-* Audio recognition tasks such as identifying who’s speaking in a recording.
+* Audio recognition tasks such as identifying who's speaking in a recording.
 * Locating similar genomic and biological sequences in a dataset, such as related gene profiles.
 
 > [!NOTE]
@@ -124,20 +124,20 @@ This metric finds related vectors by comparing the magnitude (length) and alignm
 
 Use this method for tasks where ranking confidence is key. The magnitude of the vectors is important when determining the strength of the relationship. For example:
 
-* Recommending related products based on a shopper’s previous purchases.
-* Personalizing a music service’s user home page based on the user’s likes and dislikes of artists and songs.
-* Targeting ads based on a user’s interests and previous interactions with the service.
+* Recommending related products based on a shopper's previous purchases.
+* Personalizing a music service's user home page based on the user's likes and dislikes of artists and songs.
+* Targeting ads based on a user's interests and previous interactions with the service.
 
 ### [](#cosine)Cosine Similarity
 
-This metric is similar to the dot product. However, it normalizes the vectors (making them the same length) during comparison. Normalization means their magnitudes are not taken into account, just their alignment. This normalization makes this method better for comparing textual data because it’s less sensitive to the length of the data. The magnitude of a vector generated by some text embedding models depend on the length of the source text. Normalizing vector magnitudes emphasizes the semantic meaning when performing comparisons. Therefore, Cosine Similarity can find the semantic relationship between a short question and a long article that’s relevant to answering it.
+This metric is similar to the dot product. However, it normalizes the vectors (making them the same length) during comparison. Normalization means their magnitudes are not taken into account, just their alignment. This normalization makes this method better for comparing textual data because it's less sensitive to the length of the data. The magnitude of a vector generated by some text embedding models depend on the length of the source text. Normalizing vector magnitudes emphasizes the semantic meaning when performing comparisons. Therefore, Cosine Similarity can find the semantic relationship between a short question and a long article that's relevant to answering it.
 
 ![Three-dimensional plot showing two vectors that are of equal length, with the angle between them labeled as theta.](_images/cosine-similarity-example.svg) 
 
-Use this method when you’re performing searches that rely on semantic meaning, such as:
+Use this method when you're performing searches that rely on semantic meaning, such as:
 
 * Find relevant articles to answer a question posed by a user.
-* Locate code snippets based on a user’s question about how to perform a task.
+* Locate code snippets based on a user's question about how to perform a task.
 * Organize scanned documents in a document management system based on their semantic meaning.
 
 ## [](#index-algorithms)Index Formats
@@ -161,17 +161,17 @@ This algorithm partitions the vector space to limit the number of vectors that a
 
 ![A plot showing clusters of points in a 3D graph labeled and assigned to centroid vectors. The centroids then point to multiple vectors in an inverted list.](_images/ivf-diagram-with-vectors.svg) 
 
-When you search using an IVF index, it first locates the centroids that are most relevant to the vector value you’re searching for. It then searches just the vectors associated with those centroids in the inverted list. By limiting the number of vector comparisons to just the vectors close to the relevant centroids, IVF makes vector search faster.
+When you search using an IVF index, it first locates the centroids that are most relevant to the vector value you're searching for. It then searches just the vectors associated with those centroids in the inverted list. By limiting the number of vector comparisons to just the vectors close to the relevant centroids, IVF makes vector search faster.
 
-A drawback of this method is the possibility that the search could miss some relevant vectors. A search can miss vectors if they’re associated with a centroid that’s not relevant to the search vector. This risk increases as you add and delete data after you train the index. The centroids chosen during the initial training may no longer accurately represent clusters in current dataset. See [The Importance of Index Training](#index-training) for more information about index accuracy.
+A drawback of this method is the possibility that the search could miss some relevant vectors. A search can miss vectors if they're associated with a centroid that's not relevant to the search vector. This risk increases as you add and delete data after you train the index. The centroids chosen during the initial training may no longer accurately represent clusters in current dataset. See [The Importance of Index Training](#index-training) for more information about index accuracy.
 
-Hyperscale Vector and Composite Vector indexes always use IVF as the basis of their indexes. In addition, they use a Hierarchical Navigable Small World (HNSW) graph to index the IVF’s centroids. This graph connects related centroids together so that a similarity search can quickly traverse the graph to find the centroids that are closest to the search vector. Hyperscale also adds other proprietary optimizations that allow it to scale to billions of vectors.
+Hyperscale Vector and Composite Vector indexes always use IVF as the basis of their indexes. In addition, they use a Hierarchical Navigable Small World (HNSW) graph to index the IVF's centroids. This graph connects related centroids together so that a similarity search can quickly traverse the graph to find the centroids that are closest to the search vector. Hyperscale also adds other proprietary optimizations that allow it to scale to billions of vectors.
 
 Search Vector Indexes automatically uses IVF when the indexing datasets larger than 1000 vectors.
 
 ## [](#quantization)Quantization
 
-Quantization simplifies vector data so it consumes less space in memory and on disk. Reducing the amount of data in a vector also makes vector comparison faster. However, quantization does reduce the accuracy of a vector. It’s similar to using a lossy image compression format, such as JPEG, on an picture to reduce its data size. It trades off some detail and accuracy for a smaller, more manageable data size.
+Quantization simplifies vector data so it consumes less space in memory and on disk. Reducing the amount of data in a vector also makes vector comparison faster. However, quantization does reduce the accuracy of a vector. It's similar to using a lossy image compression format, such as JPEG, on an picture to reduce its data size. It trades off some detail and accuracy for a smaller, more manageable data size.
 
 Unlike the indexing algorithms, you choose the quantization method you want Couchbase Server to use when you create a Hyperscale Vector or Composite Vector index.
 
@@ -183,15 +183,15 @@ Product Quantization simplifies vectors by breaking their dimensions into chunks
 
 PQ processes vectors by following these steps:
 
-1. It groups the vector’s dimensions into chunks called subspaces. For example, suppose the vectors contain 1024 dimensions. Then PQ may break the vectors into 128 subspaces, each containing 8 dimensions.
+1. It groups the vector's dimensions into chunks called subspaces. For example, suppose the vectors contain 1024 dimensions. Then PQ may break the vectors into 128 subspaces, each containing 8 dimensions.
 2. It finds groups of centroids in each subspace and adds them to a data structure called a codebook. The codebook assigns each centroid an index number.
-3. PQ then reduces the size of the vectors by replacing each subspace’s dimensions with the index of the closest centroid in the codebook.
+3. PQ then reduces the size of the vectors by replacing each subspace's dimensions with the index of the closest centroid in the codebook.
 
 ![Three-dimensional plot showing two vectors that are of equal length, with the angle between them labeled as theta.](_images/pq-diagram.svg) 
 
 PQ could quantize the vector in the previous example from 1024 64-bit floating point values to 128 8 bit or 16 bit integer values. This data size reduction improves performance because integer operations are less computationally expensive than floating point operations. It also reduces memory use because each vector requires less data to store (for example, from 64KB to 128 bytes).
 
-A search of the PQ index performs the same steps on the vector you’re searching for:
+A search of the PQ index performs the same steps on the vector you're searching for:
 
 1. It breaks the search vector into subspaces and quantizes it using the codebook.
 2. It then locates closest centroids to the quantized query vector.
@@ -202,7 +202,7 @@ PQ sacrifices some accuracy because it compares quantized vectors instead of the
 Use PQ quantization when:
 
 * Your vectors contain a large number of dimensions.
-* You’re willing to trade higher processing requirements during training for smaller memory use and less CPU time during searches.
+* You're willing to trade higher processing requirements during training for smaller memory use and less CPU time during searches.
 * Your dataset is large (millions to billions of vectors).
 
 Hyperscale Vector and Composite Vector indexes support PQ quantization. Search Vector Indexes do not support it.
@@ -214,8 +214,8 @@ Scalar Quantization is a simpler form of quantization than PQ. Instead of breaki
 SQ follows these steps to process vectors:
 
 1. SQ determines the maximum and minimum values for each dimension in the dataset.
-2. It then partitions each dimension in the vector into equal segments (called bins) over the range of the dimension’s values. For example, in the diagram, the first dimension’s values range from 0 to 1, while the second dimension’s range from 0.1 to 0.9\. This means the second dimension’s bins will only cover the range from 0.1 to 0.9.
-3. SQ assigns each bin an index value that’s from 4 to 8 bits in length.
+2. It then partitions each dimension in the vector into equal segments (called bins) over the range of the dimension's values. For example, in the diagram, the first dimension's values range from 0 to 1, while the second dimension's range from 0.1 to 0.9\. This means the second dimension's bins will only cover the range from 0.1 to 0.9.
+3. SQ assigns each bin an index value that's from 4 to 8 bits in length.
 4. It finds a centroid within the range associated with the bin. It saves the centroid as a 16 or 32 bit floating point number.
 5. SQ then quantizes the vectors by replacing their dimensional values with the index value of the bin the dimensional value falls into.
 
@@ -223,9 +223,9 @@ SQ follows these steps to process vectors:
 
 This quantization reduces the dimensions from 32 or 64 bit floating point values to 8 or less bit integers, reducing the memory needed for search. It also makes search faster because integer operations are computationally less expensive than floating point operations.
 
-A search on an SQ index reassembles vectors before comparing them. For each of the vector’s dimensions, SQ replaces the integer bin number with the floating point centroid associated with the bin. This recreation is an approximation of the original vector, because each dimension in the vector is the bin’s centroid value instead of the original dimensional value.
+A search on an SQ index reassembles vectors before comparing them. For each of the vector's dimensions, SQ replaces the integer bin number with the floating point centroid associated with the bin. This recreation is an approximation of the original vector, because each dimension in the vector is the bin's centroid value instead of the original dimensional value.
 
-Because this method quantizes the vectors, it loses precision. It’s less precise than the PQ method (which also quantizes vectors) because it assumes that each dimension can be evenly divided. Its accuracy suffers if your data has clusters. It’s best suited for data that’s more evenly distributed and does not have high correlations. For example, SQ may be a good fit for an IoT sensor dataset where the measured values (such as temperature) are evenly distributed over the range of measurements.
+Because this method quantizes the vectors, it loses precision. It's less precise than the PQ method (which also quantizes vectors) because it assumes that each dimension can be evenly divided. Its accuracy suffers if your data has clusters. It's best suited for data that's more evenly distributed and does not have high correlations. For example, SQ may be a good fit for an IoT sensor dataset where the measured values (such as temperature) are evenly distributed over the range of measurements.
 
 SQ has a lower training overhead compared to PQ because it does not search for clusters of vectors. Its training just determines the range of values for each dimension.
 
@@ -243,7 +243,7 @@ You do not choose a quantization method for Search Vector Indexes. Instead, they
 When creating a Hyperscale Vector or Composite Index, you choose which quantization method to use when creating the index. When deciding, consider the following:
 
 * Use SQ when you want higher accuracy than PQ, at the cost of lower compression and therefore more memory use.
-* Use PQ when you’re willing to trade some accuracy for higher compression and less memory use. PQ is a good choice for larger datasets (millions to billions of vectors) where you want to reduce memory use and improve search performance.
+* Use PQ when you're willing to trade some accuracy for higher compression and less memory use. PQ is a good choice for larger datasets (millions to billions of vectors) where you want to reduce memory use and improve search performance.
 
 You should also consider the potential need to retrain the index if your dataset changes over time. See the following section for more information about index training.
 
@@ -259,4 +259,4 @@ Over time, you may find the recall of vector search (percentage of the nearest n
 
 To resolve these accuracy issues, you can retrain your indexes when you notice poor recall. You can also choose to retrain indexes periodically or after you make significant changes to your dataset. To retrain an index, you create a new index with the same (or tweaked) settings as the existing index, but with a different name. After Couchbase Server builds and trains the new index, you can drop the old index.
 
-You should consider the need to retrain your indexes when choosing which quantization to use. For example, the PQ quantization requires more resources to train than SQ. If your dataset evolves rapidly, you may choose to not use PQ because you’ll need to perform more frequent retraining.
+You should consider the need to retrain your indexes when choosing which quantization to use. For example, the PQ quantization requires more resources to train than SQ. If your dataset evolves rapidly, you may choose to not use PQ because you'll need to perform more frequent retraining.

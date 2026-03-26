@@ -2,7 +2,7 @@
 title: Full Installation
 description: Installation instructions for the Couchbase .NET Client.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.8@dotnet-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -19,7 +19,7 @@ This page covers installation of the SDK. A quick start guide in our [Getting St
 
 The Couchbase .NET SDK is compatible with [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 2.0 and .NET Standard 2.1, via the currently supported Microsoft .NET SDKs. Currently, that includes [.NET 6.0 and later](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) for .NET Standard 2.1 and [.NET Framework 4.6.2 and later](https://learn.microsoft.com/en-us/lifecycle/products/microsoft-net-framework) for .NET Standard 2.0\. The [.NET Standard documentation](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) and [.NET Standard version chart](https://dotnet.microsoft.com/platform/dotnet-standard#versions) may be useful to help understand other available options.
 
-Couchbase strongly recommends using the [latest LTS version of .NET that’s officially supported](https://versionsof.net/) by both Microsoft and Couchbase. Other .NET implementations may work, but aren’t tested, and are outside the scope of technical support. See the [Compatibility](compatibility.md#dotnet-compatibility) section for more details.
+Couchbase strongly recommends using the [latest LTS version of .NET that's officially supported](https://versionsof.net/) by both Microsoft and Couchbase. Other .NET implementations may work, but aren't tested, and are outside the scope of technical support. See the [Compatibility](compatibility.md#dotnet-compatibility) section for more details.
 
 The library is distributed in a number of ways:
 
@@ -32,7 +32,7 @@ The library is distributed in a number of ways:
 
 ### [](#quick-installation-using-nuget)Quick Installation Using NuGet
 
-For every release, we currently package the binaries and store the latest version in [NuGet](https://www.nuget.org/packages/CouchbaseNetClient/). If you are not familiar with NuGet, it’s the official and most widely supported package manager for Microsoft Visual Studio and .NET in general.
+For every release, we currently package the binaries and store the latest version in [NuGet](https://www.nuget.org/packages/CouchbaseNetClient/). If you are not familiar with NuGet, it's the official and most widely supported package manager for Microsoft Visual Studio and .NET in general.
 
 #### [](#nuget-from-visual-studio)NuGet from Visual Studio
 
@@ -66,7 +66,7 @@ From the Package Manager Console within your project:
 
 ### [](#downloading-and-referencing-the-binaries)Downloading and referencing the binaries
 
-If you do not want to use NuGet to include the Couchbase .NET SDK in your project, you can download and reference the binaries directly. If you chose this route, you’ll also be responsible for including and resolving dependencies used internally by the SDK.
+If you do not want to use NuGet to include the Couchbase .NET SDK in your project, you can download and reference the binaries directly. If you chose this route, you'll also be responsible for including and resolving dependencies used internally by the SDK.
 
 To download and reference the binaries directly:
 
@@ -108,4 +108,4 @@ git pull origin master
 1. Navigate to the directory that the source was cloned to and open the solution.
 2. Build the solution.
 
-After you have successfully built the source, it’s then just a matter of referencing the binaries (.DLL files) from your consuming project. _Note that you can checkout a specific tag for each release as well._
+After you have successfully built the source, it's then just a matter of referencing the binaries (.DLL files) from your consuming project. _Note that you can checkout a specific tag for each release as well._

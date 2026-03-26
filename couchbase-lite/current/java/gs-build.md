@@ -2,7 +2,7 @@
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase Lite on Java
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/gs-build.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:java:gs-build.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:couchbase-lite:java:gs-build.adoc[]
 
 ## [](#build-a-getting-started-app)Build a Getting Started App
 
-This section explains how to validate your configured build environment by building a starter app that uses many of Couchbase Lite’s more common features.
+This section explains how to validate your configured build environment by building a starter app that uses many of Couchbase Lite's more common features.
 
 The GettingStarted app demonstrates how to use Couchbase Lite. Console and Web App versions are available.
 
@@ -145,7 +145,7 @@ This section explains how to set-up a build project to create Couchbase Lite web
 include::example$GetStartedWS/build.gradle.sample  
 ```
 2. Within Intellij IDEA, open the new project folder  
-If you don’t have auto-import enabled, then accept the **Import from Gradle** prompt that appears at the bottom right of the screen.
+If you don't have auto-import enabled, then accept the **Import from Gradle** prompt that appears at the bottom right of the screen.
 3. Create a Java class _DBManager_ using this code:  
 ```java  
 (1)  

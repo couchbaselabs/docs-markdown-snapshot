@@ -3,7 +3,7 @@ title: ADVISOR Function
 description: The ADVISOR function provides index recommendations to optimize
   query response time.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/advisor.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/advisor.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:7.2@server:n1ql:n1ql-language-reference/advisor.adoc[]
 
 # ADVISOR Function
 
-The ADVISOR function provides index recommendations to optimize query response time. There are two main scenarios for using this function. One is to invoke the index advisor _immediately_ for a given query or set of queries; the other is to start a session in which every query of interest is collected for a set time period, then invoke the index advisor _asynchronously_ for that collection of queries when the session ends. Within these two scenarios, this function has several different usages. The operation and output of each usage depends on the function’s single argument. For clarity, each usage is listed separately on this page.
+The ADVISOR function provides index recommendations to optimize query response time. There are two main scenarios for using this function. One is to invoke the index advisor _immediately_ for a given query or set of queries; the other is to start a session in which every query of interest is collected for a set time period, then invoke the index advisor _asynchronously_ for that collection of queries when the session ends. Within these two scenarios, this function has several different usages. The operation and output of each usage depends on the function's single argument. For clarity, each usage is listed separately on this page.
 
 ## [](#advisor-string)ADVISOR(`string`)
 

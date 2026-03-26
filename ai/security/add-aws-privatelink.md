@@ -3,7 +3,7 @@ title: Add an AWS PrivateLink Connection
 description: Add an AWS PrivateLink connection that peers your Amazon Web
   Service (AWS) network with AI Services using AWS as its cloud provider.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/security/pages/add-aws-privatelink.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:security:add-aws-privatelink.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:ai:security:add-aws-privatelink.adoc[]
 > [!IMPORTANT]
 > To link a Capella operational cluster with a model on the [Model Service](../get-started/intro.md#model), you only need to enable private networking. You do not have to perform any other configuration, Capella handles the connection automatically.
 
-Private endpoints for AI Services are region-based. You’re linking the AWS region for your AI Services to your AWS VPC.
+Private endpoints for AI Services are region-based. You're linking the AWS region for your AI Services to your AWS VPC.
 
 A single private endpoint can be shared by all your AI Services, as long as the models they access are deployed in the same region. For example, you can deploy multiple models within the same AWS region and use 1 private endpoint to link them all. You do not need to create a separate private endpoint for each model.
 

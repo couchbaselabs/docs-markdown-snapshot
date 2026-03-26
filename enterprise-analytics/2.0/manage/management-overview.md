@@ -3,7 +3,7 @@ title: Overview
 description: A Enterprise Analytics Cluster can be created and managed by means
   of the Enterprise Analytics Web Console, the CLI, and the REST API.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/management-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:management-overview.adoc[]
 ---
 
@@ -30,7 +30,7 @@ The CLI and REST API allow administrators to specify the IP address or domain na
 
 The Enterprise Analytics Web Console is browser-based and requires administrator authentication at a login screen. Once logged in, the Full Administrator can view all nodes in the cluster, including details of assigned services, memory quotas, statistics, and more. (This information can also be retrieved using specific CLI and REST API calls.)
 
-Enterprise Analytics enforces _Role-Based Access Control_ (RBAC), where all users are assigned _roles_ that correspond to specific _privileges_ on system resources. Credentials must be provided with each CLI or REST API call. Within the Enterprise Analytics Web Console, features such as node management and cluster monitoring are made available based on the authenticated user’s assigned roles. For more details, see [RBAC](manage-security/rbac-overview.md).
+Enterprise Analytics enforces _Role-Based Access Control_ (RBAC), where all users are assigned _roles_ that correspond to specific _privileges_ on system resources. Credentials must be provided with each CLI or REST API call. Within the Enterprise Analytics Web Console, features such as node management and cluster monitoring are made available based on the authenticated user's assigned roles. For more details, see [RBAC](manage-security/rbac-overview.md).
 
 > [!NOTE]
 > Both the Enterprise Analytics Web Console and CLI rely on the REST API for their operations, providing consistency across tools. Using the CLI with the `-d` (debug) option reveals the underlying REST methods in the standard output, which can be useful for troubleshooting or scripting.

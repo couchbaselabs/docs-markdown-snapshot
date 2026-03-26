@@ -1,7 +1,7 @@
 ---
 title: Component Structure and Configuration
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/component-configuration.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:component-configuration.adoc[]
 ---
 
@@ -47,7 +47,7 @@ Modules organize content files, including text, images, and code samples, inside
 
 ROOT Module
 
-The `ROOT` module contains necessary top-level content associated with a component. For example, the `ROOT` module contains the navigation files for a component. When pages in the `ROOT` module are published, these pages are promoted a level above any other modules' pages in that component’s URL.
+The `ROOT` module contains necessary top-level content associated with a component. For example, the `ROOT` module contains the navigation files for a component. When pages in the `ROOT` module are published, these pages are promoted a level above any other modules' pages in that component's URL.
 
 Navigation Files
 
@@ -71,7 +71,7 @@ An `examples` directory exists under a specific module in the `modules` director
 
 ## [](#config)Configuring a Component
 
-Usually, you only edit the component descriptor file, _antora.yml_, when cutting a release branch and registering or deregistering a navigation file. The component descriptor assigns metadata to each component-version and used to build its page IDs, navigation menus, and URL segments. The following example shows the configuration for Couchbase Server 5.5 that’s specified in its _antora.yml_ file.
+Usually, you only edit the component descriptor file, _antora.yml_, when cutting a release branch and registering or deregistering a navigation file. The component descriptor assigns metadata to each component-version and used to build its page IDs, navigation menus, and URL segments. The following example shows the configuration for Couchbase Server 5.5 that's specified in its _antora.yml_ file.
 
 antora.yml for Couchbase Server 5.5
 
@@ -100,11 +100,11 @@ The UI uses `version` to sort component-versions in the [component version selec
 
 `version_title`
 
-The version name displayed in the [component version selector menu](nav-menus-and-files.md). If this key isn’t set, the value of `version` is used instead.
+The version name displayed in the [component version selector menu](nav-menus-and-files.md). If this key isn't set, the value of `version` is used instead.
 
 `start_page`
 
-By default, Antora looks in ROOT for the file _index.adoc_ and uses it as the start page for a component. If ROOT doesn’t contain _index.adoc_ (or you don’t want to use that file as the component’s start page), you must explicitly set a start page using its page ID.
+By default, Antora looks in ROOT for the file _index.adoc_ and uses it as the start page for a component. If ROOT doesn't contain _index.adoc_ (or you don't want to use that file as the component's start page), you must explicitly set a start page using its page ID.
 
 `nav`
 
@@ -112,7 +112,7 @@ The nav key accepts a list of [navigation file](nav-menus-and-files.md#nav-file)
 
 ## [](#supplemental-component-descriptor-files)Supplemental Component Descriptor Files
 
-The Server component is aggregated from the _docs-server_, _couchbase-cli_, _backup_, and _asterix-opt_ repositories. When parts of a component are stored in multiple repositories, one _antora.yml_ file acts as the primary component descriptor. The primary file contains the `name`, `title`, `version`, and `nav` configuration. The component descriptor files in the other repositories are supplemental. They only contain `name` and `version`, so Antora can classify the content files’ component-versions.
+The Server component is aggregated from the _docs-server_, _couchbase-cli_, _backup_, and _asterix-opt_ repositories. When parts of a component are stored in multiple repositories, one _antora.yml_ file acts as the primary component descriptor. The primary file contains the `name`, `title`, `version`, and `nav` configuration. The component descriptor files in the other repositories are supplemental. They only contain `name` and `version`, so Antora can classify the content files' component-versions.
 
 The following _antora.yml_ file supplements the [primary component descriptor file](#primary) shown in the previous section.
 

@@ -3,7 +3,7 @@ title: Renaming Groups
 description: Server groups can be renamed with the <code>PUT
   /pools/default/serverGroups/<:uuid></code> HTTP method and URI.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-servergroup-put.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:reference:rest-servergroup-put.adoc[]
 ---
 
@@ -28,7 +28,7 @@ curl -X PUT -u <administrator>:<password>
 http://<host>:<port>/pools/default/serverGroups/<uuid>
 -d name=<newGroupName>
 
-As this indicates, the `uuid` of the group to be renamed must be appended to the URI. The `uuid` can be determined by means of the procedure explained in [Getting Server Group Information](rest-servergroup-get.md). Note that the group’s `uuid` is itself _unchanged_ by the changing of the group’s name.
+As this indicates, the `uuid` of the group to be renamed must be appended to the URI. The `uuid` can be determined by means of the procedure explained in [Getting Server Group Information](rest-servergroup-get.md). Note that the group's `uuid` is itself _unchanged_ by the changing of the group's name.
 
 ## [](#responses)Responses
 

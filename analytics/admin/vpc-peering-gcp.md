@@ -3,7 +3,7 @@ title: VPC Peering with GCP
 description: Use this procedure to create a VPC Peering connection between
   Capella Analytics hosted with GCP and your application's VPC on GCP.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/vpc-peering-gcp.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:admin:vpc-peering-gcp.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:analytics:admin:vpc-peering-gcp.adoc[]
 
 # VPC Peering with GCP
 
-> Use this procedure to create a VPC Peering connection between Capella Analytics hosted with GCP and your application’s VPC on GCP. 
+> Use this procedure to create a VPC Peering connection between Capella Analytics hosted with GCP and your application's VPC on GCP. 
 
 ## [](#prerequisites)Prerequisites
 
@@ -54,7 +54,7 @@ To configure Capella Analytics VPC peering with GCP, you need the following:
   The GCP VPC CIDR block of network in which your application runs. This cannot overlap with your Capella CIDR Block.
 3. Click **Set Up VPC**.  
 Capella Analytics sets up the private network. This typically takes up to a minute. If successful you should see the private network added to the list of private networks, then you may briefly see the cluster enter a "Deploying" state while the new network is set up.  
-If there’s a problem with the private network then Capella Analytics will tell you via an error message.
+If there's a problem with the private network then Capella Analytics will tell you via an error message.
 4. Once setup is complete, you can see the new network listed in the list of networks.
 
 > [!CAUTION]

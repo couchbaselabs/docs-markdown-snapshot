@@ -3,7 +3,7 @@ title: Manage Access to Cluster Data
 description: Access control accounts provide granular, programmatic and
   application-level access to data on a cluster.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/auth/auth-data.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:admin:auth/auth-data.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:analytics:admin:auth/auth-data.adoc[]
 
 > Access control accounts provide granular, programmatic and application-level access to data on a cluster. 
 
-You need an access control account to programmatically access data on a Capella Analytics cluster. Access control accounts for Capella Analytics are separate from Capella’s organization and project roles.
+You need an access control account to programmatically access data on a Capella Analytics cluster. Access control accounts for Capella Analytics are separate from Capella's organization and project roles.
 
 Access control accounts are not associated with a particular user. They do not control access to UI data tools like the Workbench.
 

@@ -2,7 +2,7 @@
 title: Database for Objective-C
 description: Working with Couchbase Lite Databases
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/objc/pages/database.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:objc:database.adoc[]
 ---
 
@@ -82,13 +82,13 @@ if (!database) {
 }
 ```
 
-Couchbase Lite does not persist the key. It is the application’s responsibility to manage the key and store it in a platform specific secure store such as Apple’s [Keychain](https://developer.apple.com/documentation/security/keychain%5Fservices) or Android’s [Keystore](https://developer.android.com/training/articles/keystore).
+Couchbase Lite does not persist the key. It is the application's responsibility to manage the key and store it in a platform specific secure store such as Apple's [Keychain](https://developer.apple.com/documentation/security/keychain%5Fservices) or Android's [Keystore](https://developer.android.com/training/articles/keystore).
 
 An encrypted database can only be opened with the same language SDK that was used to encrypt it in the first place (Swift, C#, Java, Java (Android) or Objective-C). For example, if a database is encrypted with the Swift SDK and then exported, it will only be readable with the Swift SDK.
 
 #### [](#upgrading-from-1-x-when-encryption-is-enabled)Upgrading from 1.x when Encryption is Enabled
 
-If you’re migrating an application from Couchbase Lite 1.x to 2.x, note that the [automatic database upgrade](#database-upgrade) functionality is **not supported** for encrypted databases. Thus, to upgrade an encrypted 1.x database, you should do the following:
+If you're migrating an application from Couchbase Lite 1.x to 2.x, note that the [automatic database upgrade](#database-upgrade) functionality is **not supported** for encrypted databases. Thus, to upgrade an encrypted 1.x database, you should do the following:
 
 1. Disable encryption using the Couchbase Lite 1.x framework (see [1.x encryption guide](https://docs-archive.couchbase.com/couchbase-lite/1.4/objc.html#database-encryption))
 2. Open the database file with encryption enabled using the Couchbase Lite 2.x framework.
@@ -97,13 +97,13 @@ Since it is not possible to package Couchbase Lite 1.x and Couchbase Lite 2.x in
 
 ## [](#lbl-find-db-loc)Finding a Database File
 
-When the application is running on the iOS simulator, you can locate the application’s sandbox directory using the [SimPholders](https://simpholders.com/3/) utility.
+When the application is running on the iOS simulator, you can locate the application's sandbox directory using the [SimPholders](https://simpholders.com/3/) utility.
 
 ## [](#lbl-db-util)Database Maintenance
 
 From time to time it may be necessary to perform certain maintenance activities on your database, for example to compact the database file, removing unused documents and blobs no longer referenced by any documents.
 
-Couchbase Lite’s API provides the [CBLDatabase.performMaintenance()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29performMaintenance:error:) method. The available maintenance operations, including `compact` are as shown in the enum [CBLMaintenanceType](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Enums/CBLMaintenanceType.html) to accomplish this.
+Couchbase Lite's API provides the [CBLDatabase.performMaintenance()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29performMaintenance:error:) method. The available maintenance operations, including `compact` are as shown in the enum [CBLMaintenanceType](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Enums/CBLMaintenanceType.html) to accomplish this.
 
 This is a resource intensive operation and is not performed automatically. It should be run on-demand using the API. If in doubt, consult Couchbase support.
 
@@ -115,7 +115,7 @@ You can download and build it from the couchbaselabs [GitHub repository](https:/
 
 ## [](#troubleshooting)Troubleshooting
 
-You should use Couchbase’s console logs as your first source of diagnostic information. If the information in the default logging level is insufficient you can focus it on database errors and generate more verbose messages — see: [Example 3](#ex-logdb).
+You should use Couchbase's console logs as your first source of diagnostic information. If the information in the default logging level is insufficient you can focus it on database errors and generate more verbose messages — see: [Example 3](#ex-logdb).
 
 For more on using Couchbase logs — see: [Using Logs](#couchbase-lite:objc:troubleshooting-logs.adoc).
 

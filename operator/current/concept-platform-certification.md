@@ -1,7 +1,7 @@
 ---
 title: Operator Self-Certification Lifecycle
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-platform-certification.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::concept-platform-certification.adoc[]
 ---
 
@@ -107,7 +107,7 @@ The only thing that is required for review by Couchbase is the downloaded archiv
 To submit the self-certification results to Couchbase, follow these steps:
 
 1. Capture the output archive in the directory where the `cao certify` was run; it will be named something like `couchbase-operator-certification-20060102T150405-0700.tar.bz2`.
-2. Capture the Kubernetes platform’s version information and other platform-specific components such as storage and networking.
+2. Capture the Kubernetes platform's version information and other platform-specific components such as storage and networking.
 3. If you are an existing customer of Couchbase, create a support ticket for instructions on how to submit your certification archive.
 4. If you are a new customer of Couchbase, contact your Couchbase Account Team or use our general [contact page](https://www.couchbase.com/contact/).
 

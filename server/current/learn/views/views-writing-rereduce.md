@@ -3,7 +3,7 @@ title: Re-reduce Argument
 description: For <code>reduce()</code> functions, they should be both
   transparent and standalone.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-writing-rereduce.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:views/views-writing-rereduce.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:server:learn:views/views-writing-rereduce.adoc[]
 
 # Re-reduce Argument
 
-For `reduce()` functions, they should be both transparent and standalone. For example, the `_sum` function did not rely on global variables or parsing of existing data, and didn’t need to call itself, hence it is also transparent.
+For `reduce()` functions, they should be both transparent and standalone. For example, the `_sum` function did not rely on global variables or parsing of existing data, and didn't need to call itself, hence it is also transparent.
 
 In order to handle incremental map/reduce functionality (i.e. updating an existing view), each function must also be able to handle and consume the functions own output. This is because in an incremental situation, the function must be handle both the new records, and previously computed reductions.
 
@@ -30,7 +30,7 @@ An example of this can be seen by considering an expanded version of the `sum` f
 
 function('James', [ 13000,20000,5000 ]) {...}
 
-When a document with the ‘James’ key is added to the database, and the view operation is called again to perform an incremental update, the equivalent call is:
+When a document with the 'James' key is added to the database, and the view operation is called again to perform an incremental update, the equivalent call is:
 
 function('James', [ 19000, function('James', [ 13000,20000,5000 ]) ]) { ... }
 

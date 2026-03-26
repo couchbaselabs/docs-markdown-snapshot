@@ -2,7 +2,7 @@
 title: Database Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage databases
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/configuration-schema-database.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::configuration-schema-database.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:3.1@sync-gateway::configuration-schema-database.adoc[]
 
 # Database Configuration
 
-> Using Sync Gateway’s Admin REST API to configure and manage databases  
+> Using Sync Gateway's Admin REST API to configure and manage databases  
 
 _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configuration-schema-bootstrap.md) | Database | [Database Security](#configuration-schema-db-security&.adoc#8212;​page}) | [Access Control](configuration-schema-access-control.md) | [Import](configuration-schema-import-filter.md) | [Inter-Sync Gateway Replication](configuration-schema-isgr.md)
 
@@ -25,7 +25,7 @@ _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configurat
 From _Sync Gateway_ 3.0 you can use the Admin REST API to provision persistent configuration changes. This content introduces the [Create Database](#put%5Fdb-) and [Configure Database](#post%5Fdb-%5Fconfig) endpoints for convenience — see [Database Configuration](rest-api-admin.md#/Database%5FConfiguration/) for a full description of the endpoints available.
 
 > [!NOTE]
-> You can define 1 custom scope per database with up to 1000 custom collections. If you don’t specify a custom scope and collection, any documents you create will be saved in the default scope and collection.
+> You can define 1 custom scope per database with up to 1000 custom collections. If you don't specify a custom scope and collection, any documents you create will be saved in the default scope and collection.
 
 ## [](#put%5Fdb-)Create a new Sync Gateway database
 
@@ -210,7 +210,7 @@ Content-Length: 120
 
 ## [](#DatabaseConfig)Schema
 
-This section shows Sync Gateway’s database configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
+This section shows Sync Gateway's database configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
 
 The configuration settings described here are provisioned through the [Database Configuration](rest-api-admin.md#/Database%5FConfiguration/) endpoints.
 

@@ -2,7 +2,7 @@
 title: Use Extended Attributes (XATTRs) for Access Grants
 description: How to set access grants using extended attributes (xattrs).
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/access-control-how-use-xattrs-for-access-grants.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::access-control-how-use-xattrs-for-access-grants.adoc[]
 ---
 
@@ -35,7 +35,7 @@ Sync Gateway exposes a single user-definable XATTR for this purpose. Learn how t
 
 ## [](#lbl-config)Configuration
 
-Name the XATTR (see: [user\_xattr\_key](configuration-schema-database.md#databases-this%5Fdb-user%5Fxattr%5Fkey)) to be used for channel routing by defining it using the Admin REST API’s [Database Configuration](configuration-schema-database.md) — see: [Example 1](#ex-config).
+Name the XATTR (see: [user\_xattr\_key](configuration-schema-database.md#databases-this%5Fdb-user%5Fxattr%5Fkey)) to be used for channel routing by defining it using the Admin REST API's [Database Configuration](configuration-schema-database.md) — see: [Example 1](#ex-config).
 
 The actual value of this XATTR can be anything that enables the Sync Function to make an appropriate access grant. Its data type can be string, array, object — any valid JSON that meets the required use case.
 
@@ -173,7 +173,7 @@ namespace examples
 
 | **1**  | This is required to make the MutateInSpec class available, providing access to sub-documents, of which metadata is a special class |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| **2**  | This string’s value is what we want this document’s XATTR to be called                                                             |
+| **2**  | This string's value is what we want this document's XATTR to be called                                                             |
 | **3**  | This array contains the channels we want to include as the XATTR value                                                             |
 | **4**  | Here we get all documents that we want to set the XATTR on (type = 'hotel' in this instance)                                       |
 | **5**  | Check if the XATTR has been defined yet                                                                                            |

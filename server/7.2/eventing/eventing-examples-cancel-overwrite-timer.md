@@ -2,7 +2,7 @@
 title: Cancel or Overwrite a Timer
 description: Demonstrate the functionality for canceling or overwriting an Eventing Timer.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-examples-cancel-overwrite-timer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:eventing:eventing-examples-cancel-overwrite-timer.adoc[]
 ---
 
@@ -16,8 +16,8 @@ link: xref:7.2@server:eventing:eventing-examples-cancel-overwrite-timer.adoc[]
 **Implementation**: Create a JavaScript function that contains an **OnUpdate** handler and a Timer callback function. The handler listens for mutations or data-changes within a specified source collection. When any document within the this collection is created or modified, the Eventing Function executes a user-defined routine. In this example, we rely on a control document which if mutated controls whether a Timer will be created, canceled, or overwritten.
 
 * **Test 1**: The control document is created or mutated in such a way a Timer is created and fires approximately 60 seconds in the future at which point a document is written to another collection. The original control document, in the source collection is not changed.
-* **Test 2**: The control document is mutated in such a way that any existing Timer with the reference of the control document’s id (meta.id) is canceled. This has no effect if the Timer created has already fired and executed.
-* **Test 3**: The control document is mutated in such a way that any existing Timer with the reference of the control document’s id (meta.id) is overwritten. This is equivalent to canceling a timer that already exists, and then creating a new Timer that will fire approximately 60 seconds in the future from the time of being overwritten.
+* **Test 2**: The control document is mutated in such a way that any existing Timer with the reference of the control document's id (meta.id) is canceled. This has no effect if the Timer created has already fired and executed.
+* **Test 3**: The control document is mutated in such a way that any existing Timer with the reference of the control document's id (meta.id) is overwritten. This is equivalent to canceling a timer that already exists, and then creating a new Timer that will fire approximately 60 seconds in the future from the time of being overwritten.
 
 **Preparations**:
 
@@ -175,7 +175,7 @@ For complete details on how to set up your keyspaces refer to [creating buckets]
 
   * You should see one newly created document in the collection "target".  
   ![cancel overwrite timer 04 look target](_images/cancel_overwrite_timer_04_look_target.png)
-  * Edit the new document type\_of\_interest::1 and you will see the data written by the Timer’s callback:  
+  * Edit the new document type\_of\_interest::1 and you will see the data written by the Timer's callback:  
   {  
     "docId": "type_of_interest::1",  
     "random_text": "arbitrary text",  
@@ -292,7 +292,7 @@ For complete details on how to set up your keyspaces refer to [creating buckets]
   2022-05-10T16:14:05.811-07:00 [INFO] "From DocTimerCallback: timer fired" {"docId":"type_of_interest::1 ","random_text":"arbitrary text","tmr_time_to_fire":"2022-05-10T23:13:57.125Z"}
 7. Now, to check the results of the callback, access the **Couchbase Web Console** \> **Documents** page then select the keyspace `bulk`.`data`.`target`
 
-  * Edit the new document **type\_of\_interest::1** and you will see the data written by the Timer’s callback:  
+  * Edit the new document **type\_of\_interest::1** and you will see the data written by the Timer's callback:  
   {  
     "docId": "type_of_interest::1 ",  
     "random_text": "arbitrary text",  

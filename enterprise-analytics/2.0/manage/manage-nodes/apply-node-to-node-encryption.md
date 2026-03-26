@@ -4,7 +4,7 @@ description: Network traffic between the individual nodes of an Enterprise
   Analytics cluster can be encrypted, in order to optimize cluster-internal
   security.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/apply-node-to-node-encryption.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:manage-nodes/apply-node-to-node-encryption.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Node-to-node encryption is managed by means of the Couchbase CLI. This page prov
 
 The following sequence demonstrates how to set up node-to-node encryption for a cluster, using the Couchbase CLI. The sequence assumes:
 
-* The reader’s familiarity with the information provided at [Node-to-Node Encryption](../../../../server/current/learn/clusters-and-availability/nodes.md#node-to-node-encryption).
+* The reader's familiarity with the information provided at [Node-to-Node Encryption](../../../../server/current/learn/clusters-and-availability/nodes.md#node-to-node-encryption).
 * A pre-existing cluster of two nodes, `node1-devcluster.com` and `node2-devcluster.com`, both running the latest version of Enterprise Analytics Enterprise Edition.
 * Node-to-node encryption initially disabled.
 * Auto-failover initially enabled.
@@ -113,7 +113,7 @@ If successful, the command returns a JSON document that contains the current sec
             .  
             .  
             .  
-These contents include information about the cluster’s _UI disablement settings_, _TLS minimum version_, and _ciper suites_ (listed per service). The output also contains the current encryption-level setting; which is here shown as _all_:  
+These contents include information about the cluster's _UI disablement settings_, _TLS minimum version_, and _ciper suites_ (listed per service). The output also contains the current encryption-level setting; which is here shown as _all_:  
 For information about UI disablement, see [Manage Console Access](../manage-security/manage-console-access.md).
 
 This concludes the sequence of commands.

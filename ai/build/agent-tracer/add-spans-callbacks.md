@@ -3,7 +3,7 @@ title: Add Spans and Callbacks to Your Agent
 description: Add spans and callbacks to your agentic app code to generate logs
   through the Agent Catalog.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-tracer/add-spans-callbacks.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:build:agent-tracer/add-spans-callbacks.adoc[]
 ---
 
@@ -26,7 +26,7 @@ You must configure environment variables for a Capella operational cluster to us
 
 To start logging agent activity with the Agent Catalog:
 
-1. If you have not already, initialize the Agent Catalog package in your project by running the following command inside your project’s root directory:  
+1. If you have not already, initialize the Agent Catalog package in your project by running the following command inside your project's root directory:  
 ```console  
 agentc init  
 ```
@@ -58,7 +58,7 @@ Defining a span for chat callbacks on your LLM varies depending on your chosen a
 * LangChain/LangGraph
 * LlamaIndex
 
-Create a span and chat model, then attach the span to the chat model’s callback to log all LLM calls, using the given span as the root.
+Create a span and chat model, then attach the span to the chat model's callback to log all LLM calls, using the given span as the root.
 
 The callback logs `ChatCompletionContent` and `ToolCallContent`.
 
@@ -103,7 +103,7 @@ callback = agentc_langchain.chat.Callback(
 chat_model.callbacks.append(callback)
 ```
 
-Create a span and chat model, then attach the span to the chat model’s callback to log events from LlamaIndex, using the given span as the root.
+Create a span and chat model, then attach the span to the chat model's callback to log events from LlamaIndex, using the given span as the root.
 
 The callback logs `ChatCompletionContent` and `ToolCallContent`.
 

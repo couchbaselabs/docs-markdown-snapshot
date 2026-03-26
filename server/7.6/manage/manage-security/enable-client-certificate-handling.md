@@ -3,7 +3,7 @@ title: Enable Client-Certificate Handling
 description: Couchbase Server can be enabled to support certificate-based client
   authentication.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/enable-client-certificate-handling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-security/enable-client-certificate-handling.adoc[]
 ---
 
@@ -38,7 +38,7 @@ This displays the **Certificates** screen. On the right-hand side of the display
   * **Mandatory**: Specifies that all clients _must_ present a certificate, in order to authenticate. No other form of client-authentication is handled over the secure connection. Note that imposing this level of security likely requires the additional measure of disabling non-secure console access: see [Manage Console Access](manage-console-access.md).  
   A current limitation is that client certificate authentication cannot be set to mandatory if node-to-node encryption is set to _all_. See [Node-to-Node Encryption](../../learn/clusters-and-availability/node-to-node-encryption.md).
 4. If **Require Client Certificate** has been set to either **Enable** or **Mandatory**, establish how the username within each client certificate is to be determined.  
-Each certificate is expected to provide a _username_ as part of its content. Frequently, the username is specified as the certificate’s _Subject Common Name_; but it may also be expressed as a _Subject Alternative Name_.  
+Each certificate is expected to provide a _username_ as part of its content. Frequently, the username is specified as the certificate's _Subject Common Name_; but it may also be expressed as a _Subject Alternative Name_.  
 These certificate-configuration options are described in detail in [Specifying Usernames for Client-Certificate Authentication](../../learn/security/certificates.md#identity-encoding-in-client-certificates); and practical examples of their use are provided in [Configure Client Certificates](configure-client-certificates.md). The administrator who configures client-certificate handling on Couchbase Server is expected to anticipate what forms of username-specification are likely to occur in the certificates used by client applications, and to decide how they should be handled.  
 To enable Couchbase Server to identify the usernames embedded in client certificates, specify one or more appropriate combinations of **Path**, **Prefix**, and **Delimiter**. Add and delete rows as appropriate, by left-clicking on the **+** and **\-** buttons. Note that the default option is **subject.cn**, which indicates that the _Subject Common Name_ within the certificate will be considered a username.  
 For an explanation of **Path**, **Prefix**, and **Delimiter** values, see [Specifying Usernames for Client-Certificate Authentication](../../learn/security/certificates.md#identity-encoding-in-client-certificates). Note that **Prefix** and **Delimiter** are optional; and their fields can therefore be left blank.
@@ -146,4 +146,4 @@ This confirms that the settings have been successfully updated.
 
 ## [](#client-certificates-and-server-upgrade)Client Certificates and Server Upgrade
 
-On a cluster’s upgrade to the current version of Couchbase Server, the cluster will continue to return client-certificate authentication-settings in the format of the earlier version until the cluster is completely upgraded. Once the cluster has been upgraded, any existing client-certificate authentication-settings from earlier versions are automatically transformed into the new format.
+On a cluster's upgrade to the current version of Couchbase Server, the cluster will continue to return client-certificate authentication-settings in the format of the earlier version until the cluster is completely upgraded. Once the cluster has been upgraded, any existing client-certificate authentication-settings from earlier versions are automatically transformed into the new format.

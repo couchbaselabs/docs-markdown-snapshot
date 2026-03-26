@@ -3,7 +3,7 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.8@java-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -19,7 +19,7 @@ This page covers using our operational Java SDK to connect to the Analytics Serv
 > [!TIP]
 > Analytics SDKs
 > 
-> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase's analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
 > 
 > Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](../../../home/columnar-sdk.md) for more information.
 
@@ -31,7 +31,7 @@ The analytics service is available in [Capella operational](../../../cloud/clust
 
 After familiarizing yourself with our [introductory primer](#7.1@server:analytics:primer-beer.adoc), in particular creating a dataset and linking it to a bucket, try Couchbase Analytics using the Java SDK. Intentionally, the API for analytics is nearly identical to that of the query service.
 
-Before starting, here’s all imports used in the following examples:
+Before starting, here's all imports used in the following examples:
 
 ```java
 import com.couchbase.client.core.error.CouchbaseException;
@@ -50,7 +50,7 @@ import java.util.UUID;
 import static com.couchbase.client.java.analytics.AnalyticsOptions.analyticsOptions;
 ```
 
-Here’s a complete example of doing an analytics query and handling the results:
+Here's a complete example of doing an analytics query and handling the results:
 
 ```java
 try {
@@ -71,7 +71,7 @@ try {
 }
 ```
 
-Let’s break it down. An analytics query is always performed at the `Cluster` level, using the `analyticsQuery` method. It takes the statement as a required argument and then allows to provide additional options if needed (in the example above, no options are specified).
+Let's break it down. An analytics query is always performed at the `Cluster` level, using the `analyticsQuery` method. It takes the statement as a required argument and then allows to provide additional options if needed (in the example above, no options are specified).
 
 Once a result returns you can iterate the returned rows and/or accessing the `AnalyticsMetaData` associated with the query. If something goes wrong during the execution of the query, a derivate of the `CouchbaseException` will be thrown that also provides additional context on the operation:
 

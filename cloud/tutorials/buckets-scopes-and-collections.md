@@ -3,7 +3,7 @@ title: Implement the Data Model
 description: Learn how to logically partition your data in Capella Operational
   using buckets, scopes, and collections.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/buckets-scopes-and-collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:tutorials:buckets-scopes-and-collections.adoc[]
 ---
 
@@ -26,7 +26,7 @@ For more information, see [Buckets, Scopes, and Collections](../clusters/data-se
 
 ## [](#create-a-bucket-scope-and-collections)Create a Bucket, Scope, and Collections
 
-In the next part of this tutorial, you’ll create:
+In the next part of this tutorial, you'll create:
 
 * A bucket to hold all student data
 * A scope to separate the data into only data related to an art school
@@ -46,7 +46,7 @@ To create the second collection, follow the above steps but use the existing `st
 
 The 2 collections allow you to use the relational model and the document model at the same time.
 
-The `student-record-collection` contains student records, and each student record contains a list of that student’s enrollments. Unlike the standard relational model decomposition where a link table is created between students and courses, a document model stores the enrollments as part of the student records.
+The `student-record-collection` contains student records, and each student record contains a list of that student's enrollments. Unlike the standard relational model decomposition where a link table is created between students and courses, a document model stores the enrollments as part of the student records.
 
 The `course-record-collection`, on the other hand, uses the relational model to link the enrollment records to the course records they apply to. This allows you to retrieve other details like the full title of the course or the number of credits students receive upon completing the course.
 

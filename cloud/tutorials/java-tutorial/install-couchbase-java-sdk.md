@@ -3,7 +3,7 @@ title: Set Up and Connect the Couchbase Java SDK
 description: Learn how to configure the cluster connection and set up the
   Couchbase Java SDK to connect and interact with your student cluster.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/install-couchbase-java-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:tutorials:java-tutorial/install-couchbase-java-sdk.adoc[]
 ---
 
@@ -43,7 +43,7 @@ To configure your connection:
   3. Expand the cluster breadcrumb and search for your free cluster.
 2. Click the name of your free tier operational cluster.
 3. Go to **Connect** **SDKs**.
-4. Make a note of the **Public Connection String**. You’ll need this to connect to the cluster.
+4. Make a note of the **Public Connection String**. You'll need this to connect to the cluster.
 5. Add your current IP address as an allowed IP on your cluster. For more information, see [Configure Allowed IP Addresses](../../clusters/allow-ip-address.md).
 6. Create new cluster access credentials.  
 Make sure to save the username and password for your credentials and give the credentials **Read/Write** access to the **student-bucket** and **art-school-scope**.  
@@ -165,7 +165,7 @@ public class ConnectStudent {
     }  
 }  
 ```
-3. In the `ConnectStudent.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster’s public connection string, and the username and password from your cluster access credentials.  
+3. In the `ConnectStudent.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster's public connection string, and the username and password from your cluster access credentials.  
 > [!IMPORTANT]  
 > You must re-run `mvn install` in your `student` directory whenever you make a change to a Java file to rebuild your application.
 4. Open a terminal window and navigate to your `student` directory.

@@ -3,7 +3,7 @@ title: Multipeer P2P Replicator
 description: The Multipeer Replicator enables lightweight, self-organizing mesh
   networks for apps running on the same local Wi-Fi.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/p2psync-multipeer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:android:p2psync-multipeer.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:couchbase-lite:android:p2psync-multipeer.adoc[]
 
 ## [](#introduction)Introduction
 
-Couchbase Lite’s Peer-to-Peer synchronization solution offers secure storage and bidirectional data synchronization between mobile and IoT devices without needing a centralized cloud-based control point.
+Couchbase Lite's Peer-to-Peer synchronization solution offers secure storage and bidirectional data synchronization between mobile and IoT devices without needing a centralized cloud-based control point.
 
 For small mesh topologies, Multipeer Replicator offers `autodiscovery` for Wi-Fi-based networks and secure communication via TLS and certificate-based authentication.
 
@@ -52,7 +52,7 @@ The `MultipeerReplicator` requires several configuration components to establish
 
 You can specify one or more collections available for replication when creating a `MultipeerReplicatorConfiguration`.
 
-For each collection, you’ll create `MultipeerCollectionConfiguration` with the collection object and optionally configure a custom conflict resolver or any replication filters you want to use for the collection.
+For each collection, you'll create `MultipeerCollectionConfiguration` with the collection object and optionally configure a custom conflict resolver or any replication filters you want to use for the collection.
 
 Specify collections without any configurations
 
@@ -88,17 +88,17 @@ val collections = setOf(config1, config2, config3)
 
 ### [](#peer-identity)Peer Identity
 
-Each peer in the Multipeer replication is uniquely identified and authenticated by using a peer’s certificate.
+Each peer in the Multipeer replication is uniquely identified and authenticated by using a peer's certificate.
 
 Multipeer Replicator which uses TLS communication by default requires to specify a `TLSIdentity` object for specifying the identity.
 
-You can use either a self-signed certificate for the identity or have an authority or issuer sign the identity’s certificate. The choice depends on your specific security requirements and deployment environment.
+You can use either a self-signed certificate for the identity or have an authority or issuer sign the identity's certificate. The choice depends on your specific security requirements and deployment environment.
 
-As each peer could be either a client or a server to the other peer in the Multipeer replication environment, you must create the identity’s certificate with the extension key usages for both client and server authentication to allow either direction to authenticate the certificate.
+As each peer could be either a client or a server to the other peer in the Multipeer replication environment, you must create the identity's certificate with the extension key usages for both client and server authentication to allow either direction to authenticate the certificate.
 
 #### [](#ca-signed-identity)CA-Signed Identity
 
-When using a certificate authority (CA) signed identity, the issuer’s certificate authenticates the connecting peer.
+When using a certificate authority (CA) signed identity, the issuer's certificate authenticates the connecting peer.
 
 Get and Create an identity signed by an issuer
 
@@ -198,9 +198,9 @@ When using self-signed certificates, implement your own certificate validation l
 * certificate authentication callback
 * root certificates.
 
-When specifying the certificate authentication callback, the callback calls the remote peer’s identity certificate.
+When specifying the certificate authentication callback, the callback calls the remote peer's identity certificate.
 
-When specifying the root certificates, the Multipeer replicator automatically authenticates the remote peer’s identity certificate by verifying whether one of the specified root certificates signed the certificate.
+When specifying the root certificates, the Multipeer replicator automatically authenticates the remote peer's identity certificate by verifying whether one of the specified root certificates signed the certificate.
 
 Authenticator with authentication callback
 
@@ -299,9 +299,9 @@ val token = replicator.addPeerDiscoveryStatusListener { status ->
 }
 ```
 
-#### [](#peers-replicator-status)Peer’s Replicator Status
+#### [](#peers-replicator-status)Peer's Replicator Status
 
-Peer’s Replicator Status Listener
+Peer's Replicator Status Listener
 
 ```kotlin
 //val activities = ["stopped", "offline", "connecting", "idle", "busy"]
@@ -316,9 +316,9 @@ val token = replicator.addPeerReplicatorStatusListener { status ->
 }
 ```
 
-#### [](#peers-document-replication)Peer’s Document Replication
+#### [](#peers-document-replication)Peer's Document Replication
 
-Peer’s Document Replication Listener
+Peer's Document Replication Listener
 
 ```kotlin
 val token = replicator.addPeerDocumentReplicationListener { status ->
@@ -337,7 +337,7 @@ val token = replicator.addPeerDocumentReplicationListener { status ->
 
 ### [](#peer-identifier)Peer Identifier
 
-A unique `peerID`, which is a digest of the peer’s identity certificate, identifies each peer. You can get your `peerID` from the `peerID` property of the `MultipeerReplicator`.
+A unique `peerID`, which is a digest of the peer's identity certificate, identifies each peer. You can get your `peerID` from the `peerID` property of the `MultipeerReplicator`.
 
 Getting peer ID
 

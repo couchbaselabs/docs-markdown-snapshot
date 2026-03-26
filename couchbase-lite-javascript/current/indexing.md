@@ -2,7 +2,7 @@
 title: Indexing
 description: Couchbase Lite JavaScript -- Indexing for Query Performance
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/indexing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::indexing.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:couchbase-lite-javascript::indexing.adoc[]
 
 Indexes speed up queries by creating efficient lookup structures for your data. Without indexes, queries must scan every document in a collection, which becomes slow as your data grows.
 
-Couchbase Lite JavaScript uses IndexedDB’s native indexing capabilities, which provides fast query performance but has some unique constraints compared to native Couchbase Lite platforms.
+Couchbase Lite JavaScript uses IndexedDB's native indexing capabilities, which provides fast query performance but has some unique constraints compared to native Couchbase Lite platforms.
 
 ## [](#indexing-constraints)IndexedDB Indexing Constraints
 
@@ -122,7 +122,7 @@ const userConfig: DatabaseConfig = {
 
 ### [](#compound-indexes)Compound Indexes
 
-While IndexedDB doesn’t support true compound indexes, you can create multiple single-property indexes that work together:
+While IndexedDB doesn't support true compound indexes, you can create multiple single-property indexes that work together:
 
 Example 5\. Multiple indexes
 

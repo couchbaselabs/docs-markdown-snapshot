@@ -2,7 +2,7 @@
 title: ALTER GROUP
 description: The ALTER GROUP statement enables you to update an existing group.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/altergroup.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/altergroup.adoc[]
 ---
 
@@ -15,10 +15,10 @@ link: xref:cloud:n1ql:n1ql-language-reference/altergroup.adoc[]
 
 ## [](#purpose)Purpose
 
-Use the ALTER GROUP statement to modify an existing group within the Couchbase Server Role-Based Access Control (RBAC) system. You can update the group’s description and its roles. You can either add new roles or remove all the existing ones. When you update a role for a group, all users in the group inherit the updated permissions automatically.
+Use the ALTER GROUP statement to modify an existing group within the Couchbase Server Role-Based Access Control (RBAC) system. You can update the group's description and its roles. You can either add new roles or remove all the existing ones. When you update a role for a group, all users in the group inherit the updated permissions automatically.
 
 > [!CAUTION]
-> When you add new roles to a group, the ALTER GROUP statement replaces the group’s existing role assignments with the new ones you provide. It updates the entire role list, so any existing roles not included in the new list will be removed. If you want to add or remove specific roles without affecting the others, use the [GRANT](grant.md) and [REVOKE](revoke.md) statements instead.
+> When you add new roles to a group, the ALTER GROUP statement replaces the group's existing role assignments with the new ones you provide. It updates the entire role list, so any existing roles not included in the new list will be removed. If you want to add or remove specific roles without affecting the others, use the [GRANT](grant.md) and [REVOKE](revoke.md) statements instead.
 
 ## [](#prerequisites)Prerequisites
 

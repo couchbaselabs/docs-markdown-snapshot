@@ -2,7 +2,7 @@
 title: recovery
 description: Recovers a previously failed over node
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-recovery.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:cli:couchbase-cli-recovery.adoc[]
 ---
 
@@ -25,7 +25,7 @@ When a server is failed over and removed from the cluster it may only be able to
 
 Another use case is taking a server out of the cluster for maintenance. This is done by gracefully failing over a server to ensure there is no data loss. The administrator can then perform maintenance on the removed server and add it back with the recovery command.
 
-The recovery command also allows a server to have it’s data removed before being added back to the cluster (full recovery) or having the server resume from where it last left off (delta recovery). Delta recovery will always take the least amount of time and is the recommended recovery mode.
+The recovery command also allows a server to have it's data removed before being added back to the cluster (full recovery) or having the server resume from where it last left off (delta recovery). Delta recovery will always take the least amount of time and is the recommended recovery mode.
 
 > [!NOTE]
 > After the recovery subcommand is run you must rebalance the cluster. See the [rebalance](couchbase-cli-rebalance.md) command for more information on rebalancing a cluster.
@@ -72,7 +72,7 @@ A comma separated list of servers to recover. The each server should correspond 
 
 \--recovery-type <type>
 
-Specifies whether or not we should do full or delta recovery of data on the servers being added back. Full recover means that all data on the servers being recovered will be removed and we will recover all data. Specifying delta recover means we will keep the data that is on each server and only recover the data that each server doesn’t have. To specify full recovery set this option to "full". For delta recovery set this option to "delta". The default value for this option is "full".
+Specifies whether or not we should do full or delta recovery of data on the servers being added back. Full recover means that all data on the servers being recovered will be removed and we will recover all data. Specifying delta recover means we will keep the data that is on each server and only recover the data that each server doesn't have. To specify full recovery set this option to "full". For delta recovery set this option to "delta". The default value for this option is "full".
 
 ## [](#host-formats)HOST FORMATS
 

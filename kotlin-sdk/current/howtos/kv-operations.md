@@ -3,7 +3,7 @@ title: Data Operations
 description: The Key Value (KV) service, sometimes called the "data service", is
   often the best way to get or change a document when you know its ID.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:kotlin-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -40,14 +40,14 @@ The `insert` method creates a new document in a collection.
 
 This method has two required parameters:
 
-* **`id: String`** \- The new document’s ID.
-* **`content: Any?`** \- The new document’s value.
+* **`id: String`** \- The new document's ID.
+* **`content: Any?`** \- The new document's value.
 
 If the collection already has a document with the same ID, the `insert` method throws `DocumentExistsException`.
 
-For example, let’s pretend we’re writing a program that helps a storyteller remember details about characters in a story.
+For example, let's pretend we're writing a program that helps a storyteller remember details about characters in a story.
 
-To start, let’s insert a document that represents a character in a story. The document ID is the character’s name. The document content is some information about the character.
+To start, let's insert a document that represents a character in a story. The document ID is the character's name. The document content is some information about the character.
 
 Creating a new document
 
@@ -62,7 +62,7 @@ try {
 }
 ```
 
-| **1** | The content doesn’t have to be a Map. To learn more, please read [Working with JSON](json.md). |
+| **1** | The content doesn't have to be a Map. To learn more, please read [Working with JSON](json.md). |
 | ----- | ---------------------------------------------------------------------------------------------- |
 
 ### [](#get)Get (Read)
@@ -94,7 +94,7 @@ The `replace` method updates the value of an existing document.
 This method has two required parameters:
 
 * **`id: String`** \- The ID of the document to replace.
-* **`content: Any?`** \- The document’s new value.
+* **`content: Any?`** \- The document's new value.
 
 If the collection does not have a document with this ID, the `replace` method throws `DocumentNotFoundException`.
 
@@ -112,7 +112,7 @@ try {
 ```
 
 > [!CAUTION]
-> When you replace a document, it’s usually good to use [optimistic locking](#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
+> When you replace a document, it's usually good to use [optimistic locking](#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
 
 ### [](#remove)Remove (Delete)
 
@@ -143,7 +143,7 @@ If the document already exists, the `upsert` method updates (replaces) it. If th
 This method has two required parameters:
 
 * **`id: String`** \- The ID of the document to create or update.
-* **`content: Any?`** \- The document’s new value.
+* **`content: Any?`** \- The document's new value.
 
 Creating or updating a document
 
@@ -235,11 +235,11 @@ When you use optimistic locking, you assume nobody else will change a document w
 
 How do you tell if the document changed? Every Couchbase document has a Compare-And-Swap (CAS) value. The CAS value is a number that changes every time the document changes.
 
-Most KV operations that change documents have a `cas` parameter. If you set this parameter, the operation fails with `CasMismatchException` if the document’s current CAS value does not match the `cas` parameter value.
+Most KV operations that change documents have a `cas` parameter. If you set this parameter, the operation fails with `CasMismatchException` if the document's current CAS value does not match the `cas` parameter value.
 
 Optimistic locking can make `get` and `replace` behave like an atomic unit:
 
-1. Read a document using the `get` method. Remember the document’s CAS value.
+1. Read a document using the `get` method. Remember the document's CAS value.
 2. Use the old document content to make new content. For example, add or remove a field, or change a field value.
 3. Replace the document content using the `replace` method. Pass the new content and the CAS value from step 1\. If `replace` throws `CasMismatchException`, start again at step 1.
 
@@ -273,7 +273,7 @@ while (true) { (1)
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
 
 > [!TIP]
-> You don’t need to write all of that code every time you want to use optimistic locking. Instead, you can define your own extension function like this:
+> You don't need to write all of that code every time you want to use optimistic locking. Instead, you can define your own extension function like this:
 > 
 > ```kotlin
 > suspend inline fun <reified T> Collection.mutate(
@@ -351,7 +351,7 @@ collection.replace( (2)
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | replace automatically releases the lock. Alternatively, you can release the lock by calling unlock.                                     |
 
-Pessimistic locking is expensive. It’s usually better to use optimistic locking.
+Pessimistic locking is expensive. It's usually better to use optimistic locking.
 
 ## [](#selecting-fields)Selecting Fields
 
@@ -388,14 +388,14 @@ Couchbase does not recommend this feature where read consistency is critical, bu
 
 ## [](#kv-range-scan)KV Range Scan
 
-A range scan gives you documents from a collection, even if you don’t know the document IDs. This feature requires Couchbase Server 7.6 or newer.
+A range scan gives you documents from a collection, even if you don't know the document IDs. This feature requires Couchbase Server 7.6 or newer.
 
 > [!TIP]
 > KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 
-Here’s an example of a KV range scan that gets all documents in a collection:
+Here's an example of a KV range scan that gets all documents in a collection:
 
 KV Range Scan for all documents in a collection
 
@@ -406,7 +406,7 @@ val results: Flow<GetResult> = collection.scanDocuments(
 results.collect { println(it) }
 ```
 
-| **1** | The ScanType.range() method has two optional parameters: from and to. If you omit them like in this example, you’ll get all documents in the collection. These parameters are for advanced use cases; you probably won’t need to specify them. Instead, it’s more common to use the "prefix" scan type shown in the next example. |
+| **1** | The ScanType.range() method has two optional parameters: from and to. If you omit them like in this example, you'll get all documents in the collection. These parameters are for advanced use cases; you probably won't need to specify them. Instead, it's more common to use the "prefix" scan type shown in the next example. |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### [](#kv-range-scan-prefix)Prefix scan
@@ -468,4 +468,4 @@ The `insert`, `get`, `replace`, `remove`, and `upsert` methods of the `Collectio
 
 When changing a document, use a [locking strategy](#locking) if the new content depends on the old content. [Optimistic locking](#optimistic-locking) usually performs better than [pessimistic locking](#pessimistic-locking).
 
-You can do a KV range scan to get documents even if you don’t know their IDs. However, it’s faster to use SQL++ for this.
+You can do a KV range scan to get documents even if you don't know their IDs. However, it's faster to use SQL++ for this.

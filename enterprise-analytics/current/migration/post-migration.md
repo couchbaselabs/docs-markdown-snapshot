@@ -4,7 +4,7 @@ description: This section outlines the cutover plan and post-migration
   validation steps to verify a smooth transition from Couchbase Analytics
   Service (CBAS) to Couchbase Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/migration/pages/post-migration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:migration:post-migration.adoc[]
 ---
 
@@ -27,7 +27,7 @@ To set up and run 2 or more clusters simultaneously, use 1 of the following appr
 The parallel cluster configuration utilizes both CBAS (within an existing Couchbase Server OLTP cluster) and Couchbase Enterprise Analytics (dedicated OLAP cluster) to operate simultaneously during the transition period.
 
 * **Production Environment**: Analytics applications continue using CBAS through SDK connections and JDBC drivers for Couchbase Server Analytics Service and Capella Operational Analytics Service.
-* **Development/Test Environment**: You’re advised to create a replica of your applications using the new Analytics SDK. The new replica application must connect to Couchbase Enterprise Analytics cluster for validation and testing. For more information, see [Migration](migration-process.md).
+* **Development/Test Environment**: You're advised to create a replica of your applications using the new Analytics SDK. The new replica application must connect to Couchbase Enterprise Analytics cluster for validation and testing. For more information, see [Migration](migration-process.md).
 * **Data Synchronization**: Real-time data replication from operational Couchbase Server to both CBAS and Enterprise Analytics clusters.
 
 * Preparation and Validation
@@ -38,7 +38,7 @@ The parallel cluster configuration utilizes both CBAS (within an existing Couchb
   * Validate query compatibility and performance in non-production environments
 * Gradual Application Migration
 
-  * SDK-based Analytics Applications: You’re advised to create a replica of your applications using the new Analytics SDK. All the CBAS analytics features are available in the new enterprise analytics SDK. The new replica application should connect to Couchbase Enterprise Analytics cluster for validation and testing. For more information, see [Migration](#migration:migration-process.aodc).
+  * SDK-based Analytics Applications: You're advised to create a replica of your applications using the new Analytics SDK. All the CBAS analytics features are available in the new enterprise analytics SDK. The new replica application should connect to Couchbase Enterprise Analytics cluster for validation and testing. For more information, see [Migration](#migration:migration-process.aodc).
   * BI Tools with JDBC: Modify JDBC connection URLs to target Enterprise Analytics JDBC driver and endpoints. You need to use the existing connectors for JDBC with the new endpoints for existing BI tools.
   * Implement feature flags or configuration switches to enable rapid rollback if needed.
   * Monitor both clusters for performance, data consistency, and application behavior.

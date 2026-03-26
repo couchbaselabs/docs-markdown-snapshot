@@ -1,7 +1,7 @@
 ---
 title: Page
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/pages.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::pages.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:styleguide::pages.adoc[]
 
 A page is what a user moves to or accesses from a [menu](menus.md) or [tab](tabs.md) in the UI.
 
-Pages are the whole of what’s displayed in the UI to the user. They contain [Buttons](buttons.md), [Tabs](tabs.md), and other UI elements.
+Pages are the whole of what's displayed in the UI to the user. They contain [Buttons](buttons.md), [Tabs](tabs.md), and other UI elements.
 
 For example, the following are pages in the Capella UI:
 
@@ -25,6 +25,6 @@ When you need to describe a page in the UI:
 * Refer to the page by its name, followed by the word page.  
 For example, the **Quick Start** page.
 * Bold the page name.
-* If you’re describing a page for the purposes of navigation, see [Tabs](tabs.md) and [Menus](menus.md).  
+* If you're describing a page for the purposes of navigation, see [Tabs](tabs.md) and [Menus](menus.md).  
 For example, you would select the **Data Tools** tab to open the **Data Tools** page.  
 Use the [Menu UI Macro](menu-ui-macro.md) where appropriate.

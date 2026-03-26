@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting and Best Practices
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/troubleshooting-best-practices.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:eventing:troubleshooting-best-practices.adoc[]
 ---
 
@@ -21,7 +21,7 @@ The default number of workers per function was 3 in 6.X and is now 1 in 7.0.0\. 
 > [!NOTE]
 > All upgrades carry forward the configured number of workers in an Eventing Function so you do not have to worry about a production system slowing down during an upgrade.
 
-Raising the worker counts should be down if you need higher levels of throughput, for example cURL functions access slow external REST endpoints need more workers to scale up the performance (in this case you’re IO bound and not CPU bound).
+Raising the worker counts should be down if you need higher levels of throughput, for example cURL functions access slow external REST endpoints need more workers to scale up the performance (in this case you're IO bound and not CPU bound).
 
 ## [](#what-is-the-security-role-eventing-full-admin-for)What Is the Security Role "Eventing Full Admin" For?
 
@@ -31,7 +31,7 @@ In Couchbase Server version 7.0.0 or earlier, Eventing always ran with `Full Adm
 
 Couchbase Server limits the maximum number of workers to 64 for a specific Function with a default of 3 workers. The upper limit optimizes system performance and the server prevents you from creating a function that exceeds this limit.
 
-When deploying or resuming a paused function, a threshold is dynamically calculated based on your node’s resources. If the number of workers exceeds this calculation, the system automatically generates a warning message but does not prevent the Function deployment. An example is as follows:
+When deploying or resuming a paused function, a threshold is dynamically calculated based on your node's resources. If the number of workers exceeds this calculation, the system automatically generates a warning message but does not prevent the Function deployment. An example is as follows:
 
 `There are 104 eventing workers configured to run on 24 cores. A sizing exercise is recommended.`
 
@@ -39,9 +39,9 @@ Typically you should not configure more than 4 × the number of physical cores (
 
 ## [](#when-should-developers-use-the-try-catch-block-in-eventing-functions)When Should Developers Use the Try-Catch Block in Eventing Functions?
 
-As a best practice, while writing the Eventing Function’s JavaScript code, for basic error handling and debugging operations, it’s recommended that application developers use the try-catch block.
+As a best practice, while writing the Eventing Function's JavaScript code, for basic error handling and debugging operations, it's recommended that application developers use the try-catch block.
 
-Before deployment, Couchbase Server verifies the Eventing Function’s code. Only valid Functions get deployed. Using the `log()` option within a `try-catch block(s)`, you can record errors. These error logs get stored in the Eventing function’s application log file. NOTE: The Eventing function’s application log file on disk is specific to the node that processed the mutation and is not global across the cluster. By default, JavaScript runtime errors get stored in the system logs. Unlike system logs, troubleshooting, and debugging operations are easy when you use the `try-catch` block and application `log()` options.
+Before deployment, Couchbase Server verifies the Eventing Function's code. Only valid Functions get deployed. Using the `log()` option within a `try-catch block(s)`, you can record errors. These error logs get stored in the Eventing function's application log file. NOTE: The Eventing function's application log file on disk is specific to the node that processed the mutation and is not global across the cluster. By default, JavaScript runtime errors get stored in the system logs. Unlike system logs, troubleshooting, and debugging operations are easy when you use the `try-catch` block and application `log()` options.
 
 During runtime, the Application logs do not capture any Eventing Function code exceptions, by default. To log exceptions, surround your code in a `try-catch` block.
 
@@ -63,7 +63,7 @@ Eventing Functions can trigger data mutations. To avoid a cyclic generation of d
 
 ### [](#infinite-recursion-protection)Infinite Recursion Protection
 
-* Avoid infinite recursions. If you’re using a series of Eventing Functions, make sure they do not cause cyclic mutations by triggering write operations that, in turn, trigger other Eventing Functions. For example the following design demonstrates an infinite recursion:
+* Avoid infinite recursions. If you're using a series of Eventing Functions, make sure they do not cause cyclic mutations by triggering write operations that, in turn, trigger other Eventing Functions. For example the following design demonstrates an infinite recursion:
 
 **functionA** with source collectionA target collectionB aliased as same.  
 function OnUpdate(doc, meta) {  
@@ -99,7 +99,7 @@ function OnUpdate(doc, meta) {
 A highly useful special case allows an Eventing Function to perform direct self-recursion by creating a Read-Write binding to its own source collection for document enrichment operations. In this case, the Eventing framework detects and suppresses the direct self-recursive mutations. This capability applies only to the aliased JavaScript map and is not supported for mutations generated through SQL++.
 
 > [!NOTE]
-> Since the 6.5 release, the Eventing Function JavaScript code can directly mutate (or write back) to the source bucket that’s now in the 7.0.0 the source collection. For example, direct self-recursion.
+> Since the 6.5 release, the Eventing Function JavaScript code can directly mutate (or write back) to the source bucket that's now in the 7.0.0 the source collection. For example, direct self-recursion.
 
 * For example the following design is taken from the [Data Enrichment, Case: 2](eventing-example-data-enrichment.md):
 
@@ -148,7 +148,7 @@ When the Timeout Statistics shows a sharp increase, it may be due to 2 possible 
 * Increase in execution time: When the Eventing Function execution time increases, the Function execution latency gets affected, and this in turn, leads to Function backlog and failure conditions.
 * Script timeout value: When the script timeout attribute value is not properly configured, timeout conditions occur frequently.
 
-As a workaround, it’s recommended to increase the script timeout value. Make sure that you configure the script timeout value after thoroughly evaluating the function’s execution latency.
+As a workaround, it's recommended to increase the script timeout value. Make sure that you configure the script timeout value after thoroughly evaluating the function's execution latency.
 
 As a best practice use a combination of try-catch block and the application log options. This way you can monitor, debug, and troubleshoot errors during the Function execution.
 
@@ -167,16 +167,16 @@ Yes, Ephemeral are fine for user data but not for the Eventing Storage (metadata
 The source bucket and any bucket (or keyspace) bindings of your Eventing Function can be Ephemeral. However, the Eventing Storage keyspace (metadata collection) should always be persistent.
 
 > [!NOTE]
-> The Eventing Storage keyspace must be in a Bucket of type Couchbase. If this keyspace is not persistent, the Data Service, or KV, evicts timer and checkpoint documents after hitting quota. Eventing can lose track of both timers and mutations processed. At any point, do not delete the Eventing metadata collection. Make sure that your Eventing Function’s JavaScript code or other services does not perform a write or delete operation on the Eventing metadata collection.
+> The Eventing Storage keyspace must be in a Bucket of type Couchbase. If this keyspace is not persistent, the Data Service, or KV, evicts timer and checkpoint documents after hitting quota. Eventing can lose track of both timers and mutations processed. At any point, do not delete the Eventing metadata collection. Make sure that your Eventing Function's JavaScript code or other services does not perform a write or delete operation on the Eventing metadata collection.
 
 ## [](#eventing-worked-fine-when-application-was-first-deployed-but-now-i-am-getting-lcb%5Fetmpfail-failures)Eventing Worked Fine When Application Was First Deployed But Now I Am Getting LCB\_ETMPFAIL Failures.
 
-A low residency ratio for either the source or the destination collection (sometimes these 2 can be the same) can result in a system that’s unable to keep up with rate of mutations and internal logic’s required reads and writes to the data service.
+A low residency ratio for either the source or the destination collection (sometimes these 2 can be the same) can result in a system that's unable to keep up with rate of mutations and internal logic's required reads and writes to the data service.
 
 > [!NOTE]
 > Watch the number of documents in your collections (source, Eventing Storage, and destinations) and in particular pay close attention to the change in the resident ratio. Typically, this could be due to growth in your overall dataset.
 
-For example, a high velocity Eventing function that’s processing in excess of 12K mutations/sec with a source or destination collection residency ratio of 100% can start to experience issues if the residency ratio drops below 18%. This percentage is not hard and fast and varies based on a variety of factors such as the number of mutations acted on, the storage type, and so on.
+For example, a high velocity Eventing function that's processing in excess of 12K mutations/sec with a source or destination collection residency ratio of 100% can start to experience issues if the residency ratio drops below 18%. This percentage is not hard and fast and varies based on a variety of factors such as the number of mutations acted on, the storage type, and so on.
 
 2020-03-13T11:46:32.383-07:00 [INFO] "Exception: " {"message":{"code":392,"desc": \
 "Temporary failure received from server.
@@ -187,12 +187,12 @@ The above error indicates that the system is under provisioned for the load. Und
 
 2 solutions are available:
 
-1. The first solution is to increase the memory quota of the collection’s bucket to improve the resident ratio.
+1. The first solution is to increase the memory quota of the collection's bucket to improve the resident ratio.
 2. The second solution is to add more Data nodes, use faster disk I/O, and increase memory to remove the resource bottleneck.
 
 ## [](#always-escape-quotes-in-regular-expressions-in-your-eventing-function)Always Escape Quotes in Regular Expressions in Your Eventing Function.
 
-When using bare regular expressions you should always escape a single quote or a double quote with a backslash character. Although non-escaped quotes are legal in the JavaScript language they do not pass Eventing Service’s parser.
+When using bare regular expressions you should always escape a single quote or a double quote with a backslash character. Although non-escaped quotes are legal in the JavaScript language they do not pass Eventing Service's parser.
 
 mystring.match(/(\S+)[^=]=["']?((?:.(?!["']?\s+(?:\S+)[^=]=|[>"']))+.)["']?/g);
 

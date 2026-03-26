@@ -2,7 +2,7 @@
 title: Creating a JavaScript Library
 description: How to create a JavaScript library.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/create-javascript-library.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:guides:create-javascript-library.adoc[]
 ---
 
@@ -129,7 +129,7 @@ curl -v -X POST  'http://localhost:8093/evaluator/v1/libraries/my-library?bucket
 ```  
 The parameters in the URL denote that the function should reside in the `travel-sample` bucket, under the `inventory` scope within that bucket.
 
-You have now created your JavaScript library. In the [next step](create-user-defined-function.md), you’ll create an SQL++ User-Defined function that references your library function, so it can be called as part of any SQL++ statement.
+You have now created your JavaScript library. In the [next step](create-user-defined-function.md), you'll create an SQL++ User-Defined function that references your library function, so it can be called as part of any SQL++ statement.
 
 ## [](#further-reading)Further Reading
 

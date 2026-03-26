@@ -3,7 +3,7 @@ title: Storage Engines
 description: "Couchbase supports two different backend storage mechanisms:
   Couchstore and Magma."
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/buckets-memory-and-storage/storage-engines.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:buckets-memory-and-storage/storage-engines.adoc[]
 ---
 
@@ -16,19 +16,19 @@ link: xref:7.6@server:learn:buckets-memory-and-storage/storage-engines.adoc[]
 
 ## [](#couchstore)Couchstore
 
-Couchstore is the original storage engine for Couchbase Server. It’s the only storage engine available in Couchbase Server Community Edition. Couchstore is designed for high performance with datasets that fit in memory. It has a minimum memory requirement of 100 MB per node, and a recommended minimum memory-to-data ratio of 10%. If you have a small dataset whose working set (frequently accessed data) can fit in memory, then you should consider using Couchstore.
+Couchstore is the original storage engine for Couchbase Server. It's the only storage engine available in Couchbase Server Community Edition. Couchstore is designed for high performance with datasets that fit in memory. It has a minimum memory requirement of 100 MB per node, and a recommended minimum memory-to-data ratio of 10%. If you have a small dataset whose working set (frequently accessed data) can fit in memory, then you should consider using Couchstore.
 
 ## [](#storage-engine-magma)Magma
 
 [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
-Magma is designed for high performance with very large datasets that do not fit in memory. It’s ideal for use cases that rely primarily on disk access. The performance of disk access will be as good as the underlying disk sub-systems — for example, using NVMe SSDs will give higher performance.
+Magma is designed for high performance with very large datasets that do not fit in memory. It's ideal for use cases that rely primarily on disk access. The performance of disk access will be as good as the underlying disk sub-systems — for example, using NVMe SSDs will give higher performance.
 
 Magma can work with very low amounts of memory for large datasets: a minimum memory-to-data ratio of 1% is required. For example, if a node is holding 5 TB of data, Magma can be used with only 64 GB RAM.
 
 Magma has several thread settings to tune performance for different workloads. To get maximum performance from Magma for disk-oriented workloads, set the Writer Threads to `Disk i/o optimized`. This setting allocates more threads to sustain high write rates. For more information about this setting, see [Data Settings](../../manage/manage-settings/general-settings.md#data-settings).
 
-You can also tune the number and allocation of threads that Magma uses to compact and flush data to disk. If you notice that Magma’s data compaction spikes CPU use, you can change the ratio of threads that compact data to the threads that flush data.
+You can also tune the number and allocation of threads that Magma uses to compact and flush data to disk. If you notice that Magma's data compaction spikes CPU use, you can change the ratio of threads that compact data to the threads that flush data.
 
 __Table 1\. Magma Supported Services__
 | Couchbase Version            | Services Supported                                      |
@@ -47,7 +47,7 @@ __Table 1\. Magma Supported Services__
 | Minimum memory to data ratio | 10%        | 1%                       |
 | Maximum data per node        | 3 TB       | 10 TB                    |
 
-| [1](#quota-ref) | Magma’s minimum memory requirement is higher at 1GB per node due to the more complex data structures it has to maintain. |
+| [1](#quota-ref) | Magma's minimum memory requirement is higher at 1GB per node due to the more complex data structures it has to maintain. |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------ |
 
 ## [](#when-should-you-use-couchstore)When should you use Couchstore?
@@ -73,4 +73,4 @@ You should use the Magma backend if:
 
 You can migrate a bucket to use a different storage engine. Consider migrating a bucket if it no longer meets the criteria explained in the previous sections. For example, suppose you have a bucket using the Couchstore backend that has grown to the point where it no longer fits in memory. In this case, you should migrate the bucket to use Magma as a storage backend.
 
-To learn how to migrate a bucket’s storage backend, see [Migrate a Bucket’s Storage Backend](../../manage/manage-buckets/migrate-bucket.md).
+To learn how to migrate a bucket's storage backend, see [Migrate a Bucket's Storage Backend](../../manage/manage-buckets/migrate-bucket.md).

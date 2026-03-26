@@ -3,7 +3,7 @@ title: Monitor and Observe with Agent Tracer
 description: Use the Agent Tracer with the Agent Catalog and your agentic app to
   monitor and observe agent activity.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-tracer/agent-tracer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:build:agent-tracer/agent-tracer.adoc[]
 ---
 
@@ -21,10 +21,10 @@ Agent Tracer can help you troubleshoot when agent behavior goes wrong, such as:
 | Scenario                         | How to Use Agent Tracer                                                                                                  |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | Agent acts unpredictably         | Check the exact prompts sent to your agent and the generated thinking from your LLM during a user session.               |
-| Wrong tool called                | Check the tools the agent called and troubleshoot, whether it’s similar names or overlapping and confusing descriptions. |
+| Wrong tool called                | Check the tools the agent called and troubleshoot, whether it's similar names or overlapping and confusing descriptions. |
 | Inter-agent coordination failure | Inspect the context handed off between agents - find withheld information or reasoning-action mismatches.                |
-| Tool schema mismatch             | Compare the tool inputs provided to your agent’s LLM with your expected schema.                                          |
-| Agent stuck in a loop            | Check whether the same tool or a set of tools are called in a loop, and check the agent’s reasoning log.                 |
+| Tool schema mismatch             | Compare the tool inputs provided to your agent's LLM with your expected schema.                                          |
+| Agent stuck in a loop            | Check whether the same tool or a set of tools are called in a loop, and check the agent's reasoning log.                 |
 
 To capture agent activity, add spans and callbacks to your application.
 

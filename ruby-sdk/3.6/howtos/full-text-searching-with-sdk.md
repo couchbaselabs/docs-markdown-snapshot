@@ -3,7 +3,7 @@ title: Search
 description: You can use the Full Text Search service (FTS) to create queryable,
   full-text indexes in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.6/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@ruby-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -156,7 +156,7 @@ puts "Reported total rows: #{result.meta_data.metrics.total_rows}"
 #=> Reported total rows: 6043
 ```
 
-`match_phrase()` builds a phrase query is built from the results of an analysis of the terms in the query phrase; here it’s built on a search in the name field.
+`match_phrase()` builds a phrase query is built from the results of an analysis of the terms in the query phrase; here it's built on a search in the name field.
 
 ```ruby
 options = Cluster::SearchOptions.new
@@ -273,7 +273,7 @@ The FTS APIs exist at both the `Cluster` and `Scope` levels.
 
 This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
-It’s important to use the `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
+It's important to use the `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
 
 ## [](#vector-search)Vector Search
 
@@ -296,7 +296,7 @@ result.rows.each do |row|
 end
 ```
 
-Let’s break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
+Let's break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
 
 The `VectorSearch` allows us to perform one or more `VectorQuery` s.
 

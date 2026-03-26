@@ -1,7 +1,7 @@
 ---
 title: Couchbase Scala SDK 3.10
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@scala-sdk:hello-world:overview.adoc[]
 ---
 
@@ -19,7 +19,7 @@ The Couchbase Scala SDK allows Scala applications to access a Couchbase cluster 
 > [!NOTE]
 > From 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes. So the version has jumped from 1.8.x to 3.9.x.
 
-What’s the point of a fast and scalable database if it’s not easy to develop for? Couchbase gives you the Scala APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
+What's the point of a fast and scalable database if it's not easy to develop for? Couchbase gives you the Scala APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
 
 * Data Ops (CRUD)
 * SQL++ Query (OLTP)
@@ -55,10 +55,10 @@ libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.10.1"
 
 The Scala SDK is provided with builds for Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive). `%%` takes care of selecting the right version in Scala Build Tool. If you are using another build tool such as Maven or Gradle, then specify `scala-client_2.12`, `scala-client_2.13`, or `scala-client_3`, as appropriate. The Scala 3 build can be used from applications compiled with Scala 3.3 through 3.7 inclusive, and even Scala 2.13\. It is the recommended build for all users, except those on 2.12.
 
-The links below will take you where you want to go — as will the navigation on the left-hand side of this page. But if you don’t know exactly where you need to go, try one of the following:
+The links below will take you where you want to go — as will the navigation on the left-hand side of this page. But if you don't know exactly where you need to go, try one of the following:
 
 * Our [Quickstart Guide](start-using-sdk.md) introduces the SDK with a quick install, and CRUD examples against the Data Service.
-* Couchbase’s familiar SQL-family query language and fuzzy search options (including vector search) are introduced on the [Querying Your Data](../concept-docs/querying-your-data.md) page.
+* Couchbase's familiar SQL-family query language and fuzzy search options (including vector search) are introduced on the [Querying Your Data](../concept-docs/querying-your-data.md) page.
 * The Scala SDK docs are, necessarily, just a sub-set [Scala SDK API Reference](https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html) — and a complete reference of all APIs can be found there.
 * For a fuller orientation, there is a [guide to the Scala SDK docs](../project-docs/metadoc-about-these-sdk-docs.md)
 
@@ -118,6 +118,6 @@ This page covers using our operational Scala SDK to connect to the Analytics Ser
 > [!TIP]
 > Analytics SDKs
 > 
-> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase's analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
 > 
 > Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](../../../home/columnar-sdk.md) for more information.

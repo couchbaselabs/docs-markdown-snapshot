@@ -3,7 +3,7 @@ title: "Function: Advanced Document Controlled Expiry"
 description: Purge a document automatically based on the document's
   self-contained start and duration fields.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-handler-advanced-docControlledSelfExpiry.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:eventing:eventing-handler-advanced-docControlledSelfExpiry.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:server:eventing:eventing-handler-advanced-docControlledSelfExpiry.ado
 
 # Function: Advanced Document Controlled Expiry
 
-Purge a document automatically based on the document’s self-contained start and duration fields.
+Purge a document automatically based on the document's self-contained start and duration fields.
 
 The `advancedDocControlledSelfExpiry` function:
 
@@ -24,16 +24,16 @@ The `advancedDocControlledSelfExpiry` function:
 * Operates on any document where `type == "trial_custoimers"`
 * Ignores any document with a TTL that is not zero
 
-When you use a simple integer instead of a proper date or time object for your document’s expiration value, the expiration value is specified in one of the following ways:
+When you use a simple integer instead of a proper date or time object for your document's expiration value, the expiration value is specified in one of the following ways:
 
 * As an offset from the current time if the value is less than 30 days (60 \* 60 \* 24 \* 30 seconds).
 * As an absolute Unix time stamp if the value is greater than 30 days (60 \* 60 \* 24 \* 30 seconds).
 
-If a `Bucket Max Time-to-Live` is set and specified in seconds, it’s enforced as a hard upper limit. Any subsequent document mutation, whether by SQL++, Eventing, or a Couchbase SDK, results in the document having its expiration adjusted and set to the bucket’s maximum TTL if the operation has:
+If a `Bucket Max Time-to-Live` is set and specified in seconds, it's enforced as a hard upper limit. Any subsequent document mutation, whether by SQL++, Eventing, or a Couchbase SDK, results in the document having its expiration adjusted and set to the bucket's maximum TTL if the operation has:
 
 * No TTL
 * A TTL of zero
-* A TTL greater than the bucket’s TTL
+* A TTL greater than the bucket's TTL
 
 * advancedDocControlledSelfExpiry
 * Input data
@@ -41,7 +41,7 @@ If a `Bucket Max Time-to-Live` is set and specified in seconds, it’s enforced 
 
 There are two variants of this function available: a [Couchbase Server version 6.6 that relies on SQL++](eventing-handler-docControlledSelfExpiry.md), and a Couchbase Server version 6.6.1+/7.0.0+ that directly sets the expiration.
 
-You can improve your function’s performance by avoiding N1QL() and using `couchbase.replace(bucket_binding, meta, doc)` instead.
+You can improve your function's performance by avoiding N1QL() and using `couchbase.replace(bucket_binding, meta, doc)` instead.
 
 The following example directly sets the expiration.
 
@@ -119,7 +119,7 @@ function OnUpdate(doc, meta) {
 
 Create a test set of 4 documents using the Query Editor to insert the data items. You do not need an Index.
 
-If today’s date is past 08-25-2021 (MM-DD-YYYY), you can change the `trialStartDate` for the last two records to at least 90 days from today.
+If today's date is past 08-25-2021 (MM-DD-YYYY), you can change the `trialStartDate` for the last two records to at least 90 days from today.
 
 ```sqlpp
   UPSERT INTO `bulk`.`data`.`source` (KEY,VALUE)

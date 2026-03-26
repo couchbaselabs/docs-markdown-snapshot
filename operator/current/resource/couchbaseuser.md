@@ -1,7 +1,7 @@
 ---
 title: CouchbaseUser Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbaseuser.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::resource/couchbaseuser.adoc[]
 ---
 
@@ -153,7 +153,7 @@ The domain which provides user authentication.
 
 #### [](#description-10)Description
 
-Name of the Kubernetes Secret that provides the user’s initial password for the Couchbase domain. Once the user is created, changes to this field will be ignored. The initial password must comply with all password policies defined for Couchbase clusters that have RBAC management enabled and for which the user matches the RBAC resource selector.
+Name of the Kubernetes Secret that provides the user's initial password for the Couchbase domain. Once the user is created, changes to this field will be ignored. The initial password must comply with all password policies defined for Couchbase clusters that have RBAC management enabled and for which the user matches the RBAC resource selector.
 
 ### [](#couchbaseusers-spec-fullname)couchbaseusers.spec.fullName
 
@@ -213,7 +213,7 @@ ExpiresAfter allows setting a fixed duration after a user changes their password
 
 #### [](#description-16)Description
 
-ExpiresAt allows setting a timestamp when a user’s password will expire. After that timestamp has passed, the user will be required to change their password. If set to a timestamp in the past, the user’s password must have been changed since then or they will be required to change their password. This field is only available for Couchbase Server 8.0.0+.
+ExpiresAt allows setting a timestamp when a user's password will expire. After that timestamp has passed, the user will be required to change their password. If set to a timestamp in the past, the user's password must have been changed since then or they will be required to change their password. This field is only available for Couchbase Server 8.0.0+.
 
 ### [](#couchbaseusers-spec-password-requireinitialchange)couchbaseusers.spec.password.requireInitialChange
 

@@ -4,7 +4,7 @@ description: Data service offers the simplest way to retrieve or mutate data
   where the key is known. Here we cover CRUD operations, document expiration,
   and optimistic locking with CAS.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.7@dotnet-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -21,7 +21,7 @@ A _document_ refers to an entry in the database (other databases may refer to th
 
 ## [](#crud-operations)CRUD Operations
 
-The core interface to Couchbase Server is simple KV operations on full documents. Make sure you’re familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK section](../hello-world/start-using-sdk.md). We’re going to expand on the short _Upsert_ example we used there, adding options as we move through the various CRUD operations. Here is the _Insert_ operation at its simplest:
+The core interface to Couchbase Server is simple KV operations on full documents. Make sure you're familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK section](../hello-world/start-using-sdk.md). We're going to expand on the short _Upsert_ example we used there, adding options as we move through the various CRUD operations. Here is the _Insert_ operation at its simplest:
 
 Insert
 
@@ -56,7 +56,7 @@ catch (DocumentExistsException) {
 }
 ```
 
-Setting a Compare and Swap (CAS) value is a form of optimistic locking - dealt with in depth in the [CAS page](concurrent-document-mutations.md). Here we just note that the CAS is a value representing the current state of an item; each time the item is modified, its CAS changes. The CAS value is returned as part of a document’s metadata whenever a document is accessed. Without explicitly setting it, a newly-created document would have a CAS value of _0_.
+Setting a Compare and Swap (CAS) value is a form of optimistic locking - dealt with in depth in the [CAS page](concurrent-document-mutations.md). Here we just note that the CAS is a value representing the current state of an item; each time the item is modified, its CAS changes. The CAS value is returned as part of a document's metadata whenever a document is accessed. Without explicitly setting it, a newly-created document would have a CAS value of _0_.
 
 _Timeout_ is an optional parameter which in the .NET SDK has a type value of `TimeSpan`. Timeout sets the timeout value for the underlying network connection. We will add to these options for the _Replace_ example:
 
@@ -76,7 +76,7 @@ var result = await collection.ReplaceAsync("document-key", document,
 );
 ```
 
-Expiration sets an explicit time to live (TTL) for a document. We’ll discuss modifying `Expiration` in more details [below](#expiration-ttl). For a discussion of item (Document) _vs_ Bucket expiration, see the [Expiration Overview page](#7.1@server:learn:buckets-memory-and-storage/expiration.adoc#expiration-ttl).
+Expiration sets an explicit time to live (TTL) for a document. We'll discuss modifying `Expiration` in more details [below](#expiration-ttl). For a discussion of item (Document) _vs_ Bucket expiration, see the [Expiration Overview page](#7.1@server:learn:buckets-memory-and-storage/expiration.adoc#expiration-ttl).
 
 ```csharp
 var document = new { foo = "bar", bar = "foo" };
@@ -198,7 +198,7 @@ await collection.TouchAsync("document-key", TimeSpan.FromSeconds(30),
 The value of a document can be increased or decreased atomically using `Binary.Increment()` and `Binary.Decrement()`.
 
 > [!NOTE]
-> Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change
+> Increment & Decrement are considered part of the 'binary' API and as such may still be subject to change
 
 Increment
 
@@ -266,14 +266,14 @@ var result = await usersCollection.UpsertAsync("user-key", content);
 
 ## [](#kv-range-scan)KV Range Scan
 
-A range scan gives you documents from a collection, even if you don’t know the document IDs. This feature requires Couchbase Server 7.6 or newer.
+A range scan gives you documents from a collection, even if you don't know the document IDs. This feature requires Couchbase Server 7.6 or newer.
 
 > [!TIP]
 > KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 
-Here’s an example of a KV range scan that gets all documents in a collection:
+Here's an example of a KV range scan that gets all documents in a collection:
 
 KV Range Scan for all documents in a collection
 
@@ -290,7 +290,7 @@ await foreach (var scanResult in results)
 var scan2 = new RangeScan(from: ScanTerm.Inclusive("id001"), to: ScanTerm.Inclusive("id999"));
 ```
 
-| **1** | The RangeScan() constructor has two optional nullable parameters: from and to. If you pass null like in this example, you’ll get all documents in the collection. These parameters are for advanced use cases; you probably won’t need to specify them. Instead, it’s more common to use the "prefix" scan type shown in the next example. |
+| **1** | The RangeScan() constructor has two optional nullable parameters: from and to. If you pass null like in this example, you'll get all documents in the collection. These parameters are for advanced use cases; you probably won't need to specify them. Instead, it's more common to use the "prefix" scan type shown in the next example. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 ### [](#kv-range-scan-prefix)Prefix scan

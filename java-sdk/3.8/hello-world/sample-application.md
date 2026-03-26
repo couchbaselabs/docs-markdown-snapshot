@@ -3,7 +3,7 @@ title: Quickstart in Couchbase with Spring Boot and Java
 description: Quickstart app to build a REST API using Couchbase Capella in Java
   using Spring Boot
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/hello-world/pages/sample-application.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.8@java-sdk:hello-world:sample-application.adoc[]
 ---
 
@@ -178,14 +178,14 @@ Note: Couchbase Server version 7 or higher must be installed and running before 
 
 Swagger documentation provides a clear view of the API including endpoints, HTTP methods, request parameters, and response objects.
 
-Click on an individual endpoint to expand it and see detailed information. This includes the endpoint’s description, possible response status codes, and the request parameters it accepts.
+Click on an individual endpoint to expand it and see detailed information. This includes the endpoint's description, possible response status codes, and the request parameters it accepts.
 
 #### [](#trying-out-the-api)Trying Out the API
 
 You can try out an API by clicking on the "Try it out" button next to the endpoints.
 
 * Parameters: If an endpoint requires parameters, Swagger UI provides input boxes for you to fill in. This could include path parameters, query strings, headers, or the body of a POST/PUT request.
-* Execution: Once you’ve inputted all the necessary parameters, you can click the "Execute" button to make a live API call. Swagger UI will send the request to the API and display the response directly in the documentation. This includes the response code, response headers, and response body.
+* Execution: Once you've inputted all the necessary parameters, you can click the "Execute" button to make a live API call. Swagger UI will send the request to the API and display the response directly in the documentation. This includes the response code, response headers, and response body.
 
 #### [](#models)Models
 

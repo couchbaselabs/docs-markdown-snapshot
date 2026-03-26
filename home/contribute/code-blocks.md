@@ -1,7 +1,7 @@
 ---
 title: Code Blocks for Example Code
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/code-blocks.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:code-blocks.adoc[]
 ---
 
@@ -111,7 +111,7 @@ function OnUpdate(doc, meta) {
 | **4** | Cancel streaming query by breaking out. |
 
 > [!TIP]
-> To make callouts copy-and-paste friendly, put them behind the line comment syntax of the code snippet’s language. For example, callouts in a YAML example are placed behind the hash symbol (`#`).
+> To make callouts copy-and-paste friendly, put them behind the line comment syntax of the code snippet's language. For example, callouts in a YAML example are placed behind the hash symbol (`#`).
 
 The callout list does not have to follow immediately after the code block containing the callouts. For example, you can include an introductory sentence or paragraph between the code block and the callout list.
 

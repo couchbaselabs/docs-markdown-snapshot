@@ -2,7 +2,7 @@
 title: Database Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage databases
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/configuration-schema-database.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::configuration-schema-database.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:3.0@sync-gateway::configuration-schema-database.adoc[]
 
 # Database Configuration
 
-> Using Sync Gateway’s Admin REST API to configure and manage databases  
+> Using Sync Gateway's Admin REST API to configure and manage databases  
 
 _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configuration-schema-bootstrap.md) | Database | [Database Security](#configuration-schema-db-security&.adoc#8212;​page}) | [Access Control](configuration-schema-access-control.md) | [Import](configuration-schema-import-filter.md) | [Inter-Sync Gateway Replication](configuration-schema-isgr.md)
 
@@ -160,7 +160,7 @@ Content-Length: 120
 
 ## [](#%5Fdatabase)Schema
 
-This section shows Sync Gateway’s database configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
+This section shows Sync Gateway's database configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
 
 The configuration settings described here are provisioned through the [Database Configuration](rest-api-admin.md#/Database%5FConfiguration/) endpoints.
 

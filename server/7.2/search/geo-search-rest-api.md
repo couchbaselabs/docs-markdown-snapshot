@@ -3,7 +3,7 @@ title: Run a Geospatial Search Query with the REST API and curl/HTTP
 description: Search for geospatial data in your Couchbase Server database with a
   compatible Search index, the REST API and curl/HTTP.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/geo-search-rest-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:geo-search-rest-api.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.2@server:search:geo-search-rest-api.adoc[]
 
 ## [](#prerequisites)Prerequisites
 
-* You’ve deployed the Search Service on a node in your database.
+* You've deployed the Search Service on a node in your database.
 * You have a bucket with scopes and collections in your database.
 * Your user account has the **Search Admin** or **Search Reader** role.
 * You installed the Couchbase command-line tool (CLI).
@@ -143,4 +143,4 @@ You can also:
 * Change the JSON payload [for your Search index](search-index-params.md).
 * Change the JSON payload [for your Search query](search-request-params.md).
 
-If you want to add autocomplete to your database’s search, see [Use Autocomplete with the Search Service](search-query-auto-complete.md).
+If you want to add autocomplete to your database's search, see [Use Autocomplete with the Search Service](search-query-auto-complete.md).

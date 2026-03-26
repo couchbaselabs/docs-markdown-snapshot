@@ -3,7 +3,7 @@ title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.7/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@go-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -23,7 +23,7 @@ Full Text Search or FTS allows you to create, manage, and query full text indexe
 
 After familiarizing yourself with how to create and query a search index in the UI you can query it from the SDK. Search queries are executed at Cluster level (not bucket or collection). As of Couchbase Server 6.5+ they do also not require a bucket to be opened first. In older versions of Couchbase Server, even though executed at Cluster level, a bucket must be opened before performing queries. Search queries, facets, and sorting have a slightly different import from other components of `gocb`, you can import them using `import "github.com/couchbase/gocb/v2/search"`.
 
-Here is a simple MatchQuery that looks for the text “swanky” using a defined index:
+Here is a simple MatchQuery that looks for the text "swanky" using a defined index:
 
 ```golang
 	cluster, err := gocb.Connect("localhost", opts)
@@ -56,7 +56,7 @@ Here is a simple MatchQuery that looks for the text “swanky” using a defined
 
 We have also included the `Fields` option which will get the content of the specified (indexed) field as a part of the response.
 
-All simple query types are created in the same manner, although some have additional properties, which can be seen in common query type descriptions. Couchbase FTS’s [range of query types](#7.1@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted. Here is a date range query that looks for dates between 1st January 2019 and 1st February, the second parameter is whether the date should be considered inclusive:
+All simple query types are created in the same manner, although some have additional properties, which can be seen in common query type descriptions. Couchbase FTS's [range of query types](#7.1@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted. Here is a date range query that looks for dates between 1st January 2019 and 1st February, the second parameter is whether the date should be considered inclusive:
 
 ```golang
 	dateRangeResult, err := cluster.SearchQuery(
@@ -95,7 +95,7 @@ The result of a search query has three components: rows, facets, and metdata. Ro
 
 Iterating Rows
 
-Here we are iterating over the rows that were returned in the results. Note that `Fields` is a special case, where it’s a function. `Fields` will include any fields that were requested as part of the SearchQuery (`Fields` option within the options block).
+Here we are iterating over the rows that were returned in the results. Note that `Fields` is a special case, where it's a function. `Fields` will include any fields that were requested as part of the SearchQuery (`Fields` option within the options block).
 
 ```golang
 	for matchResult.Next() {

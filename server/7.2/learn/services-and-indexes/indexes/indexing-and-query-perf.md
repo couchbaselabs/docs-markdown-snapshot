@@ -4,7 +4,7 @@ description: This topic provides an overview of the types of index that you can
   create using the Index Service, and explains how they help to query for data
   efficiently and improve query performance.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/learn/pages/services-and-indexes/indexes/indexing-and-query-perf.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:services-and-indexes/indexes/indexing-and-query-perf.adoc[]
 ---
 
@@ -180,7 +180,7 @@ In the `route` keyspace, `schedule` is an array of objects with flight details.
 ]
 ```
 
-This command indexes the complete array and is useful only if you’re looking for the entire array.
+This command indexes the complete array and is useful only if you're looking for the entire array.
 
 ```sqlpp
 CREATE INDEX travel_schedule ON route(schedule);
@@ -188,7 +188,7 @@ CREATE INDEX travel_schedule ON route(schedule);
 
 ## [](#composite-secondary-index)Composite Secondary Index
 
-It’s common to have queries with multiple filters (predicates). In such cases, you want to use indexes with multiple keys so the indexes can return only the qualified document keys. Additionally, if a query is referencing only the keys in the index, the query engine can simply answer the query from the index scan result without having to fetch from the data nodes. This is commonly used for performance optimization.
+It's common to have queries with multiple filters (predicates). In such cases, you want to use indexes with multiple keys so the indexes can return only the qualified document keys. Additionally, if a query is referencing only the keys in the index, the query engine can simply answer the query from the index scan result without having to fetch from the data nodes. This is commonly used for performance optimization.
 
 ```sqlpp
 CREATE INDEX travel_info ON airline(name, id, icao, iata);
@@ -200,7 +200,7 @@ The keys to the secondary indexes can include document keys (`meta().id`) explic
 
 ## [](#functional-index)Functional Index
 
-It’s common to have names in the database with a mix of upper and lower cases. When you need to search, say for the city "Villeneuve-sur-lot", you want to search for all uppercase and lowercase possibilities of it. In order to do so, first create an index using an expression or a function as the key. For example:
+It's common to have names in the database with a mix of upper and lower cases. When you need to search, say for the city "Villeneuve-sur-lot", you want to search for all uppercase and lowercase possibilities of it. In order to do so, first create an index using an expression or a function as the key. For example:
 
 ```sqlpp
 CREATE INDEX travel_cxname ON airport(LOWER(name));
@@ -315,7 +315,7 @@ JSON is hierarchical. At the top level, it can have scalar fields, objects, or a
 ]
 ```
 
-With a rich structure as seen in the array schedule, here’s how you index a particular array or a field within the sub-object.
+With a rich structure as seen in the array schedule, here's how you index a particular array or a field within the sub-object.
 
 ```sqlpp
 CREATE INDEX travel_sched ON route
@@ -324,7 +324,7 @@ CREATE INDEX travel_sched ON route
 
 This index key is an expression on the array to clearly reference only the elements that need to be indexed.
 
-* `schedule` — the array we’re dereferencing into.
+* `schedule` — the array we're dereferencing into.
 * `v` — the variable implicitly declared to reference each element/object within the array `schedule`.
 * `v.day` — the element within each object of the array `schedule`.
 
@@ -408,7 +408,7 @@ Results
 
 The `scan` section shows that this query uses the index created above.
 
-Because the key is a generalized expression, it provides the flexibility to apply additional logic and processing on the data before indexing. For example, you can create functional indexing on elements of each array. As you’re referencing individual fields of the object or element within the array, the index creation, size, and search are efficient.
+Because the key is a generalized expression, it provides the flexibility to apply additional logic and processing on the data before indexing. For example, you can create functional indexing on elements of each array. As you're referencing individual fields of the object or element within the array, the index creation, size, and search are efficient.
 
 The index `travel_sched` stores only the distinct values within an array. To store all elements of an array in an index, do not use the DISTINCT modifier to the expression.
 
@@ -474,7 +474,7 @@ You can use complex predicates in the WHERE clause of the index. Here are some e
 
 ## [](#duplicate-index)Duplicate Index
 
-Duplicate index isn’t really a special type of index, but a feature of Couchbase indexing. You can create duplicate indexes with distinct names.
+Duplicate index isn't really a special type of index, but a feature of Couchbase indexing. You can create duplicate indexes with distinct names.
 
 ```sqlpp
 CREATE INDEX i1 ON airport(LOWER(name), id, icao)

@@ -2,7 +2,7 @@
 title: Admin REST API
 description: Description of the Sync Gateway Admin Rest API
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/rest-api-admin.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::rest-api-admin.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.8@sync-gateway::rest-api-admin.adoc[]
 # Admin REST API
 
 > Description of the Sync Gateway Admin Rest API  
-> Use the API explorer to find out more about Sync Gateway’s endpoints by functionality.
+> Use the API explorer to find out more about Sync Gateway's endpoints by functionality.
 
 Related _REST API_ topics: [Public REST API](../current/rest-api/rest-api.md) | [Metrics REST API](../current/rest-api/rest-api-metrics.md) | [Use the REST API?](#sync-gateway::rest-api-client-app.adoc)
 

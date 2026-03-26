@@ -3,7 +3,7 @@ title: Managing Enterprise Analytics Links
 description: This page describes how to manage remote links and external links
   using the Analytics Workbench.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/manage-links.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sources:manage-links.adoc[]
 ---
 
@@ -57,7 +57,7 @@ To edit an external link:
 2. Select the required link.
 3. Edit the details of the link as required.  
 > [!NOTE]  
-> You cannot change the name of the link or the link type. Make sure that you enter the access key, if it’s provided, in the **Secret Access Key** field. For more information about the available options, see:
+> You cannot change the name of the link or the link type. Make sure that you enter the access key, if it's provided, in the **Secret Access Key** field. For more information about the available options, see:
 
   * [Stream Data from Remote Sources](manage-remote.md)
   * [Set Up an External Data Source](manage-external.md)

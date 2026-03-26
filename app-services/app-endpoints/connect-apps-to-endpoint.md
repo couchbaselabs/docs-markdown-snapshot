@@ -1,7 +1,7 @@
 ---
 title: Connect your Apps to an App Endpoint
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/connect-apps-to-endpoint.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::app-endpoints/connect-apps-to-endpoint.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:app-services::app-endpoints/connect-apps-to-endpoint.adoc[]
 
 Couchbase provides Couchbase Lite: an embedded, NoSQL JSON-document Style database for your mobile apps.
 
-You can use Couchbase Lite as a standalone embedded database within your mobile apps, or with Couchbase Capella’s App Endpoints to provide a complete cloud to edge synchronized solution. Couchbase Lite runs on the following platforms:
+You can use Couchbase Lite as a standalone embedded database within your mobile apps, or with Couchbase Capella's App Endpoints to provide a complete cloud to edge synchronized solution. Couchbase Lite runs on the following platforms:
 
 * [Swift (iOs, macOS)](../../couchbase-lite/current/swift/gs-install.md)
 * [Kotlin (Android)](../../couchbase-lite/current/android/kotlin.md)
@@ -42,13 +42,13 @@ From here, you can configure the App Endpoint connection settings:
 Public Connection  
 You create this setting when you create the App Endpoint. This is the address which your mobile application uses to connect to the endpoint.  
 Public Certificate  
-The public certificate is a trusted Certificate Authority (CA) signed certificate. You can copy or download the endpoint’s SSL public certificate to bundle into your mobile application.  
+The public certificate is a trusted Certificate Authority (CA) signed certificate. You can copy or download the endpoint's SSL public certificate to bundle into your mobile application.  
 You can download your public certificate, but Couchbase recommends against pinning your certificate to your App. Pinning your certificate can increase maintenance overhead and downtime risks.
 
 > [!NOTE]
 > Capella rotates the certificate yearly.
 > 
-> If you have pinned the certificate, you’ll have to update your app to use the new certificate when the old one expires.
+> If you have pinned the certificate, you'll have to update your app to use the new certificate when the old one expires.
 > 
 > If you have [email notifications turned on](../../cloud/clusters/monitoring/alerts.md#get-alerts-through-email), Capella sends you an email notification starting 1 month before the certficate expires.
 > 
@@ -62,7 +62,7 @@ To ensure your service is as secure as possible, the App Endpoint uses a separat
 
 Manage Credentials for user administration and metrics access
 
-Set up credentials for accessing the endpoint’s administration and metrics functions.
+Set up credentials for accessing the endpoint's administration and metrics functions.
 
 1. Click the **Go to Admin Credentials for App Services →** link to view the `Manage Credentials` screen.
 2. Fill in the **User Name** field
@@ -84,7 +84,7 @@ Click **Go to Allowed IP Addresses >**.
 
 Click **\+ Add Allowed IP**.
 
-You can fill in the allowed IP address, or click **Add Current IP Address** to fill in the IP address of the machine you’re using.
+You can fill in the allowed IP address, or click **Add Current IP Address** to fill in the IP address of the machine you're using.
 
 You can also press **Allow Access from Anywhere** to allow access to your endpoint from any location.
 
@@ -109,7 +109,7 @@ else {
 
 Now create a configuration linking the local database to the App Endpoint. Set the sync to run bidirectionally.
 
-The authenticator takes the username and password set up when the App Endpoint’s user was created (See [Create App Users](../security/create-user.md)).
+The authenticator takes the username and password set up when the App Endpoint's user was created (See [Create App Users](../security/create-user.md)).
 
 ```swift
 let targetEndpoint = URLEndpoint(url: targetURL)

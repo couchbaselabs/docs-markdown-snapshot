@@ -2,7 +2,7 @@
 title: vkey
 description: Provides verification for keys.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-vkey.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbstats/cbstats-vkey.adoc[]
 ---
 
@@ -35,7 +35,7 @@ Responses contain the following information:
 
 | Stat              | Value                                                 |
 | ----------------- | ----------------------------------------------------- |
-| key\_cas          | The key’s current _cas_ value, as a decimal integer.  |
+| key\_cas          | The key's current _cas_ value, as a decimal integer.  |
 | key\_exptime      | Expiration time from the epoch, as a decimal integer. |
 | key\_flags        | Flags for this key, as a decimal integer.             |
 | key\_is\_dirty    | Whether the value is not yet persisted.               |

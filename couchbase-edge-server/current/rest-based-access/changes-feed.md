@@ -2,7 +2,7 @@
 title: Monitor Changes with Edge Server
 description: You can monitor changes in a keyspace using the keyspaces's changes feed.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/changes-feed.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-edge-server:rest-based-access:changes-feed.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:couchbase-edge-server:rest-based-access:changes-feed.adoc[]
 
 # Monitor Changes with Edge Server
 
-> You can monitor changes in a keyspace using the keyspaces’s changes feed. 
+> You can monitor changes in a keyspace using the keyspaces's changes feed. 
 
 ## [](#sequences)Sequences
 
@@ -21,7 +21,7 @@ Initially, on first launch, the client returns a sequence of `0`. In this case, 
 
 The response from the changes feed includes a `last_seq` property. Clients should save the value of the `last_seq` property; this is called a _checkpoint_, and represents the current sequence counter value.
 
-On subsequent calls to the changes feed, the client may provide a checkpoint value using the `?since` query parameter. Set the value of this query parameter to the latest response’s `last_seq` property. The the changes feed responds with only the documents that have changed since the specified checkpoint.
+On subsequent calls to the changes feed, the client may provide a checkpoint value using the `?since` query parameter. Set the value of this query parameter to the latest response's `last_seq` property. The the changes feed responds with only the documents that have changed since the specified checkpoint.
 
 (It may be useful to add the query parameter `?active_only=true` to suppress deleted document tombstones. A new client has no need for this parameter.)
 
@@ -32,12 +32,12 @@ To avoid having to poll the changes feed, there are two alternate ways to invoke
 * The **longpoll** mode (`?feed=longpoll`) is just like the regular changes feed, except that if there are no changes to report, it will wait to send a response until something happens. The client therefore should operate in a loop where it requests the feed, processes the response when it arrives, updates its checkpoint, and then requests the feed again with an updated `?since` value.
 * The **continuous** mode (`?feed=continuous`) has a different, line-oriented, response format. Each change is reported as a separate JSON object, delimited by a newline (`\n`). The server sends all current changes, but never ends the response; instead it sends more changes as they occur.
 
-Continuous mode is more efficient than longpoll, but can be harder to use since the response is sent using `Transfer-Encoding: chunked`. Not all HTTP client libraries support this properly; some will wait until the response is complete and then decode it, which doesn’t work here because the response is never complete.
+Continuous mode is more efficient than longpoll, but can be harder to use since the response is sent using `Transfer-Encoding: chunked`. Not all HTTP client libraries support this properly; some will wait until the response is complete and then decode it, which doesn't work here because the response is never complete.
 
 Both these modes support two options that help work around network issues or server crashes:
 
 * `?heartbeat=N` requests that the server send a newline character over the socket every `N` milliseconds.
-* `?timeout=N` requests that the server close the connection if nothing’s happened for `N` milliseconds.
+* `?timeout=N` requests that the server close the connection if nothing's happened for `N` milliseconds.
 
 If neither of these is given, the server will use a default timeout interval.
 

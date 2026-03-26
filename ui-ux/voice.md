@@ -1,7 +1,7 @@
 ---
 title: Couchbase UI Voice
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/voice.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ui-ux::voice.adoc[]
 ---
 
@@ -14,10 +14,10 @@ The Couchbase UI voice should try to meet the following guidelines:
 
 | Voice Characteristic | Description                                                                     | Do                                                                                                                       | Do Not                                                                                                     |
 | -------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| Passionate           | We’re passionate about our work and we want to help developers get things done. | Use strong verbs. Champion Couchbase. Show the user you mean what you say.                                               | Use passive voice. Be wishy-washy or tentative.                                                            |
+| Passionate           | We're passionate about our work and we want to help developers get things done. | Use strong verbs. Champion Couchbase. Show the user you mean what you say.                                               | Use passive voice. Be wishy-washy or tentative.                                                            |
 | Authentic            | We aim to be authentic, good humans. Always.                                    | Be conversational. Use words and phrases that sound natural when spoken out-loud. Be honest and direct. Stay empathetic. | Use too much jargon. Try to use words even the most beginner users will understand. Oversell. Overpromise. |
-| Cheerful             | We want to celebrate our user’s successes with them.                            | Be encouraging. Celebrate success.                                                                                       | Be overly negative. Be prescriptive or demanding.                                                          |
-| Professional         | We want to be respected partners in our customer’s journeys.                    | Present facts and data. Write to the point. Write clearly. Spell everything correctly. Capitalize proper nouns.          | Be too casual or informal. Use extra language or fluff to convey a point.                                  |
+| Cheerful             | We want to celebrate our user's successes with them.                            | Be encouraging. Celebrate success.                                                                                       | Be overly negative. Be prescriptive or demanding.                                                          |
+| Professional         | We want to be respected partners in our customer's journeys.                    | Present facts and data. Write to the point. Write clearly. Spell everything correctly. Capitalize proper nouns.          | Be too casual or informal. Use extra language or fluff to convey a point.                                  |
 
 ## [](#what-does-this-look-like-in-practice)What Does This Look Like In Practice?
 
@@ -25,6 +25,6 @@ To write in the Couchbase voice for UI copy:
 
 | Instead of this…​                                                                                                                                                                                          | Try this…​                                                                                                                                                                                      |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| It looks like you don’t have any projects you can create a database in. Start by creating a new project.                                                                                                   | There are no projects where you can create a database. Create a project from the Projects tab.                                                                                                  |
+| It looks like you don't have any projects you can create a database in. Start by creating a new project.                                                                                                   | There are no projects where you can create a database. Create a project from the Projects tab.                                                                                                  |
 | Import from a local file on your laptop or point to remote URL or file on blob storage.                                                                                                                    | Load your data in CSV or JSON format from a file on your laptop, or point to a remote URL or file on blob storage.                                                                              |
 | The Playground is a learning tool for developers right in your browser. It executes example code and SQL++ queries against your database as you learn. You can disable the Playground feature if you like. | Use the Playground to learn about Capella without leaving your browser! Execute sample code and SQL++ queries against your database as you learn. You can also turn off the Playground feature. |

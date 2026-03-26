@@ -2,7 +2,7 @@
 title: requireAccess()
 description: Enabling Sync Gateway data access
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/sync-function-api-require-access-cmd.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::sync-function-api-require-access-cmd.adoc[]
 ---
 
@@ -35,7 +35,7 @@ The function signals rejection by throwing an exception, so the rest of the sync
 
 Note that `requireAccess()` will only recognize grants made explicitly using a channel name (not by a wildcard).
 
-So, if a user was granted access using only the [all channels wildcard](channels.md#lbl-all-channels)\] (`*`), then `requireAccess('anychannelname')'` will fail because the user wasn’t granted access to that channel (only to the `*` channel).
+So, if a user was granted access using only the [all channels wildcard](channels.md#lbl-all-channels)\] (`*`), then `requireAccess('anychannelname')'` will fail because the user wasn't granted access to that channel (only to the `*` channel).
 
 ## [](#use)Use
 
@@ -51,7 +51,7 @@ if (oldDoc) {
 
 | **1** | Throw an exception unless the user has access to read the "events" channel:                                   |
 | ----- | ------------------------------------------------------------------------------------------------------------- |
-| **2** | Throw an exception unless the user can read one of the channels in the previous revision’s channels property: |
+| **2** | Throw an exception unless the user can read one of the channels in the previous revision's channels property: |
 
 ---
 

@@ -2,7 +2,7 @@
 title: collect-logs-start
 description: Start log collection
 editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-collect-logs-start.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:cli:cbcli/couchbase-cli-collect-logs-start.adoc[]
 ---
 
@@ -158,7 +158,7 @@ To collect logs on all nodes without uploading them run the following command.
 $ couchbase-cli collect-logs-start -c 192.168.1.5 --username Administrator \
  --password password --all-nodes
 
-If there is a three node cluster with IP addresses 192.168.1.5, 192.168.1.6, and 192.168.1.7 and you only want to collect logs on the first two nodes and don’t want to upload the logs then run the command below.
+If there is a three node cluster with IP addresses 192.168.1.5, 192.168.1.6, and 192.168.1.7 and you only want to collect logs on the first two nodes and don't want to upload the logs then run the command below.
 
 $ couchbase-cli collect-logs-start -c 192.168.1.5 --username Administrator \
  --password password --nodes 192.168.1.5:8091,192.168.1.6:8091

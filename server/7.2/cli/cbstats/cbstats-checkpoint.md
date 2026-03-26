@@ -4,7 +4,7 @@ description: The <code>checkpoint</code> command, used by <code>cbstats</code>,
   provides information on the <em>checkpoint</em> data structure for a specified
   bucket.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbstats/cbstats-checkpoint.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cli:cbstats/cbstats-checkpoint.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:7.2@server:cli:cbstats/cbstats-checkpoint.adoc[]
 
 ## [](#description)Description
 
-The `checkpoint` command, used by `cbstats`, provides information on the _checkpoint_ data structure for a specified bucket, on a specified node. The same statistics are returned for each vBucket, each statistic beginning with `vb_`, followed by the vBucket’s ID and a colon.
+The `checkpoint` command, used by `cbstats`, provides information on the _checkpoint_ data structure for a specified bucket, on a specified node. The same statistics are returned for each vBucket, each statistic beginning with `vb_`, followed by the vBucket's ID and a colon.
 
 Note that running this command impacts performance.
 

@@ -3,7 +3,7 @@ title: Hello Columnar&#8201;&#8212;&#8201;Java SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Columnar and the Java Columnar SDK.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:java-columnar-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:java-columnar-sdk:hello-world:start-using-sdk.adoc[]
 
 > Install, connect, try. A quick start guide to get you up and running with Columnar and the Java Columnar SDK. 
 
-[Capella Columnar](../../../analytics/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](#home:sdk.adoc), the Java Columnar SDK is developed from the ground-up for Columnar’s analytical use cases, and supports streaming APIs to handle large datasets.
+[Capella Columnar](../../../analytics/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](#home:sdk.adoc), the Java Columnar SDK is developed from the ground-up for Columnar's analytical use cases, and supports streaming APIs to handle large datasets.
 
 ## [](#before-you-start)Before You Start
 
@@ -31,7 +31,7 @@ The Java Columnar SDK requires Java 17 or later. We recommend using the most rec
 
 ## [](#maven-project-template)Maven Project Template
 
-The SDK’s source code repository includes an [example Maven project](https://github.com/couchbase/couchbase-jvm-clients/tree/columnar-java-client-1.0.7/columnar-java-client/examples) you can copy to get started quickly.
+The SDK's source code repository includes an [example Maven project](https://github.com/couchbase/couchbase-jvm-clients/tree/columnar-java-client-1.0.7/columnar-java-client/examples) you can copy to get started quickly.
 
 ## [](#adding-the-sdk-to-an-existing-project)Adding the SDK to an Existing Project
 

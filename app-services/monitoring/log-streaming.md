@@ -4,7 +4,7 @@ description: Log Streaming provides a mechanism for real-time streaming of App
   Services operational logs to third-party observability platforms or
   self-hosted HTTP logs collectors.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/log-streaming.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::monitoring/log-streaming.adoc[]
 ---
 
@@ -15,14 +15,14 @@ link: xref:app-services::monitoring/log-streaming.adoc[]
 
 > Log Streaming provides a mechanism for real-time streaming of App Services operational logs to third-party observability platforms or self-hosted HTTP logs collectors. This is a crucial tool to gain instant insights into application behavior, enabling rapid issue detection and resolution to enhance application reliability, performance, and security. 
 
-Capella App Services implements a managed, distributed service using multiple nodes. In a self-hosted service, like Couchbase’s Sync Gateway, you can directly connect to a node to figure figuring out the root cause and fix for issues with access control and synchronization. With a managed service, however, access to a given node’s logging data is not exposed directly.
+Capella App Services implements a managed, distributed service using multiple nodes. In a self-hosted service, like Couchbase's Sync Gateway, you can directly connect to a node to figure figuring out the root cause and fix for issues with access control and synchronization. With a managed service, however, access to a given node's logging data is not exposed directly.
 
 With the opt-in Log Streaming feature, logs stream from each of the nodes to an industry standard log collector for full analysis.
 
 Log Streaming has implications for [cost and sizing](#resource-consideration), and is turned off by default.
 
 > [!WARNING]
-> When configuring Log Streaming for App Services, you must make sure that all streamed log data complies with your company’s security and privacy standards as well as with any regulatory standards you adhere to.
+> When configuring Log Streaming for App Services, you must make sure that all streamed log data complies with your company's security and privacy standards as well as with any regulatory standards you adhere to.
 
 ## [](#supported-providers)Supported Log Collector Providers
 
@@ -48,7 +48,7 @@ The amount of data depends on factors such as:
 * Read/write/import throughput.
 * Number of client connections per node.
 
-You’ll incur egress data charges from the App Services nodes for the logging data. It’s therefore important to configure this feature precisely, to make sure that you receive useful information at a reasonable cost.
+You'll incur egress data charges from the App Services nodes for the logging data. It's therefore important to configure this feature precisely, to make sure that you receive useful information at a reasonable cost.
 
 > [!TIP]
 > Do not enable log streaming until you have validated what data you want, and understand the costs and resources involved in streaming it for your current and predicted data patterns.
@@ -60,7 +60,7 @@ The log level and log filters are configurable, and can dramatically affect the 
 Couchbase recommends keeping the defaults until you have verified that you need the data, and understand the costs involved.
 
 > [!NOTE]
-> In addition to network traffic, a node that’s streaming logs has some marginal effect on CPU and RAM usage.
+> In addition to network traffic, a node that's streaming logs has some marginal effect on CPU and RAM usage.
 
 ## [](#troubleshooting)Troubleshooting
 
@@ -68,7 +68,7 @@ Couchbase recommends keeping the defaults until you have verified that you need 
 
 Log Streaming is available for App Services on version 3.1.2 or later. Upgrade your App Services clusters to the newest version if you want to use this feature.
 
-You must set up your Log Collector (see [Enable Log Streaming](configure-log-collector-app-service.md)), verify that it’s reachable, and configure its location in the Capella UI.
+You must set up your Log Collector (see [Enable Log Streaming](configure-log-collector-app-service.md)), verify that it's reachable, and configure its location in the Capella UI.
 
 You must make sure that the log collector is able to handle the rate of logs streamed. App Services do not indefinitely buffer or maintain logs, therefore if the log collector falls behind, then you may lose logs. See [Log rotation and retention](#log-rotation-and-retention).
 

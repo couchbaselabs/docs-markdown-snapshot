@@ -1,7 +1,7 @@
 ---
 title: Using Couchbase Lite with Recycler Views
 editUrl: https://github.com/couchbaselabs/UniversityLister-Android/edit/master/content/modules/university-lister/pages/android.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:university-lister:android.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:tutorials:university-lister:android.adoc[]
 
 ## [](#introduction)Introduction
 
-The [RecyclerView](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html) widget is a popular option on the [Android](https://developer.android.com) platform for efficiently displaying dynamic data collections. The data items feeding the RecyclerView may change as a result of user’s actions or with data fetched from the network. As the name indicates, RecyclerViews _recycle_ the views that correspond to the items in the data sets.
+The [RecyclerView](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html) widget is a popular option on the [Android](https://developer.android.com) platform for efficiently displaying dynamic data collections. The data items feeding the RecyclerView may change as a result of user's actions or with data fetched from the network. As the name indicates, RecyclerViews _recycle_ the views that correspond to the items in the data sets.
 
 This tutorial will demonstrate how you can use
 
@@ -29,7 +29,7 @@ You can learn more about Couchbase Mobile [here](https://developer.couchbase.com
   * Latest Version Downloadable from [Android Developer Site](https://developer.android.com/studio/)
 * git (Optional) This is required if you would prefer to pull the source code from GitHub repo.
 
-  * Create a [free github account](https://github.com) if you don’t already have one
+  * Create a [free github account](https://github.com) if you don't already have one
   * git can be downloaded from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * Familiarity with the fundamentals of using Couchbase Lite on Android. If you need refresher, refer to our [Getting Started with Android Java Guide](https://developer.couchbase.com/documentation/mobile/2.0/couchbase-lite/java.html).
 * Familiarity with the basics of [Android app development apps](https://developer.android.com) and with [RecyclerViews](https://developer.android.com/guide/topics/ui/layout/recyclerview).
@@ -66,7 +66,7 @@ The app does the following -
 * Tap on the "ADD UNIVERSITY" button.
 * This will result in a new university item getting added to the RecyclerView.
 
-Now let’s see how this works.
+Now let's see how this works.
 
 ## [](#app-design)App Design
 
@@ -91,7 +91,7 @@ This is the sequence
 * After retrieving the data from the Couchbase Lite database, the Adapter is notified of the changes.
 * The RecyclerView is then updated with the updated data set.
 
-**NOTE**: _How_ the data gets into Couchbase Lite is not important in the context of this tutorial. In a real world app, the data in Couchbase Lite may be fetched from a remote server or may be updated as a result of the local user’s action. In our app, we manually insert a randomly created University document by clicking on the "ADD UNIVERSITY" button.
+**NOTE**: _How_ the data gets into Couchbase Lite is not important in the context of this tutorial. In a real world app, the data in Couchbase Lite may be fetched from a remote server or may be updated as a result of the local user's action. In our app, we manually insert a randomly created University document by clicking on the "ADD UNIVERSITY" button.
 
 ## [](#initialization)Initialization
 
@@ -220,7 +220,7 @@ private void QueryForListOfUniversities() {
 
 ## [](#saving-to-couchbase-lite-and-triggering-database-change-updates)Saving to Couchbase Lite and Triggering Database Change Updates
 
-In the [Loading Sample Data](#loading-sample-data) section, we discussed how to load the sample university data into an in-memory `sampleData` List data. This was intended to simulate the loading of data from an external source, like a web service for instance or a local user’s action. Now, we discuss when and how that data is used.
+In the [Loading Sample Data](#loading-sample-data) section, we discussed how to load the sample university data into an in-memory `sampleData` List data. This was intended to simulate the loading of data from an external source, like a web service for instance or a local user's action. Now, we discuss when and how that data is used.
 
 * Open the **ListActivity.java** file and locate the `fetchUniversityAndAddToDatabase()` method. The `fetchUniversityAndAddToDatabase()` method is invoked when the user taps on the "ADD UNIVERSITY" button in the app. In this method, we insert a data item from the sample data into Couchbase Lite.  
 ```java  

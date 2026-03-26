@@ -2,7 +2,7 @@
 title: Supported Environments
 description: Sync Gateway's Supported Operating System and Cloud environments
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/supported-environments.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::supported-environments.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:3.0@sync-gateway::supported-environments.adoc[]
 
 # Supported Environments
 
-> Sync Gateway’s Supported Operating System and Cloud environments  
+> Sync Gateway's Supported Operating System and Cloud environments  
 > Sync Gateway is supported on several popular operating systems and virtual environments.
 
 ## [](#supported-versions)Supported Versions

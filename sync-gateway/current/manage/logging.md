@@ -2,7 +2,7 @@
 title: Logging
 description: Introducing Couchbase Sync Gateway's logging functionality
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:manage:logging.adoc[]
 ---
 
@@ -11,8 +11,8 @@ link: xref:sync-gateway:manage:logging.adoc[]
 
 # Logging
 
-> Introducing Couchbase Sync Gateway’s logging functionality  
-> Sync Gateway’s \_Continuous Logging\_ feature delivers flexible log generation and retention, without compromising the availability of diagnostic information necessary to provide effective support and maintenance.
+> Introducing Couchbase Sync Gateway's logging functionality  
+> Sync Gateway's \_Continuous Logging\_ feature delivers flexible log generation and retention, without compromising the availability of diagnostic information necessary to provide effective support and maintenance.
 
 > [!IMPORTANT]
 > Constraints
@@ -99,7 +99,7 @@ Changes to _console logging_ are independent of continuous logging, so you can, 
 
 ### [](#lbl-log-api)Admin REST API
 
-You can define console log settings in the bootstrap configuration file, or more conveniently, you can use the Admin REST API’s `_config` endpoint to set them — see: [Example 2](#eg-setloggingwithapi).
+You can define console log settings in the bootstrap configuration file, or more conveniently, you can use the Admin REST API's `_config` endpoint to set them — see: [Example 2](#eg-setloggingwithapi).
 
 Example 2\. Setting log\_level and log\_keys with API
 
@@ -131,7 +131,7 @@ The console log will show the following after this command:
 ### [](#lbl-log-levels)Log Levels
 
 > [!TIP]
-> When debugging, setting the _console log’s_ log-level to `debug` or `trace` can provide valuable additional information
+> When debugging, setting the _console log's_ log-level to `debug` or `trace` can provide valuable additional information
 
 Console logs have six levels of verbosity — see: [Table 1](#tbl-loglevels). The default _log level_ is **`none`**
 
@@ -147,7 +147,7 @@ __Table 1\. Console Logging — Available Log Levels__
 | none      | \-         | Disables log output                                                    |
 | error     | \[ERR\]    | Displays errors that need urgent attention                             |
 | warn      | \[WRN\]    | Displays warnings that need some attention                             |
-| info      | \[INF\]    | Displays information about normal operations that don’t need attention |
+| info      | \[INF\]    | Displays information about normal operations that don't need attention |
 | debug     | \[DBG\]    | Displays verbose output that might be useful when debugging            |
 | trace     | \[TRC\]    | Displays extremely verbose output that might be useful when debugging  |
 
@@ -169,7 +169,7 @@ __Table 2\. List of Available Log Keys__
 | Access     | Anytime an access() call is made in the sync function.                                                                                                                                                                                  |
 | Auth       | Authentication.                                                                                                                                                                                                                         |
 | Bucket     | Sync Gateway interactions with the bucket.                                                                                                                                                                                              |
-| Cache      | Interactions with Sync Gateway’s in-memory channel cache.                                                                                                                                                                               |
+| Cache      | Interactions with Sync Gateway's in-memory channel cache.                                                                                                                                                                               |
 | Changes    | Processing of /{db}/\_changes requests.                                                                                                                                                                                                 |
 | CRUD       | Updates made by Sync Gateway to documents.                                                                                                                                                                                              |
 | DCP        | DCP-feed processing.                                                                                                                                                                                                                    |

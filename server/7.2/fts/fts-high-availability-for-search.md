@@ -1,7 +1,7 @@
 ---
 title: High Availability for Search
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-high-availability-for-search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-high-availability-for-search.adoc[]
 ---
 
@@ -43,7 +43,7 @@ The above picture shows a sample allocation when we have a single index with 2 p
 
 And we can see, here every rack/server group is hosting the complete set of primary and replica partitions to provide the High Availability to the Search Service.
 
-As of Couchbase Server 7.1, the Search service doesn’t offer auto-failover capability upon node/rack down situations. In the case of server groups/rack down scenarios, the administrator has to explicitly failover the nodes to ensure the seamless service for Search.
+As of Couchbase Server 7.1, the Search service doesn't offer auto-failover capability upon node/rack down situations. In the case of server groups/rack down scenarios, the administrator has to explicitly failover the nodes to ensure the seamless service for Search.
 
 ## [](#zero-downtime-index-upgrades)Zero Downtime Index Upgrades
 

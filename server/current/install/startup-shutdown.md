@@ -2,7 +2,7 @@
 title: Start and Stop Couchbase Server
 description: Start and stop the Couchbase Server service and application.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/startup-shutdown.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:startup-shutdown.adoc[]
 ---
 
@@ -57,7 +57,7 @@ You can search for `services.msc` in Windows to find the app quickly.
 ![Right-Clicking on Couchbase Server service](_images/windows-services-start-stop.png)  
 You can start and stop the service from this menu, or select menu:\[Properties\] to configure how the service runs, such as whether it starts at system boot.  
 > [!NOTE]  
-> If **CouchbaseServer** isn’t in the list, then you should attempt to start the service using the batch script method below.
+> If **CouchbaseServer** isn't in the list, then you should attempt to start the service using the batch script method below.
 
 Start and Stop Couchbase Server with the `net` Command
 

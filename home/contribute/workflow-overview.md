@@ -1,7 +1,7 @@
 ---
 title: Workflow Overview
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/workflow-overview.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:workflow-overview.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:home:contribute:workflow-overview.adoc[]
 Use the following as a quick reference for the general workflow for contributing to Couchbase Documentation.
 
 > [!NOTE]
-> Contributors from outside Couchbase need to [fork documentation repositories](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) to contribute changes. If you’re a Couchbase employee, DO NOT fork repositories to contribute to Couchbase Documentation.
+> Contributors from outside Couchbase need to [fork documentation repositories](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) to contribute changes. If you're a Couchbase employee, DO NOT fork repositories to contribute to Couchbase Documentation.
 
 To set up to contribute to Couchbase Documentation, you must:
 
@@ -21,7 +21,7 @@ To set up to contribute to Couchbase Documentation, you must:
 
 To make a contribution or change to Couchbase Documentation, you must:
 
-* [Review each repository’s requirements](repositories.md).
+* [Review each repository's requirements](repositories.md).
 * [Choose a base branch](create-branches.md#base-branch).
 * [Create a working branch for your changes](create-branches.md).
 * [Fix existing documentation](edit-pages.md) or [create a new documentation page](add-pages.md).
@@ -33,4 +33,4 @@ To make a contribution or change to Couchbase Documentation, you must:
 * Delete your working branch.
 
 > [!IMPORTANT]
-> Always try to delete old, unmerged branches or branches that you have merged with a pull request (PR) when you’re done with them. This keeps our repositories tidy.
+> Always try to delete old, unmerged branches or branches that you have merged with a pull request (PR) when you're done with them. This keeps our repositories tidy.

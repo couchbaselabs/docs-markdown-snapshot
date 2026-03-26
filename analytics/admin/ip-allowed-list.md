@@ -3,7 +3,7 @@ title: Configure Allowed IP Addresses
 description: Before a client can connect to a Capella Analytics cluster, you
   must add the client's IP address to the cluster's allowed IP list.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/ip-allowed-list.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:admin:ip-allowed-list.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:analytics:admin:ip-allowed-list.adoc[]
 
 # Configure Allowed IP Addresses
 
-> Before a client can connect to a Capella Analytics cluster, you must add the client’s IP address to the cluster’s allowed IP list. 
+> Before a client can connect to a Capella Analytics cluster, you must add the client's IP address to the cluster's allowed IP list. 
 
 ## [](#overview)Overview
 
@@ -22,7 +22,7 @@ Capella Analytics only allows trusted IP addresses to connect to a cluster. For 
 * When you add an IP address to this list, you can specify an expiration period to permit access temporarily, or make access available permanently.
 * You add the first IP address to the allowed list using the UI. After you add the first IP address, you can add more IP addresses using either the UI or the Capella Analytics services Management API.
 
-Capella automatically denies any connection attempts to and from an IP address that’s not in the list.
+Capella automatically denies any connection attempts to and from an IP address that's not in the list.
 
 > [!NOTE]
 > You configure the list of IP addresses that can access a Capella Analytics cluster and the list of IP addresses that can access a Couchbase Capella operational database separately. To configure access to a Capella operational database, see [Configure Allowed IP Addresses](../../cloud/clusters/allow-ip-address.md).
@@ -80,7 +80,7 @@ To add an allowed IP address:
   * To add a specific IP address or address space, enter the address in the **Allowed IP Address/CIDR Block** field.
 5. For the **Time to Retain**, choose **Permanent** or select a pre-defined time period to provide access only temporarily. Temporary access can be useful for development and testing, and expires automatically.
 6. Optionally, add a comment of up to 128 characters. The **Comment** appears on the Allowed IP Address to provide information about why the IP address is allowed, its expiration period, and so on.
-7. When you’re satisfied with the configuration, click **Add Allowed IP**. It can take a few minutes for the cluster to activate access for a newly added IP address. If you immediately try to connect to the cluster from a newly added IP, its connection might be blocked.
+7. When you're satisfied with the configuration, click **Add Allowed IP**. It can take a few minutes for the cluster to activate access for a newly added IP address. If you immediately try to connect to the cluster from a newly added IP, its connection might be blocked.
 
 ## [](#modify-an-allowed-ip-address)Modify an Allowed IP Address
 

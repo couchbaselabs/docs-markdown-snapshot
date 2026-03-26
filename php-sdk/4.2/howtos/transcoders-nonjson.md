@@ -2,7 +2,7 @@
 title: Transcoders and Non-JSON Documents
 description: The PHP SDK supports common JSON document requirements out-of-the-box.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@php-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
@@ -54,7 +54,7 @@ More advanced transcoding needs can be accomplished if the application implement
 
 ### [](#creating-a-custom-transcoder)Creating a Custom Transcoder
 
-Let’s look at a more complex example: storing an image. The encoder function that we will create will be able to handle both image and JSON data allowing it to be used with more than just images. When we store data with this encoder we will use our own custom Common Flags, so the data will not be compatible with other encoder/decoder functions unless they also recognise these custom flags.
+Let's look at a more complex example: storing an image. The encoder function that we will create will be able to handle both image and JSON data allowing it to be used with more than just images. When we store data with this encoder we will use our own custom Common Flags, so the data will not be compatible with other encoder/decoder functions unless they also recognise these custom flags.
 
 First we will create the encoder function:
 

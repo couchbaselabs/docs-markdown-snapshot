@@ -3,7 +3,7 @@ title: Use Vector Search for AI Applications
 description: Use Couchbase Server's Vector Search features to add fast and
   accurate semantic search to your applications.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/vector-search/pages/vector-search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:vector-search:vector-search.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:7.6@server:vector-search:vector-search.adoc[]
 
 # Use Vector Search for AI Applications
 
-> Use Couchbase Server’s Vector Search features to add fast and accurate semantic search to your applications. 
+> Use Couchbase Server's Vector Search features to add fast and accurate semantic search to your applications. 
 
 > [!IMPORTANT]
 > You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2.
@@ -21,9 +21,9 @@ link: xref:7.6@server:vector-search:vector-search.adoc[]
 
 ## [](#about-vector-search)About Vector Search
 
-Vector Search builds on Couchbase Server’s [Search Service](../search/search.md) to provide vector index support. You can use these new Vector Search indexes for Retrieval Augmented Generation (RAG) with an existing Large Language Model (LLM).
+Vector Search builds on Couchbase Server's [Search Service](../search/search.md) to provide vector index support. You can use these new Vector Search indexes for Retrieval Augmented Generation (RAG) with an existing Large Language Model (LLM).
 
-Using Server’s Vector Search, an embedding model, and your chosen LLM, you can develop AI applications while giving context and up-to-date information from your own data.
+Using Server's Vector Search, an embedding model, and your chosen LLM, you can develop AI applications while giving context and up-to-date information from your own data.
 
 You can develop applications that include:
 

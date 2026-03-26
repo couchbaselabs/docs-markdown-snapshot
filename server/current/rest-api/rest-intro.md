@@ -2,7 +2,7 @@
 title: REST API reference
 description: The REST API supports the management of Couchbase-Server clusters.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rest-intro.adoc[]
 ---
 
@@ -160,7 +160,7 @@ _Memory quotas_ can be allocated to services, and the current allocations retrie
 
 Reader and writer threads can be configured, to ensure that disk access is highly performant.
 
-_Compaction_ can be managed: this is used by Couchbase Server to relocate on-disk data; so as to ensure the data’s closest-possible proximity, and thereby reclaim fragments of unused disk-space. The periodic compaction of a bucket’s data helps to ensure the ongoing efficiency of both reads and writes.
+_Compaction_ can be managed: this is used by Couchbase Server to relocate on-disk data; so as to ensure the data's closest-possible proximity, and thereby reclaim fragments of unused disk-space. The periodic compaction of a bucket's data helps to ensure the ongoing efficiency of both reads and writes.
 
 | HTTP Method | URI                                                                      | Documented at                                                      |
 | ----------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------ |
@@ -622,7 +622,7 @@ The Couchbase Server returns one of the following HTTP status codes in response 
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 200 OK                    | Successful request and an HTTP response body returns. If this creates a new resource with a URI, the 200 status will also have a location header containing the canonical URI for the newly created resource.                                                              |
 | 201 Created               | Request to create a new resource is successful, but no HTTP response body returns. The URI for the newly created resource returns with the status code.                                                                                                                    |
-| 202 Accepted              | The request is accepted for processing, but processing is not complete. Per HTTP/1.1, the response, if any, SHOULD include an indication of the request’s current status, and either a pointer to a status monitor or some estimate of when the request will be fulfilled. |
+| 202 Accepted              | The request is accepted for processing, but processing is not complete. Per HTTP/1.1, the response, if any, SHOULD include an indication of the request's current status, and either a pointer to a status monitor or some estimate of when the request will be fulfilled. |
 | 204 No Content            | The server fulfilled the request, but does not need to return a response body.                                                                                                                                                                                             |
 | 400 Bad Request           | The request could not be processed because it contains missing or invalid information, such as validation error on an input field, a missing required value, and so on.                                                                                                    |
 | 401 Unauthorized          | The credentials provided with this request are missing or invalid.                                                                                                                                                                                                         |

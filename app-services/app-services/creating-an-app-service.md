@@ -3,7 +3,7 @@ title: Create an App Service
 description: Using the Capella UI, you can create an App Service for your mobile
   apps to connect to.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-services/creating-an-app-service.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::app-services/creating-an-app-service.adoc[]
 ---
 
@@ -28,7 +28,7 @@ The cluster connected to the App Service:
 
 You may subsequently enable XDCR on clusters linked with App Services, as long as:
 
-* You’re setting up unidirectional XDCR between the clusters.
+* You're setting up unidirectional XDCR between the clusters.
 * The other cluster does not have App Services linked to it.
 
 ## [](#basics)Create an App Service with Basic Settings
@@ -63,7 +63,7 @@ Compute
 
 Choose the size of each node. The options offered vary depending on which cloud service you have chosen for the cluster.
 
-You can scale an application after it’s deployed by changing its configuration. For more information, see [Scale a Deployed App Service](scaling-a-deployed-app-service.md).
+You can scale an application after it's deployed by changing its configuration. For more information, see [Scale a Deployed App Service](scaling-a-deployed-app-service.md).
 
 > [!NOTE]
 > If you want to connect App Services to a [Single Node cluster](../../cloud/clusters/databases.md#option), you can choose to deploy App Services on a single node.

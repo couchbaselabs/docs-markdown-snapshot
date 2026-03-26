@@ -2,7 +2,7 @@
 title: Logging
 description: The Rust SDK logs events via the `tracing` crate.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
@@ -88,7 +88,7 @@ The SDK emits events under two special targets that deserve attention:
 
 `couchbase::tracing`
 
-The SDK orchestrates `tracing` [spans](https://docs.rs/tracing/latest/tracing/span/index.html) to this target at trace level. Filter this target off on your logger if you don’t want span noise in your log output. Note that this target _is_ still needed if you have any layers consuming SDK spans, such as the [ThresholdLoggingTracer or OpenTelemetry layer](observability-tracing.md) in your subscriber stack — `EnvFilter` filtering can be done per-layer, so other layers can still receive them.
+The SDK orchestrates `tracing` [spans](https://docs.rs/tracing/latest/tracing/span/index.html) to this target at trace level. Filter this target off on your logger if you don't want span noise in your log output. Note that this target _is_ still needed if you have any layers consuming SDK spans, such as the [ThresholdLoggingTracer or OpenTelemetry layer](observability-tracing.md) in your subscriber stack — `EnvFilter` filtering can be done per-layer, so other layers can still receive them.
 
 `couchbase::metrics`
 

@@ -2,7 +2,7 @@
 title: Integrate a Custom Built Listener
 description: Couchbase Lite database peer-to-peer sync- integrate a custom built listener
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/android/pages/p2psync-custom.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:android:p2psync-custom.adoc[]
 ---
 
@@ -48,7 +48,7 @@ messageEndpointListener = MessageEndpointListener(
 
 ## [](#peer-selection-and-connection-setup)Peer Selection and Connection Setup
 
-Once a peer device is found, it is the application code’s responsibility to decide whether it should establish a connection with that peer. This step includes inviting a peer to a session and peer authentication.
+Once a peer device is found, it is the application code's responsibility to decide whether it should establish a connection with that peer. This step includes inviting a peer to a session and peer authentication.
 
 This is handled by the Communication Framework.
 
@@ -174,7 +174,7 @@ When data is received from the passive peer via the Communication Framework, you
 replicatorConnection?.receive(message)
 ```
 
-The replication connection’s `receive` method is called which then processes the data in order to persist it to the local database.
+The replication connection's `receive` method is called which then processes the data in order to persist it to the local database.
 
 #### [](#passive-peer-3)Passive Peer
 

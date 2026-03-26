@@ -2,7 +2,7 @@
 title: CREATE GROUP
 description: The CREATE GROUP statement enables you to create a group.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/creategroup.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/creategroup.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:cloud:n1ql:n1ql-language-reference/creategroup.adoc[]
 
 ## [](#purpose)Purpose
 
-Use the CREATE GROUP statement to define a new group within the Couchbase Server Role-Based Access Control (RBAC) system. You can specify the group’s name, description, and assign it one or more roles.
+Use the CREATE GROUP statement to define a new group within the Couchbase Server Role-Based Access Control (RBAC) system. You can specify the group's name, description, and assign it one or more roles.
 
 By creating groups, you can organize users and assign roles collectively. When you add users to a group, they automatically inherit the roles assigned to that group.
 

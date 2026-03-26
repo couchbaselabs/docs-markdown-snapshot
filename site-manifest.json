@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1774427444035,
+  "generated": 1774502439679,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -5569,6 +5569,12 @@
               "path": "default-wordlists-reference.adoc",
               "url": "/cloud/search/default-wordlists-reference.md",
               "title": "Default Wordlists"
+            },
+            {
+              "module": "search",
+              "path": "export-search-index.adoc",
+              "url": "/cloud/search/export-search-index.md",
+              "title": "Export a Search Index Definition from the Capella UI"
             },
             {
               "module": "search",
@@ -83112,6 +83118,12 @@
               "path": "default-wordlists-reference.adoc",
               "url": "/server/current/search/default-wordlists-reference.md",
               "title": "Default Wordlists"
+            },
+            {
+              "module": "search",
+              "path": "export-search-index.adoc",
+              "url": "/server/current/search/export-search-index.md",
+              "title": "Get a Search Index Definition from the Web Console"
             },
             {
               "module": "search",

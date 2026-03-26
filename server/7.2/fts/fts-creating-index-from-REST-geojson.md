@@ -1,7 +1,7 @@
 ---
 title: Creating a GeoJSON Index via the REST API
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-REST-geojson.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-creating-index-from-REST-geojson.adoc[]
 ---
 
@@ -145,7 +145,7 @@ If you successfully create the index you should a response liekt the follwoing
 
 ## [](#test-the-geojson-index-with-a-simple-query)Test the GeoJSON Index with a simple query
 
-Request the first 10 items within the state of Utah (note the query body consistes of simple set of hand drawn set of corner points). The target-field `geojson` is specified, to be compared to the query Polygon the target-locations must reside for their documents to be returned. Don’t worry about newlines when you paste the text.
+Request the first 10 items within the state of Utah (note the query body consistes of simple set of hand drawn set of corner points). The target-field `geojson` is specified, to be compared to the query Polygon the target-locations must reside for their documents to be returned. Don't worry about newlines when you paste the text.
 
 The results are specified to be sorted on `name`. Note type hotel and landmark have a name field and type airport has an airportname field all these values are analyzed as a keyword (exposed as `name`).
 
@@ -332,6 +332,6 @@ The output of ten (10) hits (from a total of 18 matching docs) is as follows
 }
 ```
 
-## [](#the-index-if-viewed-in-the-uis-classic-editor)The Index if viewed in the UI’s Classic Editor
+## [](#the-index-if-viewed-in-the-uis-classic-editor)The Index if viewed in the UI's Classic Editor
 
 ![fts geojson mod index full](_images/fts-geojson-mod-index-full.png)

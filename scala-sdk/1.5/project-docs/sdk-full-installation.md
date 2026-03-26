@@ -2,7 +2,7 @@
 title: Couchbase Scala SDK Installation
 description: Installation instructions for the Couchbase Scala Client.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.5/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.5@scala-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -79,7 +79,7 @@ or 2.13:
 
 ## [](#using-a-snapshot-version)Using a Snapshot Version
 
-Couchbase publishes pre-release snapshot artifacts to the Sonatype OSS Snapshot Repository. If you wish to use a snapshot version, you’ll need to tell your build tool about this repository.
+Couchbase publishes pre-release snapshot artifacts to the Sonatype OSS Snapshot Repository. If you wish to use a snapshot version, you'll need to tell your build tool about this repository.
 
 * Maven
 * Gradle (Groovy)

@@ -3,7 +3,7 @@ title: Manage Security Settings
 description: Enterprise Analytics security-settings can be managed from
   Couchbase Web Console, and by means of the REST API.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-security/manage-security-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:manage-security/manage-security-settings.adoc[]
 ---
 
@@ -41,7 +41,7 @@ The **Users & Groups** display (shown above) lists users and groups currently re
 
 Each user has a **username** and (optionally) a **full name**; and can have one or more **roles** associated with them. These roles are themselves associated with _privileges_ that permit access to specified system-resources. The **auth domain** for each user can be _Local_ or _External_. To add users and, in so doing, assign them roles, administrators use the **ADD USER** button, at the upper right. Additionally, each user can be made a member of a defined _group_.
 
-Each defined group has a **group name** and (optionally) a **description**; and can have one or more **roles** assigned to it. If a user becomes a member of a group, the user inherts all the group’s assigned roles. A group can also be assigned a _mapping_ to an LDAP group that is maintained on a remote, LDAP server. For information about how _Native LDAP Support_ can be used to support mappings, see [Authorization](../../../../server/current/learn/security/authorization-overview.md).
+Each defined group has a **group name** and (optionally) a **description**; and can have one or more **roles** assigned to it. If a user becomes a member of a group, the user inherts all the group's assigned roles. A group can also be assigned a _mapping_ to an LDAP group that is maintained on a remote, LDAP server. For information about how _Native LDAP Support_ can be used to support mappings, see [Authorization](../../../../server/current/learn/security/authorization-overview.md).
 
 A full account of adding and editing users and groups is provided in [Manage Users, Groups, and Roles](manage-users-and-roles.md).
 
@@ -65,7 +65,7 @@ Initially, before any administrator-driven configuration has occurred, this pane
 
 See [Configure Server Certificates](configure-server-certificates.md), for further information.
 
-The right-hand panel features settings for the cluster’s handling of certificates that are presented by clients attempting access.
+The right-hand panel features settings for the cluster's handling of certificates that are presented by clients attempting access.
 
 The user interface allows the handling of client certificates to be _enabled_, and optionally to be made _mandatory_. Note that such handling is _disabled_ by default. The **Path**, **Prefix**, and **Delimiter**fields allow the specification of which details within the client certificate are to be used by the server for client-identification.
 

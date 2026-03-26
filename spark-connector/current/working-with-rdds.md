@@ -1,7 +1,7 @@
 ---
 title: Working With RDDs
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/working-with-rdds.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:spark-connector::working-with-rdds.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:spark-connector::working-with-rdds.adoc[]
 When you need to extract data out of Couchbase, the Couchbase Spark connector creates RDDs for you. In addition, you can also persist data to Couchbase using RDDs.
 
 > [!NOTE]
-> PySpark users should note that all the RDD operations detailed on this page are Scala-only, as they require Scala language features such as implicits that cannot be exposed via Apache’s PySpark API. However, PySpark does support all the higher-level DataFrame operations that are detailed on [DataFrames and Datasets](spark-sql.md).
+> PySpark users should note that all the RDD operations detailed on this page are Scala-only, as they require Scala language features such as implicits that cannot be exposed via Apache's PySpark API. However, PySpark does support all the higher-level DataFrame operations that are detailed on [DataFrames and Datasets](spark-sql.md).
 
 The following spark context is configured to work on the `travel-sample` bucket and can be used to follow the examples. Please configure your connectionString, username and password accordingly.
 

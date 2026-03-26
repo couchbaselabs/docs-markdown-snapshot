@@ -1,7 +1,7 @@
 ---
 title: Orphaned Requests Logging
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/howtos/pages/observability-orphan-logger.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.4@python-sdk:howtos:observability-orphan-logger.adoc[]
 ---
 
@@ -20,7 +20,7 @@ When the user then sees timeouts in their logs, they can go look at the output o
 
 ### [](#configuring-orphan-logging)Configuring Orphan Logging
 
-The orphan response logging is very similar in principle to the threshold logging, but instead of tracking responses which are over a specific threshold it tracks those responses which are “orphaned”.
+The orphan response logging is very similar in principle to the threshold logging, but instead of tracking responses which are over a specific threshold it tracks those responses which are "orphaned".
 
 The report interval and sample size can be adjusted (defaults are 10s and 10 samples per service, respectively).
 
@@ -64,7 +64,7 @@ You should expect to see output in JSON format in the logs for the services enco
 }
 ```
 
-The `total_count` represents the total amount of over-threshold recorded items in each interval per service. The number of entries in “top\_requests” is configured by the `sampleSize`. The service placeholder is replaced with each service — “kv”, “query”, etc. Each entry looks like this, with all fields populated:
+The `total_count` represents the total amount of over-threshold recorded items in each interval per service. The number of entries in "top\_requests" is configured by the `sampleSize`. The service placeholder is replaced with each service — "kv", "query", etc. Each entry looks like this, with all fields populated:
 
 ```json
 {

@@ -3,7 +3,7 @@ title: Configure saslauthd
 description: <code>saslauthd</code> is a daemon process that handles plaintext
   authentication requests on behalf of the SASL library.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/configure-saslauthd.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-security/configure-saslauthd.adoc[]
 ---
 
@@ -85,7 +85,7 @@ To communicate with the LDAP server, Couchbase Server makes use of the mux file 
 * _Debian/Ubuntu_: By default, the file is located at `/var/run/sasl2/mux`.
 * _RHEL/CentOS 7_: By default, the file is located at `/run/saslauthd/mux`; but a symlink from `/var/run` to `/run/` allows Couchbase Server to access the file at `/var/run/saslauthd/mux`.
 
-If, on your system, the location of the mux file is neither `/var/run/sasl2/mux` nor `/var/run/saslauthd/mux`, set the `CBAUTH_SOCKPATH` environment variable to the mux file’s actual location. Couchbase Server will attempt to access the mux file there.
+If, on your system, the location of the mux file is neither `/var/run/sasl2/mux` nor `/var/run/saslauthd/mux`, set the `CBAUTH_SOCKPATH` environment variable to the mux file's actual location. Couchbase Server will attempt to access the mux file there.
 
 ## [](#getting-started-with-saslauthd-and-ldap)Getting Started with saslauthd and LDAP
 
@@ -116,7 +116,7 @@ ldap_servers: ldaps://10.1.1.25 ldaps://10.1.1.15
 5. Set up `ldap_search_base`  
 Specify the distinguished name to which the search is relative. The search includes the base or objects below.  
 It also includes Domain Components (`dc`) such as in `dc=company` and `dc=com`.  
-The administrative users created in LDAP with the attribute `uid` are placed under the user’s organizational unit `ou` under the two domain components (`example` and `com`).  
+The administrative users created in LDAP with the attribute `uid` are placed under the user's organizational unit `ou` under the two domain components (`example` and `com`).  
 ldap_search_base: ou=Users,dc=company,dc=com
 6. Set up `ldap_filter`  
 Specify the search filter. The values for these configuration options correspond to the values specific to the test. For example, to filter on email specify `ldap_filter: (mail=%n)`.  
@@ -126,7 +126,7 @@ ldap_servers: ldaps://ad.example.net
 ldap_search_base: ou=Users,dc=example,dc=com  
 ldap_filter: (uid=%u)
 7. Running automatically  
-For sasld to run automatically on start up, you’ll need to change the `START` value to `YES`.  
+For sasld to run automatically on start up, you'll need to change the `START` value to `YES`.  
 START = yes
 8. Optionally, set up _TLS_.  
 _If_ you wish to use saslauthd with TLS, add the following to your `saslauthd.conf` file:  

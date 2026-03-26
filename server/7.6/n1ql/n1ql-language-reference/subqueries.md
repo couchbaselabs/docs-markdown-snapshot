@@ -3,7 +3,7 @@ title: Subqueries
 description: In SQL++, a subquery is a SELECT query that is a constituent part
   of another SQL++ query or subquery.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/subqueries.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/subqueries.adoc[]
 ---
 
@@ -137,7 +137,7 @@ In this example, the subquery is wrapped in a parenthesis ( ) and it occurs as p
 
 The scope of subquery is defined as the set of names, identifiers, and variables that are accessible to the subquery. Variables include all keyspace names, aliases, LET or LETTING variables that can be referenced by the subquery. For a multilevel nested subquery, the scope includes scope of the subquery and all the scopes of its parent queries.
 
-A subquery cannot access variables from its sibling subqueries or its parents’ sibling subqueries. For example, in the following nested query structure, the subquery SQ13 can only access the variables from SQ13, SQ1, and Q0, but not from SQ12, or SQ2.
+A subquery cannot access variables from its sibling subqueries or its parents' sibling subqueries. For example, in the following nested query structure, the subquery SQ13 can only access the variables from SQ13, SQ1, and Q0, but not from SQ12, or SQ2.
 
 Q0: SELECT ...
       (SELECT ..

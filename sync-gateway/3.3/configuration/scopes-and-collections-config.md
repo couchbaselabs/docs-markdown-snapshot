@@ -2,7 +2,7 @@
 title: Scopes and Collections Configuration for Sync Gateway
 description: Configure Scopes and Collections for Sync Gateway - Examples with descriptions.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/configuration/pages/scopes-and-collections-config.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@sync-gateway:configuration:scopes-and-collections-config.adoc[]
 ---
 
@@ -15,23 +15,23 @@ This section explains how to configure Scopes and Collections for Sync Gateway. 
 
 ## [](#understanding-buckets-scopes-and-collections)Understanding Buckets, Scopes, and Collections
 
-You can define 1 custom scope per database with up to 1000 custom collections. If you don’t specify a custom scope and collection, any documents you create will be saved in the default scope and collection. For more information, examples and use cases, see [Scopes and Collections Support in Couchbase Mobile for Edge Applications](https://www.couchbase.com/blog/scopes-collections-couchbase-mobile/).
+You can define 1 custom scope per database with up to 1000 custom collections. If you don't specify a custom scope and collection, any documents you create will be saved in the default scope and collection. For more information, examples and use cases, see [Scopes and Collections Support in Couchbase Mobile for Edge Applications](https://www.couchbase.com/blog/scopes-collections-couchbase-mobile/).
 
 ## [](#configuration-options)Configuration Options
 
-When upgrading to Sync Gateway 3.1, it’s not necessary to include `scopes` and `collections` in the configuration. If you choose not to specify them, your previous data set will still be compatible. Keep in mind that the provided examples are optional.
+When upgrading to Sync Gateway 3.1, it's not necessary to include `scopes` and `collections` in the configuration. If you choose not to specify them, your previous data set will still be compatible. Keep in mind that the provided examples are optional.
 
 You have these options to configure Scopes and Collections Sync for Gateway:
 
 * **custom scope/custom collection (the option we cover here)**  
 You can define 1 custom scope per database with up to 1000 custom collections.  
-If you don’t specify a custom scope and collection, any documents you create will be saved in the default scope and collection.
+If you don't specify a custom scope and collection, any documents you create will be saved in the default scope and collection.
 * **default scope/custom collection**  
 You can choose the default scope with up to 1000 custom collections.  
-If you don’t specify a custom scope and collection, any documents you create will be saved in the default scope and collection.
+If you don't specify a custom scope and collection, any documents you create will be saved in the default scope and collection.
 * **default scope/default collection**  
 You can choose the default scope with default collection.  
-If you don’t specify a custom scope and collection, any documents you create will be saved in the default scope and collection.  
+If you don't specify a custom scope and collection, any documents you create will be saved in the default scope and collection.  
 When you import a dataset created in previous versions of Couchbase Server, the documents will automatically be saved in the `_default` scope and `_default` collection.
 
 ## [](#configuration-example-custom-scopecustom-collection)Configuration Example: custom scope/custom collection
@@ -92,7 +92,7 @@ This example covers a configuration with 1 custom Scope and 2 custom Collections
 |                     |                                                                                                                                                                                                                                                                                                        |
 | collection1         | The name of the first collection within scope1.                                                                                                                                                                                                                                                        |
 | sync                | The sync function associated with collection1. This function is triggered when a document is created or updated in the collection. This code example illustrates a specific use case for sync functions. For more information, see [Sync Functions](../access-control/sync-function/sync-function.md). |
-|                     | The sync function checks if the type field of the document is not default. If it’s not, it throws a forbidden error, rejecting the document.                                                                                                                                                           |
+|                     | The sync function checks if the type field of the document is not default. If it's not, it throws a forbidden error, rejecting the document.                                                                                                                                                           |
 |                     | After the rejection, it sends a message to the legacy channel.                                                                                                                                                                                                                                         |
 | import\_filter      | The import filter function associated with collection1. This function is used when importing documents into the collection. For more information, see [Import Filters](../sync/import-processing.md).                                                                                                  |
 |                     | The import filter checks if the type field of the document is mobile. If it is, the document will be imported; otherwise, it will be skipped.                                                                                                                                                          |

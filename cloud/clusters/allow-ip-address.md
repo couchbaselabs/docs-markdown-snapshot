@@ -3,7 +3,7 @@ title: Configure Allowed IP Addresses
 description: Before a client can connect to the cluster, you must add the
   client's IP address to the cluster's Allowed IP list.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/allow-ip-address.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:allow-ip-address.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:cloud:clusters:allow-ip-address.adoc[]
 
 # Configure Allowed IP Addresses
 
-> Before a client can connect to the cluster, you must add the client’s IP address to the cluster’s Allowed IP list. 
+> Before a client can connect to the cluster, you must add the client's IP address to the cluster's Allowed IP list. 
 
 Couchbase Capella only allows clusters to connect to trusted IP addresses. Each cluster has a configurable Allowed IP list that can include up to 75 entries. Each entry can be a single IP address or an IP address space in [ipv4](https://en.wikipedia.org/wiki/IPv4) format.
 

@@ -2,7 +2,7 @@
 title: Access Control Model
 description: An introduction to access control in Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/access-control-model.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::access-control-model.adoc[]
 ---
 
@@ -50,7 +50,7 @@ function (doc, oldDoc, meta) {
 
 Here the function then calls the `channel` and passes in the name of the collection `(CollectionsName)` as an argument.
 
-By default, every document in the collection is automatically assigned to a channel with the same name as the collection. This system automatically creates a channel with the collection’s name. The assignment of all documents to the collection channel is functionally similar to assigning them to the [Star Channel](#2.7@sync-gateway-channels.adoc#star-channel).
+By default, every document in the collection is automatically assigned to a channel with the same name as the collection. This system automatically creates a channel with the collection's name. The assignment of all documents to the collection channel is functionally similar to assigning them to the [Star Channel](#2.7@sync-gateway-channels.adoc#star-channel).
 
 To override this, use a custom sync function or a Specified Default Sync Function.
 
@@ -97,7 +97,7 @@ Users may lose access to documents for many reasons, including:
 * The User is removed from a role
 * A role the user belongs to is revoked access to channel
 
-By default, when a user loses access to a channel, the next Couchbase Lite Pull replication auto-purges all documents in the channel from local Couchbase Lite databases (on devices belonging to the user) **unless** they belong to any of the user’s other channels — see: [Table 1](#tbl-sgw-behavior).
+By default, when a user loses access to a channel, the next Couchbase Lite Pull replication auto-purges all documents in the channel from local Couchbase Lite databases (on devices belonging to the user) **unless** they belong to any of the user's other channels — see: [Table 1](#tbl-sgw-behavior).
 
 __Table 1\. Sync Gateway behavior following access revocation__
 | System State     | Impact on Sync                                                                        |                                                                                                                                               |

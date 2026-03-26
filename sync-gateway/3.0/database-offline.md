@@ -2,7 +2,7 @@
 title: Take Database Offline/Online
 description: How to take a <em>Sync&nbspGateway</em> database offline and bring back online.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/database-offline.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::database-offline.adoc[]
 ---
 
@@ -41,7 +41,7 @@ Later, to bring the database online, you can use the `POST /{db}/_online` Admin 
 
 ## [](#automatic-offlining)Automatic Offlining
 
-Sync Gateway will take a database offline automatically if it loses the database’s DCP and-or TAP feed. This enables the cause to be investigated and rectified.
+Sync Gateway will take a database offline automatically if it loses the database's DCP and-or TAP feed. This enables the cause to be investigated and rectified.
 
 Use an Admin REST API request to bring the database back online when the cause is addressed and the feed(s) restored.
 

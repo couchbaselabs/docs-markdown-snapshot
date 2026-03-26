@@ -3,7 +3,7 @@ title: User-defined Functions with JavaScript
 description: How to extend the SQL++ query language by adding your own functions
   written in JavaScript.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/javascript-udfs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:guides:javascript-udfs.adoc[]
 ---
 
@@ -31,7 +31,7 @@ JavaScript supported in Couchbase shares the same constructs of the [ECMAScript]
 
 ## [](#next-steps)Next Steps
 
-If you’re looking to create your own JavaScript libraries, then there are a number of guides to get you started.
+If you're looking to create your own JavaScript libraries, then there are a number of guides to get you started.
 
 * [Creating a JavaScript Library](create-javascript-library.md)
 * [Calling a User-Defined Function](call-user-defined-function.md)

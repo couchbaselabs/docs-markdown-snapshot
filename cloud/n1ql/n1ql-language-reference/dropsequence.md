@@ -2,7 +2,7 @@
 title: DROP SEQUENCE
 description: The DROP SEQUENCE statement enables you to drop a sequence in a given scope.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropsequence.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/dropsequence.adoc[]
 ---
 
@@ -64,7 +64,7 @@ The namespace, bucket, scope, and sequence name must follow the rules for [ident
 
 ### [](#if-exists-clause)IF EXISTS Clause
 
-The optional `IF EXISTS` clause enables the statement to complete successfully when the specified sequence doesn’t exist.
+The optional `IF EXISTS` clause enables the statement to complete successfully when the specified sequence doesn't exist.
 
 When the sequence does not exist within the specified context:
 

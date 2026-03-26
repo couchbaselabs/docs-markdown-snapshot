@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on Android
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/android/pages/releasenotes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite:android:releasenotes.adoc[]
 ---
 
@@ -139,14 +139,14 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 * [CBL-60 - DATE\_DIFF\_STR(date1, date2, part)](https://issues.couchbase.com/browse/CBL-60)
 
 * [CBL-5213 - Implement Proxy Authenticator API for Android / Java](https://issues.couchbase.com/browse/CBL-5213)
-* [CBL-5207 - Implement Collection’s database property](https://issues.couchbase.com/browse/CBL-5207)
-* [CBL-5201 - Implementation Collection’s full-name property](https://issues.couchbase.com/browse/CBL-5201)
+* [CBL-5207 - Implement Collection's database property](https://issues.couchbase.com/browse/CBL-5207)
+* [CBL-5201 - Implementation Collection's full-name property](https://issues.couchbase.com/browse/CBL-5201)
 * [CBL-5683 - Database.getDefaultCollection should not be nullable](https://issues.couchbase.com/browse/CBL-5683)
 * [CBL-5535 - Update OkHTTP to 4.12](https://issues.couchbase.com/browse/CBL-5535)
 * [CBL-4435 - Replicator.close() stops state updates](https://issues.couchbase.com/browse/CBL-4435)
 * [CBL-4725 - Remove deprecated C4QueryOptions](https://issues.couchbase.com/browse/CBL-4725)
 * [CBL-4897 - Revise zipfile production](https://issues.couchbase.com/browse/CBL-4897)
-* [CBL-5361 - Control the JNI library’s publication of symbols](https://issues.couchbase.com/browse/CBL-5361)
+* [CBL-5361 - Control the JNI library's publication of symbols](https://issues.couchbase.com/browse/CBL-5361)
 * [CBL-5847 - Dates in Parameters can now be encoded](https://issues.couchbase.com/browse/CBL-5487)
 * [CBL-4383 - Support X509ExtendedTrustManager on API >=24](https://issues.couchbase.com/browse/CBL-4383)
 
@@ -174,14 +174,14 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 * [CBL-4913 - Fixed regression in pull of blobs/legacy attachment handling](https://issues.couchbase.com/browse/CBL-4913)
 * [CBL-5082 - Fixed crash in setting Housekeeper::\_doExpiration()](https://issues.couchbase.com/browse/CBL-5082)
 * [CBL-5033 - Fixed Puller revoked docs should queue with other revs](https://issues.couchbase.com/browse/CBL-5033)
-* [CBL-5044 - Don’t capture backtrace for OutOfRange error FLDictIterator\_Next](https://issues.couchbase.com/browse/CBL-5044)
+* [CBL-5044 - Don't capture backtrace for OutOfRange error FLDictIterator\_Next](https://issues.couchbase.com/browse/CBL-5044)
 * [CBL-5307 - Correctly updating remote revision when pulling the existing revision](https://issues.couchbase.com/browse/CBL-5307)
 * [CBL-5332 - Fixed crash during document expiration](https://issues.couchbase.com/browse/CBL-5332)
 * [CBL-5335 - Fixed array\_agg failures](https://issues.couchbase.com/browse/CBL-5335)
 * [CBL-5336 - Over the bound of FLDicIterator should be banned](https://issues.couchbase.com/browse/CBL-5336)
 * [CBL-5377 - Fixed MILLIS\_TO\_STRING is returning UTC instead of local time zone](https://issues.couchbase.com/browse/CBL-5377)
 * [CBL-5449 - Fixed Attachments flag is dropped when applying delta to incoming rev](https://issues.couchbase.com/browse/CBL-5449)
-* [CBL-5515 - Fixed Result alias can’t be used elsewhere in query](https://issues.couchbase.com/browse/CBL-5515)
+* [CBL-5515 - Fixed Result alias can't be used elsewhere in query](https://issues.couchbase.com/browse/CBL-5515)
 * [CBL-5540 - Fixed pthread\_mutex\_lock called on a destroyed mutex](https://issues.couchbase.com/browse/CBL-5540)
 * [CBL-5587 - Fixed Remote rev KeepBody flag could be cleared accidentally](https://issues.couchbase.com/browse/CBL-5587)
 * [CBL-5589 - Fixed N1QL Parser has exponential slowdown for redundant parentheses](https://issues.couchbase.com/browse/CBL-5589)
@@ -233,9 +233,9 @@ Version 3.2.0 Beta 1 for Android delivers the following features and enhancement
 
 * [CBL-4378 - Add consumer-rules.pro to Android maven and zip distributions](https://issues.couchbase.com/browse/CBL-4378)
 * [CBL-5213 - Implement Proxy Authenticator API for Android / Java](https://issues.couchbase.com/browse/CBL-5213)
-* [CBL-5207 - Implement Collection’s database property](https://issues.couchbase.com/browse/CBL-5207)
-* [CBL-5201 - Implementation of Collection’s full-name property](https://issues.couchbase.com/browse/CBL-5201)
-* [CBL-5361 - Control the JNI library’s publication of symbols](https://issues.couchbase.com/browse/CBL-5361)
+* [CBL-5207 - Implement Collection's database property](https://issues.couchbase.com/browse/CBL-5207)
+* [CBL-5201 - Implementation of Collection's full-name property](https://issues.couchbase.com/browse/CBL-5201)
+* [CBL-5361 - Control the JNI library's publication of symbols](https://issues.couchbase.com/browse/CBL-5361)
 * [CBL-5270 - Ensure that c4queryobs\_\* functions are called under the database-exclusive lock](https://issues.couchbase.com/browse/CBL-5270)
 * [CBL-4897 - Revise zipfile production](https://issues.couchbase.com/browse/CBL-4897)
 
@@ -279,7 +279,7 @@ Version 3.2.0 Beta 1 for Android delivers the following features and enhancement
 * [CBL-5335 - array\_agg seem to fail under some circumstances](https://issues.couchbase.com/browse/CBL-5335)
 * [CBL-5332 - Crash during document expiration](https://issues.couchbase.com/browse/CBL-5332)
 * [CBL-5307 - Updating remote revision when pulling the existing revision](https://issues.couchbase.com/browse/CBL-5307)
-* [CBL-5044 - Don’t capture backtrace for OutOfRange error FLDictIterator\_Next](https://issues.couchbase.com/browse/CBL-5044)
+* [CBL-5044 - Don't capture backtrace for OutOfRange error FLDictIterator\_Next](https://issues.couchbase.com/browse/CBL-5044)
 * [CBL-5033 - Puller revoked docs should queue with other revs](https://issues.couchbase.com/browse/CBL-5033)
 * [CBL-5449 - Port - Attachments flag is dropped when applying delta to incoming rev](https://issues.couchbase.com/browse/CBL-5449)
 * [CBL-4536 - Error when saving documents with LiteCore error 17: must be called during a transaction](https://issues.couchbase.com/browse/CBL-4536)
@@ -312,19 +312,19 @@ None for this release
 
 ### [](#deprecations-6)Deprecations
 
-* [CBL-5491 - Default’s MAX\_ATTEMPT\_WAIT\_TIME and USE\_PLAIN\_TEXT are deprecated](https://issues.couchbase.com/browse/CBL-5491)
-* [CBL-4316 - Replicator’s getPendingDocumentIds() and isDocumentPending(String id) are deprecated](https://issues.couchbase.com/browse/CBL-4316)
-* [CBL-4315 - ReplicatorConfiguration’s filters and conflict resolver properties are deprecated](https://issues.couchbase.com/browse/CBL-4315)
+* [CBL-5491 - Default's MAX\_ATTEMPT\_WAIT\_TIME and USE\_PLAIN\_TEXT are deprecated](https://issues.couchbase.com/browse/CBL-5491)
+* [CBL-4316 - Replicator's getPendingDocumentIds() and isDocumentPending(String id) are deprecated](https://issues.couchbase.com/browse/CBL-4316)
+* [CBL-4315 - ReplicatorConfiguration's filters and conflict resolver properties are deprecated](https://issues.couchbase.com/browse/CBL-4315)
 * [CBL-4314 - ReplicatorConfiguration APIs with Database object are deprecated ](https://issues.couchbase.com/browse/CBL-4314)
 * [CBL-4313 - MessageEndpointListenerConfiguration APIs using Database object are deprecated](https://issues.couchbase.com/browse/CBL-4313)
 * [CBL-4312 - URLEndpointListenerConfiguration APIs using Database object are deprecated](https://issues.couchbase.com/browse/CBL-4312)
 * [CBL-4311 - QueryBuilder : isNullOrMissing() and notNullOrMissing() are deprecated](https://issues.couchbase.com/browse/CBL-4311)
-* [CBL-4310 - QueryBuilder : FullTextFunction’s rank(String index) and match(String index, String query) are deprecated](https://issues.couchbase.com/browse/CBL-4310)
-* [CBL-4309 - QueryBuilder : DataSource’s database() is deprecated](https://issues.couchbase.com/browse/CBL-4309)
-* [CBL-4307 - DocumentChange’s database property is deprecated](https://issues.couchbase.com/browse/CBL-4307)
+* [CBL-4310 - QueryBuilder : FullTextFunction's rank(String index) and match(String index, String query) are deprecated](https://issues.couchbase.com/browse/CBL-4310)
+* [CBL-4309 - QueryBuilder : DataSource's database() is deprecated](https://issues.couchbase.com/browse/CBL-4309)
+* [CBL-4307 - DocumentChange's database property is deprecated](https://issues.couchbase.com/browse/CBL-4307)
 * [CBL-4306 - DatabaseChange and DatabaseChangeListener are deprecated](https://issues.couchbase.com/browse/CBL-4306)
-* [CBL-4305 - Database’s removeChangeListener() is deprecated](https://issues.couchbase.com/browse/CBL-4305)
-* [CBL-4304 - Database’s Document APIs are deprecated](https://issues.couchbase.com/browse/CBL-4304)
+* [CBL-4305 - Database's removeChangeListener() is deprecated](https://issues.couchbase.com/browse/CBL-4305)
+* [CBL-4304 - Database's Document APIs are deprecated](https://issues.couchbase.com/browse/CBL-4304)
 * [CBL-4264 - Increased security: store BasicAuthenticator password as a char\[](https://issues.couchbase.com/browse/CBL-4264) and zero before release\]
 * [CBL-4262 - ReplicatorConfiguration.setPinnedServerCertificate should take a Certificate](https://issues.couchbase.com/browse/CBL-4262)
 * [CBL-3963 - Remove Deprecated ReplicatorConfiguration.ReplicatorType](https://issues.couchbase.com/browse/CBL-3963)

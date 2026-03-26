@@ -1,7 +1,7 @@
 ---
 title: Release Notes for Couchbase Autonomous Operator 2.7
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::release-notes.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.7@operator::release-notes.adoc[]
 
 Autonomous Operator 2.7 release provides full support for Couchbase Server 7.6, and several improvements to Pod Scheduling and Networking, as well as a number of minor fixes.
 
-Take a look at the [What’s New](whats-new.md) page for a list of new features and improvements that are available in this release.
+Take a look at the [What's New](whats-new.md) page for a list of new features and improvements that are available in this release.
 
 ## [](#installation)Installation
 
@@ -46,8 +46,8 @@ Couchbase Operator 2.7.1 was released in August 2025\. This maintenance release 
 
 | Issue                                                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [K8S-3968](https://jira.issues.couchbase.com/browse/K8S-3968/) | **Summary:** There is a scenario where a Pod deletion takes too long to shut down, allowing Operator to see it as still active within the Couchbase Cluster, but not existing in the Kubernetes Resource database (etcd). This results in Operator classifying the Pod as an “Unknown” Pod, and summarily ejecting it from the Couchbase Cluster, which can result in a loss of Couchbase logs present on the Persistent Volumes of the Pod. |
-| [K8S-4038](https://jira.issues.couchbase.com/browse/K8S-4038/) | **Summary:** In prior versions of Couchbase Operator, it was possible to set invalid values for the Indexer’s Replica Count.                                                                                                                                                                                                                                                                                                                 |
+| [K8S-3968](https://jira.issues.couchbase.com/browse/K8S-3968/) | **Summary:** There is a scenario where a Pod deletion takes too long to shut down, allowing Operator to see it as still active within the Couchbase Cluster, but not existing in the Kubernetes Resource database (etcd). This results in Operator classifying the Pod as an "Unknown" Pod, and summarily ejecting it from the Couchbase Cluster, which can result in a loss of Couchbase logs present on the Persistent Volumes of the Pod. |
+| [K8S-4038](https://jira.issues.couchbase.com/browse/K8S-4038/) | **Summary:** In prior versions of Couchbase Operator, it was possible to set invalid values for the Indexer's Replica Count.                                                                                                                                                                                                                                                                                                                 |
 | [K8S-4043](https://jira.issues.couchbase.com/browse/K8S-4043/) | **Summary:** Fixed a bug in the comparison of the existing and desired state of Local Persistent Volumes that can cause swap rebalances of pods with no reported diff.                                                                                                                                                                                                                                                                       |
 | [K8S-4045](https://jira.issues.couchbase.com/browse/K8S-4045/) | **Summary:** In prior versions of Couchbase Operator, it was possible for pods to be scheduled unevenly across server groups.                                                                                                                                                                                                                                                                                                                |
 | [K8S-4047](https://jira.issues.couchbase.com/browse/K8S-4047/) | **Summary:** In previous versions of Couchbase Operator, a user was unable to configure multiple replications per bucket. This limitation has been removed.                                                                                                                                                                                                                                                                                  |
@@ -65,7 +65,7 @@ The `DeltaRecovery` upgrade strategy added in Operator 2.6 has been replaced by 
 
 #### [](#storage-backend-migration)Storage Backend Migration
 
-In Server 7.6 it is now possible to migrate between the Couchstore and Magma storage backends, as described in [Migrate a Bucket’s Storage Backend](#7.6@server:manage/manage-buckets/migrate-bucket.adoc). Operator will automatically start the required Rebalances if it detects an unresolved Storage backend change. Storage Backend can also be configured using annotations, see [Bucket Backend Configuration](reference-annotations.md#bucket-backend-configuration) for more details.
+In Server 7.6 it is now possible to migrate between the Couchstore and Magma storage backends, as described in [Migrate a Bucket's Storage Backend](#7.6@server:manage/manage-buckets/migrate-bucket.adoc). Operator will automatically start the required Rebalances if it detects an unresolved Storage backend change. Storage Backend can also be configured using annotations, see [Bucket Backend Configuration](reference-annotations.md#bucket-backend-configuration) for more details.
 
 #### [](#query-service-settings)Query Service Settings
 

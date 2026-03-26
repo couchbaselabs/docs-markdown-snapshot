@@ -3,7 +3,7 @@ title: Users
 description: About Sync Gateway <em>users</em> and their role in secure
   cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/users.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::users.adoc[]
 ---
 
@@ -25,7 +25,7 @@ As an entity a _user_ comprises a name, password, list of [Roles](roles.md) and 
 
 ## [](#lbl-sgw-users)Sync Gateway Users
 
-Sync Gateway users and roles have no relationship to [Couchbase Server’s _RBAC (Role-based Access Control) users_](#lbl-rbac-users). They are created and operate solely within the _Sync Gateway_ ecosphere to govern access to replication data and to the Public API.
+Sync Gateway users and roles have no relationship to [Couchbase Server's _RBAC (Role-based Access Control) users_](#lbl-rbac-users). They are created and operate solely within the _Sync Gateway_ ecosphere to govern access to replication data and to the Public API.
 
 Users granted access to a [Channel](channels.md) can access all documents assigned to that channel.
 

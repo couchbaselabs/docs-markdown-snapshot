@@ -1,7 +1,7 @@
 ---
 title: Using the Spark Shell
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/spark-shell.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:spark-connector::spark-shell.adoc[]
 ---
 
@@ -51,11 +51,11 @@ The final step that needs to be undertaken is to specify all required properties
 ./spark-shell --packages com.couchbase.client:spark-connector_2.12:3.2.0 -c spark.couchbase.connectionString=127.0.0.1 -c spark.couchbase.username=user -c spark.couchbase.password=pass
 ```
 
-Now you’re all set!
+Now you're all set!
 
 ## [](#usage)Usage
 
-Once you’ve loaded the shell, both the `SparkContext (sc)` and the surrounding `SparkSession` are ready to go:
+Once you've loaded the shell, both the `SparkContext (sc)` and the surrounding `SparkSession` are ready to go:
 
 ```none
 scala> sc

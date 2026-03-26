@@ -4,7 +4,7 @@ description: A Couchbase-Server <em>cluster</em> consists of one or more
   <em>nodes</em>, each of which is a system running an instance of Couchbase
   Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-nodes/node-management-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:manage:manage-nodes/node-management-overview.adoc[]
 ---
 
@@ -26,7 +26,7 @@ A Couchbase Server _node_ is a physical or virtual machine that hosts a single i
 * _Rebalancing_ the cluster, after a node has been removed for scheduled or otherwise planned maintenance.
 * _Recovering_ a node, following failover.
 * _Applying_ node-to-node encryption, to ensure security of communications across the cluster.
-* _Changing_ the cluster’s address family.
+* _Changing_ the cluster's address family.
 
 ## [](#prerequisites)Prerequisites
 

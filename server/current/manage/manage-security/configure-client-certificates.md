@@ -2,7 +2,7 @@
 title: Configure Client Certificates
 description: Couchbase Server supports client-authentication by means of X.509 certificates.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/configure-client-certificates.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-security/configure-client-certificates.adoc[]
 ---
 
@@ -26,8 +26,8 @@ For a list of Couchbase-Server ports that provide secure connectivity to clients
 
 The section contains two procedures for the creation of a client certificate and key, whereby authentication with Couchbase Server can be performed:
 
-* [Client Access: Root-Certificate Authorization](#client-certificate-authorized-by-a-root-certificate) shows how to create a client certificate that is authorized by a cluster’s root certificate. The procedure for creating a root certificate (and, based on the root certificate, the cluster’s individual per node certificates), is provided in [Cluster Protection with Root and Node Certificates](configure-server-certificates.md#root-and-node-certificates). The instructions on the current page assume that _that_ procedure has already been followed: therefore, they duly make use of the previously created directory structure and files.  
-Note that in Couchbase Server Version 7.1 and later, multiple root certificates can be uploaded into the cluster, some potentially to be used for client authentication only; and therefore not to be used for the signing of node certificates. Therefore, a client no longer _needs_ to base its authority on a CA that is being used to protect the server: however, the CA it uses must be recognizable to the cluster; and as such, must be a root certificate uploaded into the cluster’s trust store. For an overview, see [Using Multiple Root Certificaes](../../learn/security/using-multiple-cas.md).
+* [Client Access: Root-Certificate Authorization](#client-certificate-authorized-by-a-root-certificate) shows how to create a client certificate that is authorized by a cluster's root certificate. The procedure for creating a root certificate (and, based on the root certificate, the cluster's individual per node certificates), is provided in [Cluster Protection with Root and Node Certificates](configure-server-certificates.md#root-and-node-certificates). The instructions on the current page assume that _that_ procedure has already been followed: therefore, they duly make use of the previously created directory structure and files.  
+Note that in Couchbase Server Version 7.1 and later, multiple root certificates can be uploaded into the cluster, some potentially to be used for client authentication only; and therefore not to be used for the signing of node certificates. Therefore, a client no longer _needs_ to base its authority on a CA that is being used to protect the server: however, the CA it uses must be recognizable to the cluster; and as such, must be a root certificate uploaded into the cluster's trust store. For an overview, see [Using Multiple Root Certificaes](../../learn/security/using-multiple-cas.md).
 * [Client Access: Intermediate-Certificate Authorization](#client-certificate-authorized-by-an-intermediate-certificate) shows how to create a client certificate that is authorized by an _intermediate_ certificate; which derives its own authority from a root certificate; and which is used instead of the root for the signing of the client certificate. The procedure for creating a root, server-intermediate and per node certificates is provided in [Cluster Protection with Root, Intermediate, and Node Certificates](configure-server-certificates.md#root-intermediate-and-node-certificates). The instructions on the current page assume that _that_ procedure has already been followed: therefore, they duly make use of the previously created directory structure and files.
 
 Both procedures additionally assume that the instance of Couchbase Server to be accessed by the client:
@@ -61,9 +61,9 @@ openssl genrsa -out ./travel-sample.key 2048
 This creates the private key `travel-sample.key`.
 4. Generate the client-certificate signing-request.  
 openssl req -new -key ./travel-sample.key -out ./travel-sample.csr -subj "/CN=clientuser"  
-The client’s private key, `travel-sample.key` is provided as input for the signing request. The _Common Name_ provided as `Subject` for the certificate is specified as `clientuser`, which is the name of the server-defined user to be authenticated by the client. The output request-file, `travel-sample.csr` is saved in the current directory.
+The client's private key, `travel-sample.key` is provided as input for the signing request. The _Common Name_ provided as `Subject` for the certificate is specified as `clientuser`, which is the name of the server-defined user to be authenticated by the client. The output request-file, `travel-sample.csr` is saved in the current directory.
 5. Optionally, customize a client extensions file, to identify a _username_ to be authenticated.  
-As described in [Specifying Usernames for Client-Certificate Authentication](../../learn/security/certificates.md#identity-encoding-in-client-certificates), a client certificate should contain a username, against which authentication can be performed on Couchbase Server. The server’s default handling assumes that the _Subject Common Name_ specifies the username. However, a _Subject Alternative Name_ might be used; either in addition, or as an alternative.  
+As described in [Specifying Usernames for Client-Certificate Authentication](../../learn/security/certificates.md#identity-encoding-in-client-certificates), a client certificate should contain a username, against which authentication can be performed on Couchbase Server. The server's default handling assumes that the _Subject Common Name_ specifies the username. However, a _Subject Alternative Name_ might be used; either in addition, or as an alternative.  
 The following `subjectAltName` statement allows an email address to be specified as the basis for the username.  
 cp ./client.ext ./client.ext.tmp  
 echo "subjectAltName = email:john.smith@mail.com" \  
@@ -74,7 +74,7 @@ If this extension is _not_ added, and Couchbase Server client-certificate handli
 openssl x509 -CA ../ca.pem -CAkey ../ca.key \
 -CAcreateserial -days 365 -req -in ./travel-sample.csr \
 -out ./travel-sample.pem -extfile ./client.ext.tmp  
-The root certificate for the cluster, and its corresponding private key, `ca.pem` and `ca.key` are specified as inputs for certificate generation, so establishing the root certificate’s authority, within the client certificate. The output file, `travel-sample.pem`, is the client certificate, and is saved in `clientcertfiles`.  
+The root certificate for the cluster, and its corresponding private key, `ca.pem` and `ca.key` are specified as inputs for certificate generation, so establishing the root certificate's authority, within the client certificate. The output file, `travel-sample.pem`, is the client certificate, and is saved in `clientcertfiles`.  
 The confirmatory output is as follows:  
 Signature ok  
 subject=/CN=clientuser  
@@ -153,8 +153,8 @@ Examples of using the certificates and keys created on this page above and in [C
 
 A _Java_ client uses a _keystore_ to access the certificates it requires for authentication. Certificate and keystore preparation is demonstrated by the procedures in the following two sections, which are:
 
-* [Java Client Access: Root-Certificate Authorization](#java-client-access-root-certificate-authorization). This creates a Java-client certificate signed by the cluster’s root certificate. As such, the procedure follows on from the server-certificate creation-process documented in [Cluster Protection with Root and Node Certificates](configure-server-certificates.md#root-and-node-certificates); and makes use of the directories and keys created there.
-* [Java Client Access: Intermediate-Certificate Authorization](#java-client-access-intermediate-certificate-authorization). This creates a Java-client certificate signed by the cluster’s intermediate certificate. As such, the procedure follows on from the server-certificate creation-process documented in [Cluster Protection with Root, Intermediate and Node Certificates](configure-server-certificates.md#root-intermediate-and-node-certificates); and makes use of the directories and keys created there.
+* [Java Client Access: Root-Certificate Authorization](#java-client-access-root-certificate-authorization). This creates a Java-client certificate signed by the cluster's root certificate. As such, the procedure follows on from the server-certificate creation-process documented in [Cluster Protection with Root and Node Certificates](configure-server-certificates.md#root-and-node-certificates); and makes use of the directories and keys created there.
+* [Java Client Access: Intermediate-Certificate Authorization](#java-client-access-intermediate-certificate-authorization). This creates a Java-client certificate signed by the cluster's intermediate certificate. As such, the procedure follows on from the server-certificate creation-process documented in [Cluster Protection with Root, Intermediate and Node Certificates](configure-server-certificates.md#root-intermediate-and-node-certificates); and makes use of the directories and keys created there.
 
 Note that the [assumptions](#assumptions) specified for the examples above likewise apply to the Java client examples below.
 
@@ -198,7 +198,7 @@ extendedKeyUsage = clientAuth
 keyUsage = digitalSignature,keyEncipherment  
 EOF  
 ```
-7. Generate the client certificate, signing it with the root private key, and thereby establishing the root certificate’s authority:  
+7. Generate the client certificate, signing it with the root private key, and thereby establishing the root certificate's authority:  
 ```bash  
 openssl x509 -req -in my.csr -CA ../ca.pem \
 -CAkey ../ca.key -CAcreateserial -out clientcert.pem -days 365  
@@ -214,7 +214,7 @@ keytool -import -keystore ${KEYSTORE_FILE} -file clientcert.pem \
 -alias selfsigned -storepass ${STOREPASS} -noprompt  
 ```
 
-This concludes preparation of the Java client’s keystore. Copy the file (in this case, `my.keystore`) to a location on a local filesystem from which the Java client can access it. A sample Java program, which accesses a keystore from a local filesystem, is provided in [Authenticating a Java Client by Certificate](../../../../java-sdk/current/howtos/sdk-authentication.md#authenticating-the-java-client-by-certificate).
+This concludes preparation of the Java client's keystore. Copy the file (in this case, `my.keystore`) to a location on a local filesystem from which the Java client can access it. A sample Java program, which accesses a keystore from a local filesystem, is provided in [Authenticating a Java Client by Certificate](../../../../java-sdk/current/howtos/sdk-authentication.md#authenticating-the-java-client-by-certificate).
 
 ### [](#java-client-access-intermediate-certificate-authorization)Java Client Access: Intermediate-Certificate Authorization
 
@@ -238,7 +238,7 @@ Note that the Common Name for the certificate is specified as `clientuser`, whic
 5. Generate the certificate signing-request:  
 keytool -certreq -alias selfsigned -keyalg RSA -file my.csr \
 -keystore ${KEYSTORE_FILE} -storepass ${STOREPASS} -noprompt
-6. Generate the client certificate, signing it with the intermediate private key, and thereby establishing the intermediate certificate’s authority:  
+6. Generate the client certificate, signing it with the intermediate private key, and thereby establishing the intermediate certificate's authority:  
 openssl x509 -req -in my.csr -CA ../servers/int.pem \
 -CAkey ../servers/int.key -CAcreateserial -out clientcert.pem -days 365  
 Since the intermediate private key was encrypted, a prompt now appears, requesting entry of the pass phrase for the key:  
@@ -254,7 +254,7 @@ keytool -import -trustcacerts -file ../servers/int.pem \
 keytool -import -keystore ${KEYSTORE_FILE} -file clientcert.pem \
 -alias selfsigned -storepass ${STOREPASS} -noprompt
 
-This concludes preparation of the Java client’s keystore. Copy the file (in this case, `my.keystore`) to a location on a local filesystem from which the Java client can access it. A sample Java program, which accesses a keystore from a local filesystem, is provided in [Authenticating a Java Client by Certificate](../../../../java-sdk/current/howtos/sdk-authentication.md#authenticating-the-java-client-by-certificate).
+This concludes preparation of the Java client's keystore. Copy the file (in this case, `my.keystore`) to a location on a local filesystem from which the Java client can access it. A sample Java program, which accesses a keystore from a local filesystem, is provided in [Authenticating a Java Client by Certificate](../../../../java-sdk/current/howtos/sdk-authentication.md#authenticating-the-java-client-by-certificate).
 
 ## [](#enabling-client-security)Securing Client Access with TLS
 

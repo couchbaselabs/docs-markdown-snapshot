@@ -4,7 +4,7 @@ description: iQ Insights uses the power of AI to provide you with key insights
   into your query results. Use it to better understand your data with generated
   questions and visualizations.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/iq-insights.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:query:iq-insights.adoc[]
 ---
 
@@ -19,7 +19,7 @@ iQ Insights uses the power of Large Language Models (LLMs) to generate valuable 
 
 Use [Capella iQ](../../cloud/get-started/capella-iq/get-started-with-iq.md) to create SQL++ queries based on your natural language questions and use iQ Insights to get better insights from the data in your query results.
 
-iQ Insights is available on all plans for Capella operational and Capella Analytics clusters. You can find it as a part of Capella’s [query editor](../../cloud/clusters/query-service/query-workbench.md) and the Capella Analytics [workbench](workbench.md).
+iQ Insights is available on all plans for Capella operational and Capella Analytics clusters. You can find it as a part of Capella's [query editor](../../cloud/clusters/query-service/query-workbench.md) and the Capella Analytics [workbench](workbench.md).
 
 ## [](#about-iq-insights)About iQ Insights
 
@@ -35,7 +35,7 @@ By accepting the Supplemental Terms for Capella iQ, you also accept the terms fo
 ## [](#prerequisites)Prerequisites
 
 * An organization owner has accepted the iQ Insights Supplemental Terms. For more information, see [Privacy and Security](../../cloud/get-started/capella-iq/explore-iq-insights.md#privacy-and-security).
-* You have deployed a [Capella operational cluster](../../cloud/clusters/create-database.md) or a [Capella Analytics cluster](../admin/prepare-project.md). If you’re working with an operational cluster, it must have the Data, Query, and Index Service deployed on at least 1 Service Group.
+* You have deployed a [Capella operational cluster](../../cloud/clusters/create-database.md) or a [Capella Analytics cluster](../admin/prepare-project.md). If you're working with an operational cluster, it must have the Data, Query, and Index Service deployed on at least 1 Service Group.
 * Your queries must:
 
   1. Either use a dataset with clear document names or have clear query projection names. iQ Insights will attempt to auto-infer your data but it needs meaningful data labels to create charts.

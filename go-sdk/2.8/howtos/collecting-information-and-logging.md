@@ -2,7 +2,7 @@
 title: Logging
 description: Logging with <code>gocb.Logger</code> & using other implementations.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@go-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
@@ -65,7 +65,7 @@ Note that you need to run this command before any of the SDK code is initialized
 
 Sometimes you want to use your own logger with the SDK. You might want your logging to use a popular logging framework such as logrus. In the following examples we show to use the SDK with a logrus logger:
 
-First we need to create our own logger that wraps the logrus logger. The logrus `Log`/`Logf` functions don’t quite match the gocb logging interface and the log levels are slightly different. This means that we need to do a bit of marshalling to get the data into a set of parameters that logrus can use.
+First we need to create our own logger that wraps the logrus logger. The logrus `Log`/`Logf` functions don't quite match the gocb logging interface and the log levels are slightly different. This means that we need to do a bit of marshalling to get the data into a set of parameters that logrus can use.
 
 ```golang
 type MyLogrusLogger struct {

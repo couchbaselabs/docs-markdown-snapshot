@@ -1,7 +1,7 @@
 ---
 title: Manage Organization Users
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/manage-organization-users.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:organizations:manage-organization-users.adoc[]
 ---
 
@@ -44,11 +44,11 @@ The organization roles assigned to the account:
 > [!IMPORTANT]
 > Social Sign In and Single Sign-On (SSO)
 > 
-> People you invite to an organization can sign in using third-party accounts such as Google or GitHub if they’re associated with the same email address used for Capella.
+> People you invite to an organization can sign in using third-party accounts such as Google or GitHub if they're associated with the same email address used for Capella.
 > 
 > When using SSO with your organization, make sure only authorized SSO users can access your organization by only inviting Organization Owners. Configure all other users using your SSO provider.
 > 
-> Users with SSO do not need an invitation and can sign in using the organization’s realm name.
+> Users with SSO do not need an invitation and can sign in using the organization's realm name.
 > 
 > For more information, see [Sign in to Capella with SSO](ui-auth/sign-in-with-sso.md).
 
@@ -59,14 +59,14 @@ To add users to your organization, you must have the [Organization Owner](organi
 3. Click **Invite People**.  
 On the **Invite People** page, configure the following:  
 People  
-Enter the user’s email address, where they will receive an invitation to log into Capella.  
+Enter the user's email address, where they will receive an invitation to log into Capella.  
 Organization Roles  
 Choose one or more [organization roles](organization-user-roles.md) for the user.
 4. To confirm and send the invitation, click **Invite**.  
 After you add a user, Capella sends an email to invite them to join the organization. An invited user is shown in the **People** tab with a status of **Pending** until they accept their invitation. Once they accept the invitation, their status shows **Verified**.  
 A pending user cannot access anything in the organization until they accept the invitation and configure their account. Invitations expire after 24 hours.
 
-## [](#resend-invite)Resend or Cancel a User’s Invitation
+## [](#resend-invite)Resend or Cancel a User's Invitation
 
 If a user did not receive their invitation before it expired, you have the option to resend the invitation.
 
@@ -80,9 +80,9 @@ Alternatively, if you do not want to add the user to your organization, you can 
 1. Under the **Remove User** section click **Remove User**.
 2. To confirm that you want to remove the user, click **Remove**.
 
-## [](#change-user)Change a User’s Organization Role
+## [](#change-user)Change a User's Organization Role
 
-To change a user’s organization role, you must have the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) organization role.
+To change a user's organization role, you must have the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) organization role.
 
 > [!NOTE]
 > An organization must have at least one user with the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role at all times. If you are the only [Organization Owner](organization-user-roles.md#organization-role-organization-owner) user, you cannot edit your own role until you grant the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role to at least one other user.
@@ -106,12 +106,12 @@ To change a user’s organization role, you must have the [Organization Owner](o
 
 Use this procedure to remove either yourself or another non-SSO user from an organization. To remove someone other than yourself from an organization, you must have [Organization Owner](organization-user-roles.md) privileges. An organization must have at least one user with the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role at all times.
 
-If you’re the only [Organization Owner](organization-user-roles.md#organization-role-organization-owner) user, you cannot leave the organization until you grant the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role to at least one other user.
+If you're the only [Organization Owner](organization-user-roles.md#organization-role-organization-owner) user, you cannot leave the organization until you grant the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role to at least one other user.
 
 1. In the navigation breadcrumbs in the Capella UI, click your organization name.
 2. Go to **People**.
 3. Click the name of the user you want to remove from the organization.  
-This can be yourself if you’re removing yourself from the organization.
+This can be yourself if you're removing yourself from the organization.
 4. Under the **Remove User** section click **Remove User**.
 5. Review and confirm your user selection for removal. Click **Remove**.
 

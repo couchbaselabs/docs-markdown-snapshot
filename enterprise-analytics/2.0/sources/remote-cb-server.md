@@ -1,7 +1,7 @@
 ---
 title: Stream Data from Couchbase Server
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/remote-cb-server.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sources:remote-cb-server.adoc[]
 ---
 
@@ -21,13 +21,13 @@ Your Enterprise Analytics account must have the `**Enterprise Analytics Access**
 
 You need to take the following steps on your Couchbase Server cluster:
 
-1. Configure your Couchbase Server cluster’s network to allow access from Enterprise Analytics. The steps you must take depend on how and where you deployed your Couchbase Server cluster. For example, suppose you deployed a self-managed Couchbase Server in AWS. To allow Enterprise Analytics to connect, create a VPC peering connection between the VPCs for your Enterprise Analytics and the Couchbase Server cluster.
+1. Configure your Couchbase Server cluster's network to allow access from Enterprise Analytics. The steps you must take depend on how and where you deployed your Couchbase Server cluster. For example, suppose you deployed a self-managed Couchbase Server in AWS. To allow Enterprise Analytics to connect, create a VPC peering connection between the VPCs for your Enterprise Analytics and the Couchbase Server cluster.
 2. Create a user and password for Enterprise Analytics to use when connecting. Give this user read permissions for all buckets and scopes you want to stream. See [Manage Users, Groups, and Roles](../../../server/current/manage/manage-security/manage-users-and-roles.md).
 3. Get the hostname or external IP address for 1 of the Couchbase Server nodes. You supply this value to Enterprise Analytics as the connection string.
-4. Save a copy of the Couchbase Server’s cluster certificate. You can get the certificate from 2 places:
+4. Save a copy of the Couchbase Server's cluster certificate. You can get the certificate from 2 places:
 
-  * Copy the certificate from the Couchbase Server Web Console’s **Security** **Certificate** page under the **Trusted Root Certificate**.
-  * Get the certificate by calling Couchbase Server’s [/pools/default/trustedCAs REST API](../../../server/current/rest-api/get-trusted-cas.md).
+  * Copy the certificate from the Couchbase Server Web Console's **Security** **Certificate** page under the **Trusted Root Certificate**.
+  * Get the certificate by calling Couchbase Server's [/pools/default/trustedCAs REST API](../../../server/current/rest-api/get-trusted-cas.md).
 5. Note the names of the bucket, scope, and collection you want to stream to Enterprise Analytics.
 
 ## [](#link)Create a Link to a Couchbase Server
@@ -82,7 +82,7 @@ Once you have created a link, create a collection to receive the data from Couch
 1. In the UI, select the **Workbench** tab.
 2. Next to the link you created in [Create a Link to a Couchbase Server](#link), click **\+ collection**.
 3. In the **Collection Name** field, enter a name for the collection.
-4. In the **Database** list, select the required database and in the **Scope** list, select the required scope or verify the supplied database and scope if you’re adding it to a specific scope.
+4. In the **Database** list, select the required database and in the **Scope** list, select the required scope or verify the supplied database and scope if you're adding it to a specific scope.
 5. In the **Source bucket.scope.collection** field, select the source bucket, scope and collection.
 6. In the **Where (optional)** field, you can add an optional WHERE clause to filter documents in the dataset. Make sure you do not include the WHERE keyword.
 7. Click **Save**. Your collection appears under the scope in the explorer.

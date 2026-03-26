@@ -3,7 +3,7 @@ title: Data
 description: Couchbase Server saves data as <em>items</em>, each of which has a
   <em>key</em> and a <em>value</em>.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/data/data.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:data/data.adoc[]
 ---
 
@@ -18,17 +18,17 @@ link: xref:7.6@server:learn:data/data.adoc[]
 
 Each item consists of a key and a value. Each key is unique within its bucket, and values can be either binary or JSON.
 
-All items are handled by Couchbase Server’s [Data Service](../services-and-indexes/services/data-service.md). All JSON items must be encoded as specified in [RFC 8259](https://tools.ietf.org/html/rfc8259). Binary items can have any encoding.
+All items are handled by Couchbase Server's [Data Service](../services-and-indexes/services/data-service.md). All JSON items must be encoded as specified in [RFC 8259](https://tools.ietf.org/html/rfc8259). Binary items can have any encoding.
 
 ## [](#keys)Keys
 
 Each value (binary or JSON) is identified by a unique key, defined by the user or application when the item is saved. The key is immutable: once the item is saved, the key cannot be changed.
 
-Note that Couchbase also refers to an item’s key as its _id_.
+Note that Couchbase also refers to an item's key as its _id_.
 
 Each key:
 
-* Can consist of any string of bytes — but is strongly recommended to consist of a UTF-8 string with no spaces (in order ensure the key’s acceptability to all Couchbase-Server services). Special characters, such as `(`, `%`, `/`, `"`, and `_`, are acceptable.
+* Can consist of any string of bytes — but is strongly recommended to consist of a UTF-8 string with no spaces (in order ensure the key's acceptability to all Couchbase-Server services). Special characters, such as `(`, `%`, `/`, `"`, and `_`, are acceptable.
 * May be no longer than 246 bytes.  
 > [!NOTE]  
 > If a user accesses the **default** collection, for example by setting the query context to the default collection in the default scope, or by using a legacy SDK, then the key can be up to 250 bytes in length. This is to maintain compatibilitity with older versions of Couchbase.
@@ -39,7 +39,7 @@ Each key:
 The maximum size of a value is 20 MiB. A value can be either:
 
 * **Binary**: Any form of binary is acceptable. Note that a binary value cannot be parsed, indexed, or queried: it can only be retrieved by key.
-* **JSON**: A JSON value, referred to as a _document_, can be parsed, indexed, and queried. Each document consists of one or more _attributes_, each of which has its own value. An attribute’s value can be a _basic_ type, such as a number, string, or Boolean; or a _complex_, such as an embedded document or an array.
+* **JSON**: A JSON value, referred to as a _document_, can be parsed, indexed, and queried. Each document consists of one or more _attributes_, each of which has its own value. An attribute's value can be a _basic_ type, such as a number, string, or Boolean; or a _complex_, such as an embedded document or an array.
 
 ## [](#document-structure)Document Structure
 

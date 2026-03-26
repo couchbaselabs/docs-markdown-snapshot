@@ -3,7 +3,7 @@ title: Default Date/Time Parsers
 description: Use a date/time parser to tell the Search Service how to interpret
   date and time data in your documents.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/default-date-time-parsers-reference.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:search:default-date-time-parsers-reference.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.6@server:search:default-date-time-parsers-reference.adoc[]
 
 You can use one of the default date/time parsers, or [create your own](create-custom-date-time-parser.md).
 
-Set the default date/time parser for your Search index from the Server Web Console’s' [Advanced Settings](set-advanced-settings.md) or your [JSON Search index definition](search-index-params.md#default-date-time-parser).
+Set the default date/time parser for your Search index from the Server Web Console's' [Advanced Settings](set-advanced-settings.md) or your [JSON Search index definition](search-index-params.md#default-date-time-parser).
 
 You can also set a date/time parser when using [Date Range facets](search-request-params.md#date) or a [date range query](search-request-params.md#date-range-queries).
 

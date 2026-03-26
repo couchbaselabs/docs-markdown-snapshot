@@ -2,7 +2,7 @@
 title: cbbackupmgr cloud
 description: Storing cbbackupmgr archives directly in the cloud
 editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/backup-restore/pages/cbbackupmgr-cloud.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:backup-restore:cbbackupmgr-cloud.adoc[]
 ---
 
@@ -15,7 +15,7 @@ Storing cbbackupmgr archives directly in the cloud
 
 ## [](#description)DESCRIPTION
 
-A document which should give you a basic understanding of how to utilize cbbackupmgr’s Enterprise Edition feature, native cloud interactions.
+A document which should give you a basic understanding of how to utilize cbbackupmgr's Enterprise Edition feature, native cloud interactions.
 
 ## [](#tutorial)TUTORIAL
 
@@ -119,9 +119,9 @@ As with AWS/Azure, GCP supports multiple methods of authenticating. Below is a l
 
 One of the most important concepts behind how backup to object store works is the staging directory. The staging directory is a location on disk where temporary data is stored during the execution of a sub-command. For a backup/restore this will be DCP metadata and storage indexes.
 
-When creating an archive to store in a cloud provider you are required to provide a location for the `obj-staging-dir`. This is a local location where archive meta data will be stored. During a backup, files will be stored here before they are uploaded to the cloud. Note that cbbackupmgr doesn’t store any document values in the staging directory; they are streamed directly to the cloud.
+When creating an archive to store in a cloud provider you are required to provide a location for the `obj-staging-dir`. This is a local location where archive meta data will be stored. During a backup, files will be stored here before they are uploaded to the cloud. Note that cbbackupmgr doesn't store any document values in the staging directory; they are streamed directly to the cloud.
 
-Each cloud archive must have a unique staging directory i.e. they can’t be shared. cbbackupmgr will detect cases where the staging directory is being reused across archives.
+Each cloud archive must have a unique staging directory i.e. they can't be shared. cbbackupmgr will detect cases where the staging directory is being reused across archives.
 
 Any modifications to the cloud archive (using the web-ui or cli tools) and not cbbackupmgr are not supported whilst using the same staging directory. If a cloud archive has been modified, the staging directory should be removed and recreated before using cbbackupmgr to interact with the archive again.
 
@@ -141,7 +141,7 @@ Backup repository `repo` created successfully in archive `s3://bucket/archive`
 
 Assuming your credentials are correct, the archive should now reside directly in the provided S3 bucket. To verify, you could use the `aws-cli` to list the contents off the bucket and they should be identical to that which would exist for a local backup.
 
-Although it’s possible to have cbbackupmgr coexist in the same S3 bucket as other general purpose storage, we recommend using a bucket which cbbackupmgr has exclusive access too.
+Although it's possible to have cbbackupmgr coexist in the same S3 bucket as other general purpose storage, we recommend using a bucket which cbbackupmgr has exclusive access too.
 
 #### [](#azure-data-lake-storage-gen-2)Azure Data Lake Storage Gen 2
 
@@ -149,7 +149,7 @@ Please note that using Azure storage accounts with Data Lake Storage Gen 2 enabl
 
 ### [](#backing-up-a-cluster)BACKING UP A CLUSTER
 
-Once an archive is configured performing a backup works in a similar fashion to performing a local backup. It’s important to note that when backing up directly to S3 a certain amount of disk space will be used to stage local meta data files and storage indexes. See the [THE STAGING DIRECTORY](#STAGING%5FDIRECTORY) section for more information. Below is an example of doing a backup and storing directly in AWS S3.
+Once an archive is configured performing a backup works in a similar fashion to performing a local backup. It's important to note that when backing up directly to S3 a certain amount of disk space will be used to stage local meta data files and storage indexes. See the [THE STAGING DIRECTORY](#STAGING%5FDIRECTORY) section for more information. Below is an example of doing a backup and storing directly in AWS S3.
 
 $ cbbackupmgr backup -a s3://bucket/archive -r repo --obj-staging-dir /mnt/staging \
   -c http://10.101.101.112:8091 -u Administrator -p password
@@ -164,13 +164,13 @@ Deletions backedup: 0, Deletions failed to backup: 0
 
 Performing incremental backups works exactly as it would if you were performing an incremental locally; simply rerun the command above and an incremental backup would be created.
 
-When choosing the amount of threads to use it’s important to consider that when backing up to the cloud, cbbackupmgr buffers data in memory before uploading it. This means that choosing an extremely large amount of threads when using a poor internet connection could lead to a scenario where your machine runs out of memory.
+When choosing the amount of threads to use it's important to consider that when backing up to the cloud, cbbackupmgr buffers data in memory before uploading it. This means that choosing an extremely large amount of threads when using a poor internet connection could lead to a scenario where your machine runs out of memory.
 
 To learn more about backup options see [cbbackupmgr-backup](cbbackupmgr-backup.md).
 
 ### [](#restoring-a-backup-multiple-incremental-backups)RESTORING A BACKUP / MULTIPLE INCREMENTAL BACKUPS
 
-Once you have created a backup, restoring it works in a similar way to restoring a local backup. It’s worth noting that restoring a backup to a cluster that’s hosted outside of AWS is likely to be significantly more expensive than performing a backup (depending on the size of your dataset). See [COSTING](#COSTING) for more information.
+Once you have created a backup, restoring it works in a similar way to restoring a local backup. It's worth noting that restoring a backup to a cluster that's hosted outside of AWS is likely to be significantly more expensive than performing a backup (depending on the size of your dataset). See [COSTING](#COSTING) for more information.
 
 Below is an example of restoring a backup that is store in AWS S3.
 
@@ -195,15 +195,15 @@ Using the formula below, you can calculate the approximate size of the staging d
 
 \\$frac{text(Number of items) times (text(Average key size in bytes) + 30)}{1000^3} + frac{text(Number of backups)}{60}\\$
 
-Note that this is a rough estimate which doesn’t account for factors such as fragmentation, however, it should be a good starting point. Using this formula and given a dataset with 50 million keys with an average size of 75 bytes, we’d expect to need to provision at least about 5GiB of disk space, not including metadata.
+Note that this is a rough estimate which doesn't account for factors such as fragmentation, however, it should be a good starting point. Using this formula and given a dataset with 50 million keys with an average size of 75 bytes, we'd expect to need to provision at least about 5GiB of disk space, not including metadata.
 
 The second term is a rough estimate of the amount of disk space required to store the metadata for the number of backups in the repository. We assume that each backup has a minimum of 16MB of metadata, but this is a rough estimate. The size of the metadata per backup will go up as the number of backups in the repository increases.
 
-When approximating the size of the staging directory, we don’t need to account for the size of the document values because they are never stored on disk; they are uploaded directly to object store.
+When approximating the size of the staging directory, we don't need to account for the size of the document values because they are never stored on disk; they are uploaded directly to object store.
 
 #### [](#COSTING)COSTING
 
-Before using any `cbbackupmgr` sub-commands, it’s worth ensuring that you understand the costing related to using your chosen cloud provider; often the pattern being that it’s cheap to upload/store data, but (comparatively) expensive to access/download (to the wider internet). We recommend using one of the following calculators.
+Before using any `cbbackupmgr` sub-commands, it's worth ensuring that you understand the costing related to using your chosen cloud provider; often the pattern being that it's cheap to upload/store data, but (comparatively) expensive to access/download (to the wider internet). We recommend using one of the following calculators.
 
 AWS
 
@@ -219,19 +219,19 @@ GCP
 
 ##### [](#backup)BACKUP
 
-Backing up data from outside/inside AWS S3 is cheap; this is because at the time of writing, it doesn’t cost anything to transfer data into S3 (you only pay for the storage/requests).
+Backing up data from outside/inside AWS S3 is cheap; this is because at the time of writing, it doesn't cost anything to transfer data into S3 (you only pay for the storage/requests).
 
 ##### [](#restore)RESTORE
 
 Restoring data is another matter, AWS S3 charges users for pulling data from AWS onto the internet. This means that restoring large datasets can become quite costly if your cluster is not in AWS. Before performing a restore, use info (as described below in Interrogating backups) to determine the size of your backup. You can then use this to calculate how much it will cost to restore your backup.
 
-At the time of writing, restoring a backup to a cluster stored inside AWS S3 will not be significantly costly since AWS do not charge for the bandwidth inside AWS. No matter whether your cluster is hosted in/outside AWS it’s worth calculating the costs before performing a restore.
+At the time of writing, restoring a backup to a cluster stored inside AWS S3 will not be significantly costly since AWS do not charge for the bandwidth inside AWS. No matter whether your cluster is hosted in/outside AWS it's worth calculating the costs before performing a restore.
 
 ### [](#merging)MERGING
 
-One of the main reasons for merging incremental backups is to save disk space. In AWS S3 space is cheap and bandwidth (to the broader internet) is expensive. This means that there isn’t a financially viable reason for merging cloud backups. For this reason merging incremental backups stored in the cloud is not supported.
+One of the main reasons for merging incremental backups is to save disk space. In AWS S3 space is cheap and bandwidth (to the broader internet) is expensive. This means that there isn't a financially viable reason for merging cloud backups. For this reason merging incremental backups stored in the cloud is not supported.
 
-Restoring will continue to support applying incremental backups in chronological order in the same fashion that it’s would when merging e.g. you will end up with the same data in your Couchbase cluster.
+Restoring will continue to support applying incremental backups in chronological order in the same fashion that it's would when merging e.g. you will end up with the same data in your Couchbase cluster.
 
 ### [](#interrogating-backups)INTERROGATING BACKUPS
 
@@ -353,7 +353,7 @@ To learn more about info options see [cbbackupmgr-info](cbbackupmgr-info.md).
 
 ### [](#archive-locking)ARCHIVE LOCKING
 
-It’s important that only one instance of cbbackupmgr has access to the archive at a time; this is enforced using a lockfile meaning most of the time you shouldn’t need to worry about this. However, there are some situations where cbbackupmgr may fail to ensure exclusive access to the archive:
+It's important that only one instance of cbbackupmgr has access to the archive at a time; this is enforced using a lockfile meaning most of the time you shouldn't need to worry about this. However, there are some situations where cbbackupmgr may fail to ensure exclusive access to the archive:
 
 1. Another process (on another machine, or the local machine) already has an active lockfile.
 2. A stale lockfile exists which belongs to a system with a different hostname.
@@ -364,7 +364,7 @@ In cases where cbbackupmgr fails to lock an archive a few simple steps can be ta
 2. If you are certain nobody else is using the archive, locate the lockfile in S3 (it has the format `lock-${UUID}.lk` and is stored in the top-level of the archive).
 3. Remove the lockfile and try to continue using the archive with your own instance of cbbackupmgr.
 
-It’s extremely important that you only manually remove the lockfile if you a certain that there isn’t another instance of cbbackupmgr using the archive. Having two instances of cbbackupmgr running against the same archive could cause data loss through overlapping key prefixes.
+It's extremely important that you only manually remove the lockfile if you a certain that there isn't another instance of cbbackupmgr using the archive. Having two instances of cbbackupmgr running against the same archive could cause data loss through overlapping key prefixes.
 
 Below is an example of an archive which contains a lockfile from a system that crashed where the lockfile was never cleaned up.
 
@@ -400,7 +400,7 @@ Deletions backedup: 0, Deletions failed to backup: 0
 
 ## [](#compatible-object-stores)COMPATIBLE OBJECT STORES
 
-cbbackupmgr is tested against the cloud providers that are supported, however, in some cases it will work with compatible object stores e.g. Localstack/Scality. It’s important to note that experience may be different when interacting with compatible object stores because some have slightly different behaviors which cbbackupmgr may not explicitly handle.
+cbbackupmgr is tested against the cloud providers that are supported, however, in some cases it will work with compatible object stores e.g. Localstack/Scality. It's important to note that experience may be different when interacting with compatible object stores because some have slightly different behaviors which cbbackupmgr may not explicitly handle.
 
 ### [](#aws-2)AWS
 
@@ -409,19 +409,19 @@ It should be possible to use cbbackupmgr with S3 compatible object stores, howev
 * ListObjectsV2 <https://docs.aws.amazon.com/AmazonS3/latest/API/API%5FListObjectsV2.html>
 * MultipartUploads <https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html>
 
-It’s important that you check whether these features are implemented on your S3 compatible object store because without them cbbackupmgr will not work as expected.
+It's important that you check whether these features are implemented on your S3 compatible object store because without them cbbackupmgr will not work as expected.
 
-AWS also has a slightly newer virtual addressing style the documentation for which can be found at <https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html>. Not all S3 compatible object stores support this style of addressing. The errors that are returned by the SDK (and therefore cbbackupmgr) in these cases are not always clear. Before raising a support ticket about cbbackupmgr not working with an S3 compatible object store you should first try using the `--s3-force-path-style` argument. This will force cbbackupmgr to use the old path style addressing. From our testing with S3 compatible object stores it’s very common for this flag to be required.
+AWS also has a slightly newer virtual addressing style the documentation for which can be found at <https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html>. Not all S3 compatible object stores support this style of addressing. The errors that are returned by the SDK (and therefore cbbackupmgr) in these cases are not always clear. Before raising a support ticket about cbbackupmgr not working with an S3 compatible object store you should first try using the `--s3-force-path-style` argument. This will force cbbackupmgr to use the old path style addressing. From our testing with S3 compatible object stores it's very common for this flag to be required.
 
 ### [](#azuregcp)Azure/GCP
 
-As with AWS S3 support, Azure/GCP should work compatible object storage solutions. You also shouldn’t need to provide any specific flags when using compatible storage solutions.
+As with AWS S3 support, Azure/GCP should work compatible object storage solutions. You also shouldn't need to provide any specific flags when using compatible storage solutions.
 
 It should however, be noted that Azure/GCP will only work when the underlying compatible object storage solution implements all the required features and it should be noted that this behavior is not exhaustively validated by Couchbase.
 
 ## [](#CLOUD%5FPROVIDER%5FSPECIFIC%5FFEATURES)CLOUD PROVIDER SPECIFIC FEATURES
 
-As stated above in the 'Compatible Object Stores' section it’s possible to use cbbackupmgr with other providers which expose an S3 compatible API. It’s important to note that some features may only be accessible to those using the AWS.
+As stated above in the 'Compatible Object Stores' section it's possible to use cbbackupmgr with other providers which expose an S3 compatible API. It's important to note that some features may only be accessible to those using the AWS.
 
 ### [](#aws-3)AWS
 
@@ -439,7 +439,7 @@ When running in Google Compute, `cbbackupmgr` will using the instance metadata s
 
 ## [](#rbac)RBAC
 
-It’s quite common to run `cbbackupmgr` with an account with limited permissions, this section covers any cloud provider specific permissions which are required. Please note that any permissions listed in the following sections are subject to change between releases.
+It's quite common to run `cbbackupmgr` with an account with limited permissions, this section covers any cloud provider specific permissions which are required. Please note that any permissions listed in the following sections are subject to change between releases.
 
 ### [](#aws-4)AWS
 

@@ -2,7 +2,7 @@
 title: Analytics REST API
 description: A description of the Analytics REST API.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/rest-analytics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:analytics:rest-analytics.adoc[]
 ---
 
@@ -17,7 +17,7 @@ The Analytics REST APIs can be called on any node running the analytics service.
 
 For the examples, we assume that:
 
-* You’re running a Couchbase node with the Analytics service using the default port on localhost.
+* You're running a Couchbase node with the Analytics service using the default port on localhost.
 * You authenticate as a user with the "Full Administrator" role with the user name "Administrator" and the password "password".
 
 ## [](#apis-in-this-section)APIs in this Section

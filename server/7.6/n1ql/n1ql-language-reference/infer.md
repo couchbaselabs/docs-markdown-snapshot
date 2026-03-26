@@ -4,7 +4,7 @@ description: The INFER statement enables you to infer the metadata of documents
   in a keyspace, for example the structure of documents, data types of various
   attributes, sample values, and so on.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/infer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/infer.adoc[]
 ---
 
@@ -103,7 +103,7 @@ Sometimes JSON documents follow the dictionary pattern, where a field has sub-fi
       },
 ```
 
-While this pattern may not be ideal for a number of reasons, if your data follows this pattern it might seem that the data has a huge number of ‘fields’, since a data value is being used as a field name. When the schema inferencing process sees more than `dictionary_threshold` fields with different names, but the same sub-document schema, it collapses them into a single schema field marked as a dictionary.
+While this pattern may not be ideal for a number of reasons, if your data follows this pattern it might seem that the data has a huge number of 'fields', since a data value is being used as a field name. When the schema inferencing process sees more than `dictionary_threshold` fields with different names, but the same sub-document schema, it collapses them into a single schema field marked as a dictionary.
 
 ## [](#schema-output)Schema Output
 

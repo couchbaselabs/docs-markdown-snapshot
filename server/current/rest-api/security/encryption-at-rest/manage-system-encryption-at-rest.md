@@ -3,7 +3,7 @@ title: Manage Audit, Config, and Log Encryption at Rest
 description: You can use the REST API to view and change the state of encryption
   at rest for non-bucket data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/manage-system-encryption-at-rest.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:security/encryption-at-rest/manage-system-encryption-at-rest.adoc[]
 ---
 
@@ -134,7 +134,7 @@ An example of running the previous command:
 Each type of system data that you can configure to be encrypted has its own object in the output (`audit`, `config`, `log`). Some important fields in each of these objects are:
 
 * The `info.dataStatus` field shows whether the data is being encrypted.
-* If Couchbase Server is encrypting the data, `encryptionMethod` indicates what it’s using to encrypt it. This value can be:
+* If Couchbase Server is encrypting the data, `encryptionMethod` indicates what it's using to encrypt it. This value can be:
 
   * `disabled`: not being encrypted
   * `encryptionKey`: encrypted using an encryption-at-rest key.
@@ -205,7 +205,7 @@ The duration of time, in seconds, that the data encryption key (DEK) Couchbase S
 
 `dekLifetime` (integer)
 
-The period of time, in seconds, that Couchbase Server keeps expired DEKs before deleting them. Couchbase Server keeps expired DEKs until either the lifetime elapses or no data remains encrypted with the DEK. If the DEK’s lifetime elapses while data is still encrypted with it, Couchbase Server re-encrypts the data using the active DEK and deletes the expired one. Defaults to `31536000` (1 year). See [Encryption Key Rotation and Expiration](#learn:security:native-encryption-at-rest-overview.adoc) for more information about key lifetime.
+The period of time, in seconds, that Couchbase Server keeps expired DEKs before deleting them. Couchbase Server keeps expired DEKs until either the lifetime elapses or no data remains encrypted with the DEK. If the DEK's lifetime elapses while data is still encrypted with it, Couchbase Server re-encrypts the data using the active DEK and deletes the expired one. Defaults to `31536000` (1 year). See [Encryption Key Rotation and Expiration](#learn:security:native-encryption-at-rest-overview.adoc) for more information about key lifetime.
 
 ### [](#change-privs)Required Privileges
 
@@ -360,7 +360,7 @@ The output of the previous example looks like this:
 ```
 
 > [!NOTE]
-> In the example, you may notice that `audit.info.dataStatus` indicates the data’s status is `unknown`. It reports this state because Couchbase Server was still encrypting the data when the call to the `encryptionAtRest` endpoint returned the JSON message. Eventually, this status becomes `encrypted` once Couchbase Server finishes encrypting the audit data.
+> In the example, you may notice that `audit.info.dataStatus` indicates the data's status is `unknown`. It reports this state because Couchbase Server was still encrypting the data when the call to the `encryptionAtRest` endpoint returned the JSON message. Eventually, this status becomes `encrypted` once Couchbase Server finishes encrypting the audit data.
 
 Disable Encryption-at-Rest for Logs and Audit
 

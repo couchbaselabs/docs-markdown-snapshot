@@ -2,7 +2,7 @@
 title: Date and Time Functions - Working with Queries
 description: Couchbase Lite database data querying concepts -- data and time function
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/android/pages/query-date-time.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:android:query-date-time.adoc[]
 ---
 
@@ -30,7 +30,7 @@ The input to this will be a validly formatted ISO 8601 `date_time` string. The e
 
 `Function.MillisToString(Expression.Property("date_time"))`
 
-The input for this is a numeric value representing milliseconds since the Unix epoch. The end result will be an expression (with string content representing the date and time as an ISO 8601 string in the device’s timezone) that can be further input into the query builder.
+The input for this is a numeric value representing milliseconds since the Unix epoch. The end result will be an expression (with string content representing the date and time as an ISO 8601 string in the device's timezone) that can be further input into the query builder.
 
 `Function.MillisToUTC(Expression.Property("date_time"))`
 

@@ -2,7 +2,7 @@
 title: node-init
 description: Initializes a node
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-node-init.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:cli:couchbase-cli-node-init.adoc[]
 ---
 
@@ -155,7 +155,7 @@ $ couchbase-cli node-init -c 192.168.1.5 --node-init-hostname cb1.mydomain.com \
    --node-init-analytics-path /mnt3/analytics \
    --node-init-java-home /usr/lib/java/
 
-Again, note that you don’t need the username and password because in this example the cluster has not yet been initialized.
+Again, note that you don't need the username and password because in this example the cluster has not yet been initialized.
 
 ## [](#environment-and-configuration-variables)ENVIRONMENT AND CONFIGURATION VARIABLES
 

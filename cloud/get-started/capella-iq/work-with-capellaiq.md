@@ -3,7 +3,7 @@ title: Work Faster with Capella iQ
 description: Capella iQ is your partner in getting started with Couchbase
   Capella. Use it to create SQL++ queries, sample data, and more.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/capella-iq/work-with-capellaiq.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:get-started:capella-iq/work-with-capellaiq.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:cloud:get-started:capella-iq/work-with-capellaiq.adoc[]
 
 Capella iQ uses the power of a large language model (LLM) to make it even easier for you to work with Couchbase Capella. It does this by incorporating Couchbase-specific knowledge to produce Couchbase-specific answers.
 
-Capella iQ is available as part of Capella’s [query editor](../../clusters/query-service/query-workbench.md) and the Capella Analytics [workbench](../../../analytics/query/workbench.md).
+Capella iQ is available as part of Capella's [query editor](../../clusters/query-service/query-workbench.md) and the Capella Analytics [workbench](../../../analytics/query/workbench.md).
 
 ## [](#what-can-capella-iq-do)What Can Capella iQ Do?
 

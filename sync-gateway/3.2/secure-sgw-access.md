@@ -2,7 +2,7 @@
 title: Secure Sync Gateway Access
 description: Couchbase Sync Gateway TLS encryption and verification
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/secure-sgw-access.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::secure-sgw-access.adoc[]
 ---
 
@@ -37,8 +37,8 @@ __Table 1\. Configuration options Sync Gateway ←→Couchbase Server__
 | bootstrap.use\_tls\_serverCLI: \-bootstrap.use\_tls\_server                   | TLS enabled                                                                                                                                                                     | Set this false in CLI or bootstrap file to turn-off off TLS completely — **development and testing only**                                                                                                    |
 | bootstrap.server\_tls\_skip\_verifyCLI: \-bootstrap.server\_tls\_skip\_verify | TLS enabled unless use\_tls\_server opt-out used                                                                                                                                | Set this true in CLI or bootstrap file to skip server verification of certificates (self- or CA-signed) but leave encryption enabled. Do not provide ca\_cert\_path Use for **development and testing only** |
 | bootstrap.ca\_cert\_pathCLI: \-bootstrap.ca\_cert\_path                       | Provides the path to the root CA certificate to verify the certificate chain and hostname of the Couchbase Server cluster                                                       | Omit if not required                                                                                                                                                                                         |
-| bootstrap.x509\_cert\_pathCLI: \-bootstrap.x509\_cert\_path                   | Provides the path to the client’s certificate to authenticate against Couchbase Server \[[2](#%5Ffootnotedef%5F2 "View footnote.")\] [2](#%5Ffootnoteref%5F2). 5.5 or above     | Omit if not required                                                                                                                                                                                         |
-| bootstrap.x509\_key\_pathCLI: \-bootstrap.x509\_key\_path                     | Provides the path to the the client’s private key to authenticate against Couchbase Server \[[3](#%5Ffootnotedef%5F3 "View footnote.")\] [3](#%5Ffootnoteref%5F3). 5.5 or above | Omit if not required                                                                                                                                                                                         |
+| bootstrap.x509\_cert\_pathCLI: \-bootstrap.x509\_cert\_path                   | Provides the path to the client's certificate to authenticate against Couchbase Server \[[2](#%5Ffootnotedef%5F2 "View footnote.")\] [2](#%5Ffootnoteref%5F2). 5.5 or above     | Omit if not required                                                                                                                                                                                         |
+| bootstrap.x509\_key\_pathCLI: \-bootstrap.x509\_key\_path                     | Provides the path to the the client's private key to authenticate against Couchbase Server \[[3](#%5Ffootnotedef%5F3 "View footnote.")\] [3](#%5Ffootnoteref%5F3). 5.5 or above | Omit if not required                                                                                                                                                                                         |
 
 ### [](#behavior)Behavior
 

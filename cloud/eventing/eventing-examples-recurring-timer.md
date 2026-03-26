@@ -2,7 +2,7 @@
 title: Create a Recurring Timer
 description: Create a Timer that continues to execute until you manually cancel it.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-recurring-timer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-examples-recurring-timer.adoc[]
 ---
 
@@ -20,7 +20,7 @@ The Timer callback function relies on a control document which, if mutated, cont
 This page contains the following:
 
 * An example where a control document is created or mutated, which creates a Timer. This Timer fires every 30 seconds and writes a document to the source collection. The original document in the source collection does not change. The Timer continues to execute until you cancel it.
-* An example where a control document is mutated, which cancels any existing Timer with a reference that matches the control document’s `meta.id`. This has no effect if the Timer created has already fired.
+* An example where a control document is mutated, which cancels any existing Timer with a reference that matches the control document's `meta.id`. This has no effect if the Timer created has already fired.
 
 ## [](#prerequisites)Prerequisites
 
@@ -129,7 +129,7 @@ Deploy your Eventing Function:
 2. Click **More Options (⋮)** next to **recurring\_timer**.
 3. Click **Deploy** to deploy your Function.
 
-After it’s deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
+After it's deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
 
 ## [](#example-create-a-recurring-timer-and-allow-the-timer-to-fire-and-rearm)Example: Create a Recurring Timer and Allow the Timer to Fire and Rearm
 
@@ -184,7 +184,7 @@ To check that a new document has been created in the source collection:
 
 1. Go to **Data Tools** **Documents**.
 2. Select the keyspace `bulk.data.source` in the **Get documents from** list.
-3. Click the new document **cur\_recurring\_timer::1** to open the **Edit Document** dialog. The JSON document includes data written by the Timer’s callback.  
+3. Click the new document **cur\_recurring\_timer::1** to open the **Edit Document** dialog. The JSON document includes data written by the Timer's callback.  
 ```json  
 {  
   "last_update": "2021-07-18T17:56:10.707Z"  

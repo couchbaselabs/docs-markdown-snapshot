@@ -3,7 +3,7 @@ title: Metrics REST API (Static Page)
 description: Description of the Sync Gateway Metrics REST API, alternative
   representation as a static page
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/rest_api_metrics_static.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::rest_api_metrics_static.adoc[]
 ---
 
@@ -53,7 +53,7 @@ GET /_metrics
 
 #### [](#description-2)Description
 
-The `_metrics` method returns Sync Gateway’s statistics and other runtime variables in **Prometheus** format. This makes for a convenient feed for your debugging or performance monitoring purposes.
+The `_metrics` method returns Sync Gateway's statistics and other runtime variables in **Prometheus** format. This makes for a convenient feed for your debugging or performance monitoring purposes.
 
 * For more details on the metrics collected and reported by Sync Gateway – see: [Sync Gateway Statistics Schema](stats-monitoring.html).
 * For more details on Monitoring Sync Gateway using the `_metrics` feed – see: our blog on [Monitoring and Visualization of Couchbase Sync Gateway with Prometheus and Grafana](https://blog.couchbase.com/monitoring-and-visualization-of-couchbase-sync-gateway-with-prometheus-and-grafana/)
@@ -112,8 +112,8 @@ _Sync Gateway Roles Required:_
 | **revisionCache\_hits** _optional_         | Number of times a revision-cache lookup succeeded                                                     | object |
 | **revisionCache\_misses** _optional_       | Number of times a revision-cache lookup failed                                                        | object |
 | **revs\_added** _optional_                 | Number of revisions added to the database (including deletions)                                       | object |
-| **sequence\_gets** _optional_              | Number of times the database’s lastSequence was read                                                  | object |
-| **sequence\_reserves** _optional_          | Number of times the database’s lastSequence was incremented                                           | object |
+| **sequence\_gets** _optional_              | Number of times the database's lastSequence was read                                                  | object |
+| **sequence\_reserves** _optional_          | Number of times the database's lastSequence was incremented                                           | object |
 
 **syncgateway**
 

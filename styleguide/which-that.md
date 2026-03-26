@@ -1,7 +1,7 @@
 ---
 title: Which vs. That
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/which-that.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::which-that.adoc[]
 ---
 
@@ -10,13 +10,13 @@ link: xref:styleguide::which-that.adoc[]
 
 # Which vs. That
 
-Make sure that you’re using **which** and **that** correctly.
+Make sure that you're using **which** and **that** correctly.
 
 ## [](#which)Which
 
-Put **which** before any clause in a sentence that’s a non-defining clause, or non-essential to the meaning of a sentence.
+Put **which** before any clause in a sentence that's a non-defining clause, or non-essential to the meaning of a sentence.
 
-If you removed the content that follows **which** in a sentence, the meaning of the sentence should not change. You’d only lose an interesting detail.
+If you removed the content that follows **which** in a sentence, the meaning of the sentence should not change. You'd only lose an interesting detail.
 
 For example:
 
@@ -25,14 +25,14 @@ For example:
 
 Removing the clause after the **which** does not change the meaning of the sentence:
 
-* The reader does not need to know if there’s any additional database other than the healthy one.
+* The reader does not need to know if there's any additional database other than the healthy one.
 * The reader does not need to know that the Quick Index Editor can be opened from the Web Console.
 
 As well, put a comma before any clauses that use **which**.
 
 ## [](#that)That
 
-Put **that** before any clause in a sentence that’s a defining or essential clause, or is a key part of the meaning of a sentence.
+Put **that** before any clause in a sentence that's a defining or essential clause, or is a key part of the meaning of a sentence.
 
 If you removed the content that follows **that** in a sentence, the meaning of the sentence would change.
 
@@ -43,7 +43,7 @@ For example:
 
 Removing the clause after the **that** completely changes the meaning of the sentence.
 
-The reader needs to know that it’s specifically the database that they deployed yesterday. Or, they need to know that it’s the Quick Index Editor that they can open from the Web Console.
+The reader needs to know that it's specifically the database that they deployed yesterday. Or, they need to know that it's the Quick Index Editor that they can open from the Web Console.
 
 In both sentences, the **that** tells the reader the specific option out of a number of options that they need to use.
 

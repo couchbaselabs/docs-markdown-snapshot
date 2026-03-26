@@ -1,7 +1,7 @@
 ---
 title: CouchbaseScopeGroup Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.6.x/docs/user/modules/ROOT/pages/resource/couchbasescopegroup.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::resource/couchbasescopegroup.adoc[]
 ---
 
@@ -169,7 +169,7 @@ PreserveDefaultCollection indicates whether the Operator should manage the defau
 
 #### [](#description-12)Description
 
-Resources is an explicit list of named resources that will be considered for inclusion in this scope or scopes. If a resource reference doesn’t match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
+Resources is an explicit list of named resources that will be considered for inclusion in this scope or scopes. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
 
 ### [](#couchbasescopegroups-spec-collections-resources-kind)couchbasescopegroups.spec.collections.resources.kind
 

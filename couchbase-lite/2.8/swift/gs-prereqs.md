@@ -2,7 +2,7 @@
 title: Prerequisites for Couchbase Lite on Swift
 description: Prerequisites for the installation of Couchbase Lite
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/swift/pages/gs-prereqs.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:swift:gs-prereqs.adoc[]
 ---
 
@@ -23,7 +23,7 @@ The Couchbase Lite framework includes a "fat" binary that contains slices for bo
 
 ### [](#architecture-stripping)Architecture Stripping
 
-When submitting a build of your application to the App Store you must ensure that it doesn’t contain any simulator architecture otherwise the upload will fail with the error message "Unsupported Architecture. Your executable contains unsupported architecture '\[x86\_64, i386\]'."
+When submitting a build of your application to the App Store you must ensure that it doesn't contain any simulator architecture otherwise the upload will fail with the error message "Unsupported Architecture. Your executable contains unsupported architecture '\[x86\_64, i386\]'."
 
 The steps to remove the simulator architecture (x86\_64) from **CouchbaseLite.framework** are outlined below in [Remove simulator architecture](#ex-rmvsimarc). They depend on the method you chose to install Couchbase Lite:
 
@@ -39,7 +39,7 @@ The Couchbase Lite framework available on the [Couchbase Downloads page](https:/
 2. Copy the contents of [strip\_framework.sh](https://raw.githubusercontent.com/couchbase/couchbase-lite-ios/master/Scripts/strip%5Fframeworks.sh) in the **Run Script** editor window.  
 ![run script copy](_images/run-script-copy.png)
 
-That’s it, now every time you build and run your application, Xcode will remove binary architectures that do not match the target’s architecture type (emulator or device).
+That's it, now every time you build and run your application, Xcode will remove binary architectures that do not match the target's architecture type (emulator or device).
 
 The [following link](https://github.com/Carthage/Carthage/blob/5fd867c4895b4f59d70181dec169a1644f4430e3/README.md#adding-frameworks-to-an-application) describes how to set up a build phase in Xcode and run a Carthage script in order to remove the simulator architecture (x86\_64).
 

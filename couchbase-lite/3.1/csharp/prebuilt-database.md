@@ -2,7 +2,7 @@
 title: Pre-built Database
 description: How to handle pre-built databases in your Couchbase Lite on C# app
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/csharp/pages/prebuilt-database.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@couchbase-lite:csharp:prebuilt-database.adoc[]
 ---
 
@@ -31,7 +31,7 @@ To use a prebuilt database:
 1. Create a new Couchbase Lite database with the required dataset — see [Creating Pre-built database](#crt-db)
 2. Incorporate the pre-built database with your app bundle as an asset/resource — see [Bundle a Database with an Application](#bundle-db)
 3. Adjust the start-up logic of your app to check for the presence of the required database.  
-If the database doesn’t already exist, create one using the bundled pre-built database. Initiate a sync to update the data — see [Using Pre-built Database on App Launch](#deploy-db)
+If the database doesn't already exist, create one using the bundled pre-built database. Initiate a sync to update the data — see [Using Pre-built Database on App Launch](#deploy-db)
 
 ## [](#crt-db)Creating Pre-built database
 
@@ -48,7 +48,7 @@ These steps should form part of your build and release process:
 >  
 > **Otherwise:** …​ there will be a [checkpoint](refer-glossary.md#checkpoint) mismatch and the app will attempt to pull the data down again  
 >  
-> Don’t, for instance, create a pre-built database against a staging Sync Gateway server and use it within a production app that syncs against a production Sync Gateway.  
+> Don't, for instance, create a pre-built database against a staging Sync Gateway server and use it within a production app that syncs against a production Sync Gateway.  
 You can use the cblite tool (`cblite cp`) for this — see: [cblite cp (export, import, push, pull)](https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/Documentation.md#cp-aka-export-import-push-pull) | [cblite on GitHub](https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/README.cblite.md)
 
 **Alternatively** …​
@@ -78,7 +78,7 @@ If you are using an encrypted database, [Database.Copy()](http://docs.couchbase.
 
 If you copied an un-encrypted database and want to apply encryption to the copy, or if you want to change (or remove) the encryption key applied to the copy:
 
-1. Provide the original encryption-key (if any) in the database copy’s configuration using [DatabaseConfiguration.EncryptionKey()](http://docs.couchbase.com/mobile/3.1.10/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html#Couchbase%5FLite%5FDatabaseConfiguration%5FEncryptionKey)
+1. Provide the original encryption-key (if any) in the database copy's configuration using [DatabaseConfiguration.EncryptionKey()](http://docs.couchbase.com/mobile/3.1.10/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html#Couchbase%5FLite%5FDatabaseConfiguration%5FEncryptionKey)
 2. Open the database copy
 3. Use [Database.ChangeEncryptionKey()](http://docs.couchbase.com/mobile/3.1.10/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FChangeEncryptionKey%5FCouchbase%5FLite%5FEncryptionKey%5F) on the database copy to set the required encryption key.  
 NOTE: To remove encryption on the copy, provide a null encryption-key
@@ -89,13 +89,13 @@ During the application start-up logic, check if database exists in the required 
 
 1. Locate the pre-packaged database (for example, in the assets or other resource folder)
 2. Copy the pre-packaged database to the required location  
-Use the API’s [Database.Copy()](http://docs.couchbase.com/mobile/3.1.10/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FCouchbase%5FLite%5FDatabase%5FCopy%5FSystem%5FString%5FSystem%5FString%5FCouchbase%5FLite%5FDatabaseConfiguration%5F) method — see: [Example 1](#lbl-code); this ensures that a UUID is generated for each copy  
+Use the API's [Database.Copy()](http://docs.couchbase.com/mobile/3.1.10/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FCouchbase%5FLite%5FDatabase%5FCopy%5FSystem%5FString%5FSystem%5FString%5FCouchbase%5FLite%5FDatabaseConfiguration%5F) method — see: [Example 1](#lbl-code); this ensures that a UUID is generated for each copy  
 > [!IMPORTANT]  
 > **Do not copy the database using any other method**  
 > **Otherwise:** Each copy of the app will invalidate the other apps' [checkpoints](refer-glossary.md#checkpoint) because a new UUID was not generated.
 3. Open the database; you can now start querying the data and using it
 4. Start a pull replication, to sync any changes  
-The replicator uses the pre-built database’s [checkpoint](refer-glossary.md#checkpoint) as the timestamp to sync from; only documents changed since then are synced  
+The replicator uses the pre-built database's [checkpoint](refer-glossary.md#checkpoint) as the timestamp to sync from; only documents changed since then are synced  
 > [!IMPORTANT]  
 > If you used cblite to pull the data **without including a port number with the URL** and are replicating in a Java or iOS (swift/ObjC) app — **you must include the port number in the URL provided to the replication** (port 443 for `wss://` or 80 for `ws://`).  
 >  

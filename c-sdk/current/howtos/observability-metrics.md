@@ -3,7 +3,7 @@ title: Observability Metrics Reporting
 description: Individual request tracing presents a very specific (though
   isolated) view of the system.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/observability-metrics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:c-sdk:howtos:observability-metrics.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:c-sdk:howtos:observability-metrics.adoc[]
 
 > Individual request tracing presents a very specific (though isolated) view of the system. In addition, it also makes sense to capture information that aggregates request data (i.e. requests per second), but also data which is not tied to a specific request at all (i.e. resource utilization). 
 
-The deployment situation itself is similar to the request tracer: either applications already have a metrics infrastructure in place or they don’t. The difference is that exposing some kind of metrics is much more common than request based tracing, because most production deployments at least monitor CPU and memory usage (e.g. through JMX).
+The deployment situation itself is similar to the request tracer: either applications already have a metrics infrastructure in place or they don't. The difference is that exposing some kind of metrics is much more common than request based tracing, because most production deployments at least monitor CPU and memory usage (e.g. through JMX).
 
 Metrics broadly fall into the following categories:
 
@@ -76,7 +76,7 @@ To do this, libcouchbase defines an opaque `lcbmetrics_METER`, which is responsi
 
 ### [](#using-opentelemetry-metrics-reporting)Using OpenTelemetry Metrics reporting
 
-There is a full example for using OpenTelemetry [here](https://github.com/couchbase/libcouchbase/blob/master/example/metrics/otel%5Fmetrics.cc). Let’s go through the steps involved.
+There is a full example for using OpenTelemetry [here](https://github.com/couchbase/libcouchbase/blob/master/example/metrics/otel%5Fmetrics.cc). Let's go through the steps involved.
 
 We will want to use an `opentelemetry::metrics::Meter`. To do that, we will need a provider and a controller, which will also require an exporter and processor.
 

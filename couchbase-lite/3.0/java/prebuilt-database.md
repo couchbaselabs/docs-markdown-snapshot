@@ -2,7 +2,7 @@
 title: Pre-built Database
 description: How to handle pre-built databases in your Couchbase Lite on Java app
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/java/pages/prebuilt-database.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:java:prebuilt-database.adoc[]
 ---
 
@@ -29,7 +29,7 @@ To use a prebuilt database:
 1. Create a new Couchbase Lite database with the required data set — see [Creating Pre-built database](#crt-db)
 2. Incorporate the pre-built database with your app bundle as an asset/resource — see [Bundle a Database with an Application](#bundle-db)
 3. Adjust the start-up logic of your app to check for the presence of the required database.  
-If the database doesn’t already exist, create one using the bundled pre-built database. Then initiate a sync to update the data — see [Using Pre-built Database on App Launch](#deploy-db)
+If the database doesn't already exist, create one using the bundled pre-built database. Then initiate a sync to update the data — see [Using Pre-built Database on App Launch](#deploy-db)
 
 ## [](#crt-db)Creating Pre-built database
 
@@ -46,7 +46,7 @@ These steps should form part of your build and release process:
 >  
 > **Otherwise:** …​ there will be a [checkpoint](refer-glossary.md#checkpoint) mismatch and the app will attempt to pull the data down again  
 >  
-> So don’t, for instance, create a pre-built database against a staging Sync Gateway server and try to use that within a production app that syncs against a production Sync Gateway.  
+> So don't, for instance, create a pre-built database against a staging Sync Gateway server and try to use that within a production app that syncs against a production Sync Gateway.  
 You can use the cblite tool (`cblite cp`) for this — see: [cblite cp (export, import, push, pull)](https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/Documentation.md#cp-aka-export-import-push-pull) | [cblite on GitHub](https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/README.cblite.md)
 
 **Alternatively** …​
@@ -76,7 +76,7 @@ If you are using en encrypted database, note that [Database.copy()](http://docs.
 
 If you copied an un-encrypted database and want to apply encryption to the copy, or if you want to change (or remove) the encryption key applied to the copy:
 
-1. Provide the original encryption-key (if any) in the database copy’s configuration using [DatabaseConfiguration.setEncryptionKey()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/DatabaseConfiguration.html#setEncryptionKey%28com.couchbase.lite.EncryptionKey%29)
+1. Provide the original encryption-key (if any) in the database copy's configuration using [DatabaseConfiguration.setEncryptionKey()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/DatabaseConfiguration.html#setEncryptionKey%28com.couchbase.lite.EncryptionKey%29)
 2. Open the database copy
 3. Use [Database.changeEncryptionKey()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Database.html#changeEncryptionKey%28com.couchbase.lite.EncryptionKey%29) on the database copy to set the required encryption key.  
 NOTE: To remove encryption on the copy, provide a null encryption-key
@@ -87,13 +87,13 @@ During the application start-up logic, check if database exists in the required 
 
 1. Locate the pre-packaged database (for example, in the assets or other resource folder)
 2. Copy the pre-packaged database to the required location  
-Use the API’s [Database.copy()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Database.html#copy%28java.io.File,java.lang.String,com.couchbase.lite.DatabaseConfiguration%29) method — see: [Example 1](#lbl-code); this ensures that a UUID is generated for each copy  
+Use the API's [Database.copy()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Database.html#copy%28java.io.File,java.lang.String,com.couchbase.lite.DatabaseConfiguration%29) method — see: [Example 1](#lbl-code); this ensures that a UUID is generated for each copy  
 > [!IMPORTANT]  
 > **Do not copy the database using any other method**  
 > **Otherwise:** Each copy of the app will invalidate the other apps' [checkpoints](refer-glossary.md#checkpoint) because a new UUID was not generated.
 3. Open the database; you can now start querying the data and using it
 4. Start a pull replication, to sync any changes  
-The replicator uses the pre-built database’s [checkpoint](refer-glossary.md#checkpoint) as the timestamp to sync from; only documents changed since then are synced  
+The replicator uses the pre-built database's [checkpoint](refer-glossary.md#checkpoint) as the timestamp to sync from; only documents changed since then are synced  
 > [!IMPORTANT]  
 > If you used cblite to pull the data **without including a port number with the URL** and are replicating in a Java or iOS (swift/ObjC) app — **you must include the port number in the URL provided to the replication** (port 443 for `wss://` or 80 for `ws://`).  
 >  

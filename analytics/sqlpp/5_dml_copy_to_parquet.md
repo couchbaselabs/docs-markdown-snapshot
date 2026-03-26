@@ -3,7 +3,7 @@ title: Parquet
 description: This topic explains how to use the COPY TO statement to export data
   from a database to Amazon S3 or Google Cloud Storage (GCS) in Parquet format.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_copy_to_parquet.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sqlpp:5_dml_copy_to_parquet.adoc[]
 ---
 
@@ -29,7 +29,7 @@ For more information, see [Query Data in Amazon S3](../sources/external-s3.md) a
 
 You can copy data using one of the two methods:
 
-1. **User-Defined Schema**: It’s a schema explicitly provided by the user in the `COPY TO` statement when the structure of the result or collection is known.
+1. **User-Defined Schema**: It's a schema explicitly provided by the user in the `COPY TO` statement when the structure of the result or collection is known.
 2. **Schema Inference**: The system infers the schema from the data.
 
 ## [](#syntax)Syntax
@@ -209,7 +209,7 @@ OverClause
 You supply an optional **`OverClause`** to specify output partitioning with a `PartitionClause` and ordering with an `OrderClause`. This is similar to the `OVER` clause of a [WINDOW statement](3%5Fquery.md#Over%5Fclauses).
 
 * If you specify a `PartitionClause`, Capella Analytics evaluates the `Output_Path_Expr` once per logical data partition and refers to aliases if defined by an `AS` sub-clause.
-* If you do not specify a `PartitionClause`, Capella Analytics evaluates the `OutputPathExpr` once for the whole `COPY TO` output dataset. That’s, all of the files end up in the same directory.
+* If you do not specify a `PartitionClause`, Capella Analytics evaluates the `OutputPathExpr` once for the whole `COPY TO` output dataset. That's, all of the files end up in the same directory.
 
 You use the `OrderClause` to define output object order, either within each partition or for the whole dataset.
 

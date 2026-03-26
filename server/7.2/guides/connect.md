@@ -2,7 +2,7 @@
 title: Connecting to Couchbase Server
 description: How to connect to a Couchbase Cluster.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/connect.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:guides:connect.adoc[]
 ---
 
@@ -249,7 +249,7 @@ For further details, refer to [cbc(1)](https://docs.couchbase.com/sdk-api/couchb
 
 The example below connects to a single-node cluster over a secure connection with a client certificate.
 
-It’s assumed that a valid client certificate and certificate store have been set up.
+It's assumed that a valid client certificate and certificate store have been set up.
 
 ```csharp
 
@@ -266,7 +266,7 @@ For more information, see [Cluster](https://docs.couchbase.com/sdk-api/couchbase
 
 The example below connects to a single-node cluster over a secure connection with a client certificate.
 
-It’s assumed that a valid client certificate and a Java keystore have been set up.
+It's assumed that a valid client certificate and a Java keystore have been set up.
 
 ```java
 // Replace the following line with code that gets your actual key store.
@@ -302,7 +302,7 @@ Call the `connect()` function with a connection URL, and a `ConnectOptions` obje
 
 The example below connects to a single-node cluster over a secure connection with a client certificate.
 
-It’s assumed that a valid client certificate has been set up.
+It's assumed that a valid client certificate has been set up.
 
 ```nodejs
 cluster = await couchbase.connect('couchbases://localhost', {
@@ -324,7 +324,7 @@ For more information, see [Cluster](https://docs.couchbase.com/sdk-api/couchbase
 
 The example below connects to a single-node cluster over a secure connection with a client certificate.
 
-It’s assumed that a valid client certificate has been set up.
+It's assumed that a valid client certificate has been set up.
 
 ```python
 cluster = Cluster("couchbases://your-ip",ClusterOptions(PasswordAuthenticator("Administrator","password",cert_path="/path/to/cluster.crt")))

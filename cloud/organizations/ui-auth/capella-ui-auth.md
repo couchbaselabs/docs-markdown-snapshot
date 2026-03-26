@@ -3,7 +3,7 @@ title: Capella UI Authentication
 description: Couchbase Capella supports federated authentication with Single
   Sign-On (SSO) and Multi-Factor Authentication (MFA) for the Capella UI.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/capella-ui-auth.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:organizations:ui-auth/capella-ui-auth.adoc[]
 ---
 
@@ -20,7 +20,7 @@ This page covers authentication options for the Capella UI:
 
   * [Requirements](#configuration-requirements) for setting up SSO.
   * [Important considerations](#Considerations) when implementing SSO.
-* [Multi-Factor Authentication (MFA)](#multi-factor-authentication-mfa) \- Enhance security using Capella’s built-in MFA option for non-SSO users.
+* [Multi-Factor Authentication (MFA)](#multi-factor-authentication-mfa) \- Enhance security using Capella's built-in MFA option for non-SSO users.
 
 These authentication methods apply only to the Capella UI. They do not affect programmatic access to Capella, which requires [Cluster Access Credentials](../../clusters/manage-database-users.md), [Access Control Accounts](../../../analytics/admin/auth/auth-data.md), or [Management API Keys](../../management-api-guide/management-api-start.md) depending on your use case.
 
@@ -28,9 +28,9 @@ These authentication methods apply only to the Capella UI. They do not affect pr
 
 By configuring Capella to work with your existing identity provider (IdP), users in your organization can access the Capella UI using SSO authentication.
 
-As part of your company’s existing security infrastructure, SSO provides the following advantages:
+As part of your company's existing security infrastructure, SSO provides the following advantages:
 
-* Your company’s IdP manages Capella users—​not Couchbase. This means your administrators can onboard, offboard, and manage Capella users with existing workflows.
+* Your company's IdP manages Capella users—​not Couchbase. This means your administrators can onboard, offboard, and manage Capella users with existing workflows.
 * All supported IdPs provide their own built-in multi-factor authentication (MFA).
 * Your users can use Capella without needing to remember another set of credentials.
 
@@ -73,13 +73,13 @@ When you add SSO authentication to your organization:
 
 * Capella turns off [Capella MFA](mfa.md) for all SSO users in the organization who can then use the MFA provided by the IdP. Non-SSO users can continue to use the Capella MFA.
 * SSO Users within the organization cannot change their name, email, or set a password.
-* Capella adds each SSO user to the [default team](manage-role-mapping.md#default-teams) ("My First Team") as they sign in, unless you specify another default team or create IdP group mappings. You cannot delete a realm’s configured default team.
-* If a realm has [group mapping turned off](manage-role-mapping.md#disable-group-mapping), Capella uses the [default team](manage-role-mapping.md#default-teams) to initially assign SSO users their roles. After SSO users sign in, you can manage their organization roles using the **People** tab and manage project access using each project’s **Collaborators** tab.
-* Capella supports service provider-initiated (SP-initiated) authentication only. Capella does not support identity provider-initiated (IdP-initiated) sign-in, where there’s a sign-in request through the SSO page of the IdP.
+* Capella adds each SSO user to the [default team](manage-role-mapping.md#default-teams) ("My First Team") as they sign in, unless you specify another default team or create IdP group mappings. You cannot delete a realm's configured default team.
+* If a realm has [group mapping turned off](manage-role-mapping.md#disable-group-mapping), Capella uses the [default team](manage-role-mapping.md#default-teams) to initially assign SSO users their roles. After SSO users sign in, you can manage their organization roles using the **People** tab and manage project access using each project's **Collaborators** tab.
+* Capella supports service provider-initiated (SP-initiated) authentication only. Capella does not support identity provider-initiated (IdP-initiated) sign-in, where there's a sign-in request through the SSO page of the IdP.
 
 ## [](#multi-factor-authentication-mfa)Multi-Factor Authentication (MFA)
 
-Any non-SSO user within your organization can use Capella’s MFA. MFA improves your Capella account security by requiring two credentials to sign in: your password and a time-based one-time password (TOTP).
+Any non-SSO user within your organization can use Capella's MFA. MFA improves your Capella account security by requiring two credentials to sign in: your password and a time-based one-time password (TOTP).
 
 To turn on MFA for your account, see [Manage Multi-Factor Authentication (MFA)](mfa.md).
 

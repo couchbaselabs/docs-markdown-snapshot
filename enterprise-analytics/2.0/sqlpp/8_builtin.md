@@ -2,7 +2,7 @@
 title: Builtin Functions
 description: This section introduces the builtin SQL++ for Enterprise Analytics functions.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/8_builtin.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sqlpp:8_builtin.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:2.0@enterprise-analytics:sqlpp:8_builtin.adoc[]
 
 For reference, a categorized list of all of the builtin functions follows. Use the category linked at the end of each list for descriptions and examples of those functions.
 
-Some of the examples in this section assume that you’re using a database called `sampleAnalytics` and a scope called `Commerce`. See [intro:connecting-to-data-sources.adoc#install-the-commerce-dataset-in-standalone-collections](../intro/connecting-to-data-sources.md#install-the-commerce-dataset-in-standalone-collections) to install the Commerce dataset.
+Some of the examples in this section assume that you're using a database called `sampleAnalytics` and a scope called `Commerce`. See [intro:connecting-to-data-sources.adoc#install-the-commerce-dataset-in-standalone-collections](../intro/connecting-to-data-sources.md#install-the-commerce-dataset-in-standalone-collections) to install the Commerce dataset.
 
 ## [](#numeric-functions)Numeric Functions
 

@@ -3,7 +3,7 @@ title: Add Autocomplete to Your Application
 description: Use autocomplete to add suggestions for a user's Search query as
   they type in your application.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/search-query-auto-complete-code.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:search-query-auto-complete-code.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:cloud:search:search-query-auto-complete-code.adoc[]
 
 # Add Autocomplete to Your Application
 
-> Use autocomplete to add suggestions for a user’s Search query as they type in your application. 
+> Use autocomplete to add suggestions for a user's Search query as they type in your application. 
 
 After you [create and configure a Search index that supports autocomplete](search-query-auto-complete-ui.md), configure your application to return results from the Search Service.
 
@@ -20,7 +20,7 @@ After you [create and configure a Search index that supports autocomplete](searc
 
 * You have the Search Service enabled on a node in your cluster. For more information about how to change Services on your cluster, see [Modify a Paid Cluster](../clusters/modify-database.md).
 * You have a bucket with scopes and collections in your cluster. For more information, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
-* You have the hostname for the node in your cluster that’s running the Search Service.  
+* You have the hostname for the node in your cluster that's running the Search Service.  
 Go to your cluster settings and click **Nodes** to view node hostnames.
 * You have created a compatible Search index. For more information, see [Configure an Autocomplete Search Index](search-query-auto-complete-ui.md).
 * You have created cluster access credentials that have Read/Write permissions on the bucket and scope where you created your Search index. For more information, see [Manage Cluster Access Credentials](../clusters/manage-database-users.md).

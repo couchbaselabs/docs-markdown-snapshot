@@ -4,7 +4,7 @@ description: Couchbase Server can be installed on Ubuntu Linux and Debian Linux
   for production and development use-cases. Root and non-root installations are
   supported.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/ubuntu-debian-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:ubuntu-debian-install.adoc[]
 ---
 
@@ -17,15 +17,15 @@ link: xref:server:install:ubuntu-debian-install.adoc[]
 
 Use the instructions on this page to install Couchbase Server on Ubuntu and Debian platforms using Couchbase-provided _deb_ packages. The instructions support both Enterprise and Community [editions](https://www.couchbase.com/products/editions).
 
-If you’re upgrading an existing installation of Couchbase Server, refer to [Upgrading Couchbase Server](upgrade.md).
+If you're upgrading an existing installation of Couchbase Server, refer to [Upgrading Couchbase Server](upgrade.md).
 
 ## [](#before-you-install)Before You Install
 
 Couchbase Server works out-of-the-box with most OS configurations. However, the procedures on this page assume the following:
 
 * Your system meets the [minimum requirements](pre-install.md) and that your operating system version is [supported](install-platforms.md).
-* You’re working from a clean system and that you’ve [uninstalled](install-uninstalling.md) any previous versions of Couchbase Server.  
-If you’re upgrading an existing installation of Couchbase Server, refer to [Upgrading Couchbase Server](upgrade.md).
+* You're working from a clean system and that you've [uninstalled](install-uninstalling.md) any previous versions of Couchbase Server.  
+If you're upgrading an existing installation of Couchbase Server, refer to [Upgrading Couchbase Server](upgrade.md).
 
 For production deployments, make sure to follow the [deployment guidelines](install-production-deployment.md) so that your systems and environment are properly sized and configured before installation.
 

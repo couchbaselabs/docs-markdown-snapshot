@@ -3,7 +3,7 @@ title: Retrieving Auto-Failover Settings
 description: Auto-failover settings are retrieved by means of the <code>GET
   /settings/autoFailover</code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-cluster-autofailover-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:rest-cluster-autofailover-settings.adoc[]
 ---
 
@@ -39,7 +39,7 @@ Success returns `200 OK`, and an object that contains the following parameters:
 
 * `enabled`. Indicates whether automatic failover is enabled (a value of `true`) or disabled (a value of `false`).
 * `timeout`. Returns an integer between 5 and 3600, which specifies the number of seconds set to elapse, after a node has become unavailable, before automatic failover is triggered. The default value is 120.
-* `count`. This parameter represents how many auto-failover nodes have occurred since the parameter was itself last reset, to a value of 0, through administrator intervention. The parameter’s default value is 1\. Couchbase Server increments this value by 1 for every node that is auto-failed over, up to the administrator-specified _maximum count_. If nodes are failed over automatically until the _maximum count_ is reached, no further auto-failover is triggered until a parameter-reset is performed.
+* `count`. This parameter represents how many auto-failover nodes have occurred since the parameter was itself last reset, to a value of 0, through administrator intervention. The parameter's default value is 1\. Couchbase Server increments this value by 1 for every node that is auto-failed over, up to the administrator-specified _maximum count_. If nodes are failed over automatically until the _maximum count_ is reached, no further auto-failover is triggered until a parameter-reset is performed.
 * `failoverOnDataDiskIssues`. This contains two values, which are:
 
   * `enabled`, which indicates whether auto-failover can occur when a disk has been unresponsive, and which can be `true` or `false` (the default).

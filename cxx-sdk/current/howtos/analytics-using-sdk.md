@@ -3,7 +3,7 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cxx-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -19,7 +19,7 @@ This page covers using our operational C++ SDK to connect to the Analytics Servi
 > [!TIP]
 > Analytics SDKs
 > 
-> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase's analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
 > 
 > Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](../../../home/columnar-sdk.md) for more information.
 
@@ -31,7 +31,7 @@ The analytics service is available in [Capella operational](../../../cloud/clust
 
 After familiarizing yourself with our [introductory primer](../../../server/current/analytics/primer-beer.md), in particular creating a dataset and linking it to a bucket to shadow the operational data, try Couchbase Analytics using the C++ SDK. Intentionally, the API for analytics is very similar to that of the query service.
 
-Before starting, here’s all imports used in the following examples:
+Before starting, here's all imports used in the following examples:
 
 ```c++
 #include <couchbase/cluster.hxx>
@@ -40,7 +40,7 @@ Before starting, here’s all imports used in the following examples:
 #include <tao/json/to_string.hpp>
 ```
 
-Here’s a complete example of doing an analytics query and handling the results:
+Here's a complete example of doing an analytics query and handling the results:
 
 ```c++
 std::string query{ R"(SELECT "hello" AS greeting)" };
@@ -55,13 +55,13 @@ if (err) {
 }
 ```
 
-Let’s break this down. First, we get the results in the form of a `std::pair<couchbase::error, couchbase::analytics_result>`.
+Let's break this down. First, we get the results in the form of a `std::pair<couchbase::error, couchbase::analytics_result>`.
 
-An `analytics_result` contains various things of interest, such as metrics, but the main thing we’re interested in are the rows (results). They’re fetched with a `rows_as_json` call.
+An `analytics_result` contains various things of interest, such as metrics, but the main thing we're interested in are the rows (results). They're fetched with a `rows_as_json` call.
 
 We check explicitly for an `error` which indicates something went wrong during the analytics query call. Please see [Error Handling](error-handling.md) for details.
 
-Here we’re fetching rows converted into JSON, but as with SQL++ (formerly N1QL) there’s many more options available. Rows can be returned as JSON representations from multiple third party C++ libraries, directly as a user defined class, and more. Please see [JSON Libraries](json.md) for full details.
+Here we're fetching rows converted into JSON, but as with SQL++ (formerly N1QL) there's many more options available. Rows can be returned as JSON representations from multiple third party C++ libraries, directly as a user defined class, and more. Please see [JSON Libraries](json.md) for full details.
 
 Finally, we iterate through the `rows`.
 

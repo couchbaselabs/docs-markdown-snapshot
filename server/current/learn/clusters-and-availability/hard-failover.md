@@ -2,7 +2,7 @@
 title: Hard Failover
 description: Hard failover takes an unresponsive node out of the cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/hard-failover.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:clusters-and-availability/hard-failover.adoc[]
 ---
 
@@ -29,10 +29,10 @@ For further information on initiating hard failover, see [Perform Hard Failover]
 
 ## [](#default-and-unsafe)Hard Failover in Default and Unsafe Modes
 
-In the event of a cluster’s [Master Services](cluster-manager.md#master-services) not being able to contact a majority of the cluster’s nodes (sometimes referred to as a _quorum failure_), an attempted failover will _not_ be executed. This protects the cluster from the situation where:
+In the event of a cluster's [Master Services](cluster-manager.md#master-services) not being able to contact a majority of the cluster's nodes (sometimes referred to as a _quorum failure_), an attempted failover will _not_ be executed. This protects the cluster from the situation where:
 
-1. The cluster’s nodes get divided into two separate sets, due to an unanticipated [network partition](https://en.wikipedia.org/wiki/Network%5Fpartition).
-2. Each of the separate sets is accessed by a different administrator — each administrator being unaware of the other’s access.
+1. The cluster's nodes get divided into two separate sets, due to an unanticipated [network partition](https://en.wikipedia.org/wiki/Network%5Fpartition).
+2. Each of the separate sets is accessed by a different administrator — each administrator being unaware of the other's access.
 3. Each administrator simultaneously performs a hard failover of the nodes they cannot contact (resulting in a corrupted cluster-configuration, once the network partition is healed).
 
 Note that this restriction also protects the cluster in situations where multiple [Server Groups](groups.md) are accidentally divided into separate sets, in the same way.
@@ -109,7 +109,7 @@ Note that the Search Service is not supported by Delta Recovery.
 
 If a cluster contains a single node that hosts the Eventing Service, and this node undergoes hard failover, the Eventing Service on the node stops, and mutation-processing on the node is interrupted: this results in a complete halt of Eventing-Service function-execution and mutation-processing. If the node is restored to the cluster, and the Eventing Service is restarted, Eventing-Service functions redeploy, and mutation-processing resumes: however, this may result in the processing of mutations that are duplicates of mutations made immediately prior to failover, and may result in inappropriate changes to data, if the business logic in function-code is not idempotent.
 
-If multiple cluster-nodes host the Eventing Service, responsibility for handling data-mutations is divided between these nodes; with each node handling the data-mutations for a defined subset of vBuckets. If a hard failover is performed on one of the Eventing-Service nodes, the failed-over node’s former responsibilities are assigned to the surviving Eventing-Service nodes as part of the hard-failover process — thereby ensuring continuity of mutation-processing, and avoiding the immediate need for a rebalance. If hard failover is, in these circumstances, selected by means of Couchbase Web Console, a notification such as the following is provided, when failover-confirmation is requested: _Failover of this node will trigger internal processing after failover for the following service: Eventing._ _This processing may take some time to complete._
+If multiple cluster-nodes host the Eventing Service, responsibility for handling data-mutations is divided between these nodes; with each node handling the data-mutations for a defined subset of vBuckets. If a hard failover is performed on one of the Eventing-Service nodes, the failed-over node's former responsibilities are assigned to the surviving Eventing-Service nodes as part of the hard-failover process — thereby ensuring continuity of mutation-processing, and avoiding the immediate need for a rebalance. If hard failover is, in these circumstances, selected by means of Couchbase Web Console, a notification such as the following is provided, when failover-confirmation is requested: _Failover of this node will trigger internal processing after failover for the following service: Eventing._ _This processing may take some time to complete._
 
 Note that vBucket reallocations that occur due to failover may themselves lead to the processing of mutations that are duplicates of mutations made prior to failover.
 
@@ -124,7 +124,7 @@ If there are _no_ Analytics replicas, and an Analytics node fails over, the Anal
 * If the Analytics node is recovered, the Analytics Service is resumed and ingestion of shadow data resumes from the point before the node failed over.
 * If the Analytics node is removed, the Analytics Service becomes active again after rebalance, but ingestion of shadow data must begin again from scratch.
 
-If there _are_ Analytics replicas, and an Analytics node fails over, the Analytics Service continues to work: one of the replicas is promoted to serve the shadow data that was stored on the failed over node. The Analytics Service only needs to rebuild any shadow data that isn’t already ingested from the Data Service, depending on the state of the promoted replica. In this case:
+If there _are_ Analytics replicas, and an Analytics node fails over, the Analytics Service continues to work: one of the replicas is promoted to serve the shadow data that was stored on the failed over node. The Analytics Service only needs to rebuild any shadow data that isn't already ingested from the Data Service, depending on the state of the promoted replica. In this case:
 
 * If the Analytics node is recovered, the shadow data on the recovered node is updated from the promoted replica, and it becomes the active partition again.
 * If the Analytics node is removed, the shadow data is redistributed among the remaining Analytics nodes in the cluster.

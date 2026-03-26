@@ -2,7 +2,7 @@
 title: Choosing an API
 description: Async &amp; batching
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:c-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -19,7 +19,7 @@ Batching examples are given for [bulk store](https://github.com/couchbase/docs-s
 
 ## [](#usage-differences-in-non-blocking-mode)Usage Differences in Non-Blocking Mode
 
-For the most part, programming with libcouchbase is the same regardless of whether you’re using it in a blocking or non-blocking application. There are some key differences to note, however:
+For the most part, programming with libcouchbase is the same regardless of whether you're using it in a blocking or non-blocking application. There are some key differences to note, however:
 
 * `lcb_wait()` should not be called in non-blocking mode. By definition, the `lcb_wait()` routine will block the application until all pending I/O completes. In non-blocking mode the pending I/O is completed when control is returned back to the event loop.
 * You must not schedule operations until the bootstrap callback, `lcb_set_bootstrap_callback()`, has been invoked. This is because operations must be forwarded to a destination node in the cluster depending on the key specified within the operation. Until the client has been bootstrapped it does not know how to forward keys to any nodes.  

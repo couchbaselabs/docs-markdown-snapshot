@@ -3,7 +3,7 @@ title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the Python SDK.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:python-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -19,7 +19,7 @@ For a high-level overview of this feature, see [Field Level Encryption](../conce
 > [!TIP]
 > Native Encryption at Rest
 > 
-> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It’s a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
+> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It's a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
 
 ## [](#package)Packaging
 
@@ -45,7 +45,7 @@ See the [GitHub repository tags](https://github.com/couchbase/python-couchbase-e
 
 The Python Field-Level Encryption library works on the principle of `Encrypters` and `Decrypters` which can be packaged within a `Provider`. `Encrypters` and `Decrypters` are registered with a `CryptoManager` and are then used to encrypt and decrypt specified fields.
 
-Here we’ll go through an example of setting up and using the Python Field-Level Encryption library.
+Here we'll go through an example of setting up and using the Python Field-Level Encryption library.
 
 To begin we need to create a couple of keys, you should **not** use the `InsecureKeyring` other than for evaluation purposes and should keep your keys secure.
 

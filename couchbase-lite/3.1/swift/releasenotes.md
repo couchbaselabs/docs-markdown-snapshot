@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Lite on Swift
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/swift/pages/releasenotes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@couchbase-lite:swift:releasenotes.adoc[]
 ---
 
@@ -42,9 +42,9 @@ Version 3.1.9 for Swift delivers the following features and enhancements:
 ### [](#issues-and-resolutions-2)Issues and Resolutions
 
 * [CBL-5221 — Fixed MutableDocument not usable before creating a database instance](https://issues.couchbase.com/browse/CBL-5221)
-* [CBL-5329 — Fixed Replicatpr’s ListenerToken.remove() not removing the listener](https://issues.couchbase.com/browse/CBL-5329)
+* [CBL-5329 — Fixed Replicatpr's ListenerToken.remove() not removing the listener](https://issues.couchbase.com/browse/CBL-5329)
 * [CBL-6023 — Fixed Live Query could become nil before is stopped](https://issues.couchbase.com/browse/CBL-6023)
-* [CBL-6024 — Fixed Swift MutableDocument’s collection is not set when a new document is saved](https://issues.couchbase.com/browse/CBL-6024)
+* [CBL-6024 — Fixed Swift MutableDocument's collection is not set when a new document is saved](https://issues.couchbase.com/browse/CBL-6024)
 * [CBL-5791 — Fixed Socket was not called to close after receiving WebSocket PING Timeout](https://issues.couchbase.com/browse/CBL-5791)
 * [CBL-5978 — LiteCore now holds the names of its log domains](https://issues.couchbase.com/browse/CBL-5978)
 
@@ -198,7 +198,7 @@ Version 3.1.0 for Swift delivers the following features and enhancements:
 
 ### [](#scopes-and-collections)Scopes and Collections
 
-Couchbase Mobile’s cloud-to-edge support for scopes and collections allows application developers to organize and logically isolate data.
+Couchbase Mobile's cloud-to-edge support for scopes and collections allows application developers to organize and logically isolate data.
 
 Independent lifecycle management and fine-grained security control simplifies the deployment of multi-tenant and high-application density cloud-to-edge applications at scale.
 

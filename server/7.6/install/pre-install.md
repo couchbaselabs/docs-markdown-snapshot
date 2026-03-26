@@ -4,7 +4,7 @@ description: Although resource requirements will largely depend on the size and
   resource demands of your Couchbase deployment, there are some minimum and
   recommended specifications that you should follow.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/pre-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:install:pre-install.adoc[]
 ---
 
@@ -69,13 +69,13 @@ Couchbase Server has the following requirements when running on ARM-based platfo
 
 ## [](#clock-source-linux)Clock Source on Linux
 
-The Query Service relies on the Linux operating system’s monotonic clock when profiling and managing network timeouts.
+The Query Service relies on the Linux operating system's monotonic clock when profiling and managing network timeouts.
 
 The Linux kernel uses a clock source to track elapsed time, handle scheduling and timers, and to get the current time. It can use one of several possible sources, such as Time Stamp Counter (TSC), the XEN build into the Xen virtualization framework, and others. See [Clock sources, Clock events, sched\_clock() and delay timers](https://docs.kernel.org/timers/timekeeping.html) for more information about clock sources. Which source the kernel uses depends on the hardware clock capabilities and Linux configuration settings.
 
 Some virtualization environments, such as older AWS EC2 clusters, use the XEN clock source. This source can cause performance issues because reading it requires an expensive system call to the hypervisor. In some cases, a XEN clock source has used up to 25% of CPU time when timers are in heavy use.
 
-The TSC clock source incurs little CPU cost because it’s a CPU instruction instead of a kernel or hypervisor call. If your platform has a reliable and invariant implementation of TSC, use it as the clock source. Consult the documentation for your platform for more information about its TSC implementation.
+The TSC clock source incurs little CPU cost because it's a CPU instruction instead of a kernel or hypervisor call. If your platform has a reliable and invariant implementation of TSC, use it as the clock source. Consult the documentation for your platform for more information about its TSC implementation.
 
 Use the following command to see which clock source Linux is using:
 

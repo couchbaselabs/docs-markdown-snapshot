@@ -1,7 +1,7 @@
 ---
 title: Capella Columnar Support
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/columnar.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:spark-connector::columnar.adoc[]
 ---
 
@@ -54,7 +54,7 @@ The following examples will use the `travel-sample` example set of data, which c
 
 ## [](#reading-a-dataframe)Reading a Dataframe
 
-Let’s start by reading a Spark DataFrame from the `airline` collection, which is in the `inventory` scope of the `travel-sample` database:
+Let's start by reading a Spark DataFrame from the `airline` collection, which is in the `inventory` scope of the `travel-sample` database:
 
 * Scala
 * PySpark
@@ -134,7 +134,7 @@ val airlinesDataset = spark.read
 
 ## [](#spark-sql)Spark SQL
 
-We can use Spark’s `createOrReplaceTempView` to create a temporary view from a DataFrame, which we can then run Spark SQL on (which creates another DataFrame):
+We can use Spark's `createOrReplaceTempView` to create a temporary view from a DataFrame, which we can then run Spark SQL on (which creates another DataFrame):
 
 * Scala
 * PySpark

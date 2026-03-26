@@ -1,7 +1,7 @@
 ---
 title: Writing Procedures
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/writing-procedures.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::writing-procedures.adoc[]
 ---
 
@@ -14,7 +14,7 @@ A procedure can be:
 
 A how-to guide 
 
-How-to guides explain to the user how to accomplish a goal without a specific, defined end result. The specifics of the end result will vary depending on the individual user’s goal. For example, a how-to guide could explain how to create a database by explaining the different options and customizations the user can make.
+How-to guides explain to the user how to accomplish a goal without a specific, defined end result. The specifics of the end result will vary depending on the individual user's goal. For example, a how-to guide could explain how to create a database by explaining the different options and customizations the user can make.
 
 A tutorial 
 
@@ -22,7 +22,7 @@ Tutorials explain to the user how to accomplish a goal that has a defined end re
 
 ## [](#description-attribute)Description Attribute
 
-Before the [Prerequisites section](#prerequisites), you should have a brief explanation of the goal of the procedure, or what the user can hope to accomplish once they’ve completed the procedure.
+Before the [Prerequisites section](#prerequisites), you should have a brief explanation of the goal of the procedure, or what the user can hope to accomplish once they've completed the procedure.
 
 This goal should be part of the `:description:` attribute that you need to add to the beginning of every topic.
 
@@ -48,7 +48,7 @@ It contains an [unordered list](unordered-list.md) of things the user must do or
 Add links where appropriate, following the appropriate [link formatting guidance](links.md).
 
 > [!TIP]
-> If prerequisites change based on the user’s choice of environment, consider if [tabs-set.adoc](#tabs-set.adoc) would help present the information.
+> If prerequisites change based on the user's choice of environment, consider if [tabs-set.adoc](#tabs-set.adoc) would help present the information.
 
 ### [](#procedure)Procedure
 
@@ -66,7 +66,7 @@ Steps in a **Procedure** section should:
 * Use [Bold](bold.md) for single menu items, tab names, and dialog names.
 
 > [!TIP]
-> If steps in a procedure change based on the user’s choice of environment, consider if [tabs-set.adoc](#tabs-set.adoc) would help present the information.
+> If steps in a procedure change based on the user's choice of environment, consider if [tabs-set.adoc](#tabs-set.adoc) would help present the information.
 
 Steps in a **Procedure** section should not:
 
@@ -86,4 +86,4 @@ The **Next Steps** section is where additional procedures in a series or links t
 
 Always add links to a **Next Steps** section.
 
-Do not call the section **See Also**, **Additional Resources**, or similar. There’s always some action the user can take after they complete a procedure.
+Do not call the section **See Also**, **Additional Resources**, or similar. There's always some action the user can take after they complete a procedure.

@@ -3,7 +3,7 @@ title: Start Using the Kotlin SDK
 description: A Kotlin application running on the JVM can use the Couchbase
   Kotlin SDK to access a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.9/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@kotlin-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -52,7 +52,7 @@ implementation "com.couchbase.client:kotlin-client:1.4.9"
 
 ## [](#using-a-snapshot-version-optional)Using a Snapshot Version (optional)
 
-Couchbase publishes pre-release snapshot artifacts to the Central Portal Snapshots Repository. If you wish to use a snapshot version, you’ll need to tell your build tool about this repository.
+Couchbase publishes pre-release snapshot artifacts to the Central Portal Snapshots Repository. If you wish to use a snapshot version, you'll need to tell your build tool about this repository.
 
 * Gradle (Kotlin)
 * Gradle (Groovy)
@@ -104,14 +104,14 @@ repositories {
 
 ## [](#hello-couchbase)Hello Couchbase
 
-Here’s an example that shows how to execute a SQL++ (formerly N1QL) query and get a document from the Key Value (KV) service.
+Here's an example that shows how to execute a SQL++ (formerly N1QL) query and get a document from the Key Value (KV) service.
 
 * Couchbase Capella
 * Local Couchbase Server
 
 This version of the example assumes you are connecting to a [Couchbase Capella](https://docs.couchbase.com/cloud/index.html) free tier operational cluster, which has the `travel-sample` bucket installed by default.
 
-(If you’re not using Couchbase Capella, click the **Local Couchbase Server** tab above.)
+(If you're not using Couchbase Capella, click the **Local Couchbase Server** tab above.)
 
 Before running the example:
 

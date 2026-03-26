@@ -3,7 +3,7 @@ title: About App Endpoints
 description: Learn about App Endpoints, how they work, and how to configure them
   in Couchbase Capella.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/about-app-endpoints.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::app-endpoints/about-app-endpoints.adoc[]
 ---
 
@@ -47,7 +47,7 @@ For more information about scopes and collections, see [Buckets, Scopes and Coll
 
 ## [](#eventing-compatibility)Eventing Compatibility
 
-The [Eventing Service](../../cloud/eventing/eventing-overview.md) can run 1 or more Eventing Functions in your operational cluster to handle data changes according to a real-time Event-Condition-Action model. You can create Eventing Functions that can read and write data from a keyspace (bucket, scope, or collection) that’s linked to an App Endpoint.
+The [Eventing Service](../../cloud/eventing/eventing-overview.md) can run 1 or more Eventing Functions in your operational cluster to handle data changes according to a real-time Event-Condition-Action model. You can create Eventing Functions that can read and write data from a keyspace (bucket, scope, or collection) that's linked to an App Endpoint.
 
 App Services 3.2.2 or later is fully compatible with Eventing on operational clusters using Couchbase Server 7.6.5 or later.
 

@@ -1,7 +1,7 @@
 ---
 title: Data Modeling
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/java/design/data-modeling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:java/design/data-modeling.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:tutorials:mobile-travel-tutorial:java/design/data-modeling.adoc[]
 
 ## [](#introduction)Introduction
 
-Before diving into the document schemas, let’s take a look again at the mobile app. When you ran the mobile app in the previous lesson, you may remember two different options were presented on the login screen:
+Before diving into the document schemas, let's take a look again at the mobile app. When you ran the mobile app in the previous lesson, you may remember two different options were presented on the login screen:
 
 ![java login label](../../_images/java-login-label.png) 
 
@@ -21,7 +21,7 @@ Before diving into the document schemas, let’s take a look again at the mobile
 
 ![travel sample mobile](../../_images/travel_sample_mobile.png) 
 
-Throughout the next lessons, you will be switching between those two modes to test different functionalities. It’s worth noting that the data model is slightly different between those two modes. Let’s review the data model for each one.
+Throughout the next lessons, you will be switching between those two modes to test different functionalities. It's worth noting that the data model is slightly different between those two modes. Let's review the data model for each one.
 
 ### [](#sync-mode)Sync mode
 
@@ -54,7 +54,7 @@ In guest mode, the Couchbase Lite database hosts the following types of document
 
 ## [](#document-types)Document Types
 
-Unlike tables, in Couchbase, all the documents are stored in the same namespace. So you typically use an additional property to differentiate between each entity. Let’s call it "type".
+Unlike tables, in Couchbase, all the documents are stored in the same namespace. So you typically use an additional property to differentiate between each entity. Let's call it "type".
 
 ![document types](../../_images/document-types.gif) 
 
@@ -68,7 +68,7 @@ Try it out
 
 ## [](#document-keyid)Document Key/ID
 
-Every document in Couchbase is associated with a unique key that must be provided by the user when the document is created. The key is the unique identifier of the document and can take any format. However, it is recommended that you give it a value that provides some context about the contents of the document. For instance, in the travel app data set, the document Key/ID is of the format `{doc.type}_{alphanumeric_string}`. Here `{doc.type}` provides some context of the purpose of the document and in combination with the `{alphanumeric_string}`, it uniquely identifies the string. The document Key will be listed as “ID” on Couchbase Server admin console. The key is also referred to as the Document ID.
+Every document in Couchbase is associated with a unique key that must be provided by the user when the document is created. The key is the unique identifier of the document and can take any format. However, it is recommended that you give it a value that provides some context about the contents of the document. For instance, in the travel app data set, the document Key/ID is of the format `{doc.type}_{alphanumeric_string}`. Here `{doc.type}` provides some context of the purpose of the document and in combination with the `{alphanumeric_string}`, it uniquely identifies the string. The document Key will be listed as "ID" on Couchbase Server admin console. The key is also referred to as the Document ID.
 
 ![admin ui](../../_images/admin-ui.png) 
 

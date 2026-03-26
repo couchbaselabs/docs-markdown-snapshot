@@ -3,7 +3,7 @@ title: Manage Logging
 description: The <em>Logging</em> facility allows a record to be maintained of
   important events that occur on Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-logging/manage-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:manage-logging/manage-logging.adoc[]
 ---
 
@@ -80,7 +80,7 @@ When all required information has been entered, click the **Start Collecting** b
 
 ## [](#getting-a-cluster-summary)Getting a Cluster Summary
 
-A summary of the cluster’s status can be acquired by means of a link available in the **Collect Information** panel.
+A summary of the cluster's status can be acquired by means of a link available in the **Collect Information** panel.
 
 Click **Get cluster summary**, which opens the **Cluster Summary Info** dialog.
 

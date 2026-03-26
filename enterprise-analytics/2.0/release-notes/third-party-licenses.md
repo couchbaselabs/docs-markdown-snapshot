@@ -3,7 +3,7 @@ title: Licenses for Third-Party Components
 description: This section contains licensing information for some third-party
   components that are used by Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/release-notes/pages/third-party-licenses.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:release-notes:third-party-licenses.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.0@enterprise-analytics:release-notes:third-party-licenses.adoc[]
 
 # Licenses for Third-Party Components
 
-This section contains licensing information for some third-party components that are used by Enterprise Analytics. We’re thankful to all individuals that have created these third-party components.
+This section contains licensing information for some third-party components that are used by Enterprise Analytics. We're thankful to all individuals that have created these third-party components.
 
 > [!IMPORTANT]
 > The complete list of licenses for Enterprise Analytics is available on the [Legal Agreements](https://www.couchbase.com/legal/agreements) page.

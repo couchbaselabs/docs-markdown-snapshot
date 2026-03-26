@@ -3,7 +3,7 @@ title: Data Modelling
 description: <em>Couchbase Sync Gateway's</em> data model; for secure
   cloud-to-edge synchronization of enterprise data.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/data-modeling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::data-modeling.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.2@sync-gateway::data-modeling.adoc[]
 
 # Data Modelling
 
-> _Couchbase Sync Gateway’s_ data model; for secure cloud-to-edge synchronization of enterprise data.  
+> _Couchbase Sync Gateway's_ data model; for secure cloud-to-edge synchronization of enterprise data.  
 
 ## [](#introduction)Introduction
 
@@ -65,11 +65,11 @@ How to avoid the error
 You should change any top-level user properties that have a key with a leading underscore , by either:
 
 * Renaming them to remove the underscore, or,
-* Wrapping them inside another object with a key that doesn’t have a leading underscore.
+* Wrapping them inside another object with a key that doesn't have a leading underscore.
 
 ## [](#document-structure)Document Structure
 
-Couchbase’s unit of data is a document, this is the NOSQL equivalent of a row or record.
+Couchbase's unit of data is a document, this is the NOSQL equivalent of a row or record.
 
 Documents are stored as a key-value pair, which comprises a unique and immutable key, the _Id_, and a value representing the users' data (a JSON-object or binary blob).
 

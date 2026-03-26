@@ -3,7 +3,7 @@ title: Add Autocomplete to Your Application
 description: Use autocomplete to add suggestions for a user's Search query as
   they type in your application.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/search-query-auto-complete-code.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:search:search-query-auto-complete-code.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:7.6@server:search:search-query-auto-complete-code.adoc[]
 
 # Add Autocomplete to Your Application
 
-> Use autocomplete to add suggestions for a user’s Search query as they type in your application. 
+> Use autocomplete to add suggestions for a user's Search query as they type in your application. 
 
 After you [create and configure a Search index that supports autocomplete](search-query-auto-complete-ui.md), configure your application to return results from the Search Service.
 
@@ -22,7 +22,7 @@ After you [create and configure a Search index that supports autocomplete](searc
 * You have a bucket with scopes and collections in your cluster. For more information about how to create a bucket, see [Create a Bucket](../../current/manage/manage-buckets/create-bucket.md).
 * You have created a compatible Search index. For more information, see [Configure an Autocomplete Search Index](search-query-auto-complete-ui.md).
 * Your user account has the **Search Admin** role for the bucket where you created the Search index.
-* You have the hostname or IP address for the node in your cluster where you’re running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../../current/manage/manage-nodes/list-cluster-nodes.md).
+* You have the hostname or IP address for the node in your cluster where you're running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../../current/manage/manage-nodes/list-cluster-nodes.md).
 
 ## [](#procedure)Procedure
 

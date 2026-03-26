@@ -3,7 +3,7 @@ title: Install or provision the Couchbase server
 description: A short tutorial that will guide the developer in downloading and
   installing Couchbase, then creating a database to store our student records.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/install-couchbase-server.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:tutorials:install-couchbase-server.adoc[]
 ---
 
@@ -42,9 +42,9 @@ Select **Couchbase Server**, and from there, download the community edition of t
 > [!NOTE]
 > Make sure you download the latest version of the server software.
 
-Once you’ve downloaded the software, install it on your machine. (The method for installation will depend on your operating system).
+Once you've downloaded the software, install it on your machine. (The method for installation will depend on your operating system).
 
-The method for running the application will, again, depend on your host operating system. In our example, we’re using a Mac, so the installation will place then executable app in the standard `Applications` folder.
+The method for running the application will, again, depend on your host operating system. In our example, we're using a Mac, so the installation will place then executable app in the standard `Applications` folder.
 
 First, make sure that you have Docker installed and running on your system. (You can download it from [here](https://www.docker.com/get-started)).
 
@@ -61,10 +61,10 @@ This tutorial is designed for use with standalone or Docker installations of the
 
 ## [](#set-up-a-new-cluster)Set up a new cluster
 
-Each Couchbase server can run as its own cluster, or join another cluster to form a multi-node system. For the purposes of this basic tutorial, we’re only going to concern ourselves with running as a single node.
+Each Couchbase server can run as its own cluster, or join another cluster to form a multi-node system. For the purposes of this basic tutorial, we're only going to concern ourselves with running as a single node.
 
 > [!TIP]
-> You can always find the server’s configuration page by pointing your browser at `http://127.0.0.1:8091`.
+> You can always find the server's configuration page by pointing your browser at `http://127.0.0.1:8091`.
 
 ![Click button to set up new cluster](_images/launch-couchbase-server-page.png) 
 
@@ -72,15 +72,15 @@ Press **Setup New Cluster** to create your new cluster. The next page will allow
 
 ![Enter the cluster details](_images/enter-cluster-details.png) 
 
-Since we’re going to be housing student records, let’s call the cluster `student-cluster`. You’ll also need an admin username and a strong yet memorable password. Since this is just a demonstration, leave the administrator username as `Administrator`. After you’ve filled in the details, press **Next: Accept Terms**.
+Since we're going to be housing student records, let's call the cluster `student-cluster`. You'll also need an admin username and a strong yet memorable password. Since this is just a demonstration, leave the administrator username as `Administrator`. After you've filled in the details, press **Next: Accept Terms**.
 
 > [!TIP]
-> Since this is a tutorial, then feel free to use something like `password` for your password. In a real system, of course, you’ll use something much stronger.
+> Since this is a tutorial, then feel free to use something like `password` for your password. In a real system, of course, you'll use something much stronger.
 
-On the next page, you’ll find the terms and conditions for using Couchbase. If you’re happy with them, then check the box and press **Finish with Defaults**.
+On the next page, you'll find the terms and conditions for using Couchbase. If you're happy with them, then check the box and press **Finish with Defaults**.
 
-You’re now on the main dashboard page.
+You're now on the main dashboard page.
 
 ## [](#next-steps)Next steps
 
-Now you have installed the server and created a cluster, the next thing to do is create the database where you’re going to store your documents. In [Buckets, Scopes and Collections](buckets-scopes-and-collections.md) you will also learn other ways in which Couchbase allows you to logically partition your data.
+Now you have installed the server and created a cluster, the next thing to do is create the database where you're going to store your documents. In [Buckets, Scopes and Collections](buckets-scopes-and-collections.md) you will also learn other ways in which Couchbase allows you to logically partition your data.

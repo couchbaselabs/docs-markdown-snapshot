@@ -1,7 +1,7 @@
 ---
 title: Development Workflow
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/dev-workflow.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:spark-connector::dev-workflow.adoc[]
 ---
 
@@ -21,9 +21,9 @@ Apart from the actual development, the biggest hurdle most of the time is the de
 
 There are two ways the problem is typically approached: you can either add the dependencies to the classpath when you submit the application or you can create a big jar which contains all dependencies.
 
-## [](#adding-the-connector-to-the-executors-classpath)Adding the Connector to the Executor’s classpath
+## [](#adding-the-connector-to-the-executors-classpath)Adding the Connector to the Executor's classpath
 
-If you want to manage the dependency directly on the worker, the actual project setup is quite simple. You don’t need to set up shadowing and can use a `build.sbt` like this:
+If you want to manage the dependency directly on the worker, the actual project setup is quite simple. You don't need to set up shadowing and can use a `build.sbt` like this:
 
 ```scala
 name := "your-awesome-app"
@@ -108,7 +108,7 @@ libraryDependencies ++= Seq(
 
 The important piece here is that the Spark dependencies are scoped to `provided` and `test`. We need this to not include Spark in the shadowed jar but still allow it to run in the IDE for development.
 
-Also, create `project/plugins.sbt` if it doesn’t exist and add:
+Also, create `project/plugins.sbt` if it doesn't exist and add:
 
 addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "1.0.0")
 

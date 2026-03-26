@@ -1,7 +1,7 @@
 ---
 title: Naming a Cluster
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-name-cluster.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:reference:rest-name-cluster.adoc[]
 ---
 
@@ -20,7 +20,7 @@ POST /pools/default
 
 Establishes a name for the cluster. Either the Full Admin or the Cluster Admin role is required.
 
-Once defined, the cluster name provides a convenient, verbal reference, which will never be used in programmatic or networked access. The name can be of any length, can make use of any symbols (for example: %, $, !, #), and can include spaces. The name can be changed at any time during the life of the cluster, irrespective of the cluster’s configuration.
+Once defined, the cluster name provides a convenient, verbal reference, which will never be used in programmatic or networked access. The name can be of any length, can make use of any symbols (for example: %, $, !, #), and can include spaces. The name can be changed at any time during the life of the cluster, irrespective of the cluster's configuration.
 
 ## [](#curl-syntax)Curl Syntax
 

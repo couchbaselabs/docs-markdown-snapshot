@@ -2,7 +2,7 @@
 title: Initializing a Node
 description: A node can be initialized, by means of the REST API.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-initialize-node.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:reference:rest-initialize-node.adoc[]
 ---
 
@@ -19,7 +19,7 @@ POST /nodes/self/controller/settings
 
 ## [](#description)Description
 
-Initializes a node, prior to its being provisioned as a one-node cluster. This means to establish local paths for on-disk storage required by the Data, Index, Analytics, and Eventing Services; and to establish a local path for a JRE, to be used by the Analytics Service. Once established, these paths continue to be used by the node subsequent to its provisioning with services, memory-allocations, administrator username and password, and other details. Indeed, these paths will continue to be used by the node even subsequent to the node’s addition to another cluster.
+Initializes a node, prior to its being provisioned as a one-node cluster. This means to establish local paths for on-disk storage required by the Data, Index, Analytics, and Eventing Services; and to establish a local path for a JRE, to be used by the Analytics Service. Once established, these paths continue to be used by the node subsequent to its provisioning with services, memory-allocations, administrator username and password, and other details. Indeed, these paths will continue to be used by the node even subsequent to the node's addition to another cluster.
 
 If one or more paths are not specified (or if initialization with this interface is left entirely unperformed), defaults are provided when provisioning occurs.
 

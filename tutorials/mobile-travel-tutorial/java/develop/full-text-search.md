@@ -1,7 +1,7 @@
 ---
 title: Full Text Search
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/java/develop/full-text-search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:java/develop/full-text-search.adoc[]
 ---
 
@@ -59,9 +59,9 @@ We build the query using the different expressions from above and parse the `Res
 
 Try it out
 
-1. Log into the Travel Sample Mobile app as “demo” user and password as “password”
+1. Log into the Travel Sample Mobile app as "demo" user and password as "password"
 2. Tap on "hotels" button
-3. In the description text field enter “Pets”.
+3. In the description text field enter "Pets".
 4. In the Location text field enter "London" (Note the search is **case sensitive**)
 5. Verify that you see one hotel listed named "Novotel London West" — see [Figure 1](#fig-java-hotel-list)
 

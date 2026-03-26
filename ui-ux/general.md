@@ -1,7 +1,7 @@
 ---
 title: General UI Copy Principles
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/general.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ui-ux::general.adoc[]
 ---
 
@@ -18,7 +18,7 @@ The following are some general principles for UI copy in the Couchbase Style:
 * [Use Active Voice](#active)
 * [Keep It Plain, Short, and Simple](#simple)
 * [Write for the Lowest Common Denominator](#lowest)
-* [Explain What’s Critical](#critical)
+* [Explain What's Critical](#critical)
 * [Focus on What the User Can Do](#can-do)
 * [Keep It Consistent](#consistent)
 * [Do Not Write Out Numbers](#numbers)
@@ -29,17 +29,17 @@ For an overview of voice and tone, see [Couchbase UI Voice](voice.md).
 
 Use American English spelling, not British or Canadian English.
 
-If you need to check the spelling of a word, refer to the [Merriam-Webster’s Collegiate Dictionary, Eleventh Edition](https://www.merriam-webster.com/).
+If you need to check the spelling of a word, refer to the [Merriam-Webster's Collegiate Dictionary, Eleventh Edition](https://www.merriam-webster.com/).
 
 ## [](#present)Write in the Present Tense
 
 Try to write in present tense wherever possible.
 
-If you need to refer to something that’s happened in the past or will happen in the UI, then using past or future tense is acceptable - but try to avoid it.
+If you need to refer to something that's happened in the past or will happen in the UI, then using past or future tense is acceptable - but try to avoid it.
 
 | Acceptable                                                    | Not Acceptable                                                                                                                               |
 | ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Use a Project to organize the databases in your organization. | You will use a Project to organize the databases in your organization. You’ve used a Project to organize the databases in your organization. |
+| Use a Project to organize the databases in your organization. | You will use a Project to organize the databases in your organization. You've used a Project to organize the databases in your organization. |
 
 For more information, see [Present tense](https://developers.google.com/style/tense) in the Google Developer Style Guide.
 
@@ -53,7 +53,7 @@ You can use first-person in specific circumstances. For more information, see [F
 
 | Acceptable                                                                                            | Not Acceptable                                                                                                                                                                                            |
 | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| You can change the **Description** for your cluster from the **Settings** page.                       | We can change the **Description** for a cluster from the **Settings** page. Let’s change our cluster’s description.                                                                                       |
+| You can change the **Description** for your cluster from the **Settings** page.                       | We can change the **Description** for a cluster from the **Settings** page. Let's change our cluster's description.                                                                                       |
 | A **Project Owner** can create, modify, and delete buckets. You can create a maximum of 30 buckets. a | A **Project Owner** can create, modify, and delete buckets. He can create a maximum of 30 buckets. A **Project Owner** can create, modify, and delete buckets. He/she can create a maximum of 30 buckets. |
 
 ## [](#active)Use Active Voice
@@ -73,8 +73,8 @@ Try to write in imperatives - give the user instructions, do not just explain fe
 
 Here are some tips to help you with active voice:
 
-* Think about what’s actually _doing_ the action you’re describing. Emphasize the actor.
-* Find or push back for more information if you cannot identify the actor. Ask the developer what’s actually doing what in a scenario.
+* Think about what's actually _doing_ the action you're describing. Emphasize the actor.
+* Find or push back for more information if you cannot identify the actor. Ask the developer what's actually doing what in a scenario.
 * If the sentence does not make sense in active voice or you lose the correct emphasis, you can use the passive voice.
 
 For more information about active voice, see [Active voice](https://developers.google.com/style/voice) in the Google Developer Style Guide.
@@ -95,7 +95,7 @@ Use contractions, with some exceptions. For more information, see [Contractions]
 | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | You can set a Bucket name.                                                         | You can configure a Bucket name.                                                      |
 | Before you can use your Capella cluster from your VPC, run the following commands. | Before you can access your Capella cluster from your VPC, run the following commands. |
-| You cannot connect a hosted zone through the AWS CLI command in Capella.           | You can’t associate the hosted zone via the AWS CLI command in Capella.               |
+| You cannot connect a hosted zone through the AWS CLI command in Capella.           | You can't associate the hosted zone via the AWS CLI command in Capella.               |
 | Activate your Capella cluster.                                                     | Start your Capella database.                                                          |
 | Add additional nodes.                                                              | Add more nodes.                                                                       |
 | Adhere to the following character restrictions.                                    | Follow these character limits.                                                        |
@@ -124,13 +124,13 @@ Lengthy explanations or unusual situations should be explained in the documentat
 
 When writing an [error message](error-messages.md) or any kind of text guiding a user away from an action, do not reveal or focus on their lack of permissions.
 
-Focus on what the user can do in their current situation, unless there’s no other option than to ask an administrator about their permissions.
+Focus on what the user can do in their current situation, unless there's no other option than to ask an administrator about their permissions.
 
 ## [](#consistent)Keep It Consistent
 
 Keep the terminology that you use consistent across the UI.
 
-What’s called a cluster in one part of the UI should not be called a database elsewhere.
+What's called a cluster in one part of the UI should not be called a database elsewhere.
 
 ## [](#numbers)Do Not Write Out Numbers
 

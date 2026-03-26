@@ -4,7 +4,7 @@ description: This page explains how rebalance operations impact the Index
   Service in Couchbase Server, covering file-based rebalance, shard affinity,
   index redistribution, and node failover.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/rebalance-and-index-service.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:clusters-and-availability/rebalance-and-index-service.adoc[]
 ---
 
@@ -21,7 +21,7 @@ Rebalance affects each service differently. The following sections explain how r
 
 The Index Service maintains cluster-wide index definitions and metadata to redistribute indexes and replicas during rebalance operations.
 
-During rebalance, Couchbase Server evaluates each node’s CPU, RAM, disk bandwidth, and user-defined Server Groups (Availability Zones) to improve performance and maximize index availability.
+During rebalance, Couchbase Server evaluates each node's CPU, RAM, disk bandwidth, and user-defined Server Groups (Availability Zones) to improve performance and maximize index availability.
 
 ## [](#index-storage-modes-shards-and-partitions)Index Storage Modes, Shards, and Partitions
 
@@ -45,7 +45,7 @@ Shard affinity makes placement of index data predictable by assigning a consiste
 * Efficient replica repair: Because replicas share the same shard layout, the system can select the most suitable replica for faster repair during failover.
 * Efficient file-based rebalance: When shard files are aligned, movement during rebalance can be performed through file transfer rather than full index rebuilds.
 
-When shard affinity and the prerequisites for shard-based rebalance are met, Couchbase Server keeps all indexes sharing a physical shard ID (the Plasma shard UUID) together on the same node. These indexes remain grouped within that shard. During rebalance, the shard moves as a single unit when it’s relocated to another node.
+When shard affinity and the prerequisites for shard-based rebalance are met, Couchbase Server keeps all indexes sharing a physical shard ID (the Plasma shard UUID) together on the same node. These indexes remain grouped within that shard. During rebalance, the shard moves as a single unit when it's relocated to another node.
 
 > [!NOTE]
 > Couchbase recommends not to disable shard affinity after you enable it.
@@ -106,10 +106,10 @@ For self-managed clusters, File-Based Rebalance is disabled by default. You need
 
 #### [](#when-fbr-takes-effect)When Does File-Based Rebalance Take Effect?
 
-The File-Based Rebalance method uses shard affinity metadata in the index’s files during the rebalance process, through relocation.
+The File-Based Rebalance method uses shard affinity metadata in the index's files during the rebalance process, through relocation.
 
 > [!IMPORTANT]
-> Couchbase Server can perform File-Based Rebalance for an index only when the index’s files have the required metadata.
+> Couchbase Server can perform File-Based Rebalance for an index only when the index's files have the required metadata.
 
 These are the ways to have the required metadata in the index files and to understand when does File-Based Rebalance take effect:
 
@@ -151,7 +151,7 @@ When you retry the rebalance, the Index Service recalculates the placement plan 
 Because the planner starts fresh, it may select a different set of nodes for index movement compared to the previous attempt. Even if an index was already transferred during the earlier, incomplete rebalance, the new plan may move that index again if the planner determines that a different placement results in a more balanced or optimal outcome.
 
 > [!NOTE]
-> * In Couchbase Server versions 7.6.0 and 7.6.1, when you enable File-Based Rebalance, you’re prevented from specifying Index Service node placement in a `CREATE INDEX` statement.
+> * In Couchbase Server versions 7.6.0 and 7.6.1, when you enable File-Based Rebalance, you're prevented from specifying Index Service node placement in a `CREATE INDEX` statement.
 > * In Couchbase Server 7.6.2 and later versions, you can use the `WITH <node>` clause in a `CREATE INDEX` statement to control index placement. However, when you enable File-Based Rebalance, Couchbase Server does not support the `WITH <node>` clause with the `ALTER INDEX` statements.
 
 For information about restarting Swap Rebalance, see [Restarting a Swap Rebalance on Index Nodes](index-rebalance-use-cases.md#restart-swap-rebalance).
@@ -283,9 +283,9 @@ File-Based Rebalance is only possible between 7.6 and later version nodes. Movem
 * Failover with replicas present:  
 The system may select a replica on a different node than expected based on coverage, partitions, and shard size. This can cause additional shard movement during repair.
 * Failover for indexes without replicas:  
-Non-replicated indexes must be rebuilt via DCP, so you’ll see extra rebuild work even if you expected minimal movement.
+Non-replicated indexes must be rebuilt via DCP, so you'll see extra rebuild work even if you expected minimal movement.
 * Large-scale cluster topology changes:  
-Adding or removing nodes, in particular when multiple nodes are affected, expands the planner’s options. This may cause broader redistribution than you anticipated.
+Adding or removing nodes, in particular when multiple nodes are affected, expands the planner's options. This may cause broader redistribution than you anticipated.
 
 ### [](#adding-shard-affinity-metadata-without-full-swap-rebalance-cycle)Adding Shard Affinity Metadata Without Full Swap Rebalance Cycle
 
@@ -315,7 +315,7 @@ When a shard contains multiple indexes, those indexes cannot be moved independen
 
 When multiple replicas are available during failover, Couchbase Server selects the replica that minimizes repair time. The system evaluates replicas in the following priority order:
 
-1. **Largest index size**: Prioritizes the index in the shard with largest disk size, indicating that it’s the most up-to-date.
+1. **Largest index size**: Prioritizes the index in the shard with largest disk size, indicating that it's the most up-to-date.
 2. **Highest coverage for required indexes**: Prioritizes the replica that already has the largest amount of data built for the indexes undergoing repair.
 3. **Most matching partition instances**: If coverage is similar, selects the replica with more matching partitions.
 4. **Smallest total shard size**: If all other factors are equal, prefers the shard with a smaller total disk size to reduce file copy time.

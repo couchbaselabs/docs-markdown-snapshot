@@ -3,7 +3,7 @@ title: Set a Document Filter
 description: Use a document filter with a type mapping to add an extra filter to
   the documents you want to include in a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/set-type-identifier.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:set-type-identifier.adoc[]
 ---
 
@@ -61,7 +61,7 @@ To set a document filter for a Search index with the Capella UI:
   4. [Create a Custom Document Filter](#custom)
 
 > [!WARNING]
-> You cannot use custom document filters with another type of type identifier on your Search index. If you select an option other than **Custom** after you have defined custom document filters, you’ll lose any defined custom filters on your Search index.
+> You cannot use custom document filters with another type of type identifier on your Search index. If you select an option other than **Custom** after you have defined custom document filters, you'll lose any defined custom filters on your Search index.
 
 ### [](#json-type)Create a JSON Type Field Document Filter
 
@@ -86,7 +86,7 @@ To only add documents to your Search index that have IDs that match a specified 
 2. In the **Doc ID up to Separator** field, enter the separator character from the ID prefix in your document ID values.  
 For example, if you know all of your document ID values are prefixed by a string and an underscore (\_), enter `_`.
 3. Under **Type Mappings**, next to the type mapping where you want to add the document filter, click **Edit**.
-4. In the **Enter Document Filter** field, enter the exact prefix from the document’s ID value that you want to use as a filter.  
+4. In the **Enter Document Filter** field, enter the exact prefix from the document's ID value that you want to use as a filter.  
 For example, if you wanted your type mapping to only include documents that have an prefix of `landmark_` in their ID values, you could enter `landmark` in the filter field.
 5. Click **Submit**.
 6. Click **Update Index**.
@@ -99,7 +99,7 @@ To only add documents to your Search index that have IDs that match a specified 
 2. In the **Doc ID with Regex** field, enter the regular expression that you want to use to filter documents in your Search index.  
 For example, if you wanted documents with ID values that contained `_40`, you could enter `_[3-5]0` as your regular expression.
 3. Under **Type Mappings**, next to the type mapping where you want to add the document filter, click **Edit**.
-4. In the **Enter Document Filter** field, enter a match for the regular expression from the document’s ID value that you want to use as a filter.  
+4. In the **Enter Document Filter** field, enter a match for the regular expression from the document's ID value that you want to use as a filter.  
 For example, if you wanted your type mapping to only include documents with ID values that contained `_40`, you could enter `_40` in the filter field.
 5. Click **Submit**.
 6. Click **Update Index**.

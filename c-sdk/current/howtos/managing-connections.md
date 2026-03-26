@@ -3,7 +3,7 @@ title: Managing Connections using the C SDK with Couchbase Server
 description: This section describes how to connect the C SDK (libcouchbase) to a
   Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:c-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -114,7 +114,7 @@ lcb_createopts_connstr(options, connection_string, strlen(connection_string));
 ```
 
 > [!TIP]
-> You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
+> You don't need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ## [](#connection-strings)Connection Strings
 
@@ -150,7 +150,7 @@ If a single application needs to connect to multiple Couchbase Server clusters, 
 
 ## [](#alternate-addresses-and-custom-ports)Alternate Addresses and Custom Ports
 
-If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT’d environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect to the cluster. Both the client and server require special configuration in this case.
+If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT'd environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect to the cluster. Both the client and server require special configuration in this case.
 
 On the server side, each server node must be configured to advertize its external address as well as any custom port mapping. This is done with the `setting-alternate-address` CLI command introduced in Couchbase Server 6.5\. A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
 
@@ -180,7 +180,7 @@ Options:
 
 In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses.
 
-If the detection heuristic fails in your environment, you can override it by setting the `network` client setting to `default` if the client and server are on the same network, or `external` if they’re on different networks.
+If the detection heuristic fails in your environment, you can override it by setting the `network` client setting to `default` if the client and server are on the same network, or `external` if they're on different networks.
 
 > [!NOTE]
 > Any TLS certificates must be set up at the point where the connections are being made.
@@ -221,7 +221,7 @@ lcb_createopts_create(&options, LCB_TYPE_CLUSTER);
 lcb_createopts_connstr(options, connection_string, strlen(connection_string));
 ```
 
-If you want to verify it’s actually working, you can use a tool like `tcpdump`. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
+If you want to verify it's actually working, you can use a tool like `tcpdump`. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
 
 E..e..@.@.............+......q{...#..Y.....
 .E...Ey........9........................id{"key":"value"}
@@ -234,7 +234,7 @@ E.....@.@.............+....Z.'yZ..#........
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 
-As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it’s good practice to always enable DNS-SRV on the client.
+As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it's good practice to always enable DNS-SRV on the client.
 
 The following steps are necessary to make it work:
 
@@ -273,7 +273,7 @@ In case of successful resolution a message like this will be written at `INFO` l
 
 44ms [I4ebdb48d23db23b6] {10474} [INFO] (instance - L:219) Found host node.example.com:11210 via DNS SRV
 
-If the DNS SRV records could not be loaded properly you’ll get an exception logged and the given hostname will be used as an A record lookup.
+If the DNS SRV records could not be loaded properly you'll get an exception logged and the given hostname will be used as an A record lookup.
 
 81ms [If1e0caf208c1ff41] {11763} [INFO] (instance - L:202) DNS SRV lookup failed: LCB_ERR_UNKNOWN_HOST (1049). Ignore this if not relying on DNS SRV records
 
@@ -283,4 +283,4 @@ We strongly recommend that the client and server [are in the same LAN-like envir
 
 ### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 
-Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
+Some DNS caching providers (notably, home routers) can't handle an SRV record that's large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.

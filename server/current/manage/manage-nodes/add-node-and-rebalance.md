@@ -2,7 +2,7 @@
 title: Add a Node and Rebalance
 description: A new Couchbase Server node can be added to an existing cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/add-node-and-rebalance.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-nodes/add-node-and-rebalance.adoc[]
 ---
 
@@ -21,7 +21,7 @@ Following node-addition, _rebalance_ is required, to make the new node an active
 
 ### [](#node-addition-and-certificate-management)Node-Addition and Certificate-Management
 
-The examples on this page assume that the default, _system-generated_ certificates provided by Couchbase Server continue to be resident on the cluster and the node to be added. In a production or similar context, to ensure security, only administrator-configured certificates should be used on a cluster: these should rely on a well known _Certificate Authority_, whose certificate is loaded as the cluster’s _root_ certificate. (For more information, see [Default Certificates and Certificate Substitution](../../learn/security/certificates.md#server-certificates).)
+The examples on this page assume that the default, _system-generated_ certificates provided by Couchbase Server continue to be resident on the cluster and the node to be added. In a production or similar context, to ensure security, only administrator-configured certificates should be used on a cluster: these should rely on a well known _Certificate Authority_, whose certificate is loaded as the cluster's _root_ certificate. (For more information, see [Default Certificates and Certificate Substitution](../../learn/security/certificates.md#server-certificates).)
 
 In this context, a node can be added to the cluster only after conformant administrator-configured certificates are loaded to the node. You must configure certificates as well as completing the steps shown by the examples on this page.
 
@@ -58,7 +58,7 @@ This indicates that Couchbase Server is installed and running on the new node, b
 ![addServerButton](../_images/manage-nodes/addServerButton.png)  
 The **Add Server Node** dialog is now displayed:  
 ![addServerNodeDialog](../_images/manage-nodes/addServerNodeDialog.png)  
-Note the warning provided at the top of the dialog: if the node to be added has already been provisioned, the results of such provisioning will be eliminated and replaced on the node’s addition to the current cluster. (In fact, the node to be added in this example, has neither been initialized nor provisioned.)
+Note the warning provided at the top of the dialog: if the node to be added has already been provisioned, the results of such provisioning will be eliminated and replaced on the node's addition to the current cluster. (In fact, the node to be added in this example, has neither been initialized nor provisioned.)
 4. Specify the IP address of the node to be added. A placeholder password must be specified, even though the node has not yet been provisioned with one. Uncheck all of the **Services** check-boxes except **Data**. The dialog now appears as follows:  
 ![addServerNodeDialogComplete](../_images/manage-nodes/addServerNodeDialogComplete.png)  
 This indicates that the added node will run the **Data Service** only.  
@@ -104,7 +104,7 @@ When the row for a node is open, as is the case here for `10.142.181.102`, infor
 
 ### [](#rebalance-failure-notification)Rebalance Failure Notification
 
-If rebalance fails — for example, due to a node’s becoming non-responsive — Couchbase Web Console displays a notification such as the following:
+If rebalance fails — for example, due to a node's becoming non-responsive — Couchbase Web Console displays a notification such as the following:
 
 ![rebalanceFailureNotification](../_images/manage-nodes/rebalanceFailureNotification.png) 
 
@@ -276,7 +276,7 @@ The output is as follows:
   "delta_recovery_buckets": "all"
 }
 
-This indicates that the status of `retry_rebalance` is `pending`; and provides a `rebalance_id` for the process, of `ff5845cdce693db2dce9a9308cbf885d`. This id can be used to cancel the retry. The output also lists the cluster’s nodes, indicates that `2` retry attempts are scheduled to occur if necessary after the current one, and indicates that `291` seconds are still to elapse before the pending retry.
+This indicates that the status of `retry_rebalance` is `pending`; and provides a `rebalance_id` for the process, of `ff5845cdce693db2dce9a9308cbf885d`. This id can be used to cancel the retry. The output also lists the cluster's nodes, indicates that `2` retry attempts are scheduled to occur if necessary after the current one, and indicates that `291` seconds are still to elapse before the pending retry.
 
 To cancel the pending retry, use the `POST /controller/cancelRebalanceRetry` http method and URI, specifying the retrieved `rebalance_id` as the endpoint:
 
@@ -295,4 +295,4 @@ Note that reference pages for these commands are provided at [Get Rebalance-Retr
 
 ## [](#next-steps-after-adding-and-rebalancing)Next Steps
 
-As well as supporting a cluster’s adding a node to itself, Couchbase Server also supports a node’s joining itself to a cluster (which is essentially the same operation, but proceeding from the node, rather than from the cluster). See [Join a Cluster and Rebalance](join-cluster-and-rebalance.md) for details.
+As well as supporting a cluster's adding a node to itself, Couchbase Server also supports a node's joining itself to a cluster (which is essentially the same operation, but proceeding from the node, rather than from the cluster). See [Join a Cluster and Rebalance](join-cluster-and-rebalance.md) for details.

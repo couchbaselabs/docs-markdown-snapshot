@@ -2,7 +2,7 @@
 title: requireRole()
 description: Requiring Sync Gateway role
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/sync-function-api-require-role-cmd.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::sync-function-api-require-role-cmd.adoc[]
 ---
 
@@ -27,7 +27,7 @@ Use the `requireRole()` function to reject document updates that are not made by
 
 | Argument | Description                                                                                                                                                                                                                                                                                                                               |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| rolename | Must be a string identifying a role, or an array of strings identifying multiple roles; the function is applied to each role in the array. If the value resolves to null the function result is a no-op. **Note** — Role names must always be prefixed with role:; an exception is thrown if a role name doesn’t conform with this rule.. |
+| rolename | Must be a string identifying a role, or an array of strings identifying multiple roles; the function is applied to each role in the array. If the value resolves to null the function result is a no-op. **Note** — Role names must always be prefixed with role:; an exception is thrown if a role name doesn't conform with this rule.. |
 
 ## [](#context)Context
 

@@ -2,7 +2,7 @@
 title: Transactions Migration Guide
 description: For those transitioning from using the Couchbase Transactions library for Java.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/project-docs/pages/distributed-acid-transactions-migration-guide.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@java-sdk:project-docs:distributed-acid-transactions-migration-guide.adoc[]
 ---
 
@@ -72,7 +72,7 @@ A few details of configuration change:
 
 * `TransactionsConfig::metadataCollection` takes a `TransactionKeyspace` instead of a `Collection` (since a `Collection` cannot be created at this point).
 * `keyValueTimeout` has been removed from `TransactionsConfig` and `TransactionOptions`.
-* `TransactionDurabilityLevel` has been dropped in favour of using the SDK’s `DurabilityLevel`.
+* `TransactionDurabilityLevel` has been dropped in favour of using the SDK's `DurabilityLevel`.
 * `TransactionOptions` now allows a `metadataCollection` parameter.
 
 And certain classes have been renamed to be compliant with the Java SDK:
@@ -165,7 +165,7 @@ QueryResult qr = cluster.query("INSERT...",
 
 ## [](#cleanup)Cleanup
 
-This doesn’t impact the API, but it is useful to know that lost cleanup has changed.
+This doesn't impact the API, but it is useful to know that lost cleanup has changed.
 
 Previously, lost cleanup would look for expired transactions on the default collections of all buckets in the cluster. Unless a metadata collection was specified, in which case only that collection would be cleaned up.
 
@@ -199,5 +199,5 @@ catch (TransactionFailedException err) {
 
 ## [](#further-reading)Further Reading
 
-* There’s plenty of explanation about how Transactions work in Couchbase in our [Transactions documentation](../../../server/current/learn/data/transactions.md).
+* There's plenty of explanation about how Transactions work in Couchbase in our [Transactions documentation](../../../server/current/learn/data/transactions.md).
 * The [Java SDK transactions documentation](../howtos/distributed-acid-transactions-from-the-sdk.md).

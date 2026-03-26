@@ -2,7 +2,7 @@
 title: Integrate a Custom Built Listener
 description: Couchbase Lite database peer-to-peer sync- integrate a custom built listener
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/p2psync-custom.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:swift:p2psync-custom.adoc[]
 ---
 
@@ -188,7 +188,7 @@ let message = Message.fromData(data)
 replicatorConnection?.receive(message: message)
 ```
 
-The replication connection’s `receive` method is called. Which then processes the data to persist to the local database.
+The replication connection's `receive` method is called. Which then processes the data to persist to the local database.
 
 ### [](#passive-peer-3)Passive Peer
 

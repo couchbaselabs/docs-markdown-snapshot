@@ -1,7 +1,7 @@
 ---
 title: Tooltips
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/tooltips.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ui-ux::tooltips.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:ui-ux::tooltips.adoc[]
 
 # Tooltips
 
-A tooltip appears when a user points to something in the UI, but doesn’t click.
+A tooltip appears when a user points to something in the UI, but doesn't click.
 
 A tooltip can come in two styles:
 

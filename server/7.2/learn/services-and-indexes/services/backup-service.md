@@ -4,7 +4,7 @@ description: The Backup Service allows full and incremental data-backups to be
   scheduled, and also allows the scheduling of <em>merges</em> of previously
   made data-backups.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/services-and-indexes/services/backup-service.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:services-and-indexes/services/backup-service.adoc[]
 ---
 
@@ -17,13 +17,13 @@ link: xref:7.2@server:learn:services-and-indexes/services/backup-service.adoc[]
 
 ## [](#backup-service-overview)Overview
 
-The Backup Service supports the scheduling of full and incremental data backups, either for specific individual buckets, or for all buckets on the cluster. (Both Couchbase and Ephemeral buckets can be backed up). The Backup Service also allows the scheduling of _merges_ of previously made backups. Data to be backed up can also be selected by _service_: for example, the data for the _Data_ and _Index_ Services alone might be selected for backup, with no other service’s data included.
+The Backup Service supports the scheduling of full and incremental data backups, either for specific individual buckets, or for all buckets on the cluster. (Both Couchbase and Ephemeral buckets can be backed up). The Backup Service also allows the scheduling of _merges_ of previously made backups. Data to be backed up can also be selected by _service_: for example, the data for the _Data_ and _Index_ Services alone might be selected for backup, with no other service's data included.
 
 The service — which is also referred to as _backup_ (Couchbase Backup Service) — can be configured and administered by means of the Couchbase Web Console UI, the CLI, or the REST API.
 
 ## [](#backup-service-and-cbbackupmgr)The Backup Service and cbbackupmgr
 
-The Backup Service’s underlying backup tasks are performed by `cbbackupmgr`, which can also be used independently, on the command line, to perform backups and merges. The Backup Service and `cbbackupmgr` (when the latter is used independently) have the following, principal differences:
+The Backup Service's underlying backup tasks are performed by `cbbackupmgr`, which can also be used independently, on the command line, to perform backups and merges. The Backup Service and `cbbackupmgr` (when the latter is used independently) have the following, principal differences:
 
 * Whereas the Backup Service allows backup, restore, and archiving to be configured for the local cluster, and also permits restore to be configured for a remote cluster; `cbbackupmgr` allows backup, restore, and archiving each to be configured either for the local or for a remote cluster.
 * Whereas `cbbackupmgr` allows backups, merges, and other related operations only to be executed individually, the Backup Service provides automated, recurrent execution of such operations.
@@ -34,7 +34,7 @@ Note that both the Backup Service and `cbbackupmgr` allow _full_ and _incrementa
 
 ## [](#backup-service-architecture)Backup-Service Architecture
 
-The Backup Service has a _leader-follower_ architecture. This means that one of the cluster’s Backup-Service nodes is elected by ns\_server to be the _leader_; and is thereby made responsible for dispatching backup tasks; for handling the addition and removal of nodes from the Backup Service; for cleaning up orphaned tasks; and for ensuring that global storage-locations are accessible by all Backup-Service nodes.
+The Backup Service has a _leader-follower_ architecture. This means that one of the cluster's Backup-Service nodes is elected by ns\_server to be the _leader_; and is thereby made responsible for dispatching backup tasks; for handling the addition and removal of nodes from the Backup Service; for cleaning up orphaned tasks; and for ensuring that global storage-locations are accessible by all Backup-Service nodes.
 
 If the _leader_ becomes unresponsive, or is lost due to failover, the Backup Service ceases operation; until a rebalance has been performed. During the course of this rebalance, ns\_server elects a new leader, and the Backup Service resumes, using the surviving Backup-Service nodes.
 
@@ -86,7 +86,7 @@ In cases where data cannot be backed up due to a task failing to start, the data
 
 As described in [Schedule Merges](../../../manage/manage-backup-and-restore/manage-backup-and-restore.md#schedule-merges), the Backup Service allows a schedule to be established for the automated merging of backups that have been previously accomplished. This involves specifying a _window of past time_. The backups that will be merged by the scheduled process are those that fall within the specified window.
 
-The window’s placement and duration are determined by the specifying of two offsets. Each offset is an integer that refers to a day. The **merge\_offset\_start** integer indicates the day that contains the _start_ of the window. The **merge\_offset\_end** integer indicates the day that contains the _end_ of the window. Note that these offsets are each measured from a different point:
+The window's placement and duration are determined by the specifying of two offsets. Each offset is an integer that refers to a day. The **merge\_offset\_start** integer indicates the day that contains the _start_ of the window. The **merge\_offset\_end** integer indicates the day that contains the _end_ of the window. Note that these offsets are each measured from a different point:
 
 * The **merge\_offset\_start** integer is measured from the present day — the present day itself always being specified by the integer **0**.
 * The **merge\_offset\_end** is measured from the specified **merge\_offset\_start**.

@@ -3,7 +3,7 @@ title: dcpagg
 description: Retrieves statistics that are logically grouped and aggregated
   together by prefixes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbstats/cbstats-dcpagg.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cli:cbstats/cbstats-dcpagg.adoc[]
 ---
 
@@ -46,7 +46,7 @@ The following example shows a request for a set of aggregated DCP statistics:
 
 # ./cbstats 10.5.2.54:11210 dcpagg
 
-Here’s the output from the command:
+Here's the output from the command:
 
  :total:backoff:                 0
  :total:count:                   6

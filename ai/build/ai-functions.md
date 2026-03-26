@@ -3,7 +3,7 @@ title: Use Capella AI Functions
 description: Use AI Functions to summarize text, classify content, detect
   sentiment, explain patterns, and more — all within your SQL++ queries.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/ai-functions.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:build:ai-functions.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:ai:build:ai-functions.adoc[]
 
 > Use AI Functions to summarize text, classify content, detect sentiment, explain patterns, and more — all within your SQL++ queries. 
 
-Capella AI Functions combine SQL++ with language models to analyze your data. Use LLMs such as OpenAI, Bedrock, or models hosted in the [Capella Model Service](model-service/deploy-llm-model.md) to run task-based functions using familiar SQL++ queries directly within Capella’s query editor.
+Capella AI Functions combine SQL++ with language models to analyze your data. Use LLMs such as OpenAI, Bedrock, or models hosted in the [Capella Model Service](model-service/deploy-llm-model.md) to run task-based functions using familiar SQL++ queries directly within Capella's query editor.
 
 The following Capella AI Functions are available:
 
@@ -30,7 +30,7 @@ The following Capella AI Functions are available:
 * **Completion**: Allows you to define your own tasks using prompts and generates tailored responses. Combine with AI Guardrails for safe content generation.
 
 > [!NOTE]
-> When you use AI Functions, Capella charges based on your Model Service usage and Query Service usage. If you’re using external LLMs such as OpenAI and Amazon Bedrock, you incur charges from those model service providers.
+> When you use AI Functions, Capella charges based on your Model Service usage and Query Service usage. If you're using external LLMs such as OpenAI and Amazon Bedrock, you incur charges from those model service providers.
 
 ## [](#prerequisites)Prerequisites
 
@@ -111,7 +111,7 @@ To enable Capella AI Functions:
   4. Choose your Bedrock credentials.
   5. Click **Next**.
 5. Choose a Capella operational cluster for your functions.
-6. (Optional) If your Capella model and your Capella operational cluster have the same AWS region, choose whether you want to enable private networking for your functions. This enables private networking between your LLM’s AWS region and your Capella operational cluster.  
+6. (Optional) If your Capella model and your Capella operational cluster have the same AWS region, choose whether you want to enable private networking for your functions. This enables private networking between your LLM's AWS region and your Capella operational cluster.  
 > [!NOTE]  
 > You cannot disable private networking later.
 7. Click **Complete Setup**.
@@ -139,7 +139,7 @@ Test these functions using your own data, queries, and prompts. You can specify 
 AI Function performance depends on the number and size of query nodes, data volume, and query complexity. Larger or more complex queries may require [scaling your cluster](../../cloud/clusters/scale-database.md) to maintain performance.
 
 > [!NOTE]
-> If you receive an error code `3000` after running your query, it indicates the function you’re using is not enabled or associated with an LLM. You need to [enable the function](#enable-ai-functions) and try again. For more information about SQL++ error codes, see [SQL++ Error Codes](../../cloud/n1ql/n1ql-language-reference/n1ql-error-codes.md).
+> If you receive an error code `3000` after running your query, it indicates the function you're using is not enabled or associated with an LLM. You need to [enable the function](#enable-ai-functions) and try again. For more information about SQL++ error codes, see [SQL++ Error Codes](../../cloud/n1ql/n1ql-language-reference/n1ql-error-codes.md).
 
 ## [](#view-ai-functions)View AI Functions
 
@@ -237,7 +237,7 @@ View sample queries for all the available AI Functions and their general respons
 > When working with different LLMs, keep the following in mind:
 > 
 > * Responses may vary slightly depending on the model selected.
-> * When using reasoning models, it’s recommended to set a higher `max_tokens` value. For these models, reasoning tokens count towards the total token limit. If your token limit is too low, it may cause truncated responses.
+> * When using reasoning models, it's recommended to set a higher `max_tokens` value. For these models, reasoning tokens count towards the total token limit. If your token limit is too low, it may cause truncated responses.
 
 ### [](#sentiment-analysis)Sentiment Analysis
 
@@ -682,7 +682,7 @@ Result
 
 ### [](#completion)Completion
 
-To generate tailored text completions, use the `ai_completion` function. Define a unique system and user prompt, and optionally configure parameters such as temperature and maximum tokens. Unlike other pre-defined functions, your inputs directly shape the LLM’s behavior, producing responses aligned with your specific querying needs. As a result, the function provides the flexibility to create your own tasks and design entirely custom interactions with the model.
+To generate tailored text completions, use the `ai_completion` function. Define a unique system and user prompt, and optionally configure parameters such as temperature and maximum tokens. Unlike other pre-defined functions, your inputs directly shape the LLM's behavior, producing responses aligned with your specific querying needs. As a result, the function provides the flexibility to create your own tasks and design entirely custom interactions with the model.
 
 In the following example using the `travel-sample` dataset, based on the specific request from the system and user prompt, the LLM was able to write unique advertisements for all the hotels in the dataset:
 

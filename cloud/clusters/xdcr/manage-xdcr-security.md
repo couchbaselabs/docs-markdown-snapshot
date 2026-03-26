@@ -3,7 +3,7 @@ title: Manage Replication Security
 description: Configure your Cross Datacenter Replication (XDCR) to securely
   replicate data between source and destination buckets.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/manage-xdcr-security.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:xdcr/manage-xdcr-security.adoc[]
 ---
 
@@ -28,7 +28,7 @@ You can secure your replication using 1 of the following approaches:
 * [VPC Peering](#vpc-peering)
 * [Private Endpoint Service](#private-endpoints)
 
-Choose the option that best fits your cluster’s configuration and security requirements.
+Choose the option that best fits your cluster's configuration and security requirements.
 
 > [!CAUTION]
 > Once you create a replication, you cannot modify how its securely routed. To make changes, you need to [create a new replication](manage-xdcr-replications.md#create-replication).
@@ -100,7 +100,7 @@ To enable replication over a private endpoint connection:
 
 1. Enable XDCR with the [Management REST API](../../management-api-reference/index.md#tag/Private-Endpoint-Service):
 
-  1. If you’re enabling the private endpoint service for the first time, use the [POST v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/privateEndpointService](../../management-api-reference/index.md#tag/Private-Endpoint-Service/operation/enablePrivateEndpointService) endpoint.
+  1. If you're enabling the private endpoint service for the first time, use the [POST v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/privateEndpointService](../../management-api-reference/index.md#tag/Private-Endpoint-Service/operation/enablePrivateEndpointService) endpoint.
   2. If you want to enable XDCR after enabling the private endpoint service, use the [PUT /v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/privateEndpointService](../../management-api-reference/index.md#tag/Private-Endpoint-Service/operation/updatePrivateEndpointService) endpoint.
 2. [Create a replication to Capella from a self-managed cluster](manage-xdcr-replications.md#from-on-prem-to-capella) and follow the steps for securing a replication over a private endpoint.
 

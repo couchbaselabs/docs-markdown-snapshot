@@ -4,7 +4,7 @@ description: To access Couchbase Server, users must be authenticated.
   <em>Authentication</em> is a process for identifying who is attempting to
   access a system.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/authentication-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:security/authentication-overview.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:7.6@server:learn:security/authentication-overview.adoc[]
 
 # Understanding Authentication
 
-> To access Couchbase Server, users must be authenticated. _Authentication_ is a process for identifying who is attempting to access a system. Subsequent to successful authentication, _authorization_ can be performed, whereby the user’s appropriate access-level is determined. 
+> To access Couchbase Server, users must be authenticated. _Authentication_ is a process for identifying who is attempting to access a system. Subsequent to successful authentication, _authorization_ can be performed, whereby the user's appropriate access-level is determined. 
 
 ## [](#authentication-for-administrators)Authentication for Administrators
 
@@ -29,7 +29,7 @@ The recommended method for application-authentication when connecting to Couchba
 
 _Mutual-TLS_ (mTLS) certificate-based authentication relies on a _Certificate Authority_ (CA) to validate identities and issue certificates. When using this method, no sensitive credentials are shared over the network; and all communication between application and server is performed over an _encrypted channel_, to prevent eavesdropping and impersonation.
 
-For a complete overview of Couchbase Server’s certificate-handling mechanisms, see [Certificates](certificates.md). For practical steps required to set up client and server certificates, see [Manage Certificates](../../manage/manage-security/manage-certificates.md).
+For a complete overview of Couchbase Server's certificate-handling mechanisms, see [Certificates](certificates.md). For practical steps required to set up client and server certificates, see [Manage Certificates](../../manage/manage-security/manage-certificates.md).
 
 ### [](#authentication-with-username-and-password)Authentication with Username and Password
 
@@ -69,7 +69,7 @@ For cases that do not use SCRAM-SHA, such as those that implement TLS network en
 
 You can select which algorithm Couchbase Server uses to hash locally stored passwords by setting `passwordHashAlg` using the `/settings/security` REST API. When you change the hash algorithm Couchbase Server uses, it does not update all of the stored passwords using the new algorithm. It cannot rehash the existing passwords as it does not have access to the original, unhashed password. Instead, existing passwords remain hashed using the previous hashing algorithm. Couchbase Server uses the newly-set hashing algorithm for passwords when you create new accounts or when an existing account changes its password. Users can authenticate using passwords hashed with any hashing algorithm Couchbase Server supports.
 
-You can enable Couchbase Server’s password hash migration feature that automatically rehashes user’s password when they authenticate. Couchbase Server is able to hash the user’s password with the currently enabled hashing algorithm because it has access to the unhashed password during authentication. This rehashing is transparent to users—​they do not have to change their password to have it hashed with the more new hashing algorithm.
+You can enable Couchbase Server's password hash migration feature that automatically rehashes user's password when they authenticate. Couchbase Server is able to hash the user's password with the currently enabled hashing algorithm because it has access to the unhashed password during authentication. This rehashing is transparent to users—​they do not have to change their password to have it hashed with the more new hashing algorithm.
 
 You enable automatic password hash by calling the `/settings/security` endpoint to set the `allowHashMigrationDuringAuth` setting to `true`. This setting has an effect only if the entire database cluster is running Couchbase Server 7.6 or later. See [Configure On-the-Wire Security](../../rest-api/rest-setting-security.md) for more information.
 

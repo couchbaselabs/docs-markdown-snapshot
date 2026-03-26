@@ -1,7 +1,7 @@
 ---
 title: Test Your Changes Locally
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/test-site.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:test-site.adoc[]
 ---
 
@@ -27,7 +27,7 @@ Keep the PAT somewhere where you can copy it again later.
 Make sure you also authorize your token to work with SAML single sign-on.
 3. Open a terminal window.  
 > [!NOTE]  
-> If you’re on Windows, you must do the following steps with Git Bash, not any other terminal program. You should have automatically installed Git Bash when you installed Git on your computer.
+> If you're on Windows, you must do the following steps with Git Bash, not any other terminal program. You should have automatically installed Git Bash when you installed Git on your computer.
 4. Paste the following command:  
 ```console  
 git config --global credential.helper store && \  
@@ -47,7 +47,7 @@ This stores your PAT in the `$HOME/.git-credentials` file on your computer.
 > && git ls-remote -h $REPLY > /dev/null
 > ```
 > 
-> Enter the URL of the repository that’s causing your build to fail when prompted.
+> Enter the URL of the repository that's causing your build to fail when prompted.
 
 ## [](#generate-a-local-build-with-antora)Generate a Local Build with Antora
 

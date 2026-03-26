@@ -1,7 +1,7 @@
 ---
 title: Set Up a Standalone Collection
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/manage-columnar.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sources:manage-columnar.adoc[]
 ---
 
@@ -38,7 +38,7 @@ To create a standalone collection:
 2. Click a cluster name. The workbench opens.
 3. Use the explorer to explore the existing databases, scopes, and collections. You can add a database and scope if necessary: see [Manage Capella Analytics Services Databases](manage-databases.md).
 4. Click **Create** **Standalone Collection**. Alternatively, you can move your cursor over the name of a scope and then choose **⋮ (More)** **Add Standalone Collection**. The Create Standalone Collection dialog opens.
-5. Select a **Database** and **Scope** for the new collection, or verify the supplied database and scope if you’re adding it to a specific scope.
+5. Select a **Database** and **Scope** for the new collection, or verify the supplied database and scope if you're adding it to a specific scope.
 6. In the **Collection Name** field, enter a name for the collection.  
 The name must start with a letter (A-Z, a-z) and contain only upper- and lowercase letters, numbers (0-9), and underscore (\_) or dash (-) characters.
 7. For the **Primary Key**, choose either:

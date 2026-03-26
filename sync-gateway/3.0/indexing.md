@@ -2,7 +2,7 @@
 title: Indexes versus Views
 description: Using Indexes to minimize system downtime in Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/indexing.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::indexing.adoc[]
 ---
 
@@ -33,7 +33,7 @@ This capability is enabled by default and is supported by two properties in the 
 
 Use of GSI requires Couchbase Server 5.5, with at least one node running the Index Service. Users wanting to run Sync Gateway 2.1 with an older version of Couchbase Server will need to continue to use views, by setting the `use_views` property.
 
-Sync Gateway requires the Index Service to be running on at least two Couchbase Server nodes (required for index replica). However, users can run with a single Index Service node by setting Sync Gateway’s `num_index_replicas` property to zero. Doing so, may result in increased downtime in the event of an index node failure.
+Sync Gateway requires the Index Service to be running on at least two Couchbase Server nodes (required for index replica). However, users can run with a single Index Service node by setting Sync Gateway's `num_index_replicas` property to zero. Doing so, may result in increased downtime in the event of an index node failure.
 
 ---
 

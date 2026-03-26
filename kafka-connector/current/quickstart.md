@@ -1,7 +1,7 @@
 ---
 title: Quickstart
 editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/quickstart.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:kafka-connector::quickstart.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:kafka-connector::quickstart.adoc[]
 
 > This section shows how to deploy the connector. 
 
-Before you start, make sure to read the [introduction](index.md), especially the part about the connector’s [delivery guarantees](index.md#delivery-guarantees).
+Before you start, make sure to read the [introduction](index.md), especially the part about the connector's [delivery guarantees](index.md#delivery-guarantees).
 
 ## [](#download)Download
 
@@ -30,17 +30,17 @@ If you prefer to build the connector from source:
 
 However you obtained the connector archive, go ahead and unzip it now. The result should be a directory called `couchbase-kafka-connect-couchbase-<version>`. The rest of this guide will refer to this directory as `$KAFKA_CONNECT_COUCHBASE_HOME`.
 
-This guide assumes you have already installed Couchbase Server locally and have loaded the sample bucket called `travel-sample`. (It’s fine if you want to use a different bucket; neither the connector nor this guide depends on the contents of the documents in the bucket.)
+This guide assumes you have already installed Couchbase Server locally and have loaded the sample bucket called `travel-sample`. (It's fine if you want to use a different bucket; neither the connector nor this guide depends on the contents of the documents in the bucket.)
 
-You’ll also need a local installation of Apache Kafka or Confluent Platform Kafka.
+You'll also need a local installation of Apache Kafka or Confluent Platform Kafka.
 
 ## [](#set-up-kafka)Set Up Kafka
 
 If you already have an installation of Kafka and know how to start the servers, feel free to skip this section.
 
-Still reading? Don’t worry, setting up a basic installation is pretty easy. Download either [Apache Kafka](https://kafka.apache.org/downloads) or [Confluent Platform Kafka](https://www.confluent.io/download/). For simplicity, this guide assumes you’re installing from a ZIP or TAR archive, so steer clear of the deb/rpm packages for now.
+Still reading? Don't worry, setting up a basic installation is pretty easy. Download either [Apache Kafka](https://kafka.apache.org/downloads) or [Confluent Platform Kafka](https://www.confluent.io/download/). For simplicity, this guide assumes you're installing from a ZIP or TAR archive, so steer clear of the deb/rpm packages for now.
 
-Decompress the Apache Kafka or Confluent Platform archive and move the resulting directory under `~/opt` (or wherever you like to keep this kind of software). The rest of this guide refers to the root of the installation directory as `$KAFKA_HOME` or `$CONFLUENT_HOME`. Be aware some config files are in different relative locations depending on whether you’re using Apache Kafka or Confluent Platform Kafka.
+Decompress the Apache Kafka or Confluent Platform archive and move the resulting directory under `~/opt` (or wherever you like to keep this kind of software). The rest of this guide refers to the root of the installation directory as `$KAFKA_HOME` or `$CONFLUENT_HOME`. Be aware some config files are in different relative locations depending on whether you're using Apache Kafka or Confluent Platform Kafka.
 
 Make sure the Kafka command line tools are in your path:
 
@@ -50,13 +50,13 @@ export PATH=<path-to-apache-kafka-or-confluent>/bin:$PATH
 
 ## [](#start-the-kafka-servers)Start the Kafka Servers
 
-If you’re using Confluent Platform Kafka, you can use the `confluent` command to start the servers in development mode:
+If you're using Confluent Platform Kafka, you can use the `confluent` command to start the servers in development mode:
 
 ```bash
 confluent local services schema-registry start
 ```
 
-If you’re not using Confluent, the commands are slightly different, but the idea is the same. Start the Zookeeper and Kafka servers by running these commands, **each in a separate terminal**:
+If you're not using Confluent, the commands are slightly different, but the idea is the same. Start the Zookeeper and Kafka servers by running these commands, **each in a separate terminal**:
 
 ```bash
 zookeeper-server-start.sh $KAFKA_HOME/config/zookeeper.properties
@@ -73,7 +73,7 @@ kafka-server-start.sh $KAFKA_HOME/config/server.properties
 The source connector listens for changes to Couchbase documents and publishes them to a Kafka topic.
 
 > [!TIP]
-> If you’re more interested in saving Kafka messages to Couchbase, skip ahead to the [Couchbase Sink Connector](#sink) section.
+> If you're more interested in saving Kafka messages to Couchbase, skip ahead to the [Couchbase Sink Connector](#sink) section.
 
 ### [](#source-config)Configure the Source Connector
 
@@ -84,14 +84,14 @@ Take a moment to peruse the configuration options specified here. Some are [stan
 For this exercise, change the value of `couchbase.bucket` to `travel-sample` (or whichever bucket you want to stream from). For `couchbase.username` and `couchbase.password`, supply the credentials of a Couchbase user who has the "Data DCP Reader" role for the bucket. If you have not yet created such a user, now is a good time to read about [Creating and Managing Users with the UI](../../server/current/manage/manage-security/manage-users-and-roles.md).
 
 > [!TIP]
-> If you’re connecting to Capella, make sure to read [Couchbase Capella Support](cloud.md).
+> If you're connecting to Capella, make sure to read [Couchbase Capella Support](cloud.md).
 
 ### [](#run)Run the Source Connector
 
-Kafka connectors can be run in [standalone or distributed](https://kafka.apache.org/documentation/#connect%5Frunning) mode. For now let’s run the connector in standalone mode, using the CLASSPATH environment variable to include the Couchbase connector JAR in the class path.
+Kafka connectors can be run in [standalone or distributed](https://kafka.apache.org/documentation/#connect%5Frunning) mode. For now let's run the connector in standalone mode, using the CLASSPATH environment variable to include the Couchbase connector JAR in the class path.
 
 > [!TIP]
-> The `connect-standalone` and `connect-distributed` commands are part of Kafka. Make sure your `PATH` environment variable includes Kafka’s `bin` directory. See [Set Up Kafka](#set-up-kafka) for details.
+> The `connect-standalone` and `connect-distributed` commands are part of Kafka. Make sure your `PATH` environment variable includes Kafka's `bin` directory. See [Set Up Kafka](#set-up-kafka) for details.
 
 For Confluent Platform Kafka:
 
@@ -157,7 +157,7 @@ opt
 
 ### [](#observe-messages-published-by-couchbase-source-connector)Observe Messages Published by Couchbase Source Connector
 
-The sample config file tells the source connector to publish to a topic called `test-default`. Let’s use the Kafka command-line tools to spy on the contents of the topic.
+The sample config file tells the source connector to publish to a topic called `test-default`. Let's use the Kafka command-line tools to spy on the contents of the topic.
 
 For Confluent Platform Kafka:
 
@@ -317,11 +317,11 @@ For reference, the Avro schema for this payload format is shown below.
 
 #### [](#writing-a-custom-sourcehandler)Writing a custom SourceHandler
 
-If none of the existing source handlers meet your requirements, you can write your own. The connector’s GitHub repository includes an [example project](https://github.com/couchbase/kafka-connect-couchbase/tree/master/examples/custom-extensions) you can use as a template for creating your own source handlers and Single Message Transforms.
+If none of the existing source handlers meet your requirements, you can write your own. The connector's GitHub repository includes an [example project](https://github.com/couchbase/kafka-connect-couchbase/tree/master/examples/custom-extensions) you can use as a template for creating your own source handlers and Single Message Transforms.
 
 ## [](#sink)Couchbase Sink Connector
 
-Now let’s talk about the sink connector, which reads messages from one or more Kafka topics and writes them to Couchbase Server.
+Now let's talk about the sink connector, which reads messages from one or more Kafka topics and writes them to Couchbase Server.
 
 The sink connector will attempt to convert message values to JSON. If the conversion fails, the connector will fall back to treating the value as a String BLOB.
 
@@ -341,7 +341,7 @@ To run the sink connector, use the same command as described in [Run the Source 
 
 ### [](#send-test-messages)Send Test Messages
 
-Now that the Couchbase Sink Connector is running, let’s give it some messages to import:
+Now that the Couchbase Sink Connector is running, let's give it some messages to import:
 
 ```bash
 git clone https://github.com/couchbase/kafka-connect-couchbase.git

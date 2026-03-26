@@ -3,7 +3,7 @@ title: Add Search to Your Application
 description: Use the Search Service to create a customizable search experience
   for your cluster and your end-user applications.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:search:search.adoc[]
 ---
 
@@ -24,6 +24,8 @@ The Search Service offers near real-time search capabilities for a diverse range
 * Geospatial data
 
 Use a [Search index](#indexes) to efficiently store your data, and retrieve it with a [Search query](#queries).
+
+For more information about how to size your cluster for using the Search Service, see [Sizing Search Service Nodes](../install/sizing-general.md#sizing-search-service-nodes).
 
 ## [](#indexes)Search Indexes
 
@@ -64,7 +66,7 @@ You can run a Search query:
 
 ## [](#vector-search)Vector Search for AI Applications
 
-Vector Search builds on Couchbase Server’s Search Service to provide vector index support for Retrieval Augmented Generation (RAG) with an existing Large Language Model (LLM).
+Vector Search builds on Couchbase Server's Search Service to provide vector index support for Retrieval Augmented Generation (RAG) with an existing Large Language Model (LLM).
 
 Vector Search adds a new index type to the Search Service to support AI application development, known as a Vector Search index. Using Vector Search and Couchbase Server, you can develop applications with an existing LLM while giving context and up-to-date information from your own data.
 

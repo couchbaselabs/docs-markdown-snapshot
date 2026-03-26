@@ -3,7 +3,7 @@ title: XDCR Advanced Filtering
 description: XDCR Advanced Filtering allows specified subsets of documents to be
   replicated from their source collection.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/xdcr-filtering.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:clusters-and-availability/xdcr-filtering.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.6@server:learn:clusters-and-availability/xdcr-filtering.adoc[]
 
 ## [](#configure-xdcr-filtering)Understanding XDCR Advanced Filtering
 
-_XDCR filtering_ allows a document to be included in or excluded from a filtered replication, based on the document’s fields and values.
+_XDCR filtering_ allows a document to be included in or excluded from a filtered replication, based on the document's fields and values.
 
 XDCR applies the filter during replication processing, as the data is passed through the replication pipeline. Filter-evaluation is performed only in the following circumstances:
 
@@ -27,8 +27,8 @@ Note that filter-evaluation is _not_ performed based on the measurement of elaps
 
 Case-sensitive matches can be made on:
 
-* _id_ and _xattrs_ values, within the document’s _metadata_.
-* Field-names and values, within the document’s _data_, nested to any degree.
+* _id_ and _xattrs_ values, within the document's _metadata_.
+* Field-names and values, within the document's _data_, nested to any degree.
 
 Every document on which a match is successfully made is included in the filtered replication. Other documents are _not_ included.
 
@@ -96,12 +96,12 @@ Thus, each of the two documents in the source is replicated to one, distinct tar
 
 The filter-expressions defined for a particular replication can be edited after their initial definition and use. This allows a single replication to employ multiple different filters and filter-combinations, sequentially.
 
-Note that once a document has been replicated, it can only be removed from the target by being removed from the source. Therefore, if a replication’s filter-expression is changed, although it changes the criterion whereby documents are to be replicated in future, it does not affect the presence on those documents already replicated to the target according to the old criterion. If the intention is to populate the target _only_ with documents that meet the new criterion, those documents on the target that do not meet the criterion must either be manually removed, or removed by means of _flushing_: see [XDCR Bucket Flush](xdcr-overview.md#xdcr-bucket-flush), for details.
+Note that once a document has been replicated, it can only be removed from the target by being removed from the source. Therefore, if a replication's filter-expression is changed, although it changes the criterion whereby documents are to be replicated in future, it does not affect the presence on those documents already replicated to the target according to the old criterion. If the intention is to populate the target _only_ with documents that meet the new criterion, those documents on the target that do not meet the criterion must either be manually removed, or removed by means of _flushing_: see [XDCR Bucket Flush](xdcr-overview.md#xdcr-bucket-flush), for details.
 
 Note also that a replication only prepares to replicate all documents in the source bucket during its _initial process_; and afterwards, only considers _mutations_ as candidates for replication. See [XDCR Process](xdcr-overview.md#xdcr-process), for details. Two options are therefore made available, whereby the continuance of a replication can be configured, following the editing of a filter-expression:
 
-* _Restart_. The current instance of the replication is ended, and a new instance is started, with the new filtering criterion. This causes a new running of the replication’s _initial process_, whereby all documents in the source bucket are examined. In consequence, documents that already meet the new filtering criterion, but were not replicated according to the old filtering criterion, and have not been mutated, are determined to be candidates for replication. This is the default.
-* _Continue_. The current instance of the replication continues, with the new filtering criterion. The replication’s _initial process_ is _not_ re-run. Therefore, documents that already meet the new filtering criterion, but were not replicated according to the old filtering criterion, and have not been mutated, are _not_ replicated — unless they are mutated subsequently.
+* _Restart_. The current instance of the replication is ended, and a new instance is started, with the new filtering criterion. This causes a new running of the replication's _initial process_, whereby all documents in the source bucket are examined. In consequence, documents that already meet the new filtering criterion, but were not replicated according to the old filtering criterion, and have not been mutated, are determined to be candidates for replication. This is the default.
+* _Continue_. The current instance of the replication continues, with the new filtering criterion. The replication's _initial process_ is _not_ re-run. Therefore, documents that already meet the new filtering criterion, but were not replicated according to the old filtering criterion, and have not been mutated, are _not_ replicated — unless they are mutated subsequently.
 
 For example, it might be desirable to modify the replication shown above in Figure 2 — which searches for the string `air`, followed by the string `l` — without deleting and recreating the replication. The possible results are shown below.
 
@@ -175,7 +175,7 @@ Note, however, that conversely, creation of a new replication in this way, if pe
 
 TTL can be established on individual documents, on collections, and on buckets. The relationship between these settings, and the way the setting on an individual document is resolved when replicated to the target, is fully described in [Expiration](../data/expiration.md).
 
-When a deletion or expiration event is replicated to the target, the replica-document at the target is deleted or expired irrespective of its current TTL. Thus, the replica-document’s TTL may have been modified on the target, such that it specifies expiration at a later point in time than that specified by the TTL of the source document: nevertheless, when the source document expires, an expiration event is replicated, and the replica-document on the target is immediately expired.
+When a deletion or expiration event is replicated to the target, the replica-document at the target is deleted or expired irrespective of its current TTL. Thus, the replica-document's TTL may have been modified on the target, such that it specifies expiration at a later point in time than that specified by the TTL of the source document: nevertheless, when the source document expires, an expiration event is replicated, and the replica-document on the target is immediately expired.
 
 For more information, see [Configuring Deletion Filters to Prevent Data-Loss](#configuring-deletion-filters-to-prevent-data-loss), immediately below.
 

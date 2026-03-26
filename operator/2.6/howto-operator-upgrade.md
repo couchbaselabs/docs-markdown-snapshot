@@ -1,7 +1,7 @@
 ---
 title: Upgrade the Operator
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/howto-operator-upgrade.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::howto-operator-upgrade.adoc[]
 ---
 
@@ -26,7 +26,7 @@ Upgrading the Couchbase Autonomous Operator is a four-step process:
 
 ## [](#before-upgrading)Before Upgrading
 
-Make sure to consult the [Release Notes](release-notes.md) and the [What’s New?](whats-new.md) pages before upgrading, as there may be additional considerations or steps required on a per-release basis. Clusters with [couchbaseclusters.spec.antiAffinity](resource/couchbasecluster.md#couchbaseclusters-spec-antiaffinity) attribute enabled will require the addition of a temporary node for the upgrade — see [here](concept-sizing.md#rolling-upgrade) for further details.
+Make sure to consult the [Release Notes](release-notes.md) and the [What's New?](whats-new.md) pages before upgrading, as there may be additional considerations or steps required on a per-release basis. Clusters with [couchbaseclusters.spec.antiAffinity](resource/couchbasecluster.md#couchbaseclusters-spec-antiaffinity) attribute enabled will require the addition of a temporary node for the upgrade — see [here](concept-sizing.md#rolling-upgrade) for further details.
 
 > [!IMPORTANT]
 > About Upgrading From Version 1.x.x
@@ -46,7 +46,7 @@ The Operator package contains the YAML configuration files and command-line tool
 
 What needs to be uninstalled is dependent on the release you are upgrading from. For example, in releases prior to 1.2.0, the Operator used `ClusterRole` resources for simplicity of configuration. From 1.2.0 onward, the operator uses `Role` resources to increase security.
 
-In general, you’ll need to undo the installation steps in reverse order for the specific version of the Operator you are upgrading from, e.g. uninstall the operator, then uninstall the DAC.
+In general, you'll need to undo the installation steps in reverse order for the specific version of the Operator you are upgrading from, e.g. uninstall the operator, then uninstall the DAC.
 
 > [!WARNING]
 > Never delete existing CRDs. If an existing CRD is deleted, any `CouchbaseCluster` resources will also be deleted.
@@ -55,7 +55,7 @@ To uninstall the current Operator version, instructions are provided for [Kubern
 
 ## [](#update-crd)Step 3: Update the CRDs
 
-In the Operator package you downloaded, you’ll find the updated version of the CRDs: `crd.yaml`. Between releases of the Operator, the CRDs may undergo small changes that don’t affect backward compatibility, and may add new fields or make changes to validation, therefore must be reinstalled. New CRDs may also be introduced that need installing.
+In the Operator package you downloaded, you'll find the updated version of the CRDs: `crd.yaml`. Between releases of the Operator, the CRDs may undergo small changes that don't affect backward compatibility, and may add new fields or make changes to validation, therefore must be reinstalled. New CRDs may also be introduced that need installing.
 
 > [!IMPORTANT]
 > CRDs are distributed as a single file. During the upgrade procedure, errors are expected during the `apply` operation if a CRD was previously created using a `create` operation. Using `apply` here allows the CRD to be replaced and created all in one operation.
@@ -75,4 +75,4 @@ $ oc apply -f crd.yaml
 
 ## [](#install-operator)Step 4: Install the New Operator
 
-After all the previous steps, you can move on to upgrading the Operator itself. Upgrading the Operator is exactly the same as the initial installation, except that you don’t re-install the CRD. To re-install the Operator in all namespaces where previous instances operated on, see the relevant documentation for [Kubernetes](install-kubernetes.md) or [OpenShift](install-openshift.md).
+After all the previous steps, you can move on to upgrading the Operator itself. Upgrading the Operator is exactly the same as the initial installation, except that you don't re-install the CRD. To re-install the Operator in all namespaces where previous instances operated on, see the relevant documentation for [Kubernetes](install-kubernetes.md) or [OpenShift](install-openshift.md).

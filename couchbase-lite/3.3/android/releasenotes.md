@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on Android
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/android/pages/releasenotes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@couchbase-lite:android:releasenotes.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Version 3.3.2 for Android delivers the following features and enhancements:
 ### [](#enhancements)Enhancements
 
 * [CBL-7751 — Update mbedTLS to 3.6.5](https://jira.issues.couchbase.com/browse/CBL-7751)
-* [CBL-7776 — Increase Replicator’s WebSocket PING / PONG timeout](https://jira.issues.couchbase.com/browse/CBL-7776)
+* [CBL-7776 — Increase Replicator's WebSocket PING / PONG timeout](https://jira.issues.couchbase.com/browse/CBL-7776)
 
 ### [](#fixed-issues)Fixed Issues
 
@@ -93,9 +93,9 @@ None for this release
 * [CBL-7235 — Deprecate: ReplicatorConfiguration constructor with a target endpoint only](https://jira.issues.couchbase.com/browse/CBL-7235)
 * [CBL-7237 — Deprecate: ReplicatorConfiguration API for managing collection configurations](https://jira.issues.couchbase.com/browse/CBL-7237)
 * [CBL-7239 — Deprecate: CollectionConfiguration constructors without collection](https://jira.issues.couchbase.com/browse/CBL-7239)
-* [CBL-7421 — Deprecate: CollectionConfiguration’s API without collection (Kotlin)](https://jira.issues.couchbase.com/browse/CBL-7421)
+* [CBL-7421 — Deprecate: CollectionConfiguration's API without collection (Kotlin)](https://jira.issues.couchbase.com/browse/CBL-7421)
 * [CBL-7422 — Deprecate: WorkManagerReplicatorConfiguration.from(target: Endpoint) (Kotlin)](https://jira.issues.couchbase.com/browse/CBL-7422)
-* [CBL-7423 — Deprecate: ReplicatorConfiguration’s newConfig with endpoint and collection map (Kotlin)](https://jira.issues.couchbase.com/browse/CBL-7423)
+* [CBL-7423 — Deprecate: ReplicatorConfiguration's newConfig with endpoint and collection map (Kotlin)](https://jira.issues.couchbase.com/browse/CBL-7423)
 
 > [!NOTE]
 > For an overview of the latest features offered in Couchbase Lite 3.3, see [New in 3.3](../cbl-whatsnew.md)

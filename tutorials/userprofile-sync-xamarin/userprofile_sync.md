@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Data Sync Fundamentals"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-xamarin/edit/sync/content/modules/userprofile-sync-xamarin/pages/userprofile_sync.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:userprofile-sync-xamarin:userprofile_sync.adoc[]
 ---
 
@@ -51,7 +51,7 @@ This tutorial assumes familiarity with building Xamarin apps using C#, XAML, and
 * git (Optional)  
 This is required to pull the source code from GitHub repo.
 
-  * Create a [free github account](https://github.com) if you don’t already have one
+  * Create a [free github account](https://github.com) if you don't already have one
   * git can be downloaded from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * curl HTTP client  
 You can use any HTTP client of your choice. But we will use **curl** in our tutorial. Download latest version from the [curl website](https://curl.haxx.se/download.html)
@@ -202,7 +202,7 @@ We will install [Couchbase Server](#couchbase-server) and [Sync Gateway](#lbl-sy
 
 ### [](#docker-network)Docker Network
 
-Create a docker network named “workshop”
+Create a docker network named "workshop"
 
 ```bash
 docker network ls
@@ -214,7 +214,7 @@ docker network create -d bridge workshop
 
 #### [](#install)Install
 
-We have a custom docker image `priyacouch/couchbase-server-userprofile:7.0.0-dev` of Couchbase Server, which creates an empty bucket named “userprofile” and an RBAC user “admin” with “sync gateway” role.
+We have a custom docker image `priyacouch/couchbase-server-userprofile:7.0.0-dev` of Couchbase Server, which creates an empty bucket named "userprofile" and an RBAC user "admin" with "sync gateway" role.
 
 Alternatively, you can follow the instructions in our documentation — see: [Get Started - Prepare](../../sync-gateway/3.0/get-started-prepare.md), to install Couchbase Server and configure it with the relevant bucket.
 
@@ -244,10 +244,10 @@ Figure 2\. Server set-up output
 2. Now check the required data is in place:
 
   1. Open up <http://localhost:8091> in a browser
-  2. Sign in as “Administrator” and “password” in login page
-  3. Go to “buckets” menu and confirm “userprofile” bucket is created  
+  2. Sign in as "Administrator" and "password" in login page
+  3. Go to "buckets" menu and confirm "userprofile" bucket is created  
   ![confirm bucket created](_images/confirm-bucket-created.png)
-  4. Go to “security” menu and confirm “admin” user is created  
+  4. Go to "security" menu and confirm "admin" user is created  
   ![confirm admin user created](_images/confirm-admin-user-created.png)
 
 ### [](#lbl-sync-gateway)Sync Gateway
@@ -370,7 +370,7 @@ Now you can follow along with the rest of the sections below.
 
 We use _Basic Authentication_ in our application. The Id of the user making the request is specified in the `Authorization` header.
 
-Locate the `// Authorization` section of the Sync Function. You will see that we are using the Sync function’s [requireUser()](../../sync-gateway/3.0/sync-function-api-require-user-cmd.md) API to verify that the `email` property specified in the Document matches the Id of the user making the request — see [Example 3](#ex-auth).
+Locate the `// Authorization` section of the Sync Function. You will see that we are using the Sync function's [requireUser()](../../sync-gateway/3.0/sync-function-api-require-user-cmd.md) API to verify that the `email` property specified in the Document matches the Id of the user making the request — see [Example 3](#ex-auth).
 
 Example 3\. Sync function — Authorization
 
@@ -409,10 +409,10 @@ if (expectedDocId != doc._id) {
 }
 ```
 
-| **1** | Verify that the email property is not null. If it’s null, we throw a JS exception (see validateNotEmpty() function)                                                        |
+| **1** | Verify that the email property is not null. If it's null, we throw a JS exception (see validateNotEmpty() function)                                                        |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | If this a new document, then verify that the Id of the Document is of the required format (i.e. _"user::demo@example.com"_). We throw an exception if that’s not the case. |
-| **3** | If this is a document update, then verify that the email property value has not changed. Again, we throw an exception if that’s not the case.                              |
+| **2** | If this a new document, then verify that the Id of the Document is of the required format (i.e. _"user::demo@example.com"_). We throw an exception if that's not the case. |
+| **3** | If this is a document update, then verify that the email property value has not changed. Again, we throw an exception if that's not the case.                              |
 
 > [!NOTE]
 > You can learn more about the Sync Function in the documentation here: [Sync Function API](../../sync-gateway/3.0/sync-function.md)
@@ -629,7 +629,7 @@ In this exercise, we will observe how changes made on one app are synced across 
 
   * Username — _"[demo@example.com](mailto:demo@example.com)"_
   * Password — _"password"_
-* On one simulator/emulator, enter values in the profile’s user and address fields.
+* On one simulator/emulator, enter values in the profile's user and address fields.
 * Confirm that changes show up in the app on the other simulator/emulator.
 * Similarly, make changes to the app in the other simulator/emulator and confirm that the changes are synced over to the first simulator/emulator.
 
@@ -639,7 +639,7 @@ In this exercise, we will observe how changes made using the Sync Gateway API ar
 
 1. Make sure you complete [Exercise 1](#exercise-1).  
 This is to ensure that you have the appropriate user profile document (with document Id of "user::<emailId>") created through the app and synced over to the Sync Gateway.
-2. Open the command terminal and issue the following command to get the user profile document via \[GET Document REST API\]. We will be using `curl` to issue the request. If you haven’t done so, please install curl as indicated in the [Prerequisites](#prerequisites) section  
+2. Open the command terminal and issue the following command to get the user profile document via \[GET Document REST API\]. We will be using `curl` to issue the request. If you haven't done so, please install curl as indicated in the [Prerequisites](#prerequisites) section  
 ```bash  
 curl -X GET \  
   http://localhost:4985/userprofile/user::demo@example.com \

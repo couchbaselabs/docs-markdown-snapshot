@@ -2,7 +2,7 @@
 title: New Logging API
 description: Couchbase Lite 3.2.2 introduces a new Logging API.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/java/pages/new-logging-api.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite:java:new-logging-api.adoc[]
 ---
 
@@ -114,7 +114,7 @@ A second important change is that your logger will receive only logs at the leve
 Related to this last point, the Couchbase `Loggers`, now `LogSinks` are meant to support logging by the Couchbase Lite platform. They were never meant as a general framework for logging.
 
 > [!IMPORTANT]
-> With the new API, customer code can no longer log, directly, to any of the Couchbase log sinks. The Console and File log sinks cannot be subclassed and do not publish methods that allow writing logs. If you need to log to the console for example, you’ll have to create your own way of doing so.
+> With the new API, customer code can no longer log, directly, to any of the Couchbase log sinks. The Console and File log sinks cannot be subclassed and do not publish methods that allow writing logs. If you need to log to the console for example, you'll have to create your own way of doing so.
 
 Old API Implementing The Custom Logger Interface
 

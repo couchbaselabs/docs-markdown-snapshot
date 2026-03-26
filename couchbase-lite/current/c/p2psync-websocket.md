@@ -3,7 +3,7 @@ title: Data Sync Peer-to-Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/p2psync-websocket.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:c:p2psync-websocket.adoc[]
 ---
 
@@ -12,14 +12,14 @@ link: xref:couchbase-lite:c:p2psync-websocket.adoc[]
 
 # Data Sync Peer-to-Peer
 
-> Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
+> Description — _Couchbase Lite's Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
 ## [](#introduction)Introduction
 
-Couchbase Lite’s Peer-to-Peer synchronization solution offers secure storage and bidirectional data synchronization between edge devices without needing a centralized cloud-based control point.
+Couchbase Lite's Peer-to-Peer synchronization solution offers secure storage and bidirectional data synchronization between edge devices without needing a centralized cloud-based control point.
 
-Couchbase Lite’s Peer-to-Peer data synchronization provides:
+Couchbase Lite's Peer-to-Peer data synchronization provides:
 
 * Instant WebSocket-based listener for use in Peer-to-Peer applications communicating over IP-based networks
 * Simple application development, enabling sync with a short amount of code
@@ -30,11 +30,11 @@ Couchbase Lite’s Peer-to-Peer data synchronization provides:
 
 ## [](#overview)Overview
 
-Peer-to-Peer synchronization requires one Peer to act as the Listener to the other Peer’s replicator.
+Peer-to-Peer synchronization requires one Peer to act as the Listener to the other Peer's replicator.
 
 ![docs listener diagram](../_images/docs-listener-diagram.png) 
 
-Peer-to-Peer synchronization requires one Peer to act as the Listener to the other Peer’s replicator. Therefore, to use Peer-to-Peer synchronization in your application, you must configure one Peer to act as a Listener using the Couchbase Listener API, the most important of which include _URLEndpointListener_ and _URLEndpointListenerConfiguration_.
+Peer-to-Peer synchronization requires one Peer to act as the Listener to the other Peer's replicator. Therefore, to use Peer-to-Peer synchronization in your application, you must configure one Peer to act as a Listener using the Couchbase Listener API, the most important of which include _URLEndpointListener_ and _URLEndpointListenerConfiguration_.
 
 Example 1\. Simple workflow
 
@@ -53,7 +53,7 @@ You can also learn how to implement Peer-to-Peer synchronization by referring to
 
 ## [](#features)Features
 
-Couchbase Lite for C’s Peer-to-Peer synchronization solution provides support for cross-platform synchronization, for example, between Android and iOS devices.
+Couchbase Lite for C's Peer-to-Peer synchronization solution provides support for cross-platform synchronization, for example, between Android and iOS devices.
 
 Each listener instance serves a single Couchbase Lite database, enabling synchronization for documents within specified collections of that database.
 
@@ -63,7 +63,7 @@ The Listener will automatically select a port to use or a user-specified port. I
 
 ### [](#security)Security
 
-Couchbase Lite’s Peer-to-Peer synchronization supports encryption and authentication over TLS with multiple modes, including:
+Couchbase Lite's Peer-to-Peer synchronization supports encryption and authentication over TLS with multiple modes, including:
 
 * No encryption, for example, clear text.
 * CA Cert
@@ -188,7 +188,7 @@ CBLReplicator* replicator = CBLReplicator_Create(&replConfig, &error); (5)
 CBLReplicator_Start(replicator, false); (6)
 ```
 
-| **1** | Get the Listener’s endpoint. Here we use a known URL, but it could be a URL established dynamically in a discovery phase.                  |
+| **1** | Get the Listener's endpoint. Here we use a known URL, but it could be a URL established dynamically in a discovery phase.                  |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | **2** | Initialize the replicator configuration with the database to be synchronized and the Listener it is to synchronize with.                   |
 | **3** | Configure the replicator to expect a self-signed certificate from the Listener.                                                            |
@@ -200,7 +200,7 @@ CBLReplicator_Start(replicator, false); (6)
 
 ### [](#urlendpointlistener)URLEndpointListener
 
-The `URLEndpointListener` is the listener for peer-to-peer synchronization. It acts like a passive replicator, in the same way that Sync Gateway does in a 'standard' replication. On the client side, the listener’s endpoint is used to point the replicator to the listener.
+The `URLEndpointListener` is the listener for peer-to-peer synchronization. It acts like a passive replicator, in the same way that Sync Gateway does in a 'standard' replication. On the client side, the listener's endpoint is used to point the replicator to the listener.
 
 Core functionalities of the listener are:
 
@@ -262,7 +262,7 @@ API Reference: [tlsIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-l
 
 authenticator
 
-Use this to specify the authenticator the listener uses to authenticate the client’s connection request. This should be set to one of the following:
+Use this to specify the authenticator the listener uses to authenticate the client's connection request. This should be set to one of the following:
 
 * ListenerPasswordAuthenticator
 * ListenerCertificateAuthenticator
@@ -282,7 +282,7 @@ API Reference: [URLEndpointListenerConfiguration](https://docs.couchbase.com/mob
 
 ## [](#security-2)Security
 
-Couchbase Lite’s Peer-to-Peer synchronization ensures secure communication through TLS and supports multiple authentication mechanisms.
+Couchbase Lite's Peer-to-Peer synchronization ensures secure communication through TLS and supports multiple authentication mechanisms.
 
 ### [](#tls-identity)TLS Identity
 
@@ -313,7 +313,7 @@ __Secure storage details__
 | ----------------------- | ------------------------------------------------------------------------------------------- |
 | **Key Storage**         | KeyChain                                                                                    |
 | **Certificate Storage** | KeyChain                                                                                    |
-| **Notes**               | Use kSecAttrLabel of the SecCertificate to store the TLSIdentity’s label                    |
+| **Notes**               | Use kSecAttrLabel of the SecCertificate to store the TLSIdentity's label                    |
 | **Reference**           | [Keychain services](https://developer.apple.com/documentation/security/keychain%5Fservices) |
 
 __Secure storage details__
@@ -323,7 +323,7 @@ __Secure storage details__
 | **Certificate Storage** | CNG Key Storage Provider                                                                                      |
 | **Reference**           | [Key Storage and Retrieval](https://learn.microsoft.com/en-us/windows/win32/seccng/key-storage-and-retrieval) |
 
-As Linux-based operating systems do not have a standard or common secure key storage, and Android doesn’t support native C/C++ API access to the default Keystore, Couchbase Lite C does not support persisting generated identities with the specified label on these platforms.
+As Linux-based operating systems do not have a standard or common secure key storage, and Android doesn't support native C/C++ API access to the default Keystore, Couchbase Lite C does not support persisting generated identities with the specified label on these platforms.
 
 As an alternative, Couchbase Lite C enables developers to implement their own cryptographic operations through a set of callbacks, enabling certificate signing and other cryptographic tasks during the TLS handshake using a private key stored in their preferred secure key storage. These callbacks allow operations like signing data, with the private key remaining securely stored and never exposed. The key idea is that all cryptographic operations are performed within secure key storage, ensuring that the private key is protected throughout the TLS handshake process.
 

@@ -1,7 +1,7 @@
 ---
 title: Assigning Services to an Existing Node
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-set-up-services-existing-nodes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rest-set-up-services-existing-nodes.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Use the following REST API to add or remove non-Data services on the existing no
 > * For information about using the `POST /controller/rebalance` REST API to rebalance after node additions and removals, after a graceful failover and recovery, and after a hard failover, see [Rebalancing the Cluster](rest-cluster-rebalance.md).
 
 > [!WARNING]
-> When you modify (add or remove) services on existing nodes in a cluster, rebalance is triggered immediately to apply the changes. Removing a service instance reduces the cluster’s capacity for that service. For certain services, such as the Index Service, removing the service may result in loss of replicas or entire indexes if no replicas exist, which can cause queries to fail.
+> When you modify (add or remove) services on existing nodes in a cluster, rebalance is triggered immediately to apply the changes. Removing a service instance reduces the cluster's capacity for that service. For certain services, such as the Index Service, removing the service may result in loss of replicas or entire indexes if no replicas exist, which can cause queries to fail.
 > 
 > Removing all instances of a service deletes all data and metadata associated with that service, which means effectively removing the service from the cluster. For example, removing the last Index Service node deletes all indexes. For the Backup Service, physical backup repositories outside the cluster remain, but the Backup Service metadata about those repositories is deleted.
 

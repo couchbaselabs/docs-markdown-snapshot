@@ -3,7 +3,7 @@ title: Comma-Separated Join
 description: A comma-separated join enables you to produce new input objects by
   creating a Cartesian product of all the source objects.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/comma.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/comma.adoc[]
 ---
 
@@ -20,7 +20,7 @@ A comma-separated join is used within the [FROM](from.md) clause. Like the [JOIN
 
 The comma-separated join, by itself, does not specify a join predicate. This means that, in its basic form, the comma-separated join would produce all the possible combinations of the combined source objects — this is known as the _Cartesian product_.
 
-In practice, it is common to use the query’s [WHERE](where.md) clause to specify a condition for the comma-separated join. Refer to the examples below for further details.
+In practice, it is common to use the query's [WHERE](where.md) clause to specify a condition for the comma-separated join. Refer to the examples below for further details.
 
 ## [](#prerequisites)Prerequisites
 

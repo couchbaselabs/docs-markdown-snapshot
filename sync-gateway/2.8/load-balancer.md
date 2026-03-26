@@ -2,7 +2,7 @@
 title: Load Balancer
 description: Load balancing replications
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/load-balancer.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::load-balancer.adoc[]
 ---
 
@@ -30,7 +30,7 @@ This guide covers various aspects to consider when using a Load Balancer in a Co
 
 To keep a WebSocket connection open, the replicator sends a WebSocket PING message (also known as heartbeat) every 300 seconds (5 minutes). This heartbeat is required to keep the connection alive between Couchbase Lite and Sync Gateway.
 
-To support the heartbeat’s effective operation, the keep-alive timeout interval of any intervening load balancer must be longer than the heartbeat interval. This can be achieved either by changing the websocket proxy settings for the load balancer to align with the heartbeat interval — see [NGINX](#nginx). Or alternatively, by configuring the replicator heartbeat interval using Couchbase Lite \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
+To support the heartbeat's effective operation, the keep-alive timeout interval of any intervening load balancer must be longer than the heartbeat interval. This can be achieved either by changing the websocket proxy settings for the load balancer to align with the heartbeat interval — see [NGINX](#nginx). Or alternatively, by configuring the replicator heartbeat interval using Couchbase Lite \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
 
 Related Couchbase Lite content
 
@@ -91,14 +91,14 @@ server {
 | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2**  | The listen directive instructs nginx to listen on port 80 for incoming traffic.                                                                                                                                                                                                           |
 | **3**  | The server\_name directive instructs nginx to check that the HTTP Host: header value matches myservice.example.org (change this value to your domain).                                                                                                                                    |
-| **4**  | The client\_max\_body\_size directive instructs nginx to accept request bodies up to 21MBytes, this is necessary to support attachments being sync’d to Sync Gateway.                                                                                                                     |
+| **4**  | The client\_max\_body\_size directive instructs nginx to accept request bodies up to 21MBytes, this is necessary to support attachments being sync'd to Sync Gateway.                                                                                                                     |
 | **5**  | The location block specifies directives for all URL paths below the root path /.                                                                                                                                                                                                          |
 | **6**  | The proxy\_pass directive instructs nginx to forward all incoming traffic to servers defined in the sync\_gateway upstream block.                                                                                                                                                         |
 | **7**  | The two proxy\_pass\_header directives instruct nginx to pass Accept: and Server: headers on inbound and outbound traffic, these headers allow CouchbaseLite and sync\_gateway to optimize data transfer, e.g. by using gzip compression and multipart/mixed if it is supported.          |
 | **8**  | The keepalive\_requests directive instructs nginx to allow up to one thousand requests on the same connection, this is useful when getting a \_changes feed using longpoll.                                                                                                               |
 | **9**  | The keepalive\_timeout directive instructs nginx to keep connection open for 360 seconds from the last request, this value is longer than the default (300 seconds) value for the heartbeat on the \_changes feed using longpoll.                                                         |
 | **10** | The proxy\_read\_timeout directive instructs nginx to keep connection open for 360 seconds from the last server response, this value is longer than the default (300 seconds) value for the heartbeat on the \_changes feed using longpoll.                                               |
-| **11** | The two proxy\_set\_header directives enable support for WebSocket connections, which are used by Couchbase Lite for a pull replication’s \_changes feed.                                                                                                                                 |
+| **11** | The two proxy\_set\_header directives enable support for WebSocket connections, which are used by Couchbase Lite for a pull replication's \_changes feed.                                                                                                                                 |
 2. We now need to enable the `sync_gateway` site.  
 In the `sites-enabled` directory, make a symbolic link to the `sync_gateway` file you just created:  
 ```bash  
@@ -143,7 +143,7 @@ upstream sync_gateway {
 
 ## [](#transport-layer-security-https-ssl)Transport Layer Security (HTTPS, SSL)
 
-To secure the connection between clients and Sync Gateway in production, you will want to use Transport Layer Security (TLS, also known as HTTPS or SSL.) This not only encrypts data from eavesdroppers (including passwords and login tokens), it also protects against Man-In-The-Middle attacks by verifying to the client that it’s connecting to the real server, not an impostor.
+To secure the connection between clients and Sync Gateway in production, you will want to use Transport Layer Security (TLS, also known as HTTPS or SSL.) This not only encrypts data from eavesdroppers (including passwords and login tokens), it also protects against Man-In-The-Middle attacks by verifying to the client that it's connecting to the real server, not an impostor.
 
 ### [](#certificates)Certificates
 

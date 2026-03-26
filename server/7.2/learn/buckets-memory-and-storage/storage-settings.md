@@ -3,7 +3,7 @@ title: Storage Properties
 description: Couchbase Server provides persistence, whereby certain items are
   stored on disk as well as in memory; and reliability is thereby enhanced.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/buckets-memory-and-storage/storage-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:buckets-memory-and-storage/storage-settings.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:7.2@server:learn:buckets-memory-and-storage/storage-settings.adoc[]
 
 Couchbase Server stores certain items in compressed form on disk; and, whenever required, removes them. This allows data-sets to exceed the size permitted by existing memory-resources; since undeleted items not currently in memory can be restored to memory from disk, as needed. It also facilitates backup-and-restore procedures.
 
-Generally, a client’s interactions with the server are not blocked during disk-access procedures. However, if a specific item is being restored from disk to memory, the item is not made available to the client until the item’s restoration is complete.
+Generally, a client's interactions with the server are not blocked during disk-access procedures. However, if a specific item is being restored from disk to memory, the item is not made available to the client until the item's restoration is complete.
 
 Not all items are written to disk: _Ephemeral_ buckets and their items are maintained in memory only. See [Buckets](buckets.md) for information.
 
@@ -55,11 +55,11 @@ For information on using the REST API to manage thread counts, see [Setting Thre
 
 ## [](#deletion)Deletion
 
-Items can be deleted by a client application: either by immediate action, or by setting a _Time-To-Live_ (TTL) value: this value is established through accessing the `TTL` metadata field of the item, which establishes a future point-in-time for the item’s _expiration_. When the point-in-time is reached, Couchbase Server deletes the item.
+Items can be deleted by a client application: either by immediate action, or by setting a _Time-To-Live_ (TTL) value: this value is established through accessing the `TTL` metadata field of the item, which establishes a future point-in-time for the item's _expiration_. When the point-in-time is reached, Couchbase Server deletes the item.
 
 Following deletion by either method, a _tombstone_ is maintained by Couchbase Server, as a record (see below).
 
-An item’s TTL can be established either directly on the item itself, or via the bucket that contains the item. For information, see [Expiration](../data/expiration.md).
+An item's TTL can be established either directly on the item itself, or via the bucket that contains the item. For information, see [Expiration](../data/expiration.md).
 
 ## [](#tombstones)Tombstones
 
@@ -67,8 +67,8 @@ A _tombstone_ is a record of an item that has been removed. Tombstones are maint
 
 Tombstones are created for the following:
 
-* _Individual documents_. The tombstone is created when the document is _deleted_; and contains the former document’s key and metadata.
-* _Collections_. The tombstone is created when the collection is _dropped_; and contains information that includes the collection-id, the collection’s scope-id, and a manifest-id that records the dropping of the collection.  
+* _Individual documents_. The tombstone is created when the document is _deleted_; and contains the former document's key and metadata.
+* _Collections_. The tombstone is created when the collection is _dropped_; and contains information that includes the collection-id, the collection's scope-id, and a manifest-id that records the dropping of the collection.  
 All documents that were in the dropped collection are deleted when the collection is dropped. No tombstones are maintained for such documents: moreover, any tombstones for deleted documents that existed in the collection prior to its dropping are themselves removed when the collection is dropped; and consequently, only a collection-tombstone remains, when a collection is dropped. The collection-tombstone is replicated via DCP as a single message (ordered with respect to mutations occurring in the vBucket), to replicas and other DCP clients, to notify such recipients that the collection has indeed been dropped. It is then the responsibility of each recipient to purge anything it still contains that belonged to the dropped collection.
 
 The _Metadata Purge Interval_ establishes the frequency with which Couchbase Server _purges_ itself of tombstones of both kinds: which means, removes them fully and finally. The Metadata Purge Interval setting runs as part of auto-compaction (see [Append-Only Writes and Auto-Compaction](#append-only-writes-and-auto-compaction), below).
@@ -95,7 +95,7 @@ For information on configuring auto-compaction with Couchbase Web Console, see [
 
 ## [](#disk-io-priority)Disk I/O Priority
 
-_Disk I/O_ — reading items from and writing them to disk — does not block client-interactions: disk I/O is thus considered a _background task_. The priority of disk I/O (along with that of other background tasks, such as item-paging and DCP stream-processing) is configurable _per bucket_. This means, for example, that one bucket’s disk I/O can be granted priority over another’s. For further information, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md).
+_Disk I/O_ — reading items from and writing them to disk — does not block client-interactions: disk I/O is thus considered a _background task_. The priority of disk I/O (along with that of other background tasks, such as item-paging and DCP stream-processing) is configurable _per bucket_. This means, for example, that one bucket's disk I/O can be granted priority over another's. For further information, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md).
 
 ## [](#storage-settings-ejection-policy)Ejection Policy
 

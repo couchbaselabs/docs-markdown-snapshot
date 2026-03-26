@@ -3,7 +3,7 @@ title: Cloud and Container Deployment Overview
 description: Couchbase Server is designed to run in the most popular cloud and
   container environments.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cloud/pages/couchbase-cloud-deployment.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cloud:couchbase-cloud-deployment.adoc[]
 ---
 
@@ -61,7 +61,7 @@ Storage
 * EBS `gp3` and EBS `io1` are recommended.  
 The persistence of EBS offers a significant advantage. For most deployments, EBS `gp3` provides a good balance of performance and cost.  
 > [!NOTE]  
-> It is not recommended to exceed 1 TB for data drives. Large drives can lead to overly dense nodes that suffer from long rebuild times. It’s usually preferable to scale horizontally instead.
+> It is not recommended to exceed 1 TB for data drives. Large drives can lead to overly dense nodes that suffer from long rebuild times. It's usually preferable to scale horizontally instead.
 * SSD [instance stores](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html) are a viable storage option for Couchbase Server, and are both performant and side-step "noisy neighbor" issues that can potentially plague EBS. However, the instance store is ephemeral, expensive, and not encrypted, and therefore is not typically recommended.
 
 Network
@@ -72,10 +72,10 @@ Network
 
 Security
 
-* You should configure a [security group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) that closes off [unused ports](../install/install-ports.md). This configuration can be further secured by specifying CIDR blocks to whitelist XDCR and client connectivity. It’s also recommended to restrict access to intra-cluster communication ports to the security group.
+* You should configure a [security group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) that closes off [unused ports](../install/install-ports.md). This configuration can be further secured by specifying CIDR blocks to whitelist XDCR and client connectivity. It's also recommended to restrict access to intra-cluster communication ports to the security group.
 * Use of Secret Manager is recommended for storage of Couchbase Server credentials. Secret manager enables secure access for applications to [retrieve](https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieving-secrets.html) database credentials. Secret manager also provides mechanisms for [rotating](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html) your secrets automatically. Secret manager can also be configured to rotate secrets from within a [private VPC](https://aws.amazon.com/premiumsupport/knowledge-center/rotate-secrets-manager-secret-vpc/)If Couchbase Server is deployed by the AWS Marketplace Cloud Formation Template, admin credentials will be stored in a Secret Manager Secret.
 * Disk encryption is recommended, and is [available for EBS disks](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html). Disk encryption can be enabled account-wide by default and is recommended. If Couchbase Server is deployed by the AWS Marketplace Cloud Formation Template, the data disk will be encrypted.
-* If using Couchbase Sync Gateway, it’s recommended that you secure the admin interface for access from `127.0.0.1` only. This can be configured using the Sync Gateway [configuration file](../../../sync-gateway/current/configuration/configuration-properties-legacy.md).
+* If using Couchbase Sync Gateway, it's recommended that you secure the admin interface for access from `127.0.0.1` only. This can be configured using the Sync Gateway [configuration file](../../../sync-gateway/current/configuration/configuration-properties-legacy.md).
 
 ## [](#microsoft-azure)Microsoft Azure
 
@@ -103,29 +103,29 @@ Compute
 
 * Use instances that support Azure [Premium Storage](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/disks-types).  
 While any such node works well with Couchbase, some may be more cost effective. `DS v3`, `ES v3`, `FS`, and `GS` machines are the most commonly used. For the majority of deployments, `DS14 v2` provides a good balance of price and performance.
-* It’s recommended that you use [virtual machine scale sets](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview) (VMSS) instead of stand-alone VMs since they improve reliability and simplify the addition and removal of nodes.
-* The current model for resilience is based on [availability sets](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/availability) that are made up of fault domains and upgrade domains. Virtual machine scale sets default to configuring 5 fault domains, each with their own upgrade domain. It’s recommended that you configure a [Server Group](../learn/clusters-and-availability/groups.md) for each fault domain.
+* It's recommended that you use [virtual machine scale sets](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview) (VMSS) instead of stand-alone VMs since they improve reliability and simplify the addition and removal of nodes.
+* The current model for resilience is based on [availability sets](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/availability) that are made up of fault domains and upgrade domains. Virtual machine scale sets default to configuring 5 fault domains, each with their own upgrade domain. It's recommended that you configure a [Server Group](../learn/clusters-and-availability/groups.md) for each fault domain.
 
 Storage
 
 * Azure [Premium Storage](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/disks-types) is recommended for data drives.  
 Ephemeral drives present a risk of data loss. Standard Storage is based on spinning magnetic disks (HDD) and is sufficient for OS disks, but it does not perform well enough for most database applications. The older Azure storage account mechanism should also be avoided for OS and data disks, as it has a higher potential for bottlenecks and is more complex.  
 > [!NOTE]  
-> It is not recommended to exceed 1 TB for data drives. Large drives can lead to overly dense nodes that suffer from long rebuild times. It’s usually preferable to scale horizontally instead.
+> It is not recommended to exceed 1 TB for data drives. Large drives can lead to overly dense nodes that suffer from long rebuild times. It's usually preferable to scale horizontally instead.
 * Microsoft recommends disabling Premium Storage caching for mixed read/write workloads like Couchbase.
 
 Network
 
 * The recommended setup is to attach a public IP to each node. The public IP can be used to connect application drivers and replicate across geographies with XDCR.  
-You should configure each Couchbase node with the public DNS. Because the public DNS resolves to a NAT-based IP, it’s recommended that you add a record to `/etc/hosts` on each node to resolve its public DNS to `127.0.0.1`. This allows Couchbase to bind to the IP underlying the public DNS.  
+You should configure each Couchbase node with the public DNS. Because the public DNS resolves to a NAT-based IP, it's recommended that you add a record to `/etc/hosts` on each node to resolve its public DNS to `127.0.0.1`. This allows Couchbase to bind to the IP underlying the public DNS.  
 Traffic between public IPs in Azure is routed over the Azure backbone, which has very high bandwidth. This means that traffic is limited by the network cap of a VM.
 * Other network setups like [VPN gateway](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways) and [ExpressRoute](https://docs.microsoft.com/en-us/azure/expressroute/expressroute-introduction) are not recommended. Microsoft seems to intend VPN gateways for client to server connections, not high performance clustered applications like Couchbase. ExpressRoute is a very expensive option that may work well for some on-prem/Azure hybrid solutions; but for general use, including Azure to Azure XDCR communication, it is not recommended.
 
 Security
 
-* You should configure a [security group](https://docs.microsoft.com/en-us/azure/virtual-network/security-overview) that closes off [unused ports](../install/install-ports.md). This configuration can be further secured by specifying CIDR blocks to whitelist XDCR and client connectivity. It’s also recommended to restrict access to intra-cluster communication ports to the security group.
+* You should configure a [security group](https://docs.microsoft.com/en-us/azure/virtual-network/security-overview) that closes off [unused ports](../install/install-ports.md). This configuration can be further secured by specifying CIDR blocks to whitelist XDCR and client connectivity. It's also recommended to restrict access to intra-cluster communication ports to the security group.
 * Disk encryption is recommended, and is [available for managed disks that use Premium Storage](https://docs.microsoft.com/en-us/azure/storage/common/storage-service-encryption).
-* If using Couchbase Sync Gateway, it’s recommended that you secure the admin interface for access from `127.0.0.1` only. This can be configured using the Sync Gateway [configuration file](#sync-gateway:refer/config-properties.adoc).
+* If using Couchbase Sync Gateway, it's recommended that you secure the admin interface for access from `127.0.0.1` only. This can be configured using the Sync Gateway [configuration file](#sync-gateway:refer/config-properties.adoc).
 
 ## [](#google-cloud-platform-gcp)Google Cloud Platform (GCP)
 
@@ -153,25 +153,25 @@ Compute
 
 * GCE offers both pre-defined and custom [machine types](https://cloud.google.com/compute/docs/machine-types).  
 For the majority of deployments, `n1-highmem-16` provides a good balance of price and performance.
-* It’s recommended to deploy GCE nodes via a [managed instance group](https://cloud.google.com/compute/docs/instance-groups/) (MIG) as it improves reliability and simplifies the addition and removal of nodes. You can set up the MIG to place nodes across [zones](https://cloud.google.com/compute/docs/regions-zones/) in a round robin fashion. For most installs this will be sufficient. Ideally you should configure Couchbase [Server Groups](../learn/clusters-and-availability/groups.md) to map to zones.
+* It's recommended to deploy GCE nodes via a [managed instance group](https://cloud.google.com/compute/docs/instance-groups/) (MIG) as it improves reliability and simplifies the addition and removal of nodes. You can set up the MIG to place nodes across [zones](https://cloud.google.com/compute/docs/regions-zones/) in a round robin fashion. For most installs this will be sufficient. Ideally you should configure Couchbase [Server Groups](../learn/clusters-and-availability/groups.md) to map to zones.
 
 Storage
 
 * `pd-ssd` is recommended for the vast majority of deployments. It often outperforms ephemeral storage as it is network-bound and offers persistence that ephemeral does not.  
 > [!NOTE]  
-> It is not recommended to exceed 1.7 TB for `pd-ssd` data drives. Large drives can lead to overly dense nodes that suffer from long rebuild times. It’s usually preferable to scale horizontally instead.
+> It is not recommended to exceed 1.7 TB for `pd-ssd` data drives. Large drives can lead to overly dense nodes that suffer from long rebuild times. It's usually preferable to scale horizontally instead.
 
 Network
 
-* It’s recommended to configure nodes with their private DNS record. This is because the Google network is globally flat, allowing private IPs to be routed around the world without need for VPN or leased line solutions. (Though, when connecting with another cloud or an on-premises cluster in a hybrid scenario, VPN or leased lines are still required.)  
+* It's recommended to configure nodes with their private DNS record. This is because the Google network is globally flat, allowing private IPs to be routed around the world without need for VPN or leased line solutions. (Though, when connecting with another cloud or an on-premises cluster in a hybrid scenario, VPN or leased lines are still required.)  
 > [!NOTE]  
-> It’s not possible to configure a node with its public IP address because that IP is NAT-based and Couchbase cannot bind to it. GCP does not provide public DNS records for the public IPs.
+> It's not possible to configure a node with its public IP address because that IP is NAT-based and Couchbase cannot bind to it. GCP does not provide public DNS records for the public IPs.
 
 Security
 
-* You should configure a [firewall rule](https://cloud.google.com/vpc/docs/firewalls) that closes off [unused ports](../install/install-ports.md). This configuration can be further secured by specifying CIDR blocks to whitelist XDCR and client connectivity. It’s also recommended to restrict access to intra-cluster communication ports to the security group.
+* You should configure a [firewall rule](https://cloud.google.com/vpc/docs/firewalls) that closes off [unused ports](../install/install-ports.md). This configuration can be further secured by specifying CIDR blocks to whitelist XDCR and client connectivity. It's also recommended to restrict access to intra-cluster communication ports to the security group.
 * Disk encryption is recommended.
-* If using Couchbase Sync Gateway, it’s recommended that you secure the admin interface for access from `127.0.0.1` only. This can be configured using the Sync Gateway [configuration file](../../../sync-gateway/current/configuration/configuration-properties-legacy.md).
+* If using Couchbase Sync Gateway, it's recommended that you secure the admin interface for access from `127.0.0.1` only. This can be configured using the Sync Gateway [configuration file](../../../sync-gateway/current/configuration/configuration-properties-legacy.md).
 
 ## [](#kubernetes-and-openshift)Kubernetes and OpenShift
 

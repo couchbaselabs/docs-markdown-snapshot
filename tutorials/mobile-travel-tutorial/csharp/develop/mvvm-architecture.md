@@ -1,7 +1,7 @@
 ---
 title: MVVM Architecture
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/develop/mvvm-architecture.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:csharp/develop/mvvm-architecture.adoc[]
 ---
 
@@ -34,7 +34,7 @@ The app implements the following Views - _LoginPage_ which represents the login 
 
 ## [](#view-model)View Model
 
-The View Model acts as the intermediary between the View and the Model. It is responsible for interacting with the model and updating it’s state to indicate how the view should present itself. There is one view model per view and is named according to the view
+The View Model acts as the intermediary between the View and the Model. It is responsible for interacting with the model and updating it's state to indicate how the view should present itself. There is one view model per view and is named according to the view
 
 * _LoginViewModel_
 * _BookmarkedHotelsViewModel_

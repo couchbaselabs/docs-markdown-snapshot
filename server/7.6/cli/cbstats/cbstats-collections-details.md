@@ -2,7 +2,7 @@
 title: collections-details
 description: Provides low-level details on collections.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-collections-details.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:cli:cbstats/cbstats-collections-details.adoc[]
 ---
 
@@ -71,7 +71,7 @@ Each line of the output presents a data _key_. Each key is of the format `scopeI
 
 Existing collections are identified by `name`. Each is identified with hexadecimal numbers: the `_default` collection is identified as `0x0` (residing within scope `0x0`); and the other two as `0x8` and `0x9` respectively (both residing within scope `0x8`).
 
-The collection’s `history` line indicates whether a _change history_ is made for the collection: `true` indicates that a change history is being made, and `false` indicates that it is not. (Note that the value can only be `true` when _Magma_ has been configured as the storage engine for the bucket: see [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md).)
+The collection's `history` line indicates whether a _change history_ is made for the collection: `true` indicates that a change history is being made, and `false` indicates that it is not. (Note that the value can only be `true` when _Magma_ has been configured as the storage engine for the bucket: see [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md).)
 
 The `maxTTL` line indicates whether a _Time To Live_ has been specified for the collection, and if so, its value. For information, see [Expiration](../../learn/data/expiration.md).
 

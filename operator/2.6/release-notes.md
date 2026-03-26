@@ -1,7 +1,7 @@
 ---
 title: Release Notes for Couchbase Autonomous Operator 2.6
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::release-notes.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.6@operator::release-notes.adoc[]
 
 Autonomous Operator 2.6 release is primarily focused on platform updates, feature parity with Couchbase Server, improvements to Pod Management and Security, as well as a number of minor fixes.
 
-Take a look at the [What’s New](whats-new.md) page for a list of new features and improvements that are available in this release.
+Take a look at the [What's New](whats-new.md) page for a list of new features and improvements that are available in this release.
 
 ## [](#installation)Installation
 
@@ -98,7 +98,7 @@ See [Cloud Native Gateway](concept-cloud-native-gateway.md) for details.
 
 #### [](#miscellaneous-improvements)Miscellaneous Improvements
 
-* Diffs in the Operator’s "Resource Updated" logs are now human readable ([K8S-3268](https://issues.couchbase.com/browse/K8S-3268)).
+* Diffs in the Operator's "Resource Updated" logs are now human readable ([K8S-3268](https://issues.couchbase.com/browse/K8S-3268)).
 * Added missing Magma-related Bucket settings ([K8S-3290](https://issues.couchbase.com/browse/K8S-3290)).
 * When performing a Rolling Upgrade, upgrade the Couchbase Server Orchestrator node last to reduce time spent waiting on orchestrator elections ([K8S-3305](https://issues.couchbase.com/browse/K8S-3305)).
 * Improved error reporting during Alternate Address setup ([K8S-3317](https://issues.couchbase.com/browse/K8S-3317)).

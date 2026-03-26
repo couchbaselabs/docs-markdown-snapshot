@@ -4,7 +4,7 @@ description: SQL++ has a system namespace that stores metadata about data
   containers, the Query service, and the system as a whole. You can query the
   system namespace to get this information.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-intro/sysinfo.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-intro/sysinfo.adoc[]
 ---
 
@@ -878,7 +878,7 @@ This catalog contains the following attributes:
 | Name                         | Description                                           | Schema                  |
 | ---------------------------- | ----------------------------------------------------- | ----------------------- |
 | **bucket** _required_        | The bucket containing the sequence.                   | string                  |
-| **cache** _required_         | The sequence’s cache size.                            | integer                 |
+| **cache** _required_         | The sequence's cache size.                            | integer                 |
 | **cycle** _required_         | Whether the sequence is set to cycle.                 | boolean                 |
 | **increment** _required_     | The sequence step value.                              | integer                 |
 | **min** _required_           | The minimum value permitted for the sequence.         | integer                 |

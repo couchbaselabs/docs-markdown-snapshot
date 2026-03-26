@@ -1,7 +1,7 @@
 ---
 title: Getting Started with Peer-to-Peer Sync on iOS
 editUrl: https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/edit/master/content/modules/cbl-p2p-sync-websockets/pages/swift/cbl-p2p-sync-websockets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:cbl-p2p-sync-websockets:swift/cbl-p2p-sync-websockets.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:tutorials:cbl-p2p-sync-websockets:swift/cbl-p2p-sync-websockets.adoc[
 
 # Getting Started with Peer-to-Peer Sync on iOS
 
-> This tutorial uses a simple inventory tracker app to demonstrate Couchbase Lite’s peer-to-peer database sync functionality. 
+> This tutorial uses a simple inventory tracker app to demonstrate Couchbase Lite's peer-to-peer database sync functionality. 
 
 ## [](#introduction)Introduction
 
@@ -494,7 +494,7 @@ Once the connection is established between the peers, you can start syncing. Cou
 
 Try it out
 
-1. Run the app on two or more simulators or real devices. If it’s the latter, make sure you sign your app with the appropriate developer certificate
+1. Run the app on two or more simulators or real devices. If it's the latter, make sure you sign your app with the appropriate developer certificate
 2. Start the listener on one of the app instances. You could also have multiple listeners.
 3. Connect the other instances of the app to the listener
 4. Tap on the "List" tab

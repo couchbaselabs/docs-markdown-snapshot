@@ -3,7 +3,7 @@ title: The Couchbase Data Model
 description: The Couchbase Data Model provides a lightweight, flexible schema;
   which can be progressively evolved by applications, over time.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/data/document-data-model.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:data/document-data-model.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:7.2@server:learn:data/document-data-model.adoc[]
 
 The Couchbase data model is based on JSON, which provides a simple, lightweight, human-readable notation. It supports _basic_ data types, such as numbers and strings; and _complex_ types, such as embedded documents and arrays. JSON provides rapid serialization and deserialization; is native to JavaScript; and constitutes the most common REST API return-type. Consequently, JSON is extremely convenient for web-application programming.
 
-An individual document often represents a single instance of an object in application code. A _document_ might be considered equivalent to a _row_ in a relational table; with each of the document’s _attributes_ being equivalent to a column. Couchbase, however, provides greater flexibility than relational databases, in that it can store JSON documents with varied _schemas_.
+An individual document often represents a single instance of an object in application code. A _document_ might be considered equivalent to a _row_ in a relational table; with each of the document's _attributes_ being equivalent to a column. Couchbase, however, provides greater flexibility than relational databases, in that it can store JSON documents with varied _schemas_.
 
 Documents can contain nested structures. This allows developers to express _many-to-many_ relationships without requiring a _reference_ or _junction_ table; and is naturally expressive of hierarchical data.
 
@@ -36,7 +36,7 @@ Thus, in the document model, each document can be highly self-contained. This su
 
 ## [](#flexible-dynamic-schema)Flexible, Dynamic Schema
 
-In the document model, a _schema_ is the result of an application’s structuring of its documents: schemas are entirely defined and managed by applications. A document’s _structure_ consists of its inner arrangement of _attribute_\-_value_ pairs.
+In the document model, a _schema_ is the result of an application's structuring of its documents: schemas are entirely defined and managed by applications. A document's _structure_ consists of its inner arrangement of _attribute_\-_value_ pairs.
 
 Couchbase Server does not enforce uniformity: document-structures can vary, even across multiple documents that each contain a `type` attribute with a common value. This allows differences between objects to be represented with great efficiency. It also allows a schema to be progressively evolved by an application, as required: properties and structures can be added to the document, without other documents needing to be updated in the same way. (This flexibility is especially advantageous when the application itself is large and long-lived.)
 

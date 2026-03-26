@@ -2,7 +2,7 @@
 title: Using the Legacy Logging API for Troubleshooting
 description: Couchbase Lite on Objective-C -- Using Logs for Troubleshooting
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/troubleshooting-logs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite:objc:troubleshooting-logs.adoc[]
 ---
 
@@ -41,7 +41,7 @@ Console based logging is often used to facilitate troubleshooting during develop
 
 Console logs are your go-to resource for diagnostic information. You can easily fine-tune their diagnostic content to meet the needs of a particular debugging scenario, perhaps by increasing the verbosity and-or choosing to focus on messages from a specific domain; to better focus on the problem area.
 
-Changes to console logging are independent of file logging, so you can make change without compromising any files logging streams. It is enabled by default. To change default settings use database’s [CBLLog](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-objc/Classes/CBLLog.html) method to set the required values — see [Example 1](#eg-cons-log)
+Changes to console logging are independent of file logging, so you can make change without compromising any files logging streams. It is enabled by default. To change default settings use database's [CBLLog](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-objc/Classes/CBLLog.html) method to set the required values — see [Example 1](#eg-cons-log)
 
 You will primarily use [CBLLog.console](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-objc/Classes/CBLLog.html#/c:objc%28cs%29CBLLog%28py%29console) and [CBLConsoleLogger](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-objc/Classes/CBLConsoleLogger.html) to control console logging.
 
@@ -76,7 +76,7 @@ Use this format and a decoder, such as **cbl-log**, to view them — see: [Decod
 
 As with console logging you can set the log level — see: the [CBLFileLogger](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-objc/Classes/CBLFileLogger.html) class.
 
-With file based logging you can also use the [CBLLogFileConfiguration](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-objc/Classes/CBLLogFileConfiguration.html) class’s properties to specify the:
+With file based logging you can also use the [CBLLogFileConfiguration](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-objc/Classes/CBLLogFileConfiguration.html) class's properties to specify the:
 
 * log file path to the directory to store the log file Once this limit is exceeded a new log file is started.
 * log file format  

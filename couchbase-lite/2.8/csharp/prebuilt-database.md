@@ -2,7 +2,7 @@
 title: Pre-built Database
 description: How to handle pre-built databases in your Couchbase Lite on C# app
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/csharp/pages/prebuilt-database.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:csharp:prebuilt-database.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:2.8@couchbase-lite:csharp:prebuilt-database.adoc[]
 
 ## [](#overview)Overview
 
-Couchbase Lite’s support for pre-built databases means you can pre-load your app with data instead of syncing it down from Sync Gateway during startup. This might benefit, for example, a mobile application developer striving to minimize consumer wait time (arising from data setup) on initial install and launch of the application.
+Couchbase Lite's support for pre-built databases means you can pre-load your app with data instead of syncing it down from Sync Gateway during startup. This might benefit, for example, a mobile application developer striving to minimize consumer wait time (arising from data setup) on initial install and launch of the application.
 
 Avoiding an initial bulk sync will help reduce startup time and network transfer costs, leading to a better consumer experience. It is typically more efficient to download bulk data using the http/ftp stream employed during the application installation than to install a smaller application bundle and then have to use a replicator to pull-in the bulk data.
 
@@ -28,7 +28,7 @@ The initial sync of any pre-built database will pull-in any content changes on t
 
 * Create a new Couchbase Lite database with the required data set — see [Creating Pre-built database](#crt-db)
 * Incorporate the pre-built database with your app bundle as an asset/resource — see [Bundle Database with Application](#bundle-db)
-* Adjust the start-up logic of your app to check for the presence of the required database. If it doesn’t already exist, it should create one using the bundled pre-built database, before initiating a sync to update the data — see [Using Pre-built Database on App Launch](#deploy-db)
+* Adjust the start-up logic of your app to check for the presence of the required database. If it doesn't already exist, it should create one using the bundled pre-built database, before initiating a sync to update the data — see [Using Pre-built Database on App Launch](#deploy-db)
 
 ## [](#crt-db)Creating Pre-built database
 
@@ -45,7 +45,7 @@ These steps would typically be part of your build and release process:
 >  
 > **Otherwise:** …​ there will be a [checkpoint](../../current/csharp/refer-glossary.md#checkpoint) mismatch and the app will attempt to pull the data down again  
 >  
-> So don’t, for instance, create a pre-built database against a staging Sync Gateway server and try to use that within a production app that syncs against a production Sync Gateway.  
+> So don't, for instance, create a pre-built database against a staging Sync Gateway server and try to use that within a production app that syncs against a production Sync Gateway.  
 You can use the cblite tool (`cblite cp`) for this — see: [cblite cp (export, import, push, pull)](https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/Documentation.md#cp-aka-export-import-push-pull) | [cblite on GitHub](https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/README.cblite.md)
 
 **Alternatively** …​
@@ -72,11 +72,11 @@ During the application start-up logic, check if database exists in the required 
 
 1. Locate the pre-packaged database (for example, in the assets or other resource folder)
 2. Copy the pre-packaged database to the required location  
-Use the API’s [Database.Copy()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FCouchbase%5FLite%5FDatabase%5FCopy%5FSystem%5FString%5FSystem%5FString%5FCouchbase%5FLite%5FDatabaseConfiguration%5F) method; this ensures that a UUID is generated for each copy — see: [Code Example 1](#copy-db)  
+Use the API's [Database.Copy()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FCouchbase%5FLite%5FDatabase%5FCopy%5FSystem%5FString%5FSystem%5FString%5FCouchbase%5FLite%5FDatabaseConfiguration%5F) method; this ensures that a UUID is generated for each copy — see: [Code Example 1](#copy-db)  
 > [!IMPORTANT]  
 > **Do not copy the database using any other method**  
 >  
-> **Otherwise:** Each copy of the app will invalidate the other apps’ [checkpoints](../../current/csharp/refer-glossary.md#checkpoint) because a new UUID was not generated.  
+> **Otherwise:** Each copy of the app will invalidate the other apps' [checkpoints](../../current/csharp/refer-glossary.md#checkpoint) because a new UUID was not generated.  
 Code Example 1\. Copy database using API  
 ```C#  
 // Note: Getting the path to a database is platform-specific.  For .NET Core / .NET Framework this  
@@ -91,7 +91,7 @@ if (!Database.Exists("travel-sample", null)) {
 ```
 3. Open the database; you can now start querying the data and using it
 4. Start a pull replication, to sync any changes  
-The replicator uses the pre-built database’s [checkpoint](../../current/csharp/refer-glossary.md#checkpoint) as the timestamp to sync from; only documents changed since then are synced  
+The replicator uses the pre-built database's [checkpoint](../../current/csharp/refer-glossary.md#checkpoint) as the timestamp to sync from; only documents changed since then are synced  
 > [!IMPORTANT]  
 > If you used cblite to pull the data **without including a port number with the URL** and are replicating in a Java or iOS (swift/ObjC) app — **you must include the port number in the URL provided to the replication** (port 443 for `wss://` or 80 for `ws://`).  
 >  

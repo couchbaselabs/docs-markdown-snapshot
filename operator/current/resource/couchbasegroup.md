@@ -1,7 +1,7 @@
 ---
 title: CouchbaseGroup Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbasegroup.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::resource/couchbasegroup.adoc[]
 ---
 
@@ -211,7 +211,7 @@ Bucket level access to apply to specified role. The bucket must exist. When not 
 
 #### [](#description-13)Description
 
-Resources is an explicit list of named bucket resources that will be considered for inclusion in this role. If a resource reference doesn’t match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
+Resources is an explicit list of named bucket resources that will be considered for inclusion in this role. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
 
 ### [](#couchbasegroups-spec-roles-buckets-resources-kind)couchbasegroups.spec.roles.buckets.resources.kind
 
@@ -281,7 +281,7 @@ key is the label key that the selector applies to.
 
 #### [](#description-19)Description
 
-operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 ### [](#couchbasegroups-spec-roles-buckets-selector-matchexpressions-values)couchbasegroups.spec.roles.buckets.selector.matchExpressions.values
 
@@ -321,7 +321,7 @@ Collection level access to apply to the specified role. The collection must exis
 
 #### [](#description-23)Description
 
-Resources is an explicit list of named resources that will be considered for inclusion in this collection or collections. If a resource reference doesn’t match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
+Resources is an explicit list of named resources that will be considered for inclusion in this collection or collections. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
 
 ### [](#couchbasegroups-spec-roles-collections-resources-kind)couchbasegroups.spec.roles.collections.resources.kind
 
@@ -397,7 +397,7 @@ key is the label key that the selector applies to.
 
 #### [](#description-29)Description
 
-operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 ### [](#couchbasegroups-spec-roles-collections-selector-matchexpressions-values)couchbasegroups.spec.roles.collections.selector.matchExpressions.values
 
@@ -451,7 +451,7 @@ Scope level access to apply to specified role. The scope must exist. When not sp
 
 #### [](#description-34)Description
 
-Resources is an explicit list of named resources that will be considered for inclusion in this scope or scopes. If a resource reference doesn’t match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
+Resources is an explicit list of named resources that will be considered for inclusion in this scope or scopes. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
 
 ### [](#couchbasegroups-spec-roles-scopes-resources-kind)couchbasegroups.spec.roles.scopes.resources.kind
 
@@ -527,7 +527,7 @@ key is the label key that the selector applies to.
 
 #### [](#description-40)Description
 
-operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 ### [](#couchbasegroups-spec-roles-scopes-selector-matchexpressions-values)couchbasegroups.spec.roles.scopes.selector.matchExpressions.values
 

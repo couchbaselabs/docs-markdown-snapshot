@@ -3,7 +3,7 @@ title: Tracing
 description: Tracing and Metrics provide fine-grained insight into how an
   application is performing, and helps to diagnose when it is not.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/concept-docs/pages/response-time-observability.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.10@go-sdk:concept-docs:response-time-observability.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Health indicators can tell you a lot about the performance of an application. Mo
 
 For a database, performance is best encapsulated via per-request performance. In addition to having insight down to the request level, it is also important to understand how the application behaves as a whole. For both the micro and macro-view, tracing and metrics are powerful tools in the toolbox.
 
-Request Tracing allows you to analyze the latency characteristics of individual requests and answer questions about where the overall wall-clock time is spent. If a request takes 500 milliseconds to execute, it is possible to understand what fraction was spent on the server and network, and how much time was spent in encoding for example. Couchbase’s built-in tracer will perform the aggregations and log the top slowest operations at a configurable interval to provide efficient ways to start debugging and troubleshooting.
+Request Tracing allows you to analyze the latency characteristics of individual requests and answer questions about where the overall wall-clock time is spent. If a request takes 500 milliseconds to execute, it is possible to understand what fraction was spent on the server and network, and how much time was spent in encoding for example. Couchbase's built-in tracer will perform the aggregations and log the top slowest operations at a configurable interval to provide efficient ways to start debugging and troubleshooting.
 
 Metrics, by contrast, provide insight into how the application (or SDK for that matter) is performing as a whole. Individual requests are aggregated, and our default meter implementation will log aggregated percentiles on a per operation-type basis. This makes it possible to quickly pinpoint slow operation types (like a `get` operation,) and then further pinpoint the causes through tracing.
 

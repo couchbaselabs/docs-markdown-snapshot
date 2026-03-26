@@ -1,7 +1,7 @@
 ---
 title: Indexes
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-fts-indexing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:rest-api:rest-fts-indexing.adoc[]
 ---
 
@@ -323,7 +323,7 @@ Sends a json document to the given index for text analysis.
 
 * `indexName`: required, string, URL path parameter  
 The name of the index against which the analysis needs to performed.  
-The request’s POST body contains any sample json document. For example:  
+The request's POST body contains any sample json document. For example:  
 {  
    "name": "hello world",  
    "title": "couchbase blr"}  
@@ -479,7 +479,7 @@ Queries an index.
 
 * `indexName`: required, string, URL path parameter  
 The name of the index to be queried.  
-The request’s POST body depends on the index type. For index type bleve, here’s a simple query POST body:  
+The request's POST body depends on the index type. For index type bleve, here's a simple query POST body:  
 {  
     "query": {  
         "query": "a sample query",  
@@ -534,5 +534,5 @@ A query can specify a timeout value, a consistency requirement, or both. This se
 * logical first phase consistency wait - if timeout in this period, get 416 error with message saying request could not be satisfied).
 * If consistency wait times out with 416, return value to client will indicate the sequence number range processed so the client will have an idea how far the processing got and has the option of retrying more intelligently.
 * In phase 2, you have the normal pindex timeout. This will start whenever the first phase completes. At this point, request will return 200 HTTP response code unless there is an internal server error.
-* Client must check response status, which will return any errors or timeouts for each pindex. If The response includes the number of errors, and the client can determine whether they need the complete results or can continue as long as enough pindexes return to give a reasonable user experience. Note that the query return status will be 200 even if all pindexes return errors so it’s critical to check the response status and code accordingly.
+* Client must check response status, which will return any errors or timeouts for each pindex. If The response includes the number of errors, and the client can determine whether they need the complete results or can continue as long as enough pindexes return to give a reasonable user experience. Note that the query return status will be 200 even if all pindexes return errors so it's critical to check the response status and code accordingly.
 * If client sets timeout very low, e.g. 1ms, you may receive a 200 error with all timeouts instead of a consistency wait timeout.

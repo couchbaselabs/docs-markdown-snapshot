@@ -3,7 +3,7 @@ title: Creating a Replication
 description: To create an XDCR replication, use the <code>POST
   /controller/createReplication</code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-xdcr-create-replication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rest-xdcr-create-replication.adoc[]
 ---
 
@@ -87,7 +87,7 @@ The optional `filterExpression` is matched against the ids, field-names, values,
 
 The `filterDeletion` and `filterExpiration` flags indicate whether mutations corresponding respectively to the deletion and expiration of documents on the source cluster should be either _filtered out_ of the replication to the target cluster, or allowed to remain in. For each flag, a value of `true` means that the mutation _is_ filtered out, ensuring that it is _not_ replicated to the target cluster; while a value of `false` (the default) means that the mutation is _not_ filtered out, ensuring that it _is_ replicated to the target cluster. The default value for both flags is `false`.
 
-The `filterBypassExpiry` flag indicates whether a document’s TTL should be replicated with the document or not. A value of `true` means that the TTL is removed from the document. The default value is `false`.
+The `filterBypassExpiry` flag indicates whether a document's TTL should be replicated with the document or not. A value of `true` means that the TTL is removed from the document. The default value is `false`.
 
 The `filterSkipRestream` flag indicates whether the replication should be either restarted or allowed to continue without restarting, following modification of the value of `filterExpression`. A value of `true` means that the replication should be allowed to continue without restarting. A value of `false` (the default) means that the replication should be restarted. For more information, see [Filter-Expression Editing](../learn/clusters-and-availability/xdcr-filtering.md#filter-expression-editing).
 
@@ -95,9 +95,9 @@ The `filterBinary` flag specifies whether binary documents should be replicated.
 
 * The behavior is identical to that of all Couchbase-Server versions prior to 7.2.1 (with the exception of 7.1.5), where the `filterBinary` flag did not exist.
 * If a filter expression is not provided, binary documents _are_ replicated.
-* If a filter expression _is_ provided, and the expression refers only to either the document’s _key_, or its _xattr_, or to both, the expression is applied, and the document is replicated if the expression permits.
-* If a filter expression is provided, and the expression refers only to the document’s body, the document _is_ replicated.
-* If a filter expression is provided, and the expression refers to the document’s _key_, or its _xattr_, or to both; and also refers to the document’s body; the document is _not_ replicated (regardless of whether the key or xattr might appear to permit replication).
+* If a filter expression _is_ provided, and the expression refers only to either the document's _key_, or its _xattr_, or to both, the expression is applied, and the document is replicated if the expression permits.
+* If a filter expression is provided, and the expression refers only to the document's body, the document _is_ replicated.
+* If a filter expression is provided, and the expression refers to the document's _key_, or its _xattr_, or to both; and also refers to the document's body; the document is _not_ replicated (regardless of whether the key or xattr might appear to permit replication).
 
 The `priority` flag controls resource-allocation to the replication. The value can be `High`, `Medium`, or `Low`. The default value is `High`. For information, see [XDCR Priority](../learn/clusters-and-availability/xdcr-overview.md#xdcr-priority).
 

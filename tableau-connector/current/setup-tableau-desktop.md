@@ -3,7 +3,7 @@ title: Install the Couchbase Analytics Connector on Tableau Desktop
 description: The Couchbase Analytics Connector for Tableau Desktop can be
   installed on both macOS and Windows.
 editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/setup-tableau-desktop.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tableau-connector::setup-tableau-desktop.adoc[]
 ---
 
@@ -35,7 +35,7 @@ First, download the connector file and the JDBC driver from the [Tableau Connect
 
 ## [](#ssl)Set Up SSL Support for Tableau Desktop
 
-Usually, you won’t need to follow this section. There is no need to provide a certificate if you are connecting to Couchbase Capella, or using a certificate from a public certificate authority. Certificates of well-known public certification authorities as well as Couchbase Capella are trusted by default.
+Usually, you won't need to follow this section. There is no need to provide a certificate if you are connecting to Couchbase Capella, or using a certificate from a public certificate authority. Certificates of well-known public certification authorities as well as Couchbase Capella are trusted by default.
 
 To configure SSL support for Tableau Connector:
 

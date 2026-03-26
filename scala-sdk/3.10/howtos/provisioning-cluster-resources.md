@@ -3,7 +3,7 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@scala-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
@@ -220,7 +220,7 @@ val queryIndexMgr = cluster.queryIndexes
 
 Applications can use this manager to perform operations such as creating, deleting, and fetching _primary_ or _secondary_ indexes:
 
-* A _Primary_ index is built from a document’s key and is mostly suited for simple queries.
+* A _Primary_ index is built from a document's key and is mostly suited for simple queries.
 * A _Secondary_ index is the most commonly used type, and is suited for complex queries that require filtering on document fields.
 
 > [!NOTE]
@@ -370,22 +370,22 @@ viewIndexManager.upsertDesignDocument(designDoc, DesignDocumentNamespace.Develop
 ```
 
 > [!WARNING]
-> When you want to update an existing document with a new view (or a modification of a view’s definition), you can use the `upsertDesignDocument` method.
+> When you want to update an existing document with a new view (or a modification of a view's definition), you can use the `upsertDesignDocument` method.
 > 
 > However, this method needs the list of views in the document to be exhaustive, meaning that if you just create the new view definition as previously and add it to a new design document that you upsert, all your other views will be erased!
 > 
-> The solution is to perform a `getDesignDocument`, add your view definition to the DesignDocument’s views list, then upsert it. This also works with view modifications, provided the change is in the `map` or `reduce` functions (just reuse the same name for the modified view), or for deletion of one out of several views in the document.
+> The solution is to perform a `getDesignDocument`, add your view definition to the DesignDocument's views list, then upsert it. This also works with view modifications, provided the change is in the `map` or `reduce` functions (just reuse the same name for the modified view), or for deletion of one out of several views in the document.
 
 Note the use of `DesignDocumentNamespace.Development`, the other option is `DesignDocumentNamespace.Production`. This parameter specifies whether the design document should be created as development, or as production — with the former running over only a small fraction of the documents.
 
-Now that we’ve created a design document we can fetch it:
+Now that we've created a design document we can fetch it:
 
 ```scala
 val designDoc: Try[DesignDocument] =
   viewIndexManager.getDesignDocument("landmarks", DesignDocumentNamespace.Development)
 ```
 
-We’ve created the design document using `DesignDocumentNamespace.Development` and now want to push it to production, we can do this with:
+We've created the design document using `DesignDocumentNamespace.Development` and now want to push it to production, we can do this with:
 
 ```scala
 val publishResult = viewIndexManager.publishDesignDocument("landmarks")

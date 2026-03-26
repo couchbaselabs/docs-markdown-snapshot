@@ -4,7 +4,7 @@ description: When a process panics, a core dump occurs and the system creates a
   core file. These files are intended for troubleshooting and to help diagnose
   faults.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/troubleshoot/core-files.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:troubleshoot/core-files.adoc[]
 ---
 
@@ -23,7 +23,7 @@ Setting up your system to retain core files varies a bit based on the operating 
 
 * Ensure that the Couchbase user has a reasonable core file size limit.
 * Ensure that you have enough free space to accommodate for core files on disk, and that you have write access to the core file directory.
-* Consider modifying the core file pattern so you don’t get lots of core files.
+* Consider modifying the core file pattern so you don't get lots of core files.
 
 ## [](#core-file-setup-for-selected-platforms)Core File Setup for Selected Platforms
 

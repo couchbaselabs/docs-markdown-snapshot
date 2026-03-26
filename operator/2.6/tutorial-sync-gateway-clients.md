@@ -1,7 +1,7 @@
 ---
 title: Exposing Sync Gateway to Couchbase Lite Clients
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/tutorial-sync-gateway-clients.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::tutorial-sync-gateway-clients.adoc[]
 ---
 
@@ -134,7 +134,7 @@ The output above indicates that the host `cbm.example.com` is reachable via TLS 
 
 #### [](#try-it-out)Try It Out
 
-That’s it. To verify that the Sync Gateway is accessible , open up https://<your-sync-gateway-hostname> in your browser. You should the equivalent of
+That's it. To verify that the Sync Gateway is accessible , open up https://<your-sync-gateway-hostname> in your browser. You should the equivalent of
 
 ```json
 {"couchdb":"Welcome","vendor":{"name":"Couchbase Sync Gateway","version":"2.7"},"version":"Couchbase Sync Gateway/2.7.0(127;b4c828d) EE"}
@@ -327,7 +327,7 @@ kubernetes          ClusterIP      10.3.240.1     <none>
 sgw-load-balancer   LoadBalancer   10.3.253.17    35.184.19.17
 ```
 
-The `sgw-load-balancer` `EXTERNAL-IP` is the load balancer’s publicly accessible hostname.
+The `sgw-load-balancer` `EXTERNAL-IP` is the load balancer's publicly accessible hostname.
 
 Verify the pods that the load balancer is targeting.
 
@@ -357,7 +357,7 @@ Events:
 
 Notice the "endpoints" field and confirm that it corresponds to the Sync Gateway nodes. In this example, we have 2 Sync Gateway nodes.
 
-Verify the Sync Gateway cluster is accessible with the following command; where `EXTERNAL-IP` is the load balancer’s publicly accessible address. In your deployment, you will replace "EXTERNAL\_IP" with the DNS hostname corresponding to your Sync Gateway certs.
+Verify the Sync Gateway cluster is accessible with the following command; where `EXTERNAL-IP` is the load balancer's publicly accessible address. In your deployment, you will replace "EXTERNAL\_IP" with the DNS hostname corresponding to your Sync Gateway certs.
 
 ```console
 $ curl  https://EXTERNAL-IP:4984

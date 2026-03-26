@@ -2,7 +2,7 @@
 title: Travel Sample Data Model
 description: An overview of the travel sample application data model and documents.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/ref/pages/travel-app-data-model.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@java-sdk:ref:travel-app-data-model.adoc[]
 ---
 
@@ -31,9 +31,9 @@ The following figure illustrates the relationship between the different kinds of
 
 Figure 1\. Documents in the Travel Application data model
 
-Landmark documents aren’t used in the travel-sample application, which focuses on a more specific subset of point of interests that have their own type: hotels.
+Landmark documents aren't used in the travel-sample application, which focuses on a more specific subset of point of interests that have their own type: hotels.
 
-Hotels, like landmarks, don’t have relations to other types.
+Hotels, like landmarks, don't have relations to other types.
 
 ## [](#airline-documents)Airline Documents
 
@@ -60,7 +60,7 @@ airline_24 			   ←This is the key, which also acts as a primary key
 
 _Route documents_ contain details about flights such as the name of the airline, departure airport, destination airport, number of stops during the flight, type of aircraft, flight number, and flight schedule.
 
-Route documents also contain a foreign key identifier, `airlineid`, that’s used to retrieve the document that contains information about the airline that flies the route. The value of the `airlineid` field is identical to the key for the corresponding airline document.
+Route documents also contain a foreign key identifier, `airlineid`, that's used to retrieve the document that contains information about the airline that flies the route. The value of the `airlineid` field is identical to the key for the corresponding airline document.
 
 For route documents, the value of the `type` field is `route`.
 
@@ -167,7 +167,7 @@ hotel_10180                          ←This is the key, which also acts as a pr
 
 ## [](#query-anatomy)Query Anatomy
 
-The Couchbase SQL++ query language (formerly N1QL) is a powerful tool for efficient retrieval of information from a document data store. Here’s an example of a query that finds flights between Seattle-Tacoma International Airport (SEA) and Orlando International Airport (MCO), followed by a description of what’s happening in the query:
+The Couchbase SQL++ query language (formerly N1QL) is a powerful tool for efficient retrieval of information from a document data store. Here's an example of a query that finds flights between Seattle-Tacoma International Airport (SEA) and Orlando International Airport (MCO), followed by a description of what's happening in the query:
 
 ```sql
 SELECT a.name, s.flight, s.utc, r.sourceairport, r.destinationairport, r.equipment
@@ -206,12 +206,12 @@ To try this out you need Couchbase Server 7.0 or later and the [travel-sample](#
 The updated bucket introduces tenant `agent` scopes, `users` and `bookings` collections to allocate data into more logical groupings.
 
 > [!NOTE]
-> the `inventory` scope isn’t multi-tenanted as it shares its collection data across the tenant agents.
+> the `inventory` scope isn't multi-tenanted as it shares its collection data across the tenant agents.
 
 Following is a brief overview of the collections within the new tenant scopes.
 
 > [!IMPORTANT]
-> The following documents are for example only and don’t exist by default in the `travel-sample` bucket. The travel sample application creates/updates documents within these new collections when using the flight planner.
+> The following documents are for example only and don't exist by default in the `travel-sample` bucket. The travel sample application creates/updates documents within these new collections when using the flight planner.
 
 The `users` collection stores user related data such as login details and flights booked:
 

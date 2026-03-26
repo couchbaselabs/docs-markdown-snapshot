@@ -3,7 +3,7 @@ title: Blobs
 description: Working with Couchbase Lite's data model -- handling data store
   attachments blobs's
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/java/pages/blob.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:java:blob.adoc[]
 ---
 
@@ -12,12 +12,12 @@ link: xref:2.8@couchbase-lite:java:blob.adoc[]
 
 # Blobs
 
-> Description — _Working with Couchbase Lite’s data model — handling data store attachments blobs’s_  
+> Description — _Working with Couchbase Lite's data model — handling data store attachments blobs's_  
 > Related Content — [Databases](../../current/java/database.md) | [Documents](../../current/java/document.md) | [Indexing](../../current/java/indexing.md)
 
 ## [](#what-are-blobs)What Are Blobs?
 
-We’ve renamed "attachments" to "blobs". The new behavior should be clearer too, as a `Blob` is now a normal object that can appear in a document as a property value.
+We've renamed "attachments" to "blobs". The new behavior should be clearer too, as a `Blob` is now a normal object that can appear in a document as a property value.
 
 ## [](#using-blobs)Using Blobs
 
@@ -51,7 +51,7 @@ In [Example 1](#add-a-blob), "image/jpeg" is the MIME type and "avatar" is the k
 
 ## [](#synchronization-behaviour)Synchronization Behaviour
 
-When a document is synchronized, the Couchbase Lite replicator will add an `_attachments` dictionary to the document’s properties if it contains a blob.
+When a document is synchronized, the Couchbase Lite replicator will add an `_attachments` dictionary to the document's properties if it contains a blob.
 
 A random access name will be generated for each `Blob` which is different to the "avatar" key that was used in the example above.
 

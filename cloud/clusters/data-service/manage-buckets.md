@@ -3,7 +3,7 @@ title: Manage Buckets
 description: Create, edit, and delete buckets to manage your data storage in a
   Capella operational cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/manage-buckets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:data-service/manage-buckets.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:clusters:data-service/manage-buckets.adoc[]
 
 > Create, edit, and delete buckets to manage your data storage in a Capella operational cluster. 
 
-A **bucket** is the named container in which you save your data. You may have up to 30 buckets in your cluster. You may organize the data within a bucket into different **collections**, according to content-type. A bucket’s data may be [replicated](../xdcr/xdcr.md) across the cluster, to make sure that the data exists in multiple copies, and is highly available. A bucket’s data may also be replicated across different clusters, potentially in different geographic locations.
+A **bucket** is the named container in which you save your data. You may have up to 30 buckets in your cluster. You may organize the data within a bucket into different **collections**, according to content-type. A bucket's data may be [replicated](../xdcr/xdcr.md) across the cluster, to make sure that the data exists in multiple copies, and is highly available. A bucket's data may also be replicated across different clusters, potentially in different geographic locations.
 
 The Capella UI defines buckets with default settings that support rapid prototyping and pre-production experimentation. For the subsequent design of sophisticated production systems, multiple configuration options are provided, to ensure heightened performance, integrity, and availability.
 
@@ -45,7 +45,7 @@ If the cluster links to an App Service, deleted or tombstoned documents remain i
 
 ## [](#access-bucket)Accessing Bucket Information
 
-To create, modify, or delete buckets from the Capella UI, you must have the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Cluster Manager](../../projects/project-roles.md#project-cluster-manager-role) role for the cluster’s project. If you have the [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) role, you have `Project Owner` access.
+To create, modify, or delete buckets from the Capella UI, you must have the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Cluster Manager](../../projects/project-roles.md#project-cluster-manager-role) role for the cluster's project. If you have the [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) role, you have `Project Owner` access.
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -77,18 +77,18 @@ Disk
 
 Memory/Quota
 
-Clicking on the name of a bucket opens the **Edit Bucket** page for that bucket. The page shows information about the bucket’s current configuration. These details include conflict resolution, minimum durability level, replication, flush, and time to live settings. For more information, see [Modify a Bucket](#edit-bucket).
+Clicking on the name of a bucket opens the **Edit Bucket** page for that bucket. The page shows information about the bucket's current configuration. These details include conflict resolution, minimum durability level, replication, flush, and time to live settings. For more information, see [Modify a Bucket](#edit-bucket).
 
 ## [](#add-bucket)Prerequisites
 
 > [!NOTE]
 > Free Tier Limitations
 > 
-> If you’re using a free tier operational cluster, you cannot create a bucket with advanced options. Free tier clusters can create only buckets with the memory and disk bucket type, and the Magma 128 vBucket storage backend option.
+> If you're using a free tier operational cluster, you cannot create a bucket with advanced options. Free tier clusters can create only buckets with the memory and disk bucket type, and the Magma 128 vBucket storage backend option.
 
 To create, modify, or delete buckets in a project, you need:
 
-* The [Project Owner](../../projects/project-roles.md#project-owner-role) or [Cluster Manager](../../projects/project-roles.md#project-cluster-manager-role) role for your cluster’s project. If you have the [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) role, you have `Project Owner` access.
+* The [Project Owner](../../projects/project-roles.md#project-owner-role) or [Cluster Manager](../../projects/project-roles.md#project-cluster-manager-role) role for your cluster's project. If you have the [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) role, you have `Project Owner` access.
 
 ## [](#create-a-bucket)Create a Bucket
 
@@ -121,9 +121,9 @@ To create a bucket, choose 1 of the following options:
   > When using Couchbase Server 8.0 or later, the default storage backend is Magma, which needs 100 MiB with 128 vBuckets or 1 GiB with 1024 vBuckets. Couchstore needs a minimum of 100 MiB. For help with choosing the right storage backend for your bucket, see [Storage Engines](storage-engines.md).  
   Use the memory allocation graph to view the memory allocated to other buckets in the cluster, and the total amount of memory you can allocate to a new bucket.  
   > [!NOTE]  
-  > The total memory quota for a bucket equals the number of data nodes in its Service Group multiplied by the memory quota you specify. If you change the number of data nodes in your Service Group, the total memory allocated to the bucket changes as well. For example, if you deploy the Data Service on 3 nodes and create a bucket with a 100 MiB memory quota, each node has 100 MiB. This gives the bucket a total of 300 MiB memory. [Scaling your cluster](../scale-database.md) up to 6 nodes with 100 MiB per node increases the bucket’s maximum memory to 600 MiB. Scaling a cluster down to reduce the number of nodes, also reduces the total memory quota for the bucket. If you do not have enough memory allocated to a bucket for your data, you can encounter performance issues.  
+  > The total memory quota for a bucket equals the number of data nodes in its Service Group multiplied by the memory quota you specify. If you change the number of data nodes in your Service Group, the total memory allocated to the bucket changes as well. For example, if you deploy the Data Service on 3 nodes and create a bucket with a 100 MiB memory quota, each node has 100 MiB. This gives the bucket a total of 300 MiB memory. [Scaling your cluster](../scale-database.md) up to 6 nodes with 100 MiB per node increases the bucket's maximum memory to 600 MiB. Scaling a cluster down to reduce the number of nodes, also reduces the total memory quota for the bucket. If you do not have enough memory allocated to a bucket for your data, you can encounter performance issues.  
   For more information about memory management in Capella, see [Buckets and Storage](#buckets-storage).
-  4. In the **Scope** and **Collection** fields, enter names for the bucket’s first scope and collection, or select **Use system generated \_default for scope and collection**.
+  4. In the **Scope** and **Collection** fields, enter names for the bucket's first scope and collection, or select **Use system generated \_default for scope and collection**.
   5. Click **Create**.
 
 You can [modify your bucket settings](#edit-bucket) at any time.
@@ -139,7 +139,7 @@ You can [modify your bucket settings](#edit-bucket) at any time.
 > When using Couchbase Server 8.0 or later, the default storage backend is Magma, which needs 100 MiB with 128 vBuckets or 1 GiB with 1024 vBuckets. Couchstore needs a minimum of 100 MiB. For help with choosing the right storage backend for your bucket, see [Storage Engines](storage-engines.md).  
 Use the memory allocation graph to view the memory allocated to other buckets in the cluster, and the total amount of memory you can allocate to a new bucket.  
 > [!NOTE]  
-> The total memory quota for a bucket equals the number of data nodes in its Service Group multiplied by the memory quota you specify. If you change the number of data nodes in your Service Group, the total memory allocated to the bucket changes as well. For example, if you deploy the Data Service on 3 nodes and create a bucket with a 100 MiB memory quota, each node has 100 MiB. This gives the bucket a total of 300 MiB memory. [Scaling your cluster](../scale-database.md) up to 6 nodes with 100 MiB per node increases the bucket’s maximum memory to 600 MiB. Scaling a cluster down to reduce the number of nodes, also reduces the total memory quota for the bucket. If you do not have enough memory allocated to a bucket for your data, you can encounter performance issues.  
+> The total memory quota for a bucket equals the number of data nodes in its Service Group multiplied by the memory quota you specify. If you change the number of data nodes in your Service Group, the total memory allocated to the bucket changes as well. For example, if you deploy the Data Service on 3 nodes and create a bucket with a 100 MiB memory quota, each node has 100 MiB. This gives the bucket a total of 300 MiB memory. [Scaling your cluster](../scale-database.md) up to 6 nodes with 100 MiB per node increases the bucket's maximum memory to 600 MiB. Scaling a cluster down to reduce the number of nodes, also reduces the total memory quota for the bucket. If you do not have enough memory allocated to a bucket for your data, you can encounter performance issues.  
 For more information about memory management in Capella, see [Buckets and Storage](#buckets-storage).
 6. (Optional) Configure advanced settings for your bucket, or accept the default values. For more information about advanced bucket settings, see [Configure Advanced Bucket Settings](#advanced-settings).  
 > [!NOTE]  
@@ -189,15 +189,15 @@ For more information about the differences between Couchstore and Magma, see [St
   Document conflicts occur during [XDCR](../xdcr/xdcr.md#conflict-resolution) when a document has been modified differently in different locations, requiring one version of the document to be kept and the other discarded. You cannot change your conflict resolution method after you create a bucket. For more information about conflict resolution, see [XDCR Conflict Resolution](../xdcr/xdcr.md#conflict-resolution).
 5. (**Memory Only Buckets** Only) Choose an **Ejection Policy** for the bucket:
 
-  * Select **NRU** (Not Recently Used) to make Capella remove documents with the lowest access frequency when the bucket’s memory reaches capacity. This reclaims memory for saving new documents.
-  * Select **No Ejection** to make Capella keep all documents when the bucket’s memory reaches capacity, and force new document save attempts to fail.  
+  * Select **NRU** (Not Recently Used) to make Capella remove documents with the lowest access frequency when the bucket's memory reaches capacity. This reclaims memory for saving new documents.
+  * Select **No Ejection** to make Capella keep all documents when the bucket's memory reaches capacity, and force new document save attempts to fail.  
   You cannot change your ejection policy after you create a bucket. For more information about ejection, see [Ejection Policy](../../../server/current/learn/buckets-memory-and-storage/storage-settings.md#storage-settings-ejection-policy) in the Couchbase Server documentation.
 6. Choose the **Minimum Durability Level** for each write to the bucket:
 
   * **None**: Apply no durability level. This option is available for **Memory and Disk** and **Memory Only** buckets.
   * **Replicate to Majority**: Mutations replicate to a majority of the Data Service nodes, without persistence. This option is available for **Memory and Disk** and **Memory Only** buckets.
-  * **Majority and Persist to Active**: Mutations replicate to a majority of the Data Service nodes. They’re also persisted—​written and synchronized to disk—​on the node hosting the active vBucket for the data. This option is available for **Memory and Disk** buckets only.
-  * **Persist to Majority**: Mutations replicate to a majority of the Data Service nodes. They’re also persisted—​written and synchronized to disk—​on all nodes. This option is available for **Memory and Disk** buckets only.  
+  * **Majority and Persist to Active**: Mutations replicate to a majority of the Data Service nodes. They're also persisted—​written and synchronized to disk—​on the node hosting the active vBucket for the data. This option is available for **Memory and Disk** buckets only.
+  * **Persist to Majority**: Mutations replicate to a majority of the Data Service nodes. They're also persisted—​written and synchronized to disk—​on all nodes. This option is available for **Memory and Disk** buckets only.  
   Durability helps to improve data integrity during failures. For more information about durability in Couchbase clusters, see [Durability](../../../server/current/learn/data/durability.md) in the Couchbase Server documentation.  
 > [!NOTE]  
 > Limitations  
@@ -218,7 +218,7 @@ CCV is automatically enabled when setting up mobile active replication. You cann
 > [!CAUTION]  
 > To protect against inadvertent data loss, turn off Flush on production clusters.
 10. Turn **Time to Live** (TTL) on or off.  
-Enabling TTL allows you to set a maximum amount of time for which a document can exist before it’s automatically deleted. When enabled, this setting allows you to specify the time-period in seconds, minutes, hours, days, or weeks. This setting applies to all collections in the bucket unless you configure a collection’s TTL to a non-zero value.
+Enabling TTL allows you to set a maximum amount of time for which a document can exist before it's automatically deleted. When enabled, this setting allows you to specify the time-period in seconds, minutes, hours, days, or weeks. This setting applies to all collections in the bucket unless you configure a collection's TTL to a non-zero value.
 11. Choose a backup schedule for the bucket according to the relative importance of the workload and data.
 
   1. Select **Do Not Backup** to not schedule any backups.  
@@ -228,7 +228,7 @@ Enabling TTL allows you to set a maximum amount of time for which a document can
   2. Choose **Set Weekly Schedule**.
   3. Choose the **Day of the week** when you want Capella to take the full backup. The default value is `Sunday`.
   4. Set the **Start at** time of day for the full backup.  
-  Select a **Start at** time when your application isn’t using Capella heavily unless you’ve chosen a cluster configuration with more capacity than you need.
+  Select a **Start at** time when your application isn't using Capella heavily unless you've chosen a cluster configuration with more capacity than you need.
   5. Use the **Incremental Every** list to set the frequency of incremental backups.  
   > [!TIP]  
   > If you change the **Start at** time, the next incremental backup might happen at a different time than you expect. Capella calculates the **Incremental Value** backward from the configured **Start at** time.  
@@ -249,7 +249,7 @@ Enabling TTL allows you to set a maximum amount of time for which a document can
 > 
 > For single node operational clusters, you cannot modify the **Storage Backend**, **Minimum Durability Level**, and **Number of Replicas** settings for a bucket. Capella automatically configures buckets on a single node cluster with a Couchstore backend, no minimum durability level, and no replicas. To modify these settings, you need to either [scale out your existing single node cluster](#clusters/modify-database.adoc#add-remove-nodes) or deploy a new multi-node operational cluster.
 
-To modify a bucket, you need the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Cluster Manager](../../projects/project-roles.md#project-cluster-manager-role) role for the cluster’s project. If you have the [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) role, you have `Project Owner` access. NOTE: You cannot change the **Bucket Name**, **Bucket Type**, **Storage Backend**, or **Conflict Resolution** settings for an existing bucket.
+To modify a bucket, you need the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Cluster Manager](../../projects/project-roles.md#project-cluster-manager-role) role for the cluster's project. If you have the [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) role, you have `Project Owner` access. NOTE: You cannot change the **Bucket Name**, **Bucket Type**, **Storage Backend**, or **Conflict Resolution** settings for an existing bucket.
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -263,18 +263,18 @@ To modify a bucket, you need the [Project Owner](../../projects/project-roles.md
 
   * **Memory Quota (MiB)**: Edit the amount of memory allocated to the bucket. A minimum of 100 MiB is required for a Couchstore storage backend bucket, and 1 GiB for a Magma bucket. Couchstore needs a minimum of 100 MiB, while Magma needs 100 MiB with 128 vBuckets or 1 GiB with 1024 vBuckets.
   * **Minimum Durability Level**: Choose a new minimum durability level. For more information, see the [durability](#durability) configuration instructions.
-  * **Number of Replicas**: Choose the number of copies of this bucket’s data that Capella creates and maintains.
+  * **Number of Replicas**: Choose the number of copies of this bucket's data that Capella creates and maintains.
   * **Flush**: Choose to turn on or turn off flush. For more information, see the [flush](#flush) configuration instructions.
   * **Time to Live**: Choose to turn on or turn off time to live. For more information, see the [time to live](#time-to-live) configuration instructions.
-  * **Backup Schedule**: Change the backup schedule for the bucket. For more information about how to change a bucket’s backup schedule, see the [backup schedule](#backup-schedule) instructions.
+  * **Backup Schedule**: Change the backup schedule for the bucket. For more information about how to change a bucket's backup schedule, see the [backup schedule](#backup-schedule) instructions.
 6. Click **Save**.
 
 ## [](#delete-bucket)Delete a Bucket
 
 > [!WARNING]
-> Deleting a bucket deletes all of its contents. Backups for a deleted bucket might be available for a restore operation, based on the bucket’s previous **Backup** configuration.
+> Deleting a bucket deletes all of its contents. Backups for a deleted bucket might be available for a restore operation, based on the bucket's previous **Backup** configuration.
 
-You can delete a bucket when it’s no longer needed, or when you need to replace all items within a bucket. Deleting and recreating a bucket is faster than deleting each document in a bucket.
+You can delete a bucket when it's no longer needed, or when you need to replace all items within a bucket. Deleting and recreating a bucket is faster than deleting each document in a bucket.
 
 > [!IMPORTANT]
 > If the bucket is the source of a [replication](../xdcr/xdcr.md), bucket deletion fails. You must delete all destination replication buckets before you can delete a source bucket.

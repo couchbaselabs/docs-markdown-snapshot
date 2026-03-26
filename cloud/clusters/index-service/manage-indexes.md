@@ -2,7 +2,7 @@
 title: Manage Indexes
 description: You can perform some index management tasks using the Couchbase Capella UI.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/index-service/manage-indexes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:index-service/manage-indexes.adoc[]
 ---
 
@@ -22,7 +22,7 @@ link: xref:cloud:clusters:index-service/manage-indexes.adoc[]
 > 
 > You need the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer) role for the project containing the cluster.
 
-To view the Indexes page for a cluster that’s running the [Index Service](../../indexes/indexing-overview.md):
+To view the Indexes page for a cluster that's running the [Index Service](../../indexes/indexing-overview.md):
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -44,7 +44,7 @@ Each index has the following information:
 | Reqs/sec  | The number of requests per second.                                                                                                                |
 | Resident  | The percentage of the data held in memory.                                                                                                        |
 | Items     | The number of items indexed.                                                                                                                      |
-| Size      | The size of indexable data that’s maintained for the index or replica.                                                                            |
+| Size      | The size of indexable data that's maintained for the index or replica.                                                                            |
 | Status    | The current state of the Index Service on the node where this index is stored. The possible statuses include **ready**, **pause**, or **warmup**. |
 | Last Scan | The latest scan time.                                                                                                                             |
 | Keyspace  | The keyspace for which the index or replica was created.                                                                                          |
@@ -61,7 +61,7 @@ To view the details of an index: Select its name on the Indexes page.
 
 ### [](#open-the-index-definition)Open the Index Definition
 
-Use the SQL++ query language to define and edit indexes. Using the query editor, you can modify the index definition as required to create a new index. You can’t change the definition of the existing index. You can create a new index with the modified definition and then drop the old index.
+Use the SQL++ query language to define and edit indexes. Using the query editor, you can modify the index definition as required to create a new index. You can't change the definition of the existing index. You can create a new index with the modified definition and then drop the old index.
 
 To open the index definition in the [Query tab](../query-service/query-workbench.md): Click **Open definition in Query Editor**.
 
@@ -69,7 +69,7 @@ The index definition is added to the query editor.
 
 ### [](#view-index-performance)View Index Performance
 
-The **Bucket’s Index Performance** section displays statistics for the Index Service or the selected bucket that the current index is defined for.
+The **Bucket's Index Performance** section displays statistics for the Index Service or the selected bucket that the current index is defined for.
 
 The following statistics are available:
 

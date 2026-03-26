@@ -3,7 +3,7 @@ title: set flush_param
 description: The command <code class="cmd">set flush_param</code> establishes
   bucket parameters for threading and memory management.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbepctl/set-flush_param.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:cli:cbepctl/set-flush_param.adoc[]
 ---
 
@@ -116,7 +116,7 @@ __Table 1\. set flush\_param options__
 | min\_data\_age                    | Minimum data age before flushing data.                                                                                                                                                                    |
 | item\_compressor\_interval        | How often the item compressor task should be run, in milliseconds. Default value is 250.                                                                                                                  |
 | item\_compressor\_chunk\_duration | Maximum time, in milliseconds, for which the item compressor task is run, before being paused, and then resumed according to the established item\_compressor\_interval. Default value is 20.             |
-| min\_compression\_ratio           | Minimum allowed ratio of each item’s uncompressed form to its compressed form. If the actual ratio is less than this value, the item is stored in uncompressed form. Default value is 1.2.                |
+| min\_compression\_ratio           | Minimum allowed ratio of each item's uncompressed form to its compressed form. If the actual ratio is less than this value, the item is stored in uncompressed form. Default value is 1.2.                |
 
 > [!NOTE]
 > **%** You must use the percentage sign in order to set the value by percentage.

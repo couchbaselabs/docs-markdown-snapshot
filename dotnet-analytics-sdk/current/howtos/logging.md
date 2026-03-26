@@ -2,7 +2,7 @@
 title: Logging
 description: Configuring logging with the .NET Analytics SDK.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/howtos/pages/logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:dotnet-analytics-sdk:howtos:logging.adoc[]
 ---
 
@@ -21,7 +21,7 @@ An `ILoggerFactory` can be provided to the `ClusterOptions` when creating a `Clu
 
 Example 1\. Using Serilog
 
-Using `Serilog` and wiring it to the SDK’s `Microsoft.Extensions.Logging` API:
+Using `Serilog` and wiring it to the SDK's `Microsoft.Extensions.Logging` API:
 
 Add the following dependencies to your project, as required:
 

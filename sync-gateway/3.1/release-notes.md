@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::release-notes.adoc[]
 ---
 
@@ -60,10 +60,10 @@ Version 3.1.11 of Sync Gateway delivers the following features and enhancements:
 * [CBG-4022 - Fixed race condition between config poll and dbconfig update](https://jira.issues.couchbase.com/browse/CBG-4022)
 * [CBG-4029 - Fixed Users dynamically computed roles not getting invalidated after a resync](https://jira.issues.couchbase.com/browse/CBG-4029)
 * [CBG-4073 - Fixed panic in CheckpointHash function for bucket UUID call](https://jira.issues.couchbase.com/browse/CBG-4073)
-* [CBG-4107 - Fix error behavior in removeCorruptConfigIfExists where the database wasn’t unloaded/removed](https://jira.issues.couchbase.com/browse/CBG-4107)
+* [CBG-4107 - Fix error behavior in removeCorruptConfigIfExists where the database wasn't unloaded/removed](https://jira.issues.couchbase.com/browse/CBG-4107)
 * [CBG-4127 - Decouple client request context from lazy-init OIDC discovery sync process](https://jira.issues.couchbase.com/browse/CBG-4127)
-* [CBG-4173 - Fixed corrupt DB config handling doesn’t remove the config when longer present in the bucket](https://jira.issues.couchbase.com/browse/CBG-4173)
-* [CBG-4221 - Pending unused sequences shouldn’t update high cache sequence](https://jira.issues.couchbase.com/browse/CBG-4221)
+* [CBG-4173 - Fixed corrupt DB config handling doesn't remove the config when longer present in the bucket](https://jira.issues.couchbase.com/browse/CBG-4173)
+* [CBG-4221 - Pending unused sequences shouldn't update high cache sequence](https://jira.issues.couchbase.com/browse/CBG-4221)
 * [CBG-4218 - Duplicated sequences can cause SGW to be unresponsive](https://jira.issues.couchbase.com/browse/CBG-4218)
 
 ### [](#enhancements-2)Enhancements
@@ -126,9 +126,9 @@ Version 3.1.6 of Sync Gateway delivers the following features and enhancements:
 ### [](#maint-3-1-6)Fixed Issues
 
 * [CBG-3683 - Fixed PANIC error when closing channel cache after Mutation feed fails to start inside StartOnlineProcesses](https://issues.couchbase.com/browse/CBG-3683)
-* [CBG-3828 - Fixed sgcollect windows doesn’t collect stderr / stdout](https://issues.couchbase.com/browse/CBG-3828)
+* [CBG-3828 - Fixed sgcollect windows doesn't collect stderr / stdout](https://issues.couchbase.com/browse/CBG-3828)
 * [CBG-3845 - Fixed updateSeq must happen after DCP callback invocation](https://issues.couchbase.com/browse/CBG-3845)
-* [CBG-3878 - Fixed UnmarshalDocumentSyncDataFromFeed doesn’t return any present user xattrs if sync data doesn’t exist on the doc](https://issues.couchbase.com/browse/CBG-3878)
+* [CBG-3878 - Fixed UnmarshalDocumentSyncDataFromFeed doesn't return any present user xattrs if sync data doesn't exist on the doc](https://issues.couchbase.com/browse/CBG-3878)
 * [CBG-3906 - Fixed logging for GetDatabaseConfigs verbose and ambiguous](https://issues.couchbase.com/browse/CBG-3906)
 
 ### [](#enhancements-4)Enhancements
@@ -230,7 +230,7 @@ Version 3.1.2 of Sync Gateway delivers the following features and enhancements:
 * [CBG-3404 - Hook up the reset resync code to a parameter that is pssed into the resync endpoint](https://issues.couchbase.com/browse/CBG-3404)
 * [CBG-3403 -Handle rollback error for resync operations](https://issues.couchbase.com/browse/CBG-3403)
 * [CBG-3398 - Pick up gocb fix for bootstrapping against non KV nodes](https://issues.couchbase.com/browse/CBG-3398)
-* [CBG-3397 - SG warning when client’s maxHistory for a rev is exceeded on push](https://issues.couchbase.com/browse/CBG-3397)
+* [CBG-3397 - SG warning when client's maxHistory for a rev is exceeded on push](https://issues.couchbase.com/browse/CBG-3397)
 * [CBG-3383- Invalid error handling state for async db online](https://issues.couchbase.com/browse/CBG-3383)
 * [CBG-3350 - SGW 3.1.1 using 50-75% more memory compared to 3.1.0](https://issues.couchbase.com/browse/CBG-3350)
 * [CBG-3330 -buildRevokedFeed query iteration fails when no documents processed](https://issues.couchbase.com/browse/CBG-3330)
@@ -317,7 +317,7 @@ Version 3.1.0 of Sync Gateway delivers the following features and enhancements:
 > Sync Gateway 3.0.x introduces some breaking changes. If you are upgrading from 2.x, please refer to the [Upgrading](upgrading.md) page. Users should be able to upgrade to 3.1.x from 3.0.x without manual intervention.
 
 * **New support for Scopes and Collections**  
-Couchbase has introduced support for Scopes and Collections for self-managed cloud-to-edge deployments only in [Couchbase Lite 3.1.0](../../couchbase-lite/current/index.md) and [Sync Gateway 3.1.0](introduction.md). This release won’t cause any issues with existing apps, as it’s compatible with older versions. If you have an app that uses bucket-based APIs, you can still upgrade to 3.1, but please note that this API is now deprecated. For more information, see [Scopes and Collections Configuration for Sync Gateway](scopes-and-collections-config.md).
+Couchbase has introduced support for Scopes and Collections for self-managed cloud-to-edge deployments only in [Couchbase Lite 3.1.0](../../couchbase-lite/current/index.md) and [Sync Gateway 3.1.0](introduction.md). This release won't cause any issues with existing apps, as it's compatible with older versions. If you have an app that uses bucket-based APIs, you can still upgrade to 3.1, but please note that this API is now deprecated. For more information, see [Scopes and Collections Configuration for Sync Gateway](scopes-and-collections-config.md).
 * **Improved Data Organization and Access Control for Scopes and Collections**  
 Couchbase Mobile now offers Scopes and Collections, allowing more efficient and scalable data organisation within a bucket. This also introduces an improved method of defining and enforcing data [Access Control](access-control-concepts.md) more granularly. Multi-tenant apps will also experience better scalability and independent data lifecycle management.
 * **Improved metadata isolation for Scopes and Collections**  
@@ -328,7 +328,7 @@ The [Sync Functions](sync-function.md) now work on a Collection level, and addit
 With Couchbase Lite client replications, you can synchronize one or multiple Collections within a specific scope. The Couchbase Lite client also will store data locally in a scope not synchronized with the remote Sync Gateway.
 
 > [!NOTE]
-> You can define 1 custom scope per database with up to 1000 custom collections. If you don’t specify a custom scope and collection, any documents you create will be saved in the default scope and collection.
+> You can define 1 custom scope per database with up to 1000 custom collections. If you don't specify a custom scope and collection, any documents you create will be saved in the default scope and collection.
 
 Read the full [3.1 release notes](release-notes.md).
 

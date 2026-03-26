@@ -3,7 +3,7 @@ title: Start Using the Python SDK
 description: Get up and running quickly, installing the Couchbase Python SDK,
   and running our Hello World example.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@python-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -318,7 +318,7 @@ python -m pip install couchbase
 The standard Python distributions for Windows include OpenSSL DLLs, as PIP and the inbuilt `ssl` module require it for correct operation. Prior to version 4.1.9 of the Python SDK, the binary wheels for Windows are built against OpenSSL 1.1\. Version 4.1.9 and beyond statically link against BoringSSL thus removing the OpenSSL requirement.
 
 > [!NOTE]
-> If you require a version that doesn’t have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo.
+> If you require a version that doesn't have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo.
 
 If there are any problems, refer to the full [Installation page](../project-docs/sdk-full-installation.md).
 
@@ -347,7 +347,7 @@ The following code samples assume:
 
 At this point we want to transition from the terminal to your code editor of choice.
 
-Let’s now create an empty file named `cb-test.py` and walk through adding code step-by-step.
+Let's now create an empty file named `cb-test.py` and walk through adding code step-by-step.
 
 Here are all the import statements that you will need to run the sample code:
 
@@ -364,12 +364,12 @@ from couchbase.options import (ClusterOptions, ClusterTimeoutOptions,
 
 ### [](#connect)Connect
 
-The basic connection details that you’ll need are given below — for more background information, refer to the [Managing Connections page](../howtos/managing-connections.md#connection-strings).
+The basic connection details that you'll need are given below — for more background information, refer to the [Managing Connections page](../howtos/managing-connections.md#connection-strings).
 
 * Couchbase Capella
 * Local Couchbase Server
 
-From version 4.0, the Python SDK includes Capella’s standard certificates by default, so you don’t need any additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
+From version 4.0, the Python SDK includes Capella's standard certificates by default, so you don't need any additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
 
 ```python
 # Update this to your cluster
@@ -451,7 +451,7 @@ The code shows how you would use a named collection and scope.
 > cb_coll_default = cb.default_collection()
 > ```
 
-Let’s create a dictionary object in our application that we can add to our `travel-sample` bucket that conforms to the structure of a document of type `airline`.
+Let's create a dictionary object in our application that we can add to our `travel-sample` bucket that conforms to the structure of a document of type `airline`.
 
 ```python
 airline = {
@@ -488,7 +488,7 @@ Call the `upsert_document()` function passing in our `airline` document:
 upsert_document(airline)
 ```
 
-Now let’s retrieve that document using a key-value operation. The following function runs a `get()` for a document key and either logs out the result or error in our console:
+Now let's retrieve that document using a key-value operation. The following function runs a `get()` for a document key and either logs out the result or error in our console:
 
 ```python
 # get document function
@@ -562,7 +562,7 @@ Couchbase Airways
 
 ## [](#next-steps)Next Steps
 
-Now you’re up and running, try one of the following:
+Now you're up and running, try one of the following:
 
 * Our [Travel Sample Application](sample-application.md) demonstrates all the basics you need to know;
 * Explore [Key Value Operations](../howtos/kv-operations.md) (CRUD) against a document database;
@@ -581,7 +581,7 @@ Couchbase welcomes community contributions to the Python SDK. The Python SDK sou
 
 ### [](#troubleshooting)Troubleshooting
 
-* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you’re running the SDK on your laptop against a Capella cluster, see further information on:
+* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you're running the SDK on your laptop against a Capella cluster, see further information on:
 
   * Notes on [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
   * [Network Requirements](../project-docs/compatibility.md#network-requirements).

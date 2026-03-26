@@ -2,7 +2,7 @@
 title: Collections&#8201;&#8212;&#8201;Server Compatibility
 description: How <em>Sync Gateway</em> can work with <em>Couchbase Server's Collections</em>
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/server-compatibility/pages/server-compatibility-collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@sync-gateway:server-compatibility:server-compatibility-collections.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:3.3@sync-gateway:server-compatibility:server-compatibility-collection
 
 # Collections&#8201;&#8212;&#8201;Server Compatibility
 
-> How _Sync Gateway_ can work with _Couchbase Server’s Collections_  
+> How _Sync Gateway_ can work with _Couchbase Server's Collections_  
 
 _Related topics_: [Buckets](server-compatibility-buckets.md) | [Collections](server-compatibility-collections.md) | [Eventing](server-compatibility-eventing.md) | [Transactions](server-compatibility-transactions.md) | [XDCR](server-compatibility-xdcr.md) | [Backup and restore](server-compatibility-backups.md)
 

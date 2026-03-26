@@ -3,7 +3,7 @@ title: MapReduce Views
 description: You can use MapReduce views to create queryable indexes in
   Couchbase Data Platform.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/howtos/pages/view-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@python-sdk:howtos:view-queries-with-sdk.adoc[]
 ---
 
@@ -30,7 +30,7 @@ MapReduce queries can be further customized during query time to allow only a su
 
 Once you have a view defined, it can be queried from the Python SDK by using the `view_query` method on a `Bucket` instance.
 
-The following example is the definition of a `by_country` view in a _landmarks-by-country_ design document. This view checks whether a document is a landmark and has a country. If it does, it emits the landmark’s country into the index. This view allows landmarks to be queried for by country. For example, it’s now possible to ask the question "What countries start with U?"
+The following example is the definition of a `by_country` view in a _landmarks-by-country_ design document. This view checks whether a document is a landmark and has a country. If it does, it emits the landmark's country into the index. This view allows landmarks to be queried for by country. For example, it's now possible to ask the question "What countries start with U?"
 
 ```python
 result = bucket.view_query("landmarks-by-country",
@@ -41,7 +41,7 @@ result = bucket.view_query("landmarks-by-country",
                                        scan_consistency=ViewScanConsistency.REQUEST_PLUS))
 ```
 
-The following example is the definition of a `by_name` view in a _landmarks-by-name_ design document in the _travel-sample_ sample dataset. This view checks whether a document is a landmark and has a name. If it does, it emits the landmark’s name into the index. This view allows landmarks to be queried for by its _name_ field.
+The following example is the definition of a `by_name` view in a _landmarks-by-name_ design document in the _travel-sample_ sample dataset. This view checks whether a document is a landmark and has a name. If it does, it emits the landmark's name into the index. This view allows landmarks to be queried for by its _name_ field.
 
 ```python
 result = bucket.view_query("landmarks-by-name",

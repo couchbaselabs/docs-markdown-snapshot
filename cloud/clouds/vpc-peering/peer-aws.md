@@ -3,7 +3,7 @@ title: Create a VPC Peering Connection with AWS
 description: Use this procedure to create a VPC Peering connection between
   Capella hosted with AWS and your application's VPC on AWS.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/peer-aws.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clouds:vpc-peering/peer-aws.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:cloud:clouds:vpc-peering/peer-aws.adoc[]
 
 # Create a VPC Peering Connection with AWS
 
-> Use this procedure to create a VPC Peering connection between Capella hosted with AWS and your application’s VPC on AWS. 
+> Use this procedure to create a VPC Peering connection between Capella hosted with AWS and your application's VPC on AWS. 
 
 ## [](#prerequisites)Prerequisites
 
@@ -119,7 +119,7 @@ $ aws route53 associate-vpc-with-hosted-zone --hosted-zone-id=Z04089311NGVVH0FO3
 	}  
 }  
 ```
-10. Update the route table for your application’s VPC to make sure all traffic destined for your Capella cluster is appropriately routed:
+10. Update the route table for your application's VPC to make sure all traffic destined for your Capella cluster is appropriately routed:
 
   1. Identify the route table for your application VPC:  
   ![Finding the correct route table.](../_images/pn9-route-table.png)

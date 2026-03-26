@@ -5,7 +5,7 @@ description: <em>General</em> settings allow configuration of <em>cluster
   availability</em> for the cluster; and of <em>advanced settings</em> for the
   Index and Query Services.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-settings/general-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:manage:manage-settings/general-settings.adoc[]
 ---
 
@@ -340,7 +340,7 @@ For additional details on the cluster-level query settings, refer to [Settings a
 
 ### [](#rebalance-settings-via-cli)Rebalance Settings via CLI
 
-To obtain the cluster’s current rebalance settings by means of the CLI, use the [setting-rebalance](../../cli/cbcli/couchbase-cli-setting-rebalance.md) command, with the `--get` option:
+To obtain the cluster's current rebalance settings by means of the CLI, use the [setting-rebalance](../../cli/cbcli/couchbase-cli-setting-rebalance.md) command, with the `--get` option:
 
 ```shell
 /opt/couchbase/bin/couchbase-cli setting-rebalance \
@@ -450,7 +450,7 @@ http://10.143.192.101:8091/pools/default \
 -d eventingMemoryQuota=512
 ```
 
-This establishes the cluster’s IP address as its name, and assigns memory-quotas to the Data, Index, Search, Analytics, and Eventing Services.
+This establishes the cluster's IP address as its name, and assigns memory-quotas to the Data, Index, Search, Analytics, and Eventing Services.
 
 Note that when used with GET, `/pools/default` returns configuration-settings. The output can be filtered, by means of a tool such as [jq](https://stedolan.github.io/jq/):
 
@@ -588,7 +588,7 @@ If successful, this call returns a JSON document featuring all the current query
 }
 ```
 
-The document’s values indicate that the specified values for directory and size have been established; and that the current setting for access-control restricts access to all, with no exceptions.
+The document's values indicate that the specified values for directory and size have been established; and that the current setting for access-control restricts access to all, with no exceptions.
 
 To specify particular URLs as allowed and disallowed, use the `/settings/querySettings/curlWhitelist` method:
 
@@ -600,7 +600,7 @@ http://localhost:8091/settings/querySettings/curlWhitelist \
      "disallowed_urls": ["https://company2.com"]}'
 ```
 
-A JSON document is specified as the payload for the method. The document’s values indicate that `<https://company1.com>` is allowed, and `<https://company2.com>` is disallowed.
+A JSON document is specified as the payload for the method. The document's values indicate that `<https://company1.com>` is allowed, and `<https://company2.com>` is disallowed.
 
 If successful, the call returns a JSON document that confirms the modified settings:
 
@@ -624,7 +624,7 @@ By means of the REST API, both _rebalance retries_ and _maximum concurrent moves
 
 #### [](#rebalance-retries-via-rest)Rebalance Retries via REST
 
-To obtain the cluster’s current settings for _rebalance retries_ by means of the REST API, use the `GET /settings/retryRebalance` HTTP method and URI, as follows:
+To obtain the cluster's current settings for _rebalance retries_ by means of the REST API, use the `GET /settings/retryRebalance` HTTP method and URI, as follows:
 
 ```shell
 curl -X GET -u Administrator:password \

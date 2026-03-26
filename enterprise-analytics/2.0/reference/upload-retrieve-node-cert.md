@@ -2,7 +2,7 @@
 title: Upload and Retrieve a Node Certificate
 description: The REST API can be used to upload and retrieve a node certificate.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/upload-retrieve-node-cert.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:reference:upload-retrieve-node-cert.adoc[]
 ---
 
@@ -21,7 +21,7 @@ GET /pools/default/certificate/node/<ip-address-or-domain-name>
 
 ## [](#description)Description
 
-The `POST` method and `/node/controller/reloadCertificate` URI allow an administrator-configured node-certificate to be _loaded_ and _reloaded_ onto its intended node. Prior to loading, the node-certificate must have been placed in an appropriately created `inbox` directory: see [Configure Server Certificates](../manage/manage-security/configure-server-certificates.md), for information. If the node-certificate to be loaded is associated with an encrypted private key, a procedure can be defined for Enterprise Analytics’s automatic access to and use of the passphrase for the key, when required.
+The `POST` method and `/node/controller/reloadCertificate` URI allow an administrator-configured node-certificate to be _loaded_ and _reloaded_ onto its intended node. Prior to loading, the node-certificate must have been placed in an appropriately created `inbox` directory: see [Configure Server Certificates](../manage/manage-security/configure-server-certificates.md), for information. If the node-certificate to be loaded is associated with an encrypted private key, a procedure can be defined for Enterprise Analytics's automatic access to and use of the passphrase for the key, when required.
 
 The `GET` method and `/pools/default/certificate/node/<ip-address-or-domain-name>` URI allow an administrator-configured node-certificate to be retrieved. Note that such retrieval can only be performed with an administrator-configured node-certificate: it cannot be performed with the default node-certificate that is automatically generated for a node by Enterprise Analytics on initial configuration.
 
@@ -46,7 +46,7 @@ curl -X GET http://<ip-address-or-domain-name>:8091/pools/default/certificate/no
 
 ### [](#json-passphrase-registration)JSON Passphrase Registration
 
-If a node-certificate to be loaded is associated with an encrypted private key, a procedure can be defined to allow Enterprise Analytics to access and use the key’s passphrase, when use of the key is required: the passphrase can be _registered_, by means of a JSON object, specified as the `json-passphrase-registration` argument.
+If a node-certificate to be loaded is associated with an encrypted private key, a procedure can be defined to allow Enterprise Analytics to access and use the key's passphrase, when use of the key is required: the passphrase can be _registered_, by means of a JSON object, specified as the `json-passphrase-registration` argument.
 
 Note that if the node-certificate has already been loaded, in order to register the passphrase for its key, the certificate can be _reloaded_, with the `json-passphrase-registration` specified: for this to be successful, the corresponding `pem` and `key` files must both still be within the created `inbox`, or must be recopied into it.
 
@@ -109,7 +109,7 @@ If the node-certificate does not correctly specify the node-name as a Subject Al
 
 ## [](#examples)Examples
 
-The following call uploads an appropriately configured node certificate from the node’s `inbox` directory:
+The following call uploads an appropriately configured node certificate from the node's `inbox` directory:
 
 curl -X POST http://10.143.201.101:8091/node/controller/reloadCertificate \
 -u Administrator:password
@@ -138,6 +138,6 @@ If successful, the call returns `200 OK`, and an object whose fields specify war
 
 ## [](#see-also)See Also
 
-For information about uploading and retrieving the cluster’s root certificate using the REST API, see [Load Root Certificates](load-trusted-cas.md) and [Get Root Certificates](get-trusted-cas.md).
+For information about uploading and retrieving the cluster's root certificate using the REST API, see [Load Root Certificates](load-trusted-cas.md) and [Get Root Certificates](get-trusted-cas.md).
 
 information about certificate regeneration is provided in [Regenerate All Certificates](rest-regenerate-all-certs.md). A general introduction to certificates is provided in [Certificates](#learn:security/certificates.adoc). Routines for generating and deploying server and client certificates are provided in [Configure Server Certificates](../manage/manage-security/configure-server-certificates.md) and [Configure Client Certificates](../manage/manage-security/configure-client-certificates.md), respectively. For information about correctly specifying the node-name on its certificate, see [Node-Certificate Validation](#learn:security/certificates.adoc#node-certificate-validation).

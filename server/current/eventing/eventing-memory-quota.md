@@ -3,7 +3,7 @@ title: Eventing Service Memory Quota
 description: The Eventing Service memory quota does not enforce a hard memory
   limit on the Eventing subsystem, including worker processes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-memory-quota.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:eventing:eventing-memory-quota.adoc[]
 ---
 
@@ -20,8 +20,8 @@ This page explains how the memory quota actually works, how the Eventing Service
 
 The Eventing Service uses the quota for:
 
-* [Worker Queue Sizing](#worker-queue-sizing): Controls the maximum size of each worker’s input queue.
-* [Garbage Collection (GC) Triggering](#gc-trigger): Determines when the Eventing Service invokes the JavaScript environment’s GC to reclaim memory.
+* [Worker Queue Sizing](#worker-queue-sizing): Controls the maximum size of each worker's input queue.
+* [Garbage Collection (GC) Triggering](#gc-trigger): Determines when the Eventing Service invokes the JavaScript environment's GC to reclaim memory.
 
 The memory quota is not an absolute memory cap. The quota does not restrict the total memory consumed by JavaScript runtime heaps or Eventing processes.
 
@@ -53,7 +53,7 @@ Throttling temporarily pauses the mutation flow, ensuring workers do not become 
 
 ## [](#gc-trigger)Garbage Collection (GC) Triggering
 
-The Eventing Service’s garbage collection (GC) frees memory occupied by unreachable objects that are no longer in use by Eventing Functions.
+The Eventing Service's garbage collection (GC) frees memory occupied by unreachable objects that are no longer in use by Eventing Functions.
 
 Garbage collection reclaims memory only from objects that are no longer in use. Memory held by live objects in the JavaScript runtime heap remains allocated, so total usage may exceed the per-worker quota.
 
@@ -61,9 +61,9 @@ When memory usage approaches the per-worker quota limit, the JavaScript runtime 
 
 The Eventing Service invokes a stop-the-world JavaScript runtime garbage collection to reduce memory inside the JavaScript runtime isolate running each Eventing Function.
 
-The garbage collector may delay the stop-the-world collection because it’s optimized for throughput.
+The garbage collector may delay the stop-the-world collection because it's optimized for throughput.
 
-The runtime might not reclaim memory without a delay, which can temporarily affect the Eventing Service’s memory consumption.
+The runtime might not reclaim memory without a delay, which can temporarily affect the Eventing Service's memory consumption.
 
 ## [](#limitations-and-considerations)Limitations and Considerations
 

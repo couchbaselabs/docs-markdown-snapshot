@@ -3,7 +3,7 @@ title: Buckets, Scopes, and Collections
 description: The data in a Couchbase Capella cluster is categorized and
   organized into different data containers.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/about-buckets-scopes-collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:data-service/about-buckets-scopes-collections.adoc[]
 ---
 
@@ -70,7 +70,7 @@ You cannot remove the `_system` scope or its collections.
 
 ## [](#collections)Collections
 
-A collection is a data container that exists inside a Capella [scope](#scopes). It’s the smallest container that holds the documents inside a [bucket](#buckets).
+A collection is a data container that exists inside a Capella [scope](#scopes). It's the smallest container that holds the documents inside a [bucket](#buckets).
 
 Each cluster can have a maximum of 1000 collections. You can spread this number of collections across multiple scopes and buckets. Buckets are also limited to 1 collection per MB of memory quota.
 
@@ -82,7 +82,7 @@ For more information about how to create a new collection, see [Create a Collect
 
 When you create a bucket in your Capella cluster, a `_default` collection is automatically created within your `_default` scope. Any document that you create without a specific scope and collection is assigned to the `_default` scope and collection.
 
-You can delete the `_default` collection from the `_default` scope using the Couchbase Capella UI, API, SDKs, or queries. While you can delete the `_default` collection, there is no actual advantage to this. The `_default` collection is there to help group and organize documents without a set scope. If you decide to delete it, you’ll not be able to recreate or recover it later.
+You can delete the `_default` collection from the `_default` scope using the Couchbase Capella UI, API, SDKs, or queries. While you can delete the `_default` collection, there is no actual advantage to this. The `_default` collection is there to help group and organize documents without a set scope. If you decide to delete it, you'll not be able to recreate or recover it later.
 
 ### [](#linking-collections)Linking Collections
 

@@ -3,7 +3,7 @@ title: Metrics Reporting
 description: Individual request tracing presents a very specific (though
   isolated) view of the system.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/observability-metrics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:howtos:observability-metrics.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:rust-sdk:howtos:observability-metrics.adoc[]
 
 The SDK exposes metrics for operation durations, broken down into p50, p90, p99, p99.9, and p100 percentiles, reported per service and per operation type.
 
-SDK metrics are reported via a tracing event on the `couchbase::metrics` target, which can be consumed by any compatible [tracing\_subscriber::Layer](https://docs.rs/tracing-subscriber/latest/tracing%5Fsubscriber/layer/trait.Layer.html). The SDK ships the `LoggingMeter` layer which periodically logs them as JSON into the application’s `tracing` output.
+SDK metrics are reported via a tracing event on the `couchbase::metrics` target, which can be consumed by any compatible [tracing\_subscriber::Layer](https://docs.rs/tracing-subscriber/latest/tracing%5Fsubscriber/layer/trait.Layer.html). The SDK ships the `LoggingMeter` layer which periodically logs them as JSON into the application's `tracing` output.
 
 Both `LoggingMeter` and `ThresholdLoggingTracer` (see [Request Tracing](observability-tracing.md)) are layers that can be composed on a single tracing [Subscriber](https://docs.rs/tracing-core/0.1.35/tracing%5Fcore/subscriber/trait.Subscriber.html), alongside any other layers such as `tracing_subscriber::fmt::layer()`.
 
@@ -282,7 +282,7 @@ Some things to note:
 * The app has been told to export metrics over OLTP GRPC to localhost:4317\. `opentelemetry-collector` is listening to this.
 * `opentelemetry-collector` will store the metrics, and exposes port 10000 for Prometheus to periodically scrape.
 
-Now run the application. All being well, `opentelemetry-collector` should regularly log that it’s receiving the `db.client.operation.duration` metric, as it has been configured with a `debug` exporter.
+Now run the application. All being well, `opentelemetry-collector` should regularly log that it's receiving the `db.client.operation.duration` metric, as it has been configured with a `debug` exporter.
 
 And Prometheus (the UI is available on <http://localhost:9090>) should allow querying for `db_client_operation_duration`. (Though a real deployment will generally use another tool, such as Grafana, for visualisation.)
 

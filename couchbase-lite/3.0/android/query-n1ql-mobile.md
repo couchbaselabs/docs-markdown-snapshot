@@ -3,7 +3,7 @@ title: SQL++ Query Strings
 description: How to use SQL++ query strings to build effective queries with
   Couchbase Lite on Android
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/android/pages/query-n1ql-mobile.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:android:query-n1ql-mobile.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:3.0@couchbase-lite:android:query-n1ql-mobile.adoc[]
 > Related Content — [Predictive Queries](querybuilder.md#lbl-predquery) | [Live Queries](query-live.md) | [Indexing](indexing.md)
 
 > [!IMPORTANT]
-> N1QL is Couchbase’s implementation of the developing **SQL++** standard. As such the terms _N1QL_ and _SQL++_ are used interchangeably in Couchbase documentation unless explicitly stated otherwise.
+> N1QL is Couchbase's implementation of the developing **SQL++** standard. As such the terms _N1QL_ and _SQL++_ are used interchangeably in Couchbase documentation unless explicitly stated otherwise.
 
 > [!NOTE]
 > The examples used in this topic are based on the _Travel Sample_ app and data introduced in the [Couchbase Mobile Workshop](https://docs.couchbase.com/tutorials/mobile-travel-tutorial/introduction.html) tutorial
@@ -25,7 +25,7 @@ link: xref:3.0@couchbase-lite:android:query-n1ql-mobile.adoc[]
 
 Developers using Couchbase Lite for Android can provide SQL++ query strings using the SQL++ Query API. This API uses query statements of the form shown in [Example 2](#ex-query-form).
 
-The structure and semantics of the query format are based on that of Couchbase Server’s SQL++ query language — see [SQL++ Reference Guide](../../../server/current/n1ql/n1ql-language-reference/index.md) and [SQL++ Data Model](../../../server/current/learn/data/n1ql-versus-sql.md).
+The structure and semantics of the query format are based on that of Couchbase Server's SQL++ query language — see [SQL++ Reference Guide](../../../server/current/n1ql/n1ql-language-reference/index.md) and [SQL++ Data Model](../../../server/current/learn/data/n1ql-versus-sql.md).
 
 ## [](#running)Running
 
@@ -781,8 +781,8 @@ __Table 3\. Comparison Operators__
 | \>=            | Greater than or equal to                                                                                                                      | WHERE v1 >= v2                                                                                                                                                                     |
 | \>             | Less than                                                                                                                                     | WHERE v1 < v2                                                                                                                                                                      |
 | \>=            | Less than or equal to                                                                                                                         | WHERE v1 ⇐ v2                                                                                                                                                                      |
-| IN             | Returns TRUE if the value is in the list or array of values specified by the right hand side expression; Otherwise returns FALSE.             | WHERE “James” IN contactsList                                                                                                                                                      |
-| LIKE           | String wildcard pattern matching 2 comparison. Two wildcards are supported: % Matches zero or more characters. \_ Matches a single character. | WHERE name LIKE 'a%'WHERE name LIKE '%a'WHERE name LIKE '%or%'‘WHERE name LIKE 'a%o%'WHERE name LIKE '%\_r%'WHERE name LIKE '%a\_%'WHERE name LIKE '%a\_\_%'WHERE name LIKE 'aldo' |
+| IN             | Returns TRUE if the value is in the list or array of values specified by the right hand side expression; Otherwise returns FALSE.             | WHERE "James" IN contactsList                                                                                                                                                      |
+| LIKE           | String wildcard pattern matching 2 comparison. Two wildcards are supported: % Matches zero or more characters. \_ Matches a single character. | WHERE name LIKE 'a%'WHERE name LIKE '%a'WHERE name LIKE '%or%''WHERE name LIKE 'a%o%'WHERE name LIKE '%\_r%'WHERE name LIKE '%a\_%'WHERE name LIKE '%a\_\_%'WHERE name LIKE 'aldo' |
 | MATCH          | String matching using FTS see [Full Text Search Functions](#lbl-func-fts)                                                                     | WHERE v1-index MATCH "value"                                                                                                                                                       |
 | BETWEEN        | Logically equivalent to v1>=X and v1⇐X+z                                                                                                      | WHERE v1 BETWEEN 10 and 100                                                                                                                                                        |
 | IS 3 NULL      | Equal to null                                                                                                                                 | WHERE v1 IS NULL                                                                                                                                                                   |
@@ -833,8 +833,8 @@ Logical operators combine expressions using the following Boolean Logic Rules:
 __Table 5\. Logical Operators__
 | Op  | Description                                                                                                                                                                                                                                                                                                                                                   | Example                                              |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| AND | Returns TRUE if the operand expressions evaluate to TRUE; otherwise FALSE. If an operand is MISSING and the other is TRUE returns MISSING, if the other operand is FALSE it returns FALSE. If an operand is NULL and the other is TRUE returns NULL, if the other operand is FALSE it returns FALSE.                                                          | WHERE city = “San Francisco” AND status = true       |
-| OR  | Returns TRUE if one of the operand expressions is evaluated to TRUE; otherwise returns FALSE. If an operand is MISSING, the operation will result in MISSING if the other operand is FALSE or TRUE if the other operand is TRUE. If an operand is NULL, the operation will result in NULL if the other operand is FALSE or TRUE if the other operand is TRUE. | WHERE city = “San Francisco” OR city = “Santa Clara” |
+| AND | Returns TRUE if the operand expressions evaluate to TRUE; otherwise FALSE. If an operand is MISSING and the other is TRUE returns MISSING, if the other operand is FALSE it returns FALSE. If an operand is NULL and the other is TRUE returns NULL, if the other operand is FALSE it returns FALSE.                                                          | WHERE city = "San Francisco" AND status = true       |
+| OR  | Returns TRUE if one of the operand expressions is evaluated to TRUE; otherwise returns FALSE. If an operand is MISSING, the operation will result in MISSING if the other operand is FALSE or TRUE if the other operand is TRUE. If an operand is NULL, the operation will result in NULL if the other operand is FALSE or TRUE if the other operand is TRUE. | WHERE city = "San Francisco" OR city = "Santa Clara" |
 
 __Table 6\. Logical Operation Table__
 | a       | b         | a AND b     | a OR b |
@@ -998,7 +998,7 @@ Functions are also expressions.
 
 ### [](#syntax-23)Syntax
 
-The function syntax is the same as Java’s method syntax. It starts with the function name, followed by optional arguments inside parentheses.
+The function syntax is the same as Java's method syntax. It starts with the function name, followed by optional arguments inside parentheses.
 
 ```sql
 function = functionName parenExprs
@@ -1060,8 +1060,8 @@ __Table 13\. Date and Time Functions__
 __Table 14\. FTS Functions__
 | Function               | Description                                                                                                                                                               | Example                                                           |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| MATCH(indexName, term) | Returns TRUE if term expression matches the FTS indexed term. indexName identifies the FTS index, term expression to search for matching.                                 | WHERE MATCH (description, “couchbase”)                            |
-| RANK(indexName)        | Returns a numeric value indicating how well the current query result matches the full-text query when performing the MATCH. indexName is an IDENTIFIER for the FTS index. | WHERE MATCH (description, “couchbase”) ORDER BY RANK(description) |
+| MATCH(indexName, term) | Returns TRUE if term expression matches the FTS indexed term. indexName identifies the FTS index, term expression to search for matching.                                 | WHERE MATCH (description, "couchbase")                            |
+| RANK(indexName)        | Returns a numeric value indicating how well the current query result matches the full-text query when performing the MATCH. indexName is an IDENTIFIER for the FTS index. | WHERE MATCH (description, "couchbase") ORDER BY RANK(description) |
 
 ### [](#lbl-func-maths)Maths Functions
 
@@ -1087,7 +1087,7 @@ __Table 15\. Maths Functions__
 | POWER(expr1, expr2)                 | Returns expr1expr2 value.                                                                                                                                                                                                                                                                                                                                          |
 | RADIANS(expr)                       | Returns degrees to radians.                                                                                                                                                                                                                                                                                                                                        |
 | ROUND(expr (, digits\_expr)?)       | Returns the rounded value to the given number of integer digits to the right of the decimal point (left if digits is negative). Digits are 0 if not given.The function uses Rounding Away From Zero convention to round midpoint values to the next number away from zero (so, for example, ROUND(1.75) returns 1.8 but ROUND(1.85) returns 1.9\. \*               |
-| ROUND\_EVEN(expr (, digits\_expr)?) | Returns rounded value to the given number of integer digits to the right of the decimal point (left if digits is negative). Digits are 0 if not given. The function uses _Rounding to Nearest Even_ (Banker’s Rounding) convention which rounds midpoint values to the nearest even number (for example, both ROUND\_EVEN(1.75) and ROUND\_EVEN(1.85) return 1.8). |
+| ROUND\_EVEN(expr (, digits\_expr)?) | Returns rounded value to the given number of integer digits to the right of the decimal point (left if digits is negative). Digits are 0 if not given. The function uses _Rounding to Nearest Even_ (Banker's Rounding) convention which rounds midpoint values to the nearest even number (for example, both ROUND\_EVEN(1.75) and ROUND\_EVEN(1.85) return 1.8). |
 | SIGN(expr)                          | Returns -1 for negative, 0 for zero, and 1 for positive numbers.                                                                                                                                                                                                                                                                                                   |
 | SIN(expr)                           | Returns sine value.                                                                                                                                                                                                                                                                                                                                                |
 | SQRT(expr)                          | Returns square root value.                                                                                                                                                                                                                                                                                                                                         |
@@ -1137,7 +1137,7 @@ __Table 19\. Type Checking Functions__
 | ISNUMBER(expr)  | Returns TRUE if expression is a number, otherwise returns MISSING, NULL or FALSE.                                                              |
 | ISOBJECT(expr)  | Returns TRUE if expression is an object (dictionary), otherwise returns MISSING, NULL or FALSE.                                                |
 | ISSTRING(expr)  | Returns TRUE if expression is a string, otherwise returns MISSING, NULL or FALSE.                                                              |
-| TYPE(expr)      | Returns one of the following strings, based on the value of expression: “missing” “null” “boolean” “number” “string” “array” “object” “binary” |
+| TYPE(expr)      | Returns one of the following strings, based on the value of expression: "missing" "null" "boolean" "number" "string" "array" "object" "binary" |
 
 ### [](#lbl-func-typeconv)Type Conversion Functions
 
@@ -1173,8 +1173,8 @@ __Table 20\. Type Conversion Functions__
 | Returns an empty object for all other values.                           |                                          |
 | TOSTRING(expr)                                                          | Returns MISSING if the value is MISSING. |
 | Returns NULL if the value is NULL.                                      |                                          |
-| Returns “false” if the value is FALSE.                                  |                                          |
-| Returns “true” if the value is TRUE.                                    |                                          |
+| Returns "false" if the value is FALSE.                                  |                                          |
+| Returns "true" if the value is TRUE.                                    |                                          |
 | Returns NUMBER in String if the value is NUMBER.                        |                                          |
 | Returns the string value if the value is a string.                      |                                          |
 | Returns NULL for all other values.                                      |                                          |

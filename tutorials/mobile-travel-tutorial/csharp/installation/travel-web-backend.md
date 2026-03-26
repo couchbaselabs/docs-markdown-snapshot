@@ -1,7 +1,7 @@
 ---
 title: Travel Web Backend
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/installation/travel-web-backend.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:csharp/installation/travel-web-backend.adoc[]
 ---
 
@@ -22,7 +22,7 @@ We will use the Python version of the [Travel Sample Web Backend](https://develo
 $ git clone -b 5.0 https://github.com/couchbaselabs/try-cb-python.git
 ```
 
-* Verify pip installation If you are developing on Windows, pip.exe will be found in "Scripts" sub directory under the Python installation directory. Add the path to the "Scripts" folder to the system’s PATH environment variable. You can follow instructions [here](https://www.pythoncentral.io/add-python-to-path-python-is-not-recognized-as-an-internal-or-external-command/) to set your PATH variable. Verify that pip is recognized by typing the following in the cmd terminal. You should see the help menu  
+* Verify pip installation If you are developing on Windows, pip.exe will be found in "Scripts" sub directory under the Python installation directory. Add the path to the "Scripts" folder to the system's PATH environment variable. You can follow instructions [here](https://www.pythoncentral.io/add-python-to-path-python-is-not-recognized-as-an-internal-or-external-command/) to set your PATH variable. Verify that pip is recognized by typing the following in the cmd terminal. You should see the help menu  
 ```bash  
 pip  
 ```

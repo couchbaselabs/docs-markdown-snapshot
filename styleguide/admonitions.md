@@ -1,7 +1,7 @@
 ---
 title: Admonitions
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/admonitions.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::admonitions.adoc[]
 ---
 
@@ -29,7 +29,7 @@ Remember: if everything is important, nothing is.
 
 Use a note when you:
 
-* Want to tell the user something that’s not critical.
+* Want to tell the user something that's not critical.
 * Want the user to keep something in mind while working through a procedure.
 * Want to highlight a specific point in a concept.
 
@@ -49,7 +49,7 @@ Use a tip when you:
 
 * Want to tell the user about a shortcut or faster way of accomplishing a task.
 * Want to tell the user about something optional.
-* Want to let the user know something that’s useful, but is not considered that important.
+* Want to let the user know something that's useful, but is not considered that important.
 
 You should also use a tip to let a user know when they can also accomplish a task from the API as well as the UI. Make sure to provide a link to the API documentation as well as the specific method, call, or class the user should use.
 
@@ -100,7 +100,7 @@ For example:
 
 Use an important when you:
 
-* Need to tell the user about something that’s changed across versions and does not work the same way.
+* Need to tell the user about something that's changed across versions and does not work the same way.
 
 Try to use an important at the top of a page or section.
 

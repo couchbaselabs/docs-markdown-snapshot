@@ -1,7 +1,7 @@
 ---
 title: Migrating from Version 3.x
 editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/migration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:kafka-connector::migration.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:kafka-connector::migration.adoc[]
 
 In version 4.x the names of the config properties have changed to follow a consistent naming convention. Some default values have changed to provide a better out-of-box experience for new users.
 
-The Java API for customizing the connector’s behavior has also changed in a way that is not backwards compatible. If you have written a custom `SourceHandler` or `Filter` component, some minor changes are required for it to work with the new version of the connector.
+The Java API for customizing the connector's behavior has also changed in a way that is not backwards compatible. If you have written a custom `SourceHandler` or `Filter` component, some minor changes are required for it to work with the new version of the connector.
 
 ## [](#configuration-properties)Configuration Properties
 
@@ -70,7 +70,7 @@ __Table 3\. Sink properties__
 
 ## [](#java-api)Java API
 
-> A summary of how the connector’s Java extension points have changed. 
+> A summary of how the connector's Java extension points have changed. 
 
 ### [](#filter)Filter
 

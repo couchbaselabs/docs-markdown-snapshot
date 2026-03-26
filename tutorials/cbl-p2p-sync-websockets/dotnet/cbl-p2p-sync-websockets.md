@@ -1,7 +1,7 @@
 ---
 title: Getting Started with Peer-to-Peer Sync on Xamarin (UWP, iOS, and Android)
 editUrl: https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/edit/master/content/modules/cbl-p2p-sync-websockets/pages/dotnet/cbl-p2p-sync-websockets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:cbl-p2p-sync-websockets:dotnet/cbl-p2p-sync-websockets.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:tutorials:cbl-p2p-sync-websockets:dotnet/cbl-p2p-sync-websockets.adoc
 
 # Getting Started with Peer-to-Peer Sync on Xamarin (UWP, iOS, and Android)
 
-> This tutorial uses a simple inventory tracker app to demonstrate Couchbase Lite’s peer-to-peer database sync functionality. 
+> This tutorial uses a simple inventory tracker app to demonstrate Couchbase Lite's peer-to-peer database sync functionality. 
 
 ## [](#introduction)Introduction
 
@@ -273,9 +273,9 @@ _urlEndpointListener.Start();
 
 ### [](#advertising-listener-service)Advertising Listener Service
 
-In the app, we broadcast listener’s IP endpoint over UDP type socket.
+In the app, we broadcast listener's IP endpoint over UDP type socket.
 
-* Open the **ListenerViewModel.cs** file and look for `Broadcast` method.+ Here, we create a Socket with Udp ProtocolType and broadcast listener’s IP endpoint to the peers are listening in local network.  
+* Open the **ListenerViewModel.cs** file and look for `Broadcast` method.+ Here, we create a Socket with Udp ProtocolType and broadcast listener's IP endpoint to the peers are listening in local network.  
 Please note, this App requires peers to start peer discovery before listener start broadcasting. Otherwise, you will have to manually broadcast the listener IP. Please see [Try it out](#tryit10) for detail.
 
 ```C#
@@ -315,7 +315,7 @@ Try it out
 5. You can see 2 toolbar items (`Broadcast` and `Peers`)  
 Note: These two items will do nothing if listener is not started.
 6. Click on the "Peers" toolbar item to see the number of connected clients. It should be zero if there are no connected clients
-7. If you don’t see your listener’s IP endpoint showing up on a peers' `ListenersBrowserPage`, click on the listener’s "Broadcast" toolbar item to broadcast its IP endpoint
+7. If you don't see your listener's IP endpoint showing up on a peers' `ListenersBrowserPage`, click on the listener's "Broadcast" toolbar item to broadcast its IP endpoint
 8. From the `ListenerPage`, stop the listener by clicking on "Stop Listener" button
 
 ![server websocket listener login screen](../_images/xamarin-passive-start-listener.gif) 
@@ -332,7 +332,7 @@ In the app, we use UDP Type Socket to listen on port 15000 for listener.
 Please note, port 15000 is used by UDP Type Socket, not used by the websocket listener.+ Couchbase Lite chooses the port when a websocket listener is created.
 
 * Open the **ListenersBrowserViewModel.cs** file and look for `ListenersBrowserViewModel` constructor.  
-Here, we create a `UdpListener` with the port it listens on and pick up any raised Udp packet received event (Listener’s broadcasting IP endpoint).
+Here, we create a `UdpListener` with the port it listens on and pick up any raised Udp packet received event (Listener's broadcasting IP endpoint).
 
 ```C#
 {
@@ -489,7 +489,7 @@ Try it out
 The app automatically browses for listener and lists it here when any listener is broadcasting.  
 > [!NOTE]  
 > If the listener is not started before the "Browser" is selected, you will need to click the `Broadcast` toolbar item locates on top of the `ListenerPage` (See `Broadcast` in [Passive Peer or Server](#passive-peer-or-server))  
-> You will need to manually enter the listener’s IP endpoint (eg: 192.168.0.14:59840) for Xamarin android app.
+> You will need to manually enter the listener's IP endpoint (eg: 192.168.0.14:59840) for Xamarin android app.
 6. Tap on the row corresponding to listener.  
 This will start replication with the listener and it should transition to Connected state  
 > [!NOTE]  
@@ -516,7 +516,7 @@ If its the latter, make sure you sign your app with the appropriate developer ce
 2. Start the listener on one of the app instances. You could also have multiple listeners.
 3. Connect the other instances of the app to the listener
 4. You can find 4 selections (`What’s in Season?`, `Listener`, `Browser`, and `Logout`) under "hamburger" menu locates on the upper left hand side.
-5. Enter `SeasonalItemsPage` by selecting "What’s in Season?" from the "hamburger" menu.
+5. Enter `SeasonalItemsPage` by selecting "What's in Season?" from the "hamburger" menu.
 6. Edit the quantity and/or image on one or multiple instance(s) and press Save when you are done editing
 7. Watch it sync automatically to other connected clients
 
@@ -554,7 +554,7 @@ When starting a listener on Android emulator and trying to connect it from a dev
 
 1. Hard-code a port so you know what endpoint to use
 2. Start the App on your device or iOS simulator
-3. Start an Android emulator from Visual Studio’s device manager
+3. Start an Android emulator from Visual Studio's device manager
 4. Use ADB bridge to set port forwarding using hard-coded port number  
 For instance, if the listener is listening on port 35262, the command to run on the terminal of the host machine would be:  
 ```bash  

@@ -2,7 +2,7 @@
 title: Make an API Call with the Capella Operational Management API
 description: How to make an API call with the Couchbase Capella Operational Management API.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-use.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:management-api-guide:management-api-use.adoc[]
 ---
 
@@ -21,7 +21,7 @@ This page is for Capella operational. For Capella AI Services, see [Make an API 
 
   * The API key must have all the organization roles, project access, and project roles required to carry out the API call. In the [Management API reference](../management-api-reference/index.md), each endpoint description lists the roles that are needed.
   * The API key is not expired.
-  * You added your connection IP address to your API key’s allowed IP addresses.
+  * You added your connection IP address to your API key's allowed IP addresses.
   * You saved the API key token when you created it.
 
 ## [](#make-an-api-call)Make an API Call
@@ -247,7 +247,7 @@ You can use the ETag in a PUT request for concurrency control.
 
 The following request checks whether the specified project within the specified organization has the expected ETag. If so, it updates the project with a new description.
 
-This enables you to make sure that you’re applying your update to the correct revision of the project, in cases where the project may be updated by other processes concurrently.
+This enables you to make sure that you're applying your update to the correct revision of the project, in cases where the project may be updated by other processes concurrently.
 
 * `$organizationId` is the organization ID.
 * `$projectId` is the project ID.

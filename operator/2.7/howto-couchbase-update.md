@@ -1,7 +1,7 @@
 ---
 title: Modify a Couchbase Deployment
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-couchbase-update.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::howto-couchbase-update.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:2.7@operator::howto-couchbase-update.adoc[]
 
 # Modify a Couchbase Deployment
 
-Changes to a `CouchbaseCluster` should never be done manually as the Operator will revert the changes if they do not match what is in the configuration. Always update the cluster configuration using the `kubectl` command. We recommend using either the `kubectl replace` or `kubectl edit` command. If you’re using OpenShift, use the `oc replace` or `oc edit` command instead.
+Changes to a `CouchbaseCluster` should never be done manually as the Operator will revert the changes if they do not match what is in the configuration. Always update the cluster configuration using the `kubectl` command. We recommend using either the `kubectl replace` or `kubectl edit` command. If you're using OpenShift, use the `oc replace` or `oc edit` command instead.
 
 To use the `kubectl replace` command, first edit a field in the Couchbase cluster configuration file stored on your local disk, and then run the following command:
 

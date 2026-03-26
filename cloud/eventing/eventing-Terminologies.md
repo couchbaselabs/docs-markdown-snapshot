@@ -2,7 +2,7 @@
 title: Eventing Terminology
 description: The following terminology is used by the Eventing Service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-Terminologies.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-Terminologies.adoc[]
 ---
 
@@ -95,7 +95,7 @@ For more information about Timer callbacks, see [createTimer() and cancelTimer()
 The persistent state of an Eventing Function is captured in the following external elements:
 
 * Documents or mutations and their extended attributes.
-* Listen to Location, or the Eventing source: a collection that’s the source of mutations sent to the Function through the Database Change Protocol (DCP).
+* Listen to Location, or the Eventing source: a collection that's the source of mutations sent to the Function through the Database Change Protocol (DCP).
 * Eventing Storage, or the Eventing metadata: a collection used as a scratchpad for the state of the Function.
 * Optional bindings for the Function:
 
@@ -134,7 +134,7 @@ For more information about the `crc64()` Function, see [crc64() Function Call](e
 
 You can use a `bucket.scope` to identify Functions that belong to the same group.
 
-As a best practice, you should set your Function scope to the `bucket.scope` that contains the collection that’s the source of your Eventing Function mutations. This makes sure that your Function does not undeploy by removing a scope that points to a resource that’s not required for the Function to run.
+As a best practice, you should set your Function scope to the `bucket.scope` that contains the collection that's the source of your Eventing Function mutations. This makes sure that your Function does not undeploy by removing a scope that points to a resource that's not required for the Function to run.
 
 > [!NOTE]
 > To set the `bucket.scope` to `+`.`+`, you must have the `Eventing Full Admin` or the `Full Admin` role. All other users must use a scope that references an existing resource of their `bucket.scope`.
@@ -199,11 +199,11 @@ When you create an Eventing Function, you must specify a source collection. The 
 
 When you delete a source collection, all deployed and paused Functions associated with the collection are undeployed.
 
-While a Function is processing its JavaScript code, the Function’s documents can be mutated in different collections. You can set keyspaces as destination collections, which are then bound to the Function through bucket aliases.
+While a Function is processing its JavaScript code, the Function's documents can be mutated in different collections. You can set keyspaces as destination collections, which are then bound to the Function through bucket aliases.
 
-The Function’s JavaScript code triggers data mutations on documents through Basic Keyspace Accessors or Advanced Keyspace Accessors in the Data Service. If the code directly modifies documents in the source collection, the Eventing Service suppresses the mutation back to the Function performing the mutation.
+The Function's JavaScript code triggers data mutations on documents through Basic Keyspace Accessors or Advanced Keyspace Accessors in the Data Service. If the code directly modifies documents in the source collection, the Eventing Service suppresses the mutation back to the Function performing the mutation.
 
-The Function’s JavaScript code can also trigger mutations on documents through inline SQL++ statements in the Query Service or `N1QL()` function calls. You might need to add additional business logic to terminate or protect the Function against possible recursion.
+The Function's JavaScript code can also trigger mutations on documents through inline SQL++ statements in the Query Service or `N1QL()` function calls. You might need to add additional business logic to terminate or protect the Function against possible recursion.
 
 > [!NOTE]
 > When you implement multiple Functions, you can create infinite recursions. The Eventing Service prevents the deployment of Functions that might result in recursion loops. For more information abotu cyclic generation of data changes, see [Bucket Allocation Considerations](troubleshooting-best-practices.md#cyclicredun).
@@ -211,18 +211,18 @@ The Function’s JavaScript code can also trigger mutations on documents through
 To get the `Listen To` keyspace to listen to multiple collections, you can use a `*` wildcard for the scope or collection. If the bucket binding used by the JavaScript code also has a `*` wildcard for its scope or collection, you must use Advanced Keyspace Accessors to read or write the Data Service. For more information about Advanced Keyspace Accessors, see [Eventing Functions that Listen to Multiple Collections](eventing-advanced-keyspace-accessors.md#multiple-collection-functions).
 
 > [!TIP]
-> You can have multiple Functions listening to the same collection while running different code. To use less resources, though, you can use only one Function and code an if-then-else or switch statement in your handler’s JavaScript.
+> You can have multiple Functions listening to the same collection while running different code. To use less resources, though, you can use only one Function and code an if-then-else or switch statement in your handler's JavaScript.
 
 ### [](#eventing-storage)Eventing Storage
 
-The Eventing Storage is the Eventing Function’s metadata bucket. The metadata bucket stores artifacts, or configuration documents, that contain information about DCP streams, worker allocations, Timer information and state, and internal checkpoints.
+The Eventing Storage is the Eventing Function's metadata bucket. The metadata bucket stores artifacts, or configuration documents, that contain information about DCP streams, worker allocations, Timer information and state, and internal checkpoints.
 
-When you create an Eventing Function, you must make sure that a separate collection has been designated as an Eventing metadata and reserved for the Eventing Service’s internal use. You can use a common Eventing metadata collection across multiple Eventing Functions for the same tenant.
+When you create an Eventing Function, you must make sure that a separate collection has been designated as an Eventing metadata and reserved for the Eventing Service's internal use. You can use a common Eventing metadata collection across multiple Eventing Functions for the same tenant.
 
 The Eventing Storage keyspace must be in a Couchbase-type bucket. If this keyspace is not persistent, the Data Service evicts Timer and checkpoint documents when it hits quota, and loses track of Timers and mutations that have been processed.
 
 > [!NOTE]
-> Do not delete the Eventing metadata collection. Make sure that your Function’s JavaScript code does not perform a write or delete operation on the Eventing metadata collection. If you delete the metadata collection, all deployed Eventing Functions are undeployed and all associated indexes and constructs are dropped.
+> Do not delete the Eventing metadata collection. Make sure that your Function's JavaScript code does not perform a write or delete operation on the Eventing metadata collection. If you delete the metadata collection, all deployed Eventing Functions are undeployed and all associated indexes and constructs are dropped.
 
 ### [](#function-settings)Eventing Function Settings
 
@@ -230,7 +230,7 @@ The Eventing Storage keyspace must be in a Couchbase-type bucket. If this keyspa
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Function Name            | A unique name for your Eventing Function. The Function name must: Start with an uppercase character (A-Z), lowercase character (a-z), or number (0-9) Contain only uppercase characters (A-Z), lowercase characters (a-z), numbers (0-9), underscores (\_), and hyphens (-)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | Description              | An optional description that describes the purpose of your Eventing Function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Deployment Feed Boundary | The Feed Boundary determines if the Eventing Function’s activities need to include documents that already exist. When you set the Feed Boundary to Everything, the Function processes all mutations available in your cluster. When you set the Feed Boundary to From Now, the Function only processes instances of data mutation that happen after the Function’s deployment. The Feed Boundary also works as a checkpoint for paused Functions. When you resume a paused Function, the Feed Boundary makes sure that no mutations are lost or processed again. You can only modify the Feed Boundary when you create a Function or when a Function is undeployed or paused.                                                                                                                                                                                                                                                                          |
+| Deployment Feed Boundary | The Feed Boundary determines if the Eventing Function's activities need to include documents that already exist. When you set the Feed Boundary to Everything, the Function processes all mutations available in your cluster. When you set the Feed Boundary to From Now, the Function only processes instances of data mutation that happen after the Function's deployment. The Feed Boundary also works as a checkpoint for paused Functions. When you resume a paused Function, the Feed Boundary makes sure that no mutations are lost or processed again. You can only modify the Feed Boundary when you create a Function or when a Function is undeployed or paused.                                                                                                                                                                                                                                                                          |
 | System Log Level         | Determines the granularity of messages logged across the Eventing Function. Can be Info (the default), Error, Debug, Warning, or Trace.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Application Log Location | The directory path to the log file for the Eventing Function. The format is <function\_name>.log. The Function uses log() statements to write to this file. When you select the **Log** value on the UI, all log files are combined across Eventing nodes and displayed. The log value is read-only and cannot be changed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | SQL++ Consistency        | The default consistency level of SQL++ statements in the Eventing Function. You can set the consistency level by statement. Can be one of None (the default) or Request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
@@ -261,7 +261,7 @@ You cannot edit the source code of a deployed Eventing Function.
 During deployment, you must choose one of the following **Deployment Feed Boundary** settings:
 
 * **Everything**, which provides the Eventing Function with a deduplicated history of all documents, ending with the current value of each document. This means the Function sees every document in the keyspace at least once.
-* **From now**, which provides the Eventing Function with mutations starting at deployment. This means the Function only sees documents that have mutated after the Function’s deployment.
+* **From now**, which provides the Eventing Function with mutations starting at deployment. This means the Function only sees documents that have mutated after the Function's deployment.
 
 ### [](#undeploy)Undeploy
 
@@ -274,7 +274,7 @@ Undeploying an Eventing Function:
 
 You can edit the code and change the settings of an undeployed Eventing Function.
 
-When you create a new Eventing Function, the Function’s state is undeployed.
+When you create a new Eventing Function, the Function's state is undeployed.
 
 ### [](#pause)Pause
 

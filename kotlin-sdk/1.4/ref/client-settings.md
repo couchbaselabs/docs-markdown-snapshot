@@ -3,7 +3,7 @@ title: Client Settings for the Java SDK
 description: The <code>ClusterEnvironment</code> class enables you to configure
   Java SDK options for security, timeouts, reliability, and performance.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.4/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.4@kotlin-sdk:ref:client-settings.adoc[]
 ---
 
@@ -39,7 +39,7 @@ env.shutdown();
 
 ## [](#config-builders)Config Builders
 
-Environment settings are grouped into categories, with one builder class per category. These builders all work in the same way, which we’ll illustrate by using timeout settings as an example.
+Environment settings are grouped into categories, with one builder class per category. These builders all work in the same way, which we'll illustrate by using timeout settings as an example.
 
 Timeout settings are configured using an instance of `TimeoutConfig.Builder`. The usual way to create an instance is to call a static factory method on the `TimeoutConfig` class. The method `TimeoutConfig.builder()` returns a builder with default settings. There are also static factory methods that create a builder and set a configuration value in one step. For example, instead of `TimeoutConfig.builder().kvTimeout(…​)` you can write simply `TimeoutConfig.kvTimeout(…​)`.
 
@@ -53,7 +53,7 @@ ClusterEnvironment env = ClusterEnvironment.builder()
     .build();
 ```
 
-Another way to obtain an instance of a config builder is to borrow it from the cluster environment builder. This technique may be useful if you’re configuring the environment in stages and wish to preserve values set by a previous stage.
+Another way to obtain an instance of a config builder is to borrow it from the cluster environment builder. This technique may be useful if you're configuring the environment in stages and wish to preserve values set by a previous stage.
 
 Borrowing the existing timeout config builder
 
@@ -65,7 +65,7 @@ envBuilder.timeoutConfig() // returns a TimeoutConfig.Builder
 ClusterEnvironment env = envBuilder.build();
 ```
 
-The name of the cluster environment builder method for getting and setting each config builder always matches the name of the config class. For example, `TimeoutConfig` is set via the environment builder’s `timeoutConfig` method, `IoConfig` is set via the `ioConfig` method, and so on.
+The name of the cluster environment builder method for getting and setting each config builder always matches the name of the config class. For example, `TimeoutConfig` is set via the environment builder's `timeoutConfig` method, `IoConfig` is set via the `ioConfig` method, and so on.
 
 ## [](#system-properties)System Properties
 
@@ -95,7 +95,7 @@ The following sections cover all possible configuration options and explain thei
 
 ### [](#security-options)Security Options
 
-By default the client will connect to Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition, it’s possible to secure the connection using TLS.
+By default the client will connect to Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition, it's possible to secure the connection using TLS.
 
 Template for configuring security settings
 
@@ -128,7 +128,7 @@ Default: `true`
 
 System Property: `com.couchbase.env.security.enableNativeTls`
 
-When TLS is enabled, the client will by default use an optimized native TLS provider if one is available. If for some reason you need to disable the native provider and use the JDK’s portable provider instead, set this to `false`. If `enableTls` is `false` then `enableNativeTls` has no effect.
+When TLS is enabled, the client will by default use an optimized native TLS provider if one is available. If for some reason you need to disable the native provider and use the JDK's portable provider instead, set this to `false`. If `enableTls` is `false` then `enableNativeTls` has no effect.
 
 Name: **TLS Certificate Location**
 
@@ -205,9 +205,9 @@ System Property: `com.couchbase.env.io.networkResolution`
 > [!NOTE]
 > The system property value should be one of `auto`, `default`, or `external` (lower case).
 
-Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server’s network environment.
+Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server's network environment.
 
-By default the client will use a simple matching heuristic to determine which set of addresses to use (it will select the set of addresses that contains a seed node’s host and port).
+By default the client will use a simple matching heuristic to determine which set of addresses to use (it will select the set of addresses that contains a seed node's host and port).
 
 If you wish to override the heuristic, you can set this value to `default` if the client is running in the same network as the server, or `external` if the client is running in a different network.
 
@@ -552,7 +552,7 @@ Default: `BestEffortRetryStrategy.INSTANCE`
 
 System Property: N/A
 
-The client’s default retry strategy.
+The client's default retry strategy.
 
 A retry strategy decides whether a failed operation should be retried. Implementing a custom strategy is fairly advanced, so the SDK ships with two out of the box: `BestEffortRetryStrategy` and `FailFastRetryStrategy`.
 
@@ -631,7 +631,7 @@ System Property: N/A
 
 This is an advanced setting that should not be modified without good reason.
 
-The scheduler used for all CPU-intensive, non-blocking computations in the core, client, and user space. The default is a scheduler created from Reactor’s `Schedulers.newParallel` method, with one daemon thread per CPU core. Extra care should be used when changing the scheduler, since many internal components depend on it.
+The scheduler used for all CPU-intensive, non-blocking computations in the core, client, and user space. The default is a scheduler created from Reactor's `Schedulers.newParallel` method, with one daemon thread per CPU core. Extra care should be used when changing the scheduler, since many internal components depend on it.
 
 > [!NOTE]
 > Shutting down the cluster environment will not dispose of a custom scheduler. You are responsible for disposing of it after it is no longer needed.

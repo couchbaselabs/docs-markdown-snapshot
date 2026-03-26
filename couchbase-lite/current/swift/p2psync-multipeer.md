@@ -3,7 +3,7 @@ title: Multipeer P2P Replicator
 description: The Multipeer Replicator enables lightweight, self-organizing mesh
   networks for apps running on the same local Wi-Fi.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/p2psync-multipeer.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:swift:p2psync-multipeer.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:couchbase-lite:swift:p2psync-multipeer.adoc[]
 
 > The Multipeer Replicator enables lightweight, self-organizing mesh networks for apps running on the same local Wi-Fi. This approach requires minimal setup and automates peer discovery and connectivity management, making it simpler than [active-passive P2P configurations](p2psync-websocket.md). 
 
-Couchbase Lite’s Peer-to-Peer synchronization solution offers secure storage and bidirectional data synchronization between mobile and IoT devices without needing a centralized cloud-based control point.
+Couchbase Lite's Peer-to-Peer synchronization solution offers secure storage and bidirectional data synchronization between mobile and IoT devices without needing a centralized cloud-based control point.
 
 For small mesh topologies, Multipeer Replicator offers `autodiscovery` for Wi-Fi-based networks and secure communication via TLS and certificate-based authentication. The dynamic mesh topology gives optimal peer connectivity and the lightweight and low-maintenance configuration requires less management and less code than using active-passive peer-to-peer sync.
 
@@ -36,7 +36,7 @@ Multipeer Replicator supports Wi-Fi transport, using `DNS-SD` (also known as **B
 
 ### [](#configuration-requirements)Configuration Requirements
 
-To use `DNS-SD` for peer discovery, iOS apps must declare the **Bonjour** service type and request local network access permissions. Add the following keys to your app’s `Info.plist`:
+To use `DNS-SD` for peer discovery, iOS apps must declare the **Bonjour** service type and request local network access permissions. Add the following keys to your app's `Info.plist`:
 
 #### [](#nsbonjourservices)NSBonjourServices
 
@@ -59,7 +59,7 @@ Add a usage description for local network access:
 ```
 
 > [!TIP]
-> You can also configure these settings through Xcode’s Info configuration UI under "**Bonjour Services**" and "**Privacy – Local Network Usage Description**."
+> You can also configure these settings through Xcode's Info configuration UI under "**Bonjour Services**" and "**Privacy – Local Network Usage Description**."
 
 ### [](#supported-platforms)Supported Platforms
 
@@ -69,7 +69,7 @@ We recommend using a recent release of iOS, see [Supported Platforms](supported-
 
 ### [](#collection-configurations)Collection Configurations
 
-You can specify one or more collections available for replication when creating a `MultipeerReplicatorConfiguration`. For each collection, you’ll create `MultipeerCollectionConfiguration` with the collection object and optionally configure a custom conflict resolver or any replication filters you want to use for the collection.
+You can specify one or more collections available for replication when creating a `MultipeerReplicatorConfiguration`. For each collection, you'll create `MultipeerCollectionConfiguration` with the collection object and optionally configure a custom conflict resolver or any replication filters you want to use for the collection.
 
 Specify collections without any configurations
 
@@ -107,17 +107,17 @@ let collections = [config1, config2, config3]
 
 ### [](#peer-identity)Peer Identity
 
-Each peer in the Multipeer replication is uniquely identified and authenticated by using a peer’s certificate.
+Each peer in the Multipeer replication is uniquely identified and authenticated by using a peer's certificate.
 
 Multipeer Replicator which uses TLS communication by default requires to specify a `TLSIdentity` object for specifying the identity.
 
-You can use either a self-signed certificate for the identity or have an authority or issuer sign the identity’s certificate. The choice depends on your specific security requirements and deployment environment.
+You can use either a self-signed certificate for the identity or have an authority or issuer sign the identity's certificate. The choice depends on your specific security requirements and deployment environment.
 
-As each peer could be either a client or a server to the other peer in the Multipeer replication environment, you must create the identity’s certificate with the extension key usages for both client and server authentication to allow either direction to authenticate the certificate.
+As each peer could be either a client or a server to the other peer in the Multipeer replication environment, you must create the identity's certificate with the extension key usages for both client and server authentication to allow either direction to authenticate the certificate.
 
 #### [](#ca-signed-identity)CA-Signed Identity
 
-When using a certificate authority (CA) signed identity, the issuer’s certificate authenticates the connecting peer.
+When using a certificate authority (CA) signed identity, the issuer's certificate authenticates the connecting peer.
 
 Get and Create an identity signed by an issuer
 
@@ -196,9 +196,9 @@ MultpeerReplicator only supports certificate based authentication. You can speci
 * certificate authentication callback
 * root certificates.
 
-When specifying the certificate authentication callback, the callback calls the remote peer’s identity certificate.
+When specifying the certificate authentication callback, the callback calls the remote peer's identity certificate.
 
-When specifying the root certificates, the Multipeer replicator automatically authenticates the remote peer’s identity certificate by verifying whether one of the specified root certificates signed the certificate.
+When specifying the root certificates, the Multipeer replicator automatically authenticates the remote peer's identity certificate by verifying whether one of the specified root certificates signed the certificate.
 
 Authenticator with authentication callback
 
@@ -287,9 +287,9 @@ let token = replicator.addPeerDiscoveryStatusListener { status in
 }
 ```
 
-#### [](#peers-replicator-status)Peer’s Replicator Status
+#### [](#peers-replicator-status)Peer's Replicator Status
 
-Peer’s Replicator Status Listener
+Peer's Replicator Status Listener
 
 ```swift
 let activities = ["stopped", "offline", "connecting", "idle", "busy"]
@@ -304,9 +304,9 @@ let token = replicator.addPeerReplicatorStatusListener { replStatus in
 }
 ```
 
-#### [](#peers-document-replication)Peer’s Document Replication
+#### [](#peers-document-replication)Peer's Document Replication
 
-Peer’s Document Replication Listener
+Peer's Document Replication Listener
 
 ```swift
 let token = replicator.addPeerDocumentReplicationListener { docRepl in
@@ -327,7 +327,7 @@ let token = replicator.addPeerDocumentReplicationListener { docRepl in
 
 ### [](#peer-identifier)Peer Identifier
 
-A unique `peerID`, which is a digest of the peer’s identity certificate, identifies each peer. You can get your `peerID` from the `peerID` property of the `MultipeerReplicator`.
+A unique `peerID`, which is a digest of the peer's identity certificate, identifies each peer. You can get your `peerID` from the `peerID` property of the `MultipeerReplicator`.
 
 Getting peer ID
 

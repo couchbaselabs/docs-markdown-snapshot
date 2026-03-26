@@ -2,7 +2,7 @@
 title: Result Sets
 description: How to use Couchbase Lite Query's Result Sets
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/query-resultsets.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:objc:query-resultsets.adoc[]
 ---
 
@@ -11,12 +11,12 @@ link: xref:couchbase-lite:objc:query-resultsets.adoc[]
 
 # Result Sets
 
-> Description — _How to use Couchbase Lite Query’s Result Sets_  
+> Description — _How to use Couchbase Lite Query's Result Sets_  
 > Related Content — [QueryBuilder](querybuilder.md) | [SQL++ for Mobile](query-n1ql-mobile.md) | [Predictive Queries](querybuilder.md#lbl-predquery) | [Live Queries](query-live.md) | [Indexing](indexing.md)
 
 ## [](#query-execution)Query Execution
 
-The execution of a Couchbase Lite for Objective-C’s database query returns an array of results, a result set.
+The execution of a Couchbase Lite for Objective-C's database query returns an array of results, a result set.
 
 Each row of the result set represents the data returned from a document that met the conditions defined by the `WHERE` statement of your query. The composition of each row is determined by the `SelectResult` expressions provided in the `SELECT` statement.
 
@@ -117,7 +117,7 @@ Here we look at how to access document properties when you have used SelectResul
 
 In this case each array element is a dictionary structure with the database name as its key. The properties are presented in the value as an array of key-value pairs (property name/property value).
 
-You access the retrieved document properties by converting each row’s value, in turn, to a dictionary — as shown in [Example 4](#ex-acc-all).
+You access the retrieved document properties by converting each row's value, in turn, to a dictionary — as shown in [Example 4](#ex-acc-all).
 
 Example 4\. Access All Properties
 

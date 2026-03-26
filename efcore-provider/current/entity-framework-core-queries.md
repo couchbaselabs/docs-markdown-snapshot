@@ -2,7 +2,7 @@
 title: Querying with the EF Core Couchbase DB Provider
 description: Querying the database with SQL++.
 editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-queries.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:efcore-provider::entity-framework-core-queries.adoc[]
 ---
 
@@ -152,7 +152,7 @@ Other operators may or may not be supported in the 1.0 release.
 
 ### [](#fromsqlraw)FromSqlRaw
 
-If you’ve decided you do want to dynamically construct your SQL, you’ll have to use `DbContext.FromSqlRaw`, which allows interpolating variable data directly into the SQL string, instead of using a database parameter:
+If you've decided you do want to dynamically construct your SQL, you'll have to use `DbContext.FromSqlRaw`, which allows interpolating variable data directly into the SQL string, instead of using a database parameter:
 
 ```csharp
 string query = "SELECT p.* FROM `Blogging`.`MyBlog`.`Person` as p WHERE PersonId={0}";

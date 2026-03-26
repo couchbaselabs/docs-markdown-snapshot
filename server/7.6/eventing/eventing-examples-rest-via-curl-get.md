@@ -3,7 +3,7 @@ title: External REST via cURL GET
 description: Demonstrate accessing a cURL REST end point via GET to fetch Daily
   Exchange Rate data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-examples-rest-via-curl-get.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:eventing:eventing-examples-rest-via-curl-get.adoc[]
 ---
 
@@ -141,7 +141,7 @@ curl -q -X GET 'https://localhost:8001/api/latest'
 We will perform the following tests with the Eventing Function:
 
 * **Test 1**: The control document is created or mutated in such a way that a Timer is created, and initially fires approximately 30 seconds in the future. At this point a document is fetched from an External Rest endpoint (representing the user work) and this document is written to the source bucket. The original control document, in the source bucket, is not changed. The Timer is re-armed for the beginning of the following day and will execute again and again until canceled fetching a new Daily Exchange Rate.
-* **Test 2**: The control document is mutated in such a way that any existing Timer with the reference of the control document’s id (meta.id) is canceled. This has no effect if the Timer created has already fired.
+* **Test 2**: The control document is mutated in such a way that any existing Timer with the reference of the control document's id (meta.id) is canceled. This has no effect if the Timer created has already fired.
 
 **Preparations (Common):**
 
@@ -357,7 +357,7 @@ For complete details on how to set up your keyspaces refer to [creating buckets]
   ![ext rest via curl get 04 log active2](_images/ext_rest_via_curl_get_04_log_active2.png)
 4. Close the **Function Log** dialog, then to check the results of the callback, access the **Couchbase Web Console** \> **Documents** page then select the keyspace `bulk`.`data`.`source`
 
-  * Edit the new output status document **cur\_recurring\_timer::1** (note the last\_update field is in UTC) and you will see the data written by the Timer’s callback:  
+  * Edit the new output status document **cur\_recurring\_timer::1** (note the last\_update field is in UTC) and you will see the data written by the Timer's callback:  
   {  
     "last_update_loc": "2021-07-18T14:04:06.408",  
     "last_update_utc": "2021-07-18T21:04:06.408Z",  
@@ -417,7 +417,7 @@ For complete details on how to set up your keyspaces refer to [creating buckets]
   2021-07-19T00:00:01.487-07:00 [INFO] "USER FUNCTION DONE OKAY (curl 200 took 490 ms.)"  
   2021-07-19T00:00:00.003-07:00 [INFO] "From RecurringTimerCallback: timer fired" {"id":"recurring_timer::1","mode":"via_callback"}  
   \[Optional\] Wait until the next morning and click the "Log" link for the Deployed Function **external\_rest\_via\_curl\_get** to view the activity. Close the **Function Log** dialog, then to check the results of the callback, . Access the **Couchbase Web Console** \> **Documents** page then select the keyspace `bulk`.`data`.`source`
-  * Edit the new output status document **cur\_recurring\_timer::1** (note the last\_update field is in UTC — we are 7 hours behind UTC) and you will see the data written by the Timer’s callback:  
+  * Edit the new output status document **cur\_recurring\_timer::1** (note the last\_update field is in UTC — we are 7 hours behind UTC) and you will see the data written by the Timer's callback:  
   {  
     "last_update_loc": "2021-07-19T00:01.021",  
     "last_update_utc": "2021-07-19T07:01.021",  

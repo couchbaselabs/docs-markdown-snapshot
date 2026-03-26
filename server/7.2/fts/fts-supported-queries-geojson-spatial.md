@@ -1,7 +1,7 @@
 ---
 title: Geospatial GeoJSON Queries
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-geojson-spatial.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-supported-queries-geojson-spatial.adoc[]
 ---
 
@@ -154,7 +154,7 @@ The search service follows strict GeoJSON syntax for the above seven (7) standar
 
   * LineString and Polygon geometries contain coordinates in an order: lines go in a certain direction, and polygon rings do too.
   * The direction of LineString often reflects the direction of something in real life: a GPS trace will go in the direction of movement, or a street in the direction of allowed traffic flows.
-  * Polygon ring order is undefined in GeoJSON, but there’s a useful default to acquire: the right hand rule. Specifically this means that
+  * Polygon ring order is undefined in GeoJSON, but there's a useful default to acquire: the right hand rule. Specifically this means that
 
     * The exterior ring should be counterclockwise.
     * Interior rings should be clockwise.
@@ -318,7 +318,7 @@ Envelope type, which consists of coordinates for upper left and lower right poin
 
 ### [](#circle-couchbase-specific-extension)Circle (Couchbase specific extension)
 
-If the user wishes to cover a circular region over earth’s surface, then they could use this shape. A sample circular shape is as below.
+If the user wishes to cover a circular region over earth's surface, then they could use this shape. A sample circular shape is as below.
 
 ```json
 {
@@ -484,12 +484,12 @@ This can be achieved with Couchbase Web Console, or with the REST endpoints prov
 Enter **test\_geopoint** as the name of the Search index you are creating in the **Index Name** text-box.  
 ![fts index name geojson](_images/fts-index-name-geojson.png)
 * Select the bucket **travel-sample** from the **Bucket** pull-down menu.  
-Use the pull-down menu provided for the Bucket field, on the upper-right, and select a bucket that you are allowed to access to via the cluster’s RBAC settings.  
+Use the pull-down menu provided for the Bucket field, on the upper-right, and select a bucket that you are allowed to access to via the cluster's RBAC settings.  
 ![fts index name and bucket geojson](_images/fts-index-name-and-bucket-geojson.png)
 * Select the checkbox **\[X\] Use non-default scope/collections**  
 This allows your index to stream mutations from one or more non-default collections under the selected bucket and scope.  
 ![fts select geojson scope collections](_images/fts-select-geojson-scope-collections.png)
-* You will see a newly visible pull-down menu provided for the **Scope** field, under the **\[X\] Use non-default scope/collections** checkbox, and select a bucket that you are allowed to access to via the cluster’s RBAC settings.  
+* You will see a newly visible pull-down menu provided for the **Scope** field, under the **\[X\] Use non-default scope/collections** checkbox, and select a bucket that you are allowed to access to via the cluster's RBAC settings.  
 For this example leave the setting as **\_default** which is used to migrate bucket based data into the collections paradigm.
 * Under **Type Mapings**, unselect the checkbox **\[ \] default | dynamic**.  
 This is required as this type mapping (the default mapping) is only valid for the <bucket>.\_default.\_default which is typically used to upgrade a 6.X server from a bucket into a more powerful collections paradigm. In this example we will do the equivalent but on a per collections basis.  
@@ -846,7 +846,7 @@ Here, the last-specified pair in the array is identical to the initial pair, thu
 
 If a target data-location falls within the polygon, its document is returned.
 
-Request the first 10 items within the state of Utah (note the query body consists of simple set of hand drawn set of corner points). The target-field `geojson` is specified, to be compared to the query Polygon the target-locations must reside for their documents to be returned. Don’t worry about newlines when you paste the text.
+Request the first 10 items within the state of Utah (note the query body consists of simple set of hand drawn set of corner points). The target-field `geojson` is specified, to be compared to the query Polygon the target-locations must reside for their documents to be returned. Don't worry about newlines when you paste the text.
 
 The results are specified to be sorted on `name` alone, since only type hotel and landmark have a name the sort will occur on the tokenized values (they analyzer would need to be type keyword to sort on the actual field names).
 

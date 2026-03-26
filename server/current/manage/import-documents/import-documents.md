@@ -3,7 +3,7 @@ title: Import Documents with the Couchbase Web Console
 description: Couchbase Web Console provides a graphical interface for the
   importing of data, in both JSON and other formats.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/import-documents/import-documents.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:import-documents/import-documents.adoc[]
 ---
 
@@ -58,12 +58,12 @@ The options [CSV](#importing-csv-and-tsv-files), [TSV](#importing-csv-and-tsv-fi
 * **Keyspace**. Three pulldown menus, which respectively display all buckets available on the cluster, the scopes in each bucket, and the collections in each scope. The selected bucket, scope, and collection are those into which data will be imported. For example:  
 ![The Keyspace controls with the bucket menu displayed](../_images/import-documents/destinationBucketSelectTestBucket.png)
 * **Import With Document ID**. Two radio-buttons, which allow specification of how the _id_ of the newly imported document is to be determined. Note that each document within a bucket is identified with a unique id.  
-The **UUID** option specifies that a _Universal Unique Identifier_ be generated automatically, and used as the document’s id.  
-The **Value of Field** option specifies that the _value_ that corresponds to a particular _field_ within each document should be used as the document’s _id_: this option is only activated _after_ a file has been selected for import. Selecting this option displays a pulldown menu, which lists those fields that are common to each document: this is demonstrated below, in [Importing a JSON List](#import-a-json-list). For any document to be imported, when the selected field contains a value that is unique across the selected bucket, the document will be imported into the bucket as a new document, with the unique value as its id. Conversely, when the selected field contains a value that is _not_ unique across the bucket, the document will be imported into the bucket as an _update_ to a document that is already resident within the bucket, and shares the id specified by the value.
-* The **cbimport** command-line display. This display changes dynamically, to indicate the **cbimport** command that could be used as an alternative way of performing the current import, based on the user’s ongoing addition of parameter-values into the UI.
+The **UUID** option specifies that a _Universal Unique Identifier_ be generated automatically, and used as the document's id.  
+The **Value of Field** option specifies that the _value_ that corresponds to a particular _field_ within each document should be used as the document's _id_: this option is only activated _after_ a file has been selected for import. Selecting this option displays a pulldown menu, which lists those fields that are common to each document: this is demonstrated below, in [Importing a JSON List](#import-a-json-list). For any document to be imported, when the selected field contains a value that is unique across the selected bucket, the document will be imported into the bucket as a new document, with the unique value as its id. Conversely, when the selected field contains a value that is _not_ unique across the bucket, the document will be imported into the bucket as an _update_ to a document that is already resident within the bucket, and shares the id specified by the value.
+* The **cbimport** command-line display. This display changes dynamically, to indicate the **cbimport** command that could be used as an alternative way of performing the current import, based on the user's ongoing addition of parameter-values into the UI.
 
 * **File Contents**. A read-only field that displays the contents of the imported file. The field provides three display options: these are **Raw File**, which displays the unformatted file-contents; **Parse Table**, which shows the file-contents as a table, with rows and columns; and **Parse JSON**, which shows the file as formatted JSON. Note that this field can be used in conjunction with the **Parse File As** pulldown menu, to verify the correct type and data-format of the file selected for import.
-* **Import Data**. This button is to be left-clicked on, when all appropriate details of the file to be imported have been entered: data-import is then commenced. Status on the operation is displayed immediately below the button. Note that if the operation takes a long time, the button’s label is changed to **Cancel**; at which point, by left-clicking, the user can cancel the import operation.
+* **Import Data**. This button is to be left-clicked on, when all appropriate details of the file to be imported have been entered: data-import is then commenced. Status on the operation is displayed immediately below the button. Note that if the operation takes a long time, the button's label is changed to **Cancel**; at which point, by left-clicking, the user can cancel the import operation.
 
 ## [](#import-a-json-list)Import a JSON List
 
@@ -94,7 +94,7 @@ Note also that the **cbimport** command-line display has changed, to incorporate
 The **File Contents** field now shows the file contents — by default, as a **Parsed Table**.
 3. Specify a destination bucket, using the **Destination Bucket** pulldown menu. In this case, `testBucket` is to be selected, with the `_default` scope and collection:  
 ![The Keyspace controls, selecting testBucket](../_images/import-documents/destinationBucketSelectTestBucket.png)
-4. Select a form of _id_ for the documents to be imported. The **Import With Document ID** field provides two radio buttons. **UUID** specifies that an id is automatically generated for each document, by Couchbase Server. **Value of Field** allows choice of a field, common to all the listed documents: the value of the field, as it appears in each individual document, will be used as that document’s id.  
+4. Select a form of _id_ for the documents to be imported. The **Import With Document ID** field provides two radio buttons. **UUID** specifies that an id is automatically generated for each document, by Couchbase Server. **Value of Field** allows choice of a field, common to all the listed documents: the value of the field, as it appears in each individual document, will be used as that document's id.  
 For this instance, leave the default selection, **UUID**, unchanged.  
 Optionally, the **File Contents** can now be displayed in the available, alternative forms. To display `list.json` as unformatted JSON, left-click on the **Raw File** tab:  
 ![Raw File tab](../_images/import-documents/rawFileTab.png)  

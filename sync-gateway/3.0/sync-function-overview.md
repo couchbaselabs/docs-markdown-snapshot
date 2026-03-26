@@ -4,7 +4,7 @@ description: Use Sync Gateway's Sync Functions to implement effective data
   routing and access control in the cloud-to-edge synchronization of enterprise
   data.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/sync-function-overview.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::sync-function-overview.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:3.0@sync-gateway::sync-function-overview.adoc[]
 
 # Sync Function Overview
 
-> Use Sync Gateway’s Sync Functions to implement effective data routing and access control in the cloud-to-edge synchronization of enterprise data.  
+> Use Sync Gateway's Sync Functions to implement effective data routing and access control in the cloud-to-edge synchronization of enterprise data.  
 
 _Related Concepts_: [Access Control Model](access-control-model.md) | [Channels](channels.md) | [Roles](roles.md) | Sync Function | [Users](users.md)
 
@@ -31,7 +31,7 @@ The sync function should be a focus of any security review of your application.
 
 The Sync Function exposes a number of helper functions to control access — see reference information in [Sync Function API](sync-function-api.md). For example, to grant a user access to a channel use the [access()](sync-function-api-access-cmd.md) helper function in the Sync Function.
 
-The `access()` function can also operate on roles. If a user name string begins with role: then the remainder of the string is interpreted as a role name. There’s no ambiguity here, because ":" is an illegal character in a user or role name.
+The `access()` function can also operate on roles. If a user name string begins with role: then the remainder of the string is interpreted as a role name. There's no ambiguity here, because ":" is an illegal character in a user or role name.
 
 Because anonymous requests are authenticated as the user "GUEST", you can make a channel and its documents public by calling access with a username of GUEST.
 
@@ -72,13 +72,13 @@ The sync function arguments are:
 
 | Name            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| doc             | This object references the content of the document that is being saved. It matches the JSON saved by the Couchbase Lite application and replicated to Sync Gateway. The document’s \_id property contains the document ID The document’s \_rev property is the new revision ID. If the document is being deleted, it will have a \_deleted property with the value true.                                                                                                           |
+| doc             | This object references the content of the document that is being saved. It matches the JSON saved by the Couchbase Lite application and replicated to Sync Gateway. The document's \_id property contains the document ID The document's \_rev property is the new revision ID. If the document is being deleted, it will have a \_deleted property with the value true.                                                                                                           |
 | oldDoc          | If the document has been saved before, this object references the revision being replaced; otherwise it is null. **Note:** In the case of a document with conflicts, the current provisional winning revision is passed in oldDoc. Your implementation of the sync function can omit the oldDoc parameter if you do not need it (JavaScript ignores extra parameters passed to a function).                                                                                        |
 | meta (optional) | From 3.0 the Sync Function includes support for a new meta argument. This argument references the user defined XATTR that you can use to hold access grant data. The referenced object can include items such as channels or roles. So instead of embedding channel information directly within the document body, users can specify the user-defined XATTR associated with the document — see [Use XATTRs for Access Grants](access-control-how-use-xattrs-for-access-grants.md). |
 
 ## [](#configuration)Configuration
 
-If you don’t supply a sync function, Sync Gateway uses the [default Sync Function](configuration-schema-database.md#database-sync).
+If you don't supply a sync function, Sync Gateway uses the [default Sync Function](configuration-schema-database.md#database-sync).
 
 Example 2\. Configuring a Sync Function
 
@@ -133,7 +133,7 @@ Our requirements for this example are:
 | **1** | That all documents have the following properties: _creator_, _writers_, _title_ _channels_                           |
 | ----- | -------------------------------------------------------------------------------------------------------------------- |
 | **2** | That we allow only create and-or delete access to users with the role editor                                         |
-| **3** | That we only allow changes, including deletions, to be made by users identified in the document’s _writers_ property |
+| **3** | That we only allow changes, including deletions, to be made by users identified in the document's _writers_ property |
 | **4** | That the _creator_ is immutable                                                                                      |
 | **5** | That we will assign the document to the channel(s) identified within the documents contents or metadata (v3.0+).     |
 

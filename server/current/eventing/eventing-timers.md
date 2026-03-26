@@ -3,7 +3,7 @@ title: Timers
 description: Timers are asynchronous compute, which offers Eventing Functions
   the ability to execute in reference to wall-clock events.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-timers.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:eventing:eventing-timers.adoc[]
 ---
 
@@ -23,12 +23,12 @@ A few important aspects related to timers are listed below:
 * Timers may run on a different node than the one on which it was created.
 * One execution of timers is guaranteed despite node failures and cluster rebalances.
 * During Function backlogs, timers get eventually executed.
-* The Eventing Storage (or Metadata) collection stores information about timers and its association with an Eventing Function’s handler.
+* The Eventing Storage (or Metadata) collection stores information about timers and its association with an Eventing Function's handler.
 * Ensure that the Eventing Storage collection is not deleted or flushed, or the keys in Eventing Storage collection get updated.
 * Each active timer an additional amount of space between 832 and 1856 bytes (832 bytes + sizeof(context)) is needed. Where the context by default is not larger than 1024 bytes.
 * Timers are represented by two documents in KV plus a common tiny root document for that is shared among 1-N timers scheduled to fire in the same 7 second period of time. Thus two or three inserts and then two or three deletes must be performed in KV for each timer (regardless if the timer is ultimately fired or canceled).
-* The timer context size may be adjusted up or down on a per Function handler basis in the Function’s settings.
-* With an increase in the usage of timers, the Eventing Storage collection’s space assignment must also be increased to accommodate all active timers and any potential backlog. If the use-case mandates large numbers of timers in the system, it is required that the space assigned to the Eventing Storage collection be suitably high as well.
+* The timer context size may be adjusted up or down on a per Function handler basis in the Function's settings.
+* With an increase in the usage of timers, the Eventing Storage collection's space assignment must also be increased to accommodate all active timers and any potential backlog. If the use-case mandates large numbers of timers in the system, it is required that the space assigned to the Eventing Storage collection be suitably high as well.
 * Due to runtime or programmatic errors in the Function handler code, if triggering of a timer fails, then timer execution may get permanently blocked.
 * Bindings for Bucket aliases to keyspaces can be reused in timers. Bucket aliases, created during the Eventing Function definition, can be accessed by the timer constructs in the handler code.
 * Timers get deleted (and thus all KV documents that define them) when the associated Function is deleted or undeployed.
@@ -127,7 +127,7 @@ Timers get automatically sharded across Eventing nodes and therefore are elastic
 
 ## [](#debugging-and-logs)Debugging and Logs
 
-Timers cannot be debugged using the Visual Debugger. For debugging, Couchbase recommends enclosing of timers in a try-catch block. When logging is enabled, timer related logs get captured as part of the Eventing Function’s application logs.
+Timers cannot be debugged using the Visual Debugger. For debugging, Couchbase recommends enclosing of timers in a try-catch block. When logging is enabled, timer related logs get captured as part of the Eventing Function's application logs.
 
 ## [](#elapsed-timestamps)Elapsed Timestamps
 

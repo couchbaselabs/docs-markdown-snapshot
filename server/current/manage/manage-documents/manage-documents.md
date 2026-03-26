@@ -3,7 +3,7 @@ title: Manage Documents in the Couchbase Web Console
 description: Couchbase Web Console provides a graphical interface that you can
   use to view and edit documents.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-documents/manage-documents.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-documents/manage-documents.adoc[]
 ---
 
@@ -56,7 +56,7 @@ To view and edit a document:
 2. Click on a document name, or click the pencil icon  next to the document name.
 3. (Optional) Click **Data** to view the document data. This comprises a series of key-value pairs in JSON format, which may be nested. You can make modifications to the document data.  
 ![The Edit Document dialog showing document data](../_images/manage-ui/editDocumentData.png)
-4. (Optional) Click **Metadata** to view the [document metadata](../../learn/data/data.md#metadata). It’s not possible to edit a document’s metadata. Couchbase Server generates metadata when the document is saved.  
+4. (Optional) Click **Metadata** to view the [document metadata](../../learn/data/data.md#metadata). It's not possible to edit a document's metadata. Couchbase Server generates metadata when the document is saved.  
 ![The Edit Document dialog showing document metadata](../_images/manage-ui/editDocumentMetaData.png)
 5. Click **Save** to save your changes.
 

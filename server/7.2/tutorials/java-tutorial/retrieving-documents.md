@@ -6,7 +6,7 @@ description: "In this section, you're going to look at two methods of retrieving
   certain criteria. Both of the methods will introduce SQL++, Couchbase's
   SQL-based query language."
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/retrieving-documents.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:tutorials:java-tutorial/retrieving-documents.adoc[]
 ---
 
@@ -15,19 +15,19 @@ link: xref:7.2@server:tutorials:java-tutorial/retrieving-documents.adoc[]
 
 # Retrieving documents
 
-> In this section, you’re going to look at two methods of retrieving documents from a collection: you will use the administration console to build simple queries, and also write a short program to retrieve documents matching certain criteria. Both of the methods will introduce SQL++, Couchbase’s SQL-based query language. 
+> In this section, you're going to look at two methods of retrieving documents from a collection: you will use the administration console to build simple queries, and also write a short program to retrieve documents matching certain criteria. Both of the methods will introduce SQL++, Couchbase's SQL-based query language. 
 
 ## [](#using-the-query-editor)Using the Query Editor
 
 Return to the admin console, and click on the **Query** item on the left-hand menu.
 
-This will take you to the query workbench. The workbench has a few filter fields that’ll make it much easier to narrow down our search criteria.
+This will take you to the query workbench. The workbench has a few filter fields that'll make it much easier to narrow down our search criteria.
 
 ![The console query editor](../_images/set-query-filters.png) 
 
-Use the two dropdown items to select the `student-bucket` and the `art-school-scope`. This narrows the scope of the queries, meaning you don’t have to add the name of the bucket and the scope to your queries.
+Use the two dropdown items to select the `student-bucket` and the `art-school-scope`. This narrows the scope of the queries, meaning you don't have to add the name of the bucket and the scope to your queries.
 
-Okay, let’s try a simple query to retrieve all the course in our collection.
+Okay, let's try a simple query to retrieve all the course in our collection.
 
 Type the following query into the query editor field:
 
@@ -36,7 +36,7 @@ select crc.* from `course-record-collection` crc
 ```
 
 > [!NOTE]
-> SQL++ is very similar to standard SQL. Once you have mastered the document database model, you’ll find it very easy to adapt.
+> SQL++ is very similar to standard SQL. Once you have mastered the document database model, you'll find it very easy to adapt.
 
 ![Query to retrieve the course collection](../_images/attempt-first-query.png) 
 
@@ -56,7 +56,7 @@ You get an error message returned from the cluster:
 
 | **1** | The internal Couchbase code for the message.                                                                                                                                   |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **2** | A plain text description telling you what happened. In this case, the problem is that there no index defined on our bucket, so the search couldn’t locate any key information. |
+| **2** | A plain text description telling you what happened. In this case, the problem is that there no index defined on our bucket, so the search couldn't locate any key information. |
 | **3** | The JSON message also returns the original query.                                                                                                                              |
 
 ### [](#creating-an-index)Creating an index
@@ -125,13 +125,13 @@ which will bring back:
 
 #### [](#but-what-about-the-primary-id-field)But what about the primary id field?
 
-Good question. You may want to get hold of `id` field, which as you can see, isn’t returned with the document, even if we’re asking for all the fields in the call. The primary key exists as part of the document’s "meta" structure, which can be interrogated along with the rest of the document. Make the following small adjustment to the `SQL++` statement and run the query again:
+Good question. You may want to get hold of `id` field, which as you can see, isn't returned with the document, even if we're asking for all the fields in the call. The primary key exists as part of the document's "meta" structure, which can be interrogated along with the rest of the document. Make the following small adjustment to the `SQL++` statement and run the query again:
 
 ```sqlpp
 select META().id, crc.* from `course-record-collection` crc where crc.`credit-points` < 200
 ```
 
-The `META()` function call will return any property contained in the document’s metadata, including its id:
+The `META()` function call will return any property contained in the document's metadata, including its id:
 
 ```json
 [
@@ -157,7 +157,7 @@ You can find a full rundown of the SQL++ language here: [SQL++ Language Referenc
 
 ## [](#using-the-sdk)Using the SDK
 
-Of course, you can also retrieve documents using the JDK. In this section, you’re going to use the same SQL++ queries as part of a small Java application. Let’s start with a basic record retrieval:
+Of course, you can also retrieve documents using the JDK. In this section, you're going to use the same SQL++ queries as part of a small Java application. Let's start with a basic record retrieval:
 
 ```java
 Unresolved include directive in modules/tutorials/pages/java-tutorial/retrieving-documents.adoc - include::java-sdk:student:example$ArtSchoolRetriever.java[]
@@ -169,7 +169,7 @@ If you build and run this program:
 mvn exec:java -Dexec.mainClass="ArtSchoolRetriever" -Dexec.cleanupDaemonThreads=false
 ```
 
-Then you’ll get a list of the classes in the output.
+Then you'll get a list of the classes in the output.
 
 ![Terminal window showing course records retrieved with the Java SDK](../_images/retrieve-courses-cli.png) 
 
@@ -189,7 +189,7 @@ Unresolved include directive in modules/tutorials/pages/java-tutorial/retrieving
 
 | **1** | The SQL++ statement takes a parameters $creditPoints which will be substituted with a correctly typed value when the statement is called.                                                                                    |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | The value to substitute is provided in the QueryOptions given as the second parameter in the call. The value of the map entry is the actual parameter value (in this case, 200 which we’re using to test the credit-points). |
+| **2** | The value to substitute is provided in the QueryOptions given as the second parameter in the call. The value of the map entry is the actual parameter value (in this case, 200 which we're using to test the credit-points). |
 
 You can use `maven` to run the program:
 
@@ -199,4 +199,4 @@ mvn exec:java -Dexec.mainClass="ArtSchoolRetrieverParameters" -Dexec.cleanupDaem
 
 ## [](#next-steps)Next steps
 
-Now you can add and search for records, the next section will consolidate what you’ve learned so far by demonstrating how to amend existing records by adding enrollment details. So when you’re ready carry on to [Adding Course Enrollments](adding-course-enrollments.md).
+Now you can add and search for records, the next section will consolidate what you've learned so far by demonstrating how to amend existing records by adding enrollment details. So when you're ready carry on to [Adding Course Enrollments](adding-course-enrollments.md).

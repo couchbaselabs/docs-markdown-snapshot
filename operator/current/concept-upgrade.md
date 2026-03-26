@@ -1,7 +1,7 @@
 ---
 title: Couchbase Upgrades
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-upgrade.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::concept-upgrade.adoc[]
 ---
 
@@ -39,7 +39,7 @@ upgrade:
 
 The upgrade example explanation is as follows:
 
-| **1** | upgradeProcess supports SwapRebalance or InPlaceUpgrade, and defaults to SwapRebalance when you don’t specify a value. The selected upgradeStrategy determines how SwapRebalance creates pods running the upgraded version. To use InPlaceUpgrade, set the strategy to rollingUpgrade. During a SwapRebalance, the Operator selects one or more candidate pods and creates new pods for each candidate. The Operator rebalances data from the existing pods to the new pods and then deletes the candidate pods. During an InPlaceUpgrade, the Operator selects one or more candidate pods and fails them over. The Operator detaches the volumes from those pods, replaces them with pods running the new cluster version, and rebinds the existing volumes to the new pods. This process completes faster than a SwapRebalance, and the Operator retains the pod names and network settings for the updated pods. |
+| **1** | upgradeProcess supports SwapRebalance or InPlaceUpgrade, and defaults to SwapRebalance when you don't specify a value. The selected upgradeStrategy determines how SwapRebalance creates pods running the upgraded version. To use InPlaceUpgrade, set the strategy to rollingUpgrade. During a SwapRebalance, the Operator selects one or more candidate pods and creates new pods for each candidate. The Operator rebalances data from the existing pods to the new pods and then deletes the candidate pods. During an InPlaceUpgrade, the Operator selects one or more candidate pods and fails them over. The Operator detaches the volumes from those pods, replaces them with pods running the new cluster version, and rebinds the existing volumes to the new pods. This process completes faster than a SwapRebalance, and the Operator retains the pod names and network settings for the updated pods. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | upgradeStrategy determines how SwapRebalance creates new pods by using either RollingUpgrade or ImmediateUpgrade. To use InPlaceUpgrade, set the strategy to rollingUpgrade. rollingUpgrade upgrades a predetermined number of pods at a time, which limits risk and simplifies rollback. Because this strategy uses the least network and compute resources, it minimizes impact on client operations. ImmediateUpgrade increases risk and resource utilization during the upgrade but completes the operation faster. Because the strategy upgrades all pods at the same time, it can cause an adverse impact on client performance.                                                                                                                                                                                                                                                                              |
 | **3** | stabilizationPeriod lets you control how long the Operator waits between upgrade cycles and gives you time to check cluster health and service availability.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -51,9 +51,9 @@ The upgrade example explanation is as follows:
 > 
 > `InPlaceUpgrade` can interrupt service and increase the risk of data loss. Use this process only when the cluster has at least two nodes running the Data Service.
 > 
-> InplaceUpgrades can only be done performed one pod at a time. This is due to restrictions by Couchbase Server’s delta recovery logic, which fails if any pod topology changes occur since the pod was gracefully failed.
+> InplaceUpgrades can only be done performed one pod at a time. This is due to restrictions by Couchbase Server's delta recovery logic, which fails if any pod topology changes occur since the pod was gracefully failed.
 > 
-> InPlaceUpgrades cannot be performed on single node clusters. This is considered an “offline” upgrade, and will only work in 2.7.0+ (See [K8S-3542](https://jira.issues.couchbase.com/browse/K8S-3542)).
+> InPlaceUpgrades cannot be performed on single node clusters. This is considered an "offline" upgrade, and will only work in 2.7.0+ (See [K8S-3542](https://jira.issues.couchbase.com/browse/K8S-3542)).
 
 ### [](#how-to-upgrade-a-cluster)How to Upgrade a Cluster
 
@@ -81,7 +81,7 @@ See [Upgrade Paths](#server:install/upgrade.adoc#supported-upgrade-paths) for mo
 
 ### [](#rollback)Rollback
 
-The Operator supports rolling back an upgrade that’s in progress. You can perform a rollback only while some pods still run the previous cluster version, which occurs only during an upgrade or when the cluster runs in mixed mode. After the cluster upgrade to new version is complete, it cannot be rolled back to its old version. To roll back, the Operator replaces the newly created pods with pods running the previous version and follows the strategy, process, and ordering defined in the [spec.upgrade example](#spec-upgrade-example).
+The Operator supports rolling back an upgrade that's in progress. You can perform a rollback only while some pods still run the previous cluster version, which occurs only during an upgrade or when the cluster runs in mixed mode. After the cluster upgrade to new version is complete, it cannot be rolled back to its old version. To roll back, the Operator replaces the newly created pods with pods running the previous version and follows the strategy, process, and ordering defined in the [spec.upgrade example](#spec-upgrade-example).
 
 #### [](#how-to-rollback-a-cluster)How to Rollback a Cluster
 

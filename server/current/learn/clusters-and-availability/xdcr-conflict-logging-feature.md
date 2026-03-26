@@ -7,7 +7,7 @@ description: During Active-Active replication, XDCR detects and logs concurrent
   Active-Active systems is that application environments must be designed to
   avoid conflicts.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-conflict-logging-feature.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:clusters-and-availability/xdcr-conflict-logging-feature.adoc[]
 ---
 
@@ -43,7 +43,7 @@ This section summarizes the prerequisites, and how to enable, configure, and use
 > [!CAUTION]
 > Before enabling conflict logging, make sure that the Eventing functions deployed in replicated buckets do not cause excessive conflicts in an XDCR Active-Active environment. The following can cause conflicts:
 > 
-> * If you’re using the Eventing functions triggered by both replicated and local mutations, and then the Eventing functions update the same document.
+> * If you're using the Eventing functions triggered by both replicated and local mutations, and then the Eventing functions update the same document.
 > * If the same Eventing functions are deployed in other replication environments.
 > 
 > To prevent the conflicts caused by Eventing updates to the replicated documents, design Eventing functions with appropriate logic. Make sure the Eventing functions avoid updating the same documents (document IDs) at around the same time in different replication locations.
@@ -78,9 +78,9 @@ A conflict log collection, or conflict collection, is the collection you specify
 
 For information about how to configure conflict collections, see [Enabling and Configuring Conflict Logging](#configure-conflictlogging-settings).
 
-You can specify any regular collection in the cluster as a conflict log collection, including a collection in the bucket that’s being replicated. The conflict record documents are not replicated.
+You can specify any regular collection in the cluster as a conflict log collection, including a collection in the bucket that's being replicated. The conflict record documents are not replicated.
 
-After XDCR creates conflict record documents in the conflict collection, you are responsible for managing them. XDCR does not update or remove these documents. As these documents are also copies of your application documents, you must use RBAC to make sure of appropriate access to the documents. Make sure to monitor the disk storage use for the conflict log collections and delete documents when they’re no longer needed.
+After XDCR creates conflict record documents in the conflict collection, you are responsible for managing them. XDCR does not update or remove these documents. As these documents are also copies of your application documents, you must use RBAC to make sure of appropriate access to the documents. Make sure to monitor the disk storage use for the conflict log collections and delete documents when they're no longer needed.
 
 > [!NOTE]
 > XDCR adds a system extended attribute (xattrs) called `_xdcr_conflict` into each of the 3 documents in the [Conflict Record](#conflict-record), which prevents XDCR from replicating these 3 documents.
@@ -165,9 +165,9 @@ Some of the key-value pairs in the CRD are as follows:
 | clusterUUID            | Source/target cluster unique ID.                                                                                                                              |
 | isDeleted              | True or false for - is the source/target document deleted?                                                                                                    |
 | scope and collection   | Name of the scope and collection where the conflict source/target documents exist.                                                                            |
-| revSeqno               | Source/target document’s revision sequence number.                                                                                                            |
-| expiry                 | Source/target document’s expiry time.                                                                                                                         |
-| flags                  | Source/target document’s flag.                                                                                                                                |
+| revSeqno               | Source/target document's revision sequence number.                                                                                                            |
+| expiry                 | Source/target document's expiry time.                                                                                                                         |
+| flags                  | Source/target document's flag.                                                                                                                                |
 | xattrs                 | System xattributes.                                                                                                                                           |
 | \_vv                   | Document version vector. HLV metadata.                                                                                                                        |
 
@@ -222,7 +222,7 @@ To log conflicts, when creating an XDCR replication use the following settings, 
 * [conflictLogging](#conflictlogging-key) is the key.
 * [loggingRules](#logging-rules) is a JSON object as the value.
 
-You can also update an existing replication’s conflict logging settings by updating the `conflictLogging` value, which is a part of the [Manage Advanced Settings](../../rest-api/rest-xdcr-adv-settings.md) in XDCR replication.
+You can also update an existing replication's conflict logging settings by updating the `conflictLogging` value, which is a part of the [Manage Advanced Settings](../../rest-api/rest-xdcr-adv-settings.md) in XDCR replication.
 
 To configure the key and value:
 
@@ -241,7 +241,7 @@ The types of values for the `conflictLogging` key are as follows:
 * [Disabled with logging rules configured](#disabled-with-stored-logging-rules)
 
 > [!NOTE]
-> The conflict log collections, or conflict collections, can be any collection in the cluster, including a collection in the bucket that’s being replicated. However, the conflict logs are never replicated. XDCR adds a system extended attribute or xattrs called `_xdcr_conflict` into each of the 3 documents in the [Conflict Records](#conflict-record), which prevents these documents, the conflict logs, from being replicated.
+> The conflict log collections, or conflict collections, can be any collection in the cluster, including a collection in the bucket that's being replicated. However, the conflict logs are never replicated. XDCR adds a system extended attribute or xattrs called `_xdcr_conflict` into each of the 3 documents in the [Conflict Records](#conflict-record), which prevents these documents, the conflict logs, from being replicated.
 
 The following examples show how to use `conflictLogging` with the `curl` command option `--data-urlencode`. This demonstrates how to specify the conflict logging settings when creating or updating an XDCR replication using the REST API.
 
@@ -376,7 +376,7 @@ You can use the `loggingRules` JSON object to define granular conflict logging r
 * If you set a custom conflict log collection for a scope, all collections within that scope will use the specified collection for conflict records. However, for a collection under the scope, you can do one of the following:
 
   * Assign a different custom conflict log collection.
-  * Specify that the conflict records be put in the default conflict log collection and not in the parent scope’s custom conflict log collection.
+  * Specify that the conflict records be put in the default conflict log collection and not in the parent scope's custom conflict log collection.
 * You can specify that conflicts from a scope or a collection must not be logged.
 
 The assigned `loggingRules` override the default setting of putting the conflict records into the default conflict log collection specified for `conflictLogging`. For examples about using loggingRules, see the [Enabled with logging rules example](#enabled-with-special-logging-rules).
@@ -387,10 +387,10 @@ The following section explains the key-value formats of the `loggingRules`.
 | -------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | \[scope\]            | {} Empty JSON object.                                                            | All conflicts will be logged in the conflict collection defined by bucket and collection in the conflictLogging key.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | \[scope\]            | null                                                                             | All conflicts from the specified scope will not be logged.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| \[scope.collection\] | {}                                                                               | All conflicts from the specified collection will be logged in the conflict collection defined by bucket and collection in the conflictLogging key. You may use this option if the parent scope of the collection has a custom conflict collection, and you want the conflicts from this collection to be logged in the default conflict collection, and not in the parent scope’s custom conflict collection. The default behavior, when you define a custom conflict collection for a scope, is that all the conflicts for the collections in that scope are logged into the scope’s custom conflict collection. |
+| \[scope.collection\] | {}                                                                               | All conflicts from the specified collection will be logged in the conflict collection defined by bucket and collection in the conflictLogging key. You may use this option if the parent scope of the collection has a custom conflict collection, and you want the conflicts from this collection to be logged in the default conflict collection, and not in the parent scope's custom conflict collection. The default behavior, when you define a custom conflict collection for a scope, is that all the conflicts for the collections in that scope are logged into the scope's custom conflict collection. |
 | \[scope.collection\] | null                                                                             | All conflicts from the specified collection will not be logged.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| \[scope\]            | { “bucket”: \[otherBucket\], “collection”: \[otherScope\].\[otherCollection\]” } | All conflicts from the chosen scope will be logged in the specific conflict collection defined by otherBucket, otherScope, and otherCollection; instead of the original location mentioned in the conflictLogging key.                                                                                                                                                                                                                                                                                                                                                                                            |
-| \[scope.collection\] | { “bucket”: \[otherBucket\], “collection”: \[otherScope\].\[otherCollection\]” } | All conflicts from the chosen collection will be logged in the specific conflict collection defined by otherBucket, otherScope, and otherCollection; instead of the original location mentioned in the conflictLogging key.                                                                                                                                                                                                                                                                                                                                                                                       |
+| \[scope\]            | { "bucket": \[otherBucket\], "collection": \[otherScope\].\[otherCollection\]" } | All conflicts from the chosen scope will be logged in the specific conflict collection defined by otherBucket, otherScope, and otherCollection; instead of the original location mentioned in the conflictLogging key.                                                                                                                                                                                                                                                                                                                                                                                            |
+| \[scope.collection\] | { "bucket": \[otherBucket\], "collection": \[otherScope\].\[otherCollection\]" } | All conflicts from the chosen collection will be logged in the specific conflict collection defined by otherBucket, otherScope, and otherCollection; instead of the original location mentioned in the conflictLogging key.                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ## [](#disable-conflict-logging)Disable Conflict Logging
 

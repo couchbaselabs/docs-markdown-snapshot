@@ -3,7 +3,7 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@php-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
@@ -140,7 +140,7 @@ $queryIndexMgr = $cluster->queryIndexes();
 
 Applications can use this manager to perform operations such as creating, deleting, and fetching _primary_ or _secondary_ indexes:
 
-* A _Primary_ index is built from a document’s key and is mostly suited for simple queries.
+* A _Primary_ index is built from a document's key and is mostly suited for simple queries.
 * A _Secondary_ index is the most commonly used type, and is suited for complex queries that require filtering on document fields.
 
 > [!NOTE]

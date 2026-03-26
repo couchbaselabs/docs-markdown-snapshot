@@ -3,7 +3,7 @@ title: Retrieve All Node Certificates
 description: The REST API can be used to retrieve the node certificate for each
   node in the cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/retrieve-all-node-certs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:retrieve-all-node-certs.adoc[]
 ---
 
@@ -70,4 +70,4 @@ The returned array contains two JSON objects, indicating that two node certifica
 
 ## [](#see-also)See Also
 
-Information on uploading and retrieving the cluster’s root certificate with the REST API is provided in [Upload and Retrieve the Root Certificate](#rest-api:upload-retrieve-root-cert.adoc). A general introduction to certificates is provided in [Certificates](../learn/security/certificates.md). Routines for generating and deploying server and client certificates are provided in [Configure Server Certificates](../manage/manage-security/configure-server-certificates.md) and [Configure Client Certificates](../manage/manage-security/configure-client-certificates.md), respectively.
+Information on uploading and retrieving the cluster's root certificate with the REST API is provided in [Upload and Retrieve the Root Certificate](#rest-api:upload-retrieve-root-cert.adoc). A general introduction to certificates is provided in [Certificates](../learn/security/certificates.md). Routines for generating and deploying server and client certificates are provided in [Configure Server Certificates](../manage/manage-security/configure-server-certificates.md) and [Configure Client Certificates](../manage/manage-security/configure-client-certificates.md), respectively.

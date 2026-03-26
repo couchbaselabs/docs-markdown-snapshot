@@ -3,7 +3,7 @@ title: Client Settings
 description: The <code>ClusterEnvironment</code> class enables you to configure
   Scala SDK options for bootstrapping, timeouts, reliability, and performance.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.6@scala-sdk:ref:client-settings.adoc[]
 ---
 
@@ -48,7 +48,7 @@ clusterTry match {
 
 ## [](#config-builders)Config Builders
 
-Environment settings are grouped into categories, with one builder class per category. These builders all work in the same way, which we’ll illustrate by using timeout settings as an example.
+Environment settings are grouped into categories, with one builder class per category. These builders all work in the same way, which we'll illustrate by using timeout settings as an example.
 
 Timeout settings are configured using an instance of `TimeoutConfig`. As with most options blocks in the SDK, this is a Scala case class - e.g. an immutable data class - with fluent-style methods that return new immutable copies with a new setting applied.
 
@@ -64,7 +64,7 @@ ClusterEnvironment.builder
   .build
 ```
 
-The name of the cluster environment builder method for getting and setting each config builder always matches the name of the config class. For example, `TimeoutConfig` is set via the environment builder’s `timeoutConfig` method, `IoConfig` is set via the `ioConfig` method, and so on.
+The name of the cluster environment builder method for getting and setting each config builder always matches the name of the config class. For example, `TimeoutConfig` is set via the environment builder's `timeoutConfig` method, `IoConfig` is set via the `ioConfig` method, and so on.
 
 > [!NOTE]
 > There are `com.couchbase.client.scala.env` and `com.couchbase.client.core.env` versions of all environment parameters: be sure to import the `.scala` versions.
@@ -100,7 +100,7 @@ The following tables cover all possible configuration options and explain their 
 
 ## [](#security-options)Security Options
 
-By default the client will connect to Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition, it’s possible to secure the connection using TLS.
+By default the client will connect to Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition, it's possible to secure the connection using TLS.
 
 Template for configuring security settings
 
@@ -131,7 +131,7 @@ Default: `true`
 
 System Property: `com.couchbase.env.security.enableNativeTls`
 
-When TLS is enabled, the client will by default use an optimized native TLS provider if one is available. If for some reason you need to disable the native provider and use the JDK’s portable provider instead, set this to `false`. If `enableTls` is `false` then `enableNativeTls` has no effect.
+When TLS is enabled, the client will by default use an optimized native TLS provider if one is available. If for some reason you need to disable the native provider and use the JDK's portable provider instead, set this to `false`. If `enableTls` is `false` then `enableNativeTls` has no effect.
 
 Name: **TLS Certificates**
 
@@ -186,9 +186,9 @@ System Property: `com.couchbase.env.io.networkResolution`
 > [!NOTE]
 > The system property value should be one of `auto`, `default`, or `external` (lower case).
 
-Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server’s network environment.
+Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server's network environment.
 
-By default the client will use a simple matching heuristic to determine which set of addresses to use (it will select the set of addresses that contains a seed node’s host and port).
+By default the client will use a simple matching heuristic to determine which set of addresses to use (it will select the set of addresses that contains a seed node's host and port).
 
 If you wish to override the heuristic, you can set this value to `default` if the client is running in the same network as the server, or `external` if the client is running in a different network.
 
@@ -541,7 +541,7 @@ Default: `BestEffortRetryStrategy.INSTANCE`
 
 System Property: N/A
 
-The client’s default retry strategy.
+The client's default retry strategy.
 
 A retry strategy decides whether a failed operation should be retried. Implementing a custom strategy is fairly advanced, so the SDK ships with two out of the box: `BestEffortRetryStrategy` and `FailFastRetryStrategy`.
 
@@ -591,7 +591,7 @@ System Property: N/A
 
 This is an advanced setting that should not be modified without good reason.
 
-The scheduler used for all CPU-intensive, non-blocking computations in the core, client, and user space. The default is a scheduler created from Reactor’s `Schedulers.newParallel` method, with one daemon thread per CPU core. Extra care should be used when changing the scheduler, since many internal components depend on it.
+The scheduler used for all CPU-intensive, non-blocking computations in the core, client, and user space. The default is a scheduler created from Reactor's `Schedulers.newParallel` method, with one daemon thread per CPU core. Extra care should be used when changing the scheduler, since many internal components depend on it.
 
 > [!NOTE]
 > Shutting down the cluster environment will not dispose of a custom scheduler. You are responsible for disposing of it after it is no longer needed.

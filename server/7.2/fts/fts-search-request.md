@@ -1,7 +1,7 @@
 ---
 title: Search Request
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-search-request.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-search-request.adoc[]
 ---
 
@@ -222,7 +222,7 @@ The default sort order is based on _score_ (relevance) where the results are ord
 
 #### [](#example-5)Example
 
-Here’s an example query that fetches results from the 11th onwards to the 15th that have been ordered by _score_.
+Here's an example query that fetches results from the 11th onwards to the 15th that have been ordered by _score_.
 
 ```json
 {
@@ -277,7 +277,7 @@ Here are some examples using `search_after/search_before` over sort key "\_id" (
 ```
 
 > [!NOTE]
-> A Full Text Search request that doesn’t carry any pagination settings will return the first 10 results (`"size: 10", "from": 0`) ordered by _score_ sequentially from the highest to lowest.
+> A Full Text Search request that doesn't carry any pagination settings will return the first 10 results (`"size: 10", "from": 0`) ordered by _score_ sequentially from the highest to lowest.
 
 ### [](#pagination-tips-and-recommendations)Pagination tips and recommendations
 
@@ -298,7 +298,7 @@ This solution requires a few preconditions be met:
 
 A common solution to this is to always include the document ID as the final sort criteria.
 
-For example, if you want to sort by \[“name”, “-age”\], instead of sort by \[“name”, “-age”, "\_id"\].
+For example, if you want to sort by \["name", "-age"\], instead of sort by \["name", "-age", "\_id"\].
 
 With `search_after`/`search_before` paginations, the heap memory requirement of deeper page searches is made proportional to the requested page size alone. So it reduces the heap memory requirement of deeper page searches significantly down from the offset+from values. _._
 
@@ -324,7 +324,7 @@ You can specify the value of the `sort` field as an array of strings. These can 
 If multiple fields are included in the array, the sorting of documents begins according to their values for the field whose name is first in the array.  
 If any number of these values are identical, their documents are sorted again, this time according to their values for the field whose name is second; then, if any number of these values are identical, their documents are sorted a third time, this time according to their values for the field whose name is third; and so on.  
 Any document-field may be specified to hold the value on which sorting is to be based, provided that the field has been indexed in some way, whether dynamically or specifically.  
-The default sort-order is _ascending_. If a field-name is prefixed with the `-` character, that field’s results are sorted in _descending_ order.
+The default sort-order is _ascending_. If a field-name is prefixed with the `-` character, that field's results are sorted in _descending_ order.
 * `_id`:Refers to the document identifier. Whenever encountered in the array, causes sorting to occur by document identifer.
 * `_score`: Refers to the score assigned the document in the result-set. Whenever encountered in the array, causes sorting to occur by score.
 
@@ -573,7 +573,7 @@ The following sample query response shows the **score** field for each document 
 
 `tf-idf` is used as a weighting factor in a search for information retrieval and text mining. The `tf–idf` value increases proportionally to the number of times a word appears in the document, and it is offset by the number of documents in the collection or scope that contains the word.
 
-Search engines often use the variations of `tf-idf` weighting scheme as a tool in scoring and ranking a document’s relevance for a given query. The tf-idf scoring for a document relevancy is done on the basis of per-partition index, which means that documents across different partitions may have different scores.
+Search engines often use the variations of `tf-idf` weighting scheme as a tool in scoring and ranking a document's relevance for a given query. The tf-idf scoring for a document relevancy is done on the basis of per-partition index, which means that documents across different partitions may have different scores.
 
 When bleve scores a document, it sums a set of sub scores to reach the final score. The scores across different searches are not directly comparable as the scores are directly dependent on the search criteria. So, changing the search criteria, like terms, boost factor etc. can vary the score.
 
@@ -617,7 +617,7 @@ It is often observed that users are using Full-Text Search for the exact match q
 
 Text relevancy score does not matter when the user is looking for exact or more targeted searches with many predicates or when the dataset size is small.
 
-In such a case, FTS unnecessarily uses more resources in calculating the relevancy score. Users can, however, optimize the query performance by skipping the scoring. Users may skip the scoring by passing a “score”: “none” option in the search request.
+In such a case, FTS unnecessarily uses more resources in calculating the relevancy score. Users can, however, optimize the query performance by skipping the scoring. Users may skip the scoring by passing a "score": "none" option in the search request.
 
 #### [](#example-12)Example
 
@@ -833,7 +833,7 @@ Full text search and Bleve expect dates to be in the format specified by [RFC-33
 
 #### [](#example-15)Example
 
-* Date Range Facet - computes facet on the ‘updated’ field that has 2 values old and new.  
+* Date Range Facet - computes facet on the 'updated' field that has 2 values old and new.  
 curl -XPOST -H "Content-Type: application/json" -uAdministrator:asdasd http://<node>:8094/api/index/bix/query -d '{  
 "ctl": {"timeout": 0},  
 "from": 0,  

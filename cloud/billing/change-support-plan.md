@@ -3,7 +3,7 @@ title: Change a Cluster&#8217;s Plan and Support Timezone
 description: You can change the Support Plan for your Couchbase Capella clusters
   and their support timezones at any time.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/change-support-plan.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:billing:change-support-plan.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:billing:change-support-plan.adoc[]
 
 > You can change the Support Plan for your Couchbase Capella clusters and their support timezones at any time. 
 
-Change a cluster’s [Support Plan](billing.md#support-plans) to change its support level and capabilities.
+Change a cluster's [Support Plan](billing.md#support-plans) to change its support level and capabilities.
 
 Change its support timezone to change when you can receive support for any issues with your Capella clusters.
 
@@ -36,14 +36,14 @@ To change a cluster Support Plan:
 4. Select the Support Plan you want for your cluster.  
 For more information about the available Support Plans for Couchbase Capella, see [Plans and Pricing](https://www.couchbase.com/pricing) on the Couchbase website.  
 > [!NOTE]  
-> If you pay for your Capella usage with [pre-paid credits](billing.md#pre-paid-credits) and you choose a Support Plan that has no available pre-paid credit balance, Capella warns you that you’ll incur [pay-as-you-go usage](billing.md#pay-as-you-go-credits) for that plan. If your chosen Support Plan has a [low pre-paid credit balance](billing.md#low-credits) and could incur pay-as-you-go charges within the first month of running your cluster, Capella also shows a warning.
+> If you pay for your Capella usage with [pre-paid credits](billing.md#pre-paid-credits) and you choose a Support Plan that has no available pre-paid credit balance, Capella warns you that you'll incur [pay-as-you-go usage](billing.md#pay-as-you-go-credits) for that plan. If your chosen Support Plan has a [low pre-paid credit balance](billing.md#low-credits) and could incur pay-as-you-go charges within the first month of running your cluster, Capella also shows a warning.
 5. Click **Save**.
 
 Your plan changes take effect on the next clock hour.
 
-## [](#change-a-clusters-support-timezone)Change a Cluster’s Support Timezone
+## [](#change-a-clusters-support-timezone)Change a Cluster's Support Timezone
 
-To change a cluster’s support timezone:
+To change a cluster's support timezone:
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 

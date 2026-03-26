@@ -3,7 +3,7 @@ title: Search Index Features
 description: Search indexes in Couchbase Capella have multiple features that you
   can configure to improve performance and fine tune your search results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/customize-index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:customize-index.adoc[]
 ---
 
@@ -34,9 +34,9 @@ You can add the following components and configure the following options for a S
 
 Use analyzers to improve and customize the search results in your index.
 
-Analyzers transform input text into tokens, which give you greater control over your index’s text matching. The **Default Analyzer** sets the analyzer that’s used by default for new [type mappings](#type-mappings) across your Search index.
+Analyzers transform input text into tokens, which give you greater control over your index's text matching. The **Default Analyzer** sets the analyzer that's used by default for new [type mappings](#type-mappings) across your Search index.
 
-You can use 1 of Couchbase’s built-in analyzers as the **Default Analyzer** or the analyzer for a specific [type mapping](#type-mappings). If you use Advanced Mode, you can create your own analyzer.
+You can use 1 of Couchbase's built-in analyzers as the **Default Analyzer** or the analyzer for a specific [type mapping](#type-mappings). If you use Advanced Mode, you can create your own analyzer.
 
 Analyzers have different components that control how text is transformed for search. When you create a custom analyzer, you can choose these components. For more information about Search analyzer components, see [Custom Analyzers and Custom Filters](#custom-filters).
 
@@ -120,9 +120,9 @@ This increases the size of your index.
 
 Use a type mapping to include or exclude specific documents in a collection from an index.
 
-Type mappings can also set a document field’s data type and other settings.
+Type mappings can also set a document field's data type and other settings.
 
-Type mappings start at the collection level. Create additional mappings for document fields or JSON objects under a collection’s type mapping to restrict the documents added to your index. This can improve Search index performance over indexing entire collections.
+Type mappings start at the collection level. Create additional mappings for document fields or JSON objects under a collection's type mapping to restrict the documents added to your index. This can improve Search index performance over indexing entire collections.
 
 For a type mapping defined on a scope and collection, you can create an additional [document filter](#type-identifiers) to restrict the documents added under that type mapping. Only documents from your specified scope and collection that also pass the document filter can be included in your Search index, and potentially returned in search results.
 
@@ -148,7 +148,7 @@ Add Search index partitions to distribute the contents of a Search index over mu
 
 Partitions improve Search index performance, but increase the complexity of a Search index and its resource usage.
 
-It’s recommended to set your Search index partitions to the number of nodes running the Search Service in your operational cluster, to get the most efficient resource usage.
+It's recommended to set your Search index partitions to the number of nodes running the Search Service in your operational cluster, to get the most efficient resource usage.
 
 ## [](#custom-filters)Custom Analyzers and Custom Filters
 
@@ -197,7 +197,7 @@ You can also create your own token filters. Custom token filters can use [Word L
 
 Word lists define a list of words that you can use with a [token filter](#token-filters) to create tokens.
 
-You can use a word list to find words and create tokens, or remove words from a tokenizer’s token stream.
+You can use a word list to find words and create tokens, or remove words from a tokenizer's token stream.
 
 When you create a custom token filter, the Search Service you can use a default word list, or create your own word list. Only specific custom token filter types use word lists in their configuration:
 

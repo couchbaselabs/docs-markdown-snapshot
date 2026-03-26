@@ -1,7 +1,7 @@
 ---
 title: Create a Database
 editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/develop/java/create-database.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:todo-app:develop/java/create-database.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:tutorials:todo-app:develop/java/create-database.adoc[]
 
 # Create a Database
 
-In this lesson you’ll be introduced to Couchbase Lite, our embedded NoSQL database. You’ll learn how to create a new embedded database and optionally use databases pre-packaged in your application.
+In this lesson you'll be introduced to Couchbase Lite, our embedded NoSQL database. You'll learn how to create a new embedded database and optionally use databases pre-packaged in your application.
 
 ## [](#requirements)Requirements
 
@@ -18,7 +18,7 @@ In this lesson you’ll be introduced to Couchbase Lite, our embedded NoSQL data
 * Android SDK 24
 * Android Build Tools 24.0.3
 * JDK 8
-* ⚠️ Docker and x86 Android emulators are [not compatible](http://stackoverflow.com/questions/37397810/android-studio-unable-to-run-avd) (i.e cannot run simultaneously on the same machine). Make sure Docker isn’t running in the background when deploying the application to an x86 Android emulator.
+* ⚠️ Docker and x86 Android emulators are [not compatible](http://stackoverflow.com/questions/37397810/android-studio-unable-to-run-avd) (i.e cannot run simultaneously on the same machine). Make sure Docker isn't running in the background when deploying the application to an x86 Android emulator.
 
 ## [](#getting-started)Getting Started
 
@@ -52,7 +52,7 @@ try {
 }
 ```
 
-Here you’re using the `openDatabaseNamed` method where the database is the user currently logged in and `options.create` is set to `true`.
+Here you're using the `openDatabaseNamed` method where the database is the user currently logged in and `options.create` is set to `true`.
 
 > [!NOTE]
 > You can ignore the encryption flag. Database encryption will be covered in the [Adding Security](#java/adding-security.adoc) lesson.
@@ -60,7 +60,7 @@ Here you’re using the `openDatabaseNamed` method where the database is the use
 ### [](#try-it-out)Try it out
 
 1. Build and run.
-2. Create a new list on the application’s 'Task lists' screen.
+2. Create a new list on the application's 'Task lists' screen.
 3. The task list is persisted to the database.
 
 ![image40](../../_images/image40.png)
@@ -73,7 +73,7 @@ Here you’re using the `openDatabaseNamed` method where the database is the use
 
 ## [](#using-the-pre-built-database)Using the pre-built database
 
-In this section, you will learn how to bundle a pre-built Couchbase Lite database in an application. It can be a lot more efficient to bundle a database in your application and install it on the first launch. Even if some of the content changes on the server after you create the app, the app’s first pull replication will bring the database up to date. Here, you will use a pre-built database that contains a list of groceries. The code below moves the pre-built database from the bundled location to the application directory.
+In this section, you will learn how to bundle a pre-built Couchbase Lite database in an application. It can be a lot more efficient to bundle a database in your application and install it on the first launch. Even if some of the content changes on the server after you create the app, the app's first pull replication will bring the database up to date. Here, you will use a pre-built database that contains a list of groceries. The code below moves the pre-built database from the bundled location to the application directory.
 
 ```java
 // This code can be found in AppDelegate.swift
@@ -135,7 +135,7 @@ if (database == null) {
 }
 ```
 
-The prebuilt database is installed using the database replacement API only if there isn’t any existing database called 'todo'. Since you created an empty database called 'todo' in the previous step you must first remove the existing database.
+The prebuilt database is installed using the database replacement API only if there isn't any existing database called 'todo'. Since you created an empty database called 'todo' in the previous step you must first remove the existing database.
 
 ### [](#try-it-out-2)Try it out
 
@@ -143,7 +143,7 @@ The prebuilt database is installed using the database replacement API only if th
 ```java  
 let kUsePrebuiltDb = true  
 ```
-2. Build and run (⚠️ don’t forget to delete the app first).
+2. Build and run (⚠️ don't forget to delete the app first).
 3. A Groceries list will now be visible on the Lists screen. Click on it to see the tasks.  
 ![image45](../../_images/image45.gif)
 4. Open **CoreApp.cs** and navigate to the `CoreAppStart.CreateHint()` method.
@@ -151,14 +151,14 @@ let kUsePrebuiltDb = true
 ```c#  
 retVal.usePrebuiltDB = true;  
 ```
-6. Build and run (⚠️ don’t forget to delete the app first).
+6. Build and run (⚠️ don't forget to delete the app first).
 7. A Groceries list will now be visible on the Lists screen. Click on it to see the tasks.  
 ![image45w](../../_images/image45w.gif)
 
 **iOS** **Android**
 
 1. Open **Application.java** and set the `mUsePrebuiltDb` constant to true.
-2. Build and run (⚠️ don’t forget to delete the app first).
+2. Build and run (⚠️ don't forget to delete the app first).
 3. A Groceries list will now be visible on the Lists screen. Click on it to see the tasks.
 
 > [!NOTE]
@@ -166,4 +166,4 @@ retVal.usePrebuiltDB = true;
 
 ##### [](#conclusion)Conclusion
 
-Well done! You’ve completed this lesson on creating a database. In the next lesson you will learn how to write and query documents from the database. Feel free to share your feedback, findings or ask any questions on the forums.
+Well done! You've completed this lesson on creating a database. In the next lesson you will learn how to write and query documents from the database. Feel free to share your feedback, findings or ask any questions on the forums.

@@ -2,7 +2,7 @@
 title: Access Control Configuration
 description: Using Sync Gateway's Admin REST API and the Sync function to configure access
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/configuration-schema-access-control.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::configuration-schema-access-control.adoc[]
 ---
 
@@ -66,7 +66,7 @@ For more on the Sync Function and access control see: [Sync Function Overview](s
 
 ## [](#%5Fsync%5Ffunction)Schema
 
-This section shows Sync Gateway’s access control configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
+This section shows Sync Gateway's access control configuration settings in schema format for convenience in constructing JSON models for use in the Admin REST API.
 
 The configuration settings described here are provisioned through the [Access Control](rest-api-admin.md#/Access%5FControl) endpoints.
 

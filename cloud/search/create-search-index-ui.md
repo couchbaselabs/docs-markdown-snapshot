@@ -3,7 +3,7 @@ title: Create a Search Index with the Capella UI
 description: You can create a Search index using the Couchbase Capella UI to
   generate a properly formatted Search index definition.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-search-index-ui.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:create-search-index-ui.adoc[]
 ---
 
@@ -54,7 +54,7 @@ For more information, see [Replica and Partition Settings](customize-index.md#re
 
 ## [](#next-steps)Next Steps
 
-Your Search index will contain documents that match the collection type mapping you specified. You can run a search against your index, but it’s recommended that you create more [specific type mappings](create-type-mapping.md) to improve performance and reduce the index size.
+Your Search index will contain documents that match the collection type mapping you specified. You can run a search against your index, but it's recommended that you create more [specific type mappings](create-type-mapping.md) to improve performance and reduce the index size.
 
 For more information about the different features you can add to your Search index to improve performance and search results, see [Search Index Features](customize-index.md).
 

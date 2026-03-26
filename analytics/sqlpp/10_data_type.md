@@ -2,7 +2,7 @@
 title: Data Types
 description: This topic describes the data types that Capella Analytics operates on.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/10_data_type.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sqlpp:10_data_type.adoc[]
 ---
 
@@ -103,7 +103,7 @@ date_diff_millis(1655231924715, 1655230396621, "second") returns 1528,
 
 ### [](#using-string-for-temporal-data)Using `string` for Temporal Data
 
-A string in ISO 8601 format can represent a date, time, or timestamp. The following example shows 30.55 seconds after 15:10—​3:10pm—​on June 14, 2022 in a timezone that’s eight hours behind Coordinated Universal Time (UTC) in ISO format.
+A string in ISO 8601 format can represent a date, time, or timestamp. The following example shows 30.55 seconds after 15:10—​3:10pm—​on June 14, 2022 in a timezone that's eight hours behind Coordinated Universal Time (UTC) in ISO format.
 
 "2022-06-14T15:10:30.55-8:00"
 
@@ -132,7 +132,7 @@ For more information about string formats for temporal data, see [Date String Fo
 
 ### [](#IncompleteInformationTypesNull)Null
 
-`NULL` is a special value that indicates that a value does not exist. It often represents an unknown value. For example, if a user doesn’t know what to enter for a field, they leave it blank or let it be `null`.
+`NULL` is a special value that indicates that a value does not exist. It often represents an unknown value. For example, if a user doesn't know what to enter for a field, they leave it blank or let it be `null`.
 
 Example
 

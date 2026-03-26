@@ -2,7 +2,7 @@
 title: cbbackupmgr strategies
 description: Recommended backup strategies for cbbackupmgr
 editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/backup-restore/pages/cbbackupmgr-strategies.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:backup-restore:cbbackupmgr-strategies.adoc[]
 ---
 
@@ -67,7 +67,7 @@ Saturday:  Backup 14             (7 backups in backup repo)
 Sunday:    Create Backup Repo 3  (0 backups in backup repo)
 Sunday:    Backup 15             (1 backup in backup repo)
 
-In this strategy we don’t use the merge command, but instead rely on creating a new backup repository each week on Sunday. In order to free up space in this strategy we would delete old backup repositories once they are deemed to be too old to be useful. This strategy is useful for small to medium sized clusters due to the requirement to take full backups.
+In this strategy we don't use the merge command, but instead rely on creating a new backup repository each week on Sunday. In order to free up space in this strategy we would delete old backup repositories once they are deemed to be too old to be useful. This strategy is useful for small to medium sized clusters due to the requirement to take full backups.
 
 ## [](#full-backup-only)Full Backup Only
 

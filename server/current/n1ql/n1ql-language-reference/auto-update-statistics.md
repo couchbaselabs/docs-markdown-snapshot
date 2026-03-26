@@ -3,7 +3,7 @@ title: Auto Update Statistics
 description: Auto Update Statistics (AUS) automatically refreshes optimizer
   statistics, ensuring accurate and cost-effective query plans.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/auto-update-statistics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/auto-update-statistics.adoc[]
 ---
 
@@ -51,7 +51,7 @@ Figure 1\. AUS process flow showing the evaluation and update phases
 
 ### [](#evaluation-phase)Evaluation Phase
 
-In this phase, AUS evaluates whether existing statistics are stale based on the [expiration policy](#expiration%5Fpolicy). For each index, AUS assess how much data has changed since the last update of the optimizer statistics for the index’s key expressions. If the percentage of change exceeds the defined threshold in the [expiration policy](#expiration%5Fpolicy), the statistics are marked as stale.
+In this phase, AUS evaluates whether existing statistics are stale based on the [expiration policy](#expiration%5Fpolicy). For each index, AUS assess how much data has changed since the last update of the optimizer statistics for the index's key expressions. If the percentage of change exceeds the defined threshold in the [expiration policy](#expiration%5Fpolicy), the statistics are marked as stale.
 
 Additionally, if configured to do so, this phase also identifies any indexed expressions that currently lack statistics and flags them for creation. You can control this setting using the `create_missing_statistics` attribute in the [system:aus](#system%5Faus) catalog.
 
@@ -106,7 +106,7 @@ Each attribute in the document represents a particular global configuration. The
 | **start\_time** _required_ | The start time of the AUS schedule in "HH:MM" format. The start\_time must be at least 30 minutes earlier than the end\_time. **Example:** "01:30"                                                  | String       |
 | **end\_time** _required_   | The end time of the AUS schedule in "HH:MM" format. The end\_time must be at least 30 minutes later than the start\_time. **Example:** "05:30"                                                      | String       |
 | **days** _required_        | An array of strings specifying the days on which the AUS schedule runs. Valid values include: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. **Example:** \["Saturday", "Sunday"\] | String array |
-| **timezone** _optional_    | The timezone that applies to the schedule’s start and end times. The value must be a valid IANA timezone string. **Default:** "UTC" **Example:** "US/Pacific"                                       | String       |
+| **timezone** _optional_    | The timezone that applies to the schedule's start and end times. The value must be a valid IANA timezone string. **Default:** "UTC" **Example:** "US/Pacific"                                       | String       |
 
 When changing the global configurations, it is important to consider the following:
 
@@ -262,7 +262,7 @@ To cancel all running AUS tasks, use the following DELETE statement:
 DELETE FROM system:tasks_cache WHERE class = "auto_update_statistics" AND state = "running";
 ```
 
-To cancel a running AUS task on a specific node, include the node’s address in the WHERE clause:
+To cancel a running AUS task on a specific node, include the node's address in the WHERE clause:
 
 ```sqlpp
 DELETE FROM system:tasks_cache
@@ -299,7 +299,7 @@ UPDATE system:aus SET schedule.days = ["Monday", "Wednesday", "Friday"];
 
 When an AUS task runs, it can increase the load on the query node as it evaluates and updates statistics. Therefore, to minimize performance impact, it is important to schedule AUS to best suit the workloads of your cluster.
 
-To prevent excessive load, the AUS task will not start if the query node’s load is too high during the scheduled window. In such cases, the task is skipped, and the next AUS task is scheduled.
+To prevent excessive load, the AUS task will not start if the query node's load is too high during the scheduled window. In such cases, the task is skipped, and the next AUS task is scheduled.
 
 ## [](#related-links)Related Links
 

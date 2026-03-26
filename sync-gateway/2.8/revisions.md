@@ -2,7 +2,7 @@
 title: Revisions
 description: About Sync Gateway's use of Revisions, Revision Trees and Revision Caches.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/revisions.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::revisions.adoc[]
 ---
 
@@ -11,8 +11,8 @@ link: xref:2.8@sync-gateway::revisions.adoc[]
 
 # Revisions
 
-> About Sync Gateway’s use of Revisions, Revision Trees and Revision Caches.  
-> Revisions are at the heart of Couchbase Mobile’s ability to respond flexibly and securely to changing data from server to edge.
+> About Sync Gateway's use of Revisions, Revision Trees and Revision Caches.  
+> Revisions are at the heart of Couchbase Mobile's ability to respond flexibly and securely to changing data from server to edge.
 
 _Related concepts topics_: [Users](../current/access-control/users.md) | [Roles](../current/access-control/roles.md) | [Channels](../current/access-control/channels.md) | Revisions | [Tombstones](../current/manage/managing-tombstones.md)
 
@@ -29,7 +29,7 @@ Remember that within Couchbase Mobile a document comprises:
 * A JSON body
 * Metadata
 
-Each change to a document (even its creation and deletion) is recorded as a _revision_. The document’s [revisions](#lbl-revs) are contained within its _metadata_, which stores the revision history as a [revision tree](#lbl-revtree).
+Each change to a document (even its creation and deletion) is recorded as a _revision_. The document's [revisions](#lbl-revs) are contained within its _metadata_, which stores the revision history as a [revision tree](#lbl-revtree).
 
 Note that binary data such images, audio or other multimedia objects are stored separately from the document,in an entity known as a _blob_ (or _attachment_). Changes to _blobs_ do not generate revisions.
 
@@ -48,9 +48,9 @@ The contents of remote revision IDs are implementation dependent. Do not base an
 
 ## [](#lbl-revtree)Revision Trees
 
-A document’s _revision tree_ comprises each revision — in sequence — that has been made to the document throughout its lifetime to date. The tip of that tree, the _leaf_ node, is the _current revision_ — the most recent version of the document.
+A document's _revision tree_ comprises each revision — in sequence — that has been made to the document throughout its lifetime to date. The tip of that tree, the _leaf_ node, is the _current revision_ — the most recent version of the document.
 
-A revision tree’s growth is unlimited and obsolete revisions need to be removed in order to maintain performance levels. This process is know as [Revision Tree Pruning](#lbl-prune).
+A revision tree's growth is unlimited and obsolete revisions need to be removed in order to maintain performance levels. This process is know as [Revision Tree Pruning](#lbl-prune).
 
 ## [](#lbl-prune)Revision Tree Pruning
 
@@ -70,7 +70,7 @@ The algorithm allows the branch to retain a configurable number of revisions (re
 
 ### [](#lbl-rtctrl)Controls
 
-You can vary the number of retained revisions using the Configuration File’s [revs\_limit](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-revs%5Flimit) setting.
+You can vary the number of retained revisions using the Configuration File's [revs\_limit](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-revs%5Flimit) setting.
 
 So, for example, with a `revs_limit` of 1000 the algorithm will keep the last 1000 revisions in the shortest non-tombstoned branch and remove any others from that branch.
 
@@ -109,7 +109,7 @@ Use the [rev\_cache.size](../current/configuration/configuration-properties-lega
 
 When the revision cache is full, Sync Gateway will remove older document revisions to make room for newer ones.
 
-By adjusting this setting you can fine-tune Sync Gateway’s memory consumption. This can be useful when working on servers with limited memory and in cases when Sync Gateway creates and-or updated many new documents relative to the number of read operations.
+By adjusting this setting you can fine-tune Sync Gateway's memory consumption. This can be useful when working on servers with limited memory and in cases when Sync Gateway creates and-or updated many new documents relative to the number of read operations.
 
 ### [](#lbl-sharding)Sharding
 

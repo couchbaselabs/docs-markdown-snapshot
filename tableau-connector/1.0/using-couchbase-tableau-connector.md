@@ -1,7 +1,7 @@
 ---
 title: Using the Couchbase Tableau Connector
 editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.0/modules/ROOT/pages/using-couchbase-tableau-connector.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.0@tableau-connector::using-couchbase-tableau-connector.adoc[]
 ---
 
@@ -53,7 +53,7 @@ You will then be prompted to sign in to your Tableau Server account. Once signed
 ![Verify Tableau Server Connection](_images/verify-connection-to-tableau-server.png) 
 
 > [!NOTE]
-> If you’re using an on-premise instance of Tableau Server, you will need to configure SSL. This can be done by logging into the Tableau Services Manager UI and going to **Configuration** **Security** **External SSL**.
+> If you're using an on-premise instance of Tableau Server, you will need to configure SSL. This can be done by logging into the Tableau Services Manager UI and going to **Configuration** **Security** **External SSL**.
 
 ![Tableau Server SSL Configuration](_images/tableau-server-ssl-config.png) 
 

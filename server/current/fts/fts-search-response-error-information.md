@@ -1,7 +1,7 @@
 ---
 title: Error Information
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-search-response-error-information.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:fts:fts-search-response-error-information.adoc[]
 ---
 
@@ -65,7 +65,7 @@ If one or more of the index partitions failed to cater to the request, the user 
 __Table 2\. Partial Error Details__
 | Partial Error                                   | Description                                                                                                                                  |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| context deadline exceeded                       | request wasn’t processed/responded-to by the partition in the requested time period                                                          |
+| context deadline exceeded                       | request wasn't processed/responded-to by the partition in the requested time period                                                          |
 | no planPIndexes for indexName                   | FTS node in the process of a rebalance, partitions are being moved                                                                           |
 | bleve: pindex\_consistency mismatched partition | RYOW failure - received data from a vbucket with a different UUID while waiting on a sequence number - possibly due to KV rebalance/failover |
 | pindex not available                            | one or more primary index partitions (that do not have replicas) have been failed over (need to rebalance to set them up again)              |

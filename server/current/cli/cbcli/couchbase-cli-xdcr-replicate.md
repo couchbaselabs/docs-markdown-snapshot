@@ -2,7 +2,7 @@
 title: xdcr-replicate
 description: Creates a replication between two data centers
 editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-xdcr-replicate.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbcli/couchbase-cli-xdcr-replicate.adoc[]
 ---
 
@@ -125,7 +125,7 @@ With the specified flag, XDCR will remove all checkpoints and restart the replic
 
 \--xdcr-replicator <id>
 
-The XDCR Replication ID. To get a list of replicator ID’s use the --list flag.
+The XDCR Replication ID. To get a list of replicator ID's use the --list flag.
 
 \--checkpoint-interval <seconds>
 
@@ -207,7 +207,7 @@ Defines a mapping rule for conflict logs. Parameter should be of the form `<src>
 
 \--conflict-logging-rule-default <collection-string>
 
-Makes the given collection use the replication’s default conflict logging location.
+Makes the given collection use the replication's default conflict logging location.
 
 \--conflict-logging-rule-disable <collection-string>
 
@@ -360,7 +360,7 @@ Field exists
 
 Matches any document that has the given field and maps it to a collection
 
-{“EXISTS(PhotosData)”:”default.PhotoDocuments”} 
+{"EXISTS(PhotosData)":"default.PhotoDocuments"} 
 
 \_Maps any document that has the `PhotosData` field to the `PhotoDocuments` collections under the default scope
 

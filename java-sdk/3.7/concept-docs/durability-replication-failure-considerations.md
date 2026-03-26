@@ -3,7 +3,7 @@ title: Failure Considerations
 description: Data durability refers to the fault tolerance and persistence of
   data in the face of software or hardware failure.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.7/modules/concept-docs/pages/durability-replication-failure-considerations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.7@java-sdk:concept-docs:durability-replication-failure-considerations.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:3.7@java-sdk:concept-docs:durability-replication-failure-consideratio
 
 # Failure Considerations
 
-> Data durability refers to the fault tolerance and persistence of data in the face of software or hardware failure. Even the most reliable software and hardware might fail at some point, and along with the failures, introduce a chance of data loss. Couchbase’s durability features include Synchronous Replication, and the possibility to use distributed, multi-document ACID transactions. It is the responsibility of the development team and the software architect to evaluate the best choice for each use case. 
+> Data durability refers to the fault tolerance and persistence of data in the face of software or hardware failure. Even the most reliable software and hardware might fail at some point, and along with the failures, introduce a chance of data loss. Couchbase's durability features include Synchronous Replication, and the possibility to use distributed, multi-document ACID transactions. It is the responsibility of the development team and the software architect to evaluate the best choice for each use case. 
 
-Couchbase’s distributed and scalable nature exposes any set-up to the risk of potential network and hardware problems. The key to durability is planning for resilience, by evaluating the options on offer for persistence and replication, and carefully considering the performance trade-offs involved.
+Couchbase's distributed and scalable nature exposes any set-up to the risk of potential network and hardware problems. The key to durability is planning for resilience, by evaluating the options on offer for persistence and replication, and carefully considering the performance trade-offs involved.
 
 ## [](#durability)Durability
 
@@ -64,17 +64,17 @@ The\_level of durability\_ is configurable with two values:
 
 See [the durability examples in each SDK](../howtos/kv-operations.md#durability).
 
-When an operation is propagated to a replica, it is first propagated to the replica’s memory and then placed in a queue, to be persisted to the replica’s disk. You can control whether you desire the operation to only be propagated to a replica’s memory (`ReplicateTo`), or whether to wait until it is fully persisted to the replica’s disk (`PersistTo`).
+When an operation is propagated to a replica, it is first propagated to the replica's memory and then placed in a queue, to be persisted to the replica's disk. You can control whether you desire the operation to only be propagated to a replica's memory (`ReplicateTo`), or whether to wait until it is fully persisted to the replica's disk (`PersistTo`).
 
 `PersistTo` receives a value total to the number of nodes that an operation should be persisted. The maximum value is the number of replica nodes plus one. A value of `1` indicates active-only persistence (and no replica persistence).
 
 `ReplicateTo` receives a value total to the number of _replica_ nodes the operation should be replicated. Its maximum value is the number of replica nodes.
 
-As with [Ambiguity](#ambiguity) in recent server versions' Synchronous Replication, the operation may succeed before a network (or other) failure occurs — it’s up to the client application to handle such possibilities.
+As with [Ambiguity](#ambiguity) in recent server versions' Synchronous Replication, the operation may succeed before a network (or other) failure occurs — it's up to the client application to handle such possibilities.
 
 ### [](#performance-considerations)Performance considerations
 
-Note that Couchbase’s design of asynchronous persistence and replication is there for a reason: The time it takes to store an item in memory is several orders of magnitude quicker than persisting it to disk or sending it over the network. Operation times and latencies will increase when waiting on the speed of the network and the speed of the disk.
+Note that Couchbase's design of asynchronous persistence and replication is there for a reason: The time it takes to store an item in memory is several orders of magnitude quicker than persisting it to disk or sending it over the network. Operation times and latencies will increase when waiting on the speed of the network and the speed of the disk.
 
 Durability operations may also cause increased network traffic since it is implemented at the client level by sending special probes to each server once the actual modification has completed.
 

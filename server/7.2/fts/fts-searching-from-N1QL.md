@@ -1,7 +1,7 @@
 ---
 title: Searching from SQL++
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-searching-from-N1QL.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-searching-from-N1QL.adoc[]
 ---
 
@@ -251,7 +251,7 @@ Results
 
 If the full text search index being queried has its default mapping disabled and has a custom type mapping defined, the query needs to specify the type explicitly.
 
-For more information on defining custom type mappings within the full text search index, refer to [Type Mappings](fts-type-mappings.md). Note that for SQL++ queries, only full text search indexes with one type mapping are searchable. Also the supported type identifiers at the moment are "type\_field" and "docid\_prefix"; "docid\_regexp" isn’t supported yet for SEARCH queries via SQL++.
+For more information on defining custom type mappings within the full text search index, refer to [Type Mappings](fts-type-mappings.md). Note that for SQL++ queries, only full text search indexes with one type mapping are searchable. Also the supported type identifiers at the moment are "type\_field" and "docid\_prefix"; "docid\_regexp" isn't supported yet for SEARCH queries via SQL++.
 
 ## [](#search%5Fmeta)SEARCH\_META(\[`identifier`\])
 
@@ -268,7 +268,7 @@ identifier
 > [!NOTE]
 > * The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted.
 > * The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether.
-> * The outname is specified by the `out` field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to `"out"`.
+> * The outname is specified by the `out` field within the [SEARCH()](#search) function's _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to `"out"`.
 > * If the keyspace or keyspace alias contains any characters such as `-`, you must surround that part of the identifier with backticks ``` `` ```.
 
 ### [](#return-value-2)Return Value
@@ -413,7 +413,7 @@ identifier
 > [!NOTE]
 > * The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted.
 > * The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether.
-> * The outname is specified by the `out` field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to `"out"`.
+> * The outname is specified by the `out` field within the [SEARCH()](#search) function's _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to `"out"`.
 > * If the keyspace or keyspace alias contains any characters such as `-`, you must surround that part of the identifier with backticks ``` `` ```.
 
 ### [](#return-value-3)Return Value

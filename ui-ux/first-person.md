@@ -1,7 +1,7 @@
 ---
 title: First-Person
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/first-person.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ui-ux::first-person.adoc[]
 ---
 
@@ -14,30 +14,30 @@ First-person pronouns can help convey a friendlier tone in UI copy.
 
 You can use the following first-person pronouns:
 
-* [Let’s](#lets)
+* [Let's](#lets)
 * [We/Us](#weus)
 * [I](#i)
 
-## [](#lets)Let’s
+## [](#lets)Let's
 
-It’s acceptable to use "let’s" in UI copy when:
+It's acceptable to use "let's" in UI copy when:
 
-* You’re encouraging the user to follow along with a series of steps in a process. For example, "Let’s set up your database now."
+* You're encouraging the user to follow along with a series of steps in a process. For example, "Let's set up your database now."
 
 ## [](#weus)We/Us
 
-It’s acceptable to use "we" in UI copy when you’re speaking on behalf of Couchbase, and:
+It's acceptable to use "we" in UI copy when you're speaking on behalf of Couchbase, and:
 
-* You’re asking the user to put out an extraordinary effort or you have inconvenienced them in some way.
-* It’s a message the customer is only going to see once.
+* You're asking the user to put out an extraordinary effort or you have inconvenienced them in some way.
+* It's a message the customer is only going to see once.
 
-For example, "We’re sorry, but something went wrong and Capella is temporarily unavailable."
+For example, "We're sorry, but something went wrong and Capella is temporarily unavailable."
 
 Do not use We/Us in any way that would imply Couchbase is spying on the user or reviewing details about their data. For example, "We see you have not run maintenance on your database since August 08/2023\. Do you want us to run maintenance for you now?"
 
 ## [](#i)I
 
-It’s acceptable to use "I" in UI copy when you’re speaking as if you’re the user, and:
+It's acceptable to use "I" in UI copy when you're speaking as if you're the user, and:
 
 * The user is asking or telling the product to do something specific.
 

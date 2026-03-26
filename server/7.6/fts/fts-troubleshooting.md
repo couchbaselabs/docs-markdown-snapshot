@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting and FAQs
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-troubleshooting.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:fts:fts-troubleshooting.adoc[]
 ---
 
@@ -12,11 +12,11 @@ link: xref:7.6@server:fts:fts-troubleshooting.adoc[]
 
 > Full Text logs can be found in the file fts.log. This is stored with the other Couchbase Server logs; the exact location depends on your operating system. 
 
-## [](#q-i-just-did-a-search-but-i-dont-see-the-document-contents-i-just-see-the-document-ids-i-dont-want-to-have-to-click-on-document-ids)**Q: I just did a search but I don’t see the document contents, I just see the document IDs. I don’t want to have to click on document IDs.**
+## [](#q-i-just-did-a-search-but-i-dont-see-the-document-contents-i-just-see-the-document-ids-i-dont-want-to-have-to-click-on-document-ids)**Q: I just did a search but I don't see the document contents, I just see the document IDs. I don't want to have to click on document IDs.**
 
 You need to store fields in order to see result snippets and highlighting. Note that doing so makes your indexes larger and take longer to build, so make sure you need these features.
 
-## [](#q-why-doesnt-a-search-for-x-return-document-y)**Q: Why doesn’t a search for X return document Y?**
+## [](#q-why-doesnt-a-search-for-x-return-document-y)**Q: Why doesn't a search for X return document Y?**
 
 Check the following:
 
@@ -25,7 +25,7 @@ Text is analyzed when it is written to the index, and separately, search terms a
 The analyzer being used on your search terms may not the one you expected. This may happen if the search is not be scoped to the field, or is scoped to the wrong field name.  
 If the search clause is scoped to a field, FTS uses the same analyzer that the index mapping dictates for that field.
 * After analysis, what terms is the search looking for in the index?  
-Once you know what analyzer is being used on your search query, use http://analysis.blevesearch.com/ to see the exact terms that the analyzer outputs for your search. For example, if you’ve determined that the "en" analyzer is being used, a search for "marketing blunders" will result in term searches for "market" and "blunder."
+Once you know what analyzer is being used on your search query, use http://analysis.blevesearch.com/ to see the exact terms that the analyzer outputs for your search. For example, if you've determined that the "en" analyzer is being used, a search for "marketing blunders" will result in term searches for "market" and "blunder."
 * Run a special query called a term search for one term at a time, exactly as the terms come from the analyzer in step 2\. Be sure to return the document id match. Rerun for each term.  
 curl -XPOST -H "Content-Type: application/json" \  
         http://localhost:8094/api/index/perf_fts_index/query \
@@ -45,8 +45,8 @@ curl -XPOST -H "Content-Type: application/json" \
 If yes, the search query is working fine. If not, check the following:
 
   * The document (as analyzed) does not contain the terms in question. Review the contents of the document.
-  * The terms in the document don’t analyze the way the user expected. Try changing the analyzer, possibly define a custom analyzer.
-  * The index mapping may be incorrect and the expected analyzer isn’t actually being used.
+  * The terms in the document don't analyze the way the user expected. Try changing the analyzer, possibly define a custom analyzer.
+  * The index mapping may be incorrect and the expected analyzer isn't actually being used.
 * Advanced: Digging deeper into the index  
 Run command-line tools on the pindex that contains the document you expect to match.  
 $ cbft-bleve dump doc [path_to_pindex] [doc_id]  
@@ -75,7 +75,7 @@ Here are some tips to speed up indexing:
 Slow queries can be caused by searches that require a lot of processing to satisfy. This is commonly due to a search includes high frequency terms, that is, terms that appear in many or even all documents. Searches on high frequency terms require more work than searches for low frequency terms and can easily be 100x slower due to the large number of matches.
 
 * If possible, consider adding high frequency terms to a stop word list and reindex so they are not excluded from the index altogether. High frequency words often contribute little to the search effectiveness and they can have a seriously detrimental impact on search performance, index size and index build times.
-* Check your indexes to rule out unexpected high frequency terms. Words like "the" and "a" in English are relatively obvious candidates to add to a stopword list, but you may also have unexpected high frequency terms in your index, perhaps because there is a common token in your data you didn’t expect or a tokenizer is breaking words in an unexpected way, leading to other common terms.
+* Check your indexes to rule out unexpected high frequency terms. Words like "the" and "a" in English are relatively obvious candidates to add to a stopword list, but you may also have unexpected high frequency terms in your index, perhaps because there is a common token in your data you didn't expect or a tokenizer is breaking words in an unexpected way, leading to other common terms.
 * Try rewriting queries to be more efficient if you must search on high frequency terms. Using conjunction (AND) queries can help make the search faster. In a query string, you can do this by using the + operator (MUST). For If searching for the following is slow: lowFreqTerm highFreqTerm, try +lowFreqTerm highFreqTerm.  
 Although it is a different search, it should perform better and may be acceptable.
 
@@ -90,9 +90,9 @@ At a high level, the HTTP status code 429 indicates that ftsMemoryQuota for the 
 
 You can fix this by following the right sizing guidelines, increasing the ftsMemoryQuota, or by adding more Search nodes.
 
-## [](#q-sort-isnt-working-like-i-think-it-should-why-do-i-see-some-weird-characters-in-my-search-response-objects-sort-field)**Q: Sort isn’t working like I think it should. Why do I see some weird characters in my search response object’s sort field?**
+## [](#q-sort-isnt-working-like-i-think-it-should-why-do-i-see-some-weird-characters-in-my-search-response-objects-sort-field)**Q: Sort isn't working like I think it should. Why do I see some weird characters in my search response object's sort field?**
 
-When you sort results on a field that isn’t indexed, or when a particular document is missing a value for that field, you will see the following series of Unicode non-printable characters appear in the `sort` field: `\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd`. The same characters may render differently when using a graphic tool or command line tools like `jq`.
+When you sort results on a field that isn't indexed, or when a particular document is missing a value for that field, you will see the following series of Unicode non-printable characters appear in the `sort` field: `\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd`. The same characters may render differently when using a graphic tool or command line tools like `jq`.
 
       "sort": [
         "����������",
@@ -100,7 +100,7 @@ When you sort results on a field that isn’t indexed, or when a particular docu
         "_score"
       ]
 
-Check your index definition to confirm that you’re indexing all the fields you intend to sort by. You can control the sort behavior for missing attributes using the `missing` field. See [Sorting Query Results](fts-sorting.md).
+Check your index definition to confirm that you're indexing all the fields you intend to sort by. You can control the sort behavior for missing attributes using the `missing` field. See [Sorting Query Results](fts-sorting.md).
 
 Also remember, documents that have the same value for every field you specified in the `sort` field will be sorted non-deterministically. Try adding `_id`, which is guaranteed unique.
 
@@ -148,9 +148,9 @@ Invoking the commands above with --help will highlight more information and furt
 
 ## [](#q-how-does-the-search-service-fts-score-documents)**Q: How does the Search service (FTS) score documents?**
 
-FTS’s internal text indexing library (bleve) uses a slightly modified version of standard tf-idf scoring. This improvisation is done to normalize the score by various relevant factors. The search scoring happens at query time.
+FTS's internal text indexing library (bleve) uses a slightly modified version of standard tf-idf scoring. This improvisation is done to normalize the score by various relevant factors. The search scoring happens at query time.
 
-When bleve scores a document - it sort of sums a set of sub scores to reach the final score. Scores across different searches are not directly comparable as the search query is also an input factor to the scoring function. The more conjuncts/disjuncts/sub clauses your query has, the more it will influence the scoring. The score of a particular hit is not absolute, meaning that it can only be used as a comparison to the highest score from the same search result. There isn’t a pre-defined range for valid scores.
+When bleve scores a document - it sort of sums a set of sub scores to reach the final score. Scores across different searches are not directly comparable as the search query is also an input factor to the scoring function. The more conjuncts/disjuncts/sub clauses your query has, the more it will influence the scoring. The score of a particular hit is not absolute, meaning that it can only be used as a comparison to the highest score from the same search result. There isn't a pre-defined range for valid scores.
 
 Below is the summary of the scoring function in Search service,
 
@@ -171,19 +171,19 @@ Docs = a set of all indexed documents
 where SQROOT, SUM, and LN denote standard mathematical functions. Auxiliary functions are:
 
 * **coord(q, f)** — is a dampening factor defined as a ratio of query tokens that are found in the given field, and the total number of tokens in a query.
-* **tw(ti, q, f)** — **ti** ’s term weight is the product of **ti** ’s query weight and ti’s field weight.
-* **queryWeight(q, ti)** — **ti** ’s query weight (wrt to **q** ) is the product of its [inverse document frequency](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) (see **idf** below) and its [boosting factor](http://www.blevesearch.com/docs/Query-String-Query/).
-* **queryNorm(q)** — is used to normalize each query term’s contribution. It uses the [Euclidean distance](https://en.wikipedia.org/wiki/Norm%5F%28mathematics%29#Euclidean%5Fnorm) as the normalization factor.
-* **fieldWeight(f, ti)** — is a normalized product of **ti** ’s idf and the square root of its frequency.
+* **tw(ti, q, f)** — **ti** 's term weight is the product of **ti** 's query weight and ti's field weight.
+* **queryWeight(q, ti)** — **ti** 's query weight (wrt to **q** ) is the product of its [inverse document frequency](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) (see **idf** below) and its [boosting factor](http://www.blevesearch.com/docs/Query-String-Query/).
+* **queryNorm(q)** — is used to normalize each query term's contribution. It uses the [Euclidean distance](https://en.wikipedia.org/wiki/Norm%5F%28mathematics%29#Euclidean%5Fnorm) as the normalization factor.
+* **fieldWeight(f, ti)** — is a normalized product of **ti** 's idf and the square root of its frequency.
 * **FREQ(ti, f)** — is the frequency of **ti** in the given field **f** .
-* **fieldNorm(f)** — normalizes each (in **f** ) term’s contribution to the score. The normalisation factor is the square root of the number of distinct terms in **f.** (Note that **f** ’s terms may and may not be part of **q.** )
+* **fieldNorm(f)** — normalizes each (in **f** ) term's contribution to the score. The normalisation factor is the square root of the number of distinct terms in **f.** (Note that **f** 's terms may and may not be part of **q.** )
 * **idf(f, ti)** — a dampening factor that favours terms that have high frequency in a small set of field, but not across the whole indexed (document) set.
-* **FREQ(ti, FIELDNAME(f), Docs)** —frequency of **ti** across all documents’ fields that have the same ID/Name as **f** .
+* **FREQ(ti, FIELDNAME(f), Docs)** —frequency of **ti** across all documents' fields that have the same ID/Name as **f** .
 
-Bleve’s tf-idf scoring variant differs with the standard **textbook** functions (see [Intro to Information Retrieval](http://nlp.stanford.edu/IR-book/html/htmledition/queries-as-vectors-1.html)): mainly in these points.
+Bleve's tf-idf scoring variant differs with the standard **textbook** functions (see [Intro to Information Retrieval](http://nlp.stanford.edu/IR-book/html/htmledition/queries-as-vectors-1.html)): mainly in these points.
 
 1. Term frequency is augmented with the square root function.
-2. The idf function is “ **inverse document frequency smooth** ” (due to the (1+) factor). Note that it is present in both the query weight and the field weight.
+2. The idf function is " **inverse document frequency smooth** " (due to the (1+) factor). Note that it is present in both the query weight and the field weight.
 3. The normalization factors are different for the field weight (a variant of the **byte size** normalization) and the query weight ( **Euclidean** ).
 4. The coordination factor, which is often not present by default, can have an impact on scores for small queries.
 

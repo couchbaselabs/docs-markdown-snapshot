@@ -1,7 +1,7 @@
 ---
 title: Manage Expiration
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-expiration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:manage:manage-expiration.adoc[]
 ---
 
@@ -16,7 +16,7 @@ You can have documents in your Couchbase Server Enterprise Edition automatically
 
 You can set a document to expire either when you create it or when you mutate it. The expiration value is the number of seconds in the future from the time of creation or mutation when you want the document to expire. When this period of time elapses, Couchbase Server deletes the document unless you mutate the document beforehand.
 
-The expiration is part of the [document’s metadata](../learn/views/views-store-data.md#document-metadata). You can set the expiration when creating a document. This example uses SQL++ to create a new document in the `user_sessions` bucket and sets it to expire in one hour:
+The expiration is part of the [document's metadata](../learn/views/views-store-data.md#document-metadata). You can set the expiration when creating a document. This example uses SQL++ to create a new document in the `user_sessions` bucket and sets it to expire in one hour:
 
 ```sql++
 INSERT INTO user_sessions (KEY, VALUE, OPTIONS) VALUES (
@@ -52,7 +52,7 @@ The result of running the previous looks like this:
 
 The expiration value is the UNIX-epoch timestamp when the document expires.
 
-You can change the document’s expiration by setting its expiration value during a mutation. The following example updates the document with new values and also resets its expiration so it expires one hour after the statement executes.
+You can change the document's expiration by setting its expiration value during a mutation. The following example updates the document with new values and also resets its expiration so it expires one hour after the statement executes.
 
 ```sql++
 UPDATE user_sessions AS U
@@ -60,7 +60,7 @@ UPDATE user_sessions AS U
     SET meta(U).expiration = 3600, cart = [{"item": "9999", "quantity": "3"}]
 ```
 
-Querying the document’s metadata shows that the expiration timestamp is now later than before:
+Querying the document's metadata shows that the expiration timestamp is now later than before:
 
 ```json
 [
@@ -70,7 +70,7 @@ Querying the document’s metadata shows that the expiration timestamp is now la
 ]
 ```
 
-### [](#mutation-expiration)Mutation’s Effect on Expiration
+### [](#mutation-expiration)Mutation's Effect on Expiration
 
 By default, if you mutate a document without setting its expiration, Couchbase Server automatically sets the value to 0\. This value prevents the document from expiring unless the collection or bucket has a non-zero `maxTTL` setting. For example, suppose you execute the following SQL++ statement to update the document from the previous examples:
 
@@ -80,7 +80,7 @@ UPDATE user_sessions
     SET cart = [{"item": "9999", "quantity": "3"}, {"item" : "3423", "quantity" : 1}];
 ```
 
-If you then query the document’s expiration metadata, you’ll find that it’s now 0:
+If you then query the document's expiration metadata, you'll find that it's now 0:
 
 ```json
 [
@@ -92,7 +92,7 @@ If you then query the document’s expiration metadata, you’ll find that it’
 
 You can prevent Couchbase Server from clearing the expiration value by using the [preserve\_expiry](../n1ql/n1ql-manage/query-settings.md#preserve%5Fexpiry) request-level parameter.
 
-You can directly preserve a document’s expiration when mutating it. To preserve the expiration, set the expiration metadata to the document’s current expiration value. For example, you can alter the previous example statement to preserve the existing expiration value:
+You can directly preserve a document's expiration when mutating it. To preserve the expiration, set the expiration metadata to the document's current expiration value. For example, you can alter the previous example statement to preserve the existing expiration value:
 
 ```sqlpp
 UPDATE user_sessions AS u
@@ -103,7 +103,7 @@ UPDATE user_sessions AS u
 
 ### [](#set-document-expiration-using-the-sdks)Set Document Expiration Using the SDKs
 
-All SDKs let you set the document’s expiration when creating it. The SDKs have an option named `expiry` to set the expiration for a document. For example, to set the expiration of when creating a document using the Python SDK, use the `insert` method’s `expiry` parameter. The following example creates a document and sets its expiration to 1 hour.
+All SDKs let you set the document's expiration when creating it. The SDKs have an option named `expiry` to set the expiration for a document. For example, to set the expiration of when creating a document using the Python SDK, use the `insert` method's `expiry` parameter. The following example creates a document and sets its expiration to 1 hour.
 
 ```python
 from datetime import timedelta
@@ -149,26 +149,26 @@ See the SDK documentation for more information about setting and getting the exp
 By default, documents expire only if you explicitly set their expiration values. You can have collections and buckets set their documents to automatically expire by changing their `maxTTL` setting. Setting `maxTTL` to a non-zero value has two effects:
 
 * Couchbase Server sets a default expiration for all documents you create or mutate in the collection or bucket unless you explicitly set the expiration to a smaller value.
-* You cannot explicitly set a document’s expiration to be longer than the `maxTTL` setting. If you try to set the expiration to a value larger than the collection or bucket’s `maxTTL` setting, Couchbase Server uses the `maxTTL` value instead.
+* You cannot explicitly set a document's expiration to be longer than the `maxTTL` setting. If you try to set the expiration to a value larger than the collection or bucket's `maxTTL` setting, Couchbase Server uses the `maxTTL` value instead.
 
 ### [](#set-maxttl-using-couchbase-server-web-console)Set maxTTL Using Couchbase Server Web Console
 
 When you create a new bucket or collection using the Web Console, you can enable the `maxTTL` setting.
 
-To change a bucket’s `maxTTL` setting when creating or editing it:
+To change a bucket's `maxTTL` setting when creating or editing it:
 
 1. When editing or adding a bucket, expand the **Advanced bucket settings** section.
 2. Under **Bucket Max Time-To-Live** select **Enable**.
 3. Under **Bucket Max Time-To-Live**, select or clear the **Enable** box to enable or turn off automatic expiration.
-4. If you’re enabling automatic expiration, enter the number of seconds the documents should exist before expiring in the text field.
+4. If you're enabling automatic expiration, enter the number of seconds the documents should exist before expiring in the text field.
 
-To enable expiration when creating a collection using the Web Console, enter a non-zero value in the **Add Collection to _scope name_ Scope** dialog’s **Collection Max Time-To-Live** field.
+To enable expiration when creating a collection using the Web Console, enter a non-zero value in the **Add Collection to _scope name_ Scope** dialog's **Collection Max Time-To-Live** field.
 
 Once created, you can edit the `maxTTL` setting by clicking **Edit TTL** in the list of collections on the **Scopes & Collections** page.
 
 ### [](#set-maxttl-using-the-rest-api)Set maxTTL Using the REST API
 
-The REST API has endpoints for creating and editing collections and buckets. These endpoints let you set a collection or bucket’s the `maxTTL` setting on creation.
+The REST API has endpoints for creating and editing collections and buckets. These endpoints let you set a collection or bucket's the `maxTTL` setting on creation.
 
 The following example gets the value of `maxTTL` of a bucket named `user_sessions`, then sets it using the `/pools/default/buckets` endpoint:
 

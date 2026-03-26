@@ -1,7 +1,7 @@
 ---
 title: Performing Searches
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-perform-searches.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-perform-searches.adoc[]
 ---
 
@@ -14,7 +14,7 @@ Full text searches can be performed with:
 
 * The Couchbase Web Console. This UI can also be used to create indexes and analyzers. Refer to [Searching from the UI](fts-searching-from-the-UI.md) for information.
 * The Couchbase REST API. Refer to [Searching with the REST API](fts-searching-with-curl-http-requests.md) for information. Refer also to [Full Text Search API](../rest-api/rest-fts.md) for REST reference details.
-* The Couchbase SDK. This supports several languages, and allows full text searches to be performed with each. Refer to the SDK’s [Full Text Search](../../../java-sdk/current/concept-docs/full-text-search-overview.md) page for information.
+* The Couchbase SDK. This supports several languages, and allows full text searches to be performed with each. Refer to the SDK's [Full Text Search](../../../java-sdk/current/concept-docs/full-text-search-overview.md) page for information.
 
 > [!NOTE]
 > The [Searching from the SDK](../../../java-sdk/current/howtos/full-text-searching-with-sdk.md) page for the _Java_ SDK provides an extensive code-example that demonstrates multiple options for performing full text searches.

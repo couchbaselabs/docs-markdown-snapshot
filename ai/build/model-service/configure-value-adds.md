@@ -3,7 +3,7 @@ title: Configure LLM Value Adds
 description: Use Value Adds features to help you enhance the capabilities of
   your large language models (LLMs).
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/configure-value-adds.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:build:model-service/configure-value-adds.adoc[]
 ---
 
@@ -24,7 +24,7 @@ The following Value Adds features are available when deploying large language mo
 
 When deploying a Capella-hosted LLM, you have caching options. Caching stores common prompt-response pairs in a Capella operational cluster. The model retrieves these pairs using exact or semantic methods.
 
-Enabling caching improves your model’s response times and reduces costs by reducing calls to the LLM. You can also enable conversational caching to store chatbot sessions that add context and enhance conversational experiences.
+Enabling caching improves your model's response times and reduces costs by reducing calls to the LLM. You can also enable conversational caching to store chatbot sessions that add context and enhance conversational experiences.
 
 > [!NOTE]
 > For information about the billable costs of caching value adds, see [Manage Your Billing - AI Services](../../../cloud/billing/billing.md#model-service).
@@ -39,9 +39,9 @@ The following caching options are available when deploying LLMs:
 
 | Caching Option                               | Example                                                                                                                                                                                                                                                               | Common Usage                                                                                                                                                                                                                                                                                                                                                                                  |
 | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Standard Caching](#standard-cache)          | "What’s Python?" matches only "What’s Python?"                                                                                                                                                                                                                        | This method is effective for exact matches, but it does not help with prompts that vary even slightly. This makes standard caching less flexible for natural language interactions.                                                                                                                                                                                                           |
-| [Semantic Caching](#semantic-cache)          | "What’s Python" might match "Tell me about Python" or "Explain Python"                                                                                                                                                                                                | This method provides higher cache hits and handles query variations and paraphrasing, making it better suited for natural language interactions. Semantic caching can increase costs because of its intensive computational and memory requirements and because it requires a dedicated embedding model.                                                                                      |
-| [Standard and Semantic Caching](#both-cache) | When using standard cache (default or API-specified), "What’s Python?" matches only the exact phrase "What’s Python?". When using semantic cache (default or API-specified), it matches semantically similar queries like "Tell me about Python" or "Explain Python." | With the option of implementing 2 caching mechanisms, you can benefit from the speed and simplicity of standard caching for common cases, while providing the flexibility of semantic caching for more natural language interactions. Semantic caching can increase costs because of its intensive computational and memory requirements and because it requires a dedicated embedding model. |
+| [Standard Caching](#standard-cache)          | "What's Python?" matches only "What's Python?"                                                                                                                                                                                                                        | This method is effective for exact matches, but it does not help with prompts that vary even slightly. This makes standard caching less flexible for natural language interactions.                                                                                                                                                                                                           |
+| [Semantic Caching](#semantic-cache)          | "What's Python" might match "Tell me about Python" or "Explain Python"                                                                                                                                                                                                | This method provides higher cache hits and handles query variations and paraphrasing, making it better suited for natural language interactions. Semantic caching can increase costs because of its intensive computational and memory requirements and because it requires a dedicated embedding model.                                                                                      |
+| [Standard and Semantic Caching](#both-cache) | When using standard cache (default or API-specified), "What's Python?" matches only the exact phrase "What's Python?". When using semantic cache (default or API-specified), it matches semantically similar queries like "Tell me about Python" or "Explain Python." | With the option of implementing 2 caching mechanisms, you can benefit from the speed and simplicity of standard caching for common cases, while providing the flexibility of semantic caching for more natural language interactions. Semantic caching can increase costs because of its intensive computational and memory requirements and because it requires a dedicated embedding model. |
 
 Standard caching
 
@@ -148,7 +148,7 @@ When configuring keyword filtering for your LLM, consider the following factors:
 
 Content policies
 
-Make sure the selected keywords align with your organization’s content policies and ethical standards. Regularly review and update the keyword list to adapt to evolving language use and content standards.
+Make sure the selected keywords align with your organization's content policies and ethical standards. Regularly review and update the keyword list to adapt to evolving language use and content standards.
 
 User experience
 

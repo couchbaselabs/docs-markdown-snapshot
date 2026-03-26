@@ -3,7 +3,7 @@ title: Choose Your Next Steps
 description: To complete the Getting Started sequence, consider your options as
   to what to do next to continue improving your knowledge.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/getting-started/pages/choose-your-next-steps.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:getting-started:choose-your-next-steps.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:server:getting-started:choose-your-next-steps.adoc[]
 
 ## [](#where-to-learn-more)Where to Learn More
 
-By navigating to the sections in this topic, you can increase your knowledge in the areas you’ve already looked at — installation, configuration, and SQL++ — and also learn about new and (in some cases) quite advanced topics; such as multi-node clustering, failover, replication, and statistical analysis.
+By navigating to the sections in this topic, you can increase your knowledge in the areas you've already looked at — installation, configuration, and SQL++ — and also learn about new and (in some cases) quite advanced topics; such as multi-node clustering, failover, replication, and statistical analysis.
 
 ## [](#installation-and-configuration)Installation and Configuration
 

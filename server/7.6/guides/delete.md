@@ -2,7 +2,7 @@
 title: Delete Data with a Query
 description: How to delete documents using SQL++.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/delete.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:guides:delete.adoc[]
 ---
 
@@ -80,7 +80,7 @@ To delete documents by filter, use the DELETE statement with the WHERE clause:
 
 You can combine this approach with the USE KEYS hint if necessary.
 
-The following query deletes any airline whose callsign is `"AIR-X"`, returning the content of the airline’s `id` field.
+The following query deletes any airline whose callsign is `"AIR-X"`, returning the content of the airline's `id` field.
 
 Context
 
@@ -146,7 +146,7 @@ To delete documents using a merge, use the MERGE statement with the DELETE actio
 6. If required, use the LIMIT clause to specify the greatest number of documents that may be deleted.
 7. If required, use the RETURNING clause to specify what should be returned when the documents are deleted.
 
-The following query finds all BA routes whose source airport is in France. If any flights are using equipment 319, they’re updated to use 797\. If any flights are using equipment 757, they’re deleted.
+The following query finds all BA routes whose source airport is in France. If any flights are using equipment 319, they're updated to use 797\. If any flights are using equipment 757, they're deleted.
 
 Context
 

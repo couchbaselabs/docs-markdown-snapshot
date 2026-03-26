@@ -1,7 +1,7 @@
 ---
 title: Configure Your Antora Playbook
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/playbook.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:playbook.adoc[]
 ---
 
@@ -31,7 +31,7 @@ Just like any other documentation repository, you need to get the `docs-site` re
 2. Follow the instructions in [Clone the Repository](set-up-repository.md#clone).
 
 > [!NOTE]
-> Contributors from outside Couchbase need to [fork documentation repositories](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) to contribute changes. If you’re a Couchbase employee, DO NOT fork repositories to contribute to Couchbase Documentation.
+> Contributors from outside Couchbase need to [fork documentation repositories](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) to contribute changes. If you're a Couchbase employee, DO NOT fork repositories to contribute to Couchbase Documentation.
 
 ## [](#configure-a-local-antora-playbook)Configure a Local Antora Playbook
 
@@ -49,7 +49,7 @@ This stops your local playbook from being detected by Git. You can safely make c
 7. (Optional) [Set up Kroki to build diagrams](#setup-kroki-server).
 8. Save the playbook file.
 
-### [](#remove)Remove a Repository’s Files from Your Local Build
+### [](#remove)Remove a Repository's Files from Your Local Build
 
 To remove the files from a repository from your local build and speed up the build process:
 
@@ -131,7 +131,7 @@ If the public Kroki server is down or you just do not want diagrams in your buil
 
 You might have to comment out a number of repositories from the base Antora playbook file before you can successfully run a local build.
 
-You can choose to start with a much more minimalist playbook to make things easier, and only add the repositories that you’re planning to work on.
+You can choose to start with a much more minimalist playbook to make things easier, and only add the repositories that you're planning to work on.
 
 For an example lightweight local playbook, see the [example local-staging-antora-playbook.yml file](https://github.com/couchbase/docs-site/blob/master/home/modules/contribute/examples/local-staging-antora-playbook.yml).
 

@@ -3,7 +3,7 @@ title: Managing Tombstones
 description: Sync Gateway's <em>Tombstones</em> are the means by which mobile
   clients are notified that a document has been deleted.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/managing-tombstones.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::managing-tombstones.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.8@sync-gateway::managing-tombstones.adoc[]
 
 # Managing Tombstones
 
-> Sync Gateway’s _Tombstones_ are the means by which mobile clients are notified that a document has been deleted.  
+> Sync Gateway's _Tombstones_ are the means by which mobile clients are notified that a document has been deleted.  
 
 ## [](#purging-tombstones)Purging Tombstones
 
@@ -21,18 +21,18 @@ To remove tombstones, you need to purge them. The following tables describe how 
 | **Automatic purging of tombstones**                                                                                                                                                                                                                                                                                                                                                                           |                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | enable\_shared\_bucket\_access: false                                                                                                                                                                                                                                                                                                                                                                         | enable\_shared\_bucket\_access: true                                                               |
-| Tombstones are not automatically purged from the bucket. Tombstones can be purged by setting a server expiry on tombstone documents. This can be easily automated via Sync Gateway using the [expiry()](sync-function.md#expiry) function in the Sync Function. The expiry time should be sufficient (perhaps a week, or a month) to allow for all other devices to sync and receive the delete notification. | Tombstones are automatically purged from the bucket based on the server’s metadata purge interval. |
+| Tombstones are not automatically purged from the bucket. Tombstones can be purged by setting a server expiry on tombstone documents. This can be easily automated via Sync Gateway using the [expiry()](sync-function.md#expiry) function in the Sync Function. The expiry time should be sufficient (perhaps a week, or a month) to allow for all other devices to sync and receive the delete notification. | Tombstones are automatically purged from the bucket based on the server's metadata purge interval. |
 
 | **Manually purging tombstones**                                                                                                                                                                           |                                                                                                                                                             |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | enable\_shared\_bucket\_access: false                                                                                                                                                                     | enable\_shared\_bucket\_access: true                                                                                                                        |
-| Tombstones can be manually removed via Sync Gateway’s [/{db}/\_purge](../current/rest-api/rest-api-admin.md#/document/post%5F%5Fdb%5F%5F%5Fpurge) endpoint, or deleting documents directly in the bucket. | Tombstones can be manually removed via Sync Gateway’s [/{db}/\_purge](../current/rest-api/rest-api-admin.md#/document/post%5F%5Fdb%5F%5F%5Fpurge) endpoint. |
+| Tombstones can be manually removed via Sync Gateway's [/{db}/\_purge](../current/rest-api/rest-api-admin.md#/document/post%5F%5Fdb%5F%5F%5Fpurge) endpoint, or deleting documents directly in the bucket. | Tombstones can be manually removed via Sync Gateway's [/{db}/\_purge](../current/rest-api/rest-api-admin.md#/document/post%5F%5Fdb%5F%5F%5Fpurge) endpoint. |
 
 Purging of tombstones is also required on Couchbase Lite. For example, you might decide that if a document is deleted on a Couchbase Lite client, that you want to purge the document (on that device) as soon as the delete has been successfully replicated out to Sync Gateway.
 
 ## [](#cache-ejection)Cache Ejection
 
-Deleted/expired tombstones aren’t automatically ejected from Sync Gateway’s in-memory channel caches. The following table describes how to eject Sync Gateway’s cache.
+Deleted/expired tombstones aren't automatically ejected from Sync Gateway's in-memory channel caches. The following table describes how to eject Sync Gateway's cache.
 
 | enable\_shared\_bucket\_access: false                                                        | enable\_shared\_bucket\_access: true                                                                                                                                                                                                        |
 | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -66,7 +66,7 @@ Document operations also have a different impact on tombstones when Shared Bucke
 | Removes the document and metadata                              | Removes the document and metadata    |
 | **Deleting a document body in the bucket (SDK, N1QL, expiry)** |                                      |
 | Removes the document and metadata                              | Creates a tombstone                  |
-| **Purging a document’s metadata (on Couchbase Server)**        |                                      |
+| **Purging a document's metadata (on Couchbase Server)**        |                                      |
 | N/A                                                            | Removes the tombstone metadata       |
 
 ## [](#related-content)Related Content

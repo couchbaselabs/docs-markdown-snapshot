@@ -3,7 +3,7 @@ title: Add a Synonym Source Using the Quick Editor
 description: You can add a Synonym Source to set the collection where your
   synonym documents are stored with the Quick Editor.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/synonyms/add-synonym-source-quick.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:search:synonyms/add-synonym-source-quick.adoc[]
 ---
 
@@ -25,7 +25,7 @@ For more information about synonym searches with the Search Service, see [Add Sy
 
 ## [](#procedure)Procedure
 
-To add a synonym source to a Search index with the Couchbase Server Web Console’s Quick Editor:
+To add a synonym source to a Search index with the Couchbase Server Web Console's Quick Editor:
 
 1. Go to **Search**.
 2. Click the index where you want to add a new synonym source.

@@ -3,7 +3,7 @@ title: Memory and Storage
 description: To facilitate high-speed data-access, Couchbase Server provides a
   caching layer and tunable disk I/O priorities.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/buckets-memory-and-storage/memory-and-storage.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:buckets-memory-and-storage/memory-and-storage.adoc[]
 ---
 
@@ -46,7 +46,7 @@ Items that reside in the memory of Couchbase Server can be updated. If the item 
 ![updateDocSequence2](../_images/buckets-memory-and-storage/updateDocSequence2.png)
 3. The compressed document is retrieved, brought into memory, and decompressed.  
 ![updateDocSequence3](../_images/buckets-memory-and-storage/updateDocSequence3.png)
-4. The application’s updates are applied to the uncompressed document.  
+4. The application's updates are applied to the uncompressed document.  
 ![updateDocSequence4](../_images/buckets-memory-and-storage/updateDocSequence4.png)
 5. The updated document is placed (in either compressed or uncompressed form, as appropriate) on the replication queue, so that replicas can be updated. The updated document is also re-compressed, and written to disk locally.  
 ![updateDocSequence5](../_images/buckets-memory-and-storage/updateDocSequence5.png)

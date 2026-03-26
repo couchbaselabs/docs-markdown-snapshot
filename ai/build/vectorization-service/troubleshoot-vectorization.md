@@ -4,7 +4,7 @@ description: If your Capella AI Services Workflows complete with errors or have
   documents that cannot be processed, you can query a document's extended
   attributes (XATTRs) data for more information.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/troubleshoot-vectorization.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:build:vectorization-service/troubleshoot-vectorization.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:ai:build:vectorization-service/troubleshoot-vectorization.adoc[]
 
 # Troubleshoot a Workflow
 
-> If your Capella AI Services Workflows complete with errors or have documents that cannot be processed, you can query a document’s extended attributes (XATTRs) data for more information. 
+> If your Capella AI Services Workflows complete with errors or have documents that cannot be processed, you can query a document's extended attributes (XATTRs) data for more information. 
 
 Workflows create a `META().xattrs.vectorization.status` field on a document when that document is skipped during vectorization. You can use a SQL++ query to get information from this field and troubleshoot your Workflow.
 
@@ -22,7 +22,7 @@ If your Workflow returns a `LCB_ERR_DURABILITY_AMBIGUOUS` error, see [Resolve a 
 For more information about Workflows, see [Process Your Data For Capella AI Services](data-processing.md).
 
 > [!NOTE]
-> If you deleted or modified your Workflow’s metadata scope, collections, or Eventing functions, your Workflow might fail to run correctly. You must delete the Workflow and create a new one.
+> If you deleted or modified your Workflow's metadata scope, collections, or Eventing functions, your Workflow might fail to run correctly. You must delete the Workflow and create a new one.
 
 ## [](#prerequisites)Prerequisites
 
@@ -100,9 +100,9 @@ The troubleshooting SQL++ query, in the `details` object for each `doc_id`, prov
 | Error                                               | Description                                                                                                                                                                                                                                                                                                                                       |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | num\_malformed\_payload\_to\_model                  | The number of processing requests to the embedding model that were rejected as malformed or bad requests.                                                                                                                                                                                                                                         |
-| num\_non\_existent\_fields                          | The number of processing requests that referenced non-existent fields in the document. Check the configuration of your Workflow to make sure your selected source fields exist in the document you’re trying to process.                                                                                                                          |
-| num\_non\_json\_objects                             | The number of processing requests that were rejected for JSON serialization issues. Check the content of your document and its fields to make sure the JSON is properly formed, if you’re using a [Data from Capella](vectorize-structured-data-capella.md) or [Structured Data from External sources](vectorize-structured-data-s3.md) Workflow. |
-| num\_payload\_size\_exceeds\_model\_context\_window | The number of processing requests that exceeded the embedding model’s context size limit. Check the configuration of the embedding model you chose for your Workflow.                                                                                                                                                                             |
+| num\_non\_existent\_fields                          | The number of processing requests that referenced non-existent fields in the document. Check the configuration of your Workflow to make sure your selected source fields exist in the document you're trying to process.                                                                                                                          |
+| num\_non\_json\_objects                             | The number of processing requests that were rejected for JSON serialization issues. Check the content of your document and its fields to make sure the JSON is properly formed, if you're using a [Data from Capella](vectorize-structured-data-capella.md) or [Structured Data from External sources](vectorize-structured-data-s3.md) Workflow. |
+| num\_payload\_size\_exceeds\_model\_context\_window | The number of processing requests that exceeded the embedding model's context size limit. Check the configuration of the embedding model you chose for your Workflow.                                                                                                                                                                             |
 | num\_successful\_embeddings                         | The number of processing requests that created an embedding.                                                                                                                                                                                                                                                                                      |
 
 ## [](#resolve)Resolve a LCB\_ERR\_DURABILITY\_AMBIGUOUS Error

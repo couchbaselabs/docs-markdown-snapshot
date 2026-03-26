@@ -3,7 +3,7 @@ title: Create a Replication
 description: An XDCR replication allows data to be replicated continuously from
   a specified bucket on the source cluster to a specified bucket on the target.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/create-xdcr-replication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-xdcr/create-xdcr-replication.adoc[]
 ---
 
@@ -55,7 +55,7 @@ The **XDCR Add Replication** screen is now displayed:
 ![xdcr add replication screen](../_images/manage-xdcr/xdcr-add-replication-screen.png)  
 The fields in the upper area of the screen — **Replicate From Bucket**, **Remote Bucket**, and **Remote Cluster** — allow a replication to be defined that specifies source and target bucket only. The remaining fields allow _scopes_ and _collections_ — within source and/or target buckets — to be additionally specified; and allow **Advanced Settings** to be used.  
 The example on this page will not configure **Advanced Settings**; and will specify source and target bucket only — each bucket being specified as the sample bucket `travel-sample`.  
-Note that since the data within `travel-sample` is contained within multiple _scopes_ and _collections_, the path to each collection — known as a _keyspace_, and always being of the form `scope-name.collection-name` — is necessarily identical on each cluster. XDCR’s default behavior is always to replicate data between corresponding keyspaces: for example, data in `inventory.airline` on the source is replicated to `inventory.airline` on the target. When a keyspace on the source does **not** have a corresponding keyspace on the target, XDCR’s default behavior is **not** to replicate data from that source keyspace. This is known as replication by _implicit mapping_.  
+Note that since the data within `travel-sample` is contained within multiple _scopes_ and _collections_, the path to each collection — known as a _keyspace_, and always being of the form `scope-name.collection-name` — is necessarily identical on each cluster. XDCR's default behavior is always to replicate data between corresponding keyspaces: for example, data in `inventory.airline` on the source is replicated to `inventory.airline` on the target. When a keyspace on the source does **not** have a corresponding keyspace on the target, XDCR's default behavior is **not** to replicate data from that source keyspace. This is known as replication by _implicit mapping_.  
 Detailed examples of _explicitly_ specifying scopes and collections (and so, potentially, establishing mappings between dissimilar keyspaces) are provided later, in [Replicate Using Scopes and Collections](replicate-using-scopes-and-collections.md).  
 Note that when a replication is defined only as _bucket to bucket_ (as in the current example), and thereby makes no reference to a scope or collection, the documents to be replicated are understood by XDCR to reside in the `_default` collection, which resides within the `_default` scope, of the source bucket. The documents will duly be replicated to the `_default` collection, in the `_default` scope, of the _target_ bucket. For more information , see [Default Scope and Collection](../../learn/data/scopes-and-collections.md#default-scope-and-collection).  
 An account of **Advanced Settings** is provided in [Advanced Replication Settings with the UI](#xdcr-advanced-settings-pointer), below.  
@@ -184,7 +184,7 @@ For more information, see the complete reference for the [xdcr-replicate](../../
 
 ## [](#create-an-xdcr-replication-with-the-rest-api)Create an XDCR Replication with the REST API
 
-Starting from the scenario defined above, in [Examples on This Page](#examples-on-this-page-create-replication), using the REST API’s `POST /controller/createReplication` HTTP method and URI, create an XDCR reference as follows:
+Starting from the scenario defined above, in [Examples on This Page](#examples-on-this-page-create-replication), using the REST API's `POST /controller/createReplication` HTTP method and URI, create an XDCR reference as follows:
 
 curl -v -X POST -u Administrator:password \
 http://10.144.210.101:8091/controller/createReplication \

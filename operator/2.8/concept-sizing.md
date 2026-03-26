@@ -1,7 +1,7 @@
 ---
 title: Couchbase Sizing
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/concept-sizing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@operator::concept-sizing.adoc[]
 ---
 
@@ -28,7 +28,7 @@ You will need extra Kubernetes node capacity if using the [couchbaseclusters.spe
 
 Upgrade affects not only upgrading the Couchbase Server version but any modification of the cluster that affects Couchbase Server pods. For example, this includes enabling TLS, adding scheduling constraints etc.
 
-Upgrade uses the standard rolling-upgrade strategy, so for each iteration requires at most one extra node. This is potentially additive with the number of pod’s that can be failed over as discussed previously.
+Upgrade uses the standard rolling-upgrade strategy, so for each iteration requires at most one extra node. This is potentially additive with the number of pod's that can be failed over as discussed previously.
 
 ### [](#server-class-replacement)Server Class Replacement
 

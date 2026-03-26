@@ -3,7 +3,7 @@ title: Async APIs
 description: The Couchbase Python SDK offers both asyncio and Twisted APIs for
   async operation.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:python-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -40,7 +40,7 @@ async def get_couchbase():
 
 ### [](#asyncio-document-kv-operations)Asyncio Document (KV) Operations
 
-Key-value and sub-document operations return `Future` objects which can then be used for `await` clauses. The `Future`’s result will always be the relevant `Result` object for the operation performed.
+Key-value and sub-document operations return `Future` objects which can then be used for `await` clauses. The `Future`'s result will always be the relevant `Result` object for the operation performed.
 
 KV - Operations
 
@@ -199,7 +199,7 @@ cluster.on_connect().addCallback(on_connect_ok, cluster).addErrback(on_connect_e
 
 ### [](#twisted-document-kv-operations)Twisted Document (KV) Operations
 
-Key-value and sub-document operations return `Deferred` objects which can then be configured with callback and errback handlers. The `Deferred`’s result will always be the relevant `Result` object for the operation performed.
+Key-value and sub-document operations return `Deferred` objects which can then be configured with callback and errback handlers. The `Deferred`'s result will always be the relevant `Result` object for the operation performed.
 
 KV - Operations
 

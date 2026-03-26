@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Couchbase Lite Query Introduction"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-xamarin/edit/query/content/modules/userprofile-query-xamarin/pages/userprofile_query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:userprofile-query-xamarin:userprofile_query.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:tutorials:userprofile-query-xamarin:userprofile_query.adoc[]
 
 Couchbase Lite brings powerful querying and Full-Text-Search(FTS) capabilities to the edge.
 
-The query interface is based on [N1QL](https://www.couchbase.com/products/n1ql), Couchbase’s declarative query language, which implements the emerging SQL++ standard. If you are familiar with SQL, you will feel right at home with the semantics of the new API.
+The query interface is based on [N1QL](https://www.couchbase.com/products/n1ql), Couchbase's declarative query language, which implements the emerging SQL++ standard. If you are familiar with SQL, you will feel right at home with the semantics of the new API.
 
 The query API is designed using the [Fluent API Design Pattern](https://en.wikipedia.org/wiki/Fluent%5Finterface), and it uses method cascading to read to like a Domain Specific Language (DSL). This makes the interface very intuitive and easy to understand.
 
@@ -40,7 +40,7 @@ This tutorial assumes familiarity with building Xamarin apps and with the basics
 * git (Optional)  
 This is required if you would prefer to pull the source code from GitHub repo.
 
-  * Create a [free github account](https://github.com)if you don’t already have one
+  * Create a [free github account](https://github.com)if you don't already have one
   * git can be downloaded from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## [](#app-overview)App Overview
@@ -89,7 +89,7 @@ The solution consists of seven projects.
 * **UserProfileDemo.Android**: A Xamarin.Android platform project responsible for building the `.apk` file.
 * **UserProfileDemo.UWP**: A UWP platform project responsible for building the `.exe` file.
 
-Now that you have an understanding of the solution architecture let’s dive into the app!
+Now that you have an understanding of the solution architecture let's dive into the app!
 
 ## [](#couchbase-lite-nuget)Couchbase Lite Nuget
 
@@ -255,7 +255,7 @@ _database.Close();
 Try It Out
 
 1. Run the app in a simulator
-2. Log into the app with any email Id and password. Let’s use the values _"demo@example.com"_ and _"password"_ for user Id and password fields respectively. If this is the first time that _any_ user is signing in to the app, the pre-built database will be loaded from the App Bundle. In addition, new user-specific Database will be created / opened.
+2. Log into the app with any email Id and password. Let's use the values _"demo@example.com"_ and _"password"_ for user Id and password fields respectively. If this is the first time that _any_ user is signing in to the app, the pre-built database will be loaded from the App Bundle. In addition, new user-specific Database will be created / opened.
 3. Confirm that the console log output has a message similar to the one below. In my example, I am logging in with a user email Id of _"demo@example.com"_.  
 ```none  
 Will open Prebuilt DB  at path /Users/[user_id]/Library/Developer/CoreSimulator/Devices/[unique_device_id]/data/Containers/Data/Application/[unique_app_id]/Library/Application Support  

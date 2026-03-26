@@ -2,7 +2,7 @@
 title: About Agentic Apps
 description: An overview of the key concepts involved in agentic apps.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/about-agentic-app.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:agent-tutorial:about-agentic-app.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:ai:agent-tutorial:about-agentic-app.adoc[]
 
 > An overview of the key concepts involved in agentic apps. 
 
-## [](#whats-an-agentic-app)What’s an Agentic App?
+## [](#whats-an-agentic-app)What's an Agentic App?
 
 An agentic app uses a Large Language Model (LLM) to simulate reasoning, planning, and decision-making. This enables agentic apps to handle tasks with less explicit step-by-step programming.
 
@@ -26,7 +26,7 @@ Agentic apps tend to have these properties:
 
 The defining feature of agentic apps is that they use an LLM to make decisions and execute steps towards a goal. The LLM is the brain of the app. It has agency to make decisions and use the tools it has available.
 
-There’s no universally agreed definition for an agentic app. Apps can range from straight-forward assistants to fully autonomous agents.
+There's no universally agreed definition for an agentic app. Apps can range from straight-forward assistants to fully autonomous agents.
 
 Couchbase offers AI services that can support your agentic apps, making them easier to build, faster to run and cheaper to support. For more information about AI Services, see [Capella AI Services](../get-started/intro.md).
 
@@ -62,7 +62,7 @@ An agentic app can go further:
 * Suggest adjustments, such as moving money between accounts.
 * Take action automatically if given prior permission, such as paying a bill or flagging a charge.
 
-The app has less reliance on waiting for a user to interact with it to further the goal. The app can plan, adapt, and act on the user’s behalf.
+The app has less reliance on waiting for a user to interact with it to further the goal. The app can plan, adapt, and act on the user's behalf.
 
 To make this work, the app needs to interpret events, such as user goals, and decide on next steps. It needs some way to store preferences and past actions. It also requires access to banking APIs, budgeting systems, and notification services.
 
@@ -70,19 +70,19 @@ You can mix and match these components to build your app. Similarly, you can cha
 
 ![Diagram](_images/diag-9ec73d6ae330f7a21ccab1cab7397343b7059d5e.svg) 
 
-The agent has access to tools and instructions, then tries to accomplish the goals. It’s possible to add modularly to this structure, introducing additional tools, memory sources and even LLMs specialized for different tasks.
+The agent has access to tools and instructions, then tries to accomplish the goals. It's possible to add modularly to this structure, introducing additional tools, memory sources and even LLMs specialized for different tasks.
 
 ## [](#key-concepts-of-agentic-apps)Key Concepts of Agentic Apps
 
-Every agentic app is a combination of key concepts. It’s up to you how to combine these building blocks.
+Every agentic app is a combination of key concepts. It's up to you how to combine these building blocks.
 
 ### [](#the-llm)The LLM
 
 Rather than a complex decision tree, agentic apps use a Large Language Model (LLM) as a reasoning engine. The LLM can take instructions and make decisions on how to proceed.
 
-It’s responsible for:
+It's responsible for:
 
-* Understanding the user’s request.
+* Understanding the user's request.
 * Breaking it into smaller tasks.
 * Deciding which tools to use and in what order.
 * Integrating results into a coherent response.
@@ -103,11 +103,11 @@ Keep in mind that the LLM can do some of this by itself. Some apps are more agen
 
 ### [](#the-prompts)The Prompts
 
-Prompts are how you tell the LLM what role it’s playing, how it should behave and what information it has available. In all but the most basic apps, a prompt is not just an initial instruction or user input. A prompt is a constructed input assembled by the orchestration layer. The prompt grows and changes as the app progresses through its workflow and more information becomes available. This is how the LLM stays informed of the app’s current state.
+Prompts are how you tell the LLM what role it's playing, how it should behave and what information it has available. In all but the most basic apps, a prompt is not just an initial instruction or user input. A prompt is a constructed input assembled by the orchestration layer. The prompt grows and changes as the app progresses through its workflow and more information becomes available. This is how the LLM stays informed of the app's current state.
 
 Prompts can include:
 
-* The agent’s persona or style.
+* The agent's persona or style.
 * Rules for interacting with the user.
 * Step-by-step instructions for solving a problem.
 * Information retrieved through RAG.

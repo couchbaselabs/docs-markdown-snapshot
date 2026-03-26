@@ -2,7 +2,7 @@
 title: QueryBuilder
 description: How to use QueryBuilder to build effective queries with Couchbase Lite on Java
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/java/pages/querybuilder.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:java:querybuilder.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:2.8@couchbase-lite:java:querybuilder.adoc[]
 
 ## [](#introduction)Introduction
 
-Couchbase Lite for Java’s database queries are defined using the QueryBuilder API. This uses query statements of the form shown in [Example 1](#ex-query-form). The structure and semantics of the query format are based on that of Couchbase’s [N1QL query language](../../../server/current/learn/data/n1ql-versus-sql.md).
+Couchbase Lite for Java's database queries are defined using the QueryBuilder API. This uses query statements of the form shown in [Example 1](#ex-query-form). The structure and semantics of the query format are based on that of Couchbase's [N1QL query language](../../../server/current/learn/data/n1ql-versus-sql.md).
 
 Example 1\. Query Format
 
@@ -47,7 +47,7 @@ Query Components
 
 ## [](#indexing)Indexing
 
-Before we begin querying documents, let’s briefly mention the importance of having a query index. A query can only be fast if there’s a pre-existing database index it can search to narrow down the set of documents to examine — see: [Example 2](#ex-indexing), which shows how to create an index and our [Query Troubleshooting](../../current/java/query-troubleshooting.md) topic.
+Before we begin querying documents, let's briefly mention the importance of having a query index. A query can only be fast if there's a pre-existing database index it can search to narrow down the set of documents to examine — see: [Example 2](#ex-indexing), which shows how to create an index and our [Query Troubleshooting](../../current/java/query-troubleshooting.md) topic.
 
 > [!TIP]
 > See the [Indexing](../../current/java/indexing.md) topic to learn more about indexing.
@@ -522,7 +522,7 @@ The input to this will be a validly formatted ISO 8601 `date_time` string. The e
 
 `Function.MillisToString(Expression.Property("date_time"))`
 
-The input for this is a numeric value representing milliseconds since the Unix epoch. The end result will be an expression (with string content representing the date and time as an ISO 8601 string in the device’s timezone) that can be further input into the query builder.
+The input for this is a numeric value representing milliseconds since the Unix epoch. The end result will be an expression (with string content representing the date and time as an ISO 8601 string in the device's timezone) that can be further input into the query builder.
 
 `Function.MillisToUTC(Expression.Property("date_time"))`
 
@@ -547,7 +547,7 @@ The result set format and its handling varies slightly depending on the type of 
 
 To process the results of a query, you first need to execute it using `Query.execute`.
 
-The execution of a Couchbase Lite for Java’s database query typically returns an array of results, a result set.
+The execution of a Couchbase Lite for Java's database query typically returns an array of results, a result set.
 
 * The result set of an aggregate, count-only, query is a key-value pair — see [Select Count-only](#lbl-count-sel) — which you can access using the count name as its key.
 * The result set of a query returning document properties is an array.  
@@ -613,7 +613,7 @@ Example 14\. Format of Result Set (All Properties)
 
 Result Set Access
 
-In this case access the retrieved document properties by converting each row’s value, in turn, to a dictionary — as shown in [Example 15](#ex-all-acc).
+In this case access the retrieved document properties by converting each row's value, in turn, to a dictionary — as shown in [Example 15](#ex-all-acc).
 
 Example 15\. Using Document Properties (All)
 
@@ -774,7 +774,7 @@ Example 20\. Format of Result Set (Doc Id only)
 
 Result Set Access
 
-In this case, access the required document’s properties by unpacking the `id` and using it to get the document from the database — see: [Example 21](#ex-id-acc).
+In this case, access the required document's properties by unpacking the `id` and using it to get the document from the database — see: [Example 21](#ex-id-acc).
 
 Example 21\. Using Returned Document Properties (Document Id)
 

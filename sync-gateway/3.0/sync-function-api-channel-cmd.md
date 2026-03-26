@@ -2,7 +2,7 @@
 title: channel()
 description: Assigning Sync Gateway <em>channels</em>
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/sync-function-api-channel-cmd.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::sync-function-api-channel-cmd.adoc[]
 ---
 
@@ -34,7 +34,7 @@ Use the `channel()` function to route the document to the named channel(s).
 The channel function can be called zero or more times from the sync function, for any document.
 
 > [!NOTE]
-> Channels don’t have to be predefined.  
+> Channels don't have to be predefined.  
 > A channel implicitly comes into existence when a document is routed to it.
 
 Routing changes have no effect until the document is actually saved in the database, so if the sync function first calls `channel()` or `access()`, but then rejects the update, the channel and access changes will not occur.

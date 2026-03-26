@@ -1,7 +1,7 @@
 ---
 title: Using the Database
 editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/develop/swift/using-the-database.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:todo-app:develop/swift/using-the-database.adoc[]
 ---
 
@@ -10,13 +10,13 @@ link: xref:tutorials:todo-app:develop/swift/using-the-database.adoc[]
 
 # Using the Database
 
-In this lesson you’ll be introduced to Couchbase Lite, our embedded NoSQL database. You’ll learn how to create, read, update, delete, and query data using Couchbase Lite.
+In this lesson you'll be introduced to Couchbase Lite, our embedded NoSQL database. You'll learn how to create, read, update, delete, and query data using Couchbase Lite.
 
 **TIP:** To make things a bit more exciting, you may want to use the pre-built database containing a list of Groceries. Refer to the [Create a Database](#swift/create-database.adoc) lesson to learn how to use it.
 
 ## [](#create-a-document)Create a Document
 
-In Couchbase Lite, the primary entity stored in a database is called a document instead of a row or record. A document’s body takes the form of a JSON object — a collection of key/value pairs where the values can be different types of data such as numbers, strings, arrays or even nested objects. The code below creates a new list document.
+In Couchbase Lite, the primary entity stored in a database is called a document instead of a row or record. A document's body takes the form of a JSON object — a collection of key/value pairs where the values can be different types of data such as numbers, strings, arrays or even nested objects. The code below creates a new list document.
 
 ```swift
 // This code can be found in ListsViewController.swift
@@ -43,12 +43,12 @@ do {
 }
 ```
 
-Here you’re creating an unsaved document instance with a pre-defined **document ID** (i.e. the **\_id** property in the document’s JSON body) using the `documentWithID` method. The ID follows the form `{username}.{uuid}` where username is the name of the user logged in. Alternatively, you could also use the `createDocument` method to let the database generate a random **ID** for you.
+Here you're creating an unsaved document instance with a pre-defined **document ID** (i.e. the **\_id** property in the document's JSON body) using the `documentWithID` method. The ID follows the form `{username}.{uuid}` where username is the name of the user logged in. Alternatively, you could also use the `createDocument` method to let the database generate a random **ID** for you.
 
 ### [](#try-it-out)Try it out
 
 1. Build and run.
-2. Create a new list using the '+' button on the application’s 'Task lists' screen.
+2. Create a new list using the '+' button on the application's 'Task lists' screen.
 3. A new list document is saved to the database.  
 ![image40](../../_images/image40.png)
 
@@ -56,7 +56,7 @@ Here you’re creating an unsaved document instance with a pre-defined **documen
 
 ## [](#update-a-document)Update a Document
 
-To update a document, you must retrieve it from the database, modify the desired properties and write them back to the database. The `update` method does this operation for you in the form of a callback. The code below updates a list’s name property.
+To update a document, you must retrieve it from the database, modify the desired properties and write them back to the database. The `update` method does this operation for you in the form of a callback. The code below updates a list's name property.
 
 ```swift
 // This code can be found in ListsViewController.swift
@@ -72,7 +72,7 @@ do {
 }
 ```
 
-Your callback code can modify this object’s properties as it sees fit; after it returns, the modified revision is saved and becomes the current one.
+Your callback code can modify this object's properties as it sees fit; after it returns, the modified revision is saved and becomes the current one.
 
 ### [](#try-it-out-2)Try it out
 
@@ -109,11 +109,11 @@ do {
 
 The way to query data in Couchbase Lite is by registering a View and then running a Query on it with QueryOptions. The first thing to know about Couchbase Views is that they have nothing to do with UI views.
 
-A [View](https://docs.couchbase.com/couchbase-lite/1.4/swift.html#view) in Couchbase is a persistent index of documents in a database, which you then query to find data. The main component of a View is its map function. It takes a document’s JSON as input, and emits (outputs) any number of key/value pairs to be indexed. First, you will define the view to index the documents of type **task-list**. The diagram below shows the result of the code you will review shortly.
+A [View](https://docs.couchbase.com/couchbase-lite/1.4/swift.html#view) in Couchbase is a persistent index of documents in a database, which you then query to find data. The main component of a View is its map function. It takes a document's JSON as input, and emits (outputs) any number of key/value pairs to be indexed. First, you will define the view to index the documents of type **task-list**. The diagram below shows the result of the code you will review shortly.
 
 ![img.001](../../_images/img.001.png)
 
-So you can remember that a view index is a list of key/value pairs, sorted by key. In addition, the view’s logic is written in the native language of the platform you’re developing on. The code below indexes documents as shown on the diagram above. Then it create the Query and monitors the result set using a Live Query.
+So you can remember that a view index is a list of key/value pairs, sorted by key. In addition, the view's logic is written in the native language of the platform you're developing on. The code below indexes documents as shown on the diagram above. Then it create the Query and monitors the result set using a Live Query.
 
 ```swift
 // This code can be found in ListsViewController.swift
@@ -157,13 +157,13 @@ override func observeValue(forKeyPath keyPath: String?, of object: Any?, change:
 2. Save a new list to the database and the live query will pick it up instantly and reload the table view.  
 ![image66](../../_images/image66.gif)
 
-**Challenge:** Update the map function to emit the document ID as the key. Don’t forget to bump the view version whenever you change the map function. The list view should now display the document ID on each row.
+**Challenge:** Update the map function to emit the document ID as the key. Don't forget to bump the view version whenever you change the map function. The list view should now display the document ID on each row.
 
 ## [](#aggregating-data)Aggregating Data
 
 A problem in typical applications is how to perform data aggregation. Couchbase Lite lets you run those data queries using the full capabilities of map/reduce. To run aggregation queries on the rows emitted by the map function, you can use the reduce function which is the part of map/reduce that takes several rows from the index and aggregates them together in a single object.
 
-Let’s write a view to query and display the number of uncompleted tasks for each list. A task is marked as completed if its **complete** property is true. You need to define a **map** function which:
+Let's write a view to query and display the number of uncompleted tasks for each list. A task is marked as completed if its **complete** property is true. You need to define a **map** function which:
 
 1. Returns the number of uncompleted task documents,
 2. Groups them by the list they belong to,
@@ -231,4 +231,4 @@ override func observeValue(forKeyPath keyPath: String?, of object: Any?, change:
 
 ## [](#conclusion)Conclusion
 
-Well done! You’ve completed this lesson on using CRUD operations with the database and running aggregation queries. In the next lesson, you’ll learn how to use Couchbase Lite’s synchronization APIs with Sync Gateway. Feel free to share your feedback, findings or ask any questions on the forums.
+Well done! You've completed this lesson on using CRUD operations with the database and running aggregation queries. In the next lesson, you'll learn how to use Couchbase Lite's synchronization APIs with Sync Gateway. Feel free to share your feedback, findings or ask any questions on the forums.

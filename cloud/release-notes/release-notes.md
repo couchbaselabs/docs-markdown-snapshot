@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:release-notes:release-notes.adoc[]
 
 * Default Billing Alerts and Low Credit Warnings for Prepaid Accounts  
 If you use pre-paid credits to pay for your usage in Capella, Capella now creates default billing alerts automatically when new pre-paid credits are applied to your account.  
-When you [create a new cluster](../clusters/create-database.md) or [change a cluster’s Support Plan](#billing:change-support-plan) and your pre-paid credit balance is depleted or running low, Capella also shows warnings to help you avoid unexpected [pay-as-you-go charges](../billing/billing.md#pay-as-you-go-credits) and choose the right Support Plan with confidence.  
+When you [create a new cluster](../clusters/create-database.md) or [change a cluster's Support Plan](#billing:change-support-plan) and your pre-paid credit balance is depleted or running low, Capella also shows warnings to help you avoid unexpected [pay-as-you-go charges](../billing/billing.md#pay-as-you-go-credits) and choose the right Support Plan with confidence.  
 For more information, see [Default Billing Alerts](../billing/about-billing-alerts.md#default-billing-alerts) and [Low Credit Warning Calculations](../billing/billing.md#low-credits).
 
 ## [](#february-2026-changelog)February 2026 Changelog
@@ -71,7 +71,7 @@ You can choose Couchbase Server 8.0 when creating a new paid operational cluster
 Couchbase Server 8.0 on Capella includes the following features:
 
   * Magma with 128 vBuckets is the new default storage engine  
-  Operational clusters created with Couchbase Server 8.0 use Magma with 128 vBuckets as the default storage engine. This new storage engine option has a minimum memory quota requirement of 100 MiB compared to the original 1024 vBucket Magma bucket’s requirement of 1 GiB.  
+  Operational clusters created with Couchbase Server 8.0 use Magma with 128 vBuckets as the default storage engine. This new storage engine option has a minimum memory quota requirement of 100 MiB compared to the original 1024 vBucket Magma bucket's requirement of 1 GiB.  
   For more information about Magma, see [Storage Engines](../clusters/data-service/storage-engines.md).  
   > [!IMPORTANT]  
   > The new default storage backend for buckets may cause issues if you rely on the previous defaults. Update any deployment scripts to accommodate this change before upgrading. For more information about potential compatibility concerns, see [Before You Upgrade](../../server/current/install/upgrade.md#before-you-upgrade).
@@ -160,7 +160,7 @@ Capella cluster backups now support cross-region backup replicas and restores, a
 Cross-region backup replication and restores are only available on clusters hosted through AWS or Azure.  
 For more information, see [Back Up and Restore An Entire Cluster](../clusters/cloud-snapshots.md).
 * Create SQL++ and JavaScript User-Defined Functions (UDFs) from Data Tools  
-You can now create and manage UDFs directly from your cluster’s Data Tools > Query Tab, using either SQL++ inline expressions or JavaScript functions.  
+You can now create and manage UDFs directly from your cluster's Data Tools > Query Tab, using either SQL++ inline expressions or JavaScript functions.  
 Use UDFs to write, edit, and manage reusable logic for your cluster. You can define UDFs using the [CREATE FUNCTION statement](#n1ql:n1ql-language-reference/create-function.adoc) or the [Query Tab UI](../guides/create-user-defined-function.md).  
 For more information, see [User-Defined Functions for Queries](../guides/javascript-udfs.md) or [JavaScript Functions for Query Reference](../javascript-udfs/javascript-functions-with-couchbase.md).
 
@@ -172,7 +172,7 @@ For more information, see [User-Defined Functions for Queries](../guides/javascr
 Creating a new operational cluster with Couchbase Server 7.6 now deploys the Couchbase Server 7.6.7 maintenance release.  
 For more information about this version of Couchbase Server, see [Couchbase Server 7.6.7](../../server/7.6/release-notes/relnotes.md#release-767).
 * Fine-grained access for cluster access credentials, and other enhancements  
-Capella’s Role-Based Access Control (RBAC) now reaches the collection level, so you can assign cluster access credentials privileges at the bucket, scope, or collection level. This finer level of control simplifies least-privilege design and leaves all existing bucket and scope-level roles fully intact.  
+Capella's Role-Based Access Control (RBAC) now reaches the collection level, so you can assign cluster access credentials privileges at the bucket, scope, or collection level. This finer level of control simplifies least-privilege design and leaves all existing bucket and scope-level roles fully intact.  
 You can also now generate a password for your cluster access credentials with a single click.  
 For more information, see [Manage Cluster Access Credentials](../clusters/manage-database-users.md).
 
@@ -255,7 +255,7 @@ For more information about this version of Couchbase Server, see [Couchbase Serv
 ## [](#january-2025-changelog)January 2025 Changelog
 
 * Ability to Pause Your On/Off Schedule  
-You can now pause the on/off schedule for your operational cluster. This eliminates the need to delete the schedule when you do not want the cluster to turn on or off at the scheduled time. When you’re ready, you can reactivate the schedule without needing to recreate it, saving time and memory.  
+You can now pause the on/off schedule for your operational cluster. This eliminates the need to delete the schedule when you do not want the cluster to turn on or off at the scheduled time. When you're ready, you can reactivate the schedule without needing to recreate it, saving time and memory.  
 For more information, see [Pause Cluster Schedule](../clusters/off-on-schedule.md#pause-cluster-schedule).
 * Capella Search Service UI Redesign  
 The process for creating a Search index in the Datatools - Search tab has been redesigned. Building simple Search indexes is more straightforward. Turn on **Advanced Mode** to add more customization and advanced features to a Search index.  
@@ -266,8 +266,8 @@ The legacy Management API v3.0, formerly known as the Public API, has been remov
 ## [](#december-2024-changelog)December 2024 Changelog
 
 * Announcing Capella Health Advisor  
-Use Capella Health Advisor to get proactive, actionable recommendations to optimize your operational clusters. Stay informed about your cluster’s health, configuration, performance, and usage trends with insights that help you maximize uptime and efficiency.  
-Take control and use Health Advisor’s ready-to-use suggestions to simplify and improve your cluster’s health management.
+Use Capella Health Advisor to get proactive, actionable recommendations to optimize your operational clusters. Stay informed about your cluster's health, configuration, performance, and usage trends with insights that help you maximize uptime and efficiency.  
+Take control and use Health Advisor's ready-to-use suggestions to simplify and improve your cluster's health management.
 
 To get started and learn more about Health Advisor, see [View Health Advisor](../clusters/monitoring/health-advisor.md).
 
@@ -295,17 +295,17 @@ Capella now includes several new features designed to enhance your experience wi
 
 * Capella iQ User Feedback  
 Users can now provide feedback on the accuracy of iQ results in the Capella UI by clicking the thumbs-up or thumbs-down button. Your feedback directly enhances the quality of SQL++ query generation, making iQ more intuitive and effective for your needs.  
-If you’re new to Capella iQ, see [Get Started with Capella iQ](../get-started/capella-iq/get-started-with-iq.md).
+If you're new to Capella iQ, see [Get Started with Capella iQ](../get-started/capella-iq/get-started-with-iq.md).
 * Cluster Deletion Protection  
-For additional protection for your sensitive clusters, you can block any attempt to delete a cluster by enabling deletion protection in your cluster settings. Deletion protection will also block attempts to delete a cluster’s buckets and any linked App Services. For more information about deletion protection, see [Change Your Deletion Protection](../clusters/modify-database.md#deletion-protection).
+For additional protection for your sensitive clusters, you can block any attempt to delete a cluster by enabling deletion protection in your cluster settings. Deletion protection will also block attempts to delete a cluster's buckets and any linked App Services. For more information about deletion protection, see [Change Your Deletion Protection](../clusters/modify-database.md#deletion-protection).
 * Couchbase Server 7.6.3  
 When you create a new cluster with Couchbase Server Version 7.6 selected, it uses Couchbase Server 7.6.3\. This version includes bug fixes.  
 For more information about this version of Couchbase Server, see [Couchbase Server 7.6.3](../../server/7.6/release-notes/relnotes.md#release-7-6-3-september-2024).
 * Private-only access to clusters  
 > [!IMPORTANT]  
 > The option to create a cluster with restricted public access is available only on request. For more information, [contact Couchbase Support](../support/manage-support.md#create-support-ticket).  
-The restrict public access option is available when creating a [new cluster](../clusters/create-database.md). When your cluster has restrict public access turned on, you can only connect to it through Capella’s private networking options, including [VPC peering](../clouds/private-network.md) and private endpoints.  
-For example, with this option enabled, only your cloud service provider (CSP) network that’s peered with Capella can access your cluster. This configuration allows direct traffic routing from your on-premises network to Capella through your CSP’s network that’s peered with Capella.  
+The restrict public access option is available when creating a [new cluster](../clusters/create-database.md). When your cluster has restrict public access turned on, you can only connect to it through Capella's private networking options, including [VPC peering](../clouds/private-network.md) and private endpoints.  
+For example, with this option enabled, only your cloud service provider (CSP) network that's peered with Capella can access your cluster. This configuration allows direct traffic routing from your on-premises network to Capella through your CSP's network that's peered with Capella.  
 For more information, see [Restrict Public Access](../security/security.md#public-access).
 * GCP Private Service Connections  
 > [!IMPORTANT]  
@@ -320,7 +320,7 @@ To learn more about using GCP Private Service Connections with Capella, see [Add
 * Announcing Capella Free Tier  
 Couchbase Capella now supports a forever free tier offering to replace the 30-day Capella free trials.  
 The free tier allows developers to get started with Capella without any financial commitment, making it ideal for learning, development, and small projects.  
-The free tier is available in perpetuity without being encumbered by time limits so long as the cluster is actively used, making it suitable for exploration and evaluation of new features when they’re available.  
+The free tier is available in perpetuity without being encumbered by time limits so long as the cluster is actively used, making it suitable for exploration and evaluation of new features when they're available.  
 For first time users, [create an account](../get-started/create-account.md) to get started with your free tier operational cluster.
 
 ## [](#august-2024-changelog)August 2024 Changelog
@@ -346,14 +346,14 @@ With the introduction of a new Capella service, Capella Analytics, Couchbase has
 You can now retrieve a SHA-256 checksum to verify your downloaded backup files.  
 For more information about the new checksum feature, see [Using A Downloadable Backup Checksum](../clusters/backup-restore.md#checksum).
 * Redesigned Cluster Deployment Experience  
-Capella’s cluster deployment experience has been redesigned to provide more flexibility and better guidance to get you started. Take advantage of new cluster options to make it easier to deploy exactly what you need:
+Capella's cluster deployment experience has been redesigned to provide more flexibility and better guidance to get you started. Take advantage of new cluster options to make it easier to deploy exactly what you need:
 
   * Use the Single Node cluster option for prototyping and experimentation at a low cost.
   * Use a Multi-Node cluster template and quickly get the ideal configuration for the Services you need.
   * Take full control with the Custom cluster option and choose exactly what you need for an enterprise workload.  
 See your available pre-paid credits at a glance and get a breakdown of estimated costs that updates as you configure your cluster. Choose a specific Availability Zone (AZ) when deploying to a single AZ on AWS. Use Private Links with a single AZ on AWS or Azure. For more information about the new cluster deployment experience, see [Create A Paid Cluster](../clusters/create-database.md).
 * Full Cluster Backups with Cloud Snapshots  
-Easily backup your entire cluster using cloud native snapshot backups. A cluster backup, or cloud snapshot backup, uses your cloud service provider’s storage snapshot service to backup your entire cluster, including all of its buckets, in a single backup. Benefits over individual bucket backups include:
+Easily backup your entire cluster using cloud native snapshot backups. A cluster backup, or cloud snapshot backup, uses your cloud service provider's storage snapshot service to backup your entire cluster, including all of its buckets, in a single backup. Benefits over individual bucket backups include:
 
   * Back up all your data, and indexes — everything in your cluster storage at once, with one backup schedule.
   * Restore all your data, indexes, and other cluster artifacts at the same time, with no need to build indexes.
@@ -362,9 +362,9 @@ Easily backup your entire cluster using cloud native snapshot backups. A cluster
   * Improved RPO and RTO — especially for clusters with large datasets.
   * Supports cluster storage encryption at rest using the Customer Managed Encryption Keys (CMEK) feature.  
 For more information, see [Back Up and Restore An Entire Cluster](../clusters/cloud-snapshots.md).
-* The billing reporting experience has been updated to provide more detailed information about your credit usage among Couchbase Capella’s services, including App Services and clusters. These updates include:
+* The billing reporting experience has been updated to provide more detailed information about your credit usage among Couchbase Capella's services, including App Services and clusters. These updates include:
 
-  * An [overview of your organization’s credit usage](../billing/manage-billing.md#access-billing).
+  * An [overview of your organization's credit usage](../billing/manage-billing.md#access-billing).
   * [Granular filtering and reporting](../billing/manage-billing.md#filter-usage) of all credit usage.
   * [Alerting](../billing/manage-billing-alerts.md) for credit balances and pay-as-you-go usage.
 
@@ -443,8 +443,8 @@ This version includes the following features:
   In Couchbase Server Version 7.6 and later, all sample buckets and buckets that you create include a `_system` scope. When upgrading to a cluster to Couchbase Server 7.6, Capella adds the `_system` scope to your existing buckets.  
   The `_system` scope contains the `_mobile` and `_query` collections that store system documents for related Couchbases services. The `_system` scope and its collections are read-only, and their structure is subject to change without notice. Do not use these collections for other purposes. You cannot drop the `_system` scope or its collections.
   * Changes to the maxTTL setting for collections  
-  In earlier versions, you could only set a collection’s TTL setting when creating the collection. You can now change the TTL setting on a collection after creation.  
-  You can now set a collection’s TTL to `-1` to prevent a bucket’s non-zero TTL setting from causing documents in the collection to expire automatically. This new setting is useful if you want most of the documents in a bucket to automatically expire, but want to prevent the documents in one or more collections from expiring by default.  
+  In earlier versions, you could only set a collection's TTL setting when creating the collection. You can now change the TTL setting on a collection after creation.  
+  You can now set a collection's TTL to `-1` to prevent a bucket's non-zero TTL setting from causing documents in the collection to expire automatically. This new setting is useful if you want most of the documents in a bucket to automatically expire, but want to prevent the documents in one or more collections from expiring by default.  
   For more information, see [Expiration](../../server/current/learn/data/expiration.md).
   * Bucket priority  
   An option is now available to specify relative bucket priority when creating a bucket or updating bucket properties using the Capella Management API. When set, buckets recover in the order specified during failover to improve application availability. This option is only available through the [Capella Management API](../management-api-reference/index.md).
@@ -507,7 +507,7 @@ For more information, see [Request Prompt Action for Cluster Recovery](../billin
 ## [](#october-2023-changelog)October 2023 Changelog
 
 * Hashicorp Vault Plug-in  
-The initial release of [Couchbase Capella Vault plug-in](https://www.hashicorp.com/partners/tech/couchbase#vault) is now available. This plugin is a powerful and secure solution for cluster integration with Hashicorp Vault. It enables seamless and secure access to clusters while leveraging Hashicorp Vault’s robust secret management capabilities.
+The initial release of [Couchbase Capella Vault plug-in](https://www.hashicorp.com/partners/tech/couchbase#vault) is now available. This plugin is a powerful and secure solution for cluster integration with Hashicorp Vault. It enables seamless and secure access to clusters while leveraging Hashicorp Vault's robust secret management capabilities.
 * Expanded Microsoft Azure region availability  
 Couchbase Capella now supports the Switzerland North (Zürich) region.
 * Expanded AWS region availability  
@@ -533,7 +533,7 @@ In addition, users can the edit SDK code samples available in the Playground SDK
 Couchbase Server 7.2 in Capella includes the following features:
 
   * Cost Based Optimizer for Analytics (CBO). The cost-based optimizer for Analytics chooses the optimal plan to execute an Analytics query. The cost-based optimizer gathers and utilizes samples from Analytics collections, and then queries the samples at query planning time to estimate the cost of each operation. The Analytics Service introduces new syntax for managing samples, and provides parameters and hints to help specify the behavior of the cost-based optimizer. See [Cost-Based Optimizer for Analytics](../guides/cbo.md).
-  * Time Series Queries. Time series data is any data that changes over time. It’s usually collected frequently, in regular or irregular intervals, from a device or a process. The Query Service provides a standard format for time series data, which promotes compact storage and quick processing, and introduces a \_TIMESERIES function to query time series data. See [Time Series Data](../n1ql/n1ql-language-reference/time-series.md) and the [\_TIMESERIES Function](../n1ql/n1ql-language-reference/timeseries.md).
+  * Time Series Queries. Time series data is any data that changes over time. It's usually collected frequently, in regular or irregular intervals, from a device or a process. The Query Service provides a standard format for time series data, which promotes compact storage and quick processing, and introduces a \_TIMESERIES function to query time series data. See [Time Series Data](../n1ql/n1ql-language-reference/time-series.md) and the [\_TIMESERIES Function](../n1ql/n1ql-language-reference/timeseries.md).
   * Remote analytics links to Azure Blob Storage and GCP Cloud Storage. See [Analytics Links](../clusters/analytics-service/analytics-links.md).  
 To upgrade an existing cluster to Couchbase Server 7.2, please contact Couchbase Support.
 * Management API v4.0  
@@ -544,7 +544,7 @@ For more information, see [Manage Deployments with the Capella Operational Manag
 ## [](#august-2023-changelog)August 2023 Changelog
 
 * Payment Card Industry Data Security Standard (PCI DSS) attestation of compliance (AoC)  
-Capella’s PCI DSS version 4.0 compliant controls, which have been verified by an independent third-party auditor, help organizations manage and store credit card financial data on the platform.
+Capella's PCI DSS version 4.0 compliant controls, which have been verified by an independent third-party auditor, help organizations manage and store credit card financial data on the platform.
 * CSA STAR  
 Couchbase has received a CSA STAR Level 2 certification for attestation of compliance, following an external security audit of Capella.  
 See the [Cloud Trust Center](https://www.couchbase.com/products/capella/trust/) for additional information on the security controls and compliance of the platform.
@@ -555,7 +555,7 @@ See [Create a Replication Between Capella Clusters](../clusters/xdcr/manage-xdcr
 * On-demand and Scheduled Hibernation of Provisioned Clusters (On/Off)  
 You can now turn off your non-production provisioned clusters when you are not using them, allowing you to save on costs. Turning off your cluster turns off the compute for your cluster but the storage remains — this means that all of your data, schema (buckets, scopes, collections), and indexes remain, as well as your cluster configuration, including users and allow lists. You can turn on and off your cluster [on-demand](../clusters/off-on-database.md) or using a [schedule](../clusters/off-on-schedule.md). For example, you can set a schedule for your development cluster to be on from 9 am to 5 pm on week days and off at all other times. Any linked App Service will also be turned off when the linked cluster is turned off.
 * Capella integration on Vercel marketplace  
-Couchbase Capella is now available on [Vercel’s Integration Marketplace](https://vercel.com/integrations). This seamless integration will allow developers to fully leverage the strengths of both technologies, enabling them to create web applications that are scalable, resilient, and performant.
+Couchbase Capella is now available on [Vercel's Integration Marketplace](https://vercel.com/integrations). This seamless integration will allow developers to fully leverage the strengths of both technologies, enabling them to create web applications that are scalable, resilient, and performant.
 
 ## [](#july-2023-changelog)July 2023 Changelog
 
@@ -575,7 +575,7 @@ Couchbase Capella now supports the GCP Tel Aviv (`me-west1`) region.
 To further enhance cluster performance, reliability, and availability, IOPS and Storage Auto-Expansion have the following changes:
 
   * [Storage Auto-Expansion](../clusters/scale-database.md#Storage-Auto-Expansion) is now mandatory for new clusters in Capella. With Storage Auto-Expansion turned on, Couchbase bills you only for the additional storage capacity when the limit increase triggers.
-  * Capella now automatically adjusts the IOPS to match the [recommended settings](../clusters/scale-database.md#IOPS-Defaults) for the storage capacity of your cluster. You can replace the default IOPS value in the UI with a value that’s higher than the default but not lower.
+  * Capella now automatically adjusts the IOPS to match the [recommended settings](../clusters/scale-database.md#IOPS-Defaults) for the storage capacity of your cluster. You can replace the default IOPS value in the UI with a value that's higher than the default but not lower.
 * Expanded Microsoft Azure region availability  
 Couchbase Capella supports three new Azure regions, including:
 
@@ -595,7 +595,7 @@ For a list of all 14 Azure regions that Capella now supports, see [Microsoft Azu
     * Google Workspaces
     * OneLogin  
   To configure Capella with any of these supported identity providers, see [Add SSO Authentication](../organizations/ui-auth/add-sso-auth.md).
-  * A generic SAML integration feature that allows integration with your SAML 2.0 provider, even if it’s not in the supported identity provider list.  
+  * A generic SAML integration feature that allows integration with your SAML 2.0 provider, even if it's not in the supported identity provider list.  
   > [!NOTE]  
   > While you can configure Capella with other SAML identity providers, Couchbase provides instructions and support for only those identity providers on the supported identity provider list.
 * Backups can now be downloaded from Capella  
@@ -607,7 +607,7 @@ You can now [download backups](../clusters/backup-restore.md#downloading-backups
 Capella provides auditing, where you can download cluster audit logs for inspection or archiving. This feature helps with investigations and meeting organizational security or compliance requirements. Cluster auditing is now available on Capella Azure-hosted clusters with the Enterprise plan.
 
 > [!NOTE]
-> This feature is available on new clusters. Couchbase is upgrading existing clusters so all Azure enterprise customers can use this feature. If auditing isn’t yet available for your cluster, open a support ticket so we can prioritize your cluster upgrade to get you using audit logging with your existing Azure clusters as soon as possible.
+> This feature is available on new clusters. Couchbase is upgrading existing clusters so all Azure enterprise customers can use this feature. If auditing isn't yet available for your cluster, open a support ticket so we can prioritize your cluster upgrade to get you using audit logging with your existing Azure clusters as soon as possible.
 
 * Connect tab in the Capella UI  
 To simplify the developer journey of connecting to Capella, a new Connect tab is now available on Capella UI. The Connect tab has information about the necessary connection parameters, prerequisites, installation instructions, code snippets, full code samples, and examples for different connection methods—​including SDK samples and snippets for three languages, Couchbase Shell, and Couchbase CLI tools for managing the cluster.  
@@ -623,7 +623,7 @@ In addition to being able to create an XDCR replication from your self-managed c
 * Azure Private Link is now available as a network access management option.  
 With private endpoints, you can use [Azure Private Link](https://azure.microsoft.com/en-us/services/private-link/) to connect an Azure VNET to Couchbase Capella. The benefits of this include:
 
-  * Private endpoint traffic doesn’t traverse the Internet, allowing services to function as if you host them within your Azure VNET.
+  * Private endpoint traffic doesn't traverse the Internet, allowing services to function as if you host them within your Azure VNET.
   * Private endpoints provide access to only a specific service or application, unlike [VNET peering](../clouds/private-network.md), which allows access to all resources.
   * Private endpoints support CIDR overlap.
   * Only private endpoints can initiate a connection.  
@@ -643,7 +643,7 @@ Use Memory Only buckets in Capella for use cases such as caching where you need 
 * Server audit logging is now available for GCP-hosted clusters  
 Capella provides [event auditing](../security/auditing.md), where you can download server-logged events for inspection or archiving. This feature helps with investigations and meeting organizational security or compliance requirements. Server auditing is now available on Capella GCP-hosted clusters with the [Enterprise plan](../support/support.md#support-levels).  
 > [!NOTE]  
-> This feature is available on new clusters. Couchbase is upgrading existing clusters so all GCP enterprise customers can use this feature. If GCP auditing isn’t yet available for your cluster, open a support ticket so we can prioritize your cluster upgrade to get you using audit logging with your existing GCP clusters as soon as possible.
+> This feature is available on new clusters. Couchbase is upgrading existing clusters so all GCP enterprise customers can use this feature. If GCP auditing isn't yet available for your cluster, open a support ticket so we can prioritize your cluster upgrade to get you using audit logging with your existing GCP clusters as soon as possible.
 
 ## [](#march-2023-changelog)March 2023 Changelog
 
@@ -678,7 +678,7 @@ For more information, see [Cost Optimized Retention Policy](../clusters/backup-r
     * CyberArk  
   To configure Capella with any of these supported identity providers, see [Add SSO Authentication](../organizations/ui-auth/add-sso-auth.md).
   * Turn off SSO group mapping.  
-  [Turning off SSO group mapping](../organizations/ui-auth/manage-identity-providers.md#group-mapping) lets you manage your SSO users like other Capella users through the People tab and each project’s Collaborators tab. You can change the group mapping setting during or after realm creation.
+  [Turning off SSO group mapping](../organizations/ui-auth/manage-identity-providers.md#group-mapping) lets you manage your SSO users like other Capella users through the People tab and each project's Collaborators tab. You can change the group mapping setting during or after realm creation.
 
 ## [](#november-2022-changelog)November 2022 Changelog
 
@@ -725,7 +725,7 @@ For more information about SSO for Capella, see [Capella UI Authentication | Fed
 * AWS Private Endpoints  
 AWS Private Endpoints allow a Capella cluster to be offered as a Private Endpoint. Private Endpoints have many benefits:
 
-  * Private Endpoint traffic doesn’t traverse the Internet, allowing services to function as if they’re hosted directly within your Amazon VPC.
+  * Private Endpoint traffic doesn't traverse the Internet, allowing services to function as if they're hosted directly within your Amazon VPC.
   * While VPC peering allows access to all resources, Private Endpoints only allow access to a specific service or application.
   * Private Endpoints support CIDR overlap.
   * Only Private Endpoints can initiate a connection.
@@ -757,7 +757,7 @@ The "Create Cluster" screen now makes pricing more clear visually, allowing cust
 Head to the Connect section of the Clusters screen to see SDK connection code for Kotlin, Ruby, and Scala. We have updated all of the other code samples to the latest SDK releases — which are now shipped with the Capella client certificate included, for fuss-free connection.
 * SOC II Type 2  
 We have completed a Service Organization Controls (SOC) 2 Type II compliance audit for Capella. This audit validates that we have been working according to our security and governance controls to effectively maintain the security, confidentiality, and availability of Capella .  
-As a industry standard in data security, SOC 2 evaluates a technology service provider’s ability to securely manage customer data. To achieve a SOC 2 Type II designation, organizations undergo a rigorous audit by an independent third party that analyzes the following trust services criteria: security, availability, and confidentiality.
+As a industry standard in data security, SOC 2 evaluates a technology service provider's ability to securely manage customer data. To achieve a SOC 2 Type II designation, organizations undergo a rigorous audit by an independent third party that analyzes the following trust services criteria: security, availability, and confidentiality.
 
 ## [](#march-2022-changelog)March 2022 Changelog
 
@@ -780,8 +780,8 @@ It is now possible to [change the name of a project](../projects/manage-projects
 * Bucket flush requires confirmation  
 Bucket flushes now require a confirmation step in the UI.
 * Check for CIDR overlap  
-Classless Inter-Domain Routing (CIDR) is specified during the creation of a cluster in Capella and cannot be changed afterward. To ensure that CIDR are unique and avoid overlaps, Capella now checks that CIDR is not already in use within a customer’s tenant.  
-To use the [Private Networking feature](../clouds/private-network.md), where the virtual private cloud (VPC) of a cluster is joined with that of a customer’s application, or when clusters have [XDCR](../clusters/xdcr/xdcr.md) between each other, the CIDR of each VPC cannot overlap with each other. This requirement for CIDR originates from the cloud provider.
+Classless Inter-Domain Routing (CIDR) is specified during the creation of a cluster in Capella and cannot be changed afterward. To ensure that CIDR are unique and avoid overlaps, Capella now checks that CIDR is not already in use within a customer's tenant.  
+To use the [Private Networking feature](../clouds/private-network.md), where the virtual private cloud (VPC) of a cluster is joined with that of a customer's application, or when clusters have [XDCR](../clusters/xdcr/xdcr.md) between each other, the CIDR of each VPC cannot overlap with each other. This requirement for CIDR originates from the cloud provider.
 
 ## [](#30-november-2021-release)30 November 2021 Release
 
@@ -799,9 +799,9 @@ XDCR for Couchbase hosted clusters supports the following:
 | Couchbase Hosted (AWS)              | Bidirectional (←→) | Couchbase Hosted (AWS) |
 | Self-managed Cluster                | Unidirectional (→) | Couchbase Hosted (AWS) |
 * Improved backup and restore  
-Capella’s Backup and Restore feature now provides more granular capabilities and a better user experience. Using an improved user interface, you can now trigger on-demand backups and restores by the bucket. Weekly and daily backup schedules can also be set by the bucket. Previous backups are now more easily accessible, show more detail, and are better manageable with manual deletion. Only users with the Project Owner role can access backups.
+Capella's Backup and Restore feature now provides more granular capabilities and a better user experience. Using an improved user interface, you can now trigger on-demand backups and restores by the bucket. Weekly and daily backup schedules can also be set by the bucket. Previous backups are now more easily accessible, show more detail, and are better manageable with manual deletion. Only users with the Project Owner role can access backups.
 * Email alert notifications  
-Email alerts can now be sent to you ensuring you don’t miss important events in your deployment. Emails include descriptions and visualizations of the event, and a link navigating you directly to the alert in the Capella Control Plane. Alerts are controlled at user account level.
+Email alerts can now be sent to you ensuring you don't miss important events in your deployment. Emails include descriptions and visualizations of the event, and a link navigating you directly to the alert in the Capella Control Plane. Alerts are controlled at user account level.
 
 ## [](#25-november-2021-release)25 November 2021 Release
 
@@ -815,7 +815,7 @@ All new clusters hosted by Couchbase now use [Couchbase Server 7.0.2](#7.0@serve
 ## [](#19-october-2021-release)19 October 2021 Release
 
 * Couchbase Cloud is now Couchbase Capella  
-Going forward, Couchbase’s database-as-a-service (DBaaS) will be known as Couchbase Capella, previously Couchbase Cloud. Capella adds the ability to deploy our DBaaS in Couchbase’s Cloud Account, making it easier and faster to get started.
+Going forward, Couchbase's database-as-a-service (DBaaS) will be known as Couchbase Capella, previously Couchbase Cloud. Capella adds the ability to deploy our DBaaS in Couchbase's Cloud Account, making it easier and faster to get started.
 * Free self-service trial  
 Capella now offers the ability to securely deploy Couchbase Server using an entirely Couchbase-managed cloud powered by AWS. This free self-service trial lets you sign up in seconds and deploy a cluster in under three minutes. The trial also includes 50GB of storage. [Sign up](https://cloud.couchbase.com/sign-up) and learn how to [get started](../get-started/create-account.md).
 * Couchbase 7.0 enhancements  
@@ -855,10 +855,10 @@ The Couchbase Cloud REST APIs, currently in restricted BETA, enable you to autom
 > [!NOTE]  
 > The use of these APIs in production applications is not supported. Refer to the documentation for more information.
 * Improved in-product Support UX  
-We’ve integrated the support workflow with the core application so you can perform actions such as the following from the Couchbase Cloud Control Plane:
+We've integrated the support workflow with the core application so you can perform actions such as the following from the Couchbase Cloud Control Plane:
 
   * Close opened tickets
-  * Filter tickets using filters like ‘all, open, or closed’
+  * Filter tickets using filters like 'all, open, or closed'
   * View assigned priority for tickets
   * Perform free-text searching across tickets
   * Upload multiple files for a ticket
@@ -910,11 +910,11 @@ The September release of Couchbase Cloud adds more features to the Search Servic
     * [Analyzers](../search/create-search-indexes.md#creating-analyzers)
     * [Custom Filters](../search/create-search-indexes.md#adding-custom-filters)
     * [Date/Time Parsers](../search/create-search-indexes.md#date-time-parsers)
-  * When making configuration changes to a Full Text Index, the changes are now stored in browser memory until definitively submitted using the new **Save Index** button on the index’s [configuration page](../search/create-search-indexes.md#modify-full-text-index). This ensures that the index is only rebuilt once all desired configuration changes have been made.
+  * When making configuration changes to a Full Text Index, the changes are now stored in browser memory until definitively submitted using the new **Save Index** button on the index's [configuration page](../search/create-search-indexes.md#modify-full-text-index). This ensures that the index is only rebuilt once all desired configuration changes have been made.
   * When [searching](../search/create-search-indexes.md#query-full-text-index) a Full Text Index via the Couchbase Cloud UI, search results are now enhanced with highlighting, scoring, pagination, timeouts, consistency levels, consistency vectors, viewing docs from the result set, and time taken for execution.
-  * The cluster’s **Tools > Full Text Search** tab in the Couchbase Cloud UI [now displays](../search/create-search-indexes.md#index-summary) document counts and indexing progress for Full Text Indexes.
+  * The cluster's **Tools > Full Text Search** tab in the Couchbase Cloud UI [now displays](../search/create-search-indexes.md#index-summary) document counts and indexing progress for Full Text Indexes.
   * Statistics can be [viewed](../search/create-search-indexes.md#view-full-text-index-statistics) for individual Full Text Indexes via the Couchbase Cloud UI.
-  * Relevant documentation links have been added to various areas of the cluster’s **Tools > Full Text Search** tab in the Couchbase Cloud UI.
+  * Relevant documentation links have been added to various areas of the cluster's **Tools > Full Text Search** tab in the Couchbase Cloud UI.
 * Introduces proactive alerts within the Couchbase Cloud UI  
 When an issue is automatically detected within a Couchbase Cloud-managed cluster, the Couchbase Cloud UI displays the details of the issue and enables you to be better informed about the overall health of the cluster and provides an option to contact Support with the details of the issue.
 * User management

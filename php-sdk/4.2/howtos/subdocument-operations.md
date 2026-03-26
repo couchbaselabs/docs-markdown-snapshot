@@ -3,7 +3,7 @@ title: Sub-Document Operations
 description: <em>Sub-document</em> operations can be used to efficiently access
   <em>parts</em> of documents.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@php-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -117,7 +117,7 @@ $result = $collection->mutateIn("customer123", [
 // SubdocPathExistsError
 ```
 
-Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutate-in_ API. Here’s an example of one which replaces one path and removes another.
+Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutate-in_ API. Here's an example of one which replaces one path and removes another.
 
 ```php
 $result = $collection->mutateIn("customer123", [

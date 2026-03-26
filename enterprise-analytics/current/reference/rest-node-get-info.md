@@ -3,7 +3,7 @@ title: Getting information about Nodes
 description: information about a cluster's individual nodes can be retrieved, by
   means of the REST API.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-node-get-info.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:reference:rest-node-get-info.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:enterprise-analytics:reference:rest-node-get-info.adoc[]
 
 # Getting information about Nodes
 
-> information about a cluster’s individual nodes can be retrieved, by means of the REST API. 
+> information about a cluster's individual nodes can be retrieved, by means of the REST API. 
 
 ## [](#http-method-and-uri)HTTP Method and URI
 

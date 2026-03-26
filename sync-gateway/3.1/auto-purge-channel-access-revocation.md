@@ -2,7 +2,7 @@
 title: Auto-Purge on Channel Access Revocation
 description: Auto-purge behavior on loss of access to document channels
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/auto-purge-channel-access-revocation.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::auto-purge-channel-access-revocation.adoc[]
 ---
 
@@ -35,7 +35,7 @@ Sync Gateway will take the configured action whenever this happens. By default:
 > 
 > In _Sync Gateway_ 2.x these documents remain in the local database on channel access loss.
 
-By default, when a user loses access to a channel, the next Couchbase Lite Pull replication auto-purges all documents in the channel from local Couchbase Lite databases (on devices belonging to the user) **unless** they belong to any of the user’s other channels — see: [Couchbase Lite Replication — Auto Purge on Channel Access Revocation](../../couchbase-lite/current/android/replication.md#anchor-auto-purge-on-revoke).
+By default, when a user loses access to a channel, the next Couchbase Lite Pull replication auto-purges all documents in the channel from local Couchbase Lite databases (on devices belonging to the user) **unless** they belong to any of the user's other channels — see: [Couchbase Lite Replication — Auto Purge on Channel Access Revocation](../../couchbase-lite/current/android/replication.md#anchor-auto-purge-on-revoke).
 
 ## [](#lbl-isgr)Inter-Sync Gateway
 
@@ -48,7 +48,7 @@ By default, documents are **not** auto purged on the active sync gateway even if
 
 You can opt-in to auto-purge behavior using the replicator level option `purge_on_removal` in the REST API — see: [replication-purge\_on\_removal](configuration-schema-isgr.md#replication-purge%5Fon%5Fremoval).
 
-Documents will then **be** auto-purged — on active Sync Gateway nodes that have opted-in — if they do not belong to **any** of the replicating user’s \[[1](#%5Ffootnotedef%5F1 "View footnote.")\] channels — see: [Example 1](#lbl-isgr-revoke-behaviors).
+Documents will then **be** auto-purged — on active Sync Gateway nodes that have opted-in — if they do not belong to **any** of the replicating user's \[[1](#%5Ffootnotedef%5F1 "View footnote.")\] channels — see: [Example 1](#lbl-isgr-revoke-behaviors).
 
 If you turn it on during an existing replication, **no** revocations occurring prior to that point are retro-actively purged. To have this done, execute a reset for ISGR (on Couchbase Lite a reset checkpoint must be carried out).
 
@@ -62,7 +62,7 @@ Here the Active Sync Gateway (Local) is running as an admin user with `purge_on_
 | ----------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Pull        | User revoked access to channel                                                | Previously synced documents are auto purged on local                                                                                                                       |
 | Push        | User revoked access to channel                                                | Revocation has no impact during a 'push'. No purging will occur.                                                                                                           |
-| PushAndPull | User revoked access to channelSync Function includes requireAccess(“channel”) | When access is revoked on remote, the previously synced documents for User2 are auto-purged on local. Local changes continue to be pushed to remote but rejected by remote |
+| PushAndPull | User revoked access to channelSync Function includes requireAccess("channel") | When access is revoked on remote, the previously synced documents for User2 are auto-purged on local. Local changes continue to be pushed to remote but rejected by remote |
 
 ### [](#access-regained)Access Regained
 
@@ -79,8 +79,8 @@ Here the Active Sync Gateway (Local) is running as an admin user with `purge_on_
 | Direction   | Passive Sync Gateway (Remote)                                                              | Expected Sync behavior                                                                                                                                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Pull        | User REASSIGNED access to channel Sync Function includes requireAccess( reassignedChannel) | Previously purged documents are automatically pulled by local                                                                                                                                                                                   |
-| Push        | User REASSIGNED access to channel Sync Function includes requireAccess(“channel”)          | Config option has no impact. Local changes previously rejected by remote are pushed again with reset action on replicator. Subsequent changes to previously rejected documents are automatically pushed up.                                     |
-| PushAndPull | User REASSIGNED access to channel Sync Function includes requireAccess(“channel”)          | Documents auto purged on local are automatically pulled again Local changes previously rejected by remote can be pushed again with reset action on replicator. Subsequent changes to previously rejected documents are automatically pushed up. |
+| Push        | User REASSIGNED access to channel Sync Function includes requireAccess("channel")          | Config option has no impact. Local changes previously rejected by remote are pushed again with reset action on replicator. Subsequent changes to previously rejected documents are automatically pushed up.                                     |
+| PushAndPull | User REASSIGNED access to channel Sync Function includes requireAccess("channel")          | Documents auto purged on local are automatically pulled again Local changes previously rejected by remote can be pushed again with reset action on replicator. Subsequent changes to previously rejected documents are automatically pushed up. |
 
 ## [](#ex-sync-function-auto-purge)Sync Function Examples
 
@@ -97,7 +97,7 @@ function (doc, oldDoc, meta) {
 
 Here the function then calls the `channel` and passes in the name of the collection `(CollectionsName)` as an argument.
 
-By default, every document in the collection is automatically assigned to a channel with the same name as the collection. This system automatically creates a channel with the collection’s name. The assignment of all documents to the collection channel is functionally similar to assigning them to the [Star Channel](#2.7@sync-gateway-channels.adoc#star-channel).
+By default, every document in the collection is automatically assigned to a channel with the same name as the collection. This system automatically creates a channel with the collection's name. The assignment of all documents to the collection channel is functionally similar to assigning them to the [Star Channel](#2.7@sync-gateway-channels.adoc#star-channel).
 
 To override this, use a custom sync function or a Specified Default Sync Function.
 

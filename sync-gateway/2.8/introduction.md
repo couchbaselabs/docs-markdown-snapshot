@@ -3,7 +3,7 @@ title: Introduction
 description: A short introduction to <em>Couchbase's Sync Gateway</em> and how
   to get started using it.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/introduction.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::introduction.adoc[]
 ---
 
@@ -12,8 +12,8 @@ link: xref:2.8@sync-gateway::introduction.adoc[]
 
 # Introduction
 
-> A short introduction to _Couchbase’s Sync Gateway_ and how to get started using it.  
-> This is **Step 1** in Sync Gateway’s Start Here! topic group.
+> A short introduction to _Couchbase's Sync Gateway_ and how to get started using it.  
+> This is **Step 1** in Sync Gateway's Start Here! topic group.
 
 Related _Start Here!_ topics: [Prepare](#sync-gateway::get-started-prepare.adoc) | [Install](#sync-gateway::get-started-install.adoc) | [Verify](#sync-gateway::get-started-verify-install.adoc)
 

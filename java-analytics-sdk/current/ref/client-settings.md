@@ -2,7 +2,7 @@
 title: Client Settings
 description: Change the SDK's behavior by configuring client settings.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:java-analytics-sdk:ref:client-settings.adoc[]
 ---
 
@@ -11,13 +11,13 @@ link: xref:java-analytics-sdk:ref:client-settings.adoc[]
 
 # Client Settings
 
-> Change the SDK’s behavior by configuring client settings. 
+> Change the SDK's behavior by configuring client settings. 
 
 Client settings can be configured by writing code, or by including parameters in the connection string.
 
 ## [](#configure-with-code)Configure with Code
 
-To configure SDK client settings by writing code, provide a configuration callback when creating the `Cluster` instance. Here’s an example that configures several settings by passing the optional third argument to `Cluster.newInstance()`:
+To configure SDK client settings by writing code, provide a configuration callback when creating the `Cluster` instance. Here's an example that configures several settings by passing the optional third argument to `Cluster.newInstance()`:
 
 ```java
 Cluster cluster = Cluster.newInstance(
@@ -38,10 +38,10 @@ Cluster cluster = Cluster.newInstance(
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | The same callback pattern extends to the sub-builders for different categories. For example, ClusterOptions.timeout() takes a Consumer<TimeoutOptions>.                |
 | **3** | The \*Options classes are mutable builders. Every method returns the same builder, allowing for method call chaining.                                                  |
-| **4** | Most users won’t need to configure security settings, but it’s shown here for completeness.                                                                            |
+| **4** | Most users won't need to configure security settings, but it's shown here for completeness.                                                                            |
 
 > [!TIP]
-> You don’t need to call every method in the above example; call only the methods where you want to override the client setting’s default value.
+> You don't need to call every method in the above example; call only the methods where you want to override the client setting's default value.
 
 ## [](#configure-with-connection-string)Configure with Connection String Parameters
 
@@ -60,7 +60,7 @@ If the same client setting is specified both in code and in the connection strin
 
 ### [](#durations)Durations
 
-For client settings that represent durations, the connection string parameter’s value is specified using the following format:
+For client settings that represent durations, the connection string parameter's value is specified using the following format:
 
 > A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms", "-1.5h" or "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
 
@@ -89,7 +89,7 @@ Configuring timeouts gives you control over how long the SDK waits for operation
 
 The SDK is secure by default. Unless configured to trust a different root certificate, it trusts only the Couchbase Capella certificate authority whose root certificate is bundled with the SDK.
 
-You probably won’t need to configure the SDK’s security options unless:
+You probably won't need to configure the SDK's security options unless:
 
 * You have special security compliance requirements that restrict the set of allowed TLS cipher suites.
 * You are a Couchbase employee working with an internal non-production hosted service, or a local server installation.
@@ -97,7 +97,7 @@ You probably won’t need to configure the SDK’s security options unless:
 | Connection string parameter     | Default value                                                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | security.cipher\_suites         | Empty string / empty list (SDK uses any cipher suite supported by the JVM) | Limits the set of cipher suites the SDK may use when negotiating secure connections to the server. Leave this at the default value unless you have special security compliance requirements. When specifying this as a connection string parameter, the value is a comma-delimited list with no whitespace. Consult your JVM reference documentation for a list of supported cipher suite names.                                            |
-| security.trust\_only\_non\_prod | N/A                                                                        | Setting this to true enables the SDK to connect securely to the internal Couchbase non-production hosted service, which uses a different certificate authority than the production site. You probably won’t need to do this unless you are a Couchbase employee.                                                                                                                                                                            |
+| security.trust\_only\_non\_prod | N/A                                                                        | Setting this to true enables the SDK to connect securely to the internal Couchbase non-production hosted service, which uses a different certificate authority than the production site. You probably won't need to do this unless you are a Couchbase employee.                                                                                                                                                                            |
 | security.trust\_only\_pem\_file | N/A                                                                        | Filesystem path of the PEM-encoded root certificate(s) to trust instead of the Couchbase Capella certificate authority (CA) root certificate bundled with the SDK. In the unlikely event the Couchbase Capella CA is compromised, you can use this to point the SDK at an updated CA certificate without having to immediately upgrade to a new version of the SDK (which will include the updated CA certificate and trust it by default). |
 
 #### [](#danger-zone)Danger Zone
@@ -105,13 +105,13 @@ You probably won’t need to configure the SDK’s security options unless:
 Finally, there is one security option whose use is strongly discouraged in nearly all circumstances. Setting `security.disable_server_certificate_verification` to `true` allows the SDK to connect to any server, regardless of whether the server presents a certificate trusted by the SDK.
 
 > [!CAUTION]
-> Disabling server certificate verification is roughly equivalent to sending your credentials and all data over an insecure connection. Don’t do this unless connecting to a server running locally on your development machine.
+> Disabling server certificate verification is roughly equivalent to sending your credentials and all data over an insecure connection. Don't do this unless connecting to a server running locally on your development machine.
 
 ### [](#deserializer)Deserializer
 
 The SDK uses a component called a `Deserializer` to convert query result rows into Java objects. The default implementation is `JacksonDeserializer`, a thin wrapper around a [Jackson](https://github.com/FasterXML/jackson) `ObjectMapper`.
 
-By default, a Jackson `ObjectMapper` throws an exception if it encounters a JSON field that does not match the structure of the target class. Here’s an example that shows how to configure the `ObjectMapper` with different behavior:
+By default, a Jackson `ObjectMapper` throws an exception if it encounters a JSON field that does not match the structure of the target class. Here's an example that shows how to configure the `ObjectMapper` with different behavior:
 
 ```java
 ObjectMapper mapper = JsonMapper.builder()
@@ -132,4 +132,4 @@ Cluster cluster = Cluster.connect(
 This cluster option specifies the _default_ deserializer. You can override the deserializer for a specific query by setting the `deserializer` query option when executing the query.
 
 > [!TIP]
-> If you prefer not to work with the `Deserializer` interface, you can always call `row.bytes()` to get a row’s content as a raw byte array. Then you can process the byte array however you like.
+> If you prefer not to work with the `Deserializer` interface, you can always call `row.bytes()` to get a row's content as a raw byte array. Then you can process the byte array however you like.

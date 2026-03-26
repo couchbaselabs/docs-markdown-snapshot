@@ -3,7 +3,7 @@ title: Run a Function on Data Change
 description: Use the Eventing Service to handle data changes that happen when
   code is executed in response to document mutations or as scheduled by Timers.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-overview.adoc[]
 ---
 
@@ -49,7 +49,7 @@ You can access Eventing Functions by going to **Data Tools** **Eventing**. The E
 | Source Scope      | The source scope of the events or mutations.                                                                                                                                                                                                                                                                    |
 | Source Collection | The source collection of the events or mutations.                                                                                                                                                                                                                                                               |
 | Log               | [View and debug with Function Logs.](manage-eventing-functions.md#function-logs)                                                                                                                                                                                                                                |
-| View JavaScript   | [View and edit the Function’s JavaScript.](manage-eventing-functions.md#edit-javascript)                                                                                                                                                                                                                        |
-| Settings          | [View and edit the Function’s settings.](manage-eventing-functions.md#edit-settings)                                                                                                                                                                                                                            |
+| View JavaScript   | [View and edit the Function's JavaScript.](manage-eventing-functions.md#edit-javascript)                                                                                                                                                                                                                        |
+| Settings          | [View and edit the Function's settings.](manage-eventing-functions.md#edit-settings)                                                                                                                                                                                                                            |
 | Status            | The status of the Function. The status can be either in a stable state of **Deployed**, **Undeployed**, or **Paused**, or in a transitory state of **Deploying**, **Undeploying**, or **Pausing**.                                                                                                              |
 | More options (⋮)  | Used to [deploy](deploy-eventing-functions.md#deploy-function), [undeploy](deploy-eventing-functions.md#undeploy-function), [export](manage-eventing-functions.md#export-function), [pause](manage-eventing-functions.md#pause-function), or [delete](manage-eventing-functions.md#delete-function) a Function. |

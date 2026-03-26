@@ -4,7 +4,7 @@ description: You can add or remove the Data Service on an existing node of a
   cluster by adding or removing the node from the cluster, and then completing
   the addition or removal of the node by running a rebalance operation.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/manage-data-service-and-rebalance.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-nodes/manage-data-service-and-rebalance.adoc[]
 ---
 
@@ -39,7 +39,7 @@ To remove the Data Service from an existing node of a cluster:
 2. Then [add the node](#manage:manage-nodes/add-node-and-rebalance.html) back to the cluster after disabling the Data Service.
 
 > [!NOTE]
-> During the node removal operation, if there are other services on the node that you’re removing for the Data Service reconfiguration, and you do not want those services to be impacted when the node is removed from the cluster, you may need to add those services to another node temporarily. You can also add a new node temporarily with those services enabled.
+> During the node removal operation, if there are other services on the node that you're removing for the Data Service reconfiguration, and you do not want those services to be impacted when the node is removed from the cluster, you may need to add those services to another node temporarily. You can also add a new node temporarily with those services enabled.
 
 ## [](#see-also)See Also
 

@@ -2,7 +2,7 @@
 title: Security Management Overview
 description: Enterprise Analytics can be rendered highly secure.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-security/security-management-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:manage-security/security-management-overview.adoc[]
 ---
 
@@ -35,7 +35,7 @@ Optionally, the [checklist](../%5Fattachments/manage-security/cb7SecurityCheckli
 
 | Access control               | Create unique user accounts for each individual and application that accesses the platform.  Implement Role-Based Access Control and assign roles following a principle of least privilege  Leverage strongest available authentication mechanisms  Ensure secure storage and transfer of credentials or certificates  Implement Multi-Factor Authentication for individual access |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Secure Network Communication | Replace self-signed certificates with external CA certificates  Ensure all applications are using encrypted connections only and block insecure ports  Enforce TLS with ‘strict’ encryption setting to encrypt all network traffic internally and externally.  Only Enable IP Address Families as needed                                                                           |
+| Secure Network Communication | Replace self-signed certificates with external CA certificates  Ensure all applications are using encrypted connections only and block insecure ports  Enforce TLS with 'strict' encryption setting to encrypt all network traffic internally and externally.  Only Enable IP Address Families as needed                                                                           |
 | Secure Data Storage          | Deploy encryption at rest  Implement (FLE) Field-level Encryption  Configure Secrets Management                                                                                                                                                                                                                                                                                    |
 | Limit Data Exposure          | Remove unnecessary services and software  Regularly scan for and protect sensitive data  Control geographic distribution of data  Leverage log redaction when collecting and transferring logs  Deploy a comprehensive DR strategy utilizing offsite backups                                                                                                                       |
 | Auditing                     | Enable and configure auditing  Review audit logs manually and programmatically for anomalies                                                                                                                                                                                                                                                                                       |

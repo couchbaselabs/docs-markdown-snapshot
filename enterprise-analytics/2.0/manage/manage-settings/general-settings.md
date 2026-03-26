@@ -4,7 +4,7 @@ description: <em>General</em> settings allow configuration of <em>cluster
   name</em>, <em>memory quotas</em>, <em>storage modes</em>, and <em>node
   availability</em> for the cluster.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-settings/general-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:manage:manage-settings/general-settings.adoc[]
 ---
 
@@ -283,7 +283,7 @@ By means of the REST API, both _rebalance retries_ and _maximum concurrent moves
 
 #### [](#rebalance-retries-via-rest)Rebalance Retries via REST
 
-To obtain the cluster’s current settings for _rebalance retries_ by means of the REST API, use the `GET /settings/retryRebalance` HTTP method and URI, as follows:
+To obtain the cluster's current settings for _rebalance retries_ by means of the REST API, use the `GET /settings/retryRebalance` HTTP method and URI, as follows:
 
 ```shell
 curl -X GET -u Administrator:password \

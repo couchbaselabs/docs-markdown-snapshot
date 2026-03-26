@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::release-notes.adoc[]
 ---
 
@@ -103,9 +103,9 @@ Release 2.8.2 fixes an issue that could result in Sync Gateway entering an infin
 
 Metrics REST API
 
-Release 2.8.1 sees the transition to general availability of Couchbase Sync Gateway’s Metrics REST API, which was introduced as a _developer preview_ in release 2.8.0.
+Release 2.8.1 sees the transition to general availability of Couchbase Sync Gateway's Metrics REST API, which was introduced as a _developer preview_ in release 2.8.0.
 
-This feature exposes Sync Gateway’s extensive stats in both JSON and Prometheus-compatible format. For more on how to enable the integration of Sync Gateway’s metrics with one of the most popular monitoring and alerting solutions — see: [Prometheus Integration](../current/deploy/stats-prometheus.md) and [Metrics REST API](../current/rest-api/rest-api-metrics.md).
+This feature exposes Sync Gateway's extensive stats in both JSON and Prometheus-compatible format. For more on how to enable the integration of Sync Gateway's metrics with one of the most popular monitoring and alerting solutions — see: [Prometheus Integration](../current/deploy/stats-prometheus.md) and [Metrics REST API](../current/rest-api/rest-api-metrics.md).
 
 ### [](#improvements-281)Enhancements
 
@@ -159,13 +159,13 @@ It is now possible to use the server connection string to override the current h
 
 #### [](#inter-syncgateway-replication)Inter-Sync Gateway Replication
 
-Couchbase Sync Gateway’s _[Inter-Sync Gateway Replication![glossary icon](images/icons/glossaryIconImage2.png)](glossary.md#inter-sync-gateway-replication)_ feature supports _[cloud-to-edge![glossary icon](images/icons/glossaryIconImage2.png)](glossary.md#cloud-to-edge) synchronization_ use cases, where data changes must be synchronized between a centralized cloud cluster and a large number of edge clusters whilst still enforcing fine grained access control. This is an increasingly important enterprise-level requirement.
+Couchbase Sync Gateway's _[Inter-Sync Gateway Replication![glossary icon](images/icons/glossaryIconImage2.png)](glossary.md#inter-sync-gateway-replication)_ feature supports _[cloud-to-edge![glossary icon](images/icons/glossaryIconImage2.png)](glossary.md#cloud-to-edge) synchronization_ use cases, where data changes must be synchronized between a centralized cloud cluster and a large number of edge clusters whilst still enforcing fine grained access control. This is an increasingly important enterprise-level requirement.
 
 Read More . . . [Inter-Sync Gateway Replication](../current/sync/sync-inter-syncgateway-overview.md)
 
 #### [](#prometheus-monitoring-support-developer-preview)Prometheus Monitoring Support (Developer Preview)
 
-This release gives developers the chance to try-out Couchbase Sync Gateway’s new metrics API, which exposes stats in a Prometheus compatible format. This enables the integration of Sync Gateway’s metrics with one of the most popular monitoring and alerting solutions, without resorting to external data transformation.
+This release gives developers the chance to try-out Couchbase Sync Gateway's new metrics API, which exposes stats in a Prometheus compatible format. This enables the integration of Sync Gateway's metrics with one of the most popular monitoring and alerting solutions, without resorting to external data transformation.
 
 Read More . . . [Metrics REST API](../current/rest-api/rest-api-metrics.md)
 
@@ -245,13 +245,13 @@ See: [Admin REST API](../current/rest-api/rest-api-admin.md)
 * [CBG-1072](https://issues.couchbase.com/browse/CBG-1072) — CAS race can result in unordered recentSequences
 * [CBG-983](https://issues.couchbase.com/browse/CBG-983) — \_all\_docs with keys parameter not returning revID
 * [CBG-951](https://issues.couchbase.com/browse/CBG-951) — Deleted documents should set \_deleted:true for import filter function
-* [CBG-946](https://issues.couchbase.com/browse/CBG-946) — Repeated change entries on access grant to doc’s previous channel
+* [CBG-946](https://issues.couchbase.com/browse/CBG-946) — Repeated change entries on access grant to doc's previous channel
 * [CBG-926](https://issues.couchbase.com/browse/CBG-926) — User name not being logged for initial HTTP request
 * [CBG-819](https://issues.couchbase.com/browse/CBG-819) — Generate empty delta as {} instead of null
 * [CBG-812](https://issues.couchbase.com/browse/CBG-812) — Running compact when UseViews=true causes an infinite loop
 * [CBG-744](https://issues.couchbase.com/browse/CBG-744) — OldDoc body in sync function for tombstone resurrections does not contain \_deleted=true
 * [CBG-743](https://issues.couchbase.com/browse/CBG-743) — Doc body in sync function contains \_deleted=false
-* [CBG-741](https://issues.couchbase.com/browse/CBG-741) — 403 Attachment’s doc not being synced during CBL replication
+* [CBG-741](https://issues.couchbase.com/browse/CBG-741) — 403 Attachment's doc not being synced during CBL replication
 * [CBG-731](https://issues.couchbase.com/browse/CBG-731) — Channels query performance degradation when using limit
 * [CBG-727](https://issues.couchbase.com/browse/CBG-727) — Panic when connecting to non-standard memcached port using couchbase(s):// scheme
 * [CBG-695](https://issues.couchbase.com/browse/CBG-695) — Alternate addresses are always used if defined instead of applying heuristic
@@ -277,7 +277,7 @@ The functionality of SG Replicate remains unchanged, unless explicitly stated in
 
 [CBG-904](https://issues.couchbase.com/browse/CBG-904) — The SG Replicate configuration method is deprecated at version 2.8.
 
-Replications configured at the configuration file’s root level will continue to function, but you should configure new replications under the appropriate database using the `databases.{dbname}.replications.{replication_id}` property.
+Replications configured at the configuration file's root level will continue to function, but you should configure new replications under the appropriate database using the `databases.{dbname}.replications.{replication_id}` property.
 
 ##### [](#rest-api-deprecations)REST API Deprecations
 
@@ -294,7 +294,7 @@ Support for Microsoft Windows 2012 (64-bit) is deprecated
 
 ##### [](#minimum-version-for-inter-sync-gateway-replication)Minimum Version for Inter-Sync Gateway Replication
 
-In order to support inter-Sync Gateway replication’s new features (2.8), all nodes in the active cluster must be running Sync Gateway 2.8+.
+In order to support inter-Sync Gateway replication's new features (2.8), all nodes in the active cluster must be running Sync Gateway 2.8+.
 
 ##### [](#replication-between-two-remote-databases)Replication between two remote databases
 
@@ -312,7 +312,7 @@ Replication between two remote databases is no longer supported. However, root l
 
 ### [](#upgrading)Upgrading
 
-In order to support inter-Sync Gateway replication’s new features (2.8), all nodes in the active cluster must be running Sync Gateway 2.8+.
+In order to support inter-Sync Gateway replication's new features (2.8), all nodes in the active cluster must be running Sync Gateway 2.8+.
 
 The version of inter-Sync Gateway replication useable depends on the combination of Sync Gateway versions running on the active and passive nodes — see: [Example 1](#availability-of-sg-replicate-versions).
 

@@ -4,7 +4,7 @@ description: The CURL() function implements a subset of cURL functionality and
   enables SQL++ queries to interact and integrate with external JSON data
   sources available over HTTP/REST.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/curl.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/curl.adoc[]
 ---
 
@@ -59,7 +59,7 @@ __Table 2\. Transfer-related Options__
 
 ### [](#return-value)Return Value
 
-The CURL() function returns either a single JSON object, or multiple objects in an array. These objects are returned by the HTTP/REST service at the URL. Note that the result is expected to be JSON, and the function itself doesn’t do any additional processing. However, if the query parameter `pretty=true`, then the data received is in pretty format. If the returned data from the URL is not a well defined JSON, it may result in errors or undefined behavior. The errors returned by CURL (such as moved permanently) can be in different formats, like HTML, XML, plain strings, and can be a large blob. The SQL++ function returns a "Not a JSON endpoint" error when it returns any other format other than JSON.
+The CURL() function returns either a single JSON object, or multiple objects in an array. These objects are returned by the HTTP/REST service at the URL. Note that the result is expected to be JSON, and the function itself doesn't do any additional processing. However, if the query parameter `pretty=true`, then the data received is in pretty format. If the returned data from the URL is not a well defined JSON, it may result in errors or undefined behavior. The errors returned by CURL (such as moved permanently) can be in different formats, like HTML, XML, plain strings, and can be a large blob. The SQL++ function returns a "Not a JSON endpoint" error when it returns any other format other than JSON.
 
 ## [](#security)Security
 
@@ -67,7 +67,7 @@ It is important to understand the potential security implications in using the `
 
 In addition to the security options, a Full Administrator can also list URLs and REST endpoints that can be accessed by the `CURL()` function. The `CURL()` function can access URLs that satisfy a prefix match, which means only URLs specified on the list or the prefixes.
 
-Consider the following use case where a deployment of Couchbase Server and Mobile Sync Gateway exist on the same machine, and the user has access to the query service but not the Sync Gateway admin endpoint. Let’s assume that the user has been granted QUERY\_EXTERNAL\_ACCESS role by the Full Administrator. This means that the user can write queries using the CURL() function and potentially use CURL to access the Mobile Sync Gateway admin endpoint. To avoid this, the Full Administrator can create an access list for CURL() access and add the Admin endpoint of Sync Gateway to the `disallowed_urls` list.
+Consider the following use case where a deployment of Couchbase Server and Mobile Sync Gateway exist on the same machine, and the user has access to the query service but not the Sync Gateway admin endpoint. Let's assume that the user has been granted QUERY\_EXTERNAL\_ACCESS role by the Full Administrator. This means that the user can write queries using the CURL() function and potentially use CURL to access the Mobile Sync Gateway admin endpoint. To avoid this, the Full Administrator can create an access list for CURL() access and add the Admin endpoint of Sync Gateway to the `disallowed_urls` list.
 
 For more details on creating the access list and the structure of the access list file, see [Creating an Access List for CURL()](#curl-access-list).
 
@@ -154,7 +154,7 @@ The above example is invalid, because the first argument `b.url` refers to the a
 2. [Use Google Maps API to extract geometry (address and geographic location bounds) of a given street address](#Ex2)
 3. [Join two keyspaces on different Couchbase clusters](#Ex3)
 4. [Full text search (FTS) in a SQL++ query](#Ex4)
-5. [Use Yahoo Finance API in a WHERE clause to find a stock’s lowest value for the day](#Ex5)
+5. [Use Yahoo Finance API in a WHERE clause to find a stock's lowest value for the day](#Ex5)
 6. [Use CURL() to allow two URLs and disallow one URL](#Ex6)
 7. [Use CURL() to allow all access to all endpoints](#Ex7)
 8. [Use CURL() to turn off access to all endpoints and clear the Allowed and Disallowed lists](#Ex8)
@@ -371,7 +371,7 @@ Example 3\. Join two keyspaces on different Couchbase clusters
 
 This SQL++ query shows how to JOIN two keyspaces on different Couchbase clusters. The JOIN is the same as is explained in the section on the [JOIN Clause](join.md), but the left and right side keyspaces are in two different Couchbase clusters.
 
-* The left side keyspace `route` is from the cluster running on `hostname`. If you don’t have a second cluster running, you should substitute the `hostname` with 127.0.0.1 or the IP-address of the local cluster.
+* The left side keyspace `route` is from the cluster running on `hostname`. If you don't have a second cluster running, you should substitute the `hostname` with 127.0.0.1 or the IP-address of the local cluster.
 * The right side keyspace `airline` is from the local cluster.
 
 For this example, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
@@ -447,9 +447,9 @@ Results
 ]
 ```
 
-Example 5\. Use Yahoo Finance API in a WHERE clause to find a stock’s lowest value for the day
+Example 5\. Use Yahoo Finance API in a WHERE clause to find a stock's lowest value for the day
 
-The following example uses the `CURL()` function with a WHERE clause. It uses the Yahoo finance API to find the day’s low value (i.e `DaysLow`) of HDP stock and finds all the documents in the `users` keyspace that have `min_threshold` attribute value greater than the DaysLow stock value.
+The following example uses the `CURL()` function with a WHERE clause. It uses the Yahoo finance API to find the day's low value (i.e `DaysLow`) of HDP stock and finds all the documents in the `users` keyspace that have `min_threshold` attribute value greater than the DaysLow stock value.
 
 For this example, unset the query context using the [query context](#tools/query-workbench.adoc#query-context) drop-down menu in the Query Workbench, or the [query\_context](../../settings/query-settings.md#query%5Fcontext) request-level parameter.
 
@@ -605,4 +605,4 @@ keyspace.query(SELECT CURL(b.url, $params) FROM keyspace b WHERE b.username = "j
  (error, result) => {} );
 ```
 
-`$params` is a named parameter, so we name it in the parameters object when executing the query. Then we populate the properties with the data that’s in the documents since those properties can be variables.
+`$params` is a named parameter, so we name it in the parameters object when executing the query. Then we populate the properties with the data that's in the documents since those properties can be variables.

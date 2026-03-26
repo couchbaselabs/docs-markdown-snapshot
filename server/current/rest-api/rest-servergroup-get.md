@@ -3,7 +3,7 @@ title: Getting Group Information
 description: Group information can be retrieved with the <code>GET
   /pools/default/serverGroups</code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-servergroup-get.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rest-servergroup-get.adoc[]
 ---
 
@@ -42,7 +42,7 @@ The returned object contains a nested object for each group. Each group-object c
 * `systemStats`. Information on cpu-utilization, swap space, and total memory.
 * `interestingStats`. Data and disk sizes, and numbers of items in active and replica vBuckets.
 * `uptime`. The number of seconds elapsed since the server started.
-* `cpuCount`The number of cpu’s supporting the server.
+* `cpuCount`The number of cpu's supporting the server.
 
 URIs and UUIDs are also provided, allowing the groups to be accessed and managed, and the overall configuration changed. See the example immediately below, for the complete output; and for additional information on URIs and UUIDs.
 
@@ -239,7 +239,7 @@ The output shows that two groups are defined: `Group 1` and `Group 2`. It also s
 The following, specific values within the returned object provide URIs and UUIDs for management purposes, and should be duly noted:
 
 * `"uri": "/pools/default/serverGroups?rev=93706877"`. Specifies the URI path and revision integer for the overall group-configuration. This integer changes whenever the group-configuration is changed. See [Updating Server Group Memberships](rest-servergroup-put-membership.md) for an example of changing the configuration. Note that the configuration-change itself requires that this URI path and revision integer be specified, to identify the current group-configuration.
-* `"uri":"/pools/default/serverGroups/<:uuid>"`. Provided for each group, to specify the group’s URI path and UUID string. See [Updating Server Group Memberships](rest-servergroup-put-membership.md) for an example of changing the configuration by means of a JSON document that identifies each group by this means.
+* `"uri":"/pools/default/serverGroups/<:uuid>"`. Provided for each group, to specify the group's URI path and UUID string. See [Updating Server Group Memberships](rest-servergroup-put-membership.md) for an example of changing the configuration by means of a JSON document that identifies each group by this means.
 * `"addNodeURI":"/pools/default/serverGroups/<:uuid>/addNode"`. Provided for each group, to specify the URI path and UUID string for adding servers to the group. See [Adding Nodes to Groups](rest-servergroup-post-add.md) for an example of adding a node by this means.
 
 ## [](#see-also)See Also

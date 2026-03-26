@@ -3,7 +3,7 @@ title: Remote Sync with App Services / Sync Gateway
 description: Read and write data or listen for data changes from Edge Server
   over a RESTful interface from any  HTTP client.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/sync/pages/remote-sync.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-edge-server:sync:remote-sync.adoc[]
 ---
 
@@ -45,7 +45,7 @@ For more information about Couchbase Sync Gateway, see [Sync Gateway](../../../s
 
 ## [](#push-upstream-changes)Push Upstream Changes
 
-You can monitor changes in a keyspace using the keyspaces’s changes feed. The changes feed is based on _sequences_, which are abstract integer counters applied to documents. The changes feed returns the metadata (and optionally the contents) of documents that have changed since a specified sequence.
+You can monitor changes in a keyspace using the keyspaces's changes feed. The changes feed is based on _sequences_, which are abstract integer counters applied to documents. The changes feed returns the metadata (and optionally the contents) of documents that have changed since a specified sequence.
 
 Couchbase Edge Server adopts a push, not poll approach to changes using two methods:
 
@@ -62,7 +62,7 @@ You can configure Edge Server so that replication starts automatically when Edge
 
 For more information about continuous replication, see [Start Replication Automatically](../rest-based-access/replication.md#start-replication-automatically).
 
-You can also start replication using the REST API. You don’t need to set up reduplication in the configuration file to do this. Instead, you pass the replication options in the JSON request body.
+You can also start replication using the REST API. You don't need to set up reduplication in the configuration file to do this. Instead, you pass the replication options in the JSON request body.
 
 For more information, see [REST API Replication](../rest-based-access/replication.md#start-replication-with-the-rest-api).
 

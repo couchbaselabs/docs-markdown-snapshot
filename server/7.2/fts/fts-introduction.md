@@ -1,7 +1,7 @@
 ---
 title: Introduction to Full Text Search
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-introduction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-introduction.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Provided by the [Search Service](../learn/services-and-indexes/services/search-s
 
 In addition to exact matches, the full-text index can perform various search functions based on matching given terms/search parameters.
 
-Couchbase’s Global Secondary Indexes (GSI) can be used for range scans and regular pattern search, whereas FTS offers extensive capabilities for natural-language querying.
+Couchbase's Global Secondary Indexes (GSI) can be used for range scans and regular pattern search, whereas FTS offers extensive capabilities for natural-language querying.
 
 ## [](#fundamentals-of-full-text-search)Full Text Search: Fundamentals
 
@@ -26,7 +26,7 @@ Every Full Text Search is performed on a user-created _Full Text Index_, which c
 
 ## [](#features-of-full-text-search)Features of Full Text Search
 
-_Full Text Search_ provides Google-like search capability on JSON documents. Couchbase’s Global Secondary Indexes (GSI) can be used for range scans and regular pattern search, whereas FTS provides extensive capabilities for natural-language querying. The query below looks for documents with all of the strings ("paris", "notre", "dame").
+_Full Text Search_ provides Google-like search capability on JSON documents. Couchbase's Global Secondary Indexes (GSI) can be used for range scans and regular pattern search, whereas FTS provides extensive capabilities for natural-language querying. The query below looks for documents with all of the strings ("paris", "notre", "dame").
 
 ### [](#example)Example
 
@@ -87,10 +87,10 @@ Here are the stages it goes through:
 
 1. The server that the client targets the search request to, assumes the role of the orchestrator or the coordinating node once it receives the external request.
 2. The coordinating node first looks up the index (making sure it exists).
-3. The coordinating node obtains the “plan” that the index was deployed with. The plan contains details on how many partitions the index was split into and all the servers’ information where any of these partitions reside.
-4. The coordinating node sets up a unique list of servers that it needs to dispatch an “internal” request to. A server in the Couchbase cluster is eligible if and only if it hosts a partition belonging to the index under consideration.
-5. Once the internal requests have been dispatched by the coordinating node to each of the servers, it’ll wait to hear back from them. Simultaneously, if any of the index’s partitions are resident on the coordinating node – search requests are dispatched to each of those partitions as well (disk-bound).
-6. Those servers in the cluster that receive the “internal” request from the coordinating node will forward it to each of the index partitions they host (disk-bound).
+3. The coordinating node obtains the "plan" that the index was deployed with. The plan contains details on how many partitions the index was split into and all the servers' information where any of these partitions reside.
+4. The coordinating node sets up a unique list of servers that it needs to dispatch an "internal" request to. A server in the Couchbase cluster is eligible if and only if it hosts a partition belonging to the index under consideration.
+5. Once the internal requests have been dispatched by the coordinating node to each of the servers, it'll wait to hear back from them. Simultaneously, if any of the index's partitions are resident on the coordinating node – search requests are dispatched to each of those partitions as well (disk-bound).
+6. Those servers in the cluster that receive the "internal" request from the coordinating node will forward it to each of the index partitions they host (disk-bound).
 7. Separate search requests that are dispatched concurrently to all index partitions resident within a server, and the server waits to hear back from them.
 8. Once the server hears back from all the partitions it hosts, it merges the results obtained from each of the partitions before packaging them into a response and shipping it back to the coordinating node.
 
@@ -101,7 +101,7 @@ The coordinating node waits for responses from:
 
 Once all the results from the local index partitions and the remote index partitions are obtained, the coordinating node merges all of them, packages them into a response, and ships them back to the client where the request originated.
 
-Full Text Search is powered by [Bleve](http://www.blevesearch.com/), an open source search and indexing library written in _Go_. Full Text Search uses Bleve for the indexing of documents and also makes available Bleve’s extensive range of _query types_. These include:
+Full Text Search is powered by [Bleve](http://www.blevesearch.com/), an open source search and indexing library written in _Go_. Full Text Search uses Bleve for the indexing of documents and also makes available Bleve's extensive range of _query types_. These include:
 
 * [Match](fts-supported-queries-match.md), [Match Phrase](fts-supported-queries-match-phrase.md)
 * [DocId Query](fts-supported-queries-DocID-query.md), and [Prefix Query](fts-supported-queries-prefix-query.md)

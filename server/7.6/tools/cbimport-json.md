@@ -2,7 +2,7 @@
 title: cbimport json
 description: Imports JSON data into Couchbase
 editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/tools/pages/cbimport-json.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:tools:cbimport-json.adoc[]
 ---
 
@@ -138,11 +138,11 @@ Disables modifying the bucket config stopping import from changing the memory qu
 
 \--bucket-quota <quota>
 
-When importing a sample dataset using `--format sample` this argument will set the memory quota for the sample bucket. Note that this will edit the bucket settings if the bucket already exists, and will create it if it doesn’t.
+When importing a sample dataset using `--format sample` this argument will set the memory quota for the sample bucket. Note that this will edit the bucket settings if the bucket already exists, and will create it if it doesn't.
 
 \--bucket-replicas <replicas>
 
-When importing a sample dataset using `--format sample` this argument will set the number of replicas for the sample bucket. Note that this will edit the bucket settings if the bucket already exists, and will create it if it doesn’t.
+When importing a sample dataset using `--format sample` this argument will set the number of replicas for the sample bucket. Note that this will edit the bucket settings if the bucket already exists, and will create it if it doesn't.
 
 \--http-cache-directory <path>
 
@@ -285,7 +285,7 @@ The list format specifies a file which contains a JSON list where each element i
 
 ### [](#sample)SAMPLE
 
-It’s not recommended to use the sample format to import data outside of official samples created by Couchbase because the functionality has some additional restrictions.
+It's not recommended to use the sample format to import data outside of official samples created by Couchbase because the functionality has some additional restrictions.
 
 To import a directory or ZIP file containing a file per-document some pre-processing is required. For example, the following command will convert all JSON files in the given directory into a single `lines.json` file that can be imported by `cbimport`.
 
@@ -321,7 +321,7 @@ In the example above we generate a key using both the value of a field in the do
 
 This example also contains a generator function MONO\_INCR which will increment by 1 each time the key generator is called. Since this is the first time this key generator was executed it returns 1\. If we executed the key generator again it would return 2 and so on. The starting value of the MONO\_INCR generator is 1 by default, but it can be changed by specifying a number in brackets after the MONO\_INCR generator name. To start generating monotonically incrementing values starting at 100 for example, the generator MONO\_INCR\[100\] would be specified. The cbimport command current contains a monotonic increment generator (MONO\_INCR) and a UUID generator (UUID).
 
-Any text that isn’t wrapped in "%" or "#" is static text and will be in the result of all generated keys. If a key needs to contain a "%" or "#" in static text then they need to be escaped by providing a double "%" or "#" (ex. "%%" or "##"). The delimiter characters can be changed to avoid having to escape them by using the --field-delimiter and --generator-delimiter flags.
+Any text that isn't wrapped in "%" or "#" is static text and will be in the result of all generated keys. If a key needs to contain a "%" or "#" in static text then they need to be escaped by providing a double "%" or "#" (ex. "%%" or "##"). The delimiter characters can be changed to avoid having to escape them by using the --field-delimiter and --generator-delimiter flags.
 
 If a key cannot be generated because the field specified in the key generator is not present in the document then the key will be skipped. To see a list of document that were not imported due to failed key generation users can specify the --errors-log <path> parameter to dump a list of all documents that could not be imported to a file.
 

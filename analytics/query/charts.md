@@ -2,7 +2,7 @@
 title: Visualize Results in Charts
 description: After you run a query, you can visualize its results in graphical format.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/charts.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:query:charts.adoc[]
 ---
 
@@ -34,7 +34,7 @@ You select the type of graph, and then choose the fields—JSON keys—to includ
 
 For an X-Y graph, on the other hand, both fields must have number-type values.
 
-In this example for the travel-sample’s airport collection, a bar chart plots the results of a query. The x-axis plots the country and the number of airports is on the y-axis.
+In this example for the travel-sample's airport collection, a bar chart plots the results of a query. The x-axis plots the country and the number of airports is on the y-axis.
 
 ![A chart with 3 bars showing the relative number of airports in the US, France, and the UK](_images/chart_example.png)
 

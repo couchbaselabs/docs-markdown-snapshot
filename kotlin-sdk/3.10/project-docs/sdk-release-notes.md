@@ -2,7 +2,7 @@
 title: SDK Release Notes
 description: Release notes for the Couchbase Kotlin Client.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.10/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.10@kotlin-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -52,12 +52,12 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 ##### [](#bug-fixes-2)Bug Fixes
 
-* [JVMCBC-1696](https://couchbasecloud.atlassian.net/browse/JVMCBC-1696): The client no longer makes bucketful KV connections to nodes that aren’t hosting the bucket, ensuring that unconnected endpoints don’t cause SDC health check to fail.
+* [JVMCBC-1696](https://couchbasecloud.atlassian.net/browse/JVMCBC-1696): The client no longer makes bucketful KV connections to nodes that aren't hosting the bucket, ensuring that unconnected endpoints don't cause SDC health check to fail.
 * [JVMCBC-1697](https://couchbasecloud.atlassian.net/browse/JVMCBC-1697): Fixed a problem that caused the SDK to use more bandwidth than necessary when polling Couchbase Server 7.6 and later, for cluster topology updates when the topology is in a steady state.
 
 ##### [](#improvements-2)Improvements
 
-* [JVMCBC-1693](https://couchbasecloud.atlassian.net/browse/JVMCBC-1693): The SDK now tracks server cluster topology changes more efficiently, and no longer sends redundant “get topology” requests during failover and rebalance.
+* [JVMCBC-1693](https://couchbasecloud.atlassian.net/browse/JVMCBC-1693): The SDK now tracks server cluster topology changes more efficiently, and no longer sends redundant "get topology" requests during failover and rebalance.
 * [JVMCBC-1699](https://couchbasecloud.atlassian.net/browse/JVMCBC-1699): If the bootstrap address resolution task does not complete before the cluster is disconnected, the task now terminates gracefully instead of logging a scary warning.
 * [JVMCBC-1700](https://couchbasecloud.atlassian.net/browse/JVMCBC-1700): Upgraded to `Jackson` `2.20.1`.
 * [JVMCBC-1704](https://couchbasecloud.atlassian.net/browse/JVMCBC-1704): Upgraded `Netty` from `4.1.127` to `4.1.128`.
@@ -106,14 +106,14 @@ If this change causes the SDK to select the incorrect network for your deploymen
 
 #### [](#bug-fixes-3)Bug Fixes
 
-* [JVMCBC-1656](https://couchbasecloud.atlassian.net/browse/JVMCBC-1656): Fixed an issue that could prevent the SDK from periodically updating its list of KV node addresses. This could occur if the addresses in the connection string (or DNS SRV record) differ from the server’s self-reported address as they appear in the admin UI. This issue can lead to `UnknownHostException` messages in the SDK logs. To resolve the issue, the SDK now feeds both “global” and “bucket” topology info into the same funnel, so the SDK can update its list of node addresses from either source.
+* [JVMCBC-1656](https://couchbasecloud.atlassian.net/browse/JVMCBC-1656): Fixed an issue that could prevent the SDK from periodically updating its list of KV node addresses. This could occur if the addresses in the connection string (or DNS SRV record) differ from the server's self-reported address as they appear in the admin UI. This issue can lead to `UnknownHostException` messages in the SDK logs. To resolve the issue, the SDK now feeds both "global" and "bucket" topology info into the same funnel, so the SDK can update its list of node addresses from either source.
 * [JVMCBC-1662](https://couchbasecloud.atlassian.net/browse/JVMCBC-1662): Fixed an issue that prevented the SDK from honoring the "preferred server group" option inside transactions.
 * [JVMCBC-1664](https://couchbasecloud.atlassian.net/browse/JVMCBC-1664): Exceptionally long-running analytics queries no longer throw `ArrayIndexOutOfBoundsException`.
 * [JVMCBC-1671](https://couchbasecloud.atlassian.net/browse/JVMCBC-1671): All expected attributes are now included in transactions metrics exported by the SDK.
 
 #### [](#improvement)Improvement
 
-* [JVMCBC-1639](https://couchbasecloud.atlassian.net/browse/JVMCBC-1639): We’ve adopted a mono-versioning strategy for the Couchbase JVM client libraries. The Scala and Kotlin SDKs, along with the core library and optional modules, are now aligned with the Java SDK at version 3.9.0.  
+* [JVMCBC-1639](https://couchbasecloud.atlassian.net/browse/JVMCBC-1639): We've adopted a mono-versioning strategy for the Couchbase JVM client libraries. The Scala and Kotlin SDKs, along with the core library and optional modules, are now aligned with the Java SDK at version 3.9.0.  
 Although this is a technically a major version bump for some components, in this exceptional case it does not indicate a breaking change. The goal of this alignment is twofold: to minimize confusion about which versions are compatible with each other, and to enable a more disciplined branch management strategy where patch releases contain only low-risk bug fixes.
 * [JVMCBC-1607](https://couchbasecloud.atlassian.net/browse/JVMCBC-1607): Improved how the SDK logs information about trusted TLS certificates on startup. It now logs up to 5 certificates at `INFO` level, and the full list at `DEBUG` level. Previously, the SDK logged the full list at `INFO` level, which could prevent other interesting configuration info from being included in the log, depending on how logging was configured.
 * [JVMCBC-1612](https://couchbasecloud.atlassian.net/browse/JVMCBC-1612): The SDK is now more aggressive about detecting dead or half-open KV connections. It closes a connection if there is no incoming traffic for the duration specified by `io.configIdleRedialTimeout` (default value: 5 minutes), and sends a `NOOP` request if there is no incoming traffic for hallf that duration.
@@ -166,7 +166,7 @@ Regular maintenance release.
 #### [](#new-features-3)New Features
 
 * [KCBC-190](https://jira.issues.couchbase.com/browse/KCBC-190): New APIs added to allow getting KV documents from a preferred server group. This feature allows the implementation of network optimization when traffic cost between server groups is higher than in the local group. In this case the application might select preferred server group in the connection options, and later opt-in for local operations during replica reads.
-* [KCBC-189](https://jira.issues.couchbase.com/browse/KCBC-189): `KotlinxSerializationJsonSerializer` is now part of the SDK’s stable API, with full support for nullable types and contextual serializers.  
+* [KCBC-189](https://jira.issues.couchbase.com/browse/KCBC-189): `KotlinxSerializationJsonSerializer` is now part of the SDK's stable API, with full support for nullable types and contextual serializers.  
 > [!WARNING]  
 > The stable version of this class is not binary compatible with the experimental version. If you were already using `KotlinxSerializationJsonSerializer`, you will need to recompile your project.
 * [JVMCBC-1602](https://couchbasecloud.atlassian.net/browse/JVMCBC-1602:): Application Telemetry improvements.
@@ -196,7 +196,7 @@ Regular maintenance release.
 
 #### [](#improvements-9)Improvements
 
-* [KCBC-163](https://jira.issues.couchbase.com/browse/KCBC-163): When using Couchbase Server 7.6.2 or later, you can now specify a “preferred server group” for replica reads. To use this feature, configure the cluster environment with a `preferredServerGroup` name. The following `Collection` methods now have an optional `readPreference` parameter:
+* [KCBC-163](https://jira.issues.couchbase.com/browse/KCBC-163): When using Couchbase Server 7.6.2 or later, you can now specify a "preferred server group" for replica reads. To use this feature, configure the cluster environment with a `preferredServerGroup` name. The following `Collection` methods now have an optional `readPreference` parameter:
 
   * `getAnyReplica`
   * `getAllReplicas`
@@ -373,7 +373,7 @@ This is a regular maintenance release.
 
 #### [](#bugfixes)Bugfixes
 
-* [JVMCBC-1506](https://issues.couchbase.com/browse/JVMCBC-1506)Reduced the rate at which messages appear in the server’s `http_access.log` when a user provides valid credentials but does not have permission to access the bucket.
+* [JVMCBC-1506](https://issues.couchbase.com/browse/JVMCBC-1506)Reduced the rate at which messages appear in the server's `http_access.log` when a user provides valid credentials but does not have permission to access the bucket.
 * [JVMCBC-1512](https://issues.couchbase.com/browse/JVMCBC-1512)Correctly adapt to server cluster topology changes when a service migrates from one port to another on the same host.
 
 ### [](#v1.3.1)Version 1.3.1 (5 April 2024)
@@ -384,22 +384,22 @@ This is a regular maintenance release.
 
 #### [](#improvements-17)Improvements
 
-* [JVMCBC-1477](https://issues.couchbase.com/browse/JVMCBC-1477)Reduced the rate at which messages appear in the server’s `http_access.log` when invalid credentials are provided resulting in 401 errors. Issues resulting in 403 errors will be handled in a future release.
+* [JVMCBC-1477](https://issues.couchbase.com/browse/JVMCBC-1477)Reduced the rate at which messages appear in the server's `http_access.log` when invalid credentials are provided resulting in 401 errors. Issues resulting in 403 errors will be handled in a future release.
 * [JVMCBC-1499](https://issues.couchbase.com/browse/JVMCBC-1499)Disabled DNS SRV caching. The SDK now responds quicker to DNS changes in dynamic environments like Kubernetes.
 
 ### [](#v1.3.0)Version 1.3.0 (11 March 2024)
 
 This version adds support for new features in Couchbase Server 7.6: vector search, KV range scan, and sub-document read from replica.
 
-Additionally, several methods that were previously "volatile" or "uncommitted" are now part of the SDK’s "committed" (stable) public API.
+Additionally, several methods that were previously "volatile" or "uncommitted" are now part of the SDK's "committed" (stable) public API.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.3.0/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.6.0/)
 
 #### [](#improvements-18)Improvements
 
 * [KCBC-145](https://issues.couchbase.com/browse/KCBC-145): Added support for vector search, a new feature in Couchbase Server 7.6\. This API is currently at `@Stability.Uncommitted` level.
-* [JVMCBC-1491](https://issues.couchbase.com/browse/JVMCBC-1491): Added support for KV range scan, a new feature in Couchbase Server 7.6\. The `Collection.scanDocuments()` and `Collection.scanIds()` methods are now part of the SDK’s committed public API.
-* [JVMCBC-1493](https://issues.couchbase.com/browse/JVMCBC-1493): Added support for Sub-Document read from replica, a new feature in Couchbase Server 7.6\. The `Collection.lookupInAnyReplica()` and `Collection.lookupInAllReplicas()` methods are now part of the SDK’s committed public API.
+* [JVMCBC-1491](https://issues.couchbase.com/browse/JVMCBC-1491): Added support for KV range scan, a new feature in Couchbase Server 7.6\. The `Collection.scanDocuments()` and `Collection.scanIds()` methods are now part of the SDK's committed public API.
+* [JVMCBC-1493](https://issues.couchbase.com/browse/JVMCBC-1493): Added support for Sub-Document read from replica, a new feature in Couchbase Server 7.6\. The `Collection.lookupInAnyReplica()` and `Collection.lookupInAllReplicas()` methods are now part of the SDK's committed public API.
 * [KCBC-147](https://issues.couchbase.com/browse/KCBC-147): `Scope.searchIndexes()` is now part of the committed public API.
 * [KCBC-157](https://issues.couchbase.com/browse/KCBC-157): `UserManager.changePassword()` is now part of the committed public API.
 * [KCBC-158](https://issues.couchbase.com/browse/KCBC-158): `SearchIndexManager` is now part of the committed public API.
@@ -424,8 +424,8 @@ This is a regular maintenance release.
 
 * [KCBC-146](https://issues.couchbase.com/browse/KCBC-146) Collection manager improvements:
 
-  * Added a special max expiry duration, `CollectionSpec.NEVER_EXPIRE` (equal to -1 seconds), that can be used with Couchbase Server 7.6 and later to indicate documents in a collection should never expire, regardless of the bucket’s max expiry.
-  * Updated the API reference documentation to clarify that a collection max expiry of `0.seconds` (or null, depending on context) means the collection’s actual max expiry is always the same as the bucket’s max expiry.
+  * Added a special max expiry duration, `CollectionSpec.NEVER_EXPIRE` (equal to -1 seconds), that can be used with Couchbase Server 7.6 and later to indicate documents in a collection should never expire, regardless of the bucket's max expiry.
+  * Updated the API reference documentation to clarify that a collection max expiry of `0.seconds` (or null, depending on context) means the collection's actual max expiry is always the same as the bucket's max expiry.
 * [JVMCBC-1460](https://issues.couchbase.com/browse/JVMCBC-1460) `couchbase2` now supports compressing data between the SDK and the server.
 * [JVMCBC-1464](https://issues.couchbase.com/browse/JVMCBC-1464)The `metrics-opentelemetry` package is now aligned with the same `OpenTelemetry` version as `tracing-opentelemetry`.
 * [JVMCBC-1468](https://issues.couchbase.com/browse/JVMCBC-1468) `Cluster.connect` now validates that connection strings using the `couchbase2` scheme have exactly one host. (Previously, hosts after the first were silently ignored.).
@@ -464,8 +464,8 @@ This is a regular maintenance release.
 
 #### [](#bugfixes-5)Bugfixes
 
-* [JVMCBC-1433](https://issues.couchbase.com/browse/JVMCBC-1433): The SDK can now connect to Memcached buckets whose names contain the percent (`%`) character. (We’d like to take this opportunity to remind everyone that Memcached buckets are deprecated in favor of Ephemeral buckets.)
-* [JVMCBC-1437](https://issues.couchbase.com/browse/JVMCBC-1437): With Couchbase Server versions that support updating a collection’s max expiry, it’s now possible to clear the expiry by passing `Duration.ZERO` for the new value.
+* [JVMCBC-1433](https://issues.couchbase.com/browse/JVMCBC-1433): The SDK can now connect to Memcached buckets whose names contain the percent (`%`) character. (We'd like to take this opportunity to remind everyone that Memcached buckets are deprecated in favor of Ephemeral buckets.)
+* [JVMCBC-1437](https://issues.couchbase.com/browse/JVMCBC-1437): With Couchbase Server versions that support updating a collection's max expiry, it's now possible to clear the expiry by passing `Duration.ZERO` for the new value.
 * [JVMCBC-1441](https://issues.couchbase.com/browse/JVMCBC-1441): The SDK now handles an additional error case for `IndexNotFoundException`.
 * [JVMCBC-1442](https://issues.couchbase.com/browse/JVMCBC-1442): Fixed a dependency issue with `tracing-opentelemetry` module.
 
@@ -495,7 +495,7 @@ When upgrading from a previous version of the SDK, please be aware of this behav
 #### [](#improvements-22)Improvements
 
 * [KCBC-132](https://issues.couchbase.com/browse/KCBC-132): `BucketManager` and `CollectionManager` now know about the history preservation settings added in Couchbase Server 7.2.  
-`CollectionManager` has a new `updateCollection` method for changing the settings of an existing collection. Note that updating a collection’s `maxExpiry` setting requires Couchbase Server 7.6.
+`CollectionManager` has a new `updateCollection` method for changing the settings of an existing collection. Note that updating a collection's `maxExpiry` setting requires Couchbase Server 7.6.
 * [JVMCBC-1402](https://issues.couchbase.com/browse/JVMCBC-1402), [JVMCBC-1410](https://issues.couchbase.com/browse/JVMCBC-1410): Upgraded Netty from 4.1.96 to 4.1.100, and upgraded `OpenTelemetry` dependency.
 * [JVMCBC-1430](https://issues.couchbase.com/browse/JVMCBC-1430): Optimization: removed creation of unnecessary metrics labels when default `LoggingMeter` is used.
 * [JVMCBC-1391](https://issues.couchbase.com/browse/JVMCBC-1391): The Bucket Manager API is now forward-compatible with future versions of Couchbase Server that might support storage engine types other than "magma" and "couchstore".
@@ -589,7 +589,7 @@ This is a regular maintenance release.
 
 #### [](#bug-fixes-9)Bug Fixes
 
-* [KCBC-118](https://issues.couchbase.com/browse/KCBC-118): Accessing the result of a sub-document lookupIn `exists` command now throws an appropriate exception (instead of returning false) in more cases where it’s not possible to determine whether the field exists:
+* [KCBC-118](https://issues.couchbase.com/browse/KCBC-118): Accessing the result of a sub-document lookupIn `exists` command now throws an appropriate exception (instead of returning false) in more cases where it's not possible to determine whether the field exists:
 
   * If the document is not JSON, `DocumentNotJsonException` is thrown.
   * If a user without the `SystemXattrRead` permission attempts to check the existence of a system XATTR, `XattrNoAccessException` is thrown.
@@ -649,13 +649,13 @@ This is a regular maintenance release.
 
 * [JVMCBC-1163](https://issues.couchbase.com/browse/JVMCBC-1163): Dependencies have been updated.
 * [JVMCBC-1156](https://issues.couchbase.com/browse/JVMCBC-1156): The traffic tracing functionality has been enhanced to perform Wireshark-style dissection of portions of the KV protocol.
-* [JCBC-2021](https://issues.couchbase.com/browse/JCBC-2021): Diagnostics for an endpoint now include the state of the endpoint’s circuit breaker.
+* [JCBC-2021](https://issues.couchbase.com/browse/JCBC-2021): Diagnostics for an endpoint now include the state of the endpoint's circuit breaker.
 
 #### [](#bug-fixes-13)Bug Fixes
 
 * [KCBC-107](https://issues.couchbase.com/browse/KCBC-107): The logging configuration DSL property `enableDiagnosticContext` is now mutable.
 * [JVMCBC-1157](https://issues.couchbase.com/browse/JVMCBC-1157): The SDK no longer rejects a `PersistTo` requirement in a bucket using the Magma storage engine. Before this change, the SDK would refuse the request because it misidentified Magma buckets as ephemeral (unable to persist documents).
-* [JVMCBC-1167](https://issues.couchbase.com/browse/JVMCBC-1167): If you call `CancellationErrorContext.getWaitUntilReadyContext()` on an error context that didn’t come from a "wait until ready" request, the method is now guaranteed to return null instead of sometimes throwing a `ClassCastException`.
+* [JVMCBC-1167](https://issues.couchbase.com/browse/JVMCBC-1167): If you call `CancellationErrorContext.getWaitUntilReadyContext()` on an error context that didn't come from a "wait until ready" request, the method is now guaranteed to return null instead of sometimes throwing a `ClassCastException`.
 * [JVMCBC-1178](https://issues.couchbase.com/browse/JVMCBC-1178): Fixed a memory leak in `ManagerMessageHandler`.
 
 ### [](#v1.1.0)Version 1.1.0 (24 October 2022)
@@ -674,7 +674,7 @@ val cluster = Cluster.connect(
     applyProfile("wan-development")  
 }  
 ```
-* [KCBC-105](https://issues.couchbase.com/browse/KCBC-105), [JVMCBC-1144](https://issues.couchbase.com/browse/JVMCBC-1144): If your Couchbase Server cluster’s root certificate is signed by a well-known certificate authority whose certificate is included in the JVM’s trust store, it’s no longer necessary to configure the certificate in the securityConfig settings.
+* [KCBC-105](https://issues.couchbase.com/browse/KCBC-105), [JVMCBC-1144](https://issues.couchbase.com/browse/JVMCBC-1144): If your Couchbase Server cluster's root certificate is signed by a well-known certificate authority whose certificate is included in the JVM's trust store, it's no longer necessary to configure the certificate in the securityConfig settings.
 * [KCBC-104](https://issues.couchbase.com/browse/KCBC-104): Changed `AuthenticationFailureException` error message to indicate that bucket hibernation is now a potential cause. Bucket hibernation is a feature coming in a future Couchbase release.
 * [JVMCBC-1154](https://issues.couchbase.com/browse/JVMCBC-1154): Bumped dependencies.
 

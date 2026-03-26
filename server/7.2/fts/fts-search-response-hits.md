@@ -1,7 +1,7 @@
 ---
 title: Hits
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-search-response-hits.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-search-response-hits.adoc[]
 ---
 
@@ -75,7 +75,7 @@ This object returns the value of the field that was matched. However, unlike the
 
 Sort
 
-This field contains an array of one or more values that were used to sort the search results. Documents that don’t have a value in the index for a particular field used in sorting will return a series of non-printable Unicode characters: `\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd`.
+This field contains an array of one or more values that were used to sort the search results. Documents that don't have a value in the index for a particular field used in sorting will return a series of non-printable Unicode characters: `\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd`.
 
 ## [](#total%5Fhits)Total\_hits
 

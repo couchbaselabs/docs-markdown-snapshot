@@ -3,7 +3,7 @@ title: Manage Azure Private Endpoints for the Data API
 description: How to configure and manage private endpoints for the Data API
   using Microsoft Azure.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-private-azure.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:data-api-guide:data-api-private-azure.adoc[]
 ---
 
@@ -38,7 +38,7 @@ In the Management API examples on this page:
 * `$clusterId` is the cluster ID.
 * `$apiKeySecret` is the Management API key secret, used as the Bearer token.
 
-The endpoints described on this page all have the same base path: `/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}`. For clarity, this is not shown in the instructions, but it’s included in the examples.
+The endpoints described on this page all have the same base path: `/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}`. For clarity, this is not shown in the instructions, but it's included in the examples.
 
 ## [](#setup)Set Up and Connect a Private Endpoint
 

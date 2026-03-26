@@ -3,7 +3,7 @@ title: Set Up an Authentication Provider
 description: Capella supports a number of authentication providers, which can be
   configured from the Capella UI.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/security/set-up-authentication-provider.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::security/set-up-authentication-provider.adoc[]
 ---
 
@@ -42,11 +42,11 @@ Allowing anonymous authentication is useful for testing as it allows access to t
 
 Capella App Services supports OpenID Connect. This allows your application to use Couchbase for data synchronization and delegate the authentication to a third-party server (known as the Provider).
 
-Capella’s implementation of OpenID Connect uses Implicit Flow. This means that the retrieval of the ID token takes place on the device. Capella handles the background set up for the app service, using the details provided in the settings:
+Capella's implementation of OpenID Connect uses Implicit Flow. This means that the retrieval of the ID token takes place on the device. Capella handles the background set up for the app service, using the details provided in the settings:
 
 Issuer
 
-This is the URL of the authentication provider. For example, if you are using Google’s authentication service, then the URL would be <https://accounts.google.com>. Details of the URL required should be available on your provider’s website.
+This is the URL of the authentication provider. For example, if you are using Google's authentication service, then the URL would be <https://accounts.google.com>. Details of the URL required should be available on your provider's website.
 
 Client ID
 

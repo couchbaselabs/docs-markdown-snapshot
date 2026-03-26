@@ -3,7 +3,7 @@ title: Back Up and Restore Bucket Data
 description: Couchbase recommends a robust scheduled backup and retention time
   policy as part of an overall disaster recovery plan for production data.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/backup-restore.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:backup-restore.adoc[]
 ---
 
@@ -26,7 +26,7 @@ To schedule a backup for all data on your cluster, use [cluster backups](cloud-s
 
 From January 2023, the **Set Daily Schedule** bucket backup setting has been deprecated for new Capella users and clusters. You cannot set a daily schedule for bucket backups on new clusters deployed with Couchbase Capella.
 
-**Set Daily Schedule** is still supported indefinitely if you’re a current Capella user who already uses a daily bucket backup schedule on a pre-existing cluster.
+**Set Daily Schedule** is still supported indefinitely if you're a current Capella user who already uses a daily bucket backup schedule on a pre-existing cluster.
 
 ## [](#backups-and-cluster-onoff)Backups and Cluster On/Off
 
@@ -44,7 +44,7 @@ Capella supports scheduled and on-demand bucket backups on a per-bucket basis. Y
 
 Couchbase Capella uses its own backup utility. When a bucket backup or restore job begins, Capella starts a separate compute instance that is dedicated to running the backup utility. As the bucket backup utility runs in a separate instance, the impact to your cluster performance is minimized. When a job finishes, the instance running the backup utility is decommissioned.
 
-What’s not included in a bucket backup:
+What's not included in a bucket backup:
 
 | Type                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -100,7 +100,7 @@ RPO intervals and retention time periods are as follows:
 
 ## [](#bucket-backup-retention)Bucket Backup Retention
 
-Capella retains a bucket’s scheduled backups based on the **Retention Time** setting in the bucket’s [Backup Schedule](manage-backup.md#configure-automatic-backups). Retention time is from 30 days to five years. After the retention time lapses, Capella schedules the bucket backup for deletion.
+Capella retains a bucket's scheduled backups based on the **Retention Time** setting in the bucket's [Backup Schedule](manage-backup.md#configure-automatic-backups). Retention time is from 30 days to five years. After the retention time lapses, Capella schedules the bucket backup for deletion.
 
 > [!NOTE]
 > The **Retention Time** setting applies to all future backups for a bucket. Changes to this setting do not affect previous backups.
@@ -114,7 +114,7 @@ Backups continue to expire if a cluster is turned off. Download backups you want
 You can download on-demand bucket backups or completed cycles of scheduled bucket backups for storage or use outside Couchbase Capella. The request to create a download file is done in Capella. When the download file is ready, you are notified by email to copy the download URL from the Downloadable Backups in Capella.
 
 > [!NOTE]
-> You can’t download a bucket backup that’s over 5 TB.
+> You can't download a bucket backup that's over 5 TB.
 
 You can use the download URL to download the zip archive file using a browser or a utility like [wget](manage-backup.md#download-backup-wget).
 

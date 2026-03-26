@@ -3,7 +3,7 @@ title: Updating Group Membership
 description: Server group membership is changed by means of the <code>PUT
   /pools/default/serverGroups</code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-servergroup-put-membership.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:rest-api:rest-servergroup-put-membership.adoc[]
 ---
 
@@ -41,7 +41,7 @@ The syntax includes the following:
 
 ## [](#configuration-statement)Node-to-Group Assignment
 
-The following JSON document assigns all three of a cluster’s nodes to the first of its two groups, thereby leaving the second group empty.
+The following JSON document assigns all three of a cluster's nodes to the first of its two groups, thereby leaving the second group empty.
 
 {
   "groups": [

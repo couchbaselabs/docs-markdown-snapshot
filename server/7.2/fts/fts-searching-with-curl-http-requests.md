@@ -1,7 +1,7 @@
 ---
 title: Searching with the REST API (cURL/HTTP)
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-searching-with-curl-http-requests.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-searching-with-curl-http-requests.adoc[]
 ---
 
@@ -141,4 +141,4 @@ Further examples of using the REST API to conduct Full Text Searches can be foun
 
 ## [](#list-of-rest-features-supporting-full-text-search)List of REST Features Supporting Full Text Search
 
-The full range of features for Full Text Search, as supported by the Couchbase REST API, is documented as part of the REST API’s reference information on the page [Full Text Search API](../rest-api/rest-fts.md).
+The full range of features for Full Text Search, as supported by the Couchbase REST API, is documented as part of the REST API's reference information on the page [Full Text Search API](../rest-api/rest-fts.md).

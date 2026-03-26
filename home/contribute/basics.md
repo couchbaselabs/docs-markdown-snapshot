@@ -1,7 +1,7 @@
 ---
 title: AsciiDoc Basics
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/basics.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:basics.adoc[]
 ---
 
@@ -113,7 +113,7 @@ Renders as:
 
 [someone@something.com](mailto:someone@something.com)
 
-Avoid using the `` macro — you’ll only need it in rare circumstances, such as for links with unusual schemes.
+Avoid using the `` macro — you'll only need it in rare circumstances, such as for links with unusual schemes.
 
 > [!WARNING]
 > Do NOT use URLs or system paths to link between pages in the Couchbase Documentation. If the page is inside a Couchbase Docs repository on GitHub, you must use a [cross reference](cross-references.md) to link to it. Xrefs ensure domain, component, and version portability.
@@ -270,9 +270,9 @@ Renders as:
 
 The block image macro (`image::[]`) and the inline image macro (`image:[]`) accept SVG, PNG, JPG/JPEG, and GIF file formats.
 
-Block images, indicated by two colons (`::`), are entered on their own line and displayed on their own line. Optional attributes and values are entered inside the macro’s attribute list (`[]`). In the [block image example](#block), the first positional value is empty, so the opening square bracket (`[`) is directly followed by a comma (`,`). The second positional value, `280`, indicates the maximum width of the image. The next attribute, `align`, and its assigned value `left`, places the image against the left page margin.
+Block images, indicated by two colons (`::`), are entered on their own line and displayed on their own line. Optional attributes and values are entered inside the macro's attribute list (`[]`). In the [block image example](#block), the first positional value is empty, so the opening square bracket (`[`) is directly followed by a comma (`,`). The second positional value, `280`, indicates the maximum width of the image. The next attribute, `align`, and its assigned value `left`, places the image against the left page margin.
 
-If the macro’s attribute list is empty (e.g., `image::filename.jpg[]`), the image is displayed at its original size and centered on the page.
+If the macro's attribute list is empty (e.g., `image::filename.jpg[]`), the image is displayed at its original size and centered on the page.
 
 Block image
 
@@ -338,7 +338,7 @@ Renders as:
 > Never stop or restart Couchbase Server before you first remove that node from a cluster.
 
 > [!CAUTION]
-> Don’t stick forks in power sockets.
+> Don't stick forks in power sockets.
 
 If you need to include compound or block content inside your admonition, use a compound admonition.
 
@@ -448,7 +448,7 @@ __Table 1\. Optional title__
 | Cell in column 1, row 1 | Cell in column 2, row 1 | Cell in column 3, row 1 |
 | Cell in column 1, row 2 | Cell in column 2, row 2 | Cell in column 3, row 2 |
 
-Here’s an example of a table with a title, implicit header row, and the proportional width of the two columns set.
+Here's an example of a table with a title, implicit header row, and the proportional width of the two columns set.
 
 ```asciidoc
 .CLI parameters for adding a node

@@ -3,7 +3,7 @@ title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.7/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@go-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -188,7 +188,7 @@ Inserting a Sub-Document
 	}
 ```
 
-Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here’s an example of one which replaces one path and removes another.
+Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here's an example of one which replaces one path and removes another.
 
 Combine multiple mutate operations
 
@@ -545,7 +545,7 @@ Performing concurrent Sub Document mutations with CAS
 
 ## [](#durability)Durability
 
-Couchbase’s [traditional durability](#1.6@go-sdk::durability.adoc), using `PersistTo` and `ReplicateTo`, is [still available](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), particularly for talking to Couchbase Server 6.0 and earlier:
+Couchbase's [traditional durability](#1.6@go-sdk::durability.adoc), using `PersistTo` and `ReplicateTo`, is [still available](../concept-docs/durability-replication-failure-considerations.md#older-server-versions), particularly for talking to Couchbase Server 6.0 and earlier:
 
 Performing Sub Document mutations with traditional durability
 

@@ -3,7 +3,7 @@ title: WITH RECURSIVE Clause
 description: Use the WITH RECURSIVE clause to enable recursive referencing in
   common table expressions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/with-recursive.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/with-recursive.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:cloud:n1ql:n1ql-language-reference/with-recursive.adoc[]
 
 The common table expressions (CTEs) created by the WITH clause simplify complex queries and create temporary result sets which can be used as data sources or as expressions for queries.
 
-The WITH RECURSIVE clause is an extension of the WITH clause which enables you to create recursive queries. You can use recursive queries with hierarchical data, or data in a tree structure. In these cases, the data may have an arbitrary number of levels, and you won’t know in advance how deeply you need to traverse the data.
+The WITH RECURSIVE clause is an extension of the WITH clause which enables you to create recursive queries. You can use recursive queries with hierarchical data, or data in a tree structure. In these cases, the data may have an arbitrary number of levels, and you won't know in advance how deeply you need to traverse the data.
 
 The CTE for a recursive query includes a UNION or UNION ALL [set operator](union.md).
 
@@ -44,7 +44,7 @@ recursive-select ::= anchor-select ('UNION' | 'UNION ALL') recursive-select-term
 
 ![Syntax diagram](../_images/n1ql-language-reference/recursive-select.png) 
 
-The definition for a recursive CTE must be a SELECT statement that includes a UNION or UNION ALL set operator. If it isn’t, the CTE is treated as a non-recursive CTE.
+The definition for a recursive CTE must be a SELECT statement that includes a UNION or UNION ALL set operator. If it isn't, the CTE is treated as a non-recursive CTE.
 
 anchor-select
 
@@ -104,7 +104,7 @@ expr
 
 ## [](#limitations)Limitations
 
-* The recursive reference is only allowed once in the FROM clause. It’s not allowed anywhere else.
+* The recursive reference is only allowed once in the FROM clause. It's not allowed anywhere else.
 * ORDER BY, LIMIT, and OFFSET clauses are not allowed in the SELECT statement in the subquery used to define the anchor and the recursive clause.
 * The DISTINCT quantifier is not allowed in anchor and recursive clauses.
 * GROUP BY, WINDOW, and AGGREGATE functions are not allowed in recursive clauses.

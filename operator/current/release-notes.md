@@ -1,7 +1,7 @@
 ---
 title: Release Notes for Couchbase Kubernetes Operator 2.9
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:operator::release-notes.adoc[]
 ---
 
@@ -14,7 +14,7 @@ This page summarizes the fixes and known issues in Couchbase Kubernetes Operator
 
 ## [](#new-features)New Features
 
-For information about new features and major improvements made in Couchbase Kubernetes Operator 2.9, see [What’s New](whats-new.md).
+For information about new features and major improvements made in Couchbase Kubernetes Operator 2.9, see [What's New](whats-new.md).
 
 ## [](#release-290)Release 2.9 (December 2025)
 
@@ -133,7 +133,7 @@ The CouchbaseUser resource now includes an `enabled` flag to allow administrator
 
 **[K8S-4109](https://jira.issues.couchbase.com/browse/K8S-4109/)**
 
-The CouchbaseUser resource now allows the administrators to enforce password change on a user’s first login using the `couchbaseuser.spec.userPassword.requireInitialChange` field.
+The CouchbaseUser resource now allows the administrators to enforce password change on a user's first login using the `couchbaseuser.spec.userPassword.requireInitialChange` field.
 
 **[K8S-4111](https://jira.issues.couchbase.com/browse/K8S-4111/)**
 
@@ -193,7 +193,7 @@ Fixed an issue that caused upgrades to fail when image definitions used SHA256 d
 
 ### [](#known-issues-29)Known Issues in 2.9
 
-For Couchbase Kubernetes Operator 2.9 released in December 2025, these are the known issues that aren’t yet resolved.
+For Couchbase Kubernetes Operator 2.9 released in December 2025, these are the known issues that aren't yet resolved.
 
 **[K8S-3839](https://jira.issues.couchbase.com/browse/K8S-3839/)**
 
@@ -245,7 +245,7 @@ Attempting to change the `evictionPolicy` setting during a storage backend migra
 
 **[K8S-4485](https://jira.issues.couchbase.com/browse/K8S-4485/)**
 
-Manually editing a bucket’s storage backend with BucketMigrationRoutines disabled can prevent the Operator from reconciling the cluster.
+Manually editing a bucket's storage backend with BucketMigrationRoutines disabled can prevent the Operator from reconciling the cluster.
 
 **[K8S-4486](https://jira.issues.couchbase.com/browse/K8S-4486/)**
 
@@ -277,7 +277,7 @@ The order of password policy updates and user password changes can affect whethe
 
 **[K8S-4499](https://jira.issues.couchbase.com/browse/K8S-4499/)**
 
-It’s possible to rotate admin credentials to a password that does not meet the cluster password policy, which can prevent the Operator from reconciling the cluster.
+It's possible to rotate admin credentials to a password that does not meet the cluster password policy, which can prevent the Operator from reconciling the cluster.
 
 **[K8S-4504](https://jira.issues.couchbase.com/browse/K8S-4504/)**
 
@@ -334,4 +334,4 @@ The complete list of licenses for Couchbase products is available on the [Legal 
 ## [](#more-information)More Information
 
 * [Couchbase Server Release Notes Version 8.0](../../server/current/release-notes/relnotes.md)
-* [What’s New in Couchbase Server Version 8.0](../../server/current/introduction/whats-new.md)
+* [What's New in Couchbase Server Version 8.0](../../server/current/introduction/whats-new.md)

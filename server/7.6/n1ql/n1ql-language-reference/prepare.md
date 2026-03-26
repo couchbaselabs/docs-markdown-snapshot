@@ -2,7 +2,7 @@
 title: PREPARE
 description: The PREPARE statement prepares a query for repeated execution.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/prepare.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/prepare.adoc[]
 ---
 
@@ -170,7 +170,7 @@ Auto-prepare is disabled for SQL++ requests which contain parameters, if they do
 
 Couchbase Server 7.6.10
 
-The auto-reprepare feature automatically updates (reprepares) a prepared statement’s execution plan whenever the GSI metadata version changes. This typically occurs when you create or drop indexes.
+The auto-reprepare feature automatically updates (reprepares) a prepared statement's execution plan whenever the GSI metadata version changes. This typically occurs when you create or drop indexes.
 
 By default, the Query Service only reprepares a statement when an index in its current plan becomes unavailable. With auto-reprepare, statements can use newer and more efficient indexes as they become available.
 
@@ -186,7 +186,7 @@ The following example shows how a plan improves as you add new indexes for a sta
 
 If the feature is inactive, the statement continues to use the original plan (such as a sequential scan) even after you create new indexes.
 
-While auto-reprepare generates optimized query plans, it can increase the load on the Query Service. Any index modification, even if it’s unrelated to a statement, can trigger a repreparation. For example, creating or dropping an index that a statement does not use can still flag it for repreparation. In such cases, the statement reprepares only to select the same plan again, resulting in redundant work for the service.
+While auto-reprepare generates optimized query plans, it can increase the load on the Query Service. Any index modification, even if it's unrelated to a statement, can trigger a repreparation. For example, creating or dropping an index that a statement does not use can still flag it for repreparation. In such cases, the statement reprepares only to select the same plan again, resulting in redundant work for the service.
 
 To manage this, you can enable the feature temporarily when you create or drop indexes and disable it after repreparing all statements. If index changes are infrequent, the effect is minimal.
 
@@ -200,7 +200,7 @@ For example, to reprepare a prepared statement named `NumParam` on a node with t
 UPDATE system:prepareds USE KEYS ["[127.0.0.1:8091]NumParam"] UNSET planPreparedTime;
 ```
 
-You can repeat this operation after creating each relevant index and refresh the prepared statement’s plan.
+You can repeat this operation after creating each relevant index and refresh the prepared statement's plan.
 
 ## [](#auto-execute)Auto-Execute
 

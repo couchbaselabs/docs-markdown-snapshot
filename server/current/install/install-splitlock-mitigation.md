@@ -1,7 +1,7 @@
 ---
 title: How to mitigate Split Lock Issues
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/install-splitlock-mitigation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:install-splitlock-mitigation.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:server:install:install-splitlock-mitigation.adoc[]
 
 > Disable Linux split lock mitigation on systems where it causes performance degradation with Couchbase Server. 
 
-On some Linux kernels that support split lock detection, the kernel’s split lock mitigation can cause severe performance degradation when a process triggers a misaligned atomic memory access. This may appear as high latency and reduced throughput under load on Couchbase Server hosts.
+On some Linux kernels that support split lock detection, the kernel's split lock mitigation can cause severe performance degradation when a process triggers a misaligned atomic memory access. This may appear as high latency and reduced throughput under load on Couchbase Server hosts.
 
 ## [](#prerequisites)Prerequisites
 

@@ -2,7 +2,7 @@
 title: cbbackupmgr remove
 description: Removes a backup repository from the backup archive
 editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-remove.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:backup-restore:cbbackupmgr-remove.adoc[]
 ---
 
@@ -81,7 +81,7 @@ Multiple cloud providers are supported, see the list below for more information.
 
 \--obj-staging-dir <staging\_dir>
 
-When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it’s not treated as a persistent store) and is only used during the backup.
+When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it's not treated as a persistent store) and is only used during the backup.
 
 > [!NOTE]
 > Do not use `/tmp` as the `obj-staging-dir`.  

@@ -3,7 +3,7 @@ title: "How-to Guide: Couchbase User RBAC"
 description: A how-to guide on configuring Couchbase user authentication and
   authorization using the Autonomous Operator.
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/howto-guide-couchbase-user-rbac.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::howto-guide-couchbase-user-rbac.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:2.6@operator::howto-guide-couchbase-user-rbac.adoc[]
 
 ## [](#overview)Overview
 
-This guide will describe how to create authenticated users and bind them to specific roles to provide multiple levels of authorization using the Autonomous Operator. Users can be authenticated either by Couchbase’s built-in authentication system or by an external authentication system such as OpenLDAP.
+This guide will describe how to create authenticated users and bind them to specific roles to provide multiple levels of authorization using the Autonomous Operator. Users can be authenticated either by Couchbase's built-in authentication system or by an external authentication system such as OpenLDAP.
 
 The Autonomous Operator refers to Couchbase Authentication as the `local` domain, and LDAP Authentication as the `external` domain. This guide will focus on using the `local` domain for authentication.
 
@@ -29,7 +29,7 @@ The Autonomous Operator refers to Couchbase Authentication as the `local` domain
 
 Setup a bucket called `Travel`, a scope called `Inventory`, and two collections called `Transport` and `Hotel`. See [Manage Scopes and Collections](../../server/current/manage/manage-scopes-and-collections/manage-scopes-and-collections.md) for more information on how to do this.
 
-We’ll create two users named Alice and Bob in the next steps, but we won’t assign any roles to them just yet. As we progress through this guide, we’ll assign roles based on scenarios.
+We'll create two users named Alice and Bob in the next steps, but we won't assign any roles to them just yet. As we progress through this guide, we'll assign roles based on scenarios.
 
 ## [](#create-users)Create Users
 
@@ -90,7 +90,7 @@ EOF
 
 ## [](#create-groups-and-rolebindings)Create Groups and `RoleBindings`
 
-Now that we’ve created the users, we can bind them with groups. In order to do that, we are going to create groups and bind them with the users using role bindings.
+Now that we've created the users, we can bind them with groups. In order to do that, we are going to create groups and bind them with the users using role bindings.
 
 Copy the below command to create a group and role binding for user "Alice":
 
@@ -120,15 +120,15 @@ EOF
 | **1** | The new role binding, with name role-binding-for-alice, binds the new user (alice) with the new group (group-for-alice). |
 | ----- | ------------------------------------------------------------------------------------------------------------------------ |
 
-In the above groups we have not assigned any roles to them. We’ll do it in the next section.
+In the above groups we have not assigned any roles to them. We'll do it in the next section.
 
 ## [](#scenarios)Scenarios
 
 ### [](#single-scope-and-collection)Single Scope and Collection
 
-As you may know, buckets contain scopes, and scopes have collections. We’ll use one scope and one collection for this scenario — named `Inventory` and `Transport`, respectively.
+As you may know, buckets contain scopes, and scopes have collections. We'll use one scope and one collection for this scenario — named `Inventory` and `Transport`, respectively.
 
-Alice is the `Transport` collection’s `Data Writer`, and Bob is the `Transport` collection’s `Data Reader`. This means that Alice can write but not read data in the `Transport` collection, and Bob can read but not write data in the same.
+Alice is the `Transport` collection's `Data Writer`, and Bob is the `Transport` collection's `Data Reader`. This means that Alice can write but not read data in the `Transport` collection, and Bob can read but not write data in the same.
 
 ![rbac single scope coll](_images/rbac-single-scope-coll.png) 
 
@@ -186,7 +186,7 @@ Using the `data_writer` and `data_reader` roles, we cannot use the UI to login.
 
 To verify that the users are assigned the desired roles, use the [cbc CLI](../../c-sdk/current/hello-world/cbc.md) or one of the [SDK Clients](../../home/sdk.md).
 
-Let’s try with user Alice first, and use the `cbc` CLI tool to create a document in Couchbase.
+Let's try with user Alice first, and use the `cbc` CLI tool to create a document in Couchbase.
 
 ```console
 cbc create -u alice -P password mydoc -V '{"key":"value"}' -M upsert -U couchbase://cb-example/travel \
@@ -201,7 +201,7 @@ mydoc                Stored. CAS=0x16d48f429afe0000
                      SYNCTOKEN=948,114825287260906,3
 ```
 
-We can see from the above example that Alice was able to write the data. Let’s see whether Alice can read the data or not.
+We can see from the above example that Alice was able to write the data. Let's see whether Alice can read the data or not.
 
 ```console
 cbc get mydoc -u alice -P password -U couchbase://cb-example/travel \
@@ -218,7 +218,7 @@ mydoc                LCB_ERR_AUTHENTICATION_FAILURE (206)
 
 We can observe that Alice was unable to read data, and an authentication failure error was returned.
 
-Now, let’s try the same thing with Bob.
+Now, let's try the same thing with Bob.
 
 ```console
 cbc create -u bob -P password mydoc -V '{"key":"value"}' -M upsert -U couchbase://cb-example/travel \
@@ -234,7 +234,7 @@ mydoc                LCB_ERR_AUTHENTICATION_FAILURE (206)
                      Ref:
 ```
 
-We can see that Bob was unable to write the data and received an authentication failure error in this example. Let’s see whether Bob can read the data or not.
+We can see that Bob was unable to write the data and received an authentication failure error in this example. Let's see whether Bob can read the data or not.
 
 ```console
 cbc get mydoc -u bob -P password -U couchbase://cb-example/travel \
@@ -255,9 +255,9 @@ This confirms that Alice can only write data to the `Transport` collection and B
 
 ### [](#single-scope-and-multiple-collections)Single Scope and Multiple Collections
 
-In this scenario, we’ll use one scope named `Inventory` and two collections named `Transport` and `Hotel`.
+In this scenario, we'll use one scope named `Inventory` and two collections named `Transport` and `Hotel`.
 
-Alice is the `Transport` collection’s `Data Writer` and `Hotel` collection’s `Data Reader`. Bob is the `Transport` collection’s `Data Reader` and `Hotel` collection’s `Data Writer`.
+Alice is the `Transport` collection's `Data Writer` and `Hotel` collection's `Data Reader`. Bob is the `Transport` collection's `Data Reader` and `Hotel` collection's `Data Writer`.
 
 This means that Alice can write in the `Transport` collection and read data from the `Hotel` collection, and Bob can read data from the `Transport` collection and write data in the `Hotel` collection.
 
@@ -334,7 +334,7 @@ Now, we can verify that the users are assigned the desired roles for both collec
 * Transport Collection
 * Hotel Collection
 
-Let’s try with user Alice first, and use the `cbc` CLI tool to create a document in Couchbase.
+Let's try with user Alice first, and use the `cbc` CLI tool to create a document in Couchbase.
 
 ```console
 cbc create -u alice -P password mydoc -V '{"key":"value"}' -M upsert -U couchbase://cb-example/travel \
@@ -349,7 +349,7 @@ mydoc                Stored. CAS=0x16d48f429afe0000
                      SYNCTOKEN=948,114825287260906,3
 ```
 
-We can see from the above example that Alice was able to write the data. Let’s see whether Alice can read the data or not.
+We can see from the above example that Alice was able to write the data. Let's see whether Alice can read the data or not.
 
 ```console
 cbc get mydoc -u alice -P password -U couchbase://cb-example/travel \
@@ -366,7 +366,7 @@ mydoc                LCB_ERR_AUTHENTICATION_FAILURE (206)
 
 We can observe that Alice was unable to read data, and an authentication failure error was returned.
 
-Now, let’s try the same thing with Bob.
+Now, let's try the same thing with Bob.
 
 ```console
 cbc create -u bob -P password mydoc -V '{"key":"value"}' -M upsert -U couchbase://cb-example/travel \
@@ -381,7 +381,7 @@ mydoc                LCB_ERR_AUTHENTICATION_FAILURE (206)
                      Ref:
 ```
 
-We can see that Bob was unable to write the data and received an authentication failure error in this example. Let’s see whether Bob can read the data or not.
+We can see that Bob was unable to write the data and received an authentication failure error in this example. Let's see whether Bob can read the data or not.
 
 ```console
 cbc get mydoc -u bob -P password -U couchbase://cb-example/travel \
@@ -398,7 +398,7 @@ mydoc                 CAS=0x16d48f429afe0000, Flags=0x0, Size=15, Datatype=0x01(
 
 Bob was able to read the data, as can be seen from the above example.
 
-Let’s try with user Bob first, and use the `cbc` CLI tool to create a document in Couchbase.
+Let's try with user Bob first, and use the `cbc` CLI tool to create a document in Couchbase.
 
 ```console
 cbc create -u bob -P password bobdoc -V '{"key":"value"}' -M upsert -U couchbase://cb-example/travel \
@@ -413,7 +413,7 @@ bobdoc               Stored. CAS=0x16d4905332b90000
                      SYNCTOKEN=947,114707412110497,4
 ```
 
-We can see from the above example that Bob was able to write the data. Let’s see whether Bob can read the data or not.
+We can see from the above example that Bob was able to write the data. Let's see whether Bob can read the data or not.
 
 ```console
 cbc get bobdoc -u bob -P password -U couchbase://cb-example/travel \
@@ -428,7 +428,7 @@ bobdoc               LCB_ERR_AUTHENTICATION_FAILURE (206)
                      Ref:                      Context:
 ```
 
-We can observe that Bob was unable to read data, and an authentication failure error was returned. Now, let’s try the same thing with Alice.
+We can observe that Bob was unable to read data, and an authentication failure error was returned. Now, let's try the same thing with Alice.
 
 ```console
 cbc create -u alice -P password alicedoc -V '{"key":"value"}' -M upsert -U couchbase://cb-example/travel \
@@ -444,7 +444,7 @@ alicedoc             LCB_ERR_AUTHENTICATION_FAILURE (206)
                      Ref:
 ```
 
-We can see that Alice was unable to write the data and received an authentication failure error in this example. Let’s see whether Alice can read the data or not.
+We can see that Alice was unable to write the data and received an authentication failure error in this example. Let's see whether Alice can read the data or not.
 
 ```console
 cbc get bobdoc -u alice -P password -U couchbase://cb-example/travel \

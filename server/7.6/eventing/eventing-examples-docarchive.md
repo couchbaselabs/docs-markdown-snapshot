@@ -5,7 +5,7 @@ description: Create a JavaScript Function that contains an
   collection is about to expire, a perfect copy is created in a different
   collection.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-examples-docarchive.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:eventing:eventing-examples-docarchive.adoc[]
 ---
 
@@ -19,12 +19,12 @@ link: xref:7.6@server:eventing:eventing-examples-docarchive.adoc[]
 This example, **Document Archival** is very similar to the **Document Expiry** example. However the goal here is to create a robust archiving function and as such this example has a few important differences.
 
 * We will archive a perfect copy to the target collection.
-* The edge case ignored for brevity in **Document Expiry** for receiving a mutation a document within the 120 second window prior to expiration is covered (in this case we don’t need a timer).
+* The edge case ignored for brevity in **Document Expiry** for receiving a mutation a document within the 120 second window prior to expiration is covered (in this case we don't need a timer).
 * The edge case ignored for brevity in **Document Expiry** for a missing source document when we trigger our callback is now caught and it is logged as an error.
 * No logging except for an error case of a missing document when we are archiving.
 * We will not rely on a Couchbase SDK, but rather on an expiry set on the source collection where all documents will have an expiration of 10 minutes from the time of their first mutation or creation.
 
-**Implementation**: Create a JavaScript Function that contains an **OnUpdate** handler, which runs whenever a document is created (or mutated). The Eventing Function calls a timer routine, which executes a callback function, two minutes prior to any document’s established expiration. This function will archive an identical document with the same key, in a specified target bucket. The original document in the source bucket is not changed (and will be deleted automatically according to the bucket’s expiration time).
+**Implementation**: Create a JavaScript Function that contains an **OnUpdate** handler, which runs whenever a document is created (or mutated). The Eventing Function calls a timer routine, which executes a callback function, two minutes prior to any document's established expiration. This function will archive an identical document with the same key, in a specified target bucket. The original document in the source bucket is not changed (and will be deleted automatically according to the bucket's expiration time).
 
 **Preparations**:
 
@@ -43,7 +43,7 @@ For complete details on how to set up your keyspaces refer to [creating buckets]
 
 **Procedure**:
 
-1. If you don’t already have the bucket **travel-sample**' listed in the **Couchbase Web Console** \> **Buckets** page you can load this document set as follows:
+1. If you don't already have the bucket **travel-sample**' listed in the **Couchbase Web Console** \> **Buckets** page you can load this document set as follows:
 
   * Access the **Couchbase Web Console** \> **Settings** page
   * Select the **Sample Buckets** in the upper right banner.
@@ -52,7 +52,7 @@ For complete details on how to set up your keyspaces refer to [creating buckets]
 2. Verify your Buckets you should have three (3) total and verify **'bulk.data.source'** has a TTL of 600 seconds.  
 ![docarchive 00 bsettings](_images/docarchive_00_bsettings.png)  
 
-  * Click **Scopes & Collections** on the left, Click the scope **data** on the right to expand it to show the collections. When you created the collection **'bulk.data.source'** it should have had a 'Bucket Max Time-To-Live' or TTL of 600 seconds. If you didn’t then drop the collection and recreate it with the needed TTL of 600.  
+  * Click **Scopes & Collections** on the left, Click the scope **data** on the right to expand it to show the collections. When you created the collection **'bulk.data.source'** it should have had a 'Bucket Max Time-To-Live' or TTL of 600 seconds. If you didn't then drop the collection and recreate it with the needed TTL of 600.  
   ![docarchive 01 bsettings](_images/docarchive_01_bsettings.png)
 3. From the **Couchbase Web Console** \> **Eventing** page, click **ADD FUNCTION**, to add a new Function. The **ADD FUNCTION** dialog appears.
 4. In the **ADD FUNCTION** dialog, for individual Function elements provide the below information:
@@ -134,9 +134,9 @@ The details under Bucket "bulk" scope "data" show that we have archived the 1,96
 ![docarchive 07 preexpired](_images/docarchive_07_preexpired.png)
 12. Now switch to the access the **Couchbase Web Console** \> **Eventing** page. Expand the function **archive\_before\_expiry** and not the count under successes (3,936)  
 ![docarchive cntb](_images/docarchive_cntb.png)
-13. Wait a few more minutes (a bit more than two minutes) past the 120 second window, then check the documents within the `bulk`.`data`.`source` collection, you will find that none of the documents will be accessible as they have expired due to the enclosing bucket’s defined TTL.  
+13. Wait a few more minutes (a bit more than two minutes) past the 120 second window, then check the documents within the `bulk`.`data`.`source` collection, you will find that none of the documents will be accessible as they have expired due to the enclosing bucket's defined TTL.  
 > [!NOTE]  
-> If you don’t actually try to access the documents in the `bulk`.`data`.`source` collection the UI may still indicate they still exist until the expiry pager removes the tombstone for the deleted or expired documents (or an attempt to access them is made).  
+> If you don't actually try to access the documents in the `bulk`.`data`.`source` collection the UI may still indicate they still exist until the expiry pager removes the tombstone for the deleted or expired documents (or an attempt to access them is made).  
 ![docarchive 06 buckets](_images/docarchive_06_buckets.png)  
 The details under Bucket "bulk" scope "data" show that the 1,968 archived documents remain in the "target" collection but the original documents in the "source" collection have expired:  
 ![docarchive 08 expired](_images/docarchive_08_expired.png)

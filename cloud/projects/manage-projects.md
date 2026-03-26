@@ -2,7 +2,7 @@
 title: Manage Projects
 description: Create and manage projects to organize and allow access to Couchbase clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/projects/pages/manage-projects.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:projects:manage-projects.adoc[]
 ---
 
@@ -20,7 +20,7 @@ The purpose of a _project_ is to organize and manage access to groups of Couchba
 Projects can be viewed and managed from the **Projects** tab in the main navigation. A summary of all projects — _of which you are a member_ — is displayed in table format.
 
 > [!NOTE]
-> Users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) organization role automatically have a [Project Owner](project-roles.md#project-owner-role) role for all projects in their organization, so they will see all the organization’s projects listed in the project summary.
+> Users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) organization role automatically have a [Project Owner](project-roles.md#project-owner-role) role for all projects in their organization, so they will see all the organization's projects listed in the project summary.
 
 If your user has the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator) organization roles, you will see an option to create a project.
 

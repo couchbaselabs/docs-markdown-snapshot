@@ -1,7 +1,7 @@
 ---
 title: Connecting Sync Gateway to a Couchbase Cluster
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/tutorial-sync-gateway.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::tutorial-sync-gateway.adoc[]
 ---
 
@@ -141,7 +141,7 @@ Alternatively, you can take advantage of the [Couchbase user RBAC management](co
 
 #### [](#enabling-rbac-management)Enabling RBAC Management
 
-RBAC security management on the Couchbase cluster defaults to `false`. Therefore, you’ll need to enable it by setting [couchbaseclusters.spec.security.rbac.managed](resource/couchbasecluster.md#couchbaseclusters-spec-security-rbac-managed) to true:
+RBAC security management on the Couchbase cluster defaults to `false`. Therefore, you'll need to enable it by setting [couchbaseclusters.spec.security.rbac.managed](resource/couchbasecluster.md#couchbaseclusters-spec-security-rbac-managed) to true:
 
 ```yaml
 security:
@@ -228,7 +228,7 @@ $ kubectl apply -f sync-gateway-user-rolebinding.yaml
 
 #### [](#configure-sync-gateway-with-the-rbac-user)Configure Sync Gateway with the RBAC User
 
-Finally, to enable Sync Gateway to use the `sync-gateway` user, we’ll need to modify the configuration that we previously defined in [Configuring Sync Gateway](#configuring-sync-gateway):
+Finally, to enable Sync Gateway to use the `sync-gateway` user, we'll need to modify the configuration that we previously defined in [Configuring Sync Gateway](#configuring-sync-gateway):
 
 ```yaml
 apiVersion: v1
@@ -250,7 +250,7 @@ stringData:
 
 | **1** | The databases.cb-example.bucket attribute must match the bucket granted access to in the CouchbaseGroup.          |
 | ----- | ----------------------------------------------------------------------------------------------------------------- |
-| **2** | The databases.cb-example.username attribute must match the CouchbaseUser resource’s name.                         |
+| **2** | The databases.cb-example.username attribute must match the CouchbaseUser resource's name.                         |
 | **3** | The databases.cb-example.password attribute must match the plain-text password associated with the CouchbaseUser. |
 
 If the configuration file is named `sync-gateway.yaml`, the command to deploy the configuration changes would be:
@@ -311,7 +311,7 @@ spec:
 | **2** | spec.template.spec.containers\[\].image defines the container image to deploy. Version 2.8.2 or higher is recommended as it has the fewest number of [network limitations](concept-couchbase-networking.md#sync-gateway-exposed-features-limitations).                                                                                                                                                                                                                                                     |
 | **3** | spec.template.spec.containers\[\].volumeMounts\[\].mountPath mounts the configuration secret in the correct location. By default the Sync Gateway container will try to load configuration from /etc/sync\_gateway/config.json, and this is how the Secret and Deployment are configured.                                                                                                                                                                                                                  |
 | **4** | spec.template.spec.containers\[\].ports\[\] defines the Sync Gateway ports. The sync-gateway port is required for Couchbase Mobile to connect to, this can be load balanced and exposed via a service, load-balancer or ingress. The metrics port is optional, and provides integration with Prometheus.                                                                                                                                                                                                   |
-| **5** | spec.template.spec.containers\[\].resources allows the a pod’s resource requirements to be configured. We highly recommend that this is configured to ensure fair scheduling and access to the required resources. The actual values are dependent on your actual workload, and the ones depicted are an example only.                                                                                                                                                                                     |
+| **5** | spec.template.spec.containers\[\].resources allows the a pod's resource requirements to be configured. We highly recommend that this is configured to ensure fair scheduling and access to the required resources. The actual values are dependent on your actual workload, and the ones depicted are an example only.                                                                                                                                                                                     |
 | **6** | spec.template.spec.containers\[\].env allows environment variables to the passed to Sync Gateway. Particular attention should be paid to GOMAXPROCS and this defines the number of CPUs that Sync Gateway can use. This is directly related to the resources defined previously. If you have allocated 4 CPUs, you should set the maximum number of CPUs to 4 also. The limits should be above this number to allow for any overheads, as Kubernetes will terminate pods who exceed their resource limits. |
 | **7** | spec.template.spec.volumes\[\].secret.secretName references the [Sync Gateway configuration](#configuring-sync-gateway) Secret that is mounted in the Sync Gateway container.                                                                                                                                                                                                                                                                                                                              |
 

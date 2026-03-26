@@ -3,7 +3,7 @@ title: System Requirements
 description: Enterprise Analytics has a basic set of installation and networking
   requirements that apply to nearly every deployment.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/system-requirements.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:install:system-requirements.adoc[]
 ---
 
@@ -19,7 +19,7 @@ Deploying Enterprise Analytics into production requires that the hardware and so
 __Table 1\. Couchbase System Requirements__
 | Requirement                          | Description                                                                                                                                                                                                               |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Platform support**                 | Make sure that you deploy onto a platform that’s supported. [Supported Platforms](supported-platform.md)                                                                                                                  |
+| **Platform support**                 | Make sure that you deploy onto a platform that's supported. [Supported Platforms](supported-platform.md)                                                                                                                  |
 | **Hardware requirements**            | Make sure that your production environment has adequate hardware and system resources to meet the needs of your deployment. [System Resource Requirements](sys-resource-req.md)                                           |
 | **Additional requirements**          | Make sure that your production environment meets all the necessary additional requirements for the components that you plan to deploy. [Additional Requirements](additional-req.md)                                       |
 | **Networking requirements**          | Review the Enterprise Analytics networking requirements to make sure that your environment can accommodate the various components that you plan to deploy. [Enterprise Analytics Ports](cb-enterprise-analytics-ports.md) |

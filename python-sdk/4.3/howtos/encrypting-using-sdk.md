@@ -3,7 +3,7 @@ title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the Python SDK.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@python-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -40,7 +40,7 @@ See the [GitHub repository tags](https://github.com/couchbase/python-couchbase-e
 
 The Python Field-Level Encryption library works on the principle of `Encrypters` and `Decrypters` which can be packaged within a `Provider`. `Encrypters` and `Decrypters` are registered with a `CryptoManager` and are then used to encrypt and decrypt specified fields.
 
-Here we’ll go through an example of setting up and using the Python Field-Level Encryption library.
+Here we'll go through an example of setting up and using the Python Field-Level Encryption library.
 
 To begin we need to create a couple of keys, you should **not** use the `InsecureKeyring` other than for evaluation purposes and should keep your keys secure.
 
@@ -260,7 +260,7 @@ print("Decrypted doc:\n{}".format(decrypted_user))
 > [!WARNING]
 > SDK 2 cannot read fields encrypted by SDK 3\.
 
-It’s inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
+It's inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
 
 SDK 3 requires additional configuration to read fields encrypted by SDK 2\. The rest of this section describes how to configure Field-Level Encryption in SDK 3 for backwards compatibility with SDK 2.
 

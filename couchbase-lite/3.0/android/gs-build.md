@@ -3,7 +3,7 @@ title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase
   Lite on Android
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/android/pages/gs-build.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:android:gs-build.adoc[]
 ---
 
@@ -27,12 +27,12 @@ Quick Steps
 1. Get the project and open it in Android Studio: [Kotlin](https://github.com/couchbase/docs-couchbase-lite/tree/release/3.0/modules/android/examples/GetStarted%5Fkotlin) | [Java](https://github.com/couchbase/docs-couchbase-lite/tree/release/3.0/modules/android/examples/GetStarted%5Fjava)
 2. Build it
 3. Run it  
-Android Studio’s Logcat panel will show `INFO` output similar to that in [Figure 1](#img-output):
-4. That’s it.
+Android Studio's Logcat panel will show `INFO` output similar to that in [Figure 1](#img-output):
+4. That's it.
 
-If you had problems, or just want more information on the app, there’s more below.
+If you had problems, or just want more information on the app, there's more below.
 
-Those errors at the end of the run? They are because no Sync Gateway was running. That’s optional code — see below. Comment-it-out or remove it if you aren’t planning on running _Sync Gateway_.
+Those errors at the end of the run? They are because no Sync Gateway was running. That's optional code — see below. Comment-it-out or remove it if you aren't planning on running _Sync Gateway_.
 
 ![getstarted output ktx](../_images/getstarted-output-ktx.png) 
 

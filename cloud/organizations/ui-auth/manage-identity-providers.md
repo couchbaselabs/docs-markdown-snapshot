@@ -4,7 +4,7 @@ description: After creating a realm, you can change its realm name, rotate its
   certificates, change the default team, turn group mapping on or off, or delete
   it.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/manage-identity-providers.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:organizations:ui-auth/manage-identity-providers.adoc[]
 ---
 
@@ -34,7 +34,7 @@ When you first open it, the **Organization Realms** page shows basic information
 ### [](#change-realm-name)Change the Realm Name
 
 > [!CAUTION]
-> It may be possible for another party to guess your custom realm name. Keep this in mind when you’re choosing one. Automatically generated realm names can help prevent this.
+> It may be possible for another party to guess your custom realm name. Keep this in mind when you're choosing one. Automatically generated realm names can help prevent this.
 
 When you create a realm, the realm is automatically assigned a unique auto-generated realm name. To change your realm name:
 
@@ -62,9 +62,9 @@ Provide a new Client Secret to save your changes.
 ### [](#default-teams)Change the Default Team
 
 > [!CAUTION]
-> Capella assigns SSO users to the default team if they’re not mapped to another team. Typically, a default team should have the fewest permissions.
+> Capella assigns SSO users to the default team if they're not mapped to another team. Typically, a default team should have the fewest permissions.
 
-Every SSO user is a member of a realm’s default team unless otherwise specified through [role mapping](manage-role-mapping.md). When you create a realm, the default team is "My First Team," but you can designate any team in your organization as the default. You cannot delete any team set as the default team.
+Every SSO user is a member of a realm's default team unless otherwise specified through [role mapping](manage-role-mapping.md). When you create a realm, the default team is "My First Team," but you can designate any team in your organization as the default. You cannot delete any team set as the default team.
 
 1. In the **Default Team** section use the **Capella Team** list to choose a new default team.  
 This list includes any existing teams within your organization.
@@ -75,7 +75,7 @@ Any permission changes apply to affected users when they next sign in to Capella
 
 If group mapping is on, Capella assigns roles to SSO users based on which teams map to which SSO groups. If group mapping is off, you can manage SSO users like any other Capella user.
 
-When you turn off group mapping for a realm, Capella still uses the [default team](#default-teams) to assign roles when SSO users first sign in. After SSO users sign in, you manage them like other Capella users through the **People** tab and each project’s **Collaborators** tab.
+When you turn off group mapping for a realm, Capella still uses the [default team](#default-teams) to assign roles when SSO users first sign in. After SSO users sign in, you manage them like other Capella users through the **People** tab and each project's **Collaborators** tab.
 
 > [!CAUTION]
 > When SSO users sign in for the first time after you turn off group mapping, they keep their current roles. If they sign in after you turn on group mapping, their roles sync based on any mapped SSO groups, and Capella deletes the old permissions.
@@ -89,7 +89,7 @@ For more information about managing SSO users with group mapping turned off, see
 ### [](#delete-a-realm)Delete a Realm
 
 > [!IMPORTANT]
-> You cannot delete a realm that you’re signed into.
+> You cannot delete a realm that you're signed into.
 
 > [!WARNING]
 > When you delete a realm, Capella deletes the permissions of all SSO users connected to your organization through that realm.

@@ -3,7 +3,7 @@ title: Release Notes for Couchbase Server 8.0
 description: Couchbase Server 8.0.0 introduces many fixes, as well as some
   deprecations and removals.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/release-notes/pages/relnotes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:release-notes:relnotes.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:server:release-notes:relnotes.adoc[]
 
 These release notes are focused on bug fixes and breaking changes.
 
-For information about new features and major improvements made in Couchbase Server 8.0, see [What’s New](../introduction/whats-new.md).
+For information about new features and major improvements made in Couchbase Server 8.0, see [What's New](../introduction/whats-new.md).
 
 ## [](#release-80)Release 8.0 (October 2025)
 
@@ -95,7 +95,7 @@ Configurable Warmup Behavior (Background Warmup):
 
 The new Warmup behaviour setting, configured using `warmupBehavior` in the REST API, controls when a persistent bucket becomes fully available for read and write operations after a bucket restart. This setting replaces multiple warmup threshold parameters with a single configuration point:
 
-* **background** (default): The bucket becomes fully available as soon as required metadata is loaded from storage. The bucket’s cache is then filled in the background until memory usage reaches the low watermark (`memoryLowWatermark`).
+* **background** (default): The bucket becomes fully available as soon as required metadata is loaded from storage. The bucket's cache is then filled in the background until memory usage reaches the low watermark (`memoryLowWatermark`).
 * **blocking**: This is the original behaviour. The bucket becomes read-available as soon as required metadata is loaded from storage, then continues filling the cache until memory usage reaches the low watermark (`memoryLowWatermark`). The bucket becomes fully available only after this point.
 * **none**: Disables warmup. The bucket becomes fully available as soon as required metadata is loaded from storage. The cache remains empty.
 
@@ -111,7 +111,7 @@ Any system using `kv_vb_ht_memory_bytes` should migrate to using `kv_vb_ht_memor
 
 **[MB-61385](https://jira.issues.couchbase.com/browse/MB-61385/)**
 
-SET and DELETE with Meta operations could distort the vbucket max\_cas if a faulty CAS value is provided in the operation, setting the vbuckets max\_cas to an unusually high or inconsistent value. Inadvertently affecting the Hybrid Logical Clock (HLC) and Last Write Wins (LLW) conflict resolution via XDCR. In certain cases, this resulted in legitimate mutations being skipped or ignored during replication. For this reason, the system now fails front-end operations with a CAS value that exceeds the `hlc_max_future_threshold`, default value of 65 minutes, to prevent a vbucket’s max\_cas from getting distorted.
+SET and DELETE with Meta operations could distort the vbucket max\_cas if a faulty CAS value is provided in the operation, setting the vbuckets max\_cas to an unusually high or inconsistent value. Inadvertently affecting the Hybrid Logical Clock (HLC) and Last Write Wins (LLW) conflict resolution via XDCR. In certain cases, this resulted in legitimate mutations being skipped or ignored during replication. For this reason, the system now fails front-end operations with a CAS value that exceeds the `hlc_max_future_threshold`, default value of 65 minutes, to prevent a vbucket's max\_cas from getting distorted.
 
 **[MB-62295](https://jira.issues.couchbase.com/browse/MB-62295/)**
 
@@ -197,7 +197,7 @@ Couchbase Server now allows users to specify the network type when adding a self
 
 **Change to Bucket Priority Settings**
 
-As part of improving background task scheduling, we have replaced the legacy implementation with a standardized, more advanced scheduler. As a result, setting a bucket’s priority to high or low no longer affects system behavior. Consequently, the option to set bucket priority has been removed from the UI.
+As part of improving background task scheduling, we have replaced the legacy implementation with a standardized, more advanced scheduler. As a result, setting a bucket's priority to high or low no longer affects system behavior. Consequently, the option to set bucket priority has been removed from the UI.
 
 Previously, task scheduling relied on a basic two-priority queue (high and low), which had limitations—such as busy polling. The new scheduling mechanism (introduced in MB-36956) eliminates these issues.
 
@@ -247,7 +247,7 @@ With this change, users can:
 
 New to this release is the ability to manipulate document extended attributes (xattrs) via common SQL++ statements.
 
-INSERT and UPSERT statement OPTIONS may now include an “xattrs” object element detailing additions and changes to the xattrs (omissions do not delete xattrs). The UPDATE statement now supports SET and UNSET of meta().xattrs.{attribute} elements.
+INSERT and UPSERT statement OPTIONS may now include an "xattrs" object element detailing additions and changes to the xattrs (omissions do not delete xattrs). The UPDATE statement now supports SET and UNSET of meta().xattrs.{attribute} elements.
 
 **[MB-66703](https://jira.issues.couchbase.com/browse/MB-66703/)**
 
@@ -315,9 +315,9 @@ Therefore, you will need to regenerate your OOTB CA certificates (if the CA cert
 
 Starting with Couchbase Server Enterprise `8.0`, new buckets default to the Magma storage engine configured with 128 vBuckets, replacing Couchstore as the default.
 
-This change reduces the minimum memory quota from 1 GiB (required by Magma with 1024 vBuckets) to 100 MiB per node—matching Couchstore, while retaining Magma’s performance and efficiency benefits.
+This change reduces the minimum memory quota from 1 GiB (required by Magma with 1024 vBuckets) to 100 MiB per node—matching Couchstore, while retaining Magma's performance and efficiency benefits.
 
-For more details, see the [What’s New](../introduction/whats-new.md#whats-new-magma-vbuckets) page.
+For more details, see the [What's New](../introduction/whats-new.md#whats-new-magma-vbuckets) page.
 
 ### [](#data-service)Data Service
 
@@ -325,7 +325,7 @@ For more details, see the [What’s New](../introduction/whats-new.md#whats-new-
 
 Configurable Warmup Behavior (Background Warmup): The new `warmup_behavior` setting, configured using `warmupBehavior` in the REST API, controls when a persistent bucket becomes fully available for read and write operations after a bucket restart. This setting replaces multiple warmup threshold parameters with a single configuration point:
 
-* **background** (default): The bucket becomes fully available as soon as required metadata is loaded from storage. The bucket’s cache is then filled in the background until memory usage reaches the low watermark (`memoryLowWatermark`).
+* **background** (default): The bucket becomes fully available as soon as required metadata is loaded from storage. The bucket's cache is then filled in the background until memory usage reaches the low watermark (`memoryLowWatermark`).
 * **blocking**: This is the original behaviour. The bucket becomes read-available as soon as required metadata is loaded from storage, then continues filling the cache until memory usage reaches the low watermark (`memoryLowWatermark`). The bucket becomes fully available only after this point.
 * **none**: Disables warmup. The bucket becomes fully available as soon as required metadata is loaded from storage. The cache remains empty.
 
@@ -367,7 +367,7 @@ If you do not remove your Memcached buckets, the upgrade process reports an erro
 
 **Change to Bucket Priority Settings**
 
-As part of improving background task scheduling, we have replaced the legacy implementation with a standardized, more advanced scheduler. As a result, setting a bucket’s priority to high or low no longer affects system behavior. Consequently, the option to set bucket priority has been removed from the UI.
+As part of improving background task scheduling, we have replaced the legacy implementation with a standardized, more advanced scheduler. As a result, setting a bucket's priority to high or low no longer affects system behavior. Consequently, the option to set bucket priority has been removed from the UI.
 
 Previously, task scheduling relied on a basic two-priority queue (high and low), which had limitations—such as busy polling. The new scheduling mechanism (introduced in MB-36956) eliminates these issues.
 
@@ -378,7 +378,7 @@ Previously, task scheduling relied on a basic two-priority queue (high and low),
 
 **[MB-63192](https://jira.issues.couchbase.com/browse/MB-63192/)**
 
-The latest updates introduce a new shard assignment algorithm, impacting both vector and non-vector indexes by offering more aggressive sharing of plasma shards in version 8.0 compared to 7.6\. This adjustment might affect performance when comparing upgrades from earlier versions like 7.2 to 8.0 or 7.6 to 8.0\. Shard assignment logic should be functionally tested in these scenarios. The algorithm is behind a feature flag and can be toggled off to revert to older behaviors if needed. For Capella upgrades, it’s possible all shards might already exist, potentially requiring additional shards for vector indexes depending on resource availability. On-prem clusters keep file-based rebalance off by default. Performance testing, as noted in ongoing evaluations, indicates a 7% regression during initial index builds at CPU saturation, but no impact on incremental builds. The benefits include improved memory control, suggesting the changes are acceptable at this stage.
+The latest updates introduce a new shard assignment algorithm, impacting both vector and non-vector indexes by offering more aggressive sharing of plasma shards in version 8.0 compared to 7.6\. This adjustment might affect performance when comparing upgrades from earlier versions like 7.2 to 8.0 or 7.6 to 8.0\. Shard assignment logic should be functionally tested in these scenarios. The algorithm is behind a feature flag and can be toggled off to revert to older behaviors if needed. For Capella upgrades, it's possible all shards might already exist, potentially requiring additional shards for vector indexes depending on resource availability. On-prem clusters keep file-based rebalance off by default. Performance testing, as noted in ongoing evaluations, indicates a 7% regression during initial index builds at CPU saturation, but no impact on incremental builds. The benefits include improved memory control, suggesting the changes are acceptable at this stage.
 
 ### [](#tools)Tools
 
@@ -392,7 +392,7 @@ Previously, it was possible to remove backups which would cause dependent increm
 
 ## [](#known-issues-800)Known Issues 8.0.0 (October 2025)
 
-For Couchbase Server 8.0.0 was released in October 2025, these are the known issues that aren’t yet resolved.
+For Couchbase Server 8.0.0 was released in October 2025, these are the known issues that aren't yet resolved.
 
 ### [](#dlist-known-issues-800-index-service)Index Service
 

@@ -3,7 +3,7 @@ title: Using Couchbase Transactions
 description: A practical guide on using Couchbase Distributed ACID transactions,
   via the C&#43;&#43; SDK.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.1@cxx-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
@@ -540,7 +540,7 @@ cluster.transactions()->run([&](auto ctx) -> couchbase::error {
 > [!IMPORTANT]
 > Query Mode
 > 
-> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user’s query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
+> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user's query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user's query permissions. These may or may not be different to the user's data permissions; if they are different, you may get unexpected results.
 
 ## [](#concurrent-operations)Concurrent Operations
 

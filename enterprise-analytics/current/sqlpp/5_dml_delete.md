@@ -3,7 +3,7 @@ title: DELETE Statements
 description: This topic describes how you use <code>DELETE</code> statements to
   delete objects from a standalone collection.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_dml_delete.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:sqlpp:5_dml_delete.adoc[]
 ---
 
@@ -58,7 +58,7 @@ This example deletes orders made by a customer named `T. Cody`:
 
 WHERE
 
-The optional **`WHERE`** clause specifies a condition that the objects in the target collection must satisfy for the statement to delete them. It can include uncomplicated predicates as well as other subqueries referring to other existing collections. The default database for the `WHERE` expression is the target collection’s database. There’s one variable in scope for the `WHERE` expression. If specified, `OutputAlias` defines the variable’s name. Otherwise, the variable’s name is the target collection’s name.
+The optional **`WHERE`** clause specifies a condition that the objects in the target collection must satisfy for the statement to delete them. It can include uncomplicated predicates as well as other subqueries referring to other existing collections. The default database for the `WHERE` expression is the target collection's database. There's one variable in scope for the `WHERE` expression. If specified, `OutputAlias` defines the variable's name. Otherwise, the variable's name is the target collection's name.
 
 Errors encountered during `DELETE` cancels the action and leaves the target dataset in its pre-DELETE state.
 

@@ -3,7 +3,7 @@ title: Verify VPC Peering Connectivity
 description: Use the procedures on this page to verify that a VPC peering
   connection is working correctly and help troubleshoot connectivity issues.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/verify-troubleshoot.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clouds:vpc-peering/verify-troubleshoot.adoc[]
 ---
 
@@ -46,7 +46,7 @@ Non-authoritative answer:
 Name:    9qvj8x-f2oxhahtz.a-lxzt-gdkzoqfuu.cloud.couchbase.com  
 Address: 10.0.18.110  
 ```
-4. When the DNS resolution is working correctly, `nslookup` returns the private IP of the Capella node—​an IP from the cluster’s CIDR block. If the `nslookup` returns the public IP for this node and you’re using AWS, check that you have:
+4. When the DNS resolution is working correctly, `nslookup` returns the private IP of the Capella node—​an IP from the cluster's CIDR block. If the `nslookup` returns the public IP for this node and you're using AWS, check that you have:
 
   * Enabled DNS resolution
   * Enabled DNS hostnames
@@ -65,7 +65,7 @@ traceroute -T 9qvj8x-f2oxhahtz.a-lxzt-gdkzoqfuu.cloud.couchbase.com -p 18091
 traceroute to 9qvj8x-f2oxhahtz.a-lxzt-gdkzoqfuu.cloud.couchbase.com (10.0.18.110), 30 hops max, 60 byte packets  
  1  ip-10-0-18-110.us-west-2.compute.internal (10.0.18.110)  0.303 ms  0.288 ms  0.302 ms  
 ```
-2. The result from this `traceroute` should return quickly. If it’s slow, this can indicate issues with your routing. Validate the route table associated with the VPC to check that you have associated the correct CIDR block with the VPC peering connection.
+2. The result from this `traceroute` should return quickly. If it's slow, this can indicate issues with your routing. Validate the route table associated with the VPC to check that you have associated the correct CIDR block with the VPC peering connection.
 3. Use `curl` to validate that Couchbase Server is responding correctly over the private network:  
 ```console  
 $ curl -k https://9qvj8x-f2oxhahtz.a-lxzt-gdkzoqfuu.cloud.couchbase.com:18091  
@@ -107,7 +107,7 @@ __Table 1\. VPC Peering Connection Status__
 | Infrastructure Failed       | Infrastructure provisioning failed.                                                                                         |
 | Ready                       | One or more networks are linked successfully.                                                                               |
 | No Networks                 | No networks are linked but the infrastructure has been provisioned for your cluster.                                        |
-| Infrastructure Provisioning | The infrastructure is being provisioned. This is an intermediate state that’s only possible for the first VPC peering link. |
+| Infrastructure Provisioning | The infrastructure is being provisioned. This is an intermediate state that's only possible for the first VPC peering link. |
 
 > [!NOTE]
 > Creating multiple networks rapidly may cause both the Linking and Provisioning states to display as 'Failed'.

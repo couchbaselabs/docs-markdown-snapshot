@@ -3,7 +3,7 @@ title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.8@java-sdk:howtos:sdk-authentication.adoc[]
 ---
 
@@ -61,7 +61,7 @@ To learn how to generate and deploy certificates, see [Manage Certificates](#7.6
 
 For the following example, you will need a client certificate and the associated private key. These must be stored together in the same Java KeyStore file or pkcs12 bundle.
 
-If your cluster’s root certificate does not come from a well-known Certificate Authority (CA), you must tell the client to trust the cluster’s root certificate. This example assumes the cluster’s root certificate is available in a file called `ca-cert.pem`.
+If your cluster's root certificate does not come from a well-known Certificate Authority (CA), you must tell the client to trust the cluster's root certificate. This example assumes the cluster's root certificate is available in a file called `ca-cert.pem`.
 
 > [!TIP]
 > To trust multiple root certificates, put them all in the same `ca-certs.pem` file.

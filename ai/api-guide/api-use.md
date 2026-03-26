@@ -2,7 +2,7 @@
 title: Make an API Call with Capella AI Services APIs
 description: How to make an API call with the Couchbase AI Services APIs.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-use.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:api-guide:api-use.adoc[]
 ---
 
@@ -30,7 +30,7 @@ Use the Management API to manage your AI Services.
 
   * The API key must have all the organization roles, project access, and project roles required to carry out the API call. In the [Management API reference](../../cloud/management-api-reference/index.md), each endpoint description lists the roles that are needed.
   * The API key is not expired.
-  * You added your connection IP address to your API key’s allowed IP addresses.
+  * You added your connection IP address to your API key's allowed IP addresses.
   * You saved the API key token when you created it.
 
 ### [](#make-an-api-call)Make an API Call
@@ -52,12 +52,12 @@ Alternatively, you can use a client such as [Insomnia](https://insomnia.rest) or
 
 The following examples show different operations you can complete with the Management API:
 
-* [List an API Key’s Organizations](#list-org-example)
+* [List an API Key's Organizations](#list-org-example)
 * [List Deployed Models in an Organization](#list-model-example)
-* [Get a Model’s Connection String](#get-model-string-example)
+* [Get a Model's Connection String](#get-model-string-example)
 * [Create Model Service API Key for a Region](#create-model-key-example)
 
-#### [](#list-org-example)List an API Key’s Organizations
+#### [](#list-org-example)List an API Key's Organizations
 
 The following [GET](../../cloud/management-api-reference/index.md#tag/Organizations/operation/getOrganizationByID) request lists all of the organizations available to the provided API key.
 
@@ -194,9 +194,9 @@ HTTP Response
 
 This response contains details about all the models, including their model type and respective `{connectionString}` URL.
 
-#### [](#get-model-string-example)Get a Model’s Connection String
+#### [](#get-model-string-example)Get a Model's Connection String
 
-The following [GET](../../cloud/management-api-reference/index.md#tag/Models-%28AI-Services%29/operation/getConnectionString) request retrieves details about a specific model’s connection string. This connection string is the base URL required to use the Model Service API for this specific model.
+The following [GET](../../cloud/management-api-reference/index.md#tag/Models-%28AI-Services%29/operation/getConnectionString) request retrieves details about a specific model's connection string. This connection string is the base URL required to use the Model Service API for this specific model.
 
 * `$ORGID` is the organization ID.
 * `$MODELID` is the model ID.
@@ -271,21 +271,21 @@ To use a Model Service API key to make a call to the Model Service API:
 
 * Configure it with the same region as your AI model.
 * Use a key that has not expired.
-* Add the IP address you want to connect from to your API key’s allowed IP addresses.
+* Add the IP address you want to connect from to your API key's allowed IP addresses.
 * Save the API key token when you create it, as it cannot be retrieved later.
 
 To create an API key for the Model Service API, see [Generate Model Service API Keys](api-start.md#generate-model-keys).
 
 #### [](#model-connection-string)Model Connection String
 
-The Model Service API uses a model’s **Model Endpoint** as its base URL. This is also known as the model connection string in the Management API. The model connection string is unique to every AI model you deploy.
+The Model Service API uses a model's **Model Endpoint** as its base URL. This is also known as the model connection string in the Management API. The model connection string is unique to every AI model you deploy.
 
 To get your model connection string:
 
 1. Go to **AI Services** **Models**.
 2. Find your model and copy the **Model Endpoint**.
 
-To get your model connection string using the Management API, see [Get a Model’s Connection String](#get-model-string-example).
+To get your model connection string using the Management API, see [Get a Model's Connection String](#get-model-string-example).
 
 ### [](#make-an-api-call-2)Make an API Call
 
@@ -293,7 +293,7 @@ You can use a client such as [cURL](https://curl.se) or a native SDK call to mak
 
 To make an API call with the Model Service API and a specific model:
 
-1. Use your model’s connection string as the base URL:  
+1. Use your model's connection string as the base URL:  
 ```text  
 https://<MODEL_STRING_ID>.ai.couchbase.com  
 ```

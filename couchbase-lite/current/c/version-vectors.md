@@ -3,7 +3,7 @@ title: Version Vectors
 description: Couchbase Lite 4.0 -- Version Vectors -- Document versioning and
   conflict resolution
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/version-vectors.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:c:version-vectors.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:couchbase-lite:c:version-vectors.adoc[]
 
 Couchbase Lite 4.0 introduces version vectors as a replacement for the previous revision tree system used in earlier versions. This change improves how Couchbase Lite tracks document changes, handles conflicts, and synchronizes data across devices and with Sync Gateway.
 
-Version vectors provide a more efficient and scalable approach to document versioning that aligns Couchbase Lite with Couchbase Server’s versioning system, enabling seamless synchronization across the entire Couchbase ecosystem.
+Version vectors provide a more efficient and scalable approach to document versioning that aligns Couchbase Lite with Couchbase Server's versioning system, enabling seamless synchronization across the entire Couchbase ecosystem.
 
 ## [](#what-are-version-vectors)What are Version Vectors?
 
@@ -41,7 +41,7 @@ A combination of timestamp and source ID that uniquely identifies the specific p
 
 Version Vector
 
-An ordered array containing the latest version from every source that’s modified the document.
+An ordered array containing the latest version from every source that's modified the document.
 
 ## [](#version-vectors-vs-revision-trees)Version Vectors vs. Revision Trees
 
@@ -67,7 +67,7 @@ Last-write-wins logic based on timestamps is more predictable and easier to unde
 
 Enhanced Synchronization
 
-Alignment with Couchbase Server’s versioning enables more efficient sync operations.
+Alignment with Couchbase Server's versioning enables more efficient sync operations.
 
 Reduced Complexity
 
@@ -98,7 +98,7 @@ The new format contains:
 
 ### [](#document-api-changes)Document API Changes
 
-The `c4doc_getRevID()` function continues to work but now returns version-based IDs. You can also view the document’s logical timestamp using the `c4rev_getTimestamp()` function:
+The `c4doc_getRevID()` function continues to work but now returns version-based IDs. You can also view the document's logical timestamp using the `c4rev_getTimestamp()` function:
 
 Example 1\. Accessing Document Version Information
 

@@ -2,7 +2,7 @@
 title: Client Settings
 description: Change the SDK's behavior by configuring client settings.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:go-analytics-sdk:ref:client-settings.adoc[]
 ---
 
@@ -11,13 +11,13 @@ link: xref:go-analytics-sdk:ref:client-settings.adoc[]
 
 # Client Settings
 
-> Change the SDK’s behavior by configuring client settings. 
+> Change the SDK's behavior by configuring client settings. 
 
 Almost all configuration for the SDK can be specified through the `ClusterOptions` which are passed to the `cbanalytics.Connect` call in the SDK.
 
 ## [](#configure-with-code)Configure with Code
 
-To configure SDK client settings by writing code, provide an options block when creating the `Cluster` instance. Here’s an example that configures several settings by passing the optional third argument to `cbanalytics.NewCluster()`:
+To configure SDK client settings by writing code, provide an options block when creating the `Cluster` instance. Here's an example that configures several settings by passing the optional third argument to `cbanalytics.NewCluster()`:
 
 ```go
 	cluster, err := cbanalytics.NewCluster(
@@ -36,7 +36,7 @@ To configure SDK client settings by writing code, provide an options block when 
 Note: Options blocks can created using builder-style functions, like above, or by assigning to the struct fields directly.
 
 > [!TIP]
-> You don’t need to call every method in the above example; call only the methods where you want to override the client setting’s default value.
+> You don't need to call every method in the above example; call only the methods where you want to override the client setting's default value.
 
 ## [](#configure-with-connection-string)Configure with Connection String Parameters
 
@@ -55,7 +55,7 @@ If the same client setting is specified both in code and in the connection strin
 
 ### [](#durations)Durations
 
-For client settings that represent durations, the connection string parameter’s value is specified using the format accepted by [Golang’s time.ParseDuration](https://pkg.go.dev/time#ParseDuration) method.
+For client settings that represent durations, the connection string parameter's value is specified using the format accepted by [Golang's time.ParseDuration](https://pkg.go.dev/time#ParseDuration) method.
 
 > A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms", "-1.5h" or "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", and "h".
 
@@ -80,7 +80,7 @@ Configuring timeouts gives you control over how long the SDK waits for operation
 
 ### [](#security-options)Security Options
 
-The SDK is secure by default. You probably won’t need to configure the SDK’s security options unless:
+The SDK is secure by default. You probably won't need to configure the SDK's security options unless:
 
 * You have special security compliance requirements that restrict the set of allowed TLS cipher suites.
 * You are a Couchbase employee working with an internal non-production hosted service, or a local server installation.
@@ -94,7 +94,7 @@ The SDK is secure by default. You probably won’t need to configure the SDK’s
 Finally, there is one security option whose use is strongly discouraged in nearly all circumstances. Setting `security.disable_server_certificate_verification` to `true` allows the SDK to connect to any server, regardless of whether the server presents a certificate trusted by the SDK.
 
 > [!CAUTION]
-> Disabling server certificate verification is roughly equivalent to sending your credentials and all data over an insecure connection. Don’t do this unless connecting to a server running locally on your development machine.
+> Disabling server certificate verification is roughly equivalent to sending your credentials and all data over an insecure connection. Don't do this unless connecting to a server running locally on your development machine.
 
 ### [](#unmarshaler)Unmarshaler
 

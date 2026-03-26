@@ -3,7 +3,7 @@ title: Query Agent Catalog Traces with SQL++
 description: You can also use SQL++ through the Query Service or Capella
   Analytics to query your Agent Catalog activity logs.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-tracer/query-traces.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:build:agent-tracer/query-traces.adoc[]
 ---
 
@@ -61,7 +61,7 @@ The following example queries use a generated data view called `Sessions` to ret
 * Query Service
 * Capella Analytics
 
-Copy and paste the following query into the Query Service’s Query Workbench, replacing the placeholders with the bucket and scope for your Agent Catalog activity logs:
+Copy and paste the following query into the Query Service's Query Workbench, replacing the placeholders with the bucket and scope for your Agent Catalog activity logs:
 
 ```sqlpp
 FROM
@@ -187,12 +187,12 @@ The records in the `Sessions` view contain the following information:
 
 ### [](#exchanges-view)Query the Exchanges View
 
-The following example queries use a generated data view called `Exchanges` to return data on specific exchanges, or the events between a user’s input and the agent’s response.
+The following example queries use a generated data view called `Exchanges` to return data on specific exchanges, or the events between a user's input and the agent's response.
 
 * Query Service
 * Capella Analytics
 
-Copy and paste the following query into the Query Service’s Query Workbench, replacing `agent-catalog` and `agent-activity` with the bucket and scope for your Agent Catalog activity logs:
+Copy and paste the following query into the Query Service's Query Workbench, replacing `agent-catalog` and `agent-activity` with the bucket and scope for your Agent Catalog activity logs:
 
 ```sqlpp
 FROM
@@ -361,8 +361,8 @@ The records in the `Exchanges` view contain the following information:
 | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | sid                                        | The session ID value. Set a session string on a span to customize this value, or accept the default generated UUIDs. For more information, see the [Agent Catalog documentation on Log.Span](https://couchbaselabs.github.io/agent-catalog/log.html#agentc%5Fcore.activity.models.log.Log.Span). |
 | root                                       | The name of the root span, as configured in [Add a Root Span to Your Agentic App](add-spans-callbacks.md#root-span).                                                                                                                                                                             |
-| input                                      | The user’s input to the agent app.                                                                                                                                                                                                                                                               |
-| output (out in the Capella Analytics view) | The assistant’s response to the user’s input.                                                                                                                                                                                                                                                    |
+| input                                      | The user's input to the agent app.                                                                                                                                                                                                                                                               |
+| output (out in the Capella Analytics view) | The assistant's response to the user's input.                                                                                                                                                                                                                                                    |
 | content                                    | All intermediate content logs between the input and output events, including messages sent to the LLM, tools executed, and so on.                                                                                                                                                                |
 
 ### [](#tools-view)Query the ToolInvocations View
@@ -374,7 +374,7 @@ You must have [configured your logs to record and associate tool calls with tool
 * Query Service
 * Capella Analytics
 
-Copy and paste the following query into the Query Service’s Query Workbench, replacing `agent-catalog` and `agent-activity` with the bucket and scope for your Agent Catalog activity logs:
+Copy and paste the following query into the Query Service's Query Workbench, replacing `agent-catalog` and `agent-activity` with the bucket and scope for your Agent Catalog activity logs:
 
 ```sqlpp
 FROM

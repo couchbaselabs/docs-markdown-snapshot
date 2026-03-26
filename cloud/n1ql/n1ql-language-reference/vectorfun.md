@@ -2,7 +2,7 @@
 title: Vector Functions
 description: Vector functions enable you to work with vector values.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/vectorfun.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/vectorfun.adoc[]
 ---
 
@@ -403,7 +403,7 @@ String, or any SQL++ expression that evaluates to a string, representing the bas
 
 byte\_order
 
-\[Optional\] A boolean which determines the byte order of the vector value. If `true`, it’s big-endian. If `false`, it’s little-endian. The default is `false`.
+\[Optional\] A boolean which determines the byte order of the vector value. If `true`, it's big-endian. If `false`, it's little-endian. The default is `false`.
 
 ### [](#return-value-2)Return Value
 
@@ -459,7 +459,7 @@ An array of floating point numbers, or any SQL++ expression that evaluates to an
 
 byte\_order
 
-\[Optional\] A boolean which determines the byte order of the vector value. If `true`, it’s big-endian. If `false`, it’s little-endian. The default is `false`.
+\[Optional\] A boolean which determines the byte order of the vector value. If `true`, it's big-endian. If `false`, it's little-endian. The default is `false`.
 
 ### [](#return-value-3)Return Value
 

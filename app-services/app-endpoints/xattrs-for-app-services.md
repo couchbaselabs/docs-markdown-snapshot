@@ -2,7 +2,7 @@
 title: Extended Attributes (XATTRs)
 description: Use Extended Attributes (XATTRs) to manage access control in App Services.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/xattrs-for-app-services.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:app-services::app-endpoints/xattrs-for-app-services.adoc[]
 ---
 
@@ -19,7 +19,7 @@ To manage access control in App Services, you can use:
 
 The Document Body
 
-You can embed channels and roles directly within the document’s content. This method allows the document itself to govern access and routing.
+You can embed channels and roles directly within the document's content. This method allows the document itself to govern access and routing.
 
 Extended Attributes (XATTRs)
 
@@ -31,11 +31,11 @@ Use XATTRs as a secure repository for data to drive document routing and access 
 
 Enhanced Security with Metadata Isolation
 
-Since XATTRs are metadata and not part of the document’s main content, they are inaccessible to users. This prevents users from identifying the channels and roles a document is associated with by reading its content.
+Since XATTRs are metadata and not part of the document's main content, they are inaccessible to users. This prevents users from identifying the channels and roles a document is associated with by reading its content.
 
 Separation of Concerns with Access Grant Independence
 
-Storing access grants as XATTRs means that changes to this metadata do not affect the document’s revision history. Modifications to access grants do not result in new document revisions being pushed to clients. This maintains a separation between document content and access control metadata.
+Storing access grants as XATTRs means that changes to this metadata do not affect the document's revision history. Modifications to access grants do not result in new document revisions being pushed to clients. This maintains a separation between document content and access control metadata.
 
 ## [](#configure-an-xattr-property)Configure an XATTR Property
 
@@ -56,7 +56,7 @@ Assign values to your XATTR property, with the [Couchbase SDKs.](#cloud:home::sd
 * **SDK API**: The Couchbase Server SDK API provides the necessary functions to set XATTR values.
 
 > [!NOTE]
-> You can’t set XATTR values using the APP Services REST API.
+> You can't set XATTR values using the APP Services REST API.
 
 This example shows how XATTR values can be set and maintained using the Couchbase Server .Net SDK.
 

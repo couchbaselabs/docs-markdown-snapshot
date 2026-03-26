@@ -3,7 +3,7 @@ title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cxx-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -27,7 +27,7 @@ The examples below use these imports:
 #include <couchbase/match_query.hxx>
 ```
 
-Search queries are executed at Cluster level (not bucket or collection). Here is a simple match\_query that looks for the text “swanky” using a defined index:
+Search queries are executed at Cluster level (not bucket or collection). Here is a simple match\_query that looks for the text "swanky" using a defined index:
 
 ```c++
 auto request = couchbase::search_request(couchbase::match_query("swanky"));
@@ -52,7 +52,7 @@ if (err) {
 > 
 > For information about pagination in Search responses, see [Pagination](../../../server/current/fts/fts-search-response.md#pagination).
 
-All simple query types are created in the same manner. Some have additional properties, which can be seen in common query type descriptions. Couchbase FTS’s [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted.
+All simple query types are created in the same manner. Some have additional properties, which can be seen in common query type descriptions. Couchbase FTS's [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted.
 
 ## [](#working-with-results)Working with Results
 

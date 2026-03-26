@@ -3,7 +3,7 @@ title: Installing the Couchbase Java SDK
 description: In this tutorial, you're going to create a skeleton application for
   interacting with the student database you created previously.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/install-couchbase-java-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:tutorials:java-tutorial/install-couchbase-java-sdk.adoc[]
 ---
 
@@ -12,11 +12,11 @@ link: xref:7.2@server:tutorials:java-tutorial/install-couchbase-java-sdk.adoc[]
 
 # Installing the Couchbase Java SDK
 
-> In this tutorial, you’re going to create a skeleton application for interacting with the student database you created previously. 
+> In this tutorial, you're going to create a skeleton application for interacting with the student database you created previously. 
 
 ## [](#prerequisites)Prerequisites
 
-Java is a fairly popular programming language these days, so we’re going to use it to build our student/course application. To keep things as light as possible (this is a tutorial, after all), we’re not going to worry about building a web front end or REST service, just a few methods to read/write our documents to the database.
+Java is a fairly popular programming language these days, so we're going to use it to build our student/course application. To keep things as light as possible (this is a tutorial, after all), we're not going to worry about building a web front end or REST service, just a few methods to read/write our documents to the database.
 
 You will need a few things installed on your machine before you begin:
 
@@ -62,4 +62,4 @@ mvn install
 
 ## [](#next-steps)Next steps
 
-You’re now ready to write your [first Couchbase application](creating-the-students-collection.md).
+You're now ready to write your [first Couchbase application](creating-the-students-collection.md).

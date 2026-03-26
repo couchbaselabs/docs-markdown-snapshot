@@ -3,7 +3,7 @@ title: Caching Example Use Case
 description: A walk-through of the basics of Key-Value operations with
   Couchbase, through the lens of a REST api caching layer.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/caching-example.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@dotnet-sdk:howtos:caching-example.adoc[]
 ---
 
@@ -47,7 +47,7 @@ public async Task Post(int id, [FromBody] string value)
 
 This is about as simple as we can make the API, and allows us to set and get arbitrary JSON from any key we specify. We also include the `WithExpiry` option, which will automatically delete the document (ie. invalidate the cache) after the set amount of time.
 
-But there’s many ways this could be improved. For example, what happens in the case of a cache miss? With this code, our view throws an error and .NET returns us a HTTP 500 page. We can fix this by handling the `DocumentNotFoundException` thrown by the get call. Then we can either respond with a HTTP 404, or add a function to get a value from our persistent storage medium.
+But there's many ways this could be improved. For example, what happens in the case of a cache miss? With this code, our view throws an error and .NET returns us a HTTP 500 page. We can fix this by handling the `DocumentNotFoundException` thrown by the get call. Then we can either respond with a HTTP 404, or add a function to get a value from our persistent storage medium.
 
 ```csharp
 [HttpGet("{id}")]
@@ -106,7 +106,7 @@ public async Task Post(int id, [FromBody] string value)
 }
 ```
 
-The last thing we’ll do is add `PUT` and `DELETE` endpoints, matching up to the couchbase operations `upsert` and `remove`, and apply the same error handling.
+The last thing we'll do is add `PUT` and `DELETE` endpoints, matching up to the couchbase operations `upsert` and `remove`, and apply the same error handling.
 
 ```csharp
 [HttpPut("{id}")]

@@ -1,7 +1,7 @@
 ---
 title: Update a Navigation File
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/update-nav.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:update-nav.adoc[]
 ---
 
@@ -40,7 +40,7 @@ On the line directly after the category title is a level 1 list item. A level 1 
 | **1** | Regardless of level, list items can start flush against the left margin.                              |
 | ----- | ----------------------------------------------------------------------------------------------------- |
 | **2** | Separate lists with one blank line.                                                                   |
-| **3** | Or, you can indent list items, but this has no impact on how they’re displayed in the component menu. |
+| **3** | Or, you can indent list items, but this has no impact on how they're displayed in the component menu. |
 
 ## [](#adding-editing-and-removing-list-items)Adding, Editing, and Removing List Items
 
@@ -77,7 +77,7 @@ When adding and editing list items, remember the following:
 When removing a list item, remember the following:
 
 * If the item had child items, adjust their nesting level as needed.
-* Pages that aren’t linked to from a navigation file are still published to the site; they are still indexed by the site search and search engines and can be referenced by any page.
+* Pages that aren't linked to from a navigation file are still published to the site; they are still indexed by the site search and search engines and can be referenced by any page.
 
 ### [](#xrefs)Xrefs
 
@@ -100,9 +100,9 @@ Enter the component, module, and page coordinates for a page located in another 
 
 ### [](#nav-text)Category, Regular, and Link Text Styles
 
-Use title case for category titles. For example, **Tuning & Performance** or **Integrations**. Write “and” as an ampersand (**&**).
+Use title case for category titles. For example, **Tuning & Performance** or **Integrations**. Write "and" as an ampersand (**&**).
 
-Use title case for the link and regular text in list items. Write “and” as **and**.
+Use title case for the link and regular text in list items. Write "and" as **and**.
 
 Navigation category, regular, and link text examples
 

@@ -3,7 +3,7 @@ title: JavaScript Functions for Query Reference
 description: You can write extension functions for SQL++ for Query in Couchbase
   Capella, using the JavaScript programming language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/javascript-udfs/pages/javascript-functions-with-couchbase.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:javascript-udfs:javascript-functions-with-couchbase.adoc[]
 ---
 
@@ -63,7 +63,7 @@ With a SQL++ managed user-defined function, the JavaScript function code is stor
 
 ## [](#added-language-constructs)Added Language Constructs
 
-User-defined functions in SQL++ for Query support most of the language constructs available in [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript). Couchbase’s implementation makes specific changes to support working with JavaScript through SQL++.
+User-defined functions in SQL++ for Query support most of the language constructs available in [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript). Couchbase's implementation makes specific changes to support working with JavaScript through SQL++.
 
 ### [](#sql-embedded-statements)SQL++ Embedded Statements
 

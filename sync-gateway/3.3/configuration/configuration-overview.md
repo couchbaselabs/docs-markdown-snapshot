@@ -2,7 +2,7 @@
 title: Configuration Overview
 description: How to configure <em>Sync&#160;Gateway</em> for secure cloud-to-edge data sync
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/configuration/pages/configuration-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.3@sync-gateway:configuration:configuration-overview.adoc[]
 ---
 
@@ -42,7 +42,7 @@ Figure 1\. Configuration Workflow
 
 1. Set up a user for the Admin REST API on Couchbase Server  
 Alternatively, you can disable authentication of REST API user(s) — for test purposes **only**
-2. Provide a [bootstrap configuration file](configuration-schema-bootstrap.md), in JSON format, which defines the sync gateway node’s run time behavior. This configuration is node-specific. Any changes require a sync gateway restart.
+2. Provide a [bootstrap configuration file](configuration-schema-bootstrap.md), in JSON format, which defines the sync gateway node's run time behavior. This configuration is node-specific. Any changes require a sync gateway restart.
 3. Add or amend configuration items in-flight using the Admin Rest API.  
 All changes are persisted across sync gateway restarts. Auto restarts will be initiated for ny change that requires one. You will need to configure and maintain:
 

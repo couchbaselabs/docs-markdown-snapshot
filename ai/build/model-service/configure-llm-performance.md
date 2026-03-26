@@ -2,7 +2,7 @@
 title: Configure LLM Performance
 description: The Capella Model Service offers options to tweak the performance of your LLM.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/configure-llm-performance.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:build:model-service/configure-llm-performance.adoc[]
 ---
 
@@ -20,7 +20,7 @@ The following performance settings are available when deploying a Large Language
 
 ## [](#quantization)Quantization
 
-Quantization is a technique used to reduce the model size and improve inference speed by representing the model weights with lower precision. You can decrease the memory footprint of the model and speed up response times, making it more efficient for real-time applications. This is useful for deploying LLMs in resource-constrained environments. However, quantization can cause decreased model accuracy, so it’s important to test if it works well for your specific application and use case.
+Quantization is a technique used to reduce the model size and improve inference speed by representing the model weights with lower precision. You can decrease the memory footprint of the model and speed up response times, making it more efficient for real-time applications. This is useful for deploying LLMs in resource-constrained environments. However, quantization can cause decreased model accuracy, so it's important to test if it works well for your specific application and use case.
 
 ### [](#considerations)Considerations
 
@@ -36,7 +36,7 @@ If your application demands high accuracy and precision, be cautious with quanti
 
 Resource Constraints
 
-If you’re deploying the model using limited computational resources or memory, quantization can help reduce the resource requirements.
+If you're deploying the model using limited computational resources or memory, quantization can help reduce the resource requirements.
 
 You cannot customize the quantization settings on all LLMs available through the Model Service.
 
@@ -52,7 +52,7 @@ Minimizes time to first token (TTFT) and inter-token latency (ITL) — the time 
 
 Throughput
 
-Maximizes the aggregate number of output tokens generated per second across all concurrent requests. This profile focuses on overall throughput rather than per-request speed. It’s ideal for batch processing tasks, bulk content generation, or scenarios where processing multiple requests efficiently is more important than immediate responses to individual requests.
+Maximizes the aggregate number of output tokens generated per second across all concurrent requests. This profile focuses on overall throughput rather than per-request speed. It's ideal for batch processing tasks, bulk content generation, or scenarios where processing multiple requests efficiently is more important than immediate responses to individual requests.
 
 ### [](#considerations-2)Considerations
 

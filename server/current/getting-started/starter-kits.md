@@ -3,7 +3,7 @@ title: Starter Kits
 description: Starter kits are repositories containing example code to get you
   started with various development projects.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/getting-started/pages/starter-kits.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:getting-started:starter-kits.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:server:getting-started:starter-kits.adoc[]
 
 # Starter Kits
 
-Couchbase’s [Developer Site](https://www.couchbase.com/developers/) contains several useful [Tutorials](https://developer.couchbase.com/tutorials/). These tutorials cover developing for Couchbase, using Couchbase SDKs, within the context of a wider software ecosystem — such as developing with the Java SDK, using Spring Data.
+Couchbase's [Developer Site](https://www.couchbase.com/developers/) contains several useful [Tutorials](https://developer.couchbase.com/tutorials/). These tutorials cover developing for Couchbase, using Couchbase SDKs, within the context of a wider software ecosystem — such as developing with the Java SDK, using Spring Data.
 
 Go to the [Developer Tutorials](https://developer.couchbase.com/tutorials/#cb-tutorials-container-header) or the [GitHub repo](https://github.com/couchbase-examples) for a full listing. Here we list some of the more popular tutorials.
 

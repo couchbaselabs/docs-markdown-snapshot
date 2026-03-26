@@ -3,7 +3,7 @@ title: Using the Command Line
 description: Start a Sync Gateway instance using command line options and
   securely sync enterprise data from cloud to edge
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/command-line-options.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::command-line-options.adoc[]
 ---
 
@@ -61,7 +61,7 @@ You can check the latest position by navigating to the folder containing the Syn
 $ ./sync_gateway -help (1)
 ```
 
-| **1** | This command lists all Sync Gateway’s current command line arguments |
+| **1** | This command lists all Sync Gateway's current command line arguments |
 | ----- | -------------------------------------------------------------------- |
 
 ## [](#available-options)Available Options
@@ -159,7 +159,7 @@ __Table 1\. Configuration-related CLI flags__
 | replicator.max\_heartbeat                             |         | Max heartbeat value for \_changes request                                                                                                                                                                                                                                           |
 | replicator.blip\_compression                          |         | LIP data compression level (0-9)                                                                                                                                                                                                                                                    |
 | unsupported.stats\_log\_frequency                     |         | How often should stats be written to stats logs                                                                                                                                                                                                                                     |
-| unsupported.use\_stdlib\_json                         |         | Bypass the jsoniter package and use Go’s stdlib instead                                                                                                                                                                                                                             |
+| unsupported.use\_stdlib\_json                         |         | Bypass the jsoniter package and use Go's stdlib instead                                                                                                                                                                                                                             |
 | unsupported.http2.enabled                             |         | Whether HTTP2 support is enabled                                                                                                                                                                                                                                                    |
 | max\_file\_descriptors                                |         | Max number of open file descriptors (RLIMIT\_NOFILE)                                                                                                                                                                                                                                |
 

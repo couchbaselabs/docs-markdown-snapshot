@@ -3,7 +3,7 @@ title: Upgrading a Cluster
 description: Maintenance jobs are scheduled to run upgrades on your cluster.
   Capella upgrades help provide a reliable service with the latest features.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/upgrade-database.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:upgrade-database.adoc[]
 ---
 
@@ -47,7 +47,7 @@ In addition to Couchbase Server upgrades, Capella may schedule routine maintenan
 
 ## [](#database-upgrade-timeframes)Cluster Upgrade Timeframes
 
-When planning for cluster upgrades, it’s important to understand the upgrade timeframes:
+When planning for cluster upgrades, it's important to understand the upgrade timeframes:
 
 * **Notice period**: the timeframe between when the maintenance job is scheduled (and maintenance notifications are sent) and the scheduled upgrade date (target start time). You receive notification emails when Capella schedules a maintenance job. For more information, see [Manage Maintenance Email Notifications](#upgrade-email-notifications).
 * **Upgrade window**: the timeframe during which the maintenance job can begin. This time is dependent on the upgrade type and begins after the notice period ends, allowing you to adjust the maintenance schedule as needed. For more information, see [Reschedule a Maintenance Job](#reschedule-maintenance-job).
@@ -62,7 +62,7 @@ For more details about the different types of maintenance jobs and the timeframe
 | **Critical Upgrade**                              | Capella schedules critical upgrades in response to an urgent bug, vulnerability, or other issue that impacts cluster health or performance. | Capella can schedule these upgrades on the same date as the maintenance job creation and the upgrade maintenance notification. You might have a 0-day notice of a pending upgrade maintenance job before Capella automatically upgrades your cluster.                                                                                                                                                                                                                                                                                                                                                                             |
 | **Routine Maintenance or Couchbase Server Patch** | A new Couchbase Server maintenance, patch version, or routine image upgrades.                                                               | A typical maintenance job has a 1-2 week notice period. It includes an upgrade window of 2 to 4 weeks after the notice period ends, allowing customers to adjust the upgrade schedule as needed.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **Couchbase Server Minor Release**                | A new Couchbase Server minor version release.                                                                                               | The timeframes for notice periods and upgrade windows vary based on the actual features and improvements included in the Couchbase Server minor release version, and how these features and improvements might impact Capella users. If the service impact is similar to a Server maintenance or patch release, the typical notice and maintenance job dates for Capella are the same as the Server maintenance or patch release. A maximum of 2 minor versions are available as options during cluster creation.                                                                                                                 |
-| **Couchbase Server Major Release**                | A new Couchbase Server major release version.                                                                                               | Upgrade timeframes vary. Since major version upgrades often require [application testing](upgrade-best-practices.md#test-application), the upgrade window for major versions is longer than for maintenance and minor version upgrades. When the upgrade window is announced for a major version upgrade, Capella provides you with a suitable notice period to allow for application testing. You can defer major version upgrades until 12 months have passed since the initial release of the cluster’s major version, or until 3 months have passed since the latest minor version release under the cluster’s major version. |
+| **Couchbase Server Major Release**                | A new Couchbase Server major release version.                                                                                               | Upgrade timeframes vary. Since major version upgrades often require [application testing](upgrade-best-practices.md#test-application), the upgrade window for major versions is longer than for maintenance and minor version upgrades. When the upgrade window is announced for a major version upgrade, Capella provides you with a suitable notice period to allow for application testing. You can defer major version upgrades until 12 months have passed since the initial release of the cluster's major version, or until 3 months have passed since the latest minor version release under the cluster's major version. |
 
 ## [](#maintenance-jobs)Maintenance Jobs
 
@@ -71,7 +71,7 @@ All maintenance jobs have a target start time. Capella aims to start your cluste
 When a maintenance job runs, the cluster is moved to a redeploying state while nodes are rebalanced to apply the maintenance changes. Maintenance redeployments are not time-bound, and the time taken varies depending on the size of the cluster, volume of data, and load. Couchbase Capella clusters are designed to remain available throughout the upgrade. Cluster reconfiguration options are not available during an upgrade, though data tools remain accessible in the Capella UI.
 
 > [!CAUTION]
-> Single Node clusters may experience downtime during upgrades. Since there are no data replicas, any failure during the upgrade process can lead to service disruption. It’s recommended to use Single Node clusters for prototyping or learning purposes. For production use cases, configure a Multi-Node cluster. To scale out your Single Node cluster, see [Modify a Paid Cluster](modify-database.md).
+> Single Node clusters may experience downtime during upgrades. Since there are no data replicas, any failure during the upgrade process can lead to service disruption. It's recommended to use Single Node clusters for prototyping or learning purposes. For production use cases, configure a Multi-Node cluster. To scale out your Single Node cluster, see [Modify a Paid Cluster](modify-database.md).
 
 For each individual maintenance job, you can:
 
@@ -120,7 +120,7 @@ When certain upgrade maintenance jobs become available, if you have the [Organiz
 > 
 > To see if a maintenance job is available for you to schedule:
 > 
-> 1. Go to **Operational Clusters** and find the name of the cluster you’re working with.
+> 1. Go to **Operational Clusters** and find the name of the cluster you're working with.
 > 2. In the **Cluster Activity** column, look for the upgrade icon ![arrow circle up](_images/arrow_circle_up.png). This indicates an upgrade is available.
 
 Prior to any maintenance job, follow maintenance best practices for a safe and effective cluster upgrade. This may include backing up your cluster and verifying SDK compatibility. For more information, see [Upgrading Best Practices](upgrade-best-practices.md).
@@ -131,7 +131,7 @@ To schedule a maintenance job for your cluster:
 2. Choose one of the following options:
 
   1. Go to **More Options (︙)** **Upgrade Cluster** and click **Upgrade Cluster**.
-  2. Go to your cluster’s **Data Tools** page and click **Cluster Upgrade**.
+  2. Go to your cluster's **Data Tools** page and click **Cluster Upgrade**.
 3. Select the upgrade version for your cluster.
 4. Select one of the following options:
 
@@ -145,7 +145,7 @@ When an maintenance job is scheduled, you can choose to reschedule it for any ti
 
 Depending on the type of upgrade and the target start time, you can schedule a new date. This is a new target start time. When the scheduled time is reached, the cluster is automatically upgraded.
 
-You cannot reschedule a maintenance job while it’s **Running**.
+You cannot reschedule a maintenance job while it's **Running**.
 
 > [!NOTE]
 > You can create a support ticket to ask for an extension if there are exceptional circumstances. Extensions are not guaranteed.
@@ -162,11 +162,11 @@ To reschedule your maintenance job:
   If another job is in progress, then the selected job will be queued to run at a later time.
 
 > [!NOTE]
-> When you create a new upgrade schedule for your cluster, you’re overriding the existing one. This cancels the previous upgrade and applies the new schedule you set.
+> When you create a new upgrade schedule for your cluster, you're overriding the existing one. This cancels the previous upgrade and applies the new schedule you set.
 
 ### [](#cancelled-maintenance-job)Cancel a Maintenance Job
 
-You can cancel maintenance jobs that you have scheduled. You cannot cancel a maintenance job while it’s **Running**.
+You can cancel maintenance jobs that you have scheduled. You cannot cancel a maintenance job while it's **Running**.
 
 You cannot cancel maintenance jobs scheduled by Capella Support. When Support schedules a mandatory upgrade for your cluster, they cancel your previously scheduled maintenance upgrade. You can reschedule your maintenance job once the mandatory upgrade is complete. To cancel a support-initiated upgrade, [Create a Support Ticket](../support/manage-support.md#create-support-ticket).
 

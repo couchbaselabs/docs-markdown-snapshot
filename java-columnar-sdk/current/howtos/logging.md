@@ -2,7 +2,7 @@
 title: Logging
 description: Configuring logging with the Columnar Java SDK.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/howtos/pages/logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:java-columnar-sdk:howtos:logging.adoc[]
 ---
 
@@ -30,7 +30,7 @@ To see log messages from the Couchbase SDK, add an SLF4J binding as a dependency
 > 
 > **Version 1.7** is no longer maintained, but you can still use it if your preferred SLF4J binding does not support version 2.
 > 
-> The Couchbase SDK is compatible with both versions of the SLF4J API. The SDK’s Maven POM has a dependency on version 1.7, but you can override this by using version 2 in your project.
+> The Couchbase SDK is compatible with both versions of the SLF4J API. The SDK's Maven POM has a dependency on version 1.7, but you can override this by using version 2 in your project.
 
 ### [](#using-log4j-2)Using Log4j 2
 
@@ -80,7 +80,7 @@ implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.22.0")
 
 Log4j 2 needs a configuration file to tell it which messages to log, where to write them, and how each message should be formatted.
 
-Here’s an example `log4j2.xml` configuration file you can use to get started. It tells Log4j 2 to log messages to the console, and sets some reasonable logging levels.
+Here's an example `log4j2.xml` configuration file you can use to get started. It tells Log4j 2 to log messages to the console, and sets some reasonable logging levels.
 
 > [!TIP]
 > If your project uses the [Maven Standard Directory Layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html), this file should live in the `src/main/resources` directory. This makes it available at runtime as a class path resource.

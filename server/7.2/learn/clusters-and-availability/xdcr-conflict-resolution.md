@@ -4,7 +4,7 @@ description: <em>XDCR Conflict Resolution</em> automatically synchronizes
   document-copies that have been modified in different ways at different
   locations.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/xdcr-conflict-resolution.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:clusters-and-availability/xdcr-conflict-resolution.adoc[]
 ---
 
@@ -23,9 +23,9 @@ Two, alternative conflict resolution policies are supported: _sequence-number-ba
 
 ## [](#the%5Fconflict%5Fresolution%5Fprocess)The Conflict Resolution Process
 
-When a source document is modified, XDCR determines whether this revision of the document should be applied to the target. For documents above 256 bytes in size, XDCR fetches metadata from the target cluster before replicating. The target metadata for the document is compared with the source metadata for the document, in order to choose which document should prevail (the exact subset of metadata used in this comparison depends on the source bucket’s _conflict resolution policy_). If the source document prevails, it is replicated to the target; if the target document prevails, the source document is not replicated.
+When a source document is modified, XDCR determines whether this revision of the document should be applied to the target. For documents above 256 bytes in size, XDCR fetches metadata from the target cluster before replicating. The target metadata for the document is compared with the source metadata for the document, in order to choose which document should prevail (the exact subset of metadata used in this comparison depends on the source bucket's _conflict resolution policy_). If the source document prevails, it is replicated to the target; if the target document prevails, the source document is not replicated.
 
-Once a replicated document reaches the target, the target cluster also performs a metadata comparison as described, in order to confirm that the document from the source cluster should indeed prevail. If this is confirmed, the document from the source cluster is applied to the target cluster, and the target cluster’s previous version of the document is discarded.
+Once a replicated document reaches the target, the target cluster also performs a metadata comparison as described, in order to confirm that the document from the source cluster should indeed prevail. If this is confirmed, the document from the source cluster is applied to the target cluster, and the target cluster's previous version of the document is discarded.
 
 As a performance optimization, XDCR makes no metadata comparison on the source for documents of 256 bytes or less, thus making unnecessary a metadata fetch from the target cluster: instead, the document is replicated immediately to the target, and metadata comparison is performed there.
 
@@ -35,7 +35,7 @@ Once configured, conflict resolution is a fully automated process, requiring no 
 
 ## [](#revision-id-based-conflict-resolution)Conflict Resolution Based on Sequence Number
 
-Conflicts can be resolved by referring to documents' _sequence numbers_. Sequence numbers are maintained per document, and are incremented on every document-update. A document’s sequence number is stored as part of its _metadata_: specifically, as the value of the `rev` key (see [Documents](../../manage/manage-ui/manage-ui.md#console-documents), for details on how to inspect metadata). The sequence numbers of source and target documents are compared; and the document with the higher sequence number prevails. If both documents have the same sequence number, the conflict is resolved by comparing the following metadata-elements, in the order shown:
+Conflicts can be resolved by referring to documents' _sequence numbers_. Sequence numbers are maintained per document, and are incremented on every document-update. A document's sequence number is stored as part of its _metadata_: specifically, as the value of the `rev` key (see [Documents](../../manage/manage-ui/manage-ui.md#console-documents), for details on how to inspect metadata). The sequence numbers of source and target documents are compared; and the document with the higher sequence number prevails. If both documents have the same sequence number, the conflict is resolved by comparing the following metadata-elements, in the order shown:
 
 1. CAS value
 2. Expiration (TTL) value

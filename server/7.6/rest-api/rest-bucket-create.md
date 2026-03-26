@@ -3,7 +3,7 @@ title: Creating and Editing Buckets
 description: Buckets can be created, and their configurations subsequently
   edited, with the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-bucket-create.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:rest-bucket-create.adoc[]
 ---
 
@@ -31,7 +31,7 @@ A maximum of 30 buckets can be created on a single cluster.
 Administrators with either the Full Admin or the Cluster Admin role can create buckets and edit their configurations. Bucket configurations can also be edited by administrators with the Bucket Admin role, provided that its privileges have been extended either to all buckets on the cluster, or to the specific bucket whose configuration is to be edited. See [Roles](../learn/security/roles.md), for information on roles and privileges.
 
 > [!NOTE]
-> While migrating a bucket from one storage backend to another, you can only edit the bucket’s [ramQuota](#ramQuota) and [storageBackend](#storagebackend) parameters. See [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information.
+> While migrating a bucket from one storage backend to another, you can only edit the bucket's [ramQuota](#ramQuota) and [storageBackend](#storagebackend) parameters. See [Migrate a Bucket's Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information.
 
 ## [](#curl-syntax)Curl Syntax
 
@@ -202,7 +202,7 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 The _storage backend_ to be assigned to and used by the bucket. This can be either `couchstore` (which is the default) or `magma`. For information, see [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md).
 
 > [!NOTE]
-> You can edit this value after initially creating the bucket. Couchbase Server sets the new backend value globally. However, this change does not convert the bucket to the new backend storage engine. Instead, Couchbase Server adds overrides to every node containing the bucket to indicate that their vBuckets are still in the old format. You must take additional steps to complete the migration to the new storage backend. See [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information.
+> You can edit this value after initially creating the bucket. Couchbase Server sets the new backend value globally. However, this change does not convert the bucket to the new backend storage engine. Instead, Couchbase Server adds overrides to every node containing the bucket to indicate that their vBuckets are still in the old format. You must take additional steps to complete the migration to the new storage backend. See [Migrate a Bucket's Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information.
 
 #### [](#example-storage-backend)Example: Specifying the Storage Backend
 
@@ -220,7 +220,7 @@ If successful, the call returns a `202 Accepted` notification. No object is retu
 
 The _ejection policy_ to be assigned to and used by the bucket. (Note that _eviction_ is, in the current release, referred to as _ejection_; and this revised naming will continue to be used in future releases.) Policy-assignment depends on bucket type. For a _Couchbase_ bucket, the policy can be `valueOnly` (which is the default) or `fullEviction`. For an _Ephemeral_ bucket, the policy can be `noEviction` (which is the default) or `nruEviction`. No policy can be assigned to a _Memcached_ bucket.
 
-This value _can_ be modified, following bucket-creation. If such modification occurs, the bucket is restarted with the new setting: this may cause inaccessibility of data, during the bucket’s warm-up period.
+This value _can_ be modified, following bucket-creation. If such modification occurs, the bucket is restarted with the new setting: this may cause inaccessibility of data, during the bucket's warm-up period.
 
 Incorrect specification of an ejection policy returns an error-notification, such as `{"evictionPolicy":"Eviction policy must be either 'valueOnly' or 'fullEviction' for couchbase buckets"}`.
 
@@ -279,11 +279,11 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 
 ### [](#threadsnumber)threadsNumber
 
-The _priority_ for the bucket, as described in [Create a Bucket](../manage/manage-buckets/create-bucket.md#bucket-priority). Priority can be established as either _Low_ or _High_. To establish priority as _Low_ (which is the default), the value of `threadsNumber` must be `3`. To establish priority as _High_, the value must be `8`. If any other value is used, the value is ignored; and the bucket’s priority remains low.
+The _priority_ for the bucket, as described in [Create a Bucket](../manage/manage-buckets/create-bucket.md#bucket-priority). Priority can be established as either _Low_ or _High_. To establish priority as _Low_ (which is the default), the value of `threadsNumber` must be `3`. To establish priority as _High_, the value must be `8`. If any other value is used, the value is ignored; and the bucket's priority remains low.
 
 If this parameter is incorrectly specified, an error-notification such as the following is returned: `{"threadsNumber":"The number of threads must be an integer between 2 and 8"}`. (Note that, as indicated above, all values other than `3` and `8` are ignored.)
 
-This parameter _can_ be modified, following bucket-creation. If such modification occurs, the bucket is restarted with the new setting: this may cause inaccessibility of data, during the bucket’s warm-up period.
+This parameter _can_ be modified, following bucket-creation. If such modification occurs, the bucket is restarted with the new setting: this may cause inaccessibility of data, during the bucket's warm-up period.
 
 #### [](#example-threadsnumber-create)Example: Specifying a Bucket Priority, when Creating
 
@@ -309,11 +309,11 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 
 ### [](#rank)rank
 
-The _rank_ for the bucket: this determines the bucket’s place in the order in which the _rebalance_ process handles the buckets on the cluster. The bucket can be either a Couchbase or an Ephemeral bucket. Rank can be established as an integer, from `0` (the default) to `1000`. The higher a bucket’s assigned integer (in relation to the integers assigned other buckets), the sooner in the rebalance process the bucket is handled. For example, if on a cluster that hosts multiple buckets, one bucket is assigned a rank of `25` and all others remain with the default assignment of `0`, the bucket assigned `25` is handled before any other bucket, when rebalance occurs.
+The _rank_ for the bucket: this determines the bucket's place in the order in which the _rebalance_ process handles the buckets on the cluster. The bucket can be either a Couchbase or an Ephemeral bucket. Rank can be established as an integer, from `0` (the default) to `1000`. The higher a bucket's assigned integer (in relation to the integers assigned other buckets), the sooner in the rebalance process the bucket is handled. For example, if on a cluster that hosts multiple buckets, one bucket is assigned a rank of `25` and all others remain with the default assignment of `0`, the bucket assigned `25` is handled before any other bucket, when rebalance occurs.
 
-This assignment of `rank` allows a cluster’s most mission-critical data to be rebalanced with top priority.
+This assignment of `rank` allows a cluster's most mission-critical data to be rebalanced with top priority.
 
-#### [](#example-rank-create)Example: Specifying a Bucket’s Rank, when Creating
+#### [](#example-rank-create)Example: Specifying a Bucket's Rank, when Creating
 
 The following establishes a new bucket named `testBucket`, and assigns it a `rank` of 100.
 
@@ -321,7 +321,7 @@ curl -v -X POST http://localhost:8091/pools/default/buckets -u Administrator:pas
 
 If the call is successful, `202 Accepted` is returned. Assigned the rank of `100`, `testBucket` will be handled by the rebalance process _before_ any bucket whose assignment is _less_ than `100`, and _after_ and bucket whose assignment is _greater_.
 
-#### [](#example-rank-edit)Example: Specifying a Bucket’s Rank, when Editing
+#### [](#example-rank-edit)Example: Specifying a Bucket's Rank, when Editing
 
 The following edits the previously established value of `rank` for `testBucket`:
 
@@ -393,12 +393,12 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 
 ### [](#maxttl)maxTTL
 
-Sets the bucket’s _maximum time to live_. The default value is `0`, which does not automatically expire documents. It also does not affect expiration values you directly set on a document.
+Sets the bucket's _maximum time to live_. The default value is `0`, which does not automatically expire documents. It also does not affect expiration values you directly set on a document.
 
 Setting this parameter to a non-zero value has two effects:
 
-* It sets a default expiration time for documents you create or mutate in the bucket. The bucket’s `maxTTL` value can be overridden by a `maxTTL` parameter set on the collection containing a document, or by directly setting an expiration on the document itself (except as explained in the next point).
-* It sets the maximum time in seconds a document can exist before it expires. You can explicitly set a document to expire before this time. Attempting to set a document to expire after this time has Couchbase Server set the document to expire in `maxTTL` seconds. As with setting a default expiration, a non-zero `maxTTL` setting on a document’s collection overrides the bucket’s `maxTTL` setting.
+* It sets a default expiration time for documents you create or mutate in the bucket. The bucket's `maxTTL` value can be overridden by a `maxTTL` parameter set on the collection containing a document, or by directly setting an expiration on the document itself (except as explained in the next point).
+* It sets the maximum time in seconds a document can exist before it expires. You can explicitly set a document to expire before this time. Attempting to set a document to expire after this time has Couchbase Server set the document to expire in `maxTTL` seconds. As with setting a default expiration, a non-zero `maxTTL` setting on a document's collection overrides the bucket's `maxTTL` setting.
 
 The maximum value is MAX32INT (`2147483647` seconds, or `68.096` years). Attempting to set `maxTTL` value greater than MAX32INT returns an the error: `{"maxTTL":"Max TTL must be an integer between 0 and 2147483647"}`.
 
@@ -458,7 +458,7 @@ For information on conflict resolution, see: [XDCR Conflict Resolution](../learn
 
 #### [](#example-conflictresolutiontype-create)Example: Specifying a Conflict Resolution Policy, when Creating
 
-A bucket’s conflict resolution policy can _only_ be specified when the bucket is created: attempts to change the setting subsequently are ignored.
+A bucket's conflict resolution policy can _only_ be specified when the bucket is created: attempts to change the setting subsequently are ignored.
 
 The following example creates a new bucket, named `testBucket`, specifying the `lww` conflict resolution policy.
 
@@ -861,4 +861,4 @@ For an overview of change history, see [Change History](../learn/data/change-his
 
 See [Roles](../learn/security/roles.md), for information on roles and privileges.
 
-For information on how to inspect a bucket’s current configuration, see [Getting All Bucket Information](rest-buckets-summary.md).
+For information on how to inspect a bucket's current configuration, see [Getting All Bucket Information](rest-buckets-summary.md).

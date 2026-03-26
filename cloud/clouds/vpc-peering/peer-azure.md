@@ -3,7 +3,7 @@ title: Create a VNet Peering Connection with Azure
 description: Use this procedure to create a VNet Peering connection between
   Capella hosted with Azure and your application's VNet on Azure.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/peer-azure.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clouds:vpc-peering/peer-azure.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:cloud:clouds:vpc-peering/peer-azure.adoc[]
 
 # Create a VNet Peering Connection with Azure
 
-> Use this procedure to create a VNet Peering connection between Capella hosted with Azure and your application’s VNet on Azure. 
+> Use this procedure to create a VNet Peering connection between Capella hosted with Azure and your application's VNet on Azure. 
 
 ## [](#prerequisites)Prerequisites
 
@@ -44,12 +44,12 @@ Enter your tenant ID. To find your tenant ID, see [How to find your Azure Active
 Azure Subscription ID  
 Enter your subscription ID. To find your subscription ID, see [Find your Azure subscription](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).  
 Resource Group Name  
-Enter the resource group name holding the resource you’re connecting with Capella.  
+Enter the resource group name holding the resource you're connecting with Capella.  
 Virtual Network Name  
 Enter the name of the virtual network in Azure.
 4. Click **Allow Peering Access**.  
 A new browser tab opens. Sign in to Azure if you have not already.
-5. In Azure, accept Capella’s permissions request:  
+5. In Azure, accept Capella's permissions request:  
 The Azure permissions request page is open in the new browser tab. Make a note of the application name and consent to the new permissions request. Consenting to this permission request creates a service principal that grants Capella access to the Azure tenant to perform VNet peering.  
 > [!NOTE]  
 > If you previously set up VNet peering with the same Azure tenant, you wont see the permissions request page as you already granted permission.  

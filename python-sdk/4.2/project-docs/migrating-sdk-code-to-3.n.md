@@ -4,7 +4,7 @@ description: The SDK API 3 (used in Python SDK 3.x and 4.x) introduces breaking
   changes to the previous SDK API 2 APIs (used in Python SDK 2.x) in order to
   provide a number of improvements. Collections and Scopes are introduced.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.2/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@python-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -66,7 +66,7 @@ The concept of a `Cluster` and a `Bucket` remain the same, but a fundamental new
 
 Note that the SDKs include the feature from SDK 3.0, to allow easier migration.
 
-In the previous SDK generation, particularly with the `KeyValue` API, the focus has been on the codified concept of a `Document`. Documents were read and written and had a certain structure, including the `id`/`key`, content, expiry (`ttl`), and so forth. While the server still operates on the logical concept of documents, we found that this model in practice didn’t work so well for client code in certain edge cases. As a result we have removed the `Document` class/structure completely from the API. The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`. This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.
+In the previous SDK generation, particularly with the `KeyValue` API, the focus has been on the codified concept of a `Document`. Documents were read and written and had a certain structure, including the `id`/`key`, content, expiry (`ttl`), and so forth. While the server still operates on the logical concept of documents, we found that this model in practice didn't work so well for client code in certain edge cases. As a result we have removed the `Document` class/structure completely from the API. The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`. This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.
 
 As an example here is a KeyValue document fetch:
 
@@ -85,7 +85,7 @@ Compare this to a SQL++ (formerly N1QL) query:
 query_result = cluster.query("select 1=1", QueryOptions(timeout=timedelta(seconds=3)))
 ```
 
-Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`. Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON. You’ll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.
+Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`. Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON. You'll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.
 
 The KV API extends the concept of the serializer to the `Transcoder`. Since you can also store non-JSON data inside a document, the `Transcoder` allows the writing of binary data as well. It handles the object/entity encoding and decoding, and if it happens to deal with JSON makes uses of the configured `Serializer` internally. See the _Serialization and Transcoding_ section below for details.
 
@@ -157,7 +157,7 @@ collection.compression = COMPRESS_INOUT
 
 See the [configuration section](../ref/client-settings.md) for full specifics.
 
-At the end of this guide you’ll find a [reference](#configurations-options-reference) that describes the SDK API 2 environment options and their SDK 3 equivalents where applicable.
+At the end of this guide you'll find a [reference](#configurations-options-reference) that describes the SDK API 2 environment options and their SDK 3 equivalents where applicable.
 
 ### [](#authentication)Authentication
 
@@ -425,7 +425,7 @@ Importantly, the Python SDK 4.0 has been substantially reworked to use a new bac
   * All management options should be imported from `couchbase.management.options`
   * All results should be imported from `couchbase.result`
   * All exceptions should be imported from `couchbase.exceptions`
-  * Enumerations and Classes related to operations should be imported from that operation’s path. For example, `QueryScanConsistency` should be imported from `couchbase.n1ql` (i.e. `from couchbase.n1ql import QueryScanConsistency`)
+  * Enumerations and Classes related to operations should be imported from that operation's path. For example, `QueryScanConsistency` should be imported from `couchbase.n1ql` (i.e. `from couchbase.n1ql import QueryScanConsistency`)
 * Changes to the async APIs (`acouchbase` and `txcouchbase`):
 
   * While multi-operations (`get_multi`, `upsert_multi`, etc.) still exist for the `couchbase` API, they have been removed from the async APIs (`acouchbase` and `txcouchbase`) as each of the async APIs are built with libraries that have mechanisms to handle multi/bulk operations (`asyncio` has `asyncio.gather(…​)` and `Twisted` has `DeferredList(…​)`).

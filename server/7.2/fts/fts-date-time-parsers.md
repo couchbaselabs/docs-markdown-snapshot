@@ -1,7 +1,7 @@
 ---
 title: Date/Time Parsers
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-date-time-parsers.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-date-time-parsers.adoc[]
 ---
 
@@ -20,7 +20,7 @@ To add a custom date/time parser to a Full Text Index via the Couchbase Capella 
 
 * You must have `Project View` privileges for the project that contains the cluster.
 * You must have a database user associated with your organization user account. The database user must have Read/Write permissions for the bucket on which the index was created.
-* Date/time parsers can be viewed and modified from the index’s configuration page, under the **Index Settings** section.  
+* Date/time parsers can be viewed and modified from the index's configuration page, under the **Index Settings** section.  
 Any date/time parsers that are configured for the current index can be viewed by expanding the **Date/Time Parsers** panel. If no date/time parsers have been configured for the index, the **Date/Time Parsers** panel will be empty.
 
 ## [](#add-datetime-parsers)Add Date/Time Parsers

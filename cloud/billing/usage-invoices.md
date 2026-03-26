@@ -3,7 +3,7 @@ title: View Capella Usage and Invoices
 description: You can view current and past usage for the clusters and services
   in your organization, and view and download invoices.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/usage-invoices.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:billing:usage-invoices.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:billing:usage-invoices.adoc[]
 
 > You can view current and past usage for the clusters and services in your organization, and view and download invoices. 
 
-From your organization’s **Billing** tab, you can:
+From your organization's **Billing** tab, you can:
 
 * [Access Your Usage Overview](#access-billing)
 * [View and Filter Usage Reports](#filter-usage)
@@ -34,14 +34,14 @@ To get an overview of your monthly cluster and service usage, go to **Billing** 
 
 The **Overview** page lets you:
 
-* Compare your organization’s credit usage between now and the same time last month. You can also view a percentage value difference in credit usage.
-* View your organization’s monthly credit usage from the last year by category. Categories include App Services, Analytics, Data Transfer, and Cluster.
+* Compare your organization's credit usage between now and the same time last month. You can also view a percentage value difference in credit usage.
+* View your organization's monthly credit usage from the last year by category. Categories include App Services, Analytics, Data Transfer, and Cluster.
 * Buy Capella credits through [Couchbase Sales](https://info.couchbase.com/Capella-Contact.html), [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-xrhx5zgue5c26), [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/couchbase.couchbase%5Fcapella%5Fdbaas?tab=overview), or [GCP Marketplace](https://console.cloud.google.com/marketplace/product/couchbase-public/couchbase-capella-database-as-a-service?pli=1).
-* View your organization’s [pay-as-you-go credit usage](billing.md#pay-as-you-go-credits) information for your last 3 months of usage. Capella displays your usage across your organization’s Basic, Developer Pro, and Enterprise Support Plans.
+* View your organization's [pay-as-you-go credit usage](billing.md#pay-as-you-go-credits) information for your last 3 months of usage. Capella displays your usage across your organization's Basic, Developer Pro, and Enterprise Support Plans.
 
 ## [](#filter-usage)View and Filter Usage Reports
 
-To view and filter your organization’s usage reports, from the navigation breadcrumbs in the Capella UI, click your organization name and go to **Billing** **Usage Reporting**.
+To view and filter your organization's usage reports, from the navigation breadcrumbs in the Capella UI, click your organization name and go to **Billing** **Usage Reporting**.
 
 You can use the following filters with the usage graph:
 

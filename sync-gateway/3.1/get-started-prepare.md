@@ -3,7 +3,7 @@ title: Prepare to Install Sync Gateway
 description: Prerequisites for installing <em>Sync Gateway</em>; to synchronize
   your data from cloud to edge.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/get-started-prepare.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::get-started-prepare.adoc[]
 ---
 
@@ -23,7 +23,7 @@ Steps in Getting Started
 
 ## [](#what-you-need)What You Need
 
-Here’s what you need in order to install Sync Gateway:
+Here's what you need in order to install Sync Gateway:
 
 * To know whether your set-up meets the [Minimum Requirements](#lbl-req-minim) and [Compatibility Requirements](#lbl-req-compat) for running Sync Gateway
 * To have access to a working Couchbase Server deployment configured for Sync Gateway, or alternatively, to know how to [Deploy Couchbase Server](../../server/current/install/get-started.md)
@@ -57,7 +57,7 @@ __Table 1\. Sync Gateway Network Port Requirements__
 | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 4984 | Public port. External HTTP port used for replication with Couchbase Lite databases and other applications accessing the REST API on the Internet. The Public REST API is used for client replication. The default port for the Public REST API is 4984.                                                                                                                                     |
 | 4985 | Admin port. Internal HTTP port for unrestricted access to the database and to run administrative tasks. The Admin REST API is used to administer user accounts and roles. It can also be used to look at the contents of databases in superuser mode. The default port for the Admin REST API is 4985\. By default, the Admin REST API is reachable only from localhost for safety reasons. |
-| 4986 | Metrics port. By default 4986 is the internal HTTP port designated for providing access to Sync Gateway’s Metrics REST API. Like the admin port, it is bound to 127.0.0.1 by default. The Metrics REST API returns Sync Gateway metrics, in JSON and-or Prometheus-compatible formats, for performance monitoring and-or diagnostic purposes,                                               |
+| 4986 | Metrics port. By default 4986 is the internal HTTP port designated for providing access to Sync Gateway's Metrics REST API. Like the admin port, it is bound to 127.0.0.1 by default. The Metrics REST API returns Sync Gateway metrics, in JSON and-or Prometheus-compatible formats, for performance monitoring and-or diagnostic purposes,                                               |
 
 ## [](#couchbase-server-host-ports)Couchbase Server Host Ports
 
@@ -108,7 +108,7 @@ Compatibility Matrix
 > [!IMPORTANT]
 > Couchbase Server Bucket Types
 > 
-> Use only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server’s **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../server/current/learn/buckets-memory-and-storage/buckets.md).
+> Use only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server's **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../server/current/learn/buckets-memory-and-storage/buckets.md).
 
 ## [](#compatibility-with-couchbase-lite)Compatibility with Couchbase Lite
 
@@ -175,11 +175,11 @@ We will create a new cluster on a fresh Couchbase Server installation.
 
 We will use this bucket to test the deployment of Sync Gateway, later in the Getting Started section.
 
-1. Login to Couchbase Server’s Admin Console
+1. Login to Couchbase Server's Admin Console
 
   1. Go to `http://localhost:8091`
   2. Enter your administrator credentials.
-2. Within the Admin Console’s toolbar,
+2. Within the Admin Console's toolbar,
 
   1. Select the **Buckets** tab
   2. **Add Bucket** to continue  
@@ -188,7 +188,7 @@ We will use this bucket to test the deployment of Sync Gateway, later in the Get
   > [!IMPORTANT]  
   > Couchbase Server Bucket Types  
   >  
-  > Use only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server’s **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../server/current/learn/buckets-memory-and-storage/buckets.md).  
+  > Use only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server's **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../server/current/learn/buckets-memory-and-storage/buckets.md).  
 ![cb create bucket popup](_images/cb-create-bucket-popup.png)
 
 ### [](#step-2create-rbac-user)Step 2 — Create RBAC User
@@ -208,7 +208,7 @@ For more on creating Couchbase Server users see: [Server — Manage Users and Ro
 
 How-to
 
-1. Within _Couchbase Server’s Dashboard_, **Open** the **Security** tab and click the **Add User** button.  
+1. Within _Couchbase Server's Dashboard_, **Open** the **Security** tab and click the **Add User** button.  
 ![create user](_images/create-user.png)
 2. Create the RBAC user with appropriate access roles, this will differ for each of the user types.  
 The steps for this are shown in [Example 1](#rbac-roles). Note that they differ, depending on your Couchbase Server version.  

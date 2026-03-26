@@ -3,7 +3,7 @@ title: Create a Child Field
 description: Create a child field with the Couchbase Server Web Console to add
   or remove a specific field's content from a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-child-field.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:create-child-field.adoc[]
 ---
 
@@ -12,13 +12,13 @@ link: xref:7.2@server:search:create-child-field.adoc[]
 
 # Create a Child Field
 
-> Create a child field with the Couchbase Server Web Console to add or remove a specific field’s content from a Search index. 
+> Create a child field with the Couchbase Server Web Console to add or remove a specific field's content from a Search index. 
 
 ## [](#prerequisites)Prerequisites
 
-* You’ve created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md).
-* You’ve created a type mapping. For more information about how to create a type mapping on an index, see [Create a Type Mapping](create-type-mapping.md).
-* You’ve logged in to the Couchbase Server Web Console.
+* You've created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md).
+* You've created a type mapping. For more information about how to create a type mapping on an index, see [Create a Type Mapping](create-type-mapping.md).
+* You've logged in to the Couchbase Server Web Console.
 
 ## [](#procedure)Procedure
 
@@ -39,12 +39,12 @@ For more information about the available data types, see [Field Data Types](fiel
 
 | Option                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Searchable As          | Set a different name that you can use to search the field’s contents in a query. The default value is the value set in **Field**.                                                                                                                                                                                                                                                                                                              |
+| Searchable As          | Set a different name that you can use to search the field's contents in a query. The default value is the value set in **Field**.                                                                                                                                                                                                                                                                                                              |
 | Analyzer               | Choose an analyzer for the content in the child field. You can choose a default analyzer or a custom analyzer. For more information about the available default analyzers, see [Default Analyzers](default-analyzers-reference.md). For more information about how to create a custom analyzer, see [Create a Custom Analyzer](create-custom-analyzer.md).                                                                                     |
 | Index                  | To include the child field in the index, select **Index**. To remove the child field from the index, clear **Index**.                                                                                                                                                                                                                                                                                                                          |
-| Store                  | To store the values from the field in the index and return them in search results, select **Store**. This increases your index’s size and indexing time. To remove the field’s values from the index, clear **Store**.                                                                                                                                                                                                                         |
-| Include in \_all field | The \_all field is a composite field that has the content from multiple fields in an index. It allows searches to query the content of a field without specifying the field’s name. To include this field in the \_all field, select **Include in \_all field**. To exclude this field from the \_all field, clear **Include in \_all field**. To change the name of the \_all field, see [Default Field](set-advanced-settings.md#all-field). |
-| Include Term Vectors   | Term vectors store the location of terms in a field for an index. You can use term vectors to highlighting matching search terms in search results, and perform phrase searches. Term vectors increase your index’s size and indexing time. To enable term vectors for this field, select **Include Term Vectors**. To turn off term vectors, clear **Include Term Vectors**. To enable term vectors, you must also enable [Store](#store).    |
+| Store                  | To store the values from the field in the index and return them in search results, select **Store**. This increases your index's size and indexing time. To remove the field's values from the index, clear **Store**.                                                                                                                                                                                                                         |
+| Include in \_all field | The \_all field is a composite field that has the content from multiple fields in an index. It allows searches to query the content of a field without specifying the field's name. To include this field in the \_all field, select **Include in \_all field**. To exclude this field from the \_all field, clear **Include in \_all field**. To change the name of the \_all field, see [Default Field](set-advanced-settings.md#all-field). |
+| Include Term Vectors   | Term vectors store the location of terms in a field for an index. You can use term vectors to highlighting matching search terms in search results, and perform phrase searches. Term vectors increase your index's size and indexing time. To enable term vectors for this field, select **Include Term Vectors**. To turn off term vectors, clear **Include Term Vectors**. To enable term vectors, you must also enable [Store](#store).    |
 | Doc Values             | Doc values are the value for each instance of the field in an index. Use doc values for Search [Facets](search-request-params.md#facets) and sorting search results. To store doc values, select **Doc Values**. To exclude doc values from the index, clear **Doc Values**.                                                                                                                                                                   |
 10. Click **OK**.
 

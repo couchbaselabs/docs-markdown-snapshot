@@ -2,7 +2,7 @@
 title: Certificate Rotation
 description: Certificates should be rotated periodically, to ensure optimal security.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/rotate-server-certificates.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:manage:manage-security/rotate-server-certificates.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Certificate rotation (which means the replacement of existing certificates with 
 
 Certificate-rotation should be planned well before certificates expire. No root or intermediate certificate should ever be used to issue certificates with an expiration date later than that of the issuing certificate itself.
 
-Certificate-rotation on the server-side does not require that either the cluster or any of its nodes be restarted. However, following rotation of a server-side’s root certificate and chains, all corresponding client-chains must also be rotated accordingly.
+Certificate-rotation on the server-side does not require that either the cluster or any of its nodes be restarted. However, following rotation of a server-side's root certificate and chains, all corresponding client-chains must also be rotated accordingly.
 
 Note that when a certificate is to be rotated, a new private key should always be created, and used to generate an entirely new, replacement certificate.
 

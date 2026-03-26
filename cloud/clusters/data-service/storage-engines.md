@@ -2,7 +2,7 @@
 title: Storage Engines
 description: "Capella supports two different backend storage engines: Magma and Couchstore."
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/storage-engines.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:data-service/storage-engines.adoc[]
 ---
 
@@ -26,7 +26,7 @@ __Table 1\. Couchstore and Magma at a glance__
 | Minimum memory to data ratio | 10%        | 1%                                          |
 | Maximum data per node        | 1.6 TiB    | 16 TiB                                      |
 
-| [\[1\]](#quota-ref) | Magma’s minimum memory requirement depends on the number of vBuckets. |
+| [\[1\]](#quota-ref) | Magma's minimum memory requirement depends on the number of vBuckets. |
 | ------------------- | --------------------------------------------------------------------- |
 
 > [!IMPORTANT]
@@ -40,7 +40,7 @@ __Table 1\. Couchstore and Magma at a glance__
 
 Magma is the default backend storage engine in Capella. Magma is optimized for high-performance applications with large datasets that exceed available memory capacity. Disk access performance depends on the underlying disk subsystems.
 
-Magma can work with low amounts of memory for large datasets. For example, a node holding 5 TiB of data can use Magma with only 64 GiB RAM. This efficiency is from Magma’s optimized disk access and memory management techniques.
+Magma can work with low amounts of memory for large datasets. For example, a node holding 5 TiB of data can use Magma with only 64 GiB RAM. This efficiency is from Magma's optimized disk access and memory management techniques.
 
 Magma gives you the choice between 128 and 1024 vBuckets. If you allocate 1 GiB or more memory per node to your bucket, the 1024 vBucket option delivers better performance at scale.
 
@@ -61,7 +61,7 @@ Couchstore delivers high performance while efficiently using system resources wh
 You should use Couchstore if:
 
 * You have a dataset with a working set that fits in available memory and exceeds 20% of the total dataset size.
-* You’re using an operational cluster with limited resources, such as low compute or storage.
+* You're using an operational cluster with limited resources, such as low compute or storage.
 
 ## [](#migrating-a-couchstore-bucket-to-magma)Migrating a Couchstore Bucket to Magma
 
@@ -70,9 +70,9 @@ You should use Couchstore if:
 
 Couchstore to Magma migration is only possible when the target Magma bucket has 1024 vBuckets. If your cluster in Capella uses Couchbase Server 7.6 or later, migrate your Couchstore buckets to Magma by making a [PUT - Migrate Buckets](../../management-api-reference/index.md#tag/Clusters/operation/putBucketStorageBackend) call to the Management API.
 
-PUT - Migrate Buckets can migrate 1 or more Couchstore buckets to Magma while your cluster is running. The API runs a swap [rebalance](../scale-database.md#rebalance) of your cluster’s Data Service nodes. Your cluster shows a rebalancing state during the operation.
+PUT - Migrate Buckets can migrate 1 or more Couchstore buckets to Magma while your cluster is running. The API runs a swap [rebalance](../scale-database.md#rebalance) of your cluster's Data Service nodes. Your cluster shows a rebalancing state during the operation.
 
-Before using PUT - Migrate Buckets, check that the buckets you’re migrating meet the [requirements for Magma](#magma-reqs). If the bucket fails to meet those requirements, the API call returns `"errorType": "MagmaBucketSizeTooSmall"`.
+Before using PUT - Migrate Buckets, check that the buckets you're migrating meet the [requirements for Magma](#magma-reqs). If the bucket fails to meet those requirements, the API call returns `"errorType": "MagmaBucketSizeTooSmall"`.
 
 If your cluster in Capella uses Couchbase Server 7.2, you must create a new bucket with the Magma storage engine and then copy the data. To create a bucket with the Magma storage engine, follow the steps in [Create a Bucket](../../../server/current/manage/manage-buckets/create-bucket.md) and select Magma as the storage backend during bucket creation.
 

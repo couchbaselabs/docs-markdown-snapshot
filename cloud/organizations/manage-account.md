@@ -1,7 +1,7 @@
 ---
 title: Manage Your Couchbase Capella Account
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/manage-account.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:organizations:manage-account.adoc[]
 ---
 
@@ -84,7 +84,7 @@ To unlink your Couchbase Capella account from a Google or GitHub account:
 1. On your profile page, click **Unlink from Google** or **Unlink from GitHub**.
 2. Enter a new password for your Capella account and confirm it.  
 > [!NOTE]  
-> If Multi-Factor Authentication (MFA) is on for your Capella account, Capella keeps this, and you’ll need your MFA time-based one-time password (TOTP) to sign in to your account after unlinking from a Google or GitHub account.
+> If Multi-Factor Authentication (MFA) is on for your Capella account, Capella keeps this, and you'll need your MFA time-based one-time password (TOTP) to sign in to your account after unlinking from a Google or GitHub account.
 3. Click **Unlink from Google** or **Unlink from Google**.  
 The next time you sign in, you must use your email address and the new password that you set.
 
@@ -92,7 +92,7 @@ The next time you sign in, you must use your email address and the new password 
 
 Click **General** on the account management menu to change your notification settings.
 
-Check the **Receive Email Notifications** check box if you want to receive notifications concerning activity within your account. Clear if you don’t want to receive notifications.
+Check the **Receive Email Notifications** check box if you want to receive notifications concerning activity within your account. Clear if you don't want to receive notifications.
 
 Click **Save** to apply your changes.
 
@@ -110,6 +110,6 @@ Click on the name of an organization to open its **Organization** page, where yo
 
 In the account management menu, click **Activity Log** to access your user activity logs.
 
-The [Activity Log](../clusters/monitoring/activity-log.md) is where you can view the activity in the organizations and the projects you’re involved. This tool displays a summary of all events in a chosen timespan.
+The [Activity Log](../clusters/monitoring/activity-log.md) is where you can view the activity in the organizations and the projects you're involved. This tool displays a summary of all events in a chosen timespan.
 
 The Activity Log provides you with insight into user actions and cluster activity. It can also give details and actionable recommendations to help resolve cluster issues before they impact downstream applications.

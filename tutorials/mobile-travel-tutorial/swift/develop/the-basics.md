@@ -1,7 +1,7 @@
 ---
 title: The Basics
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/swift/develop/the-basics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:swift/develop/the-basics.adoc[]
 ---
 
@@ -58,15 +58,15 @@ _db = try Database(name: kGuestDBName, config: options)
 Try it out
 
 1. Build and Run the Travel Sample Mobile App
-2. On the Login screen select “Proceed as Guest” option.
-3. This will log you into the app in Guest Mode. Signing in as Guest will create a new empty database for “guest” account if one does not exist
+2. On the Login screen select "Proceed as Guest" option.
+3. This will log you into the app in Guest Mode. Signing in as Guest will create a new empty database for "guest" account if one does not exist
 4. Confirm that you see the "Bookmarked Hotels" page. It will be empty the very first time.
 
 ## [](#create-and-update-a-document)Create and Update a Document
 
 Bookmarked hotels are persisted in a separate document with a `type` of `bookmarkedhotels`.
 
-The first time a hotel is bookmarked, the `bookmarkedhotels` document is created with the document ID of that hotel document in the `hotels` property. The hotel’s information is persisted in a separate `hotels` type document.
+The first time a hotel is bookmarked, the `bookmarkedhotels` document is created with the document ID of that hotel document in the `hotels` property. The hotel's information is persisted in a separate `hotels` type document.
 
 Subsequently, every time a hotel is bookmarked, the process repeats.
 
@@ -102,7 +102,7 @@ guard let db = dbMgr.db else {
 }
 ```
 
-Then fetch documents of type `bookmarkedhotels`. Don’t worry too much about how you query for documents of a specific type from the database. We will examine the Query API in a future lesson.
+Then fetch documents of type `bookmarkedhotels`. Don't worry too much about how you query for documents of a specific type from the database. We will examine the Query API in a future lesson.
 
 Create a document of type `bookmarkedhotels` if one does not exist.
 
@@ -174,11 +174,11 @@ Try it out — Bookmark a Hotel
 3. You will see a list of hotels.
 4. The list of hotels is pulled from the Couchbase Server via the Travel Sample Web Services API. The list of hotels is not displayed unless there is an open connection the python web app so make sure you have your Travel Sample Web app running.
 5. Swipe left on the first hotel cell
-6. You will get option to “Bookmark”
-7. Tap “bookmark”
+6. You will get option to "Bookmark"
+7. Tap "bookmark"
 8. This should display a "bookmark" icon on the hotel cell
 9. Tap "Cancel" button
-10. Verify that you see the bookmarked hotel in the “Bookmarked Hotels” screen — see: [Figure 1](#fig-swift-bookmk)A motivation for having separate docs for each bookmarked hotel is if they become sharable between users via the sync function.
+10. Verify that you see the bookmarked hotel in the "Bookmarked Hotels" screen — see: [Figure 1](#fig-swift-bookmk)A motivation for having separate docs for each bookmarked hotel is if they become sharable between users via the sync function.
 
 ![basics add document](../../_images/basics_add_document.gif) 
 
@@ -198,7 +198,7 @@ func unbookmarkHotels(_ hotels: Hotels, handler:@escaping( _ error:Error?)->Void
 }
 ```
 
-When searching for hotels in **Guest mode**, the app sends a GET request to the Python Web App which performs a Full-Text Search query on Couchbase Server. Then, if a hotel is bookmarked, it gets inserted in the Couchbase Lite database for offline access. So when the user unbookmarks a hotel, the document needs to be removed from the database. That’s what the code below is doing.
+When searching for hotels in **Guest mode**, the app sends a GET request to the Python Web App which performs a Full-Text Search query on Couchbase Server. Then, if a hotel is bookmarked, it gets inserted in the Couchbase Lite database for offline access. So when the user unbookmarks a hotel, the document needs to be removed from the database. That's what the code below is doing.
 
 ```swift
 // Remove unbookmarked hotel documents
@@ -216,7 +216,7 @@ Try it out — Remove Bookmark
 1. Follow the steps in [Try it out — Bookmark a Hotel](#lab-swift-bookmk) to bookmark a hotel
 2. Confirm that you see the bookmarked hotels in the "Bookmarked Hotels" screen. If not, make sure you go through the instructions in [Try it out — Bookmark a Hotel](#lab-swift-bookmk)
 3. Swipe left on a bookmarked hotel cell.
-4. You will get an option to “UnBookmark”.
+4. You will get an option to "UnBookmark".
 5. Tap "UnBookmark".
 6. Verify that the unbookmarked hotel does not show up in the list — see: [Figure 2](#fig-swift-delbookmk)
 

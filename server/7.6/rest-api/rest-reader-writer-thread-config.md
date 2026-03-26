@@ -3,7 +3,7 @@ title: Setting Storage Thread Allocations
 description: Couchbase Server has several settings that let you change how it
   allocates and uses threads for storage across the entire cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-reader-writer-thread-config.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:rest-reader-writer-thread-config.adoc[]
 ---
 
@@ -215,7 +215,7 @@ This sets the number of `reader` threads to `12`, the number of `writer` threads
 }
 ```
 
-The following example increases the Magma storage engine’s thread pool to 30 threads and allocates 25% of the threads to flushing data to disk:
+The following example increases the Magma storage engine's thread pool to 30 threads and allocates 25% of the threads to flushing data to disk:
 
 ```bash
 curl -X POST -u Administrator:password \

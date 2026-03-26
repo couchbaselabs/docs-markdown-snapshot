@@ -2,7 +2,7 @@
 title: Query Tab
 description: Use the Query tab to develop and run SQL++ queries from your browser.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/query-service/query-workbench.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:query-service/query-workbench.adoc[]
 ---
 
@@ -77,7 +77,7 @@ The query editor provides the following additional features:
 
 You can specify the bucket and scope query context. When you set the query context to a bucket and scope, you can write queries using just the collection name without specifying the keyspace path.
 
-For example, here’s how a query would look without specifying a bucket and scope in the query editor:
+For example, here's how a query would look without specifying a bucket and scope in the query editor:
 
 ```sqlpp
 SELECT * FROM `travel-sample`.`inventory`.`airline`;
@@ -109,7 +109,7 @@ Once you have a statement ready, click **Run**.
 When the query is running, the **Run** button changes to **Cancel**, which allows you to cancel the running query. When you cancel a running query, it stops the activity on the cluster side as well.
 
 > [!NOTE]
-> The **Cancel** button doesn’t cancel index creation statements. The index creation continues on the server side even though it appears to have been canceled from the query editor.
+> The **Cancel** button doesn't cancel index creation statements. The index creation continues on the server side even though it appears to have been canceled from the query editor.
 
 ## [](#query-settings)Modify Query Settings
 
@@ -121,7 +121,7 @@ Configure the following settings and click **Save Settings** to save the configu
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Collect query timings    | Collects per-operator query timings during query executions and displays them in a query plan. This option is selected by default.                                                                                                                                                                                                                     |
 | Use Cost-Based Optimizer | Turns the cost-based optimizer on or off. For more information, see [Understand the Cost-Based Optimizer for Queries](../../n1ql/n1ql-language-reference/cost-based-optimizer.md).                                                                                                                                                                     |
-| Don’t save query history | Disables auto-saving query history to local storage in your browser. This is a consideration for shared machines. When selected, any query history will be lost when you leave or refresh the query editor.                                                                                                                                            |
+| Don't save query history | Disables auto-saving query history to local storage in your browser. This is a consideration for shared machines. When selected, any query history will be lost when you leave or refresh the query editor.                                                                                                                                            |
 | Max Parallelism          | Specifies the maximum parallelism for the query. If you do not specify, the cbq-engine uses its default value. For more information about maximum parallelism, see the [max\_parallelism](../../n1ql/n1ql-manage/query-settings.md#max%5Fparallelism%5Freq) request-level parameter.                                                                   |
 | Query Timeout            | The timeout parameter in seconds limiting the running time of a query. You can set this to a maximum of 1800 seconds                                                                                                                                                                                                                                   |
 | Transaction Timeout      | Specifies the maximum time in seconds spent on a transaction before timing out.                                                                                                                                                                                                                                                                        |
@@ -138,7 +138,7 @@ The [ADVISE](../../n1ql/n1ql-language-reference/advise.md) command generates ind
 
 ## [](#results)Query Results
 
-When you execute a query, the results display in the query results area. Since large result sets can take a long time to display, it’s recommended that you use the [LIMIT](../../n1ql/n1ql-language-reference/limit.md) clause as part of your query when appropriate.
+When you execute a query, the results display in the query results area. Since large result sets can take a long time to display, it's recommended that you use the [LIMIT](../../n1ql/n1ql-language-reference/limit.md) clause as part of your query when appropriate.
 
 When a query finishes, metrics for that query appear between the query editor and the query results areas.
 
@@ -240,7 +240,7 @@ The **Plan Text** tab shows the [EXPLAIN](../../n1ql/n1ql-language-reference/exp
 
 The query editor maintains a history of all the queries executed.
 
-If you edit a previous query and execute it, the new query is stored at the end of the history. The history is persistent across browser sessions. The query history saves queries; due to limited browser storage, it doesn’t save query results. When you restart the browser or reload the page, you can see your old queries, but you must re-execute the queries if you want to see their results.
+If you edit a previous query and execute it, the new query is stored at the end of the history. The history is persistent across browser sessions. The query history saves queries; due to limited browser storage, it doesn't save query results. When you restart the browser or reload the page, you can see your old queries, but you must re-execute the queries if you want to see their results.
 
 > [!NOTE]
 > Clearing the browser history clears the history maintained by the query editor as well.
@@ -262,7 +262,7 @@ You can load a new query history into the query editor from a JSON file. The que
 > [!CAUTION]
 > Importing a query history overwrites your current query history.
 
-1. From the cluster’s **Data Tools** **Query** page, click **History**.  
+1. From the cluster's **Data Tools** **Query** page, click **History**.  
 This opens the **Query History** menu.
 2. Click the Import query history icon next to the search box.
 3. From the **Open** file window choose a local `.json` file that you want to import.
@@ -273,7 +273,7 @@ The preexisting query history is overwritten with the query history of the impor
 
 You can export the current query history to a JSON file, which you [import](#import-query) into other clusters.
 
-1. From the cluster’s **Data Tools** **Query** page, click **History**.  
+1. From the cluster's **Data Tools** **Query** page, click **History**.  
 This opens the **Query History** menu.
 2. Click the Export query history icon next to the search box.  
 This opens the **Export Query History** window.

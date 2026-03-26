@@ -2,7 +2,7 @@
 title: Getting Started
 description: Learn how to install the Elasticsearch Connector.
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/getting-started.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:elasticsearch-connector::getting-started.adoc[]
 ---
 
@@ -40,7 +40,7 @@ In this mode each process is manually configured to handle only a subset of the 
 
 For scalable environments that require high availability and centralized management, you can run the connector in "autonomous operations" (AO) mode. This mode is similar to distributed mode in that each process handles a subset of the replication workload, but improves upon it by using a [HashiCorp Consul](https://www.consul.io) cluster to coordinate the activities of the connector processes. This enables connector processes to dynamically join or leave the group, and allows an administrator to reconfigure the group on-the-fly without needing to shut down all of the processes.
 
-AO mode is discussed in more detail in the [Autonomous Operations](autonomous-operations.md) guide. The page you’re reading now is focused on solo and distributed mode; we recommend becoming familiar with these modes before progressing to AO mode.
+AO mode is discussed in more detail in the [Autonomous Operations](autonomous-operations.md) guide. The page you're reading now is focused on solo and distributed mode; we recommend becoming familiar with these modes before progressing to AO mode.
 
 ## [](#pre-requisites)Pre-requisites
 
@@ -107,7 +107,7 @@ Copy `$CBES_HOME/config/example-connector.toml` to `$CBES_HOME/config/default-co
 
 Take a moment to browse the settings available in `default-connector.toml`. Make sure the Couchbase and Elasticsearch credentials and hostnames match your environment. Note that the passwords are stored separately in the `$CBES_HOME/secrets` directory.
 
-The sample config will replicate documents from the Couchbase `travel-sample` bucket. Go ahead and [install sample buckets](../../server/current/manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-ui) now if you haven’t already.
+The sample config will replicate documents from the Couchbase `travel-sample` bucket. Go ahead and [install sample buckets](../../server/current/manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-ui) now if you haven't already.
 
 ## [](#controlling-the-connector)Controlling the Connector
 
@@ -159,7 +159,7 @@ If the `--config` argument is not specified, the path defaults to `config/defaul
 
 When running a checkpoint management command from an environment where the connector is already installed and configured, use the same config file as the connector.
 
-If you want to run a checkpoint management command in a different environment, you’ll need to:
+If you want to run a checkpoint management command in a different environment, you'll need to:
 
 1. Get the connector distribution archive and unzip it.
 2. Edit the `config/example-connector.toml` and `config/secrets/couchbase-password.toml` files to match the settings of the connector whose checkpoints you want to manage.
@@ -226,6 +226,6 @@ If you want to reset the connector so it starts from the current state of the bu
 
 cbes-checkpoint-clear --catch-up
 
-## [](#whats-next)What’s Next?
+## [](#whats-next)What's Next?
 
-After successfully deploying the connector in solo or distributed mode, you’re ready to dive into the [Autonomous Operations](autonomous-operations.md) guide.
+After successfully deploying the connector in solo or distributed mode, you're ready to dive into the [Autonomous Operations](autonomous-operations.md) guide.

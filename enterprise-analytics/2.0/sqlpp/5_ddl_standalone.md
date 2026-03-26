@@ -3,7 +3,7 @@ title: CREATE a Standalone Collection
 description: This topic describes how you use the <code>CREATE</code> statement
   to create a standalone collection in Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl_standalone.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sqlpp:5_ddl_standalone.adoc[]
 ---
 
@@ -58,7 +58,7 @@ FieldType
 
 ## [](#example)Example
 
-The following example creates a standalone collection that is similar to the collections you can create for the sample Commerce data. In this example, you instruct the system to generate the primary keys for the data you’ll add to this collection. See [intro:connecting-to-data-sources.adoc#install-the-commerce-dataset-in-standalone-collections](../intro/connecting-to-data-sources.md#install-the-commerce-dataset-in-standalone-collections).
+The following example creates a standalone collection that is similar to the collections you can create for the sample Commerce data. In this example, you instruct the system to generate the primary keys for the data you'll add to this collection. See [intro:connecting-to-data-sources.adoc#install-the-commerce-dataset-in-standalone-collections](../intro/connecting-to-data-sources.md#install-the-commerce-dataset-in-standalone-collections).
 
 ```SQL++
  CREATE COLLECTION sampleAnalytics.Commerce.locations

@@ -3,7 +3,7 @@ title: Sync Function
 description: Defining sync functions for effective data routing and access
   control in the cloud-to-edge synchronization of enterprise data.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/sync-function.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@sync-gateway::sync-function.adoc[]
 ---
 
@@ -19,7 +19,7 @@ _Related access-control topics_: **Sync function** | [Read access](#sync-gateway
 
 ## [](#sync-function-basics)Sync Function Basics
 
-The Sync Function is a JavaScript function whose source code is stored in the Sync Gateway’s database configuration file. You can learn more about this property ($db.sync) in the Configuration Schema Reference — see: [sync](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-sync).
+The Sync Function is a JavaScript function whose source code is stored in the Sync Gateway's database configuration file. You can learn more about this property ($db.sync) in the Configuration Schema Reference — see: [sync](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-sync).
 
 The sync function is called every time a new revision/update is made to a document, and the changes to channels and access made by the sync function are _tied to that revision_. If the document is later updated, the sync function will be called again on the new revision, and the new channel assignments and user/channel access _replace_ the ones from the first call.
 
@@ -72,7 +72,7 @@ Configuration properties:
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | The password of the user that you created on the Couchbase Server Admin Console.                                                                                                                                                                                                                      |
 | **3** | The [Sync with Couchbase Server](../current/sync/sync-with-couchbase-server.md) feature allows Couchbase Server SDKs to also perform operations on this bucket.                                                                                                                                       |
-| **4** | num\_index\_replicas is the number of index replicas stored in Couchbase Server, introduced with GSI/N1QL indexing — see [Indexing versus Views](../current/deploy/indexing.md). If you’re running a single Couchbase Server node for development purposes the num\_index\_replicas must be set to 0. |
+| **4** | num\_index\_replicas is the number of index replicas stored in Couchbase Server, introduced with GSI/N1QL indexing — see [Indexing versus Views](../current/deploy/indexing.md). If you're running a single Couchbase Server node for development purposes the num\_index\_replicas must be set to 0. |
 | **5** | The sync function — a javascript function enclosed in backticks, which is actioned every time a new document, document revision or deletion is made to a database — see the: [databases.$db.sync](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-sync) property.     |
 
 ## [](#function-definition)Function Definition
@@ -107,9 +107,9 @@ An object, the content of the document that is being saved. This matches the JSO
 
 `oldDoc`
 
-If the document has been saved before, the revision that is being replaced is available in this argument. Otherwise it’s `null`. (In the case of a document with conflicts, the current provisional winning revision is passed in `oldDoc`.) Your implementation of the sync function can omit the `oldDoc` parameter if you do not need it (JavaScript ignores extra parameters passed to a function).
+If the document has been saved before, the revision that is being replaced is available in this argument. Otherwise it's `null`. (In the case of a document with conflicts, the current provisional winning revision is passed in `oldDoc`.) Your implementation of the sync function can omit the `oldDoc` parameter if you do not need it (JavaScript ignores extra parameters passed to a function).
 
-If you don’t supply a sync function, Sync Gateway uses the [default Sync Function](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-sync).
+If you don't supply a sync function, Sync Gateway uses the [default Sync Function](../current/configuration/configuration-properties-legacy.md#databases-this%5Fdb-sync).
 
 ## [](#channelchannelname)channel(channelname)
 
@@ -131,7 +131,7 @@ Routing changes has no effect until the document is actually saved in the databa
 > As a convenience, it is legal to call `channel` with a `null` or `undefined` argument; it simply does nothing. This allows you to do something like `channel(doc.channels)` without having to first check whether `doc.channels` exists.
 
 > [!NOTE]
-> Channels don’t have to be predefined. A channel implicitly comes into existence when a document is routed to it.
+> Channels don't have to be predefined. A channel implicitly comes into existence when a document is routed to it.
 
 ## [](#accessusername-channelname)access(username, channelname)
 
@@ -159,9 +159,9 @@ access ("snej", null);  // no-op
 
 ## [](#roleusername-rolename)role(username, rolename)
 
-The `role()` function grants a user a role, indirectly giving them access to all channels granted to that role. It can also affect the user’s ability to revise documents, if the access function requires role membership to validate certain types of changes. Its use is similar to `access` — the value of either parameter can be a string, an array of strings, or null. If the value is null, the call is a no-op.
+The `role()` function grants a user a role, indirectly giving them access to all channels granted to that role. It can also affect the user's ability to revise documents, if the access function requires role membership to validate certain types of changes. Its use is similar to `access` — the value of either parameter can be a string, an array of strings, or null. If the value is null, the call is a no-op.
 
-For consistency with the `access` call, role names must always be prefixed with `role:`. An exception is thrown if a role name doesn’t match this. Some examples:
+For consistency with the `access` call, role names must always be prefixed with `role:`. An exception is thrown if a role name doesn't match this. Some examples:
 
 ```javascript
 role ("jchris", "role:admin");
@@ -173,16 +173,16 @@ role ("ed", null);  // no-op
 > [!NOTE]
 > Roles, like users, have to be explicitly created by an administrator.
 
-Unlike channels, which come into existence simply by being named, you can’t create new roles with a `role()` call. Like _users_, they must be defined in the configuration or by API.
+Unlike channels, which come into existence simply by being named, you can't create new roles with a `role()` call. Like _users_, they must be defined in the configuration or by API.
 
-Nonexistent roles don’t cause an error, but have no effect on the user’s access privileges.
+Nonexistent roles don't cause an error, but have no effect on the user's access privileges.
 
 > [!TIP]
 > You can create roles retrospectively. As soon as a role is created, any pre-existing references to it take effect.
 
 ## [](#requireuserusername)requireUser(username)
 
-The `requireUser()` function authorizes a document update by rejecting it unless it’s made by a specific user or users, as shown in the following example:
+The `requireUser()` function authorizes a document update by rejecting it unless it's made by a specific user or users, as shown in the following example:
 
 ```javascript
 // Throw an error if username is not "snej":
@@ -192,7 +192,7 @@ requireUser("snej");
 requireUser(["snej", "jchris", "tleyden"]);
 ```
 
-The function signals rejection by throwing an exception, so the rest of the sync function will not be run. All properties of the `doc` parameter should be considered _untrusted_, since this is after all the object that you’re validating. This may sound obvious, but it can be easy to make mistakes, like calling `requireUser(doc.owners)` instead of `requireUser(oldDoc.owners)`. When using one document property to validate another, look up that property in `oldDoc`, not `doc`!
+The function signals rejection by throwing an exception, so the rest of the sync function will not be run. All properties of the `doc` parameter should be considered _untrusted_, since this is after all the object that you're validating. This may sound obvious, but it can be easy to make mistakes, like calling `requireUser(doc.owners)` instead of `requireUser(oldDoc.owners)`. When using one document property to validate another, look up that property in `oldDoc`, not `doc`!
 
 ## [](#requirerolerolename)requireRole(rolename)
 
@@ -230,7 +230,7 @@ The function signals rejection by throwing an exception, so the rest of the sync
 You can specify multiple channel names, for example:  
 `requireAccess('any channel name', '*')'`
 
-If a user was granted access using only the [all channels wildcard](channels.md#lbl-all-channels)\] (`*`), then `requireAccess('any channel name')'` will fail because the user wasn’t granted access to that channel (only to the `*` channel).
+If a user was granted access using only the [all channels wildcard](channels.md#lbl-all-channels)\] (`*`), then `requireAccess('any channel name')'` will fail because the user wasn't granted access to that channel (only to the `*` channel).
 
 > [!NOTE]
 > requireAccess() will only recognize grants made explicitly using a channel name (not by wildcard).
@@ -246,7 +246,7 @@ requireAdmin();
 
 ## [](#throw)throw()
 
-At the most basic level, the sync function can prevent a document from persisting or syncing to any other users by calling `throw()` with an error object containing a `forbidden`: property. You enforce the validity of document structure by checking the necessary constraints and throwing an exception if they’re not met.
+At the most basic level, the sync function can prevent a document from persisting or syncing to any other users by calling `throw()` with an error object containing a `forbidden`: property. You enforce the validity of document structure by checking the necessary constraints and throwing an exception if they're not met.
 
 Here is an example sync function that disallows all writes to the database it is in.
 
@@ -258,7 +258,7 @@ function(doc) {
 
 The document update will be rejected with an HTTP 403 "Forbidden" error code, with the value of the `forbidden:` property being the HTTP status message. This is the preferred way to reject an update.
 
-In validating a document, you’ll often need to compare the new revision to the old one, to check for illegal changes in state. For example, some properties may be immutable after the document is created, or may be changeable only by certain users, or may only be allowed to change in certain ways. That’s why the current document contents are given to the sync function, as the `oldDoc` parameter.
+In validating a document, you'll often need to compare the new revision to the old one, to check for illegal changes in state. For example, some properties may be immutable after the document is created, or may be changeable only by certain users, or may only be allowed to change in certain ways. That's why the current document contents are given to the sync function, as the `oldDoc` parameter.
 
 We recommend that you not create invalid documents in the first place. As much as possible, your app logic and validation function should prevent invalid documents from being created locally. The server-side sync function validation should be seen as a fail-safe and a guard against malicious access.
 
@@ -279,7 +279,7 @@ The behavior on the resulting document when the expiry value is reached depends 
 
 if [Mobile-Web Data Sync](sync-with-couchbase-server.md) is enabled
 
-The **active** revision of the document is tombstoned. If there is another non-tombstoned revision for this document (i.e a conflict) it will become the active revision. The tombstoned revision will be purged when the server’s metadata purge interval is reached.
+The **active** revision of the document is tombstoned. If there is another non-tombstoned revision for this document (i.e a conflict) it will become the active revision. The tombstoned revision will be purged when the server's metadata purge interval is reached.
 
 if [Mobile-Web Data Sync](sync-with-couchbase-server.md) is disabled
 
@@ -293,15 +293,15 @@ If a document is in conflict there will be multiple current revisions. The defau
 
 ## [](#handling-deletions)Handling deletions
 
-Validation checks often need to treat deletions specially, because a deletion is just a revision with a `"_deleted": true` property and usually nothing else. Many types of validations won’t work on a deletion because of the missing properties — for example, a check for a required property, or a check that a property value doesn’t change. You’ll need to skip such checks if `doc._deleted` is true.
+Validation checks often need to treat deletions specially, because a deletion is just a revision with a `"_deleted": true` property and usually nothing else. Many types of validations won't work on a deletion because of the missing properties — for example, a check for a required property, or a check that a property value doesn't change. You'll need to skip such checks if `doc._deleted` is true.
 
 ## [](#example)Example
 
-Here’s an example of a complete, useful sync function that properly validates and authorizes both new and updated documents. The requirements are:
+Here's an example of a complete, useful sync function that properly validates and authorizes both new and updated documents. The requirements are:
 
 * Only users with the role `editor` may create or delete documents.
 * Every document has an immutable `creator` property containing the name of the user who created it.
-* Only users named in the document’s (required, non-empty) `writers` property may make changes to a document, including deleting it.
+* Only users named in the document's (required, non-empty) `writers` property may make changes to a document, including deleting it.
 * Every document must also have a `title` and a `channels` property.  
 ```javascript  
 function (doc, oldDoc) {  

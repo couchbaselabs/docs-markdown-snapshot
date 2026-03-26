@@ -1,7 +1,7 @@
 ---
 title: Couchbase Ruby SDK 3.7
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ruby-sdk:hello-world:overview.adoc[]
 ---
 
@@ -20,7 +20,7 @@ document = {"name" => "John Doe", "preferred_email" => "johndoe111@test123.test"
 result = users_collection.upsert("user-key", document)
 ```
 
-The Couchbase Ruby SDK allows you to connect to a Couchbase cluster from Ruby. The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase’s binary protocols.
+The Couchbase Ruby SDK allows you to connect to a Couchbase cluster from Ruby. The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase's binary protocols.
 
   
 ##  Use Your Database

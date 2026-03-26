@@ -4,7 +4,7 @@ description: Monitor your Capella Analytics cluster by obtaining information
   about query requests that are actively running or that have already been
   completed.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/monitoring/monitor-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:admin:monitoring/monitor-query.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:analytics:admin:monitoring/monitor-query.adoc[]
 
 > Monitor your Capella Analytics cluster by obtaining information about query requests that are actively running or that have already been completed. 
 
-You can use SQL++ queries to monitor and analyze these requests and improve your cluster’s performance and efficiency.
+You can use SQL++ queries to monitor and analyze these requests and improve your cluster's performance and efficiency.
 
 ## [](#monitor-active-requests)Monitor Active Requests
 
@@ -144,10 +144,10 @@ The following information is captured in the query results:
 
 | Name              | Description                                                                                                                                                                                                                                                                                                           |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| statement         | The query’s statement.                                                                                                                                                                                                                                                                                                |
-| plan              | The query’s plan. This only becomes available once the query is completed. If the profiling option is enabled, the plan contains each operator’s execution time.                                                                                                                                                      |
+| statement         | The query's statement.                                                                                                                                                                                                                                                                                                |
+| plan              | The query's plan. This only becomes available once the query is completed. If the profiling option is enabled, the plan contains each operator's execution time.                                                                                                                                                      |
 | requestTime       | The time at which the request is received.                                                                                                                                                                                                                                                                            |
-| state             | The state of the request. One of: received, when the request has been received but the query’s job has not been created yet. running, when the query’s job has been created and started running. cancelled, when the query has been cancelled. completed, when the query has been completed with or without failures. |
+| state             | The state of the request. One of: received, when the request has been received but the query's job has not been created yet. running, when the query's job has been created and started running. cancelled, when the query has been cancelled. completed, when the query has been completed with or without failures. |
 | jobId             | The ID of the job.                                                                                                                                                                                                                                                                                                    |
 | jobStatus         | The job status. One of: PENDING, when the job is in the waiting queue. RUNNING, when the job is running. TERMINATED, when the job has finished without failures. FAILURE, when the job has finished with failures. FAILURE\_BEFORE\_EXECUTION, when the job has failed before starting execution.                     |
 | jobCreateTime     | The time at which the job for the query is created.                                                                                                                                                                                                                                                                   |

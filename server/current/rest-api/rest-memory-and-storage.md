@@ -2,7 +2,7 @@
 title: Memory and Storage
 description: Couchbase-Server memory and storage can be managed by means of the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-memory-and-storage.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rest-memory-and-storage.adoc[]
 ---
 
@@ -17,9 +17,9 @@ Using the REST API, _memory quotas_ can be allocated to services, and the curren
 
 _Reader and writer threads_ can be configured, to ensure that disk access is highly performant.
 
-Additionally, _compaction_ can be managed: this is used by Couchbase Server to relocate on-disk data; so as to ensure the data’s closest-possible proximity, and thereby reclaim fragments of unused disk-space. The periodic compaction of a bucket’s data helps to ensure the ongoing efficiency of both reads and writes.
+Additionally, _compaction_ can be managed: this is used by Couchbase Server to relocate on-disk data; so as to ensure the data's closest-possible proximity, and thereby reclaim fragments of unused disk-space. The periodic compaction of a bucket's data helps to ensure the ongoing efficiency of both reads and writes.
 
-Administrators can initiate the compaction of a single bucket’s data at any time, and can cancel such compaction if and when necessary. The REST APIs that support this are described in [Performing Compaction Manually](rest-compact-post.md).
+Administrators can initiate the compaction of a single bucket's data at any time, and can cancel such compaction if and when necessary. The REST APIs that support this are described in [Performing Compaction Manually](rest-compact-post.md).
 
 Additionally, settings are provided whereby compaction is triggered _automatically_, according to a specified configuration and schedule. This _auto-compaction_ can be achieved in two ways:
 

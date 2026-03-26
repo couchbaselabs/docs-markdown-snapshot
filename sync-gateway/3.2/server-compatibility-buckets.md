@@ -3,7 +3,7 @@ title: Buckets&#8201;&#8212;&#8201;Server Compatibility
 description: How <em>Sync Gateway</em> works with <em>Couchbase Server's</em>
   <em>Buckets</em>
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/server-compatibility-buckets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@sync-gateway::server-compatibility-buckets.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.2@sync-gateway::server-compatibility-buckets.adoc[]
 
 # Buckets&#8201;&#8212;&#8201;Server Compatibility
 
-> How _Sync Gateway_ works with _Couchbase Server’s_ _Buckets_  
+> How _Sync Gateway_ works with _Couchbase Server's_ _Buckets_  
 
 _Related topics_: **Buckets** | [Collections](server-compatibility-collections.md) | [Eventing](server-compatibility-eventing.md) | [Transactions](server-compatibility-transactions.md) | [XDCR](server-compatibility-xdcr.md) | [Backup and restore](server-compatibility-backups.md)
 
@@ -31,7 +31,7 @@ You can find details here about compatibility between Couchbase Server buckets a
 
 ## [](#durability)Durability
 
-Sync Gateway does not support non-default durability settings at the bucket level for [durable writes](../../server/current/learn/data/durability.md). Make sure your buckets have their bucket durability setting set to `None`. If this is not the case you’ll get a [failure scenario](../../server/current/learn/data/durability.md#failure-scenarios), `Write while SyncWrite is pending`, and the attempt at a durable write fails.
+Sync Gateway does not support non-default durability settings at the bucket level for [durable writes](../../server/current/learn/data/durability.md). Make sure your buckets have their bucket durability setting set to `None`. If this is not the case you'll get a [failure scenario](../../server/current/learn/data/durability.md#failure-scenarios), `Write while SyncWrite is pending`, and the attempt at a durable write fails.
 
 You can still use high durability settings when set on the client side. For more information about how to configure client-level durability for durable writes, see [specifying levels](../../server/current/learn/data/durability.md#specifying-levels).
 
@@ -40,11 +40,11 @@ You can still use high durability settings when set on the client side. For more
 > [!IMPORTANT]
 > Document TTL is an Enterprise Edition only feature.
 
-Couchbase Server Enterprise Edition lets you have documents expire after a period of time, called the document’s Time To Live (TTL). This feature only works in Couchbase and Ephemeral buckets. It does not work in Memcached buckets. For more information, see [Expiration](../../server/current/learn/data/expiration.md).
+Couchbase Server Enterprise Edition lets you have documents expire after a period of time, called the document's Time To Live (TTL). This feature only works in Couchbase and Ephemeral buckets. It does not work in Memcached buckets. For more information, see [Expiration](../../server/current/learn/data/expiration.md).
 
 Sync Gateway does not support Bucket-level TTL, make sure your buckets have their `maxTTL` setting set to `0`. If the bucket setting has a non-zero `maxTTL` value set, Sync Gateway returns an error prompting you to set the value to `0` in the Couchbase Server Admin UI.
 
-Similarly, do not set Collection-level TTL (`maxTTL` on collections) as this can interfere with Sync Gateway’s internal documents, including those with `_sync` prefixes and other system documents that are essential for proper operation. If these system documents expire due to collection-level TTL, Sync Gateway may malfunction or fail to operate properly. You can use per-collection sync functions to set expiry on all documents within a collection when you need TTL-like behavior at the collection level, while preserving Sync Gateway’s system documents.
+Similarly, do not set Collection-level TTL (`maxTTL` on collections) as this can interfere with Sync Gateway's internal documents, including those with `_sync` prefixes and other system documents that are essential for proper operation. If these system documents expire due to collection-level TTL, Sync Gateway may malfunction or fail to operate properly. You can use per-collection sync functions to set expiry on all documents within a collection when you need TTL-like behavior at the collection level, while preserving Sync Gateway's system documents.
 
 > [!NOTE]
 > You can still set Document expiration settings on individual documents.

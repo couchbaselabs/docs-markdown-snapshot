@@ -3,7 +3,7 @@ title: Automatic Workload Repository
 description: Monitor and optimize query performance and workload using Automatic
   Workload Repository (AWR).
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-manage/query-awr.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-manage/query-awr.adoc[]
 ---
 
@@ -22,7 +22,7 @@ For example, some queries may run efficiently with minimal overhead, while other
 
 When enabled, AWR automatically gathers detailed metrics from the Query Service for every query that you run on your cluster. These metrics include execution time, CPU usage, memory consumption, number of executions, and more. It then aggregates this data into [snapshots](#snapshots) and stores them in a [workload repository](#workload-repository).
 
-You can access the collected data by directly querying the repository or by using Couchbase’s report generation tool. For more information, see [View AWR Data and Reports](#view-awr-data-and-reports).
+You can access the collected data by directly querying the repository or by using Couchbase's report generation tool. For more information, see [View AWR Data and Reports](#view-awr-data-and-reports).
 
 ## [](#use-cases)Use Cases
 
@@ -94,7 +94,7 @@ The catalog consists of the following attributes:
 | **interval**        | The duration of the reporting interval. That is, the time between each snapshot collection. If the interval is set to 10 minutes, AWR captures snapshots every 10 minutes. The interval must be at least 1 minute. **Default**: "10m0s" **Example**: "1m30s"                                                                                    | String (duration) |
 | **threshold**       | The minimum time a statement must take to complete for it be captured and included in the snapshot. The threshold must be at least 0 seconds. **Default**: "0s", so that by default, all statements are captured by AWR regardless of their execution time. **Example**: "1m30s"                                                                | String (duration) |
 | **num\_statements** | The maximum number of unique statements for which aggregate data is collected during each interval. Once the specified limit is reached during a reporting interval, AWR does not generate snapshots for any additional unique statements within that same interval. **Default**: 10000 **Max**: 100000                                         | Positive integer  |
-| **queue\_len**      | Length of the processing queue. It’s recommended not to change this value. The default value and maximum allowable value for queue\_len are internally calculated based on system resources.                                                                                                                                                    | Positive integer  |
+| **queue\_len**      | Length of the processing queue. It's recommended not to change this value. The default value and maximum allowable value for queue\_len are internally calculated based on system resources.                                                                                                                                                    | Positive integer  |
 
 ### [](#examples)Examples
 
@@ -107,7 +107,7 @@ UPDATE system:awr SET enabled = true, location = "`travel-sample`._default.awr",
 interval = "1m", threshold = "0s";
 ```
 
-If you execute this query in the Query Workbench, you’ll get a warning about running an UPDATE query without specifying a WHERE clause or USE KEYS. You can ignore this warning and proceed.
+If you execute this query in the Query Workbench, you'll get a warning about running an UPDATE query without specifying a WHERE clause or USE KEYS. You can ignore this warning and proceed.
 
 Example 3\. Retrieve current AWR settings
 
@@ -186,7 +186,7 @@ CREATE INDEX idx_awr ON `travel-sample`._default.awr(META().id);
 
 You can query AWR data directly from the workload repository using SQL++ queries.
 
-The document keys (IDs) of the snapshot documents include the timestamp of the reporting interval’s start time. This allows you to filter documents based on time ranges without requiring additional indexes (as sequential scans support range-based key patterns). However, you can add indexes to further optimize your queries, if needed.
+The document keys (IDs) of the snapshot documents include the timestamp of the reporting interval's start time. This allows you to filter documents based on time ranges without requiring additional indexes (as sequential scans support range-based key patterns). However, you can add indexes to further optimize your queries, if needed.
 
 Each document contains the following fields:
 
@@ -197,7 +197,7 @@ Each document contains the following fields:
 | **to**    | The end time of the interval, represented as an Epoch timestamp in milliseconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Number                     |
 | **pln**   | An array containing the encoded, compressed outlines of the execution plan for both the minimum and maximum execution times of the statement. This is just the outline of the plan listing operators and significant objects used. For full execution details, configure the [completed\_requests](monitoring-n1ql-query.md#sys-completed-config) system keyspace to capture the executions of the statement. You can use [UNCOMPRESS()](../n1ql-language-reference/stringfun.md#fn-str-uncompress) to decompress the execution plan strings, and then pass them to [DECODE\_JSON()](../n1ql-language-reference/jsonfun.md) for formatting, if needed. | Array of strings           |
 | **qc**    | The query context value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | String                     |
-| **sqlID** | The unique hash identifier of the statement. This can be used to aggregate information across different reporting periods for the same statement. It’s also included in the [completed\_requests](monitoring-n1ql-query.md#sys-completed-req) entries (collected independently of AWR).                                                                                                                                                                                                                                                                                                                                                                | String                     |
+| **sqlID** | The unique hash identifier of the statement. This can be used to aggregate information across different reporting periods for the same statement. It's also included in the [completed\_requests](monitoring-n1ql-query.md#sys-completed-req) entries (collected independently of AWR).                                                                                                                                                                                                                                                                                                                                                                | String                     |
 | **sts**   | An ordered array of 51 entries representing the total, min, and max values of 17 statistics. That is, each statistic is represented by three consecutive entries in the array: the total value, the minimum value, and the maximum value. These values have fixed array positions and appear in the sequence specified in the [Statistics](#Stats) array. For example, the second statistic in the list is the CPU time. Therefore, sts\[3\] represents the total CPU time. sts\[4\] represents minimum CPU time. sts\[5\] represents the maximum CPU time.                                                                                            | [Statistics](#Stats) array |
 | **txt**   | The statement text, possibly in a compressed format. Typically, this field is accessed using the [UNCOMPRESS()](../n1ql-language-reference/stringfun.md#fn-str-uncompress) function, and the function returns the raw text if it is not compressed.                                                                                                                                                                                                                                                                                                                                                                                                    | String                     |
 | **ver**   | The version of the data record. For this release, the value is always 1.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Number                     |

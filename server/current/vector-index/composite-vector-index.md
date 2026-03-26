@@ -3,7 +3,7 @@ title: Filtered Search Using Composite Vector Indexes
 description: A Composite Vector index is a Global Secondary Index (GSI) with a
   single vector column that combines scalar queries with semantic search.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/composite-vector-index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:vector-index:composite-vector-index.adoc[]
 ---
 
@@ -12,11 +12,11 @@ link: xref:server:vector-index:composite-vector-index.adoc[]
 
 # Filtered Search Using Composite Vector Indexes
 
-> A Composite Vector index is a Global Secondary Index (GSI) with a single vector column that combines scalar queries with semantic search. The added vector column lets your application perform a query using both the index’s scalar, array, and object index entries to pre-filter the dataset before performing a vector similarity search. 
+> A Composite Vector index is a Global Secondary Index (GSI) with a single vector column that combines scalar queries with semantic search. The added vector column lets your application perform a query using both the index's scalar, array, and object index entries to pre-filter the dataset before performing a vector similarity search. 
 
-## [](#how-the-composite-vector-indexs-vector-column-works)How the Composite Vector Index’s Vector Column Works
+## [](#how-the-composite-vector-indexs-vector-column-works)How the Composite Vector Index's Vector Column Works
 
-The Composite Vector index’s single vector column enables semantic and similarity searches within your SQL++ queries. When creating the index, you use a `VECTOR` key attribute to identify the key that contains the embedded vectors.
+The Composite Vector index's single vector column enables semantic and similarity searches within your SQL++ queries. When creating the index, you use a `VECTOR` key attribute to identify the key that contains the embedded vectors.
 
 When your query contains an embedded vector, the Index Service uses any non-vector predicates in the query to filter index entries. Then it performs a vector similarity search to locate semantically related vectors. Handling the non-vector predicates first reduces the number of vector similarity comparisons the Index Service must do to find similar vectors.
 
@@ -27,7 +27,7 @@ When your query contains an embedded vector, the Index Service uses any non-vect
 * Your account must have the [Query Manage Index](../learn/security/roles.md#query-manage-index) or an administrator role to be able to create an index.
 * You have documents in a collection that contain one or more vector embeddings. You can add a single vector to a Composite Vector index. If your documents contain multiple embedded vectors, you can create multiple indexes — one for each vector attribute.  
 Embeddings can be an array of floating point numbers or a base64 encoded string. Couchbase Server does not embed vectors itself. You must use an external embedding model to embed vectors into your data and add them to your documents.
-* You must know the number of dimensions the vector contains. The embedding model you use to embed the vectors may determine this value for you. For example, OpenAI API’s `text-embedding-ada-002` embedding model that embedded the sample data demonstrated later in this page creates vectors that have 1536 dimensions.
+* You must know the number of dimensions the vector contains. The embedding model you use to embed the vectors may determine this value for you. For example, OpenAI API's `text-embedding-ada-002` embedding model that embedded the sample data demonstrated later in this page creates vectors that have 1536 dimensions.
 * You must decide what distance metric and quantization you want your index to use. The metrics affect how the index compares vectors. The quantization determines how much memory your index uses and the amount of processing Couchbase Server must perform to train and search them. See [Vector Similarity Metrics](vectors-and-indexes-overview.md#vector%5Fsimilarity) and [Quantization](vectors-and-indexes-overview.md#quantization) for more information.
 
 ### [](#examples-on-this-page)Examples on this Page
@@ -45,7 +45,7 @@ To get the best results with using the sample data with the examples in this doc
 
 ## [](#create-index)Create a Composite Vector Index
 
-Creating a Composite Vector index is similar to creating a non-vector GSI index. See [Create Indexes](../guides/create-index.md) for an overview of creating indexes. In the `CREATE INDEX` statement to create the Composite Vector index, add the `VECTOR` key attribute after the vector’s key name to declare it as an embedded vector.
+Creating a Composite Vector index is similar to creating a non-vector GSI index. See [Create Indexes](../guides/create-index.md) for an overview of creating indexes. In the `CREATE INDEX` statement to create the Composite Vector index, add the `VECTOR` key attribute after the vector's key name to declare it as an embedded vector.
 
 The index key that refers to a vector field may be the only index key. If there are multiple index keys, the index key referring to the vector field may be any of the index keys, including the leading index key.
 
@@ -127,11 +127,11 @@ See [Scalar Quantization](vectors-and-indexes-overview.md#sq) for more informati
 
 If you choose to use PQ in your index, you must set two values:
 
-* The number of subquantizers (number of subspaces PQ splits the vector’s dimensions into) to use. This value must be a divisor of the number of dimensions in the vector. For example, if your vector has 99 dimensions, you can only use the values 3, 9, 11, 33, and 99 for the subquantizers. Using any other value returns an error.
-* The number of bits in the centroid’s index value. This value sets the number centroids to find in each subspace. For example, setting this value to 8 has PQ store the index for the centroids in a byte. This results in SQ using 256 centroids per subspace.  
+* The number of subquantizers (number of subspaces PQ splits the vector's dimensions into) to use. This value must be a divisor of the number of dimensions in the vector. For example, if your vector has 99 dimensions, you can only use the values 3, 9, 11, 33, and 99 for the subquantizers. Using any other value returns an error.
+* The number of bits in the centroid's index value. This value sets the number centroids to find in each subspace. For example, setting this value to 8 has PQ store the index for the centroids in a byte. This results in SQ using 256 centroids per subspace.  
 The number of centroids you set using this value must be less than the number of vectors in the dataset. For example, if you choose 32 for the centroid index size, your dataset must have at least 4,294,967,296 vectors in it.
 
-The larger you set either of these values, the more accurate the index’s search results are. The trade-off is that your index is larger, as it has to store data for more centroids. A smaller value results in a smaller index that returns less accurate results.
+The larger you set either of these values, the more accurate the index's search results are. The trade-off is that your index is larger, as it has to store data for more centroids. A smaller value results in a smaller index that returns less accurate results.
 
 The format for the PQ settings is:
 
@@ -139,7 +139,7 @@ The format for the PQ settings is:
 pq-settings ::= 'PQ' subquantizers 'x' number-of-bits
 ```
 
-For example, `PQ32x8` has PQ break the vector’s dimensions into 32 subspaces, each of which has 256 centroids. See [Product Quantization](vectors-and-indexes-overview.md#pq) for more information about how PQ works.
+For example, `PQ32x8` has PQ break the vector's dimensions into 32 subspaces, each of which has 256 centroids. See [Product Quantization](vectors-and-indexes-overview.md#pq) for more information about how PQ works.
 
 #### [](#algorithm-settings-examples)Algorithm Settings Examples
 
@@ -147,14 +147,14 @@ The following table shows several `description` values along with an explanation
 
 | Setting       | Effect                                                                                                                                                                                                                                                  |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IVF,SQ8       | Couchbase Server chooses the number of centroids the IVF algorithm uses. The index uses Scalar Quantization with an 8-bit index, meaning it breaks each of the vector’s dimensions into 256 bins.                                                       |
+| IVF,SQ8       | Couchbase Server chooses the number of centroids the IVF algorithm uses. The index uses Scalar Quantization with an 8-bit index, meaning it breaks each of the vector's dimensions into 256 bins.                                                       |
 | IVF1024,PQ8x8 | IVF uses 1024 centroids to divide the dataset. The index uses Product Quantization. PQ breaks the vector space into 8 subspaces, each of which uses 8-bits to represent centroids in the subspace. This settings means each subspace has 256 centroids. |
 
 ### [](#examples)Examples
 
 The following examples show you how to create two Composite Vector index with a vector column using sample data. They both use the data from the `color_data_2vectors.zip` file mentioned earlier.
 
-The following query gets a single document from the `rgb` collection in the `vector-sample` bucket’s `color` scope. It truncates the `embedding_vector_dot` attribute to the first four values to improve readability.
+The following query gets a single document from the `rgb` collection in the `vector-sample` bucket's `color` scope. It truncates the `embedding_vector_dot` attribute to the first four values to improve readability.
 
 ```sqlpp
 SELECT RAW OBJECT_PUT(d, "embedding_vector_dot",
@@ -204,7 +204,7 @@ The result of running this query is:
 
 #### [](#index-the-rgb-values)Index the RGB Values
 
-The `rgb.json` file’s `colorvect_l2` attribute defines an array containing the RGB values for the entry’s color. While this technically is not an embedded vector, you can still create a vector index column for this array. The following example creates a Composite Vector index for this attribute as an embedded vector as well as the color’s name and brightness.
+The `rgb.json` file's `colorvect_l2` attribute defines an array containing the RGB values for the entry's color. While this technically is not an embedded vector, you can still create a vector index column for this array. The following example creates a Composite Vector index for this attribute as an embedded vector as well as the color's name and brightness.
 
 ```sqlpp
 CREATE INDEX `color_vectors_idx` ON `vector-sample`.`color`.`rgb`
@@ -234,7 +234,7 @@ The result of running example is:
 
 The `embedding_vector_dot` attribute contains the embedded vectors for the text in the `description` attribute. The data sample shown in [Examples](#examples) truncated this attribute to several values. The embedded vector contains 1536 dimensions.
 
-The following example creates a Composite Vector index that indexes the embedded vectors in the `embedding_vector_dot` as well as indexing the scalar `color` that contains the color’s name and `brightness`.
+The following example creates a Composite Vector index that indexes the embedded vectors in the `embedding_vector_dot` as well as indexing the scalar `color` that contains the color's name and `brightness`.
 
 ```sqlpp
 CREATE INDEX `color_desc_idx` ON `vector-sample`.`color`.`rgb` 
@@ -423,7 +423,7 @@ The result of running this query are:
 
 To query the `color_desc_idx` Composite Vector index containing the embedded vector for the description attribute, you must supply a vector. In a production environment, your application calls the same embedding model it called to generate the embedded vectors in your documents to generate a vector for the query value.
 
-For this example, you can use embedded vectors in the `rgb_questions.json` file that’s in the `color_data_2vectors.zip` file. This file contains a `question` attribute containing a search prompt for a particular color. The following query gets a single document from the `rgb_questions` collection in the `vector-sample` bucket’s `color` scope. It truncates the `couchbase_search_query.knn.vector` attribute to the first four values to improve readability.
+For this example, you can use embedded vectors in the `rgb_questions.json` file that's in the `color_data_2vectors.zip` file. This file contains a `question` attribute containing a search prompt for a particular color. The following query gets a single document from the `rgb_questions` collection in the `vector-sample` bucket's `color` scope. It truncates the `couchbase_search_query.knn.vector` attribute to the first four values to improve readability.
 
 ```sqlpp
 SELECT RAW OBJECT_PUT(d, "couchbase_search_query",
@@ -491,7 +491,7 @@ order by APPROX_VECTOR_DISTANCE(b.embedding_vector_dot,
 
 Click   **View** to see and copy the entire query with all the vectors.
 
-Another option is to import the `rgb_questions.json` file into another collection in the `vector-sample` bucket’s `color` scope named `rgb-questions`. Then you can use a subquery to get the vectors for the question and use it in your query of the `rgb` collection’s `embedding_vector_dot` attribute:
+Another option is to import the `rgb_questions.json` file into another collection in the `vector-sample` bucket's `color` scope named `rgb-questions`. Then you can use a subquery to get the vectors for the question and use it in your query of the `rgb` collection's `embedding_vector_dot` attribute:
 
 ```sqlpp
 WITH question_vec AS (
@@ -531,7 +531,7 @@ In either case, the results of the query are the same:
 ]
 ```
 
-The second result, the color papaya whip, matches the `rgb_questions` collection’s `wanted_similar_color_from_search` attribute.
+The second result, the color papaya whip, matches the `rgb_questions` collection's `wanted_similar_color_from_search` attribute.
 
 ### [](#adding-a-scalar)Adding a Scalar
 

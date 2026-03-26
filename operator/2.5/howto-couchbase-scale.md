@@ -1,7 +1,7 @@
 ---
 title: Scale a Couchbase Deployment
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/howto-couchbase-scale.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.5@operator::howto-couchbase-scale.adoc[]
 ---
 
@@ -77,6 +77,6 @@ This configuration creates a 5-node Couchbase cluster with different services ru
 
 The `serverName` in the servers section is a very important parameter that is used to track a group of similarly deployed pods. This name is used internally by the operator to track servers of a given type. Changing this name will cause pods that have been deployed in the server group to be removed from the cluster and the operator will deploy new pods tagged with the new `serverName` even if no other parameters in the server group have been changed. As a result, we recommend that users never change the `serverName` for a particular server group except in the scenario defined below.
 
-#### Changing a Provisioned Node’s Services
+#### Changing a Provisioned Node's Services
 
-If you’ve used Couchbase Server in the past then you have likely found that once a Couchbase Server node is joined to a cluster, the services running on that node cannot change. The Couchbase Operator allows users to edit the configuration in a way that allows easily changing the services by automating the removal of the old nodes and adding in the new nodes with the desired services. To do this, you can change both the `serverName` and services parameters during the same configuration update.
+If you've used Couchbase Server in the past then you have likely found that once a Couchbase Server node is joined to a cluster, the services running on that node cannot change. The Couchbase Operator allows users to edit the configuration in a way that allows easily changing the services by automating the removal of the old nodes and adding in the new nodes with the desired services. To do this, you can change both the `serverName` and services parameters during the same configuration update.

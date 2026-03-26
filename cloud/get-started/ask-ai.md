@@ -3,7 +3,7 @@ title: Ask AI
 description: You can ask our AI chatbot questions about Couchbase Capella to get
   personalised responses that are cross-referenced with our documentation.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/ask-ai.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:get-started:ask-ai.adoc[]
 ---
 
@@ -35,7 +35,7 @@ While using Ask AI, make sure that you:
 * Do not enter sensitive data in your conversations.
 * Verify any suggestions made by Ask AI for accuracy before taking action.
 
-To use Ask AI, you must first accept [Capella’s Supplemental Terms](https://www.couchbase.com/capella-feature-specific-terms/).
+To use Ask AI, you must first accept [Capella's Supplemental Terms](https://www.couchbase.com/capella-feature-specific-terms/).
 
 ## [](#best-practice)Best Practice
 

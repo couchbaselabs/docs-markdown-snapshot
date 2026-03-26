@@ -1,7 +1,7 @@
 ---
 title: Configure Client SDKs
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-client-sdks.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@operator::howto-client-sdks.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Various Couchbase clients behave differently from one another in the way they pe
 
 The connection string examples throughout the Kubernetes Operator documentation use explicit network selection to help avoid undesirable client behavior. Connection strings for internally-networked clients use `network=default`, while externally-networked clients use `network=external`.
 
-One important caveat is that explicit network selection is not supported by older Couchbase clients. If you happen to be using a client that doesn’t support explicit network selection, make sure to remove the `network` query from any example connection string you copy from the documentation.
+One important caveat is that explicit network selection is not supported by older Couchbase clients. If you happen to be using a client that doesn't support explicit network selection, make sure to remove the `network` query from any example connection string you copy from the documentation.
 
 __Table 1\. Clients Without Explicit Network Support__
 | Client                  | Version                                                      |

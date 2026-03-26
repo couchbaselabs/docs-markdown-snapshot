@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/n1ql-queries-with-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:dotnet-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:dotnet-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 
 > You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. Querying can solve typical programming tasks such as finding a user profile by email address, facebook login, or user ID. 
 
-Our query service uses SQL++ (formerly N1QL), which will be fairly familiar to anyone who’s used any dialect of SQL. [Further resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](../../../server/current/n1ql/n1ql-language-reference/index.md), or just dive in with a query against [our travel sample data set](../../../server/current/manage/manage-settings/install-sample-buckets.md). In this case, the one thing that you need to know is that in order to make a Bucket queryable, it must have at least one index defined. You can define a _primary_ index on a bucket. When executing queries, if a suitable index is not found, the primary index will ensure that the query will be executed anyway (the primary index should not be used in production to prevent scanning of the whole bucket).
+Our query service uses SQL++ (formerly N1QL), which will be fairly familiar to anyone who's used any dialect of SQL. [Further resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](../../../server/current/n1ql/n1ql-language-reference/index.md), or just dive in with a query against [our travel sample data set](../../../server/current/manage/manage-settings/install-sample-buckets.md). In this case, the one thing that you need to know is that in order to make a Bucket queryable, it must have at least one index defined. You can define a _primary_ index on a bucket. When executing queries, if a suitable index is not found, the primary index will ensure that the query will be executed anyway (the primary index should not be used in production to prevent scanning of the whole bucket).
 
 To execute SQL++, you can use [Query Workbench](../../../server/current/tools/query-workbench.md) (or you can use the [cbq command line tool](../../../server/current/n1ql/n1ql-intro/cbq.md)). Open it, and enter the following:
 
@@ -220,7 +220,7 @@ By default the .NET SDK streams the result set from the server, where the client
 This decreases pressure on CLR Garbage Collection and helps to prevent an `OutOfMemoryException` being thrown.
 
 > [!NOTE]
-> In .NET < 5.0, you will need to set `QueryOptions.StreamResults(true)`, which allows for streaming of results > 2Gb. If you do this, you must also be sure to call `Dispose()` on the QueryResult object to prevent leaking HTTP connections. In later versions of .NET, this is not necessary and the option isn’t necessary.
+> In .NET < 5.0, you will need to set `QueryOptions.StreamResults(true)`, which allows for streaming of results > 2Gb. If you do this, you must also be sure to call `Dispose()` on the QueryResult object to prevent leaking HTTP connections. In later versions of .NET, this is not necessary and the option isn't necessary.
 
 ## [](#querying-at-scope-level)Querying at Scope Level
 

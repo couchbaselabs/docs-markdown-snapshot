@@ -1,7 +1,7 @@
 ---
 title: CouchbaseEphemeralBucket Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.6.x/docs/user/modules/ROOT/pages/resource/couchbaseephemeralbucket.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::resource/couchbaseephemeralbucket.adoc[]
 ---
 
@@ -188,7 +188,7 @@ EnableFlush defines whether a client can delete all documents in a bucket. This 
 
 #### [](#description-12)Description
 
-EvictionPolicy controls how Couchbase handles memory exhaustion. No eviction means that Couchbase server will make this bucket read-only when memory is exhausted in order to avoid data loss. NRU eviction will delete documents that haven’t been used recently in order to free up memory. This field must be "noEviction" or "nruEviction", defaulting to "noEviction".
+EvictionPolicy controls how Couchbase handles memory exhaustion. No eviction means that Couchbase server will make this bucket read-only when memory is exhausted in order to avoid data loss. NRU eviction will delete documents that haven't been used recently in order to free up memory. This field must be "noEviction" or "nruEviction", defaulting to "noEviction".
 
 ### [](#couchbaseephemeralbuckets-spec-iopriority)couchbaseephemeralbuckets.spec.ioPriority
 
@@ -298,7 +298,7 @@ Managed defines whether scopes are managed for this bucket. This field is `false
 
 #### [](#description-21)Description
 
-Resources is an explicit list of named resources that will be considered for inclusion in this bucket. If a resource reference doesn’t match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
+Resources is an explicit list of named resources that will be considered for inclusion in this bucket. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.
 
 ### [](#couchbaseephemeralbuckets-spec-scopes-resources-kind)couchbaseephemeralbuckets.spec.scopes.resources.kind
 

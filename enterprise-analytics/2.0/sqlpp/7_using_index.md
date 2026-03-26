@@ -2,7 +2,7 @@
 title: Indexes
 description: You use indexes to speed up queries on remote and standalone collections.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/7_using_index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:sqlpp:7_using_index.adoc[]
 ---
 
@@ -26,9 +26,9 @@ For each JSON document ingested into a collection, the system computes the index
 
 In the case of a secondary index, the index key is computed by extracting the target field values from the document based on the specified field path.
 
-After the system builds the indexed key, it’s inserted into the secondary index. If the system cannot build the indexed key, there is no entry made in the index for this object.
+After the system builds the indexed key, it's inserted into the secondary index. If the system cannot build the indexed key, there is no entry made in the index for this object.
 
-Secondary indexes are automatically maintained by the system during data ingestion - that’s when a corresponding remote link is connected and populating its collections. In addition, they’re automatically rebalanced when their shadow collections are rebalanced (scaled up or scaled down).
+Secondary indexes are automatically maintained by the system during data ingestion - that's when a corresponding remote link is connected and populating its collections. In addition, they're automatically rebalanced when their shadow collections are rebalanced (scaled up or scaled down).
 
 ## [](#Standard%5Findexes)Standard Indexes
 
@@ -143,7 +143,7 @@ There are also some differences between array indexes and standard indexes conce
 A common use case for array indexes involves quantifying some or all elements within an array. Quantification queries have two variants: existential and universal.
 
 * **Existential** queries ask if **any** element in some array satisfies a given predicate. Membership queries are a specific type of existential query, asking if any element in some array is equal to a particular value.
-* **Universal** queries ask if **all** elements in some array satisfy a particular predicate. Empty arrays are not stored in an array index, meaning that you must also specify that the array is non-empty to tell Enterprise Analytics that it’s possible to use an array index as an access method for the given query.
+* **Universal** queries ask if **all** elements in some array satisfy a particular predicate. Empty arrays are not stored in an array index, meaning that you must also specify that the array is non-empty to tell Enterprise Analytics that it's possible to use an array index as an access method for the given query.
 
 The examples that follow suppose the existence of a collection named `products`, containing two fields: `productno`, an integer, and `categories`, an array of strings in the Commerce dataset. You can follow the instructions for the [intro:connecting-to-data-sources.adoc#install-the-commerce-dataset-in-standalone-collections](../intro/connecting-to-data-sources.md#install-the-commerce-dataset-in-standalone-collections) to set up a standalone collection for this data.
 
@@ -231,7 +231,7 @@ Finally, array indexes can also be used for index nested-loop joins if the field
  EXCLUDE UNKNOWN KEY;
 ```
 
-Now suppose you want to find all products located in a specific order. You can accomplish this with the join query that follows. If an index is possible for the join, the optimizer uses it if it’s the most cost-effective option. However, if you specify a join hint like `indexnl` as in the example that follows, Enterprise Analytics uses the index even if it’s more expensive than a hash join.
+Now suppose you want to find all products located in a specific order. You can accomplish this with the join query that follows. If an index is possible for the join, the optimizer uses it if it's the most cost-effective option. However, if you specify a join hint like `indexnl` as in the example that follows, Enterprise Analytics uses the index even if it's more expensive than a hash join.
 
 ```SQL++
  SELECT DISTINCT p

@@ -4,7 +4,7 @@ description: Monitoring and profiling SQL++ queries, Query Service nodes, and
   corresponding system resources is important for smoother operational
   performance and efficiency of the system.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-manage/monitoring-n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-manage/monitoring-n1ql-query.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:7.6@server:n1ql:n1ql-manage/monitoring-n1ql-query.adoc[]
 
 # Manage and Monitor Queries
 
-> Monitoring and profiling SQL++ queries, Query Service nodes, and corresponding system resources is important for smoother operational performance and efficiency of the system. In fact, often it’s vital for diagnosing and troubleshooting issues such as query performance, resource bottlenecks, and overloading of various services. 
+> Monitoring and profiling SQL++ queries, Query Service nodes, and corresponding system resources is important for smoother operational performance and efficiency of the system. In fact, often it's vital for diagnosing and troubleshooting issues such as query performance, resource bottlenecks, and overloading of various services. 
 
 System keyspaces provide various monitoring details and statistics about individual queries and the Query Service. When running on a cluster with multiple query nodes, stats about all queries on all query nodes are collected in the Query management and monitoring system keyspaces.
 
@@ -211,7 +211,7 @@ For query plan field names and meanings, see [Query Profiling Details](#monitor-
 
 ## [](#sys-prepared)Monitor and Manage Prepared Statements
 
-The `system:prepareds` catalog provides data about the known prepared statements and their state in a query node’s prepared statement cache. For each prepared statement, this catalog provides information such as name, statement, query plan, last use time, number of uses, and so on.
+The `system:prepareds` catalog provides data about the known prepared statements and their state in a query node's prepared statement cache. For each prepared statement, this catalog provides information such as name, statement, query plan, last use time, number of uses, and so on.
 
 A prepared statement is created and stored relative to the current [query context](../n1ql-intro/queriesandresults.md#query-context). You can create multiple prepared statements with the same name, each stored relative to a different query context. This enables you to run multiple instances of the same application against different datasets.
 
@@ -368,7 +368,7 @@ Getting prepared statements, as described in [Get Prepared Statements](#sys-prep
 }
 ```
 
-In this example, the names of the prepared statements are identical, but they’re associated with different query contexts.
+In this example, the names of the prepared statements are identical, but they're associated with different query contexts.
 
 | **1** | The name of the prepared statement for the default query context        |
 | ----- | ----------------------------------------------------------------------- |
@@ -670,9 +670,9 @@ When streaming is enabled, completed requests are saved to GZIP archives with th
 
 Couchbase Server writes multiple archive files in parallel, so while the order of requests in a file is sequential, a single given file may not contain a contiguous sequence of requests.
 
-When an archive file reaches or exceeds 100 MiB, it’s finalized and saved to disk. This is not a hard limit — entries are not truncated to adhere to it. Files may also be finalized with less content, if nothing has been written to them for an extended period. Files that are actively being written are not available for reading, and they do not count towards the configured size limit until they’re finalized.
+When an archive file reaches or exceeds 100 MiB, it's finalized and saved to disk. This is not a hard limit — entries are not truncated to adhere to it. Files may also be finalized with less content, if nothing has been written to them for an extended period. Files that are actively being written are not available for reading, and they do not count towards the configured size limit until they're finalized.
 
-Couchbase Server tries to manage and retain archive files such that the total disk space used by the files is within the specified limit for the node. When the specified limit is reached, older files are removed as necessary to make space for newly finalized files. When a file is removed, it’s not guaranteed that only the oldest requests are evicted, given that Couchbase Server writes to multiple archive files in parallel.
+Couchbase Server tries to manage and retain archive files such that the total disk space used by the files is within the specified limit for the node. When the specified limit is reached, older files are removed as necessary to make space for newly finalized files. When a file is removed, it's not guaranteed that only the oldest requests are evicted, given that Couchbase Server writes to multiple archive files in parallel.
 
 ### [](#sys-history-view)View Archived Requests
 
@@ -693,7 +693,7 @@ To get a list of archived completed requests using SQL++:
 SELECT * FROM system:completed_requests_history;
 ```
 
-The `system:completed_requests_history` keyspace is provided for SQL++ access to the archived files, but as they’re external GZIP archives performance is restricted, particularly with large histories on clusters with multiple Query Service nodes. Directly reading the files may be more useful in some cases.
+The `system:completed_requests_history` keyspace is provided for SQL++ access to the archived files, but as they're external GZIP archives performance is restricted, particularly with large histories on clusters with multiple Query Service nodes. Directly reading the files may be more useful in some cases.
 
 ## [](#query-monitoring-settings)Query Profiling
 
@@ -705,7 +705,7 @@ Query profiling enables you to obtain more detailed monitoring information and f
 
 You can set query profiling in the following ways:
 
-* At the [node level](#enable-settings-for-a-query-engine), so that it’s enabled for all queries on that node.
+* At the [node level](#enable-settings-for-a-query-engine), so that it's enabled for all queries on that node.
 * At the [request level](#enable-settings-per-session-or-per-query), for individual queries.
 
 For more information about Query settings and parameters, see [Configure Queries](query-settings.md).
@@ -877,12 +877,12 @@ When a query executes a user-defined function, profiling information is availabl
 
 When profiling is enabled:
 
-* If you’re using the cbq shell or the Query REST API, query profiling information is returned with the query results.
-* If you’re using the Query workbench, query profiling information is not returned with the query results.
+* If you're using the cbq shell or the Query REST API, query profiling information is returned with the query results.
+* If you're using the Query workbench, query profiling information is not returned with the query results.
 
 Phases Profile
 
-If you’re using the cbq shell or the Query REST API, the following statistics are returned when `profile` is set to `phases`:
+If you're using the cbq shell or the Query REST API, the following statistics are returned when `profile` is set to `phases`:
 
 ```json
 {
@@ -938,7 +938,7 @@ If you’re using the cbq shell or the Query REST API, the following statistics 
 
 Timings Profile
 
-If you’re using the cbq shell or the Query REST API, the following statistics are returned when `profile` is set to `timings`:
+If you're using the cbq shell or the Query REST API, the following statistics are returned when `profile` is set to `timings`:
 
 ```json
 {
@@ -1113,7 +1113,7 @@ Within these system catalogs, not all statements have a `meta().plan` attribute.
 > When request profiling is set to `timings`, profiling information is likely to use 100KB+ per entry in the `system:completed_requests` keyspace.
 > 
 > * Due to the added overhead of running both profiling and [logging](../../manage/manage-logging/manage-logging.md), turn on both of them only when needed. Running only one of them continuously has no noticeable affect on performance.
-> * Profiling does not carry any extra cost beyond memory for completed requests, so it’s fine to run it continuously.
+> * Profiling does not carry any extra cost beyond memory for completed requests, so it's fine to run it continuously.
 
 Plan Details
 

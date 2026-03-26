@@ -1,7 +1,7 @@
 ---
 title: Compatibility
 editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/compatibility.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:kafka-connector::compatibility.adoc[]
 ---
 
@@ -51,7 +51,7 @@ The connector is compatible with Couchbase Server Enterprise Edition and Couchba
 | 5.x            | ◎         | ◎     | ◎              |
 | < 5.0          | ✖         | ✖     | ✖              |
 
-\* If you’ve been using an earlier version of Couchbase, you can upgrade to Couchbase 7 and everything will continue working as before. To take advantage of the Scopes and Collections introduced in Couchbase 7, please upgrade the connector to version 4.1.
+\* If you've been using an earlier version of Couchbase, you can upgrade to Couchbase 7 and everything will continue working as before. To take advantage of the Scopes and Collections introduced in Couchbase 7, please upgrade the connector to version 4.1.
 
 ## [](#couchbase-capella)Couchbase Capella
 

@@ -2,7 +2,7 @@
 title: Glossary
 description: Principal terms and their meanings.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/glossary.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:glossary.adoc[]
 ---
 
@@ -23,7 +23,7 @@ The following glossary introduces the principal terms used in descriptions of Co
   * **Ephemeral**: Retains data in memory only.
 * [Collection](data/scopes-and-collections.md): A data container, defined on Couchbase Server, within a bucket whose type is either _Couchbase_ or _Ephemeral_.
 * [Scope](data/scopes-and-collections.md): A mechanism for the grouping of multiple collections.
-* [Durability](data/durability.md): The atomic commitment of a single-document data-write, which ensures the write’s greatest likelihood of surviving an unexpected anomaly, such as a node-outage, prior to the write’s propagation throughout the entire cluster.
+* [Durability](data/durability.md): The atomic commitment of a single-document data-write, which ensures the write's greatest likelihood of surviving an unexpected anomaly, such as a node-outage, prior to the write's propagation throughout the entire cluster.
 * [Memory](buckets-memory-and-storage/memory.md): An automatically managed caching layer, supporting high-speed data-access.
 * [Storage](buckets-memory-and-storage/storage-settings.md): The persistent retention of items on disk, in compressed form, with high-speed threaded access.
 * [Data](data/data.md): Items, each of which consists of a key by which the item is referenced; and an associated value, which must be either binary or a JSON document.

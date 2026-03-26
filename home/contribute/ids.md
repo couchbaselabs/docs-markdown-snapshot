@@ -1,7 +1,7 @@
 ---
 title: Element IDs and Same-Page Cross References
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/ids.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:home:contribute:ids.adoc[]
 ---
 
@@ -62,7 +62,7 @@ When a block has a style, like the above code block (`source`) example, the ID i
 
 You can assign IDs to regular text and list items, but the syntax is slightly different.
 
-* The ID **isn’t** prefixed.
+* The ID **isn't** prefixed.
 * The ID is placed inside a double set of square brackets (`[[ ]]`).
 
 . Fist step
@@ -89,9 +89,9 @@ Before you can reference a destination element from an in-page xref, you must <<
 | **2** | The ID of the destination element is entered first and followed by a comma (,) if the xref also contains link text. |
 | **3** | Optional link text directly follows the comma (,).                                                                  |
 
-When link text isn’t supplied, the title of the destination block element is displayed. If the element doesn’t have a title, or is a list item, table cell, or inline element, the ID will be used as the link text.
+When link text isn't supplied, the title of the destination block element is displayed. If the element doesn't have a title, or is a list item, table cell, or inline element, the ID will be used as the link text.
 
-Using the previous example, if you didn’t add link text, the section title would be displayed.
+Using the previous example, if you didn't add link text, the section title would be displayed.
 
 Same-page xref to section
 

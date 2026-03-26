@@ -1,7 +1,7 @@
 ---
 title: cbdocloader
 editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/tools/pages/cbdocloader.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:tools:cbdocloader.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:7.2@server:tools:cbdocloader.adoc[]
 
 The `cbdocloader` tool loads Couchbase sample datasets into Couchbase Server. Sample datasets are zip files, provided by Couchbase, which contain documents and index definitions. These datasets are intended to allow users to explore Couchbase features prior to loading their own datasets.
 
-For Linux, the tool’s location is _/opt/couchbase/bin/cbdocloader_; for Windows, _C:\\Program Files\\Couchbase\\Server\\bin\\cbdocloader_; and for Mac OS X, _/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbdocloader_.
+For Linux, the tool's location is _/opt/couchbase/bin/cbdocloader_; for Windows, _C:\\Program Files\\Couchbase\\Server\\bin\\cbdocloader_; and for Mac OS X, _/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbdocloader_.
 
 ## [](#syntax)Syntax
 
@@ -134,7 +134,7 @@ Operations (commands or sub-commands) which connect to a cluster are not support
 
 For example, performing an import/export, making a backup or performing a restore whilst changing the TLS configuration/security settings is unsupported.
 
-These types of changes (e.g. changing the TLS mode to strict) are not expected to be time consuming so it’s generally expected that operations should be started after completing the configuration change.
+These types of changes (e.g. changing the TLS mode to strict) are not expected to be time consuming so it's generally expected that operations should be started after completing the configuration change.
 
 Please note that this does not include rebalances; operations may be performed during a rebalance. The reason for this distinction, is that major cluster configuration changes are generally quick, whilst rebalances for large data sets may be time consuming.
 

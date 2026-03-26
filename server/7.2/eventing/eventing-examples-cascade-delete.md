@@ -3,7 +3,7 @@ title: Cascade Delete
 description: This example illustrates how to leverage the Eventing Service to
   perform a cascade delete operation.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-examples-cascade-delete.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:eventing:eventing-examples-cascade-delete.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:7.2@server:eventing:eventing-examples-cascade-delete.adoc[]
 
 **Goal**: This example illustrates how to leverage the Eventing Service to perform a cascade delete operation. When a user is deleted, Couchbase Functions provide a reliable method to delete all the associated documents related to the deleted user.
 
-**Implementation**: Create a JavaScript Function that contains an **OnDelete** handler. The handler listens to mutations or data-changes within a specified, **user’s** source collection. When a user within the source collection gets deleted, the Eventing Function executes a JavaScript code to remove the deleted user. When the delete operation is complete, all associated documents of the delete user also get removed.
+**Implementation**: Create a JavaScript Function that contains an **OnDelete** handler. The handler listens to mutations or data-changes within a specified, **user's** source collection. When a user within the source collection gets deleted, the Eventing Function executes a JavaScript code to remove the deleted user. When the delete operation is complete, all associated documents of the delete user also get removed.
 
 This Example uses SQL++ unlike the similar scriptlet [cascadeKvDeleteWithDoc](eventing-handler-cascadeKvDeleteWithDoc.md) which uses just KV or the Data Service.
 

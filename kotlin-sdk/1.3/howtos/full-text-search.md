@@ -4,7 +4,7 @@ description: You can use the Full Text Search (FTS) service to find JSON
   documents that have certain words, phrases, or geographic coordinates -- and
   for vector searches against Server 7.6.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.3/modules/howtos/pages/full-text-search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.3@kotlin-sdk:howtos:full-text-search.adoc[]
 ---
 
@@ -57,7 +57,7 @@ searchResult.rows.forEach { row: SearchRow ->
 
 ## [](#query-types)Queries
 
-The FTS service can do [many kinds of queries](../../../server/7.6/search/search-request-params.md). The Kotlin SDK’s `SearchQuery` class has a companion factory method for each kind of query.
+The FTS service can do [many kinds of queries](../../../server/7.6/search/search-request-params.md). The Kotlin SDK's `SearchQuery` class has a companion factory method for each kind of query.
 
 ## [](#result-rows)Result Rows
 
@@ -87,13 +87,13 @@ searchResult.rows.forEach { row ->
 }
 ```
 
-| **1** | This line tells the server you want to know how each score is calculated. If you don’t do this, row.explanation is an empty ByteArray. |
+| **1** | This line tells the server you want to know how each score is calculated. If you don't do this, row.explanation is an empty ByteArray. |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | row.explanation is a ByteArray holding a JSON Object. This example just prints it, but you can parse it as JSON if you want.           |
 
 #### [](#disable-score)Disable scoring
 
-Calculating the score takes time. If you don’t need the score, tell the server to give each row a score of zero, like this:
+Calculating the score takes time. If you don't need the score, tell the server to give each row a score of zero, like this:
 
 > [!NOTE]
 > Disabling scoring requires Couchbase Server 6.6.1 or later.
@@ -110,7 +110,7 @@ val searchResult: SearchResult = cluster
     .execute()
 ```
 
-| **1** | This line tells the server you don’t care about scores. |
+| **1** | This line tells the server you don't care about scores. |
 | ----- | ------------------------------------------------------- |
 
 ### [](#fields)Fields
@@ -118,7 +118,7 @@ val searchResult: SearchResult = cluster
 By default, the server does not return any document content. You can tell the server to return stored document fields. Pass `fields = listOf("*")` when calling `searchQuery` to include all stored fields in the result. If you only want fields "foo" and "bar", pass `fields = listOf("foo", "bar")`.
 
 > [!TIP]
-> Only stored fields are included. If you’re not getting the results you expect, check the index definition.
+> Only stored fields are included. If you're not getting the results you expect, check the index definition.
 
 Include stored fields in result rows
 
@@ -138,14 +138,14 @@ searchResult.rows.forEach { row ->
 
 | **1** | This line tells the server you want the result rows to include _all_ stored fields.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **2** | row.fields is a ByteArray holding a JSON object that has the requested fields. The row.fieldsAs<T> method uses data binding to convert the JSON into an instance of T? (in this case, a Kotlin Map). If you want, you can convert the fields into an instance of a user-defined class instead of a Map. See [Working with JSON](json.md) for more information about data binding. If all requested fields are missing or unstored, and you’re not searching a multi-collection index, row.fields is null and row.fieldsAs<T> returns null. |
+| **2** | row.fields is a ByteArray holding a JSON object that has the requested fields. The row.fieldsAs<T> method uses data binding to convert the JSON into an instance of T? (in this case, a Kotlin Map). If you want, you can convert the fields into an instance of a user-defined class instead of a Map. See [Working with JSON](json.md) for more information about data binding. If all requested fields are missing or unstored, and you're not searching a multi-collection index, row.fields is null and row.fieldsAs<T> returns null. |
 
 ### [](#collections)Collections
 
 Couchbase 7.0 and later let you define an index on multiple collections in the same scope. You can limit the search to specific collections using the optional `collections` parameter of the `searchQuery` method.
 
 > [!TIP]
-> When searching a multi-index collection, the server always returns a field called `_$c`. The value of this field is the name of the matching document’s parent collection.
+> When searching a multi-index collection, the server always returns a field called `_$c`. The value of this field is the name of the matching document's parent collection.
 
 ```kotlin
 val searchResult: SearchResult = cluster
@@ -175,7 +175,7 @@ searchResult.rows.forEach { row ->
 You can ask the server to include a fragment of a matching field value, and highlight the search term within the fragment.
 
 > [!TIP]
-> Highlighting requires storing the field value and including term vectors. If you’re not getting the results you expect, check the index definition.
+> Highlighting requires storing the field value and including term vectors. If you're not getting the results you expect, check the index definition.
 
 Highlight matches
 
@@ -203,10 +203,10 @@ searchResult.rows.forEach { row ->
 
 When you request [highlighting](#highlight), the server also return the locations of the matched terms within the field value. The `SearchRow.locations` property is a list of `SearchLocation` objects.
 
-If you want the location information, but don’t need fragments, pass `includeLocations = true` when calling `searchQuery` instead of passing a value for `highlight`.
+If you want the location information, but don't need fragments, pass `includeLocations = true` when calling `searchQuery` instead of passing a value for `highlight`.
 
 > [!TIP]
-> To get locations, the index must include term vectors for the field. If you’re not getting the results you expect, check the index definition.
+> To get locations, the index must include term vectors for the field. If you're not getting the results you expect, check the index definition.
 
 ## [](#sorting)Sorting
 
@@ -242,7 +242,7 @@ Required parameter:
 Optional parameters:
 
 * **`direction: Direction`** — Can be `ASCENDING` (A to Z) or `DESCENDING` (Z to A). The default direction is `ASCENDING`.
-* **`missing: Missing`** — Tells the server where to put rows that don’t have a value for the field. Can be `FIRST` or `LAST`. The default is `LAST`.
+* **`missing: Missing`** — Tells the server where to put rows that don't have a value for the field. Can be `FIRST` or `LAST`. The default is `LAST`.
 * **`type: FieldType`** — The type of the field. Can be `STRING`, `NUMBER`, `DATE`, or `AUTO`. The default type is `AUTO`, which tells the server to infer the type.
 * **`mode: Mode`** — A field can have more than one value. This happens if the value is an array, or if the value is a string that is analyzed as more than one token. The `mode` parameter tells the server which value to use for sorting. If a field does not have more than one value, this parameter does nothing. Possible values:
 
@@ -253,7 +253,7 @@ Optional parameters:
 
 ### [](#sorting-by-score)Sorting by score
 
-`SearchSort.byScore` tells the server to sort the rows using each row’s score.
+`SearchSort.byScore` tells the server to sort the rows using each row's score.
 
 Optional parameters:
 
@@ -261,7 +261,7 @@ Optional parameters:
 
 ### [](#sorting-by-id)Sorting by document ID
 
-`SearchSort.byId` tells the server to sort the rows using each row’s document ID.
+`SearchSort.byId` tells the server to sort the rows using each row's document ID.
 
 Optional parameters:
 
@@ -322,7 +322,7 @@ First, the rows are sorted by the value of the "country" field. Then, rows with 
 
 ## [](#pagination)Pagination
 
-If you don’t need all the result rows at once, you can ask the server to return one page at a time.
+If you don't need all the result rows at once, you can ask the server to return one page at a time.
 
 The `searchQuery` method has a `limit` parameter that tells the server how many rows to return. This is the page size.
 
@@ -350,13 +350,13 @@ val searchResult: SearchResult = cluster
 | **1** | Offsets are zero-based, so this skips the first 10 rows. |
 | ----- | -------------------------------------------------------- |
 
-This kind of pagination is unstable, because a row’s offset can change if a different document is changed, added, or removed. Imagine this happens:
+This kind of pagination is unstable, because a row's offset can change if a different document is changed, added, or removed. Imagine this happens:
 
 1. You ask for the first page, using offset 0 and limit 10.
 2. Someone removes from Couchbase the document at offset 3.
 3. You ask for the second page, using offset 10 and limit 10.
 
-After step 2, the row that would have been the first row of the second page is now the last row of the first page. Now in step 3, you don’t see the row that "moved" to the first page.
+After step 2, the row that would have been the first row of the second page is now the last row of the first page. Now in step 3, you don't see the row that "moved" to the first page.
 
 Offset pagination can be expensive if the offset is very large.
 
@@ -369,7 +369,7 @@ When the server sorts the search results, it assigns a "sort key" to each row. T
 
 With keyset pagination, you tell the server to return the page after (or before) a row whose keyset you remember from a previous search.
 
-Here’s an example that uses offset pagination to get the first page. Then it uses keyset pagination to get the next page.
+Here's an example that uses offset pagination to get the first page. Then it uses keyset pagination to get the next page.
 
 Keyset-based pagination
 
@@ -412,7 +412,7 @@ val nextPage: SearchResult = cluster
 Keyset pagination is less expensive than offset pagination when the offset is large. Keyset pagination is stable if you are careful about sorting. See the cautions below.
 
 > [!CAUTION]
-> For stable keyset pagination, the `sort` argument must not let any two rows have the same keyset. It’s good to always use a [multi-level sort](#multi-level-sorting) that ends with `[SearchSort.byId()](#sorting-by-id)`, so no two rows have the same keyset. Be careful when searching a multi-collection index, since document IDs are only guaranteed to be unique within a single collection. Also be aware that including score in the sort might cause unstable pagination, since a document’s score can change when other documents are added or removed.
+> For stable keyset pagination, the `sort` argument must not let any two rows have the same keyset. It's good to always use a [multi-level sort](#multi-level-sorting) that ends with `[SearchSort.byId()](#sorting-by-id)`, so no two rows have the same keyset. Be careful when searching a multi-collection index, since document IDs are only guaranteed to be unique within a single collection. Also be aware that including score in the sort might cause unstable pagination, since a document's score can change when other documents are added or removed.
 
 > [!CAUTION]
 > Changing the sort invalidates a keyset (unless the new sort is the total opposite of the old sort). If you use a keyset to search with a different sort, you get bad results.
@@ -482,13 +482,13 @@ The FTS service supports three kinds of facets: `numeric`, `date`, and `term`.
 For `numeric` and `date` facets, you specify the categories up front as value ranges. Common use cases include counting the number of documents in certain price ranges, like: $1 to $5, $5 to $20, and $20+, or time ranges like: "today", "yesterday", and "before yesterday".
 
 > [!TIP]
-> Unlike a histogram, it’s okay if the ranges overlap. If a field value matches more than one range, each matching range has its count incremented.
+> Unlike a histogram, it's okay if the ranges overlap. If a field value matches more than one range, each matching range has its count incremented.
 
 For `term` facets, the server creates one category for each distinct value it sees in the field.
 
-For example, let’s say your documents have a "color" field where the value is one of "red", "green", or "blue". The result of a `term` facet on the "color" field tells you the number of times each color appears as the field value.
+For example, let's say your documents have a "color" field where the value is one of "red", "green", or "blue". The result of a `term` facet on the "color" field tells you the number of times each color appears as the field value.
 
-Facets have a `size` parameter, which is an upper bound on the number of categories reported in the facet result. For example, if you request a `size` of 3, the server does its best to return the 3 largest categories. To be more precise, it selects the top 3 categories from each partition executing the query, and then merges each partition’s result into the final result.
+Facets have a `size` parameter, which is an upper bound on the number of categories reported in the facet result. For example, if you request a `size` of 3, the server does its best to return the 3 largest categories. To be more precise, it selects the top 3 categories from each partition executing the query, and then merges each partition's result into the final result.
 
 > [!NOTE]
 > If you are using multiple partitions and require an exact result, the size must be >= the number of categories; otherwise the result should be considered an estimate.
@@ -551,7 +551,7 @@ The FTS APIs exist at both the `Cluster` and `Scope` levels.
 
 This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
-It’s important to use the `Cluster.searchQuery()` or `Cluster.search()` methods for global indexes, and `Scope.search()` for scoped indexes.
+It's important to use the `Cluster.searchQuery()` or `Cluster.search()` methods for global indexes, and `Scope.search()` for scoped indexes.
 
 ## [](#vector-search)Vector Search
 
@@ -652,7 +652,7 @@ When you change a document in Couchbase, it takes time for the FTS service to in
 
 By default, the FTS service does not wait. It only searches documents that were already indexed when the search started. This is called "unbounded" scan consistency.
 
-This is the default value for the `searchQuery` method’s `consistency` parameter.
+This is the default value for the `searchQuery` method's `consistency` parameter.
 
 ### [](#scan-consistency-consistent-with)Consistent With
 

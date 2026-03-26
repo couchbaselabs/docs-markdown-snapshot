@@ -5,7 +5,7 @@ description: With the introduction of scopes and collections, you can plan for a
   tenants in a single Couchbase cluster, resulting in much lower operational
   cost.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/migrating-application-data.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:migrating-application-data.adoc[]
 ---
 
@@ -74,7 +74,7 @@ While the diagram shows one variation where all target collections belong to the
 
 #### [](#splitting-data-in-a-single-bucket-to-multiple-collections-in-a-bucket)Splitting data in a single bucket to multiple collections in a bucket
 
-Splitting data from a single bucket into multiple collections in a bucket enables you to take advantage of logical isolation, security isolation, replication and access control. For example, data previously qualified with a “type = xxx” field or with a key prefix “xxx\_key” can now live in their own collection.
+Splitting data from a single bucket into multiple collections in a bucket enables you to take advantage of logical isolation, security isolation, replication and access control. For example, data previously qualified with a "type = xxx" field or with a key prefix "xxx\_key" can now live in their own collection.
 
 ![migration single bucket to multiple collections](_images/migration-single-bucket-to-multiple-collections.png) 
 
@@ -161,7 +161,7 @@ Note that queries no longer need to qualify with `type = xxx` field or key\_pref
 
 | Query using bucket-based model(pre-7.0)                                                                                                                                          | Query using collection-based model (7.x)                                                                      |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| SELECT r.destinationairport FROM \`travel-sample\` a JOIN \`travel-sample\`  r ON a.faa = r.sourceairport AND r.type = “route” WHERE a.city = "Toulouse" AND a.type = “airport”; | SELECT r.destinationairport FROM airport a JOIN route r ON a.faa = r.sourceairport WHERE a.city = "Toulouse"; |
+| SELECT r.destinationairport FROM \`travel-sample\` a JOIN \`travel-sample\`  r ON a.faa = r.sourceairport AND r.type = "route" WHERE a.city = "Toulouse" AND a.type = "airport"; | SELECT r.destinationairport FROM airport a JOIN route r ON a.faa = r.sourceairport WHERE a.city = "Toulouse"; |
 
 ## [](#data-migration)Data Migration
 
@@ -247,7 +247,7 @@ A mostly online migration will require you to use replication (XDCR).
 
 1. Setup XDCR from source cluster to target cluster. Depending on the spare disk space and compute resources in your source cluster, you can choose to perform self-XDCR, where the source and destination bucket are on the same cluster), or you can set up a separate cluster to replicate to.
 2. Create new buckets, scopes, collections, and indexes.
-3. Set up replications either directly from a bucket to a bucket.scope.collection or using Migration Mode (details shown below) if a single bucket’s default collection has to be split to multiple collections.
+3. Set up replications either directly from a bucket to a bucket.scope.collection or using Migration Mode (details shown below) if a single bucket's default collection has to be split to multiple collections.
 4. Explicit mapping rules are specifiable for each destination to specify subset of the data.
 5. Once replication destination are caught up, you can take the old application offline.
 6. Bring the new application online and direct it to the new cluster (or new bucket if using self-XDCR).

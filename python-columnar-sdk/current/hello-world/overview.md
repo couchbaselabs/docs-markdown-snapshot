@@ -1,7 +1,7 @@
 ---
 title: Python Columnar SDK
 editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:python-columnar-sdk:hello-world:overview.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:python-columnar-sdk:hello-world:overview.adoc[]
 The Columnar Python SDK allows you to connect to a Capella Columnar cluster from python. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [Python Server SDK](../../../python-sdk/current/hello-world/overview.md).
 
 > [!WARNING]
-> Don’t Mix Columnar & Operational SDKs.
+> Don't Mix Columnar & Operational SDKs.
 > 
 > Do not combine the Python Columnar SDK with the Python Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
 > 

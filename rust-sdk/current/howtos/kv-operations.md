@@ -4,7 +4,7 @@ description: Data service offers the simplest way to retrieve or mutate data
   where the key is known. Here we cover CRUD operations, document expiration,
   and optimistic locking with CAS.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:rust-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -19,10 +19,10 @@ At its heart Couchbase Server is a high-performance key-value store, and the key
 
 A _document_ refers to an entry in the database (other databases may refer to the same concept as a _row_). A document has an ID (_primary key_ in other databases), which is unique to the document and by which it can be located. The document also has a value which contains the actual application data. See [the concept guide to _Documents_](../concept-docs/documents.md) for a deeper dive into documents in the Couchbase Data Platform.
 
-Before proceeding, make sure you’re familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK](../hello-world/start-using-sdk.md) section.
+Before proceeding, make sure you're familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK](../hello-world/start-using-sdk.md) section.
 
 > [!TIP]
-> The Query Service can also be used to perform many single-document operations, but we very strongly recommend using the key-value API for this instead. It can be much more efficient as the request can go directly to the correct node, there’s no query parsing overhead, and it’s over the highly optimized memcached binary protocol.
+> The Query Service can also be used to perform many single-document operations, but we very strongly recommend using the key-value API for this instead. It can be much more efficient as the request can go directly to the correct node, there's no query parsing overhead, and it's over the highly optimized memcached binary protocol.
 
 ## [](#upsert)Upsert
 
@@ -71,13 +71,13 @@ match collection.insert("document-key", doc, None).await {
 
 ## [](#retrieving-documents)Retrieving Documents
 
-We’ve tried upserting and inserting documents into Couchbase Server, let’s get them back:
+We've tried upserting and inserting documents into Couchbase Server, let's get them back:
 
 ```rust
 let result = collection.get("document-key", None).await?;
 ```
 
-Of course if we’re getting a document we probably want to do something with the content:
+Of course if we're getting a document we probably want to do something with the content:
 
 ```rust
 let doc = json!({
@@ -95,17 +95,17 @@ let status = status.as_str().unwrap();
 println!("Couchbase is ${status}");
 ```
 
-Let’s break down what’s going on here.
+Let's break down what's going on here.
 
-We’re using the `?` operator to propagate errors for brevity.
+We're using the `?` operator to propagate errors for brevity.
 
 First, we create some JSON using `serde_json` and insert it.
 
 Then, we get the document.
 
-If it’s successful, we convert the document’s content into a `serde_json::Value`.
+If it's successful, we convert the document's content into a `serde_json::Value`.
 
-We can use `contentAs` to return the document’s content in all sorts of ways: as a String, as an int, as a custom type; it’s very flexible. Here, we’ve asked for it to be returned as a `Value` — a flexible way to handle JSON.
+We can use `contentAs` to return the document's content in all sorts of ways: as a String, as an int, as a custom type; it's very flexible. Here, we've asked for it to be returned as a `Value` — a flexible way to handle JSON.
 
 Finally, if the conversion to a `Value` was successful, we try to get the "status" field (which returns an `Option`), and print it if we were successful.
 
@@ -145,19 +145,19 @@ match collection
 }
 ```
 
-There’s a couple of things to cover with the `replace` line.
+There's a couple of things to cover with the `replace` line.
 
-First, most of the methods in the Rust SDK take option blocks that have sensible defaults. One of them, `cas`, is provided here. We’ll see more throughout this document.
+First, most of the methods in the Rust SDK take option blocks that have sensible defaults. One of them, `cas`, is provided here. We'll see more throughout this document.
 
 ### [](#optimistic-locking)What is CAS?
 
-CAS, or Compare and Swap, is a form of optimistic locking. Every document in Couchbase has a CAS value, and it’s changed on every mutation. When you `get` a document you also get the document’s CAS, and then when it’s time to write the document, you send the same CAS back. If another agent has modified that document, the Couchbase Server can detect you’ve provided a now-outdated CAS, and return an error instead of mutating the document. This provides cheap, safe concurrency. See [this detailed description of CAS](concurrent-document-mutations.md) for further details.
+CAS, or Compare and Swap, is a form of optimistic locking. Every document in Couchbase has a CAS value, and it's changed on every mutation. When you `get` a document you also get the document's CAS, and then when it's time to write the document, you send the same CAS back. If another agent has modified that document, the Couchbase Server can detect you've provided a now-outdated CAS, and return an error instead of mutating the document. This provides cheap, safe concurrency. See [this detailed description of CAS](concurrent-document-mutations.md) for further details.
 
-In general, you’ll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent’s mutations.
+In general, you'll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent's mutations.
 
 ### [](#retrying-on-cas-failures)Retrying on CAS Failures
 
-But if we get a CAS mismatch, we usually just want to retry the operation. Let’s see a more advanced `replace` example that shows one way to handle this:
+But if we get a CAS mismatch, we usually just want to retry the operation. Let's see a more advanced `replace` example that shows one way to handle this:
 
 ```rust
     let doc_id = "document-key";
@@ -228,7 +228,7 @@ As an optimization the application may consider using the [Sub-Document API](sub
 
 ## [](#custom-structs)Custom structs
 
-So far we’ve used JSON directly with `Value`, but it can be very useful to deal with Rust structs instead. The SDK operations will accept any type that implements `Serialize` for mutations, and any type that implements `DeserializeOwned` for retrievals.
+So far we've used JSON directly with `Value`, but it can be very useful to deal with Rust structs instead. The SDK operations will accept any type that implements `Serialize` for mutations, and any type that implements `DeserializeOwned` for retrievals.
 
 ## [](#durability)Durability
 
@@ -259,7 +259,7 @@ match collection
 }
 ```
 
-The default is to run without durability, in which the SDK will return as soon as Couchbase Server has the mutation available in-memory on the active node. This is the default for a reason: it’s the fastest mode, and the majority of the time is all the application needs.
+The default is to run without durability, in which the SDK will return as soon as Couchbase Server has the mutation available in-memory on the active node. This is the default for a reason: it's the fastest mode, and the majority of the time is all the application needs.
 
 However, we recognize that there are times when the application needs that extra certainty that especially vital mutations have been successfully replicated, and the other durability options provide the means to achieve this.
 
@@ -310,7 +310,7 @@ if let Some(expiry) = result.expiry_time() {
 }
 ```
 
-Note that when updating the document, special care must be taken to avoid resetting the expiry to zero. Here’s how:
+Note that when updating the document, special care must be taken to avoid resetting the expiry to zero. Here's how:
 
 ```rust
 let doc_id = "document-key";

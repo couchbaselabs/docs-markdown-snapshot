@@ -2,7 +2,7 @@
 title: Configuration Environment Variables
 description: Using environment variables in the configuration of Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/configuration-environment-variables.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@sync-gateway::configuration-environment-variables.adoc[]
 ---
 
@@ -98,7 +98,7 @@ export USERNAME=Administrator
 export PASSWORD='pa$$word' (1)
 ```
 
-| **1** | Use quotes to prevent interpolation of the literal string’s $ symbols, alternatively use "pa\\$\\$word" |
+| **1** | Use quotes to prevent interpolation of the literal string's $ symbols, alternatively use "pa\\$\\$word" |
 | ----- | ------------------------------------------------------------------------------------------------------- |
 
 ```dos
@@ -108,7 +108,7 @@ set PASSWORD='pa$$word' (2)
 
 | **1** | Permanently set the USERNAME variable. Note setx does not require the \= symbol                                                                                                                                                    |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | Sets the PASSWORD variable, but only for the duration of the current 'Command Line' session. This may not be what you want. Note we use single-quotes because of the password value’s $$ symbols, alternatively use "pa\\$\\$word" |
+| **2** | Sets the PASSWORD variable, but only for the duration of the current 'Command Line' session. This may not be what you want. Note we use single-quotes because of the password value's $$ symbols, alternatively use "pa\\$\\$word" |
 
 1. Open a _System Properties_ panel
 2. On the _Advanced System Settings_ tab, select **Environment Variables**  
@@ -120,7 +120,7 @@ $ENV:USERNAME=Administrator
 $ENV:PASSWORD='pa$$word' (1)
 ```
 
-| **1** | Note we use single-quotes because of the password value’s $$ symbols, alternatively use "pa\`$\`$word" |
+| **1** | Note we use single-quotes because of the password value's $$ symbols, alternatively use "pa\`$\`$word" |
 | ----- | ------------------------------------------------------------------------------------------------------ |
 
 ---

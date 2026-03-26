@@ -1,7 +1,7 @@
 ---
 title: Tables
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/tables.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:styleguide::tables.adoc[]
 ---
 
@@ -16,7 +16,7 @@ For example, use a table to list out properties or options and describe them:
 
 | Option          | Description                                                                                                                                              |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Type Identifier | Set a type identifier to change how an index sets a document’s type. For more information about how to set a type identifier, see Set a Type Identifier. |
+| Type Identifier | Set a type identifier to change how an index sets a document's type. For more information about how to set a type identifier, see Set a Type Identifier. |
 
 To add a table:
 

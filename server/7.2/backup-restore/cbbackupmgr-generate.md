@@ -2,7 +2,7 @@
 title: cbbackupmgr generate
 description: Generate documents and send them to a 'sink', primarily for testing purposes.
 editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-generate.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:backup-restore:cbbackupmgr-generate.adoc[]
 ---
 
@@ -251,7 +251,7 @@ Backing up/restoring cluster level data with the `data_backup` role will cause p
 
 Error backing up cluster: {"message":"Forbidden. User needs one of the following permissions","permissions":["cluster.fts!read"]}
 
-When presented with an error message such as the one above, there’s two clear options.
+When presented with an error message such as the one above, there's two clear options.
 
 The first option is to provide the user with the required credentials using either the cli, REST API or Couchbase Server WebUI. This can be done by editing the user and adding the required role. See `Cluster Level` for more information about the required roles.
 

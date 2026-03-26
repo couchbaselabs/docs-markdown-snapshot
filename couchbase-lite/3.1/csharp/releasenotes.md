@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Lite on C#.Net
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/csharp/pages/releasenotes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@couchbase-lite:csharp:releasenotes.adoc[]
 ---
 
@@ -22,7 +22,7 @@ None for this release
 ### [](#issues-and-resolutions)Issues and Resolutions
 
 * [CBL-6282 — Replicator starts slowly for big databases](https://jira.issues.couchbase.com/browse/CBL-6282)
-* [CBL-6299 — Fixed ReplicatedDocument ToString doesn’t properly null check](https://jira.issues.couchbase.com/browse/CBL-6299)
+* [CBL-6299 — Fixed ReplicatedDocument ToString doesn't properly null check](https://jira.issues.couchbase.com/browse/CBL-6299)
 * [CBL-6294 — Fixed C4IndexOptions leaks stopWords](https://jira.issues.couchbase.com/browse/CBL-6294)
 
 ### [](#deprecations)Deprecations
@@ -171,7 +171,7 @@ Version 3.1.0 for C#.Net delivers the following features and enhancements:
 
 ### [](#scopes-and-collections)Scopes and Collections
 
-Couchbase Mobile’s cloud-to-edge support for scopes and collections allows application developers to organize and logically isolate data.
+Couchbase Mobile's cloud-to-edge support for scopes and collections allows application developers to organize and logically isolate data.
 
 Independent lifecycle management and fine-grained security control simplifies the deployment of multi-tenant and high-application density cloud-to-edge applications at scale.
 

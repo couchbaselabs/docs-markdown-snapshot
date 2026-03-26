@@ -1,7 +1,7 @@
 ---
 title: Decision Dialogs
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/decision-dialogs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ui-ux::decision-dialogs.adoc[]
 ---
 
@@ -10,13 +10,13 @@ link: xref:ui-ux::decision-dialogs.adoc[]
 
 # Decision Dialogs
 
-A decision dialog is a window that appears when a user needs to confirm an action in the UI. They’re given a choice to confirm or cancel that action.
+A decision dialog is a window that appears when a user needs to confirm an action in the UI. They're given a choice to confirm or cancel that action.
 
 ![The Delete API Key decision dialog. The user is prompted to type delete in a text field, and warned that the action can’t be undone. They can click Delete API Key or Cancel.](_images/DecisionDialog.png) 
 
-## [](#add-a-title-thats-a-question)Add a Title That’s a Question
+## [](#add-a-title-thats-a-question)Add a Title That's a Question
 
-A decision dialog has a title that’s a specific question that ends in a question mark.
+A decision dialog has a title that's a specific question that ends in a question mark.
 
 For example, a decision dialog that appears when a user tries to remove a user could be titled **Remove this user?**
 
@@ -38,7 +38,7 @@ The question for the decision dialog and the provided decision buttons should us
 
 Keep the language literal and descriptive.
 
-For example, if a user tries to remove a user, the question should be **Remove this user?** and the decision button should say **Remove** or **Remove User**. The decision button shouldn’t say **Yes** or **Sure**.
+For example, if a user tries to remove a user, the question should be **Remove this user?** and the decision button should say **Remove** or **Remove User**. The decision button shouldn't say **Yes** or **Sure**.
 
 ### [](#save-vs-apply-vs-update)Save vs. Apply vs. Update
 

@@ -2,7 +2,7 @@
 title: COMMIT TRANSACTION
 description: The COMMIT TRANSACTION statement enables you to commit a transaction.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/commit-transaction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/commit-transaction.adoc[]
 ---
 
@@ -19,14 +19,14 @@ The `COMMIT TRANSACTION` statement enables you to commit an ACID transaction. Fo
 
 If you are using the Query REST API, you must set the [txid](../n1ql-manage/query-settings.md#txid) query parameter to specify the transaction ID.
 
-If you are using the Query Workbench, you don’t need to specify the transaction ID, as long as the statement is part of a multi-statement request. When you start a transaction within a multi-statement request, all statements within the request are assumed to be part of the same transaction until you rollback or commit the transaction.
+If you are using the Query Workbench, you don't need to specify the transaction ID, as long as the statement is part of a multi-statement request. When you start a transaction within a multi-statement request, all statements within the request are assumed to be part of the same transaction until you rollback or commit the transaction.
 
-Similarly, if you are using the cbq shell, you don’t need to specify the transaction ID. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
+Similarly, if you are using the cbq shell, you don't need to specify the transaction ID. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
 
 This statement removes all savepoints within the transaction.
 
 > [!NOTE]
-> If you’re using the cbq shell, and a transaction fails for any reason, you must use the `ROLLBACK TRANSACTION` statement to remove the transaction context and reset the transaction ID.
+> If you're using the cbq shell, and a transaction fails for any reason, you must use the `ROLLBACK TRANSACTION` statement to remove the transaction context and reset the transaction ID.
 
 ## [](#syntax)Syntax
 
@@ -44,7 +44,7 @@ The transaction can only be committed if the transactional [durability](../../le
 
 If transaction durability requirements cannot be met, then a 161 error code is generated when you attempt to commit the transaction, stating that the durability requirements are impossible to achieve. For example: bucket replication is specified, but there are not enough Data nodes available on which to store the specified number of replicas at the requested durability level.
 
-To avoid this error, it’s recommended that you add the correct number of Data nodes for the required durability level, and rebalance. As a temporary measure, you can set the request-level [durability\_level](../n1ql-manage/query-settings.md#durability%5Flevel) parameter to `"none"` to turn off durability for this request, or [turn off bucket replication](../../manage/manage-buckets/edit-bucket.md).
+To avoid this error, it's recommended that you add the correct number of Data nodes for the required durability level, and rebalance. As a temporary measure, you can set the request-level [durability\_level](../n1ql-manage/query-settings.md#durability%5Flevel) parameter to `"none"` to turn off durability for this request, or [turn off bucket replication](../../manage/manage-buckets/edit-bucket.md).
 
 ## [](#examples)Examples
 

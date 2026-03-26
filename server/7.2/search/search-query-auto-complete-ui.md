@@ -3,7 +3,7 @@ title: Configure an Autocomplete Search Index
 description: Create a Search index with the Couchbase Server Web Console or the
   REST API to start using autocomplete with the Search Service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/search-query-auto-complete-ui.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:search-query-auto-complete-ui.adoc[]
 ---
 
@@ -16,10 +16,10 @@ link: xref:7.2@server:search:search-query-auto-complete-ui.adoc[]
 
 ## [](#prerequisites)Prerequisites
 
-* You’ve deployed the Search Service on a node in your database.
+* You've deployed the Search Service on a node in your database.
 * You have a bucket with scopes and collections in your database.
 * Your user account has the **Search Admin** role for the bucket where you want to create the index.
-* You’ve logged in to the Couchbase Server Web Console.
+* You've logged in to the Couchbase Server Web Console.
 
 ## [](#procedure)Procedure
 

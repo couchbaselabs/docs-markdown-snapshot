@@ -1,7 +1,7 @@
 ---
 title: Classic Editor
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-UI-classic-editor-onefield.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-creating-index-from-UI-classic-editor-onefield.adoc[]
 ---
 
@@ -20,7 +20,7 @@ This example [Creating a One Field Index](#main) starts to introduce advanced fe
 
 # [](#main)Creating a One Field Index via the UI
 
-This section describes creating and Index on a bucket’s collection on just one field created on a non-default scope/collection.
+This section describes creating and Index on a bucket's collection on just one field created on a non-default scope/collection.
 
 To create an one field Search index on the bucket: travel-sample, scope: inventory, collection: landmark, and field: content, through the Classic Editor:
 
@@ -32,12 +32,12 @@ To create an one field Search index on the bucket: travel-sample, scope: invento
 Enter **landmark-content-index** as the name of the Search index you are creating in the **Index Name** text-box.  
 ![fts index name nondefault](_images/fts-index-name-nondefault.png)
 * Select the bucket **travel-sample** from the **Bucket** pull-down menu.  
-Use the pull-down menu provided for the Bucket field, on the upper-right, and select a bucket that you are allowed to access to via the cluster’s RBAC settings.  
+Use the pull-down menu provided for the Bucket field, on the upper-right, and select a bucket that you are allowed to access to via the cluster's RBAC settings.  
 ![fts index name and bucket nondefault](_images/fts-index-name-and-bucket-nondefault.png)
 * Select the checkbox **\[X\] Use non-default scope/collections**  
 This allows your index to stream mutations from one or more non-default collections under the selected bucket and scope.  
 ![fts select nondefault scope collections](_images/fts-select-nondefault-scope-collections.png)
-* Use the newly visible pull-down menu provided for the **Scope** field, under the **\[X\] Use non-default scope/collections** checkbox, and select a bucket that you are allowed to access to via the cluster’s RBAC settings.  
+* Use the newly visible pull-down menu provided for the **Scope** field, under the **\[X\] Use non-default scope/collections** checkbox, and select a bucket that you are allowed to access to via the cluster's RBAC settings.  
 For this example select **inventory** which has multiple collections under it.  
 ![fts select scope nondefault](_images/fts-select-scope-nondefault.png)
 * Under **Type Mapings**, unselect the checkbox **\[ \] default | dynamic** \- this will get rid of the warning in the prior step.  
@@ -76,7 +76,7 @@ This is all you need to specify in order to create a more advanced index for tes
 
 In the **Couchbase Web Console** \> **Search** page.
 
-* Click on the index you just created (named "landmark-content-index") to expand the Index’s controls.
+* Click on the index you just created (named "landmark-content-index") to expand the Index's controls.
 * In the text area of the search box enter **+view +food +beach** this will search on all three keywords
 * Click on the blue **Search** button. You will get documents from only collection landmark and due to the options you selected you will see highlighted words in your results.  
 ![fts index nondefault search](_images/fts-index-nondefault-search.png)

@@ -3,7 +3,7 @@ title: Use the Agent Catalog Tools and Prompts Hub
 description: Use the Tools Hub or the Prompts Hub to view all the tools and
   prompts published to Agent Catalog from your agent projects.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/tools-prompts-hub.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:ai:build:tools-prompts-hub.adoc[]
 ---
 
@@ -73,6 +73,6 @@ To view published prompts in your Agent Catalog project in the Capella UI:
 
 ## [](#next-steps)Next Steps
 
-To view logs from your agent’s activity, see [Monitor and Observe with Agent Tracer](agent-tracer/agent-tracer.md).
+To view logs from your agent's activity, see [Monitor and Observe with Agent Tracer](agent-tracer/agent-tracer.md).
 
 For more information about how to use the Agent Catalog, see [Integrate an Agent with the Agent Catalog](integrate-agent-with-catalog.md).

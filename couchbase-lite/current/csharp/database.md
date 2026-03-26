@@ -2,7 +2,7 @@
 title: Databases
 description: Working with Couchbase Lite Databases
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/database.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:csharp:database.adoc[]
 ---
 
@@ -39,7 +39,7 @@ Figure 2\. Couchbase Lite Examples
 
 Storing local configuration
 
-You may not need to sync all the data related for a particular application. You can set up a scope that syncs data, and a second scope that doesn’t.
+You may not need to sync all the data related for a particular application. You can set up a scope that syncs data, and a second scope that doesn't.
 
 One reason for doing this is to store local configuration data (such as the preferred screen orientation or keyboard layout). Since this information only relates to a particular device, there is no need to sync it:
 
@@ -141,7 +141,7 @@ database.ChangeEncryptionKey(null);
 
 ### [](#persisting)Persisting
 
-Couchbase Lite does not persist the key. It is the application’s responsibility to manage the key and store it in a platform-specific secure store such Android’s [Keystore](https://developer.android.com/training/articles/keystore).
+Couchbase Lite does not persist the key. It is the application's responsibility to manage the key and store it in a platform-specific secure store such Android's [Keystore](https://developer.android.com/training/articles/keystore).
 
 ### [](#opening)Opening
 
@@ -172,7 +172,7 @@ Where a database goes by default depends on the platform it is running on. Here 
 
 From time to time it may be necessary to perform certain maintenance activities on your database, for example to compact the database file, removing unused documents and blobs no longer referenced by any documents.
 
-Couchbase Lite’s API provides the [Database.PerformMaintenance()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FPerformMaintenance-com.couchbase.lite.MaintenanceType-) method. The available maintenance operations, including `compact` are as shown in the enum [MaintenanceType](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.MaintenanceType.html) to accomplish this.
+Couchbase Lite's API provides the [Database.PerformMaintenance()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FPerformMaintenance-com.couchbase.lite.MaintenanceType-) method. The available maintenance operations, including `compact` are as shown in the enum [MaintenanceType](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.MaintenanceType.html) to accomplish this.
 
 This is a resource intensive operation and is not performed automatically. It should be run on-demand using the API. If in doubt, consult Couchbase support.
 

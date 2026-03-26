@@ -3,7 +3,7 @@ title: Pre-filtering Vector Searches
 description: You can specify filters as part of a Vector Search query object to
   restrict the documents searched in a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-search/pages/pre-filtering-vector-search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:vector-search:pre-filtering-vector-search.adoc[]
 ---
 
@@ -29,7 +29,7 @@ The Search Service supports pre-filtering on Vector Search queries. Pre-filterin
 * You have a bucket with scopes and collections in your cluster. For more information about how to create a bucket, see [Create a Bucket](../manage/manage-buckets/create-bucket.md).
 * Your user account has the **Search Admin** or **Search Reader** role.
 * You installed the Couchbase command-line tool (CLI).
-* You have the hostname or IP address for the node in your cluster where you’re running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../manage/manage-nodes/list-cluster-nodes.md).
+* You have the hostname or IP address for the node in your cluster where you're running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../manage/manage-nodes/list-cluster-nodes.md).
 * You have created a Search Vector Index.  
 For more information about how to create a Search Vector Index, see [Create a Search Vector Index with the Server Web Console](create-vector-search-index-ui.md) or [Create a Search Vector Index with the REST API and curl/HTTP](create-vector-search-index-rest-api.md).  
 > [!TIP]  

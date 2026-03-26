@@ -3,7 +3,7 @@ title: INSERT INTO Statements
 description: This topic describes how you use <code>INSERT INTO</code>
   statements to add objects to a standalone collection.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_insert.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sqlpp:5_dml_insert.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:analytics:sqlpp:5_dml_insert.adoc[]
 
 > This topic describes how you use `INSERT INTO` statements to add objects to a standalone collection. 
 
-If any of the objects you’re adding have the same primary key value as an object that’s already in the collection, the request fails. The request also fails if the source data has duplicates. When such issues occur, Capella Analytics returns an error message and the standalone collection remains unchanged.
+If any of the objects you're adding have the same primary key value as an object that's already in the collection, the request fails. The request also fails if the source data has duplicates. When such issues occur, Capella Analytics returns an error message and the standalone collection remains unchanged.
 
 ## [](#syntax)Syntax
 

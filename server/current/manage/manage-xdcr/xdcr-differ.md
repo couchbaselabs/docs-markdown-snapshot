@@ -4,7 +4,7 @@ description: The <code>xdcrDiffer</code> utility helps you verify data
   consistency between XDCR clusters by comparing document metadata and values,
   and reporting missing or mismatched documents.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/xdcr-differ.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-xdcr/xdcr-differ.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:server:manage:manage-xdcr/xdcr-differ.adoc[]
 
 > The `xdcrDiffer` utility helps you verify data consistency between XDCR clusters by comparing document metadata and values, and reporting missing or mismatched documents. 
 
-`xdcrDiffer` is a diagnostic utility included in the Server installation package for convenient access. Previously, you’d build this utility from source using the xdcrDiffer GitHub repository.
+`xdcrDiffer` is a diagnostic utility included in the Server installation package for convenient access. Previously, you'd build this utility from source using the xdcrDiffer GitHub repository.
 
 ## [](#what-is-xdcrdiffer)What is xdcrDiffer?
 
@@ -59,7 +59,7 @@ runDiffer.sh --username=Administrator --password=password --hostname=localhost:8
 
 ## [](#comparison-process)Comparison Process
 
-* `xdcrDiffer` collects each document’s metadata and generates a SHA-512 digest of its value.
+* `xdcrDiffer` collects each document's metadata and generates a SHA-512 digest of its value.
 * After capturing all data from both clusters, `xdcrDiffer` compares documents by using either document ID or key.
 
   * If a document is missing in either cluster, the utility reports the missing document.

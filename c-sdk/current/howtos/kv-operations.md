@@ -1,7 +1,7 @@
 ---
 title: Key Value Operations
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:c-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -16,7 +16,7 @@ A _document_ refers to an entry in the database (other databases may refer to th
 
 ## [](#crud-operations)CRUD Operations
 
-The core interface to Couchbase Server is simple KV operations on full documents. Make sure you’re familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK section](../hello-world/start-using-sdk.md).
+The core interface to Couchbase Server is simple KV operations on full documents. Make sure you're familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK section](../hello-world/start-using-sdk.md).
 
 See the [code sample](https://github.com/couchbase/docs-sdk-c/blob/release/3.3/modules/devguide/examples/c/retrieving.cc) for use in context.
 
@@ -63,7 +63,7 @@ Insert works very similarly to upsert , but will fail if the document already ex
 
 ## [](#retrieving-documents)Retrieving documents
 
-We’ve tried upserting and inserting documents into the Couchbase Server, let’s get them back:
+We've tried upserting and inserting documents into the Couchbase Server, let's get them back:
 
 ```c
 static void get_callback(lcb_INSTANCE *instance, int cbtype, const lcb_RESPGET *resp)
@@ -107,11 +107,11 @@ static void get_callback(lcb_INSTANCE *instance, int cbtype, const lcb_RESPGET *
 
 A very common sequence of operations is to `get` a document, modify its contents, and `replace` it. So what is CAS?
 
-CAS, or Compare and Swap, is a form of optimistic locking. Every document is Couchbase has a CAS value, and it’s changed on every mutation. When you get a document you also get the document’s CAS, and then when it is time to write the document, you send the same CAS back. If another thread or program has modified that document in the meantime, the Couchbase Server can detect you’ve provided a now-outdated CAS, and return an error. This provides cheap and safe concurrency. See this [this detailed description of CAS](concurrent-document-mutations.md) for further details.
+CAS, or Compare and Swap, is a form of optimistic locking. Every document is Couchbase has a CAS value, and it's changed on every mutation. When you get a document you also get the document's CAS, and then when it is time to write the document, you send the same CAS back. If another thread or program has modified that document in the meantime, the Couchbase Server can detect you've provided a now-outdated CAS, and return an error. This provides cheap and safe concurrency. See this [this detailed description of CAS](concurrent-document-mutations.md) for further details.
 
-In general, you’ll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent’s mutations.
+In general, you'll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent's mutations.
 
-Setting a Compare and Swap (CAS) value is a form of optimistic locking - dealt with in depth in the [CAS page](concurrent-document-mutations.md). Here we just note that the CAS is a value representing the current state of an item; each time the item is modified, its CAS changes. The CAS value is returned as part of a document’s metadata whenever a document is accessed. Without explicitly setting it, a newly-created document would have a CAS value of _0_.
+Setting a Compare and Swap (CAS) value is a form of optimistic locking - dealt with in depth in the [CAS page](concurrent-document-mutations.md). Here we just note that the CAS is a value representing the current state of an item; each time the item is modified, its CAS changes. The CAS value is returned as part of a document's metadata whenever a document is accessed. Without explicitly setting it, a newly-created document would have a CAS value of _0_.
 
 ```c
             result = {}; // reset result object
@@ -178,7 +178,7 @@ Couchbase does not recommend this feature where read consistency is critical, bu
 The numeric content of a document can be manipulated using [lcb\_RESPCOUNTER](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-counter.html).
 
 > [!NOTE]
-> Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change.
+> Increment & Decrement are considered part of the 'binary' API and as such may still be subject to change.
 
 Counter opeations treat the document as a numeric value (the document must contain a parseable integer as its content). This value may then be incremented or decremented.
 

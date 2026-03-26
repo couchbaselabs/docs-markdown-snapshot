@@ -3,7 +3,7 @@ title: "Developer Tutorial: Student Record System"
 description: Learn how to create and deploy a student records database on
   Capella Operational and connect it to your application.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/couchbase-tutorial-student-records.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:tutorials:couchbase-tutorial-student-records.adoc[]
 ---
 
@@ -32,7 +32,7 @@ The data model for this tutorial consists of 3 record types:
 
 In a relational model database, the data for this example contains a list of students and a list of courses. Each student can enroll in multiple courses.
 
-A student’s enrollment record is stored in a separate table called `enrollment`, which links that record to the courses they’re enrolling in.
+A student's enrollment record is stored in a separate table called `enrollment`, which links that record to the courses they're enrolling in.
 
 ![student-record-erd](_images/student-record-erd-107b1252fd5db120a096e289c8c7f238150b57f0.svg) 
 
@@ -51,7 +51,7 @@ In this tutorial, the document model stores the list of enrollment records with 
 
 With JSON, you can change the structure of the document without having to rebuild schemas. For example, you can add a new field to store students' email addresses without migrating existing data to a new schema.
 
-In a document database, a student’s record and their course records can look similar to this:
+In a document database, a student's record and their course records can look similar to this:
 
 Student record
 
@@ -95,7 +95,7 @@ Graphic design course record
 }
 ```
 
-Hilary’s enrollment is stored in the same document as her student details, which means child information is stored with its parent. This structure lets you access and retrieve all of Hilary’s details with 1 search and without the need for complex table joins.
+Hilary's enrollment is stored in the same document as her student details, which means child information is stored with its parent. This structure lets you access and retrieve all of Hilary's details with 1 search and without the need for complex table joins.
 
 > [!NOTE]
 > You should not store a student with their course record as it can lead to data duplication and make it difficult to maintain your data. For example, you would need to access every single student record in your cluster to change the `credit-points`.

@@ -3,7 +3,7 @@ title: Request Tracing
 description: Collecting information about an individual request and its response
   is an essential feature of every observability stack.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/howtos/pages/observability-tracing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@scala-sdk:howtos:observability-tracing.adoc[]
 ---
 
@@ -181,7 +181,7 @@ val cluster: Try[Cluster] = config.flatMap(c =>
     .environment(c)))
 ```
 
-At this point, all spans will be sent into the OpenTelemetry collector. Once you are performing operations, you should see the collector (if it’s using the configuration above) outputting spans to console:
+At this point, all spans will be sent into the OpenTelemetry collector. Once you are performing operations, you should see the collector (if it's using the configuration above) outputting spans to console:
 
 ```none
 Span #510

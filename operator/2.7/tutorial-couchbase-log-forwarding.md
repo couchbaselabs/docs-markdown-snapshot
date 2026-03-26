@@ -1,7 +1,7 @@
 ---
 title: Forwarding Couchbase Logs with Fluent Bit
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/tutorial-couchbase-log-forwarding.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::tutorial-couchbase-log-forwarding.adoc[]
 ---
 
@@ -17,9 +17,9 @@ link: xref:2.7@operator::tutorial-couchbase-log-forwarding.adoc[]
 
 ## [](#introduction)Introduction
 
-Having a containerized application’s logs available on standard console output is desirable in Kubernetes environments, since it allows for [simple debugging](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/#examine-pod-logs), as well as standards-based integration with centralized log management systems running in a Kubernetes cluster. Unfortunately, the Couchbase Server container doesn’t natively write its logs to standard console output. Instead, the [default behavior](concept-couchbase-logging.md#default-logging) of the Couchbase Server container (in deployments managed by the Autonomous Operator) is to write its [various log files](../../server/current/manage/manage-logging/manage-logging.md#log-file-listing) to the `default` or `logs` persistent volumes.
+Having a containerized application's logs available on standard console output is desirable in Kubernetes environments, since it allows for [simple debugging](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/#examine-pod-logs), as well as standards-based integration with centralized log management systems running in a Kubernetes cluster. Unfortunately, the Couchbase Server container doesn't natively write its logs to standard console output. Instead, the [default behavior](concept-couchbase-logging.md#default-logging) of the Couchbase Server container (in deployments managed by the Autonomous Operator) is to write its [various log files](../../server/current/manage/manage-logging/manage-logging.md#log-file-listing) to the `default` or `logs` persistent volumes.
 
-However, as of version 2.2, the Autonomous Operator can optionally deploy and manage a third party log processor on each Couchbase pod which enables Couchbase Server logs to be [forwarded](concept-couchbase-logging.md#log-forwarding) to the log processor’s standard console output as well as other destinations. This guide will walk you through an example of how to configure log forwarding for a Couchbase deployment using the Couchbase-supplied log processor image based on [Fluent Bit](https://fluentbit.io/).
+However, as of version 2.2, the Autonomous Operator can optionally deploy and manage a third party log processor on each Couchbase pod which enables Couchbase Server logs to be [forwarded](concept-couchbase-logging.md#log-forwarding) to the log processor's standard console output as well as other destinations. This guide will walk you through an example of how to configure log forwarding for a Couchbase deployment using the Couchbase-supplied log processor image based on [Fluent Bit](https://fluentbit.io/).
 
 Examples are provided for forwarding logs to Loki and Elasticsearch, as well as how to target Azure blob storage and Amazon S3 storage for Couchbase Server [audit logs](howto-manage-couchbase-logging.md#configuring-audit-logging). An example for configuring log redaction is also shown to demonstrate how the log forwarding solution can redact logs in-flight.
 
@@ -101,7 +101,7 @@ spec:
 | **3** | [couchbaseclusters.spec.logging.audit.rotation.pruneAge](resource/couchbasecluster.md#couchbaseclusters-spec-logging-audit-rotation-pruneage): Setting this field to a time period enables garbage collection of rotated audit logs using Couchbase Servers native audit log cleanup available in Couchbase Server 7.2.4+. This field normally defaults to 0.                                                                                                                                                                                |
 | **4** | [couchbaseclusters.spec.volumeClaimTemplates](resource/couchbasecluster.md#couchbaseclusters-spec-volumeclaimtemplates): This setting is not specifically for log forwarding, it is purely that log forwarding requires a persistent volume to access the logs so this shows an example of how to set one up. Refer to the storage documentation for your platform as well as the [Couchbase documentation](concept-persistent-volumes.md) for full details. You may want to tweak the resources allocated for example or the storage class. |
 
-Copy the example cluster deployment configuration from above and save it to a file. (In this case we’ve named the file `couchbase-cluster-log-forwarding.yaml`.) Run the following command to deploy it into Kubernetes:
+Copy the example cluster deployment configuration from above and save it to a file. (In this case we've named the file `couchbase-cluster-log-forwarding.yaml`.) Run the following command to deploy it into Kubernetes:
 
 ```console
 $ kubectl apply -f couchbase-cluster-log-forwarding.yaml
@@ -133,7 +133,7 @@ Example log event on standard console output:
 
 [1615311121.859344000, {"filename":"/fluent-bit/test/logs/memcached.log.000000.txt","timestamp":"2021-03-09T17:32:01.859344+00:00","level":"INFO","message":"Couchbase version 7.2.3-7909 starting."}]
 
-You’ll notice that processed log events are structured messages with keys and values:
+You'll notice that processed log events are structured messages with keys and values:
 
 * `"timestamp":"2021-03-09T17:32:01.859344+00:00"`
 * `"level":"INFO"`
@@ -141,17 +141,17 @@ You’ll notice that processed log events are structured messages with keys and 
 
 The default configuration used has support for Elasticsearch, Loki, Splunk and standard console output as destinations for logs. However, everything aside from standard console output will not match any streams by default. See [Configure Log Forwarding](howto-couchbase-log-forwarding.md) for how to enable them.
 
-Now that we’ve successfully implemented the default configuration for processing and forwarding Couchbase logs to standard console output, we can move on to the [next section](#customize-the-log-forwarding-configuration) where we’ll explore how to customize the configuration to do things like apply different types of parsing and redaction to specific logs, as well as forward those logs to multiple different locations.
+Now that we've successfully implemented the default configuration for processing and forwarding Couchbase logs to standard console output, we can move on to the [next section](#customize-the-log-forwarding-configuration) where we'll explore how to customize the configuration to do things like apply different types of parsing and redaction to specific logs, as well as forward those logs to multiple different locations.
 
 ## [](#customize-the-log-forwarding-configuration)Customize the Log Forwarding Configuration
 
 The _log forwarding configuration_ determines how the `logging` sidecar container processes and forwards Couchbase logs. Since this configuration can contain sensitive information, it is stored in a Kubernetes Secret.
 
-When we created the Couchbase cluster in the [previous section](#configure-the-couchbase-cluster), the Autonomous Operator automatically created a _default_ log forwarding configuration Secret with the name `fluent-bit-config`. We’ll be modifying this Secret in order to implement our own custom configuration.
+When we created the Couchbase cluster in the [previous section](#configure-the-couchbase-cluster), the Autonomous Operator automatically created a _default_ log forwarding configuration Secret with the name `fluent-bit-config`. We'll be modifying this Secret in order to implement our own custom configuration.
 
 ### [](#allow-custom-configurations)Allow Custom Configurations
 
-Before we can modify the `fluent-bit-config` secret, we’ll first need to modify the [CouchbaseCluster](resource/couchbasecluster.md) resource to allow custom log forwarding configurations.
+Before we can modify the `fluent-bit-config` secret, we'll first need to modify the [CouchbaseCluster](resource/couchbasecluster.md) resource to allow custom log forwarding configurations.
 
 ```console
 $ kubectl patch cbc cb-example -p '{"spec":{"logging": {"server": {"manageConfiguration": false}}}}'
@@ -159,7 +159,7 @@ $ kubectl patch cbc cb-example -p '{"spec":{"logging": {"server": {"manageConfig
 
 Patching your [CouchbaseCluster](resource/couchbasecluster.md) resource so that [couchbaseclusters.spec.logging.server.manageConfiguration](resource/couchbasecluster.md#couchbaseclusters-spec-logging-server-manageconfiguration) is set to `false`.
 
-Now that we’ve successfully allowed our Couchbase cluster to use custom log forwarding configurations, let’s get to customizing!
+Now that we've successfully allowed our Couchbase cluster to use custom log forwarding configurations, let's get to customizing!
 
 ### [](#create-a-custom-configuration)Create a Custom Configuration
 
@@ -196,18 +196,18 @@ stringData:
 | **4** | couchbase.log.\*: By default, all parsed Couchbase log events are [_tagged_](https://docs.fluentbit.io/manual/concepts/key-concepts#tag) with couchbase.log._<name-of-log_\>. The default [_output configuration_](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config%5Foutput) then uses the wildcard [_match_](https://docs.fluentbit.io/manual/concepts/key-concepts#match) couchbase.log.\* to forward all tagged Couchbase logs to the output. However, because we defined a single input configuration that only processes the audit log, we are free to leave the default wildcard match. This is because the only log events that will be available for output will be those from the audit log. |
 
 > [!NOTE]
-> This log forwarding configuration assumes that you’ve already enabled Couchbase audit logging in the [CouchbaseCluster](resource/couchbasecluster.md) resource. If you deployed the [example cluster configuration](#cluster-config-log-forwarding) from earlier in this tutorial, then audit logging is already enabled and no action is necessary.
+> This log forwarding configuration assumes that you've already enabled Couchbase audit logging in the [CouchbaseCluster](resource/couchbasecluster.md) resource. If you deployed the [example cluster configuration](#cluster-config-log-forwarding) from earlier in this tutorial, then audit logging is already enabled and no action is necessary.
 
-Copy the above secret configuration and save it to a file. Make sure to check for any formatting issues when copying from HTML to text format for YAML. (In this case we’ve named the file `fluent-bit-config.yaml`.) Run the following command to deploy it into Kubernetes:
+Copy the above secret configuration and save it to a file. Make sure to check for any formatting issues when copying from HTML to text format for YAML. (In this case we've named the file `fluent-bit-config.yaml`.) Run the following command to deploy it into Kubernetes:
 
 ```console
 $ kubectl apply -f fluent-bit-config.yaml
 ```
 
-Once the Secret is updated in Kubernetes, the configuration changes will be populated into the volume that is mounted in the `logging` sidecar container on each Couchbase pod. The `logging` container’s watcher process will detect the new configuration, and restart Fluent internally to consume the new configuration. Once Fluent Bit restarts, only audit log events will be processed and forwarded to standard console output.
+Once the Secret is updated in Kubernetes, the configuration changes will be populated into the volume that is mounted in the `logging` sidecar container on each Couchbase pod. The `logging` container's watcher process will detect the new configuration, and restart Fluent internally to consume the new configuration. Once Fluent Bit restarts, only audit log events will be processed and forwarded to standard console output.
 
 > [!IMPORTANT]
-> The ability to restart Fluent Bit internally is a special characteristic of the Couchbase-supplied [log processor image](https://hub.docker.com/r/couchbase/fluent-bit). If you’re using a custom sidecar container image, be aware that Fluent Bit, on its own, does not currently support [dynamic reload](https://github.com/fluent/fluent-bit/issues/365) of its configuration.
+> The ability to restart Fluent Bit internally is a special characteristic of the Couchbase-supplied [log processor image](https://hub.docker.com/r/couchbase/fluent-bit). If you're using a custom sidecar container image, be aware that Fluent Bit, on its own, does not currently support [dynamic reload](https://github.com/fluent/fluent-bit/issues/365) of its configuration.
 > 
 > Also note that the Couchbase-supplied log forwarding implementation does not currently support log buffering during restart. Therefore, log events that occur while Fluent Bit is restarting may be lost.
 
@@ -219,12 +219,12 @@ $ kubectl get secret "fluent-bit-config" -o go-template='{{range $k,$v := .data}
 
 ### [](#next-steps)Next Steps
 
-Now that you’ve successfully implemented some basic log forwarding customizations, we recommend that you try out some of the other examples in this tutorial. These examples should help you get an even better idea of the capabilities of both Fluent Bit and the Autonomous Operator when it comes to processing and forwarding Couchbase logs.
+Now that you've successfully implemented some basic log forwarding customizations, we recommend that you try out some of the other examples in this tutorial. These examples should help you get an even better idea of the capabilities of both Fluent Bit and the Autonomous Operator when it comes to processing and forwarding Couchbase logs.
 
 ## [](#example-loki-stack)Example: Loki Stack
 
 > [!NOTE]
-> This example assumes you’ve deployed the CouchbaseCluster resource described at the [beginning of the tutorial](#cluster-config-log-forwarding). It also assumes that you are familiar with how to [customize a log forwarding configuration](#customize-the-log-forwarding-configuration).
+> This example assumes you've deployed the CouchbaseCluster resource described at the [beginning of the tutorial](#cluster-config-log-forwarding). It also assumes that you are familiar with how to [customize a log forwarding configuration](#customize-the-log-forwarding-configuration).
 
 A simple approach to deploy a full logging and monitoring solution is to use a [Loki Stack](https://grafana.com/docs/loki/latest/overview/). A stack that includes a Fluent Bit `daemonset` (node logs), Loki, Grafana, and Prometheus, provides a nice and simple integrated solution for monitoring and logging. You can deploy this stack using a Helm chart.
 
@@ -268,12 +268,12 @@ kubectl port-forward service/loki-grafana 3000:80
 ```
 
 > [!NOTE]
-> In order to have alerting on logs through the UI, you’ll need to use Grafana 7.5 or higher.
+> In order to have alerting on logs through the UI, you'll need to use Grafana 7.5 or higher.
 
 ## [](#example-elasticsearch)Example: Elasticsearch
 
 > [!NOTE]
-> This example assumes you’ve deployed the CouchbaseCluster resource described at the [beginning of the tutorial](#cluster-config-log-forwarding). It also assumes that you are familiar with how to [customize a log forwarding configuration](#customize-the-log-forwarding-configuration).
+> This example assumes you've deployed the CouchbaseCluster resource described at the [beginning of the tutorial](#cluster-config-log-forwarding). It also assumes that you are familiar with how to [customize a log forwarding configuration](#customize-the-log-forwarding-configuration).
 
 An Elasticsearch deployment or StatefulSet can provide a good integrated solution for monitoring and logging. A basic deployment configuration with a single replica is shown below.
 
@@ -405,9 +405,9 @@ spec:
 ## [](#example-azure-blob-storage)Example: Azure Blob Storage
 
 > [!NOTE]
-> This example assumes you’ve deployed the CouchbaseCluster resource described at the [beginning of the tutorial](#cluster-config-log-forwarding). It also assumes that you are familiar with how to [customize a log forwarding configuration](#customize-the-log-forwarding-configuration).
+> This example assumes you've deployed the CouchbaseCluster resource described at the [beginning of the tutorial](#cluster-config-log-forwarding). It also assumes that you are familiar with how to [customize a log forwarding configuration](#customize-the-log-forwarding-configuration).
 
-This example shows you how to forward audit logs to an Azure endpoint. The main area to manage is the output configuration, so in the following example we’ve simply included the default configuration file and then appended an output to Azure Blob Storage:
+This example shows you how to forward audit logs to an Azure endpoint. The main area to manage is the output configuration, so in the following example we've simply included the default configuration file and then appended an output to Azure Blob Storage:
 
 ```yaml
 apiVersion: v1
@@ -500,9 +500,9 @@ stringData:
 ## [](#example-amazon-s3)Example: Amazon S3
 
 > [!NOTE]
-> This example assumes you’ve deployed the CouchbaseCluster resource described at the [beginning of the tutorial](#cluster-config-log-forwarding). It also assumes that you are familiar with how to [customize a log forwarding configuration](#customize-the-log-forwarding-configuration).
+> This example assumes you've deployed the CouchbaseCluster resource described at the [beginning of the tutorial](#cluster-config-log-forwarding). It also assumes that you are familiar with how to [customize a log forwarding configuration](#customize-the-log-forwarding-configuration).
 
-This example shows you how to forward audit logs to an Amazon S3 endpoint. The main area to manage is the output configuration, so in the following example we’ve simply included the default configuration file and then appended an output to the S3 cloud object store:
+This example shows you how to forward audit logs to an Amazon S3 endpoint. The main area to manage is the output configuration, so in the following example we've simply included the default configuration file and then appended an output to the S3 cloud object store:
 
 ```yaml
 apiVersion: v1
@@ -530,7 +530,7 @@ stringData:
 ## [](#log-redaction-in-flight)Log Redaction In-flight
 
 > [!NOTE]
-> This example assumes you’ve deployed the CouchbaseCluster resource described at the [beginning of the tutorial](#cluster-config-log-forwarding). It also assumes that you are familiar with how to [customize a log forwarding configuration](#customize-the-log-forwarding-configuration).
+> This example assumes you've deployed the CouchbaseCluster resource described at the [beginning of the tutorial](#cluster-config-log-forwarding). It also assumes that you are familiar with how to [customize a log forwarding configuration](#customize-the-log-forwarding-configuration).
 
 Fluent Bit provides some very powerful facilities to mutate the log lines before they even leave the container. These facilities can be effectively utilized to redact sensitive information from log events.
 
@@ -552,7 +552,7 @@ The _first approach_ can be provided by a simple [grep filter](https://docs.flue
 
 However, the Couchbase-supplied [log processor image](https://hub.docker.com/r/couchbase/fluent-bit) provides optional support for the _second approach,_ whereby the contents of the `<ud>…​</ud>` tags are hashed before the log events are forwarded to standard console output or other locations. This selective log redaction is currently facilitated by a [LUA filter](https://docs.fluentbit.io/manual/pipeline/filters/lua) that leverages a Couchbase-supplied [LUA script](https://github.com/couchbase/couchbase-fluent-bit/blob/main/redaction/redaction.lua) and a third-party [SHA-1 hashing library](https://github.com/mpeterv/sha1), both of which are included in the default log processor image.
 
-Log redaction isn’t enabled by default, so we’ll need to enable it by customizing the log forwarding configuration. The following example generates a sample message to redact using the Fluent Bit dummy plugin:
+Log redaction isn't enabled by default, so we'll need to enable it by customizing the log forwarding configuration. The following example generates a sample message to redact using the Fluent Bit dummy plugin:
 
 ```none
 # Simple test generator for redaction

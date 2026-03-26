@@ -2,7 +2,7 @@
 title: Creating a User-Defined Function
 description: How to create a user-defined function to call your JavaScript function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/create-user-defined-function.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:guides:create-user-defined-function.adoc[]
 ---
 
@@ -38,7 +38,7 @@ which will display the `Add Function` screen.
 4. Fill in the `Function Name` of your SQL++ User-Defined Function.
 5. Leave the `Parameters` as they are.  
 > [!NOTE]  
-> The `…​` in the parameters box denotes a variable length list of parameters. This is why you don’t have to fill in this field.
+> The `…​` in the parameters box denotes a variable length list of parameters. This is why you don't have to fill in this field.
 6. Select `Javascript` for the function type. A field will appear in the dialog with a list of available libraries in the namespace you selected.  
 ![add function dialog switch to javascript](_images/javascript-udfs/add-function-dialog-switch-to-javascript.png)  
 From this list select the library containing your function.

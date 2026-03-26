@@ -2,7 +2,7 @@
 title: Analytics Links
 description: In the Analytics Workbench, you can create and manage external links.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/analytics-service/analytics-links.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:analytics-service/analytics-links.adoc[]
 ---
 
@@ -111,4 +111,4 @@ To delete a link:
 
 1. In the list of existing links, click on the Trash icon () next to the link entry.  
 A flyout appears, asking if you are sure that you want to delete the link.
-2. In the provided field, type the name of the link you’re deleting and click **Drop**.
+2. In the provided field, type the name of the link you're deleting and click **Drop**.

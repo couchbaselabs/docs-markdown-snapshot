@@ -1,7 +1,7 @@
 ---
 title: backup-service-nodes-threads-map
 editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-backup-service-nodes-threads-map.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbcli/couchbase-cli-backup-service-nodes-threads-map.adoc[]
 ---
 
@@ -28,15 +28,15 @@ Manage backup service nodes threads map.
 
 \--get
 
-Get the backup service’s nodes threads map.
+Get the backup service's nodes threads map.
 
 \--set
 
-Set a new backup service’s nodes threads map.
+Set a new backup service's nodes threads map.
 
 \--add
 
-Add a new entry in the backup service’s nodes threads map.
+Add a new entry in the backup service's nodes threads map.
 
 ## [](#options)OPTIONS
 
@@ -90,7 +90,7 @@ Currently, only the following key types are supported: - RSA - DSA
 
 ## [](#examples)EXAMPLES
 
-To retrieve the backup service’s nodes threads map:
+To retrieve the backup service's nodes threads map:
 
 $ couchbase-cli  backup-service  -c 127.0.0.1:8091 -u Administrator -p asdasd \
 nodes-threads --get
@@ -99,9 +99,9 @@ Node UUID                         | Threads
 23ec390488495fec2074119a61d2eb91  | 3
 76dc6557ed98ac7e78e70cf0d28921f3  | 4
 
-This will show you each backup service node’s UUID and the number of threads allocated to it.
+This will show you each backup service node's UUID and the number of threads allocated to it.
 
-To set the backup service’s nodes threads map:
+To set the backup service's nodes threads map:
 
 $ couchbase-cli  backup-service  -c 127.0.0.0:8091 -u Administrator -p asdasd \
 nodes-threads --set --node 23ec390488495fec2074119a61d2eb91 --threads 3
@@ -109,13 +109,13 @@ SUCCESS: Set node threads map
 
 This will overwrite the map in the backup service with the number of threads allocated to the backup service node with UUID `23ec390488495fec2074119a61d2eb91` to 3.
 
-To add a new entry to the backup service’s nodes threads map:
+To add a new entry to the backup service's nodes threads map:
 
 $ couchbase-cli  backup-service  -c 127.0.0.1:8091 -u Administrator -p asdasd \
 nodes-threads --add --node 76dc6557ed98ac7e78e70cf0d28921f3 --threads 4
 SUCCESS: Updated node threads map
 
-This will add a new entry to the backup service’s nodes threads map, allocating 4 threads to the backup service node with UUID `76dc6557ed98ac7e78e70cf0d28921f3`.
+This will add a new entry to the backup service's nodes threads map, allocating 4 threads to the backup service node with UUID `76dc6557ed98ac7e78e70cf0d28921f3`.
 
 ## [](#environment-and-configuration-variables)ENVIRONMENT AND CONFIGURATION VARIABLES
 

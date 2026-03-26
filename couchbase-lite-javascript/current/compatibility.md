@@ -2,7 +2,7 @@
 title: Compatibility
 description: Couchbase Lite JavaScript -- platform and version compatibility information
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/compatibility.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::compatibility.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:couchbase-lite-javascript::compatibility.adoc[]
 
 > Description — _Couchbase Lite JavaScript — platform and version compatibility information_  
 > _Abstract — This content identifies the compatibility of Couchbase Lite JavaScript with Sync Gateway and Capella App Services, together with the browsers upon which it is supported._  
-> Related Content — [Release Notes](releasenotes.md) | [Known Limitations](known-limitations.md) | [Supported Browsers](supported-browsers.md) | [What’s New](whats-new.md)
+> Related Content — [Release Notes](releasenotes.md) | [Known Limitations](known-limitations.md) | [Supported Browsers](supported-browsers.md) | [What's New](whats-new.md)
 
 ## [](#overview)Overview
 

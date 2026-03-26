@@ -2,7 +2,7 @@
 title: Full Installation
 description: Installation instructions for the Couchbase Python Client.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.3@python-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -90,7 +90,7 @@ $ sudo -H python3 -m pip install couchbase
 This SDK runs on top of the C++ core, Couchbase++, which requires a C++ 17 compiler, such as GCC 8.0, or more recent versions. Older versions of Debian and Ubuntu ship with an older version of GCC.
 
 > [!IMPORTANT]
-> While workarounds are available for installing a newer build chain, some may not be within your company’s policy, so also take a look at container options — such as the unofficial Docker builds provided in the Python SDK 4.x examples folder [here](https://github.com/couchbase/couchbase-python-client/tree/master/examples/dockerfiles), which can at least be used as a reference to a known working set-up.
+> While workarounds are available for installing a newer build chain, some may not be within your company's policy, so also take a look at container options — such as the unofficial Docker builds provided in the Python SDK 4.x examples folder [here](https://github.com/couchbase/couchbase-python-client/tree/master/examples/dockerfiles), which can at least be used as a reference to a known working set-up.
 
 Check that you have a new enough release of Python.
 
@@ -115,7 +115,7 @@ $ python3 -m pip install couchbase
 This SDK runs on top of the C++ core, Couchbase++, which requires a C++ 17 compiler, such as GCC 8.0, or more recent versions. Older versions of Debian and Ubuntu ship with an older version of GCC.
 
 > [!IMPORTANT]
-> Workarounds are available for installing a newer build chain with [EPEL](https://fedoraproject.org/wiki/EPEL), but this may not be within your company’s policy, so also take a look at container options — such as the unofficial Docker builds provided in the Python SDK 4.x examples folder [here](https://github.com/couchbase/couchbase-python-client/tree/master/examples/dockerfiles), which can at least be used as a reference to a known working set-up.
+> Workarounds are available for installing a newer build chain with [EPEL](https://fedoraproject.org/wiki/EPEL), but this may not be within your company's policy, so also take a look at container options — such as the unofficial Docker builds provided in the Python SDK 4.x examples folder [here](https://github.com/couchbase/couchbase-python-client/tree/master/examples/dockerfiles), which can at least be used as a reference to a known working set-up.
 
 Check that you have a new enough release of Python, and if not then investigate the [EPEL](https://fedoraproject.org/wiki/EPEL) repository.
 
@@ -143,7 +143,7 @@ Install the latest Python SDK:
 $ python3 -m pip install couchbase
 ```
 
-Note, the OpenSSL version needed for TLS 1.3 (mandated for secure connection to Couchbase Capella) is openssl 1.1.1\. This is newer than the one available in CentOS 7, and updated your OS’s libraries is beyond the scope of this documentation — but this can be installed through the already-mentioned EPEL repository. Once openssl (and other dependencies) are updated, an already-installed Couchbase Python SDK can be re-installed to use the libraries with:
+Note, the OpenSSL version needed for TLS 1.3 (mandated for secure connection to Couchbase Capella) is openssl 1.1.1\. This is newer than the one available in CentOS 7, and updated your OS's libraries is beyond the scope of this documentation — but this can be installed through the already-mentioned EPEL repository. Once openssl (and other dependencies) are updated, an already-installed Couchbase Python SDK can be re-installed to use the libraries with:
 
 ```console
 $ python3 -m pip install --force-reinstall --no-cache couchbase
@@ -173,7 +173,7 @@ python -m pip install couchbase
 The standard Python distributions for Windows include OpenSSL DLLs, as PIP and the inbuilt `ssl` module require it for correct operation. Prior to version 4.1.9 of the Python SDK, the binary wheels for Windows are built against OpenSSL 1.1\. Version 4.1.9 and beyond statically link against BoringSSL thus removing the OpenSSL requirement.
 
 > [!NOTE]
-> If you require a version that doesn’t have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo.
+> If you require a version that doesn't have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo.
 
 To use the SDK within the Anaconda / Miniconda platform, make sure the prerequisites for the desired Operating System are met:
 
@@ -198,7 +198,7 @@ python -m pip install couchbase
 ```
 
 > [!NOTE]
-> If you require a version that doesn’t have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo.
+> If you require a version that doesn't have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo.
 
 ### [](#pypy-support)PyPy support
 

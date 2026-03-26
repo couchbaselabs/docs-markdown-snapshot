@@ -3,7 +3,7 @@ title: Cluster Scaling
 description: Clusters can be multi-dimensionally scaled by adding or removing
   Service instances and whole Services, and by adjusting Service instance sizes.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/scale-database.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:scale-database.adoc[]
 ---
 
@@ -37,7 +37,7 @@ You can determine the capacity of an individual Service by multiplying these fac
 * The number of instances, or nodes, that make up a Service
 * The size of those instances, including VM instance type and storage.
 
-Each of these factors can be independently scaled. Adding additional instances to a Service is scaling out. Increasing the size of a Service’s instances is scaling up. Removing instances is scaling in. Reducing the size of instances is scaling down. These scaling techniques, together with the ability to add and remove whole Services within a cluster, enable Multi-Dimensional Scaling.
+Each of these factors can be independently scaled. Adding additional instances to a Service is scaling out. Increasing the size of a Service's instances is scaling up. Removing instances is scaling in. Reducing the size of instances is scaling down. These scaling techniques, together with the ability to add and remove whole Services within a cluster, enable Multi-Dimensional Scaling.
 
 > [!TIP]
 > Node RAM Allocations
@@ -52,13 +52,13 @@ Each of these factors can be independently scaled. Adding additional instances t
 
 Many of the scaling actions result in the addition or removal of nodes from a cluster. Even changing a Service instance size adds new nodes to the cluster, since Capella swaps out the underlying virtual machines for new ones. After performing any of these procedures, the cluster rebalances to accommodate the new number of active member nodes.
 
-Cluster rebalance is a process that’s required for redistributing data and indexes among available nodes whenever nodes are added or removed. During rebalance, the cluster continues to Service requests for data while the cluster map is correspondingly updated and distributed to clients.
+Cluster rebalance is a process that's required for redistributing data and indexes among available nodes whenever nodes are added or removed. During rebalance, the cluster continues to Service requests for data while the cluster map is correspondingly updated and distributed to clients.
 
 Capella maintains consistent availability and performance during rebalancing. See the [rebalance documentation](../../server/current/learn/clusters-and-availability/rebalance.md) to learn about how each Service behaves during a rebalance. It can help you assess the impacts of this process on your deployments.
 
 ## [](#Storage-Auto-Expansion)Storage Auto-Expansion
 
-Couchbase Capella’s storage auto-expansion can prevent downtime and Service interruptions by automatically expanding your storage when it starts to get full. Capella manages the entire scaling process and underlying infrastructure changes without manual intervention.
+Couchbase Capella's storage auto-expansion can prevent downtime and Service interruptions by automatically expanding your storage when it starts to get full. Capella manages the entire scaling process and underlying infrastructure changes without manual intervention.
 
 Auto-expansion behaves differently depending on the chosen cloud provider:
 
@@ -78,12 +78,12 @@ With storage auto-expansion turned on, Couchbase bills you only for the addition
 
 ### [](#AWS-Only-Storage-Limitations)AWS Storage Scaling Limitations
 
-If you’re hosting your cluster on AWS, you must be aware of the storage scaling limitations. AWS allows you to change your IOPS or increase storage capacity once every 6 hours. For more information about storage scaling limitations, see the [AWS Limitations Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/modify-volume-requirements.html#elastic-volumes-limitations).
+If you're hosting your cluster on AWS, you must be aware of the storage scaling limitations. AWS allows you to change your IOPS or increase storage capacity once every 6 hours. For more information about storage scaling limitations, see the [AWS Limitations Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/modify-volume-requirements.html#elastic-volumes-limitations).
 
 If you need to scale your storage during these 6 hours, Capella replaces and [rebalances](../../server/current/learn/clusters-and-availability/rebalance.md) the nodes. Rebalancing can result in data movement. Depending on the size of your data and available computing resources, this can affect performance until the process completes.
 
 > [!NOTE]
-> Couchbase Capella does not automatically decrease storage capacity. However, Capella allows for manual decreases in storage capacity by replacing and rebalancing nodes. While this approach provides greater flexibility, it can result in data movement and a slower process depending on the size of your data and available computing resources. It’s essential to consider the effects of decreasing storage capacity before making any changes to make sure the stability and performance of your systems are not compromised.
+> Couchbase Capella does not automatically decrease storage capacity. However, Capella allows for manual decreases in storage capacity by replacing and rebalancing nodes. While this approach provides greater flexibility, it can result in data movement and a slower process depending on the size of your data and available computing resources. It's essential to consider the effects of decreasing storage capacity before making any changes to make sure the stability and performance of your systems are not compromised.
 
 ### [](#Azure-Only-Storage-Limitations)Azure Storage Scaling Limitations
 
@@ -92,7 +92,7 @@ If you need to scale your storage during these 6 hours, Capella replaces and [re
 
 All Azure clusters have auto-expansion turned off by default. You can turn on Azure storage auto-expansion during cluster creation or after you create a cluster. To change the storage auto-expansion settings for an existing cluster in the Capella UI, open the cluster page and click **Settings** **Services**. Each Service Group has its own Auto-Expansion toggle.
 
-When a cluster hosted with Azure auto expands, Capella doubles the current storage up to the maximum available per node. For the maximum storage that’s available for clusters hosted with Azure, see [Microsoft Azure — Storage](../reference/azure.md#storage).
+When a cluster hosted with Azure auto expands, Capella doubles the current storage up to the maximum available per node. For the maximum storage that's available for clusters hosted with Azure, see [Microsoft Azure — Storage](../reference/azure.md#storage).
 
 ### [](#IOPS-Defaults)IOPS Defaults
 
@@ -163,7 +163,7 @@ You can find a list of all your cluster events by opening the Activity Log:
 
 Figure 2\. Cluster Activity Log
 
-When scaling your cluster, you’ll see these events:
+When scaling your cluster, you'll see these events:
 
 * A **Cluster Configuration Updated** event when you first request any changes.
 * A **Cluster Scaling Complete** event when Capella has finished applying the new configuration.

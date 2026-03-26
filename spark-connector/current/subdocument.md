@@ -3,7 +3,7 @@ title: Sub-document DataFrame KV persistence
 description: Use sub-document KV writes with Spark DataFrames to update parts of
   JSON documents efficiently.
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/subdocument.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:spark-connector::subdocument.adoc[]
 ---
 
@@ -27,7 +27,7 @@ For a mutateIn call, up to 16 sub-document 'specs' can be provided. A spec has t
 For Spark, the core idea is that the DataFrame be setup by the application so that:
 
 * As usual with KV DataFrame writes, each row represents a single document, which will be written with a single mutateIn KV call by the Spark connector.
-* Each column represents a sub-document spec to be performed by every mutateIn call. The column title combines the operation type and the path it acts on with format "operation:path" e.g. "upsert:user.name". The "upsert:" prefix is optional as it’s the default.
+* Each column represents a sub-document spec to be performed by every mutateIn call. The column title combines the operation type and the path it acts on with format "operation:path" e.g. "upsert:user.name". The "upsert:" prefix is optional as it's the default.
 * Each cell represents the value that will be written by that sub-document spec to that document.
 
 An example will help make this clear. Here we take an incoming DataFrame, manipulate it to specify the sub-document specs we want, and then write it to Couchbase:
@@ -110,7 +110,7 @@ transformedData.write
   .save()
 ```
 
-To illustrate how some of the other operations work, we’ll use this sample existing document:
+To illustrate how some of the other operations work, we'll use this sample existing document:
 
 ```json
 {

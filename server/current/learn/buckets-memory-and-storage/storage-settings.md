@@ -3,7 +3,7 @@ title: Storage Properties
 description: Couchbase Server stores certain items on disk as well as in memory
   to provide persistence and enhance reliability.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/storage-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:buckets-memory-and-storage/storage-settings.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:server:learn:buckets-memory-and-storage/storage-settings.adoc[]
 
 ## [](#understanding-couchbase-storage)Understanding Couchbase Storage
 
-In addition to storing data in memory, Couchbase Server also stores data in Couchbase buckets on disk. Saving data to disk provides persistence so that data is not lost if a node restarts or fails. It also lets your data sets exceed the limits of the memory in your cluster. Couchbase Server restores data that’s not in memory from disk when needed.
+In addition to storing data in memory, Couchbase Server also stores data in Couchbase buckets on disk. Saving data to disk provides persistence so that data is not lost if a node restarts or fails. It also lets your data sets exceed the limits of the memory in your cluster. Couchbase Server restores data that's not in memory from disk when needed.
 
 Ephemeral buckets and their items exist only in memory and are never written to disk. For more information, see [Buckets](buckets.md).
 
@@ -50,13 +50,13 @@ You can delete items either explicitly or by setting a time to live (TTL) value.
 
 After deletion, Couchbase Server keeps a tombstone as a record (see the next section for more information).
 
-You can set an item’s TTL directly on the item or at the bucket level. For more information, see [Expiration](../data/expiration.md).
+You can set an item's TTL directly on the item or at the bucket level. For more information, see [Expiration](../data/expiration.md).
 
 ## [](#tombstones)Tombstones
 
 A tombstone records an item removed from the database. Couchbase Server uses tombstones to maintain consistency between nodes and clusters. It creates tombstones when you:
 
-* Delete an individual document. Couchbase Server creates a tombstone that contains the document’s key and metadata.
+* Delete an individual document. Couchbase Server creates a tombstone that contains the document's key and metadata.
 * Drop a collection. Couchbase Server creates a tombstone that includes the collection ID, scope ID, and a manifest ID that records the drop event.  
 When you drop a collection, Couchbase Server deletes all documents in it. It does not maintain tombstones for those deleted documents. Couchbase Server also deletes any document tombstones that were in the collection before you dropped it. After you drop a collection, only the collection tombstone remains. Couchbase Server replicates the collection tombstone as a single message (ordered with respect to mutations in the vBucket) to replicas and other DCP clients. This message notifies recipients that you dropped the collection. Each recipient is then responsible for purging anything it still contains from the dropped collection.
 
@@ -75,7 +75,7 @@ When you initialize a node, you choose where Couchbase Server stores data for mo
 
 In addition, you can use local paths for backup repositories. See [Repositories](../services-and-indexes/services/backup-service.md#repositories) for more information.
 
-Couchbase Server has a default storage location for logs that’s platform-specific. For example, on Linux, the default location is `/opt/couchbase/var/lib/couchbase/logs`.
+Couchbase Server has a default storage location for logs that's platform-specific. For example, on Linux, the default location is `/opt/couchbase/var/lib/couchbase/logs`.
 
 For information about setting data paths, see [Initialize a Node](../../manage/manage-nodes/initialize-node.md).
 
@@ -83,7 +83,7 @@ For information about setting data paths, see [Initialize a Node](../../manage/m
 
 Running out of disk space on any filesystem can cause errors. In particular, running out of disk space on the filesystem containing the Data Service storage path can make recovery difficult. Recovery problems could lead to data loss.
 
-By default, Couchbase Server alerts you if the filesystem containing the data service’s storage path becomes 75% full. It begin alerting you when disk containing this path reaches within 10% of the threshold set by the `maxDataDiskUsedPerc` setting, which defaults to 85%.
+By default, Couchbase Server alerts you if the filesystem containing the data service's storage path becomes 75% full. It begin alerting you when disk containing this path reaches within 10% of the threshold set by the `maxDataDiskUsedPerc` setting, which defaults to 85%.
 
 See [Alerts](../../manage/manage-settings/configure-alerts.md) for more information about alerts. You can change how full the disk becomes before triggering this alert by changing the [maxDataDiskUsedPerc](../../rest-api/rest-cluster-email-notifications.md#maxdatadiskusedperc) alert limit.
 
@@ -96,7 +96,7 @@ When the filesystem reaches the disk use limit, the Data Service stops writing t
 To learn how to set the disk usage limit using the Couchbase Server Web Console, see [Data Settings](../../manage/manage-settings/general-settings.md#data-settings). To set the limits using the REST API, see [Set Data Disk Use Limits](../../rest-api/disk-usage-limits.md).
 
 > [!NOTE]
-> This limit applies only to the Data Service. If other service’s data paths share the same filesystem, they can continue to write to it even if the Data Service stops writing.
+> This limit applies only to the Data Service. If other service's data paths share the same filesystem, they can continue to write to it even if the Data Service stops writing.
 
 ## [](#append-only-writes-and-auto-compaction)Append-Only Writes and Auto-Compaction
 
@@ -110,6 +110,6 @@ For all information about using the REST API for compaction, see the [Compaction
 
 ## [](#storage-settings-ejection-policy)Ejection Policy
 
-The ejection policy (also known as the eviction method) controls how Couchbase Server prevents data loss due to running out of memory to store data. It controls whether and how it ejects data from memory when the bucket’s memory quota is exhausted. The policies you can set depend on the type of the bucket. See [Ejection](memory.md#ejection) for more information.
+The ejection policy (also known as the eviction method) controls how Couchbase Server prevents data loss due to running out of memory to store data. It controls whether and how it ejects data from memory when the bucket's memory quota is exhausted. The policies you can set depend on the type of the bucket. See [Ejection](memory.md#ejection) for more information.
 
 You set the policy when creating the bucket and can change it later using the REST API, command-line interface, or Couchbase Server Web Console. See [Create a Bucket](../../manage/manage-buckets/create-bucket.md) for more information.

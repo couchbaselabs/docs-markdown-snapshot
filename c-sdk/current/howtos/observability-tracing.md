@@ -3,7 +3,7 @@ title: Request Tracing
 description: Collecting information about an individual request and its response
   is an essential feature of every observability stack.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/observability-tracing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:c-sdk:howtos:observability-tracing.adoc[]
 ---
 
@@ -92,7 +92,7 @@ The tracer holds on to a pointer to your external tracer, and will callback to y
 
 ### [](#using-opentelemetry-tracing)Using OpenTelemetry tracing
 
-There is a full example for using OpenTelemetry [here](https://github.com/couchbase/libcouchbase/blob/master/example/tracing/otel%5Ftracing.cc). Let’s go through the steps involved. We will want to use an `opentelemetry::trace::Tracer`. To do that, we will need an exporter, a processor and a provider. Since the provider will return an `opentelemetry::nostd::shared_ptr<opentelemetry::trace::Tracer>`, we will need to wrap that in a simple struct so we can pass that struct into the lcb tracer as a void pointer.
+There is a full example for using OpenTelemetry [here](https://github.com/couchbase/libcouchbase/blob/master/example/tracing/otel%5Ftracing.cc). Let's go through the steps involved. We will want to use an `opentelemetry::trace::Tracer`. To do that, we will need an exporter, a processor and a provider. Since the provider will return an `opentelemetry::nostd::shared_ptr<opentelemetry::trace::Tracer>`, we will need to wrap that in a simple struct so we can pass that struct into the lcb tracer as a void pointer.
 
 ```cpp
 // wrap span and tracer in struct, so we can pass in void* to the lcbtrace_TRACER

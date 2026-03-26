@@ -2,7 +2,7 @@
 title: Replication Monitoring and Statistics
 description: Monitoring inter-Sync Gateway replications
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/sync-inter-syncgateway-monitor.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::sync-inter-syncgateway-monitor.adoc[]
 ---
 
@@ -85,7 +85,7 @@ curl --location --request GET 'http://localhost:4985/db1/_replicationStatus/db1-
 
 ### [](#retrieving-status-data-for-all-replications)Retrieving Status Data for All Replications
 
-Use the Admin REST API’s `_replicationStatus` endpoint to access replication status data for all replications run, or running, on any node within the cluster. The JSON response comprises an array of results, one per replication.
+Use the Admin REST API's `_replicationStatus` endpoint to access replication status data for all replications run, or running, on any node within the cluster. The JSON response comprises an array of results, one per replication.
 
 You can easily filter the results using the query string: `` ?activeOnly=false&includeConfig=true&localOnly=false&includeError=true` ``
 
@@ -110,7 +110,7 @@ curl --location --request GET "http://localhost:4985/db1-local/_replicationStatu
 --header 'Content-Type: application/json' \
 ```
 
-| **1** | This example’s criteria selects replications with any status (including errors), on local and remote nodes. The returned status details also include replication definition details. |
+| **1** | This example's criteria selects replications with any status (including errors), on local and remote nodes. The returned status details also include replication definition details. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 ```json

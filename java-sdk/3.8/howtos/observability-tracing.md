@@ -3,7 +3,7 @@ title: Request Tracing
 description: Collecting information about an individual request and its response
   is an essential feature of every observability stack.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/howtos/pages/observability-tracing.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.8@java-sdk:howtos:observability-tracing.adoc[]
 ---
 
@@ -76,7 +76,7 @@ The built-in tracer is great if you do not have a centralized monitoring system,
 
 ### [](#exporting-to-opentelemetry)Exporting to OpenTelemetry
 
-This method exports tracing telemetry in OpenTelemetry’s standard format (OTLP), which can be sent to any OTLP-compatible receiver such as Jaeger, Zipkin or `opentelemetry-collector`.
+This method exports tracing telemetry in OpenTelemetry's standard format (OTLP), which can be sent to any OTLP-compatible receiver such as Jaeger, Zipkin or `opentelemetry-collector`.
 
 Add this to your Maven, or the equivalent to your build tool of choice:
 

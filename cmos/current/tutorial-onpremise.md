@@ -1,7 +1,7 @@
 ---
 title: Configure CMOS for On-premises deployment
 editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/tutorial-onpremise.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cmos::tutorial-onpremise.adoc[]
 ---
 
@@ -53,7 +53,7 @@ Figure 2\. CMOS landing image
 
 #### [](#add-cluster)Add Cluster
 
-If you don’t have an existing Couchbase cluster setup, you can install it from [here](https://docs.couchbase.com/server/current/install/getting-started-docker.html#section%5Fjvt%5Fzvj%5F42b). To monitor a Couchbase cluster, you can add it using the add cluster option on the landing page.
+If you don't have an existing Couchbase cluster setup, you can install it from [here](https://docs.couchbase.com/server/current/install/getting-started-docker.html#section%5Fjvt%5Fzvj%5F42b). To monitor a Couchbase cluster, you can add it using the add cluster option on the landing page.
 
 ![add cluster vm](_images/add-cluster-vm.png) 
 
@@ -110,7 +110,7 @@ From the Log browser, you can enter a custom Loki query or select appropriate la
 
 Figure 10\. Loki log browser image
 
-After that select the “Show logs” to view logs. You can also build [custom Grafana dashboards](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#step-3-create-a-dashboard) based on your needs.
+After that select the "Show logs" to view logs. You can also build [custom Grafana dashboards](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#step-3-create-a-dashboard) based on your needs.
 
 ![loki logs](_images/loki-logs.png) 
 

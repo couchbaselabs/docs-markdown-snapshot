@@ -3,7 +3,7 @@ title: Run a Geospatial Search Query with the Web Console
 description: Search for geospatial data in your Couchbase Server cluster with a
   compatible Search index and the Couchbase Server Web Console.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/geo-search-ui.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:search:geo-search-ui.adoc[]
 ---
 
@@ -100,4 +100,4 @@ For example, the following query searches a geospatial field, `geo`, for any loc
 
 You can [customize your Search index](customize-index.md) to improve search results and performance.
 
-If you want to add autocomplete to your cluster’s search, see [Use Autocomplete with the Search Service](search-query-auto-complete.md).
+If you want to add autocomplete to your cluster's search, see [Use Autocomplete with the Search Service](search-query-auto-complete.md).

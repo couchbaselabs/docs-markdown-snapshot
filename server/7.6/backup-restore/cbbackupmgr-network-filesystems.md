@@ -1,7 +1,7 @@
 ---
 title: cbbackupmgr network filesystems
 editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/backup-restore/pages/cbbackupmgr-network-filesystems.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:backup-restore:cbbackupmgr-network-filesystems.adoc[]
 ---
 
@@ -18,7 +18,7 @@ A document which covers some important topics related to using cbbackupmgr with 
 
 ## [](#performance)PERFORMANCE
 
-The cbbackupmgr tool uses SQLite when storing data on disk, SQLite has a read-modify-write update pattern; this means that for each key we insert into our SQLite index we have to perform a read to the underlying storage. For local filesystems, this isn’t significantly expensive because the operating systems filesystem cache is extremely likely to cache these repeated reads. This isn’t always the case for network filesystems.
+The cbbackupmgr tool uses SQLite when storing data on disk, SQLite has a read-modify-write update pattern; this means that for each key we insert into our SQLite index we have to perform a read to the underlying storage. For local filesystems, this isn't significantly expensive because the operating systems filesystem cache is extremely likely to cache these repeated reads. This isn't always the case for network filesystems.
 
 On the most commonly used network filesystems, these reads will not be cached meaning the underlying client must perform one or more network operations resulting in significantly higher latency than would be experienced when using a local filesystem.
 

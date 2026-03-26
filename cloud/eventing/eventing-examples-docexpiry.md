@@ -3,7 +3,7 @@ title: Create Documents After Expiration
 description: When a document in an existing collection is about to expire, use
   the Eventing Service to create a new document in a different collection.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-docexpiry.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:eventing:eventing-examples-docexpiry.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:cloud:eventing:eventing-examples-docexpiry.adoc[]
 
 The `OnUpdate` JavaScript handler listens to mutations or data changes within a specified source collection. The Eventing Function calls a Timer, which executes a callback function before a document expires and retrieves a value from that document. This function then stores a document with the same key in a specified target collection.
 
-The original document in the source collection does not change when its value is copied. The document is then deleted folowing the bucket’s expiration date.
+The original document in the source collection does not change when its value is copied. The document is then deleted folowing the bucket's expiration date.
 
 ## [](#prerequisites)Prerequisites
 
@@ -58,7 +58,7 @@ To use a SQL++ statement in the Query Workbench:
 UPSERT INTO `bulk`.`data`.`source` (KEY, VALUE) VALUES ("SampleDocument2", {"a_key":"a_value"}, {"expiration":600});
 ```
 
-For information about setting a document’s expiration time with SQL++, see [Insert a document with expiration](../n1ql/n1ql-language-reference/insert.md#insert-document-with-expiration).
+For information about setting a document's expiration time with SQL++, see [Insert a document with expiration](../n1ql/n1ql-language-reference/insert.md#insert-document-with-expiration).
 
 The KV client method depends on your operating system.
 
@@ -222,7 +222,7 @@ function DocTimerCallback(context) {
 ```
 8. Click **Create function** to create your Eventing Function.
 
-The `OnUpdate` handler creates a Timer that fires 2 minutes before the document’s expiration time.
+The `OnUpdate` handler creates a Timer that fires 2 minutes before the document's expiration time.
 
 ### [](#deploy-the-eventing-function)Deploy the Eventing Function
 
@@ -232,7 +232,7 @@ Deploy your Eventing Function:
 2. Click **More Options (⋮)** next to **add\_timer\_before\_expiry**.
 3. Click **Deploy** to deploy your Function.
 
-After it’s deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
+After it's deployed, the Eventing Function executes on all existing documents and any documents you create in the future.
 
 ### [](#check-the-eventing-function-log)Check the Eventing Function Log
 

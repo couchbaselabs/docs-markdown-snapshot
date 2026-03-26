@@ -1,7 +1,7 @@
 ---
 title: Query
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/swift/develop/query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:mobile-travel-tutorial:swift/develop/query.adoc[]
 ---
 
@@ -128,9 +128,9 @@ catch {
 
 Try it out — Simple Query
 
-1. Log into the Travel Sample Mobile app as “demo” user and password as “password”
+1. Log into the Travel Sample Mobile app as "demo" user and password as "password"
 2. Tap on "+"" button to make a flight reservation
-3. In the “From” airport textfield, enter "DTW""
+3. In the "From" airport textfield, enter "DTW""
 4. Verify that the first item in the drop down list is "Detroit Metro Wayne Co""
 
 ![ios simple query](../../_images/ios_simple_query.gif) 
@@ -180,7 +180,7 @@ let hotelsExpr = Expression.property("hotels").from("bookmarkDS")
 let hotelIdExpr = Meta.id.from("hotelsDS")
 ```
 
-Next, we use a function expression to find document’s whose `\_id` property is in the `hotels` array. And build the join expression.
+Next, we use a function expression to find document's whose `\_id` property is in the `hotels` array. And build the join expression.
 
 ```swift
 let joinExpr = ArrayFunction.contains(hotelsExpr, value: hotelIdExpr)

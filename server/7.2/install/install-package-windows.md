@@ -3,7 +3,7 @@ title: Install Couchbase Server on Windows
 description: Couchbase Server can be installed on Windows Server for production
   use-cases, and Windows Desktop for development use-cases.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/install-package-windows.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:install:install-package-windows.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:7.2@server:install:install-package-windows.adoc[]
 
 Use the instructions on this page to install Couchbase Server on Windows platforms using Couchbase-provided MSI packages. The instructions support both Enterprise and Community [editions](https://www.couchbase.com/products/editions).
 
-If you’re upgrading an existing installation of Couchbase Server, refer to [Upgrading Couchbase Server](upgrade.md).
+If you're upgrading an existing installation of Couchbase Server, refer to [Upgrading Couchbase Server](upgrade.md).
 
 ## [](#before-you-install)Before You Install
 
@@ -25,9 +25,9 @@ Couchbase Server works out-of-the-box with most OS configurations. However, the 
 * You have _administrator privileges_. These are required, for installing Couchbase Server on Windows.
 * Your system meets the [minimum requirements](pre-install.md) and that your operating system version is [supported](install-platforms.md).  
 Windows Server is fully supported for production use-cases, while Windows Desktop is only supported for development use-cases.
-* You’re working from a clean system and that you’ve [uninstalled](install-uninstalling.md) any previous versions of Couchbase Server.  
-If you’re upgrading an existing installation of Couchbase Server, refer to [Upgrade](upgrade.md).
-* You’re not running any third-party anti-virus software during the installation process.
+* You're working from a clean system and that you've [uninstalled](install-uninstalling.md) any previous versions of Couchbase Server.  
+If you're upgrading an existing installation of Couchbase Server, refer to [Upgrade](upgrade.md).
+* You're not running any third-party anti-virus software during the installation process.
 * The Windows 10 Universal CRT is installed.  
 The Windows 10 Universal CRT is required to run Couchbase Server on Windows. This component is not included by default in versions of Windows earlier than Windows 10\. Make sure to download and install the [Update for Universal C Runtime in Windows](https://support.microsoft.com/en-us/help/2999226/update-for-universal-c-runtime-in-windows) if you are using one of these earlier versions of Windows.
 
@@ -62,9 +62,9 @@ You can change the folder by clicking the **Change…​** button, or click **Ne
 > [!NOTE]  
 > The destination folder will only contain the Couchbase Server application. Couchbase Server stores database files and other persistent data in `C:\Program Files\Couchbase`.
 9. Enterprise Edition: On the IP Version Selection screen, you can choose to configure Couchbase Server to use IPv6.  
-Unless you’re sure that you need to use IPv6, you should keep the default configuration (IPv4). Refer to the [IPv6 documentation](../manage/manage-nodes/manage-address-families.md) for more information.  
+Unless you're sure that you need to use IPv6, you should keep the default configuration (IPv4). Refer to the [IPv6 documentation](../manage/manage-nodes/manage-address-families.md) for more information.  
 Click **Next** to continue.
-10. Once you’re ready, click **Install** to begin the installation.  
+10. Once you're ready, click **Install** to begin the installation.  
 Some parts of the installation may cause Windows User Account Control to prompt for your explicit permission to install certain components. These are required components, so you must click **Yes** in order to successfully complete the installation.
 11. Once the installation completes, a web browser and access the Couchbase Web Console to [verify](testing.md) that the installation was successful and that the node is available.
 
@@ -84,7 +84,7 @@ To install Couchbase Server to a non-standard directory:
 start /wait msiexec /i package-name.msi /qn INSTALLDIR=C:\ my-install-dir  
 ```  
 > [!NOTE]  
-> If you don’t prepend `start /wait` to the command, `msiexec` immediately returns control to the command prompt and doesn’t wait for the installation to complete or report any errors. In this case, you may have to wait a minute or two for the actual installation to complete.
+> If you don't prepend `start /wait` to the command, `msiexec` immediately returns control to the command prompt and doesn't wait for the installation to complete or report any errors. In this case, you may have to wait a minute or two for the actual installation to complete.
 3. Once the installation completes, a web browser and access the Couchbase Web Console to [verify](testing.md) that the installation was successful and that the node is available.
 
 ## [](#next-steps)Next Steps

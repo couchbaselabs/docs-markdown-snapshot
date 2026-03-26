@@ -1,7 +1,7 @@
 ---
 title: Multi-Collection Behaviour
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-multi-collection-behaviour.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-multi-collection-behaviour.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:7.2@server:fts:fts-multi-collection-behaviour.adoc[]
 
 # Multi-Collection Behaviour
 
-Couchbase’s FTS service is the only service that can create indexes that span collections.
+Couchbase's FTS service is the only service that can create indexes that span collections.
 
 Multi-Collection Index: A user can search multi-collection indexes in the same way as that of a bucket-based index. Since a multi-collection index contains data from multiple source collections, it is helpful to know the source collection of every document [hit](fts-search-response-hits.md) in the search result.
 
@@ -43,11 +43,11 @@ curl -XPOST -H “Content-Type:application/json” - u
 }’
 ```
 
-* At search time, there is no validation to determine whether or not a collection with a given name exists. As a result, users won’t receive any validation errors for the incorrect collection names within the search request. See the below example:
+* At search time, there is no validation to determine whether or not a collection with a given name exists. As a result, users won't receive any validation errors for the incorrect collection names within the search request. See the below example:
 
 **Example**
 
-An incorrect collection name “XYZ” is used.
+An incorrect collection name "XYZ" is used.
 
 ```console
 curl -XPOST -H “Content-Type:application/json” - u

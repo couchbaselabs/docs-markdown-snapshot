@@ -3,7 +3,7 @@ title: Using Couchbase Transactions
 description: A practical guide to using Couchbase's distributed ACID
   transactions, via the .NET SDK.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.6@dotnet-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.6@dotnet-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc
 
 # Using Couchbase Transactions
 
-> A practical guide to using Couchbase’s distributed ACID transactions, via the .NET SDK. 
+> A practical guide to using Couchbase's distributed ACID transactions, via the .NET SDK. 
 
 This guide will show you examples of how to perform multi-document ACID (atomic, consistent, isolated, and durable) database transactions within your application, using the Couchbase .NET SDK and transactions library.
 
@@ -66,7 +66,7 @@ You can also install the library with the dotnet CLI.
 $ dotnet add package Couchbase.Transactions --version 1.1.0
 ```
 
-If you’re using a .csproj file, add this `PackageReference`:
+If you're using a .csproj file, add this `PackageReference`:
 
 ```xml
 <PackageReference Include="Couchbase.Transactions" Version="1.1.0" />
@@ -242,7 +242,7 @@ await _transactions.RunAsync(async ctx =>
 }).ConfigureAwait(false);
 ```
 
-`GetAsync` may return a `TransactionFailedException` if a document doesn’t exist, for example. It is provided as a convenience method, so a developer does not have to check for `null` if the document must exist for the transaction to succeed — which is the case with `GetAsyncOptional`.
+`GetAsync` may return a `TransactionFailedException` if a document doesn't exist, for example. It is provided as a convenience method, so a developer does not have to check for `null` if the document must exist for the transaction to succeed — which is the case with `GetAsyncOptional`.
 
 Gets will "Read Your Own Writes", e.g. this will succeed:
 
@@ -418,7 +418,7 @@ await transactions.RunAsync(async ctx => {
 > [!IMPORTANT]
 > Query Mode
 > 
-> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user’s query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
+> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user's query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user's query permissions. These may or may not be different to the user's data permissions; if they are different, you may get unexpected results.
 
 ## [](#configuration)Configuration
 

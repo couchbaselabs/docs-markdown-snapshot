@@ -1,7 +1,7 @@
 ---
 title: What&#8217;s New?
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/whats-new.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.7@operator::whats-new.adoc[]
 ---
 
@@ -14,7 +14,7 @@ Autonomous Operator 2.7 release provides full support for Couchbase Server 7.6, 
 
 ## [](#couchbase-server-7-6)Couchbase Server 7.6
 
-See [What’s New in Version 7.6](../../server/7.6/introduction/whats-new.md) for full details, but the following new functionality is available in Operator 2.7, for clusters running Server 7.6:
+See [What's New in Version 7.6](../../server/7.6/introduction/whats-new.md) for full details, but the following new functionality is available in Operator 2.7, for clusters running Server 7.6:
 
 * Data Service - Minimum Replica Count: Set with [couchbaseclusters.spec.cluster.data.minReplicasCount](resource/couchbasecluster.md#couchbaseclusters-spec-cluster-data-minreplicascount).
 * Data Service - Bucket Rank: Set with [couchbasebuckets.spec.rank](resource/couchbasebucket.md#couchbasebuckets-spec-rank).

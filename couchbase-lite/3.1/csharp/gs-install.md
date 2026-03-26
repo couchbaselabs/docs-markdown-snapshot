@@ -2,7 +2,7 @@
 title: Installing Couchbase Lite on .Net
 description: How to install Couchbase Lite on .Net
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/csharp/pages/gs-install.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@couchbase-lite:csharp:gs-install.adoc[]
 ---
 
@@ -25,7 +25,7 @@ For experienced developers, this is all you need to add _Couchbase Lite for C#.N
   * Enterprise Edition — `Couchbase.Lite.Enterprise` package for 3.1.10
 3. Within your app, include a call the relevant `Activate()` function inside of the class that is included in the support assembly.
 
-That’s it!  
+That's it!  
 You should be ready to build you app using this version. The rest of this content contains more detail, for those who want tp know more about the install or who encountered issues
 
 ## [](#install-methods)Install Methods

@@ -2,7 +2,7 @@
 title: "Function: cascadeKvDeleteWithDoc"
 description: Perform a cascade delete operation using just the Data Service (or KV).
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-cascadeKvDeleteWithDoc.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:eventing:eventing-handler-cascadeKvDeleteWithDoc.adoc[]
 ---
 
@@ -105,11 +105,11 @@ INPUT: KEY: real::1
 Steps to run:
 
 * Deploy the function
-* Then add the two test documents via the UI’s doc editor.
-* Then delete the proxy:real::1 doc via the UI’s doc editor.
+* Then add the two test documents via the UI's doc editor.
+* Then delete the proxy:real::1 doc via the UI's doc editor.
 * The OnDelete() function will:
 
-  * Read and store the "real" doc for processing based on the "real" doc’s internal data.
+  * Read and store the "real" doc for processing based on the "real" doc's internal data.
   * Perform a cascade delete of the "real" doc.
 
 ```json

@@ -3,7 +3,7 @@ title: Upgrade an Offline Cluster
 description: A multi-node cluster can most simply be upgraded when entirely
   offline; meaning that it is not serving data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/upgrade-cluster-offline.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:upgrade-cluster-offline.adoc[]
 ---
 
@@ -29,7 +29,7 @@ Proceed as follows:
 curl -s -u '${USERNAME}:${PASSWORD}' ${NODE_HOSTNAME}:${NODE_MANGEMENT_PORT}/pools/default/buckets/${BUCKET}/stats | jq ".op.samples.disk_write_queue[-1]"  
 ```  
 When this command returns `0`, all data has been persisted to disk.
-2. Back up the cluster’s user-data. Backup can be performed either with [cbbackupmgr](../backup-restore/enterprise-backup-restore.md) or with the [Backup Service](../learn/services-and-indexes/services/backup-service.md); and should be a _full_ (rather than an incremental) backup.  
+2. Back up the cluster's user-data. Backup can be performed either with [cbbackupmgr](../backup-restore/enterprise-backup-restore.md) or with the [Backup Service](../learn/services-and-indexes/services/backup-service.md); and should be a _full_ (rather than an incremental) backup.  
 For example, to use `cbbackupmgr` to configure an archive and repository for the backup, a command of the following form should be entered:  
 ```bash  
 cbbackupmgr config --archive ${ABS_PATH_TO_ARCHIVE} --repo ${REPO_NAME}  
@@ -60,7 +60,7 @@ This _stops_ the service; and so allows it to be restarted after reboot. Note th
 systemctl disable --now couchbase-server.service  
 ```  
 Note that to disable and/or stop Couchbase Server Community Edition, in these commands, `couchbase-server-community` should be substituted for `couchbase-server`.
-2. Manually back up the node’s configuration files. These files reside in `/opt/couchbase/var/lib/couchbase/config`. It is recommended that the path to the backup-location for these files contain the node’s domain name or IP address, to ensure accurate recovery. It is also recommended that the backup-location be on a separate machine.  
+2. Manually back up the node's configuration files. These files reside in `/opt/couchbase/var/lib/couchbase/config`. It is recommended that the path to the backup-location for these files contain the node's domain name or IP address, to ensure accurate recovery. It is also recommended that the backup-location be on a separate machine.  
 Enter a command such as the following;  
 ```bash  
 cp -r /opt/couchbase/var/lib/couchbase/config ${PATH_TO_A_SAFE_LOCATION}/${NODE_IP}_config_files  
@@ -108,7 +108,7 @@ Enter the following commands (substituting, if using Community Edition, `couchba
 systemctl enable --now couchbase-server.service  
 systemctl is-active --quiet couchbase-server.service || systemctl start couchbase-server.service  
 ```
-6. _Repin_ (or _hold_) future package-upgrades for Couchbase Server, so that none occurs before the administrator’s next, elective, manually driven upgrade. Proceed as follows for the appropriate platform:
+6. _Repin_ (or _hold_) future package-upgrades for Couchbase Server, so that none occurs before the administrator's next, elective, manually driven upgrade. Proceed as follows for the appropriate platform:
 
   * RedHat & RedHat derivatives
   * Ubuntu & Debian  

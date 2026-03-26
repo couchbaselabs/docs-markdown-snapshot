@@ -2,7 +2,7 @@
 title: Field Level Encryption
 description: Client-side Field Level Encryption on Couchbase Lite C Clients
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/c/pages/field-level-encryption.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@couchbase-lite:c:field-level-encryption.adoc[]
 ---
 
@@ -70,13 +70,13 @@ On successful encryption the replicator transforms the property into a format co
 
 ## [](#server-sdk-compatibility)Server SDK compatibility
 
-Couchbase Lite’s replicator ensures compatibility with Server SDK’s field level. Both Push and Pull replication transform Couchbase Lite’s encryptable dictionary to-and-from Server SDK Encrypted Field dictionary structure — see: [Example 3](#ex-server-encryptable).
+Couchbase Lite's replicator ensures compatibility with Server SDK's field level. Both Push and Pull replication transform Couchbase Lite's encryptable dictionary to-and-from Server SDK Encrypted Field dictionary structure — see: [Example 3](#ex-server-encryptable).
 
 Push replicator
 
 * Adds the prefix `encrypted$` to the key.
 * Sets the SDK'\` `alg` either to a user-specified algorithm name or the default `CB_MOBILE_CUSTOM`.
-* Set the value’s key as `ciphertext`
+* Set the value's key as `ciphertext`
 * Stores the encrypted value as a BASE64 string.  
 Example 2\. Stored Encryptable  
 ```c  
@@ -88,7 +88,7 @@ Example 2\. Stored Encryptable
 
 Pull replicator
 
-* Detects encrypted encryptable values by looking for dictionary keys prefixed with “encrypted$”.
+* Detects encrypted encryptable values by looking for dictionary keys prefixed with "encrypted$".
 * Transforms the dictionary by:
 
   * Removing `alg`
@@ -97,7 +97,7 @@ Pull replicator
 
 Example 3\. Server SDK Encrypted Field Structure
 
-Server SDK’s field (property) level encryption uses key mangling, by add a prefix to the field name (`encrypted$`). Its directory structure differs CBL’s encryptable dictionary when serializing the encrypted fields; as shown here.
+Server SDK's field (property) level encryption uses key mangling, by add a prefix to the field name (`encrypted$`). Its directory structure differs CBL's encryptable dictionary when serializing the encrypted fields; as shown here.
 
 ```c
 {
@@ -234,9 +234,9 @@ The push replicator should detect and report an error if an encrypted property i
 
 ### [](#blobs)Blobs
 
-Encrypting blob’s content is not supported.
+Encrypting blob's content is not supported.
 
-Where a Blob as a Fleece dictionary is specified in the encrypted property value, only the dictionary is encrypted; **not** the blob’s content.
+Where a Blob as a Fleece dictionary is specified in the encrypted property value, only the dictionary is encrypted; **not** the blob's content.
 
 ### [](#delta-sync)Delta Sync
 

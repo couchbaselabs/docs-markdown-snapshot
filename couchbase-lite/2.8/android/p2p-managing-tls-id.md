@@ -3,7 +3,7 @@ title: Managing TLS Identities&#8201;&#8212;&#8201;Working with Peer-to-Peer Syn
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/android/pages/p2p-managing-tls-id.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:android:p2p-managing-tls-id.adoc[]
 ---
 
@@ -12,11 +12,11 @@ link: xref:2.8@couchbase-lite:android:p2p-managing-tls-id.adoc[]
 
 # Managing TLS Identities&#8201;&#8212;&#8201;Working with Peer-to-Peer Syncs
 
-> Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
+> Description — _Couchbase Lite's Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — This content covers how to manage TLS identities using Couchbase Lite peer-to-peer sync_  
 > Related Content — [API Reference](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/) | [Passive Peer](../../current/android/p2psync-websocket-using-passive.md) | [Active Peer](../../current/android/p2psync-websocket-using-active.md)
 
-> Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
+> Description — _Couchbase Lite's Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — This content covers how to manage TLS identities using Couchbase Lite peer-to-peer sync_  
 > Related Content — [API Reference](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/) | [Passive Peer](../../current/android/p2psync-websocket-using-passive.md) | [Active Peer](../../current/android/p2psync-websocket-using-active.md)
 
@@ -51,7 +51,7 @@ listenerConfig.tlsIdentity = nil
 
 ## [](#import-a-cert)Import a Cert
 
-Use the [TLSIdentity](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html) class’s [importIdentity()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html#importIdentity-java.lang.String-java.io.InputStream-char:A-java.lang.String-char:A-java.lang.String-) method to import a certificate that can be bundled with the app and-or added to the keychain.
+Use the [TLSIdentity](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html) class's [importIdentity()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html#importIdentity-java.lang.String-java.io.InputStream-char:A-java.lang.String-char:A-java.lang.String-) method to import a certificate that can be bundled with the app and-or added to the keychain.
 
 1. First check the keychain to see if the identity already exists  
 ```Java  

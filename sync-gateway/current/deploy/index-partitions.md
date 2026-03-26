@@ -2,7 +2,7 @@
 title: Partitioned Indexes
 description: Partitioning a large index across multiple nodes
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/deploy/pages/index-partitions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:deploy:index-partitions.adoc[]
 ---
 
@@ -39,14 +39,14 @@ In this case, partitioning can help by horizontally scaling the index across mul
 
 ### [](#when-not-to-use)When Not to Use Partitioned Indexes
 
-* You’re not using MOI; that is, your indexes are disk-based.
+* You're not using MOI; that is, your indexes are disk-based.
 * Your dataset is small or moderate in size, even if you have high concurrency.
 * You have a high number of connections or clients, but not many documents.
 * Your index size could be reduced by splitting data into multiple collections, which is the preferred approach.
 
 ### [](#index-size)What Impacts Index Size?
 
-The size of Sync Gateway’s indexes is correlated to:
+The size of Sync Gateway's indexes is correlated to:
 
 * The number of documents in a collection.
 * The number of channels each document is assigned to.
@@ -55,11 +55,11 @@ If index size is a concern, your first approach should be to split documents acr
 
 Query performance is sensitive to channel design. Systems with many small channels tend to perform worse than those using fewer, larger channels. For better scalability and efficiency, prefer broader channel groupings over fine-grained ones.
 
-Only if these strategies are exhausted, and you’re using MOI with oversized indexes, should partitioned indexes be considered.
+Only if these strategies are exhausted, and you're using MOI with oversized indexes, should partitioned indexes be considered.
 
 ## [](#migrate)Migrate to Partitioned Indexes
 
-Before switching from non-partitioned to partitioned indexes, it’s important to understand the operational trade-offs and cluster implications. Here are two migration options, designed to accommodate different use cases and resource tolerances.
+Before switching from non-partitioned to partitioned indexes, it's important to understand the operational trade-offs and cluster implications. Here are two migration options, designed to accommodate different use cases and resource tolerances.
 
 ### [](#migrate-zero-downtime)Option 1: Zero Downtime (Recommended for Production)
 

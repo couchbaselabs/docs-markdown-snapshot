@@ -3,7 +3,7 @@ title: Migrating to SDK 3 API
 description: The 3.x API breaks the existing 2.x APIs in order to provide a
   number of improvements. Collections and Scopes are introduced.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.8@java-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -24,7 +24,7 @@ The concept of a `Cluster` and a `Bucket` remain the same, but a fundamental new
 
 Note that the SDKs include the feature from SDK 3.0, to allow easier migration.
 
-In the previous SDK generation, particularly with the `KeyValue` API, the focus has been on the codified concept of a `Document`. Documents were read and written and had a certain structure, including the `id`/`key`, content, expiry (`ttl`), and so forth. While the server still operates on the logical concept of documents, we found that this model in practice didn’t work so well for client code in certain edge cases. As a result we have removed the `Document` class/structure completely from the API. The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`. This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.
+In the previous SDK generation, particularly with the `KeyValue` API, the focus has been on the codified concept of a `Document`. Documents were read and written and had a certain structure, including the `id`/`key`, content, expiry (`ttl`), and so forth. While the server still operates on the logical concept of documents, we found that this model in practice didn't work so well for client code in certain edge cases. As a result we have removed the `Document` class/structure completely from the API. The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`. This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.
 
 As an example here is a KeyValue document fetch:
 
@@ -38,7 +38,7 @@ Compare this to a [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1q
 QueryResult queryResult = cluster.query("select 1=1", queryOptions().timeout(Duration.ofSeconds(3)));
 ```
 
-Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`. Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON. You’ll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.
+Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`. Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON. You'll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.
 
 The KV API extends the concept of the serializer to the `Transcoder`. Since you can also store non-JSON data inside a document, the `Transcoder` allows the writing of binary data as well. It handles the object/entity encoding and decoding, and if it happens to deal with JSON makes uses of the configured `Serializer` internally. See the _Serialization and Transcoding_ section below for details.
 
@@ -127,7 +127,7 @@ ClusterEnvironment env = ClusterEnvironment.builder().ioConfig(IoConfig.maxHttpC
 
 The paths for each config start with the pattern `com.couchbase.env.` followed by either a toplevel or nested config. `IoConfig` is under the `io` path, similar to `TimeoutConfig` under `timeout`. So, if you want to modify a KV timeout you can use the `com.couchbase.env.timeout.kvTimeout` path. See the [configuration section](../ref/client-settings.md) for full specifics.
 
-At the end of this guide you’ll find a [reference](#configurations-options-reference) that describes the SDK 2 environment options and their SDK 3 equivalents where applicable.
+At the end of this guide you'll find a [reference](#configurations-options-reference) that describes the SDK 2 environment options and their SDK 3 equivalents where applicable.
 
 ### [](#authentication)Authentication
 
@@ -187,7 +187,7 @@ cluster.disconnect();
 `Collections` are generally available from Couchbase Server version 7.0, which the SDK is already compatible with. If you are using a Couchbase Server version which does not support `Collections`, always use the `defaultCollection()` method to access the KV API; it will map to the full bucket.
 
 > [!IMPORTANT]
-> You’ll notice that `bucket(String)` returns immediately, even if the bucket resources are not completely opened. This means that the subsequent `get` operation may be dispatched even before the connection is opened in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout (in this case, you’ll see socket connect rejections).
+> You'll notice that `bucket(String)` returns immediately, even if the bucket resources are not completely opened. This means that the subsequent `get` operation may be dispatched even before the connection is opened in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout (in this case, you'll see socket connect rejections).
 
 Also note, you will now find Query, Search, and Analytics at the `Cluster` level. This is where they logically belong. If you are using Couchbase Server 6.5 or later, you will be able to perform cluster-level queries even if no bucket is open. If you are using an earlier version of the cluster you must open at least one bucket, otherwise cluster-level queries will fail.
 
@@ -195,7 +195,7 @@ Also note, you will now find Query, Search, and Analytics at the `Cluster` level
 
 In SDK 2 the main method to control transcoding was through providing different `Document` instances (which in turn had their own transcoder associated), such as the `JsonDocument`. This only worked for the KV APIs though — Query, Search, Views, and other services exposed their JSON rows/hits in different ways. All of this has been unified in SDK 3 under a single concept: serializers and transcoders.
 
-By default, all KV APIs transcode to and from JSON — you can also provide java POJOs which you couldn’t in the past. `JsonObject` and `JsonArray` are still available, like in SDK 2:
+By default, all KV APIs transcode to and from JSON — you can also provide java POJOs which you couldn't in the past. `JsonObject` and `JsonArray` are still available, like in SDK 2:
 
 ```java
 // SDK 2 upsert and get
@@ -239,7 +239,7 @@ __Table 1\. SDK 2.x Document vs. SDK 3.x Transcoder__
 
 The `LegacyDocument` in SDK 2 was in place to support SDK 1, so it has been removed. Serializers and transcoders can also be customized and overwritten on a per-operation basis, please see the appropriate documentation section for details.
 
-The JSON `Transcoders` use a `Serializer` underneath. While a transcoder can handle many different storage types, the serializer is specialized for JSON encoding and decoding. On all JSON-only APIs (i.e. Sub-doc, Query, Search,…​) you’ll only find a `Serializer`, not a `Transcoder`, in the operation options. Usually there is no need to override it unless you want to provide your own implementation (i.e. if you have your own POJO mapping json logic in place, and want to reuse it).
+The JSON `Transcoders` use a `Serializer` underneath. While a transcoder can handle many different storage types, the serializer is specialized for JSON encoding and decoding. On all JSON-only APIs (i.e. Sub-doc, Query, Search,…​) you'll only find a `Serializer`, not a `Transcoder`, in the operation options. Usually there is no need to override it unless you want to provide your own implementation (i.e. if you have your own POJO mapping json logic in place, and want to reuse it).
 
 ## [](#exception-handling)Exception Handling
 
@@ -281,7 +281,7 @@ When migrating your SDK 2 exception handling code to SDK 3, make sure to wrap ev
 
 Configuring and consuming logs has not greatly changed. The SDK still uses _SLF4J_, if found on the classpath, and if not reverts back to the JDK logger (it can also be configured to log to `stderr` instead). The big difference is that the `EventBus` (also present in SDK 2) has been made much more powerful — and all logs are sent as events through it. The `LoggingEventConsumer` being one of the potential consumers, and turning events into log lines.
 
-The biggest impact you’ll see from it is that the log messages now look very structured and contain contextual information where possible.
+The biggest impact you'll see from it is that the log messages now look very structured and contain contextual information where possible.
 
 ```none
 13:36:46 INFO  [com.couchbase.node:470] [com.couchbase.node][NodeConnectedEvent] Node connected {"coreId":1,"managerPort":"8091","remote":"127.0.0.1"}
@@ -322,7 +322,7 @@ __Table 2\. SDK 2.x KV API vs. SDK 3.x KV API__
 | Bucket.prepend        | BinaryCollection.prepend                                                        |
 
 > [!NOTE]
-> To migrate code that called `MutateInBuilder.upsertDocument(true)`, specify the operation’s store semantics. For example:
+> To migrate code that called `MutateInBuilder.upsertDocument(true)`, specify the operation's store semantics. For example:
 > 
 > SDK 2
 > 
@@ -468,7 +468,7 @@ __Table 4\. Query Metadata Changes__
 
 It is no longer necessary to check for a specific error in the stream: if an error happened during processing it will throw an exception at the top level of the query. The reactive streaming API will terminate the rows' `Flux` with an exception as well as soon as it is discovered. This makes error handling much easier in both the blocking and non-blocking cases.
 
-While in SDK 2 you had to manually check for errors (otherwise you’d get an empty row collection):
+While in SDK 2 you had to manually check for errors (otherwise you'd get an empty row collection):
 
 ```java
 QueryResult queryResult = cluster.query("select 1=");
@@ -494,7 +494,7 @@ The fluent API feature in SDK 2.x was found not to scale well for larger queries
 In most cases, a simple string statement is the best replacement.
 
 > [!TIP]
-> You can still use the Query DSL classes with SDK 3 if you want, but you’ll need to add the source code to your project and maintain it yourself. A version of the source code modified to work with SDK 3 is available as part of the unofficial, unsupported [Couchbase Java SDK 2 Migration Kit](https://github.com/couchbaselabs/couchbase-java-sdk2-migration-kit).
+> You can still use the Query DSL classes with SDK 3 if you want, but you'll need to add the source code to your project and maintain it yourself. A version of the source code modified to work with SDK 3 is available as part of the unofficial, unsupported [Couchbase Java SDK 2 Migration Kit](https://github.com/couchbaselabs/couchbase-java-sdk2-migration-kit).
 
 ### [](#analytics)Analytics
 
@@ -573,7 +573,7 @@ com.couchbase.client.core.error.SearchIndexNotFoundException: The search index i
 	at com.couchbase.client.java.Cluster.searchQuery(Cluster.java:275)
 ```
 
-If you want to be absolutely sure that you didn’t get only partial data, you can check the error map:
+If you want to be absolutely sure that you didn't get only partial data, you can check the error map:
 
 ```java
 SearchResult searchResult = cluster.searchQuery("travel-sample-index", SearchQuery.queryString("swanky"));

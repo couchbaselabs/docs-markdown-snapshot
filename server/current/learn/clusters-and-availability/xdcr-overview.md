@@ -4,7 +4,7 @@ description: <em>Cross Data Center Replication</em> (XDCR) allows data to be
   replicated across clusters that are potentially located in different data
   centers.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:clusters-and-availability/xdcr-overview.adoc[]
 ---
 
@@ -83,7 +83,7 @@ Optionally, _deletion filters_ can be applied to a replication: these control wh
 
 Every JSON or binary document has a [key](../data/data.md#keys), and also has [Extended Attributes](../data/extended-attributes-fundamentals.md): XDCR filtering expressions can be applied to these. However, a binary document does _not_ have a JSON body: therefore, an XDCR filter that references a JSON body cannot be applied to the body of a binary document. In consequence, administrators must decide whether binary documents should be replicated, when a filter has been configured to refer to a JSON body.
 
-For details on handling binary replications with Couchbase Web Console, see [Filtering Binary Documents](../../manage/manage-xdcr/filter-xdcr-replication.md#filtering-binary-documents). For details on using the REST API’s [filterBinary flag](../../rest-api/rest-xdcr-create-replication.md#filter-binary), see [Creating a Replication](../../rest-api/rest-xdcr-create-replication.md).
+For details on handling binary replications with Couchbase Web Console, see [Filtering Binary Documents](../../manage/manage-xdcr/filter-xdcr-replication.md#filtering-binary-documents). For details on using the REST API's [filterBinary flag](../../rest-api/rest-xdcr-create-replication.md#filter-binary), see [Creating a Replication](../../rest-api/rest-xdcr-create-replication.md).
 
 ## [](#xdcr-payloads)XDCR Payloads
 

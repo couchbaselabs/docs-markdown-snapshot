@@ -3,7 +3,7 @@ title: Manage Logging
 description: The Logging facility allows a record to be maintained of important
   events that occur on Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-logging/manage-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-logging/manage-logging.adoc[]
 ---
 
@@ -69,7 +69,7 @@ Each node in the cluster saves several different log files to the log directory.
 | projector\_stats                  | Log containing statistics related to the projector process.                                                                                                                                                                                                                                                                                                                  |
 | prometheus                        | Log for the instance of [Prometheus](https://prometheus.io) that runs on the current node, supporting the gathering and management of Couchbase Server metrics. See the [Metrics Reference](../../metrics-reference/metrics-reference.md) for more information about metrics.                                                                                                |
 | query                             | Troubleshooting log for the Query Service.                                                                                                                                                                                                                                                                                                                                   |
-| rebalance                         | A directory that contains reports about rebalances that have occurred. This directory retains reports on up to the last 5 rebalances. Each report’s filename contains the date and time it ran. For example, rebalance\_report\_20251113T211150.json. See [Rebalance Reference](../../rebalance-reference/rebalance-reference.md) for detailed information about rebalances. |
+| rebalance                         | A directory that contains reports about rebalances that have occurred. This directory retains reports on up to the last 5 rebalances. Each report's filename contains the date and time it ran. For example, rebalance\_report\_20251113T211150.json. See [Rebalance Reference](../../rebalance-reference/rebalance-reference.md) for detailed information about rebalances. |
 | reports                           | Contains events and crash reports for the Erlang processes. Erlang processes crash and restart upon an error.                                                                                                                                                                                                                                                                |
 | ssl\_proxy                        | Troubleshooting log for the SSL proxy spawned by the Cluster Manager.                                                                                                                                                                                                                                                                                                        |
 | stats                             | Contains periodic statistic dumps from the Cluster Manager.                                                                                                                                                                                                                                                                                                                  |
@@ -82,7 +82,7 @@ Each node in the cluster saves several different log files to the log directory.
 
 ### [](#changing-log-file-locations)Changing Log File Locations
 
-It’s possible to change the location where Couchbase Server saves log files. However, Couchbase only supports the default log location. Changing the log location requires manually editing a configuration file named `static_config`. This file only controls the log location on the node where you make the change. Therefore, to make the change in your entire cluster, you edit `static_config` on every node. If you add new nodes to the cluster, you must remember to make the changes to their copies of the `static_config` file.
+It's possible to change the location where Couchbase Server saves log files. However, Couchbase only supports the default log location. Changing the log location requires manually editing a configuration file named `static_config`. This file only controls the log location on the node where you make the change. Therefore, to make the change in your entire cluster, you edit `static_config` on every node. If you add new nodes to the cluster, you must remember to make the changes to their copies of the `static_config` file.
 
 The Couchbase Server upgrade process can overwrite the `static_config` file, losing any of your modifications. If you change the log location, you may need to reapply your changes after an upgrade.
 
@@ -162,7 +162,7 @@ Some components and services in Couchbase Server let you adjust logging levels a
 | Full-Text Search Service | [setSlowQueryLogTimeout](../../fts/fts-advanced-settings-slowQueryLogTimeout.md)                                    | Enables the FTS to log when a query exceeds a time threshold.                                               |
 | Index Service            | [indexer.settings.log\_level](../../index-rest-settings/index.md#:~:text=Indexer%20logging%20level.)                | Sets the logging level for the Index Service.                                                               |
 | Index Service            | [indexer.settings.statsLogDumpInterval](#index-rest-settings:index.adoc:~:text=Statistics%20log%20dump%20interval.) | Sets how often the Index Service writes its statistics to the indexer-stats.log file.                       |
-| Index Service            | [projector.settings.log\_level](#index-rest-settings:index.adoc:~:text=Projector%20logging%20level.)                | Sets the logging level for the Index Service’s projector component that provides data to the Index Service. |
+| Index Service            | [projector.settings.log\_level](#index-rest-settings:index.adoc:~:text=Projector%20logging%20level.)                | Sets the logging level for the Index Service's projector component that provides data to the Index Service. |
 | Query Service            | [loglevel](../../n1ql/n1ql-manage/query-settings.md#loglevel)                                                       | Sets the logging level for the Query Service.                                                               |
 
 > [!NOTE]
@@ -170,9 +170,9 @@ Some components and services in Couchbase Server let you adjust logging levels a
 
 #### [](#persistent-changes)Change Logging Levels via a Configuration File
 
-It’s possible to change the logging level of Couchbase Server components that do not have REST API settings for logging levels. However, you should only do this under the direction of Couchbase Support.
+It's possible to change the logging level of Couchbase Server components that do not have REST API settings for logging levels. However, you should only do this under the direction of Couchbase Support.
 
-The logging level for Couchbase Server’s internal components is set in the `static_config` configuration file. This file contains a series of `loglevel_` entries that set the log level of internal Couchbase Server components. This file only controls the log levels on the node where you make the change. If you need to make the change on multiple nodes, you must edit the file on each node.
+The logging level for Couchbase Server's internal components is set in the `static_config` configuration file. This file contains a series of `loglevel_` entries that set the log level of internal Couchbase Server components. This file only controls the log levels on the node where you make the change. If you need to make the change on multiple nodes, you must edit the file on each node.
 
 > [!NOTE]
 > Couchbase Server upgrades can overwrite `static_config`, losing any modifications you have made.
@@ -220,13 +220,13 @@ To collect logs:
 
 1. Select the nodes from which you want to collect logs.
 2. Decide whether you want to redact the logs. Redacting hides sensitive information within the logs. See [Applying Redaction](#applying%5Fredaction) for more information.
-3. Choose whether you want to use a custom temporary directory for Couchbase Server to use when assembling the log collection. You may want to set a custom directory to prevent the collection from using too much disk space on the default temporary directory. If you enable this option, enter an absolute path for the temporary directory. The temporary directory must exist on all nodes from which you’re collecting logs.
-4. Decide whether you want to use a custom destination directory for the completed zip files. As with the temporary directory, you may want to set a custom directory to prevent the collection from using too much disk space on the default destination directory. The destination directory must exist on all nodes from which you’re collecting logs.
+3. Choose whether you want to use a custom temporary directory for Couchbase Server to use when assembling the log collection. You may want to set a custom directory to prevent the collection from using too much disk space on the default temporary directory. If you enable this option, enter an absolute path for the temporary directory. The temporary directory must exist on all nodes from which you're collecting logs.
+4. Decide whether you want to use a custom destination directory for the completed zip files. As with the temporary directory, you may want to set a custom directory to prevent the collection from using too much disk space on the default destination directory. The destination directory must exist on all nodes from which you're collecting logs.
 5. Choose whether you want to encrypt the collected log files. This option is selected by default. When you enable this option, Couchbase Server encrypts the collected log files using AES encryption. You must supply and confirm a password to encrypt the files. If you do not want to encrypt the zip files, clear **Encrypt Collected Files**.
 6. Choose whether you want to upload the collected logs to Couchbase Support. See [Uploading Log Files](#uploading%5Flog%5Ffiles) for more information about uploading log files to Couchbase Support.
 7. Click **Start Collecting** to start the collection process.
 
-Once you start the collection process, the page clears and shows you a status message letting you know that the collection process is running. A button allows you to stop the collection process. When the collection process completes for a node, the page updates and shows the path for the node’s zip file. When the process completes for all nodes, the page displays a message similar to the following:
+Once you start the collection process, the page clears and shows you a status message letting you know that the collection process is running. A button allows you to stop the collection process. When the collection process completes for a node, the page updates and shows the path for the node's zip file. When the process completes for all nodes, the page displays a message similar to the following:
 
 ![collectInformationComplete](../_images/manage-logging/collectInformationComplete.png) 
 
@@ -237,11 +237,11 @@ After the process completes, the log files are available in the specified destin
 
 ### [](#getting-a-cluster-summary)Getting a Cluster Summary
 
-On the **Collect Logs & Diagnostic Information** tab, you can get a summary of the cluster’s status by clicking **Get Cluster Summary**. Clicking this link opens the **Cluster Summary Info** dialog:
+On the **Collect Logs & Diagnostic Information** tab, you can get a summary of the cluster's status by clicking **Get Cluster Summary**. Clicking this link opens the **Cluster Summary Info** dialog:
 
 ![clusterSummaryInfoDialog](../_images/manage-logging/clusterSummaryInfoDialog.png) 
 
-The JSON document in the dialog contains a detailed status report of your cluster’s configuration and status. You can copy this information by clicking **Copy to Clipboard**. You can then manually share it with Couchbase Support, either in addition to or as an alternative to log collection.
+The JSON document in the dialog contains a detailed status report of your cluster's configuration and status. You can copy this information by clicking **Copy to Clipboard**. You can then manually share it with Couchbase Support, either in addition to or as an alternative to log collection.
 
 ### [](#understanding%5Fredaction)Log Redaction
 
@@ -286,9 +286,9 @@ Couchbase Server redacts the private data to the following:
 
 Redaction may eliminate some parameters containing non-private data as well as all parameters containing private data.
 
-Some log files do not use the `<ud>` and `</ud>` tags to mark sensitive data. Couchbase Server determines what information is sensitive based on the log file’s content. Couchbase Server redacts sensitive information from these files without relying on tags.
+Some log files do not use the `<ud>` and `</ud>` tags to mark sensitive data. Couchbase Server determines what information is sensitive based on the log file's content. Couchbase Server redacts sensitive information from these files without relying on tags.
 
-For example, the `http_access.log` (stored in the zip with the filename `ns_server.http_access.log`) contains HTTP requests that include the username making a request as well as sensitive data in URL parameters. The following log file fragment displays private data: the Administrator’s username and the username of a user account that the Administrator is creating:
+For example, the `http_access.log` (stored in the zip with the filename `ns_server.http_access.log`) contains HTTP requests that include the username making a request as well as sensitive data in URL parameters. The following log file fragment displays private data: the Administrator's username and the username of a user account that the Administrator is creating:
 
 ```log
 172.18.0.2 - Administrator [26/Nov/2025:16:18:00 +0000] "PUT /settings/rbac/users/local/
@@ -342,9 +342,9 @@ To upload using Couchbase Web Console, click **Upload to Couchbase** before star
 
 ![uploadToCouchbaseDialogBasic](../_images/manage-logging/uploadToCouchbaseDialogBasic.png) 
 
-**Upload to Host** sets the host to which Couchbase Server uploads your log files. You must provide your **Customer Name** and optionally a **Ticket Number**. Use the optional **Upload Proxy** field to set the proxy host and port number if your cluster cannot directly connect to the upload host. Its format is the same as the `curl` command’s [\-x option](https://curl.se/docs/manpage.html#-x). You usually supply a URL such as `<http://proxy.example.com:8080>`, although you can provide just a hostname or IP address with a port number.
+**Upload to Host** sets the host to which Couchbase Server uploads your log files. You must provide your **Customer Name** and optionally a **Ticket Number**. Use the optional **Upload Proxy** field to set the proxy host and port number if your cluster cannot directly connect to the upload host. Its format is the same as the `curl` command's [\-x option](https://curl.se/docs/manpage.html#-x). You usually supply a URL such as `<http://proxy.example.com:8080>`, although you can provide just a hostname or IP address with a port number.
 
-If you select **Bypass Reachability Checks**, Couchbase Server does not verify that it can connect to the upload host and, if provided, the proxy before collecting and uploading logs. It’s cleared by default, which has Couchbase Server verify its ability to connect to the upload destination before collecting logs.
+If you select **Bypass Reachability Checks**, Couchbase Server does not verify that it can connect to the upload host and, if provided, the proxy before collecting and uploading logs. It's cleared by default, which has Couchbase Server verify its ability to connect to the upload destination before collecting logs.
 
 After entering all required information, click **Start Collecting** to start information collection. If the collection and upload succeed, the page displays the URL of the uploaded zip file.
 

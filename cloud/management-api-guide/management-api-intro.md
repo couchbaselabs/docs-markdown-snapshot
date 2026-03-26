@@ -4,7 +4,7 @@ description: The Couchbase Capella Operational Management API is a secure REST
   API that enables you to provision, deploy, and configure Capella deployments
   across all supported cloud service providers.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-intro.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:management-api-guide:management-api-intro.adoc[]
 ---
 
@@ -39,7 +39,7 @@ Exceptions to backward compatibility are as follows:
 
 ## [](#management-api-auth)Authentication and Authorization
 
-The Management API uses API keys for authentication and authorization. They’re required for accessing endpoints exposed by the Management API.
+The Management API uses API keys for authentication and authorization. They're required for accessing endpoints exposed by the Management API.
 
 Couchbase Capella associates API keys with [roles and permissions](../organizations/organization-projects-overview.md). To access an endpoint, an API key must have the appropriate Capella roles. The [Management API reference guide](../management-api-reference/index.md) lists the roles required for each endpoint.
 

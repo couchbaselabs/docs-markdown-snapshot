@@ -2,7 +2,7 @@
 title: Logging
 description: Couchbase Lite JavaScript -- Logging and Debugging
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::logging.adoc[]
 ---
 
@@ -17,10 +17,10 @@ link: xref:couchbase-lite-javascript::logging.adoc[]
 
 Couchbase Lite JavaScript uses [LogTape](https://logtape.org/) for logging, providing structured, configurable logging that helps diagnose issues during development and production.
 
-LogTape is easy to use, unobtrusive, and flexible. It’s designed to integrate with whatever logging system your application currently uses.
+LogTape is easy to use, unobtrusive, and flexible. It's designed to integrate with whatever logging system your application currently uses.
 
 > [!NOTE]
-> If you don’t configure logging, LogTape logs nothing by default.
+> If you don't configure logging, LogTape logs nothing by default.
 
 Effective logging is essential for:
 
@@ -58,7 +58,7 @@ You can configure different log levels for each subcategory or route them to dif
 
 ## [](#quick-start)Quick Start
 
-Here’s a simple example that configures Couchbase Lite to log messages at "info" priority and above to the console:
+Here's a simple example that configures Couchbase Lite to log messages at "info" priority and above to the console:
 
 Example 1\. Basic Logging Configuration
 
@@ -88,7 +88,7 @@ LogTape supports these log levels (from least to most verbose):
 
 * `fatal` \- Critical errors that cause application failure
 * `error` \- Errors that prevent operations from completing
-* `warning` \- Potential issues that don’t prevent operation
+* `warning` \- Potential issues that don't prevent operation
 * `info` \- Informational messages about normal operations
 * `debug` \- Detailed information for debugging
 
@@ -502,7 +502,7 @@ await configure({
 
 ## [](#meta-logger)Meta Logger
 
-LogTape has a special "meta logger" that logs LogTape’s own internal operations. This is useful for debugging logging configuration issues.
+LogTape has a special "meta logger" that logs LogTape's own internal operations. This is useful for debugging logging configuration issues.
 
 The meta logger uses the category `["logtape", "meta"]` and is automatically enabled when you call `configure()`.
 

@@ -2,7 +2,7 @@
 title: collection-manage
 description: Manage collections and scopes in a bucket
 editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-collection-manage.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:cli:cbcli/couchbase-cli-collection-manage.adoc[]
 ---
 
@@ -109,7 +109,7 @@ Specifies the maximum TTL (time-to-live) for all documents in the collection, in
 
 \--no-expiry
 
-Disables the maximum TTL (time-to-live) for all documents in the collection, regardless of the bucket’s maximum TTL. Cannot be used in conjunction with --max-ttl.
+Disables the maximum TTL (time-to-live) for all documents in the collection, regardless of the bucket's maximum TTL. Cannot be used in conjunction with --max-ttl.
 
 \--enable-history-retention <0|1>
 

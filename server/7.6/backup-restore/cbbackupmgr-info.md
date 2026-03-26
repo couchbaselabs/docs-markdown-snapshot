@@ -2,7 +2,7 @@
 title: cbbackupmgr info
 description: Return information about the backup archive
 editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/backup-restore/pages/cbbackupmgr-info.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:backup-restore:cbbackupmgr-info.adoc[]
 ---
 
@@ -90,7 +90,7 @@ Multiple cloud providers are supported, see the list below for more information.
 
 \--obj-staging-dir <staging\_dir>
 
-When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it’s not treated as a persistent store) and is only used during the backup. NOTE: Do not use `/tmp` as the `obj-staging-dir`. See `Disk requirements` in [cbbackupmgr-cloud](cbbackupmgr-cloud.md) for more information.
+When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it's not treated as a persistent store) and is only used during the backup. NOTE: Do not use `/tmp` as the `obj-staging-dir`. See `Disk requirements` in [cbbackupmgr-cloud](cbbackupmgr-cloud.md) for more information.
 
 #### [](#optional-2)Optional
 
@@ -188,7 +188,7 @@ When supplying backup names, you may supply `start` or `oldest` as a placeholder
 
 ## [](#examples)EXAMPLES
 
-The info command will display information of the backup archive in a user friendly manner. Let’s imagine we have a backup archive `/backup_archive` and we want to see information about it we would run the command:
+The info command will display information of the backup archive in a user friendly manner. Let's imagine we have a backup archive `/backup_archive` and we want to see information about it we would run the command:
 
 $ cbbackupmgr info -a /backup_archive
 
@@ -671,7 +671,7 @@ The info command also allows for JSON output which can be useful for automation 
 
 Note that the "range" and "merged\_range" fields contain the same data. The range field is included for backwards compatibility but is deprecated.
 
-The info command also supports getting information about an archive which is stored directly in AWS S3\. This will download a very minimal amount of data e.g. it won’t download the whole archive.
+The info command also supports getting information about an archive which is stored directly in AWS S3\. This will download a very minimal amount of data e.g. it won't download the whole archive.
 
 $ cbbackupmgr info -a s3://bucket/backup_archive --all --obj-staging-dir ~/backup-archive
 
@@ -1164,7 +1164,7 @@ $ cbbackupmgr info -a /archive -r repo --start 01-08-2020 --end 31-08-2020
 |     UDFs |
 |     0    |
 
-Given the output above, it’s clear that merging all the backups taken in August will not result in a merged full backup. To result in a merged full backup, we would also need to include backups taken in July.
+Given the output above, it's clear that merging all the backups taken in August will not result in a merged full backup. To result in a merged full backup, we would also need to include backups taken in July.
 
 $ cbbackupmgr merge -a /archive -r repo --start 01-07-2020 --end 31-08-2020
 (1/5) Merging backup '2020-07-18T18_19_54.057655243+01_00'

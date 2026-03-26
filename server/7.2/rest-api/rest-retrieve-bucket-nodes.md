@@ -4,7 +4,7 @@ description: The nodes of a cluster on which a particular bucket resides can be
   listed with the <code>GET /pools/default/buckets/<bucket-name>/nodes</code>
   method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-retrieve-bucket-nodes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:rest-api:rest-retrieve-bucket-nodes.adoc[]
 ---
 
@@ -21,7 +21,7 @@ GET /pools/default/buckets/<bucket-name>/nodes
 
 ## [](#description)Description
 
-This lists all nodes that are members of a specified cluster on which a specified bucket resides. The information includes, for each node, the URI of the node itself, plus the URI for statistics corresponding to the specified bucket. Information on all the cluster’s nodes, including nodes that do not host the Data Service, is included in the returned object.
+This lists all nodes that are members of a specified cluster on which a specified bucket resides. The information includes, for each node, the URI of the node itself, plus the URI for statistics corresponding to the specified bucket. Information on all the cluster's nodes, including nodes that do not host the Data Service, is included in the returned object.
 
 ## [](#curl-syntax)Curl Syntax
 

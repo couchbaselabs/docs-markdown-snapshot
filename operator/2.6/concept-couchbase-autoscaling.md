@@ -1,7 +1,7 @@
 ---
 title: Couchbase Cluster Auto-scaling
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/concept-couchbase-autoscaling.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.6@operator::concept-couchbase-autoscaling.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:2.6@operator::concept-couchbase-autoscaling.adoc[]
 
 The Autonomous Operator provides the necessary facilities for Couchbase clusters to be automatically scaled based on usage metrics. Thresholds can be set for native Kubernetes metrics (such as pod CPU utilization) as well as Couchbase metrics (such as bucket memory utilization) that, when crossed, trigger _horizontal scaling_ of individual server classes.
 
-Auto-scaling doesn’t incur any cluster downtime, and allows for each Couchbase Service to be scaled _independently_ on the same cluster. For example, the Data Service can automatically scale in response to fluctuations in memory utilization, while the Query Service can automatically scale in response to CPU utilization.
+Auto-scaling doesn't incur any cluster downtime, and allows for each Couchbase Service to be scaled _independently_ on the same cluster. For example, the Data Service can automatically scale in response to fluctuations in memory utilization, while the Query Service can automatically scale in response to CPU utilization.
 
 The sections on this page describe the conceptual information about Couchbase cluster auto-scaling. For information on how to configure and administrate auto-scaling using the Autonomous Operator, refer to [Configure Couchbase Cluster Auto-scaling](howto-couchbase-autoscaling.md).
 
@@ -330,7 +330,7 @@ The following subsections describe some of the more relevant details related to 
 
 The `value` specified in the policy determines the maximum change in number of replicas that the Horizontal Pod Autoscaler can recommend in a single operation. For example, if a pod `scaleUp` policy is set to `value: 2`, the Horizontal Pod Autoscaler is allowed to increase the size of the server class by up to two additional replicas in a single operation (e.g. from `size: 2` to `size: 3`, or from `size: 2` to `size: 4`). The change in number of replicas being recommended by the Horizontal Pod Autoscaler is known as the _scaling increment_.
 
-It’s important to remember that the Horizontal Pod Autoscaler makes recommendations by setting the _target size_ for the server class. For example, if the server class is currently running at `size: 2`, and the Horizontal Pod Autoscaler recommends scaling up by two additional replicas, the Horizontal Pod Autoscaler will institute its recommendation by setting the relevant [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource directly to `size: 4`.
+It's important to remember that the Horizontal Pod Autoscaler makes recommendations by setting the _target size_ for the server class. For example, if the server class is currently running at `size: 2`, and the Horizontal Pod Autoscaler recommends scaling up by two additional replicas, the Horizontal Pod Autoscaler will institute its recommendation by setting the relevant [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource directly to `size: 4`.
 
 However, it is recommended that `scaleUp` policies be configured to only allow scaling in increments of _one_ replica.
 
@@ -422,7 +422,7 @@ You can run the following command to check if Metrics Server is properly install
 $ kubectl get --raw /apis/metrics.k8s.io/v1beta1
 ```
 
-The response should contain an `APIResourceList` with the type of resources that can be fetched. If you receive a `NotFound` error, then you’ll need to [install Metrics Server](https://github.com/kubernetes-sigs/metrics-server#installation) if you plan on performing auto-scaling based on resource metrics.
+The response should contain an `APIResourceList` with the type of resources that can be fetched. If you receive a `NotFound` error, then you'll need to [install Metrics Server](https://github.com/kubernetes-sigs/metrics-server#installation) if you plan on performing auto-scaling based on resource metrics.
 
 ### [](#couchbase-metrics)Couchbase Metrics
 

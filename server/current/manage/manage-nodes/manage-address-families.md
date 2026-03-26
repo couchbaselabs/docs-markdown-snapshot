@@ -3,7 +3,7 @@ title: Manage Address Families
 description: Couchbase Server Enterprise Edition supports the IPv4 and IPv6
   address families.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/manage-address-families.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-nodes/manage-address-families.adoc[]
 ---
 
@@ -30,7 +30,7 @@ A Couchbase Server-cluster can be established with IPv4 or IPv6 either:
 
 ## [](#changing-address-family-to-IPv6)Changing Address Family
 
-Before attempting to change an existing cluster’s address family, note the following:
+Before attempting to change an existing cluster's address family, note the following:
 
 * The address family can only be changed if each cluster-node is named with a fully qualified domain-name (such as `nodename.clustername.com`). Raw IP addresses _can_ be used to name cluster-nodes, but the cluster must be _created_ with them, and the address family cannot subsequently be changed.
 * Each cluster-node must be operating in _dual stack_ mode, thereby supporting both IPv4 and IPv6 addressing.

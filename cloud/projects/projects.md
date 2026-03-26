@@ -1,7 +1,7 @@
 ---
 title: Projects Overview
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/projects/pages/projects.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:projects:projects.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:projects:projects.adoc[]
 
 All clusters must exist within a project. When you create a cluster, you must choose a project where you want to create the cluster.
 
-Organization users can only access clusters in a project if they’re a member of the project. When you add a user to a project, you assign them 1 or more [project roles](project-roles.md). Project roles determine the privileges those users have within the scope of the project, including any clusters within that project. For example, project roles determine if a project member can create and manage clusters, or access and monitor those clusters.
+Organization users can only access clusters in a project if they're a member of the project. When you add a user to a project, you assign them 1 or more [project roles](project-roles.md). Project roles determine the privileges those users have within the scope of the project, including any clusters within that project. For example, project roles determine if a project member can create and manage clusters, or access and monitor those clusters.
 
 By using projects to organize your clusters, you can:
 

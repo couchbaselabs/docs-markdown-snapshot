@@ -3,7 +3,7 @@ title: Set the Type Identifier for a Search Index
 description: Use a type identifier with a type mapping to add an extra filter to
   the documents you want to include in a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/set-type-identifier.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:search:set-type-identifier.adoc[]
 ---
 
@@ -18,9 +18,9 @@ For more information about type identifiers and type mappings, see [Customize a 
 
 ## [](#prerequisites)Prerequisites
 
-* You’ve created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md).
-* You’ve created at least one type mapping in your Search index. For more information, see [Create a Type Mapping](create-type-mapping.md).
-* You’ve logged in to the Couchbase Server Web Console.
+* You've created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md).
+* You've created at least one type mapping in your Search index. For more information, see [Create a Type Mapping](create-type-mapping.md).
+* You've logged in to the Couchbase Server Web Console.
 
 ## [](#procedure)Procedure
 
@@ -43,7 +43,7 @@ To only add documents to your Search index that contain a specific field with a 
 2. In the **JSON Type Field** field, enter the name of the field in your documents that you want to use to filter documents in your Search index.  
 For example, if your documents include a `type` field, you could enter `type` in the **JSON Type Field** field.  
 > [!NOTE]  
-> You can’t use a field as a type identifier if the field name contains a period (.).
+> You can't use a field as a type identifier if the field name contains a period (.).
 3. Under **Type Mappings**, next to the type mapping where you want to add the type identifier, click **Edit**.
 4. In the **#** field, add a period (.) to the end of the current type mapping name.
 5. After the period, add the exact string from the document field that you want to use as a filter.  
@@ -60,7 +60,7 @@ To only add documents to your Search index that have IDs that match a specified 
 For example, if you know all of your document ID values are prefixed by a string and an underscore, enter `_`.
 3. Under **Type Mappings**, next to the type mapping where you want to add the type identifier, click **Edit**.
 4. In the **#** field, add a period (.) to the end of the current type mapping name.
-5. After the period, add the exact prefix from the document’s ID value that you want to use as a filter.  
+5. After the period, add the exact prefix from the document's ID value that you want to use as a filter.  
 For example, if you wanted your Search index to only return documents that have an prefix of `landmark_`, you could enter `scope.collection.landmark` in the type mapping **#** field.
 6. Click **OK**.
 7. Click **Update Index**.
@@ -76,7 +76,7 @@ In the **Doc ID with Regex** field, enter the regular expression that you want t
 For example, if you wanted only documents with ID values that contained 40, you could enter `[3-5]0` as your regular expression. 
 * Under **Type Mappings**, next to the type mapping where you want to add the type identifier, click **Edit**.
 * In the **#** field, add a period (.) to the end of the current type mapping name.
-* After the period, add a match for the regular expression from the document’s ID value that you want to use as a filter.  
+* After the period, add a match for the regular expression from the document's ID value that you want to use as a filter.  
 For example, if you wanted your Search index to only return documents with ID values that contained `_40`, you could enter `scope.collection._40` in the type mapping **#** field.
 * Click **OK**.
 * Click **Update Index**.

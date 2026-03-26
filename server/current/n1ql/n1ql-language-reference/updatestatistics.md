@@ -3,7 +3,7 @@ title: UPDATE STATISTICS
 description: The UPDATE STATISTICS statement collects statistics on expressions
   over a named keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/updatestatistics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/updatestatistics.adoc[]
 ---
 
@@ -81,13 +81,13 @@ For each bucket, the `UPDATE STATISTICS` command stores statistics in a collecti
 
 Regular users do not have access to the `_system` scope or any of its collections, including `_query`.
 
-Users with system administration privileges can access `_system` scope and its collections, including `_query`. However, even with system administration privileges, you can’t drop or create the `_system` scope or any of its collections.
+Users with system administration privileges can access `_system` scope and its collections, including `_query`. However, even with system administration privileges, you can't drop or create the `_system` scope or any of its collections.
 
 The `_system` scope and its collections are not listed in the **Explore Your Data** area in the Query Workbench.
 
 ### [](#optimizer-statistics-for-multiple-query-nodes)Optimizer Statistics for Multiple Query Nodes
 
-When a cluster has multiple Query nodes, statistics gathered from one Query node via the `UPDATE STATISTICS` statement are automatically propagated to the other Query nodes. You don’t need to run `UPDATE STATISTICS` with the same index expression for multiple query nodes.
+When a cluster has multiple Query nodes, statistics gathered from one Query node via the `UPDATE STATISTICS` statement are automatically propagated to the other Query nodes. You don't need to run `UPDATE STATISTICS` with the same index expression for multiple query nodes.
 
 ### [](#monitoring-optimizer-statistics)Monitoring Optimizer Statistics
 

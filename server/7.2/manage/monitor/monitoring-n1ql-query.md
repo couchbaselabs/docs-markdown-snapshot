@@ -4,7 +4,7 @@ description: Monitoring and profiling SQL++ queries, query service engines, and
   corresponding system resources is very important for smoother operational
   performance and efficiency of the system.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/monitor/monitoring-n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:manage:monitor/monitoring-n1ql-query.adoc[]
 ---
 
@@ -721,7 +721,7 @@ SELECT *, meta().plan FROM system:active_requests;
 
 ## [](#sys-prepared)system:prepareds
 
-This catalog provides data about the known prepared statements and their state in a query engine’s prepared statement cache. For each prepared statement, this catalog provides information such as name, statement, query plan, last use time, number of uses, and so on.
+This catalog provides data about the known prepared statements and their state in a query engine's prepared statement cache. For each prepared statement, this catalog provides information such as name, statement, query plan, last use time, number of uses, and so on.
 
 For field names and meanings, refer to [Statements](../../n1ql/n1ql-rest-api/admin.md#%5Fstatements). The `system:prepareds` catalog returns all the properties that the SQL++ Admin REST API would return for a specific prepared statement. In addition, the `system:prepareds` catalog also returns the following properties.
 
@@ -1076,7 +1076,7 @@ To find requests that completed successfully, search for completed requests whos
 > * When the feature is turned on, completed requests are stored with their execution plan.
 > * Profiling information is likely to use 100KB+ per entry.
 > * Due to the added overhead of running both profiling and logging, we recommend turning on both of them only when needed. Running only one of them continuously has no noticeable affect on performance.
-> * Profiling does not carry any extra cost beyond memory for completed requests, so it’s fine to run it continuously.
+> * Profiling does not carry any extra cost beyond memory for completed requests, so it's fine to run it continuously.
 
 ### [](#sys-completed-get)Get Completed Requests
 

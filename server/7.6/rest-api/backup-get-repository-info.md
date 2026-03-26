@@ -3,7 +3,7 @@ title: Get Backup Repository Information
 description: The Backup Service REST API lets you list and get information about
   the active, imported, and archived backup repositories.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/backup-get-repository-info.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:rest-api:backup-get-repository-info.adoc[]
 ---
 
@@ -122,7 +122,7 @@ Successful execution returns a JSON array, each of whose members is an object co
 ]
 ```
 
-Each object thus contains the `id` (name), `plan_name`, `state`, `repo` (unique identifier), and scheduled tasks for the repository. It also contains an account of the repository’s health, its creation time, and the time of its latest update.
+Each object thus contains the `id` (name), `plan_name`, `state`, `repo` (unique identifier), and scheduled tasks for the repository. It also contains an account of the repository's health, its creation time, and the time of its latest update.
 
 The following call returns information on a specific, named, active repository:
 

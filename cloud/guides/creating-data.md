@@ -2,7 +2,7 @@
 title: Create Documents
 description: How to create documents with a command line tool or an SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/creating-data.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:guides:creating-data.adoc[]
 ---
 
@@ -43,7 +43,7 @@ To create a single document, perform an insert operation.
 
 ---
 
-The example below inserts a new JSON document in the `hotel` keyspace in the `inventory` scope. The document’s ID is `hotel-123`.
+The example below inserts a new JSON document in the `hotel` keyspace in the `inventory` scope. The document's ID is `hotel-123`.
 
 ```sh
 cb-env bucket travel-sample
@@ -97,7 +97,7 @@ A `MutationResult` object is returned containing the result and metadata relevan
 
 ---
 
-The example below inserts a new JSON document in the `hotel` keyspace in the `inventory` scope. The document’s ID is `hotel-123`.
+The example below inserts a new JSON document in the `hotel` keyspace in the `inventory` scope. The document's ID is `hotel-123`.
 
 ```csharp
 // Create a document object.
@@ -149,7 +149,7 @@ A `MutationResult` object is returned containing the result and metadata relevan
 
 ---
 
-The example below inserts a new JSON document in the `hotel` keyspace in the `inventory` scope. The document’s ID is `hotel-123`.
+The example below inserts a new JSON document in the `hotel` keyspace in the `inventory` scope. The document's ID is `hotel-123`.
 
 ```java
 // Create the document object.
@@ -198,7 +198,7 @@ A `MutationResult` promise is returned containing the result and metadata releva
 
 ---
 
-The example below inserts a new JSON document in the `hotel` keyspace in the `inventory` scope. The document’s ID is `hotel-123`.
+The example below inserts a new JSON document in the `hotel` keyspace in the `inventory` scope. The document's ID is `hotel-123`.
 
 ```nodejs
 // Create a document object.
@@ -248,7 +248,7 @@ A `MutationResult` object is returned containing the result and metadata relevan
 
 ---
 
-The example below inserts a new JSON document in the `hotel` keyspace in the `inventory` scope. The document’s ID is `hotel-123`.
+The example below inserts a new JSON document in the `hotel` keyspace in the `inventory` scope. The document's ID is `hotel-123`.
 
 ```python
 # Create a document object.
@@ -290,7 +290,7 @@ Click the  View button to see this code in context.
 
 For more information, see [Collection](https://docs.couchbase.com/sdk-api/couchbase-python-client/api/couchbase.html#collection-object).
 
-When a document is created, Couchbase assigns it a [CAS (Compare and Swap)](../../java-sdk/current/howtos/concurrent-document-mutations.md) value to keep track of the document’s state within the database. Each time a document is mutated the CAS will change accordingly. This unique value allows the database to protect against concurrent updates to the same document.
+When a document is created, Couchbase assigns it a [CAS (Compare and Swap)](../../java-sdk/current/howtos/concurrent-document-mutations.md) value to keep track of the document's state within the database. Each time a document is mutated the CAS will change accordingly. This unique value allows the database to protect against concurrent updates to the same document.
 
 ### [](#inserting-with-options)Inserting with Options
 

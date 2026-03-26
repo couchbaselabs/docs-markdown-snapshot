@@ -1,7 +1,7 @@
 ---
 title: Supported Platforms
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/product-notes/pages/supported-platforms.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-edge-server:product-notes:supported-platforms.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:couchbase-edge-server:product-notes:supported-platforms.adoc[]
 
 ## [](#supported-versions)Supported Versions
 
-Refer to the following tables to confirm you’re working with a supported operating system before you install Couchbase Lite Edge Server.
+Refer to the following tables to confirm you're working with a supported operating system before you install Couchbase Lite Edge Server.
 
 __Table 1\. Supported Operating Systems for Development, Testing, and Production__
 | Operating System             | Supported Versions |

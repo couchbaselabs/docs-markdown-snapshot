@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Couchbase Lite Data Sync"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile/edit/sync/content/modules/userprofile-sync/pages/userprofile_sync.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:userprofile-sync:userprofile_sync.adoc[]
 ---
 
@@ -50,7 +50,7 @@ Download the latest version from the [Mac App Store](https://itunes.apple.com/us
 * git (Optional)  
 This is required if you would prefer to pull the source code from GitHub repo.
 
-  * Create a [free github account](https://github.com) if you don’t already have one
+  * Create a [free github account](https://github.com) if you don't already have one
   * git can be downloaded from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * curl HTTP client  
 You can use any HTTP client of your choice. But we will use **curl** in our tutorial. Download latest version from the [curl website](https://curl.haxx.se/download.html)
@@ -97,7 +97,7 @@ sh install_tutorial.sh 3.0.0 (1)
 | **1** | Where 3.0.0 is the required Couchbase Lite release number. |
 | ----- | ---------------------------------------------------------- |
 
-Next, let’s verify the installation.
+Next, let's verify the installation.
 
 ### [](#try-it-out)Try it Out
 
@@ -217,7 +217,7 @@ We will install [Couchbase Server](#couchbase-server) and [Sync Gateway](#lbl-sy
 
 ### [](#docker-network)Docker Network
 
-Create a docker network named “workshop”
+Create a docker network named "workshop"
 
 ```bash
 docker network ls
@@ -229,7 +229,7 @@ docker network create -d bridge workshop
 
 #### [](#install)Install
 
-We have a custom docker image `priyacouch/couchbase-server-userprofile:7.0.0-dev` of Couchbase Server, which creates an empty bucket named “userprofile” and an RBAC user “admin” with “sync gateway” role.
+We have a custom docker image `priyacouch/couchbase-server-userprofile:7.0.0-dev` of Couchbase Server, which creates an empty bucket named "userprofile" and an RBAC user "admin" with "sync gateway" role.
 
 Alternatively, you can follow the instructions in our documentation — see: [Get Started - Prepare](../../sync-gateway/3.0/get-started-prepare.md), to install Couchbase Server and configure it with the relevant bucket.
 
@@ -259,10 +259,10 @@ Figure 3\. Server set-up output
 2. Now check the required data is in place:
 
   1. Open up <http://localhost:8091> in a browser
-  2. Sign in as “Administrator” and “password” in login page
-  3. Go to “buckets” menu and confirm “userprofile” bucket is created  
+  2. Sign in as "Administrator" and "password" in login page
+  3. Go to "buckets" menu and confirm "userprofile" bucket is created  
   ![confirm bucket created](_images/confirm-bucket-created.png)
-  4. Go to “security” menu and confirm “admin” user is created  
+  4. Go to "security" menu and confirm "admin" user is created  
   ![confirm admin user created](_images/confirm-admin-user-created.png)
 
 ### [](#lbl-sync-gateway)Sync Gateway
@@ -386,7 +386,7 @@ Now you can follow along with the rest of the sections below.
 
 We use _Basic Authentication_ in our application. The Id of the user making the request is specified in the `Authorization` header.
 
-Locate the `// Authorization` section of the Sync Function. You will see that we are using the Sync function’s [requireUser()](../../sync-gateway/3.0/sync-function-api-require-user-cmd.md) API to verify that the `email` property specified in the Document matches the Id of the user making the request — see [Example 5](#ex-auth).
+Locate the `// Authorization` section of the Sync Function. You will see that we are using the Sync function's [requireUser()](../../sync-gateway/3.0/sync-function-api-require-user-cmd.md) API to verify that the `email` property specified in the Document matches the Id of the user making the request — see [Example 5](#ex-auth).
 
 Example 5\. Sync function — Authorization
 
@@ -425,10 +425,10 @@ if (expectedDocId != doc._id) {
 }
 ```
 
-| **1** | Verify that the email property is not null. If it’s null, we throw a JS exception (see validateNotEmpty() function)                                                        |
+| **1** | Verify that the email property is not null. If it's null, we throw a JS exception (see validateNotEmpty() function)                                                        |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | If this a new document, then verify that the Id of the Document is of the required format (i.e. _"user::demo@example.com"_). We throw an exception if that’s not the case. |
-| **3** | If this is a document update, then verify that the email property value has not changed. Again, we throw an exception if that’s not the case.                              |
+| **2** | If this a new document, then verify that the Id of the Document is of the required format (i.e. _"user::demo@example.com"_). We throw an exception if that's not the case. |
+| **3** | If this is a document update, then verify that the email property value has not changed. Again, we throw an exception if that's not the case.                              |
 
 > [!NOTE]
 > You can learn more about the Sync Function in the documentation here: [Sync Function API](../../sync-gateway/3.0/sync-function.md)
@@ -477,7 +477,7 @@ access(username, channelId);
 
 Two-way Replication between the app and the Sync Gateway is enabled when the user logs into the app.
 
-To see the code behind this, open the project’s **`DatabaseManager.swift`** file and locate the `startPushAndPullReplicationForCurrentUser()` function — as shown in: [Example 9](#ex-pushpull).
+To see the code behind this, open the project's **`DatabaseManager.swift`** file and locate the `startPushAndPullReplicationForCurrentUser()` function — as shown in: [Example 9](#ex-pushpull).
 
 Example 9\. The startPushAndPullReplicationForCurrentUser function
 
@@ -520,7 +520,7 @@ Example 11\. Initialize a replicator with our configuration details
 _pushPullRepl = Replicator.init(config: config)
 ```
 
-In order to follow the replicator’s progress, we can attach a callback listener to it.
+In order to follow the replicator's progress, we can attach a callback listener to it.
 
 Attaching a callback listener to the `Replicator` means we will be asynchronously notified of state changes. This could be useful for instance, to inform the user of the progress of the replication. It is an optional step and is shown here in [Example 12](#ex-callback).
 
@@ -638,7 +638,7 @@ In this exercise, we will observe how changes made on one app are synced across 
 1. Run the app side by side in two simulators
 2. Log into both the simulators with same userId and password.  
 Use the values _"[demo@example.com](mailto:demo@example.com)"_ and _"password"_ for user Id and password fields respectively
-3. On one simulator, enter values in the user’s name and address fields.
+3. On one simulator, enter values in the user's name and address fields.
 4. Confirm that changes show up in the app on the other simulator.
 5. Similarly, make changes to the app in the other simulator and confirm that the changes are synced over to the first simulator.
 
@@ -647,7 +647,7 @@ Use the values _"[demo@example.com](mailto:demo@example.com)"_ and _"password"_ 
 In this exercise, we will observe changes made via Sync Gateway are synced over to the apps
 
 1. Make sure you complete [Exercise 1](#exercise-1). This is to ensure that you have the appropriate user profile document (with document Id of "user::demo@example.com") created through the app and synced over to the Sync Gateway.
-2. Open the command terminal and issue the following command to get the user profile document using the [GET Document REST API](https://docs.couchbase.com/sync-gateway/3.0/rest-api.html#/document/GetDocument). We will be using `curl` to issue the request. If you haven’t done so, please install curl as indicated in the [Prerequisites](#prerequisites) section  
+2. Open the command terminal and issue the following command to get the user profile document using the [GET Document REST API](https://docs.couchbase.com/sync-gateway/3.0/rest-api.html#/document/GetDocument). We will be using `curl` to issue the request. If you haven't done so, please install curl as indicated in the [Prerequisites](#prerequisites) section  
 ```bash  
 curl -X GET http://localhost:4984/userprofile/user::demo@example.com --user demo@example.com (1)  
 ```

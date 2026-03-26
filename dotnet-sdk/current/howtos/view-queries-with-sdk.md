@@ -3,7 +3,7 @@ title: MapReduce Views
 description: You can use MapReduce views to create queryable indexes in
   Couchbase Data Platform.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/view-queries-with-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:dotnet-sdk:howtos:view-queries-with-sdk.adoc[]
 ---
 
@@ -30,7 +30,7 @@ MapReduce queries can be further customized during query time to allow only a su
 
 ## [](#by-name-views)By Name Views
 
-The following example is the definition of a `by_name` view in a _"beer"_ design document. This view checks whether a document is a beer and has a name. If it does, it emits the beer’s name into the index. This view allows beers to be queried for by name. For example, it’s now possible to ask the question "What beers start with A?"
+The following example is the definition of a `by_name` view in a _"beer"_ design document. This view checks whether a document is a beer and has a name. If it does, it emits the beer's name into the index. This view allows beers to be queried for by name. For example, it's now possible to ask the question "What beers start with A?"
 
 ```csharp
 var result = await bucket.ViewQueryAsync("beers", "by_name", options => {
@@ -39,7 +39,7 @@ var result = await bucket.ViewQueryAsync("beers", "by_name", options => {
 });
 ```
 
-The following example is the definition of a `by_name` view in a _"landmarks"_ design document in the _"travel-sample"_ sample dataset. This view checks whether a document is a landmark and has a name. If it does, it emits the landmark’s name into the index. This view allows landmarks to be queried for by its _"name"_ field.
+The following example is the definition of a `by_name` view in a _"landmarks"_ design document in the _"travel-sample"_ sample dataset. This view checks whether a document is a landmark and has a name. If it does, it emits the landmark's name into the index. This view allows landmarks to be queried for by its _"name"_ field.
 
 ```csharp
 var result = await bucket.ViewQueryAsync("landmarks", "by_name", options => {

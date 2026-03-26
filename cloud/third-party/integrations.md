@@ -3,7 +3,7 @@ title: Integrations, Connectors, and Tools
 description: Integrate Couchbase with your development ecosystem and production
   and deployment tools.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/third-party/pages/integrations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:third-party:integrations.adoc[]
 ---
 
@@ -83,11 +83,11 @@ __Table 4\. Big Data Connectors__
 
 Couchbase has SDKs in eleven popular languages — [C](../../c-sdk/current/hello-world/overview.md), [C++](../../cxx-sdk/current/hello-world/overview.md), [C# (.NET)](../../dotnet-sdk/current/hello-world/overview.md), [Go](../../go-sdk/current/hello-world/overview.md), [Java](../../java-sdk/current/hello-world/overview.md), [Kotlin](../../kotlin-sdk/current/hello-world/overview.md), [Node.js](../../nodejs-sdk/current/hello-world/overview.md), [PHP](../../php-sdk/current/hello-world/overview.md), [Python](../../python-sdk/current/hello-world/overview.md), [Ruby](../../ruby-sdk/current/hello-world/overview.md), and [Scala](../../scala-sdk/current/hello-world/overview.md).
 
-If you develop in one of these languages, you may be interested in (or already using) other libraries in that language’s ecosystem, and wondering if it will integrate with Couchbase.
+If you develop in one of these languages, you may be interested in (or already using) other libraries in that language's ecosystem, and wondering if it will integrate with Couchbase.
 
 There are too many third party integrations to evaluate and list (and absence of a mention in these pages is no judgement on importance or quality), but the following are well worth investigating:
 
-While Couchbase can’t evaluate and list every possible third-party integration, we’ve provided a list of some you might consider in the sections below.
+While Couchbase can't evaluate and list every possible third-party integration, we've provided a list of some you might consider in the sections below.
 
 __Table 5\. Partner Integrations List__
 | Integration                      | SDK Language / Ecosystem  | Summary                                                                                                                                                                                                                                                                                                                                                                           | Links                                                                                                                                                                                                                                                                                                              | Capella | Self-managed | [Support Model](#support-model) |

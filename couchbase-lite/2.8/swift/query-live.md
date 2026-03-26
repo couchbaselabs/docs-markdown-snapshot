@@ -2,7 +2,7 @@
 title: Live Queries
 description: Couchbase mobile database live query concepts
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/swift/pages/query-live.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:swift:query-live.adoc[]
 ---
 
@@ -64,7 +64,7 @@ query.removeChangeListener(withToken: token) (1)
 
 Predictive Query enables Couchbase Lite queries to use machine learning, by providing query functions that can process document data (properties or blobs) via trained ML models.
 
-Let’s consider an image classifier model that takes a picture as input and outputs a label and probability.
+Let's consider an image classifier model that takes a picture as input and outputs a label and probability.
 
 ![predictive diagram](../_images/predictive-diagram.png) 
 

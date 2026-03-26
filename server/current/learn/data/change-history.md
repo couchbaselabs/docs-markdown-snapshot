@@ -4,7 +4,7 @@ description: When Magma storage is used for a bucket, the changes made to
   documents within the bucket's collections can be recorded, in a <em>change
   history</em>.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/data/change-history.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:data/change-history.adoc[]
 ---
 
@@ -13,11 +13,11 @@ link: xref:server:learn:data/change-history.adoc[]
 
 # Change History
 
-> When Magma storage is used for a bucket, the changes made to documents within the bucket’s collections can be recorded, in a _change history_. 
+> When Magma storage is used for a bucket, the changes made to documents within the bucket's collections can be recorded, in a _change history_. 
 
 ## [](#understanding-change-history)Understanding Change History
 
-When [Magma](../buckets-memory-and-storage/storage-engines.md#storage-engine-magma) storage is used for a bucket, the changes made to documents within the bucket’s collections can be recorded, in a _change history_. The change history resides on disk. Its capacity is administrator-specified. When the change history is full, old records are automatically removed (by means of compaction), to allow space for new records. (This feature is sometimes referred to as _Change Data Capture_, or _CDC_.)
+When [Magma](../buckets-memory-and-storage/storage-engines.md#storage-engine-magma) storage is used for a bucket, the changes made to documents within the bucket's collections can be recorded, in a _change history_. The change history resides on disk. Its capacity is administrator-specified. When the change history is full, old records are automatically removed (by means of compaction), to allow space for new records. (This feature is sometimes referred to as _Change Data Capture_, or _CDC_.)
 
 Change history can be either _on_ or _off_. This is determined at bucket-level: if change history is _on_, it is potentially active for _all collections_ in the bucket.
 
@@ -56,7 +56,7 @@ This bucket-wide default setting can be established with either:
 
 ### [](#individual-collection-setting)Individual Collection-Setting
 
-Change history can be switched off or on for each individual collection, overriding the established, bucket-wide default. This setting can be made either when the collection is created, or subsequently, by editing the collection’s configuration. This allows a determination to be made as to which collections need their change history to be recorded, and which do not.
+Change history can be switched off or on for each individual collection, overriding the established, bucket-wide default. This setting can be made either when the collection is created, or subsequently, by editing the collection's configuration. This allows a determination to be made as to which collections need their change history to be recorded, and which do not.
 
 The setting can be established with either:
 
@@ -83,7 +83,7 @@ If deduplication is switched _on_, the statistic `ep_total_deduplicated` represe
 By inspecting system performance (in terms of CPU, memory, disk, and measured latency) when deduplication is respectively on and off, insight can be gained into how optimizations can be achieved. Note that generally speaking, deduplication results in a greater use of CPU, memory, and disk; due to the key-handling requirement for deduplicated items.
 * `ep_total_deduplicated_flusher`. When items are to be _flushed_ (persisted), the contents of multiple checkpoints are batched, so that all can be flushed. If deduplication is switched _on_, the checkpoints may already have had items removed through deduplication. However, a further check is made across checkpoints, prior to writes being persisted, to find and remove duplicate items. The total number of items removed from the flusher in this way is represented by `ep_total_deduplicated_flusher`.
 * `history_start_seqno`. The document _seqno_ that represents the starting point of the history window. Hence, all documents having a higher seqno will be retained. As more and more data is removed from the window, this seqno will be incremented, to correspond to a later document.
-* `history_disk_size`. On-disk compressed size (after Magma’s block compression and per document compression) of the fragmented and unfragmented data that lies within the history window, for all vBuckets on the node.
+* `history_disk_size`. On-disk compressed size (after Magma's block compression and per document compression) of the fragmented and unfragmented data that lies within the history window, for all vBuckets on the node.
 
 For more information, see the reference page for `cbstats` [all](../../cli/cbstats/cbstats-all.md).
 
@@ -98,7 +98,7 @@ In the following descriptions, the _history window_ refers to the time or space 
 * `kv_total_enqueued`, `kv_total_deduplicated`, and `kv_total_deduplicated_flusher`. These have the same significance as their equivalents, provided by `cbstats`; described immediately above.
 * `kv_ep_magma_history_time_evicted_bytes`. The total amount of data (in bytes) so far removed from the change history, due to the limit established with `historyRetentionSeconds` (REST API) or `history-retention-seconds` (CLI).
 * `kv_ep_magma_history_size_evicted`. The total amount of data (in bytes) so far removed from the change history, due to the limit established with `historyRetentionBytes` (REST API) or `history-retention-bytes` (CLI).
-* `kv_ep_db_history_file_size`. On-disk compressed size (after Magma’s block compression and per document compression) of the fragmented and unfragmented data that lies within the history window.
+* `kv_ep_db_history_file_size`. On-disk compressed size (after Magma's block compression and per document compression) of the fragmented and unfragmented data that lies within the history window.
 * `kv_vb_max_history_disk_size`. Maximum amount of history retained across all vBuckets. The size here is _on-disk compressed_.  
 The statistic can be used to return data according to `state`: which can be `active`, `pending`, `replica`, or `dead`. By default, data on all available states is returned. For example:  
 curl -X GET "http://localhost:8091/pools/default/stats/range/kv_vb_max_history_disk_size_bytes?bucket=magmaBucket" -u Administrator:password | jq '.'  

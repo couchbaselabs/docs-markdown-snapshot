@@ -2,7 +2,7 @@
 title: EXECUTE FUNCTION
 description: The EXECUTE FUNCTION statement enables you to execute a user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/execfunction.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:n1ql:n1ql-language-reference/execfunction.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:cloud:n1ql:n1ql-language-reference/execfunction.adoc[]
 
 ## [](#purpose)Purpose
 
-The `EXECUTE FUNCTION` statement enables you to execute a user-defined function. It’s useful for testing user-defined functions outside the context of a query. It also enables you to execute functions which have side effects, such as performing mutations, which is not possible when calling a user-defined function in an expression.
+The `EXECUTE FUNCTION` statement enables you to execute a user-defined function. It's useful for testing user-defined functions outside the context of a query. It also enables you to execute functions which have side effects, such as performing mutations, which is not possible when calling a user-defined function in an expression.
 
 You cannot use the `EXECUTE FUNCTION` statement to execute a built-in SQL++ function. If you do this, error `10101: Function not found` is generated.
 

@@ -3,7 +3,7 @@ title: Adaptive Index
 description: Adaptive Indexes are a special type of GSI array index that can
   index all or specified fields of a document.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/adaptive-indexing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/adaptive-indexing.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Note that without Adaptive Indexes:
 * Only primary index can help run any ad hoc query. But using primary index can be expensive for queries with predicates on any of the non-key fields of the document.
 * Each query will need a compatible secondary index that can qualify for the predicates in the WHERE clause. See section [Contrast with Composite Indexes](#section%5Fw31%5Fbnm%5F5z) for details.
 
-For instance, consider a user profile or hotel reservation search use case. A person’s profile may need to be searched based on any of the personal attributes such as first name, last name, age, city, address, job, title, company, etc. Similarly, a hotel room availability may be searched based on wide criteria, such as room facilities, amenities, price, and other features. In this scenario, traditional secondary indexes or composite indexes can’t be used effectively — see section [Contrast with Composite Indexes](#section%5Fw31%5Fbnm%5F5z) to understand some of the concerns. Adaptive indexes can help effectively and efficiently run such ad hoc search queries.
+For instance, consider a user profile or hotel reservation search use case. A person's profile may need to be searched based on any of the personal attributes such as first name, last name, age, city, address, job, title, company, etc. Similarly, a hotel room availability may be searched based on wide criteria, such as room facilities, amenities, price, and other features. In this scenario, traditional secondary indexes or composite indexes can't be used effectively — see section [Contrast with Composite Indexes](#section%5Fw31%5Fbnm%5F5z) to understand some of the concerns. Adaptive indexes can help effectively and efficiently run such ad hoc search queries.
 
 ## [](#syntax)Syntax
 
@@ -426,7 +426,7 @@ Results
 
 | **1** | IntersectScan of idx\_name AND idx\_self. |
 | ----- | ----------------------------------------- |  
-Here’s another example with a partial Adaptive Index that uses IntersectScan on the index conditions:  
+Here's another example with a partial Adaptive Index that uses IntersectScan on the index conditions:  
 ```sqlpp  
 CREATE INDEX idx_adpt ON landmark(DISTINCT PAIRS(self))  
 WHERE city="Paris";  
@@ -443,7 +443,7 @@ To try the examples in this section, set the query context to the `inventory` sc
 
 It is important to understand that adaptive indexes are not a panacea and that they have trade-offs compared to traditional composite indexes:
 
-1. **Adaptive Indexes are bound to the limitations of Array Indexes** because they are built over [Array Indexing](indexing-arrays.md) technology. Index Joins can’t use Adaptive Indexes because Index Joins can’t use array indexes, and Adaptive Index is basically an array index.
+1. **Adaptive Indexes are bound to the limitations of Array Indexes** because they are built over [Array Indexing](indexing-arrays.md) technology. Index Joins can't use Adaptive Indexes because Index Joins can't use array indexes, and Adaptive Index is basically an array index.
 2. **Indexed entries of the Adaptive Index are typically larger in size compared to the simple index** on respective fields because the indexed items are elements of the [PAIRS()](metafun.md#pairs) array, which are basically name-value pairs of the document fields. So, it may be relatively slower when compared with equivalent simple index. For example, in the following equivalent queries, [C8](#C7)/[Q8](#Q7) may perform better than [C9](#C8)/[Q9](#Q8).  
 This example uses the `def_inventory_hotel_city` index, which is installed with the `travel-sample` bucket.  
 C8  
@@ -641,7 +641,7 @@ Result
 // ...  
 ```
 
-| **1** | Doesn’t use ai\_city with NOT LIKE and leading wildcard. |
+| **1** | Doesn't use ai\_city with NOT LIKE and leading wildcard. |
 | ----- | -------------------------------------------------------- |  
 Query: LIKE with leading wildcard  
 ```sqlpp  
@@ -668,7 +668,7 @@ Result
 
 | **1** | Uses ai\_city with LIKE and leading wildcard. |
 | ----- | --------------------------------------------- |
-8. **Adaptive indexes can’t use Covered Scans**. An adaptive index can’t be a covering index, as seen in the following example:  
+8. **Adaptive indexes can't use Covered Scans**. An adaptive index can't be a covering index, as seen in the following example:  
 ```sqlpp  
 CREATE INDEX `ai_city2`  
 ON hotel(DISTINCT PAIRS({"city" : city}));  
@@ -700,5 +700,5 @@ Result
 // ...  
 ```
 
-| **1** | Doesn’t use ai\_city2 as a covering index. |
+| **1** | Doesn't use ai\_city2 as a covering index. |
 | ----- | ------------------------------------------ |

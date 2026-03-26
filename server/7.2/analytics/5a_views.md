@@ -2,7 +2,7 @@
 title: Analytics Views
 description: A description of Analytics views and Tabular Analytics views.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/5a_views.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:analytics:5a_views.adoc[]
 ---
 
@@ -60,7 +60,7 @@ The OR REPLACE and IF NOT EXISTS clauses specify the action to take if an Analyt
 
 The examples shown here are based on the Commerce data in [Appendix 4: Example Data](appendix%5F4%5Fexamples.md).
 
-The following Analytics view operates on the `customers` Analytics collection, showing the `custid`, `name`, and `rating` of each customer whose rating is greater than 700, omitting the customer’s address.
+The following Analytics view operates on the `customers` Analytics collection, showing the `custid`, `name`, and `rating` of each customer whose rating is greater than 700, omitting the customer's address.
 
 CREATE ANALYTICS VIEW good_customers AS
     SELECT custid, name, rating

@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting Cloud Connections
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/howtos/pages/troubleshooting-cloud-connections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@go-sdk:howtos:troubleshooting-cloud-connections.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:2.8@go-sdk:howtos:troubleshooting-cloud-connections.adoc[]
 
 > Diagnose DNS-SRV problems. Troubleshoot other network connection trouble with SDK doctor. 
 
-Connecting to Cloud — in particular when developing applications outside the network where the Cluster is hosted — can expose unexpected network problems. We’ll show you how to troubleshoot _Host not Found_ problems. SDK doctor is a powerful but simple tool to help diagnose other connection problems.
+Connecting to Cloud — in particular when developing applications outside the network where the Cluster is hosted — can expose unexpected network problems. We'll show you how to troubleshoot _Host not Found_ problems. SDK doctor is a powerful but simple tool to help diagnose other connection problems.
 
 ## [](#troubleshooting-problems)Troubleshooting Problems
 
@@ -20,7 +20,7 @@ Connecting to Cloud — in particular when developing applications outside the n
 
 ## [](#troubleshooting-host-not-found)Troubleshooting Host not Found
 
-In order for your application to connect to your cloud, Capella creates a special kind of DNS record, called a Service record, or DNS-SRV record. DNS SRV records are widely supported and used frequently in systems like XMPP, and Kubernetes services. Occasionally, some DNS providers can run into issues with large DNS SRV records. This can manifest as a host not found issue. The actual problem is (a typically older) DNS server that cannot handle large responses which converts the error to host not found. This has frequently been observed when working from home with a service provider ‘router’ that embeds a caching DNS Server. To determine if this is the cause, you can compare an nslookup command from a shell from your default DNS server to a public DNS server, like those from Google or Cloudflare. If, for example, your public cloud record were cb.490e597e-73fd-4b87-a08a-1da9c826970e.dp.cloud.couchbase.com, you might see this with nslookup for the associated DNS SRV record:
+In order for your application to connect to your cloud, Capella creates a special kind of DNS record, called a Service record, or DNS-SRV record. DNS SRV records are widely supported and used frequently in systems like XMPP, and Kubernetes services. Occasionally, some DNS providers can run into issues with large DNS SRV records. This can manifest as a host not found issue. The actual problem is (a typically older) DNS server that cannot handle large responses which converts the error to host not found. This has frequently been observed when working from home with a service provider 'router' that embeds a caching DNS Server. To determine if this is the cause, you can compare an nslookup command from a shell from your default DNS server to a public DNS server, like those from Google or Cloudflare. If, for example, your public cloud record were cb.490e597e-73fd-4b87-a08a-1da9c826970e.dp.cloud.couchbase.com, you might see this with nslookup for the associated DNS SRV record:
 
 ```console
 $nslookup -q=SRV _couchbases._tcp.cb.490e597e-73fd-4b87-a08a-1da9c826970e.dp.cloud.couchbase.com
@@ -94,7 +94,7 @@ As a workaround, you can switch to a DNS provider which can support modern DNS S
 
 ## [](#validating-connectivity-with-sdk-doctor)Validating Connectivity with SDK doctor
 
-If you appear to be having connectivity issues, it’d be good to diagnostically check for lower level details with [SDK doctor](https://github.com/couchbaselabs/sdk-doctor). From the environment where it looks like your program cannot connect, run one of the of the [pre-built binaries](https://github.com/couchbaselabs/sdk-doctor/releases) for your platform. Usually the summary at the end is pretty easy to interpret. Output that shows correct connectivity may look like this:
+If you appear to be having connectivity issues, it'd be good to diagnostically check for lower level details with [SDK doctor](https://github.com/couchbaselabs/sdk-doctor). From the environment where it looks like your program cannot connect, run one of the of the [pre-built binaries](https://github.com/couchbaselabs/sdk-doctor/releases) for your platform. Usually the summary at the end is pretty easy to interpret. Output that shows correct connectivity may look like this:
 
 ```console
 $ ./sdk-doctor-macos diagnose -u username -p password couchbases://cb.51bbb323-476e-4354-bec8-5f9b0a67d146.dp.cloud.couchbase.com/travel-sample

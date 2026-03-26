@@ -3,7 +3,7 @@ title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the Java SDK.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:java-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -19,7 +19,7 @@ For a high-level overview of this feature, see [Field Level Encryption](../conce
 > [!TIP]
 > Native Encryption at Rest
 > 
-> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It’s a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
+> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It's a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
 
 ## [](#package)Packaging
 
@@ -61,7 +61,7 @@ HashiCorp Vault Transit integration requires [Spring Vault](https://docs.spring.
 
 ## [](#configuration)Configuration
 
-To enable Field-Level Encryption, supply a `CryptoManager` when [configuring the Java SDK’s ClusterEnvironment](managing-connections.md#cluster-environment).
+To enable Field-Level Encryption, supply a `CryptoManager` when [configuring the Java SDK's ClusterEnvironment](managing-connections.md#cluster-environment).
 
 ```java
 KeyStore javaKeyStore = KeyStore.getInstance("MyKeyStoreType");
@@ -90,7 +90,7 @@ Two modes of operation are available:
 
 ### [](#data-binding-example)Data Binding Example
 
-Sensitive fields of your data classes can be annotated with `@Encrypted`. Let’s use this class as an example:
+Sensitive fields of your data classes can be annotated with `@Encrypted`. Let's use this class as an example:
 
 ```java
 public class Employee {
@@ -108,7 +108,7 @@ public class Employee {
 }
 ```
 
-Now let’s create an employee record and save it to Couchbase:
+Now let's create an employee record and save it to Couchbase:
 
 ```java
 Employee employee = new Employee();
@@ -136,7 +136,7 @@ Because `contentAsObject()` does not decrypt anything, the expected output is so
 }
 ```
 
-Now let’s read the employee record using data binding:
+Now let's read the employee record using data binding:
 
 ```java
 Employee readItBack = collection.get("employee:1234").contentAs(Employee.class); // decrypts the "replicant" field
@@ -150,7 +150,7 @@ This prints `true`.
 
 The code that enables encryption/decryption during data binding is packaged as a Jackson module called `EncryptionModule`. You can register this module with any Jackson `ObjectMapper`.
 
-You’ll need to do this if you want to supply your own customized ObjectMapper for the Java SDK to use when serializing documents. Here’s how to configure the cluster environment to use a custom JSON serializer backed by your own ObjectMapper with support for Field-Level Encryption:
+You'll need to do this if you want to supply your own customized ObjectMapper for the Java SDK to use when serializing documents. Here's how to configure the cluster environment to use a custom JSON serializer backed by your own ObjectMapper with support for Field-Level Encryption:
 
 ```java
 // CryptoManager cryptoManager = createMyCryptoManager();
@@ -216,7 +216,7 @@ then either encrypted or unencrypted values will be accepted during deserializat
 
 The AEAD\_AES\_256\_CBC\_HMAC\_SHA512 algorithm included in this library uses encryption keys that are 64 bytes long.
 
-Here’s an example that shows how to create a Java key store file containing a suitable encryption key:
+Here's an example that shows how to create a Java key store file containing a suitable encryption key:
 
 ```java
 KeyStore keyStore = KeyStore.getInstance("JCEKS");
@@ -236,7 +236,7 @@ try (OutputStream os = new FileOutputStream("MyKeystoreFile.jceks")) {
 }
 ```
 
-And here’s how to use that file to create a `Keyring` for use with Couchbase Field-Level Encryption:
+And here's how to use that file to create a `Keyring` for use with Couchbase Field-Level Encryption:
 
 ```java
 KeyStore keyStore = KeyStore.getInstance("JCEKS");

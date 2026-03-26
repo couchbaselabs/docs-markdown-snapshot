@@ -1,7 +1,7 @@
 ---
 title: Geospatial Geopoint Queries
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-geopoint-spatial.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-supported-queries-geopoint-spatial.adoc[]
 ---
 
@@ -185,12 +185,12 @@ For initial experimentation with geospatial geopoint querying (based on the type
 Enter **test\_geopoint** as the name of the Search index you are creating in the **Index Name** text-box.  
 ![fts index name geopoint](_images/fts-index-name-geopoint.png)
 * Select the bucket **travel-sample** from the **Bucket** pull-down menu.  
-Use the pull-down menu provided for the Bucket field, on the upper-right, and select a bucket that you are allowed to access to via the cluster’s RBAC settings.  
+Use the pull-down menu provided for the Bucket field, on the upper-right, and select a bucket that you are allowed to access to via the cluster's RBAC settings.  
 ![fts index name and bucket geopoint](_images/fts-index-name-and-bucket-geopoint.png)
 * Select the checkbox **\[X\] Use non-default scope/collections**  
 This allows your index to stream mutations from one or more non-default collections under the selected bucket and scope.  
 ![fts select geopoint scope collections](_images/fts-select-geopoint-scope-collections.png)
-* You will see a newly visible pull-down menu provided for the **Scope** field, under the **\[X\] Use non-default scope/collections** checkbox, and select a bucket that you are allowed to access to via the cluster’s RBAC settings.  
+* You will see a newly visible pull-down menu provided for the **Scope** field, under the **\[X\] Use non-default scope/collections** checkbox, and select a bucket that you are allowed to access to via the cluster's RBAC settings.  
 For this example leave the setting as **\_default** which is used to migrate bucket based data into the collections paradigm.
 * Under **Type Mapings**, unselect the checkbox **\[ \] default | dynamic**.  
 This is required as this type mapping (the default mapping) is only valid for the <bucket>.\_default.\_default which is typically used to upgrade a 6.X server from a bucket into a more powerful collections paradigm. In this example we will do the equivalent but on a per collections basis.  
@@ -532,7 +532,7 @@ Now repeating the above "Polygon-Based" Query we see that the data is sorted bas
   },
 ```
 
-Finally since we checked **\[X\] store** for the child mappings for both "airportname" and "name" we modify the above “Polygon-Based” by adding **"fields": \["name"\],** and then run it in the UI.
+Finally since we checked **\[X\] store** for the child mappings for both "airportname" and "name" we modify the above "Polygon-Based" by adding **"fields": \["name"\],** and then run it in the UI.
 
 ```json
 {
@@ -554,7 +554,7 @@ Finally since we checked **\[X\] store** for the child mappings for both "airpor
 }
 ```
 
-Copy and paste the above into the UI’s index search text box the result will be as follows:
+Copy and paste the above into the UI's index search text box the result will be as follows:
 
 ![fts geopoint updated index seach stored](_images/fts-geopoint-updated-index-seach-stored.png) 
 

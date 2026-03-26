@@ -2,7 +2,7 @@
 title: BEGIN TRANSACTION
 description: The BEGIN TRANSACTION statement enables you to begin a transaction.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/begin-transaction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/begin-transaction.adoc[]
 ---
 
@@ -57,9 +57,9 @@ The transaction ID.
 
 If you are using the Query REST API, you must set the [txid](../n1ql-manage/query-settings.md#txid) query parameter to specify the transaction ID for any subsequent statements that form part of the same transaction.
 
-If you are using the Query Workbench, you don’t need to specify the transaction ID for any statements that form a part of the same transaction within a multi-statement request. If you start a transaction within a multi-statement request, all statements within the request are assumed to be part of the same transaction until you rollback or commit the transaction.
+If you are using the Query Workbench, you don't need to specify the transaction ID for any statements that form a part of the same transaction within a multi-statement request. If you start a transaction within a multi-statement request, all statements within the request are assumed to be part of the same transaction until you rollback or commit the transaction.
 
-Similarly, if you are using the cbq shell, you don’t need to specify the transaction ID for any statements that form a part of the same transaction. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
+Similarly, if you are using the cbq shell, you don't need to specify the transaction ID for any statements that form a part of the same transaction. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction. \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
 
 ## [](#example)Example
 

@@ -3,7 +3,7 @@ title: Cross Data Center Replication (XDCR)
 description: Cross Data Center Replication (XDCR) allows data to be replicated
   across clusters in cloud environments or on-premises.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/xdcr.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:clusters:xdcr/xdcr.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:clusters:xdcr/xdcr.adoc[]
 
 > Cross Data Center Replication (XDCR) allows data to be replicated across clusters in cloud environments or on-premises. 
 
-XDCR replicates data between clusters. XDCR can protect against data-center failures and provides high-performance access to data for globally distributed mission-critical applications. Replications, once established, continuously replicate data until they’re paused or deleted.
+XDCR replicates data between clusters. XDCR can protect against data-center failures and provides high-performance access to data for globally distributed mission-critical applications. Replications, once established, continuously replicate data until they're paused or deleted.
 
 ## [](#replication-sources-and-destinations)Replication Sources and Destinations
 
@@ -94,7 +94,7 @@ XDCR replicates data from a specified source bucket to a specified destination b
 
 Technically, XDCR only performs unidirectional replication. XDCR creates a bidirectional topology by implementing two unidirectional replications, in opposite directions, between two clusters; such that a bucket on each cluster functions as both source and destination.
 
-When creating a replication from one Capella cluster to another, you’ll specify whether to make the replication bidirectional. If not specified, the replication is unidirectional from the source bucket to the destination bucket and appears under the **Replication** tab of the source cluster. If the replication is configured to be bidirectional, the replication will appear under the **Replication** tab of both the source cluster and the destination cluster.
+When creating a replication from one Capella cluster to another, you'll specify whether to make the replication bidirectional. If not specified, the replication is unidirectional from the source bucket to the destination bucket and appears under the **Replication** tab of the source cluster. If the replication is configured to be bidirectional, the replication will appear under the **Replication** tab of both the source cluster and the destination cluster.
 
 When creating a replication from Capella to a self-managed cluster (which is a cluster established outside Capella), the replication can only be specified as unidirectional. This is because a replication from the self-managed cluster to Capella cannot be entirely configured on Capella: it needs partially to be configured on the self-managed cluster itself. For instructions, see [Create a Replication to Capella from a Self-Managed Cluster](manage-xdcr-replications.md#from-on-prem-to-capella).
 
@@ -102,7 +102,7 @@ Learn more about XDCR direction and topology in the [Couchbase Server documentat
 
 ## [](#xdcr-advanced-filtering)Replication Filtering
 
-XDCR filtering allows XDCR to replicate specified subsets of documents from the source bucket. A document can be included in or excluded from a filtered replication, based on the document’s fields and values.
+XDCR filtering allows XDCR to replicate specified subsets of documents from the source bucket. A document can be included in or excluded from a filtered replication, based on the document's fields and values.
 
 When a replication starts, the cluster examines the specified source bucket, and determines which documents to replicate:
 

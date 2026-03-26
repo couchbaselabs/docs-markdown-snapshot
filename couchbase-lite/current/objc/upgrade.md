@@ -2,7 +2,7 @@
 title: Upgrade Couchbase Lite
 description: ""
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/upgrade.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:objc:upgrade.adoc[]
 ---
 
@@ -21,7 +21,7 @@ Couchbase Lite 4.0 introduces significant architectural changes, most notably th
 
 The action takes place automatically and can lead to some delay in the database becoming available for use in your application.
 
-In addition, if you’re syncing with a 4.0.3 Sync Gateway, you should be aware of the significant configuration enhancements introduced and their effect. See [Upgrading Sync Gateway](../../../sync-gateway/current/upgrading.md) for more details. This is a one-way conversion.
+In addition, if you're syncing with a 4.0.3 Sync Gateway, you should be aware of the significant configuration enhancements introduced and their effect. See [Upgrading Sync Gateway](../../../sync-gateway/current/upgrading.md) for more details. This is a one-way conversion.
 
 ### [](#major-changes-in-4-0-3)Major Changes in 4.0.3
 
@@ -29,11 +29,11 @@ In addition, if you’re syncing with a 4.0.3 Sync Gateway, you should be aware 
 
 **Enhanced Conflict Resolution**: The default conflict resolution strategy changes from `most active wins` to `last write wins` based on hybrid logical timestamps, providing more intuitive and predictable conflict resolution behavior.
 
-**New Document Properties**: a new `timestamp` property is available on Document objects, providing direct access to the document’s logical timestamp as a `uint64_t` value representing nanoseconds since the Unix epoch.
+**New Document Properties**: a new `timestamp` property is available on Document objects, providing direct access to the document's logical timestamp as a `uint64_t` value representing nanoseconds since the Unix epoch.
 
 ### [](#database-compatibility-40)Database Compatibility
 
-**Automatic Upgrade from 3.x**: CBL 4.0.3 databases are compatible with CBL 3.1 and 3.2 databases. When opening a 3.1 or 3.2 database with CBL 4.0.3, documents are automatically upgraded to use version vectors when they’re updated and saved.
+**Automatic Upgrade from 3.x**: CBL 4.0.3 databases are compatible with CBL 3.1 and 3.2 databases. When opening a 3.1 or 3.2 database with CBL 4.0.3, documents are automatically upgraded to use version vectors when they're updated and saved.
 
 **No Configuration Required**: CBL 4.0.3 enables version vectors by default - the feature requires no API configuration.
 
@@ -199,7 +199,7 @@ CBL 4.0 introduces strict replication compatibility requirements due to the vers
 
 ## [](#xcode)Xcode
 
-The API has changed in Couchbase Lite 2.0 and requires porting an application that’s using Couchbase Lite 1.x API to the Couchbase Lite 2.0 API. To update an Xcode project built with Couchbase Lite 1.x:
+The API has changed in Couchbase Lite 2.0 and requires porting an application that's using Couchbase Lite 1.x API to the Couchbase Lite 2.0 API. To update an Xcode project built with Couchbase Lite 1.x:
 
 * Remove the existing **CouchbaseLite.framework** dependency from the Xcode project.
 * Remove all the Couchbase Lite 1.x dependencies (see the [1.x installation guide](https://docs-archive.couchbase.com/couchbase-lite/1.4/objc.html#getting-started)).
@@ -222,7 +222,7 @@ For example, when a new minor version such as CBL 3.1.0 becomes available, the r
 
 **Full Downgrade Support** \- Couchbase Lite supports downgrades between patch releases. Users can downgrade between different patch versions within the same minor release.
 
-For example, if you’re running CBL 3.1.6 you can downgrade to CBL 3.1.4 or CBL 3.1.3 without issues.
+For example, if you're running CBL 3.1.6 you can downgrade to CBL 3.1.4 or CBL 3.1.3 without issues.
 
 ## [](#related-content)Related Content
 

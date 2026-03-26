@@ -3,7 +3,7 @@ title: Revisions
 description: About Sync Gateway's revision tracking using version vectors and
   revision caches in 4.0+.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/revisions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway:manage:revisions.adoc[]
 ---
 
@@ -12,8 +12,8 @@ link: xref:sync-gateway:manage:revisions.adoc[]
 
 # Revisions
 
-> About Sync Gateway’s revision tracking using version vectors and revision caches in 4.0+.  
-> Revisions are at the heart of Couchbase Mobile’s ability to respond flexibly and securely to changing data from server to edge.
+> About Sync Gateway's revision tracking using version vectors and revision caches in 4.0+.  
+> Revisions are at the heart of Couchbase Mobile's ability to respond flexibly and securely to changing data from server to edge.
 
 ## [](#introduction)Introduction
 
@@ -93,7 +93,7 @@ This approach eliminates the complexity of revision tree management while ensuri
 
 ### [](#lbl-rtctrl)Controls
 
-You can configure revision retention using the Configuration File’s [revs\_limit](../configuration/configuration-schema-database.md#database-revs%5Flimit) setting.
+You can configure revision retention using the Configuration File's [revs\_limit](../configuration/configuration-schema-database.md#database-revs%5Flimit) setting.
 
 For Sync Gateway 4.0+ with automatic conflict resolution enabled, low `revs_limit` values provide optimal performance and storage efficiency. The Last Write Wins conflict resolution strategy supports values as low as 1.
 
@@ -140,7 +140,7 @@ Use the [rev\_cache.size](../configuration/configuration-schema-database.md#data
 
 When the revision cache is full, Sync Gateway removes older document revisions to make room for newer ones.
 
-By adjusting this setting you can fine-tune Sync Gateway’s memory consumption. This can be useful when working on servers with limited memory and in cases when Sync Gateway creates and-or updated new documents relative to the number of read operations.
+By adjusting this setting you can fine-tune Sync Gateway's memory consumption. This can be useful when working on servers with limited memory and in cases when Sync Gateway creates and-or updated new documents relative to the number of read operations.
 
 #### [](#cache-maximum-memory)Cache Maximum Memory
 

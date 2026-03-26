@@ -2,7 +2,7 @@
 title: Encryption
 description: Couchbase Server lets you use encryption to protect data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/encryption-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:security/encryption-overview.adoc[]
 ---
 
@@ -41,7 +41,7 @@ You can encrypt XDCR replication between Couchbase Server clusters. See [Enable 
 
 Couchbase Server TLS Support
 
-Couchbase Server uses Transport Layer Security (TLS) with a selection of cipher-suites for network encryption. See the following pages for more information about Couchbase Server’s TLS support:
+Couchbase Server uses Transport Layer Security (TLS) with a selection of cipher-suites for network encryption. See the following pages for more information about Couchbase Server's TLS support:
 
 * [On-the-Wire Security](on-the-wire-security.md) provides a conceptual overview of TLS in Couchbase Server.
 * [Manage On-the-Wire Security](../../manage/manage-security/manage-tls.md) has step-by-step configuration instructions.
@@ -67,7 +67,7 @@ You can use disk encryption such as the LUKS encrypted filesystem which is avail
 
 Use field-level encryption in applications
 
-Applications can use the SDK to encrypt specific fields. Depending on your application’s requirements, field-level encryption may be more appropriate than encrypting the entire bucket or disk. See the SDK documentation for your development language for more information. For example:
+Applications can use the SDK to encrypt specific fields. Depending on your application's requirements, field-level encryption may be more appropriate than encrypting the entire bucket or disk. See the SDK documentation for your development language for more information. For example:
 
 * Go SDK: [Encrypting Your Data](../../../../go-sdk/current/howtos/encrypting-using-sdk.md)
 * Java SDK: [Encrypting Your Data](../../../../java-sdk/current/howtos/encrypting-using-sdk.md)

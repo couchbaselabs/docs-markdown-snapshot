@@ -1,7 +1,7 @@
 ---
 title: Connect or Disconnect a Remote Link
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/connect-link.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sources:connect-link.adoc[]
 ---
 
@@ -18,12 +18,12 @@ You incur charges when you connect a remote link.
 
 1. In the Capella UI, select the **Capella Analytics** tab.
 2. Click a cluster name. The workbench opens.
-3. Use the explorer to locate the link you want to connect. Each link’s status displays next to its name.
+3. Use the explorer to locate the link you want to connect. Each link's status displays next to its name.
 4. Move your cursor over the name of the link and then choose **⋮ (More)** **Connect**.
 
 ![Selecting Connect from the More menu](_images/connect_remote_link.png) 
 
-Capella Analytics begins setting up the required infrastructure for the connection. Automatic data ingestion from the connected data source to all linked collections begins as soon as set up is complete. If more than one collection uses the link, data ingestion begins for all of them. The link’s status changes to connected.
+Capella Analytics begins setting up the required infrastructure for the connection. Automatic data ingestion from the connected data source to all linked collections begins as soon as set up is complete. If more than one collection uses the link, data ingestion begins for all of them. The link's status changes to connected.
 
 After you connect the link and your initial data ingest is complete, you can run `ANALYZE COLLECTION` on each collection associated with the link. The `ANALYZE` statement samples data in the collection so that cost-based optimization (CBO) can be applied instead of rule-based optimization. As data in the collections changes, you can run `ANALYZE COLLECTION` periodically to refresh the samples. See [Cost-Based Optimizer for Capella Analytics Services](../sqlpp/5b%5Fcbo.md).
 
@@ -45,7 +45,7 @@ You can stop a data event stream from continuously updating the collection or co
 
 1. In the Capella UI, select the **Capella Analytics** tab.
 2. Click a cluster name. The workbench opens.
-3. Use the explorer to locate the link you want to disconnect. Each link’s status appears next to its name.
+3. Use the explorer to locate the link you want to disconnect. Each link's status appears next to its name.
 4. Move your cursor over the name of the link and then choose **⋮ (More)** **Disconnect**.
 
 You can also use an SQL++ for Capella Analytics statement to disconnect a remote link. See [DISCONNECT Statements](../sqlpp/5%5Fddl%5Fdisconnect.md).

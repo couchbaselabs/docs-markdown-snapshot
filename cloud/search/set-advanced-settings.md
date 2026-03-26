@@ -3,7 +3,7 @@ title: Set Search Index Advanced Settings
 description: When using the Advanced Mode editor in Couchbase Capella UI, you
   can configure additional advanced settings for your Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/set-advanced-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:set-advanced-settings.adoc[]
 ---
 
@@ -47,7 +47,7 @@ To set advanced settings for a Search index with the Capella UI:
   3. Add a document filter to control how documents are included in your type mappings. For more information, see [Set a Document Filter](set-type-identifier.md).
   4. Add a synonym source to support synonym searches. For more information, see [Add Synonyms to a Search Index](synonyms/synonyms-search.md).
   5. Choose the scoring model you want to use with your Search index. For more information about scoring models, see [Scoring Model](customize-index.md#scoring-model).
-  6. If you’re using [dynamic type mappings](about-mappings.md#dynamic), choose how to handle dynamic fields in your Search index:
+  6. If you're using [dynamic type mappings](about-mappings.md#dynamic), choose how to handle dynamic fields in your Search index:
 
     1. To store the content of any fields added to a Search index from a dynamic type mapping, turn on **Store Dynamic Fields**.
     2. To include fields or whole documents in your Search index that match a dynamic type mapping, turn on **Index Dynamic Fields**.

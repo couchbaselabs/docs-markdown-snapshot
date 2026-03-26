@@ -2,7 +2,7 @@
 title: Start Using the Go SDK
 description: A quick start guide to get you up and running with Couchbase and the Go SDK.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.9@go-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -327,7 +327,7 @@ password := "password"
 
 ### [](#connect)Connect
 
-Connect to your cluster by calling the `Cluster.Connect()` function and pass it your connection details. The basic connection details that you’ll need are given below — for more background information, see [Managing Connections](../howtos/managing-connections.md).
+Connect to your cluster by calling the `Cluster.Connect()` function and pass it your connection details. The basic connection details that you'll need are given below — for more background information, see [Managing Connections](../howtos/managing-connections.md).
 
 * Couchbase Capella
 * Local Couchbase Server
@@ -430,7 +430,7 @@ if err != nil {
 }
 ```
 
-Now, let’s retrieve it using a key-value (data) operation.
+Now, let's retrieve it using a key-value (data) operation.
 
 ```golang
 // Get the document back
@@ -498,7 +498,7 @@ map[airline:map[callsign:MILE-AIR country:United States iata:Q5 icao:MLA id:10 n
 
 ## [](#next-steps)Next Steps
 
-Now you’re up and running, try one of the following:
+Now you're up and running, try one of the following:
 
 * Our [Travel Sample Application](sample-application.md) demonstrates all the basics you need to know;
 * Explore [Key Value Operations](../howtos/kv-operations.md) (CRUD) against a document database;
@@ -515,7 +515,7 @@ Couchbase welcomes community contributions to the Go SDK. The Go SDK source code
 
 ### [](#troubleshooting)Troubleshooting
 
-* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you’re running the SDK on your laptop against a Capella cluster, see further information on:
+* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you're running the SDK on your laptop against a Capella cluster, see further information on:
 
   * Notes on [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
   * [Network Requirements](../project-docs/compatibility.md#network-requirements).

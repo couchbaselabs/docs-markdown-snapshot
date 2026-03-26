@@ -1,7 +1,7 @@
 ---
 title: Configure CMOS for Kubernetes deployment
 editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/tutorial-kubernetes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cmos::tutorial-kubernetes.adoc[]
 ---
 
@@ -23,7 +23,7 @@ CMOS is deployed on Kubernetes platform using a standard set of resources like D
 
 ### [](#prometheus-configuration)Prometheus Configuration
 
-The prometheus configuration file is a standard way of specifying the configuration for the prometheus server. Prometheus configuration can be externalized using a Kubernetes `ConfigMap`, which contains all the details including credentials, and targets to scrape metrics. By externalizing Prometheus configuration to a Kubernetes config map, you don’t have to build the Prometheus image whenever you need to add or remove a configuration. You simply need to update the config map and restart the Prometheus pods to apply the new configuration.
+The prometheus configuration file is a standard way of specifying the configuration for the prometheus server. Prometheus configuration can be externalized using a Kubernetes `ConfigMap`, which contains all the details including credentials, and targets to scrape metrics. By externalizing Prometheus configuration to a Kubernetes config map, you don't have to build the Prometheus image whenever you need to add or remove a configuration. You simply need to update the config map and restart the Prometheus pods to apply the new configuration.
 
 The following is an example file that contains default configuration for CMOS prometheus to work out of the box. Run the below command in the console to create it.
 
@@ -400,12 +400,12 @@ Figure 1\. CMOS landing image
 
 ## [](#add-couchbase-cluster)Add Couchbase Cluster
 
-You can access the Couchbase cluster from the CMOS dashboard using the “Add Cluster” option. In this section, we need to enter a few details and then click on "Add Cluster". Enter the Couchbase Server hostname, username and password credentials.
+You can access the Couchbase cluster from the CMOS dashboard using the "Add Cluster" option. In this section, we need to enter a few details and then click on "Add Cluster". Enter the Couchbase Server hostname, username and password credentials.
 
-By default the username is “admin” and password is “password”. We recommend specifying a stronger password in the `custom-values.yaml` file during CMOS installation.
+By default the username is "admin" and password is "password". We recommend specifying a stronger password in the `custom-values.yaml` file during CMOS installation.
 
 > [!NOTE]
-> Remove the check from “Add to Prometheus” option, because prometheus scraping will be configured using service discovery.
+> Remove the check from "Add to Prometheus" option, because prometheus scraping will be configured using service discovery.
 
 ![add cluster k8s](_images/add-cluster-k8s.png) 
 
@@ -465,7 +465,7 @@ Figure 9\. Alerts image
 
 ## [](#alertmanager)Alertmanager
 
-Alertmanager is shipped and enabled by default in the CMOS, which is accessible via “Alert Manager” options. You can view all the generated alerts in this dashboard.
+Alertmanager is shipped and enabled by default in the CMOS, which is accessible via "Alert Manager" options. You can view all the generated alerts in this dashboard.
 
 ![alert manager](_images/alert-manager.png) 
 
@@ -485,7 +485,7 @@ From the Log browser, you can enter a custom Loki query or select appropriate la
 
 Figure 12\. Loki log browser image
 
-After that select the “Show logs” to view logs. You can also build [custom Grafana dashboards](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#step-3-create-a-dashboard) based on your needs.
+After that select the "Show logs" to view logs. You can also build [custom Grafana dashboards](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#step-3-create-a-dashboard) based on your needs.
 
 ![loki logs](_images/loki-logs.png) 
 

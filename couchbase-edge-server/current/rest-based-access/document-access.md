@@ -3,7 +3,7 @@ title: Document Access with Edge Server
 description: You can create, read, update, and delete documents in a keyspace
   using the REST API's document operations.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/document-access.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-edge-server:rest-based-access:document-access.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:couchbase-edge-server:rest-based-access:document-access.adoc[]
 
 # Document Access with Edge Server
 
-> You can create, read, update, and delete documents in a keyspace using the REST API’s document operations. 
+> You can create, read, update, and delete documents in a keyspace using the REST API's document operations. 
 
 ## [](#scopes-and-collections)Scopes and Collections
 
@@ -115,7 +115,7 @@ HTTP Response
 
 The following request checks whether the specified document within the specified keyspace has the expected revision number. If so, it adds a `geo` subdocument to the document.
 
-This ensures that you’re applying your update to the latest revision of the document, in cases where the document may be updated by other processes concurrently.
+This ensures that you're applying your update to the latest revision of the document, in cases where the document may be updated by other processes concurrently.
 
 HTTP Request
 
@@ -147,7 +147,7 @@ If the revision number does not match, the request returns a `409` error. If thi
 
 The following request checks whether the specified document within the specified keyspace has the expected revision number. If so, it deletes the document.
 
-This ensures that you’re deleting the latest revision of the document, in cases where the document may be updated by other processes concurrently.
+This ensures that you're deleting the latest revision of the document, in cases where the document may be updated by other processes concurrently.
 
 HTTP Request
 

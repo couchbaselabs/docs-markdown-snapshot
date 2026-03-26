@@ -5,7 +5,7 @@ description: Couchbase Server Services provide data access and maintenance. You
   Multi-Dimensional Scaling, which allows the tuning of the cluster for optimal
   performance as workloads change.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/services-and-indexes/services/services.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:services-and-indexes/services/services.adoc[]
 ---
 
@@ -22,7 +22,7 @@ Each service provides a specific type of data access. Couchbase recommends deplo
 
 In Couchbase Server 7.6 and later versions, you can add 1 or more arbiter nodes to your cluster. An arbiter node helps your cluster in two ways:
 
-* It provides [fast failover](../../clusters-and-availability/nodes.md#fast-failover) which helps decrease the cluster’s latency when reacting to a failover.
+* It provides [fast failover](../../clusters-and-availability/nodes.md#fast-failover) which helps decrease the cluster's latency when reacting to a failover.
 * It provides [quorum arbitration](../../../install/deployment-considerations-lt-3nodes.md#quorum-arbitration) that helps avoid contention issues if the nodes in the cluster become partitioned.
 
 ## [](#services-and-multi-dimensional-scaling)Services and Multi-Dimensional Scaling
@@ -45,7 +45,7 @@ Services are configured per node. Each node can run 1 instance of a service and 
 
 The Data Service must run on at least 1 node in the cluster. Some services are interdependent and require at least 1 instance of each dependency to be running. For example, the Query Service depends on the Index and Data services.
 
-When you initialize the first node in a cluster, that node’s service configuration becomes the default for nodes added later. You can change the default configuration for individual nodes by removing services, adding services, or both.
+When you initialize the first node in a cluster, that node's service configuration becomes the default for nodes added later. You can change the default configuration for individual nodes by removing services, adding services, or both.
 
 In Couchbase Server 8.0 and later versions, you can add or remove the following non-Data Services on-demand on existing nodes in a cluster, without adding or removing nodes.
 

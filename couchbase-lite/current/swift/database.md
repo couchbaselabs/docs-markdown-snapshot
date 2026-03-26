@@ -2,7 +2,7 @@
 title: Databases
 description: Working with Couchbase Lite Databases
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/database.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:swift:database.adoc[]
 ---
 
@@ -39,7 +39,7 @@ Figure 2\. Couchbase Lite Examples
 
 Storing local configuration
 
-You may not need to sync all the data related for a particular application. You can set up a scope that syncs data, and a second scope that doesn’t.
+You may not need to sync all the data related for a particular application. You can set up a scope that syncs data, and a second scope that doesn't.
 
 One reason for doing this is to store local configuration data (such as the preferred screen orientation or keyboard layout). Since this information only relates to a particular device, there is no need to sync it:
 
@@ -128,7 +128,7 @@ self.database = try Database(name: "my-database", config: config)
 
 ### [](#persisting)Persisting
 
-Couchbase Lite does not persist the key. It is the application’s responsibility to manage the key and store it in a platform-specific secure store such Android’s [Keystore](https://developer.android.com/training/articles/keystore).
+Couchbase Lite does not persist the key. It is the application's responsibility to manage the key and store it in a platform-specific secure store such Android's [Keystore](https://developer.android.com/training/articles/keystore).
 
 ### [](#opening)Opening
 
@@ -148,13 +148,13 @@ To upgrade an encrypted database see: [Upgrade 1.x databases](upgrade.md#lbl-db-
 
 ## [](#lbl-find-db-loc)Finding a Database File
 
-When the application is running on the iOS simulator, you can locate the application’s sandbox directory using the [SimPholders](https://simpholders.com/3/) utility.
+When the application is running on the iOS simulator, you can locate the application's sandbox directory using the [SimPholders](https://simpholders.com/3/) utility.
 
 ## [](#lbl-db-util)Database Maintenance
 
 From time to time it may be necessary to perform certain maintenance activities on your database, for example to compact the database file, removing unused documents and blobs no longer referenced by any documents.
 
-Couchbase Lite’s API provides the [Database.performMaintenance()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC18performMaintenance4typeyAA0F4TypeO%5FtKF) method. The available maintenance operations, including `compact` are as shown in the enum [MaintenanceType](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Enums/MaintenanceType.html) to accomplish this.
+Couchbase Lite's API provides the [Database.performMaintenance()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC18performMaintenance4typeyAA0F4TypeO%5FtKF) method. The available maintenance operations, including `compact` are as shown in the enum [MaintenanceType](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Enums/MaintenanceType.html) to accomplish this.
 
 This is a resource intensive operation and is not performed automatically. It should be run on-demand using the API. If in doubt, consult Couchbase support.
 

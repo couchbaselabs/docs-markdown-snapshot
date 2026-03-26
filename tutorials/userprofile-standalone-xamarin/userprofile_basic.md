@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Couchbase Lite Fundamentals"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-xamarin/edit/standalone/content/modules/userprofile-standalone-xamarin/pages/userprofile_basic.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:tutorials:userprofile-standalone-xamarin:userprofile_basic.adoc[]
 ---
 
@@ -44,7 +44,7 @@ This tutorial assumes familiarity with building [Xamarin](https://www.xamarin.co
 * UWP (Windows 10)
 * git (Optional) This is required if you would prefer to pull the source code from GitHub repo.
 
-  * Create a [free github account](https://github.com)if you don’t already have one
+  * Create a [free github account](https://github.com)if you don't already have one
   * git can be downloaded from [git-scm.org](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## [](#app-overview)App Overview
@@ -65,7 +65,7 @@ Clone the **_standalone_** branch of the `User Profile Demo` solution from GitHu
 git clone -b standalone https://github.com/couchbaselabs/userprofile-couchbase-mobile-xamarin.git
 ```
 
-Next, let’s verify the installation.
+Next, let's verify the installation.
 
 Try it Out
 
@@ -94,7 +94,7 @@ The solution consists of seven projects.
 * **UserProfileDemo.Android**: A Xamarin.Android platform project responsible for building the `.apk` file.
 * **UserProfileDemo.UWP**: A UWP platform project responsible for building the `.exe` file.
 
-Now that you have an understanding of the solution architecture let’s dive into the app!
+Now that you have an understanding of the solution architecture let's dive into the app!
 
 ## [](#couchbase-lite-nuget)Couchbase Lite Nuget
 
@@ -121,7 +121,7 @@ Couchbase.Lite.Support.Droid.Activate(this);
 
 ## [](#data-model)Data Model
 
-Let’s take a look at the foundations of Couchbase; data models and documents.
+Let's take a look at the foundations of Couchbase; data models and documents.
 
 Couchbase Lite is a JSON Document Store. A Document is a logical collection of named fields and values. The values are any valid JSON types. In addition to the standard JSON types, Couchbase Lite supports `Date` and `Blob` data types. While it is not required or enforced, it is a recommended practice to include a _"type"_ property that can serve as a namespace for related documents.
 
@@ -259,7 +259,7 @@ Try it out
 1. Run the app to be tested using a simulator/emulator or device.
 2. Log into the app with any username and password.  
 Use the values _"[demo@example.com](mailto:demo@example.com)"_ and _"password"_ for username and password fields respectively.  
-If this is the first time that the user is signing in, a new Couchbase Lite database will be created. If not, the user’s existing database will be opened.
+If this is the first time that the user is signing in, a new Couchbase Lite database will be created. If not, the user's existing database will be opened.
 3. Confirm that the console log output has a message similar to the one below.  
 In my example, I am logging in with a username of _"[demo@example.com](mailto:demo@example.com)"_.  
 This will open (or create) a database at path `/Users/[user_name]/Library/Developer/CoreSimulator/Devices/[unique_device_id]/data/Containers/Data/Application/[unique_app_id]/Library/Application Support/demo@example.com`
@@ -308,7 +308,7 @@ if (document != null)
 | **1** | Fetch an **immutable** copy of the Document from the database.                                                                                                                                                                      |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Create an instance of [The User Record](#lbl-user-record) object                                                                                                                                                                    |
-| **3** | Set the email property of the UserProfile with the username of the logged in user. **Note:** This value is not editable after it’s initially saved.                                                                                 |
+| **3** | Set the email property of the UserProfile with the username of the logged in user. **Note:** This value is not editable after it's initially saved.                                                                                 |
 | **4** | If the document exists and is fetched successfully, a variety of methods exist that can be used to fetch members of the Document. Specifically, note the support of the GetBlob type to fetch the value of a property of type Blob. |
 
 ### [](#creating-updating-a-document)Creating / Updating a Document
@@ -341,7 +341,7 @@ if (userProfile.ImageData != null)
 
 ### [](#deleting-a-document)Deleting a Document
 
-We don’t delete a `Document` in this sample app. However, deletion of a document is pretty straightforward and this is how you would do it.
+We don't delete a `Document` in this sample app. However, deletion of a document is pretty straightforward and this is how you would do it.
 
 ```c#
 var document = Database.GetDocument(id);

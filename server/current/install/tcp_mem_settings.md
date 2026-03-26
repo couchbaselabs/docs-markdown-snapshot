@@ -3,7 +3,7 @@ title: Linux Kernel TCP/IP Memory Settings
 description: The Linux kernel has a global parameter named <code>tcp_mem</code>
   that limits the TCP/IP stack's RAM use.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/tcp_mem_settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:tcp_mem_settings.adoc[]
 ---
 
@@ -12,18 +12,18 @@ link: xref:server:install:tcp_mem_settings.adoc[]
 
 # Linux Kernel TCP/IP Memory Settings
 
-> The Linux kernel has a global parameter named `tcp_mem` that limits the TCP/IP stack’s RAM use. It prevents the TCP/IP stack from consuming so much memory under heavy network use that it interferes with other workloads. The Linux Kernel sets default values for `tcp_mem` based on the total amount of RAM and other factors in the system. You should verify and, if necessary, adjust this setting to prevent potential networking issues. 
+> The Linux kernel has a global parameter named `tcp_mem` that limits the TCP/IP stack's RAM use. It prevents the TCP/IP stack from consuming so much memory under heavy network use that it interferes with other workloads. The Linux Kernel sets default values for `tcp_mem` based on the total amount of RAM and other factors in the system. You should verify and, if necessary, adjust this setting to prevent potential networking issues. 
 
 ## [](#about)About tcp\_mem
 
-The Linux kernel’s `tcp_mem` setting is a trio of integers that sets thresholds for the TCP/IP stack’s memory use. You can view the current `tcp_mem` settings by running the following command:
+The Linux kernel's `tcp_mem` setting is a trio of integers that sets thresholds for the TCP/IP stack's memory use. You can view the current `tcp_mem` settings by running the following command:
 
 ```sh
 cat /proc/sys/net/ipv4/tcp_mem
 ```
 
 > [!NOTE]
-> Even though `tcp_mem` appears within the `ipv4` directory, it applies to both IPv4 and IPv6 traffic. There’s no separate `tcp_mem` setting for IPv6\.
+> Even though `tcp_mem` appears within the `ipv4` directory, it applies to both IPv4 and IPv6 traffic. There's no separate `tcp_mem` setting for IPv6\.
 
 The command returns 3 integer values representing memory thresholds in pages. The following output is from a system with 8 GB of RAM:
 
@@ -34,9 +34,9 @@ The command returns 3 integer values representing memory thresholds in pages. Th
 The 3 values in `tcp_mem` are:
 
 * The minimum threshold: When the total memory used by all TCP sockets is less than this value, the TCP/IP stack stops taking steps to reduce its memory use.
-* The pressure threshold: When the TCP/IP stack’s memory use exceeds this value, the TCP/IP stack starts taking steps to reduce its memory use. For example, it minimizes the amount of memory it allocates for TCP/IP windows, buffers, and incoming packets and aggressively frees buffers for closing sockets.  
+* The pressure threshold: When the TCP/IP stack's memory use exceeds this value, the TCP/IP stack starts taking steps to reduce its memory use. For example, it minimizes the amount of memory it allocates for TCP/IP windows, buffers, and incoming packets and aggressively frees buffers for closing sockets.  
 These measures can affect network performance. Symptoms of the TCP/IP memory use being under pressure include increased latency and limited throughput. The TCP/IP stack continues to apply these measures until its memory use drops to less than the minimum threshold.
-* The maximum threshold: If the TCP/IP stack’s memory use reaches this limit, the kernel prevents it from allocating more memory. This limit results in dropped packets and refused connections. The kernel also begins logging Out Of Memory (OOM) errors to the system log. For example, you may see the following message in the `dmesg` log:  
+* The maximum threshold: If the TCP/IP stack's memory use reaches this limit, the kernel prevents it from allocating more memory. This limit results in dropped packets and refused connections. The kernel also begins logging Out Of Memory (OOM) errors to the system log. For example, you may see the following message in the `dmesg` log:  
 ```console  
 TCP: out of memory -- consider tuning tcp_mem  
 ```
@@ -52,11 +52,11 @@ TCP: out of memory -- consider tuning tcp_mem
 
 ## [](#recommended-tcp%5Fmem-settings)Recommended tcp\_mem Settings
 
-The best setting for `tcp_mem` on a Couchbase Server node is between 5% and 10% of the total RAM. Most Linux distributions set their `tcp_mem` values to this range. Before you install Couchbase Server, verify that the `tcp_mem` value on your system is within 5% to 10% of the total RAM size. You’ll need to compare the numbers returned by the `cat /proc/sys/net/ipv4/tcp_mem` command to the recommended range for your system. Remember that the `tcp_mem` values are in pages, so you need to convert the amount of RAM reported by your system into pages.
+The best setting for `tcp_mem` on a Couchbase Server node is between 5% and 10% of the total RAM. Most Linux distributions set their `tcp_mem` values to this range. Before you install Couchbase Server, verify that the `tcp_mem` value on your system is within 5% to 10% of the total RAM size. You'll need to compare the numbers returned by the `cat /proc/sys/net/ipv4/tcp_mem` command to the recommended range for your system. Remember that the `tcp_mem` values are in pages, so you need to convert the amount of RAM reported by your system into pages.
 
 For example, suppose your nodes have 64 GB of RAM and 4 KB page size. To determine what the minimum, pressure, and maximum thresholds should be for a 5% memory limit, you can follow these steps:
 
-1. Calculate the total number of bytes in the node’s RAM: \\$64 xx 1024 xx 1024 xx 1024 = 68,719,476,736\\$ bytes.
+1. Calculate the total number of bytes in the node's RAM: \\$64 xx 1024 xx 1024 xx 1024 = 68,719,476,736\\$ bytes.
 2. Calculate the total number of memory pages in the system by dividing the total bytes by the page size: \\$"68,719,476,736" / "4,096" = 16,777,216\\$ pages.
 3. Calculate the maximum threshold as 5% of the total memory pages: \\$16,777,216 xx 0.05 = 838,860.8\\$ pages. Round the result to the nearest whole number: \\$838,861\\$ pages.
 4. Calculate the pressure threshold as 90% of the maximum threshold: \\$838,861 xx 0.90 = 754,974.9\\$ pages. Round up to the nearest whole number: \\$754,975\\$ pages.
@@ -102,7 +102,7 @@ net.ipv4.tcp_mem = 671089 754975 838861
 
 ### [](#permanent)Permanently Set tcp\_mem
 
-To set `tcp_mem` permanently, add or modify a setting in the Linux `sysctl` configuration. The exact file to edit depends on your Linux distribution. Traditionally, you would add the setting to the `/etc/sysctl.conf` file. However, recent Linux distributions have deprecated the use of this file in favor of files containing individual settings in the `/etc/sysctl.d/` directory. Consult your Linux distribution’s documentation for the recommended way to set `sysctl` parameters permanently.
+To set `tcp_mem` permanently, add or modify a setting in the Linux `sysctl` configuration. The exact file to edit depends on your Linux distribution. Traditionally, you would add the setting to the `/etc/sysctl.conf` file. However, recent Linux distributions have deprecated the use of this file in favor of files containing individual settings in the `/etc/sysctl.d/` directory. Consult your Linux distribution's documentation for the recommended way to set `sysctl` parameters permanently.
 
 Once you have determined the file to edit, add or modify the following line. Replace the example values with your calculated values:
 

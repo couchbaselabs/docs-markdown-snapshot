@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:nodejs-analytics-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -120,7 +120,7 @@ __Table 1\. Available Query Options__
 | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | abortSignal?: AbortSignal                       | Sets an abort signal for the query allowing the operation to be cancelled.                                                                                  |
 | clientContextId?: string                        | The returned client context id for this query.                                                                                                              |
-| deserializer?: Deserializer                     | Sets the deserializer used by QueryResult.rows to convert query result rows into objects. If not specified, defaults to the cluster’s default deserializer. |
+| deserializer?: Deserializer                     | Sets the deserializer used by QueryResult.rows to convert query result rows into objects. If not specified, defaults to the cluster's default deserializer. |
 | namedParameters?: {     \[key: string\]: any; } | Named values to be used for the placeholders within the query.                                                                                              |
 | positionalParameters?: any\[\]                  | Positional values to be used for the placeholders within the query.                                                                                         |
 | raw?: {     \[key: string\]: any; }             | Specifies any additional parameters which should be passed to the query engine when executing the query.                                                    |

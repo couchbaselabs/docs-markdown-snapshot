@@ -3,7 +3,7 @@ title: Passive Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/swift/pages/p2psync-websocket-using-passive.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.2@couchbase-lite:swift:p2psync-websocket-using-passive.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:3.2@couchbase-lite:swift:p2psync-websocket-using-passive.adoc[]
 
 # Passive Peer
 
-> Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
+> Description — _Couchbase Lite's Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — How to set up a Listener to accept a Replicator connection and sync using peer-to-peer_  
 > Related Content — [API Reference](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
@@ -21,7 +21,7 @@ link: xref:3.2@couchbase-lite:swift:p2psync-websocket-using-passive.adoc[]
 > 
 > iOS 14 Applications
 > 
-> When your application attempts to access the user’s local network, iOS will prompt them to allow (or deny) access. You can customize the message presented to the user by editing the description for the `NSLocalNetworkUsageDescription` key in the `Info.plist`.
+> When your application attempts to access the user's local network, iOS will prompt them to allow (or deny) access. You can customize the message presented to the user by editing the description for the `NSLocalNetworkUsageDescription` key in the `Info.plist`.
 
 > [!NOTE]
 > Code Snippets
@@ -32,7 +32,7 @@ link: xref:3.2@couchbase-lite:swift:p2psync-websocket-using-passive.adoc[]
 
 This content provides code and configuration examples covering the implementation of [Peer-to-Peer Sync](refer-glossary.md#peer-to-peer-sync) over WebSockets. Specifically, it covers the implementation of a [Passive Peer](refer-glossary.md#passive-peer).
 
-Couchbase’s Passive Peer (also referred to as the server, or Listener) will accept a connection from an [Active Peer](refer-glossary.md#active-peer) (also referred to as the client or replicator) and replicate database changes to synchronize both databases.
+Couchbase's Passive Peer (also referred to as the server, or Listener) will accept a connection from an [Active Peer](refer-glossary.md#active-peer) (also referred to as the client or replicator) and replicate database changes to synchronize both databases.
 
 Subsequent sections provide additional details and examples for the main configuration options.
 
@@ -102,7 +102,7 @@ You can find [Swift API References](https://docs.couchbase.com/mobile/3.2.4/couc
 
 **This phase is optional:** If the Listener is initialized on a well-known URL endpoint (for example, a static IP Address or well-known DNS address) then you can configure Active Peers to connect to those.
 
-Before initiating the Listener, you may execute a peer discovery phase. For the Passive Peer, this involves advertising the service using, for example, _Bonjour_ (see: <https://developer.apple.com/bonjour/>) and waiting for an invite from the Active Peer. The connection is established once the Passive Peer has authenticated and accepted an Active Peer’s invitation.
+Before initiating the Listener, you may execute a peer discovery phase. For the Passive Peer, this involves advertising the service using, for example, _Bonjour_ (see: <https://developer.apple.com/bonjour/>) and waiting for an invite from the Active Peer. The connection is established once the Passive Peer has authenticated and accepted an Active Peer's invitation.
 
 ## [](#initialize-the-listener-configuration)Initialize the Listener Configuration
 
@@ -213,7 +213,7 @@ If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous 
 The auto-generated anonymous self-signed identity is saved in secure storage for future use to obviate the need to re-generate it.
 
 > [!NOTE]
-> Typically, you will configure the Listener’s TLS Identity once during the initial launch and re-use it (from secure storage) on any subsequent starts.
+> Typically, you will configure the Listener's TLS Identity once during the initial launch and re-use it (from secure storage) on any subsequent starts.
 
 Here are some example code snippets showing:
 
@@ -221,7 +221,7 @@ Here are some example code snippets showing:
 * Setting TLS identity to expect self-signed certificate — — see: [Example 8](#ex-create-tls-id)
 * Setting TLS identity to expect anonymous certificate — see: [Example 9](#ex-anon-tls-id)
 
-Example 7\. Import Listener’s TLS identity
+Example 7\. Import Listener's TLS identity
 
 Import an identity from a secure key and certificate data source.
 
@@ -248,7 +248,7 @@ config.tlsIdentity = tlsIdentity    (4)
 | ----- | ------------------------------------------------------------------------- |
 | **2** | Get key and certificate data                                              |
 | **3** | Use the retrieved data to create and store the TLS identity               |
-| **4** | Set this identity as the one presented in response to the client’s prompt |
+| **4** | Set this identity as the one presented in response to the client's prompt |
 
 Example 8\. Create Self-Signed Cert
 
@@ -296,7 +296,7 @@ In this section: [Use Basic Authentication](#use-basic-authentication) | [Using 
 
 Define how the server (Listener) will authenticate the client as one it is prepared to interact with.
 
-Whilst client authentication is optional, Couchbase lite provides the necessary tools to implement it. Use the [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Structs/URLEndpointListenerConfiguration.html) class’s [authenticator](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Structs/URLEndpointListenerConfiguration.html#/s:18CouchbaseLiteSwift32URLEndpointListenerConfigurationC13authenticatorAA0E13Authenticator%5FpSgvp) method to specify how the client-supplied credentials are to be authenticated.
+Whilst client authentication is optional, Couchbase lite provides the necessary tools to implement it. Use the [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Structs/URLEndpointListenerConfiguration.html) class's [authenticator](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Structs/URLEndpointListenerConfiguration.html#/s:18CouchbaseLiteSwift32URLEndpointListenerConfigurationC13authenticatorAA0E13Authenticator%5FpSgvp) method to specify how the client-supplied credentials are to be authenticated.
 
 Valid options are:
 
@@ -392,11 +392,11 @@ __Table 1\. Expected system behavior__
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | true       | Ignored                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | TLS is disabled; all communication is plain text.                                                                                                                                                                            |
 | false      | set to nil                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | The system will auto generate an _anonymous_ self signed cert. Active Peers (clients) should be configured to accept self-signed certificates. Communication is encrypted                                                    |
-| false      | Set to server identity generated from a self- or CA-signed certificate On first use — Bring your own certificate and private key; for example, using the [TLSIdentity](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Classes/TLSIdentity.html) class’s [CreateIdentity()](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Classes/TLSIdentity.html#/s:18CouchbaseLiteSwift11TLSIdentityC14createIdentity9forServer10attributes10expiration5labelACSb%5FSDyS2SG10Foundation4DateVSgSStKFZ) method to add it to the secure storage. Each time — Use the server identity from the certificate stored in the secure storage; for example, using the [TLSIdentity](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Classes/TLSIdentity.html) class’s [identity(withLabel:)](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Classes/TLSIdentity.html#//s:18CouchbaseLiteSwift11TLSIdentityC8identity9withLabelACSgSS%5FtKFZ) method with the alias you want to retrieve.. | System will use the configured identity. Active Peers will validate the server certificate corresponding to the TLSIdentity (as long as they are configured to not skip validation — see [TLS Security](#lbl-tls-security)). |
+| false      | Set to server identity generated from a self- or CA-signed certificate On first use — Bring your own certificate and private key; for example, using the [TLSIdentity](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Classes/TLSIdentity.html) class's [CreateIdentity()](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Classes/TLSIdentity.html#/s:18CouchbaseLiteSwift11TLSIdentityC14createIdentity9forServer10attributes10expiration5labelACSb%5FSDyS2SG10Foundation4DateVSgSStKFZ) method to add it to the secure storage. Each time — Use the server identity from the certificate stored in the secure storage; for example, using the [TLSIdentity](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Classes/TLSIdentity.html) class's [identity(withLabel:)](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Classes/TLSIdentity.html#//s:18CouchbaseLiteSwift11TLSIdentityC8identity9withLabelACSgSS%5FtKFZ) method with the alias you want to retrieve.. | System will use the configured identity. Active Peers will validate the server certificate corresponding to the TLSIdentity (as long as they are configured to not skip validation — see [TLS Security](#lbl-tls-security)). |
 
 ## [](#lbl-start-listener)Start Listener
 
-Once you have completed the Listener’s configuration settings you can initialize the Listener instance and start it running — see: [Example 14](#initialize-and-start-listener)
+Once you have completed the Listener's configuration settings you can initialize the Listener instance and start it running — see: [Example 14](#initialize-and-start-listener)
 
 Example 14\. Initialize and start listener
 
@@ -414,7 +414,7 @@ try self.listener.start() (2)
 
 ## [](#monitor-listener)Monitor Listener
 
-Use the Listener’s `[status](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Classes/URLEndpointListener.html#/s:18CouchbaseLiteSwift19URLEndpointListenerC6statusAC16ConnectionStatusVvp)` property/method to get counts of total and active connections — see: [Example 15](#get-connection-counts).
+Use the Listener's `[status](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Classes/URLEndpointListener.html#/s:18CouchbaseLiteSwift19URLEndpointListenerC6statusAC16ConnectionStatusVvp)` property/method to get counts of total and active connections — see: [Example 15](#get-connection-counts).
 
 You should note that these counts can be extremely volatile. So, the actual number of active connections may have changed, by the time the `[ConnectionStatus](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-swift/Classes/URLEndpointListener/ConnectionStatus.html)` class returns a result.
 
@@ -427,7 +427,7 @@ let activeConnections = self.listener.status.activeConnectionCount
 
 ## [](#stop-listener)Stop Listener
 
-It is best practice to check the status of the Listener’s connections and stop only when you have confirmed that there are no active connections — see [Example 15](#get-connection-counts).
+It is best practice to check the status of the Listener's connections and stop only when you have confirmed that there are no active connections — see [Example 15](#get-connection-counts).
 
 Example 16\. Stop listener using `stop` method
 

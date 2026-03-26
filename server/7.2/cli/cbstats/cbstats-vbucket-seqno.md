@@ -2,7 +2,7 @@
 title: vbucket-seqno
 description: Provides seqno statistics for vBuckets.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbstats/cbstats-vbucket-seqno.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cli:cbstats/cbstats-vbucket-seqno.adoc[]
 ---
 
@@ -29,7 +29,7 @@ __Table 1\. vBucket seqno statistics__
 | Name                         | Description                                                                                             |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------- |
 | abs\_high\_seqno             | The last seqno assigned by this vBucket.                                                                |
-| high\_seqno                  | The last seqno assigned by this vBucket, or in case of replica, the last closed checkpoint’s end seqno. |
+| high\_seqno                  | The last seqno assigned by this vBucket, or in case of replica, the last closed checkpoint's end seqno. |
 | last\_persisted\_seqno       | The last persisted seqno for the vBucket.                                                               |
 | purge\_seqno                 | The last seqno purged by the compactor.                                                                 |
 | uuid                         | The current vBucket uuid.                                                                               |

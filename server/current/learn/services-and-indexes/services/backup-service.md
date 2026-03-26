@@ -3,7 +3,7 @@ title: Backup Service
 description: The Backup Service schedules full and incremental data backups and
   merges of previous  data-backups.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/services-and-indexes/services/backup-service.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:services-and-indexes/services/backup-service.adoc[]
 ---
 
@@ -57,12 +57,12 @@ A repository is a location where the Backup Service can store backup data. You a
 
 * Whether the repository is for all buckets, or a specific bucket.
 * Whether the repository is in `filesystem` or `cloud` storage.
-* The repository’s location—​a path for filesystem repositories or the cloud provider details plus a local staging directory for cloud repositories. All nodes in the cluster must be able to access the repository location.
+* The repository's location—​a path for filesystem repositories or the cloud provider details plus a local staging directory for cloud repositories. All nodes in the cluster must be able to access the repository location.
 
 Once you define the repository, the Backup Service performs backups and optionally merges of the data in the bucket or buckets on the schedule in the plan.
 
 > [!NOTE]
-> The `cbbackupmgr` tool takes a lock on the repository to which it’s backing up data. This lock can cause Backup Service tasks to fail if they attempt to back up data to the repository. If you see backup tasks failing due to lock issues, a common cause is that a `cbbackupmgr` task (either one started directory or by the Backup Service) is using the repository.
+> The `cbbackupmgr` tool takes a lock on the repository to which it's backing up data. This lock can cause Backup Service tasks to fail if they attempt to back up data to the repository. If you see backup tasks failing due to lock issues, a common cause is that a `cbbackupmgr` task (either one started directory or by the Backup Service) is using the repository.
 
 ## [](#inspecting-and-restoring)Inspecting and Restoring
 
@@ -98,17 +98,17 @@ If you delete a repository but do not delete the data it contains, you can impor
 
 The Backup Service allows you to schedule automated tasks at intervals as small as one minute. However, you should be cautious about using intervals under fifteen minutes. You must make sure the interval is large enough to allow each task enough time to finish before the next task is scheduled to start.
 
-Several conditions can cause a backup task to take longer than expected. Having many backups in the same repository can make the process of populating the backup’s staging directory slower. Spikes in network latency can also cause a backup to take longer than usual.
+Several conditions can cause a backup task to take longer than expected. Having many backups in the same repository can make the process of populating the backup's staging directory slower. Spikes in network latency can also cause a backup to take longer than usual.
 
 The Backup Service runs only a single task at a time. If another instance a task is scheduled to start while a previous instance is still running, the Backup Service refuses to start the new instance. Instead, the instance of the task fails to start. If a backup task is scheduled to start while a different task is already running, the Backup Service queues the new task until the existing task finishes.
 
-A backup task can also fail if the underlying `cbbackupmgr` process it calls to perform the backup fails. When run directly or by a Backup Service task, the `cbbackupmgr` tool takes a lock on the repository into which it’s backing up data. This lock prevents any other instance of the `cbbackupmgr` tool to storing data into the repository. If the instance of `cbbackupmgr` started by a Backup Service task exits due to a lock on its repository, the backup task fails.
+A backup task can also fail if the underlying `cbbackupmgr` process it calls to perform the backup fails. When run directly or by a Backup Service task, the `cbbackupmgr` tool takes a lock on the repository into which it's backing up data. This lock prevents any other instance of the `cbbackupmgr` tool to storing data into the repository. If the instance of `cbbackupmgr` started by a Backup Service task exits due to a lock on its repository, the backup task fails.
 
 For example, suppose you have a repository whose plan defines two tasks named TaskA and TaskB:
 
 * If a new instance of TaskA is scheduled to start while a prior instance of TaskA is still running, the Backup Service does not start the new instance of TaskA.
-* If there’s a single Backup Service node and TaskB is scheduled to start while an instance of TaskA is still running, the Backup Service places TaskB in a queue until TaskA ends.
-* If TaskB is scheduled to start while an instance of TaskA is still running on a cluster with multiple Backup-Service nodes, TaskB fails. In this case, the Backup Service passes a new instance of TaskB to the Backup Service on a different node from the one that’s running TaskA. This Backup Service node starts TaskB immediately. However, TaskA’s instance of `cbbackupmgr` holds a lock on the repository. This lock prevents TaskB’s `cbbackupmgr` process from getting a lock on the repository, causing it to fail.
+* If there's a single Backup Service node and TaskB is scheduled to start while an instance of TaskA is still running, the Backup Service places TaskB in a queue until TaskA ends.
+* If TaskB is scheduled to start while an instance of TaskA is still running on a cluster with multiple Backup-Service nodes, TaskB fails. In this case, the Backup Service passes a new instance of TaskB to the Backup Service on a different node from the one that's running TaskA. This Backup Service node starts TaskB immediately. However, TaskA's instance of `cbbackupmgr` holds a lock on the repository. This lock prevents TaskB's `cbbackupmgr` process from getting a lock on the repository, causing it to fail.
 
 When a task fails to start, the next successful backup task backs up the data it would have backed up.
 

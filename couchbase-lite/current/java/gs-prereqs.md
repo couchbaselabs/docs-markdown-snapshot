@@ -3,7 +3,7 @@ title: Couchbase Lite on Java&#8201;&#8212;&#8201;Prerequisites
 description: Couchbase Lite on Java -- a framework for developing offline-first
   Java applications for mobile and edge
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/gs-prereqs.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite:java:gs-prereqs.adoc[]
 ---
 
@@ -61,7 +61,7 @@ Where `<your_dir>` is the path where you unpacked the support libraries in step 
 * Web Service/Tomcat
 * Desktop
 
-Add the variables to your `$CATALINA_BASE/bin/setenv.sh`. (If the setenv.sh file doesn’t exist, you will need to create a new file.)
+Add the variables to your `$CATALINA_BASE/bin/setenv.sh`. (If the setenv.sh file doesn't exist, you will need to create a new file.)
 
 LD\_LIBRARY\_PATH="$LD\_LIBRARY\_PATH:" 
 
@@ -69,7 +69,7 @@ Export the variable in your .bashrc file:
 
 export LD\_LIBRARY\_PATH="$LD\_LIBRARY\_PATH:" 
 
-Please refer to the Linux Platform Support section for the minimum version requirements of those libraries.
+For more information, see the Linux Platform Support section for the minimum version requirements of those libraries.
 
 ## [](#related-content)Related Content
 

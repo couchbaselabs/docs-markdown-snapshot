@@ -3,7 +3,7 @@ title: Durability
 description: Durability improves the chances that data mutations are saved even
   if nodes fail.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/data/durability.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:data/durability.adoc[]
 ---
 
@@ -73,7 +73,7 @@ You can set durability levels for a client connection, a bucket, or both. If bot
 
 ## [](#process-and-communication)Process and Communication
 
-Durable writes are atomic. If you read a value that’s undergoing a durable write, Couchbase Server returns the value that existed before the durable write. If you try to write to a key that’s undergoing a durable write, Couchbase Server returns an error message. You can retry the operation after receiving this error.
+Durable writes are atomic. If you read a value that's undergoing a durable write, Couchbase Server returns the value that existed before the durable write. If you try to write to a key that's undergoing a durable write, Couchbase Server returns an error message. You can retry the operation after receiving this error.
 
 The following diagram shows the lifecycle of a durable write. It illustrates multiple clients attempting to update and read a value.
 
@@ -81,10 +81,10 @@ The following diagram shows the lifecycle of a durable write. It illustrates mul
 
 The key points in the write sequence are:
 
-1. Client 1 sets durability requirements for a durable write to change a key’s value from `a` to `b`.
+1. Client 1 sets durability requirements for a durable write to change a key's value from `a` to `b`.
 2. The Active Node (the node that Client 1 is connected to) receives the request and starts the durable write process. Couchbase Server tries to meet the durability requirements Client 1 specified.
-3. During the durable write process, Client 2 reads the value that’s undergoing the durable write. Couchbase Server returns the previous value, `a`.
-4. During the durable write process, Client 3 tries to perform either a durable write or a regular write on the value that’s already undergoing a durable write. Couchbase Server returns a `SYNC_WRITE_IN_PROGRESS` message telling Client 3 that its write attempt cannot occur.
+3. During the durable write process, Client 2 reads the value that's undergoing the durable write. Couchbase Server returns the previous value, `a`.
+4. During the durable write process, Client 3 tries to perform either a durable write or a regular write on the value that's already undergoing a durable write. Couchbase Server returns a `SYNC_WRITE_IN_PROGRESS` message telling Client 3 that its write attempt cannot occur.
 5. When the mutation meets the durability requirements, the Active Node commits the durable write and sends a `SUCCESS` status response to Client 1.
 6. After the durable write process, Client 2 reads the value again. Couchbase Server returns the new value, `b`, committed by the durable write. From this point, all clients see the value `b`.
 
@@ -96,7 +96,7 @@ After Couchbase Server commits a durable write and acknowledges it, the server c
 
 ## [](#regular-writes)Regular Writes
 
-A regular write occurs when neither the client nor the bucket require durability. Couchbase Server acknowledges a successful write as soon as it stores the data in the memory of the node that hosts the active vBucket. Couchbase Server does not confirm that it has propagated the write to any replica. A regular write does not guarantee durability. However, it’s faster than a durable write because it does not require the overhead of replication or persistence. Regular writes are asynchronous. If a node fails after a regular write, the data could be lost.
+A regular write occurs when neither the client nor the bucket require durability. Couchbase Server acknowledges a successful write as soon as it stores the data in the memory of the node that hosts the active vBucket. Couchbase Server does not confirm that it has propagated the write to any replica. A regular write does not guarantee durability. However, it's faster than a durable write because it does not require the overhead of replication or persistence. Regular writes are asynchronous. If a node fails after a regular write, the data could be lost.
 
 ## [](#failure-scenarios)Durable Write Failure Scenarios
 
@@ -116,7 +116,7 @@ This disconnects your client, so you must assume the result of the durable write
 
 A client tries to write while SyncWrite is pending
 
-If a client attempts a durable or regular write on a key that’s undergoing a durable write, Couchbase Server returns a `SYNC_WRITE_IN_PROGRESS` message to indicate that the new write cannot proceed. The client can retry the write operation.
+If a client attempts a durable or regular write on a key that's undergoing a durable write, Couchbase Server returns a `SYNC_WRITE_IN_PROGRESS` message to indicate that the new write cannot proceed. The client can retry the write operation.
 
 During a rebalance, Couchbase Server moves the active vBucket to a different node
 
@@ -161,7 +161,7 @@ Both manual and automatic failovers can cause the loss of durably written data. 
 
 For example, suppose you configure a bucket with two replicas. The data resides on three nodes and the majority for persistence is two nodes. If the two nodes making up the majority for a durable write are failed over either automatically or manually after the write commits, the durable write can be lost. The failover can happen before the durable write has been replicated to the third node. In this case, Couchbase Server loses the durable write, and the application receives a false success message.
 
-When performing manual failovers, you should be aware of the chance of losing durably written data. When possible, avoid manually failing over more data nodes at the same time than are required for the durable write’s majority.
+When performing manual failovers, you should be aware of the chance of losing durably written data. When possible, avoid manually failing over more data nodes at the same time than are required for the durable write's majority.
 
 For automatic failovers in Couchbase Server Enterprise Edition, you have ways to limit the possibility of failovers causing the loss of durably written data:
 
@@ -181,23 +181,23 @@ To prevent auto-failovers jeopardizing durable writes, set `maxCount` to less th
 
 Benefits
 
-This setting prevents all of the majority nodes that contain the newly written durable data from failing over automatically. It’s less restrictive than the setting to preserve durable writes because it does not block failover in cases where a node could possibly be involved in a durable write. Therefore, can allow Couchbase Server to perform failovers in cases where the auto-failover preserve durable writes setting does not. This option may be better for you if you value node availability as highly as you do data durability.
+This setting prevents all of the majority nodes that contain the newly written durable data from failing over automatically. It's less restrictive than the setting to preserve durable writes because it does not block failover in cases where a node could possibly be involved in a durable write. Therefore, can allow Couchbase Server to perform failovers in cases where the auto-failover preserve durable writes setting does not. This option may be better for you if you value node availability as highly as you do data durability.
 
 Drawbacks
 
 Changing `maxCount` affects all nodes in the cluster, including nodes that do not run the Data Service. This setting can prevent automatic failover of non-data nodes such as index nodes where durability is not an issue.
 
-### [](#preserving-durable-writes)Auto-failover’s Preserve Durable Writes Setting
+### [](#preserving-durable-writes)Auto-failover's Preserve Durable Writes Setting
 
-In Couchbase Server Enterprise Edition, you can configure auto-failover to prevent it from causing the loss of durably written data. This is a global setting that affects all buckets, regardless of their durability settings. When you enable this setting, Couchbase Server limits the automatic failover of nodes running the Data Service to one less than the number required for a durable write’s majority. It does not affect the automatic failover of nodes that do not run the Data Service. It also does not allow more nodes to automatically failover than the `maxCount` setting allows.
+In Couchbase Server Enterprise Edition, you can configure auto-failover to prevent it from causing the loss of durably written data. This is a global setting that affects all buckets, regardless of their durability settings. When you enable this setting, Couchbase Server limits the automatic failover of nodes running the Data Service to one less than the number required for a durable write's majority. It does not affect the automatic failover of nodes that do not run the Data Service. It also does not allow more nodes to automatically failover than the `maxCount` setting allows.
 
-This setting’s effect depends on the number of replicas the bucket has:
+This setting's effect depends on the number of replicas the bucket has:
 
 * If you configure a bucket with one replica and run the Data Service on two nodes, only one node (either the active or the replica) can be a candidate for auto-failover.
 * If you configure a bucket with two replicas and run the Data Service on three nodes, only one node (either the active or one of the replicas) can be a candidate for auto-failover. Two nodes cannot auto-failover because data may exist only on the required majority, which is two nodes. Couchbase Server must protect one of these nodes from auto-failover.
 * If you configure a bucket with three replicas and run the Data Service on four nodes, only two nodes (either the active and a replica, or two replicas) can be candidates for auto-failover. Couchbase Server applies this constraint even though durability is not supported for buckets with three replicas.
 
-You enable this setting in the Couchbase Server Web Console’s [Node Availability](../../manage/manage-settings/general-settings.md#node-availability) settings. You can also enable it using the REST API. See [failoverPreserveDurabilityMajority](../../rest-api/rest-cluster-autofailover-enable.md#preserve-durable-writes) in [Enabling and Disabling Auto-Failover](../../rest-api/rest-cluster-autofailover-enable.md) for more information.
+You enable this setting in the Couchbase Server Web Console's [Node Availability](../../manage/manage-settings/general-settings.md#node-availability) settings. You can also enable it using the REST API. See [failoverPreserveDurabilityMajority](../../rest-api/rest-cluster-autofailover-enable.md#preserve-durable-writes) in [Enabling and Disabling Auto-Failover](../../rest-api/rest-cluster-autofailover-enable.md) for more information.
 
 Benefits
 
@@ -224,7 +224,7 @@ When you configure one replica, Couchbase Server provides the following protecti
 
 The durability protection guarantees for two replicas match those for one replica. The majority is 2 for both cases. See the table in [Majority](#majority).
 
-If you configure two replicas, set the maximum number of sequential automatic failovers to 1 without administrator intervention. This setting makes sure auto-failover does not conflict with the durable write’s guaranteed protection.
+If you configure two replicas, set the maximum number of sequential automatic failovers to 1 without administrator intervention. This setting makes sure auto-failover does not conflict with the durable write's guaranteed protection.
 
 ## [](#maintaining-durable-writes)Maintaining Durable Writes During Replica Failovers
 
@@ -239,7 +239,7 @@ In these cases, you can have Couchbase Server report that durable writes succeed
 > 
 > Enabling `durabilityImpossibleFallback` degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure. When enabled for a bucket, this setting makes durable writes to it during a failover no more safe from data loss than regular asynchronous writes. Also, because transactions require durable writes, enabling this setting means they do not provide the same guarantees as they do when `durabilityImpossibleFallback` is off.
 > 
-> Use this setting only in special cases such as when you’re performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible.
+> Use this setting only in special cases such as when you're performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible.
 
 When you enable `durabilityImpossibleFallback`, Couchbase Server reports a success for durable writes even if the majority of nodes are unavailable. The following table shows the effects of the setting on durable writes in a three-node cluster for a bucket with a single replica.
 

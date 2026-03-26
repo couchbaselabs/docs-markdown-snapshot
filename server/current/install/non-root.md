@@ -4,7 +4,7 @@ description: Couchbase Server can be installed on any supported Linux
   distribution by users who do not have <em>root</em> or <em>sudo</em>
   privileges.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/non-root.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:install:non-root.adoc[]
 ---
 
@@ -119,7 +119,7 @@ Couchbase Server can now be started: see immediately below.
 
 ## [](#start-stop-and-get-status)Start, Stop, and Get Status
 
-To start, stop, or get status on a non-root Couchbase Server, use the `couchbase-server` command, provided in the `opt/couchbase/bin` directory that now resides under the specified install location. For example, the command’s directory might be accessed as follows:
+To start, stop, or get status on a non-root Couchbase Server, use the `couchbase-server` command, provided in the `opt/couchbase/bin` directory that now resides under the specified install location. For example, the command's directory might be accessed as follows:
 
 cd ./cb-install/opt/couchbase/bin
 

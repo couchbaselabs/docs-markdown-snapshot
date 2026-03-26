@@ -3,7 +3,7 @@ title: Indexing Metadata Information
 description: Couchbase Server allows indexing on selected metadata fields, for
   example the expiration and CAS properties.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/indexing-meta-info.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/indexing-meta-info.adoc[]
 ---
 
@@ -26,13 +26,13 @@ Value representing the current state of an item which changes every time the ite
 
 expiration
 
-Value representing a document’s expiration date. A value of 0 (zero) means no expiration date. For details, refer to [KV Operations](../../../../java-sdk/current/howtos/kv-operations.md#document-expiration).
+Value representing a document's expiration date. A value of 0 (zero) means no expiration date. For details, refer to [KV Operations](../../../../java-sdk/current/howtos/kv-operations.md#document-expiration).
 
 Note that this property gives correct results only when used in a [Covered Index](../../indexes/covering-indexes.md).
 
 id
 
-Value representing a document’s unique ID number.
+Value representing a document's unique ID number.
 
 xattrs
 

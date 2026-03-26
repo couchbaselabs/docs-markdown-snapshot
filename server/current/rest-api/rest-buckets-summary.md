@@ -3,7 +3,7 @@ title: Getting Bucket Information
 description: information about buckets defined on the cluster can be retrieved,
   by means of the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-buckets-summary.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:rest-api:rest-buckets-summary.adoc[]
 ---
 
@@ -36,7 +36,7 @@ Failure to authenticate returns `401 Unauthorized`. An incorrectly specified URI
 
 ## [](#example)Example
 
-The following example returns information about a single bucket named `travel-sample`. The example pipes the output to [jq](https://stedolan.github.io/jq/) to format the output. It also removes the `nodes` and `vBucketMap` lists which are not important for understanding the bucket’s settings.
+The following example returns information about a single bucket named `travel-sample`. The example pipes the output to [jq](https://stedolan.github.io/jq/) to format the output. It also removes the `nodes` and `vBucketMap` lists which are not important for understanding the bucket's settings.
 
 ```bash
 curl -X GET -u Administrator:password \

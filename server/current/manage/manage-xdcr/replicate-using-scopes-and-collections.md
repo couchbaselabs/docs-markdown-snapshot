@@ -3,7 +3,7 @@ title: Replicate Using Scopes and Collections
 description: XDCR can be performed with reference to scopes and collections
   within source and target buckets.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/replicate-using-scopes-and-collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:manage:manage-xdcr/replicate-using-scopes-and-collections.adoc[]
 ---
 
@@ -96,7 +96,7 @@ Vertically expand the row for the existing replication, by left-clicking. Then, 
 This expands the panel, as follows:  
 ![xdcr collections mapping panel](../_images/manage-xdcr/xdcr-collections-mapping-panel.png)  
 The principal element is a list of scopes that are defined within the specified source bucket, `ts`. Note that a **filter scopes** field is provided; which permits strings to be entered, such that only those scopes whose names include matches to the strings are displayed in the list.  
-Note the information that is displayed immediately above the list. This relates to the presentation of scope-names, in the list’s **scope** column. Each scope-name is preceded by a checked checkbox; and is succeeded by the **\>** symbol, after which is displayed a remote scope-name — which is by default assumed to be the name of the scope on the target system, to which replication will occur. If this assumption is correct, the assumed name need not be modified. However, if a remote scope to which replication is to occur has a different name from the one represented by default in the list, the remote-scope name must be changed: by left-clicking directly on the scope name, and editing as appropriate. (Note that this requirement will also apply to the specification of collection-names, demonstrated in the next step of this procedure.)  
+Note the information that is displayed immediately above the list. This relates to the presentation of scope-names, in the list's **scope** column. Each scope-name is preceded by a checked checkbox; and is succeeded by the **\>** symbol, after which is displayed a remote scope-name — which is by default assumed to be the name of the scope on the target system, to which replication will occur. If this assumption is correct, the assumed name need not be modified. However, if a remote scope to which replication is to occur has a different name from the one represented by default in the list, the remote-scope name must be changed: by left-clicking directly on the scope name, and editing as appropriate. (Note that this requirement will also apply to the specification of collection-names, demonstrated in the next step of this procedure.)  
 In the list currently presented, five scopes appear: which are the `inventory` scope, and the scopes `tenant_agent_00` to `tenant_agent_03`.
 6. Left-click on the list-row for `inventory`. The row expands, and appears as follows:  
 ![xdcr scope row expansion](../_images/manage-xdcr/xdcr-scope-row-expansion.png)  
@@ -218,7 +218,7 @@ stream id: ac41764b9e261725e874dbd34c7eda6b/travel-sample/ts
    status: running  
    source: travel-sample  
    target: /remoteClusters/ac41764b9e261725e874dbd34c7eda6b/buckets/ts  
-Then, delete the replication, using the `delete` flag, and specifying the replication’s id:  
+Then, delete the replication, using the `delete` flag, and specifying the replication's id:  
 /opt/couchbase/bin/couchbase-cli xdcr-replicate \
 -c l10.144.210.101:8091 \
 -u Administrator \

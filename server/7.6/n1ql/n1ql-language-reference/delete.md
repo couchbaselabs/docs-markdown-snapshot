@@ -2,7 +2,7 @@
 title: DELETE
 description: DELETE immediately removes the specified document from your keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/delete.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/delete.adoc[]
 ---
 
@@ -318,9 +318,9 @@ Results
   ]
 ```
 
-| **1** | The 10th document’s id. |
+| **1** | The 10th document's id. |
 | ----- | ----------------------- |
-| **2** | The 20th document’s id. |
+| **2** | The 20th document's id. |
 
 Next, you specify that you want to delete up to 10 documents, after skipping the first 10.
 

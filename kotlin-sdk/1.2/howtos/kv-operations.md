@@ -3,7 +3,7 @@ title: Data Operations
 description: The Key Value (KV) service, sometimes called the "data service", is
   often the best way to get or change a document when you know its ID.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/1.2/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.2@kotlin-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -40,14 +40,14 @@ The `insert` method creates a new document in a collection.
 
 This method has two required parameters:
 
-* **`id: String`** \- The new document’s ID.
-* **`content: Any?`** \- The new document’s value.
+* **`id: String`** \- The new document's ID.
+* **`content: Any?`** \- The new document's value.
 
 If the collection already has a document with the same ID, the `insert` method throws `DocumentExistsException`.
 
-For example, let’s pretend we’re writing a program that helps a storyteller remember details about characters in a story.
+For example, let's pretend we're writing a program that helps a storyteller remember details about characters in a story.
 
-To start, let’s insert a document that represents a character in a story. The document ID is the character’s name. The document content is some information about the character.
+To start, let's insert a document that represents a character in a story. The document ID is the character's name. The document content is some information about the character.
 
 Creating a new document
 
@@ -62,7 +62,7 @@ try {
 }
 ```
 
-| **1** | The content doesn’t have to be a Map. To learn more, please read [Working with JSON](json.md). |
+| **1** | The content doesn't have to be a Map. To learn more, please read [Working with JSON](json.md). |
 | ----- | ---------------------------------------------------------------------------------------------- |
 
 ### [](#get)Get (Read)
@@ -94,7 +94,7 @@ The `replace` method updates the value of an existing document.
 This method has two required parameters:
 
 * **`id: String`** \- The ID of the document to replace.
-* **`content: Any?`** \- The document’s new value.
+* **`content: Any?`** \- The document's new value.
 
 If the collection does not have a document with this ID, the `replace` method throws `DocumentNotFoundException`.
 
@@ -112,7 +112,7 @@ try {
 ```
 
 > [!CAUTION]
-> When you replace a document, it’s usually good to use [optimistic locking](#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
+> When you replace a document, it's usually good to use [optimistic locking](#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
 
 ### [](#remove)Remove (Delete)
 
@@ -143,7 +143,7 @@ If the document already exists, the `upsert` method updates (replaces) it. If th
 This method has two required parameters:
 
 * **`id: String`** \- The ID of the document to create or update.
-* **`content: Any?`** \- The document’s new value.
+* **`content: Any?`** \- The document's new value.
 
 Creating or updating a document
 
@@ -237,11 +237,11 @@ When you use optimistic locking, you assume nobody else will change a document w
 
 How do you tell if the document changed? Every Couchbase document has a Compare-And-Swap (CAS) value. The CAS value is a number that changes every time the document changes.
 
-Most KV operations that change documents have a `cas` parameter. If you set this parameter, the operation fails with `CasMismatchException` if the document’s current CAS value does not match the `cas` parameter value.
+Most KV operations that change documents have a `cas` parameter. If you set this parameter, the operation fails with `CasMismatchException` if the document's current CAS value does not match the `cas` parameter value.
 
 Optimistic locking can make `get` and `replace` behave like an atomic unit:
 
-1. Read a document using the `get` method. Remember the document’s CAS value.
+1. Read a document using the `get` method. Remember the document's CAS value.
 2. Use the old document content to make new content. For example, add or remove a field, or change a field value.
 3. Replace the document content using the `replace` method. Pass the new content and the CAS value from step 1\. If `replace` throws `CasMismatchException`, start again at step 1.
 
@@ -275,7 +275,7 @@ while (true) { (1)
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
 
 > [!TIP]
-> You don’t need to write all of that code every time you want to use optimistic locking. Instead, you can define your own extension function like this:
+> You don't need to write all of that code every time you want to use optimistic locking. Instead, you can define your own extension function like this:
 > 
 > ```kotlin
 > suspend inline fun <reified T> Collection.mutate(
@@ -353,7 +353,7 @@ collection.replace( (2)
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | replace automatically releases the lock. Alternatively, you can release the lock by calling unlock.                                     |
 
-Pessimistic locking is expensive. It’s usually better to use optimistic locking.
+Pessimistic locking is expensive. It's usually better to use optimistic locking.
 
 ## [](#selecting-fields)Selecting Fields
 

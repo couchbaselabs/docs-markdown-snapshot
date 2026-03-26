@@ -3,7 +3,7 @@ title: Query without Indexes
 description: Sequential scans enable you to query a keyspace, even if the
   keyspace has no indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/query-without-index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:services-and-indexes/indexes/query-without-index.adoc[]
 ---
 
@@ -186,8 +186,8 @@ The explain plan reports that the primary scan operator uses an index called `#s
 
 You can monitor sequential scans using the `system:completed_requests` catalog.
 
-* Completed requests which used sequential scan include a `primaryScan.Seq` property within the request’s `phaseCounts`, `phaseOperators`, and `phaseTimes`, in addition to the `primaryScan` property.
-* In contrast, queries which used a primary index include a `primaryScan.GSI` property within the request’s `phaseCounts`, `phaseOperators`, and `phaseTimes`, in addition to the `primaryScan` property.
+* Completed requests which used sequential scan include a `primaryScan.Seq` property within the request's `phaseCounts`, `phaseOperators`, and `phaseTimes`, in addition to the `primaryScan` property.
+* In contrast, queries which used a primary index include a `primaryScan.GSI` property within the request's `phaseCounts`, `phaseOperators`, and `phaseTimes`, in addition to the `primaryScan` property.
 
 The `system:completed_requests` catalog also includes a `~qualifier` field, which indicates the reason why any request was captured. A completed requests qualifier automatically captures any requests where more than 10000 keys have been returned by sequential scans. In most cases, this indicates that you should create an index to support the request.
 

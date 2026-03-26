@@ -4,7 +4,7 @@ description: Vector Search indexes use features from traditional Search indexes,
   with unique indexing algorithms and features that allow you to compare vectors
   in nearest neighbor searches.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/vector-search-index-architecture.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:vector-search:vector-search-index-architecture.adoc[]
 ---
 
@@ -21,7 +21,7 @@ A Vector Search index still relies on [Synchronization with Database Change Prot
 
 The Search Service uses batches to process data that comes in from [DCP](../../server/current/learn/clusters-and-availability/intra-cluster-replication.md#database-change-protocol) and the [Data Service](../clusters/databases.md#couchbase-services). DCP and Data Service changes are introduced gradually, based on available memory on Search Service nodes, until reindexing operations for an index are complete.
 
-The Search Service can merge batches into a single batch before they’re sent to the disk write queue, to reduce the resources required for batch processing.
+The Search Service can merge batches into a single batch before they're sent to the disk write queue, to reduce the resources required for batch processing.
 
 The Search Service maintains index snapshots on each Search index partition. These snapshots contain a representation of document mutations on either a write queue, or in storage.
 
@@ -33,13 +33,13 @@ Search and Vector Search indexes are built with index snapshots, which contain d
 
 All Search indexes contain a root index snapshot. This snapshot maps to all segments that contain the latest version of data for your Search index. The data in newer segments can overwrite the data in older segments. The Search Service maintains time-spaced snapshots to support partial index rollbacks, in case of data sync issues between the Data Service and the Search Service.
 
-The stale segments in a snapshot are eventually removed by the Search Service’s persister or merger routines — unless these segments are needed to restore an index snapshot.
+The stale segments in a snapshot are eventually removed by the Search Service's persister or merger routines — unless these segments are needed to restore an index snapshot.
 
 The persister reads in-memory segments from the disk write queue and flushes them to disk, completing batch operations as part of [Synchronization with Database Change Protocol (DCP) and the Data Service](#sync). The merger flushes consolidated files to disk and updates the root index snapshot.
 
 The persister and merger interact to continuously flush and merge new in-memory segments to disk, and remove stale segments.
 
-Segments are marked as stale when they’re replaced by a new merged segment created by the merger. Stale segments are deleted when they’re no longer used by any new queries.
+Segments are marked as stale when they're replaced by a new merged segment created by the merger. Stale segments are deleted when they're no longer used by any new queries.
 
 As smaller segments are merged together through the merger routine, the Search Service automatically runs any needed retraining for Vector Search indexes. The segments for a Vector Search index can contain different index types and use a separate indexing pipeline, choosing the appropriate indexing algorithm based on the size of your available documents.
 

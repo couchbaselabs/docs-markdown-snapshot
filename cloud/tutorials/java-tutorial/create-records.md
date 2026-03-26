@@ -2,7 +2,7 @@
 title: Create Student and Course Records
 description: Learn how to use the SDK to create student and course records.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/create-records.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:tutorials:java-tutorial/create-records.adoc[]
 ---
 
@@ -69,7 +69,7 @@ public class InsertStudent {
     }  
 }  
 ```
-3. In the `InsertStudent.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster’s public connection string, and the username and password from your cluster access credentials.
+3. In the `InsertStudent.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster's public connection string, and the username and password from your cluster access credentials.
 4. Open a terminal window and navigate to your `student` directory.
 5. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 6. Run the following command to insert the student record into the collection:  
@@ -128,7 +128,7 @@ public class InsertCourses {
     }  
 }  
 ```
-3. In the `InsertCourses.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster’s public connection string, and the username and password from your cluster access credentials.
+3. In the `InsertCourses.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster's public connection string, and the username and password from your cluster access credentials.
 4. Open a terminal window and navigate to your `student` directory.
 5. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 6. Run the following command to insert the student record into the collection:  

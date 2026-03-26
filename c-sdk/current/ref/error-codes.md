@@ -3,7 +3,7 @@ title: Errors &amp; Exceptions Reference
 description: The standardized error codes returned by the Couchbase C SDK, from
   cloud connection to sub-document.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/ref/pages/error-codes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:c-sdk:ref:error-codes.adoc[]
 ---
 
@@ -102,7 +102,7 @@ Raised when:
 
 ### [](#13-ambiguoustimeout)\# 13 AmbiguousTimeout
 
-Raised when a timeout occurs and we aren’t sure if the underlying operation has completed. This normally occurs because we sent the request to the server successfully, but timed out waiting for the response. Note that idempotent operations should never return this, as they do not have ambiguity.
+Raised when a timeout occurs and we aren't sure if the underlying operation has completed. This normally occurs because we sent the request to the server successfully, but timed out waiting for the response. Note that idempotent operations should never return this, as they do not have ambiguity.
 
 ### [](#14-unambiguoustimeout)\# 14 UnambiguousTimeout
 
@@ -311,7 +311,7 @@ ID Range 500 - 599
 
 ### [](#501-viewnotfound)\# 501 ViewNotFound
 
-Raised when Http status code 404 — reason or error contains “not\_found”.
+Raised when Http status code 404 — reason or error contains "not\_found".
 
 ### [](#502-designdocumentnotfound)\# 502 DesignDocumentNotFound
 
@@ -439,7 +439,7 @@ Timeout=2000000us
 54ms [I5afdccc413f7d46] {81150/307} [INFO] (connection - L:487) <8676842d-4e8b-4c5b-a44f-e0886f8c0bc1.dp.cloud.couchbase.com:18091> (SOCK=385c8688a482c7bd) Starting. Timeout=2000000us
 ```
 
-Couldn’t look up …​ (nodename nor servname provided, or not known)
+Couldn't look up …​ (nodename nor servname provided, or not known)
 
 ```terminal
 55ms [I5afdccc413f7d46] {81150/307} [ERROR] (connection - L:503) <8676842d-4e8b-4c5b-a44f-e0886f8c0bc1.dp.cloud.couchbase.com:18091> (SOCK=385c8688a482c7bd) Couldn't look up 8676842d-4e8b-4c5b-a44f-e0886f8c0bc1.dp.cloud.couchbase.com (nodename nor servname provided, or not known) [EAI=8]
@@ -475,7 +475,7 @@ Failed to bootstrap
 55ms [I5afdccc413f7d46] {81150/307} [ERROR] (bootstrap - L:196) Failed to bootstrap client=0x7fa82f405cd0. Error=LCB_ERR_NO_MATCHING_SERVER (1010) (Last=LCB_ERR_UNKNOWN_HOST (1049)), Message=No more bootstrap providers remain
 ```
 
-Couldn’t bootstrap from cluster
+Couldn't bootstrap from cluster
 
 ```terminal
 Couldn't bootstrap from cluster. Received code 0x419 (LCB_ERR_UNKNOWN_HOST (1049))

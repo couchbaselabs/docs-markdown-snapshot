@@ -2,7 +2,7 @@
 title: Memory
 description: Couchbase Server memory-management ensures high performance and scalability.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/buckets-memory-and-storage/memory.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:learn:buckets-memory-and-storage/memory.adoc[]
 ---
 
@@ -17,12 +17,12 @@ link: xref:7.2@server:learn:buckets-memory-and-storage/memory.adoc[]
 
 You must configure your memory quota allocations for each service in Couchbase Server, except for the [Query Service](../services-and-indexes/services/query-service.md) and [Backup Service](../services-and-indexes/services/backup-service.md). You can change the availability of memory resources in your cluster based on how you assign your services to each node.
 
-The memory quota you allocate for a service applies to every instance of that service across your cluster. For example, if you allocate 2048 MB to the [Analytics Service](../services-and-indexes/services/analytics-service.md), and you run the Analytics Service on three of a cluster’s five nodes, each instance of the service has 2048 MB of memory.
+The memory quota you allocate for a service applies to every instance of that service across your cluster. For example, if you allocate 2048 MB to the [Analytics Service](../services-and-indexes/services/analytics-service.md), and you run the Analytics Service on three of a cluster's five nodes, each instance of the service has 2048 MB of memory.
 
 > [!NOTE]
-> You can’t allocate different amounts of memory for different instances of the same service in a cluster.
+> You can't allocate different amounts of memory for different instances of the same service in a cluster.
 
-Couchbase recommends that you allocate no more than 90% of a node’s memory (80% on nodes with a small amount of total memory) to a server and its services.
+Couchbase recommends that you allocate no more than 90% of a node's memory (80% on nodes with a small amount of total memory) to a server and its services.
 
 The firm limits for server memory allocation can be calculated by:
 
@@ -32,11 +32,11 @@ where `total_memory` is the maximum memory on the node in GiB.
 
 The [Data Service](../services-and-indexes/services/data-service.md) must run on at least one node in any cluster. Every [bucket](#buckets.adoc) you create on a node has its own memory quota. The available memory for a bucket comes from the quota you assign to the Data Service. For more information on bucket memory quotas, see the [Bucket Memory Quotas](#bucket-memory) section.
 
-When you add a new node, you can use the same configuration and services from the first node in the cluster. You can also choose to customize the new node’s settings and change its assigned services.
+When you add a new node, you can use the same configuration and services from the first node in the cluster. You can also choose to customize the new node's settings and change its assigned services.
 
 For more information about how to add nodes and allocate memory to a service when you initialize a cluster, see [Create a Cluster](../../manage/manage-nodes/create-cluster.md).
 
-The **Memory Quotas** panel in the [General settings screen](../../manage/manage-settings/general-settings.md) of the Couchbase Server Web Console lists all the services running on a cluster. It also shows the memory allocated to each service. You can use the panel to change the memory allocations in your cluster. If a change doesn’t meet the required minimum or exceeds the available memory for a cluster, the Memory Quotas panel displays an error.
+The **Memory Quotas** panel in the [General settings screen](../../manage/manage-settings/general-settings.md) of the Couchbase Server Web Console lists all the services running on a cluster. It also shows the memory allocated to each service. You can use the panel to change the memory allocations in your cluster. If a change doesn't meet the required minimum or exceeds the available memory for a cluster, the Memory Quotas panel displays an error.
 
 The following table contains the minimum required memory quotas for each service in Couchbase Server:
 
@@ -48,7 +48,7 @@ The following table contains the minimum required memory quotas for each service
 | Analytics | 1024                         |
 | Eventing  | 256                          |
 
-The Query Service and the Backup Service don’t require an administrator-specified memory quota.
+The Query Service and the Backup Service don't require an administrator-specified memory quota.
 
 ## [](#bucket-memory)Bucket Memory Quotas
 
@@ -70,7 +70,7 @@ For more information on how to create a bucket and configure its memory quota, s
 
 When Couchbase Server is restarted on a node, the node goes through a _warmup process_ before it restarts the handling of data requests. During this warmup process, data on disk is sequentially reloaded into memory for each bucket. The time required for the reload depends on the size and configuration of the system, the amount of data persisted on the node, and the ejection policy configured for the buckets.
 
-On a given Data Service node, a bucket’s data is loaded in accordance with determinations made by the _access scanner_. This program runs by default once every day. It checks the _resident ratio_ — which is the percentage of items in active and replica vBuckets that are currently in memory on the node:
+On a given Data Service node, a bucket's data is loaded in accordance with determinations made by the _access scanner_. This program runs by default once every day. It checks the _resident ratio_ — which is the percentage of items in active and replica vBuckets that are currently in memory on the node:
 
 * If the ratio is below 95%, the access scanner generates a new _access log_, which records the documents that have been most frequently accessed during the last 24 hours. If and when data-loading subsequently occurs, the new access log is consulted, the recorded document-keys obtained, and the corresponding documents loaded with the highest priority.
 * If the ratio is above 95%, the access scanner does _not_ generate a new access log. Instead, it deletes any existing access log, and exits. If and when data-loading subsequently occurs, since no access log exists, loading occurs with no priority-order (this being, in cases of extremely high resident ratio, the more performative loading procedure).
@@ -83,7 +83,7 @@ Note that the access scanner is a highly CPU-intensive process, whose configurab
 
 ## [](#ejection)Ejection
 
-If a bucket’s memory quota is exceeded, items may be _ejected_ from the bucket by the Data Service.
+If a bucket's memory quota is exceeded, items may be _ejected_ from the bucket by the Data Service.
 
 Different ejection methods are available, and are configured per bucket. Note that in some cases, ejection is configured _not_ to occur.
 
@@ -94,7 +94,7 @@ For a Couchbase bucket, you can choose betweeen a **Value-only** or **Full** eje
 
 For an Ephemeral bucket, you can choose between a **No ejection** or **Eject data when RAM is full** ejection policy:
 
-* **No ejection**: If the bucket reaches its memory quota, the bucket doesn’t eject any existing data and attempts to cache new data fail.
+* **No ejection**: If the bucket reaches its memory quota, the bucket doesn't eject any existing data and attempts to cache new data fail.
 * **Eject data when RAM is full**: If the bucket reaches its memory quota, the bucket ejects older documents from RAM to make space for new data.
 
 > [!NOTE]
@@ -102,11 +102,11 @@ For an Ephemeral bucket, you can choose between a **No ejection** or **Eject dat
 
 For more information about buckets and bucket types, see [Buckets](buckets.md).
 
-For each bucket, available memory is managed according to two _watermarks_, which are `mem_low_wat` and `mem_high_wat`. If data is continuously loaded into the bucket, its quantity eventually increases to the value indicated by the `mem_low_wat` watermark. At this point, no action is taken. Then, as still more data is loaded, the data’s quantity increases to the value indicated by the `mem_high_wat` watermark. If, based on the bucket’s configuration, items can be ejected from the bucket, the Data Service ejects items from the bucket until the quantity of data has decreased to the `mem_low_wat` watermark. In cases where ejection cannot free enough space to support continued data-ingestion, the Data Service stops ingesting data, error messages are sent to clients, and the system displays an _insufficient memory_ notification. When sufficient memory is again available, data-ingestion resumes.
+For each bucket, available memory is managed according to two _watermarks_, which are `mem_low_wat` and `mem_high_wat`. If data is continuously loaded into the bucket, its quantity eventually increases to the value indicated by the `mem_low_wat` watermark. At this point, no action is taken. Then, as still more data is loaded, the data's quantity increases to the value indicated by the `mem_high_wat` watermark. If, based on the bucket's configuration, items can be ejected from the bucket, the Data Service ejects items from the bucket until the quantity of data has decreased to the `mem_low_wat` watermark. In cases where ejection cannot free enough space to support continued data-ingestion, the Data Service stops ingesting data, error messages are sent to clients, and the system displays an _insufficient memory_ notification. When sufficient memory is again available, data-ingestion resumes.
 
 Items are selected for ejection based on metadata that each contains, indicating whether the item can be classified as _Not Recently Used_ (NRU). If an item has not been recently used, it is a candidate for ejection.
 
-The relationship of `mem_low_wat` and `mem_high_wat` to the bucket’s overall memory quota is illustrated as follows:
+The relationship of `mem_low_wat` and `mem_high_wat` to the bucket's overall memory quota is illustrated as follows:
 
 ![tunableMemory](../_images/buckets-memory-and-storage/tunableMemory.png) 
 

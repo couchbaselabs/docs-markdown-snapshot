@@ -3,7 +3,7 @@ title: Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Scala Client.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.7/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.7@scala-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Version 1.7 of the Scala SDK implements the 3.6 [SDK API](compatibility.md#api-v
 * The Scala SDK is tested against LTS versions of Oracle JDK and OpenJDK — see the [compatibility docs](compatibility.md#jdk-compat).
 * The Couchbase Scala SDK 1.7 Client supports Scala 2.12 and 2.13.
 
-More details of the installation process are in the [full installation guide](sdk-full-installation.md). In most cases, given the above prerequisites, it’s a simple matter of the following for your favorite build tool:
+More details of the installation process are in the [full installation guide](sdk-full-installation.md). In most cases, given the above prerequisites, it's a simple matter of the following for your favorite build tool:
 
 * Scala Build Tool (SBT)
 * Gradle
@@ -305,7 +305,7 @@ The supported and tested dependencies for this release are:
 #### [](#improvements-10)Improvements
 
 * [JVMCBC-1547](https://issues.couchbase.com/browse/JVMCBC-1547): Updated DnsJava to 3.6.0.
-* [JCBC-2157](https://issues.couchbase.com/browse/JCBC-2157): Transaction settings are now configurable using the same callback pattern used by other environment settings. Here’s an example of the new syntax:  
+* [JCBC-2157](https://issues.couchbase.com/browse/JCBC-2157): Transaction settings are now configurable using the same callback pattern used by other environment settings. Here's an example of the new syntax:  
 ```scala  
 Cluster cluster = Cluster.connect(  
   connectionString,  
@@ -348,7 +348,7 @@ The supported and tested dependencies for this release are:
 
 #### [](#bugfixes)Bugfixes
 
-* [JVMCBC-1530](https://issues.couchbase.com/browse/JVMCBC-1530): Deprecated the `com.couchbase.client.core.error.QueryException` class. This exception is from the SDK 3 API’s beta development, and has never been thrown in a GA version of a Couchbase SDK.
+* [JVMCBC-1530](https://issues.couchbase.com/browse/JVMCBC-1530): Deprecated the `com.couchbase.client.core.error.QueryException` class. This exception is from the SDK 3 API's beta development, and has never been thrown in a GA version of a Couchbase SDK.
 * [JVMCBC-1534](https://issues.couchbase.com/browse/JVMCBC-1534): Fixed possible `DURABILITY_INVALID_LEVEL` if `Durability.NONE` is used with transactions.
 
 ### [](#version-1-7-0-15-june-2024)Version 1.7.0 (15 June 2024)
@@ -407,7 +407,7 @@ The supported and tested dependencies for this release are:
 
 #### [](#bugfixes-3)Bugfixes
 
-* [JVMCBC-1506](https://issues.couchbase.com/browse/JVMCBC-1506): Reduced the rate at which messages appear in the server’s `http_access.log` when a user provides valid credentials but does not have permission to access the bucket.
+* [JVMCBC-1506](https://issues.couchbase.com/browse/JVMCBC-1506): Reduced the rate at which messages appear in the server's `http_access.log` when a user provides valid credentials but does not have permission to access the bucket.
 * [JVMCBC-1512](https://issues.couchbase.com/browse/JVMCBC-1512): Updated Service in Cluster Configuration if only the port is changed.
 
 ### [](#version-1-6-1-5-april-2024)Version 1.6.1 (5 April 2024)
@@ -423,7 +423,7 @@ The supported and tested dependencies for this release are:
 
 #### [](#improvements-15)Improvements
 
-* [JVMCBC-1477](https://issues.couchbase.com/browse/JVMCBC-1477): Reduced the rate at which messages appear in the server’s `http_access.log` when invalid credentials are provided resulting in 401 errors. Issues resulting in 403 errors will be handled in a future release.
+* [JVMCBC-1477](https://issues.couchbase.com/browse/JVMCBC-1477): Reduced the rate at which messages appear in the server's `http_access.log` when invalid credentials are provided resulting in 401 errors. Issues resulting in 403 errors will be handled in a future release.
 * [JVMCBC-1498](https://issues.couchbase.com/browse/JVMCBC-1498): The fields of a `SearchRow` from a Full-Text Search result are now included in the output of `SearchRow.toString()`.
 * [JVMCBC-1499](https://issues.couchbase.com/browse/JVMCBC-1499): Disabled DNS SRV caching. The SDK now responds quicker to DNS changes in dynamic environments like Kubernetes.
 * [JVMCBC-1500](https://issues.couchbase.com/browse/JVMCBC-1500): Added `EventingFunctionLanguageCompatibility.VERSION_7_2_0`.
@@ -446,8 +446,8 @@ The supported and tested dependencies for this release are:
 * [JVMCBC-1487](https://issues.couchbase.com/browse/JVMCBC-1487): Upgraded reactor-core from 3.5.8 to 3.6.3.
 * [JVMCBC-1488](https://issues.couchbase.com/browse/JVMCBC-1488): Upgraded Jackson from 2.16.0 to 2.16.1.
 * [JVMCBC-1489](https://issues.couchbase.com/browse/JVMCBC-1489): Upgraded Netty from 4.1.101 to 4.1.107.
-* [JVMCBC-1491](https://issues.couchbase.com/browse/JVMCBC-xxxx): `Collection.scan()` methods are not part of the SDK’s committed API. These methods do range-scans of documentIds. This feature requires Couchbase Server 7.6 or later.
-* [JVMCBC-1493](https://issues.couchbase.com/browse/JVMCBC-xxxx): `Collection.lookupInAnyReplica()` and `Collection.lookupInAllReplicas()` are now part of the SDK’s committed API. These methods do sub-document lookups against replicas. This feature requires Couchbase Server 7.6 or later.
+* [JVMCBC-1491](https://issues.couchbase.com/browse/JVMCBC-xxxx): `Collection.scan()` methods are not part of the SDK's committed API. These methods do range-scans of documentIds. This feature requires Couchbase Server 7.6 or later.
+* [JVMCBC-1493](https://issues.couchbase.com/browse/JVMCBC-xxxx): `Collection.lookupInAnyReplica()` and `Collection.lookupInAllReplicas()` are now part of the SDK's committed API. These methods do sub-document lookups against replicas. This feature requires Couchbase Server 7.6 or later.
 
 #### [](#bugfixes-4)Bugfixes
 
@@ -524,8 +524,8 @@ The supported and tested dependencies for this release are:
 
 #### [](#bugfixes-7)Bugfixes
 
-* [JVMCBC-1433](https://issues.couchbase.com/browse/JVMCBC-1433): The SDK can now connect to Memcached buckets whose names contain the percent (`%`) character. (We’d like to take this opportunity to remind everyone that Memcached buckets are deprecated in favor of Ephemeral buckets.)
-* [JVMCBC-1437](https://issues.couchbase.com/browse/JVMCBC-1437): With Couchbase Server versions that support updating a collection’s max expiry, it’s now possible to clear the expiry by passing `Duration.ZERO` for the new value.
+* [JVMCBC-1433](https://issues.couchbase.com/browse/JVMCBC-1433): The SDK can now connect to Memcached buckets whose names contain the percent (`%`) character. (We'd like to take this opportunity to remind everyone that Memcached buckets are deprecated in favor of Ephemeral buckets.)
+* [JVMCBC-1437](https://issues.couchbase.com/browse/JVMCBC-1437): With Couchbase Server versions that support updating a collection's max expiry, it's now possible to clear the expiry by passing `Duration.ZERO` for the new value.
 * [JVMCBC-1441](https://issues.couchbase.com/browse/JVMCBC-1441): The SDK now handles an additional error case for `IndexNotFoundException`.
 * [JVMCBC-1442](https://issues.couchbase.com/browse/JVMCBC-1442): Fixed a dependency issue with `tracing-opentelemetry` module.
 * [SCBC-435](https://issues.couchbase.com/browse/SCBC-435): Upgraded the Scala build versions, to allow compiling with JDK 21.
@@ -808,7 +808,7 @@ The supported and tested dependencies for this release are:
 #### [](#bugs-6)Bugs
 
 * [JVMCBC-1157](https://issues.couchbase.com/browse/JVMCBC-1157): The SDK no longer rejects a `PersistTo` requirement in a bucket using the Magma storage engine. Before this change, the SDK would refuse the request because it misidentified Magma buckets as ephemeral (unable to persist documents).
-* [JVMCBC-1167](https://issues.couchbase.com/browse/JVMCBC-1167): If you call `CancellationErrorContext.getWaitUntilReadyContext()` on an error context that didn’t come from a "wait until ready" request, the method is now guaranteed to return null instead of sometimes throwing a `ClassCastException`.
+* [JVMCBC-1167](https://issues.couchbase.com/browse/JVMCBC-1167): If you call `CancellationErrorContext.getWaitUntilReadyContext()` on an error context that didn't come from a "wait until ready" request, the method is now guaranteed to return null instead of sometimes throwing a `ClassCastException`.
 * [SCBC-380](https://issues.couchbase.com/browse/SCBC-380): Bucket creation and update can now be used with Couchbase Server Community Edition 7.X.
 
 ### [](#version-1-4-0-24-october-2022)Version 1.4.0 (24 October 2022)
@@ -830,11 +830,11 @@ The supported and tested dependencies for this release are:
 * [SCBC-371](https://issues.couchbase.com/browse/SCBC-371): Added support for configuration profiles, which allow you to quickly configure an environment for common use-cases. In particular, this makes it easy to apply timeouts appropriate for WAN (Internet) development, such as developing against a remote Couchbase Capella instance. Example usage: `val env = ClusterEnvironment.builder.applyProfile(ClusterEnvironment.WanDevelopmentProfile).build.get`.
 * [SCBC-374](https://issues.couchbase.com/browse/SCBC-374), [JVMCBC-1154](https://issues.couchbase.com/browse/JVMCBC-1154): Bump dependencies.
 * [SCBC-375](https://issues.couchbase.com/browse/SCBC-375): Changed `AuthenticationFailureException` error message to indicate that bucket hibernation is now a potential cause. Bucket hibernation is a feature coming in a future Couchbase release.
-* [SCBC-376](https://issues.couchbase.com/browse/SCBC-376), [JVMCBC-1144](https://issues.couchbase.com/browse/JVMCBC-1144): If your Couchbase Server cluster’s root certificate is signed by a well-known certificate authority whose certificate is included in the JVM’s trust store, it’s no longer necessary to configure the certificate in the securityConfig settings.
+* [SCBC-376](https://issues.couchbase.com/browse/SCBC-376), [JVMCBC-1144](https://issues.couchbase.com/browse/JVMCBC-1144): If your Couchbase Server cluster's root certificate is signed by a well-known certificate authority whose certificate is included in the JVM's trust store, it's no longer necessary to configure the certificate in the securityConfig settings.
 
 #### [](#removals)Removals
 
-* [SCBC-372](https://issues.couchbase.com/browse/SCBC-372): We have made the difficult decision to remove the build for Scala 2.11\. Scala 2.11’s last release was in November 2017, and supporting this legacy version is now impeding our ability to also support 2.12, 2.13 and in future Scala 3\. Scala 2.11 users should continue to use the previous release (1.3.4) and are strongly recommended to upgrade to Scala 2.12 or 2.13, both of which are fully supported. Scala 2.11 has never been officially supported for the Couchbase Scala SDK, but it was previously possible for developers to build it themselves.
+* [SCBC-372](https://issues.couchbase.com/browse/SCBC-372): We have made the difficult decision to remove the build for Scala 2.11\. Scala 2.11's last release was in November 2017, and supporting this legacy version is now impeding our ability to also support 2.12, 2.13 and in future Scala 3\. Scala 2.11 users should continue to use the previous release (1.3.4) and are strongly recommended to upgrade to Scala 2.12 or 2.13, both of which are fully supported. Scala 2.11 has never been officially supported for the Couchbase Scala SDK, but it was previously possible for developers to build it themselves.
 
 #### [](#bugs-7)Bugs
 
@@ -1657,7 +1657,7 @@ This is the first General Availability (GA) release of the new Couchbase Scala S
 #### [](#stability-enhancements-bug-fixes-2)Stability Enhancements & Bug Fixes
 
 * [SCBC-147](https://issues.couchbase.com/browse/SCBC-147): QueryIndexManager should return only GSI indexes
-* [SCBC-151](https://issues.couchbase.com/browse/SCBC-151): Make sure all reactive ops are deferred; this ensures that `collection.reactive.remove(…​)` won’t perform a remove until the SMono is subscribed to
+* [SCBC-151](https://issues.couchbase.com/browse/SCBC-151): Make sure all reactive ops are deferred; this ensures that `collection.reactive.remove(…​)` won't perform a remove until the SMono is subscribed to
 * [SCBC-154](https://issues.couchbase.com/browse/SCBC-154): Make UserManager handle pre-LDAP clusters
 * [SCBC-157](https://issues.couchbase.com/browse/SCBC-157): Handle projections of objects inside arrays correctly
 * [SCBC-158](https://issues.couchbase.com/browse/SCBC-158): Handle 'too many set inserts' internal error while converting JSON to case classes

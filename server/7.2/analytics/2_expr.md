@@ -2,7 +2,7 @@
 title: Expressions
 description: A description of Couchbase SQL++ for Analytics expressions.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/2_expr.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:analytics:2_expr.adoc[]
 ---
 
@@ -15,7 +15,7 @@ An expression is a language fragment that can be evaluated to return a value. Fo
 
 SQL++ is an orthogonal language, which means that expressions can serve as operands of higher level expressions. By nesting expressions inside other expressions, complex queries can be built up. Any expression can be enclosed in parentheses to establish operator precedence.
 
-In this section, we’ll discuss the various kinds of SQL++ expressions.
+In this section, we'll discuss the various kinds of SQL++ expressions.
 
 ##### [](#expr)Expr
 
@@ -178,7 +178,7 @@ Quantified expressions are used for expressing existential or universal predicat
 
 The following pair of examples illustrate the use of a quantified expression to test that every (or some) element in the set \[1, 2, 3\] of integers is less than three. The first example yields `FALSE` and second example yields `TRUE`.
 
-It is useful to note that if the set were instead the empty set, the first expression would yield `TRUE` ("every" value in an empty set satisfies the condition) while the second expression would yield `FALSE` (since there isn’t "some" value, as there are no values in the set, that satisfies the condition). To express a universal predicate that yields `FALSE` with the empty set, we would use the quantifier `SOME AND EVERY` in lieu of `EVERY`.
+It is useful to note that if the set were instead the empty set, the first expression would yield `TRUE` ("every" value in an empty set satisfies the condition) while the second expression would yield `FALSE` (since there isn't "some" value, as there are no values in the set, that satisfies the condition). To express a universal predicate that yields `FALSE` with the empty set, we would use the quantifier `SOME AND EVERY` in lieu of `EVERY`.
 
 A quantified expression will return a `NULL` (or `MISSING`) if the first expression in it evaluates to `NULL` (or `MISSING`). Otherwise, a type error will be raised if the first expression in a quantified expression does not return a collection.
 
@@ -274,7 +274,7 @@ The table below shows how to escape characters in SQL++.
 
 ### [](#Variable%5Freferences)Identifiers and Variable References
 
-Like SQL, SQL++ makes use of a language construct called an _identifier_. An identifier starts with an alphabetic character or the underscore character \_ , and contains only case-sensitive alphabetic characters, numeric digits, or the special characters \_ and $. It is also possible for an identifier to include other special characters, or to be the same as a reserved word, by enclosing the identifier in back-ticks (it’s then called a _delimited identifier_). Identifiers are used in variable names and in certain other places in SQL++ syntax, such as in path expressions, which we’ll discuss soon. Here are some examples of identifiers:
+Like SQL, SQL++ makes use of a language construct called an _identifier_. An identifier starts with an alphabetic character or the underscore character \_ , and contains only case-sensitive alphabetic characters, numeric digits, or the special characters \_ and $. It is also possible for an identifier to include other special characters, or to be the same as a reserved word, by enclosing the identifier in back-ticks (it's then called a _delimited identifier_). Identifiers are used in variable names and in certain other places in SQL++ syntax, such as in path expressions, which we'll discuss soon. Here are some examples of identifiers:
 
 X
 customer_name
@@ -282,7 +282,7 @@ customer_name
 `spaces in here`
 `@&#`
 
-A very simple kind of SQL++ expression is a variable, which is simply an identifier. As in SQL, a variable can be bound to a value, which may be an input dataset, some intermediate result during processing of a query, or the final result of a query. We’ll learn more about variables when we discuss queries.
+A very simple kind of SQL++ expression is a variable, which is simply an identifier. As in SQL, a variable can be bound to a value, which may be an input dataset, some intermediate result during processing of a query, or the final result of a query. We'll learn more about variables when we discuss queries.
 
 Note that the SQL++ rules for delimiting strings and identifiers are different from the SQL rules. In SQL, strings are always enclosed in single quotes, and double quotes are used for delimited identifiers.
 

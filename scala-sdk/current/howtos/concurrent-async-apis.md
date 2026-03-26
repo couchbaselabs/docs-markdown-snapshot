@@ -3,7 +3,7 @@ title: Async &amp; Reactive APIs
 description: "The Couchbase Scala SDK allows the use, and mixing, of three
   distinct APIs: blocking, asynchronous, and reactive."
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:scala-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -97,7 +97,7 @@ result match {
 
 The asynchronous API returns Scala `Future`, representing the execution of an asynchronous task and the promise of a future result.
 
-Here’s what a simple upsert looks like, handling `Success` or `Failure`(note we are not actually blocking on the result here — if you need that then you can use the methods in Scala’s `Await`, or simply use the blocking Couchbase API):
+Here's what a simple upsert looks like, handling `Success` or `Failure`(note we are not actually blocking on the result here — if you need that then you can use the methods in Scala's `Await`, or simply use the blocking Couchbase API):
 
 ```scala
 val json = JsonObject("foo" -> "bar", "baz" -> "qux")
@@ -112,7 +112,7 @@ result onComplete {
 
 But, the compiler will fail to compile this, reporting that an implicit `ExecutionContext` cannot be found for onComplete.
 
-As you may know, to do anything with a `Future` — including `onComplete`, `map` and `flatMap` — an `ExecutionContext` is required. Here’s how to create one that creates an unlimited thread-pool with named threads:
+As you may know, to do anything with a `Future` — including `onComplete`, `map` and `flatMap` — an `ExecutionContext` is required. Here's how to create one that creates an unlimited thread-pool with named threads:
 
 ```scala
 val threadPool = Executors.newCachedThreadPool(new ThreadFactory {
@@ -127,9 +127,9 @@ val threadPool = Executors.newCachedThreadPool(new ThreadFactory {
 implicit val ec = ExecutionContext.fromExecutor(threadPool)
 ```
 
-Now there’s an implicit ExecutionContext available, the upsert example will compile.
+Now there's an implicit ExecutionContext available, the upsert example will compile.
 
-Let’s see a more complex example combining operations together. `Future` compose well, with `flatMap` being the most common tool:
+Let's see a more complex example combining operations together. `Future` compose well, with `flatMap` being the most common tool:
 
 ```scala
 val json = JsonObject("foo" -> "bar", "baz" -> "qux")
@@ -148,7 +148,7 @@ result onComplete {
 }
 ```
 
-Interestingly, you’ll see a couple of calls to `Try.get()` here. These throw exceptions if the Try is `Failure`, and exceptions are usually something we try to avoid in Scala. But here there’s no problem as the `Future` will capture the exception, and raise in so it can be handled in a `Failure`, as in the example.
+Interestingly, you'll see a couple of calls to `Try.get()` here. These throw exceptions if the Try is `Failure`, and exceptions are usually something we try to avoid in Scala. But here there's no problem as the `Future` will capture the exception, and raise in so it can be handled in a `Failure`, as in the example.
 
 ## [](#using-the-reactive-api)Using the Reactive API
 
@@ -156,7 +156,7 @@ Reactive Programming is an advanced paradigm designed to handle the challenges o
 
 The reactive API uses primitives from [Project Reactor](https://projectreactor.io/), namely `Mono` (returning at most one result) and `Flux` (returning many). These are compliant with the [reactive streams specification](https://www.reactive-streams.org/), and so can easily be converted into other reactive implementations such as RxJava.
 
-Here’s how to do a simple reactive upsert operation, logging any errors:
+Here's how to do a simple reactive upsert operation, logging any errors:
 
 ```scala
 val json = JsonObject("foo" -> "bar", "baz" -> "qux")
@@ -169,7 +169,7 @@ collection.reactive.upsert("document-key", json)
 
 `upsert` returns `Mono[MutationResult]`. The `subscribe` starts the operation - without a subscribe, nothing will happen. The operation happens in the background.
 
-Normally with reactive programming you will chain multiple operations together, and it’s often possible to continue handling the chain in a reactive manner too. For instance, many web frameworks allow an endpoint to stream back a reactive result.
+Normally with reactive programming you will chain multiple operations together, and it's often possible to continue handling the chain in a reactive manner too. For instance, many web frameworks allow an endpoint to stream back a reactive result.
 
 In the rare cases where you need to block on a reactive primitive (say, in a unit test) you can do it like this:
 
@@ -184,7 +184,7 @@ val result: MutationResult = collection.reactive.upsert("document-key", json)
 
 The `block` call here also does a `subscribe` under the hood.
 
-Let’s look at a more complex example, combining multiple operations. As with `Future`, reactive primitives can be composed, with `flatMap` being the most common tool.
+Let's look at a more complex example, combining multiple operations. As with `Future`, reactive primitives can be composed, with `flatMap` being the most common tool.
 
 ```scala
 val json = JsonObject("foo" -> "bar", "baz" -> "qux")
@@ -205,13 +205,13 @@ collection.reactive.upsert("document-key", json)
   .subscribe()
 ```
 
-Similar to the `Future` example, you’ll note some calls to .get, on `Option` and `Try` that will throw exceptions if they do not contain `Some` or `Success` respectively. This is fine — the reactive code will capture it, and raise it in the standard reactive way — e.g. through `doOnError` and similar operators.
+Similar to the `Future` example, you'll note some calls to .get, on `Option` and `Try` that will throw exceptions if they do not contain `Some` or `Success` respectively. This is fine — the reactive code will capture it, and raise it in the standard reactive way — e.g. through `doOnError` and similar operators.
 
-While it’s beyond the scope of this guide to teach reactive programming, it’s important to touch on a handful of golden rules:
+While it's beyond the scope of this guide to teach reactive programming, it's important to touch on a handful of golden rules:
 
 1. Never do blocking calls inside operators (operators are `doOnNext`, `flatMap`, etc.). Those operators are executing on a limited number of threads, and blocking calls will limit concurrency. Instead, convert the blocking call into a `Mono` or `Flux`, and `flatMap` to it.
 2. Never subscribe to a reactive primitive inside an operator. Instead, `flatMap` to it.
-3. Always subscribe. A `Mono` or `Flux` will not start until it’s subscribed to.
+3. Always subscribe. A `Mono` or `Flux` will not start until it's subscribed to.
 
 ### [](#bulk-operations)Bulk Operations
 
@@ -234,8 +234,8 @@ val result: Seq[Either[Throwable, MutationResult]] = SFlux.fromIterable(Seq("doc
 
 So which API should you choose?
 
-It’s really down to you and the needs of your application. If you’re already writing code in a synchronous way already then it may make sense to continue that way. If you’re writing a web application that supports reactive streams, it may make sense to use the reactive API. And you can use different APIs at different times.
+It's really down to you and the needs of your application. If you're already writing code in a synchronous way already then it may make sense to continue that way. If you're writing a web application that supports reactive streams, it may make sense to use the reactive API. And you can use different APIs at different times.
 
-The most important thing to consider is when streaming back large queries from Query, Full Text Search, and Analytics. Here, the reactive API will provide full backpressure: that is, if your application is processing rows slower than the service is returning them, then automatically fewer rows will be requested from the service to give the application time to catch up. The upshot of this is that few rows are ever buffered in-memory, and the application shouldn’t get out-of-memory exceptions.
+The most important thing to consider is when streaming back large queries from Query, Full Text Search, and Analytics. Here, the reactive API will provide full backpressure: that is, if your application is processing rows slower than the service is returning them, then automatically fewer rows will be requested from the service to give the application time to catch up. The upshot of this is that few rows are ever buffered in-memory, and the application shouldn't get out-of-memory exceptions.
 
-By contrast, the blocking and asynchronous APIs will buffer all rows in-memory before returning them to the application. This will generally be fine, but if you’re doing any large queries then you may want to consider the reactive API.
+By contrast, the blocking and asynchronous APIs will buffer all rows in-memory before returning them to the application. This will generally be fine, but if you're doing any large queries then you may want to consider the reactive API.

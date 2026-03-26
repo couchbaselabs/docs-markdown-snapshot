@@ -2,7 +2,7 @@
 title: Conflict Resolution
 description: How Sync Gateway resolves document conflicts during synchronization
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/conflict-resolution.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:sync-gateway::conflict-resolution.adoc[]
 ---
 
@@ -56,7 +56,7 @@ In these cases, the document with the most revisions wins the conflict, maintain
 
 ## [](#xdcr-integration)XDCR Integration
 
-For active-active deployments using XDCR with Sync Gateway 4.0+, configure your Couchbase Server buckets to use **Timestamp-based** conflict resolution to match Sync Gateway’s Last Write Wins behavior.
+For active-active deployments using XDCR with Sync Gateway 4.0+, configure your Couchbase Server buckets to use **Timestamp-based** conflict resolution to match Sync Gateway's Last Write Wins behavior.
 
 > [!IMPORTANT]
 > This configuration has significant constraints:

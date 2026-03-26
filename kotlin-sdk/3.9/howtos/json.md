@@ -3,7 +3,7 @@ title: Working with JSON
 description: The SDK makes it easy to turn Kotlin objects into JSON, and JSON
   into Kotlin objects.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.9/modules/howtos/pages/json.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@kotlin-sdk:howtos:json.adoc[]
 ---
 
@@ -22,9 +22,9 @@ You should know about [JSON](https://simple.wikipedia.org/wiki/JSON).
 
 ## [](#data-binding-intro)Introduction to Data Binding
 
-It’s good to store documents in JSON format, because some Couchbase services only work with JSON documents.
+It's good to store documents in JSON format, because some Couchbase services only work with JSON documents.
 
-When we talk about "data binding" in the Couchbase SDK, we mean converting Kotlin objects into JSON, and converting JSON into Kotlin objects. Data binding happens automatically, so you don’t need to write a lot of code.
+When we talk about "data binding" in the Couchbase SDK, we mean converting Kotlin objects into JSON, and converting JSON into Kotlin objects. Data binding happens automatically, so you don't need to write a lot of code.
 
 ## [](#data-binding-with-map)Data binding with Map
 
@@ -57,7 +57,7 @@ Content as Map: {favoriteColor=blue} (2)
 
 ## [](#data-binding-with-your-own-classes)Data binding with your own classes
 
-It’s often good to make Kotlin classes that represent the structure of your data. Then you can work your own classes instead of maps.
+It's often good to make Kotlin classes that represent the structure of your data. Then you can work your own classes instead of maps.
 
 When you write a document, the `content` argument can be an instance of your own class. The SDK uses data binding to convert your object to JSON.
 
@@ -121,7 +121,7 @@ collection.upsert(
 | ----- | ------------------------------------------------------------------------------------------------- |
 
 > [!CAUTION]
-> If you use a `String` for the content when changing a document, and don’t skip data binding, the SDK assumes you want the document content to be a JSON String. For example, if you write:
+> If you use a `String` for the content when changing a document, and don't skip data binding, the SDK assumes you want the document content to be a JSON String. For example, if you write:
 > 
 > ```kotlin
 > // Don't do this!
@@ -147,7 +147,7 @@ collection.upsert(
 
 ### [](#reading-json-content-without-data-binding)Reading JSON content without data binding
 
-Sometimes it’s useful to get the content of a JSON document as a byte array. This examples shows how to get the unprocessed bytes of a document:
+Sometimes it's useful to get the content of a JSON document as a byte array. This examples shows how to get the unprocessed bytes of a document:
 
 Reading a JSON document as a byte array
 
@@ -177,7 +177,7 @@ To learn more about Jackson, please read the [Jackson documentation](https://git
 > [!TIP]
 > Jackson Tree Model
 > 
-> Jackson can represent a JSON document as a tree of `JsonNode` objects. You can use data binding with `JsonNode`. This is useful if you don’t know the structure of the document. For example:
+> Jackson can represent a JSON document as a tree of `JsonNode` objects. You can use data binding with `JsonNode`. This is useful if you don't know the structure of the document. For example:
 > 
 > ```kotlin
 > val json = collection.get(id = "alice").contentAs<JsonNode>()
@@ -188,7 +188,7 @@ To learn more about Jackson, please read the [Jackson documentation](https://git
 > }
 > ```
 > 
-> Sometimes it’s easier to do data binding with a `JsonNode` than a `Map`.
+> Sometimes it's easier to do data binding with a `JsonNode` than a `Map`.
 
 #### [](#customize-jackson-mapper)Customizing the Jackson mapper
 

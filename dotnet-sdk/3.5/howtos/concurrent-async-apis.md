@@ -5,7 +5,7 @@ description: The Couchbase .NET SDK uses the <em>Task-based Asynchronous Pattern
   asynchronous operations against the Couchbase Server which can be awaited via
   the <code>await</code> keyword.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.5/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.5@dotnet-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:3.5@dotnet-sdk:howtos:concurrent-async-apis.adoc[]
 
 > The Couchbase .NET SDK uses the _Task-based Asynchronous Pattern (TAP)_ using types in the System.Threading.Tasks namespace to represent asynchronous operations against the Couchbase Server which can be awaited via the `await` keyword. There is no separate synchronous API, however, all tasks can be run synchronously in a blocking fashion using the `Task.Result` method. Batching may be done with Task.WhenAll. 
 
-A couple of points to consider: All operations are composed of a `Task` or a `Task<IResult>` depending upon whether or not the task return void or a `TResult`. Tasks are evaluated asynchronously using the familiar `await` keyword, and run in a blocking method by calling the `Task.Result()` method. If a task is awaited, the method awaiting the task must have the `async` keyword in its signature. Tasks can be run concurrently using any of the `System.Threading.Tasks` combinators: `Task.Run`, `Task.WhenAll`, `Task.WhenAny`, etc. More information can be found in Microsoft’s documentation here: <https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/consuming-the-task-based-asynchronous-pattern#combinators>.
+A couple of points to consider: All operations are composed of a `Task` or a `Task<IResult>` depending upon whether or not the task return void or a `TResult`. Tasks are evaluated asynchronously using the familiar `await` keyword, and run in a blocking method by calling the `Task.Result()` method. If a task is awaited, the method awaiting the task must have the `async` keyword in its signature. Tasks can be run concurrently using any of the `System.Threading.Tasks` combinators: `Task.Run`, `Task.WhenAll`, `Task.WhenAny`, etc. More information can be found in Microsoft's documentation here: <https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/consuming-the-task-based-asynchronous-pattern#combinators>.
 
 Note: All examples on this page start with initiating a Cluster object and then opening a Bucket and Collection:
 
@@ -44,7 +44,7 @@ using (var getResult = await collection.GetAsync("doc1"))
 }
 ```
 
-In this way, every single operation will be fired off on a `System.Threading.Threadpool` thread separately from the main application thread. Note that in the `UpsertAsync` method above, an exception will be thrown if the operation fails; if it succeeds then the result will be an `IMutationResult` that contains the CAS value for reuse, otherwise it can be ignored. `GetAsync` returns a `GetResult` if it succeeds, you’ll then have to use `ContentAs` to read the returned value.
+In this way, every single operation will be fired off on a `System.Threading.Threadpool` thread separately from the main application thread. Note that in the `UpsertAsync` method above, an exception will be thrown if the operation fails; if it succeeds then the result will be an `IMutationResult` that contains the CAS value for reuse, otherwise it can be ignored. `GetAsync` returns a `GetResult` if it succeeds, you'll then have to use `ContentAs` to read the returned value.
 
 ## [](#synchronous-programming-using-task-result)Synchronous Programming using Task.Result
 

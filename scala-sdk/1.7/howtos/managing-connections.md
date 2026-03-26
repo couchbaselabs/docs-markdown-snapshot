@@ -2,7 +2,7 @@
 title: Managing Connections
 description: This section describes how to connect the Scala SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.7/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.7@scala-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -86,7 +86,7 @@ clusterTry match {
 }
 ```
 
-Couchbase’s large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../operator/current/concept-cloud-native-gateway.md):
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../operator/current/concept-cloud-native-gateway.md):
 
 ```scala
 .connect(
@@ -107,7 +107,7 @@ val cluster = Cluster.connect(connectionString, "username", "password")
 ```
 
 > [!TIP]
-> You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
+> You don't need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ### [](#waiting-for-bootstrap-completion)Waiting for Bootstrap Completion
 
@@ -169,7 +169,7 @@ The full list of recognized parameters is documented in the client settings refe
 
 ### [](#cluster-environment)Cluster Environment
 
-A `ClusterEnvironment` manages shared resources like thread pools, timers, and schedulers. It also holds the client settings. One way to customize the client’s behavior is to build your own `ClusterEnvironment` with custom settings:
+A `ClusterEnvironment` manages shared resources like thread pools, timers, and schedulers. It also holds the client settings. One way to customize the client's behavior is to build your own `ClusterEnvironment` with custom settings:
 
 ```scala
 val envTry: Try[ClusterEnvironment] = ClusterEnvironment.builder
@@ -263,17 +263,17 @@ Both Couchbase Capella, and the [Enterprise Edition](../../../server/7.6/introdu
 * Couchbase Capella
 * Self-Managed Couchbase Server
 
-The Scala SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
+The Scala SDK bundles Capella's standard root certificate by default. This means you don't need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
 > [!NOTE]
-> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
+> Capella's root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
 
 As of SDK 1.4, if you connect to a Couchbase Server cluster with a root certificate issued by a trusted CA (Certificate Authority), you no longer need to configure this in the `securityConfig` settings.
 
-The cluster’s root certificate just needs to be issued by a CA whose certificate is in the JVM’s trust store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
+The cluster's root certificate just needs to be issued by a CA whose certificate is in the JVM's trust store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
 
 > [!TIP]
-> The JVM’s trust store is represented by a file named `cacerts`, which can be found inside your Java installation folder.
+> The JVM's trust store is represented by a file named `cacerts`, which can be found inside your Java installation folder.
 
 You can still provide a certificate explicitly if necessary:
 
@@ -313,7 +313,7 @@ val env = ClusterEnvironment.builder
 
 Then use this custom `ClusterEnvironment` when opening the connection to the cluster. See [Cluster Environment](#cluster-environment) for an example of creating a `Cluster` with a custom environment.
 
-If you want to verify it’s actually working, you can use a tool like `tcpdump`. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
+If you want to verify it's actually working, you can use a tool like `tcpdump`. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
 
 E..e..@.@.............+......q{...#..Y.....
 .E...Ey........9........................id{"key":"value"}
@@ -333,7 +333,7 @@ ClusterEnvironment env = ClusterEnvironment.builder()
 
 ## [](#alternate-addresses-and-custom-ports)Alternate Addresses and Custom Ports
 
-If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT’d environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
+If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT'd environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
 
 On the server side, each server node must be configured to advertise its external address as well as any custom port mapping. This is done with the [setting-alternate-address CLI command](https://docs.couchbase.com/server/6.5/cli/cbcli/couchbase-cli-setting-alternate-address.html) introduced in Couchbase Server 6.5\. A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
 
@@ -352,14 +352,14 @@ val cluster = Cluster.connect(seedNodes, ClusterOptions.create("username", "pass
 > [!TIP]
 > In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node.
 
-In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `io.networkResolution` client setting to `default` if the client and server are on the same network, or `external` if they’re on different networks.
+In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `io.networkResolution` client setting to `default` if the client and server are on the same network, or `external` if they're on different networks.
 
 > [!NOTE]
 > Any TLS certificates must be set up at the point where the connections are being made.
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 
-As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it’s good practice to always enable DNS-SRV on the client.
+As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it's good practice to always enable DNS-SRV on the client.
 
 The following steps are necessary to make it work:
 
@@ -398,7 +398,7 @@ DNS SRV bootstrapping is enabled by default in the Scala SDK. In order to make t
 ClusterEnvironment env = ClusterEnvironment.builder().ioConfig(IoConfig.enableDnsSrv(true)).build();
 ```
 
-If the DNS SRV records could not be loaded properly you’ll get the exception logged and the given host name will be used as a A record lookup.
+If the DNS SRV records could not be loaded properly you'll get the exception logged and the given host name will be used as a A record lookup.
 
 WARNING: DNS SRV lookup failed, proceeding with normal bootstrap.
 javax.naming.NameNotFoundException: DNS name not found [response code 3];
@@ -413,7 +413,7 @@ Proceeding with normal bootstrap.
 
 ## [](#cloud-native-gateway)Cloud Native Gateway
 
-Couchbase’s next generation connection protocol, introduced in Scala SDK 1.5 and Couchbase Autonomous Operator 2.6.1, can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
+Couchbase's next generation connection protocol, introduced in Scala SDK 1.5 and Couchbase Autonomous Operator 2.6.1, can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
 
 The protocol implements a gRPC-style interface between the SDK and Couchbase Server. (Only available with Couchbase Server running on Kubernetes or OpenShift, with a recent release of [Couchbase Autonomous Operator](../../../operator/current/overview.md): 2.6.1 onwards).
 
@@ -443,7 +443,7 @@ We strongly recommend that the client and server [are in the same LAN-like envir
 
 ### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 
-Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
+Some DNS caching providers (notably, home routers) can't handle an SRV record that's large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
 
 ## [](#async-and-reactive-apis)Async and Reactive APIs
 
@@ -451,7 +451,7 @@ The Couchbase Scala SDK provides first-class support for asynchronous and reacti
 
 Methods in the asynchronous API return instances of the standard Scala `Future`.
 
-The Scala SDK’s reactive API is built on [Project Reactor](https://projectreactor.io) and the [Scala extensions](https://github.com/reactor/reactor-scala-extensions). Reactor implements the standard Reactive Streams API introduced in Scala 9, and extends it with a rich set of useful operators. Methods in the reactive API return instances of `SFlux` or `SMono`.
+The Scala SDK's reactive API is built on [Project Reactor](https://projectreactor.io) and the [Scala extensions](https://github.com/reactor/reactor-scala-extensions). Reactor implements the standard Reactive Streams API introduced in Scala 9, and extends it with a rich set of useful operators. Methods in the reactive API return instances of `SFlux` or `SMono`.
 
 If you wish to embrace the async or reactive programming model, there are two ways to get started:
 
@@ -490,7 +490,7 @@ AsyncCluster.connect("127.0.0.1", "username", "password") match {
 }
 ```
 
-Here’s the same example, but using the Reactive API instead of the Async API:
+Here's the same example, but using the Reactive API instead of the Async API:
 
 ```scala
 ReactiveCluster.connect("127.0.0.1", "username", "password") match {

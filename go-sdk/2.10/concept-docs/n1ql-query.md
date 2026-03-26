@@ -3,7 +3,7 @@ title: Query
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.10@go-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -72,7 +72,7 @@ CREATE INDEX ix_name ON `travel-sample`(name);
 CREATE INDEX ix_email ON `travel-sample`(email);
 ```
 
-This would allow you to query the _travel-sample_ bucket regarding a document’s `name` or `email` properties, thus:
+This would allow you to query the _travel-sample_ bucket regarding a document's `name` or `email` properties, thus:
 
 ```sqlpp
 SELECT name, email

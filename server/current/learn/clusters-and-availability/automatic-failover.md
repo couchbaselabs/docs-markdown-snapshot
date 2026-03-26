@@ -6,7 +6,7 @@ description: One or more nodes can be failed over automatically when they become
   checks are done to maintain data safety; i.e. that no data loss occurs as a
   result of failover.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/automatic-failover.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:learn:clusters-and-availability/automatic-failover.adoc[]
 ---
 
@@ -41,7 +41,7 @@ Auto-failover occurs in response to failed/failing events. The following events 
 * _Multiple node failure_. Concurrent correlated failure of multiple nodes such as physical rack of machines or multiple virtual machines sharing a host.
 * _Data Service disk read/write issues_. Data Service disk read/write errors. Attempts by the Data Service to read from or write to disk on a particular node have resulted in a significant rate of failure (errors returned), for longer than a specified time-period.
 
-* _Data Disk non-responsiveness_. You can configure a timeout period for the Data Service’s disk read/write threads to complete an operation. When you enable this setting, if the period elapses and the thread has not completed the operation, Couchbase Server can auto-fail over the node. This setting differs from the disk error timeout because the data disk does not have to return errors. Instead, if the disk is so slow that it cannot complete the operation or is hanging, Couchbase Server can take action even when it does not receive an error.
+* _Data Disk non-responsiveness_. You can configure a timeout period for the Data Service's disk read/write threads to complete an operation. When you enable this setting, if the period elapses and the thread has not completed the operation, Couchbase Server can auto-fail over the node. This setting differs from the disk error timeout because the data disk does not have to return errors. Instead, if the disk is so slow that it cannot complete the operation or is hanging, Couchbase Server can take action even when it does not receive an error.
 * _Index or Data Service running on the mode is non-responsive or unhealthy_.
 
   * Index Service non-responsiveness. Index Service running on a node sends heartbeat messages to the cluster manager as an indication of its health. If the Index Service fails to send a heartbeat, it is considered unhealthy, and if it stays unhealthy for the user-specified threshold time for auto-failover, the cluster manager will start the auto-failover checks for the node that the index service is on.
@@ -81,26 +81,26 @@ See [Server Group Awareness](groups.md), for information about server groups.
 
 Couchbase Server supports ephemeral buckets, which are buckets that it stores only in memory. Their data is never persisted to disk. This lack of persistence poses several challenges when it comes to node failure.
 
-If an ephemeral bucket lacks replicas, it loses the data in vBuckets on any node that fails and restarts. To prevent this data loss, by default Couchbase Server does not allow auto-failover of a node that contains vBuckets for an unreplicated ephemeral bucket. In this case, you must manually fail over the node if it’s unresponsive. However, all of the ephemeral bucket’s data on the node is lost.
+If an ephemeral bucket lacks replicas, it loses the data in vBuckets on any node that fails and restarts. To prevent this data loss, by default Couchbase Server does not allow auto-failover of a node that contains vBuckets for an unreplicated ephemeral bucket. In this case, you must manually fail over the node if it's unresponsive. However, all of the ephemeral bucket's data on the node is lost.
 
 Couchbase Server provides two settings that affect how node failures work with ephemeral buckets:
 
 Auto-reprovisioning for Ephemeral Buckets
 
-This setting helps avoid data loss in cases where a node fails and restarts before Couchbase Server can begin an auto-failover for it. This setting defaults to enabled. When it’s enabled, Couchbase Server automatically activates the replicas of any ephemeral vBuckets that are active on the restarting node. If you turn off this setting, there’s a risk that the restarting node could cause data loss. It could roll back asynchronous writes that the replica vBuckets have but its vBuckets are missing.
+This setting helps avoid data loss in cases where a node fails and restarts before Couchbase Server can begin an auto-failover for it. This setting defaults to enabled. When it's enabled, Couchbase Server automatically activates the replicas of any ephemeral vBuckets that are active on the restarting node. If you turn off this setting, there's a risk that the restarting node could cause data loss. It could roll back asynchronous writes that the replica vBuckets have but its vBuckets are missing.
 
 Auto-failover for Ephemeral Buckets with No Replicas [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
 When enabled, this setting allows Couchbase Server to auto-failover a node that contains vBuckets for an ephemeral bucket with no replicas. When Couchbase Server fails over a node with an unreplicated ephemeral bucket, the data in the vBuckets on the node is lost. Couchbase Server creates empty vBuckets on the remaining nodes to replace the missing vBuckets on the failed node. When the failed node rejoins the cluster, Couchbase Server moves the replacement vBuckets back to it.
 
-This setting is off by default. When it’s off, Couchbase Server does not auto-failover a node that contains an unreplicated ephemeral bucket’s vBuckets. If one of these nodes becomes unresponsive, you must manually fail over the node.
+This setting is off by default. When it's off, Couchbase Server does not auto-failover a node that contains an unreplicated ephemeral bucket's vBuckets. If one of these nodes becomes unresponsive, you must manually fail over the node.
 
 Enable this setting when preserving the data in the ephemeral bucket is not critical for your application. For example, suppose you use the unreplicated ephemeral bucket for caching data. In this case, consider enabling this setting to allow Couchbase Server to auto-failover nodes containing its vBuckets. Losing the data in the cache is not critical, because your application can repopulate the cache with minimal performance cost.
 
 > [!NOTE]
 > If the data in the ephemeral bucket is critical for your application, enable one or more replicas for it. See [Ephemeral Bucket Settings](../../manage/manage-buckets/create-bucket.md#ephemeral-bucket-settings) for more information about adding replicas for an ephemeral bucket.
 
-If the unreplicated ephemeral bucket is indexed, Couchbase Server rebuilds the index after it auto-fails over the node even if the index is not on the failed node. After this type of failover, the index must be rebuilt because it indexes data lost in the failed node’s vBuckets. For more information, see [Index Rollback After Failover](../../indexes/index-replication.md#index-rollback-after-failover).
+If the unreplicated ephemeral bucket is indexed, Couchbase Server rebuilds the index after it auto-fails over the node even if the index is not on the failed node. After this type of failover, the index must be rebuilt because it indexes data lost in the failed node's vBuckets. For more information, see [Index Rollback After Failover](../../indexes/index-replication.md#index-rollback-after-failover).
 
 See [Node Availability](../../manage/manage-settings/general-settings.md#node-availability) to learn how to change these settings via the Couchbase Server Web Console. See [Retrieving Auto-Failover Settings](../../rest-api/rest-cluster-autofailover-settings.md) for information about changing these settings via the REST API.
 
@@ -162,7 +162,7 @@ In this case, even though the Query and Search Services were both running on onl
 | #4   | Index                |  
 If node #1, #2, or #3 becomes unresponsive, auto-failover can be triggered. In each case, this is due to _Data Service Preference_, which applies auto-failover based on the policy for the Data Service, irrespective of other services on the unresponsive node.  
 Note that in the case of node #2, this allows an Index Service node to be automatically failed over.  
-If node #4 becomes unresponsive, then the auto-failover of the node will be triggered, as the index service supports Auto-Failover, independent of the Data service. Please note, in this scenario, the Index Service Auto-Failover will only happen if the action doesn’t result in any indexes or partition loss.  
+If node #4 becomes unresponsive, then the auto-failover of the node will be triggered, as the index service supports Auto-Failover, independent of the Data service. Please note, in this scenario, the Index Service Auto-Failover will only happen if the action doesn't result in any indexes or partition loss.  
 > [!WARNING]  
 > If an index does not have a replica and is co-located on a Data Service node that is failed over, then the index will be lost.
 

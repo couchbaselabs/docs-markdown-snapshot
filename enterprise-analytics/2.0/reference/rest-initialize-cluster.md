@@ -3,7 +3,7 @@ title: Initializing a Cluster
 description: A cluster can be initialized and provisioned, by means of a single
   call to the REST API.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-initialize-cluster.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.0@enterprise-analytics:reference:rest-initialize-cluster.adoc[]
 ---
 
@@ -58,7 +58,7 @@ The parameters and arguments are listed below:
 * `password`. A string that will be the password for the new cluster. This parameter must be specified.
 * `dataPath`, `indexPath`, `analyticsPath`, `eventingPath`. Paths for the storage of data to be used by the Data, Index, Analytics, and Eventing Services. All paths must be writable by user `couchbase`. These parameters are optional. For the default values, see [Initializing a Node](rest-initialize-node.md).
 * `javaHome`. Location of the JRE to be used by the Analytics Service. The specified path must be writable by user `couchbase`. This parameter is optional. There is no default value.
-* `sendStats`. Enables or disables Enterprise Analytics software update notifications and sharing of system performance information with Couchbase. See the [update-notifications](#cli:cbcli/couchbase-cli-cluster-init.adoc#:~:text=software%20update%20notifications) option in the [cluster-init](#cli:cbcli/couchbase-cli-cluster-init.adoc) command line interface reference for details of what `sendStats` shares. It’s always set to `true` for Enterprise Analytics. In Enterprise Analytics, you can set the value to the default `true` or `false`.
+* `sendStats`. Enables or disables Enterprise Analytics software update notifications and sharing of system performance information with Couchbase. See the [update-notifications](#cli:cbcli/couchbase-cli-cluster-init.adoc#:~:text=software%20update%20notifications) option in the [cluster-init](#cli:cbcli/couchbase-cli-cluster-init.adoc) command line interface reference for details of what `sendStats` shares. It's always set to `true` for Enterprise Analytics. In Enterprise Analytics, you can set the value to the default `true` or `false`.
 * `clusterName`. A name for the cluster. This name is for convenience of identification, and will not be used for network access. This parameter is optional. There is no default value.
 * `services`. A list of the services to be hosted on the cluster. The list must consist of one or more of the following: `kv` (Data Service), `n1ql` (Query Service), `index` (Index Service), `fts` (Search Service), `eventing` (Eventing Service), `cbas` (Analytics Service), `backup` (Backup Service). Each name must be separated from the following name with a comma.  
 Each service is allocated a default amount of memory, unless custom allocations have been made. See [Configuring Memory](rest-configure-memory.md) For information about allocating memory per service, and on the default minimum values per service.  

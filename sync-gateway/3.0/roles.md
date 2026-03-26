@@ -3,7 +3,7 @@ title: Roles
 description: About Sync Gateway <em>Roles</em> and their part in secure
   cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/roles.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.0@sync-gateway::roles.adoc[]
 ---
 
@@ -25,10 +25,10 @@ Roles are granted access to channels. Any user assigned a role can access any ch
 
 As an entity, roles comprise a name and a list of channels.
 
-Any user associated with a role inherits the right to access any of the channels in the role’s list. This provides a convenient way to associate multiple channels with multiple users.
+Any user associated with a role inherits the right to access any of the channels in the role's list. This provides a convenient way to associate multiple channels with multiple users.
 
 > [!TIP]
-> Roles have a separate namespace from users, so it’s possible to have a user and a role with the same name.
+> Roles have a separate namespace from users, so it's possible to have a user and a role with the same name.
 
 ## [](#provisioning)Provisioning
 

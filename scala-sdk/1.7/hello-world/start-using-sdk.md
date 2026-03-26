@@ -3,7 +3,7 @@ title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Scala SDK.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.7/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:1.7@scala-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:1.7@scala-sdk:hello-world:start-using-sdk.adoc[]
 
 > Install, connect, try. A quick start guide to get you up and running with Couchbase and the Scala SDK. 
 
-Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let’s look at those data operations, and installing the Scala SDK.
+Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let's look at those data operations, and installing the Scala SDK.
 
 Upsert with a Unique ID
 
@@ -26,7 +26,7 @@ collection.upsert(docId, json) match {
 }
 ```
 
-`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We’ll explore creating and retrieving data records in more detail [below](#create-read-update-delete)(and touch lightly upon a little of Scala’s functional programming approach as we go), after walking through a quick installation.
+`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We'll explore creating and retrieving data records in more detail [below](#create-read-update-delete)(and touch lightly upon a little of Scala's functional programming approach as we go), after walking through a quick installation.
 
 ## [](#before-you-start)Before You Start
 
@@ -35,7 +35,7 @@ Couchbase Capella, our Database-as-a-Service, lets you get on with what matters,
 * Couchbase Capella
 * Self-Managed Couchbase Server
 
-If you haven’t already got a cluster set up, the easiest route is to [sign up to Couchbase Capella and deploy a free tier cluster](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
+If you haven't already got a cluster set up, the easiest route is to [sign up to Couchbase Capella and deploy a free tier cluster](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
 
 Install Couchbase Server locally, or in your private Cloud:
 
@@ -51,7 +51,7 @@ Install Couchbase Server locally, or in your private Cloud:
   * [Azure Marketplace](../../../server/7.6/cloud/couchbase-azure-marketplace.md)
   * [GCP Marketplace](../../../server/7.6/cloud/couchbase-gcp-cloud-launcher.md)
 
-For the example code below to run, you’ll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
+For the example code below to run, you'll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
 
 ### [](#prerequisites)Prerequisites
 
@@ -79,7 +79,7 @@ The code examples also assume:
 
 ## [](#installation)Installation
 
-More details of the installation process are in the [full installation guide](../project-docs/sdk-full-installation.md). In most cases, given the above prerequisites, it’s a simple matter of the following for your favorite build tool:
+More details of the installation process are in the [full installation guide](../project-docs/sdk-full-installation.md). In most cases, given the above prerequisites, it's a simple matter of the following for your favorite build tool:
 
 * Scala Build Tool (SBT)
 * Gradle
@@ -121,7 +121,7 @@ To make development easier, Couchbase plugins are available for VSCode and the I
 
 ### [](#grab-the-code)Grab the Code
 
-If you’re all set up and in a real hurry, just grab this code sample and add in your Capella details.
+If you're all set up and in a real hurry, just grab this code sample and add in your Capella details.
 
 Complete Hello World code sample \[**Click to open or collapse the listing**\] 
 
@@ -287,7 +287,7 @@ object Cloud {
 Otherwise, read on as we introduce the CRUD API and connection to Capella or self-managed Couchbase Server.
 
 > [!TIP]
-> There’s a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown.
+> There's a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown.
 
 ## [](#connect-to-your-database)Connect to your Database
 
@@ -354,7 +354,7 @@ val cluster = Cluster
   .get
 ```
 
-Couchbase’s large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../operator/current/concept-cloud-native-gateway.md):
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../operator/current/concept-cloud-native-gateway.md):
 
 ```scala
 .connect(
@@ -370,7 +370,7 @@ Read more on the [Connections](../howtos/managing-connections.md#cloud-native-ga
 The `ClusterEnvironment.builder` is covered more fully on the [Client Settings](../ref/client-settings.md#the-environment-builder) page.
 
 > [!NOTE]
-> `Cluster.connect` returns a `Try[Cluster]`, as the Scala client uses functional error handling and does not throw exceptions. You’ll see examples later of how to better handle a `Try`, but for simplicity here we’ll assume the operation succeeded and get the result as a `Cluster` using `.get`.
+> `Cluster.connect` returns a `Try[Cluster]`, as the Scala client uses functional error handling and does not throw exceptions. You'll see examples later of how to better handle a `Try`, but for simplicity here we'll assume the operation succeeded and get the result as a `Cluster` using `.get`.
 
 For a deeper look at connection options, read [Managing Connections](../howtos/managing-connections.md).
 
@@ -400,7 +400,7 @@ Couchbase documents are organized into buckets, scopes, and collections. [CRUD o
 
 ### [](#json)JSON
 
-We’ll create a snippet of JSON to work with, using the client’s own JSON library, but you can read about the Scala SDK’s support for other JSON libraries on the [JSON Libraries](../howtos/json.md) page.
+We'll create a snippet of JSON to work with, using the client's own JSON library, but you can read about the Scala SDK's support for other JSON libraries on the [JSON Libraries](../howtos/json.md) page.
 
 ```scala
 val json = JsonObject("status" -> "awesome")
@@ -410,7 +410,7 @@ val json = JsonObject("status" -> "awesome")
 
 `insert` and `upsert` will both create a new document. The difference between the two is that if a document with that key already exists, the `insert` operation will fail, while the `upsert` operation will succeed, replacing the content.
 
-We need to provide a unique ID as the key, and we’ll use a UUID here:
+We need to provide a unique ID as the key, and we'll use a UUID here:
 
 Creating a new document
 
@@ -428,7 +428,7 @@ The `get` method reads a document from a collection.
 
 As mentioned above, the Scala SDK will not throw exceptions. Instead, methods that can error — such as the `upsert` above — will return a Scala `Try` result, which can either be a `Success` containing the result, or a `Failure` containing a _Throwable_ exception. The easiest way to handle a single operation is with pattern matching, as shown above.
 
-Now let’s get the data back (this example will look a little messy due the nested handling of multiple `Try` results, but we’ll see how to clean it up shortly):
+Now let's get the data back (this example will look a little messy due the nested handling of multiple `Try` results, but we'll see how to clean it up shortly):
 
 ```scala
 // Get a document
@@ -448,11 +448,11 @@ collection.get(docId) match {
 }
 ```
 
-Here we’re fetching the value for the key `docId`, converting that value to a `JsonObjectSafe`(a simple wrapper around `JsonObject` that returns `Try` results — see [JsonObjectSafe](../howtos/json.md#error-handling-and-jsonobjectsafe) for details), and then accessing the value of the **status** key as a String.
+Here we're fetching the value for the key `docId`, converting that value to a `JsonObjectSafe`(a simple wrapper around `JsonObject` that returns `Try` results — see [JsonObjectSafe](../howtos/json.md#error-handling-and-jsonobjectsafe) for details), and then accessing the value of the **status** key as a String.
 
 #### [](#better-error-handling)Better Error Handling
 
-All three of these operations could fail, so there’s quite a lot of error handling code here to do something quite simple. One way to improve on this is by using `flatMap`, like this:
+All three of these operations could fail, so there's quite a lot of error handling code here to do something quite simple. One way to improve on this is by using `flatMap`, like this:
 
 ```scala
 val result: Try[String] = collection
@@ -485,7 +485,7 @@ Either of these methods will stop on the first failed operation. So the final re
 
 ### [](#replace-update-and-overloads)Replace (Update) and Overloads
 
-You’ll notice that most operations in the Scala SDK have two overloads. One will take an Options builder, which provides all possible options that operation takes. For instance:
+You'll notice that most operations in the Scala SDK have two overloads. One will take an Options builder, which provides all possible options that operation takes. For instance:
 
 The replace method updates the value of an existing document
 
@@ -514,7 +514,7 @@ collection.replace(docId, json, durability = Durability.Majority) match {
 ```
 
 > [!CAUTION]
-> When you replace a document, it’s usually good practice to use [optimistic locking](../howtos/kv-operations.md#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
+> When you replace a document, it's usually good practice to use [optimistic locking](../howtos/kv-operations.md#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
 
 ### [](#remove-delete)Remove (Delete)
 
@@ -535,9 +535,9 @@ Documents are organized into collections — collections of documents that belon
 
 For example, imagine you have two types of documents: customers and invoices. You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
 
-Each document belongs to exactly one collection. A document’s ID is unique _within_ the collection.
+Each document belongs to exactly one collection. A document's ID is unique _within_ the collection.
 
-Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection’s name is unique within the scope.
+Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection's name is unique within the scope.
 
 More details can be found on the [Data Model page](../concept-docs/data-model.md).
 

@@ -3,7 +3,7 @@ title: GROUP BY Clause
 description: The GROUP BY clause arranges aggregate values into groups, based on
   one or more fields.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/groupby.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:server:n1ql:n1ql-language-reference/groupby.adoc[]
 ---
 
@@ -455,7 +455,7 @@ Results
 (execution: 480.2ms docs: 138)
 
 > [!NOTE]
-> The `WHERE` clause is faster because `WHERE` gets processed _before_ any `GROUP BY` and doesn’t have access to aggregated values. `HAVING` gets processed _after_ `GROUP BY` and is used to constrain the resultset to only those with aggregated values.
+> The `WHERE` clause is faster because `WHERE` gets processed _before_ any `GROUP BY` and doesn't have access to aggregated values. `HAVING` gets processed _after_ `GROUP BY` and is used to constrain the resultset to only those with aggregated values.
 
 Example 8\. Using an alias for a group term
 

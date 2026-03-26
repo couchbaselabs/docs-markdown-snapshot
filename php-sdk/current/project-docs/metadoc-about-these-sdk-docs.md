@@ -3,7 +3,7 @@ title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:php-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
@@ -38,7 +38,7 @@ Large as this docset is, it can only cover a subset of the complette SDK API. Fo
 
 The Getting Started section contains tutorial pages — in intention, if not always in style — covering [how to install and start using](../hello-world/start-using-sdk.md) the SDK, as well as a longer [Sample Application](../hello-world/sample-application.md) (which is not present for _every_ SDK).
 
-It also contains information on connecting to the database, and a section of troubleshooting information for when the application code is remote from the database — such as developing an app on your laptop, with the Cluster in the Cloud Service Provider’s Zone some distance away — a set-up not supported in production, but typical in development or evaluation.
+It also contains information on connecting to the database, and a section of troubleshooting information for when the application code is remote from the database — such as developing an app on your laptop, with the Cluster in the Cloud Service Provider's Zone some distance away — a set-up not supported in production, but typical in development or evaluation.
 
 ## [](#data-modelling-durability-and-consistency)Data Modelling, Durability, and Consistency
 
@@ -52,9 +52,9 @@ This section also contains details of interacting with our super fast [Data Serv
 
 * [concept-docs:querying-your-data.adoc](#concept-docs:querying-your-data.adoc)
 
-For developers with an RDBMS, Couchbase’s SQL implementation, SQL++, makes querying familiar. But don’t be so quick to jump straight to SQL++ — assess your use case carefully.
+For developers with an RDBMS, Couchbase's SQL implementation, SQL++, makes querying familiar. But don't be so quick to jump straight to SQL++ — assess your use case carefully.
 
-In addition to [SQL++ queries](../howtos/n1ql-queries-with-sdk.md), and longer running [analytics queries](../howtos/analytics-using-sdk.md) (OLAP) queries, and a [Search Service](../howtos/full-text-searching-with-sdk.md)(which includes [Vector Search](../howtos/vector-searching-with-sdk.md)), you can quickly access data where you know keys or [key ranges](#howtos:kv-range-scan.adoc), and this can be substantially quicker, thanks to the Data Service’s speedy binary protocol.
+In addition to [SQL++ queries](../howtos/n1ql-queries-with-sdk.md), and longer running [analytics queries](../howtos/analytics-using-sdk.md) (OLAP) queries, and a [Search Service](../howtos/full-text-searching-with-sdk.md)(which includes [Vector Search](../howtos/vector-searching-with-sdk.md)), you can quickly access data where you know keys or [key ranges](#howtos:kv-range-scan.adoc), and this can be substantially quicker, thanks to the Data Service's speedy binary protocol.
 
 ## [](#distributed-acid-transactions)Distributed ACID Transactions
 
@@ -94,7 +94,7 @@ A section on those non-programmatic considerations — [compatibility guides](co
 
 * [ref:index.adoc](#ref:index.adoc)
 
-The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the PHP SDK’s API. Any error here should be filed directly against the individual SDKs bug tracker (JIRA), although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
+The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the PHP SDK's API. Any error here should be filed directly against the individual SDKs bug tracker (JIRA), although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
 
 The first link in the navigation for the Reference Section is to the API Guide for the _latest version_ of the SDK. Links to previous versions can be found with the [Release Notes](sdk-release-notes.md).
 
@@ -102,7 +102,7 @@ Other reference material includes the [Client Settings](../ref/client-settings.m
 
 ## [](#another-route-through)Another Route Through?
 
-Each page contains several links to related pages in the docs, as well as to relevant sections of the latest generated API docs. Links are made to cover as many common user journeys as we could think of. For cases where we didn’t anticipate your needs, every page in each SDK is linked from the left-hand navigation, and the paragraphs above detail the broad purpose of these groupings and some of their content.
+Each page contains several links to related pages in the docs, as well as to relevant sections of the latest generated API docs. Links are made to cover as many common user journeys as we could think of. For cases where we didn't anticipate your needs, every page in each SDK is linked from the left-hand navigation, and the paragraphs above detail the broad purpose of these groupings and some of their content.
 
 ### [](#site-search)Site Search
 

@@ -3,7 +3,7 @@ title: Add Search to Your Application
 description: Use the Search Service to create a customizable search experience
   for your operational cluster and your end-user applications.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:search:search.adoc[]
 ---
 
@@ -60,7 +60,7 @@ You can run a Search query:
 
 ## [](#vector-search-for-ai-applications)Vector Search for AI Applications
 
-Vector Search builds on Capella’s Search Service to provide vector index support for Retrieval Augmented Generation (RAG) with an existing Large Language Model (LLM).
+Vector Search builds on Capella's Search Service to provide vector index support for Retrieval Augmented Generation (RAG) with an existing Large Language Model (LLM).
 
 Vector Search adds a new index type to the Search Service to support AI application development, known as a Search Vector Index. Using Vector Search and Couchbase Capella, you can develop applications with an existing LLM while giving context and up-to-date information from your own data.
 

@@ -4,7 +4,7 @@ description: Network Time Protocol (NTP) is used to synchronize time across
   multiple servers. The purpose of NTP is to keep an individual node's clock
   accurate.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/synchronize-clocks-using-ntp.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:install:synchronize-clocks-using-ntp.adoc[]
 ---
 
@@ -13,10 +13,10 @@ link: xref:enterprise-analytics:install:synchronize-clocks-using-ntp.adoc[]
 
 # Clock Sync with NTP
 
-> Network Time Protocol (NTP) is used to synchronize time across multiple servers. The purpose of NTP is to keep an individual node’s clock accurate. You can do this by having the node periodically synchronize its clock with a reference server. You can specify multiple servers to provide redundancy in case 1 or more time servers are unavailable. Correct time synchronization is important in Enterprise Analytics for Expiry behavior and to maintain accurate synchronicity in timestamp-based conflict resolution. 
+> Network Time Protocol (NTP) is used to synchronize time across multiple servers. The purpose of NTP is to keep an individual node's clock accurate. You can do this by having the node periodically synchronize its clock with a reference server. You can specify multiple servers to provide redundancy in case 1 or more time servers are unavailable. Correct time synchronization is important in Enterprise Analytics for Expiry behavior and to maintain accurate synchronicity in timestamp-based conflict resolution. 
 
 > [!TIP]
-> In a multi-cluster environment, it’s important for all the nodes in the cluster to have the same time from a global perspective.
+> In a multi-cluster environment, it's important for all the nodes in the cluster to have the same time from a global perspective.
 
 ## [](#time-sync-configuration)Time Sync Configuration
 
@@ -39,7 +39,7 @@ Different NTP deployment models are available for NTP clients installed on Couch
 * Using a dedicated pool of NTP servers within the Couchbase cluster. These NTP servers within a pool synchronize with external NTP servers over the Internet, while the rest of the cluster synchronizes with this one.
 
 > [!TIP]
-> * In case of a bigger, scalable cluster, Couchbase recommends that you run your own NTP server pool that’s externally synchronized. You should have at least 2 NTP sources on the same local network as each Couchbase server group. See [Manage Groups](../manage/manage-groups/manage-groups.md). This configuration provides perfect relative and absolute clock synchronization, high availability, and easy maintenance.
+> * In case of a bigger, scalable cluster, Couchbase recommends that you run your own NTP server pool that's externally synchronized. You should have at least 2 NTP sources on the same local network as each Couchbase server group. See [Manage Groups](../manage/manage-groups/manage-groups.md). This configuration provides perfect relative and absolute clock synchronization, high availability, and easy maintenance.
 > * Couchbase recommends configuring NTP servers/pool as peers across clusters. This enables the NTP servers/pool on 1 cluster to have a relationship between the NTP servers/pool of the other cluster.
 
 **NTP Client Configuration**
@@ -47,7 +47,7 @@ Different NTP deployment models are available for NTP clients installed on Couch
 To synchronize clocks effectively on an Enterprise Analytics cluster, you must:
 
 * Start NTP on each node.  
-Start NTP by starting the NTP service, or daemon, on your system. On most systems, starting the NTP daemon happens automatically on startup. You do not need to perform this action manually. However, if you need to make adjustments to the NTP configuration, it’s useful to know how to stop and start the service.  
+Start NTP by starting the NTP service, or daemon, on your system. On most systems, starting the NTP daemon happens automatically on startup. You do not need to perform this action manually. However, if you need to make adjustments to the NTP configuration, it's useful to know how to stop and start the service.  
 For example, the following command starts the daemon:  
 $ service ntp start -x
 * Point each instance of NTP to the same set of reference servers.  
@@ -60,7 +60,7 @@ Once `ntp.conf` is configured with correct settings, start the `ntp` daemon.
 /etc/init.d/ntp start  
 You see the NTP starts to synchronize the time of your Linux machine with the NTP Server.  
 > [!NOTE]  
-> As noted in the [NTP documentation](http://doc.ntp.org/4.1.1/ntpdate.htm), it’s important to remember that `ntpdate` with contrived `cron` scripts is no substitute for the NTP daemon, which uses sophisticated algorithms to maximize accuracy and reliability while minimizing resource use.
+> As noted in the [NTP documentation](http://doc.ntp.org/4.1.1/ntpdate.htm), it's important to remember that `ntpdate` with contrived `cron` scripts is no substitute for the NTP daemon, which uses sophisticated algorithms to maximize accuracy and reliability while minimizing resource use.
 
 ## [](#verifying-your-ntp-configuration)Verifying Your NTP Configuration
 

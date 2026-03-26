@@ -2,7 +2,7 @@
 title: Creating Data
 description: How to create documents in Couchbase.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/creating-data.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:guides:creating-data.adoc[]
 ---
 
@@ -85,7 +85,7 @@ cbc create -u Administrator -P password -U couchbase://localhost/travel-sample \
 	--mode insert hotel-123 <./tmp/hotel-123.json
 ```
 
-`hotel-123` is the document’s ID. The document is redirected (`<`) to the `cbc` command’s standard input.
+`hotel-123` is the document's ID. The document is redirected (`<`) to the `cbc` command's standard input.
 
 Result
 
@@ -299,7 +299,7 @@ Click the  View button to see this code in context.
 
 For more information, see [Collection](https://docs.couchbase.com/sdk-api/couchbase-python-client/api/couchbase.html#collection-object).
 
-When a document is created, Couchbase assigns it a [CAS (Compare and Swap)](../../../java-sdk/current/howtos/concurrent-document-mutations.md) value to keep track of the document’s state within the database. Each time a document is mutated the CAS will change accordingly. This unique value allows the database to protect against concurrent updates to the same document.
+When a document is created, Couchbase assigns it a [CAS (Compare and Swap)](../../../java-sdk/current/howtos/concurrent-document-mutations.md) value to keep track of the document's state within the database. Each time a document is mutated the CAS will change accordingly. This unique value allows the database to protect against concurrent updates to the same document.
 
 ### [](#inserting-with-options)Inserting with Options
 

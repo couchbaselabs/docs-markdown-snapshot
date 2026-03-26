@@ -1,7 +1,7 @@
 ---
 title: Prefix Query
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-prefix-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:fts:fts-supported-queries-prefix-query.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:7.2@server:fts:fts-supported-queries-prefix-query.adoc[]
 
 # Prefix Query
 
-A _prefix_ query finds documents containing terms that start with the specified prefix. Please note that the prefix query is a non-analytic query, meaning it won’t perform any text analysis on the query text.
+A _prefix_ query finds documents containing terms that start with the specified prefix. Please note that the prefix query is a non-analytic query, meaning it won't perform any text analysis on the query text.
 
 ```json
 {

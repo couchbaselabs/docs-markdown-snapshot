@@ -2,7 +2,7 @@
 title: Explore Sample Data with Data Tools
 description: Use Couchbase Capella's Data Tools to explore and work with your data.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/run-first-queries.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:cloud:get-started:run-first-queries.adoc[]
 ---
 
@@ -11,9 +11,9 @@ link: xref:cloud:get-started:run-first-queries.adoc[]
 
 # Explore Sample Data with Data Tools
 
-> Use Couchbase Capella’s Data Tools to explore and work with your data. 
+> Use Couchbase Capella's Data Tools to explore and work with your data. 
 
-Your free tier operational cluster includes a `travel-sample` bucket, which you can use to try out Capella operational’s Data Tools. The sample bucket contains documents used for booking travel.
+Your free tier operational cluster includes a `travel-sample` bucket, which you can use to try out Capella operational's Data Tools. The sample bucket contains documents used for booking travel.
 
 To start exploring your sample data, you can:
 
@@ -109,7 +109,7 @@ If you want to connect to your cluster:
 2. [Add your current IP address as an allowed IP for you cluster](../clusters/allow-ip-address.md).
 3. [Generate a code snippet](connect.md) to connect your cluster to your application.
 4. Choose and install a [Couchbase SDK](../../home/sdk.md).
-5. (Optional) Download the security certificate for your cluster and add it to your application’s server machine or IDE:
+5. (Optional) Download the security certificate for your cluster and add it to your application's server machine or IDE:
 
   1. In the **Operational** tab, select a cluster.
   2. Go to **Settings** **Security Certificate**.

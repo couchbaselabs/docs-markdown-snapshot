@@ -3,7 +3,7 @@ title: Install Enterprise Analytics on Red Hat Enterprise
 description: Enterprise Analytics can be installed on Red Hat Enterprise Linux
   for production and development use-cases.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/red-hat-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:enterprise-analytics:install:red-hat-installation.adoc[]
 ---
 
@@ -21,7 +21,7 @@ Use the instructions on this page to install Enterprise Analytics on Red Hat Ent
 Enterprise Analytics works out-of-the-box with most OS configurations. However, the procedures on this page assume the following:
 
 * Your system meets the [minimum requirements](sys-resource-req.md) and your operating system version is [supported](supported-platform.md).
-* You’re working from a clean system.  
+* You're working from a clean system.  
 For production deployments, make sure to follow the [deployment guidelines](deploy-guidelines.md) so that your systems and environment are properly sized and configured before installation.
 
 ## [](#basic-installation)Basic Installation
@@ -47,7 +47,7 @@ The meta package installs the necessary information for `yum` to retrieve all of
   ```console  
   sudo yum install enterprise-analytics  
   ```  
-  You’ll be prompted to start the download of Enterprise Analytics, plus any dependencies, as well as import several GPG keys.
+  You'll be prompted to start the download of Enterprise Analytics, plus any dependencies, as well as import several GPG keys.
   * To install a specific release:
 
     * List the available releases.  
@@ -62,7 +62,7 @@ The meta package installs the necessary information for `yum` to retrieve all of
       ```  
       Using the example listing from the previous step, the resulting installation command would be:  
       sudo yum install enterprise-analytics-**2.0.0-1060**  
-      You’ll be prompted to start the download of Enterprise Analytics (plus any dependencies), as well as import several GPG keys. For each of these prompts, type `y` to accept and continue.  
+      You'll be prompted to start the download of Enterprise Analytics (plus any dependencies), as well as import several GPG keys. For each of these prompts, type `y` to accept and continue.  
       Once installation is complete, Enterprise Analytics starts automatically. It starts automatically at run levels 2, 3, 4, and 5\. It explicitly shuts down at run levels 0, 1, and 6\. You can use the `systemctl` command to start and stop Enterprise Analytics, and check the current status. On earlier operating systems, use `service`. For more information, see [Enterprise Analytics Startup and Shutdown](start-stop-cb-enterprise-analytics.md).
 
 ### [](#install-using-rpm-package)Install Using RPM Package
@@ -92,7 +92,7 @@ couchbase hard nproc 16384
 
 Following installation and start-up of Enterprise Analytics, you must initialize and provision a node.
 
-* If it’s the first node in a deployment, initialization and provisioning happens all at once when you create a cluster of one.  
+* If it's the first node in a deployment, initialization and provisioning happens all at once when you create a cluster of one.  
 For more information, see [Create a Cluster](../manage/manage-nodes/create-cluster.md).
 * If you already have an existing cluster, you must initialize and provision a node when you add it to the cluster.  
 For more information, see [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md).

@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Lite on Java
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/java/pages/releasenotes.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.1@couchbase-lite:java:releasenotes.adoc[]
 ---
 
@@ -201,7 +201,7 @@ Version 3.1.0 for Java delivers the following features and enhancements:
 
 ### [](#scopes-and-collections)Scopes and Collections
 
-Couchbase Mobile’s cloud-to-edge support for scopes and collections allows application developers to organize and logically isolate data.
+Couchbase Mobile's cloud-to-edge support for scopes and collections allows application developers to organize and logically isolate data.
 
 Independent lifecycle management and fine-grained security control simplifies the deployment of multi-tenant and high-application density cloud-to-edge applications at scale.
 

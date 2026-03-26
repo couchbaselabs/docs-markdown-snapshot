@@ -2,7 +2,7 @@
 title: Handling Errors
 description: Practical steps to handle errors and exceptions.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:4.2@php-sdk:howtos:error-handling.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:4.2@php-sdk:howtos:error-handling.adoc[]
 
 > Practical steps to handle errors and exceptions. 
 
-Errors are inevitable. The developer’s job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. Couchbase gives you a lot of flexibility, but it is recommended that you equip yourself with an understanding of the possibilities.
+Errors are inevitable. The developer's job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. Couchbase gives you a lot of flexibility, but it is recommended that you equip yourself with an understanding of the possibilities.
 
 ## [](#how-the-sdk-handles-errors)How the SDK Handles Errors
 

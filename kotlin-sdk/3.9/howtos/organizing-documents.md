@@ -2,7 +2,7 @@
 title: Organizing Documents
 description: Couchbase documents are organized into buckets, scopes, and collections.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.9/modules/howtos/pages/organizing-documents.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:3.9@kotlin-sdk:howtos:organizing-documents.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:3.9@kotlin-sdk:howtos:organizing-documents.adoc[]
 
 # Organizing Documents
 
-> Couchbase documents are organized into buckets, scopes, and collections. Let’s define those words. 
+> Couchbase documents are organized into buckets, scopes, and collections. Let's define those words. 
 
 ## [](#document)Document
 
@@ -27,7 +27,7 @@ A collection is a place to put documents that belong together. You get to decide
 
 For example, imagine you have two types of documents: customers and invoices. You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
 
-Each document belongs to exactly one collection. A document’s ID is unique within the collection.
+Each document belongs to exactly one collection. A document's ID is unique within the collection.
 
 ## [](#scope)Scope
 
@@ -35,13 +35,13 @@ A scope is a place to put collections that belong together. You get to decide wh
 
 Different scopes can hold collections with different names. There is no relationship between collections in different scopes.
 
-Each collection belongs to exactly one scope. A collection’s name is unique within the scope.
+Each collection belongs to exactly one scope. A collection's name is unique within the scope.
 
 ## [](#bucket)Bucket
 
-A bucket holds scopes. Scopes in the same bucket share the same server resources, like the bucket’s RAM quota.
+A bucket holds scopes. Scopes in the same bucket share the same server resources, like the bucket's RAM quota.
 
-Each scope belongs to exactly one bucket. A scope’s name is unique within the bucket.
+Each scope belongs to exactly one bucket. A scope's name is unique within the bucket.
 
 ## [](#default-scope-and-collection)Default Scope and Collection
 
@@ -49,15 +49,15 @@ When you create a bucket, Couchbase Server also creates a default scope (named `
 
 Before Couchbase Server 7, you can use only the default scope and collection.
 
-If you’re using Couchbase Server 7 or later, you can add more scopes and collections to organize your documents.
+If you're using Couchbase Server 7 or later, you can add more scopes and collections to organize your documents.
 
 ## [](#getting-a-collection)Getting a Collection
 
-Before you start, you’ll need to know [how to get a Cluster object](connecting.md).
+Before you start, you'll need to know [how to get a Cluster object](connecting.md).
 
 Use the `Cluster` object to get a `Collection`.
 
-There is an easy way to get a bucket’s default collection:
+There is an easy way to get a bucket's default collection:
 
 Using Bucket.defaultCollection() to get the default collection
 
@@ -82,7 +82,7 @@ val myCollection = bucket
 > [!TIP]
 > Avoiding class name conflicts
 > 
-> The Couchbase SDK’s `Collection` class has the same short name as `kotlin.collections.Collection`. If you need to use both in the same file, an import alias can help avoid confusion.
+> The Couchbase SDK's `Collection` class has the same short name as `kotlin.collections.Collection`. If you need to use both in the same file, an import alias can help avoid confusion.
 > 
 > ```kotlin
 > import com.couchbase.client.kotlin.Collection as CouchbaseCollection

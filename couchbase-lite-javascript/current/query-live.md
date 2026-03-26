@@ -2,7 +2,7 @@
 title: Live Queries
 description: Couchbase Lite JavaScript -- Reactive Live Queries
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/query-live.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:couchbase-lite-javascript::query-live.adoc[]
 ---
 
@@ -56,7 +56,7 @@ Example 1\. Basic live query
 
 ## [](#removing-listeners)Removing Listeners
 
-Always remove listeners when they’re no longer needed:
+Always remove listeners when they're no longer needed:
 
 Example 2\. Remove listener
 
@@ -238,7 +238,7 @@ manager.stop();
 **Database Changes Only:**
 
 * Live queries only respond to local database changes
-* They don’t poll external data sources
+* They don't poll external data sources
 * Replication changes trigger live query updates
 
 **Query Constraints:**

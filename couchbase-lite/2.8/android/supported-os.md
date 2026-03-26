@@ -3,7 +3,7 @@ title: Supported Operating System Versions
 description: Couchbase Lite on Android -- the OS and SDK versions on which this
   framework is supported
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/android/pages/supported-os.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:2.8@couchbase-lite:android:supported-os.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:2.8@couchbase-lite:android:supported-os.adoc[]
 # Supported Operating System Versions
 
 > Description — _Couchbase Lite on Android — the OS and SDK versions on which this framework is supported_  
-> Related Content — [What’s New](../../current/cbl-whatsnew.md) | [Release Notes](#couchbase-lite:android:{cbl-pg-releasenotes}) | [Compatibility](../../current/android/compatibility.md)
+> Related Content — [What's New](../../current/cbl-whatsnew.md) | [Release Notes](#couchbase-lite:android:{cbl-pg-releasenotes}) | [Compatibility](../../current/android/compatibility.md)
 
 ## [](#officially-supported-versions)Officially Supported Versions
 
@@ -42,7 +42,7 @@ Product Notes
 * [Release Notes](#couchbase-lite:android:{cbl-pg-releasenotes})
 * [Compatibility](../../current/android/compatibility.md)
 * [Supported OS](../../current/android/supported-os.md)
-* [What’s New](../../current/cbl-whatsnew.md)
+* [What's New](../../current/cbl-whatsnew.md)
 
 ###### [](#-2)
 

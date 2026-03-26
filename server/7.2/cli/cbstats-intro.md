@@ -3,7 +3,7 @@ title: cbstats
 description: The <code>cbstats</code> tool provides Data Service statistics, for
   an individual node.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbstats-intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.2@server:cli:cbstats-intro.adoc[]
 ---
 
@@ -43,8 +43,8 @@ The `common options` are as follows:
 | \-j              | Output the result in JSON format.                              |
 | \-8              | Use UTF8 symbols in the output.                                |
 | \-b <bucketname> | The bucket whose corresponding statistics are to be retrieved. |
-| \-u <username>   | The user’s username.                                           |
-| \-p <password>   | The user’s password.                                           |
+| \-u <username>   | The user's username.                                           |
+| \-p <password>   | The user's password.                                           |
 | \-S              | Read the password from stdin.                                  |
 
 ## [](#example)Example

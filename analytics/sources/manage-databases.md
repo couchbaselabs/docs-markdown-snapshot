@@ -4,7 +4,7 @@ description: In a Capella Analytics cluster, a database is the top-level
   container for organizing related information. You can add or delete databases
   using the UI or SQL++ for Capella Analytics statements.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/manage-databases.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:analytics:sources:manage-databases.adoc[]
 ---
 
@@ -20,8 +20,8 @@ link: xref:analytics:sources:manage-databases.adoc[]
 To use the Capella Analytics UI to manage databases, you need one of the following Capella roles:
 
 * [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner)
-* [Project Owner](../admin/auth/auth-ui.md#project-owner-role) for the project holding the cluster you’re working with.
-* [Data Writer](../admin/auth/auth-ui.md#project-cluster-data-reader-writer) for the project holding the cluster you’re working with.
+* [Project Owner](../admin/auth/auth-ui.md#project-owner-role) for the project holding the cluster you're working with.
+* [Data Writer](../admin/auth/auth-ui.md#project-cluster-data-reader-writer) for the project holding the cluster you're working with.
 
 ## [](#database)Create a Database
 

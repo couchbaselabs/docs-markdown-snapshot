@@ -3,7 +3,7 @@ title: Buckets
 description: A <em>bucket</em> is the fundamental space for storing data in
   Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/buckets-memory-and-storage/buckets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-26T05:14:31.984Z
 link: xref:7.6@server:learn:buckets-memory-and-storage/buckets.adoc[]
 ---
 
@@ -19,18 +19,18 @@ link: xref:7.6@server:learn:buckets-memory-and-storage/buckets.adoc[]
 A maximum of 30 buckets can be created in a cluster. Each bucket must be specified as one of the following three _types_.
 
 * **Couchbase buckets**: These store data persistently, as well as in memory. They allow data to be automatically replicated for high availability, using the Database Change Protocol (DCP); and dynamically scaled across multiple clusters, by means of Cross Datacenter Replication (XDCR).  
-If a Couchbase bucket’s RAM-quota is exceeded, items are _ejected_. This means that data, which is resident both in memory and on disk, is removed from memory, but not from disk. Therefore, if removed data is subsequently needed, it is reloaded into memory from disk. For a Couchbase bucket, ejection can be either of the following, based on configuration performed at the time of bucket-creation:
+If a Couchbase bucket's RAM-quota is exceeded, items are _ejected_. This means that data, which is resident both in memory and on disk, is removed from memory, but not from disk. Therefore, if removed data is subsequently needed, it is reloaded into memory from disk. For a Couchbase bucket, ejection can be either of the following, based on configuration performed at the time of bucket-creation:
 
   * _Value-only_: Only key-values are removed. Generally, this favors performance at the expense of memory.
   * _Full_: All data — including keys, key-values, and metadata — is removed. Generally, this favors memory at the expense of performance.
 * **Ephemeral buckets**: These are an alternative to Couchbase buckets, to be used whenever persistence is not required: for example, when repeated disk-access involves too much overhead. This allows highly consistent in-memory performance, without disk-based fluctuations. It also allows faster node rebalances and restarts.  
-If an Ephemeral bucket’s RAM-quota is exceeded, one of the following occurs, based on configuration performed at the time of bucket-creation:
+If an Ephemeral bucket's RAM-quota is exceeded, one of the following occurs, based on configuration performed at the time of bucket-creation:
 
   * Resident data-items remain in RAM. No additional data can be added; and attempts to add data therefore fail.
   * Resident data-items are _ejected_ from RAM, to make way for new data. For an Ephemeral bucket, this means that data, which is resident in memory (but, due to this type of bucket, can never be on disk), is removed from memory. Therefore, if removed data is subsequently needed, it cannot be re-acquired from Couchbase Server.  
-  For an Ephemeral bucket, ejection removes all of an item’s data: however, a _tombstone_ (a record of the ejected item, which includes keys and metadata) is retained until the next scheduled purge of metadata for the current node. See [Storage](storage-settings.md) for more information.
+  For an Ephemeral bucket, ejection removes all of an item's data: however, a _tombstone_ (a record of the ejected item, which includes keys and metadata) is retained until the next scheduled purge of metadata for the current node. See [Storage](storage-settings.md) for more information.
 * **Memcached buckets**: These are now _deprecated_. Memcached buckets are designed to be used alongside other database platforms, such as ones employing relational database technology. By caching frequently-used data, Memcached buckets reduce the number of queries a database-server must perform. Each Memcached bucket provides a directly addressable, distributed, in-memory key-value cache.  
-Memcached buckets are _not persistent on disk_: they only exist in RAM. If a Memcached bucket’s RAM-quota is exceeded, items are _ejected_. For a Memcached bucket, this means that data, which is resident in memory (but, due to this type of bucket, can never be on disk), is removed from memory. Therefore, if removed data is subsequently needed, it cannot be re-acquired from Couchbase Server. Ejection removes all of an item’s data.
+Memcached buckets are _not persistent on disk_: they only exist in RAM. If a Memcached bucket's RAM-quota is exceeded, items are _ejected_. For a Memcached bucket, this means that data, which is resident in memory (but, due to this type of bucket, can never be on disk), is removed from memory. Therefore, if removed data is subsequently needed, it cannot be re-acquired from Couchbase Server. Ejection removes all of an item's data.
 
 All bucket types are fully compatible with the Memcached open source distributed key-value cache.
 
