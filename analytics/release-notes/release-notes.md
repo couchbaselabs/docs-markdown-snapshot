@@ -1,7 +1,7 @@
 ---
 title: Capella Analytics Release Notes
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-27T05:16:21.194Z
 link: xref:analytics:release-notes:release-notes.adoc[]
 ---
 
@@ -9,6 +9,12 @@ link: xref:analytics:release-notes:release-notes.adoc[]
 [View original HTML](/analytics/release-notes/release-notes.html)
 
 # Capella Analytics Release Notes
+
+## [](#march-2026-changelog)March 2026 Changelog
+
+* Cross-Account Trust Authentication for AWS S3 Links  
+Capella Analytics supports cross-account trust authentication for AWS S3 links, providing a more secure, industry-standard method for accessing external data.  
+For more information, see [Create a Link for Amazon S3](../sources/setup-aws-s3-external-source.md#create).
 
 ## [](#october-2025-changelog)October 2025 Changelog
 

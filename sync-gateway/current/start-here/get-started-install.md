@@ -3,7 +3,7 @@ title: Install Sync Gateway
 description: Install a <em>Sync Gateway</em> instance; securely sync enterprise
   data from cloud to edge.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-install.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-27T05:16:21.194Z
 link: xref:sync-gateway:start-here:get-started-install.adoc[]
 ---
 
@@ -14,8 +14,6 @@ link: xref:sync-gateway:start-here:get-started-install.adoc[]
 
 > Install a _Sync Gateway_ instance; securely sync enterprise data from cloud to edge.  
 > This is **Step 3** in the _Start Here!_ topic group. It installs the _Sync Gateway_ binary distribution
-
-Related _Start Here!_ topics: [Introduction](../introduction.md) | [Prepare](get-started-prepare.md) | [Verify](get-started-verify-install.md)
 
 > [!NOTE]
 > Preparatory Steps
@@ -77,19 +75,19 @@ Install Options
 Install sync\_gateway with the dpkg package manager:
 
 ```bash
-dpkg -i couchbase-sync-gateway-enterprise_4.0.2_x86_64.deb
+dpkg -i couchbase-sync-gateway-enterprise_4.0.3_x86_64.deb
 ```
 
 Install sync\_gateway with the rpm package manager:
 
 ```bash
-rpm -i couchbase-sync-gateway-enterprise_4.0.2_x86_64.rpm
+rpm -i couchbase-sync-gateway-enterprise_4.0.3_x86_64.rpm
 ```
 
 Install sync\_gateway with the dpkg package manager:
 
 ```bash
-dpkg -i couchbase-sync-gateway-enterprise_4.0.2_x86_64.deb
+dpkg -i couchbase-sync-gateway-enterprise_4.0.3_x86_64.deb
 ```
 
 When the installation is complete Sync Gateway will be running as a service named `sync_gateway`.
@@ -318,7 +316,7 @@ Download the required edition of Sync Gateway from the [downloads page](https://
 
 1. Unpack the .zip file to the **/opt** directory.  
 ```bash  
-sudo unzip -d /opt couchbase-sync-gateway-enterprise_4.0.2_arm64.zip  
+sudo unzip -d /opt couchbase-sync-gateway-enterprise_4.0.3_arm64.zip  
 ```
 2. Create a new macOS user.  
 ```bash  

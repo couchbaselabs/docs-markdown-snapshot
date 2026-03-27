@@ -3,7 +3,7 @@ title: Verify a Sync Gateway Install
 description: Configure and verify your <em>Sync Gateway</em> installation;
   securely sync enterprise data from cloud to edge!
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-verify-install.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-27T05:16:21.194Z
 link: xref:sync-gateway:start-here:get-started-verify-install.adoc[]
 ---
 
@@ -14,8 +14,6 @@ link: xref:sync-gateway:start-here:get-started-verify-install.adoc[]
 
 > Configure and verify your _Sync Gateway_ installation; securely sync enterprise data from cloud to edge!  
 > This is **Step 4** in the _Start Here!_ topic group. Here we will verify that you can connect your _sync gateway_ to a _Couchbase Server_ and synchronize changes whether made in Couchbase Server or through sync gateway's REST API.
-
-Related _Start Here!_ topics: [Introduction](../introduction.md) | [Prepare](get-started-prepare.md) | [Install](get-started-install.md)
 
 > [!NOTE]
 > Preparatory Steps

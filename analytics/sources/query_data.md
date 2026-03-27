@@ -1,7 +1,7 @@
 ---
 title: Query Data
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/query_data.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-27T05:16:21.194Z
 link: xref:analytics:sources:query_data.adoc[]
 ---
 
@@ -14,5 +14,5 @@ link: xref:analytics:sources:query_data.adoc[]
 
 In Capella Analytics we can query data through the below service providers:
 
-* [Query Data in Amazon S3](external-s3.md)
-* [Query Data in Google Cloud Storage (GCS)](external-gcs.md)
+* [Amazon S3](external-s3.md)
+* [Google Cloud Storage (GCS)](external-gcs.md)

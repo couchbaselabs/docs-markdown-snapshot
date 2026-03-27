@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1774502439679,
+  "generated": 1774588940837,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -547,12 +547,6 @@
             },
             {
               "module": "reference",
-              "path": "cloud_read_write_permissions.adoc",
-              "url": "/analytics/reference/cloud_read_write_permissions.md",
-              "title": "Cloud Read/Write Permissions"
-            },
-            {
-              "module": "reference",
               "path": "cloud-providers.adoc",
               "url": "/analytics/reference/cloud-providers.md",
               "title": "Supported Cloud Providers"
@@ -604,13 +598,13 @@
               "module": "sources",
               "path": "external-gcs.adoc",
               "url": "/analytics/sources/external-gcs.md",
-              "title": "Query Data in Google Cloud Storage (GCS)"
+              "title": "Google Cloud Storage (GCS)"
             },
             {
               "module": "sources",
               "path": "external-s3.adoc",
               "url": "/analytics/sources/external-s3.md",
-              "title": "Query Data in Amazon S3"
+              "title": "Amazon S3"
             },
             {
               "module": "sources",
@@ -683,6 +677,30 @@
               "path": "remote-kafka.adoc",
               "url": "/analytics/sources/remote-kafka.md",
               "title": "Create a Kafka Pipeline Link"
+            },
+            {
+              "module": "sources",
+              "path": "required-permissions-aws.adoc",
+              "url": "/analytics/sources/required-permissions-aws.md",
+              "title": "Cloud Read/Write Permissions for AWS"
+            },
+            {
+              "module": "sources",
+              "path": "required-permissions-gcs.adoc",
+              "url": "/analytics/sources/required-permissions-gcs.md",
+              "title": "Cloud Read/Write Permissions for GCS"
+            },
+            {
+              "module": "sources",
+              "path": "setup-aws-s3-external-source.adoc",
+              "url": "/analytics/sources/setup-aws-s3-external-source.md",
+              "title": "Set Up Amazon S3 External Source"
+            },
+            {
+              "module": "sources",
+              "path": "setup-gcs-external-source.adoc",
+              "url": "/analytics/sources/setup-gcs-external-source.md",
+              "title": "Set Up Google Cloud Storage (GCS) External Source"
             },
             {
               "module": "sqlpp",
@@ -6433,13 +6451,6 @@
             {
               "alias": true,
               "module": "reference",
-              "path": "cloud_read_write_permissions.adoc",
-              "url": "/analytics/reference/cloud_read_write_permissions.md",
-              "title": "Cloud Read/Write Permissions"
-            },
-            {
-              "alias": true,
-              "module": "reference",
               "path": "cloud-providers.adoc",
               "url": "/analytics/reference/cloud-providers.md",
               "title": "Supported Cloud Providers"
@@ -6491,14 +6502,14 @@
               "module": "sources",
               "path": "external-gcs.adoc",
               "url": "/analytics/sources/external-gcs.md",
-              "title": "Query Data in Google Cloud Storage (GCS)"
+              "title": "Google Cloud Storage (GCS)"
             },
             {
               "alias": true,
               "module": "sources",
               "path": "external-s3.adoc",
               "url": "/analytics/sources/external-s3.md",
-              "title": "Query Data in Amazon S3"
+              "title": "Amazon S3"
             },
             {
               "alias": true,
@@ -6576,6 +6587,34 @@
               "path": "remote-kafka.adoc",
               "url": "/analytics/sources/remote-kafka.md",
               "title": "Create a Kafka Pipeline Link"
+            },
+            {
+              "alias": true,
+              "module": "sources",
+              "path": "required-permissions-aws.adoc",
+              "url": "/analytics/sources/required-permissions-aws.md",
+              "title": "Cloud Read/Write Permissions for AWS"
+            },
+            {
+              "alias": true,
+              "module": "sources",
+              "path": "required-permissions-gcs.adoc",
+              "url": "/analytics/sources/required-permissions-gcs.md",
+              "title": "Cloud Read/Write Permissions for GCS"
+            },
+            {
+              "alias": true,
+              "module": "sources",
+              "path": "setup-aws-s3-external-source.adoc",
+              "url": "/analytics/sources/setup-aws-s3-external-source.md",
+              "title": "Set Up Amazon S3 External Source"
+            },
+            {
+              "alias": true,
+              "module": "sources",
+              "path": "setup-gcs-external-source.adoc",
+              "url": "/analytics/sources/setup-gcs-external-source.md",
+              "title": "Set Up Google Cloud Storage (GCS) External Source"
             },
             {
               "alias": true,

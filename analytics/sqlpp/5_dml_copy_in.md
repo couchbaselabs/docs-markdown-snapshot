@@ -4,7 +4,7 @@ description: This topic describes how you use the  <code>COPY INTO</code> DML
   statement to upsert&mdash;both insert and update&mdash;objects from an
   external collection to a standalone collection.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_copy_in.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-27T05:16:21.194Z
 link: xref:analytics:sqlpp:5_dml_copy_in.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:analytics:sqlpp:5_dml_copy_in.adoc[]
 > You can also populate a standalone collection by importing a file in a supported format from your local network. See [Import Data to a Standalone Collection](../sources/import-data-standalone.md).
 
 > [!NOTE]
-> To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](../reference/cloud%5Fread%5Fwrite%5Fpermissions.md).
+> To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](#reference:cloud%5Fread%5Fwrite%5Fpermissions.adoc).
 
 ## [](#syntax)Syntax
 

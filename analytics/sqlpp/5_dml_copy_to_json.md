@@ -4,7 +4,7 @@ description: This topic describes how you use <code>COPY TO</code> statements to
   structure and write the results of a query--or a copy of an entire
   collection--out to an external data store such as Amazon S3 and GCS.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_copy_to_json.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-27T05:16:21.194Z
 link: xref:analytics:sqlpp:5_dml_copy_to_json.adoc[]
 ---
 
@@ -19,10 +19,10 @@ Structuring the data on the external store is helpful in use cases where you pla
 
 The output format of the data is JSON.
 
-For more information, see [Query Data in Amazon S3](../sources/external-s3.md) and [Query Data in Google Cloud Storage (GCS)](../sources/external-gcs.md).
+For more information, see [Amazon S3](../sources/external-s3.md) and [Google Cloud Storage (GCS)](../sources/external-gcs.md).
 
 > [!NOTE]
-> To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](../reference/cloud%5Fread%5Fwrite%5Fpermissions.md).
+> To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](#reference:cloud%5Fread%5Fwrite%5Fpermissions.adoc).
 
 ## [](#syntax)Syntax
 

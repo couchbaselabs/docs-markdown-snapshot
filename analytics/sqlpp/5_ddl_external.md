@@ -4,7 +4,7 @@ description: This topic describes how you use the <code>CREATE</code> statement
   to create a collection so that you can query OLAP data on an external data
   source.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_external.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-27T05:16:21.194Z
 link: xref:analytics:sqlpp:5_ddl_external.adoc[]
 ---
 
@@ -20,7 +20,7 @@ link: xref:analytics:sqlpp:5_ddl_external.adoc[]
 To create a link to an external data source, you use the Capella Analytics UI. See [Set Up an External Data Source](../sources/manage-external.md).
 
 > [!NOTE]
-> To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](../reference/cloud%5Fread%5Fwrite%5Fpermissions.md).
+> To be able to read or write data to or from external cloud storage, you need to configure your connection and permissions. For more information, see [AWS](../sources/required-permissions-aws.md) and [GCS](../sources/required-permissions-gcs.md).
 
 ## [](#syntax)Syntax
 

@@ -1,7 +1,7 @@
 ---
 title: Capella App Services Public API Reference
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/references/rest_api_public.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-27T05:16:21.194Z
 link: xref:app-services::references/rest_api_public.adoc[]
 ---
 
@@ -327,9 +327,9 @@ This will get the information about the current user.
 
 Properties associated with a user session
 
-**404** 
+**401** 
 
-Resource could not be found
+User does not have access to resource, or resource does not exist
 
 get/{db}/\_session
 
@@ -340,7 +340,7 @@ https://{hostname}:4984/{db}/\_session
 ### Response samples 
 
 * 200
-* 404
+* 401
 
 Content type
 
@@ -352,11 +352,15 @@ Copy
 
 `{
 * "authentication_handlers": [
-  * "string"  
+  * "default",
+  * "cookie"  
 ],
 * "ok": true,
 * "userCtx": {
-  * "channels": { },
+  * "channels": {
+    * "!": 1,
+    * "channelA": 2  
+  },
   * "name": "string"  
 }
 }`
@@ -365,20 +369,27 @@ Copy
 
 Generates a login session for the user based on the credentials provided in the request body or if that fails (due to invalid credentials or none provided at all), generates the new session for the currently authenticated user instead. On a successful session creation, a session cookie is stored to keep the user authenticated for future API calls.
 
-If CORS is enabled, the origin must match an allowed login origin otherwise an error will be returned.
+If `Origin` header is passed to this endpoint, the `Origin` header must match both the `cors.login_origin` and `cors.origin` configuration options.
 
 ##### path Parameters
 
 | dbrequired | string Example: db1The name of the database to run the operation against. |
 | ---------- | ------------------------------------------------------------------------- |
 
+##### query Parameters
+
+| one\_time | boolean Sets the session to only be valid for a single authentication. This session will expire in 5 minutes if not used. |
+| --------- | ------------------------------------------------------------------------------------------------------------------------- |
+
 ##### Request Body schema: application/json
 
-The body can depend on if using the Public or Admin APIs.
+optional
 
-| name     | string User name to generate the session for.            |
-| -------- | -------------------------------------------------------- |
-| password | string Password of the user to generate the session for. |
+When name and password are included in the request body, the session will be created for the specified user. Otherwise the session will be created for the authenticated user making the request.
+
+| name     | string User name to generate the session for. Omit this value to generate a session for the authenticated user.            |
+| -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| password | string Password of the user to generate the session for. Omit this value to generate a session for the authenticated user. |
 
 ### Responses
 
@@ -388,11 +399,11 @@ Session created successfully. Returned body is dependant on if using Public or A
 
 **400** 
 
-Origin is not in the approved list of allowed origins
+Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin` of Sync Gateway bootstrap or database configuration.
 
-**404** 
+**401** 
 
-Resource could not be found
+User does not have access to resource, or resource does not exist
 
 post/{db}/\_session
 
@@ -419,7 +430,7 @@ Copy
 
 * 200
 * 400
-* 404
+* 401
 
 Content type
 
@@ -431,7 +442,8 @@ Copy
 
 `{
 * "authentication_handlers": [
-  * "default"  
+  * "default",
+  * "cookie"  
 ],
 * "ok": true,
 * "userCtx": {
@@ -440,14 +452,15 @@ Copy
     * "channelA": 2  
   },
   * "name": "string"  
-}
+},
+* "one_time_session_id": "c5af80a039db4ed9d2b6865576b6999935282689"
 }`
 
 ## [](#tag/Session/operation/delete%5Fdb-%5Fsession)Log out 
 
 Invalidates the session for the currently authenticated user and removes their session cookie.
 
-If CORS is enabled, the origin must match an allowed login origin otherwise an error will be returned.
+If `Origin` header is passed to this endpoint, the `Origin` header must match both the `cors.login_origin` and `cors.origin` configuration options.
 
 ##### path Parameters
 
@@ -462,11 +475,15 @@ Successfully removed session (logged out)
 
 **400** 
 
-Bad Request
+Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin` of Sync Gateway bootstrap or database configuration.
+
+**401** 
+
+User does not have access to resource, or resource does not exist
 
 **404** 
 
-Resource could not be found
+Return if session not found.
 
 delete/{db}/\_session
 
@@ -476,6 +493,8 @@ https://{hostname}:4984/{db}/\_session
 
 ### Response samples 
 
+* 400
+* 401
 * 404
 
 Content type
@@ -485,8 +504,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "Bad Request",
+* "reason": "No CORS"
 }`
 
 ## [](#tag/Authentication)Authentication
@@ -857,7 +876,7 @@ Retrieve a document from the database by its doc ID.
 
 ##### query Parameters
 
-| rev         | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target. This can be a Revision Tree ID or a CV (Current Version) ID. If this is a CV value, ensure the query parameter is URL encoded (+\->%2B, @\->%40, etc.)                                                                                                                                                                                            |
+| rev         | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target. This can be a RevTree ID or a CV (Current Version) ID. If this is a CV value, ensure the query parameter is URL encoded (+\->%2B, @\->%40, etc.)                                                                                                                                                                                                  |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | open\_revs  | Array of strings Option to fetch specified revisions of the document. The value can be all to fetch all leaf revisions or an array of revision numbers (i.e. open\_revs=\["rev1", "rev2"\]). Only leaf revision bodies that haven't been pruned are guaranteed to be returned. If this option is specified the response will be in multipart format. Use the Accept: application/json request header to get the result as a JSON object. |
 | show\_exp   | boolean Whether to show the expiry property (\_exp) in the response.                                                                                                                                                                                                                                                                                                                                                                     |
@@ -940,7 +959,7 @@ The maximum size for a document is 20MB.
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | replicator2 | boolean Returns the document with the required properties for replication. This is an enterprise-edition only feature.                                                                                                                                                                                                                                    |
 | new\_edits  | boolean Default: true Setting this to false indicates that the request body is an already-existing revision that should be directly inserted into the database, instead of a modification to apply to the current document. This mode is used for replication. This option must be used in conjunction with the \_revisions property in the request body. |
-| rev         | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target. This can be a Revision Tree ID or a CV (Current Version) ID. If this is a CV value, ensure the query parameter is URL encoded (+\->%2B, @\->%40, etc.)                                                                                                             |
+| rev         | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target. This can be a RevTree ID or a CV (Current Version) ID. If this is a CV value, ensure the query parameter is URL encoded (+\->%2B, @\->%40, etc.)                                                                                                                   |
 
 ##### header Parameters
 
@@ -1056,8 +1075,8 @@ A revision ID either in the header or on the query parameters is required.
 
 ##### query Parameters
 
-| rev | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target. This can be a Revision Tree ID or a CV (Current Version) ID. If this is a CV value, ensure the query parameter is URL encoded (+\->%2B, @\->%40, etc.) |
-| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| rev | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target. This can be a RevTree ID or a CV (Current Version) ID. If this is a CV value, ensure the query parameter is URL encoded (+\->%2B, @\->%40, etc.) |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ##### header Parameters
 
@@ -1115,7 +1134,7 @@ Return a status code based on if the document exists or not.
 
 ##### query Parameters
 
-| rev         | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target. This can be a Revision Tree ID or a CV (Current Version) ID. If this is a CV value, ensure the query parameter is URL encoded (+\->%2B, @\->%40, etc.)                                                                                                                                                                                            |
+| rev         | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target. This can be a RevTree ID or a CV (Current Version) ID. If this is a CV value, ensure the query parameter is URL encoded (+\->%2B, @\->%40, etc.)                                                                                                                                                                                                  |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | open\_revs  | Array of strings Option to fetch specified revisions of the document. The value can be all to fetch all leaf revisions or an array of revision numbers (i.e. open\_revs=\["rev1", "rev2"\]). Only leaf revision bodies that haven't been pruned are guaranteed to be returned. If this option is specified the response will be in multipart format. Use the Accept: application/json request header to get the result as a JSON object. |
 | show\_exp   | boolean Whether to show the expiry property (\_exp) in the response.                                                                                                                                                                                                                                                                                                                                                                     |
@@ -2041,10 +2060,10 @@ If the `meta` query parameter is set then the response will be in JSON with the 
 
 ##### query Parameters
 
-| rev               | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target. This can be a Revision Tree ID or a CV (Current Version) ID. If this is a CV value, ensure the query parameter is URL encoded (+\->%2B, @\->%40, etc.) |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| content\_encoding | boolean Default: true Set to false to disable the Content-Encoding response header.                                                                                                                                                           |
-| meta              | boolean Default: false Return only the metadata of the attachment in the response body.                                                                                                                                                       |
+| rev               | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target. This can be a RevTree ID or a CV (Current Version) ID. If this is a CV value, ensure the query parameter is URL encoded (+\->%2B, @\->%40, etc.) |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| content\_encoding | boolean Default: true Set to false to disable the Content-Encoding response header.                                                                                                                                                     |
+| meta              | boolean Default: false Return only the metadata of the attachment in the response body.                                                                                                                                                 |
 
 ##### header Parameters
 
@@ -2176,8 +2195,8 @@ This request check if the attachment exists on the specified document.
 
 ##### query Parameters
 
-| rev | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target. This can be a Revision Tree ID or a CV (Current Version) ID. If this is a CV value, ensure the query parameter is URL encoded (+\->%2B, @\->%40, etc.) |
-| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| rev | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target. This can be a RevTree ID or a CV (Current Version) ID. If this is a CV value, ensure the query parameter is URL encoded (+\->%2B, @\->%40, etc.) |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### Responses
 

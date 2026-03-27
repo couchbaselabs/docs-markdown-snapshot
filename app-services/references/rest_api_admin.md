@@ -1,7 +1,7 @@
 ---
 title: Capella App Services Admin API Reference
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/references/rest_api_admin.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-27T05:16:21.194Z
 link: xref:app-services::references/rest_api_admin.adoc[]
 ---
 
@@ -86,11 +86,15 @@ Copy
 
 `{
 * "authentication_handlers": [
-  * "string"  
+  * "default",
+  * "cookie"  
 ],
 * "ok": true,
 * "userCtx": {
-  * "channels": { },
+  * "channels": {
+    * "!": 1,
+    * "channelA": 2  
+  },
   * "name": "string"  
 }
 }`
@@ -120,13 +124,13 @@ The body can depend on if using the Public or Admin APIs.
 
 Session created successfully. Returned body is dependant on if using Public or Admin APIs.
 
-**400** 
+**401** 
 
-Origin is not in the approved list of allowed origins
+User does not have access to resource, or resource does not exist
 
 **404** 
 
-Resource could not be found
+Return if database does not exist
 
 post/{db}/\_session
 
@@ -152,7 +156,7 @@ Copy
 ### Response samples 
 
 * 200
-* 400
+* 401
 * 404
 
 Content type
@@ -208,11 +212,15 @@ Copy
 
 `{
 * "authentication_handlers": [
-  * "string"  
+  * "default",
+  * "cookie"  
 ],
 * "ok": true,
 * "userCtx": {
-  * "channels": { },
+  * "channels": {
+    * "!": 1,
+    * "channelA": 2  
+  },
   * "name": "string"  
 }
 }`
