@@ -1,7 +1,7 @@
 ---
 title: Edge Server Public REST API
 editUrl: https://github.com/couchbase/edge-server/edit/main/docs/modules/public-api-reference/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-28T05:05:12.980Z
 link: xref:couchbase-edge-server:public-api-reference:index.adoc[]
 ---
 
@@ -19,7 +19,6 @@ link: xref:couchbase-edge-server:public-api-reference:index.adoc[]
   * putCreate a document
   * getGet all documents in the keyspace
   * postGet all documents in the keyspace
-  * headCheck if any documents exist
   * postBulk document operations
   * getGet a document
   * putUpsert a document
@@ -337,6 +336,13 @@ Copy
     * "value": {
       * "rev": "string",
       * "cv": "string"  
+      },
+    * "doc": {
+      * "_id": "~SCH2oNtKFMBdcO-_sUhBmn",
+      * "_rev": "1-22855783cf597c31c37ec3815d8027f3706ef6f9",
+      * "type": "airport",
+      * "country": "United States",
+      * "faa": "LAX"  
       }  
   }  
 ],
@@ -430,65 +436,18 @@ Copy
     * "value": {
       * "rev": "string",
       * "cv": "string"  
+      },
+    * "doc": {
+      * "_id": "~SCH2oNtKFMBdcO-_sUhBmn",
+      * "_rev": "1-22855783cf597c31c37ec3815d8027f3706ef6f9",
+      * "type": "airport",
+      * "country": "United States",
+      * "faa": "LAX"  
       }  
   }  
 ],
 * "total_rows": 0,
 * "update_seq": 0
-}`
-
-## [](#tag/Document/operation/head%5Fkeyspace-%5Fall%5Fdocs-)Check if any documents exist 
-
-Returns a status code indicating whether any documents exist.
-
-##### path Parameters
-
-| keyspacerequired | string Examples: db1 \- Default scope and collectiondb1.collection1 \- Named collection within the default scopedb1.scope1.collection1 \- Fully-qualified scope and collectionThe keyspace to run the operation against. A keyspace is a dot-separated string, comprised of a database name, and optionally a named scope and collection. |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-
-##### query Parameters
-
-| include\_docs | boolean Include the body associated with each document.                                                       |
-| ------------- | ------------------------------------------------------------------------------------------------------------- |
-| keys          | Array of strings An array of document ID strings to filter by.                                                |
-| startkey      | string Return records starting with the specified key.                                                        |
-| endkey        | string Stop returning records when this key is reached.                                                       |
-| limit         | number This limits the number of result rows returned. Using a value of 0 has the same effect as the value 1. |
-
-### Responses
-
-**200** 
-
-OK
-
-**400** 
-
-There was a problem with your request
-
-**404** 
-
-Resource could not be found
-
-head/{keyspace}/\_all\_docs
-
-Public API
-
-{protocol}://{hostname}:59840/{keyspace}/\_all\_docs
-
-### Response samples 
-
-* 400
-* 404
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "error": "string",
-* "reason": "string"
 }`
 
 ## [](#tag/Document/operation/post%5Fkeyspace-%5Fbulk%5Fdocs-)Bulk document operations 

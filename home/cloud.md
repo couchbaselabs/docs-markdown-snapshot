@@ -1,7 +1,7 @@
 ---
 title: Welcome to Couchbase Capella
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/cloud.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-28T05:05:12.980Z
 link: xref:home::cloud.adoc[]
 ---
 
@@ -29,7 +29,16 @@ Get set up with an account and deploy a free tier Capella operational cluster.
 * [Create an Account and Deploy Your Free Tier Operational Cluster](../cloud/get-started/create-account.md)
 * [Explore Sample Data with Data Tools](../cloud/get-started/run-first-queries.md)
 * [Explore the Playground](../cloud/get-started/sdk-playground.md)
+
+###  Get Started With Capella App Services
+
+Create your account and start building mobile and edge apps with Capella App Services.
+
+* [Sign Up](https://cloud.couchbase.com/sign-up)
+* [Manage App Services for Mobile and Edge](../app-services/index.md)
 * [Configure Your Free Tier App Services (Mobile sync)](../app-services/get-started/configuring-app-services.md)
+* [Create an App Service](../app-services/app-services/creating-an-app-service.md)
+* [Migrate Existing Self-Managed Couchbase Mobile Clusters to App Services](../app-services/migrating/on-prem-to-capella.md)
 
 ###  Get Started With Capella Analytics
 

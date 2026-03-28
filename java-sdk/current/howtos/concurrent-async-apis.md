@@ -3,7 +3,7 @@ title: Async and Reactive APIs
 description: The Java SDK offers efficient, non-blocking alternatives to the
   regular blocking API.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-28T05:05:12.980Z
 link: xref:java-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -13,6 +13,14 @@ link: xref:java-sdk:howtos:concurrent-async-apis.adoc[]
 # Async and Reactive APIs
 
 > The Java SDK offers efficient, non-blocking alternatives to the regular blocking API. This page outlines the different options with their drawbacks and benefits. 
+
+The main concurrency options offered by Java offer different optimizations for different use cases. On this page we give a brief analysis of which may be best for your application, with links to further documentation to help you find the best solution.
+
+## [](#virtual-threads)Virtual Threads
+
+For high-throughput concurrent applications, [Java Virtual Threads](https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html) can scale throughput, particularly for tasks which spend much of their time blocked.
+
+Couchbase fully supports and recommends virtual threads and structured concurrency with the Java SDK, as the modern threading solution. Virtual threads can help with scaling of applications using the blocking API, and also the asynchronous API.
 
 ## [](#reactive-programming-with-reactor)Reactive Programming with Reactor
 
@@ -157,4 +165,4 @@ Then, you can use the various conversion methods to convert back and forth betwe
     Single<GetResult> rxSingleResult = monoToSingle(reactiveCollection.get("airline_10"));
 ```
 
-The same strategy can be used to convert to [Akka](https://akka.io/), but if you are working in the scala world we recommend using our first-class Scala SDK directly instead!
+The same strategy can be used to convert to [Akka](https://akka.io/), but if you are working in the Scala world we recommend using our first-class Scala SDK directly instead!

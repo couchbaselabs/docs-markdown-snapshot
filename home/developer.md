@@ -1,7 +1,7 @@
 ---
 title: Develop with Couchbase
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/developer.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-03-28T05:05:12.980Z
 link: xref:home::developer.adoc[]
 ---
 
@@ -40,7 +40,7 @@ Develop an app for [Capella Operational](https://docs.couchbase.com/cloud/develo
 
 ###  Develop for Mobile and the Edge
 
-Build your app with [Couchbase Lite](../couchbase-lite/current/index.md) for offline-first connectivity, then sync to Couchbase Server with Capella App services (or self-managed Sync Gateway) — or run peer-to-peer.
+Build your app with [Couchbase Lite](../couchbase-lite/current/index.md) for offline-first connectivity, then sync to Couchbase Server with Capella App Services (or self-managed Sync Gateway) — or run peer-to-peer.
 
 * [Develop for Android in Java or Kotlin](../couchbase-lite/current/android/quickstart.md)
 * [Develop for iOS on Swift](../couchbase-lite/current/swift/quickstart.md)(and [Objective-C](../couchbase-lite/current/objc/quickstart.md))

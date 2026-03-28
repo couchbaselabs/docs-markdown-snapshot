@@ -3,7 +3,7 @@ title: Licenses
 description: Couchbase SDKs' source code and binaries are licensed under the
   Apache Licence 2.0.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/sdk-licenses.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-28T05:05:12.980Z
 link: xref:rust-sdk:project-docs:sdk-licenses.adoc[]
 ---
 
@@ -20,8 +20,8 @@ Source and any and all binaries for the Couchbase Rust Client are distributed un
 
 Support level will match the terms of your use of your Couchbase Cluster(s), under Couchbase's Enterprise or Community license agreements.
 
-* [Enterprise License Agreement](https://www.couchbase.com/license-agreement/)
-* [Community License Agreement](https://www.couchbase.com/community-license-agreement/)
+* [Enterprise License Agreement](https://www.couchbase.com/license-agreement/) — this support level also applies to users of Capella Operational.
+* [Community License Agreement](https://www.couchbase.com/community-license-agreement/) — this support level also applies to users of Capella Free Tier.
 
 ## [](#dependencies)Dependencies
 

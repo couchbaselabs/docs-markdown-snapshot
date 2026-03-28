@@ -1,7 +1,7 @@
 ---
 title: Eventing REST API
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/eventing-rest-api/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-28T05:05:12.980Z
 link: xref:7.6@server:eventing-rest-api:index.adoc[]
 ---
 
@@ -103,7 +103,7 @@ Deploy a global function
 curl request
 
 ```sh
-curl -XPOST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/deploy"
+curl -X POST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/deploy"
 ```
 
 Deploy a scoped function
@@ -111,7 +111,7 @@ Deploy a scoped function
 curl request
 
 ```sh
-curl -XPOST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/deploy?bucket=bulk&scope=data"
+curl -X POST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/deploy?bucket=bulk&scope=data"
 ```
 
 #### [](#basic%5Fpause)Pause a Function
@@ -157,7 +157,7 @@ Pause a global function
 curl request
 
 ```sh
-curl -XPOST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/pause"
+curl -X POST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/pause"
 ```
 
 Pause a scoped function
@@ -165,7 +165,7 @@ Pause a scoped function
 curl request
 
 ```sh
-curl -XPOST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/pause?bucket=bulk&scope=data"
+curl -X POST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/pause?bucket=bulk&scope=data"
 ```
 
 #### [](#basic%5Fresume)Resume a Function
@@ -212,7 +212,7 @@ Resume a global function
 curl request
 
 ```sh
-curl -XPOST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/resume"
+curl -X POST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/resume"
 ```
 
 Resume a scoped function
@@ -220,7 +220,7 @@ Resume a scoped function
 curl request
 
 ```sh
-curl -XPOST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/resume?bucket=bulk&scope=data"
+curl -X POST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/resume?bucket=bulk&scope=data"
 ```
 
 #### [](#basic%5Fundeploy)Undeploy a Function
@@ -266,7 +266,7 @@ Undeploy a global function
 curl request
 
 ```sh
-curl -XPOST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/undeploy"
+curl -X POST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/undeploy"
 ```
 
 Undeploy a scoped function
@@ -274,7 +274,7 @@ Undeploy a scoped function
 curl request
 
 ```sh
-curl -XPOST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/undeploy?bucket=bulk&scope=data"
+curl -X POST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/undeploy?bucket=bulk&scope=data"
 ```
 
 ### [](#tag-Advanced)Advanced
@@ -350,7 +350,7 @@ Import a global function
 curl request
 
 ```sh
-curl -XPOST -d @./my_function.json \
+curl -X POST -d @./my_function.json \
   "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function"
 ```
 
@@ -359,7 +359,7 @@ Import a scoped function
 curl request
 
 ```sh
-curl -XPOST -d @./my_function.json \
+curl -X POST -d @./my_function.json \
   "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function?bucket=bulk&scope=data"
 ```
 
@@ -405,7 +405,7 @@ Import multiple functions
 curl request
 
 ```sh
-curl -XPOST -d @./array_of_functions.json \
+curl -X POST -d @./array_of_functions.json \
   "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions"
 ```
 
@@ -457,7 +457,7 @@ View a global function definition
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function"
 ```
 
 View a scoped function definition
@@ -465,7 +465,7 @@ View a scoped function definition
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function?bucket=bulk&scope=data"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function?bucket=bulk&scope=data"
 ```
 
 Save a global function definition to file
@@ -473,7 +473,7 @@ Save a global function definition to file
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function" \
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function" \
   -o my_function.json
 ```
 
@@ -482,7 +482,7 @@ Save a scoped function definition to file
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function?bucket=bulk&scope=data" \
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function?bucket=bulk&scope=data" \
   -o my_function.json
 ```
 
@@ -520,7 +520,7 @@ View all function definitions
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions"
 ```
 
 Save all function definitions to file
@@ -528,7 +528,7 @@ Save all function definitions to file
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions" \
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions" \
   -o array_of_functions.json
 ```
 
@@ -656,7 +656,7 @@ View all function definitions
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/export"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/export"
 ```
 
 Save all function definitions to file
@@ -664,7 +664,7 @@ Save all function definitions to file
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/export" \
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/export" \
   -o array_of_functions.json
 ```
 
@@ -710,7 +710,7 @@ Import multiple functions
 curl request
 
 ```sh
-curl -XPOST -d @./array_of_functions.json \
+curl -X POST -d @./array_of_functions.json \
   "http://$USER:$PASSWORD@$HOST:8096/api/v1/import"
 ```
 
@@ -762,7 +762,7 @@ View global function settings
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/settings"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/settings"
 ```
 
 View scoped function settings
@@ -770,7 +770,7 @@ View scoped function settings
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/settings?bucket=bulk&scope=data"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/settings?bucket=bulk&scope=data"
 ```
 
 Save global function settings to file
@@ -778,7 +778,7 @@ Save global function settings to file
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/settings" \
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/settings" \
   -o my_function.json
 ```
 
@@ -787,7 +787,7 @@ Save scoped function settings to file
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/settings?bucket=bulk&scope=data" \
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/settings?bucket=bulk&scope=data" \
   -o my_function.json
 ```
 
@@ -851,7 +851,7 @@ This example updates the `worker_count` setting.
 curl request
 
 ```sh
-curl -XPOST -d '{
+curl -X POST -d '{
   "deployment_status": false,
   "processing_status": false,
   "worker_count": 6
@@ -865,7 +865,7 @@ This example updates the `worker_count` setting.
 curl request
 
 ```sh
-curl -XPOST -d '{
+curl -X POST -d '{
   "deployment_status": false,
   "processing_status": false,
   "worker_count": 6
@@ -879,7 +879,7 @@ This example updates the `app_log_max_files` and `app_log_max_size` settings. Th
 curl request
 
 ```sh
-curl -XPOST -d '{
+curl -X POST -d '{
   "deployment_status": false,
   "processing_status": false,
   "app_log_max_files": 5
@@ -894,7 +894,7 @@ This example updates the `app_log_max_files` and `app_log_max_size` settings. Th
 curl request
 
 ```sh
-curl -XPOST -d '{
+curl -X POST -d '{
   "deployment_status": false,
   "processing_status": false,
   "app_log_max_files": 5,
@@ -909,7 +909,7 @@ This example updates the `timer_context_size` setting. The function is currently
 curl request
 
 ```sh
-curl -XPOST -d '{
+curl -X POST -d '{
   "deployment_status": true,
   "processing_status": false,
   "timer_context_size": 2048
@@ -923,7 +923,7 @@ This example updates the `timer_context_size` setting. The function is currently
 curl request
 
 ```sh
-curl -XPOST -d '{
+curl -X POST -d '{
   "deployment_status": true,
   "processing_status": false,
   "timer_context_size": 2048
@@ -937,7 +937,7 @@ This example updates the `worker_count` setting and resumes. The function is cur
 curl request
 
 ```sh
-curl -XPOST -d '{
+curl -X POST -d '{
   "deployment_status": true,
   "processing_status": true,
   "worker_count": 8
@@ -951,7 +951,7 @@ This example updates the `worker_count` setting and resumes. The function is cur
 curl request
 
 ```sh
-curl -XPOST -d '{
+curl -X POST -d '{
   "deployment_status": true,
   "processing_status": true,
   "worker_count": 8
@@ -967,7 +967,7 @@ This example sets `allow_sync_documents` to `false`, to enable compatibility wit
 curl request
 
 ```sh
-curl -XPOST -d '{
+curl -X POST -d '{
   "deployment_status": true,
   "processing_status": false,
   "allow_sync_documents": false
@@ -985,7 +985,7 @@ This example sets `allow_sync_documents` to `false`, to enable compatibility wit
 curl request
 
 ```sh
-curl -XPOST -d '{
+curl -X POST -d '{
   "deployment_status": true,
   "processing_status": false,
   "allow_sync_documents": false
@@ -999,7 +999,7 @@ Deploy an undeployed global function — deprecated
 curl request
 
 ```sh
-curl -XPOST -d '{
+curl -X POST -d '{
   "deployment_status": true,
   "processing_status": true
 }' "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/settings"
@@ -1012,7 +1012,7 @@ Deploy an undeployed scoped function — deprecated
 curl request
 
 ```sh
-curl -XPOST -d '{
+curl -X POST -d '{
   "deployment_status": true,
   "processing_status": true
 }' "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/settings?bucket=bulk&scope=data"
@@ -1068,7 +1068,7 @@ View global function config
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config"
 ```
 
 View scoped function config
@@ -1076,7 +1076,7 @@ View scoped function config
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config?bucket=bulk&scope=data"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config?bucket=bulk&scope=data"
 ```
 
 Save global function config to file
@@ -1084,7 +1084,7 @@ Save global function config to file
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config" \
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config" \
   -o my_function.json
 ```
 
@@ -1093,7 +1093,7 @@ Save scoped function config to file
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config?bucket=bulk&scope=data" \
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config?bucket=bulk&scope=data" \
   -o my_function.json
 ```
 
@@ -1153,7 +1153,7 @@ This example alters the source and eventing storage keyspaces.
 curl request
 
 ```sh
-curl -XPOST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config" \
+curl -X POST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config" \
   -d '{
   "source_bucket": "bulk",
   "source_scope": "orders",
@@ -1171,7 +1171,7 @@ This example alters the source and eventing storage keyspaces.
 curl request
 
 ```sh
-curl -XPOST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config?bucket=bulk&scope=data"\
+curl -X POST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config?bucket=bulk&scope=data"\
   -d '{
   "source_bucket": "bulk",
   "source_scope": "orders",
@@ -1189,7 +1189,7 @@ This example alters the source and eventing storage keyspaces from a file.
 curl request
 
 ```sh
-curl -XPOST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config" \
+curl -X POST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config" \
   -d @./my_function.json
 ```
 
@@ -1200,7 +1200,7 @@ This example alters the source and eventing storage keyspaces from a file.
 curl request
 
 ```sh
-curl -XPOST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config?bucket=bulk&scope=data" \
+curl -X POST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/config?bucket=bulk&scope=data" \
   -d @./my_function.json
 ```
 
@@ -1252,7 +1252,7 @@ View global function code
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/appcode"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/appcode"
 ```
 
 View scoped function code
@@ -1260,7 +1260,7 @@ View scoped function code
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/appcode?bucket=bulk&scope=data"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/appcode?bucket=bulk&scope=data"
 ```
 
 Save global function code to file
@@ -1268,7 +1268,7 @@ Save global function code to file
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/appcode" \
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/appcode" \
   -o my_function.json
 ```
 
@@ -1277,7 +1277,7 @@ Save scoped function code to file
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/appcode?bucket=bulk&scope=data" \
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/appcode?bucket=bulk&scope=data" \
   -o my_function.json
 ```
 
@@ -1335,7 +1335,7 @@ Update global function code
 curl request
 
 ```sh
-curl -XPOST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/appcode" \
+curl -X POST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/appcode" \
   --data-binary 'function OnUpdate(doc, meta) { log("id",meta.id); }'
 ```
 
@@ -1344,7 +1344,7 @@ Update scoped function code
 curl request
 
 ```sh
-curl -XPOST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/appcode?bucket=bulk&scope=data" \
+curl -X POST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/appcode?bucket=bulk&scope=data" \
   --data-binary 'function OnUpdate(doc, meta) { log("id",meta.id); }'
 ```
 
@@ -1355,7 +1355,7 @@ This example uses the `--data-binary` option. Do not use `-d`.
 curl request
 
 ```sh
-curl -XPOST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/import" \
+curl -X POST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/import" \
   --data-binary @./my_function.json
 ```
 
@@ -1366,7 +1366,7 @@ This example uses the `--data-binary` option. Do not use `-d`.
 curl request
 
 ```sh
-curl -XPOST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/import?bucket=bulk&scope=data" \
+curl -X POST "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/import?bucket=bulk&scope=data" \
   --data-binary @./my_function.json
 ```
 
@@ -1377,7 +1377,7 @@ This example uses the `--upload-file` option.
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/import" \
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/functions/my_function/import" \
   --upload-file ./my_function.json
 ```
 
@@ -1388,7 +1388,7 @@ This example uses the `--upload-file` option.
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/import?bucket=bulk&scope=data" \
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/functions/my_function/import?bucket=bulk&scope=data" \
   --upload-file ./my_function.json
 ```
 
@@ -1431,7 +1431,7 @@ View global configuration
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/config"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/config"
 ```
 
 #### [](#config%5Fupdate)Modify Global Config
@@ -1481,7 +1481,7 @@ Alter RAM quota
 curl request
 
 ```sh
-curl -XPOST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/config" \
+curl -X POST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/config" \
   -d '{"ram_quota": 512}'
 ```
 
@@ -1490,7 +1490,7 @@ Enable debugger
 curl request
 
 ```sh
-curl -XPOST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/config" \
+curl -X POST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/config" \
   -d '{"enable_debugger": true}'
 ```
 
@@ -1501,7 +1501,7 @@ Couchbase Server 7.6.4
 curl request
 
 ```sh
-curl -XPOST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/config" \
+curl -X POST "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/config" \
   -d '{"cursor_limit": 10}'
 ```
 
@@ -1564,7 +1564,7 @@ List all functions
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/list/functions"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/list/functions"
 ```
 
 #### [](#list%5Fquery)List Filtered Functions
@@ -1611,7 +1611,7 @@ List all deployed functions
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/list/functions/query?deployed=true"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/list/functions/query?deployed=true"
 ```
 
 If you had specified `deployed=false`, you would get all undeployed functions.
@@ -1621,7 +1621,7 @@ List all functions with source keyspace in a specific bucket
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/list/functions/query?source_bucket=bulk"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/list/functions/query?source_bucket=bulk"
 ```
 
 List all functions that do not modify their source keyspace
@@ -1629,7 +1629,7 @@ List all functions that do not modify their source keyspace
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/list/functions/query?function_type=notsbm"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/list/functions/query?function_type=notsbm"
 ```
 
 ### [](#tag-Logging)Logging
@@ -1679,7 +1679,7 @@ View global function log from a single node
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/getAppLog?name=my_function"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/getAppLog?name=my_function"
 ```
 
 View scoped function log from a single node
@@ -1687,7 +1687,7 @@ View scoped function log from a single node
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/getAppLog?name=my_function&bucket=bulk&scope=data"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/getAppLog?name=my_function&bucket=bulk&scope=data"
 ```
 
 View global function log from all Eventing nodes
@@ -1695,7 +1695,7 @@ View global function log from all Eventing nodes
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/getAppLog?name=my_function&aggregate=true"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/getAppLog?name=my_function&aggregate=true"
 ```
 
 View scoped function log from all Eventing nodes
@@ -1703,7 +1703,7 @@ View scoped function log from all Eventing nodes
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/getAppLog?name=my_function&aggregate=true&bucket=bulk&scope=data"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/getAppLog?name=my_function&aggregate=true&bucket=bulk&scope=data"
 ```
 
 View size-limited global function log
@@ -1713,7 +1713,7 @@ This example fetches recent Application log info from all Eventing nodes, limite
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/getAppLog?name=my_function&aggregate=true&size=2048"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/getAppLog?name=my_function&aggregate=true&size=2048"
 ```
 
 View size-limited scoped function log
@@ -1723,7 +1723,7 @@ This example fetches recent Application log info from all Eventing nodes, limite
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/getAppLog?name=my_function&aggregate=true&size=2048&bucket=bulk&scope=data"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/getAppLog?name=my_function&aggregate=true&size=2048&bucket=bulk&scope=data"
 ```
 
 ### [](#tag-Statistics)Statistics
@@ -1774,7 +1774,7 @@ Get basic statistics
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/stats"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/stats"
 ```
 
 Get full statistics
@@ -1782,7 +1782,7 @@ Get full statistics
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/stats?type=full"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/stats?type=full"
 ```
 
 #### [](#stats%5Fexecution)Get Execution Statistics
@@ -1824,7 +1824,7 @@ View execution statistics for global function
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/getExecutionStats?name=my_function"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/getExecutionStats?name=my_function"
 ```
 
 View execution statistics for scoped function
@@ -1832,7 +1832,7 @@ View execution statistics for scoped function
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/getExecutionStats?name=my_function&bucket=bulk&scope=data"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/getExecutionStats?name=my_function&bucket=bulk&scope=data"
 ```
 
 #### [](#stats%5Ffailure)Get Failure Statistics
@@ -1874,7 +1874,7 @@ View failure statistics for global function
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/getFailureStats?name=my_function"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/getFailureStats?name=my_function"
 ```
 
 View failure statistics for scoped function
@@ -1882,7 +1882,7 @@ View failure statistics for scoped function
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/getFailureStats?name=my_function&bucket=bulk&scope=data"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/getFailureStats?name=my_function&bucket=bulk&scope=data"
 ```
 
 #### [](#stats%5Flatency)Get Latency Statistics
@@ -1924,7 +1924,7 @@ View latency statistics for global function
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/getLatencyStats?name=my_function"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/getLatencyStats?name=my_function"
 ```
 
 View latency statistics for scoped function
@@ -1932,7 +1932,7 @@ View latency statistics for scoped function
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/getLatencyStats?name=my_function&bucket=bulk&scope=data"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/getLatencyStats?name=my_function&bucket=bulk&scope=data"
 ```
 
 #### [](#stats%5Freset)Reset Statistics
@@ -1974,7 +1974,7 @@ Reset statistics for global function
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/resetStatsCounters?appName=my_function"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/resetStatsCounters?appName=my_function"
 ```
 
 Reset statistics for scoped function
@@ -1982,7 +1982,7 @@ Reset statistics for scoped function
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/resetStatsCounters?appName=my_function&bucket=bulk&scope=data"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/resetStatsCounters?appName=my_function&bucket=bulk&scope=data"
 ```
 
 ### [](#tag-Status)Status
@@ -2022,7 +2022,7 @@ View status of all functions
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/status"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/status"
 ```
 
 #### [](#status%5Ffunction)View Function Status
@@ -2069,7 +2069,7 @@ View global function status
 curl request
 
 ```sh
-curl -XGET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/status/my_function"
+curl -X GET "http://$ADMIN:$PASSWORD@$HOST:8096/api/v1/status/my_function"
 ```
 
 View scoped function status
@@ -2077,7 +2077,7 @@ View scoped function status
 curl request
 
 ```sh
-curl -XGET "http://$USER:$PASSWORD@$HOST:8096/api/v1/status/my_function?bucket=bulk&scope=data"
+curl -X GET "http://$USER:$PASSWORD@$HOST:8096/api/v1/status/my_function?bucket=bulk&scope=data"
 ```
 
 ## [](#models)Definitions

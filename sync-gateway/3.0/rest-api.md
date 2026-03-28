@@ -1,8 +1,8 @@
 ---
 title: Public REST API
-description: Description of the Sync Gateway Rest API'
+description: Description of the Sync Gateway REST API
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/rest-api.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-28T05:05:12.980Z
 link: xref:3.0@sync-gateway::rest-api.adoc[]
 ---
 
@@ -11,9 +11,9 @@ link: xref:3.0@sync-gateway::rest-api.adoc[]
 
 # Public REST API
 
-> Description of the Sync Gateway Rest API'  
+> Description of the Sync Gateway REST API  
 
-Related _REST API_ topics: [Admin REST API](rest-api-admin.md) | [Metrics REST API](rest-api-metrics.md) | [Use the REST API?](#rest-api-client-app.adoc)
+Related _REST API_ topics: [Admin REST API](rest-api-admin.md) | [Metrics REST API](rest-api-metrics.md)
 
 > [!IMPORTANT]
 > Content Blocking
