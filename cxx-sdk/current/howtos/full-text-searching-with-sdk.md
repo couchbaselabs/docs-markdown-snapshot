@@ -1,9 +1,9 @@
 ---
 title: Search
-description: You can use the Full Text Search service (FTS) to create queryable
-  full-text indexes in Couchbase Server.
+description: You can use the Search service to create queryable Search indexes
+  in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:cxx-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:cxx-sdk:howtos:full-text-searching-with-sdk.adoc[]
 
 # Search
 
-> You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
+> You can use the Search service to create queryable Search indexes in Couchbase Server. 
 
-Full Text Search or FTS allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches. Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries. The Scala SDK exposes an API for performing FTS queries which abstracts some of the complexity of using the underlying REST API.
+The Search Service allows you to create, manage, and query Search indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches. Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries. The C++ SDK exposes an API for performing Search queries which abstracts some of the complexity of using the underlying REST API.
 
 ## [](#examples)Examples
 
@@ -27,7 +27,7 @@ The examples below use these imports:
 #include <couchbase/match_query.hxx>
 ```
 
-Search queries are executed at Cluster level (not bucket or collection). Here is a simple match\_query that looks for the text "swanky" using a defined index:
+Search queries are executed at Cluster level (not bucket or collection). Here is a _match\_query_ example that looks for the text 'swanky' using a defined index:
 
 ```c++
 auto request = couchbase::search_request(couchbase::match_query("swanky"));
@@ -52,11 +52,11 @@ if (err) {
 > 
 > For information about pagination in Search responses, see [Pagination](../../../server/current/fts/fts-search-response.md#pagination).
 
-All simple query types are created in the same manner. Some have additional properties, which can be seen in common query type descriptions. Couchbase FTS's [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted.
+All simple query types are created in the same manner. Some have additional properties, which can be seen in common query type descriptions. Couchbase Search Service's [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted.
 
 ## [](#working-with-results)Working with Results
 
-The result of a search query has three components: rows, facets, and metadata. Rows are the documents that match the query. Facets allow the aggregation of information collected on a particular result set. Metadata holds additional information not directly related to your query, such as total rows and how long the query took to execute in the cluster.
+The result of a Search query has three components: rows, facets, and metadata. Rows are the documents that match the query. Facets allow the aggregation of information collected on a particular result set. Metadata holds additional information not directly related to your query, such as total rows and how long the query took to execute in the cluster.
 
 ```c++
 auto request = couchbase::search_request(couchbase::match_query("swanky"));
@@ -81,7 +81,7 @@ if (err) {
 
 ## [](#consistency)Consistency
 
-Like the Couchbase Query Service, FTS allows provides optional _Read-Your-Own-Writes (RYOW)_ consistency, ensuring results contain information from updated indexes:
+Like the Couchbase Query Service, the Search Service allows provides optional _Read-Your-Own-Writes (RYOW)_ consistency, ensuring results contain information from updated indexes:
 
 ```c++
 const tao::json::value hotel{

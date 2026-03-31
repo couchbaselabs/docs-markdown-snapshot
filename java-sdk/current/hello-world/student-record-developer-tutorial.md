@@ -3,7 +3,7 @@ title: "Developer Tutorial: Student Record System"
 description: Learn how to create and deploy a student records database on
   Capella Operational and connect it to your application, using the Java SDK.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/hello-world/pages/student-record-developer-tutorial.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:java-sdk:hello-world:student-record-developer-tutorial.adoc[]
 ---
 
@@ -334,7 +334,7 @@ mvn exec:java -Dexec.mainClass="ConnectStudent" -Dexec.cleanupDaemonThreads=fals
 If the connection is successful, the collection name outputs in the console log.  
 ![Console showing successful connection to server](_images/student-record-collection-console-output.png)
 
-If you come across errors in your console, see the [troubleshooting section](#roubleshooting).
+If you come across errors in your console, see the [troubleshooting section](#troubleshooting).
 
 ## [](#create-a-student-record)Create a Student Record
 
@@ -386,7 +386,7 @@ public class InsertStudent {
 4. Open a terminal window and navigate to your `student` directory.
 5. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 6. Run the following command to insert the student record into the collection:  
-```sh  
+```console  
 mvn exec:java -Dexec.mainClass="InsertStudent" -Dexec.cleanupDaemonThreads=false  
 ```
 7. From the Capella UI, go to your student cluster and check the `student-record-collection` for the new student record you just added:
@@ -444,13 +444,13 @@ public class InsertCourses {
 4. Open a terminal window and navigate to your `student` directory.
 5. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 6. Run the following command to insert the student record into the collection:  
-```sh  
+```console  
 mvn exec:java -Dexec.mainClass="InsertCourses" -Dexec.cleanupDaemonThreads=false  
 ```
 7. From the Capella UI, go to your student cluster and check the `course-record-collection` for the new course records you just added.  
 ![Courses added to the course-record-collection in the cluster](_images/new-course-records.png)
 
-If you come across errors in your console, see the [troubleshooting section](#roubleshooting).
+If you come across errors in your console, see the [troubleshooting section](#troubleshooting).
 
 ## [](#retrieve-records)Retrieve Records
 
@@ -615,7 +615,7 @@ public class ArtSchoolRetrieverAll {
 4. Open a terminal window and navigate to your `student` directory.
 5. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 6. Run the following command to retrieve all course records:  
-```sh  
+```console  
 mvn exec:java -Dexec.mainClass="ArtSchoolRetriever" -Dexec.cleanupDaemonThreads=false  
 ```  
 If the retrieval is successful, the course information outputs in the console log.  
@@ -634,7 +634,7 @@ Unresolved include directive in modules/hello-world/pages/student-record-develop
 4. Open a terminal window and navigate to your `student` directory.
 5. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 6. Run the following command to retrieve all course records:  
-```sh  
+```console  
 mvn exec:java -Dexec.mainClass="ArtSchoolRetrieverParameters" -Dexec.cleanupDaemonThreads=false  
 ```  
 If the retrieval is successful, the course information with your parameters outputs in the console log.  
@@ -743,7 +743,7 @@ mvn exec:java -Dexec.mainClass="AddEnrollments" -Dexec.cleanupDaemonThreads=fals
 8. Go to the `student-record-collection` and click the document ID to see the new information you just added to Hilary's student record.  
 ![Updated student record with course enrollment](_images/updated-student-record.png)
 
-If you come across errors in your console, see the [troubleshooting section](#roubleshooting).
+If you come across errors in your console, see the [troubleshooting section](#troubleshooting).
 
 ### [](#next-steps)Next Steps
 

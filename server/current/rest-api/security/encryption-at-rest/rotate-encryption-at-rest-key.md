@@ -3,7 +3,7 @@ title: Rotate Data Encryption Keys
 description: You can use the REST API have Couchbase Server immediately rotate
   an encryption-at-rest key that it manages.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/rotate-encryption-at-rest-key.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:server:rest-api:security/encryption-at-rest/rotate-encryption-at-rest-key.adoc[]
 ---
 
@@ -55,7 +55,7 @@ Path Parameters
 
 `USER`
 
-The name of a user who has one of the roles listed in [Required Privileges](#rotate-privs).
+The name of a user who has 1 of the roles listed in [Required Privileges](#rotate-privs).
 
 `PASSWORD`
 

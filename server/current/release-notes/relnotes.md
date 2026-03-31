@@ -3,7 +3,7 @@ title: Release Notes for Couchbase Server 8.0
 description: Couchbase Server 8.0.0 introduces many fixes, as well as some
   deprecations and removals.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/release-notes/pages/relnotes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:server:release-notes:relnotes.adoc[]
 ---
 
@@ -17,6 +17,132 @@ link: xref:server:release-notes:relnotes.adoc[]
 These release notes are focused on bug fixes and breaking changes.
 
 For information about new features and major improvements made in Couchbase Server 8.0, see [What's New](../introduction/whats-new.md).
+
+## [](#release-801)Release 8.0.1 (March 2026)
+
+Couchbase Server 8.0.1 was released in March 2026\. This maintenance release contains fixes to issues.
+
+## [](#dlist-fixed-issues-801)Fixed Issues
+
+### [](#dlist-fixed-issues-801-cluster-manager)Cluster Manager
+
+**[MB-69026](https://jira.issues.couchbase.com/browse/MB-69026/)**
+
+Addressed an issue with stuck rebalance email alerts in Couchbase Server.
+
+This fix resolves problems observed when "Require encryption (TLS)" was configured, causing alert failures.
+
+**[MB-69650](https://jira.issues.couchbase.com/browse/MB-69650/)**
+
+A problem was introduced in 7.6.2 where the presence of a Cloud Native Gateway in the cluster would cause issues for services connecting to the cluster manager.
+
+The presence of Cloud Native Gateway no longer causes these issues.
+
+**[MB-70441](https://jira.issues.couchbase.com/browse/MB-70441/)**
+
+The upgrade to Erlang version 26 introduced a change in behavior which requires peer certification when TLS is being used for Alert emails. The peer certification introduced with the changes for this ticket uses the trusted CA certificates provided by the operating system.
+
+**[MB-70597](https://jira.issues.couchbase.com/browse/MB-70597/)**
+
+Prior to this fix, the `ro_security_admin` role user did not have read access to security related groups via a GET of `/settings/rbac/groups`. After this fix, `ro_security_admin` will be able to see all groups including the security ones
+
+**[MB-70629](https://jira.issues.couchbase.com/browse/MB-70629/)**
+
+RBAC groups containing security\_admin\_local, security\_admin\_external, or ro\_admin roles are not handled correctly on upgrade to 8.0\. The upgrade handling should replace:
+
+* security\_admin\_local with security\_admin + local\_user\_admin
+* security\_admin\_external with security\_admin + external\_user\_admin
+* ro\_admin with ro\_admin + ro\_security\_admin
+
+The issue also occurs when restoring users from a backup taken on a release prior to 8.0.
+
+The workaround for both the upgrade and restore case is to manually correct the affected users after the upgrade/restore completes.
+
+### [](#dlist-fixed-issues-801-query-service)Query Service
+
+**[MB-68969](https://jira.issues.couchbase.com/browse/MB-68969/)**
+
+* With multi-collection indexes that contained fields with `include in _all` setting enabled - there was a possibility for false positives to show up for field agnostic (composite field) queries. This has been addressed by denying the sargability for such indexes.
+* Addressed an issue where fields not belonging to a particular keyspace were being included in multi-collection indexes.
+* Addressed a bug that could influence composite field (`_all`) availability based on the order in which fields were processed.
+
+**[MB-69081](https://jira.issues.couchbase.com/browse/MB-69081/)**
+
+To retrieve a document's expiration, the user had to specify the sub-path explicitly, i.e., `META().expiration`. A call to the `META()` function without the sub-path would return the default expiration value 0 always which was incorrect.
+
+Now, when a user's query invokes the `META()` function without explicitly specifying the subpath, the document's expiration value is returned.
+
+**[MB-69083](https://jira.issues.couchbase.com/browse/MB-69083/)**
+
+Problem:
+
+A query may return an incorrect result under the following conditions:
+
+* query contains one or more joins
+* one of the joins involves a sub-query (FROM clause subquery)
+* the FROM clause sub-query has a GROUP BY and/or aggregates
+* the FROM clause sub-query can take advantage of index group/aggregate pushdown (this requires an appropriate secondary index)
+* CBO is ON, and UPDATE STATISTICS has been run on all keyspaces/indexes involved
+
+**[MB-69955](https://jira.issues.couchbase.com/browse/MB-69955/)**
+
+`CYCLE` was added as a KEYWORD for RECURSIVE WITH's CYCLE subclause.
+
+This causes a syntax error when a path or subpath's case-insensitive identifier is named `cycle` when users upgraded to a version that supported the recursive with feature [WITH recursive clause](https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/with-recursive.html)
+
+This is now handled by allowing `cycle` keyword as a permitted identifier.
+
+**[MB-70112](https://jira.issues.couchbase.com/browse/MB-70112/)**
+
+When a prepared request is made with the `auto_execute` request parameter set as `true`, the request would incorrectly error out with error: `Unrecognizable prepared statement - cause: JSON unmarshalling error: auto_execute did not produce a prepared statement`
+
+In this release the server silently ignores the `auto_execute` request parameter when the request is a prepared request.
+
+### [](#dlist-fixed-issues-801-eventing-service)Eventing Service
+
+**[MB-69687](https://jira.issues.couchbase.com/browse/MB-69687/)**
+
+In version 8.0, a security vulnerability was identified in the Cluster Manager when node-to-node encryption is enabled and client certificate authentication is configured as `Hybrid` or `Mandatory`. This issue, which is not present in releases prior to 8.0, could be exposed via the Eventing service, potentially allowing a user to select and interact with scopes or collections beyond their assigned RBAC permissions. This release (`8.0.1`) resolves the underlying issue in the Cluster Manager to ensure that RBAC enforcement is strictly maintained for services across all mutual TLS (mTLS) configurations.
+
+### [](#dlist-fixed-issues-801-index-service)Index Service
+
+**[MB-69935](https://jira.issues.couchbase.com/browse/MB-69935/)**
+
+Updated chronology for certain storage API calls to avoid rare corner cases of shard metadata mismatch.
+
+### [](#dlist-fixed-issues-801-search-service)Search Service
+
+**[MB-70388](https://jira.issues.couchbase.com/browse/MB-70388/)**
+
+Fixed an issue where we did not set `docvalues` for `geopoint` fields internally, causing it to be computed on demand for every query
+
+### [](#dlist-fixed-issues-801-tools)Tools
+
+**[MB-67774](https://jira.issues.couchbase.com/browse/MB-67774/)**
+
+Added support for Debian 13 (Trixie).
+
+**[MB-70235](https://jira.issues.couchbase.com/browse/MB-70235/)**
+
+In 8.0.0 restoring to a 7.6 and below cluster with `--auto-create-buckets` did not work as we were sending a new setting. We now omit the setting depending on the version.
+
+**[MB-70255](https://jira.issues.couchbase.com/browse/MB-70255/)**
+
+Addressed a bug where buckets with cross-cluster versioning enabled ([XDCR enable cross-cluster versioning](https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-enable-crossclusterversioning.html)) would cause a merge to fail.
+
+## [](#known-issues-801)Known Issues
+
+For Couchbase Server 8.0.1 was released in March 2026, these are the known issues that aren't yet resolved.
+
+### [](#dlist-known-issues-801-search-service)Search Service
+
+**[MB-70770](https://jira.issues.couchbase.com/browse/MB-70770/)**
+
+In extremely rare scenarios, document deletions may not be consistently reflected in the index. As a result, a small number of documents that have been successfully deleted from the KV layer may continue to persist in the index as stale entries.
+
+This condition is highly infrequent and non-deterministic, but it can lead to minor discrepancies in document counts between FTS and KV. Such inconsistencies are typically limited in scope and involve only a very small number of documents; however, they may impact count-based validations or comparisons between the two systems.
+
+---
 
 ## [](#release-80)Release 8.0 (October 2025)
 

@@ -1,0 +1,211 @@
+---
+title: Metrics Reporting
+description: Individual request tracing presents a very specific (though
+  isolated) view of the system. In addition, it also makes sense to capture
+  information that aggregates request data (i.e. requests per second), but also
+  data which is not tied to a specific request at all (i.e. resource
+  utilization).
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/observability-metrics.adoc
+pubDate: 2026-03-31T05:15:32.656Z
+link: xref:go-sdk:howtos:observability-metrics.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/go-sdk/current/howtos/observability-metrics.html)
+
+# Metrics Reporting
+
+> Individual request tracing presents a very specific (though isolated) view of the system. In addition, it also makes sense to capture information that aggregates request data (i.e. requests per second), but also data which is not tied to a specific request at all (i.e. resource utilization). 
+
+The SDK exposes metrics for operation durations, broken down into p50, p90, p99, p99.9, and p100 percentiles.
+
+These metrics can either be logged periodically into the application logs, using the `LoggingMeter` (this is the default behaviour).
+
+Or, sent into OpenTelemetry, where they can be forwarded to the user's metrics infrastructure — such as Prometheus.
+
+## [](#the-default-loggingmeter)The Default LoggingMeter
+
+The default implementation aggregates and logs request and response metrics.
+
+By default the metrics will be emitted every 10 minutes, but you can customize the emit interval as well. Here is an example with `EmitInterval` set at 30 seconds:
+
+```go
+	meter := gocb.NewLoggingMeter(&gocb.LoggingMeterOptions{
+		EmitInterval: 30 * time.Second,
+	})
+```
+
+Once enabled, there is no further configuration needed. The `LoggingMeter` will emit the collected request statistics every interval. A possible report — in this case for an `EmitInterval` of 10 seconds — looks like this (prettified for better readability):
+
+```json
+{
+   "meta":{
+      "emit_interval_s":10
+   },
+   "query":{
+      "127.0.0.1":{
+         "total_count":9411,
+         "percentiles_us":{
+            "50.0":544.767,
+            "90.0":905.215,
+            "99.0":1589.247,
+            "99.9":4095.999,
+            "100.0":100663.295
+         }
+      }
+   },
+   "kv":{
+      "127.0.0.1":{
+         "total_count":9414,
+         "percentiles_us":{
+            "50.0":155.647,
+            "90.0":274.431,
+            "99.0":544.767,
+            "99.9":1867.775,
+            "100.0":574619.647
+         }
+      }
+   }
+}
+```
+
+Each report contains one object for each service that got used and is further separated on a per-node basis so they can be analyzed in isolation.
+
+For each service / host combination, a total amount of recorded requests is reported, as well as percentiles from a histogram in microseconds. The meta section on top contains information such as the emit interval in seconds so tooling can later calculate numbers like requests per second.
+
+The `LoggingMeter` can be configured using the `LoggingMeterOptions` struct. The following table shows the currently available properties:
+
+__Table 1\. LoggingMeterOptions Properties__
+| Property     | Default    | Description                                                     |
+| ------------ | ---------- | --------------------------------------------------------------- |
+| EmitInterval | 10 minutes | The interval at which collected metrics are emitted to the log. |
+
+## [](#opentelemetry-integration)OpenTelemetry Integration
+
+The SDK supports plugging in any OpenTelemetry metrics consumer instead of using the default `LoggingMeter`.
+
+To do this, first add the Couchbase OpenTelemetry metrics module and the OTLP exporter as dependencies:
+
+```console
+go get github.com/couchbase/gocb-opentelemetry
+go get go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc
+go get go.opentelemetry.io/otel/sdk/metric
+```
+
+In addition, you'll need to get the metrics data into your metrics backend. This is often done by having the metrics backend (such as Prometheus) regularly gather, or 'scrape', the metrics data.
+
+There are multiple approaches here. One approach is to send OpenTelemetry metrics into `opentelemetry-collector`, where they can be scraped by Prometheus or another metrics backend.
+
+This aligns well with tracing, where a recommended approach is also to send OpenTelemetry spans into `opentelemetry-collector`, where they can be processed and forwarded elsewhere.
+
+For metrics, add this logic to the application:
+
+```go
+	ctx := context.Background()
+
+	// Setup an exporter.
+	// This exporter exports metrics on the OTLP protocol over GRPC to localhost:4317.
+	exporter, err := otlpmetricgrpc.New(ctx,
+		otlpmetricgrpc.WithEndpointURL("http://localhost:4317"),
+		otlpmetricgrpc.WithCompressor("gzip"),
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Create the OpenTelemetry SDK's MeterProvider.
+	meterProvider := sdkmetric.NewMeterProvider(
+		sdkmetric.WithResource(resource.NewWithAttributes(
+			semconv.SchemaURL,
+			// An OpenTelemetry service name generally reflects the name of your microservice,
+			// e.g. "shopping-cart-service".
+			semconv.ServiceNameKey.String("YOUR_SERVICE_NAME_HERE"),
+		)),
+		sdkmetric.WithReader(sdkmetric.NewPeriodicReader(exporter, sdkmetric.WithInterval(1*time.Second))),
+	)
+	defer meterProvider.Shutdown(ctx)
+
+	// Provide the MeterProvider to the Couchbase OpenTelemetry meter wrapper.
+	meter := gocbopentelemetry.NewOpenTelemetryMeter(meterProvider)
+
+	// Provide the OpenTelemetry meter as part of the Cluster configuration.
+	cluster, err := gocb.Connect("localhost", gocb.ClusterOptions{
+		Authenticator: gocb.PasswordAuthenticator{
+			Username: "Administrator",
+			Password: "password",
+		},
+		Meter: meter,
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+```
+
+At this point the SDK is hooked up with the OpenTelemetry metrics and will emit them to the exporter.
+
+A `db.couchbase.operations` histogram is exported, which will appear in Prometheus as `db_couchbase_operations`.
+
+It has these tags: `db.couchbase.service` ("kv", "query", etc.) and `db.operation` ("upsert", "query", etc.)
+
+### [](#testing)Testing
+
+For convenience, here is a simple Docker-based configuration of `opentelemetry-collector` and Prometheus for localhost testing of an OpenTelemetry setup.
+
+Create file `otel.yaml`:
+
+```yaml
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: '0.0.0.0:4317'
+      http:
+        endpoint: '0.0.0.0:4318'
+
+exporters:
+  logging:
+    loglevel: debug
+  prometheus:
+    endpoint: '0.0.0.0:10000'
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      processors: []
+      exporters: [prometheus, logging]
+```
+
+And file `prometheus.yaml`:
+
+```yaml
+scrape_configs:
+  - job_name: 'otel-collector'
+
+    scrape_interval: 1s
+
+    static_configs:
+      - targets: ['otel:10000']
+        labels:
+          group: 'production'
+```
+
+Now run `opentelemetry-collector` and Prometheus:
+
+```console
+docker network create shared
+docker run --rm --name otel -v "${PWD}/otel.yaml:/etc/otel-local-config.yaml" -p 4317:4317 -p 10000:10000 --network shared otel/opentelemetry-collector --config /etc/otel-local-config.yaml &
+docker run --rm --name prometheus -p 9090:9090  --mount type=bind,source="${PWD}/prometheus.yaml,destination=/etc/prometheus/prometheus.yml" --network shared prom/prometheus
+```
+
+Some things to note:
+
+* The containers are put on the same network so they can refer to each other by container name.
+* The app has been told to export metrics over OTLP GRPC to localhost:4317\. `opentelemetry-collector` is listening to this.
+* `opentelemetry-collector` will store the metrics, and exposes port 10000 for Prometheus to periodically scrape.
+
+Now run the application. All being well, `opentelemetry-collector` should regularly log that it's receiving the `db.couchbase.operations` metric, as it has been configured with a `logging` exporter.
+
+And Prometheus (the UI is available on <http://localhost:9090>) should allow querying for `db_couchbase_operations`. (Though a real deployment will generally use another tool, such as Grafana, for visualisation.)
+
+If this fails, check <http://localhost:9090/api/v1/targets> to see if Prometheus is unable to contact `opentelemetry-collector`.

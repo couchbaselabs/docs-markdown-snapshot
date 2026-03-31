@@ -5,7 +5,7 @@ description: <em>General</em> settings allow configuration of <em>cluster
   availability</em> for the cluster; and of <em>advanced settings</em> for the
   Index and Query Services.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/general-settings.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:server:manage:manage-settings/general-settings.adoc[]
 ---
 
@@ -631,7 +631,7 @@ This sets the number of _reader_ threads to `12`, and the number of _writer_ thr
 {"num_reader_threads":12,"num_writer_threads":8}
 ```
 
-See [Threading](../../learn/buckets-memory-and-storage/storage-settings.md#threading) for an overview of reader and writer threads. Also see the REST API reference page, [Setting Thread Allocations](../../rest-api/rest-reader-writer-thread-config.md).
+See [Threading](../../learn/buckets-memory-and-storage/storage-settings.md#threading) for an overview of reader and writer threads. Also see the REST API reference page, [Setting Storage Thread Allocations](../../rest-api/rest-reader-writer-thread-config.md).
 
 ### [](#query-settings-via-rest)Query Settings via REST
 

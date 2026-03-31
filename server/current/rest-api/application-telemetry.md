@@ -3,7 +3,7 @@ title: Application Telemetry
 description: You can enable application telemetry to have Couchbase Server
   periodically collect telemetry from your clients that use the Couchbase SDK.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/application-telemetry.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:server:rest-api:application-telemetry.adoc[]
 ---
 
@@ -70,7 +70,7 @@ curl -sS -u $USER:$PASSWORD \
 
 `USER`
 
-The name of a user who has one of the roles listed in [Required Privileges](#get-privs).
+The name of a user who has 1 of the roles listed in [Required Privileges](#get-privs).
 
 `PASSWORD`
 
@@ -151,7 +151,7 @@ curl -sS -u $USER:$PASSWORD \
 
 `USER`
 
-The name of a user who has one of the roles listed in [Required Privileges](#config-privs).
+The name of a user who has 1 of the roles listed in [Required Privileges](#config-privs).
 
 `PASSWORD`
 

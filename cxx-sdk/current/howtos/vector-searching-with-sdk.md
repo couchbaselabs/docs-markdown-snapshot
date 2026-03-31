@@ -3,7 +3,7 @@ title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:cxx-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
@@ -109,15 +109,13 @@ couchbase::search_request request(couchbase::vector_search(couchbase::vector_que
 auto [err, res] = scope.search("vector-index", request).get();
 ```
 
-Let's break this down. We create a `search_request`, which can contain a traditional FTS query `search_query` and/or the new `vector_search`. Here we are just using the latter.
+Let's break this down. We create a `search_request`, which can contain a traditional Search query `search_query`, and/or the new `vector_search`. Here we are just using the latter.
 
-The `vector_search` allows us to perform one or more `vector_query` s.
-
-The `vector_query` itself takes the name of the document field that contains embedded vectors ("vector\_field" here), plus actual vector query in the form of a `std::vector<double>`.
+The `vector_search` allows you to perform one or more `vector_query`s. The `vector_query` itself takes the name of the document field that contains embedded vectors ("vector\_field" here), plus actual vector query in the form of a `std::vector<double>`.
 
 (Note that Couchbase itself is not involved in generating the vectors, and these will come from an external source such as an embeddings API.)
 
-Finally we execute the `search_request` against the FTS index "vector-index", which has previously been setup to vector index the "vector\_field" field.
+Finally we execute the `search_request` against the Search index "vector-index", which has previously been setup to vector index the "vector\_field" field.
 
 This happens to be a scoped index so we are using `scope.search()`. If it was a global index we would use `cluster.search()` instead - see [\[Scoped vs Global Indexes\]](#Scoped vs Global Indexes).
 
@@ -167,9 +165,9 @@ auto [err, res] = scope.search("vector-index", request).get();
 
 How the results are combined (ANDed or ORed) can be controlled with `vector_search_options.query_combination()`.
 
-#### [](#combining-fts-and-vector-queries)Combining FTS and vector queries
+#### [](#combining-search-service-and-vector-queries)Combining Search Service and Vector Queries
 
-You can combine a traditional FTS query with vector queries:
+You can combine a traditional Search query with vector queries:
 
 ```c++
 auto request = couchbase::search_request(couchbase::match_all_query())

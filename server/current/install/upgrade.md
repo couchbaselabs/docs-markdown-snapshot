@@ -3,7 +3,7 @@ title: Upgrade
 description: To upgrade a Couchbase-Server cluster means to upgrade the version
   of Couchbase Server that's running on every node.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/upgrade.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:server:install:upgrade.adoc[]
 ---
 
@@ -27,14 +27,14 @@ Before upgrading, consider the following version compatibility concerns.
 
 ### [](#8-0-storage-backend)New Default Storage Backend in Couchbase Server Version 8.0
 
-After you have fully upgraded a cluster to Couchbase Server 8.0.x and later, the default storage backend for buckets is Magma with 128 vBuckets. Previous versions of Couchbase Server used Couchstore with 1024 vBuckets as the default storage backend.
+After you fully upgrade to Couchbase Server 8.0.x or later, the default storage backend for buckets is Magma with 128 vBuckets. Previous versions of Couchbase Server used Couchstore with 1024 vBuckets as the default storage backend.
 
-This new default results in two behavior changes from previous versions:
+This new default results in 2 behavior changes from previous versions:
 
-* If you create a bucket and do not specify the storage backend, your bucket will use the Magma storage backend instead of the Couchstore backend.
-* If you specify Magma as the storage backend but do not set the new `numVBuckets` parameter, the bucket will have 128 vBuckets instead of the prior default of 1024 vBuckets. Magma buckets with 128 vBuckets is a new feature in Couchbase Server 8.0 and later.
+* If you create a bucket and do not specify the storage backend, your bucket uses the Magma storage backend instead of the Couchstore backend.
+* If you specify Magma as the storage backend but do not set the new `numVBuckets` parameter, the bucket has 128 vBuckets instead of the prior default of 1024 vBuckets. Magma buckets with 128 vBuckets is a new feature in Couchbase Server 8.0 and later.
 
-These behavior changes could cause issues if you rely on the prior behavior, especially if you use deployment scripts. If you have deployment scripts that create buckets, review them to determine if you need to make changes.
+These behavior changes could cause issues if you rely on the prior behavior and you use deployment scripts. If you have deployment scripts that create buckets, review them to determine if you need to make changes.
 
 For example, suppose your deployment script does not specify the storage backend when it creates a bucket that you intend to use with the [views](../learn/views/views-intro.md) feature. On versions prior to Couchbase Server 8.0, your script created a Couchstore bucket with 1024 vBuckets, In version 8.0, due to change in the default backend, your script creates a bucket with the Magma storage backend with 128 vBuckets. Attempting to use MapReduce Views with this bucket results in errors, because Magma buckets do not support this feature.
 
@@ -72,51 +72,46 @@ You cannot directly upgrade from version 6.6 to version 7.2.4\. A compatibility 
 
 ## [](#understanding-upgrade)Understanding Upgrade
 
-To _upgrade_ a Couchbase-Server cluster means to upgrade the version of the server that's running on every node. For example, modifying a cluster where all of its nodes are running Couchbase Server Enterprise Edition Version 6.6, so that each of its nodes subsequently runs Couchbase Server Enterprise Edition Version 7.6.x.
+To `upgrade` a Couchbase-Server cluster means to upgrade the version of the server that's running on every node. For example, modifying a cluster where all of its nodes are running Couchbase Server Enterprise Edition Version 6.6, so that each of its nodes subsequently runs Couchbase Server Enterprise Edition Version 7.6.x.
 
-An _upgrade procedure_, like an _install_ procedure, involves both preparation routines and specific upgrade commands that are performed on each node. To be upgraded, a cluster must have each of its nodes individually upgraded in turn. The upgrade procedure for the cluster must be selected in regard to whether the cluster is required to continue serving data, or to cease serving data, during the cluster-upgrade. A review of the factors that determine the appropriateness of an upgrade-procedure is provided in [Upgrade Procedure-Selection](upgrade-procedure-selection.md).
+An `upgrade procedure` involves both preparation routines and specific upgrade commands that you perform on each node. To upgrade a cluster, you must individually upgrade each node in turn. You must select the upgrade procedure for the cluster depending on whether the cluster needs to continue or cease serving data during the cluster-upgrade. A review of the factors that determine the appropriateness of an upgrade-procedure is provided in [Upgrade Procedure-Selection](upgrade-procedure-selection.md).
 
 ## [](#supported-upgrade-paths)Upgrade Paths
 
-An upgrade _path_ declares that the upgrade of one Couchbase Server version to another is _supported_. The tables in the following subsections list upgrade paths for Enterprise Edition and for Community Edition, respectively. Each instance of the \`→\` sign declares support for the upgrade of the server-version on the left of the sign to the server-version on the right.
+An upgrade path declares that Couchbase Server supports upgrading from one version to another. The tables in the following subsections list upgrade paths for Enterprise Edition and for Couchbase Server Community Edition, respectively. Each instance of the \`→\` sign declares support for the upgrade of the server-version on the left of the sign to the server-version on the right.
 
-All supported upgrades can be performed with the cluster either _offline_ or _online_.
+You can perform all supported upgrades with the cluster either offline or online.
 
 > [!TIP]
 > As far as is possible, you should aim to keep your cluster up to date with the latest version of Couchbase Server.
 
 ### [](#table-upgrade-enterprise)Enterprise Edition Upgrade Paths
 
-| Starting Version | Path to Current Version                                                                |
-| ---------------- | -------------------------------------------------------------------------------------- |
-| 5.x              | Any 5.0.x / 5.1.x / 5.5.x → 6.6 → 7.2.3 → 8.0                                          |
-| 6.x              | Any 6.0.x / 6.5.x → 6.6 → 7.2.3 → 8.0                                                  |
-| 7.x              | Any 7.0.x / 7.1.x → 7.2.3 → 8.0[\[1\]](##erlang-8-0-footnote1) Any 7.2.x / 7.6.x → 8.0 |
-
-1The upgrade to Erlang support in Couchbase Server 8.0 requires that you first upgrade Couchbase to version 7.2 before upgrading to version 8.0.
+| Starting Version | Path to Current Version                                                                                            |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------ |
+| 5.x              | Any 5.0.x / 5.1.x / 5.5.x → 6.6 → 7.2.3 → latest 7.2.x → 8.0.1                                                     |
+| 6.x              | Any 6.0.x / 6.5.x → 6.6 → 7.2.3 → latest 7.2.x → 8.0.1                                                             |
+| 7.x              | Any 7.0.x / 7.1.x → 7.2.3 → latest 7.2.x → 8.0.1 Any 7.2.x → latest 7.2.x → 8.0.1 Any 7.6.x → latest 7.6.x → 8.0.1 |
 
 ### [](#table-upgrade-community)Community Edition Upgrade Paths
 
-| Starting Version | Path to Current Version                                                               |
-| ---------------- | ------------------------------------------------------------------------------------- |
-| 5.x              | Any 5.x → 6.6.0 → 7.2.2 → 8.0[\[1\]](#erlang-8-0-footnote1) →                         |
-| 6.x              | Any 6.0.x / 6.5.x → 6.6.0 → 7.2.2 → 8.0[\[1\]](#erlang-8-0-footnote1)                 |
-| 7.x              | Any 7.0.x / 7.1.x → 7.2.2 → 8.0[\[1\]](#erlang-8-0-footnote1) Any 7.2.x / 7.6.x → 8.0 |
+| Starting Version | Path to Current Version                                                                                            |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------ |
+| 5.x              | Any 5.0.x / 5.1.x / 5.5.x → 6.6 → 7.2.3 → latest 7.2.x → 8.0.1                                                     |
+| 6.x              | Any 6.0.x / 6.5.x → 6.6 → 7.2.3 → latest 7.2.x → 8.0.1                                                             |
+| 7.x              | Any 7.0.x / 7.1.x → 7.2.3 → latest 7.2.x → 8.0.1 Any 7.2.x → latest 7.2.x → 8.0.1 Any 7.6.x → latest 7.6.x → 8.0.1 |
 
-1The upgrade to Erlang support in Couchbase Server 8.0 requires that you first upgrade Couchbase to version 7.2 before upgrading to version 8.0.
+> [!NOTE]
+> Important note when upgrading from 7.0.4 to 7.2.x on Windows 2019
+> 
+> Upgrading from version 7.0.4 → 7.2x on Windows Server 2019 may result in a `missing java executable files` error. The problem is caused by the way Windows handles upgrades when dealing with older files, resulting in files being removed from the Couchbase installation without being replaced.
 
-Important note when upgrading from 7.0.4 to 7.2.x on Windows 2019
-
-Upgrading from version 7.0.4 → 7.2x on Windows Server 2019 may result in a missing `java` executable files.
-
-The problem is caused by the way Windows handles upgrades when dealing with older files, resulting in files being removed from the Couchbase installation without being replaced.
-
-The server can be fixed by invoking the Windows Repair operation on the Couchbase installation. This will restore the missing files.
+You can fix the server by invoking the Windows Repair operation on the Couchbase installation. This restores the missing files.
 
 ## [](#how-to-upgrade-your-cluster)How to Upgrade Your Cluster
 
-If you are upgrading several nodes at once, then the version of the software on each node must be kept in step throughout the upgrade process.  
-For example, if you are upgrading three enterprise nodes (`**Node 1**`, `**Node 2**` and `**Node 3**`) from version 6.6.x to 8.0.x, then you would use the following sequence:
+If you're upgrading several nodes at once, then you must keep the version of the software on each node in step throughout the upgrade process.  
+For example, if you upgrade 3 enterprise nodes (`**Node 1**`, `**Node 2**` and `**Node 3**`) from version 5.1x to 7.6.x, then you would use the following sequence:
 
 Example 1\. Upgrading from version 6.6.x to 8.0.x
 
@@ -126,12 +121,12 @@ Example 1\. Upgrading from version 6.6.x to 8.0.x
 | 2    | Upgrade all nodes from 7.2.3 to 8.0.x | **Node 1** ⇒ 7.2.3 → 8.0.x **Node 2** ⇒ 7.2.3 → 8.0.x **Node 3** ⇒ 7.2.3 → 8.0.x |
 
 > [!NOTE]
-> Upgrading between non-adjacent version numbers is usually _not_ supported.
+> Upgrading between non-adjacent version numbers is not supported.
 > 
-> For example, to upgrade from **6.6.x** to **8.0.x**, then 2 upgrades must be performed (as shown in [Example 1](#upgrade-example)):
-> 
-> 1. First, from **6.6.x** to **7.2.3**.
-> 2. Then, from **7.2.3** to **8.0.x**.
+> To upgrade from **5.1.x** to **7.2.4**, 3 upgrades must be performed (as shown in [Example 1](#upgrade-example)):  
+> first, from **5.1.x** to **6.6**,  
+> then, from **6.6** to **7.2.3**  
+> and from **7.2.3** to **7.6.x**.
 
 ## [](#upgrade-community-enterprise)Upgrade from Community Edition to Enterprise
 
@@ -140,9 +135,9 @@ If you're currently operating a Couchbase Server cluster on Community Edition, y
 > [!NOTE]
 > Rolling upgrades from CE to EE are not supported if there are index service nodes running in the cluster.
 
-The Enterprise Edition nodes must be running the same version number of Couchbase Server as the Community Edition nodes that they are replacing, otherwise the upgrade may fail. This means you can't upgrade to a newer version of Couchbase Server while also upgrading to Enterprise Edition during the same rolling upgrade.
+The Enterprise Edition nodes must be running the same version number of Couchbase Server as the Community Edition nodes that they're replacing, otherwise the upgrade may fail. This means you can not upgrade to a newer version of Couchbase Server while also upgrading to Enterprise Edition during the same rolling upgrade.
 
-If you want to upgrade from an older version of _Community Edition_ to a newer version of _Enterprise Edition_, you need to perform two separate upgrade procedures:
+If you want to upgrade from an older version of `Community Edition` to a later version of `Enterprise Edition`, you need to perform 2 separate upgrade procedures:
 
 1. Upgrade the entire cluster to Enterprise Edition via a rolling online upgrade
 2. Upgrade to the desired version number of Couchbase Server using any supported type of upgrade
@@ -155,27 +150,27 @@ Figure 1\. Example Upgrade Path from Community to Enterprise
 
 Additional Notes about Upgrading from Community to Enterprise
 
-* Couchbase Server clusters _must_ be run either entirely on Enterprise Edition nodes or entirely on Community Edition nodes.  
-Once you've upgraded one node to Enterprise Edition, you must upgrade all the other nodes before the cluster is considered as being in a steady, supportable state.
-* CE does not support index service rebalancing. So, when the cluster is running with one or more CE nodes, then the indexes hosted on nodes being removed may be lost.  
-Users can create equivalent indexes (the same index with a different name) on different nodes to avoid loss of index functionality.
-* If a rolling online upgrade to Enterprise Edition isn't possible in your environment, contact Couchbase for assistance.
+* Couchbase Server clusters must be run either entirely on Enterprise Edition nodes or entirely on Community Edition nodes.  
+Once you have upgraded 1 node to Enterprise Edition, you must upgrade all the other nodes before the cluster is considered as being in a steady, supportable state.
+* CE does not support index service rebalancing. When the cluster is running with 1 or more CE nodes, then the indexes hosted on nodes being removed may be lost.  
+Users can create equivalent indexes (the same index with a different name) on different nodes to avoid loss of index capability.
+* If a rolling online upgrade to Enterprise Edition is not possible in your environment, contact Couchbase for assistance.
 
 > [!IMPORTANT]
 > Remember that Enterprise Edition is not free to run in production. If you're interested in upgrading to Couchbase Server Enterprise Edition, check out the [editions page](https://www.couchbase.com/products/editions).
 
-See [Upgrade Procedure-Selection](upgrade-procedure-selection.md) for a list of procedures that can be used when upgrading from Community Edition to Enterprise. Note, however, that _Graceful Failover_ for Data Service nodes, with _Delta Recovery_, is _not_ supported for such upgrades: instead, _removal_, _addition_, and _swap rebalance_ should be used; for all nodes.
+See [Upgrade Procedure-Selection](upgrade-procedure-selection.md) for a list of procedures that can be used when upgrading from Community Edition to Enterprise. `Graceful Failover` for Data Service nodes, with `Delta Recovery`, is not supported for such upgrades: instead you should use `removal`, `addition`, and `swap rebalance` for all nodes.
 
 ## [](#node-naming-and-upgrade)Node-Naming and Upgrade
 
-In Couchbase Enterprise Server Version 7.2 or later, the node-name _must_ be correctly identified in the node-certificate as a Subject Alternative Name. If the node-name is _not_ correctly identified, failure may occur during upgrade. For information, see [Node-Certificate Validation](../learn/security/certificates.md#node-certificate-validation).
+In Couchbase Enterprise Server Version 7.2 or later, the node-name must be identified in the node-certificate as a Subject Alternative Name. If the node-name is not correctly identified, failure may occur during upgrade. For information, see [Node-Certificate Validation](../learn/security/certificates.md#node-certificate-validation).
 
 ## [](#downgrade)Downgrade
 
-Once an upgrade of a Couchbase-Server cluster has started, _downgrading_ to an earlier version of Couchbase Server can be performed by using the _swap/rebalance_ method:
+Once an upgrade of a Couchbase-Server cluster has started, you can downgrade to an earlier version of Couchbase Server by using the `swap/rebalance` method:
 
 1. Remove the target node from the cluster, then perform a rebalance on the cluster.
 2. Downgrade the target node (or create a new node using the earlier version of Couchbase).
 3. Add the node to the cluster and rebalance.
 
-Bear in mind that once all nodes are running the later version, downgrade can no longer be performed: therefore, once all nodes are running the later version, should application-support require the earlier version, an entirely new cluster must be created, running the earlier version.
+Once all nodes are running the later version, you can no longer downgrade and you must create an entirely new cluster running the earlier version if application-support needs it.

@@ -4,7 +4,7 @@ description: Data service offers the simplest way to retrieve or mutate data
   where the key is known. Here we cover CRUD operations, document expiration,
   and optimistic locking with CAS.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:cxx-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -49,7 +49,7 @@ The SDK directly supports the [taoJSON](https://github.com/taocpp/json) library,
 
 In addition you can supply and receive JSON as a `std::string` or `std::vector<std::byte>`, opening the door to any JSON library.
 
-Support for other JSON libraries can also be added by defining your own custom JSON serializers, which is described in more detail in [this guide](json.md).
+Support for other JSON libraries can also be added by defining your own custom JSON serializers, which is described in more detail in [this guide](#json.adoc).
 
 ## [](#upsert)Upsert
 

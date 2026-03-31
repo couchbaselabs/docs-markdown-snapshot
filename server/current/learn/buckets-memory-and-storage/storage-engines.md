@@ -3,7 +3,7 @@ title: Storage Engines
 description: "Couchbase supports two different backend storage engines:
   Couchstore and Magma."
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/storage-engines.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:server:learn:buckets-memory-and-storage/storage-engines.adoc[]
 ---
 
@@ -41,7 +41,9 @@ When using Magma, consider the following performance optimizations:
 
 Couchbase Server lets you set the number of threads for reading and writing data to the disk. For higher I/O concurrency, consider increasing the number of reader and writer threads by setting the bucket's **Reader Thread Settings** and **Writer Thread Settings** to **Disk i/o optimized** for Magma buckets. This setting makes sure there are enough threads to sustain high read and write rates.
 
-To learn more about configuring the Writer Thread settings for your Magma bucket, see [Data Settings](../../manage/manage-settings/general-settings.md#data-settings)
+You can also tune the number and allocation of threads that Magma uses to compact and flush data to disk. If you notice that Magma's data compaction spikes CPU use, you can change the ratio of threads that compact data to the threads that flush data. See [Magma Flushing and Compaction Threads](storage-settings.md#magma-flushing-and-compaction-threads) for more information about these settings.
+
+See [Data Settings](../../manage/manage-settings/general-settings.md#data-settings) to learn more about configuring thread settings for Magma buckets.
 
 ## [](#couchstore)Couchstore
 

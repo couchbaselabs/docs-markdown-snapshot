@@ -3,7 +3,7 @@ title: Manage Audit, Config, and Log Encryption at Rest
 description: You can use the REST API to view and change the state of encryption
   at rest for non-bucket data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/manage-system-encryption-at-rest.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:server:rest-api:security/encryption-at-rest/manage-system-encryption-at-rest.adoc[]
 ---
 
@@ -44,7 +44,7 @@ Path Parameters
 
 `USER`
 
-The name of a user who has one of the roles listed in [Required Privileges](#get-privs).
+The name of a user who has 1 of the roles listed in [Required Privileges](#get-privs).
 
 `PASSWORD`
 
@@ -163,7 +163,7 @@ Path Parameters
 
 `USER`
 
-The name of a user who has one of the roles listed in [Required Privileges](#change-privs).
+The name of a user who has 1 of the roles listed in [Required Privileges](#change-privs).
 
 `PASSWORD`
 

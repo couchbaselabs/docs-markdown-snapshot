@@ -3,7 +3,7 @@ title: Drop DEKs and Re-encrypt Data
 description: You can use the REST API to drop data encryption keys (DEKs) and
   re-encrypt the data encrypted with the old keys.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/drop-encryption-deks.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:server:rest-api:security/encryption-at-rest/drop-encryption-deks.adoc[]
 ---
 
@@ -62,7 +62,7 @@ Path Parameters
 
 `USER`
 
-The name of a user who has one of the roles listed in [Required Privileges](#bucket-privs).
+The name of a user who has 1 of the roles listed in [Required Privileges](#bucket-privs).
 
 `PASSWORD`
 
@@ -153,7 +153,7 @@ Path Parameters
 
 `USER`
 
-The name of a user who has one of the roles listed in [Required Privileges](#type-privs).
+The name of a user who has 1 of the roles listed in [Required Privileges](#type-privs).
 
 `PASSWORD`
 

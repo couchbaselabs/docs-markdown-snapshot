@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:cxx-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -94,7 +94,7 @@ The returned `query_result` contains an `rows_as<S,T>` method, allowing the resu
 
 In addition to `rows_as<S,T>` we provide accessors for common use cases like `rows_as_json` and `rows_as_binary`.
 
-Please see [this guide](json.md) for more information on the supported ways of working with JSON.
+Please see [this guide](#json.adoc) for more information on the supported ways of working with JSON.
 
 The rows can be iterated as follows:
 

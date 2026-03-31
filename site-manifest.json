@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1774848724293,
+  "generated": 1774934420889,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -23098,12 +23098,6 @@
             },
             {
               "module": "howtos",
-              "path": "json.adoc",
-              "url": "/cxx-sdk/current/howtos/json.md",
-              "title": "JSON Libraries"
-            },
-            {
-              "module": "howtos",
               "path": "kv-operations.adoc",
               "url": "/cxx-sdk/current/howtos/kv-operations.md",
               "title": "Data Operations"
@@ -35690,6 +35684,12 @@
             },
             {
               "module": "hello-world",
+              "path": "student-record-developer-tutorial.adoc",
+              "url": "/go-sdk/current/hello-world/student-record-developer-tutorial.md",
+              "title": "Developer Tutorial: Student Record System"
+            },
+            {
+              "module": "hello-world",
               "path": "webui-cli-access.adoc",
               "url": "/go-sdk/current/hello-world/webui-cli-access.md",
               "title": "Browser and CLI Access"
@@ -35823,9 +35823,21 @@
             },
             {
               "module": "howtos",
+              "path": "observability-metrics.adoc",
+              "url": "/go-sdk/current/howtos/observability-metrics.md",
+              "title": "Metrics Reporting"
+            },
+            {
+              "module": "howtos",
               "path": "observability-orphan-logger.adoc",
               "url": "/go-sdk/current/howtos/observability-orphan-logger.md",
               "title": "Orphaned Requests Logging"
+            },
+            {
+              "module": "howtos",
+              "path": "observability-tracing.adoc",
+              "url": "/go-sdk/current/howtos/observability-tracing.md",
+              "title": "Request Tracing"
             },
             {
               "module": "howtos",
@@ -82577,7 +82589,7 @@
               "module": "rest-api",
               "path": "rest-reader-writer-thread-config.adoc",
               "url": "/server/current/rest-api/rest-reader-writer-thread-config.md",
-              "title": "Setting Thread Allocations"
+              "title": "Setting Storage Thread Allocations"
             },
             {
               "module": "rest-api",

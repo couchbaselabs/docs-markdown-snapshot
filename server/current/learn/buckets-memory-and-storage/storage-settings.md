@@ -3,7 +3,7 @@ title: Storage Properties
 description: Couchbase Server stores certain items on disk as well as in memory
   to provide persistence and enhance reliability.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/storage-settings.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:server:learn:buckets-memory-and-storage/storage-settings.adoc[]
 ---
 
@@ -26,9 +26,13 @@ You can remove items from disk based on a configured expiration time, called tim
 
 See [Memory and Storage](memory-and-storage.md) for information about how Couchbase Server uses memory and storage to save new data.
 
-## [](#threading)Threading
+## [](#threading)Storage Thread Use
 
-Couchbase Server uses synchronized, multi-threaded readers and writers to provide high-performance, simultaneous operations for data on disk. Readers and writers each have their own set of threads. To prevent conflicts, each thread is responsible for reading or writing a subset of the vBuckets in a Couchbase bucket.
+Couchbase Server has several pools of threads for reading and writing data to disk.
+
+### [](#reader-and-writer-threads)Reader and Writer Threads
+
+Couchbase Server uses synchronized multi-threaded readers and writers to provide high-performance, simultaneous disk operations. Readers and writers each have their own set of threads. To prevent conflicts, each thread is responsible for reading or writing a subset of the vBuckets in a Couchbase bucket.
 
 You can control the number of reader and writer threads. In the Couchbase Server Web Console, you can have Couchbase Server automatically choose a default value or a value that optimizes disk I/O. You can also manually set the number of threads per node to a value between 1 and 64\. Using a higher number of threads may improve performance if your hardware supports it, such as when your CPU has a larger of cores.
 
@@ -42,7 +46,22 @@ You can also configure thread counts for the NonIO and AuxIO thread pools. The N
 
 Use `cbstats` command line tool with the `raw workload` option to view the thread status. See [cbstats](../../cli/cbstats-intro.md) for information.
 
-For information about using the REST API to manage thread counts, see [Setting Thread Allocations](../../rest-api/rest-reader-writer-thread-config.md).
+For information about using the REST API to manage thread counts, see [Setting Storage Thread Allocations](../../rest-api/rest-reader-writer-thread-config.md).
+
+### [](#magma-flushing-and-compaction-threads)Magma Flushing and Compaction Threads
+
+Couchbase Server compacts the data it writes to disk for [Magma](storage-engines.md#storage-engine-magma) buckets. It allocates a thread pool (containing 20 threads by default) for background compaction and flushing operations for these buckets. You can change the number of threads in this pool using the `num_storage_threads` setting of the [thread allocation REST API](../../rest-api/rest-reader-writer-thread-config.md).
+
+2 types of threads share the Magma thread pool: compactor threads that compact data and flusher threads that write data to disk. By default, Couchbase Server allocates 20% of the threads to flushing data and 80% to compacting data. With the default thread pool size and the default flusher allocation, Couchbase Server uses 4 threads to flush data and 16 threads to compact data for Magma buckets. You can also change the percentage of flusher threads using the `magma_flusher_thread_percentage` setting of the [thread allocation REST API](../../rest-api/rest-reader-writer-thread-config.md).
+
+For most workloads, the default thread pool size and flusher allocation percentage work well. If you notice CPU use spikes during heavy data mutation workloads, you might want to investigate whether the compactor threads are the cause.
+
+You can monitor the compaction and flushing activity using the `kv_magma_compactions` metric. This metric counts the number of compactions Couchbase Server has performed. You can view this metric via the [Statistics](../../rest-api/rest-statistics.md) REST API or through Prometheus if you have configured it to collect Couchbase Server metrics. See [Configure Prometheus to Collect Couchbase Metrics](../../manage/monitor/set-up-prometheus-for-monitoring.md) for more information about using Prometheus with Couchbase Server.
+
+If you see the CPU use of the `memcached` Linux process on your nodes spike while the `kv_magma_compactions` count is increasing, the compactor threads may be the cause of the spike. In this case, you may want to reduce the number of compactor threads by increasing the percentage of flusher threads. This reduction limits the compactor's ability to spike CPU use. However, reducing the number of compactor threads may lead to higher latency before Couchbase Server writes data to disk. See the [Setting Storage Thread Allocations](../../rest-api/rest-reader-writer-thread-config.md) to learn how to use the `magma_flusher_thread_percentage` setting to increase the number of flusher threads.
+
+> [!NOTE]
+> The number of threads in the compactor and flusher pool and the percentages of flusher threads are advanced settings. Contact Couchbase Support before making changes to them. Support can help you determine the best settings for your workload and hardware.
 
 ## [](#deletion)Deletion
 

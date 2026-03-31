@@ -3,7 +3,7 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:cxx-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -61,7 +61,7 @@ An `analytics_result` contains various things of interest, such as metrics, but 
 
 We check explicitly for an `error` which indicates something went wrong during the analytics query call. Please see [Error Handling](error-handling.md) for details.
 
-Here we're fetching rows converted into JSON, but as with SQL++ (formerly N1QL) there's many more options available. Rows can be returned as JSON representations from multiple third party C++ libraries, directly as a user defined class, and more. Please see [JSON Libraries](json.md) for full details.
+Here we're fetching rows converted into JSON, but as with SQL++ (formerly N1QL) there's many more options available. Rows can be returned as JSON representations from multiple third party C++ libraries, directly as a user defined class, and more. Please see [JSON Libraries](#howtos:json.adoc) for full details.
 
 Finally, we iterate through the `rows`.
 

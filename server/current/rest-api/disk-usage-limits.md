@@ -4,7 +4,7 @@ description: You can have the Data Service stop writing to the data storage path
   when it fills to a specific percentage. This option helps prevent the data
   path from running out of disk space and making recovery difficult.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/disk-usage-limits.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-31T05:15:32.656Z
 link: xref:server:rest-api:disk-usage-limits.adoc[]
 ---
 
@@ -48,7 +48,7 @@ Path Parameters
 
 `USER`
 
-The name of a user who has one of the roles listed in [Required Privileges](#get-privs).
+The name of a user who has 1 of the roles listed in [Required Privileges](#get-privs).
 
 `PASSWORD`
 
@@ -124,7 +124,7 @@ Path Parameters
 
 `USER`
 
-The name of a user who has one of the roles listed in [Required Privileges](#set-privs).
+The name of a user who has 1 of the roles listed in [Required Privileges](#set-privs).
 
 `PASSWORD`
 
