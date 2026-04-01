@@ -2,7 +2,7 @@
 title: Make an API Call with Capella AI Services APIs
 description: How to make an API call with the Couchbase AI Services APIs.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-use.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:ai:api-guide:api-use.adoc[]
 ---
 
@@ -364,7 +364,7 @@ HTTP Response
 
 ## [](#next-steps)Next Steps
 
-* For a full reference guide of the Management API, see [Management API Reference](../../cloud/management-api-reference/index.md).
+* For a full reference guide of the Management API, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
 * For a full reference guide of the Model Service API, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 * For a reference of the Management API errors, see [Management API Error Messages ](api-errors.md#management-api-errors).
 * For a reference of the AI Services Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).

@@ -4,7 +4,7 @@ description: To get started with the Couchbase Capella APIs for AI Services, you
   must create an API key. An API key authenticates and authorizes you to access
   the APIs.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-start.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:ai:api-guide:api-start.adoc[]
 ---
 
@@ -247,7 +247,7 @@ To delete a Model Service API key:
 ## [](#next-steps)Next Steps
 
 * To make an API call, see [Make an API Call with Capella AI Services APIs](api-use.md).
-* For a full reference guide for the Management API, see [Management API Reference](../../cloud/management-api-reference/index.md).
+* For a full reference guide for the Management API, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
 * For a full reference guide for the Model Service API, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 * For a reference of the Management API errors, see [Management API Error Messages ](api-errors.md#management-api-errors).
 * For a reference of the AI Services Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).

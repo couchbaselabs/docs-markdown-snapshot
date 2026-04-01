@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1774934420889,
+  "generated": 1775021428914,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -435,7 +435,7 @@
               "module": "management-api-reference",
               "path": "index.adoc",
               "url": "/analytics/management-api-reference/index.md",
-              "title": "Capella Columnar Management API Reference"
+              "title": "Capella Analytics Management API Reference"
             },
             {
               "module": "metrics-reference",
@@ -4093,7 +4093,7 @@
               "module": "invpc",
               "path": "invpc-reference-rest-endpoints-all.adoc",
               "url": "/cloud/management-api-reference/index.md",
-              "title": "Management API Reference"
+              "title": "Capella Operational Management API Reference"
             },
             {
               "alias": true,
@@ -4223,7 +4223,7 @@
               "module": "management-api-reference",
               "path": "index.adoc",
               "url": "/cloud/management-api-reference/index.md",
-              "title": "Management API Reference"
+              "title": "Capella Operational Management API Reference"
             },
             {
               "module": "metrics-reference",
@@ -5341,7 +5341,7 @@
               "module": "public-api-reference",
               "path": "index.adoc",
               "url": "/cloud/management-api-reference/index.md",
-              "title": "Management API Reference"
+              "title": "Capella Operational Management API Reference"
             },
             {
               "module": "reference",
@@ -5416,7 +5416,7 @@
               "module": "reference",
               "path": "rest-endpoints-all.adoc",
               "url": "/cloud/management-api-reference/index.md",
-              "title": "Management API Reference"
+              "title": "Capella Operational Management API Reference"
             },
             {
               "module": "reference",

@@ -1,7 +1,7 @@
 ---
 title: Introduction
 editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:tableau-connector::index.adoc[]
 ---
 
@@ -17,9 +17,9 @@ link: xref:tableau-connector::index.adoc[]
 The Tableau connector is compatible with the following versions of Couchbase Server, Tableau Desktop, and Tableau Server. The following table lists the compatible versions:
 
 __Table 1\. Couchbase Tableau connector compatibility__
-| Couchbase Server EE version                                                    | Tableau Desktop Version | Tableau Server Version |
-| ------------------------------------------------------------------------------ | ----------------------- | ---------------------- |
-| 7.1.x or higher (including [Capella Columnar](../../analytics/intro/intro.md)) | 2020.4.x or higher      | 2021.x or higher       |
+| Couchbase Server EE version                                                     | Tableau Desktop Version | Tableau Server Version |
+| ------------------------------------------------------------------------------- | ----------------------- | ---------------------- |
+| 7.1.1 or higher (including [Capella Analytics](../../analytics/intro/intro.md)) | 2020.4.x or higher      | 2021.x or higher       |
 
 ## [](#operating-system-compatibility)Operating System Compatibility
 

@@ -2,7 +2,7 @@
 title: Querying Your Data
 description: Choosing the right service to query your data.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/concept-docs/pages/querying-your-data.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:java-sdk:concept-docs:querying-your-data.adoc[]
 ---
 
@@ -32,12 +32,10 @@ How you combine the Data Service and SQL++ should depend on your use case, but y
 
 Couchbase offers a choice of:
 
-* [Capella Columnar](../../../analytics/intro/intro.md) for real-time analytics, with data stored elsewhere in your data lake.
-* [Couchbase Analytics Service (CBAS)](../howtos/analytics-using-sdk.md) for traditional data analytics against your operational cluster.
+* [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) & [Capella Analytics](../../../analytics/intro/intro.md) for real-time analytics, with data stored elsewhere in your data lake.
+* [Couchbase Analytics Service (CBAS)](../howtos/analytics-using-sdk.md) for traditional data analytics against your operational database cluster.
 
 Both use versions of the SQL++ query language.
-
-This page covers using our operational Java SDK to connect to the Analytics Service of a Capella Operational or self-managed Couchbase Server cluster. As well as this row-based analytics service, a speedy, column-based analytics database is available for real-time analytics.
 
 > [!TIP]
 > Analytics SDKs

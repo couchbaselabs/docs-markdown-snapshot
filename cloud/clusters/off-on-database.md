@@ -3,7 +3,7 @@ title: Turn Clusters Off or On
 description: You can turn your cluster off to save costs. To resume operations,
   turn it back on.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/off-on-database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:cloud:clusters:off-on-database.adoc[]
 ---
 
@@ -31,7 +31,7 @@ You can [create a schedule](off-on-schedule.md) to turn your cluster on or off.
 > [!TIP]
 > Public API
 > 
-> You can also turn your cluster on or off using the [Management API Reference](../management-api-reference/index.md):
+> You can also turn your cluster on or off using the [Capella Operational Management API Reference](../management-api-reference/index.md):
 > 
 > * [Turn On Cluster](../management-api-reference/index.md#tag/Clusters/operation/clusterOn)
 > * [Turn Off Cluster](../management-api-reference/index.md#tag/Clusters/operation/clusterOff)

@@ -1,7 +1,9 @@
 ---
 title: Download Tableau
+description: Download Tableau Desktop or sign up for Tableau Server to use the
+  Couchbase Tableau Connector.
 editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/download-tableau.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:tableau-connector::download-tableau.adoc[]
 ---
 
@@ -10,6 +12,10 @@ link: xref:tableau-connector::download-tableau.adoc[]
 
 # Download Tableau
 
-## [](#tableau)Tableau
+> Download Tableau Desktop or sign up for Tableau Server to use the Couchbase Tableau Connector. 
 
-The Couchbase Tableau Connector requires Tableau Desktop or Tableau Server running version 2020.4 or higher with a valid license. You can download Tableau Desktop from the official [downloads](https://www.tableau.com/products/desktop/download) page. You can sign up for Tableau Server at the link [here](https://www.tableau.com/products/server).
+The Couchbase Tableau Connector requires Tableau Desktop or Tableau Server running version 2020.4 or higher with a valid license.
+
+* To download the desktop application, go to the [Tableau Desktop Downloads](https://www.tableau.com/products/desktop/download) page.
+* To sign up for the server instance, go to the [Tableau Server Sign Up](https://www.tableau.com/products/server) page.
+* To download the Couchbase Tableau Connector and JDBC driver, see the [Set up the Connector](setup-tableau-connector.md) page.

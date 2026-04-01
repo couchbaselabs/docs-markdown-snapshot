@@ -2,7 +2,7 @@
 title: Schedule Cluster On or Off
 description: You can schedule when your cluster is on and off to save costs.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/off-on-schedule.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:cloud:clusters:off-on-schedule.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Private endpoint charges still apply when your cluster is off. To avoid charges,
 > [!TIP]
 > Public API
 > 
-> You can also schedule your cluster to turn on or off using the [Management API Reference](../management-api-reference/index.md):
+> You can also schedule your cluster to turn on or off using the [Capella Operational Management API Reference](../management-api-reference/index.md):
 > 
 > * [Get Cluster On/Off Schedule](../management-api-reference/index.md#tag/OnOff-Schedule/operation/getOnOffSchedule)
 > * [Update Cluster On/Off Schedule](../management-api-reference/index.md#tag/OnOff-Schedule/operation/putOnOffSchedule)

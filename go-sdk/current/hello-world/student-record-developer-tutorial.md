@@ -3,7 +3,7 @@ title: "Developer Tutorial: Student Record System"
 description: Learn how to create and deploy a student records database on
   Capella Operational and connect it to your application, using the Go SDK.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/hello-world/pages/student-record-developer-tutorial.adoc
-pubDate: 2026-03-31T05:15:32.656Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:go-sdk:hello-world:student-record-developer-tutorial.adoc[]
 ---
 
@@ -218,6 +218,60 @@ go get github.com/couchbase/gocb/v2
 
 Next, connect your Go SDK to your cluster.
 
+### [](#set-up-logging)Set Up Logging
+
+Before we connect to the cluster we want a way to see the output of the SDK and any errors that may occur.
+
+1. In your `student-record` directory, create a new file called `logger.go`.  
+📂 ~ (your home directory)  
+  📂 student-record  
+    📃 go.mod  
+    📃 logger.go ⬅ here!
+2. Paste the following code block into your `logger.go` file:  
+```go  
+package main  
+import (  
+	"os"  
+	"github.com/couchbase/gocb/v2"  
+	"github.com/sirupsen/logrus"  
+)  
+type Logger struct {  
+	wrapped *logrus.Logger  
+}  
+func NewLogger(level logrus.Level) *Logger {  
+	logger := logrus.New()  
+	logger.SetOutput(os.Stdout)  
+	logger.SetLevel(level)  
+	return &Logger{  
+		wrapped: logger,  
+	}  
+}  
+// The logrus Log function doesn't match the gocb Log function so we need to do a bit of marshalling.  
+func (logger *Logger) Log(level gocb.LogLevel, offset int, format string, v ...interface{}) error {  
+	// We need to do some conversion between gocb and logrus levels as they don't match up.  
+	var logrusLevel logrus.Level  
+	switch level {  
+	case gocb.LogError:  
+		logrusLevel = logrus.ErrorLevel  
+	case gocb.LogWarn:  
+		logrusLevel = logrus.WarnLevel  
+	case gocb.LogInfo:  
+		logrusLevel = logrus.InfoLevel  
+	case gocb.LogDebug:  
+		logrusLevel = logrus.DebugLevel  
+	case gocb.LogTrace:  
+		logrusLevel = logrus.TraceLevel  
+	case gocb.LogSched:  
+		logrusLevel = logrus.TraceLevel  
+	case gocb.LogMaxVerbosity:  
+		logrusLevel = logrus.TraceLevel  
+	}  
+	// Send the data to the logrus Logf function to make sure that it gets formatted correctly.  
+	logger.wrapped.Logf(logrusLevel, format, v...)  
+	return nil  
+}  
+```
+
 ### [](#connect-to-the-cluster)Connect the SDK to Your Cluster
 
 To connect to the cluster:
@@ -226,6 +280,7 @@ To connect to the cluster:
 📂 ~ (your home directory)  
   📂 student-record  
     📃 go.mod  
+    📃 logger.go  
     📃 connect_student.go ⬅ here!
 2. Paste the following code block into your `connect_student.go` file:  
 ```go  
@@ -235,11 +290,14 @@ import (
 	"log"  
 	"time"  
 	"github.com/couchbase/gocb/v2"  
+	"github.com/sirupsen/logrus"  
 )  
 func main() {  
 	connectionString := "<<connection-string>>" // Replace this with Connection String  
-	username := "<<username>>"                   // Replace this with username from cluster access credentials  
-	password := "<<password>>"                   // Replace this with password from cluster access credentials  
+	username := "<<username>>"                  // Replace this with username from cluster access credentials  
+	password := "<<password>>"                  // Replace this with password from cluster access credentials  
+	// Setup info level logging.  
+	gocb.SetLogger(NewLogger(logrus.InfoLevel))  
 	// Connecting to the cluster  
 	options := gocb.ClusterOptions{  
 		Authenticator: gocb.PasswordAuthenticator{  
@@ -282,7 +340,37 @@ func main() {
 go run connect_student.go  
 ```  
 If the connection is successful, the collection name outputs in the console log.  
-![Console showing successful connection to server](_images/student-record-collection-console-output.png)
+time="2026-03-31T11:19:30+01:00" level=info msg="SDK Version: gocbcore/v10.9.1"  
+time="2026-03-31T11:19:30+01:00" level=info msg="Creating new agent group: &{AgentConfig:{BucketName: UserAgent:gocb/v2.12.1 SeedConfig:{HTTPAddrs:[] MemdAddrs:[svc-dqi-node-003.kkiwizkmakejiw1p.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-002.kkiwizkmakejiw1p.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-001.kkiwizkmakejiw1p.customsubdomain.nonprod-project-avengers.com:11207] SRVRecord:0x140001c17a0} SecurityConfig:{UseTLS:true TLSRootCAProvider:0x103596190 NoTLSSeedNode:false Auth:0x140001175e0 AuthMechanisms:[]} CompressionConfig:{Enabled:true DisableDecompression:false MinSize:0 MinRatio:0} ConfigPollerConfig:{HTTPRedialPeriod:0s HTTPRetryDelay:0s HTTPMaxWait:0s CccpMaxWait:0s CccpPollPeriod:0s} IoConfig:{NetworkType: UseMutationTokens:true UseDurations:true UseOutOfOrderResponses:true DisableXErrorHello:false DisableJSONHello:false DisableSyncReplicationHello:false EnablePITRHello:false UseCollections:true UseClusterMapNotifications:true} KVConfig:{ConnectTimeout:20s ServerWaitBackoff:0s PoolSize:0 MaxQueueSize:0 ConnectionBufferSize:0} HTTPConfig:{MaxIdleConns:0 MaxIdleConnsPerHost:0 MaxConnsPerHost:0 ConnectTimeout:0s IdleConnectionTimeout:0s} DefaultRetryStrategy:0x140001173f0 CircuitBreakerConfig:{Enabled:true VolumeThreshold:0 ErrorThresholdPercentage:0 SleepWindow:0s RollingWindow:0s CompletionCallback:<nil> CanaryTimeout:0s} OrphanReporterConfig:{Enabled:true ReportInterval:0s SampleSize:0} TracerConfig:{Tracer:0x14000117450 NoRootTraceSpans:true} MeterConfig:{Meter:<nil>} ObservabilityConfig:{SemanticConventionOptIn:[]} TelemetryConfig:{TelemetryReporter:0x14000128cc0} InternalConfig:{EnableResourceUnitsTrackingHello:false AllowEnterpriseAnalytics:false}}}"  
+time="2026-03-31T11:19:30+01:00" level=info msg="SDK Version: gocbcore/v10.9.1"  
+time="2026-03-31T11:19:30+01:00" level=info msg="Creating new agent: &{BucketName: UserAgent:gocb/v2.12.1 SeedConfig:{HTTPAddrs:[] MemdAddrs:[svc-dqi-node-003.kkiwizkmakejiw1p.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-002.kkiwizkmakejiw1p.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-001.kkiwizkmakejiw1p.customsubdomain.nonprod-project-avengers.com:11207] SRVRecord:0x140001c17a0} SecurityConfig:{UseTLS:true TLSRootCAProvider:0x103596190 NoTLSSeedNode:false Auth:0x140001175e0 AuthMechanisms:[]} CompressionConfig:{Enabled:true DisableDecompression:false MinSize:0 MinRatio:0} ConfigPollerConfig:{HTTPRedialPeriod:0s HTTPRetryDelay:0s HTTPMaxWait:0s CccpMaxWait:0s CccpPollPeriod:0s} IoConfig:{NetworkType: UseMutationTokens:true UseDurations:true UseOutOfOrderResponses:true DisableXErrorHello:false DisableJSONHello:false DisableSyncReplicationHello:false EnablePITRHello:false UseCollections:true UseClusterMapNotifications:true} KVConfig:{ConnectTimeout:20s ServerWaitBackoff:0s PoolSize:0 MaxQueueSize:0 ConnectionBufferSize:0} HTTPConfig:{MaxIdleConns:0 MaxIdleConnsPerHost:0 MaxConnsPerHost:0 ConnectTimeout:0s IdleConnectionTimeout:0s} DefaultRetryStrategy:0x140001173f0 CircuitBreakerConfig:{Enabled:true VolumeThreshold:0 ErrorThresholdPercentage:0 SleepWindow:0s RollingWindow:0s CompletionCallback:<nil> CanaryTimeout:0s} OrphanReporterConfig:{Enabled:true ReportInterval:0s SampleSize:0} TracerConfig:{Tracer:0x14000117450 NoRootTraceSpans:true} MeterConfig:{Meter:<nil>} ObservabilityConfig:{SemanticConventionOptIn:[]} TelemetryConfig:{TelemetryReporter:0x14000128cc0} InternalConfig:{EnableResourceUnitsTrackingHello:false AllowEnterpriseAnalytics:false}}"  
+time="2026-03-31T11:19:30+01:00" level=info msg="Initializing transactions: CustomATRLocation: ExpirationTime:0s DurabilityLevel:MAJORITY KeyValueTimeout:20s CleanupWindow:0s CleanupClientAttempts:true CleanupLostAttempts:true CleanupQueueSize:0 BucketAgentProvider:0x10363ddf0 LostCleanupATRLocationProvider:0x10363de70 Internal:{EnableNonFatalGets:false EnableParallelUnstaging:true EnableExplicitATRs:false NumATRs:0 UnstagingParallelismLimit:1000}"  
+time="2026-03-31T11:19:30+01:00" level=info msg="SDK Version: gocbcore/v10.9.1"  
+time="2026-03-31T11:19:30+01:00" level=info msg="Creating new agent: &{BucketName:student-bucket UserAgent:gocb/v2.12.1 SeedConfig:{HTTPAddrs:[] MemdAddrs:[svc-dqi-node-003.kkiwizkmakejiw1p.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-002.kkiwizkmakejiw1p.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-001.kkiwizkmakejiw1p.customsubdomain.nonprod-project-avengers.com:11207] SRVRecord:0x140001c17a0} SecurityConfig:{UseTLS:true TLSRootCAProvider:0x103596190 NoTLSSeedNode:false Auth:0x140001175e0 AuthMechanisms:[]} CompressionConfig:{Enabled:true DisableDecompression:false MinSize:0 MinRatio:0} ConfigPollerConfig:{HTTPRedialPeriod:0s HTTPRetryDelay:0s HTTPMaxWait:0s CccpMaxWait:0s CccpPollPeriod:0s} IoConfig:{NetworkType: UseMutationTokens:true UseDurations:true UseOutOfOrderResponses:true DisableXErrorHello:false DisableJSONHello:false DisableSyncReplicationHello:false EnablePITRHello:false UseCollections:true UseClusterMapNotifications:true} KVConfig:{ConnectTimeout:20s ServerWaitBackoff:0s PoolSize:0 MaxQueueSize:0 ConnectionBufferSize:0} HTTPConfig:{MaxIdleConns:0 MaxIdleConnsPerHost:0 MaxConnsPerHost:0 ConnectTimeout:0s IdleConnectionTimeout:0s} DefaultRetryStrategy:0x140001173f0 CircuitBreakerConfig:{Enabled:true VolumeThreshold:0 ErrorThresholdPercentage:0 SleepWindow:0s RollingWindow:0s CompletionCallback:<nil> CanaryTimeout:0s} OrphanReporterConfig:{Enabled:true ReportInterval:0s SampleSize:0} TracerConfig:{Tracer:0x14000117450 NoRootTraceSpans:true} MeterConfig:{Meter:<nil>} ObservabilityConfig:{SemanticConventionOptIn:[]} TelemetryConfig:{TelemetryReporter:0x14000128cc0} InternalConfig:{EnableResourceUnitsTrackingHello:false AllowEnterpriseAnalytics:false}}"  
+time="2026-03-31T11:19:30+01:00" level=info msg="Starting poller controller loop"  
+time="2026-03-31T11:19:30+01:00" level=info msg="CCCP Looper starting."  
+time="2026-03-31T11:19:30+01:00" level=info msg="Starting poller controller loop"  
+time="2026-03-31T11:19:30+01:00" level=info msg="CCCP Looper starting."  
+time="2026-03-31T11:19:30+01:00" level=info msg="Agent closing"  
+time="2026-03-31T11:19:30+01:00" level=info msg="Stopping poller controller"  
+time="2026-03-31T11:19:30+01:00" level=info msg="CCCP Looper stopping"  
+time="2026-03-31T11:19:30+01:00" level=info msg="CCCP Looper stopped"  
+time="2026-03-31T11:19:30+01:00" level=info msg="Starting poller controller loop"  
+time="2026-03-31T11:19:30+01:00" level=info msg="Poller controller stopped, exiting"  
+time="2026-03-31T11:19:30+01:00" level=info msg="KV Mux closing"  
+time="2026-03-31T11:19:30+01:00" level=info msg="KV Mux closed"  
+time="2026-03-31T11:19:30+01:00" level=info msg="Agent close complete"  
+The name of this collection is student-record-collection  
+time="2026-03-31T11:19:31+01:00" level=info msg="Agent closing"  
+time="2026-03-31T11:19:31+01:00" level=info msg="Stopping poller controller"  
+time="2026-03-31T11:19:31+01:00" level=info msg="CCCP Looper stopping"  
+time="2026-03-31T11:19:31+01:00" level=info msg="CCCP Looper stopped"  
+time="2026-03-31T11:19:31+01:00" level=info msg="Config seen but CCCP poller exited, restarting CCCP poller."  
+time="2026-03-31T11:19:31+01:00" level=info msg="Starting poller controller loop"  
+time="2026-03-31T11:19:31+01:00" level=info msg="Poller controller stopped, exiting"  
+time="2026-03-31T11:19:31+01:00" level=info msg="KV Mux closing"  
+time="2026-03-31T11:19:31+01:00" level=info msg="KV Mux closed"  
+time="2026-03-31T11:19:31+01:00" level=info msg="Agent close complete"
 
 If you come across errors in your console, see the [troubleshooting section](#troubleshooting).
 
@@ -297,14 +385,17 @@ To create a student record:
 ```go  
 package main  
 import (  
+	"github.com/sirupsen/logrus"  
 	"log"  
 	"time"  
 	"github.com/couchbase/gocb/v2"  
 )  
 func main() {  
 	connectionString := "<<connection-string>>" // Replace this with Connection String  
-	username := "<<username>>"                   // Replace this with username from cluster access credentials  
-	password := "<<password>>"                   // Replace this with password from cluster access credentials  
+	username := "<<username>>"                  // Replace this with username from cluster access credentials  
+	password := "<<password>>"                  // Replace this with password from cluster access credentials  
+	// Setup info level logging.  
+	gocb.SetLogger(NewLogger(logrus.InfoLevel))  
 	options := gocb.ClusterOptions{  
 		Authenticator: gocb.PasswordAuthenticator{  
 			Username: username,  
@@ -366,14 +457,17 @@ Creating course records is similar to creating student records. To create course
 ```go  
 package main  
 import (  
+	"github.com/sirupsen/logrus"  
 	"log"  
 	"time"  
 	"github.com/couchbase/gocb/v2"  
 )  
 func main() {  
 	connectionString := "<<connection-string>>" // Replace this with Connection String  
-	username := "<<username>>"                   // Replace this with username from cluster access credentials  
-	password := "<<password>>"                   // Replace this with password from cluster access credentials  
+	username := "<<username>>"                  // Replace this with username from cluster access credentials  
+	password := "<<password>>"                  // Replace this with password from cluster access credentials  
+	// Setup info level logging.  
+	gocb.SetLogger(NewLogger(logrus.InfoLevel))  
 	options := gocb.ClusterOptions{  
 		Authenticator: gocb.PasswordAuthenticator{  
 			Username: username,  
@@ -559,13 +653,16 @@ To retrieve all of your course records using the Go SDK:
 package main  
 import (  
 	"fmt"  
+	"github.com/sirupsen/logrus"  
 	"log"  
 	"github.com/couchbase/gocb/v2"  
 )  
 func main() {  
 	connectionString := "<<connection-string>>" // Replace this with Connection String  
-	username := "<<username>>"                   // Replace this with username from cluster access credentials  
-	password := "<<password>>"                   // Replace this with password from cluster access credentials  
+	username := "<<username>>"                  // Replace this with username from cluster access credentials  
+	password := "<<password>>"                  // Replace this with password from cluster access credentials  
+	// Setup info level logging.  
+	gocb.SetLogger(NewLogger(logrus.InfoLevel))  
 	options := gocb.ClusterOptions{  
 		Authenticator: gocb.PasswordAuthenticator{  
 			Username: username,  
@@ -613,7 +710,25 @@ func retrieveCourses(cluster *gocb.Cluster) {
 go run art_school_retriever_all.go  
 ```  
 If the retrieval is successful, the course information outputs in the console log.  
-![Console showing successful course retrieval using the SDK](_images/record-retrieval-console-output.png)
+time="2026-03-31T12:02:57+01:00" level=info msg="SDK Version: gocbcore/v10.9.1"  
+time="2026-03-31T12:02:57+01:00" level=info msg="Creating new agent group: &{AgentConfig:{BucketName: UserAgent:gocb/v2.12.1 SeedConfig:{HTTPAddrs:[] MemdAddrs:[svc-dqi-node-002.7j-ujozl9gn8rsid.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-003.7j-ujozl9gn8rsid.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-001.7j-ujozl9gn8rsid.customsubdomain.nonprod-project-avengers.com:11207] SRVRecord:0x140001997a0} SecurityConfig:{UseTLS:true TLSRootCAProvider:0x104c57480 NoTLSSeedNode:false Auth:0x14000031610 AuthMechanisms:[]} CompressionConfig:{Enabled:true DisableDecompression:false MinSize:0 MinRatio:0} ConfigPollerConfig:{HTTPRedialPeriod:0s HTTPRetryDelay:0s HTTPMaxWait:0s CccpMaxWait:0s CccpPollPeriod:0s} IoConfig:{NetworkType: UseMutationTokens:true UseDurations:true UseOutOfOrderResponses:true DisableXErrorHello:false DisableJSONHello:false DisableSyncReplicationHello:false EnablePITRHello:false UseCollections:true UseClusterMapNotifications:true} KVConfig:{ConnectTimeout:20s ServerWaitBackoff:0s PoolSize:0 MaxQueueSize:0 ConnectionBufferSize:0} HTTPConfig:{MaxIdleConns:0 MaxIdleConnsPerHost:0 MaxConnsPerHost:0 ConnectTimeout:0s IdleConnectionTimeout:0s} DefaultRetryStrategy:0x14000031420 CircuitBreakerConfig:{Enabled:true VolumeThreshold:0 ErrorThresholdPercentage:0 SleepWindow:0s RollingWindow:0s CompletionCallback:<nil> CanaryTimeout:0s} OrphanReporterConfig:{Enabled:true ReportInterval:0s SampleSize:0} TracerConfig:{Tracer:0x14000031480 NoRootTraceSpans:true} MeterConfig:{Meter:<nil>} ObservabilityConfig:{SemanticConventionOptIn:[]} TelemetryConfig:{TelemetryReporter:0x14000116cc0} InternalConfig:{EnableResourceUnitsTrackingHello:false AllowEnterpriseAnalytics:false}}}"  
+time="2026-03-31T12:02:57+01:00" level=info msg="SDK Version: gocbcore/v10.9.1"  
+time="2026-03-31T12:02:57+01:00" level=info msg="Creating new agent: &{BucketName: UserAgent:gocb/v2.12.1 SeedConfig:{HTTPAddrs:[] MemdAddrs:[svc-dqi-node-002.7j-ujozl9gn8rsid.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-003.7j-ujozl9gn8rsid.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-001.7j-ujozl9gn8rsid.customsubdomain.nonprod-project-avengers.com:11207] SRVRecord:0x140001997a0} SecurityConfig:{UseTLS:true TLSRootCAProvider:0x104c57480 NoTLSSeedNode:false Auth:0x14000031610 AuthMechanisms:[]} CompressionConfig:{Enabled:true DisableDecompression:false MinSize:0 MinRatio:0} ConfigPollerConfig:{HTTPRedialPeriod:0s HTTPRetryDelay:0s HTTPMaxWait:0s CccpMaxWait:0s CccpPollPeriod:0s} IoConfig:{NetworkType: UseMutationTokens:true UseDurations:true UseOutOfOrderResponses:true DisableXErrorHello:false DisableJSONHello:false DisableSyncReplicationHello:false EnablePITRHello:false UseCollections:true UseClusterMapNotifications:true} KVConfig:{ConnectTimeout:20s ServerWaitBackoff:0s PoolSize:0 MaxQueueSize:0 ConnectionBufferSize:0} HTTPConfig:{MaxIdleConns:0 MaxIdleConnsPerHost:0 MaxConnsPerHost:0 ConnectTimeout:0s IdleConnectionTimeout:0s} DefaultRetryStrategy:0x14000031420 CircuitBreakerConfig:{Enabled:true VolumeThreshold:0 ErrorThresholdPercentage:0 SleepWindow:0s RollingWindow:0s CompletionCallback:<nil> CanaryTimeout:0s} OrphanReporterConfig:{Enabled:true ReportInterval:0s SampleSize:0} TracerConfig:{Tracer:0x14000031480 NoRootTraceSpans:true} MeterConfig:{Meter:<nil>} ObservabilityConfig:{SemanticConventionOptIn:[]} TelemetryConfig:{TelemetryReporter:0x14000116cc0} InternalConfig:{EnableResourceUnitsTrackingHello:false AllowEnterpriseAnalytics:false}}"  
+time="2026-03-31T12:02:57+01:00" level=info msg="Initializing transactions: CustomATRLocation: ExpirationTime:0s DurabilityLevel:MAJORITY KeyValueTimeout:20s CleanupWindow:0s CleanupClientAttempts:true CleanupLostAttempts:true CleanupQueueSize:0 BucketAgentProvider:0x104cff0e0 LostCleanupATRLocationProvider:0x104cff160 Internal:{EnableNonFatalGets:false EnableParallelUnstaging:true EnableExplicitATRs:false NumATRs:0 UnstagingParallelismLimit:1000}"  
+time="2026-03-31T12:02:57+01:00" level=info msg="Starting poller controller loop"  
+time="2026-03-31T12:02:57+01:00" level=info msg="CCCP Looper starting."  
+Found row: map[course-name:art history credit-points:100 faculty:fine art]  
+Found row: map[course-name:fine art credit-points:50 faculty:fine art]  
+Found row: map[course-name:graphic design credit-points:200 faculty:media and communication]  
+time="2026-03-31T12:02:59+01:00" level=info msg="Agent closing"  
+time="2026-03-31T12:02:59+01:00" level=info msg="Stopping poller controller"  
+time="2026-03-31T12:02:59+01:00" level=info msg="CCCP Looper stopping"  
+time="2026-03-31T12:02:59+01:00" level=info msg="CCCP Looper stopped"  
+time="2026-03-31T12:02:59+01:00" level=info msg="Starting poller controller loop"  
+time="2026-03-31T12:02:59+01:00" level=info msg="Poller controller stopped, exiting"  
+time="2026-03-31T12:02:59+01:00" level=info msg="KV Mux closing"  
+time="2026-03-31T12:02:59+01:00" level=info msg="KV Mux closed"  
+time="2026-03-31T12:02:59+01:00" level=info msg="Agent close complete"
 
 ##### [](#retrieve-course-records-with-less-than-200-credits-2)Retrieve Course Records with Less than 200 Credits
 
@@ -625,13 +740,16 @@ You can set parameters in your code to narrow your search down further. To retri
 package main  
 import (  
 	"fmt"  
+	"github.com/sirupsen/logrus"  
 	"log"  
 	"github.com/couchbase/gocb/v2"  
 )  
 func main() {  
 	connectionString := "<<connection-string>>" // Replace this with Connection String  
-	username := "<<username>>"                   // Replace this with username from cluster access credentials  
-	password := "<<password>>"                   // Replace this with password from cluster access credentials  
+	username := "<<username>>"                  // Replace this with username from cluster access credentials  
+	password := "<<password>>"                  // Replace this with password from cluster access credentials  
+	// Setup info level logging.  
+	gocb.SetLogger(NewLogger(logrus.InfoLevel))  
 	options := gocb.ClusterOptions{  
 		Authenticator: gocb.PasswordAuthenticator{  
 			Username: username,  
@@ -683,7 +801,24 @@ func retrieveCoursesWithParameters(cluster *gocb.Cluster) {
 go run art_school_retriever.go  
 ```  
 If the retrieval is successful, the course information with your parameters outputs in the console log.  
-![Console showing successful course retrieval using parameters using the SDK](_images/record-retrieval-parameters-console-output.png)
+time="2026-03-31T12:04:10+01:00" level=info msg="SDK Version: gocbcore/v10.9.1"  
+time="2026-03-31T12:04:10+01:00" level=info msg="Creating new agent group: &{AgentConfig:{BucketName: UserAgent:gocb/v2.12.1 SeedConfig:{HTTPAddrs:[] MemdAddrs:[svc-dqi-node-001.7j-ujozl9gn8rsid.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-002.7j-ujozl9gn8rsid.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-003.7j-ujozl9gn8rsid.customsubdomain.nonprod-project-avengers.com:11207] SRVRecord:0x140001597a0} SecurityConfig:{UseTLS:true TLSRootCAProvider:0x102b97480 NoTLSSeedNode:false Auth:0x140000a7610 AuthMechanisms:[]} CompressionConfig:{Enabled:true DisableDecompression:false MinSize:0 MinRatio:0} ConfigPollerConfig:{HTTPRedialPeriod:0s HTTPRetryDelay:0s HTTPMaxWait:0s CccpMaxWait:0s CccpPollPeriod:0s} IoConfig:{NetworkType: UseMutationTokens:true UseDurations:true UseOutOfOrderResponses:true DisableXErrorHello:false DisableJSONHello:false DisableSyncReplicationHello:false EnablePITRHello:false UseCollections:true UseClusterMapNotifications:true} KVConfig:{ConnectTimeout:20s ServerWaitBackoff:0s PoolSize:0 MaxQueueSize:0 ConnectionBufferSize:0} HTTPConfig:{MaxIdleConns:0 MaxIdleConnsPerHost:0 MaxConnsPerHost:0 ConnectTimeout:0s IdleConnectionTimeout:0s} DefaultRetryStrategy:0x140000a7420 CircuitBreakerConfig:{Enabled:true VolumeThreshold:0 ErrorThresholdPercentage:0 SleepWindow:0s RollingWindow:0s CompletionCallback:<nil> CanaryTimeout:0s} OrphanReporterConfig:{Enabled:true ReportInterval:0s SampleSize:0} TracerConfig:{Tracer:0x140000a7480 NoRootTraceSpans:true} MeterConfig:{Meter:<nil>} ObservabilityConfig:{SemanticConventionOptIn:[]} TelemetryConfig:{TelemetryReporter:0x140000aace0} InternalConfig:{EnableResourceUnitsTrackingHello:false AllowEnterpriseAnalytics:false}}}"  
+time="2026-03-31T12:04:10+01:00" level=info msg="SDK Version: gocbcore/v10.9.1"  
+time="2026-03-31T12:04:10+01:00" level=info msg="Creating new agent: &{BucketName: UserAgent:gocb/v2.12.1 SeedConfig:{HTTPAddrs:[] MemdAddrs:[svc-dqi-node-001.7j-ujozl9gn8rsid.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-002.7j-ujozl9gn8rsid.customsubdomain.nonprod-project-avengers.com:11207 svc-dqi-node-003.7j-ujozl9gn8rsid.customsubdomain.nonprod-project-avengers.com:11207] SRVRecord:0x140001597a0} SecurityConfig:{UseTLS:true TLSRootCAProvider:0x102b97480 NoTLSSeedNode:false Auth:0x140000a7610 AuthMechanisms:[]} CompressionConfig:{Enabled:true DisableDecompression:false MinSize:0 MinRatio:0} ConfigPollerConfig:{HTTPRedialPeriod:0s HTTPRetryDelay:0s HTTPMaxWait:0s CccpMaxWait:0s CccpPollPeriod:0s} IoConfig:{NetworkType: UseMutationTokens:true UseDurations:true UseOutOfOrderResponses:true DisableXErrorHello:false DisableJSONHello:false DisableSyncReplicationHello:false EnablePITRHello:false UseCollections:true UseClusterMapNotifications:true} KVConfig:{ConnectTimeout:20s ServerWaitBackoff:0s PoolSize:0 MaxQueueSize:0 ConnectionBufferSize:0} HTTPConfig:{MaxIdleConns:0 MaxIdleConnsPerHost:0 MaxConnsPerHost:0 ConnectTimeout:0s IdleConnectionTimeout:0s} DefaultRetryStrategy:0x140000a7420 CircuitBreakerConfig:{Enabled:true VolumeThreshold:0 ErrorThresholdPercentage:0 SleepWindow:0s RollingWindow:0s CompletionCallback:<nil> CanaryTimeout:0s} OrphanReporterConfig:{Enabled:true ReportInterval:0s SampleSize:0} TracerConfig:{Tracer:0x140000a7480 NoRootTraceSpans:true} MeterConfig:{Meter:<nil>} ObservabilityConfig:{SemanticConventionOptIn:[]} TelemetryConfig:{TelemetryReporter:0x140000aace0} InternalConfig:{EnableResourceUnitsTrackingHello:false AllowEnterpriseAnalytics:false}}"  
+time="2026-03-31T12:04:10+01:00" level=info msg="Initializing transactions: CustomATRLocation: ExpirationTime:0s DurabilityLevel:MAJORITY KeyValueTimeout:20s CleanupWindow:0s CleanupClientAttempts:true CleanupLostAttempts:true CleanupQueueSize:0 BucketAgentProvider:0x102c3f0e0 LostCleanupATRLocationProvider:0x102c3f160 Internal:{EnableNonFatalGets:false EnableParallelUnstaging:true EnableExplicitATRs:false NumATRs:0 UnstagingParallelismLimit:1000}"  
+time="2026-03-31T12:04:10+01:00" level=info msg="Starting poller controller loop"  
+time="2026-03-31T12:04:10+01:00" level=info msg="CCCP Looper starting."  
+Found row: map[course-name:art history credit-points:100 faculty:fine art]  
+Found row: map[course-name:fine art credit-points:50 faculty:fine art]  
+time="2026-03-31T12:04:12+01:00" level=info msg="Agent closing"  
+time="2026-03-31T12:04:12+01:00" level=info msg="Stopping poller controller"  
+time="2026-03-31T12:04:12+01:00" level=info msg="CCCP Looper stopping"  
+time="2026-03-31T12:04:12+01:00" level=info msg="CCCP Looper stopped"  
+time="2026-03-31T12:04:12+01:00" level=info msg="Starting poller controller loop"  
+time="2026-03-31T12:04:12+01:00" level=info msg="Poller controller stopped, exiting"  
+time="2026-03-31T12:04:12+01:00" level=info msg="KV Mux closing"  
+time="2026-03-31T12:04:12+01:00" level=info msg="KV Mux closed"  
+time="2026-03-31T12:04:12+01:00" level=info msg="Agent close complete"
 
 If you come across errors in your console, see the [troubleshooting section](#troubleshooting).
 
@@ -700,14 +835,17 @@ To add enrollment details to a student record:
 ```go  
 package main  
 import (  
+	"github.com/sirupsen/logrus"  
 	"log"  
 	"time"  
 	"github.com/couchbase/gocb/v2"  
 )  
 func main() {  
 	connectionString := "<<connection-string>>" // Replace this with Connection String  
-	username := "<<username>>"                   // Replace this with username from cluster access credentials  
-	password := "<<password>>"                   // Replace this with password from cluster access credentials  
+	username := "<<username>>"                  // Replace this with username from cluster access credentials  
+	password := "<<password>>"                  // Replace this with password from cluster access credentials  
+	// Setup info level logging.  
+	gocb.SetLogger(NewLogger(logrus.InfoLevel))  
 	options := gocb.ClusterOptions{  
 		Authenticator: gocb.PasswordAuthenticator{  
 			Username: username,  

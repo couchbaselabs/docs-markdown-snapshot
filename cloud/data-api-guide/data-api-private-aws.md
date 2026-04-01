@@ -3,7 +3,7 @@ title: Manage AWS Private Endpoints for the Data API
 description: How to configure and manage private endpoints for the Data API
   using Amazon Web Services (AWS).
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-private-aws.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:cloud:data-api-guide:data-api-private-aws.adoc[]
 ---
 
@@ -19,7 +19,7 @@ To configure and manage AWS private endpoints with the Data API, you can use the
 * For an overview of the Management API, see [Manage Deployments with the Capella Operational Management API](../management-api-guide/management-api-intro.md).
 * To get started with the Management API, see [Get Started with the Capella Operational Management API](../management-api-guide/management-api-start.md).
 * To make an API call, see [Make an API Call with the Capella Operational Management API](../management-api-guide/management-api-use.md).
-* For a full Management API reference guide, see [Management API Reference](../management-api-reference/index.md).
+* For a full Management API reference guide, see [Capella Operational Management API Reference](../management-api-reference/index.md).
 
 ## [](#prerequisites)Prerequisites
 

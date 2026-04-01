@@ -3,7 +3,7 @@ title: Manage AWS Private Endpoints Using the Management API
 description: Configure and manage AWS private endpoints for App Services using
   the Capella Operational Management API.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/private-endpoints/app-services-private-endpoints-aws-api.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:app-services::private-endpoints/app-services-private-endpoints-aws-api.adoc[]
 ---
 
@@ -19,7 +19,7 @@ This guide walks you through setting up AWS private endpoints for App Services u
 * For an overview of the Management API, see [Manage Deployments with the Capella Operational Management API](../../cloud/management-api-guide/management-api-intro.md).
 * To get started with the Management API, see [Get Started with the Capella Operational Management API](../../cloud/management-api-guide/management-api-start.md).
 * To make an API call, see [Make an API Call with the Capella Operational Management API](../../cloud/management-api-guide/management-api-use.md).
-* For a full reference guide, see [Management API Reference](../../cloud/management-api-reference/index.md).
+* For a full reference guide, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
 
 ## [](#prerequisites)Prerequisites
 

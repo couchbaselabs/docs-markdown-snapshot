@@ -3,7 +3,7 @@ title: Manage Replication Security
 description: Configure your Cross Datacenter Replication (XDCR) to securely
   replicate data between source and destination buckets.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/manage-xdcr-security.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:cloud:clusters:xdcr/manage-xdcr-security.adoc[]
 ---
 
@@ -108,4 +108,4 @@ To enable replication over a private endpoint connection:
 
 * [Cross Data Center Replication (XDCR)](xdcr.md)
 * [Manage Replications](manage-xdcr-replications.md)
-* [Management API Reference](../../management-api-reference/index.md)
+* [Capella Operational Management API Reference](../../management-api-reference/index.md)

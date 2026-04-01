@@ -4,7 +4,7 @@ description: The Couchbase Capella Management API and the Model Serving API are
   secure REST APIs that enable you to provision, deploy, and configure Capella
   AI Services.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-intro.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:ai:api-guide:api-intro.adoc[]
 ---
 
@@ -33,7 +33,7 @@ To get started with the APIs, [create an API key](api-start.md) and [make an API
 
 The Capella Management API is a secure, versioned REST API provided by Couchbase Capella that allows users to manage tasks for Couchbase operational clusters, App Services, and AI Services. This includes management tasks such as scaling clusters, configuring access controls, and deploying embedding models and Large Language Models (LLMs) for AI Services.
 
-For a full Management API reference guide, see [Management API Reference](../../cloud/management-api-reference/index.md).
+For a full Management API reference guide, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
 
 ### [](#management-api-version)Versioning
 
@@ -262,7 +262,7 @@ Retry Configuration
 
 * To create an API key, see [Get Started with Capella AI Services APIs](api-start.md).
 * To make an API call, see [Make an API Call with Capella AI Services APIs](api-use.md).
-* For a full Management API reference guide, see [Management API Reference](../../cloud/management-api-reference/index.md).
+* For a full Management API reference guide, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
 * For a full Model Service API reference guide, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 * For a reference of the Management API errors, see [Management API Error Messages ](api-errors.md#management-api-errors).
 * For a reference of the AI Services Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).

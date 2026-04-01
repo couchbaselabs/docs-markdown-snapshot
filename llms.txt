@@ -2869,6 +2869,7 @@
 - [Couchbase Go SDK Overview](/go-sdk/current/hello-world/overview.md)
 - [Hello World](/go-sdk/current/hello-world/start-using-sdk.md)
     - [Quickstart with Golang and the Gin Web Framework](/go-sdk/current/hello-world/sample-application.md)
+    - [Developer Tutorial: Student Record System](/go-sdk/current/hello-world/student-record-developer-tutorial.md)
     - [Connecting to Your Database](/go-sdk/current/howtos/managing-connections.md)
         - [Authentication &amp; Authorization](/go-sdk/current/howtos/sdk-authentication.md)
         - [Troubleshooting Cloud Connections](/go-sdk/current/howtos/troubleshooting-cloud-connections.md)

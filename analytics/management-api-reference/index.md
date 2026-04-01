@@ -1,42 +1,37 @@
 ---
-title: Capella Columnar Management API Reference
+title: Capella Analytics Management API Reference
 editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/columnar/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:analytics:management-api-reference:index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/management-api-reference/index.html)
 
-# Capella Columnar Management API Reference
+# Capella Analytics Management API Reference
 
+* Allowed CIDRs (Analytics Cluster)
+  * postCreate Allowed CIDR
+  * getList Allowed CIDRs
+  * getGet Allowed CIDR
+  * delDelete Allowed CIDR
 * Api Keys
   * postCreate API Key
   * getList API keys
   * getGet API Key
   * delDelete API Key
   * postRotate API Key
-* Projects
-  * postCreate Project
-  * getList Project
-  * getGet Project
-  * putUpdate Project
-  * delDelete Project
-* Users
-  * postCreate User
-  * getList Users
-  * getGet User
-  * patchUpdate User
-  * delDelete User
-* Allowed CIDRs (Analytics Cluster)
-  * postCreate Allowed CIDR
-  * getList Allowed CIDRs
-  * getGet Allowed CIDR
-  * delDelete Allowed CIDR
-* Organizations
-  * getGet Organization
-  * putUpdate Organization Configuration
-  * getList Organizations
+* Columnar Analytics Cloud Snapshot Backups & Restore
+  * postCreate Cloud Snapshot Backup
+  * getList Cloud Snapshot Backups
+  * putUpdate Backup Retention
+  * delDelete Backup
+  * postRestore Backup
+  * getList Cloud Snapshot Restores
+* Columnar Analytics Cloud Snapshot Backups Schedule
+  * putUpsert Backup Schedule
+  * getGet Backup Schedule
+  * delDelete Backup Schedule
 * Columnar Analytics Clusters
   * postCreate new analytics cluster
   * getList project level analytics clusters
@@ -51,17 +46,6 @@ link: xref:analytics:management-api-reference:index.adoc[]
   * getGet Analytics Cluster On/Off Schedule
   * putUpdate Analytics Cluster On/Off Schedule
   * delDelete Analytics Cluster On/Off Schedule
-* Columnar Analytics Cloud Snapshot Backups & Restore
-  * postCreate Cloud Snapshot Backup
-  * getList Cloud Snapshot Backups
-  * putUpdate Backup Retention
-  * delDelete Backup
-  * postRestore Backup
-  * getList Cloud Snapshot Restores
-* Columnar Analytics Cloud Snapshot Backups Schedule
-  * putUpsert Backup Schedule
-  * getGet Backup Schedule
-  * delDelete Backup Schedule
 * Columnar Analytics Private Endpoint Service
   * getGet Columnar Analytics Private Endpoint Service Status
   * postEnable Columnar Analytics Private Endpoint Service
@@ -70,24 +54,459 @@ link: xref:analytics:management-api-reference:index.adoc[]
   * getList Columnar Analytics Private Endpoint Connections
   * postAccept or associate Columnar Analytics Private Endpoint Request
   * postReject or disassociate Columnar Analytics Private Endpoint connection
+* Organizations
+  * getGet Organization
+  * putUpdate Organization Configuration
+  * getList Organizations
+* Projects
+  * postCreate Project
+  * getList Project
+  * getGet Project
+  * putUpdate Project
+  * delDelete Project
+* Users
+  * postCreate User
+  * getList Users
+  * getGet User
+  * patchUpdate User
+  * delDelete User
 
 [API docs by Redocly](https://redocly.com/redoc/)
 
-# Couchbase Capella Columnar Management API (4.0)
+# Couchbase Capella Analytics Management API (4.0)
 
 Download OpenAPI specification:
 
-The Couchbase Capella Columnar Management API provides a set of endpoints for creating and managing Columnar analytics clusters. Users are able to perform operations such as creating Columnar analytics clusters and managing their configurations. This API documentation specifies the endpoints, request and response formats, and authentication requirements for seamless integration with Couchbase Capella.
+The Couchbase Capella Analytics Management API provides a set of endpoints for creating and managing Capella Analytics clusters. Users are able to perform operations such as creating Capella Analytics clusters and managing their configurations. This API documentation specifies the endpoints, request and response formats, and authentication requirements for seamless integration with Couchbase Capella.
 
-To access the Management API, you need an API key. To create an initial bootstrap API key you must use the Capella UI. Once you have created an initial bootstrap API key, you can use the Management API to create further API keys. To learn more, see [Get Started with the Columnar Management API](https://docs.couchbase.com/columnar/management-api-guide/management-api-start.html).
+To access the Management API, you need an API key. To create an initial bootstrap API key you must use the Capella UI. Once you have created an initial bootstrap API key, you can use the Management API to create further API keys. To learn more, see [Get Started with the Capella Analytics Management API](https://docs.couchbase.com/analytics/management-api-guide/management-api-start.html).
 
-For a history of updates to the Management API, see [Capella Columnar Management API Change Log](https://docs.couchbase.com/columnar/management-api-guide/management-api-log.html).
+For a history of updates to the Management API, see [Capella Analytics Management API Change Log](https://docs.couchbase.com/analytics/management-api-guide/management-api-log.html).
 
 **API Base URL:**
 
 `https://cloudapi.cloud.couchbase.com`
 
-[Back to Columnar API Documentation](https://docs.couchbase.com/columnar/management-api-guide/management-api-intro.html)
+[Back to Capella Analytics Management API Documentation](https://docs.couchbase.com/analytics/management-api-guide/management-api-intro.html)
+
+## [](#tag/Allowed-CIDRs-%28Analytics-Cluster%29)Allowed CIDRs (Analytics Cluster)
+
+Columnar analytics clusters only allow connections from trusted IP addresses. Each analytics cluster has a configurable Allowed IP list that can include up to 75 entries. Each entry can be a single IP address or an IP address space. Any IP address you add to this list can have a user-specified expiration time for temporary access, or be permanent. Capella automatically denies any connection attempts to and from an IP not in the allowed IP list.
+
+## [](#tag/Allowed-CIDRs-%28Analytics-Cluster%29/operation/postAnalyticsAllowedCidr)Create Allowed CIDR 
+
+Adds a trusted CIDR to an clusters's list of allowed CIDRs.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+Note that updating this resource is not supported; you must delete and recreate allowed CIDRs instead. As a result, ETags are also not supported for this resource.
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### Request Body schema: application/json
+
+| cidrrequired | string The trusted CIDR to allow the database connections from. The example represents a single IP address (i.e. a subnet mask of 32).                                                           |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| comment      | string A short description of the allowed CIDR.                                                                                                                                                  |
+| expiresAt    | string <date-time\> An RFC3339 timestamp determining when the allowed CIDR should expire. If this field is empty/omitted then the allowed CIDR is permanent and will never automatically expire. |
+
+### Responses
+
+**201** 
+
+Successfully added an allowed CIDR for the analytics cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "cidr": "6.60.28.100/32",
+* "comment": "Allows access from my local developer machine",
+* "expiresAt": "2023-05-14T21:49:58.465Z"
+}`
+
+### Response samples 
+
+* 201
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/Allowed-CIDRs-%28Analytics-Cluster%29/operation/listAnalyticsAllowedCidrs)List Allowed CIDRs 
+
+Lists all of the allowed CIDRs for a given cluster.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                            |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                  |
+| sortBy        | Array of strings Example: sortBy=id Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **type**, **status**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                         |
+
+### Responses
+
+**200** 
+
+Successfully listed all allowed CIDRs for the analytics cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "cidr": "1.23.45.67/32",
+    * "comment": "Allows access from my local developer machine",
+    * "expiresAt": "2023-05-14T21:49:58.465Z",
+    * "status": "active",
+    * "type": "temporary",
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2021-09-01T12:34:56Z",
+      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "modifiedAt": "2021-09-01T12:34:56Z",
+      * "version": 1  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/Allowed-CIDRs-%28Analytics-Cluster%29/operation/getColumnarAllowedCidrByID)Get Allowed CIDR 
+
+Fetches the details for the specified allowed CIDR.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+| allowedCidrIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the allowed CIDR.      |
+
+### Responses
+
+**200** 
+
+Successfully fetched the allowed CIDR details.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs/{allowedCidrId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs/{allowedCidrId}
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "cidr": "1.23.45.67/32",
+* "comment": "Allows access from my local developer machine",
+* "expiresAt": "2023-05-14T21:49:58.465Z",
+* "status": "active",
+* "type": "temporary",
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56Z",
+  * "version": 1  
+}
+}`
+
+## [](#tag/Allowed-CIDRs-%28Analytics-Cluster%29/operation/deleteColumnarAllowedCidrByID)Delete Allowed CIDR 
+
+Deletes the existing allowed CIDR.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+| allowedCidrIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the allowed CIDR.      |
+
+### Responses
+
+**204** 
+
+Successfully deleted the allowed CIDR by its ID.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs/{allowedCidrId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs/{allowedCidrId}
+
+### Response samples 
+
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
 
 ## [](#tag/Api-Keys)Api Keys
 
@@ -227,11 +646,11 @@ _token_
 
 ##### query Parameters
 
-| page          | integer Sets the page you would like to view.                                                                                                                                                                       |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                             |
-| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **expiry**, **description**. |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                    |
+| page          | integer Sets the page you would like to view.                                                                                                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                           |
+| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **createdAt**, **expiry**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                  |
 
 ### Responses
 
@@ -545,7 +964,7 @@ application/json
 Copy
 
 `{
-* "secret": "GaC4FQLCoUqoKUMBvl6BgRK1Ivqu5yF8OkDBhnP%#CH%S4T@bTVUdP#rY#VSicbx"
+* "secret": "<YOUR_SECRET_KEY_HERE>"
 }`
 
 ### Response samples 
@@ -563,117 +982,29 @@ application/json
 Copy
 
 `{
-* "secretKey": "GaC4FQLCoUqoKUMBvl6BgRK1Ivqu5yF8OkDBhnP%#CH%S4T@bTVUdP#rY#VSicbx"
+* "secretKey": "<YOUR_SECRET_KEY_HERE>",
+* "token": "<YOUR_TOKEN_HERE>"
 }`
 
-## [](#tag/Projects)Projects
+## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore)Columnar Analytics Cloud Snapshot Backups & Restore
 
-Projects contain and allow access to Couchbase databases. Projects are used to organize and manage groups of Couchbase databases within organizations. An organization can contain any number of projects, and a project can contain any number of databases.
+Couchbase provides a comprehensive backup solution, supporting both scheduled and on-demand backups to ensure robust disaster recovery for production data. In Couchbase Capella, you can perform scheduled and on-demand backups of columnar cloud snapshot data. On-demand backups are always full backups and start immediately upon request, ensuring you can capture the current state of your data whenever needed.
 
-## [](#tag/Projects/operation/postProject)Create Project 
+## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore/operation/createColumnarAnalyticsBackup)Create Cloud Snapshot Backup 
 
-Creates a new project under the organization.
+Creates a new backup for the specified Columnar Analytics Cluster.
 
-In order to access this endpoint, the provided API key must have at least one of the following roles:
+This operation captures the current state of the cluster, which can later be used for restore purposes.
 
-* Organization Owner
-* Project Creator
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
 
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### Request Body schema: application/json
-
-| namerequired | string <= 128 characters The name of the project (up to 128 characters).            |
-| ------------ | ----------------------------------------------------------------------------------- |
-| description  | string <= 256 characters A short description of the project (up to 256 characters). |
-
-### Responses
-
-**201** 
-
-Successfully created a project under the organization.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/projects
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "name": "My Project",
-* "description": "My awesome project"
-}`
-
-### Response samples 
-
-* 201
-* 400
-* 403
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000"
-}`
-
-## [](#tag/Projects/operation/listProjects)List Project 
-
-Lists all the projects under the organization.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
+To access this endpoint, the provided API key must include one of the following roles.
 
 * Organization Owner
 * Project Owner
 * Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
 
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -681,311 +1012,21 @@ _token_
 
 ##### path Parameters
 
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### query Parameters
-
-| page          | integer Sets the page you would like to view.                                                                                                                                                 |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                       |
-| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **name**. |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                              |
-
-### Responses
-
-**200** 
-
-Successfully listed all the projects under the organization.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects
-
-### Response samples 
-
-* 200
-* 400
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": [
-  * {
-    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "description": "The description of my awesome project",
-    * "name": "My-Awesome-Project",
-    * "audit": {
-      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2021-09-01T12:34:56Z",
-      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "modifiedAt": "2021-09-01T12:34:56Z",
-      * "version": 1  
-      }  
-  }  
-],
-* "cursor": {
-  * "pages": {
-    * "page": 2,
-    * "next": 3,
-    * "previous": 1,
-    * "last": 10,
-    * "perPage": 10,
-    * "totalItems": 10  
-  },
-  * "hrefs": {
-    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
-  }  
-}
-}`
-
-## [](#tag/Projects/operation/getProjectByID)Get Project 
-
-Fetches the details of the given project.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-
-### Responses
-
-**200** 
-
-Successfully fetched the project based on the projectId.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000",
-* "description": "The description of my awesome project",
-* "name": "My-Awesome-Project",
-* "audit": {
-  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "createdAt": "2021-09-01T12:34:56Z",
-  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "modifiedAt": "2021-09-01T12:34:56Z",
-  * "version": 1  
-}
-}`
-
-## [](#tag/Projects/operation/putProject)Update Project 
-
-Update project name and or project description.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-
-##### header Parameters
-
-| If-Match | string Example: 12A precondition header that specifies the entity tag of a resource. |
-| -------- | ------------------------------------------------------------------------------------ |
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
 
 ##### Request Body schema: application/json
 
-| namerequired | string <= 128 characters The new project name (up to 128 characters).        |
-| ------------ | ---------------------------------------------------------------------------- |
-| description  | string <= 256 characters The new project description (up to 256 characters). |
+| retention | integer Represents interval in hours to retain the backup. |
+| --------- | ---------------------------------------------------------- |
 
 ### Responses
 
-**204** 
+**202** 
 
-Successfully updated the project metadata.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-put/v4/organizations/{organizationId}/projects/{projectId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "name": "My-New-Project",
-* "description": "The extended description of my awesome project."
-}`
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 412
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/Projects/operation/deleteProjectByID)Delete Project 
-
-Deletes an existing project.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-
-### Responses
-
-**204** 
-
-Successfully deleted the project by its projectId.
+Successfully initiated the creation of a backup for the Columnar Analytics Cluster. The response contains the ID of the backup process.
 
 **403** 
 
@@ -1007,12 +1048,27 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-delete/v4/organizations/{organizationId}/projects/{projectId}
+post/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "retention": 168
+}`
 
 ### Response samples 
 
+* 202
 * 403
 * 404
 * 409
@@ -1026,757 +1082,24 @@ application/json
 Copy
 
 `{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+* "backupId": "ffffffff-aaaa-1414-eeee-000000000000"
 }`
 
-## [](#tag/Users)Users
+## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore/operation/listColumnarAnalyticsBackups)List Cloud Snapshot Backups 
 
-To access an organization, your Couchbase Capella user account must be added to it. Accounts are added to an organization using email invitations sent from Capella by a user with the Organization Owner organization role. All organization users are given one or more organization roles that define what they can view and manage in their organization.
+Retrieves a list of backups for the specified Columnar Analytics Cluster.
 
-## [](#tag/Users/operation/postUser)Create User 
+This list includes only the backups that are in progress, completed, or failed. It does not show backups that are queued but not yet initiated.
 
-Invites a new user under the organization.
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
 
-After making a REST API request, an invitation email is triggered and sent to the user. Upon receiving the invitation email, the user is required to click on a provided URL, which will redirect them to a page with a user interface (UI) where they can set their username and password.
-
-The modification of any personal information related to a user can only be performed by the user through the UI. Similarly, the user can solely conduct password updates through the UI.
-
-The "caller" possessing Organization Owner access rights retains the exclusive user creation capability. They hold the authority to assign roles at the organization and project levels.
-
-At present, our support is limited to the resourceType of "project" exclusively.
-
-In order to access this endpoint, the provided API key must have the following role:
-
-* Organization Owner
-
-To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### Request Body schema: application/json
-
-| name                      | string <= 128 characters The name of the user.                                                             |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| emailrequired             | string (Email) Email of the user.                                                                          |
-| organizationRolesrequired | Array of strings (OrganizationRoles) Items Enum: "organizationOwner" "organizationMember" "projectCreator" |
-| resources                 | Array of objects (Resource) Default: \[\]                                                                  |
-
-### Responses
-
-**201** 
-
-Successfully sent invite to the user.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/users
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Example
-
-CreateOrganizationMemberCreateOrganizationOwnerCreateOrganizationMember
-
-At present, our support is limited to the resourceType of "project" exclusively. Furthermore, the role designation is solely related to roles at the project level.
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "name": "John",
-* "email": "john.doe@example.com",
-* "organizationRoles": [
-  * "organizationMember"  
-],
-* "resources": [
-  * {
-    * "id": "550e8400-e29b-41d4-a716-446655440000",
-    * "type": "project",
-    * "roles": [
-      * "projectViewer"  
-      ]  
-  },
-  * {
-    * "id": "550e8400-e29b-41d4-a716-446655440000",
-    * "type": "project",
-    * "roles": [
-      * "projectDataReaderWriter"  
-      ]  
-  }  
-]
-}`
-
-### Response samples 
-
-* 201
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000"
-}`
-
-## [](#tag/Users/operation/listUsers)List Users 
-
-Lists all the users in the organization and filter on the basis of projectId.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Organization Member
-* Project Creator
-
-The results are always limited by the role and scope of the caller's privileges.
-
-When retrieving a list of users through a GET request, if a user holds the organization owner role, the response will exclude project-level permissions for those users. This is because organization owners have full access to all resources within the organization, making project-level permissions irrelevant for them.
-
-To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html) and [Project Roles](https://docs.couchbase.com/cloud/projects/project-roles.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### query Parameters
-
-| page          | integer Sets the page you would like to view.                                                                                                                                                                                      |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                            |
-| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **name**, **email**, **status**, **inactive**. |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                   |
-| projectId     | string <uuid\> Example: projectId=ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                 |
-
-### Responses
-
-**200** 
-
-Successfully listed all the user in the organization.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/users
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users
-
-### Response samples 
-
-* 200
-* 400
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Example
-
-ApiKeyIsOrgOwnerApiKeyIsProjectOwnerReturnedUserIsOrganizationOwnerApiKeyIsOrgOwner
-
-In the event that the API key holds "organizationOwner" access, information related to all projects within the organization will be returned.
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": [
-  * {
-    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "name": "John",
-    * "email": "john.doe@example.com",
-    * "status": "verified",
-    * "inactive": false,
-    * "organizationId": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "organizationRoles": [
-      * "organizationMember"  
-      ],
-    * "lastLogin": "2023-07-17T07:05:39.116Z",
-    * "region": "North America",
-    * "timeZone": "(UTC +5:30) India Standard Time",
-    * "enableNotifications": false,
-    * "expiresAt": "2023-07-17T07:05:39.116Z",
-    * "resources": [
-      * {
-        * "id": "f98e6c87-41e3-4faa-9df4-906e8d4f1aaf",
-        * "type": "project",
-        * "roles": [
-          * "projectViewer"  
-                    ]  
-            },
-      * {
-        * "id": "b7c745ac-9fb8-4b63-a0e4-51230097a169",
-        * "type": "project",
-        * "roles": [
-          * "projectDataReaderWriter"  
-                    ]  
-            },
-      * {
-        * "id": "28b67422-63d5-46b1-9234-8ad4a1d2f7be",
-        * "type": "project",
-        * "roles": [
-          * "projectDataReaderWriter"  
-                    ]  
-            },
-      * {
-        * "id": "e3942eaa-0f52-43da-963d-87a5b6cb3805",
-        * "type": "project",
-        * "roles": [
-          * "projectDataReaderWriter"  
-                    ]  
-            }  
-      ],
-    * "audit": {
-      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2021-09-01T12:34:56.000Z",
-      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "modifiedAt": "2021-09-01T12:34:56.000Z",
-      * "version": 1  
-      }  
-  }  
-],
-* "cursor": {
-  * "pages": {
-    * "page": 2,
-    * "next": 3,
-    * "previous": 1,
-    * "last": 10,
-    * "perPage": 10,
-    * "totalItems": 10  
-  },
-  * "hrefs": {
-    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
-  }  
-}
-}`
-
-## [](#tag/Users/operation/getUser)Get User 
-
-Fetches the details of the given user.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Organization Member
-* Project Creator
-
-The results are always limited by the role and scope of the caller's privileges.
-
-When performing a GET request for a user with an organization owner role, the response will exclude project-level permissions for that user. This is because organization owners have access to all resources at the organization level, rendering project-level permissions unnecessary for them.
-
-To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html) and [Project Roles](https://docs.couchbase.com/cloud/projects/project-roles.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
-| ---------------------- | --------------------------------------------------------------------------------------------------- |
-| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the control plane user. |
-
-### Responses
-
-**200** 
-
-Successfully fetched the user based on the userId.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/users/{userId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users/{userId}
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000",
-* "name": "alex",
-* "email": "john.doe@example.com",
-* "status": "not-verified",
-* "inactive": false,
-* "organizationId": "ffffffff-aaaa-1414-eeee-000000000000",
-* "organizationRoles": [
-  * "projectCreator"  
-],
-* "lastLogin": "2023-07-17T07:05:39.116124897Z",
-* "region": "North America",
-* "timeZone": "(UTC -9:00) Alaska Standard Time",
-* "enableNotifications": true,
-* "expiresAt": "2023-07-17T07:05:39.116124897Z",
-* "resources": [
-  * {
-    * "type": "project",
-    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "roles": [
-      * "projectManager"  
-      ]  
-  }  
-],
-* "audit": {
-  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "createdAt": "2021-09-01T12:34:56Z",
-  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "modifiedAt": "2021-09-01T12:34:56Z",
-  * "version": 1  
-}
-}`
-
-## [](#tag/Users/operation/patchUser)Update User 
-
-Updates organizationRole and resources of the user.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-
-An Organization Owner API key can be utilized to update organizational-level roles and project-level roles for all projects within the organization.
-
-The Project Owner API key allows for updating project-level roles, solely within the projects where the API key holds the Project Owner role.
-
-The modification of any personal information related to a user, such as password updates, can only be performed by the respective user through the user interface (UI).
-
-The results are always limited by the role and scope of the caller's privileges. To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html) and [Project Roles](https://docs.couchbase.com/cloud/projects/project-roles.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
-| ---------------------- | --------------------------------------------------------------------------------------------------- |
-| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the control plane user. |
-
-##### Request Body schema: application/json
-
- Array 
-
-| oprequired   | string Enum: "add" "remove" Type of operation.                                                                                                                            |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| pathrequired | string Path of resource that needs to be updated. Organization Roles: /organizationRoles Resources: /resources/{resourceId} Resource Roles: /resources/{resourceId}/roles |
-| value        | Array of OrganizationRoles (strings) or Array of ProjectRoles (strings) or Resource (object)                                                                              |
-
-### Responses
-
-**200** 
-
-Successfully updated the user metadata.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-patch/v4/organizations/{organizationId}/users/{userId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users/{userId}
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Example
-
-addOrganizationRoleremoveOrganizationRoleaddResourceremoveResourceRoleaddResourceRoleremoveResourceperformMultipleOperationsaddOrganizationRole
-
-Copy
-
- Expand all  Collapse all 
-
-`[
-* {
-  * "op": "add",
-  * "path": "/organizationRoles",
-  * "value": [
-    * "projectCreator"  
-  ]  
-}
-]`
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Example
-
-addOrganizationRoleremoveOrganizationRoleaddResourceremoveResourceRoleaddResourceRoleremoveResourceperformMultipleOperationaddOrganizationRole
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000",
-* "name": "Jane",
-* "email": "jane.doe@example.com",
-* "status": "verified",
-* "inactive": false,
-* "organizationId": "ffffffff-aaaa-1414-eeee-000000000000",
-* "organizationRoles": [
-  * "organizationMember",
-  * "projectCreator"  
-],
-* "lastLogin": "2023-07-17T07:05:39.116Z",
-* "region": "North America",
-* "timeZone": "(UTC +5:30) India Standard Time",
-* "enableNotifications": false,
-* "expiresAt": "2023-07-17T07:05:39.116Z",
-* "resources": [
-  * {
-    * "id": "b7c745ac-9fb8-4b63-a0e4-51230097a169",
-    * "type": "project",
-    * "roles": [
-      * "projectViewer"  
-      ]  
-  },
-  * {
-    * "id": "28b67422-63d5-46b1-9234-8ad4a1d2f7be",
-    * "type": "project",
-    * "roles": [
-      * "projectDataReaderWriter"  
-      ]  
-  }  
-],
-* "audit": {
-  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "createdAt": "2021-09-01T12:34:56.000Z",
-  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "modifiedAt": "2021-09-01T12:34:56.000Z",
-  * "version": 2  
-}
-}`
-
-## [](#tag/Users/operation/deleteUser)Delete User 
-
-Removes user from the organization.
-
-In order to access this endpoint, the provided API key must have the following role:
-
-* Organization Owner
-
-To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
-| ---------------------- | --------------------------------------------------------------------------------------------------- |
-| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the control plane user. |
-
-### Responses
-
-**204** 
-
-Successfully removed the user from the organization.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-delete/v4/organizations/{organizationId}/users/{userId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users/{userId}
-
-### Response samples 
-
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/Allowed-CIDRs-%28Analytics-Cluster%29)Allowed CIDRs (Analytics Cluster)
-
-Columnar analytics clusters only allow connections from trusted IP addresses. Each analytics cluster has a configurable Allowed IP list that can include up to 75 entries. Each entry can be a single IP address or an IP address space. Any IP address you add to this list can have a user-specified expiration time for temporary access, or be permanent. Capella automatically denies any connection attempts to and from an IP not in the allowed IP list.
-
-## [](#tag/Allowed-CIDRs-%28Analytics-Cluster%29/operation/postColumnarAllowedCidr)Create Allowed CIDR 
-
-Adds a trusted CIDR to an clusters's list of allowed CIDRs.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
+To access this endpoint, the provided API key must include one of the following roles.
 
 * Organization Owner
 * Project Owner
 * Project Manager
 
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-Note that updating this resource is not supported; you must delete and recreate allowed CIDRs instead. As a result, ETags are also not supported for this resource.
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
-| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
-
-##### Request Body schema: application/json
-
-| cidrrequired | string The trusted CIDR to allow the database connections from. The example represents a single IP address (i.e. a subnet mask of 32).                                                           |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| comment      | string A short description of the allowed CIDR.                                                                                                                                                  |
-| expiresAt    | string <date-time\> An RFC3339 timestamp determining when the allowed CIDR should expire. If this field is empty/omitted then the allowed CIDR is permanent and will never automatically expire. |
-
-### Responses
-
-**201** 
-
-Successfully added an allowed CIDR for the columnar cluster.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**401** 
-
-The client does not have the valid credentials to access this resource.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "cidr": "6.60.28.100/32",
-* "comment": "Allows access from my local developer machine",
-* "expiresAt": "2023-05-14T21:49:58.465Z"
-}`
-
-### Response samples 
-
-* 201
-* 400
-* 401
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000"
-}`
-
-## [](#tag/Allowed-CIDRs-%28Analytics-Cluster%29/operation/listColumnarAllowedCidrs)List Allowed CIDRs 
-
-Lists all of the allowed CIDRs for a given cluster.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -1791,318 +1114,17 @@ _token_
 
 ##### query Parameters
 
-| page          | integer Sets the page you would like to view.                                                                                                                                                            |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                  |
-| sortBy        | Array of strings Example: sortBy=id Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **type**, **status**. |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                         |
+| page          | integer Sets the page you would like to view.                                                                                                                                                                                                               |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                                                     |
+| sortBy        | Array of strings Example: sortBy=createdAtSets the order in which you would like to sort the results and the key you would like to sort by. Valid fields to sort the results are: **id**, **createdAt**, **expiration**, **retention**, **size**, **type**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                                            |
 
 ### Responses
 
 **200** 
 
-Successfully listed all allowed CIDRs for the analytics cluster.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**401** 
-
-The client does not have the valid credentials to access this resource.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs
-
-### Response samples 
-
-* 200
-* 400
-* 401
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": [
-  * {
-    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "cidr": "1.23.45.67/32",
-    * "comment": "Allows access from my local developer machine",
-    * "expiresAt": "2023-05-14T21:49:58.465Z",
-    * "status": "active",
-    * "type": "temporary",
-    * "audit": {
-      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2021-09-01T12:34:56Z",
-      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "modifiedAt": "2021-09-01T12:34:56Z",
-      * "version": 1  
-      }  
-  }  
-],
-* "cursor": {
-  * "pages": {
-    * "page": 2,
-    * "next": 3,
-    * "previous": 1,
-    * "last": 10,
-    * "perPage": 10,
-    * "totalItems": 10  
-  },
-  * "hrefs": {
-    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
-  }  
-}
-}`
-
-## [](#tag/Allowed-CIDRs-%28Analytics-Cluster%29/operation/getColumnarAllowedCidrByID)Get Allowed CIDR 
-
-Fetches the details for the specified allowed CIDR.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
-| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
-| allowedCidrIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the allowed CIDR.      |
-
-### Responses
-
-**200** 
-
-Successfully fetched the allowed CIDR details.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**401** 
-
-The client does not have the valid credentials to access this resource.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs/{allowedCidrId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs/{allowedCidrId}
-
-### Response samples 
-
-* 200
-* 400
-* 401
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000",
-* "cidr": "1.23.45.67/32",
-* "comment": "Allows access from my local developer machine",
-* "expiresAt": "2023-05-14T21:49:58.465Z",
-* "status": "active",
-* "type": "temporary",
-* "audit": {
-  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "createdAt": "2021-09-01T12:34:56Z",
-  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "modifiedAt": "2021-09-01T12:34:56Z",
-  * "version": 1  
-}
-}`
-
-## [](#tag/Allowed-CIDRs-%28Analytics-Cluster%29/operation/deleteColumnarAllowedCidrByID)Delete Allowed CIDR 
-
-Deletes the existing allowed CIDR.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
-| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
-| allowedCidrIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the allowed CIDR.      |
-
-### Responses
-
-**204** 
-
-Successfully deleted the allowed CIDR by its ID.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**401** 
-
-The client does not have the valid credentials to access this resource.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs/{allowedCidrId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/allowedcidrs/{allowedCidrId}
-
-### Response samples 
-
-* 400
-* 401
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/Organizations)Organizations
-
-Couchbase Capella uses an ordered hierarchy to help you keep all of your data organized and securely accessible. The entity at the top of the hierarchy is called an organization. Everything you do in Capella, whether it's creating a cluster or managing billing, happens within the scope of an organization.
-
-## [](#tag/Organizations/operation/getOrganizationByID)Get Organization 
-
-Fetches the details of an organization by ID.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Creator
-* Organization Member
-
-To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-### Responses
-
-**200** 
-
-Successfully returned the organization details.
+Successfully retrieved the list of backups for the Columnar Analytics Cluster. The response contains a paginated list of backup details in JSON format.
 
 **403** 
 
@@ -2120,196 +1142,9 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-get/v4/organizations/{organizationId}
+get/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000",
-* "name": "My-Organization",
-* "subdomain": "abc",
-* "description": "The description of the organization.",
-* "preferences": {
-  * "sessionDuration": 3600  
-},
-* "audit": {
-  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "createdAt": "2021-09-01T12:34:56Z",
-  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "modifiedAt": "2021-09-01T12:34:56Z",
-  * "version": 1  
-}
-}`
-
-## [](#tag/Organizations/operation/putOrganizationConfiguration)Update Organization Configuration 
-
-Updates an existing organization configuration. Use this endpoint to add, update, and delete network subdomains.
-
-Subdomains:
-
-* Can have a maximum of 30 alphanumeric characters.
-* Must be a unique string and not already in use in another tenant or organization. Empty strings are allowed.
-* Only affect new clusters. You cannot update existing clusters to include a new subdomain.
-* Currently only supported for AWS clusters.
-
-In order to access this endpoint, the provided API key must have the following role:
-
-* Organization Owner
-
-Subdomains are not automatically available. You must contact Couchbase support to enable this feature.
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### header Parameters
-
-| If-Match | string Example: 12A precondition header that specifies the entity tag of a resource. |
-| -------- | ------------------------------------------------------------------------------------ |
-
-##### Request Body schema: application/json
-
-| subdomainrequired | string <= 30 characters The new name of the subdomain for the organization. |
-| ----------------- | --------------------------------------------------------------------------- |
-
-### Responses
-
-**204** 
-
-Successfully updated the organization configuration.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-put/v4/organizations/{organizationId}/configuration
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/configuration
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Example
-
-UpdateSubdomainDeleteSubdomainUpdateSubdomain
-
-Copy
-
-`{
-* "subdomain": "abc"
-}`
-
-### Response samples 
-
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/Organizations/operation/listOrganizations)List Organizations 
-
-Returns a list of all organizations the user has access to.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Creator
-* Organization Member
-
-To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
-
-##### Authorizations:
-
-_token_
-
-### Responses
-
-**200** 
-
-Successfully listed all the organizations.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations
-
-https://cloudapi.cloud.couchbase.com/v4/organizations
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups
 
 ### Response samples 
 
@@ -2330,22 +1165,644 @@ Copy
 `{
 * "data": [
   * {
-    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "name": "My-Organization",
-    * "subdomain": "abc",
-    * "description": "The description of the organization.",
-    * "preferences": {
-      * "sessionDuration": 3600  
+    * "createdAt": "2019-08-24T14:15:22Z",
+    * "databaseSize": 0,
+    * "type": "string",
+    * "retention": 0,
+    * "expiration": "2019-08-24T14:15:22Z",
+    * "progress": {
+      * "status": "string",
+      * "time": "2019-08-24T14:15:22Z"  
       },
-    * "audit": {
-      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2021-09-01T12:34:56Z",
-      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "modifiedAt": "2021-09-01T12:34:56Z",
-      * "version": 1  
-      }  
+    * "region": "string",
+    * "id": "string"  
   }  
-]
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore/operation/updateColumnarAnalyticsBackupRetention)Update Backup Retention 
+
+Updates the retention period for a specific backup in your analytics cluster.
+
+The retention period determines how long a backup is stored before it is automatically deleted. Adjust this setting to extend or shorten the duration based on your retention policy.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+| backupIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the backup.            |
+
+##### Request Body schema: application/json
+
+| retentionrequired | integer Represents interval in hours to retain the backup. |
+| ----------------- | ---------------------------------------------------------- |
+
+### Responses
+
+**204** 
+
+The backup retention time was successfully updated. No content is returned in the response.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "retention": 720
+}`
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore/operation/deleteColumnarAnalyticsBackup)Delete Backup 
+
+Permanently deletes a specific backup from the analytics cluster.
+
+This action cannot be undone. Ensure that the backup is no longer needed before deletion, as it will remove all data associated with it.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+| backupIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the backup.            |
+
+### Responses
+
+**202** 
+
+The backup deletion request was successfully received and is being processed.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore/operation/restoreColumnarAnalyticsCluster)Restore Backup 
+
+Initiates an immediate restore job from a specified backup for the Columnar Analytics Cluster.
+
+This operation allows you to restore data from an existing backup to the current state of the cluster.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+| backupIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the backup.            |
+
+### Responses
+
+**202** 
+
+Successfully initiated a restore job for the Columnar Analytics Cluster. The response includes the ID of the restore operation.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}/restore
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}/restore
+
+### Response samples 
+
+* 202
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "restoreId": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore/operation/listColumnarAnalyticsRestores)List Cloud Snapshot Restores 
+
+Retrieves a list of restore operations that have been performed for the specified Columnar Analytics Cluster.
+
+This allows you to track completed, ongoing, or failed restore jobs for your cluster.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                           |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                 |
+| sortBy        | Array of strings Example: sortBy=createdAtSets the order in which you would like to sort the results and the key you would like to sort by. Valid fields to sort the results are: **id**, **createdAt** |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                        |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the list of restore operations for the Columnar Analytics Cluster. The response contains a paginated list of restore job details in JSON format.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/restores
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/restores
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "string",
+    * "createdAt": "2019-08-24T14:15:22Z",
+    * "status": "string",
+    * "restoreEnd": "2019-08-24T14:15:22Z",
+    * "restoreTo": "string",
+    * "snapshot": "2019-08-24T14:15:22Z"  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-Schedule)Columnar Analytics Cloud Snapshot Backups Schedule
+
+Couchbase provides automatic backup scheduling as part of its disaster recovery strategy at the cluster level. In Couchbase Capella, once a backup schedule is set, the system automatically backs up the entire cluster based on the defined schedule, ensuring that all data within the cluster is protected according to your retention policies.
+
+## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-Schedule/operation/upsertColumnarAnalyticsBackupSchedule)Upsert Backup Schedule 
+
+Creates or updates the backup schedule for the specified Columnar Analytics Cluster.
+
+This operation allows you to configure or modify the timing and frequency of backups. It ensures that the cluster's backup process follows the defined schedule.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information on access roles, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### Request Body schema: application/json
+
+| intervalrequired  | integer Represents the time interval in hours.                    |
+| ----------------- | ----------------------------------------------------------------- |
+| retentionrequired | integer Represents the retention time of the backup in hours.     |
+| startTimerequired | string <date-time\> Represents the start time in ISO 8601 format. |
+
+### Responses
+
+**204** 
+
+The backup schedule was successfully created or updated. No content will be returned in the response.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "interval": 4,
+* "retention": 24,
+* "startTime": "2024-07-08T17:00:00+00:00"
+}`
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-Schedule/operation/getColumnarAnalyticsBackupSchedule)Get Backup Schedule 
+
+Retrieves the current backup schedule for the specified Columnar Analytics Cluster.
+
+This operation provides the details of the backup schedule, including timing and frequency, so you can view and verify when backups are set to occur.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information on access roles, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**200** 
+
+The backup schedule was successfully retrieved, and the response contains the details of the schedule in JSON format.
+
+**204** 
+
+The backup schedule was not found for the specified Columnar Analytics Cluster. No content will be returned in the response.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "interval": 4,
+* "retention": 24,
+* "startTime": "2024-07-08T17:00:00+00:00"
+}`
+
+## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-Schedule/operation/deleteColumnarAnalyticsBackupSchedule)Delete Backup Schedule 
+
+Deletes the existing backup schedule for the specified Columnar Analytics Cluster.
+
+This action permanently removes the scheduled backups, so no future backups will be initiated unless a new schedule is created.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager  
+For more information on access roles, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**204** 
+
+The backup schedule was successfully deleted. No content will be returned in the response.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
+
+### Response samples 
+
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
 ## [](#tag/Columnar-Analytics-Clusters)Columnar Analytics Clusters
@@ -2394,6 +1851,10 @@ Successfully created an analytics cluster
 **401** 
 
 The client does not have the valid credentials to access this resource.
+
+**402** 
+
+The request is unavailable unavailable for trial accounts.
 
 **403** 
 
@@ -2454,6 +1915,7 @@ Copy
 
 * 202
 * 401
+* 402
 * 403
 * 404
 * 422
@@ -3712,825 +3174,6 @@ Copy
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
-## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore)Columnar Analytics Cloud Snapshot Backups & Restore
-
-Couchbase provides a comprehensive backup solution, supporting both scheduled and on-demand backups to ensure robust disaster recovery for production data. In Couchbase Capella, you can perform scheduled and on-demand backups of columnar cloud snapshot data. On-demand backups are always full backups and start immediately upon request, ensuring you can capture the current state of your data whenever needed.
-
-## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore/operation/createColumnarAnalyticsBackup)Create Cloud Snapshot Backup 
-
-Creates a new backup for the specified Columnar Analytics Cluster.
-
-This operation captures the current state of the cluster, which can later be used for restore purposes.
-
-For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
-
-To access this endpoint, the provided API key must include one of the following roles.
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
-| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
-
-##### Request Body schema: application/json
-
-| retention | integer Represents interval in hours to retain the backup. |
-| --------- | ---------------------------------------------------------- |
-
-### Responses
-
-**202** 
-
-Successfully initiated the creation of a backup for the Columnar Analytics Cluster. The response contains the ID of the backup process.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "retention": 168
-}`
-
-### Response samples 
-
-* 202
-* 403
-* 404
-* 409
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "backupId": "ffffffff-aaaa-1414-eeee-000000000000"
-}`
-
-## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore/operation/listColumnarAnalyticsBackups)List Cloud Snapshot Backups 
-
-Retrieves a list of backups for the specified Columnar Analytics Cluster.
-
-This list includes only the backups that are in progress, completed, or failed. It does not show backups that are queued but not yet initiated.
-
-For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
-
-To access this endpoint, the provided API key must include one of the following roles.
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
-| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
-
-##### query Parameters
-
-| page          | integer Sets the page you would like to view.                                                                                                                                                                                                               |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                                                     |
-| sortBy        | Array of strings Example: sortBy=createdAtSets the order in which you would like to sort the results and the key you would like to sort by. Valid fields to sort the results are: **id**, **createdAt**, **expiration**, **retention**, **size**, **type**. |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                                            |
-
-### Responses
-
-**200** 
-
-Successfully retrieved the list of backups for the Columnar Analytics Cluster. The response contains a paginated list of backup details in JSON format.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": [
-  * {
-    * "createdAt": "2019-08-24T14:15:22Z",
-    * "databaseSize": 0,
-    * "type": "string",
-    * "retention": 0,
-    * "expiration": "2019-08-24T14:15:22Z",
-    * "progress": {
-      * "status": "string",
-      * "time": "2019-08-24T14:15:22Z"  
-      },
-    * "region": "string",
-    * "id": "string"  
-  }  
-],
-* "cursor": {
-  * "pages": {
-    * "page": 2,
-    * "next": 3,
-    * "previous": 1,
-    * "last": 10,
-    * "perPage": 10,
-    * "totalItems": 10  
-  },
-  * "hrefs": {
-    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
-  }  
-}
-}`
-
-## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore/operation/updateColumnarAnalyticsBackupRetention)Update Backup Retention 
-
-Updates the retention period for a specific backup in your analytics cluster.
-
-The retention period determines how long a backup is stored before it is automatically deleted. Adjust this setting to extend or shorten the duration based on your retention policy.
-
-For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
-
-To access this endpoint, the provided API key must include one of the following roles.
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
-| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
-| backupIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the backup.            |
-
-##### Request Body schema: application/json
-
-| retentionrequired | integer Represents interval in hours to retain the backup. |
-| ----------------- | ---------------------------------------------------------- |
-
-### Responses
-
-**204** 
-
-The backup retention time was successfully updated. No content is returned in the response.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-put/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "retention": 720
-}`
-
-### Response samples 
-
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore/operation/deleteColumnarAnalyticsBackup)Delete Backup 
-
-Permanently deletes a specific backup from the analytics cluster.
-
-This action cannot be undone. Ensure that the backup is no longer needed before deletion, as it will remove all data associated with it.
-
-For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
-
-To access this endpoint, the provided API key must include one of the following roles.
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
-| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
-| backupIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the backup.            |
-
-### Responses
-
-**202** 
-
-The backup deletion request was successfully received and is being processed.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}
-
-### Response samples 
-
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore/operation/restoreColumnarAnalyticsCluster)Restore Backup 
-
-Initiates an immediate restore job from a specified backup for the Columnar Analytics Cluster.
-
-This operation allows you to restore data from an existing backup to the current state of the cluster.
-
-For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
-
-To access this endpoint, the provided API key must include one of the following roles.
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
-| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
-| backupIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the backup.            |
-
-### Responses
-
-**202** 
-
-Successfully initiated a restore job for the Columnar Analytics Cluster. The response includes the ID of the restore operation.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}/restore
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}/restore
-
-### Response samples 
-
-* 202
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "restoreId": "ffffffff-aaaa-1414-eeee-000000000000"
-}`
-
-## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-and-Restore/operation/listColumnarAnalyticsRestores)List Cloud Snapshot Restores 
-
-Retrieves a list of restore operations that have been performed for the specified Columnar Analytics Cluster.
-
-This allows you to track completed, ongoing, or failed restore jobs for your cluster.
-
-For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
-
-To access this endpoint, the provided API key must include one of the following roles.
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
-| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
-
-##### query Parameters
-
-| page          | integer Sets the page you would like to view.                                                                                                                                                           |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                 |
-| sortBy        | Array of strings Example: sortBy=createdAtSets the order in which you would like to sort the results and the key you would like to sort by. Valid fields to sort the results are: **id**, **createdAt** |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                        |
-
-### Responses
-
-**200** 
-
-Successfully retrieved the list of restore operations for the Columnar Analytics Cluster. The response contains a paginated list of restore job details in JSON format.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/restores
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackups/restores
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": [
-  * {
-    * "id": "string",
-    * "createdAt": "2019-08-24T14:15:22Z",
-    * "status": "string",
-    * "restoreEnd": "2019-08-24T14:15:22Z",
-    * "restoreTo": "string",
-    * "snapshot": "2019-08-24T14:15:22Z"  
-  }  
-],
-* "cursor": {
-  * "pages": {
-    * "page": 2,
-    * "next": 3,
-    * "previous": 1,
-    * "last": 10,
-    * "perPage": 10,
-    * "totalItems": 10  
-  },
-  * "hrefs": {
-    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
-  }  
-}
-}`
-
-## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-Schedule)Columnar Analytics Cloud Snapshot Backups Schedule
-
-Couchbase provides automatic backup scheduling as part of its disaster recovery strategy at the cluster level. In Couchbase Capella, once a backup schedule is set, the system automatically backs up the entire cluster based on the defined schedule, ensuring that all data within the cluster is protected according to your retention policies.
-
-## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-Schedule/operation/upsertColumnarAnalyticsBackupSchedule)Upsert Backup Schedule 
-
-Creates or updates the backup schedule for the specified Columnar Analytics Cluster.
-
-This operation allows you to configure or modify the timing and frequency of backups. It ensures that the cluster's backup process follows the defined schedule.
-
-For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
-
-To access this endpoint, the provided API key must include one of the following roles.
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-For more information on access roles, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
-| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
-
-##### Request Body schema: application/json
-
-| intervalrequired  | integer Represents the time interval in hours.                    |
-| ----------------- | ----------------------------------------------------------------- |
-| retentionrequired | integer Represents the retention time of the backup in hours.     |
-| startTimerequired | string <date-time\> Represents the start time in ISO 8601 format. |
-
-### Responses
-
-**204** 
-
-The backup schedule was successfully created or updated. No content will be returned in the response.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-put/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "interval": 4,
-* "retention": 24,
-* "startTime": "2024-07-08T17:00:00+00:00"
-}`
-
-### Response samples 
-
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-Schedule/operation/getColumnarAnalyticsBackupSchedule)Get Backup Schedule 
-
-Retrieves the current backup schedule for the specified Columnar Analytics Cluster.
-
-This operation provides the details of the backup schedule, including timing and frequency, so you can view and verify when backups are set to occur.
-
-For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
-
-To access this endpoint, the provided API key must include one of the following roles.
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-For more information on access roles, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
-| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
-
-### Responses
-
-**200** 
-
-The backup schedule was successfully retrieved, and the response contains the details of the schedule in JSON format.
-
-**204** 
-
-The backup schedule was not found for the specified Columnar Analytics Cluster. No content will be returned in the response.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "interval": 4,
-* "retention": 24,
-* "startTime": "2024-07-08T17:00:00+00:00"
-}`
-
-## [](#tag/Columnar-Analytics-Cloud-Snapshot-Backups-Schedule/operation/deleteColumnarAnalyticsBackupSchedule)Delete Backup Schedule 
-
-Deletes the existing backup schedule for the specified Columnar Analytics Cluster.
-
-This action permanently removes the scheduled backups, so no future backups will be initiated unless a new schedule is created.
-
-For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
-
-To access this endpoint, the provided API key must include one of the following roles.
-
-* Organization Owner
-* Project Owner
-* Project Manager  
-For more information on access roles, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
-| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
-
-### Responses
-
-**204** 
-
-The backup schedule was successfully deleted. No content will be returned in the response.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/analyticsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
-
-### Response samples 
-
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
 ## [](#tag/Columnar-Analytics-Private-Endpoint-Service)Columnar Analytics Private Endpoint Service
 
 Access your Analytics cluster from your cloud provider's private network. Supporting infrastructure is deployed and it may take a few minutes for private endpoints to be available. After it's enabled, you can create private endpoint in your network. You can do this using the cloud provider's CLI. For an example, use the POST privateEndpointService/endpointCommand endpoint to get the command.
@@ -5142,4 +3785,1366 @@ Copy
 * "code": 1000,
 * "message": "The request was malformed or invalid.",
 * "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Organizations)Organizations
+
+Couchbase Capella uses an ordered hierarchy to help you keep all of your data organized and securely accessible. The entity at the top of the hierarchy is called an organization. Everything you do in Capella, whether it's creating a cluster or managing billing, happens within the scope of an organization.
+
+## [](#tag/Organizations/operation/getOrganizationByID)Get Organization 
+
+Fetches the details of an organization by ID.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Organization Member
+
+To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**200** 
+
+Successfully returned the organization details.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "name": "My-Organization",
+* "subdomain": "abc",
+* "description": "The description of the organization.",
+* "preferences": {
+  * "sessionDuration": 3600  
+},
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56Z",
+  * "version": 1  
+}
+}`
+
+## [](#tag/Organizations/operation/putOrganizationConfiguration)Update Organization Configuration 
+
+Updates an existing organization configuration. Use this endpoint to add, update, and delete network subdomains.
+
+Subdomains are not automatically available. You must contact Couchbase support to enable this feature. To open a Support ticket, see [Create a Support Ticket](https://docs.couchbase.com/cloud/support/manage-support.html#create-support-ticket).
+
+Subdomains:
+
+* Can have a maximum of 30 alphanumeric characters.
+* Must be a unique string and not already in use in another tenant or organization. Empty strings are allowed.
+* Only affect new clusters. You cannot update existing clusters to include a new subdomain.
+
+In order to access this endpoint, the provided API key must have the following role:
+
+* Organization Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### header Parameters
+
+| If-Match | string Example: 12A precondition header that specifies the entity tag of a resource. |
+| -------- | ------------------------------------------------------------------------------------ |
+
+##### Request Body schema: application/json
+
+| subdomainrequired | string <= 30 characters The new name of the subdomain for the organization. |
+| ----------------- | --------------------------------------------------------------------------- |
+
+### Responses
+
+**204** 
+
+Successfully updated the organization configuration.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/configuration
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/configuration
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Example
+
+UpdateSubdomainDeleteSubdomainUpdateSubdomain
+
+Copy
+
+`{
+* "subdomain": "abc"
+}`
+
+### Response samples 
+
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Organizations/operation/listOrganizations)List Organizations 
+
+Returns a list of all organizations the user has access to.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Organization Member
+
+To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
+
+##### Authorizations:
+
+_token_
+
+### Responses
+
+**200** 
+
+Successfully listed all the organizations.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations
+
+https://cloudapi.cloud.couchbase.com/v4/organizations
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "name": "My-Organization",
+    * "subdomain": "abc",
+    * "description": "The description of the organization.",
+    * "preferences": {
+      * "sessionDuration": 3600  
+      },
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2021-09-01T12:34:56Z",
+      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "modifiedAt": "2021-09-01T12:34:56Z",
+      * "version": 1  
+      }  
+  }  
+]
+}`
+
+## [](#tag/Projects)Projects
+
+Projects contain and allow access to Couchbase databases. Projects are used to organize and manage groups of Couchbase databases within organizations. An organization can contain any number of projects, and a project can contain any number of databases.
+
+## [](#tag/Projects/operation/postProject)Create Project 
+
+Creates a new project under the organization.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### Request Body schema: application/json
+
+| namerequired | string <= 128 characters The name of the project (up to 128 characters).            |
+| ------------ | ----------------------------------------------------------------------------------- |
+| description  | string <= 256 characters A short description of the project (up to 256 characters). |
+
+### Responses
+
+**201** 
+
+Successfully created a project under the organization.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "name": "My Project",
+* "description": "My awesome project"
+}`
+
+### Response samples 
+
+* 201
+* 400
+* 403
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/Projects/operation/listProjects)List Project 
+
+Lists all the projects under the organization.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                 |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                       |
+| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **name**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                              |
+
+### Responses
+
+**200** 
+
+Successfully listed all the projects under the organization.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "description": "The description of my awesome project",
+    * "name": "My-Awesome-Project",
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2021-09-01T12:34:56Z",
+      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "modifiedAt": "2021-09-01T12:34:56Z",
+      * "version": 1  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/Projects/operation/getProjectByID)Get Project 
+
+Fetches the details of the given project.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+
+### Responses
+
+**200** 
+
+Successfully fetched the project based on the projectId.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "description": "The description of my awesome project",
+* "name": "My-Awesome-Project",
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56Z",
+  * "version": 1  
+}
+}`
+
+## [](#tag/Projects/operation/putProject)Update Project 
+
+Update project name and or project description.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+
+##### header Parameters
+
+| If-Match | string Example: 12A precondition header that specifies the entity tag of a resource. |
+| -------- | ------------------------------------------------------------------------------------ |
+
+##### Request Body schema: application/json
+
+| namerequired | string <= 128 characters The new project name (up to 128 characters).        |
+| ------------ | ---------------------------------------------------------------------------- |
+| description  | string <= 256 characters The new project description (up to 256 characters). |
+
+### Responses
+
+**204** 
+
+Successfully updated the project metadata.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "name": "My-New-Project",
+* "description": "The extended description of my awesome project."
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 412
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Projects/operation/deleteProjectByID)Delete Project 
+
+Deletes an existing project.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+
+### Responses
+
+**204** 
+
+Successfully deleted the project by its projectId.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Users)Users
+
+To access an organization, your Couchbase Capella user account must be added to it. Accounts are added to an organization using email invitations sent from Capella by a user with the Organization Owner organization role. All organization users are given one or more organization roles that define what they can view and manage in their organization.
+
+## [](#tag/Users/operation/postUser)Create User 
+
+Invites a new user under the organization.
+
+After making a REST API request, an invitation email is triggered and sent to the user. Upon receiving the invitation email, the user is required to click on a provided URL, which will redirect them to a page with a user interface (UI) where they can set their username and password.
+
+The modification of any personal information related to a user can only be performed by the user through the UI. Similarly, the user can solely conduct password updates through the UI.
+
+The "caller" possessing Organization Owner access rights retains the exclusive user creation capability. They hold the authority to assign roles at the organization and project levels.
+
+At present, our support is limited to the resourceType of "project" exclusively.
+
+In order to access this endpoint, the provided API key must have the following role:
+
+* Organization Owner
+
+To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### Request Body schema: application/json
+
+| name                      | string <= 128 characters The name of the user.                                                             |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| emailrequired             | string (Email) Email of the user.                                                                          |
+| organizationRolesrequired | Array of strings (OrganizationRoles) Items Enum: "organizationOwner" "organizationMember" "projectCreator" |
+| resources                 | Array of objects (Resource) Default: \[\]                                                                  |
+
+### Responses
+
+**201** 
+
+Successfully sent invite to the user.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/users
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Example
+
+CreateOrganizationMemberCreateOrganizationOwnerCreateOrganizationMember
+
+At present, our support is limited to the resourceType of "project" exclusively. Furthermore, the role designation is solely related to roles at the project level.
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "John",
+* "email": "john.doe@example.com",
+* "organizationRoles": [
+  * "organizationMember"  
+],
+* "resources": [
+  * {
+    * "id": "550e8400-e29b-41d4-a716-446655440000",
+    * "type": "project",
+    * "roles": [
+      * "projectViewer"  
+      ]  
+  },
+  * {
+    * "id": "550e8400-e29b-41d4-a716-446655440000",
+    * "type": "project",
+    * "roles": [
+      * "projectDataReaderWriter"  
+      ]  
+  }  
+]
+}`
+
+### Response samples 
+
+* 201
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/Users/operation/listUsers)List Users 
+
+Lists all the users in the organization and filter on the basis of projectId.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Organization Member
+* Project Creator
+
+The results are always limited by the role and scope of the caller's privileges.
+
+When retrieving a list of users through a GET request, if a user holds the organization owner role, the response will exclude project-level permissions for those users. This is because organization owners have full access to all resources within the organization, making project-level permissions irrelevant for them.
+
+To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html) and [Project Roles](https://docs.couchbase.com/cloud/projects/project-roles.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                                                      |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                            |
+| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **name**, **email**, **status**, **inactive**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                   |
+| projectId     | string <uuid\> Example: projectId=ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                 |
+
+### Responses
+
+**200** 
+
+Successfully listed all the user in the organization.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/users
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Example
+
+ApiKeyIsOrgOwnerApiKeyIsProjectOwnerReturnedUserIsOrganizationOwnerApiKeyIsOrgOwner
+
+In the event that the API key holds "organizationOwner" access, information related to all projects within the organization will be returned.
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "name": "John",
+    * "email": "john.doe@example.com",
+    * "status": "verified",
+    * "inactive": false,
+    * "organizationId": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "organizationRoles": [
+      * "organizationMember"  
+      ],
+    * "lastLogin": "2023-07-17T07:05:39.116Z",
+    * "region": "North America",
+    * "timeZone": "(UTC +5:30) India Standard Time",
+    * "enableNotifications": false,
+    * "expiresAt": "2023-07-17T07:05:39.116Z",
+    * "resources": [
+      * {
+        * "id": "f98e6c87-41e3-4faa-9df4-906e8d4f1aaf",
+        * "type": "project",
+        * "roles": [
+          * "projectViewer"  
+                    ]  
+            },
+      * {
+        * "id": "b7c745ac-9fb8-4b63-a0e4-51230097a169",
+        * "type": "project",
+        * "roles": [
+          * "projectDataReaderWriter"  
+                    ]  
+            },
+      * {
+        * "id": "28b67422-63d5-46b1-9234-8ad4a1d2f7be",
+        * "type": "project",
+        * "roles": [
+          * "projectDataReaderWriter"  
+                    ]  
+            },
+      * {
+        * "id": "e3942eaa-0f52-43da-963d-87a5b6cb3805",
+        * "type": "project",
+        * "roles": [
+          * "projectDataReaderWriter"  
+                    ]  
+            }  
+      ],
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2021-09-01T12:34:56.000Z",
+      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "modifiedAt": "2021-09-01T12:34:56.000Z",
+      * "version": 1  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/Users/operation/getUser)Get User 
+
+Fetches the details of the given user.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Organization Member
+* Project Creator
+
+The results are always limited by the role and scope of the caller's privileges.
+
+When performing a GET request for a user with an organization owner role, the response will exclude project-level permissions for that user. This is because organization owners have access to all resources at the organization level, rendering project-level permissions unnecessary for them.
+
+To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html) and [Project Roles](https://docs.couchbase.com/cloud/projects/project-roles.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the control plane user. |
+
+### Responses
+
+**200** 
+
+Successfully fetched the user based on the userId.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/users/{userId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users/{userId}
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "name": "alex",
+* "email": "john.doe@example.com",
+* "status": "not-verified",
+* "inactive": false,
+* "organizationId": "ffffffff-aaaa-1414-eeee-000000000000",
+* "organizationRoles": [
+  * "projectCreator"  
+],
+* "lastLogin": "2023-07-17T07:05:39.116124897Z",
+* "region": "North America",
+* "timeZone": "(UTC -9:00) Alaska Standard Time",
+* "enableNotifications": true,
+* "expiresAt": "2023-07-17T07:05:39.116124897Z",
+* "resources": [
+  * {
+    * "type": "project",
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "roles": [
+      * "projectManager"  
+      ]  
+  }  
+],
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56Z",
+  * "version": 1  
+}
+}`
+
+## [](#tag/Users/operation/patchUser)Update User 
+
+Updates organizationRole and resources of the user.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+
+An Organization Owner API key can be utilized to update organizational-level roles and project-level roles for all projects within the organization.
+
+The Project Owner API key allows for updating project-level roles, solely within the projects where the API key holds the Project Owner role.
+
+The modification of any personal information related to a user, such as password updates, can only be performed by the respective user through the user interface (UI).
+
+The results are always limited by the role and scope of the caller's privileges. To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html) and [Project Roles](https://docs.couchbase.com/cloud/projects/project-roles.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the control plane user. |
+
+##### Request Body schema: application/json
+
+ Array 
+
+| oprequired   | string Enum: "add" "remove" Type of operation.                                                                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| pathrequired | string Path of resource that needs to be updated. Organization Roles: /organizationRoles Resources: /resources/{resourceId} Resource Roles: /resources/{resourceId}/roles |
+| value        | Array of OrganizationRoles (strings) or Array of ProjectRoles (strings) or Resource (object)                                                                              |
+
+### Responses
+
+**200** 
+
+Successfully updated the user metadata.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+patch/v4/organizations/{organizationId}/users/{userId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users/{userId}
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Example
+
+addOrganizationRoleremoveOrganizationRoleaddResourceremoveResourceRoleaddResourceRoleremoveResourceperformMultipleOperationsaddOrganizationRole
+
+Copy
+
+ Expand all  Collapse all 
+
+`[
+* {
+  * "op": "add",
+  * "path": "/organizationRoles",
+  * "value": [
+    * "projectCreator"  
+  ]  
+}
+]`
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Example
+
+addOrganizationRoleremoveOrganizationRoleaddResourceremoveResourceRoleaddResourceRoleremoveResourceperformMultipleOperationaddOrganizationRole
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "name": "Jane",
+* "email": "jane.doe@example.com",
+* "status": "verified",
+* "inactive": false,
+* "organizationId": "ffffffff-aaaa-1414-eeee-000000000000",
+* "organizationRoles": [
+  * "organizationMember",
+  * "projectCreator"  
+],
+* "lastLogin": "2023-07-17T07:05:39.116Z",
+* "region": "North America",
+* "timeZone": "(UTC +5:30) India Standard Time",
+* "enableNotifications": false,
+* "expiresAt": "2023-07-17T07:05:39.116Z",
+* "resources": [
+  * {
+    * "id": "b7c745ac-9fb8-4b63-a0e4-51230097a169",
+    * "type": "project",
+    * "roles": [
+      * "projectViewer"  
+      ]  
+  },
+  * {
+    * "id": "28b67422-63d5-46b1-9234-8ad4a1d2f7be",
+    * "type": "project",
+    * "roles": [
+      * "projectDataReaderWriter"  
+      ]  
+  }  
+],
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56.000Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56.000Z",
+  * "version": 2  
+}
+}`
+
+## [](#tag/Users/operation/deleteUser)Delete User 
+
+Removes user from the organization.
+
+In order to access this endpoint, the provided API key must have the following role:
+
+* Organization Owner
+
+To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the control plane user. |
+
+### Responses
+
+**204** 
+
+Successfully removed the user from the organization.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/users/{userId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users/{userId}
+
+### Response samples 
+
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`

@@ -4,7 +4,7 @@ description: To get started with the Couchbase Capella Operational Management
   API, you must create an API key. An API key authenticates and authorizes you
   to access the Management API.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-start.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:cloud:management-api-guide:management-api-start.adoc[]
 ---
 
@@ -150,5 +150,5 @@ To delete a Management API key:
 ## [](#next-steps)Next Steps
 
 * To make an API call, see [Make an API Call with the Capella Operational Management API](management-api-use.md).
-* For a full reference guide, see [Management API Reference](../management-api-reference/index.md).
+* For a full reference guide, see [Capella Operational Management API Reference](../management-api-reference/index.md).
 * For an error reference, see [Capella Operational Management API Errors](management-api-errors.md).

@@ -3,7 +3,7 @@ title: Miscellaneous Utility Functions
 description: Miscellaneous utility functions enable you to perform tasks beyond
   the usual evaluation and transformation of data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/metafun.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:server:n1ql:n1ql-language-reference/metafun.adoc[]
 ---
 
@@ -404,7 +404,9 @@ Couchbase Server 8.0
 
 ### [](#description-7)Description
 
-This function extracts Data Definition Language (DDL) statements of buckets and returns them as an array of strings. It retrieves definitions for buckets, scopes, collections, indexes, and sequences. You can use these definitions for purposes such as replication, backup, or auditing.
+This function extracts Data Definition Language (DDL) statements of buckets and returns them as an array of strings. It retrieves definitions for buckets, scopes, collections, indexes, sequences, functions, and prepared statements.
+
+You can use these definitions for purposes such as replication, backup, or auditing.
 
 The function supports the following statements:
 
@@ -413,6 +415,8 @@ The function supports the following statements:
 * CREATE COLLECTION
 * CREATE INDEX
 * CREATE SEQUENCE
+* CREATE OR REPLACE FUNCTION Couchbase Server 8.0.1
+* PREPARE Couchbase Server 8.0.1
 
 > [!NOTE]
 > To execute this function, you must have the `query_system_catalog` role. Also, to extract DDLs from a specific bucket, you need necessary permissions on that bucket. For more information about roles and permissions, see [Authorization](../../learn/security/authorization-overview.md).
@@ -429,9 +433,9 @@ options
 
 ### [](#options)Options
 
-| Name                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Schema                 |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| **flags** _optional_ | Specifies the types of DDL statements to extract. Accepts either a numeric value or an array of strings, but not both. Statement String Value Numeric Value CREATE BUCKET "bucket" 1 CREATE SCOPE "scope" 2 CREATE COLLECTION "collection" 4 CREATE INDEX "index" 8 CREATE SEQUENCE "sequence" 16 To extract multiple statement types, specify an array of their string values or a single numeric value that represents the sum of their respective numeric values. For example, to extract CREATE BUCKET and CREATE INDEX statements, input the value as 9 (sum of 1 \+ 8) or as an array of strings \["bucket", "index"\]. | String array or Number |
+| Name                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Schema                 |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| **flags** _optional_ | Specifies the types of DDL statements to extract. Accepts either a number or an array of strings, but not both. Statement String Number CREATE BUCKET "bucket" 1 CREATE SCOPE "scope" 2 CREATE COLLECTION "collection" 4 CREATE INDEX "index" 8 CREATE SEQUENCE "sequence" 16 CREATE OR REPLACE FUNCTION Couchbase Server 8.0.1 "function" 32 PREPARE Couchbase Server 8.0.1 "prepared" 64 To extract multiple statement types, specify an array of their string values or a single numeric value that represents the sum of their respective numeric values. For example, to extract CREATE BUCKET and CREATE INDEX statements, input the value as 9 (sum of 1 \+ 8) or as an array of strings \["bucket", "index"\]. | String array or Number |
 
 ### [](#return-value-7)Return Value
 
@@ -439,7 +443,7 @@ An array of strings, with each string containing a DDL statement.
 
 ### [](#examples-3)Examples
 
-Using a string flag to extract CREATE INDEX statements from the `travel-sample` bucket
+Extract CREATE INDEX statements from the `travel-sample` bucket using a string flag
 
 Query
 
@@ -463,7 +467,7 @@ Results
 ]
 ```
 
-Using a numeric flag to extract CREATE INDEX statements from the `travel-sample` bucket
+Extract CREATE INDEX statements from the `travel-sample` bucket using a numeric flag
 
 Query
 
@@ -487,7 +491,7 @@ Results
 ]
 ```
 
-Using a combined numeric flag to extract CREATE BUCKET and CREATE SCOPE statements from the `travel-sample` bucket
+Extract CREATE BUCKET and CREATE SCOPE statements from the `travel-sample` bucket using a numeric flag
 
 Query
 
@@ -510,6 +514,104 @@ Results
               'replicaNumber':0,
               'storageBackend':'magma'
           };",
+      "CREATE SCOPE `travel-sample`.`inventory`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_00`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_01`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_02`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_03`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_04`;"
+    ]
+  }
+]
+```
+
+Extract CREATE FUNCTION and PREPARE statements from the `travel-sample` bucket
+
+Query
+
+```sqlpp
+SELECT extractddl("travel-sample",{"flags":["function","prepared"]});
+```
+
+Results
+
+```json
+[
+  {
+    "$1": [
+      "CREATE OR REPLACE FUNCTION `celsius`(...)
+          LANGUAGE INLINE AS (args[0] - 32) * 5/9;",
+      "PREPARE SELECT * FROM route\n
+              WHERE airline = \"FL\";",
+      "PREPARE NameParam AS\nSELECT * FROM hotel\n
+          WHERE city=$city AND country=$country;"
+    ]
+  }
+]
+```
+
+Extract all supported DDL statements from the `travel-sample` bucket
+
+Query
+
+```sqlpp
+SELECT extractddl("travel-sample");
+```
+
+Results
+
+```json
+[
+  {
+    "$1": [
+      "CREATE OR REPLACE FUNCTION `celsius`(...)
+          LANGUAGE INLINE AS (args[0] - 32) * 5/9;",
+      "CREATE BUCKET `travel-sample`
+           WITH {'evictionPolicy':'fullEviction',
+                  'numVBuckets':128,
+                  'ramQuota':200,
+                  'replicaNumber':0,
+                  'storageBackend':'magma'
+                };",
+      "CREATE SCOPE `travel-sample`.`inventory`;",
+      "CREATE COLLECTION `travel-sample`.`inventory`.`airline;",
+      "CREATE COLLECTION `travel-sample`.`inventory`.`airport;",
+      "CREATE COLLECTION `travel-sample`.`inventory`.`hotel;",
+      "CREATE COLLECTION `travel-sample`.`inventory`.`landmark;",
+      "CREATE COLLECTION `travel-sample`.`inventory`.`route;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_00`;",
+      ...
+      "CREATE INDEX `def_airportname`
+          ON `travel-sample`(`airportname`) ;",
+      "CREATE INDEX `def_city`
+          ON `travel-sample`(`city`) ;",
+      ...
+    ]
+  }
+]
+```
+
+Extract DDL statements from all buckets
+
+Query
+
+```sqlpp
+SELECT extractddl("",{"flags":["bucket","scope"]});
+```
+
+Results
+
+```json
+[
+  {
+    "$1": [
+      "CREATE BUCKET `travel-sample`
+           WITH {'evictionPolicy':'fullEviction',
+                'numVBuckets':128,
+                'ramQuota':200,
+                'replicaNumber':0,
+                'storageBackend':'magma'
+              };",
       "CREATE SCOPE `travel-sample`.`inventory`;",
       "CREATE SCOPE `travel-sample`.`tenant_agent_00`;",
       "CREATE SCOPE `travel-sample`.`tenant_agent_01`;",

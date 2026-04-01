@@ -2,7 +2,7 @@
 title: Transcoders and Non-JSON Documents
 description: The Go SDK supports common JSON document requirements out-of-the-box.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:go-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
@@ -105,7 +105,7 @@ Similarly, the same transcoder is used on reading the document, so the raw bytes
 It is most common to store JSON with Couchbase. However, it is possible to store non-JSON documents, such as raw binary data, perhaps using an concise binary encoding like [MessagePack](https://msgpack.org) or [CBOR](https://cbor.io/), in the Key-Value store.
 
 > [!NOTE]
-> It's important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) and its indexes, FTS (Search), analytics, and eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
+> It's important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) and its indexes, Search Service, analytics, and eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
 
 Also note that some simple data types can be stored directly as JSON, without recourse to non-JSON transcoding. A valid JSON document can be a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value.
 

@@ -1,9 +1,9 @@
 ---
 title: Search
-description: You can use the Full Text Search service (FTS) to create queryable
-  full-text indexes in Couchbase Server.
+description: You can use the Search Service to create queryable search indexes
+  in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:go-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:go-sdk:howtos:full-text-searching-with-sdk.adoc[]
 
 # Search
 
-> You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
+> You can use the Search Service to create queryable search indexes in Couchbase Server. 
 
-Full Text Search or FTS allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches. Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries. The Go SDK exposes an API for performing FTS queries which abstracts some of the complexity of using the underlying REST API.
+The Search Service allows you to create, manage, and query Search indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches. The supported query types include queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries. The Go SDK exposes an API for performing Search queries which abstracts some of the complexity of using the underlying REST API.
 
 ## [](#getting-started)Getting Started
 
@@ -22,9 +22,9 @@ After familiarizing yourself with how to create and query a search index in the 
 
 There are two APIs for querying search: `cluster.SearchQuery()`, and `cluster.Search()`. Both are also available at the Scope level.
 
-The former API supports FTS queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6\. Most of this documentation will focus on the former API, as the latter is in @Stability.Volatile status.
+The former API supports Search queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6\. Most of this documentation will focus on the former API, as the latter is in @Stability.Volatile status.
 
-We will perform an FTS query here - see the [Vector Search](#vector-search) section for examples of that. Here is a simple MatchQuery that looks for the text "swanky" using a defined index:
+We will perform a Search query here — see the [Vector Search](#vector-search) section for Vector Search examples. Here is a simple `MatchQuery` that looks for the text 'swanky' using a defined index:
 
 ```go
 	cluster, err := gocb.Connect("localhost", opts)
@@ -57,7 +57,7 @@ We will perform an FTS query here - see the [Vector Search](#vector-search) sect
 
 We have also included the `Fields` option which will get the content of the specified (indexed) field as a part of the response.
 
-All simple query types are created in the same manner, although some have additional properties, which can be seen in common query type descriptions. Couchbase FTS's [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted. Here is a date range query that looks for dates between 1st January 2019 and 1st February, the second parameter is whether the date should be considered inclusive:
+All simple query types are created in the same manner, although some have additional properties, which can be seen in common query type descriptions. Couchbase Search Service's [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the required range. Here is a date range query that looks for dates between 1st of January 2019 and 1st of February 2019, the second parameter is whether the date should be considered inclusive:
 
 ```go
 	dateRangeResult, err := cluster.SearchQuery(
@@ -167,15 +167,15 @@ Facets can only be accessed once all the rows have been iterated.
 
 ## [](#scoped-vs-global-indexes)Scoped vs Global Indexes
 
-The FTS APIs exist at both the `Cluster` and `Scope` levels.
+The Search APIs exist at both the `Cluster` and `Scope` levels.
 
-This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
+This is because the Search Service supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
 It's important to use the `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
 
 ## [](#vector-search)Vector Search
 
-As of Couchbase Server 7.6, the FTS service supports vector search in additional to traditional full text search queries.
+As of Couchbase Server 7.6, the Search Service supports vector search in additional to traditional Search queries.
 
 Vector search queries have a slightly different import from other components of `gocb`, you can import them using `import "github.com/couchbase/gocb/v2/vector"`.
 
@@ -199,7 +199,7 @@ In this first example we are performing a single vector query:
 		}
 ```
 
-Let's break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
+Let's break this down. We create a `SearchRequest`, which can contain a traditional Search query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
 
 The `VectorSearch` allows us to perform one or more `VectorQuery` s.
 
@@ -207,7 +207,7 @@ The `VectorQuery` itself takes the name of the document field that contains embe
 
 (Note that Couchbase itself is not involved in generating the vectors, and these will come from an external source such as an embeddings API.)
 
-Finally we execute the `SearchRequest` against the FTS index "travel-sample-index", which has previously been setup to vector index the "vector\_field" field.
+Finally we execute the `SearchRequest` against the Search index "travel-sample-index", which has previously been setup to vector index the "vector\_field" field.
 
 This happens to be a scoped index so we are using `scope.Search()`. If it was a global index we would use `cluster.Search()` instead - see [Scoped vs Global Indexes](#scoped-vs-global-indexes).
 
@@ -237,9 +237,9 @@ You can run multiple vector queries together:
 
 How the results are combined (ANDed or ORed) can be controlled with `vector.SearchOptions.VectorQueryCombination`.
 
-#### [](#combining-fts-and-vector-queries)Combining FTS and vector queries
+#### [](#combining-search-and-vector-queries)Combining Search and Vector Queries
 
-You can combine a traditional FTS query with vector queries:
+You can combine a traditional Search query with vector queries:
 
 ```go
 		request := gocb.SearchRequest{
@@ -259,9 +259,9 @@ You can combine a traditional FTS query with vector queries:
 
 How the results are combined (ANDed or ORed) can be controlled with `vector.SearchOptions.VectorQueryCombination`.
 
-#### [](#fts-queries)FTS queries
+#### [](#search-queries)Search queries
 
-And note that traditional FTS queries, without vector search, are also supported with the new `cluster.Search()` / `scope.Search()` APIs:
+Note, traditional Search queries, without vector search, are also supported with the new `cluster.Search()` / `scope.Search()` APIs:
 
 ```go
 		request := gocb.SearchRequest{
@@ -278,7 +278,7 @@ The `SearchQuery` is created in the same way as detailed earlier.
 
 ## [](#consistency)Consistency
 
-Like the Couchbase Query Service, FTS allows `RequestPlus` queries — _Read-Your-Own\_Writes (RYOW)_ consistency, ensuring results contain information from updated indexes:
+Like the Couchbase Query Service, the Search Service allows `RequestPlus` queries — _Read-Your-Own\_Writes (RYOW)_ consistency, ensuring results contain information from updated indexes.
 
 ```go
 	collection := bucket.Scope("inventory").Collection("hotel")

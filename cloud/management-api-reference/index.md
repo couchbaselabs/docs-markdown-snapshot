@@ -1,14 +1,14 @@
 ---
-title: Management API Reference
+title: Capella Operational Management API Reference
 editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/public/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-01T05:25:30.286Z
 link: xref:cloud:management-api-reference:index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/management-api-reference/index.html)
 
-# Management API Reference
+# Capella Operational Management API Reference
 
 * Capella Operational
   * Alert Integration
@@ -160,6 +160,7 @@ link: xref:cloud:management-api-reference:index.adoc[]
     * getGet Cluster
     * putUpdate Cluster
     * delDelete Cluster
+    * getGet Cluster Capacity Stats
     * postTurn On Cluster
     * delTurn Off Cluster
     * putMigrate Buckets
@@ -8691,6 +8692,7 @@ Copy
  Expand all  Collapse all 
 
 `{
+* "privateEndpointDNS": "abcdef123456.pl.cloud.couchbase.com",
 * "endpoints": [
   * {
     * "id": "vpce-000000000000aaaaa",
@@ -14041,6 +14043,80 @@ Copy
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
+## [](#tag/Clusters/operation/getClusterStats)Get Cluster Capacity Stats 
+
+Fetches cluster-level capacity statistics including memory availability and replica limits.
+
+This endpoint provides cluster capacity information that is not specific to any individual bucket, allowing clients to make informed decisions when managing buckets.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+### Responses
+
+**200** 
+
+Successfully fetched the cluster capacity statistics.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/stats
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/stats
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "freeMemoryInMb": 640,
+* "totalMemoryInMb": 1040,
+* "maxReplicas": 2
+}`
+
 ## [](#tag/Clusters/operation/clusterOn)Turn On Cluster 
 
 Turn cluster on.
@@ -16341,6 +16417,7 @@ Copy
  Expand all  Collapse all 
 
 `{
+* "privateEndpointDNS": "abcdef123456.pl.cloud.couchbase.com",
 * "endpoints": [
   * {
     * "id": "vpce-000000000000aaaaa",
@@ -20939,6 +21016,7 @@ Copy
  Expand all  Collapse all 
 
 `{
+* "privateEndpointDNS": "abcdef123456.pl.cloud.couchbase.com",
 * "endpoints": [
   * {
     * "id": "vpce-000000000000aaaaa",
@@ -25506,10 +25584,10 @@ _token_
 
 ##### query Parameters
 
-| page       | integer Sets the page you would like to view.                                                                                              |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| perPage    | integer Sets the number of results you would like to have on each page.                                                                    |
-| fileStatus | string Enum: "success" "failed" Example: fileStatus=successThe type of file status used for filtering. By default, all files are returned. |
+| page       | integer Sets the page you would like to view.                                                                                                        |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage    | integer Sets the number of results you would like to have on each page.                                                                              |
+| fileStatus | string Enum: "success" "failed" "skipped" Example: fileStatus=successThe type of file status used for filtering. By default, all files are returned. |
 
 ### Responses
 
@@ -25570,19 +25648,27 @@ Copy
 },
 * "data": [
   * {
-    * "fileName": "file1",
-    * "filePath": "path/to/file1",
+    * "fileName": "file1.pdf",
+    * "filePath": "documents/reports",
     * "fileStatus": "success"  
   },
   * {
-    * "fileName": "file2",
-    * "filePath": "path/to/file2",
-    * "fileStatus": "failed"  
+    * "fileName": "file2.json",
+    * "filePath": "data",
+    * "fileStatus": "failed",
+    * "error": {
+      * "code": "INVALID_FORMAT",
+      * "message": "Invalid JSON format: unexpected token at position 145"  
+      }  
   },
   * {
-    * "fileName": "file3",
-    * "filePath": "path/to/file3",
-    * "fileStatus": "failed"  
+    * "fileName": "file3.docx",
+    * "filePath": "uploads",
+    * "fileStatus": "failed",
+    * "error": {
+      * "code": "SIZE_LIMIT_EXCEEDED",
+      * "message": "File size exceeds the maximum allowed limit of 50MB"  
+      }  
   }  
 ]
 }`
