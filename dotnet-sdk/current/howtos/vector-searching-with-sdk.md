@@ -3,7 +3,7 @@ title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:dotnet-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
@@ -98,7 +98,7 @@ var searchRequest = SearchRequest.Create(
 var searchResult = scope.SearchAsync("travel-vector-index", searchRequest, new SearchOptions());
 ```
 
-Let's break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
+Let's break this down. We create a `SearchRequest`, which can contain a traditional Search query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
 
 The `VectorSearch` allows us to perform one or more `VectorQuery` s.
 
@@ -106,7 +106,7 @@ The `VectorQuery` itself takes the name of the document field that contains embe
 
 (Note that Couchbase itself is not involved in generating the vectors, and these will come from an external source such as an embeddings API.)
 
-Finally we execute the `SearchRequest` against the FTS index "travel-vector-index", which has previously been setup to vector index the "vector\_field" field.
+Finally we execute the `SearchRequest` against the Search index "travel-vector-index", which has previously been setup to vector index the "vector\_field" field.
 
 This happens to be a scoped index so we are using `scope.SearchAsync()`. If it was a global index we would use `cluster.SearchAsync()` instead - see [\[Scoped vs Global Indexes\]](#Scoped vs Global Indexes).
 
@@ -175,9 +175,9 @@ var searchResult = scope.SearchAsync("travel-vector-index", searchRequest, new S
 
 How the results are combined (ANDed or ORed) can be controlled with `VectorSearchOptions().WithVectorQueryCombination()`.
 
-#### [](#combining-fts-and-vector-queries)Combining FTS and vector queries
+#### [](#combining-search-service-and-vector-queries)Combining Search Service and Vector Queries
 
-You can combine a traditional FTS query with vector queries:
+You can combine a traditional Search query with vector queries:
 
 ```csharp
 var searchRequest = new SearchRequest(

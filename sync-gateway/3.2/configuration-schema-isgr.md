@@ -3,7 +3,7 @@ title: Inter-Sync&#160;Gateway Replication Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage
   inter-Sync&#160;Gateway replications
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/configuration-schema-isgr.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:3.2@sync-gateway::configuration-schema-isgr.adoc[]
 ---
 
@@ -137,7 +137,7 @@ The configuration settings described here are provisioned through the [Replicati
    [collections_remote](#collections%5Fremote): ["string"...],
    [conflict_resolution_type](#conflict%5Fresolution%5Ftype): "default",
    [continuous](#continuous): false,
-   [custom_conflict_resolver](#custom%5Fconflict%5Fresolver): "none",
+   [custom_conflict_resolver](#custom%5Fconflict%5Fresolver): "",
    [direction](#direction): "string",
    [enable_delta_sync](#enable%5Fdelta%5Fsync): false,
    [filter](#filter): "string",
@@ -186,7 +186,7 @@ boolean
 
 Description
 
-If true, the replicator will run with collections, and will replicate all collections, unless otherwise limited by `keyspace_map`.
+If true, the replicator will run with collections, and will replicate all collections, unless otherwise limited by `collections_local`.
 
 If false, the replicator will only replicate the default collection.
 
@@ -232,17 +232,6 @@ This defines what conflict resolution policy Sync Gateway should use to apply wh
 
 Changing this is an Enterprise Edition only feature.
 
-**Behaviour**
-
-* _default_ \- In priority order, this will cause  
-  * Deletes to always win (the delete with the longest revision history wins if both revisions are deletes)
-  * The revision with the longest revision history to win. This means the the revision with the most changes and therefore the highest revision ID will win.
-* _localWins_ \- This will result in local revisions always being the winner in any conflict.
-* _remoteWins_ \- This will result in remote revisions always being the winner in any conflict.
-* _custom_ \- This will result in conflicts going through your own custom conflict resolver. You must provide this logic as a Javascript function in the `custom_conflict_resolver` parameter. This is an Enterprise Edition only feature.
-
-Note: replications created prior to Sync Gateway 2.8 will default to `default`.
-
 #### `continuous`
 
 Type
@@ -261,10 +250,6 @@ Type
 
 string
 
-Default
-
-none
-
 Description
 
 This specifies the Javascript function to use to resolve conflicts between conflicting revisions.
@@ -278,14 +263,12 @@ The Javascript function to provide this property should be in backticks (like th
 
 Example:
 
-```
-"custom_conflict_resolver":\`
-	function(conflict) {
-		console.log("Doc ID: "+conflict.LocalDocument._id);
-		console.log("Full remote doc: "+JSON.stringify(conflict.RemoteDocument));
-		return conflict.RemoteDocument;
-	}
-\`
+```javascript
+function(conflict) {
+  console.log("Doc ID: "+conflict.LocalDocument._id);
+  console.log("Full remote doc: "+JSON.stringify(conflict.RemoteDocument));
+  return conflict.RemoteDocument;
+}
 
 ```
 
@@ -303,14 +286,6 @@ Description
 
 This specifies which direction the replication will be replicating with the `remote` replicator.
 
-The directions are:
-
-* `pull` \- changes are pulled from the remote database
-* `push` \- changes are pushed to the remote database
-* `pushAndPull` \- changes are both push-to and pulled-from the remote database
-
-Replications created prior to Sync Gateway 2.8 derive their `direction` from the source/target URL of the replication.
-
 #### `enable_delta_sync`
 
 Type
@@ -319,13 +294,9 @@ boolean
 
 Description
 
-This will turn on delta- sync for the replication. This works in conjunction with the database level setting `delta_sync.enabled`
+This will turn on delta-sync for the replication. In order to enable delta-sync for a replication, the database level setting `delta_sync.enabled` must also be set to true.
 
-If set to true, delta-sync will be used as long as both databases involved in the replication have delta-sync enabled. If a database does not have delta-sync enabled, then the replication will run without delta-sync.
-
-Replications created prior to Sync Gateway 2.8 must have delta-sync disabled.
-
-Enabling this is an Enterprise Edition only feature.
+Using delta-sync is an Enterprise Edition only feature.
 
 #### `filter`
 
@@ -335,11 +306,7 @@ string
 
 Description
 
-This defines whether to filter documents by their channels or not.
-
-If set to `sync_gateway/bychannel` then a **pull** replication will be limited to a specific set of channels specified by the `query_params.channels` property.
-
-This only can be used with pull replications.
+This defines whether to filter documents.
 
 #### `initial_state`
 
@@ -403,7 +370,7 @@ This is a set of key/value pairs used in the query string of the replication.
 
 If `filters=sync_gateway/bychannel` then this can be used to set the channels to filter by in a pull replication. To do this, set the `channels` key to a string array of the channels to filter by. For example:
 
-```
+```json
 "filter":"sync_gateway/bychannel",
 "query_params": {
   "channels":["chanUser1"]
@@ -421,13 +388,7 @@ Description
 
 This is the endpoint of the database for the remote Sync Gateway that is the subject of this replication's `push`, `pull`, or `pushAndPull` action.
 
-Typically this would include the URI, port, and database name. For example, `http://localhost:4985/db`.
-
-How this remote is used depends on the `direction` of the replication:
-
-* `pull` \- this replicator _pulls_ changes from the `remote`
-* `push` \- this replicator _pushes_ changes to this `remote`
-* `pushAndPull` \- this replicator _pushes_ changes to this `remote`, while also pulling receiving changes
+Typically this would include the URI, port, and database name. For example, `https://localhost:4985/db`.
 
 #### `remote_password`
 
@@ -437,11 +398,7 @@ string
 
 Description
 
-The password to use to authenticate with the remote.
-
-This password will be redacted in the replication config.
-
-This can only be used for a pull replication.
+The password to use to authenticate with the remote. This password will be redacted in the replication config.
 
 #### `remote_username`
 
@@ -452,8 +409,6 @@ string
 Description
 
 The username to use to authenticate with the remote.
-
-This can only be used for a pull replication.
 
 #### `replication_id`
 

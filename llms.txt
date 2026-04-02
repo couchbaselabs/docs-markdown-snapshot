@@ -101,7 +101,6 @@
         - [XATTR &amp; Virtual XATTR](/dotnet-sdk/current/concept-docs/xattr.md)
     - [Errors and Diagnostics](/dotnet-sdk/current/concept-docs/errors.md)
         - [Health Check](/dotnet-sdk/current/concept-docs/health-check.md)
-        - [Tracing](/dotnet-sdk/current/concept-docs/response-time-observability.md)
     - [Failure Considerations](/dotnet-sdk/current/concept-docs/durability-replication-failure-considerations.md)
     - [Field Level Encryption](/dotnet-sdk/current/concept-docs/encryption.md)
     - [Service Selection](/dotnet-sdk/current/concept-docs/data-services.md)

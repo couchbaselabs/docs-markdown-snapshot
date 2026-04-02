@@ -1,9 +1,9 @@
 ---
 title: Search
-description: You can use the Full Text Search service (FTS) to create queryable
-  full-text indexes in Couchbase Server.
+description: You can use the Search service to create queryable search indexes
+  in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:dotnet-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -12,15 +12,15 @@ link: xref:dotnet-sdk:howtos:full-text-searching-with-sdk.adoc[]
 
 # Search
 
-> You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
+> You can use the Search service to create queryable search indexes in Couchbase Server. 
 
-Full Text Search or FTS allows you to create, manage and query full text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for indexing and querying documents, provides relevance scoring on the results of your queries and has fast indexes for querying a wide range of possible text searches.
+The Search Service allows you to create, manage, and query Search indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for indexing and querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches.
 
 Some of the supported query-types include simple queries like Match and Term queries, range queries like Date Range and Numeric Range and compound queries for conjunctions, disjunctions and/or boolean queries.
 
-The Full Text Search service also supports vector search from Couchbase Server 7.6 onwards.
+The Search Service also supports vector search from Couchbase Server 7.6 onwards.
 
-The .NET SDK exposes an API for performing FTS queries which abstracts some of the complexity of using the underlying REST API.
+The .NET SDK exposes an API for performing Search queries which abstracts some of the complexity of using the underlying REST API.
 
 ## [](#getting-started)Getting Started
 
@@ -28,9 +28,9 @@ After familiarizing yourself with how to create and query a Search index in the 
 
 There are two APIs for querying search: `cluster.searchQuery()`, and `cluster.search()`. Both are also available at the Scope level.
 
-The former API supports FTS queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6\. Most of this documentation will focus on the former API, as the latter is in @Stability.Volatile status.
+The former API supports Search queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6\. Most of this documentation will focus on the former API, as the latter is in @Stability.Volatile status.
 
-We will perform an FTS query here - see the [\[vector-search\]](#vector-search) section for examples of that.
+We will perform a Search query here - see the [\[vector-search\]](#vector-search) section for examples of that.
 
 ## [](#examples)Examples
 
@@ -47,14 +47,14 @@ var searchResult = await cluster.SearchAsync(
 );
 
 // as a scope-level search
-[data-source-url=https://github.com/couchbase/docs-sdk-dotnet/blob/f038f1ea7006cb893808f751df88f460497dbe58/modules/howtos/examples/Couchbase.Examples.SearchV2/SearchV2Examples/Program.cs#L59-L62]
+[data-source-url=https://github.com/couchbase/docs-sdk-dotnet/blob/0a0c87572cca43b8738fdc17cf864d858fc41284/modules/howtos/examples/Couchbase.Examples.SearchV2/SearchV2Examples/Program.cs#L59-L62]
 var searchResult = await scope.SearchAsync("index-hotel-description",
     SearchRequest.Create(
         new MatchQuery("swanky")),
     new SearchOptions().Limit(10));
 ```
 
-All simple query types are created in the same manner, some have additional properties, which can be seen in common query type descriptions. Couchbase FTS's [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted. Here is a date range query that looks for dates between 1st January 2021 and 31st January:
+All simple query types are created in the same manner, some have additional properties, which can be seen in common query type descriptions. Couchbase Search Service's [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted. Here is a date range query that looks for dates between 1st January 2021 and 31st January:
 
 ```csharp
 var searchResult = await scope.SearchAsync("index-name",
@@ -116,7 +116,7 @@ foreach (var keyValuePair in searchResult.Facets)
 
 ## [](#consistency)Consistency
 
-Like the Couchbase Query Service, FTS allows `RequestPlus` queries — _Read-Your-Own\_Writes (RYOW)_ consistency, ensuring results contain information from updated indexes:
+Like the Couchbase Query Service, Search Service allows `RequestPlus` queries — _Read-Your-Own\_Writes (RYOW)_ consistency, ensuring results contain information from updated indexes:
 
 ```csharp
 var mutationResult =  await collection.UpsertAsync("key",new {description = "swanky"});
@@ -128,8 +128,8 @@ var searchResult = cluster.SearchQueryAsync("travel-sample-index",new QueryStrin
 
 ## [](#scoped-vs-global-indexes)Scoped vs Global Indexes
 
-The FTS APIs exist at both the `Cluster` and `Scope` levels.
+The Search APIs exist at both the `Cluster` and `Scope` levels.
 
-This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
+This is because Search Service supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
 It's important to use the `Cluster.SearchAsync()` for global indexes, and `Scope.SearchAsync()` for scoped indexes. (`Cluster.SearchQueryAsync()` is still available for compatibility with earlier versions of the SDK)

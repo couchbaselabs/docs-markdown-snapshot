@@ -3,7 +3,7 @@ title: Metrics Reporting
 description: Individual request tracing presents a very specific (though
   isolated) view of the system.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/observability-metrics.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:rust-sdk:howtos:observability-metrics.adoc[]
 ---
 
@@ -272,7 +272,7 @@ Now run `opentelemetry-collector` and Prometheus:
 
 ```none
 docker network create shared
-docker run --rm --name otel -v "${PWD}/otel.yaml:/etc/otel-local-config.yaml" -p 4317:4317 -p 10000:10000 --network shared otel/opentelemetry-collector --config /etc/otel-local-config.yaml
+docker run --rm --name otel -v "${PWD}/otel.yaml:/etc/otel-local-config.yaml" -p 4317:4317 -p 10000:10000 --network shared otel/opentelemetry-collector --config /etc/otel-local-config.yaml &
 docker run --rm --name prometheus -p 9090:9090  --mount type=bind,source="${PWD}/prometheus.yaml,destination=/etc/prometheus/prometheus.yml" --network shared prom/prometheus
 ```
 

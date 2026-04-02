@@ -2,7 +2,7 @@
 title: Database Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage databases
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/configuration/pages/configuration-schema-database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:3.3@sync-gateway:configuration:configuration-schema-database.adoc[]
 ---
 
@@ -25,7 +25,9 @@ _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configurat
 From _Sync Gateway_ 3.0 you can use the Admin REST API to provision persistent configuration changes. This content introduces the [Create Database](#put%5Fdb-) and [Configure Database](#post%5Fdb-%5Fconfig) endpoints for convenience — see [Database Configuration](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) for a full description of the endpoints available.
 
 > [!NOTE]
-> You can define 1 custom scope per database with up to 1000 custom collections. If you don't specify a custom scope and collection, any documents you create will be saved in the default scope and collection.
+> You can define 1 custom scope per database with up to 1000 custom collections. If you do not specify a custom scope and collection, Sync Gateway saves any documents you create in the default scope and collection.
+
+Database and user creation times increase with the number of collections you configure. User creation initializes access control for all associated collections, while database creation initializes Sync Gateway indexes (`sg_` prefixed) for new collections.
 
 ## [](#put%5Fdb-)Create a new Sync Gateway database
 

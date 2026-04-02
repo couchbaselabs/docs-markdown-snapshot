@@ -3,7 +3,7 @@ title: SDK Extension Libraries
 description: Field Level Encryption and Response Time Observability (Tracing)
   libraries ship separately from each SDK.
 editUrl: https://github.com/couchbase/docs-sdk-extensions/edit/main/modules/ROOT/pages/index.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:sdk-extensions::index.adoc[]
 ---
 
@@ -50,4 +50,4 @@ The Spring Data Couchbase project provides integration with the Couchbase Server
 
 * Distributed ACID Transactions in [C++](../cxx-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md), [.NET (C#)](../dotnet-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md), [Go](../go-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md), [Java](../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md), [Kotlin](../kotlin-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md), [Node.js](../nodejs-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md), [PHP](../php-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md), [Python](../python-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md), and [Scala](../scala-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md).
 * Field Level Encryption pages for [C++](../cxx-sdk/current/howtos/encrypting-using-sdk.md), [.NET](../dotnet-sdk/current/howtos/encrypting-using-sdk.md), [Go](../go-sdk/current/howtos/encrypting-using-sdk.md), [Java](../java-sdk/current/howtos/encrypting-using-sdk.md), [Node.js](../nodejs-sdk/current/howtos/encrypting-using-sdk.md), [Python](../python-sdk/current/howtos/encrypting-using-sdk.md), and [Scala](../scala-sdk/current/howtos/encrypting-using-sdk.md).
-* RTO pages for [.NET](../dotnet-sdk/current/howtos/slow-operations-logging.md), [Java](../java-sdk/current/howtos/observability-tracing.md), and [Scala](../scala-sdk/current/howtos/observability-tracing.md).
+* RTO pages for [C++](../cxx-sdk/current/howtos/slow-operations-logging.md), [.NET](../dotnet-sdk/current/howtos/slow-operations-logging.md), [Go](../go-sdk/current/howtos/slow-operations-logging.md), [Java](../java-sdk/current/howtos/observability-tracing.md), [Node.js](../nodejs-sdk/current/howtos/slow-operations-logging.md), [PHP](../php-sdk/current/howtos/slow-operations-logging.md), [Python](../python-sdk/current/howtos/slow-operations-logging.md), [Rust](../rust-sdk/current/howtos/slow-operations-logging.md), and [Scala](../scala-sdk/current/howtos/observability-tracing.md).

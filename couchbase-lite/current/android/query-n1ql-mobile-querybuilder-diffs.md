@@ -2,7 +2,7 @@
 title: SQL++ for Mobile&#8201;&#8212;&#8201;Differences from Querybuilder
 description: Differences between Couchbase Lite's Querybuilder and SQL++ for Mobile
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/query-n1ql-mobile-querybuilder-diffs.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:couchbase-lite:android:query-n1ql-mobile-querybuilder-diffs.adoc[]
 ---
 
@@ -20,6 +20,7 @@ See [Table 1](#tbl-qbldr-diffs) for the features supported by SQL++ but not by Q
 __Table 1\. QueryBuilder Differences__
 | Category                   | Components                                                                             |
 | -------------------------- | -------------------------------------------------------------------------------------- |
+| Clauses                    | UNNEST                                                                                 |
 | Conditional Operator       | CASE(WHEN …​ THEN …​ ELSE ..)                                                          |
 | Array Functions            | ARRAY\_AGG ARRAY\_AVG ARRAY\_COUNT ARRAY\_IFNULL ARRAY\_MAX ARRAY\_MIN ARRAY\_SUM      |
 | Conditional Functions      | IFMISSING IFMISSINGORNULL IFNULL MISSINGIF NULLIF Match Functions DIV IDIV ROUND\_EVEN |

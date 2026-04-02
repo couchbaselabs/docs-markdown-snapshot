@@ -3,7 +3,7 @@ title: Bootstrap Configuration
 description: Reference data on the contents of Sync Gateway's bootstrap
   configuration, which determines its run time behavior.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/configuration-schema-bootstrap.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:3.2@sync-gateway::configuration-schema-bootstrap.adoc[]
 ---
 
@@ -101,7 +101,7 @@ This schema identifies all the configurable properties.
          [x509_key_path](#database%5Fcredentials-{databasename}-x509%5Fkey%5Fpath): "string"
       }
    },
-   [heap_profile_collection_threshold](#heap%5Fprofile%5Fcollection%5Fthreshold): NaN,
+   [heap_profile_collection_threshold](#heap%5Fprofile%5Fcollection%5Fthreshold): 0,
    [heap_profile_disable_collection](#heap%5Fprofile%5Fdisable%5Fcollection): false,
    [logging](#logging): {
       [audit](#logging-audit): {
@@ -113,7 +113,7 @@ This schema identifies all the configurable properties.
             [max_age](#logging-audit-rotation-max%5Fage): 6,
             [max_size](#logging-audit-rotation-max%5Fsize): 100,
             [rotated_logs_size_limit](#logging-audit-rotation-rotated%5Flogs%5Fsize%5Flimit): 1024,
-            [rotation_interval](#logging-audit-rotation-rotation%5Finterval): "0"
+            [rotation_interval](#logging-audit-rotation-rotation%5Finterval): ""
          }
       },
       console: {
@@ -128,7 +128,7 @@ This schema identifies all the configurable properties.
             [max_age](#logging-console-rotation-max%5Fage): 0,
             [max_size](#logging-console-rotation-max%5Fsize): 100,
             [rotated_logs_size_limit](#logging-console-rotation-rotated%5Flogs%5Fsize%5Flimit): 1024,
-            [rotation_interval](#logging-console-rotation-rotation%5Finterval): "0"
+            [rotation_interval](#logging-console-rotation-rotation%5Finterval): ""
          }
       },
       [debug](#logging-debug): {
@@ -139,7 +139,7 @@ This schema identifies all the configurable properties.
             [max_age](#logging-debug-rotation-max%5Fage): 2,
             [max_size](#logging-debug-rotation-max%5Fsize): 100,
             [rotated_logs_size_limit](#logging-debug-rotation-rotated%5Flogs%5Fsize%5Flimit): 1024,
-            [rotation_interval](#logging-debug-rotation-rotation%5Finterval): "0"
+            [rotation_interval](#logging-debug-rotation-rotation%5Finterval): ""
          }
       },
       [error](#logging-error): {
@@ -150,7 +150,7 @@ This schema identifies all the configurable properties.
             [max_age](#logging-error-rotation-max%5Fage): 360,
             [max_size](#logging-error-rotation-max%5Fsize): 100,
             [rotated_logs_size_limit](#logging-error-rotation-rotated%5Flogs%5Fsize%5Flimit): 1024,
-            [rotation_interval](#logging-error-rotation-rotation%5Finterval): "0"
+            [rotation_interval](#logging-error-rotation-rotation%5Finterval): ""
          }
       },
       [info](#logging-info): {
@@ -161,7 +161,7 @@ This schema identifies all the configurable properties.
             [max_age](#logging-info-rotation-max%5Fage): 6,
             [max_size](#logging-info-rotation-max%5Fsize): 100,
             [rotated_logs_size_limit](#logging-info-rotation-rotated%5Flogs%5Fsize%5Flimit): 1024,
-            [rotation_interval](#logging-info-rotation-rotation%5Finterval): "0"
+            [rotation_interval](#logging-info-rotation-rotation%5Finterval): ""
          }
       },
       [log_file_path](#logging-log%5Ffile%5Fpath): "string",
@@ -174,7 +174,7 @@ This schema identifies all the configurable properties.
             [max_age](#logging-stats-rotation-max%5Fage): 6,
             [max_size](#logging-stats-rotation-max%5Fsize): 100,
             [rotated_logs_size_limit](#logging-stats-rotation-rotated%5Flogs%5Fsize%5Flimit): 1024,
-            [rotation_interval](#logging-stats-rotation-rotation%5Finterval): "0"
+            [rotation_interval](#logging-stats-rotation-rotation%5Finterval): ""
          }
       },
       [trace](#logging-trace): {
@@ -185,7 +185,7 @@ This schema identifies all the configurable properties.
             [max_age](#logging-trace-rotation-max%5Fage): 2,
             [max_size](#logging-trace-rotation-max%5Fsize): 100,
             [rotated_logs_size_limit](#logging-trace-rotation-rotated%5Flogs%5Fsize%5Flimit): 1024,
-            [rotation_interval](#logging-trace-rotation-rotation%5Finterval): "0"
+            [rotation_interval](#logging-trace-rotation-rotation%5Finterval): ""
          }
       },
       [warn](#logging-warn): {
@@ -196,7 +196,7 @@ This schema identifies all the configurable properties.
             [max_age](#logging-warn-rotation-max%5Fage): 180,
             [max_size](#logging-warn-rotation-max%5Fsize): 100,
             [rotated_logs_size_limit](#logging-warn-rotation-rotated%5Flogs%5Fsize%5Flimit): 1024,
-            [rotation_interval](#logging-warn-rotation-rotation%5Finterval): "0"
+            [rotation_interval](#logging-warn-rotation-rotation%5Finterval): ""
          }
       }
    },
@@ -286,7 +286,9 @@ array
 
 Description
 
-List of allowed headers
+List of allowed headers. These headers will be added the `Access-Control-Allow-Headers` response to a valid CORS request.
+
+A recommended minimum set of values should be `["Accept-Encoding", "Authorization", "Content-Type", "If-Match"]`.
 
 #### `api.cors.login_origin`
 
@@ -296,7 +298,11 @@ array
 
 Description
 
-List of allowed login origins
+List of allowed origins to apply to public `/{db}/_session` API.
+
+To use cors on `/{db}/_session`, the domain must be present in both `login_origin` and `origin`.
+
+If configured, `Authorization` must be included in headers.
 
 #### `api.cors.max_age`
 
@@ -304,9 +310,13 @@ Type
 
 integer
 
+Default
+
+0
+
 Description
 
-Maximum age of the CORS Options request
+Value for `Access-Control-Maximum-Age`. Uses 0 by default.
 
 #### `api.cors.origin`
 
@@ -316,7 +326,7 @@ array
 
 Description
 
-List of allowed origins, use \['\*'\] to allow access from everywhere
+List of allowed origins for the public API. The request `Origin` header is checked against these values. If successful the `Origin` header is returned in the HTTP response header as `Access-Control-Allow-Origin`.
 
 #### `api.enable_advanced_auth_dp`
 
@@ -762,10 +772,6 @@ Type
 
 integer (readOnly)
 
-Default
-
-max memory
-
 Description
 
 Threshold in bytes for automatic collection of heap profiles. If not specified, defaults to 85% of the lesser of cgroup or system memory.
@@ -877,10 +883,6 @@ Max Size (in mb) of log files before deletion
 Type
 
 string
-
-Default
-
-0
 
 Description
 
@@ -1014,10 +1016,6 @@ Type
 
 string
 
-Default
-
-0
-
 Description
 
 If set, the interval at which log files are rotated, even if max\_size is not reached.
@@ -1115,10 +1113,6 @@ Max Size (in mb) of log files before deletion
 Type
 
 string
-
-Default
-
-0
 
 Description
 
@@ -1222,10 +1216,6 @@ Type
 
 string
 
-Default
-
-0
-
 Description
 
 If set, the interval at which log files are rotated, even if max\_size is not reached.
@@ -1327,10 +1317,6 @@ Max Size (in mb) of log files before deletion
 Type
 
 string
-
-Default
-
-0
 
 Description
 
@@ -1458,10 +1444,6 @@ Type
 
 string
 
-Default
-
-0
-
 Description
 
 If set, the interval at which log files are rotated, even if max\_size is not reached.
@@ -1559,10 +1541,6 @@ Max Size (in mb) of log files before deletion
 Type
 
 string
-
-Default
-
-0
 
 Description
 
@@ -1665,10 +1643,6 @@ Max Size (in mb) of log files before deletion
 Type
 
 string
-
-Default
-
-0
 
 Description
 

@@ -1,7 +1,7 @@
 ---
 title: Sync Gateway Public API Reference
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/rest_api_public.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:3.2@sync-gateway::rest_api_public.adoc[]
 ---
 
@@ -347,9 +347,9 @@ This will get the information about the current user.
 
 Properties associated with a user session
 
-**404** 
+**401** 
 
-Resource could not be found
+User does not have access to resource, or resource does not exist
 
 get/{db}/\_session
 
@@ -360,7 +360,7 @@ Public API
 ### Response samples 
 
 * 200
-* 404
+* 401
 
 Content type
 
@@ -372,11 +372,15 @@ Copy
 
 `{
 * "authentication_handlers": [
-  * "string"  
+  * "default",
+  * "cookie"  
 ],
 * "ok": true,
 * "userCtx": {
-  * "channels": { },
+  * "channels": {
+    * "!": 1,
+    * "channelA": 2  
+  },
   * "name": "string"  
 }
 }`
@@ -385,20 +389,27 @@ Copy
 
 Generates a login session for the user based on the credentials provided in the request body or if that fails (due to invalid credentials or none provided at all), generates the new session for the currently authenticated user instead. On a successful session creation, a session cookie is stored to keep the user authenticated for future API calls.
 
-If CORS is enabled, the origin must match an allowed login origin otherwise an error will be returned.
+If `Origin` header is passed to this endpoint, the `Origin` header must match both the `cors.login_origin` and `cors.origin` configuration options.
 
 ##### path Parameters
 
 | dbrequired | string Example: db1The name of the database to run the operation against. |
 | ---------- | ------------------------------------------------------------------------- |
 
+##### query Parameters
+
+| one\_time | boolean Sets the session to only be valid for a single authentication. This session will expire in 5 minutes if not used. |
+| --------- | ------------------------------------------------------------------------------------------------------------------------- |
+
 ##### Request Body schema: application/json
 
-The body can depend on if using the Public or Admin APIs.
+optional
 
-| name     | string User name to generate the session for.            |
-| -------- | -------------------------------------------------------- |
-| password | string Password of the user to generate the session for. |
+When name and password are included in the request body, the session will be created for the specified user. Otherwise the session will be created for the authenticated user making the request.
+
+| name     | string User name to generate the session for. Omit this value to generate a session for the authenticated user.            |
+| -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| password | string Password of the user to generate the session for. Omit this value to generate a session for the authenticated user. |
 
 ### Responses
 
@@ -408,11 +419,11 @@ Session created successfully. Returned body is dependant on if using Public or A
 
 **400** 
 
-Origin is not in the approved list of allowed origins
+Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin` of Sync Gateway bootstrap or database configuration.
 
-**404** 
+**401** 
 
-Resource could not be found
+User does not have access to resource, or resource does not exist
 
 post/{db}/\_session
 
@@ -439,7 +450,7 @@ Copy
 
 * 200
 * 400
-* 404
+* 401
 
 Content type
 
@@ -451,7 +462,8 @@ Copy
 
 `{
 * "authentication_handlers": [
-  * "default"  
+  * "default",
+  * "cookie"  
 ],
 * "ok": true,
 * "userCtx": {
@@ -460,14 +472,15 @@ Copy
     * "channelA": 2  
   },
   * "name": "string"  
-}
+},
+* "one_time_session_id": "c5af80a039db4ed9d2b6865576b6999935282689"
 }`
 
 ## [](#tag/Session/operation/delete%5Fdb-%5Fsession)Log out 
 
 Invalidates the session for the currently authenticated user and removes their session cookie.
 
-If CORS is enabled, the origin must match an allowed login origin otherwise an error will be returned.
+If `Origin` header is passed to this endpoint, the `Origin` header must match both the `cors.login_origin` and `cors.origin` configuration options.
 
 ##### path Parameters
 
@@ -482,11 +495,15 @@ Successfully removed session (logged out)
 
 **400** 
 
-Bad Request
+Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin` of Sync Gateway bootstrap or database configuration.
+
+**401** 
+
+User does not have access to resource, or resource does not exist
 
 **404** 
 
-Resource could not be found
+Return if session not found.
 
 delete/{db}/\_session
 
@@ -496,6 +513,8 @@ Public API
 
 ### Response samples 
 
+* 400
+* 401
 * 404
 
 Content type
@@ -505,8 +524,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "Bad Request",
+* "reason": "No CORS"
 }`
 
 ## [](#tag/Authentication)Authentication
@@ -752,7 +771,7 @@ Copy
 
 Creates a new session based on a Facebook user. On a successful session creation, a session cookie is stored to keep the user authenticated for future API calls.
 
-If CORS is enabled, the origin must match an allowed login origin otherwise an error will be returned.
+If `Origin` header is passed to this endpoint, the `Origin` header must match both the `cors.login_origin` and `cors.origin` configuration options.
 
 ##### path Parameters
 
@@ -772,7 +791,7 @@ Session created successfully
 
 **400** 
 
-Origin is not in the approved list of allowed origins
+Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin` of Sync Gateway bootstrap or database configuration.
 
 **401** 
 
@@ -825,15 +844,15 @@ application/json
 Copy
 
 `{
-* "error": "string",
-* "reason": "string"
+* "error": "Bad Request",
+* "reason": "No CORS"
 }`
 
 ## [](#tag/Authentication/operation/post%5Fdb-%5Fgoogle)Create a new Google-based session  Deprecated 
 
 Creates a new session based on a Google user. On a successful session creation, a session cookie is stored to keep the user authenticated for future API calls.
 
-If CORS is enabled, the origin must match an allowed login origin otherwise an error will be returned.
+If `Origin` header is passed to this endpoint, the `Origin` header must match both the `cors.login_origin` and `cors.origin` configuration options.
 
 ##### path Parameters
 
@@ -853,7 +872,7 @@ Session created successfully
 
 **400** 
 
-Origin is not in the approved list of allowed origins
+Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin` of Sync Gateway bootstrap or database configuration.
 
 **401** 
 
@@ -905,8 +924,8 @@ application/json
 Copy
 
 `{
-* "error": "string",
-* "reason": "string"
+* "error": "Bad Request",
+* "reason": "No CORS"
 }`
 
 ## [](#tag/Document)Document
@@ -1115,11 +1134,11 @@ The maximum size for a document is 20MB.
 
 ##### query Parameters
 
-| roundtrip   | boolean Block until document has been received by change cache                                                                                                                                                                                                                                                                                              |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| replicator2 | boolean Returns the document with the required properties for replication. This is an enterprise-edition only feature.                                                                                                                                                                                                                                      |
-| new\_edits  | boolean Default: "true" Setting this to false indicates that the request body is an already-existing revision that should be directly inserted into the database, instead of a modification to apply to the current document. This mode is used for replication. This option must be used in conjunction with the \_revisions property in the request body. |
-| rev         | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target.                                                                                                                                                                                                                                                                      |
+| roundtrip   | boolean Block until document has been received by change cache                                                                                                                                                                                                                                                                                            |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| replicator2 | boolean Returns the document with the required properties for replication. This is an enterprise-edition only feature.                                                                                                                                                                                                                                    |
+| new\_edits  | boolean Default: true Setting this to false indicates that the request body is an already-existing revision that should be directly inserted into the database, instead of a modification to apply to the current document. This mode is used for replication. This option must be used in conjunction with the \_revisions property in the request body. |
+| rev         | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target.                                                                                                                                                                                                                                                                    |
 
 ##### header Parameters
 
@@ -1353,19 +1372,19 @@ This request can be used to listen for update and modifications to the database 
 
 ##### query Parameters
 
-| limit         | integer Maximum number of changes to return.                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| since         | string Starts the results from the change immediately after the given sequence ID. Sequence IDs should be considered opaque; they come from the last\_seq property of a prior response.                                                                                                                                                                                                                                                                 |
-| style         | string Default: "main\_only" Enum: "main\_only" "all\_docs" Controls whether to return the current winning revision (main\_only) or all the leaf revision including conflicts and deleted former conflicts (all\_docs).                                                                                                                                                                                                                                 |
-| active\_only  | boolean Default: "false" Set true to exclude deleted documents and notifications for documents the user no longer has access to from the changes feed.                                                                                                                                                                                                                                                                                                  |
-| include\_docs | boolean Include the body associated with each document.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| revocations   | boolean If true, revocation messages will be sent on the changes feed.                                                                                                                                                                                                                                                                                                                                                                                  |
-| filter        | string Enum: "sync\_gateway/bychannel" "\_doc\_ids" Set a filter to either filter by channels or document IDs.                                                                                                                                                                                                                                                                                                                                          |
-| channels      | string A comma-separated list of channel names to filter the response to only the channels specified. To use this option, the filter query option must be set to sync\_gateway/bychannels.                                                                                                                                                                                                                                                              |
-| doc\_ids      | Array of strings A valid JSON array of document IDs to filter the documents in the response to only the documents specified. To use this option, the filter query option must be set to \_doc\_ids and the feed parameter must be normal. Also accepts a comma separated list of document IDs instead.                                                                                                                                                  |
-| heartbeat     | integer \>= 25000 Default: 0 The interval (in milliseconds) to send an empty line (CRLF) in the response. This is to help prevent gateways from deciding the socket is idle and therefore closing it. This is only applicable to feed=longpoll or feed=continuous. This will override any timeouts to keep the feed alive indefinitely. Setting to 0 results in no heartbeat. The maximum heartbeat can be set in the server replication configuration. |
-| timeout       | integer \[ 0 .. 900000 \] Default: 300000 This is the maximum period (in milliseconds) to wait for a change before the response is sent, even if there are no results. This is only applicable for feed=longpoll or feed=continuous changes feeds. Setting to 0 results in no timeout.                                                                                                                                                                  |
-| feed          | string Default: "normal" Enum: "normal" "longpoll" "continuous" "websocket" The type of changes feed to use.                                                                                                                                                                                                                                                                                                                                            |
+| limit         | integer Maximum number of changes to return.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| since         | string Starts the results from the change immediately after the given sequence ID. Sequence IDs should be considered opaque; they come from the last\_seq property of a prior response.                                                                                                                                                                                                                                                                                                                         |
+| style         | string Default: "main\_only" Enum: "main\_only" "all\_docs" Controls whether to return the current winning revision (main\_only) or all the leaf revision including conflicts and deleted former conflicts (all\_docs).                                                                                                                                                                                                                                                                                         |
+| active\_only  | boolean Default: false Set true to exclude deleted documents and notifications for documents the user no longer has access to from the changes feed.                                                                                                                                                                                                                                                                                                                                                            |
+| include\_docs | boolean Include the body associated with each document.                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| revocations   | boolean If true, revocation messages will be sent on the changes feed.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| filter        | string Enum: "sync\_gateway/bychannel" "\_doc\_ids" Set a filter to either filter by channels or document IDs.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| channels      | string A comma-separated list of channel names to filter the response to only the channels specified. To use this option, the filter query option must be set to sync\_gateway/bychannels.                                                                                                                                                                                                                                                                                                                      |
+| doc\_ids      | Array of strings A valid JSON array of document IDs to filter the documents in the response to only the documents specified. To use this option, the filter query option must be set to \_doc\_ids and the feed parameter must be normal. Also accepts a comma separated list of document IDs instead.                                                                                                                                                                                                          |
+| heartbeat     | integer Default: 0 The interval (in milliseconds) to send an empty line (CRLF) in the response. This is to help prevent gateways from deciding the socket is idle and therefore closing it. This is only applicable to feed=longpoll or feed=continuous. This will override any timeouts to keep the feed alive indefinitely. Setting to 0 results in no heartbeat. The maximum heartbeat can be set in the server replication configuration. If heartbeat is non zero, it must be at least 25000 milliseconds. |
+| timeout       | integer \[ 0 .. 900000 \] Default: 300000 This is the maximum period (in milliseconds) to wait for a change before the response is sent, even if there are no results. This is only applicable for feed=longpoll or feed=continuous changes feeds. Setting to 0 results in no timeout.                                                                                                                                                                                                                          |
+| feed          | string Default: "normal" Enum: "normal" "longpoll" "continuous" "websocket" The type of changes feed to use.                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 ### Responses
 
@@ -1802,7 +1821,7 @@ A body for a document that has attachments will be written as a nested `multipar
 
 ##### query Parameters
 
-| attachments | boolean Default: "false" This is for whether to include attachments in each of the documents returned or not.                                                                                                                                      |
+| attachments | boolean Default: false This is for whether to include attachments in each of the documents returned or not.                                                                                                                                        |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | revs        | boolean Include all the revisions for each document under the \_revisions property.                                                                                                                                                                |
 | revs\_limit | integer The number of revisions to include in the response from the document history. This parameter only makes a different if the revs query parameter is set to true. The full revision history will be returned if revs is set but this is not. |
@@ -2200,10 +2219,10 @@ If the `meta` query parameter is set then the response will be in JSON with the 
 
 ##### query Parameters
 
-| rev               | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target.    |
-| ----------------- | ----------------------------------------------------------------------------------------- |
-| content\_encoding | boolean Default: "true" Set to false to disable the Content-Encoding response header.     |
-| meta              | boolean Default: "false" Return only the metadata of the attachment in the response body. |
+| rev               | string Example: rev=2-5145e1086bb8d1d71a531e9f6b543c58The document revision to target.  |
+| ----------------- | --------------------------------------------------------------------------------------- |
+| content\_encoding | boolean Default: true Set to false to disable the Content-Encoding response header.     |
+| meta              | boolean Default: false Return only the metadata of the attachment in the response body. |
 
 ##### header Parameters
 

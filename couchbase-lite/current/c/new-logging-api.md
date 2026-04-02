@@ -2,7 +2,7 @@
 title: New Logging API
 description: Couchbase Lite 3.2.2 introduces a new Logging API.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/new-logging-api.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:couchbase-lite:c:new-logging-api.adoc[]
 ---
 
@@ -58,7 +58,7 @@ The changes necessary convert the installation of a console logger from the old 
 Old API
 
 ```c
-CBLLog_SetConsoleLevel(kCBLLogVerbose);
+
 ```
 
 New API
@@ -80,20 +80,7 @@ The changes necessary to convert the installation of a file logger are also simi
 Old API
 
 ```c
-    // NOTE: No error handling, for brevity (see getting started)
 
-    // NOTE: You will need to use a platform appropriate method for finding
-    // a temporary directory
-
-    CBLLogFileConfiguration config {}; // Don't bother zeroing, since we set all properties
-    config.level = kCBLLogInfo;
-    config.directory = FLSTR("/tmp/logs");;
-    config.maxRotateCount = 12;
-    config.maxSize = 1048576;
-    config.usePlaintext = false;
-
-    CBLError err{};
-    CBLLog_SetFileConfig(config, &err);
 ```
 
 New API
@@ -129,7 +116,6 @@ Old API
 static void custom_log_callback(CBLLogDomain domain, CBLLogLevel level, FLString message) {
     // handle the message, for example piping it to a third party framework
 }
-    CBLLog_SetCallback(custom_log_callback);
 ```
 
 New API

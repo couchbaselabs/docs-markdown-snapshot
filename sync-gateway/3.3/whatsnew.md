@@ -2,7 +2,7 @@
 title: New In 3.3
 description: Couchbase Sync Gateway -- What's new in the latest release
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/ROOT/pages/whatsnew.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:3.3@sync-gateway::whatsnew.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:3.3@sync-gateway::whatsnew.adoc[]
 > [!WARNING]
 > Do not deploy Eventing/Sync Gateway until all SGW nodes are at version 3.2 or later. For earlier Sync Gateway versions that do not write import XATTRs, Eventing functions experience infinite recursions and duplicate mutations if deployed in a mixed mode SGW environment. This can only happen when you deploy a new Eventing/Sync Gateway function during an upgrade, with some SGW nodes at version 3.2 or later, and others at an earlier version.
 
-## [](#release-3-3-0-july-2025)Release 3.3.0 (July 2025)
+## [](#release-3-3)Release 3.3
 
 ### [](#new-features)New Features
 
@@ -50,10 +50,6 @@ For more information, see [SG Collect Info](manage/sgcollect-info.md).
 #### [](#performance-improvements-for-larger-deployments)Performance Improvements for Larger Deployments
 
 Sync Gateway 3.3 includes several performance enhancements for larger deployments. Change notification processing has been optimized to better support high volumes of connected clients per Sync Gateway node. Channel cache memory and CPU utilization has been optimized, particularly under high write load. Finally, memory and CPU usage associated with skipped sequence processing, which commonly occurs under high write load, has been reduced.
-
-## [](#performance-improvements)Performance improvements
-
-Sync Gateway 3.3.3 optimizes channel cache processing to improve throughput in high-load scenarios.
 
 ## [](#see-also)See Also
 

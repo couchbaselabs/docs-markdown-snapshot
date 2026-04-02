@@ -3,7 +3,7 @@ title: QueryBuilder
 description: How to use QueryBuilder to build effective queries with Couchbase
   Lite on Objective-C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/querybuilder.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:couchbase-lite:objc:querybuilder.adoc[]
 ---
 
@@ -245,10 +245,9 @@ NSArray *values = @[[CBLQueryExpression property:@"first"],
     [CBLQueryExpression property:@"last"],
     [CBLQueryExpression property:@"username"]];
 
-[CBLQueryBuilder select:@[[CBLQuerySelectResult all]]
+CBLQuery *query = [CBLQueryBuilder select:@[[CBLQuerySelectResult all]]
     from:[CBLQueryDataSource collection:self.collection]
     where:[[CBLQueryExpression string:@"Armani"] in:values]];
-NSLog(@"%@", query);
 ```
 
 ### [](#lbl-like-ops)Like Operator

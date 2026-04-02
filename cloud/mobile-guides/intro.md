@@ -3,7 +3,7 @@ title: Build Mobile Apps
 description: Use App Services in Capella, in combination with Couchbase Lite
   embedded NoSQL database, to develop mobile apps.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/mobile-guides/pages/intro.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:cloud:mobile-guides:intro.adoc[]
 ---
 
@@ -22,7 +22,7 @@ For the easiest way to start building mobile apps with Couchbase, follow the ste
 
 App Services synchronizes data between the Couchbase Capella cluster and your mobile apps.
 
-* [cloud:app-services:index.adoc](#cloud:app-services:index.adoc)
+* [Manage App Services for Mobile and Edge](../../app-services/index.md)
 
 ## Couchbase Lite
 

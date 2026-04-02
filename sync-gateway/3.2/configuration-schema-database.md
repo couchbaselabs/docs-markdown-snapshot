@@ -2,7 +2,7 @@
 title: Database Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage databases
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/configuration-schema-database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-02T05:14:13.149Z
 link: xref:3.2@sync-gateway::configuration-schema-database.adoc[]
 ---
 
@@ -235,16 +235,18 @@ The configuration settings described here are provisioned through the [Database 
       },
       [rev_cache](#cache-rev%5Fcache): {
          [max_memory_count_mb](#cache-rev%5Fcache-max%5Fmemory%5Fcount%5Fmb): 0,
-         [shard_count](#cache-rev%5Fcache-shard%5Fcount): "16",
-         [size](#cache-rev%5Fcache-size): "5000"
+         [shard_count](#cache-rev%5Fcache-shard%5Fcount): 16,
+         [size](#cache-rev%5Fcache-size): 5000
       }
    },
    [certpath](#certpath): "string",
+   [changes_request_plus](#changes%5Frequest%5Fplus): false,
    [client_partition_window_secs](#client%5Fpartition%5Fwindow%5Fsecs): 2592000,
    [compact_interval_days](#compact%5Finterval%5Fdays): 1,
-   [cors](#cors): {
+   cors: {
       [headers](#cors-headers): ["string"...],
       [login_origin](#cors-login%5Forigin): ["string"...],
+      [max_age](#cors-max%5Fage): 0,
       [origin](#cors-origin): ["string"...]
    },
    [delta_sync](#delta%5Fsync): {
@@ -252,26 +254,18 @@ The configuration settings described here are provisioned through the [Database 
       [rev_max_age_seconds](#delta%5Fsync-rev%5Fmax%5Fage%5Fseconds): 86400
    },
    [disable_password_auth](#disable%5Fpassword%5Fauth): false,
-   [enable_shared_bucket_access](#enable%5Fshared%5Fbucket%5Faccess): true,
    [event_handlers](#event%5Fhandlers): {
       [db_state_changed](#event%5Fhandlers-db%5Fstate%5Fchanged): {
          [filter](#event%5Fhandlers-db%5Fstate%5Fchanged-filter): "string",
          [handler](#event%5Fhandlers-db%5Fstate%5Fchanged-handler): "string",
-         [options](#event%5Fhandlers-db%5Fstate%5Fchanged-options): {
-            [{additionalProperties...}](#event%5Fhandlers-db%5Fstate%5Fchanged-options-{additionalProperties}): {
-
-            }
-         },
          [timeout](#event%5Fhandlers-db%5Fstate%5Fchanged-timeout): 0,
          [url](#event%5Fhandlers-db%5Fstate%5Fchanged-url): "string"
       },
-      [document_changed](#event%5Fhandlers-document%5Fchanged): {
+      document_changed: {
          [filter](#event%5Fhandlers-document%5Fchanged-filter): "string",
          [handler](#event%5Fhandlers-document%5Fchanged-handler): "string",
          [options](#event%5Fhandlers-document%5Fchanged-options): {
-            [{additionalProperties...}](#event%5Fhandlers-document%5Fchanged-options-{additionalProperties}): {
-
-            }
+            [winning_rev_only](#event%5Fhandlers-document%5Fchanged-options-winning%5Frev%5Fonly): false
          },
          [timeout](#event%5Fhandlers-document%5Fchanged-timeout): 0,
          [url](#event%5Fhandlers-document%5Fchanged-url): "string"
@@ -395,7 +389,7 @@ The configuration settings described here are provisioned through the [Database 
          [collections_remote](#replications-replication%5Fid-collections%5Fremote): ["string"...],
          [conflict_resolution_type](#replications-replication%5Fid-conflict%5Fresolution%5Ftype): "default",
          [continuous](#replications-replication%5Fid-continuous): false,
-         [custom_conflict_resolver](#replications-replication%5Fid-custom%5Fconflict%5Fresolver): "none",
+         [custom_conflict_resolver](#replications-replication%5Fid-custom%5Fconflict%5Fresolver): "",
          [direction](#replications-replication%5Fid-direction): "string",
          [enable_delta_sync](#replications-replication%5Fid-enable%5Fdelta%5Fsync): false,
          [filter](#replications-replication%5Fid-filter): "string",
@@ -410,7 +404,7 @@ The configuration settings described here are provisioned through the [Database 
          [run_as](#replications-replication%5Fid-run%5Fas): "string"
       }
    },
-   [revs_limit](#revs%5Flimit): 100,
+   [revs_limit](#revs%5Flimit): 50,
    roles: {
       [{rolename...}](#roles-{rolename}): {
          [admin_channels](#roles-{rolename}-admin%5Fchannels): ["string"...],
@@ -736,7 +730,7 @@ The maximum amount of memory the revision cache should take up in MB, setting to
 
 Type
 
-string
+integer
 
 Default
 
@@ -750,7 +744,7 @@ The number of shards the revision cache should be split into.
 
 Type
 
-string
+integer
 
 Default
 
@@ -769,6 +763,18 @@ string
 Description
 
 The cert path (public key) for X.509 bucket auth.
+
+#### `changes_request_plus`
+
+Type
+
+boolean
+
+Description
+
+Sets the default value of `request_plus` for one-shot/non-continuous changes feeds, which when true, ensures all valid documents written prior to the request being issued are included in the response. Setting this option at the database level is required to ensure Couchbase Lite utilizes this changes feed mode.
+
+This also sets the default value of query param `request_plus` for [GET /{keyspace}/\_changes](#operation/get%5Fkeyspace-%5Fchanges) or `request_plus` for [POST /{keyspace}/\_changes](#operation/post%5Fkeyspace-%5Fchanges).
 
 #### `client_partition_window_secs`
 
@@ -802,16 +808,6 @@ The interval between scheduled tombstone compaction runs (in days). This can be 
 
 If set to 0, compaction will not run automatically.
 
-#### `cors`
-
-Type
-
-object
-
-Description
-
-CORS configuration for this database; if present, overrides server's config.
-
 #### `cors.headers`
 
 Type
@@ -820,7 +816,9 @@ array
 
 Description
 
-List of allowed headers
+List of allowed headers. These headers will be added the `Access-Control-Allow-Headers` response to a valid CORS request.
+
+A recommended minimum set of values should be `["Accept-Encoding", "Authorization", "Content-Type", "If-Match"]`.
 
 #### `cors.login_origin`
 
@@ -830,7 +828,25 @@ array
 
 Description
 
-List of allowed login origins
+List of allowed origins to apply to public `/{db}/_session` API.
+
+To use cors on `/{db}/_session`, the domain must be present in both `login_origin` and `origin`.
+
+If configured, `Authorization` must be included in headers.
+
+#### `cors.max_age`
+
+Type
+
+integer
+
+Default
+
+0
+
+Description
+
+Value for `Access-Control-Maximum-Age`. Uses 0 by default.
 
 #### `cors.origin`
 
@@ -840,7 +856,7 @@ array
 
 Description
 
-List of allowed origins, use \['\*'\] to allow access from everywhere
+List of allowed origins for the public API. The request `Origin` header is checked against these values. If successful the `Origin` header is returned in the HTTP response header as `Access-Control-Allow-Origin`.
 
 #### `delta_sync`
 
@@ -892,20 +908,6 @@ Description
 
 Whether to disable username/password authentication and only allow OIDC and guest access.
 
-#### `enable_shared_bucket_access`
-
-Type
-
-boolean
-
-Default
-
-true
-
-Description
-
-Whether to use extended attributes to store Sync Gateway document (`_sync`) metadata.
-
 #### `event_handlers`
 
 Type
@@ -935,26 +937,6 @@ string
 Description
 
 The handler type.
-
-#### `event_handlers.db_state_changed.options`
-
-Type
-
-object
-
-Description
-
-The options for the event.
-
-#### `event_handlers.db_state_changed.options.{additionalProperties…​}`
-
-Type
-
-object
-
-Description
-
-The option key and value.
 
 #### `event_handlers.db_state_changed.timeout`
 
@@ -1004,17 +986,17 @@ object
 
 Description
 
-The options for the event.
+Options for the document changed event.
 
-#### `event_handlers.document_changed.options.{additionalProperties…​}`
+#### `event_handlers.document_changed.options.winning_rev_only`
 
 Type
 
-object
+boolean
 
 Description
 
-The option key and value.
+If true, only the winning revision of the document will be sent to the webhook.
 
 #### `event_handlers.document_changed.timeout`
 
@@ -1284,9 +1266,9 @@ boolean
 
 Description
 
-If true, documents will be imported in to Sync Gateway from the bucket when requested. Documents will be ran through the set `import_filter` if any is set.
+If true, documents will be imported in to Sync Gateway from the bucket in the background. Documents will be ran through the set `import_filter` if any is set.
 
-The default value depends on the edition of Sync Gateway being used. If the edition is the Community Edition, then this will default to `false` or else in the Enterprise Edition, it will default to `true`.
+The default value depends on the edition of Sync Gateway being used. If the edition is the Community Edition, then this will default to `false` or else in the Enterprise Edition, it will default to `true`. This value requires `enable_shared_bucket_access=true`.
 
 This can also be set to the string `continuous` which maps to true.
 
@@ -2098,7 +2080,7 @@ boolean
 
 Description
 
-If true, the replicator will run with collections, and will replicate all collections, unless otherwise limited by `keyspace_map`.
+If true, the replicator will run with collections, and will replicate all collections, unless otherwise limited by `collections_local`.
 
 If false, the replicator will only replicate the default collection.
 
@@ -2144,17 +2126,6 @@ This defines what conflict resolution policy Sync Gateway should use to apply wh
 
 Changing this is an Enterprise Edition only feature.
 
-**Behaviour**
-
-* _default_ \- In priority order, this will cause  
-  * Deletes to always win (the delete with the longest revision history wins if both revisions are deletes)
-  * The revision with the longest revision history to win. This means the the revision with the most changes and therefore the highest revision ID will win.
-* _localWins_ \- This will result in local revisions always being the winner in any conflict.
-* _remoteWins_ \- This will result in remote revisions always being the winner in any conflict.
-* _custom_ \- This will result in conflicts going through your own custom conflict resolver. You must provide this logic as a Javascript function in the `custom_conflict_resolver` parameter. This is an Enterprise Edition only feature.
-
-Note: replications created prior to Sync Gateway 2.8 will default to `default`.
-
 #### `replications.replication_id.continuous`
 
 Type
@@ -2173,10 +2144,6 @@ Type
 
 string
 
-Default
-
-none
-
 Description
 
 This specifies the Javascript function to use to resolve conflicts between conflicting revisions.
@@ -2190,14 +2157,12 @@ The Javascript function to provide this property should be in backticks (like th
 
 Example:
 
-```
-"custom_conflict_resolver":\`
-	function(conflict) {
-		console.log("Doc ID: "+conflict.LocalDocument._id);
-		console.log("Full remote doc: "+JSON.stringify(conflict.RemoteDocument));
-		return conflict.RemoteDocument;
-	}
-\`
+```javascript
+function(conflict) {
+  console.log("Doc ID: "+conflict.LocalDocument._id);
+  console.log("Full remote doc: "+JSON.stringify(conflict.RemoteDocument));
+  return conflict.RemoteDocument;
+}
 
 ```
 
@@ -2215,14 +2180,6 @@ Description
 
 This specifies which direction the replication will be replicating with the `remote` replicator.
 
-The directions are:
-
-* `pull` \- changes are pulled from the remote database
-* `push` \- changes are pushed to the remote database
-* `pushAndPull` \- changes are both push-to and pulled-from the remote database
-
-Replications created prior to Sync Gateway 2.8 derive their `direction` from the source/target URL of the replication.
-
 #### `replications.replication_id.enable_delta_sync`
 
 Type
@@ -2231,13 +2188,9 @@ boolean
 
 Description
 
-This will turn on delta- sync for the replication. This works in conjunction with the database level setting `delta_sync.enabled`
+This will turn on delta-sync for the replication. In order to enable delta-sync for a replication, the database level setting `delta_sync.enabled` must also be set to true.
 
-If set to true, delta-sync will be used as long as both databases involved in the replication have delta-sync enabled. If a database does not have delta-sync enabled, then the replication will run without delta-sync.
-
-Replications created prior to Sync Gateway 2.8 must have delta-sync disabled.
-
-Enabling this is an Enterprise Edition only feature.
+Using delta-sync is an Enterprise Edition only feature.
 
 #### `replications.replication_id.filter`
 
@@ -2247,11 +2200,7 @@ string
 
 Description
 
-This defines whether to filter documents by their channels or not.
-
-If set to `sync_gateway/bychannel` then a **pull** replication will be limited to a specific set of channels specified by the `query_params.channels` property.
-
-This only can be used with pull replications.
+This defines whether to filter documents.
 
 #### `replications.replication_id.initial_state`
 
@@ -2315,7 +2264,7 @@ This is a set of key/value pairs used in the query string of the replication.
 
 If `filters=sync_gateway/bychannel` then this can be used to set the channels to filter by in a pull replication. To do this, set the `channels` key to a string array of the channels to filter by. For example:
 
-```
+```json
 "filter":"sync_gateway/bychannel",
 "query_params": {
   "channels":["chanUser1"]
@@ -2333,13 +2282,7 @@ Description
 
 This is the endpoint of the database for the remote Sync Gateway that is the subject of this replication's `push`, `pull`, or `pushAndPull` action.
 
-Typically this would include the URI, port, and database name. For example, `http://localhost:4985/db`.
-
-How this remote is used depends on the `direction` of the replication:
-
-* `pull` \- this replicator _pulls_ changes from the `remote`
-* `push` \- this replicator _pushes_ changes to this `remote`
-* `pushAndPull` \- this replicator _pushes_ changes to this `remote`, while also pulling receiving changes
+Typically this would include the URI, port, and database name. For example, `https://localhost:4985/db`.
 
 #### `replications.replication_id.remote_password`
 
@@ -2349,11 +2292,7 @@ string
 
 Description
 
-The password to use to authenticate with the remote.
-
-This password will be redacted in the replication config.
-
-This can only be used for a pull replication.
+The password to use to authenticate with the remote. This password will be redacted in the replication config.
 
 #### `replications.replication_id.remote_username`
 
@@ -2364,8 +2303,6 @@ string
 Description
 
 The username to use to authenticate with the remote.
-
-This can only be used for a pull replication.
 
 #### `replications.replication_id.replication_id`
 
@@ -2399,13 +2336,13 @@ number
 
 Default
 
-100 if conflict allowed and 50 if not
+50
 
 Description
 
 The maximum depth a document's revision tree can grow too.
 
-The minimum is `20` if conflicts are allowed and 0 if not. It is not recommended to go below `100` when conflicts are allowed.
+The minimum is `20` if conflicts are allowed and 0 if not. It is not recommended to go below `100` when conflicts are allowed. The default is `100` if conflicts are allowed and `50` if not.
 
 #### `roles.{rolename…​}`
 
@@ -2901,7 +2838,9 @@ string
 
 Description
 
-The key to use for the user xattr that will be accessible from the sync function. IF empty, the feature will be disabled.
+The key to use for the user xattr that will be accessible from the sync function. If empty, the feature will be disabled.
+
+This is an Enterprise Edition feature only.
 
 #### `username`
 
