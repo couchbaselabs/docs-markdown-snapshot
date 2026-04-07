@@ -1,7 +1,7 @@
 ---
 title: Develop with Couchbase
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/developer.adoc
-pubDate: 2026-03-28T05:05:12.980Z
+pubDate: 2026-04-07T05:16:09.470Z
 link: xref:home::developer.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:home::developer.adoc[]
 
 The Developer Data Platform for Critical Applications in Our AI World.
 
-Couchbase is a multipurpose NoSQL database for transactional, analytical, mobile, and AI applications. Develop at the edge with offline-first Couchbase Lite, for transactional workloads with SDKs in a dozen popular programming languages, for real-time analytics, and build agentic apps (currently in private preview).
+Couchbase is a multipurpose NoSQL database for transactional, analytical, mobile, and AI applications. Develop at the edge with offline-first Couchbase Lite, for transactional workloads with SDKs in a dozen popular programming languages, for real-time analytics, and build agentic apps.
 
 ## Development Choices for Your Use Cases
 
@@ -50,7 +50,7 @@ Build your app with [Couchbase Lite](../couchbase-lite/current/index.md) for off
 
 ###  Develop RAG and Agentic AI Applications
 
-Our Vector Search Service facilitates RAG applications — and offers the ability to combine searches with our sophisticated Search API. Agentic Apps can be built with Agent Catalog (currently in Private Preview).
+Our Vector Search Service facilitates RAG applications — and offers the ability to combine searches with our sophisticated Search API. Agentic Apps can be built with Agent Catalog.
 
 * [Vector Search](../cloud/vector-search/vector-search.md)
-* [Agent Catalog Private Preview](https://info.couchbase.com/capella-ai-services-signup)
+* [Agent Catalog](../ai/build/integrate-agent-with-catalog.md)

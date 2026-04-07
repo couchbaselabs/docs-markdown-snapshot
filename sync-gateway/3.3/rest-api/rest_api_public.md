@@ -1,7 +1,7 @@
 ---
 title: Sync Gateway Public API Reference
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/rest-api/pages/rest_api_public.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-07T05:16:09.470Z
 link: xref:3.3@sync-gateway:rest-api:rest_api_public.adoc[]
 ---
 
@@ -347,9 +347,9 @@ This will get the information about the current user.
 
 Properties associated with a user session
 
-**404** 
+**401** 
 
-Resource could not be found
+User does not have access to resource, or resource does not exist
 
 get/{db}/\_session
 
@@ -360,7 +360,7 @@ Public API
 ### Response samples 
 
 * 200
-* 404
+* 401
 
 Content type
 
@@ -372,11 +372,15 @@ Copy
 
 `{
 * "authentication_handlers": [
-  * "string"  
+  * "default",
+  * "cookie"  
 ],
 * "ok": true,
 * "userCtx": {
-  * "channels": { },
+  * "channels": {
+    * "!": 1,
+    * "channelA": 2  
+  },
   * "name": "string"  
 }
 }`
@@ -385,20 +389,27 @@ Copy
 
 Generates a login session for the user based on the credentials provided in the request body or if that fails (due to invalid credentials or none provided at all), generates the new session for the currently authenticated user instead. On a successful session creation, a session cookie is stored to keep the user authenticated for future API calls.
 
-If CORS is enabled, the origin must match an allowed login origin otherwise an error will be returned.
+If `Origin` header is passed to this endpoint, the `Origin` header must match both the `cors.login_origin` and `cors.origin` configuration options.
 
 ##### path Parameters
 
 | dbrequired | string Example: db1The name of the database to run the operation against. |
 | ---------- | ------------------------------------------------------------------------- |
 
+##### query Parameters
+
+| one\_time | boolean Sets the session to only be valid for a single authentication. This session will expire in 5 minutes if not used. |
+| --------- | ------------------------------------------------------------------------------------------------------------------------- |
+
 ##### Request Body schema: application/json
 
-The body can depend on if using the Public or Admin APIs.
+optional
 
-| name     | string User name to generate the session for.            |
-| -------- | -------------------------------------------------------- |
-| password | string Password of the user to generate the session for. |
+When name and password are included in the request body, the session will be created for the specified user. Otherwise the session will be created for the authenticated user making the request.
+
+| name     | string User name to generate the session for. Omit this value to generate a session for the authenticated user.            |
+| -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| password | string Password of the user to generate the session for. Omit this value to generate a session for the authenticated user. |
 
 ### Responses
 
@@ -408,11 +419,11 @@ Session created successfully. Returned body is dependant on if using Public or A
 
 **400** 
 
-Origin is not in the approved list of allowed origins
+Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin` of Sync Gateway bootstrap or database configuration.
 
-**404** 
+**401** 
 
-Resource could not be found
+User does not have access to resource, or resource does not exist
 
 post/{db}/\_session
 
@@ -439,7 +450,7 @@ Copy
 
 * 200
 * 400
-* 404
+* 401
 
 Content type
 
@@ -451,7 +462,8 @@ Copy
 
 `{
 * "authentication_handlers": [
-  * "default"  
+  * "default",
+  * "cookie"  
 ],
 * "ok": true,
 * "userCtx": {
@@ -460,14 +472,15 @@ Copy
     * "channelA": 2  
   },
   * "name": "string"  
-}
+},
+* "one_time_session_id": "c5af80a039db4ed9d2b6865576b6999935282689"
 }`
 
 ## [](#tag/Session/operation/delete%5Fdb-%5Fsession)Log out 
 
 Invalidates the session for the currently authenticated user and removes their session cookie.
 
-If CORS is enabled, the origin must match an allowed login origin otherwise an error will be returned.
+If `Origin` header is passed to this endpoint, the `Origin` header must match both the `cors.login_origin` and `cors.origin` configuration options.
 
 ##### path Parameters
 
@@ -482,11 +495,15 @@ Successfully removed session (logged out)
 
 **400** 
 
-Bad Request
+Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin` of Sync Gateway bootstrap or database configuration.
+
+**401** 
+
+User does not have access to resource, or resource does not exist
 
 **404** 
 
-Resource could not be found
+Return if session not found.
 
 delete/{db}/\_session
 
@@ -496,6 +513,8 @@ Public API
 
 ### Response samples 
 
+* 400
+* 401
 * 404
 
 Content type
@@ -505,8 +524,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "Bad Request",
+* "reason": "No CORS"
 }`
 
 ## [](#tag/Authentication)Authentication
@@ -752,7 +771,7 @@ Copy
 
 Creates a new session based on a Facebook user. On a successful session creation, a session cookie is stored to keep the user authenticated for future API calls.
 
-If CORS is enabled, the origin must match an allowed login origin otherwise an error will be returned.
+If `Origin` header is passed to this endpoint, the `Origin` header must match both the `cors.login_origin` and `cors.origin` configuration options.
 
 ##### path Parameters
 
@@ -772,7 +791,7 @@ Session created successfully
 
 **400** 
 
-Origin is not in the approved list of allowed origins
+Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin` of Sync Gateway bootstrap or database configuration.
 
 **401** 
 
@@ -825,15 +844,15 @@ application/json
 Copy
 
 `{
-* "error": "string",
-* "reason": "string"
+* "error": "Bad Request",
+* "reason": "No CORS"
 }`
 
 ## [](#tag/Authentication/operation/post%5Fdb-%5Fgoogle)Create a new Google-based session  Deprecated 
 
 Creates a new session based on a Google user. On a successful session creation, a session cookie is stored to keep the user authenticated for future API calls.
 
-If CORS is enabled, the origin must match an allowed login origin otherwise an error will be returned.
+If `Origin` header is passed to this endpoint, the `Origin` header must match both the `cors.login_origin` and `cors.origin` configuration options.
 
 ##### path Parameters
 
@@ -853,7 +872,7 @@ Session created successfully
 
 **400** 
 
-Origin is not in the approved list of allowed origins
+Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin` of Sync Gateway bootstrap or database configuration.
 
 **401** 
 
@@ -905,8 +924,8 @@ application/json
 Copy
 
 `{
-* "error": "string",
-* "reason": "string"
+* "error": "Bad Request",
+* "reason": "No CORS"
 }`
 
 ## [](#tag/Document)Document

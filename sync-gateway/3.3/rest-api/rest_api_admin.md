@@ -1,7 +1,7 @@
 ---
 title: Sync Gateway Admin API Reference
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/rest-api/pages/rest_api_admin.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-07T05:16:09.470Z
 link: xref:3.3@sync-gateway:rest-api:rest_api_admin.adoc[]
 ---
 
@@ -419,7 +419,7 @@ Copy
 
 Creates a new session based on a Facebook user. On a successful session creation, a session cookie is stored to keep the user authenticated for future API calls.
 
-If CORS is enabled, the origin must match an allowed login origin otherwise an error will be returned.
+If `Origin` header is passed to this endpoint, the `Origin` header must match both the `cors.login_origin` and `cors.origin` configuration options.
 
 ##### path Parameters
 
@@ -439,7 +439,7 @@ Session created successfully
 
 **400** 
 
-Origin is not in the approved list of allowed origins
+Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin` of Sync Gateway bootstrap or database configuration.
 
 **401** 
 
@@ -492,15 +492,15 @@ application/json
 Copy
 
 `{
-* "error": "string",
-* "reason": "string"
+* "error": "Bad Request",
+* "reason": "No CORS"
 }`
 
 ## [](#tag/Authentication/operation/post%5Fdb-%5Fgoogle)Create a new Google-based session  Deprecated 
 
 Creates a new session based on a Google user. On a successful session creation, a session cookie is stored to keep the user authenticated for future API calls.
 
-If CORS is enabled, the origin must match an allowed login origin otherwise an error will be returned.
+If `Origin` header is passed to this endpoint, the `Origin` header must match both the `cors.login_origin` and `cors.origin` configuration options.
 
 ##### path Parameters
 
@@ -520,7 +520,7 @@ Session created successfully
 
 **400** 
 
-Origin is not in the approved list of allowed origins
+Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin` of Sync Gateway bootstrap or database configuration.
 
 **401** 
 
@@ -572,8 +572,8 @@ application/json
 Copy
 
 `{
-* "error": "string",
-* "reason": "string"
+* "error": "Bad Request",
+* "reason": "No CORS"
 }`
 
 ## [](#tag/Server)Server
@@ -658,16 +658,19 @@ Copy
     * "tls_key_path": "string"  
   },
   * "cors": {
-    * "origin": [
-      * "string"  
+    * "headers": [
+      * "Accept-Encoding",
+      * "Authorization",
+      * "Content-Type",
+      * "If-Match"  
       ],
     * "login_origin": [
-      * "string"  
+      * "<https://example.com>"  
       ],
-    * "headers": [
-      * "string"  
-      ],
-    * "max_age": 0  
+    * "max_age": 0,
+    * "origin": [
+      * "<https://example.com>"  
+      ]  
   }  
 },
 * "logging": {
@@ -1902,7 +1905,7 @@ The configuration to use for the new database
 | javascript\_timeout\_secs               | number Default: 60 The maximum number of seconds the sync, import filter, and custom conflict resolver JavaScript functions are allowed to run for before timing out. Set to 0 to allow the JS functions to run uncapped.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | suspendable                             | boolean Default: false Set to true to allow the database to be suspended. Defaults to true when running in serverless mode otherwise defaults to false.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | changes\_request\_plus                  | boolean Default: false Sets the default value of request\_plus for one-shot/non-continuous changes feeds, which when true, ensures all valid documents written prior to the request being issued are included in the response. Setting this option at the database level is required to ensure Couchbase Lite utilizes this changes feed mode. This also sets the default value of query param request\_plus for [GET /{keyspace}/\_changes](#operation/get%5Fkeyspace-%5Fchanges) or request\_plus for [POST /{keyspace}/\_changes](#operation/post%5Fkeyspace-%5Fchanges).                                                                                                                                |
-| cors                                    | object CORS configuration for this database; if present, overrides server's config.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| cors                                    | object (Cors Configuration) CORS configuration for this database; if present, overrides server's config.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | logging                                 | object Per-database logging configuration.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | disable\_public\_all\_docs              | boolean Default: false This controls whether the [GET /{keyspace}/\_all\_docs](#operation/get%5Fkeyspace-%5Fall%5Fdocs) REST API endpoint is publicly accessible or not. Disabling this endpoint is recommended for larger datasets or production workloads. [GET /{keyspace}/\_changes](#operation/get%5Fkeyspace-%5Fchanges) or [POST /{keyspace}/\_bulk\_get](#operation/post%5Fkeyspace-%5Fbulk%5Fget) have more efficient implementations and should be used instead. If set to true, the endpoint will not be publicly accessible, and will only be available on the Admin API. Setting this to false, or leaving it as the default value is deprecated, and may default to true in a future release. |
 
@@ -2194,6 +2197,7 @@ Copy
     * "channel_name_size": 0  
   },
   * "oidc_tls_skip_verify": true,
+  * "same_site_cookie": "Default",
   * "sgr_tls_skip_verify": true,
   * "remote_config_tls_skip_verify": true,
   * "guest_read_only": true,
@@ -2413,14 +2417,18 @@ Copy
 * "suspendable": false,
 * "changes_request_plus": false,
 * "cors": {
-  * "origin": [
-    * "string"  
+  * "headers": [
+    * "Accept-Encoding",
+    * "Authorization",
+    * "Content-Type",
+    * "If-Match"  
   ],
   * "login_origin": [
-    * "string"  
+    * "<https://example.com>"  
   ],
-  * "headers": [
-    * "string"  
+  * "max_age": 0,
+  * "origin": [
+    * "<https://example.com>"  
   ]  
 },
 * "logging": {
@@ -3594,6 +3602,7 @@ Copy
     * "channel_name_size": 0  
   },
   * "oidc_tls_skip_verify": true,
+  * "same_site_cookie": "Default",
   * "sgr_tls_skip_verify": true,
   * "remote_config_tls_skip_verify": true,
   * "guest_read_only": true,
@@ -3855,14 +3864,18 @@ Copy
 * "suspendable": false,
 * "changes_request_plus": false,
 * "cors": {
-  * "origin": [
-    * "string"  
+  * "headers": [
+    * "Accept-Encoding",
+    * "Authorization",
+    * "Content-Type",
+    * "If-Match"  
   ],
   * "login_origin": [
-    * "string"  
+    * "<https://example.com>"  
   ],
-  * "headers": [
-    * "string"  
+  * "max_age": 0,
+  * "origin": [
+    * "<https://example.com>"  
   ]  
 },
 * "logging": {
@@ -3987,7 +4000,7 @@ The new database configuration to use
 | javascript\_timeout\_secs               | number Default: 60 The maximum number of seconds the sync, import filter, and custom conflict resolver JavaScript functions are allowed to run for before timing out. Set to 0 to allow the JS functions to run uncapped.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | suspendable                             | boolean Default: false Set to true to allow the database to be suspended. Defaults to true when running in serverless mode otherwise defaults to false.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | changes\_request\_plus                  | boolean Default: false Sets the default value of request\_plus for one-shot/non-continuous changes feeds, which when true, ensures all valid documents written prior to the request being issued are included in the response. Setting this option at the database level is required to ensure Couchbase Lite utilizes this changes feed mode. This also sets the default value of query param request\_plus for [GET /{keyspace}/\_changes](#operation/get%5Fkeyspace-%5Fchanges) or request\_plus for [POST /{keyspace}/\_changes](#operation/post%5Fkeyspace-%5Fchanges).                                                                                                                                |
-| cors                                    | object CORS configuration for this database; if present, overrides server's config.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| cors                                    | object (Cors Configuration) CORS configuration for this database; if present, overrides server's config.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | logging                                 | object Per-database logging configuration.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | disable\_public\_all\_docs              | boolean Default: false This controls whether the [GET /{keyspace}/\_all\_docs](#operation/get%5Fkeyspace-%5Fall%5Fdocs) REST API endpoint is publicly accessible or not. Disabling this endpoint is recommended for larger datasets or production workloads. [GET /{keyspace}/\_changes](#operation/get%5Fkeyspace-%5Fchanges) or [POST /{keyspace}/\_bulk\_get](#operation/post%5Fkeyspace-%5Fbulk%5Fget) have more efficient implementations and should be used instead. If set to true, the endpoint will not be publicly accessible, and will only be available on the Admin API. Setting this to false, or leaving it as the default value is deprecated, and may default to true in a future release. |
 
@@ -4275,6 +4288,7 @@ Copy
     * "channel_name_size": 0  
   },
   * "oidc_tls_skip_verify": true,
+  * "same_site_cookie": "Default",
   * "sgr_tls_skip_verify": true,
   * "remote_config_tls_skip_verify": true,
   * "guest_read_only": true,
@@ -4494,14 +4508,18 @@ Copy
 * "suspendable": false,
 * "changes_request_plus": false,
 * "cors": {
-  * "origin": [
-    * "string"  
+  * "headers": [
+    * "Accept-Encoding",
+    * "Authorization",
+    * "Content-Type",
+    * "If-Match"  
   ],
   * "login_origin": [
-    * "string"  
+    * "<https://example.com>"  
   ],
-  * "headers": [
-    * "string"  
+  * "max_age": 0,
+  * "origin": [
+    * "<https://example.com>"  
   ]  
 },
 * "logging": {
@@ -4638,7 +4656,7 @@ The database configuration fields to update
 | javascript\_timeout\_secs               | number Default: 60 The maximum number of seconds the sync, import filter, and custom conflict resolver JavaScript functions are allowed to run for before timing out. Set to 0 to allow the JS functions to run uncapped.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | suspendable                             | boolean Default: false Set to true to allow the database to be suspended. Defaults to true when running in serverless mode otherwise defaults to false.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | changes\_request\_plus                  | boolean Default: false Sets the default value of request\_plus for one-shot/non-continuous changes feeds, which when true, ensures all valid documents written prior to the request being issued are included in the response. Setting this option at the database level is required to ensure Couchbase Lite utilizes this changes feed mode. This also sets the default value of query param request\_plus for [GET /{keyspace}/\_changes](#operation/get%5Fkeyspace-%5Fchanges) or request\_plus for [POST /{keyspace}/\_changes](#operation/post%5Fkeyspace-%5Fchanges).                                                                                                                                |
-| cors                                    | object CORS configuration for this database; if present, overrides server's config.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| cors                                    | object (Cors Configuration) CORS configuration for this database; if present, overrides server's config.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | logging                                 | object Per-database logging configuration.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | disable\_public\_all\_docs              | boolean Default: false This controls whether the [GET /{keyspace}/\_all\_docs](#operation/get%5Fkeyspace-%5Fall%5Fdocs) REST API endpoint is publicly accessible or not. Disabling this endpoint is recommended for larger datasets or production workloads. [GET /{keyspace}/\_changes](#operation/get%5Fkeyspace-%5Fchanges) or [POST /{keyspace}/\_bulk\_get](#operation/post%5Fkeyspace-%5Fbulk%5Fget) have more efficient implementations and should be used instead. If set to true, the endpoint will not be publicly accessible, and will only be available on the Admin API. Setting this to false, or leaving it as the default value is deprecated, and may default to true in a future release. |
 
@@ -4926,6 +4944,7 @@ Copy
     * "channel_name_size": 0  
   },
   * "oidc_tls_skip_verify": true,
+  * "same_site_cookie": "Default",
   * "sgr_tls_skip_verify": true,
   * "remote_config_tls_skip_verify": true,
   * "guest_read_only": true,
@@ -5145,14 +5164,18 @@ Copy
 * "suspendable": false,
 * "changes_request_plus": false,
 * "cors": {
-  * "origin": [
-    * "string"  
+  * "headers": [
+    * "Accept-Encoding",
+    * "Authorization",
+    * "Content-Type",
+    * "If-Match"  
   ],
   * "login_origin": [
-    * "string"  
+    * "<https://example.com>"  
   ],
-  * "headers": [
-    * "string"  
+  * "max_age": 0,
+  * "origin": [
+    * "<https://example.com>"  
   ]  
 },
 * "logging": {
@@ -6857,11 +6880,15 @@ Copy
 
 `{
 * "authentication_handlers": [
-  * "string"  
+  * "default",
+  * "cookie"  
 ],
 * "ok": true,
 * "userCtx": {
-  * "channels": { },
+  * "channels": {
+    * "!": 1,
+    * "channelA": 2  
+  },
   * "name": "string"  
 }
 }`
@@ -6896,13 +6923,13 @@ The body can depend on if using the Public or Admin APIs.
 
 Session created successfully. Returned body is dependant on if using Public or Admin APIs.
 
-**400** 
+**401** 
 
-Origin is not in the approved list of allowed origins
+User does not have access to resource, or resource does not exist
 
 **404** 
 
-Resource could not be found
+Return if database does not exist
 
 post/{db}/\_session
 
@@ -6928,7 +6955,7 @@ Copy
 ### Response samples 
 
 * 200
-* 400
+* 401
 * 404
 
 Content type
@@ -6990,11 +7017,15 @@ Copy
 
 `{
 * "authentication_handlers": [
-  * "string"  
+  * "default",
+  * "cookie"  
 ],
 * "ok": true,
 * "userCtx": {
-  * "channels": { },
+  * "channels": {
+    * "!": 1,
+    * "channelA": 2  
+  },
   * "name": "string"  
 }
 }`

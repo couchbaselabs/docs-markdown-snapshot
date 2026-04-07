@@ -3,7 +3,7 @@ title: Bootstrap Configuration
 description: Reference data on the contents of Sync Gateway's bootstrap
   configuration, which determines its run time behavior.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/configuration/pages/configuration-schema-bootstrap.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-07T05:16:09.470Z
 link: xref:3.3@sync-gateway:configuration:configuration-schema-bootstrap.adoc[]
 ---
 
@@ -286,7 +286,9 @@ array
 
 Description
 
-List of allowed headers
+List of allowed headers. These headers will be added the `Access-Control-Allow-Headers` response to a valid CORS request.
+
+A recommended minimum set of values should be `["Accept-Encoding", "Authorization", "Content-Type", "If-Match"]`.
 
 #### `api.cors.login_origin`
 
@@ -296,7 +298,11 @@ array
 
 Description
 
-List of allowed login origins
+List of allowed origins to apply to public `/{db}/_session` API.
+
+To use cors on `/{db}/_session`, the domain must be present in both `login_origin` and `origin`.
+
+If configured, `Authorization` must be included in headers.
 
 #### `api.cors.max_age`
 
@@ -304,9 +310,13 @@ Type
 
 integer
 
+Default
+
+0
+
 Description
 
-Maximum age of the CORS Options request
+Value for `Access-Control-Maximum-Age`. Uses 0 by default.
 
 #### `api.cors.origin`
 
@@ -316,7 +326,7 @@ array
 
 Description
 
-List of allowed origins, use \['\*'\] to allow access from everywhere
+List of allowed origins for the public API. The request `Origin` header is checked against these values. If successful the `Origin` header is returned in the HTTP response header as `Access-Control-Allow-Origin`.
 
 #### `api.enable_advanced_auth_dp`
 

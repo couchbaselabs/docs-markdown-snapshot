@@ -1,8 +1,8 @@
 ---
 title: Metrics REST API
-description: Description of the Sync Gateway Metrics Rest API
+description: Description of the Sync Gateway Metrics REST API
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/rest-api/pages/rest-api-metrics.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-07T05:16:09.470Z
 link: xref:sync-gateway:rest-api:rest-api-metrics.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:sync-gateway:rest-api:rest-api-metrics.adoc[]
 
 # Metrics REST API
 
-> Description of the Sync Gateway Metrics Rest API  
+> Description of the Sync Gateway Metrics REST API  
 
 Related _REST API_ topics: [Public REST API](rest-api.md) | [Admin REST API](rest-api-admin.md) | [Monitor](../manage/stats-monitoring.md) | [Prometheus Integration](../deploy/stats-prometheus.md)
 

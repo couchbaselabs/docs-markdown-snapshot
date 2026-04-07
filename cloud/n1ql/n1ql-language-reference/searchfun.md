@@ -3,7 +3,7 @@ title: Search Functions
 description: Search functions enable you to use Full Text Search (FTS) queries
   directly within a SQL++ query.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/searchfun.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-07T05:16:09.470Z
 link: xref:cloud:n1ql:n1ql-language-reference/searchfun.adoc[]
 ---
 
@@ -111,6 +111,9 @@ In these cases, the Query service must fetch the documents, and the Search servi
 If the SEARCH() function is present for a keyspace, no GSI covering scan is possible on that keyspace. If more than one FTS or GSI index are used in the plan, IntersectScan or Ordered IntersectScan is performed. To avoid this, use a USE INDEX hint.
 
 Order pushdown is possible only if query ORDER BY has only [SEARCH\_SCORE()](#search%5Fscore) on the leftmost keyspace. Offset and Limit pushdown is possible if the query only has a SEARCH() predicate, using a single search index — no IntersectScan or OrderIntersectScan. Group aggregates and projection are not pushed.
+
+> [!NOTE]
+> If you do not specify the `index` setting in the options, SQL++ automatically selects a qualifying FTS index for the query. If multiple indexes qualify for the query, SQL++ selects the most precise one.
 
 ### [](#examples)Examples
 

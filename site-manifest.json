@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1775107148425,
+  "generated": 1775539259306,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -1864,7 +1864,7 @@
               "module": "project-docs",
               "path": "sdk-licenses.adoc",
               "url": "/c-sdk/current/project-docs/sdk-licenses.md",
-              "title": "SDK License"
+              "title": "Licenses"
             },
             {
               "module": "project-docs",
@@ -2178,7 +2178,7 @@
               "module": "ROOT",
               "path": "sdk-licenses.adoc",
               "url": "/c-sdk/current/project-docs/sdk-licenses.md",
-              "title": "SDK License"
+              "title": "Licenses"
             },
             {
               "alias": true,
@@ -23370,6 +23370,13 @@
               "path": "sdk-authentication-overview.adoc",
               "url": "/cxx-sdk/current/howtos/sdk-authentication.md",
               "title": "Authentication"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "sdk-licenses.adoc",
+              "url": "/cxx-sdk/current/project-docs/sdk-licenses.md",
+              "title": "Licenses"
             },
             {
               "alias": true,
@@ -49047,7 +49054,7 @@
               "module": "project-docs",
               "path": "sdk-licenses.adoc",
               "url": "/kotlin-sdk/current/project-docs/sdk-licenses.md",
-              "title": "SDK License"
+              "title": "Licenses"
             },
             {
               "module": "project-docs",
@@ -49194,7 +49201,7 @@
               "module": "ROOT",
               "path": "sdk-licenses.adoc",
               "url": "/kotlin-sdk/current/project-docs/sdk-licenses.md",
-              "title": "SDK License"
+              "title": "Licenses"
             },
             {
               "alias": true,
@@ -71073,6 +71080,13 @@
               "path": "sdk-authentication-overview.adoc",
               "url": "/scala-sdk/current/howtos/sdk-authentication.md",
               "title": "Authentication"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "sdk-licenses.adoc",
+              "url": "/scala-sdk/current/project-docs/sdk-licenses.md",
+              "title": "Licenses"
             },
             {
               "alias": true,

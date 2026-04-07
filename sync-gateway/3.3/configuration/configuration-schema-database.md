@@ -2,7 +2,7 @@
 title: Database Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage databases
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/configuration/pages/configuration-schema-database.adoc
-pubDate: 2026-04-02T05:14:13.149Z
+pubDate: 2026-04-07T05:16:09.470Z
 link: xref:3.3@sync-gateway:configuration:configuration-schema-database.adoc[]
 ---
 
@@ -247,9 +247,10 @@ The configuration settings described here are provisioned through the [Database 
    [changes_request_plus](#changes%5Frequest%5Fplus): false,
    [client_partition_window_secs](#client%5Fpartition%5Fwindow%5Fsecs): 2592000,
    [compact_interval_days](#compact%5Finterval%5Fdays): 1,
-   [cors](#cors): {
+   cors: {
       [headers](#cors-headers): ["string"...],
       [login_origin](#cors-login%5Forigin): ["string"...],
+      [max_age](#cors-max%5Fage): 0,
       [origin](#cors-origin): ["string"...]
    },
    [delta_sync](#delta%5Fsync): {
@@ -463,6 +464,7 @@ The configuration settings described here are provisioned through the [Database 
       },
       [oidc_tls_skip_verify](#unsupported-oidc%5Ftls%5Fskip%5Fverify): true,
       [remote_config_tls_skip_verify](#unsupported-remote%5Fconfig%5Ftls%5Fskip%5Fverify): true,
+      [same_site_cookie](#unsupported-same%5Fsite%5Fcookie): "string",
       [sgr_tls_skip_verify](#unsupported-sgr%5Ftls%5Fskip%5Fverify): true,
       user_views: {
          [enabled](#unsupported-user%5Fviews-enabled): true
@@ -815,16 +817,6 @@ The interval between scheduled tombstone compaction runs (in days). This can be 
 
 If set to 0, compaction will not run automatically.
 
-#### `cors`
-
-Type
-
-object
-
-Description
-
-CORS configuration for this database; if present, overrides server's config.
-
 #### `cors.headers`
 
 Type
@@ -833,7 +825,9 @@ array
 
 Description
 
-List of allowed headers
+List of allowed headers. These headers will be added the `Access-Control-Allow-Headers` response to a valid CORS request.
+
+A recommended minimum set of values should be `["Accept-Encoding", "Authorization", "Content-Type", "If-Match"]`.
 
 #### `cors.login_origin`
 
@@ -843,7 +837,25 @@ array
 
 Description
 
-List of allowed login origins
+List of allowed origins to apply to public `/{db}/_session` API.
+
+To use cors on `/{db}/_session`, the domain must be present in both `login_origin` and `origin`.
+
+If configured, `Authorization` must be included in headers.
+
+#### `cors.max_age`
+
+Type
+
+integer
+
+Default
+
+0
+
+Description
+
+Value for `Access-Control-Maximum-Age`. Uses 0 by default.
 
 #### `cors.origin`
 
@@ -853,7 +865,7 @@ array
 
 Description
 
-List of allowed origins, use \['\*'\] to allow access from everywhere
+List of allowed origins for the public API. The request `Origin` header is checked against these values. If successful the `Origin` header is returned in the HTTP response header as `Access-Control-Allow-Origin`.
 
 #### `delta_sync`
 
@@ -2784,6 +2796,16 @@ boolean
 Description
 
 Enable self-signed certificates for external JavaScript load.
+
+#### `unsupported.same_site_cookie`
+
+Type
+
+string
+
+Description
+
+Override the session cookie SameSite behavior. By default, a session cookie will have SameSite:None if CORS is enabled, and will have no SameSite attribute if CORS is not enabled. Setting this property to`Default` will omit the SameSite attribute from the cookie.
 
 #### `unsupported.sgr_tls_skip_verify`
 

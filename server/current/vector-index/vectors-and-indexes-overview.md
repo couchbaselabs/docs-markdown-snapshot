@@ -2,7 +2,7 @@
 title: Use Vector Indexes for AI Applications
 description: This page is a high-level overview of vectors and how they work in indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/vectors-and-indexes-overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-07T05:16:09.470Z
 link: xref:server:vector-index:vectors-and-indexes-overview.adoc[]
 ---
 
@@ -179,7 +179,7 @@ Couchbase Server supports two types of quantization:
 
 ### [](#pq)Product Quantization (PQ)
 
-Product Quantization simplifies vectors by breaking their dimensions into chunks called subspaces. It then replaces each set of dimensions within the with a single value that represents the nearest centroid in the subspace. This method reduces the size of the vector by replacing the original floating point values with smaller integers that represent the centroid.
+Product Quantization simplifies vectors by breaking their dimensions into chunks called subspaces. It then replaces each set of dimensions with a single value that represents the nearest centroid in the subspace. This method reduces the size of the vector by replacing the original floating point values with smaller integers that represent the centroid.
 
 PQ processes vectors by following these steps:
 
