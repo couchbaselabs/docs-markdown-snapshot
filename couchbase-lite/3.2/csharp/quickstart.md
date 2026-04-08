@@ -3,7 +3,7 @@ title: Couchbase Lite on C#.Net
 description: Start your Couchbase for Mobile and Edge adventure, get up and
   running with Couchbase Lite
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/quickstart.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:3.2@couchbase-lite:csharp:quickstart.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Get set up with an account and deploy a free tier operational cluster.
 
 * [Install](gs-install.md)
 * [Build](gs-build.md)
-* [Browse API References](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-net)
+* [Browse API References](https://docs.couchbase.com/mobile/3.2.5/couchbase-lite-net)
 
 ###  Do More
 

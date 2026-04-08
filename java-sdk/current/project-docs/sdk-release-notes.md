@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Java Client.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:java-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -2599,4 +2599,4 @@ Numerous _Alpha_ and _Beta_ releases were made in the run-up to the 3.0 release,
 
 ## [](#older-releases)Older Releases
 
-Although [no longer supported](https://www.couchbase.com/support-policy/enterprise-software), documentation for older releases continues to be available in our [docs archive](https://docs-archive.couchbase.com/home/index.html).
+Although [no longer supported](https://www.couchbase.com/support-policy/EOL/), documentation for older releases continues to be available in our [docs archive](https://docs-archive.couchbase.com/home/index.html).

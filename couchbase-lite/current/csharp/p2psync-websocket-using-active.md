@@ -3,7 +3,7 @@ title: Active Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/p2psync-websocket-using-active.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:couchbase-lite:csharp:p2psync-websocket-using-active.adoc[]
 ---
 
@@ -41,37 +41,37 @@ You should configure and initialize a replicator for each Couchbase Lite databas
 Example 1\. Replication configuration and initialization
 
 ```C#
+var url = new URLEndpoint(new Uri("wss://listener.com:4984/otherDB"));
+var collectionConfig = new CollectionConfiguration(collection)
+{
+    // Configure Sync Mode
+    ConflictResolver = new LocalWinConflictResolver() (1)
+};
 
-#warning p2p-act-rep-config-type used, but contains nothing
+var replConfig = new ReplicatorConfiguration([collectionConfig], url)
+{
+    // Configure Server Security -- only accept self-signed certs
+    AcceptOnlySelfSignedServerCertificate = true, (2)
 
+    // Configure Client Security
+    // Configure basic auth using user credentials
+    Authenticator = new BasicAuthenticator("valid.user", "valid.password.string") (3)
+};
 
-#warning autopurge-override used, but contains nothing
-
-#warning p2p-act-rep-config-cont used, but contains nothing
-// Configure Sync Mode
-
-
-#warning p2p-act-rep-config-self-cert used, but contains nothing
-// Configure Server Security -- only accept self-signed certs
-
-
-// Configure Client Security (1)
-
-#warning p2p-act-rep-auth used, but contains nothing
-// Configure basic auth using user credentials
-
-
-#warning p2p-act-rep-start-full used, but contains nothing
 // Initialize and start a replicator
 // Initialize replicator with configuration data
+var replicator = new Replicator(replConfig); (4)
 
-#warning p2p-act-rep-add-change-listener used, but contains nothing
-#warning p2p-act-rep-add-change-listener-label used, but contains nothing
-//Optionally add a change listener (2)
+// Optionally add a change listener (5)
+var token = replicator.AddChangeListener((_, args) =>
+{
+    if (args.Status.Error != null) {
+        Console.WriteLine($"Error :: {args.Status.Error}");
+    }
+});
 
-
-#warning p2p-act-rep-start used, but contains nothing
 // Start replicator
+replicator.Start(); (6)
 ```
 
 | **1** | Configure how the client will authenticate the server. Here we say connect only to servers presenting a self-signed certificate. By default, clients accept only servers presenting certificates that can be verified using the OS bundled Root CA Certificates — see: [Authenticating the Listener](#authenticate-listener). |
@@ -137,8 +137,22 @@ We use `[ReplicatorConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchb
 Example 3\. Configure replicator type and mode
 
 ```C#
+var url = new URLEndpoint(new Uri("wss://listener.com:4984/otherDB"));
+var collectionConfig = new CollectionConfiguration(collection)
+{
+    // Configure Sync Mode
+    ConflictResolver = new LocalWinConflictResolver() (1)
+};
 
-// Configure Sync Mode
+var replConfig = new ReplicatorConfiguration([collectionConfig], url)
+{
+    // Configure Server Security -- only accept self-signed certs
+    AcceptOnlySelfSignedServerCertificate = true, (2)
+
+    // Configure Client Security
+    // Configure basic auth using user credentials
+    Authenticator = new BasicAuthenticator("valid.user", "valid.password.string") (3)
+};
 ```
 
 > [!TIP]
@@ -221,6 +235,7 @@ Set the client to expect and accept only self-signed certificates
 
 ```C#
 // Configure Server Security -- only accept self-signed certs
+AcceptOnlySelfSignedServerCertificate = true, (1)
 ```
 
 | **1** | Set this to true to accept any self signed cert. Any certificates that are not self-signed are rejected. |
@@ -248,6 +263,7 @@ This example shows basic authentication using user name and password:
 
 ```C#
 // Configure basic auth using user credentials
+Authenticator = new BasicAuthenticator("valid.user", "valid.password.string") (1)
 ```
 
 ### [](#certificate-authentication)Certificate Authentication
@@ -292,11 +308,11 @@ Example 8\. Initialize and run replicator
 ```C#
 // Initialize and start a replicator
 // Initialize replicator with configuration data
+var replicator = new Replicator(replConfig); (1)
 
-#warning p2p-act-rep-add-change-listener used, but contains nothing
 
-#warning p2p-act-rep-start used, but contains nothing
 // Start replicator
+replicator.Start(); (2)
 ```
 
 | **1** | Initialize the replicator with the configuration |
@@ -343,7 +359,7 @@ Example 9\. Monitor replication
 * Using replicator.status
 
 ```C#
-#warning p2p-act-rep-add-change-listener-label used, but contains nothing
+
 ```
 
 ```C#

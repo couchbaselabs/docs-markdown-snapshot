@@ -2,7 +2,7 @@
 title: Installing Couchbase Lite on .Net
 description: How to install Couchbase Lite on .Net
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/gs-install.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:3.2@couchbase-lite:csharp:gs-install.adoc[]
 ---
 
@@ -16,16 +16,16 @@ link: xref:3.2@couchbase-lite:csharp:gs-install.adoc[]
 
 Quick Steps
 
-For experienced developers, this is all you need to add _Couchbase Lite for C#.Net 3.2.4_ to your application projects.
+For experienced developers, this is all you need to add _Couchbase Lite for C#.Net 3.2.5_ to your application projects.
 
 1. Create or open an existing Visual Studio project
 2. Install either of the following packages from Nuget.
 
-  * Community Edition — `Couchbase.Lite` package for 3.2.4
-  * Enterprise Edition — `Couchbase.Lite.Enterprise` package for 3.2.4
+  * Community Edition — `Couchbase.Lite` package for 3.2.5
+  * Enterprise Edition — `Couchbase.Lite.Enterprise` package for 3.2.5
 
     * Vector Search Extension — `Couchbase.Lite.VectorSearch` package for 1.0.1
-3. Within your app, include a call to the relevant `Activate()` function inside of the class that is included in the support assembly.
+3. Within your app, include a call to the relevant `Activate()` function inside of the class that's included in the support assembly.
 
 > [!IMPORTANT]
 > To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
@@ -130,7 +130,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](#csharp:landing-p2psync.adoc)
-* [API References](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-net)
+* [API References](https://docs.couchbase.com/mobile/3.2.5/couchbase-lite-net)
 
 .
 

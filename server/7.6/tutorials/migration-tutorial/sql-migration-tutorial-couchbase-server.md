@@ -1,17 +1,17 @@
 ---
-title: Migrating your Data from MySQL to Couchbase Server
+title: "Migration Tutorial: Migrate your Data from MySQL to Couchbase Server"
 description: Using MySQL as a starting point, this guide demonstrates how to
   migrate your existing data from SQL tables to documents stored in a Couchbase
   bucket.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/tutorials/pages/migration-tutorial/sql-migration-tutorial-couchbase-server.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:7.6@server:tutorials:migration-tutorial/sql-migration-tutorial-couchbase-server.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/tutorials/migration-tutorial/sql-migration-tutorial-couchbase-server.html)
 
-# Migrating your Data from MySQL to Couchbase Server
+# Migration Tutorial: Migrate your Data from MySQL to Couchbase Server
 
 > Using MySQL as a starting point, this guide demonstrates how to migrate your existing data from SQL tables to documents stored in a Couchbase bucket. 
 

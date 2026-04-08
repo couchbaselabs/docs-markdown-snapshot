@@ -1,7 +1,7 @@
 ---
 title: Couchbase .NET SDK 3.7
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:3.7@dotnet-sdk:hello-world:overview.adoc[]
 ---
 
@@ -95,7 +95,7 @@ Reference
 
 Project Docs
 
-* [SDK Release Notes](../project-docs/sdk-release-notes.md)
+* [Couchbase .NET SDK Release Notes and Archives](../project-docs/sdk-release-notes.md)
 * [Compatibility](../project-docs/compatibility.md)
 * [Older Versions Archive](https://docs-archive.couchbase.com/home/index.html)
 * [Migrating to SDK 3 API](../project-docs/migrating-sdk-code-to-3.n.md)

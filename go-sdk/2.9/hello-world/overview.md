@@ -1,7 +1,7 @@
 ---
 title: Couchbase Go SDK 2.0
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:2.9@go-sdk:hello-world:overview.adoc[]
 ---
 
@@ -91,7 +91,7 @@ Reference
 
 Project Docs
 
-* [SDK Release Notes](../project-docs/sdk-release-notes.md)
+* [Release Notes](../project-docs/sdk-release-notes.md)
 * [Compatibility](../project-docs/compatibility.md)
 * [Older Versions Archive](https://docs-archive.couchbase.com/home/index.html)
 * [Migrating to SDK 3 API](../project-docs/migrating-sdk-code-to-3.n.md)

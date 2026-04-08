@@ -3,7 +3,7 @@ title: Developer Intro
 description: This section contains tutorials, how-to guides, and information
   about Couchbase Services to help you develop applications.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/develop/pages/intro.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:7.6@server:develop:intro.adoc[]
 ---
 
@@ -19,6 +19,12 @@ This section contains tutorials, how-to guides, and information about Couchbase 
 This tutorial provides an introductory worked example for developers, showing how to use a software development kit with a simple database.
 
 * [Developer Tutorial: Student Record System](../tutorials/couchbase-tutorial-student-records.md)
+
+## Migration Tutorial
+
+This tutorial demonstrates how to migrate your data from a MySQL server over to Couchbase Server.
+
+* [Migration Tutorial: Migrate your Data from MySQL to Couchbase Server](../tutorials/migration-tutorial/sql-migration-tutorial-couchbase-server.md)
 
 ## Connect
 
@@ -46,7 +52,7 @@ Vector Search builds on the Search Service to provide support for vector indexes
 
 ## Search
 
-Use the Search Service for full-text search with natural language processing across multiple data types and languages. Use custom text analysis, Geospatial search, and more.
+Use the Search Service for Full-Text Search with natural language processing across multiple data types and languages. Use custom text analysis, geospatial search, and more.
 
 * [Add Search to Your Application](../search/search.md)
 

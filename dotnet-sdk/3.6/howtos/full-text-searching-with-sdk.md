@@ -3,7 +3,7 @@ title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:3.6@dotnet-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -47,7 +47,7 @@ var searchResult = await cluster.SearchAsync(
 );
 
 // as a scope-level search
-[data-source-url=https://github.com/couchbase/docs-sdk-dotnet/blob/041575913494fc24ce35c51072baaf19e4a4cd7b/modules/howtos/examples/Couchbase.Examples.SearchV2/SearchV2Examples/Program.cs#L58-L61]
+[data-source-url=https://github.com/couchbase/docs-sdk-dotnet/blob/5f7b89b3ea9ba72ac4fd8c0871dd85550884c1ae/modules/howtos/examples/Couchbase.Examples.SearchV2/SearchV2Examples/Program.cs#L58-L61]
 var searchResult = await scope.SearchAsync("index-hotel-description",
     SearchRequest.Create(
         new MatchQuery("swanky")),

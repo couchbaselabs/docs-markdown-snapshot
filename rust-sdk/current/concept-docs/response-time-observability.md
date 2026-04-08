@@ -3,7 +3,7 @@ title: Tracing
 description: Tracing and Metrics provide fine-grained insight into how an
   application is performing, and helps to diagnose when it is not.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/response-time-observability.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:rust-sdk:concept-docs:response-time-observability.adoc[]
 ---
 
@@ -28,7 +28,7 @@ In addition to built-in turnkey logging solutions, support for external systems 
 
 Tracing provides granular timing information down the individual phases of a request/operation. For a simple overview, consider the following output for an individual request — which is logged from the default tracer that ships with the SDK, and is enabled by default:
 
-```java
+```json
 {
   "total_duration_us": 1200,
   "encode_duration_us": 100,
@@ -75,13 +75,13 @@ Request metrics provide insight into the sum of all individual requests flowing 
 }
 ```
 
-The JSON above shows the maximum latency as well as lower percentiles for individual operations. Note that they are aggregated across all nodes and include potential retries, so this really shows end-to-end latency from a users/SDK perspective.
+The JSON above shows the maximum latency as well as lower percentiles for individual operations. Note that they are aggregated across all nodes and include potential retries, so this really shows end-to-end latency from a user or SDK perspective.
 
 ## [](#opentelemetry-integration)OpenTelemetry Integration
 
 In addition to the built-in turnkey logging solutions for both tracing and metrics — depending on platform availability — we are providing support for OpenTelemetry and other platform-specific integrations. This allows tight integration into your monitoring infrastructure, making monitoring and troubleshooting performance even more efficient.
 
-The howto section provides more information on the platform specifics, and general information about OpenTelemetry can be found on the <https://opentelemetry.io/> website.
+The [OTel howto section](../howtos/observability-tracing.md#opentelemetry-integration) provides more information on the platform specifics, and general information about OpenTelemetry can be found on the <https://opentelemetry.io/> website.
 
 ## [](#additional-information)Additional Information
 

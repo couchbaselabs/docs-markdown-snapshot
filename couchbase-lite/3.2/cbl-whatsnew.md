@@ -1,7 +1,7 @@
 ---
 title: New in 3.2
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/ROOT/pages/cbl-whatsnew.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:3.2@couchbase-lite::cbl-whatsnew.adoc[]
 ---
 
@@ -14,6 +14,12 @@ link: xref:3.2@couchbase-lite::cbl-whatsnew.adoc[]
 > Couchbase Lite 3.0 introduces some breaking changes.  
 > If you're upgrading from 2.x, refer to the appropriate upgrade page — see: [Upgrading](#lbl-upgrade).  
 > You should be able to upgrade from 3.0.x to 3.1.x without manual intervention.
+
+## [](#release-3-2-5-april-2026)Release 3.2.5 (April 2026)
+
+Couchbase Lite Release 3.2.5 introduces fixes and enhancements for:
+
+[.NET](csharp/releasenotes.md#maint-latest)
 
 ## [](#release-3-2-4-june-2025)Release 3.2.4 (June 2025)
 

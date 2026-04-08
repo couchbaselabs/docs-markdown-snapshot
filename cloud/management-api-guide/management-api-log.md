@@ -2,7 +2,7 @@
 title: Capella Operational Management API Change Log
 description: The change log for the Couchbase Capella Operational Management API.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-log.adoc
-pubDate: 2026-04-01T05:25:30.286Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:cloud:management-api-guide:management-api-log.adoc[]
 ---
 
@@ -16,6 +16,12 @@ This page is for Capella operational. For Capella AI Services, see [Capella AI S
 ## [](#version-4-0-0)Version 4.0.0
 
 Initial release.
+
+### [](#april-2026-changes)April 2026 Changes
+
+| Operation                                                                                                      | Details                                                                                                                                                     |
+| -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Get Cluster Capacity Statistics](../management-api-reference/index.md#tag/Clusters/operation/getClusterStats) | Use this operation to get cluster-level capacity statistics. For example, you can retrieve memory availability, replica limits, and other capacity metrics. |
 
 ### [](#february-2026-changes)February 2026 Changes
 

@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on C#.Net
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/releasenotes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:3.2@couchbase-lite:csharp:releasenotes.adoc[]
 ---
 
@@ -11,18 +11,18 @@ link: xref:3.2@couchbase-lite:csharp:releasenotes.adoc[]
 
 # Couchbase Lite Release Notes
 
-## [](#maint-3-2-4)3.2.4 — June 2025
+## [](#maint-3-2-5)3.2.5 — April 2026
 
-Version 3.2.4 for C#.Net delivers the following features and enhancements:
+Version 3.2.5 for C#.Net delivers the following features and enhancements:
 
 ### [](#enhancements)Enhancements
 
-None for this release
+* [CBL-7625 — Upgrade MbedTLS to 3.6.4](https://jira.issues.couchbase.com/browse/CBL-7625)
 
 ### [](#issues-and-resolutions)Issues and Resolutions
 
-* [CBL-7006 — Blobs Not Downloaded on Update with Delta Sync in Peer-to-Peer Replication](https://jira.issues.couchbase.com/browse/CBL-7006)
-* [CBL-7016 — Invalid or Inconsistent Certificate Locality Key Name](https://jira.issues.couchbase.com/browse/CBL-7016)
+* [CBL-7213 — Assertion Failure in URLEndpointListener Due to Collection Mismatch with Connected Replicator](https://jira.issues.couchbase.com/browse/CBL-7213)
+* [CBL-8010 — Fix potential crash in logging callback handling](https://jira.issues.couchbase.com/browse/CBL-8010)
 
 ### [](#known-issues)Known Issues
 
@@ -35,19 +35,18 @@ None for this release
 > [!NOTE]
 > For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
 
-## [](#maint-3-2-3)3.2.3 — April 2025
+## [](#maint-3-2-4)3.2.4 — June 2025
 
-Version 3.2.3 for C#.Net delivers the following features and enhancements:
+Version 3.2.4 for C#.Net delivers the following features and enhancements:
 
 ### [](#enhancements-2)Enhancements
 
-* [CBL-6954 — Support Android with 16 KB page size](https://jira.issues.couchbase.com/browse/CBL-6954)
+None for this release
 
 ### [](#issues-and-resolutions-2)Issues and Resolutions
 
-* [CBL-6886 — Replicator should stop on a SQLite disk-full error](https://jira.issues.couchbase.com/browse/CBL-6886)
-* [CBL-6883 — Error when creating a partial value index with compound expressions](https://jira.issues.couchbase.com/browse/CBL-6883)
-* [CBL-6820 — ListenerCertificateAuthenticator callback not working with certificate chain](https://jira.issues.couchbase.com/browse/CBL-6820)
+* [CBL-7006 — Blobs Not Downloaded on Update with Delta Sync in Peer-to-Peer Replication](https://jira.issues.couchbase.com/browse/CBL-7006)
+* [CBL-7016 — Invalid or Inconsistent Certificate Locality Key Name](https://jira.issues.couchbase.com/browse/CBL-7016)
 
 ### [](#known-issues-2)Known Issues
 
@@ -60,16 +59,41 @@ None for this release
 > [!NOTE]
 > For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
 
+## [](#maint-3-2-3)3.2.3 — April 2025
+
+Version 3.2.3 for C#.Net delivers the following features and enhancements:
+
+### [](#enhancements-3)Enhancements
+
+* [CBL-6954 — Support Android with 16 KB page size](https://jira.issues.couchbase.com/browse/CBL-6954)
+
+### [](#issues-and-resolutions-3)Issues and Resolutions
+
+* [CBL-6886 — Replicator should stop on a SQLite disk-full error](https://jira.issues.couchbase.com/browse/CBL-6886)
+* [CBL-6883 — Error when creating a partial value index with compound expressions](https://jira.issues.couchbase.com/browse/CBL-6883)
+* [CBL-6820 — ListenerCertificateAuthenticator callback not working with certificate chain](https://jira.issues.couchbase.com/browse/CBL-6820)
+
+### [](#known-issues-3)Known Issues
+
+None for this release
+
+### [](#deprecations-3)Deprecations
+
+None for this release
+
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
+
 ## [](#maint-3-2-2)3.2.2 — March 2025
 
 Version 3.2.2 for C#.Net delivers the following features and enhancements:
 
-### [](#enhancements-3)Enhancements
+### [](#enhancements-4)Enhancements
 
 * [CBL-5185 - Support for Partial Indexes in Value and Full-Text Indexes](https://jira.issues.couchbase.com/browse/CBL-5185)
 * [CBL-6451 - LogSink API for Configuring Couchbase Lite Logging](https://jira.issues.couchbase.com/browse/CBL-6451)
 
-### [](#issues-and-resolutions-3)Issues and Resolutions
+### [](#issues-and-resolutions-4)Issues and Resolutions
 
 * [CBL-6481 - Unpackaged apps on net8.0-windows cannot create databases](https://jira.issues.couchbase.com/browse/CBL-6481)
 
@@ -78,11 +102,11 @@ Version 3.2.2 for C#.Net delivers the following features and enhancements:
 
 * [CBL-6540 - ReplicatorConfiguration's AllowReplicatingInBackground behavior is reversed](https://jira.issues.couchbase.com/browse/CBL-6540)
 
-### [](#known-issues-3)Known Issues
+### [](#known-issues-4)Known Issues
 
 None for this release
 
-### [](#deprecations-3)Deprecations
+### [](#deprecations-4)Deprecations
 
 * [CBL-6679 - Deprecated: Database.log API for Configuring Couchbase Lite Logging — Use LogSink API Instead](https://jira.issues.couchbase.com/browse/CBL-6679)
 
@@ -93,23 +117,23 @@ None for this release
 
 Version 3.2.1 for C#.Net delivers the following features and enhancements:
 
-### [](#enhancements-4)Enhancements
+### [](#enhancements-5)Enhancements
 
 * [CBL-5169 - Support for Unnest Query and Array Index](https://jira.issues.couchbase.com/browse/CBL-5169)
 * [CBL-6303 - Add ability to disable mmap usage](https://jira.issues.couchbase.com/browse/CBL-6303)
 * [CBL-6376 - Implement replicator background awareness](https://jira.issues.couchbase.com/browse/CBL-6376)
 
-### [](#issues-and-resolutions-4)Issues and Resolutions
+### [](#issues-and-resolutions-5)Issues and Resolutions
 
 * [CBL-6131 - Fixed race creating the expiration column in a collection table](https://jira.issues.couchbase.com/browse/CBL-6131)
 * [CBL-6245 - Fixed query parser regression related to brackets](https://jira.issues.couchbase.com/browse/CBL-6245)
 * [CBL-6378 - Crash when calling onWebSocketGotTLSCertificate callback after the connection is closed](https://jira.issues.couchbase.com/browse/CBL-6378)
 
-### [](#known-issues-4)Known Issues
+### [](#known-issues-5)Known Issues
 
 * [CBL-6539 - ReplicatorConfiguration's AllowReplicatingInBackground behavior is reversed](https://jira.issues.couchbase.com/browse/CBL-6539)
 
-### [](#deprecations-4)Deprecations
+### [](#deprecations-5)Deprecations
 
 No new deprecations for GA release
 
@@ -124,7 +148,7 @@ Version 3.2.0 for C#.Net delivers the following features and enhancements:
 
 Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 
-### [](#enhancements-5)Enhancements
+### [](#enhancements-6)Enhancements
 
 * [CBL-5287 - Enable Prediction Function in SQL++](https://issues.couchbase.com/browse/CBL-5287)
 * [CBL-5634 - NoRev enhancement with Replacement Rev in pull replication](https://issues.couchbase.com/browse/CBL-5634)
@@ -149,7 +173,7 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 * [CBL-5381 - Update iOS Target Version to 12](https://issues.couchbase.com/browse/CBL-5381)
 * [CBL-1572 - Update .Net 6 C# language to version 9.0](https://issues.couchbase.com/browse/CBL-1572)
 
-### [](#issues-and-resolutions-5)Issues and Resolutions
+### [](#issues-and-resolutions-6)Issues and Resolutions
 
 * [CBL-3846 - Fixed corrupt Revision Data error when saving documents](https://issues.couchbase.com/browse/CBL-3846)
 * [CBL-4247 - Fixed Replicator binary logs with collections cannot be decoded](https://issues.couchbase.com/browse/CBL-4247)
@@ -198,11 +222,11 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 * [CBL-4984 - Remap Changes LiteCore Log Domain to Database Domain](https://issues.couchbase.com/browse/CBL-4984)
 * [CBL-5789 - Fixed FLSliceResult leaked when exception thrown in Collection.Save()](https://issues.couchbase.com/browse/CBL-5789)
 
-### [](#known-issues-5)Known Issues
+### [](#known-issues-6)Known Issues
 
 None for this release
 
-### [](#deprecations-5)Deprecations
+### [](#deprecations-6)Deprecations
 
 No new deprecations for GA release
 
@@ -213,7 +237,7 @@ No new deprecations for GA release
 
 Version 3.2.0 Beta 2 for C#.Net delivers the following features and enhancements:
 
-### [](#enhancements-6)Enhancements
+### [](#enhancements-7)Enhancements
 
 * [CBL-5210 - Implement Collection's database property](https://issues.couchbase.com/browse/CBL-5210)
 * [CBL-5241 - Implementation Collection's full-name property](https://issues.couchbase.com/browse/CBL-5204)
@@ -236,7 +260,7 @@ Version 3.2.0 Beta 2 for C#.Net delivers the following features and enhancements
 * [CBL-61 - MILLIS\_TO\_STR(date1 \[, fmt ](https://issues.couchbase.com/browse/CBL-61))\]
 * [CBL-60 - DATE\_DIFF\_STR(date1, date2, part)](https://issues.couchbase.com/browse/CBL-60)
 
-### [](#issues-and-resolutions-6)Issues and Resolutions
+### [](#issues-and-resolutions-7)Issues and Resolutions
 
 * [CBL-4420 - Fixed queries using DataSource.Collection never get added as active stoppables](https://issues.couchbase.com/browse/CBL-4420)
 * [CBL-4422 - Fixed CollectionConfigurations not frozen after used in Replicator](https://issues.couchbase.com/browse/CBL-4422)
@@ -276,11 +300,11 @@ Version 3.2.0 Beta 2 for C#.Net delivers the following features and enhancements
 * [Uninitialized struct](https://issues.couchbase.com/browse/CBL-4424)
 * [CBL-3836 - Corrupt Revision Data error when saving documents](https://issues.couchbase.com/browse/CBL-3836)
 
-### [](#known-issues-6)Known Issues
+### [](#known-issues-7)Known Issues
 
 None for this release
 
-### [](#deprecations-6)Deprecations
+### [](#deprecations-7)Deprecations
 
 * [CBL-5491 - Default's MAX\_ATTEMPT\_WAIT\_TIME and USE\_PLAIN\_TEXT are deprecated](https://issues.couchbase.com/browse/CBL-5491)
 * [CBL-4316 - Replicator's getPendingDocumentIds() and isDocumentPending(String id) are deprecated](https://issues.couchbase.com/browse/CBL-4316)

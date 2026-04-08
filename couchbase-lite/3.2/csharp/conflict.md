@@ -2,7 +2,7 @@
 title: Handling Data Conflicts
 description: Couchbase Lite Database Sync -- Handling conflict between data changes
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/conflict.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:3.2@couchbase-lite:csharp:conflict.adoc[]
 ---
 
@@ -175,7 +175,7 @@ Here's a typical sequence of events that would create an update conflict:
 
 1. Your code reads the document's current properties, and constructs a modified copy to save.
 2. Another thread (perhaps the replicator) updates the document, creating a new revision with different properties.
-3. Your code updates the document with its modified properties, for example using [Database.Save(MutableDocument)](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FSave%5FCouchbase%5FLite%5FMutableDocument%5F).
+3. Your code updates the document with its modified properties, for example using [Database.Save(MutableDocument)](https://docs.couchbase.com/mobile/3.2.5/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FSave%5FCouchbase%5FLite%5FMutableDocument%5F).
 
 ### [](#automatic-conflict-resolution-2)Automatic Conflict Resolution
 
@@ -187,7 +187,7 @@ Example 5\. Currency Control Signatures
 
 Save operations
 
-[Database.Save(MutableDocument, ConcurrencyControl)](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FSave%5FCouchbase%5FLite%5FMutableDocument%5FCouchbase%5FLite%5FConcurrencyControl%5F) — attempts to save the document with a concurrency control.
+[Database.Save(MutableDocument, ConcurrencyControl)](https://docs.couchbase.com/mobile/3.2.5/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FSave%5FCouchbase%5FLite%5FMutableDocument%5FCouchbase%5FLite%5FConcurrencyControl%5F) — attempts to save the document with a concurrency control.
 
 The concurrency control parameter has two possible values:
 
@@ -199,8 +199,8 @@ Delete operations
 
 As with save operations, delete operation also have two method signatures, which specify how to handle a possible conflict:
 
-* [Database.Delete(Document)](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FDelete%5FCouchbase%5FLite%5FDocument%5F): The last write will win if there is a conflict.
-* [Database.Delete(Document, ConcurrencyControl)](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FDelete%5FCouchbase%5FLite%5FDocument%5FCouchbase%5FLite%5FConcurrencyControl%5F): attempts to delete the document with a concurrency control.
+* [Database.Delete(Document)](https://docs.couchbase.com/mobile/3.2.5/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FDelete%5FCouchbase%5FLite%5FDocument%5F): The last write will win if there is a conflict.
+* [Database.Delete(Document, ConcurrencyControl)](https://docs.couchbase.com/mobile/3.2.5/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FDelete%5FCouchbase%5FLite%5FDocument%5FCouchbase%5FLite%5FConcurrencyControl%5F): attempts to delete the document with a concurrency control.
 
 The concurrency control parameter has two possible values:
 
@@ -211,7 +211,7 @@ The concurrency control parameter has two possible values:
 
 Developers can hook a conflict handler when saving a document so they can easily handle the conflict in a single save method call.
 
-To implement custom conflict resolution when saving a document, apps must call the `save` method with a conflict handler block ( [Database.Save(MutableDocument, Func<MutableDocument, Document, Boolean>)](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FSave%5FCouchbase%5FLite%5FMutableDocument%5FSystem%5FFunc%5FCouchbase%5FLite%5FMutableDocument%5FCouchbase%5FLite%5FDocument%5FSystem%5FBoolean%5F%5F)).
+To implement custom conflict resolution when saving a document, apps must call the `save` method with a conflict handler block ( [Database.Save(MutableDocument, Func<MutableDocument, Document, Boolean>)](https://docs.couchbase.com/mobile/3.2.5/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FSave%5FCouchbase%5FLite%5FMutableDocument%5FSystem%5FFunc%5FCouchbase%5FLite%5FMutableDocument%5FCouchbase%5FLite%5FDocument%5FSystem%5FBoolean%5F%5F)).
 
 The following code snippet shows an example of merging properties from the existing document (`current`) into the one being saved (`new`). In the event of conflicting keys, it will pick the key value from `new`.
 
@@ -249,7 +249,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](#csharp:landing-p2psync.adoc)
-* [API References](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-net)
+* [API References](https://docs.couchbase.com/mobile/3.2.5/couchbase-lite-net)
 
 .
 

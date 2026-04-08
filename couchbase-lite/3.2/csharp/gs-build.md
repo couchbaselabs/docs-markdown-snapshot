@@ -2,7 +2,7 @@
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase Lite on C#
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/gs-build.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:3.2@couchbase-lite:csharp:gs-build.adoc[]
 ---
 
@@ -119,7 +119,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](#csharp:landing-p2psync.adoc)
-* [API References](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-net)
+* [API References](https://docs.couchbase.com/mobile/3.2.5/couchbase-lite-net)
 
 .
 

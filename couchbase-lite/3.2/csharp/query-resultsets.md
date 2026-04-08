@@ -2,7 +2,7 @@
 title: Result Sets
 description: How to use Couchbase Lite Query's Result Sets
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/query-resultsets.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:3.2@couchbase-lite:csharp:query-resultsets.adoc[]
 ---
 
@@ -201,7 +201,7 @@ foreach (var result in results) {
 
 Example 6\. Using JSON Results
 
-Use [Result.ToJson()](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-net/api/Couchbase.Lite.Query.Result.html#Couchbase%5FLite%5FQuery%5FResult%5FToJson) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 6](#ex-json) for a working example.
+Use [Result.ToJson()](https://docs.couchbase.com/mobile/3.2.5/couchbase-lite-net/api/Couchbase.Lite.Query.Result.html#Couchbase%5FLite%5FQuery%5FResult%5FToJson) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 6](#ex-json) for a working example.
 
 ```C#
 foreach (var result in query.Execute()) {

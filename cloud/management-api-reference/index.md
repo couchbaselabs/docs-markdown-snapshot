@@ -1,7 +1,7 @@
 ---
 title: Capella Operational Management API Reference
 editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/public/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-04-01T05:25:30.286Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:cloud:management-api-reference:index.adoc[]
 ---
 
@@ -160,7 +160,7 @@ link: xref:cloud:management-api-reference:index.adoc[]
     * getGet Cluster
     * putUpdate Cluster
     * delDelete Cluster
-    * getGet Cluster Capacity Stats
+    * getGet Cluster Capacity Statistics
     * postTurn On Cluster
     * delTurn Off Cluster
     * putMigrate Buckets
@@ -13690,7 +13690,8 @@ Copy
       * "version": 1  
       },
     * "cmekId": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "enablePrivateDNSResolution": true  
+    * "enablePrivateDNSResolution": true,
+    * "expressScaling": "enabled"  
   }  
 ],
 * "cursor": {
@@ -13829,7 +13830,8 @@ Copy
   * "version": 1  
 },
 * "cmekId": "ffffffff-aaaa-1414-eeee-000000000000",
-* "enablePrivateDNSResolution": true
+* "enablePrivateDNSResolution": true,
+* "expressScaling": "enabled"
 }`
 
 ## [](#tag/Clusters/operation/putCluster)Update Cluster 
@@ -14043,7 +14045,7 @@ Copy
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
-## [](#tag/Clusters/operation/getClusterStats)Get Cluster Capacity Stats 
+## [](#tag/Clusters/operation/getClusterStats)Get Cluster Capacity Statistics 
 
 Fetches cluster-level capacity statistics including memory availability and replica limits.
 

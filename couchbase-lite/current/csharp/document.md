@@ -2,7 +2,7 @@
 title: Documents
 description: Couchbase Lite concepts -- Data model -- Documents
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/document.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:couchbase-lite:csharp:document.adoc[]
 ---
 
@@ -112,7 +112,7 @@ First open your database. If the database does not already exist, Couchbase Lite
 Couchbase documents are assigned to a [Collection](database.md#database-concepts). All the CRUD examples in this document operate on a `collection` object (here, the Default Collection).
 
 ```C#
-// Get the database (and create it if it doesn’t exist).
+// Get the database (and create it if it doesn't exist).
 using var database = new Database("hoteldb");
 var collection = Database!.GetDefaultCollection();
 ```

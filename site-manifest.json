@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1775539259306,
+  "generated": 1775625889345,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -2745,6 +2745,12 @@
               "path": "data-service/data-service.adoc",
               "url": "/cloud/clusters/data-service/data-service.md",
               "title": "Manage Your Data"
+            },
+            {
+              "module": "clusters",
+              "path": "data-service/export.adoc",
+              "url": "/cloud/clusters/data-service/export.md",
+              "title": "Export and Migrate Data from Capella"
             },
             {
               "module": "clusters",
@@ -26756,7 +26762,7 @@
               "module": "project-docs",
               "path": "relnotes-dotnet-sdk.adoc",
               "url": "/dotnet-sdk/3.8/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Couchbase .NET SDK Release Notes and Archives"
             },
             {
               "module": "project-docs",
@@ -26774,7 +26780,7 @@
               "module": "project-docs",
               "path": "sdk-release-notes.adoc",
               "url": "/dotnet-sdk/3.8/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Couchbase .NET SDK Release Notes and Archives"
             },
             {
               "module": "project-docs",
@@ -27707,7 +27713,7 @@
               "module": "project-docs",
               "path": "relnotes-dotnet-sdk.adoc",
               "url": "/dotnet-sdk/3.7/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Couchbase .NET SDK Release Notes and Archives"
             },
             {
               "module": "project-docs",
@@ -27725,7 +27731,7 @@
               "module": "project-docs",
               "path": "sdk-release-notes.adoc",
               "url": "/dotnet-sdk/3.7/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Couchbase .NET SDK Release Notes and Archives"
             },
             {
               "module": "project-docs",
@@ -36877,7 +36883,7 @@
               "module": "project-docs",
               "path": "relnotes-go-sdk.adoc",
               "url": "/go-sdk/2.11/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "module": "project-docs",
@@ -36895,7 +36901,7 @@
               "module": "project-docs",
               "path": "sdk-release-notes.adoc",
               "url": "/go-sdk/2.11/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "module": "ref",
@@ -37155,14 +37161,14 @@
               "module": "ROOT",
               "path": "release-notes.adoc",
               "url": "/go-sdk/2.11/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "alias": true,
               "module": "ROOT",
               "path": "relnotes-go-sdk.adoc",
               "url": "/go-sdk/2.11/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "alias": true,
@@ -37197,7 +37203,7 @@
               "module": "ROOT",
               "path": "sdk-release-notes.adoc",
               "url": "/go-sdk/2.11/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "alias": true,
@@ -37760,7 +37766,7 @@
               "module": "project-docs",
               "path": "relnotes-go-sdk.adoc",
               "url": "/go-sdk/2.10/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "module": "project-docs",
@@ -37778,7 +37784,7 @@
               "module": "project-docs",
               "path": "sdk-release-notes.adoc",
               "url": "/go-sdk/2.10/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "module": "ref",
@@ -38038,14 +38044,14 @@
               "module": "ROOT",
               "path": "release-notes.adoc",
               "url": "/go-sdk/2.10/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "alias": true,
               "module": "ROOT",
               "path": "relnotes-go-sdk.adoc",
               "url": "/go-sdk/2.10/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "alias": true,
@@ -38080,7 +38086,7 @@
               "module": "ROOT",
               "path": "sdk-release-notes.adoc",
               "url": "/go-sdk/2.10/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "alias": true,
@@ -38643,7 +38649,7 @@
               "module": "project-docs",
               "path": "relnotes-go-sdk.adoc",
               "url": "/go-sdk/2.9/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "module": "project-docs",
@@ -38661,7 +38667,7 @@
               "module": "project-docs",
               "path": "sdk-release-notes.adoc",
               "url": "/go-sdk/2.9/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "module": "ref",
@@ -38921,14 +38927,14 @@
               "module": "ROOT",
               "path": "release-notes.adoc",
               "url": "/go-sdk/2.9/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "alias": true,
               "module": "ROOT",
               "path": "relnotes-go-sdk.adoc",
               "url": "/go-sdk/2.9/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "alias": true,
@@ -38963,7 +38969,7 @@
               "module": "ROOT",
               "path": "sdk-release-notes.adoc",
               "url": "/go-sdk/2.9/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "alias": true,
@@ -39526,7 +39532,7 @@
               "module": "project-docs",
               "path": "relnotes-go-sdk.adoc",
               "url": "/go-sdk/2.8/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "module": "project-docs",
@@ -39544,7 +39550,7 @@
               "module": "project-docs",
               "path": "sdk-release-notes.adoc",
               "url": "/go-sdk/2.8/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "module": "ref",
@@ -39804,14 +39810,14 @@
               "module": "ROOT",
               "path": "release-notes.adoc",
               "url": "/go-sdk/2.8/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "alias": true,
               "module": "ROOT",
               "path": "relnotes-go-sdk.adoc",
               "url": "/go-sdk/2.8/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "alias": true,
@@ -39846,7 +39852,7 @@
               "module": "ROOT",
               "path": "sdk-release-notes.adoc",
               "url": "/go-sdk/2.8/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Release Notes"
             },
             {
               "alias": true,
@@ -92983,7 +92989,7 @@
               "module": "tutorials",
               "path": "migration-tutorial/sql-migration-tutorial-couchbase-server.adoc",
               "url": "/server/7.6/tutorials/migration-tutorial/sql-migration-tutorial-couchbase-server.md",
-              "title": "Migrating your Data from MySQL to Couchbase Server"
+              "title": "Migration Tutorial: Migrate your Data from MySQL to Couchbase Server"
             },
             {
               "alias": true,

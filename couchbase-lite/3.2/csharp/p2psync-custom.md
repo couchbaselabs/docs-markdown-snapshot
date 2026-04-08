@@ -2,7 +2,7 @@
 title: Integrate a Custom Built Listener
 description: Couchbase Lite database peer-to-peer sync- integrate a custom built listener
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/p2psync-custom.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-08T05:18:32.349Z
 link: xref:3.2@couchbase-lite:csharp:p2psync-custom.adoc[]
 ---
 
@@ -318,7 +318,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](#csharp:landing-p2psync.adoc)
-* [API References](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-net)
+* [API References](https://docs.couchbase.com/mobile/3.2.5/couchbase-lite-net)
 
 .
 
