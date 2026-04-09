@@ -3,7 +3,7 @@ title: Install Sync Gateway
 description: Install a <em>Sync Gateway</em> instance; securely sync enterprise
   data from cloud to edge.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-install.adoc
-pubDate: 2026-03-27T05:16:21.194Z
+pubDate: 2026-04-09T05:16:09.658Z
 link: xref:sync-gateway:start-here:get-started-install.adoc[]
 ---
 
@@ -13,16 +13,16 @@ link: xref:sync-gateway:start-here:get-started-install.adoc[]
 # Install Sync Gateway
 
 > Install a _Sync Gateway_ instance; securely sync enterprise data from cloud to edge.  
-> This is **Step 3** in the _Start Here!_ topic group. It installs the _Sync Gateway_ binary distribution
+> This is **Step 2** in the _Start Here!_ topic group. It installs the _Sync Gateway_ binary distribution
 
 > [!NOTE]
 > Preparatory Steps
 > 
-> Ensure you have read — and acted-upon — the information in [Prepare](get-started-prepare.md).
+> Make sure you have read and acted-upon the information in [Prepare](get-started-prepare.md) before proceeding.
 
 Steps in Getting Started
 
-[Introduction](../introduction.md)| [Prepare](get-started-prepare.md)| [Install](get-started-install.md)| [Verify](get-started-verify-install.md)
+[Introduction](../introduction.md)| [Prepare](get-started-prepare.md)| [Install](get-started-install.md)| [Configure](get-started-configure.md)
 
 ## [](#installation-process)Installation Process
 
@@ -50,7 +50,7 @@ You can refer to the [Configuration Overview](../configuration/configuration-ove
 
 To run in legacy mode see [Legacy Pre-3.0 Configuration](../configuration/configuration-properties-legacy.md).
 
-We also discuss more on the initial configuration in the next Getting Started section — see: [Verify](get-started-verify-install.md). Also, the installation package itself contains example configuration files — see the appropriate install platform section for details on their location.
+We also discuss more on the initial configuration in the next Getting Started section — see: [Configure](get-started-configure.md). Also, the installation package itself contains example configuration files — see the appropriate install platform section for details on their location.
 
 ## [](#install-for-linux)Install for Linux
 
@@ -407,30 +407,19 @@ One way to do this would be:
 1. Ensure the new file path includes a useable Sync Gateway configuration file
 2. Within a terminal, stop the service — see: [start and stop the service](#lbl-macos-run)
 3. Copy the existing `com.couchbase.mobile.sync_gateway.plist` file to a safe location as a back-up
-4. Open the `com.couchbase.mobile.sync_gateway.plist` file in an editor. You will need to use `sudo`
+4. Open the `com.couchbase.mobile.sync_gateway.plist` file in an editor. You'll need to use `sudo`
 5. Within the `ProgramArguments` section of the `.plist`, find and edit the configuration file path, which by default contains: `<string>/Users/sync_gateway/sync_gateway.json</string>`
 6. Save your changes
 7. Restart the service — see: [start and stop the service](#lbl-macos-run)
 
-## [](#check-the-install)Check the Install
-
-To check Sync Gateway started successfully, you can now connect to it from a browser by using either:
-
-* <http://localhost:4984> for the Public API
-* <http://localhost:4985> for the Admin API
-
-You should receive a response in the browser such as:  
-`{"couchdb":"Welcome","vendor":{"name":"Couchbase Sync Gateway","version":"4.0"},"version":"Couchbase Sync Gateway/{version-maintenance}(145;e3f46be) EE"}`
-
-If you do encounter issues in getting an operational install of Sync Gateway, you can find some useful information in the log files. Refer to the [Logging](../manage/logging.md) page for how to configure different logging levels to aid troubleshooting.
-
 ## [](#next-steps)Next Steps
 
-Now that you have a working version of Sync Gateway, which you can connect a console to using either the Public or Admin REST API, you can:
+Now that you have installed Sync Gateway, continue to verify and explore the installation:
 
-* Verify and explore the sync functionality using — [Verify](get-started-verify-install.md)
+* [Configure](get-started-configure.md) — configure sync gateway to connect to Couchbase Server and verify the connection
+* [Explore](get-started-explore.md) — add a database, create users, and run a CRUD cycle to confirm sync end-to-end
 * Learn more about building Couchbase Mobile applications using the <https://docs.couchbase.com/tutorials/mobile-travel-sample/introduction.html> tutorial
-* Learn more about the sync process
+* Learn more about the sync process:
 
   * [Sync with Couchbase Server](../sync/sync-with-couchbase-server.md)
   * [Bootstrap Configuration](../configuration/configuration-schema-bootstrap.md)
@@ -447,7 +436,7 @@ Getting Started
 
 * [Prepare](get-started-prepare.md)
 * [Install](get-started-install.md)
-* [Verify](get-started-verify-install.md)
+* [Configure](get-started-configure.md)
 
 ###### [](#-3)
 

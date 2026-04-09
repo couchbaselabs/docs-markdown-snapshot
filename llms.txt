@@ -3852,7 +3852,8 @@
 - Start Here!
     - [Prepare](/sync-gateway/current/start-here/get-started-prepare.md)
     - [Install](/sync-gateway/current/start-here/get-started-install.md)
-    - [Verify](/sync-gateway/current/start-here/get-started-verify-install.md)
+    - [Configure](/sync-gateway/current/start-here/get-started-configure.md)
+    - [Explore](/sync-gateway/current/start-here/get-started-explore.md)
 - [Data Modeling](/sync-gateway/current/data-modeling.md)
 - Configuration
     - [Overview](/sync-gateway/current/configuration/configuration-overview.md)

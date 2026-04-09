@@ -3,7 +3,7 @@ title: Sync Gateway
 description: Sync Gateway is a secure, high-performance gateway designed for
   cloud-to-edge data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/introduction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-09T05:16:09.658Z
 link: xref:sync-gateway::introduction.adoc[]
 ---
 
@@ -58,7 +58,7 @@ Get started with Sync Gateway, from preparing your environment to installing and
 
 * [Prepare your environment](start-here/get-started-prepare.md)
 * [Install Sync Gateway](start-here/get-started-install.md)
-* [Verify your installation](start-here/get-started-verify-install.md)
+* [Verify your installation](start-here/get-started-configure.md)
 
 ## Data Modeling
 

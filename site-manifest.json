@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1775625889345,
+  "generated": 1775712132340,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -104528,8 +104528,8 @@
               "alias": true,
               "module": "ROOT",
               "path": "start/get-started-verify-install.adoc",
-              "url": "/sync-gateway/current/start-here/get-started-verify-install.md",
-              "title": "Verify a Sync Gateway Install"
+              "url": "/sync-gateway/current/start-here/get-started-configure.md",
+              "title": "Configure a Sync Gateway Install"
             },
             {
               "alias": true,
@@ -104902,6 +104902,18 @@
             },
             {
               "module": "start-here",
+              "path": "get-started-configure.adoc",
+              "url": "/sync-gateway/current/start-here/get-started-configure.md",
+              "title": "Configure a Sync Gateway Install"
+            },
+            {
+              "module": "start-here",
+              "path": "get-started-explore.adoc",
+              "url": "/sync-gateway/current/start-here/get-started-explore.md",
+              "title": "Explore Sync Gateway"
+            },
+            {
+              "module": "start-here",
               "path": "get-started-install.adoc",
               "url": "/sync-gateway/current/start-here/get-started-install.md",
               "title": "Install Sync Gateway"
@@ -104913,10 +104925,11 @@
               "title": "Prepare to Install Sync Gateway"
             },
             {
+              "alias": true,
               "module": "start-here",
               "path": "get-started-verify-install.adoc",
-              "url": "/sync-gateway/current/start-here/get-started-verify-install.md",
-              "title": "Verify a Sync Gateway Install"
+              "url": "/sync-gateway/current/start-here/get-started-configure.md",
+              "title": "Configure a Sync Gateway Install"
             },
             {
               "alias": true,

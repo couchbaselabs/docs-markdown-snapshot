@@ -3,7 +3,7 @@ title: Deployment
 description: When deploying your application for production use you will need to
   use Sync Gateway and Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/deploy/pages/deployment.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-09T05:16:09.658Z
 link: xref:sync-gateway:deploy:deployment.adoc[]
 ---
 
@@ -77,7 +77,7 @@ Getting Started
 
 * [Prepare](../start-here/get-started-prepare.md)
 * [Install](../start-here/get-started-install.md)
-* [Verify](../start-here/get-started-verify-install.md)
+* [Configure](../start-here/get-started-configure.md)
 
 ###### [](#-3)
 

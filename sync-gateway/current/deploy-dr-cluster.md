@@ -3,7 +3,7 @@ title: Using XDCR for Disaster Recovery in Mobile Clusters
 description: How to set up a Sync Gateway mobile cluster for Disaster Recovery
   (DR) using Couchbase Server's Cross Data Center Replication (XDCR)
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/deploy-dr-cluster.adoc
-pubDate: 2026-04-07T05:16:09.470Z
+pubDate: 2026-04-09T05:16:09.658Z
 link: xref:sync-gateway::deploy-dr-cluster.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:sync-gateway::deploy-dr-cluster.adoc[]
 
 > How to set up a Sync Gateway mobile cluster for Disaster Recovery (DR) using Couchbase Server's Cross Data Center Replication (XDCR)  
 
-Related _deploy_ topics: [Verify](start-here/get-started-verify-install.md) | [Admin REST API](rest-api/rest-api-admin.md) | [Public REST API](rest-api/rest-api.md)
+Related _deploy_ topics: [Configure](start-here/get-started-configure.md) | [Admin REST API](rest-api/rest-api-admin.md) | [Public REST API](rest-api/rest-api.md)
 
 ## [](#introduction)Introduction
 

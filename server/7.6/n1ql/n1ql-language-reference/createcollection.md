@@ -3,7 +3,7 @@ title: CREATE COLLECTION
 description: The CREATE COLLECTION statement enables you to create a named
   collection within a scope.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/createcollection.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-09T05:16:09.658Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/createcollection.adoc[]
 ---
 
@@ -60,9 +60,9 @@ Use the optional `WITH` clause to specify additional options for the collection.
 
  Object
 
-| Name                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Schema  |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| **maxTTL** _required_ | The maximum time-to-live for any item in the collection. May have any of the following values. 0 or unspecified: The collection inherits the maximum time-to-live setting from the bucket which contains it. Positive integer: By default, items in the collection expire after this many seconds. Overrides the maximum time-to-live set by the bucket. \-1: By default, items in the collection never expire. Overrides the maximum time-to-live set by the bucket. | integer |
+| Name                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Schema  |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| **maxTTL** _required_ | Enterprise Edition The maximum time-to-live for any item in the collection. May have any of the following values. 0 or unspecified: The collection inherits the maximum time-to-live setting from the bucket which contains it. Positive integer: By default, items in the collection expire after this many seconds. Overrides the maximum time-to-live set by the bucket. \-1: By default, items in the collection never expire. Overrides the maximum time-to-live set by the bucket. maxTTL is an Enterprise Edition setting. While the attribute is available in Community Edition, it only supports the value 0. Setting maxTTL to any other value in Community Edition results in an error. | integer |
 
 ## [](#usage)Usage
 

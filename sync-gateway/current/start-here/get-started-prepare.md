@@ -3,7 +3,7 @@ title: Prepare to Install Sync Gateway
 description: Prerequisites for installing <em>Sync Gateway</em>; to synchronize
   your data from cloud to edge.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-prepare.adoc
-pubDate: 2026-03-27T05:16:21.194Z
+pubDate: 2026-04-09T05:16:09.658Z
 link: xref:sync-gateway:start-here:get-started-prepare.adoc[]
 ---
 
@@ -13,18 +13,18 @@ link: xref:sync-gateway:start-here:get-started-prepare.adoc[]
 # Prepare to Install Sync Gateway
 
 > Prerequisites for installing _Sync Gateway_; to synchronize your data from cloud to edge.  
-> This is **Step 2** in the _Start Here!_ topic group. It introduces the prerequisites for the installation of _Sync Gateway_
+> This is **Step 1** in the _Start Here!_ topic group. It introduces the prerequisites for installing _Sync Gateway_
 
 Steps in Getting Started
 
-[Introduction](../introduction.md)| [Prepare](get-started-prepare.md)| [Install](get-started-install.md)| [Verify](get-started-verify-install.md)
+[Introduction](../introduction.md)| [Prepare](get-started-prepare.md)| [Install](get-started-install.md)| [Configure](get-started-configure.md)
 
 ## [](#what-you-need)What You Need
 
-Here's what you need in order to install Sync Gateway:
+Here's what you need to install Sync Gateway:
 
 * To know whether your set-up meets the [Minimum Requirements](#lbl-req-minim) and [Compatibility Requirements](#lbl-req-compat) for running Sync Gateway
-* To have access to a working Couchbase Server deployment configured for Sync Gateway, or alternatively, to know how to [Deploy Couchbase Server](../../../server/current/install/get-started.md)
+* To have access to a working Couchbase Server deployment configured for Sync Gateway or know how to [Deploy Couchbase Server](../../../server/current/install/get-started.md)
 * To [Configure Server for Sync Gateway](#configure-server), including creating an appropriate set of RBAC users, ready for use in Sync Gateway and in the REST API
 * Have appropriate network credentials and [Network Access](#lbl-set-netw-access)
 
@@ -32,12 +32,12 @@ Once you have all that covered …​ go [Install](get-started-install.md) Sync 
 
 ## [](#lbl-req-minim)Couchbase Server Requirements
 
-To use Sync Gateway you need an operational Couchbase Server installation. Ensure that you use compatible versions of Couchbase Server and Sync Gateway — see: [Compatibility Requirements](#lbl-req-compat).
+To use Sync Gateway you need an operational Couchbase Server installation. Verify that you use compatible versions of Couchbase Server and Sync Gateway — see: [Compatibility Requirements](#lbl-req-compat).
 
 > [!TIP]
-> You can get Couchbase Server from our [Downloads](https://www.couchbase.com/downloads/?family=mobile) page
+> You can get Couchbase Server from the [Downloads](https://www.couchbase.com/downloads/?family=mobile) page
 
-You will then need to configure Couchbase Server by adding a Bucket and an RBAC User for Sync Gateway — see: [Configure Server for Sync Gateway](#configure-server).
+You'll then need to configure Couchbase Server by adding a Bucket and an RBAC User for Sync Gateway — see: [Configure Server for Sync Gateway](#configure-server).
 
 > [!IMPORTANT]
 > Users of Couchbase Server 6.0 should ensure they have addressed the known issue ([MB-41255](https://issues.couchbase.com/browse/MB-41255)) by upgrading to one of the recommended Couchbase Server versions (6.0.5, 6.5.2, or 6.6.1).
@@ -221,7 +221,7 @@ Enterprise edition users can exert a finer-grained control using additional role
 
 ### [](#lbl-set-netw-access)Step 3 — Set-up Network Access
 
-When installing Couchbase Server on the cloud, ensure that network permissions (or firewall settings) allow incoming connections to Couchbase Server ports.
+When installing Couchbase Server on the cloud, make sure that network permissions (or firewall settings) allow incoming connections to Couchbase Server ports.
 
 For mobile deployment on premise or in the cloud (for example, AWS or Red Hat) open the following ports on the host to enable Couchbase Server to operate correctly:
 
@@ -232,7 +232,7 @@ Check that any firewall configuration allows communication on the specified port
 
 If this is not done, the Couchbase Server node can experience difficulty joining a cluster.
 
-You can refer to the [Couchbase Server Ports](../../../server/current/install/install-ports.md) guide to see the full list of available ports and their associated services.
+For more information, see the [Couchbase Server Ports](../../../server/current/install/install-ports.md) guide to see the full list of available ports and their associated services.
 
 ---
 
@@ -246,7 +246,7 @@ Getting Started
 
 * [Prepare](get-started-prepare.md)
 * [Install](get-started-install.md)
-* [Verify](get-started-verify-install.md)
+* [Configure](get-started-configure.md)
 
 ###### [](#-3)
 

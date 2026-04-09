@@ -3,7 +3,7 @@ title: Upgrading Sync Gateway
 description: This page documents various implementation details and
   functionalities to consider when performing an upgrade to Sync Gateway 4.0.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/upgrading.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-09T05:16:09.658Z
 link: xref:sync-gateway::upgrading.adoc[]
 ---
 
@@ -193,7 +193,7 @@ Getting Started
 
 * [Prepare](start-here/get-started-prepare.md)
 * [Install](start-here/get-started-install.md)
-* [Verify](start-here/get-started-verify-install.md)
+* [Configure](start-here/get-started-configure.md)
 
 ###### [](#-3)
 
