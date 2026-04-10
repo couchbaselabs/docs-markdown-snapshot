@@ -1,9 +1,9 @@
 ---
 title: Search
-description: You can use the Search Service to create queryable full-text
-  indexes in Couchbase Server.
+description: You can use the Search Service to create queryable Search indexes
+  in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-10T05:25:10.333Z
 link: xref:java-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:java-sdk:howtos:full-text-searching-with-sdk.adoc[]
 
 # Search
 
-> You can use the Search Service to create queryable full-text indexes in Couchbase Server. 
+> You can use the Search Service to create queryable Search indexes in Couchbase Server. 
 
-The Search Service allows you to create, manage and query full-text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for indexing and querying documents, provides relevance scoring on the results of your queries and has fast indexes for querying a wide range of possible text searches.
+The Search Service allows you to create, manage and query Search indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for indexing and querying documents, provides relevance scoring on the results of your queries and has fast indexes for querying a wide range of possible text searches.
 
 Some of the supported query-types include simple queries like Match and Term queries, range queries like Date Range and Numeric Range and compound queries for conjunctions, disjunctions and/or boolean queries.
 
@@ -26,9 +26,9 @@ After familiarizing yourself with how to create and query a Search index in the 
 
 There are two APIs for querying search: `cluster.searchQuery()`, and `cluster.search()`. Both are also available at the Scope level.
 
-The former API supports FTS queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6\. Most of this documentation will focus on the former API, as the latter is in @Stability.Volatile status.
+The former API supports Search queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6\. Most of this documentation will focus on the former API, as the latter is in @Stability.Volatile status.
 
-We will perform an FTS query here - see the [Vector Search](vector-searching-with-sdk.md) docs for examples of Vector and [combining Vector and FTS](vector-searching-with-sdk.md#combining-fts-and-vector-queries).
+We will perform a Search query here — see the [Vector Search](vector-searching-with-sdk.md) docs for examples of Vector and [combining Vector and Search queries](vector-searching-with-sdk.md#combining-fts-and-vector-queries).
 
 ```java
 try {
@@ -108,7 +108,7 @@ for (SearchRow row : result.rows()) {
 The `SearchRow` contains the following methods:
 
 __Table 2\. SearchRow__
-| index()                           | The name of the FTS index that gave this result.                |
+| index()                           | The name of the Search index that gave this result.             |
 | --------------------------------- | --------------------------------------------------------------- |
 | id()                              | The id of the matching document.                                |
 | score()                           | The score of this hit.                                          |
@@ -122,9 +122,9 @@ Note that the `SearchMetaData` also contains potential `errors`, because the SDK
 
 ## [](#scoped-vs-global-indexes)Scoped vs Global Indexes
 
-The FTS APIs exist at both the `Cluster` and `Scope` levels.
+The Search APIs exist at both the `Cluster` and `Scope` levels.
 
-This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
+This is because the Search Service supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
 It's important to use the `Cluster.searchQuery()` or `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
 

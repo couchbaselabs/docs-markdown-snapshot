@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1775712132340,
+  "generated": 1775799023627,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -64193,6 +64193,13 @@
             {
               "alias": true,
               "module": "project-docs",
+              "path": "adoc.adoc",
+              "url": "/python-sdk/current/project-docs/sdk-release-notes.md",
+              "title": "SDK Release Notes"
+            },
+            {
+              "alias": true,
+              "module": "project-docs",
               "path": "compatibility-versions-features.adoc",
               "url": "/python-sdk/current/project-docs/compatibility.md",
               "title": "Compatibility"
@@ -65104,6 +65111,13 @@
             {
               "alias": true,
               "module": "project-docs",
+              "path": "adoc.adoc",
+              "url": "/python-sdk/4.4/project-docs/sdk-release-notes.md",
+              "title": "SDK Release Notes"
+            },
+            {
+              "alias": true,
+              "module": "project-docs",
               "path": "compatibility-versions-features.adoc",
               "url": "/python-sdk/4.4/project-docs/compatibility.md",
               "title": "Compatibility"
@@ -66009,6 +66023,13 @@
             {
               "alias": true,
               "module": "project-docs",
+              "path": "adoc.adoc",
+              "url": "/python-sdk/4.3/project-docs/sdk-release-notes.md",
+              "title": "SDK Release Notes"
+            },
+            {
+              "alias": true,
+              "module": "project-docs",
               "path": "compatibility-versions-features.adoc",
               "url": "/python-sdk/4.3/project-docs/compatibility.md",
               "title": "Compatibility"
@@ -66910,6 +66931,13 @@
               "path": "3.0αλφα-sdk-release-notes.adoc",
               "url": "/python-sdk/4.2/project-docs/3.0-pre-release-notes.md",
               "title": "Pre-release Archive Release Notes"
+            },
+            {
+              "alias": true,
+              "module": "project-docs",
+              "path": "adoc.adoc",
+              "url": "/python-sdk/4.2/project-docs/sdk-release-notes.md",
+              "title": "SDK Release Notes"
             },
             {
               "alias": true,
@@ -70348,13 +70376,6 @@
               "title": "About These Docs"
             },
             {
-              "alias": true,
-              "module": "project-docs",
-              "path": "relnotes-scala-sdk.adoc",
-              "url": "/rust-sdk/current/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
-            },
-            {
               "module": "project-docs",
               "path": "sdk-full-installation.adoc",
               "url": "/rust-sdk/current/project-docs/sdk-full-installation.md",
@@ -73410,7 +73431,7 @@
               "module": "project-docs",
               "path": "relnotes-scala-sdk.adoc",
               "url": "/scala-sdk/1.7/project-docs/sdk-release-notes.md",
-              "title": "Release Notes"
+              "title": "SDK Release Notes"
             },
             {
               "module": "project-docs",
@@ -73428,7 +73449,7 @@
               "module": "project-docs",
               "path": "sdk-release-notes.adoc",
               "url": "/scala-sdk/1.7/project-docs/sdk-release-notes.md",
-              "title": "Release Notes"
+              "title": "SDK Release Notes"
             },
             {
               "module": "project-docs",

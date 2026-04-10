@@ -3,7 +3,7 @@ title: Couchbase Search Active Queries REST API
 description: The Search Active Queries REST API is provided by the Search
   Service. This API enables you to get information about active Search queries.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/fts-rest-query/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-10T05:25:10.333Z
 link: xref:7.6@server:fts-rest-query:index.adoc[]
 ---
 
@@ -108,6 +108,8 @@ Response 200
 
 All active node queries
 
+All active queries across the Search cluster.
+
 ```json
 {
   "status" : "ok",
@@ -173,6 +175,8 @@ All active node queries
 ```
 
 All active node queries (filtered)
+
+All queries across the cluster running for longer than 7 s.
 
 ```json
 {

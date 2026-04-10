@@ -2,7 +2,7 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-10T05:25:10.333Z
 link: xref:go-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -18,6 +18,11 @@ One of Couchbase's strengths is speedy response, so deployment of apps should be
 We always recommend the [latest version](sdk-release-notes.md#latest-release) of the SDK. This not only contains the latest security updates and bug fixes, but will be compatible with the latest Couchbase Server release (note, Capella always runs a recent version of Couchbase Server).
 
 Before deploying, take note of any [compatibility](compatibility.md) issues for the language platform and underlying OS. The [full installation guide](sdk-full-installation.md) should cover any special cases for all supported environments.
+
+> [!TIP]
+> No Load Balancer Required
+> 
+> Your Couchbase cluster will take care of balancing the load and distribution of data between nodes, in tandem with the SDK's use of the cluster map. A load balancer would negatively affect this work — so the use of a load balancer between your app server, where you're running the SDK and client code, and your Couchbase operational cluster, is strongly discouraged.
 
 ## [](#development-testing-environments)Development & Testing Environments
 

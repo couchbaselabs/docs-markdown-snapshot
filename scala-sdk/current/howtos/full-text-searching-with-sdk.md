@@ -1,9 +1,9 @@
 ---
 title: Search
-description: You can use the Full Text Search service (FTS) to create queryable
-  full-text indexes in Couchbase Server.
+description: You can use the Search Service to create queryable Search indexes
+  in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-10T05:25:10.333Z
 link: xref:scala-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:scala-sdk:howtos:full-text-searching-with-sdk.adoc[]
 
 # Search
 
-> You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
+> You can use the Search Service to create queryable Search indexes in Couchbase Server. 
 
-Full Text Search or FTS allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches. Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries. The Scala SDK exposes an API for performing FTS queries which abstracts some of the complexity of using the underlying REST API.
+The Search Service allows you to create, manage, and query Search indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches. Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries. The Scala SDK exposes an API for performing Search queries which abstracts some of the complexity of using the underlying REST API.
 
 ## [](#examples)Examples
 
@@ -47,7 +47,7 @@ result match {
 }
 ```
 
-All simple query types are created in the same manner. Some have additional properties, which can be seen in common query type descriptions. Couchbase FTS's [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted.
+All simple query types are created in the same manner. Some have additional properties, which can be seen in common query type descriptions. Couchbase Search Service's [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted.
 
 > [!TIP]
 > Search Results Limit
@@ -87,7 +87,7 @@ result match {
 
 ## [](#consistency)Consistency
 
-Like the Couchbase Query Service, FTS allows provides optional _Read-Your-Own-Writes (RYOW)_ consistency, ensuring results contain information from updated indexes:
+Like the Couchbase Query Service, the Search Service provides optional _Read-Your-Own-Writes (RYOW)_ consistency, ensuring results contain information from updated indexes:
 
 ```none
 collection.insert("newHotel",

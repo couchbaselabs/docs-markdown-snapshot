@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Couchbase Rust Client.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-10T05:25:10.333Z
 link: xref:rust-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -33,6 +33,22 @@ Version 1.0 of the Rust SDK implements the 3.9 [SDK API](compatibility.md#api-ve
 We always recommend using the latest version of the SDK — it contains all of the latest security patches and support for new and upcoming features. All patch releases for each dot minor release should be API compatible, and safe to upgrade; any changes to expected behavior are noted in the release notes that follow.
 
 Binary compatibility is not guaranteed for any Rust SDK release, and you should rebuild your application when changing the SDK.
+
+### [](#version-1-0-1-9-april-2026)Version 1.0.1 (9 April 2026)
+
+Version 1.0.1 is a maintenance release for the Rust SDK 1.0.
+
+[API Documentation](https://docs.rs/couchbase/1.0.1/couchbase/)
+
+#### [](#new-features-and-behavioral-changes)New Features and Behavioral Changes
+
+* [RSCBC-270](https://jira.issues.couchbase.com/browse/RSCBC-270): Updated queries to automatically retry when query engine errors indicate to do so.
+* [RSCBC-272](https://jira.issues.couchbase.com/browse/RSCBC-272): Updated logging output.
+
+#### [](#fixed-issues)Fixed issues
+
+* [RSCBC-267](https://jira.issues.couchbase.com/browse/RSCBC-267): Fixed an issue where a node unexpectedly going down could lead to a connection storm.
+* [RSCBC-268](https://jira.issues.couchbase.com/browse/RSCBC-268): Fixed an issue where metrics were missing the `db.system.name` field.
 
 ### [](#version-1-0-0-12-march-2026)Version 1.0.0 (12 March 2026)
 

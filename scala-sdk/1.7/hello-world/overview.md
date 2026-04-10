@@ -1,7 +1,7 @@
 ---
 title: Couchbase Scala SDK 1.7
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.7/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-10T05:25:10.333Z
 link: xref:1.7@scala-sdk:hello-world:overview.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:1.7@scala-sdk:hello-world:overview.adoc[]
 
 The Couchbase Scala SDK allows Scala applications to access a Couchbase cluster — Capella or self-managed.
 
-[Quickstart Guide](start-using-sdk.md) | [Release Notes](../project-docs/sdk-release-notes.md) | [Scala SDK API Reference](https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html)
+[Quickstart Guide](start-using-sdk.md) | [SDK Release Notes](../project-docs/sdk-release-notes.md) | [Scala SDK API Reference](https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html)
 
 What's the point of a fast and scalable database if it's not easy to develop for? Couchbase gives you the Scala APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
 
@@ -103,7 +103,7 @@ Reference
 
 Deployment
 
-* [Release Notes](../project-docs/sdk-release-notes.md)
+* [SDK Release Notes](../project-docs/sdk-release-notes.md)
 * [Compatibility](../project-docs/compatibility.md)
 * [Integrations & Ecosystem](../project-docs/third-party-integrations.md)
 * [Couchbase Scala SDK Installation](../project-docs/sdk-full-installation.md)

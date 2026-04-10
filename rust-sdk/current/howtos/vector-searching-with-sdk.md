@@ -3,7 +3,7 @@ title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-10T05:25:10.333Z
 link: xref:rust-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
@@ -92,7 +92,7 @@ Couchbase Server 7.6.0 (7.6.2 for base64-encoded vectors) — or recent Capella 
 
 ### [](#examples-2)Examples
 
-#### [](#single-vector-query)Single vector query
+#### [](#single-vector-query)Single Vector Query
 
 In this first example we are performing a single vector query:
 
@@ -105,7 +105,7 @@ let request = SearchRequest::with_vector_search(VectorSearch::new(
 let result = scope.search("vector-index", request, None).await?;
 ```
 
-Let's break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
+Let's break this down. We create a `SearchRequest`, which can contain a traditional Search query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
 
 The `VectorSearch` allows us to perform one or more `VectorQuery` s.
 
@@ -113,7 +113,7 @@ The `VectorQuery` itself takes the name of the document field that contains embe
 
 (Note that Couchbase itself is not involved in generating the vectors, and these will come from an external source such as an embeddings API.)
 
-Finally we execute the `SearchRequest` against the FTS index "travel-sample-index", which has previously been setup to vector index the "vector\_field" field.
+Finally we execute the `SearchRequest` against the Search index "travel-sample-index", which has previously been setup to vector index the "vector\_field" field.
 
 This happens to be a scoped index so we are using `scope.search()`. If it was a global index we would use `cluster.search()` instead - see [\[Scoped vs Global Indexes\]](#Scoped vs Global Indexes).
 
@@ -152,7 +152,7 @@ The prefilter can be any Search Query — from a simple match, as above, to a st
 
 See the [API reference](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/search/vector/VectorQuery.html#prefilter%28com.couchbase.client.java.search.SearchQuery%29).
 
-#### [](#multiple-vector-queries)Multiple vector queries
+#### [](#multiple-vector-queries)Multiple Vector Queries
 
 You can run multiple vector queries together:
 
@@ -174,9 +174,9 @@ let result = scope.search("vector-index", request, None).await?;
 
 How the results are combined (ANDed or ORed) can be controlled with `VectorSearchOptions().query_combination()`.
 
-### [](#combining-fts-and-vector-queries)Combining FTS and vector queries
+### [](#combining-search-and-vector-queries)Combining Search and Vector Queries
 
-You can combine a traditional FTS query with vector queries:
+You can combine a traditional Search query with vector queries:
 
 ```rust
 let vector_search = VectorSearch::new(
@@ -198,7 +198,7 @@ hit_score = (query_1_boost * query_1_hit_score) + (query_2_boost * query_2_hit_s
 
 ### [](#query-methods)Query Methods
 
-As part of the Search service, you can use the same [Search query methods](full-text-searching-with-sdk.md#search-queries) as regular Searches. See a fuller list, with Vector properties, in the [Capella docs](../../../cloud/search/search-request-params.md).
+As part of the Search Service, you can use the same [Search query methods](full-text-searching-with-sdk.md#search-queries) as regular Searches. See a fuller list, with Vector properties, in the [Capella docs](../../../cloud/search/search-request-params.md).
 
 ## [](#further-reading)Further Reading
 

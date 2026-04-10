@@ -1,10 +1,10 @@
 ---
 title: Search
-description: You can use the Full Text Search (FTS) service to find JSON
-  documents that have certain words, phrases, or geographic coordinates -- and
-  for vector searches against Server 7.6.
+description: You can use the Search Service to find JSON documents that have
+  certain words, phrases, or geographic coordinates -- and for vector searches
+  against Server 7.6.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/howtos/pages/full-text-search.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-10T05:25:10.333Z
 link: xref:kotlin-sdk:howtos:full-text-search.adoc[]
 ---
 
@@ -13,15 +13,15 @@ link: xref:kotlin-sdk:howtos:full-text-search.adoc[]
 
 # Search
 
-> You can use the Full Text Search (FTS) service to find JSON documents that have certain words, phrases, or geographic coordinates — and for vector searches against Server 7.6\. 
+> You can use the Search Service to find JSON documents that have certain words, phrases, or geographic coordinates — and for vector searches against Server 7.6\. 
 
-The Full Text Search (FTS) service finds JSON documents that have certain words, phrases, or geographic coordinates. It can also search numeric and date/time fields.
+The Search Service finds JSON documents that have certain words, phrases, or geographic coordinates. It can also search numeric and date/time fields.
 
-The Full Text Search service also supports vector search from Couchbase Server 7.6 onwards.
+The Search Service also supports vector search from Couchbase Server 7.6 onwards.
 
 When searching for words and phrases, you can look for an exact match or similar words (like "beauty" and "beautiful"). For numbers and dates, you can look for values in a range. For geographic coordinates, you can look for values near a location or within a region.
 
-For all kinds of FTS searches, you can ask the server to count the number of matching documents that belong to different categories, called "facets."
+For all kinds of Search Service queries, you can ask the server to count the number of matching documents that belong to different categories, called "facets."
 
 ## [](#prerequisites)Before You Start
 
@@ -31,7 +31,7 @@ You should know [how to connect to a Couchbase cluster](connecting.md).
 
 The examples on this page use the `travel-sample` and `beer-sample` [sample buckets](../../../server/current/manage/manage-settings/install-sample-buckets.md).
 
-## [](#simple-example)A Simple FTS Search
+## [](#simple-example)A Simple Search Service Example
 
 This example searches for documents that have the word "pool" in one of the indexed fields.
 
@@ -66,21 +66,21 @@ searchResult.rows.forEach { row: SearchRow ->
 
 ## [](#query-types)Queries
 
-The FTS service can do [many kinds of queries](../../../server/current/search/search-request-params.md). The Kotlin SDK's `SearchQuery` class has a companion factory method for each kind of query.
+The Search Service can do [many kinds of queries](../../../server/current/search/search-request-params.md). The Kotlin SDK's `SearchQuery` class has a companion factory method for each kind of query.
 
 ## [](#result-rows)Result Rows
 
-Each matching document is returned as a `SearchRow`. By default, a `SearchRow` only has a document ID, a score, and the name of the FTS index partition it came from. The `searchQuery` method has optional parameters that let you request more information about the matching document.
+Each matching document is returned as a `SearchRow`. By default, a `SearchRow` only has a document ID, a score, and the name of the Search Service index partition it came from. The `searchQuery` method has optional parameters that let you request more information about the matching document.
 
 ### [](#score)Score
 
 The server gives each row a numeric score. A higher score means the row is a better match.
 
-#### [](#explain-score)Explain the score
+#### [](#explain-score)Explain the Score
 
 If you want to know how the server calculated the score, pass `explain = true` when calling `searchQuery`, like this:
 
-Explain scoring
+Explain Scoring
 
 ```kotlin
 val searchResult: SearchResult = cluster
@@ -100,14 +100,14 @@ searchResult.rows.forEach { row ->
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | row.explanation is a ByteArray holding a JSON Object. This example just prints it, but you can parse it as JSON if you want.           |
 
-#### [](#disable-score)Disable scoring
+#### [](#disable-score)Disable Scoring
 
 Calculating the score takes time. If you don't need the score, tell the server to give each row a score of zero, like this:
 
 > [!NOTE]
 > Disabling scoring requires Couchbase Server 6.6.1 or later.
 
-Disable scoring
+Disable Scoring
 
 ```kotlin
 val searchResult: SearchResult = cluster
@@ -129,7 +129,7 @@ By default, the server does not return any document content. You can tell the se
 > [!TIP]
 > Only stored fields are included. If you're not getting the results you expect, check the index definition.
 
-Include stored fields in result rows
+Include Stored Fields in Result Rows
 
 ```kotlin
 val searchResult: SearchResult = cluster
@@ -179,14 +179,14 @@ searchResult.rows.forEach { row ->
 > [!CAUTION]
 > Be careful when using [keyset pagination](#keyset-pagination) with a multi-collection index. Documents in different collections can have the same ID, so sorting by ID does not necessarily guarantee a total ordering of the results.
 
-### [](#highlight)Highlight (fragments)
+### [](#highlight)Highlight (Fragments)
 
 You can ask the server to include a fragment of a matching field value, and highlight the search term within the fragment.
 
 > [!TIP]
 > Highlighting requires storing the field value and including term vectors. If you're not getting the results you expect, check the index definition.
 
-Highlight matches
+Highlight Matches
 
 ```kotlin
 val searchResult: SearchResult = cluster
@@ -223,7 +223,7 @@ By default, result rows are sorted by score, from highest to lowest. Use the `so
 
 This example sorts the results by the value of the "country" field:
 
-Sort by `country` field
+Sort by `country` Field
 
 ```kotlin
 val searchResult: SearchResult = cluster
@@ -240,7 +240,7 @@ val searchResult: SearchResult = cluster
 
 `SearchSort` has companion factory methods for creating `SearchSort` objects. These objects tell the server how to sort the results.
 
-### [](#sorting-by-field)Sorting by field value
+### [](#sorting-by-field)Sorting by Field Value
 
 `SearchSort.byField` tells the server to sort the rows using the value of a document field.
 
@@ -260,7 +260,7 @@ Optional parameters:
   * **`DEFAULT`** — The server sorts the rows the same way every time, but the order is unspecified.  
   The default mode is `DEFAULT`.
 
-### [](#sorting-by-score)Sorting by score
+### [](#sorting-by-score)Sorting by Score
 
 `SearchSort.byScore` tells the server to sort the rows using each row's score.
 
@@ -268,7 +268,7 @@ Optional parameters:
 
 * **`direction: Direction`** — `ASCENDING` (low to high) or `DESCENDING` (high to low). The default direction is `DESCENDING`.
 
-### [](#sorting-by-id)Sorting by document ID
+### [](#sorting-by-id)Sorting by Document ID
 
 `SearchSort.byId` tells the server to sort the rows using each row's document ID.
 
@@ -276,7 +276,7 @@ Optional parameters:
 
 * **`direction: Direction`** — `ASCENDING` (A to Z) or `DESCENDING` (Z to A). The default direction is `ASCENDING`.
 
-### [](#sorting-by-geo-distance)Sorting by geographic distance
+### [](#sorting-by-geo-distance)Sorting by Geographic Distance
 
 `SearchSort.byGeoDistance` tells the server to look at a field that has a geographic location, and sort the rows based on how far the field value is from some other location.
 
@@ -290,11 +290,11 @@ Optional parameters:
 * **`direction: Direction`** — `ASCENDING` (near to far) or `DESCENDING` (far to near). The default direction is `ASCENDING`.
 * **`unit: GeoDistanceUnit`** — The unit of measurement to use for reporting the distance. The default unit is `GeoDistanceUnit.METERS`.
 
-### [](#sorting-by-string-syntax)Sorting with string syntax
+### [](#sorting-by-string-syntax)Sorting with String Syntax
 
 `SearchSort.by` lets you specify the sort using the syntax described in [Sorting with Strings](../../../server/current/fts/fts-search-response.md#sorting-with-strings). For example:
 
-Sorting with strings
+Sorting with Strings
 
 ```kotlin
 val sort: SearchSort = SearchSort.by(
@@ -302,18 +302,18 @@ val sort: SearchSort = SearchSort.by(
 )
 ```
 
-### [](#multi-level-sorting)More than one sort
+### [](#multi-level-sorting)More than One Sort
 
 You can join `SearchSort` objects to create a sort with more than one level. Here are two examples that do the same thing in different ways:
 
-Multi-level sort using the `then` infix method
+Multi-level Sort using the `then` Infix Method
 
 ```kotlin
 val multiLevelSort: SearchSort =
     SearchSort.byField("country") then SearchSort.byId()
 ```
 
-Multi-level sort using the `SearchSort.of` companion factory method
+Multi-level Sort using the `SearchSort.of` Companion Factory Method
 
 ```kotlin
 val multiLevelSort: SearchSort = SearchSort.of(
@@ -327,7 +327,7 @@ val multiLevelSort: SearchSort = SearchSort.of(
 First, the rows are sorted by the value of the "country" field. Then, rows with the same country are sorted by document ID.
 
 > [!NOTE]
-> The example for [Sorting with string syntax](#sorting-by-string-syntax) also creates a multi-level sort.
+> The example for [Sorting with String Syntax](#sorting-by-string-syntax) also creates a multi-level sort.
 
 ## [](#pagination)Pagination
 
@@ -337,13 +337,13 @@ The `searchQuery` method has a `limit` parameter that tells the server how many 
 
 There is also a `page` parameter that tells the server which rows to include in the results. There are two ways to ask for a page.
 
-### [](#offset-pagination)Offset pagination
+### [](#offset-pagination)Offset Pagination
 
 With offset pagination, you tell the server how many result rows to skip before it should start including rows in the result.
 
 For example, this code skips the first 10 rows:
 
-Offset-based pagination
+Offset-based Pagination
 
 ```kotlin
 val searchResult: SearchResult = cluster
@@ -369,7 +369,7 @@ After step 2, the row that would have been the first row of the second page is n
 
 Offset pagination can be expensive if the offset is very large.
 
-### [](#keyset-pagination)Keyset pagination
+### [](#keyset-pagination)Keyset Pagination
 
 > [!NOTE]
 > Keyset pagination requires Couchbase Server 6.6.1 or later.
@@ -380,7 +380,7 @@ With keyset pagination, you tell the server to return the page after (or before)
 
 Here's an example that uses offset pagination to get the first page. Then it uses keyset pagination to get the next page.
 
-Keyset-based pagination
+Keyset-based Pagination
 
 ```kotlin
 val indexName = "travel-sample-index"
@@ -429,11 +429,11 @@ Keyset pagination is less expensive than offset pagination when the offset is la
 > [!TIP]
 > `keyset.serialize()` converts a `SearchKeyset` to a string, so you can send it to a client. When you receive the string back from the client, pass it to the `SearchKeyset.deserialize` companion factory method to turn it back into a `SearchKeyset`.
 
-### [](#total-rows)Total number of rows
+### [](#total-rows)Total Number of Rows
 
 The search result metadata has a `totalRows` property that tells you how many rows matched the query, even if you limit the results to fewer rows.
 
-Getting the total number of rows
+Getting the Total Number of Rows
 
 ```kotlin
 val searchResult: SearchResult = cluster
@@ -459,7 +459,7 @@ Imagine Alice is searching for a hotel. She would prefer a hotel with a sauna, b
 
 Alice can use a `disjunction` query to search for "sauna" _or_ "pool". She can _boost_ the "sauna" query, so hotels with a sauna get higher scores relative to other hotels.
 
-"OR" query with boost
+"OR" Query with Boost
 
 ```kotlin
 val saunaOrPool: SearchQuery = SearchQuery.disjunction(
@@ -486,7 +486,7 @@ There are other kinds of compound queries. Use `conjunction` for "and". Use `neg
 
 A facet is like a histogram. For each document matching the search query, the server inspects a field of the document to see which bin (or "category") the field value belongs to.
 
-The FTS service supports three kinds of facets: `numeric`, `date`, and `term`.
+The Search Service supports three kinds of facets: `numeric`, `date`, and `term`.
 
 For `numeric` and `date` facets, you specify the categories up front as value ranges. Common use cases include counting the number of documents in certain price ranges, like: $1 to $5, $5 to $20, and $20+, or time ranges like: "today", "yesterday", and "before yesterday".
 
@@ -511,7 +511,7 @@ To create a facet, use one of the `SearchFacet` companion factory methods. To re
 
 This example uses the `beer-sample` bucket. It requires an index called `beer-sample-index`, with fields "abv" and "category" indexed as stored fields.
 
-Searching with facets
+Searching with Facets
 
 ```kotlin
 // Count results that fall into these "alcohol by volume" ranges.
@@ -556,15 +556,15 @@ if (abvResult == null) {
 
 ## [](#scoped-vs-global-indexes)Scoped vs Global Indexes
 
-The FTS APIs exist at both the `Cluster` and `Scope` levels.
+The Search APIs exist at both the `Cluster` and `Scope` levels.
 
-This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
+This is because the Search Service supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
 It's important to use the `Cluster.searchQuery()` or `Cluster.search()` methods for global indexes, and `Scope.search()` for scoped indexes.
 
 ## [](#vector-search)Vector Search
 
-As of Couchbase Server 7.6, the FTS service supports vector search in addition to traditional full text search queries.
+As of Couchbase Server 7.6, the Search Service supports vector search in addition to traditional full text search queries.
 
 Suppose you have a scoped index called `vector-index`, and this index says the document field named `vector_field` contains a vector (an array of numbers). The following examples show different ways to do vector searches on this field.
 
@@ -573,11 +573,11 @@ Suppose you have a scoped index called `vector-index`, and this index says the d
 
 ### [](#examples)Examples
 
-#### [](#single-vector-search)Single vector search
+#### [](#single-vector-search)Single Vector Search
 
 This first example shows how to find documents whose `vector_field` value is near a single target vector:
 
-Single vector query
+Single Vector Query
 
 ```kotlin
 val searchResult: SearchResult = scope.search( (1)
@@ -596,11 +596,11 @@ val searchResult: SearchResult = scope.search( (1)
 | **3** | The numCandidates parameter affects how many results are returned. It is optional, and defaults to 3.                                                                                                      |
 | **4** | The search method returns the same Flow<SearchFlowItem> described earlier. Nothing happens until you collect the flow. Calling execute is an easy way to collect the flow and turn it into a SearchResult. |
 
-#### [](#compound-vector-search)Compound vector search
+#### [](#compound-vector-search)Compound Vector Search
 
 You can build compound vector queries using `SearchSpec.allOf` or `SearchSpec.anyOf`.
 
-Compound vector search
+Compound Vector Search
 
 ```kotlin
 val searchResult: SearchResult = scope.search(
@@ -616,11 +616,11 @@ val searchResult: SearchResult = scope.search(
 | ----- | ----------------------------------------------------------------------------------------------------------------------- |
 | **2** | Vector queries can be boosted just like non-vector queries. Boost is optional, and defaults to 1.0.                     |
 
-#### [](#combining-vector-and-non-vector-search)Combining vector and non-vector search
+#### [](#combining-vector-and-non-vector-search)Combining Vector and Non-Vector Search
 
-You can use `SearchSpec.mixedMode` to combine a traditional FTS search query with vector search.
+You can use `SearchSpec.mixedMode` to combine a traditional Search query with vector search.
 
-Mixed mode search
+Mixed Mode Search
 
 ```kotlin
 val searchResult: SearchResult = scope.search(
@@ -637,11 +637,11 @@ val searchResult: SearchResult = scope.search(
 
 A mixed mode search always uses logical `OR` to combine the vector and non-vector results.
 
-#### [](#textual-search)Textual search
+#### [](#textual-search)Textual Search
 
-Note that `cluster.search()` and `scope.search()` also work with traditional FTS queries, without vector search.
+Note that `cluster.search()` and `scope.search()` also work with traditional Search queries, without vector search.
 
-Traditional textual search
+Traditional Textual Search
 
 ```kotlin
 val searchResult: SearchResult = scope.search(
@@ -655,11 +655,11 @@ val searchResult: SearchResult = scope.search(
 
 ## [](#scan-consistency)Scan Consistency
 
-When you change a document in Couchbase, it takes time for the FTS service to index the document. An FTS index "runs behind" the KV service. When you execute an FTS search, you get to choose if you want to wait for the index to "catch up" to the latest KV changes.
+When you change a document in Couchbase, it takes time for the Search Service to index the document. A Search index "runs behind" the KV service. When you execute a Search Service, you get to choose if you want to wait for the index to "catch up" to the latest KV changes.
 
 ### [](#scan-consistency-unbounded)Unbounded
 
-By default, the FTS service does not wait. It only searches documents that were already indexed when the search started. This is called "unbounded" scan consistency.
+By default, the Search Service does not wait. It only searches documents that were already indexed when the search started. This is called "unbounded" scan consistency.
 
 This is the default value for the `searchQuery` method's `consistency` parameter.
 
@@ -693,12 +693,12 @@ val queryResult: SearchResult = cluster
 
 ## [](#partial-failures)Partial Failures
 
-An FTS index can have multiple partitions that live on different Couchbase Server nodes. If there is a problem with a partition, the FTS service gives you the results from only the healthy partitions. Documents indexed by an unhealthy partition are not included in the results.
+A Search index can have multiple partitions that live on different Couchbase Server nodes. If there is a problem with a partition, the Search Service gives you the results from only the healthy partitions. Documents indexed by an unhealthy partition are not included in the results.
 
 > [!NOTE]
 > If no partitions are healthy, the `searchQuery` method throws an exception.
 
-If you want to know if the FTS service was able to search all partitions, check the `SearchMetadata.errors` property. This property is a map where the key is the name of an index partition, and the value is an error reported by that partition.
+If you want to know if the Search Service was able to search all partitions, check the `SearchMetadata.errors` property. This property is a map where the key is the name of an index partition, and the value is an error reported by that partition.
 
 ```kotlin
 val searchResult: SearchResult = cluster

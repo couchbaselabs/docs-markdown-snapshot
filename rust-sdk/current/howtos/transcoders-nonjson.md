@@ -2,7 +2,7 @@
 title: Transcoders &amp; Non-JSON Documents
 description: The Rust SDK supports common JSON document requirements out-of-the-box.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-10T05:25:10.333Z
 link: xref:rust-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
@@ -54,7 +54,7 @@ let value = raw_json::decode(content_raw, flags)?;
 It is most common to store JSON with Couchbase. However, it is possible to store non-JSON documents, such as raw binary data, perhaps using an concise binary encoding like [MessagePack](https://msgpack.org) or [CBOR](https://cbor.io/), in the Key-Value store.
 
 > [!NOTE]
-> It's important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
+> It's important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, Search Service, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
 
 Also note that some simple data types can be stored directly as JSON, without recourse to non-JSON transcoding. A valid JSON document can be a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value.
 
@@ -164,4 +164,4 @@ assert_eq!(user, decoded);
 
 ## [](#further-reading)Further reading
 
-* If you want to work with binary documents and our Search service, you might like to take a look at <https://github.com/khanium/couchbase-fts-binary>
+* If you want to work with binary documents and our Search Service, you might like to take a look at <https://github.com/khanium/couchbase-fts-binary>
