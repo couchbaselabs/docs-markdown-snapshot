@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1775799023627,
+  "generated": 1775884256743,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -1196,6 +1196,12 @@
               "path": "app-endpoints/import-filters.adoc",
               "url": "/app-services/app-endpoints/import-filters.md",
               "title": "Import Filters"
+            },
+            {
+              "module": "ROOT",
+              "path": "app-endpoints/resource-requirements.adoc",
+              "url": "/app-services/app-endpoints/resource-requirements.md",
+              "title": "App Endpoint Resource Requirements"
             },
             {
               "module": "ROOT",

@@ -3,7 +3,7 @@ title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-11T05:05:55.612Z
 link: xref:dotnet-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
@@ -54,7 +54,7 @@ This section also contains details of interacting with our super fast [Data Serv
 
 For developers with an RDBMS, Couchbase's SQL implementation, SQL++, makes querying familiar. But don't be so quick to jump straight to SQL++ — assess your use case carefully.
 
-In addition to [SQL++ queries](../howtos/n1ql-queries-with-sdk.md), and longer running [analytics queries](../howtos/analytics-using-sdk.md) (OLAP) queries, and a [Search Service](../howtos/full-text-searching-with-sdk.md)(which includes [Vector Search](../howtos/vector-searching-with-sdk.md)), you can quickly access data where you know keys or [key ranges](#howtos:kv-range-scan.adoc), and this can be substantially quicker, thanks to the Data Service's speedy binary protocol.
+In addition to [SQL++ queries](../howtos/n1ql-queries-with-sdk.md), and longer running [analytics queries](../howtos/analytics-using-sdk.md) (OLAP) queries, and the [Search Service](../howtos/full-text-searching-with-sdk.md)(which includes [Vector Search](../howtos/vector-searching-with-sdk.md)), you can quickly access data where you know keys or [key ranges](#howtos:kv-range-scan.adoc), and this can be substantially quicker, thanks to the Data Service's speedy binary protocol.
 
 ## [](#distributed-acid-transactions)Distributed ACID Transactions
 

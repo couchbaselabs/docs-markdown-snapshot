@@ -454,6 +454,7 @@
     - [Turn App Services On and Off](/app-services/app-services/turn-on-off.md)
 - Application Endpoints
     - [About App Endpoints](/app-services/app-endpoints/about-app-endpoints.md)
+    - [App Endpoint Resource Requirements](/app-services/app-endpoints/resource-requirements.md)
     - [Create an App Endpoint](/app-services/app-endpoints/creating-an-app-endpoint.md)
     - [Manage App Endpoints Lifecycle](/app-services/app-endpoints/configuring-app-endpoints.md)
     - [Advanced Settings](/app-services/app-endpoints/advanced-settings.md)

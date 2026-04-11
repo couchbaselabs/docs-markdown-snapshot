@@ -1,7 +1,7 @@
 ---
 title: Search
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/concept-docs/pages/full-text-search-overview.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-04-11T05:05:55.612Z
 link: xref:go-sdk:concept-docs:full-text-search-overview.adoc[]
 ---
 
@@ -10,26 +10,26 @@ link: xref:go-sdk:concept-docs:full-text-search-overview.adoc[]
 
 # Search
 
-> _Full Text Search_ (FTS) lets you create, manage, and query specially purposed _indexes_, defined on JSON documents within a Couchbase bucket. 
+> The _Search Service_ lets you create, manage, and query specially purposed _indexes_, defined on JSON documents within a Couchbase bucket. 
 
-## [](#what-is-full-text-search)What is Full Text Search?
+## [](#what-is-the-search-service)What is the Search Service?
 
-_Full Text Search_ provides extensive capabilities for _natural-language querying_: this allows special search-constraints to be applied to text-queries. Results can be _scored_, to indicate match-relevancy; and result-sets ordered correspondingly. _Conjunctive_ and _disjunctive_ searches can be performed, whereby common result-subsets from multiple queries can either be returned or omitted.
+The _Search Service_ provides extensive capabilities for _natural-language querying_: this allows special search-constraints to be applied to text-queries. Results can be _scored_, to indicate match-relevancy; and result-sets ordered correspondingly. _Conjunctive_ and _disjunctive_ searches can be performed, whereby common result-subsets from multiple queries can either be returned or omitted.
 
-A full overview of Full Text Search is provided in [Full Text Search: Fundamentals](../../../server/current/search/search.md). This includes information on the principal features of Couchbase Full Text Search, its architecture, and the latest feature-additions. Other information-sources include:
+A full overview of the Search Service is provided in [The Search Service: Fundamentals](../../../server/current/search/search.md). This includes information on the principal features of Couchbase Search Service, its architecture, and the latest feature-additions. Other information-sources include:
 
-* [Performing Searches](../../../server/7.2/fts/fts-perform-searches.md): An explanation of the steps required to prepare for and perform Full Text Search.
-* [Searching from the UI](../../../server/7.2/fts/fts-searching-from-the-UI.md): A brief introduction to the Full Text Search user interface provided by the Couchbase Web Console, with a step-by-step example of how to create a simple Full Text Index, and perform a search on it.
-* [Searching with the REST API](../../../server/7.2/fts/fts-searching-with-curl-http-requests.md): Basic examples of how Full Text Search is performed with REST, and pointers to more complex examples.
+* [Performing Searches](../../../server/7.2/fts/fts-perform-searches.md): An explanation of the steps required to prepare for and perform Search.
+* [Searching from the UI](../../../server/7.2/fts/fts-searching-from-the-UI.md): A brief introduction to the Search Service user interface provided by the Couchbase Web Console, with a step-by-step example of how to create a simple Search Index, and perform a search on it.
+* [Searching with the REST API](../../../server/7.2/fts/fts-searching-with-curl-http-requests.md): Basic examples of how Search is performed with REST, and pointers to more complex examples.
 * [Creating Indexes](../../../server/7.2/fts/fts-creating-indexes.md): A full description of the index-creation facility provided by the Couchbase Web Console, with explanations of each component to be used, and illustrations of how indexes can be designed to include specific subsets of documents and their fields.
-* [Understanding Analyzers](../../../server/7.2/fts/fts-index-analyzers.md): An explanation of _analyzers_, which are used to process the text to be included in Full Text Indexes.
+* [Understanding Analyzers](../../../server/7.2/fts/fts-index-analyzers.md): An explanation of _analyzers_, which are used to process the text to be included in Search Indexes.
 * [Queries](../../../server/7.2/fts/fts-search-request.md): A detailed account of available query types, response objects, and result-sorting options.
 
-## [](#performing-full-text-search-from-the-sdk)Performing Full Text Search from the SDK
+## [](#performing-search-from-the-sdk)Performing Search from the SDK
 
-Couchbase SDKs provides an API for the support of Full Text Search querying. A detailed example of performing Full Text Search queries from the SDK is provided in [Searching from the SDK](../howtos/full-text-searching-with-sdk.md).
+Couchbase SDKs provides an API for the support of Search querying. A detailed example of performing Search queries from the SDK is provided in [Searching from the SDK](../howtos/full-text-searching-with-sdk.md).
 
-Note that to access Full Text Search, users require appropriate _roles_. The role **FTS Admin** must therefore be assigned to those who intend to create indexes; and the role **FTS Searcher** to those who intend to perform searches. For information on creating users and assigning roles, see the [RBAC Roles page](#7.1@server:learn:security/roles.adoc#search-admin).
+Note that to access Search, users require appropriate _roles_. The role `fts_admin` must therefore be assigned to those who intend to create indexes; and the role `fts_searcher` to those who intend to perform searches. For information on creating users and assigning roles, see the [RBAC Roles page](#7.1@server:learn:security/roles.adoc#search-admin).
 
 ## [](#search-from-sql)Search from SQL++
 

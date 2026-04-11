@@ -1,9 +1,9 @@
 ---
 title: Command Line Tools
-description: Use Couchbase command line tools to import and export large amounts
-  of data, and manage ad hoc backups.
+description: Use Couchbase command line tools to import and export data, manage
+  backups, and interact with your cluster from the command line.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/command-line-tools.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-11T05:05:55.612Z
 link: xref:cloud:reference:command-line-tools.adoc[]
 ---
 
@@ -12,13 +12,53 @@ link: xref:cloud:reference:command-line-tools.adoc[]
 
 # Command Line Tools
 
-> Use Couchbase command line tools to import and export large amounts of data, and manage ad hoc backups. 
+> Use Couchbase command line tools to import and export data, manage backups, and interact with your cluster from the command line. 
 
-Couchbase Server includes a suite of command line tools, available as a separate package for Couchbase Capella. Couchbase command line tools for Capella include [cbimport and cb export](../connect/cli-import-export.md), [cbbackupmgr](../clusters/cli-backup-restore.md), [cbdatarecovery](../../server/current/tools/cbdatarecovery.md)and [cbq](../n1ql/n1ql-intro/cbq.md).
+Couchbase Server includes a suite of command line tools, available as a separate package for Couchbase Capella. Couchbase command line tools for Capella include [cbimport and cbexport](#couchbase-cli-tools), [cbbackupmgr](#couchbase-cli-tools), [cbdatarecovery](#couchbase-cli-tools), and [cbq](#couchbase-cli-tools), as well as [Couchbase Shell (cbsh)](#cb-shell) and [cbc Tools](#cbc-tools).
 
-## [](#download-and-install-the-couchbase-command-line-tools)Download and Install the Couchbase Command Line Tools
+## [](#cb-shell)Couchbase Shell
 
-Download the version of the command line tools package for your platform through the following links:
+Couchbase Shell (`cbsh`) is an interactive command-line tool for working with Couchbase Server and Capella operational clusters.
+
+Use `cbsh` to:
+
+* Run SQL++ queries against your cluster.
+* Import and export data in multiple formats.
+* Manage documents, buckets, scopes, and collections.
+* Manage Capella clusters, projects, and credentials.
+* Perform vector searches.
+
+To download, install, and get started with `cbsh`, see the [Couchbase Shell Documentation](https://couchbase.sh/docs/).
+
+## [](#couchbase-cli-tools)Couchbase Command Line Tools
+
+The following command line tools are included in the Couchbase Server command line tools package:
+
+[cbimport and cbexport](../connect/cli-import-export.md)
+
+Import and export data in JSON and CSV format. `cbimport` supports importing from files or URLs; `cbexport` supports exporting to files.
+
+[cbbackupmgr](../clusters/cli-backup-restore.md)
+
+Back up and restore data from Couchbase Server and Capella clusters. `cbbackupmgr` supports full and incremental backups, as well as point-in-time restore.
+
+[cbdatarecovery](../../server/current/tools/cbdatarecovery.md)
+
+Recover data from offline or failed-over nodes.
+
+[cbq](../n1ql/n1ql-intro/cbq.md)
+
+An interactive shell for running SQL++ queries against Couchbase Server and Capella clusters.
+
+### [](#download-and-install-command-line-tools)Download and Install Command Line Tools
+
+Download the command line tools package that corresponds to the server version you're using.
+
+> [!NOTE]
+> While command line tools for 7.6.X are not forward compatible with 8.0.X, command line tools for 8.0.X are backward compatible with 7.6.X.
+
+* Couchbase Server 7.6
+* Couchbase Server 8.0
 
 Linux
 
@@ -28,7 +68,7 @@ Linux aarch64
 
 <https://packages.couchbase.com/releases/7.6.10/couchbase-server-dev-tools-7.6.10-linux%5Faarch64.tar.gz>
 
-macOS
+macOS x86
 
 <https://packages.couchbase.com/releases/7.6.10/couchbase-server-dev-tools-7.6.10-macos%5Fx86%5F64.zip>
 
@@ -40,17 +80,12 @@ Windows
 
 <https://packages.couchbase.com/releases/7.6.10/couchbase-server-dev-tools-7.6.10-windows%5Famd64.zip>
 
-Unzip or untar the packages, and the binaries are ready to run. The zipped package also contains a `README` file, and a copy of the software licenses.
+> [!TIP]
+> On Windows, you need a recent Microsoft Visual C++ Redistributable installed. Download the latest Visual C++ Redistributable from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
+
+Unzip or untar the packages, and the binaries are ready to run. The extracted package also contains a `README` file and the software licenses.
 
 For example, for Linux x86\_64:
-
-```console
-$ mkdir capella_server_tools_7.6.10
-```
-
-```console
-$ cd capella_server_tools_7.6.10
-```
 
 ```console
 $ wget https://packages.couchbase.com/releases/7.6.10/couchbase-server-dev-tools_7.6.10-linux_x86_64.tar.gz
@@ -112,45 +147,106 @@ $ ./cbq --version
  Use N1QL queries select version(); or select min_version(); to display server version.
 ```
 
+Linux
+
+<https://packages.couchbase.com/releases/8.0.0/couchbase-server-dev-tools-8.0.0-linux%5Fx86%5F64.tar.gz>
+
+Linux aarch64
+
+<https://packages.couchbase.com/releases/8.0.0/couchbase-server-dev-tools-8.0.0-linux%5Faarch64.tar.gz>
+
+macOS x86
+
+<https://packages.couchbase.com/releases/8.0.0/couchbase-server-dev-tools-8.0.0-macos%5Fx86%5F64.zip>
+
+macOS arm64
+
+<https://packages.couchbase.com/releases/8.0.0/couchbase-server-dev-tools-8.0.0-macos%5Farm64.zip>
+
+Windows
+
+<https://packages.couchbase.com/releases/8.0.0/couchbase-server-dev-tools-8.0.0-windows%5Famd64.zip>
+
 > [!TIP]
-> On Windows, you will need to have a recent Microsoft Visual C++ Redistributable already installed. Download the latest Visual C++ Redistributable from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
+> On Windows, you need a recent Microsoft Visual C++ Redistributable installed. Download the latest Visual C++ Redistributable from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
 
-### [](#apple-m1-silicon)Apple M1 Silicon
+Unzip or untar the packages, and the binaries are ready to run. The extracted package also contains a `README` file and the software licenses.
 
-The macOS x86 binaries can be used on Apple Silicon Macs with Rosetta installed. If your Apple Silicon Mac does not already have Rosetta installed, you can install it from the command line, using:
+For example, for Linux x86\_64:
 
 ```console
-softwareupdate --install-rosetta
+$ wget https://packages.couchbase.com/releases/8.0.0/couchbase-server-dev-tools_8.0.0-linux_x86_64.tar.gz
 ```
 
-## [](#other-cli-tools)Other CLI Tools
+```console
+$ tar -xf couchbase-server-dev-tools_8.0.0-linux_x86_64.tar.gz
+```
 
-The Couchbase C SDK, `libcouchbase`, also includes some command line tools. For more information about these command line tools, see [cbc Tools](../../c-sdk/current/hello-world/cbc.md#cbc-tools).
+```console
+$ ls -1
+bin
+couchbase-server-dev-tools_8.0.0-linux_x86_64.tar.gz
+lib
+LICENSE.txt
+NOTICES.txt
+README.txt
+share
+```
 
-### [](#couchbase-shell-cbsh)Couchbase Shell (cbsh)
+```console
+$ cd bin
+```
 
-Couchbase Shell (cbsh) is an interactive command-line tool for working with Couchbase Server and Capella clusters.
+```console
+$ ls -1
+cbbackupmgr
+cbdatarecovery
+cbexport
+cbimport
+cbq
+```
 
-Use cbsh to:
+```console
+$ ./cbimport --version
+cbimport version 8.0.0-3777 (32fa3476)
+```
 
-* Extract, transform, and load different data formats.
-* Export data as JSON or CSV.
-* Import data from SQLite.
-* Generate data.
-* Check the status of your indexes.
+```console
+$ ./cbexport --version
+cbexport version 8.0.0-3777 (32fa3476)
+```
 
-To download, install, and get started with cbsh, see the [Couchbase Shell Documentation](https://couchbase.sh/docs/).
+```console
+$ ./cbbackupmgr --version
+cbbackupmgr version 8.0.0-3777 (32fa3476)
+```
 
-### [](#ide-plugins)IDE Plugins
+```console
+$ ./cbdatarecovery --version
+cbdatarecovery version 8.0.0-3777 (32fa3476)
+```
 
-For more information about IDE plugins, see the [Third Party Integrations page](../third-party/integrations.md#ide-integrations).
+```console
+$ ./cbq --version
+ GO VERSION : go1.24.7
+ SHELL VERSION : 8.0.0-3777
 
-## [](#next-steps)Next Steps
+ Use N1QL queries select version(); or select min_version(); to display server version.
+```
 
-To start using the command line tools, you must do the following:
+## [](#cbc-tools)cbc Tools
 
-* [Copy the connection string](../get-started/connect.md) for your cluster.
-* [Configure cluster access](../clusters/manage-database-users.md) by creating cluster access credentials. You'll need the username and password for the cluster credentials to connect to the cluster.
-* [Add your IP address](../clusters/allow-ip-address.md) to the cluster's list of allowed IPs.
+The Couchbase C SDK, `libcouchbase`, includes a small set of command line tools. For more information, see [cbc Tools](../../c-sdk/current/hello-world/cbc.md#cbc-tools).
 
-You can do all of this from a single location using the Connect page in the Capella UI. See [Connect To Your Cluster](../get-started/connect.md) and follow the instructions for the CLI tools.
+## [](#see-also)See Also
+
+Couchbase also offers plugins and extensions for popular IDEs, so you can work with your Capella cluster directly from your development environment. For a full list of available integrations, see [Integrations, Connectors, and Tools](../third-party/integrations.md#ide-integrations).
+
+### [](#next-steps)Next Steps
+
+To start using command line tools, do the following:
+
+1. [Copy the connection string](../get-started/connect.md) for your cluster.
+2. [Configure cluster access](../clusters/manage-database-users.md) by creating cluster access credentials.  
+You'll need the username and password for the cluster credentials to connect to the cluster.
+3. [Add your IP address](../clusters/allow-ip-address.md) to the cluster's list of allowed IPs.

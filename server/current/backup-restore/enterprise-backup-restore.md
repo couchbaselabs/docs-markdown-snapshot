@@ -3,7 +3,7 @@ title: cbbackupmgr
 description: <code>cbbackupmgr</code> is a tool for managing the backup and
   restore of Couchbase-Server data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/backup-restore/pages/enterprise-backup-restore.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-11T05:05:55.612Z
 link: xref:server:backup-restore:enterprise-backup-restore.adoc[]
 ---
 
@@ -21,9 +21,9 @@ The `cbbackupmgr` tool backs up and restores data, scripts, configurations, and 
 Only Full Administrators can use `cbbackupmgr`; which is available for both Couchbase Server _Enterprise Edition_ and Couchbase Server _Community Edition_.
 
 > [!NOTE]
-> `cbbackupmgr` is _not_ backward compatible with backups created by means of `cbbackup`.
+> `cbbackupmgr` is not backward compatible with backups created by means of `cbbackup`.
 > 
-> In Couchbase Enterprise Server 7.2 and after, `cbbackupmgr` is available in the `Tools` package that must be downloaded. See [Server Tools Packages](../cli/cli-intro.md#server-tools-packages).
+> In Couchbase Enterprise Server 7.2 and later, `cbbackupmgr` is available in the `Tools` package that must be downloaded. See [Server Tools Packages](../cli/cli-intro.md#server-tools-packages).
 
 ### [](#planning-for-disaster-recovery)Planning for Disaster Recovery
 
@@ -31,10 +31,10 @@ Backup and restore capabilities are critical to an overall Disaster Recovery Pla
 
 ### [](#backup-repositories)Backup Repositories
 
-All backup is stored in and recovered from a _Backup Repository_. In turn, a _Backup Repository_ is stored in a Backup Archive on the filesystem. Each backup job in the _Backup Repository_ stores its backup in two ways:
+All backup is stored in and recovered from a _Backup Repository_. In turn, a _Backup Repository_ is stored in a Backup Archive on the filesystem. Each backup job in the _Backup Repository_ stores its backup in 2 ways:
 
-* All bucket data is stored in a small, secondary database.
-* All bucket creation scripts and configuration files are stored on the file system, as files.
+* You can store all bucket data in a small, secondary database.
+* You can store all bucket creation scripts and configuration files on the filesystem, as files.
 
 ### [](#whats-backed-up)What's Backed Up
 
@@ -65,7 +65,7 @@ You can also use command line flags to control how the `cbbackupmgr restore` com
 
 ### [](#tool-locations)Tool Locations
 
-When installed as part of the Couchbase Server install, `cbbackupmgr` tool is stored with all other tools in the following _per platform_ locations:
+When installed as part of the Couchbase Server install, `cbbackupmgr` tool is stored with all other tools in the following per platform locations:
 
 __Table 1\. Backup Tool Locations__
 | Operating system | Directory locations                                                                            |
@@ -82,30 +82,23 @@ By default, the `cbbackupmgr` tool performs incremental backups to back up only 
 
 The backup archive is a directory that contains a set of backup repositories as well as logs for the backup client. The backup directory should be modified only by the backup client, and any modifications that are not done by that client might result in a corruption of backup data.
 
-Only one backup client can access the backup archive at one time. If multiple instances of the backup client are running on the same archive at the same time, this might result in corruption. To prevent such corruption instances, you may be required to create multiple backup archives depending on your use case.
+Only 1 backup client can access the backup archive at 1 time. If multiple instances of the backup client are running on the same archive at the same time, this might result in corruption. To prevent such corruption instances, you may be required to create multiple backup archives depending on your use case.
 
 ## [](#version-compatibility)Version Compatibility
 
-For 6.5 and all later versions, `cbbackupmgr` can be used to back up data either from a cluster running its own version, or from a cluster running a prior, _compatible_ version. For example, the 6.6.0 tool can back up data from a cluster running 6.6.0, 6.5.x, 6.0.x, or 5.5.x. It can also be used to restore _to_ any of those versions data previously backed up _from_ any of those versions.
+For 7.2 and later versions, you can use `cbbackupmgr` to back up data either from a cluster running its own version, or from a cluster running a prior, `compatible` version. You can also use it to restore data to any of these versions from backups created on any of them.
 
 The following table lists the compatible cluster-versions for each version of `cbbackupmgr`. Unless otherwise specified, backup and restore apply both to _local_ and to _cloud_ data.
 
 __Table 2\. Compatibility Requirements for Backup and Restore__
-| **cbbackupmgr version** | **7.6** | **7.2** | **7.1** | **7.0** | **6.6** | **6.5.x** | **6.0.x** | **5.5.x** |
-| ----------------------- | ------- | ------- | ------- | ------- | ------- | --------- | --------- | --------- |
-| 7.6                     | ✓       | ✓       | ✓       | ✓       | ✓       |           |           |           |
-| 7.2                     |         | ✓       | ✓       | ✓       | ✓       |           |           |           |
-| 7.1                     |         |         | ✓       | ✓       | ✓       | ✓\*       |           |           |
-| 7.0                     |         |         |         | ✓       | ✓       | ✓\*       | ✓\*       |           |
-| 6.6.0 and above         |         |         |         |         | ✓       | ✓\*       | ✓\*       | ✓\*       |
-| 6.5                     |         |         |         |         |         | ✓         | ✓         | ✓         |
-| 6.0.x                   |         |         |         |         |         |           | ✓         |           |
-| 5.5.x                   |         |         |         |         |         |           |           | ✓         |
+| **cbbackupmgr version** | **8.0** | **7.6** | **7.2** |
+| ----------------------- | ------- | ------- | ------- |
+| 8.0                     | ✓       | ✓       | ✓       |
+| 7.6                     |         | ✓       | ✓       |
+| 7.2                     |         |         | ✓       |
 
-\* For local backup only — _not_ for cloud.
-
-Restoring metadata and users
+## [](#restoring-metadata-and-users)Restoring metadata and users
 
 * When restoring metadata to a newer Server version, if the feature that the metadata applies to no longer exists in the newer Server version, then the metadata may not be restorable.
-* If the user roles no longer exist in the version that you wish to restore to, then an error will be logged for the target user.
-* In general, if you can upgrade _directly_ to the new version, then you should be able to restore the users. If you cannot upgrade directly, then restoring users may cause errors. For example, if some of the user roles no longer exist in the newer Server version.
+* If the user roles no longer exist in the version that you want to restore to, then an error is logged for the target user.
+* In general, if you can upgrade to the new version, then you should be able to restore the users. If you cannot upgrade directly, then restoring users may cause errors. For example, if some of the user roles no longer exist in the newer Server version.
