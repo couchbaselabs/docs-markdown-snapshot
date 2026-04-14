@@ -3,7 +3,7 @@ title: Command Line Tools
 description: Use Couchbase command line tools to import and export data, manage
   backups, and interact with your cluster from the command line.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/command-line-tools.adoc
-pubDate: 2026-04-11T05:05:55.612Z
+pubDate: 2026-04-14T05:27:53.923Z
 link: xref:cloud:reference:command-line-tools.adoc[]
 ---
 
@@ -57,8 +57,95 @@ Download the command line tools package that corresponds to the server version y
 > [!NOTE]
 > While command line tools for 7.6.X are not forward compatible with 8.0.X, command line tools for 8.0.X are backward compatible with 7.6.X.
 
-* Couchbase Server 7.6
 * Couchbase Server 8.0
+* Couchbase Server 7.6
+
+Linux
+
+<https://packages.couchbase.com/releases/8.0.1/couchbase-server-dev-tools-8.0.1-linux%5Fx86%5F64.tar.gz>
+
+Linux aarch64
+
+<https://packages.couchbase.com/releases/8.0.1/couchbase-server-dev-tools-8.0.1-linux%5Faarch64.tar.gz>
+
+macOS x86
+
+<https://packages.couchbase.com/releases/8.0.1/couchbase-server-dev-tools-8.0.1-macos%5Fx86%5F64.zip>
+
+macOS arm64
+
+<https://packages.couchbase.com/releases/8.0.1/couchbase-server-dev-tools-8.0.1-macos%5Farm64.zip>
+
+Windows
+
+<https://packages.couchbase.com/releases/8.0.1/couchbase-server-dev-tools-8.0.1-windows%5Famd64.zip>
+
+> [!TIP]
+> On Windows, you need a recent Microsoft Visual C++ Redistributable installed. Download the latest Visual C++ Redistributable from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
+
+Unzip or untar the packages, and the binaries are ready to run. The extracted package also contains a `README` file and the software licenses.
+
+For example, for Linux x86\_64:
+
+```console
+$ wget https://packages.couchbase.com/releases/8.0.1/couchbase-server-dev-tools_8.0.1-linux_x86_64.tar.gz
+```
+
+```console
+$ tar -xf couchbase-server-dev-tools_8.0.1-linux_x86_64.tar.gz
+```
+
+```console
+$ ls -1
+bin
+couchbase-server-dev-tools_8.0.1-linux_x86_64.tar.gz
+lib
+LICENSE.txt
+NOTICES.txt
+README.txt
+share
+```
+
+```console
+$ cd bin
+```
+
+```console
+$ ls -1
+cbbackupmgr
+cbdatarecovery
+cbexport
+cbimport
+cbq
+```
+
+```console
+$ ./cbimport --version
+cbimport version 8.0.1-4792 (983714b2)
+```
+
+```console
+$ ./cbexport --version
+cbexport version 8.0.1-4792 (983714b2)
+```
+
+```console
+$ ./cbbackupmgr --version
+cbbackupmgr version 8.0.1-4792 (983714b2)
+```
+
+```console
+$ ./cbdatarecovery --version
+cbdatarecovery version 8.0.1-4792 (983714b2)
+```
+
+```console
+$ ./cbq --version
+ GO VERSION : go1.25.5
+ SHELL VERSION : 8.0.1-4792
+
+ Use N1QL queries select version(); or select min_version(); to display server version.
+```
 
 Linux
 
@@ -143,93 +230,6 @@ cbdatarecovery version 7.6.10-8025 (5abcd8c5)
 $ ./cbq --version
  GO VERSION : go1.25.5
  SHELL VERSION : 7.6.10-8025
-
- Use N1QL queries select version(); or select min_version(); to display server version.
-```
-
-Linux
-
-<https://packages.couchbase.com/releases/8.0.0/couchbase-server-dev-tools-8.0.0-linux%5Fx86%5F64.tar.gz>
-
-Linux aarch64
-
-<https://packages.couchbase.com/releases/8.0.0/couchbase-server-dev-tools-8.0.0-linux%5Faarch64.tar.gz>
-
-macOS x86
-
-<https://packages.couchbase.com/releases/8.0.0/couchbase-server-dev-tools-8.0.0-macos%5Fx86%5F64.zip>
-
-macOS arm64
-
-<https://packages.couchbase.com/releases/8.0.0/couchbase-server-dev-tools-8.0.0-macos%5Farm64.zip>
-
-Windows
-
-<https://packages.couchbase.com/releases/8.0.0/couchbase-server-dev-tools-8.0.0-windows%5Famd64.zip>
-
-> [!TIP]
-> On Windows, you need a recent Microsoft Visual C++ Redistributable installed. Download the latest Visual C++ Redistributable from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
-
-Unzip or untar the packages, and the binaries are ready to run. The extracted package also contains a `README` file and the software licenses.
-
-For example, for Linux x86\_64:
-
-```console
-$ wget https://packages.couchbase.com/releases/8.0.0/couchbase-server-dev-tools_8.0.0-linux_x86_64.tar.gz
-```
-
-```console
-$ tar -xf couchbase-server-dev-tools_8.0.0-linux_x86_64.tar.gz
-```
-
-```console
-$ ls -1
-bin
-couchbase-server-dev-tools_8.0.0-linux_x86_64.tar.gz
-lib
-LICENSE.txt
-NOTICES.txt
-README.txt
-share
-```
-
-```console
-$ cd bin
-```
-
-```console
-$ ls -1
-cbbackupmgr
-cbdatarecovery
-cbexport
-cbimport
-cbq
-```
-
-```console
-$ ./cbimport --version
-cbimport version 8.0.0-3777 (32fa3476)
-```
-
-```console
-$ ./cbexport --version
-cbexport version 8.0.0-3777 (32fa3476)
-```
-
-```console
-$ ./cbbackupmgr --version
-cbbackupmgr version 8.0.0-3777 (32fa3476)
-```
-
-```console
-$ ./cbdatarecovery --version
-cbdatarecovery version 8.0.0-3777 (32fa3476)
-```
-
-```console
-$ ./cbq --version
- GO VERSION : go1.24.7
- SHELL VERSION : 8.0.0-3777
 
  Use N1QL queries select version(); or select min_version(); to display server version.
 ```

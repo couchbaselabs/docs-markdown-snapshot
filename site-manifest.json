@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1776058551184,
+  "generated": 1776144825028,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -2477,6 +2477,27 @@
               "path": "private-endpoints/app-services-private-endpoints.adoc",
               "url": "/app-services/private-endpoints/app-services-private-endpoints.md",
               "title": "Private Endpoints for App Services"
+            },
+            {
+              "alias": true,
+              "module": "app-services",
+              "path": "references/rest_api_admin.adoc",
+              "url": "/app-services/references/rest_api_admin.md",
+              "title": "Capella App Services Admin API Reference"
+            },
+            {
+              "alias": true,
+              "module": "app-services",
+              "path": "references/rest_api_metric.adoc",
+              "url": "/app-services/references/rest_api_metric.md",
+              "title": "Capella App Services Metrics API Reference"
+            },
+            {
+              "alias": true,
+              "module": "app-services",
+              "path": "references/rest_api_public.adoc",
+              "url": "/app-services/references/rest_api_public.md",
+              "title": "Capella App Services Public API Reference"
             },
             {
               "alias": true,
