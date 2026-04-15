@@ -3,7 +3,7 @@ title: Analytics Administration REST API
 description: A description of the Administration REST APIs for Couchbase
   Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/analytics-rest-admin/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-15T05:26:28.652Z
 link: xref:enterprise-analytics:analytics-rest-admin:index.adoc[]
 ---
 
@@ -19,14 +19,15 @@ link: xref:enterprise-analytics:analytics-rest-admin:index.adoc[]
 * postService Restart
 * postNode Restart
 * getIngestion Status
+* getHealth Check
 
 [API docs by Redocly](https://redocly.com/redoc/)
 
-# Enterprise Analytics Administration REST APIs (2.0)
+# Enterprise Analytics Administration REST APIs (2.1)
 
 Download OpenAPI specification:
 
-These APIs enables you to manage and monitor the Enterprise Analytics Service.
+These APIs enable you to manage and monitor the Enterprise Analytics Service.
 
 ## [](#operation/cancel%5Frequest)Request Cancellation 
 
@@ -36,7 +37,7 @@ Cancels an active request.
 
 _AnalyticsManageAnalyticsAccess_
 
-##### Request Body schema: application/x-www-form-urlencoded
+##### query Parameters
 
 | client\_context\_idrequired | string Identifier passed by the client that is used to identify an active request to be cancelled. |
 | --------------------------- | -------------------------------------------------------------------------------------------------- |
@@ -81,7 +82,7 @@ Copy
 
 ## [](#operation/return%5Factive%5Frequests)Active Requests 
 
-Gets a list of the analytic requests that are running.
+Gets a list of the requests that are running.
 
 ##### Authorizations:
 
@@ -149,7 +150,7 @@ Copy
 
 ## [](#operation/completed%5Frequests)Completed Requests 
 
-Gets a list of all completed analytic requests.
+Gets a list of all completed requests.
 
 ##### Authorizations:
 
@@ -159,7 +160,7 @@ _AnalyticsManageAnalyticsAccess_
 
 **200** 
 
-Success. Returns a list of all completed analytic requests.
+Success. Returns a list of all completed requests.
 
 **401** 
 
@@ -440,7 +441,6 @@ Copy
 * "links": [
   * {
     * "name": "Local",
-    * "scope": "travel-sample/inventory",
     * "status": "healthy",
     * "state": [
       * {
@@ -464,3 +464,32 @@ Copy
   }  
 ]
 }`
+
+## [](#operation/health%5Fcheck)Health Check 
+
+Shows if the node is healthy and part of an Enterprise Analytics cluster.
+
+##### query Parameters
+
+| uuid | string Cluster UUID. Assert that this node is part of the specified cluster instance, otherwise a 404 will be returned. |
+| ---- | ----------------------------------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**204** 
+
+The node is healthy.
+
+**404** 
+
+The supplied cluster UUID does not match.
+
+**503** 
+
+The node is being removed from the cluster.
+
+get/api/v1/health
+
+The URL scheme, host, and port are as follows.
+
+{scheme}://{host}:{port}/api/v1/health

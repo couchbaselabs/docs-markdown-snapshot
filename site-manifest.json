@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1776144825028,
+  "generated": 1776231080160,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -7066,15 +7066,33 @@
             },
             {
               "module": "administer",
+              "path": "encrypt-database.adoc",
+              "url": "/couchbase-edge-server/current/administer/encrypt-database.md",
+              "title": "Encrypt a Database"
+            },
+            {
+              "module": "administer",
               "path": "operational-logging.adoc",
               "url": "/couchbase-edge-server/current/administer/operational-logging.md",
               "title": "Operational Logging"
             },
             {
               "module": "configuration",
+              "path": "authentication.adoc",
+              "url": "/couchbase-edge-server/current/configuration/authentication.md",
+              "title": "Authentication"
+            },
+            {
+              "module": "configuration",
+              "path": "configuration-schema.adoc",
+              "url": "/couchbase-edge-server/current/configuration/configuration-schema.md",
+              "title": "Edge Server Configuration Schema"
+            },
+            {
+              "module": "configuration",
               "path": "edge-server-configuration.adoc",
               "url": "/couchbase-edge-server/current/configuration/edge-server-configuration.md",
-              "title": "Edge Server Configuration Schema"
+              "title": "Edge Server Configuration"
             },
             {
               "module": "get-started",

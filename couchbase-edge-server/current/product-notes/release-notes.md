@@ -1,7 +1,7 @@
 ---
 title: Release Notes
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/product-notes/pages/release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-15T05:26:28.652Z
 link: xref:couchbase-edge-server:product-notes:release-notes.adoc[]
 ---
 
@@ -62,7 +62,7 @@ For more information, see:
 
 * [Introducing Couchbase Edge Server](../introduction/intro.md)
 * [Getting Started](../get-started/get-started-landing.md)
-* [Edge Server Configuration Schema](../configuration/edge-server-configuration.md)
+* [Edge Server Configuration](../configuration/edge-server-configuration.md)
 * [Edge Server REST API](../rest-based-access/rest-api-landing.md)
 * [Get Started with the Edge Server REST API](../rest-based-access/rest-api-start.md)
 * [Sync](../sync/sync-landing.md)

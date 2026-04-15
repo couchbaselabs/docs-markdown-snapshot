@@ -3,7 +3,7 @@ title: Manage Replication with Edge Server
 description: The replicate endpoint enables you to synchronize Edge Server with
   another server, for example Sync Gateway or Couchbase Capella App Services.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/replication.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-15T05:26:28.652Z
 link: xref:couchbase-edge-server:rest-based-access:replication.adoc[]
 ---
 
@@ -62,7 +62,7 @@ To configure automatic replication, use the top-level [replications](../configur
 | **tls\_client\_cert\_key** | Private key of TLS client certificate. (Requires tls\_client\_cert.)                    | string |
 
 1. One of `source` or `target` must be a local database name; the other must be a remote `ws:` or `wss:` sync URL.
-2. For more details, see [Edge Server Configuration Schema](../configuration/edge-server-configuration.md).
+2. For more details, see [Edge Server Configuration](../configuration/edge-server-configuration.md).
 
 ## [](#start-replication-with-the-rest-api)Start Replication with the REST API
 

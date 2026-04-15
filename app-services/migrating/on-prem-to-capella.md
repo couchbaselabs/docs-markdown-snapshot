@@ -1,7 +1,7 @@
 ---
 title: Migrate Existing Self-Managed Couchbase Mobile Clusters to App Services
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/migrating/on-prem-to-capella.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-04-15T05:26:28.652Z
 link: xref:app-services::migrating/on-prem-to-capella.adoc[]
 ---
 
@@ -29,10 +29,10 @@ If you are an existing user of Couchbase Mobile, have set up a Couchbase Server 
 [Set up an XDCR one way data replication](#server:manage:manage-xdcr:create-xdcr-replication.adoc) from the self-managed cluster bucket to the Capella bucket.
 
 > [!WARNING]
-> If you are replicating from a 3.x version of Sync Gateway deployment using persistent configuration mode then you MUST SETUP the following XDCR filter
+> If you're replicating from a 3.x version of Sync Gateway deployment using persistent configuration mode then you MUST SETUP the following XDCR filter
 > 
 > ```sqlpp
-> NOT REGEXP_CONTAINS("^_sync:(dbconfig|registry|dcp_ck|cfg|.*:cfg).*")
+> NOT REGEXP_CONTAINS(META().id, "^_sync:(dbconfig|registry|dcp_ck|cfg|.*:cfg)")
 > ```
 
 ### [](#step-3-wait-for-replication-to-complete)Step 3\. Wait for replication to complete
@@ -56,11 +56,11 @@ This ensures that no new data is written from Couchbase Mobile clients without b
 
 Now [launch App Services](../app-services/creating-an-app-service.md) on the target Capella Cluster.
 
-Then [create an App Endpoint](../app-endpoints/creating-an-app-endpoint.md) and configure it via Capella UI. Here are key aspects of the App Endpoint creation that you will have to handle:
+Then [create an App Endpoint](../app-endpoints/creating-an-app-endpoint.md) and configure it via Capella UI. Here are key aspects of the App Endpoint creation that you'll have to handle:
 
 * [Import Filter](../app-endpoints/creating-an-app-endpoint.md#app-endpoint-import-filter): If your existing setup uses a custom Import Filter function, you can write the filter function using the inline editor on Capella or import an existing Import Filter function file.
 * [Access Control](../app-endpoints/access-control-data-validation.md): You can write the sync function using the inline editor on Capella or import existing sync filter function file.
-* [Authentication Provider](../security/set-up-authentication-provider.md): If your existing app uses basic authentication, then there are no changes required. Otherwise, if your existing setup was using OIDC then you will need to reconfigure the OIDC provider on Capella.
+* [Authentication Provider](../security/set-up-authentication-provider.md): If your existing app uses basic authentication, then there are no changes required. Otherwise, if your existing setup was using OIDC then you'll need to reconfigure the OIDC provider on Capella.
 
 Finally, [bring the App Endpoint online](../app-endpoints/configuring-app-endpoints.md#stopping-and-starting).
 

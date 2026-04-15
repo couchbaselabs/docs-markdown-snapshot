@@ -1,7 +1,7 @@
 ---
 title: Enterprise Analytics Release Notes
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-15T05:26:28.652Z
 link: xref:enterprise-analytics:release-notes:release-notes.adoc[]
 ---
 
@@ -9,6 +9,20 @@ link: xref:enterprise-analytics:release-notes:release-notes.adoc[]
 [View original HTML](/enterprise-analytics/current/release-notes/release-notes.html)
 
 # Enterprise Analytics Release Notes
+
+## [](#release-2-1-1-april-2026)Release 2.1.1 (April 2026)
+
+The Enterprise Analytics 2.1.1 release contains the following features:
+
+* Support for Oracle Cloud Infrastructure (OCI) Object Storage  
+Enterprise Analytics adds OCI Object Storage as a native storage layer, providing greater deployment flexibility for Oracle-native environments.  
+For more information, see [S3-Compatible Storage](../manage/manage-nodes/s3-compatible-storage.md).
+* Custom Certificate Authority (CA) Support  
+You can now configure custom CA certificates for secure HTTPS connections to S3-compatible storage using private PKI or self-signed certificates.  
+For more information, see [Configure Enterprise Analytics](../manage/manage-nodes/create-cluster.md#configure-couchbase-server).
+* Simplified Storage Authentication  
+To simplify cluster provisioning and credential rotation, Enterprise Analytics now supports direct configuration of storage credentials via the UI/REST API as an alternative to the default credential chain.  
+For more information, see [Configure Enterprise Analytics](../manage/manage-nodes/create-cluster.md#configure-couchbase-server).
 
 ## [](#release-2-1-november-2025)Release 2.1 (November 2025)
 

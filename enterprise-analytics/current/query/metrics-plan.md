@@ -3,7 +3,7 @@ title: View Query Metrics or Plan
 description: The workbench for Enterprise Analytics provides metrics for each
   query you run, and a detailed query plan in both text and graphical format.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/query/pages/metrics-plan.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-15T05:26:28.652Z
 link: xref:enterprise-analytics:query:metrics-plan.adoc[]
 ---
 
@@ -24,10 +24,15 @@ When a query finishes, metrics for that query appear on the workbench between th
 
 * **elapsed** — Shows the overall query time.
 * **execution** — Shows the query execution time.
+* **compilation** — Shows the query compilation time between execution and waiting in queue.
 * **waiting in queue** — Shows the query wait time in the queue before beginning execution.
 * **docs scanned** — Shows the number of scanned JSON documents.
 * **docs returned** — Shows the number of returned JSON documents.
 * **size** — Shows the size of the query results, in bytes.
+
+### [](#copy-query-metrics)Copy Query Metrics
+
+After a query completes, a  icon appears next to the **Query Results** heading. Hover over the icon to preview the full metrics response as formatted JSON, or click it to copy the metrics JSON to your clipboard.
 
 ## [](#plan)View the Query Plan and Plan Text
 
