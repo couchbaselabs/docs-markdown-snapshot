@@ -2,7 +2,7 @@
 title: Transactions Migration Guide
 description: For those transitioning from using the Couchbase Transactions library for .NET.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/distributed-acid-transactions-migration-guide.adoc
-pubDate: 2026-04-15T05:26:28.652Z
+pubDate: 2026-04-17T05:26:26.225Z
 link: xref:dotnet-sdk:project-docs:distributed-acid-transactions-migration-guide.adoc[]
 ---
 
@@ -15,11 +15,11 @@ link: xref:dotnet-sdk:project-docs:distributed-acid-transactions-migration-guide
 
 Couchbase transactions for .NET were originally introduced as a library separate from the main Couchbase .NET SDK.
 
-We subsequently chose to integrate transactions directly into the SDKs with the release of .NET SDK 3.3.0, to make it easier for users to get started.
+We subsequently chose to integrate transactions directly into the SDKs with the release of .NET SDK 3.2.8, to make it easier for users to get started.
 
 This document details the small changes that existing users of the legacy transactions library need to make, to migrate to the SDK-integrated version.
 
-The [legacy transactions library](https://docs-archive.couchbase.com/dotnet-sdk/3.2/project-docs/distributed-transactions-dotnet-release-notes.html) will continue to be supported with bugfixes for some time, but new transaction features will only be added to the SDK and it is recommended that all users migrate.
+The [legacy transactions library](https://docs-archive.couchbase.com/dotnet-sdk/3.4/project-docs/distributed-transactions-dotnet-release-notes.html) will continue to be supported with bugfixes for some time, but new transaction features will only be added to the SDK and it is recommended that all users migrate.
 
 ## [](#accessing-transactions)Accessing transactions
 

@@ -3,7 +3,7 @@ title: Miscellaneous Utility Functions
 description: Miscellaneous utility functions enable you to perform tasks beyond
   the usual evaluation and transformation of data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/metafun.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-17T05:26:26.225Z
 link: xref:cloud:n1ql:n1ql-language-reference/metafun.adoc[]
 ---
 
@@ -400,15 +400,240 @@ Results
 ]
 ```
 
+## [](#extract-ddl)EXTRACTDDL(`filter` \[ ,`options` \])
+
+Couchbase Server 8.0
+
+### [](#description-7)Description
+
+This function extracts Data Definition Language (DDL) statements of buckets and returns them as an array of strings. It retrieves definitions for buckets, scopes, collections, indexes, sequences, functions, and prepared statements.
+
+You can use these definitions for purposes such as replication, backup, or auditing.
+
+The function supports the following statements:
+
+* CREATE BUCKET
+* CREATE SCOPE
+* CREATE COLLECTION
+* CREATE INDEX
+* CREATE SEQUENCE
+* CREATE OR REPLACE FUNCTION
+* PREPARE
+
+> [!NOTE]
+> To execute this function, your client must have Read access if using basic access credentials, or Query Catalog privilege if using advanced access credentials. Also, to extract DDLs from a specific bucket, your client must have necessary permissions on that bucket. For more information about cluster access privileges, see [Cluster Access](../../clusters/cluster-rbac.md).
+
+### [](#arguments-7)Arguments
+
+filter
+
+\[Required\] A string pattern to match against bucket names using the LIKE operator. To match all bucket names, use an empty string (`""`).
+
+options
+
+\[Optional\] A JSON object specifying options for the function. If you omit this argument, the output includes all supported DDL statements.
+
+### [](#options)Options
+
+| Name                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Schema                 |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
+| **flags** _optional_ | Specifies the types of DDL statements to extract. Accepts either a number or an array of strings, but not both. Statement String Number CREATE BUCKET "bucket" 1 CREATE SCOPE "scope" 2 CREATE COLLECTION "collection" 4 CREATE INDEX "index" 8 CREATE SEQUENCE "sequence" 16 CREATE OR REPLACE FUNCTION "function" 32 PREPARE "prepared" 64 To extract multiple statement types, specify an array of their string values or a single numeric value that represents the sum of their respective numeric values. For example, to extract CREATE BUCKET and CREATE INDEX statements, input the value as 9 (sum of 1 \+ 8) or as an array of strings \["bucket", "index"\]. | String array or Number |
+
+### [](#return-value-7)Return Value
+
+An array of strings, with each string containing a DDL statement.
+
+### [](#examples-3)Examples
+
+Extract CREATE INDEX statements from the `travel-sample` bucket using a string flag
+
+Query
+
+```sqlpp
+SELECT extractddl("travel-sample",{"flags":["index"]});
+```
+
+Results
+
+```json
+[
+  {
+    "$1": [
+      "CREATE INDEX `def_airportname` ON `travel-sample`(`airportname`) ;",
+      "CREATE INDEX `def_city` ON `travel-sample`(`city`) ;",
+      "CREATE INDEX `def_faa` ON `travel-sample`(`faa`) ;",
+      "CREATE INDEX `def_icao` ON `travel-sample`(`icao`) ;",
+      // ...
+    ]
+  }
+]
+```
+
+Extract CREATE INDEX statements from the `travel-sample` bucket using a numeric flag
+
+Query
+
+```sqlpp
+SELECT extractddl("travel-sample", {"flags":8});
+```
+
+Results
+
+```json
+[
+  {
+    "$1": [
+      "CREATE INDEX `def_airportname` ON `travel-sample`(`airportname`) ;",
+      "CREATE INDEX `def_city` ON `travel-sample`(`city`) ;",
+      "CREATE INDEX `def_faa` ON `travel-sample`(`faa`) ;",
+      "CREATE INDEX `def_icao` ON `travel-sample`(`icao`) ;",
+      // ...
+    ]
+  }
+]
+```
+
+Extract CREATE BUCKET and CREATE SCOPE statements from the `travel-sample` bucket using a numeric flag
+
+Query
+
+```sqlpp
+SELECT extractddl("travel-sample",{"flags":3});
+```
+
+In this query, the value `3` represents the sum of the flags for bucket (`1`) and scope (`2`).
+
+Results
+
+```json
+[
+  {
+    "$1": [
+      "CREATE BUCKET `travel-sample` WITH {
+              'evictionPolicy':'fullEviction',
+              'numVBuckets':128,
+              'ramQuota':200,
+              'replicaNumber':0,
+              'storageBackend':'magma'
+          };",
+      "CREATE SCOPE `travel-sample`.`inventory`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_00`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_01`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_02`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_03`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_04`;"
+    ]
+  }
+]
+```
+
+Extract CREATE FUNCTION and PREPARE statements from the `travel-sample` bucket
+
+Query
+
+```sqlpp
+SELECT extractddl("travel-sample",{"flags":["function","prepared"]});
+```
+
+Results
+
+```json
+[
+  {
+    "$1": [
+      "CREATE OR REPLACE FUNCTION `celsius`(...)
+          LANGUAGE INLINE AS (args[0] - 32) * 5/9;",
+      "PREPARE SELECT * FROM route\n
+              WHERE airline = \"FL\";",
+      "PREPARE NameParam AS\nSELECT * FROM hotel\n
+          WHERE city=$city AND country=$country;"
+    ]
+  }
+]
+```
+
+Extract all supported DDL statements from the `travel-sample` bucket
+
+Query
+
+```sqlpp
+SELECT extractddl("travel-sample");
+```
+
+Results
+
+```json
+[
+  {
+    "$1": [
+      "CREATE OR REPLACE FUNCTION `celsius`(...)
+          LANGUAGE INLINE AS (args[0] - 32) * 5/9;",
+      "CREATE BUCKET `travel-sample`
+           WITH {'evictionPolicy':'fullEviction',
+                  'numVBuckets':128,
+                  'ramQuota':200,
+                  'replicaNumber':0,
+                  'storageBackend':'magma'
+                };",
+      "CREATE SCOPE `travel-sample`.`inventory`;",
+      "CREATE COLLECTION `travel-sample`.`inventory`.`airline;",
+      "CREATE COLLECTION `travel-sample`.`inventory`.`airport;",
+      "CREATE COLLECTION `travel-sample`.`inventory`.`hotel;",
+      "CREATE COLLECTION `travel-sample`.`inventory`.`landmark;",
+      "CREATE COLLECTION `travel-sample`.`inventory`.`route;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_00`;",
+      // ...
+      "CREATE INDEX `def_airportname`
+          ON `travel-sample`(`airportname`) ;",
+      "CREATE INDEX `def_city`
+          ON `travel-sample`(`city`) ;",
+      // ...
+    ]
+  }
+]
+```
+
+Extract DDL statements from all buckets
+
+Query
+
+```sqlpp
+SELECT extractddl("",{"flags":["bucket","scope"]});
+```
+
+Results
+
+```json
+[
+  {
+    "$1": [
+      "CREATE BUCKET `travel-sample`
+           WITH {'evictionPolicy':'fullEviction',
+                'numVBuckets':128,
+                'ramQuota':200,
+                'replicaNumber':0,
+                'storageBackend':'magma'
+              };",
+      "CREATE SCOPE `travel-sample`.`inventory`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_00`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_01`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_02`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_03`;",
+      "CREATE SCOPE `travel-sample`.`tenant_agent_04`;"
+    ]
+  }
+]
+```
+
 ## [](#finderr)FINDERR(`expression`)
 
 Couchbase Server 7.6.5
 
-### [](#description-7)Description
+### [](#description-8)Description
 
 Returns the full details of any Query service or cbq shell error.
 
-### [](#arguments-7)Arguments
+### [](#arguments-8)Arguments
 
 expression
 
@@ -418,7 +643,7 @@ One of the following:
 * A string. In this case, the function searches for the target string in all of the error message fields except for `user_error`, and returns the full details of any errors that match the string.
 * A regular expression. In this case, the function searches for the regular expression in all of the error message fields except for `user_error`, and returns the full details of any errors that match the pattern.
 
-### [](#return-value-7)Return Value
+### [](#return-value-8)Return Value
 
 The return value is an array of one or more objects, each of which contains the details of an error that matches the find expression.
 
@@ -436,7 +661,7 @@ For each error, the function returns the following fields.
 > [!NOTE]
 > The error details also include a `symbol` field, which contains a representation string for the error. This field is for internal use only, and is not shown in the results. However, the FINDERR function does search this field when the find expression is a string or a regular expression.
 
-### [](#examples-3)Examples
+### [](#examples-4)Examples
 
 Find error details by code number
 
@@ -610,13 +835,13 @@ Results
 
 ## [](#flatten%5Fkeys)FLATTEN\_KEYS(`expr1` \[ `modifiers` \], `expr2` \[ `modifiers` \], …​)
 
-### [](#description-8)Description
+### [](#description-9)Description
 
 This function can only be used when defining an index key for an [array index](indexing-arrays.md).
 
 If you need to index multiple fields within an array, this function enables you to _flatten_ the specified expressions, and index them as if they were separate index keys. All subsequent index keys are accordingly moved to the right. Queries will be [sargable](selectintro.md#index-selection) and will generate spans.
 
-### [](#arguments-8)Arguments
+### [](#arguments-9)Arguments
 
 expr1, expr2, …​
 
@@ -632,23 +857,23 @@ When the `IGNORE MISSING` modifier and the `ASC` or `DESC` modifier are used tog
 
 Note that `FLATTEN_KEYS()` cannot be used recursively.
 
-### [](#return-value-8)Return Value
+### [](#return-value-9)Return Value
 
 The return value is a flattened list of array elements for use in an array index key.
 
-### [](#examples-4)Examples
+### [](#examples-5)Examples
 
 For examples, refer to [Array Indexing Examples](indexing-arrays.md#examples).
 
 ## [](#formalize)FORMALIZE(`statement` \[ `,query_context` \])
 
-### [](#description-9)Description
+### [](#description-10)Description
 
 Fully expands all references within a query, using the specified query context.
 
 This function has a synonym FORMALISE().
 
-### [](#arguments-9)Arguments
+### [](#arguments-10)Arguments
 
 statement
 
@@ -658,11 +883,11 @@ query\_context
 
 \[ Optional \] A string query context value for the function to use when formalizing.
 
-### [](#return-value-9)Return Value
+### [](#return-value-10)Return Value
 
 Returns a query with all references fully specified.
 
-### [](#examples-5)Examples
+### [](#examples-6)Examples
 
 Formalize a query
 
@@ -715,11 +940,11 @@ Results
 
 Couchbase Server 8.0
 
-### [](#description-10)Description
+### [](#description-11)Description
 
 This function returns a binary hash value for a given input using a specified hashing algorithm. By using this function, you can verify or compare data quickly, or protect your data by masking its original form while still allowing verification or comparison.
 
-### [](#arguments-10)Arguments
+### [](#arguments-11)Arguments
 
 input
 
@@ -729,18 +954,18 @@ options
 
 \[Optional\] An object that specifies the hashing algorithm and other options for the function. If omitted, the default hashing algorithm is `sha256`.
 
-### [](#options)Options
+### [](#options-2)Options
 
 | Name                      | Description                                                                                                                                                                                                                                                                                                                                          | Schema            |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **algorithm** _required_  | Specifies the hashing algorithm to be used. Supported algorithms are: crc32, md4, md5, sha224, sha256, sha384, sha512, sha512/224, and sha512/256.                                                                                                                                                                                                   | String            |
 | **polynomial** _optional_ | The polynomial to use. This only applies if the algorithm is crc32. This property may have one of the following values: ieee (the default value) castagnoli koopman A valid 32-bit integer, provided either as a JSON number (decimal) or a string that can be parsed as a numeric value (supports hexadecimal with a "0x" prefix) **Default:** ieee | String or integer |
 
-### [](#return-value-10)Return Value
+### [](#return-value-11)Return Value
 
 A binary hash value. The size or length of the value depends on the algorithm you choose.
 
-### [](#examples-6)Examples
+### [](#examples-7)Examples
 
 Find the hash value using the `sha256` algorithm
 
@@ -780,17 +1005,17 @@ Results
 
 ## [](#len)LEN(`expression`)
 
-### [](#description-11)Description
+### [](#description-12)Description
 
 A general function to return the length of an item.
 
-### [](#arguments-11)Arguments
+### [](#arguments-12)Arguments
 
 expression
 
 An expression representing any supported SQL++ datatype.
 
-### [](#return-value-11)Return Value
+### [](#return-value-12)Return Value
 
 The return value is usually a number, depending on the datatype of the input expression.
 
@@ -838,7 +1063,7 @@ Result
 
 ## [](#meta)META( \[ `keyspace_expr` \] ) \[ .`property` \]
 
-### [](#description-12)Description
+### [](#description-13)Description
 
 This function returns the [metadata](../../../server/current/learn/data/data.md#metadata) for the document or keyspace specified by `keyspace_expr`. The metadata is returned as a JSON object.
 
@@ -850,7 +1075,7 @@ You can also use the `META()` function with a property in the predicate of an [A
 
 If your cluster is running Couchbase Server version 7.6.2 and later, use the `META()` function with the [SEARCH() function](#searchfun.adoc) when you want to return XATTRs data through the Search Service and do not have a suitable Search index for your query.
 
-### [](#arguments-12)Arguments
+### [](#arguments-13)Arguments
 
 keyspace\_expr
 
@@ -908,11 +1133,11 @@ Attempting to select the entire `META().xattrs` object will return an empty resu
 > [!NOTE]
 > Starting with Couchbase Server 8.0, you can include up to 15 XATTRs per query.
 
-### [](#return-value-12)Return Value
+### [](#return-value-13)Return Value
 
 The bare function returns a JSON object containing the specified document's metadata. When the function is used with a property as part of a nested expression, the expression returns the JSON value of the property.
 
-### [](#examples-7)Examples
+### [](#examples-8)Examples
 
 To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
@@ -1096,15 +1321,15 @@ For examples showing how to use metadata information in the predicate of an ANSI
 
 ## [](#node-name)NODE\_NAME()
 
-### [](#description-13)Description
+### [](#description-14)Description
 
 Returns the name of the node on which the query is running.
 
-### [](#arguments-13)Arguments
+### [](#arguments-14)Arguments
 
 None.
 
-### [](#return-value-13)Return Value
+### [](#return-value-14)Return Value
 
 A string representing a node name.
 
@@ -1128,17 +1353,17 @@ Results
 
 ## [](#node-uuid)NODE\_UUID(`expression`)
 
-### [](#description-14)Description
+### [](#description-15)Description
 
 Returns the UUID of a node.
 
-### [](#arguments-14)Arguments
+### [](#arguments-15)Arguments
 
 expression
 
 A string, or an expression resolving to a string, representing a node name. To get the UUID of the node on which the query is running, use the empty string `""`.
 
-### [](#return-value-14)Return Value
+### [](#return-value-15)Return Value
 
 A string representing the node UUID.
 
@@ -1170,20 +1395,20 @@ Result
 
 ## [](#pairs)PAIRS(`obj`)
 
-### [](#description-15)Description
+### [](#description-16)Description
 
 This function generates an array of arrays of \[`field_name`, `value`\] pairs of all possible fields in the given JSON object `obj`.
 
 > [!NOTE]
 > Nested sub-object fields are explored recursively.
 
-### [](#arguments-15)Arguments
+### [](#arguments-16)Arguments
 
 obj
 
 An expression resolving to an object.
 
-### [](#return-value-15)Return Value
+### [](#return-value-16)Return Value
 
 Array of \[`field_name`, `value`\] arrays for each field in the input object `obj`.
 
@@ -1199,7 +1424,7 @@ Array of \[`field_name`, `value`\] arrays for each field in the input object `ob
 > * `PAIRS(public_likes)` returns `[]`
 > * `PAIRS({public_likes})` returns an array
 
-### [](#examples-8)Examples
+### [](#examples-9)Examples
 
 To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
@@ -1592,7 +1817,7 @@ Result
 
 ## [](#redact)REDACT (`expression` \[ , `filter-obj1`, `filter-obj2`, …​ \] )
 
-### [](#description-16)Description
+### [](#description-17)Description
 
 Redacts field names or values in a JSON object based on specific filtering criteria.
 
@@ -1601,7 +1826,7 @@ Use this function to protect sensitive data such as credit card numbers or perso
 > [!NOTE]
 > Masking applies to only string values. The function cannot mask non-string data types such as numbers, booleans, or dates. To redact non-string values, you must omit the fields entirely from the output instead.
 
-### [](#arguments-16)Arguments
+### [](#arguments-17)Arguments
 
 expression
 
@@ -1638,11 +1863,11 @@ When you provide multiple filter objects, the function evaluates them in the ord
 
 For nested objects, the nested fields inherit the redaction behavior of their parent by default. However, if you define a filter that specifically targets a nested field, that filter overrides the parent field's filter.
 
-### [](#return-value-16)Return Value
+### [](#return-value-17)Return Value
 
 A JSON object with field names/values redacted.
 
-### [](#examples-9)Examples
+### [](#examples-10)Examples
 
 Redact field values using default behavior
 
@@ -1846,11 +2071,11 @@ You can use the `UNNEST_POS()` function with the [UNNEST Clause](unnest.md) to r
 
 This function has a synonym [UNNEST\_POSITION()](#unnest-position).
 
-### [](#description-17)Description
+### [](#description-18)Description
 
 The `UNNEST_POS` function takes an unnested array and returns the position value of each element in the array.
 
-### [](#arguments-17)Arguments
+### [](#arguments-18)Arguments
 
 expr
 
@@ -1900,15 +2125,15 @@ Synonym of [UNNEST\_POS()](#unnest-pos).
 
 ## [](#uuid)UUID()
 
-### [](#description-18)Description
+### [](#description-19)Description
 
 Generates a universally unique identifier (UUID) according to [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt).
 
-### [](#arguments-18)Arguments
+### [](#arguments-19)Arguments
 
 None.
 
-### [](#return-value-17)Return Value
+### [](#return-value-18)Return Value
 
 A string representing a version 4 UUID.
 
@@ -1936,15 +2161,15 @@ For further examples using `UUID()`, refer to the [INSERT](insert.md) and [MERGE
 
 ## [](#version)VERSION()
 
-### [](#description-19)Description
+### [](#description-20)Description
 
 Returns SQL++ version.
 
-### [](#arguments-19)Arguments
+### [](#arguments-20)Arguments
 
 None.
 
-### [](#return-value-18)Return Value
+### [](#return-value-19)Return Value
 
 Returns string containing the SQL++ version.
 

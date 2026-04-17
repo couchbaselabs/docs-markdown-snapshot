@@ -122,6 +122,7 @@
     - [Release Notes](/dotnet-sdk/current/project-docs/sdk-release-notes.md)
     - [Compatibility](/dotnet-sdk/current/project-docs/compatibility.md)
         - [Migrating to SDK 3 API](/dotnet-sdk/current/project-docs/migrating-sdk-code-to-3.n.md)
+            - [Transactions Migration Guide](/dotnet-sdk/current/project-docs/distributed-acid-transactions-migration-guide.md)
         - [Working with Collections](/dotnet-sdk/current/howtos/working-with-collections.md)
         - [3<sup>rd</sup> Party Integrations](/dotnet-sdk/current/project-docs/third-party-integrations.md)
     - [Full Installation](/dotnet-sdk/current/project-docs/sdk-full-installation.md)

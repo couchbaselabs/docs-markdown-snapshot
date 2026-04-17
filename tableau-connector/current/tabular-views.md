@@ -1,7 +1,9 @@
 ---
 title: Couchbase Analytics Tabular Views
+description: Create Tabular Analytics Views (TAVs) from Couchbase datasets for
+  use with Tableau.
 editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/tabular-views.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-17T05:26:26.225Z
 link: xref:tableau-connector::tabular-views.adoc[]
 ---
 
@@ -10,18 +12,56 @@ link: xref:tableau-connector::tabular-views.adoc[]
 
 # Couchbase Analytics Tabular Views
 
-## [](#couchbase-analytics-tabular-views)Couchbase Analytics Tabular Views
+> Create Tabular Analytics Views (TAVs) from Couchbase datasets for use with Tableau. 
 
-Tableau requires its data sources to be in tabular form, accessible by SQL. Couchbase allows users to create tabular relational views from their datasets that can then be used with Tableau operations. The examples in this guide make use of the built-in travel-sample dataset that ships with Analytics tabular views.
+Tableau requires data sources to be in tabular form and accessible through SQL. To meet this requirement, Couchbase provides Tabular Analytics Views (TAVs).
 
-### [](#loading-the-sample-bucket)Loading the Sample Bucket
+A TAV is a type of Analytics view that enables Couchbase Analytics to interact with software tools designed for relational databases. TAVs present data as a table with uniform rows and columns and a well-defined schema. For more information, see [Tabular Analytics Views](../../server/current/analytics/5a%5Fviews.md#tabular-analytics-views).
 
-The bucket for this can be set up on your server instance through the Couchbase Web Console. Load the travel-sample bucket by logging in to the console, going to **Buckets** **Load a sample Bucket**, and selecting **travel-sample**.
+The following example shows how to create a TAV.
 
-![Load Travel Sample Bucket](_images/load-travel-sample.png) 
+## [](#step-1-load-the-sample-bucket)Step 1: Load the Sample Bucket
 
-### [](#viewing-analytics-collections)Viewing Analytics Collections
+This example uses the `travel-sample` bucket, which comes with predefined Analytics collections and tabular views.
 
-The travel-sample bucket comes with Analytics collections and views enabled. To view the collections, go to the **Analytics** menu in the Couchbase Web Console to see the Analytics collections created for the inventory scope.
+To load the bucket:
 
-![Travel Sample Analytics Collections](_images/view-analytics-collections.png)
+1. Open the Couchbase Server Web Console.
+2. Go to **Settings** **Sample Buckets**.
+3. Select `travel-sample`.
+4. Click **Load Sample Data**.
+
+## [](#step-2-create-a-tabular-analytics-view)Step 2: Create a Tabular Analytics View
+
+While the `travel-sample` dataset includes default Tabular Analytics Views (TAVs), you can also create custom ones.
+
+To create a TAV:
+
+1. Open Couchbase Server Web Console and go to **Analytics**.
+2. In the **Analytics Workbench**, set the scope to `travel-sample.inventory`.
+3. Run the following statement in the **Query Editor**.  
+```sqlpp  
+CREATE OR REPLACE ANALYTICS VIEW hotel_custom_view (  
+    id STRING,  
+    name STRING,  
+    city STRING,  
+    country STRING  
+)  
+DEFAULT NULL  
+PRIMARY KEY (id) NOT ENFORCED  
+AS  
+   SELECT meta().id AS id,  
+          name,  
+          city,  
+          country  
+   FROM hotel;  
+```  
+This statement creates a TAV named `hotel_custom_view` in the `travel-sample.inventory` scope. The view includes the `id`, `name`, `city`, and `country` fields from the `hotel` collection.
+
+## [](#step-3-verify-analytics-collections-and-tabular-views)Step 3: Verify Analytics Collections and Tabular Views
+
+Before connecting to Tableau, verify that your Analytics collections and tabular views are available.
+
+1. Open Couchbase Server Web Console and go to **Analytics**.
+2. In the **Analytics Scopes** pane, confirm that the default and custom views appear in the list.
+3. Click the drop-down arrow next to a view name to see its schema.

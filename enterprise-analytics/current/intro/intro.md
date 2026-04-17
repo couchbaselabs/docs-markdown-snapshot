@@ -5,7 +5,7 @@ description: Enterprise Analytics is a self-managed, JSON-native NoSQL
   for the execution of complex analytical queries and the extraction of timely
   insights.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/intro/pages/intro.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-04-17T05:26:26.225Z
 link: xref:enterprise-analytics:intro:intro.adoc[]
 ---
 
@@ -15,6 +15,9 @@ link: xref:enterprise-analytics:intro:intro.adoc[]
 # About Enterprise Analytics
 
 > Enterprise Analytics is a self-managed, JSON-native NoSQL analytical database. It serves to unify data from diverse sources, allowing for the execution of complex analytical queries and the extraction of timely insights. 
+
+> [!NOTE]
+> New features and fixes are available in the latest release. See [Release Notes](../release-notes/release-notes.md) for details.
 
 Enterprise Analytics harnesses the power of NoSQL for analytics. It integrates seamlessly with both Couchbase Server and the Couchbase Capella cloud platform, enabling the creation of real-time, adaptive applications.
 

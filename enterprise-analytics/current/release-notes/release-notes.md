@@ -1,7 +1,7 @@
 ---
 title: Enterprise Analytics Release Notes
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-04-15T05:26:28.652Z
+pubDate: 2026-04-17T05:26:26.225Z
 link: xref:enterprise-analytics:release-notes:release-notes.adoc[]
 ---
 
@@ -12,7 +12,9 @@ link: xref:enterprise-analytics:release-notes:release-notes.adoc[]
 
 ## [](#release-2-1-1-april-2026)Release 2.1.1 (April 2026)
 
-The Enterprise Analytics 2.1.1 release contains the following features:
+Enterprise Analytics 2.1.1 is a maintenance release that delivers new features, targeted improvements, and bug fixes including critical stability and security patches.
+
+### [](#whats-new)What's New
 
 * Support for Oracle Cloud Infrastructure (OCI) Object Storage  
 Enterprise Analytics adds OCI Object Storage as a native storage layer, providing greater deployment flexibility for Oracle-native environments.  
@@ -21,8 +23,19 @@ For more information, see [S3-Compatible Storage](../manage/manage-nodes/s3-comp
 You can now configure custom CA certificates for secure HTTPS connections to S3-compatible storage using private PKI or self-signed certificates.  
 For more information, see [Configure Enterprise Analytics](../manage/manage-nodes/create-cluster.md#configure-couchbase-server).
 * Simplified Storage Authentication  
-To simplify cluster provisioning and credential rotation, Enterprise Analytics now supports direct configuration of storage credentials via the UI/REST API as an alternative to the default credential chain.  
+To simplify cluster provisioning and credential rotation, Enterprise Analytics now supports direct configuration of storage credentials via the UI/REST API as an alternative to the default credential chain for S3 & S3-compatible storage.  
 For more information, see [Configure Enterprise Analytics](../manage/manage-nodes/create-cluster.md#configure-couchbase-server).
+
+### [](#fixed-issues-improvements)Fixed Issues & Improvements
+
+| Category                                | Topic                                                                                                                                                                                           | Description                                                                                                                                                            | Issue                                                         |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| Storage & Connectivity                  | Stale DNS entries on reconnect                                                                                                                                                                  | The cluster retry logic is updated to re-resolve DNS addresses on every attempt. This prevents extended retry loops on stale IPs, ensuring faster connection recovery. | [MB-70678](https://jira.issues.couchbase.com/browse/MB-70678) |
+| Blob storage heartbeat timeout extended | Enhanced system stability in overloaded production environments by extending the blob storage heartbeat timeout, reducing the likelihood of unnecessary service halts.                          | [MB-71270](https://jira.issues.couchbase.com/browse/MB-71270)                                                                                                          |                                                               |
+| Blob verification timeouts on Azure     | CloudGuardian blob verification timeouts during high load caused node halts, leaving the cluster in an unusable state. Timeout handling has been improved to prevent this under sustained load. | [MB-71392](https://jira.issues.couchbase.com/browse/MB-71392)                                                                                                          |                                                               |
+| Query Engine & Indexes                  | Per-micro operator profiling for subplans                                                                                                                                                       | Query execution profiles now include per-micro operator timing for nested subplans, providing more granular performance diagnostics.                                   | [MB-67666](https://jira.issues.couchbase.com/browse/MB-67666) |
+| Improved OR predicate index utilization | Queries using OR predicates can now leverage secondary indexes more effectively, improving performance in disjunctive workloads.                                                                | [MB-70726](https://jira.issues.couchbase.com/browse/MB-70726)                                                                                                          |                                                               |
+| Metrics & Monitoring                    | Workbench metrics panel improvements                                                                                                                                                            | The Enterprise Analytics Workbench now shows compilation time and adds a Copy Metrics button to easily export query metrics.                                           | [MB-71071](https://jira.issues.couchbase.com/browse/MB-71071) |
 
 ## [](#release-2-1-november-2025)Release 2.1 (November 2025)
 

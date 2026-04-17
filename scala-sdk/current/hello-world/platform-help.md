@@ -3,7 +3,7 @@ title: Platform Introduction
 description: A simple Scala orientation intro for <em>non-Scala</em> folk who
   are evaluating the Couchbase Scala SDK.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/hello-world/pages/platform-help.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-17T05:26:26.225Z
 link: xref:scala-sdk:hello-world:platform-help.adoc[]
 ---
 
@@ -112,7 +112,7 @@ SBT will take a while to start up as it upgrades various things for you and buil
 ## [](#running-your-project)Running Your Project
 
 ```sbt
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.11.1"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.11.2"
 ```
 
 **TODO**some intermediate steps…​.
