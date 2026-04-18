@@ -1,7 +1,9 @@
 ---
 title: Configure Prometheus to Collect Couchbase Metrics
+description: Couchbase Server provides an API endpoint that helps you configure
+  Prometheus to collect data from it.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/monitor/set-up-prometheus-for-monitoring.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-18T05:14:52.159Z
 link: xref:7.6@server:manage:monitor/set-up-prometheus-for-monitoring.adoc[]
 ---
 

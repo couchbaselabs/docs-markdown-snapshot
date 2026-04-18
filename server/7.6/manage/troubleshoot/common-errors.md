@@ -2,7 +2,7 @@
 title: Common Errors
 description: Common errors that occur during management of Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/troubleshoot/common-errors.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-18T05:14:52.159Z
 link: xref:7.6@server:manage:troubleshoot/common-errors.adoc[]
 ---
 
@@ -173,3 +173,33 @@ sudo echo '' >> /etc/sysctl.conf
        sudo echo '#Set swappiness to 0 to avoid swapping' >> /etc/sysctl.conf  
        sudo echo 'vm.swappiness = 0' >> /etc/sysctl.conf  
 Make sure that you either have or modify your process that builds your OSs to do this. This is especially critical for public/private clouds where it is so easy to bring up new instances. You need to make this part of your build process for a Couchbase node.
+
+Severe Performance Degradation on Linux Hosts
+
+* Sudden, severe throughput reduction and/or latency spikes on specific Linux hosts.
+* Often correlated with Intel CPUs and Linux kernels that enable split lock detection/mitigation.
+
+If the CPU supports split lock detection, a misaligned atomic memory access can trigger Linux split lock mitigation. The mitigation can artificially slow execution, causing a pronounced performance drop for the affected workload.
+
+For more information about how to resolve issues with split lock mitigation, see [install:install-splitlock-mitigation.adoc](#install:install-splitlock-mitigation.adoc)
+
+Unstable Nodes Causing Frequent Network Log Messages
+
+You may notice performance issues in your cluster or frequent errors in your logs related to nodes being unreachable. For example, you may see messages like this in the Couchbase Server logs:
+
+```log
+Node 'ns_1@node1.example.com' saw that node 'ns_1@node3.example.com' went down. Details:
+ [{nodedown_reason, net_tick_timeout}]
+```
+
+Later messages may show that the node is back up:
+
+```log
+Node 'ns_1@node1.example.com' saw that node 'ns_1@node3.example.com' came up. Tags: []
+```
+
+If you see these messages frequently reporting issues with the same node, but Couchbase Server does not perform an auto failover on it, the node may be unstable.
+
+An unstable node periodically becomes unavailable but recovers before the auto failover timeout expires. An unstable node can cause performance issues for the cluster, even if it does not lead to automatic failover. When a node is unreachable, other nodes in the cluster may experience increased latency as they attempt to re-establish communication with the unstable node.
+
+You can monitor for unstable nodes using the `cm_node_unreachable_total` metric. See [Unstable Nodes](../../learn/clusters-and-availability/unstable-nodes.md) for more information about unstable nodes.

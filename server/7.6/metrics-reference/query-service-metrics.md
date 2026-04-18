@@ -2,7 +2,7 @@
 title: Query Service Metrics
 description: A list of the metrics provided by the Query Service.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/metrics-reference/pages/query-service-metrics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-18T05:14:52.159Z
 link: xref:7.6@server:metrics-reference:query-service-metrics.adoc[]
 ---
 
@@ -68,6 +68,7 @@ See [Query Service Metrics Cross Reference](query-service-metrics-cross-referenc
 | n1ql\_ffdc\_sigterm7.6.6counter The total number of ffdc captures triggered by a SIGTERM signal                                                                                                                                             |
 | n1ql\_ffdc\_stalled\_queue7.6.6counter The total number of ffdc captures triggered due to no requests being processed when the queued requests exceed three times the number of servicers within the last 30 seconds                        |
 | n1ql\_ffdc\_total7.6.6counter The total number of ffdc occurrences                                                                                                                                                                          |
+| n1ql\_index\_hint\_not\_followed7.6.11counter The total number of index hints not followed                                                                                                                                                  |
 | n1ql\_index\_scans7.0.0counter Total number of secondary index scans.                                                                                                                                                                       |
 | n1ql\_index\_scans\_fts7.2.4counter Total number of index scans performed by FTS.                                                                                                                                                           |
 | n1ql\_index\_scans\_gsi7.2.4counter Total number of index scans performed by GSI.                                                                                                                                                           |

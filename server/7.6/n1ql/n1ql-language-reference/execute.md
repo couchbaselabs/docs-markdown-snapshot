@@ -2,7 +2,7 @@
 title: EXECUTE
 description: The EXECUTE statement executes a prepared statement.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/execute.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-18T05:14:52.159Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/execute.adoc[]
 ---
 
@@ -64,11 +64,14 @@ The query engine first looks for the prepared statement on the currently connect
 
 An error is returned if the name does not identify a prepared statement.
 
-## [](#auto-reprepare)Auto-Reprepare
+## [](#auto-reprepare)Automatic Reprepare for Invalid Plans
 
 Before execution, the query engine checks whether the statement plan is still valid — i.e. that all the indexes and keyspaces to which the plan refers are unchanged. If any indexes or keyspaces have changed, the statement is automatically prepared again, so that the plan matches the new set of resources.
 
 If this automatic reprepare succeeds, the statement simply executes as expected. However, if any required resources are found to be missing, execution of the affected prepared statement fails until those resources are created again. Once the resources are available again, execution proceeds without any further intervention.
+
+> [!NOTE]
+> In Couchbase Server 7.6.10 and later, the Query Service provides an opt-in feature that extends this behavior. When enabled, the service monitors GSI metadata version changes (such as when you create or drop indexes) and reprepares affected statements. For more information, see [Automatic Reprepare on Index Changes](prepare.md#auto-reprepare-index).
 
 ## [](#parameters)Parameters
 

@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1776403960489,
+  "generated": 1776489612790,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -88943,6 +88943,12 @@
             },
             {
               "module": "learn",
+              "path": "clusters-and-availability/unstable-nodes.adoc",
+              "url": "/server/7.6/learn/clusters-and-availability/unstable-nodes.md",
+              "title": "Unstable Nodes"
+            },
+            {
+              "module": "learn",
               "path": "clusters-and-availability/xdcr-active-active-sgw.adoc",
               "url": "/server/7.6/learn/clusters-and-availability/xdcr-active-active-sgw.md",
               "title": "XDCR Active-Active with Sync Gateway"
@@ -89981,6 +89987,12 @@
               "path": "monitor/monitor-intro.adoc",
               "url": "/server/7.6/manage/monitor/monitor-intro.md",
               "title": "Monitor"
+            },
+            {
+              "module": "manage",
+              "path": "monitor/monitor-node-stability.adoc",
+              "url": "/server/7.6/manage/monitor/monitor-node-stability.md",
+              "title": "Monitor Node Stability"
             },
             {
               "alias": true,

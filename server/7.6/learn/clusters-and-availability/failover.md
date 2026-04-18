@@ -3,7 +3,7 @@ title: Failover
 description: <em>Failover</em> is a process whereby a node can be taken out of a
   Couchbase cluster with speed.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/failover.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-18T05:14:52.159Z
 link: xref:7.6@server:learn:clusters-and-availability/failover.adoc[]
 ---
 
@@ -39,6 +39,14 @@ Hard failover is performed after a node has failed. It can be initiated either b
 When _automatic_ failover is used, the Cluster Manager handles both the detection of failure, and the initiation of hard failover, without administrative intervention: however, the Cluster Manager does not identify the cause of failure. Following failover, administrator-intervention is required, to identify and fix problems, and to initiate _rebalance_, whereby the cluster is returned to a healthy state.
 
 If manual failover is to be used, administrative intervention is required to detect that a failure has occurred. This can be achieved either by assigning an administrator to monitor the cluster; or by creating an externally based monitoring system that uses the Couchbase REST API to monitor the cluster, detect problems, and either provide notifications, or itself trigger failover. Such a system might be designed to take into account system or network components beyond the scope of Couchbase Server.
+
+## [](#detect-unstable-nodes)Detecting Unstable Nodes
+
+You can have Couchbase Server's Cluster Manager perform automatic failovers of nodes that have been unreachable for a set period of time. Failing over these nodes prevents the loss of the node from degrading database performance. However, nodes can become unstable, where other nodes lose contact with them periodically. These nodes may recover before the failover timeout expires and resume operation.
+
+In some cases, these nodes become unreachable for long enough that the Cluster Manager fails them over. In other cases they can continue the cycle of instability followed by recovery. Even though these disruptions are not as severe as a complete loss of the node, they can cause performance issues. You should investigate and resolve these issues to prevent further problems.
+
+See [Unstable Nodes](unstable-nodes.md) for more information about unstable nodes.
 
 ## [](#failover-and-replica-promotion)Failover and Replica Promotion
 

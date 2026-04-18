@@ -4,7 +4,7 @@ description: Couchbase is the modern database for enterprise applications.
   Couchbase Server 7.6 combines the strengths of relational databases with the
   flexibility, performance, and scale of Couchbase.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/introduction/pages/whats-new.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-18T05:14:52.159Z
 link: xref:7.6@server:introduction:whats-new.adoc[]
 ---
 
@@ -26,6 +26,14 @@ For information about platform support changes, deprecation notifications, notab
 > note regarding `cbbackupmgr`
 > 
 > If you are performing a backup/restore operation on a Couchbase Server 7.6.x cluster, ensure that you use `cbbackupmgr` version 7.6.
+
+## [](#new-features-7611)New Features and Enhancements in 7.6.11
+
+### [](#unstable-metric)New Metric to Detect Unstable Nodes
+
+Couchbase Server 7.6.11 introduces a new metric, `cm_node_unreachable_total`, to help you monitor for unstable nodes in your cluster. An unstable node periodically becomes unavailable but recovers before the auto failover timeout expires. This metric counts the number of times a node has been unable to reach another node in the cluster. By monitoring it, you can identify nodes that are having issues before they become unavailable for long enough to be automatically failed over.
+
+See [Unstable Nodes](../learn/clusters-and-availability/unstable-nodes.md) for more information about using this metric to identify unstable nodes.
 
 ## [](#new-features-7610)New Features and Enhancements in 7.6.10
 

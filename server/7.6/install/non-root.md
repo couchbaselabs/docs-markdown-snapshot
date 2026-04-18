@@ -4,7 +4,7 @@ description: Couchbase Server can be installed on any supported Linux
   distribution by users who do not have <em>root</em> or <em>sudo</em>
   privileges.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/non-root.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-18T05:14:52.159Z
 link: xref:7.6@server:install:non-root.adoc[]
 ---
 
@@ -171,10 +171,18 @@ To upgrade an existing non-root Couchbase Server,
 
 1. Ensure that the previous version of Couchbase Server is still installed, and has been _configured_ (since the upgrade process will make use of the post-configuration install location and directory contents).
 2. Stop the server, if it is still running.
-3. Use the `cb-non-package-installer` binary again, this time specifying the `--upgrade` flag, instead of the `--install` flag. Specify the new package to be used for upgrade; and specify the install location of the currently resident Couchbase Server. For example:  
-```console  
+3. Use the `cb-non-package-installer` binary again, this time specifying the `--upgrade` flag, instead of the `--install` flag. Specify the new package to be used for upgrade; and specify the install location of the currently resident Couchbase Server.
+
+> [!NOTE]
+> Make sure that you do not change the Couchbase installer file name as changing it may cause errors.
+
+For example:
+
++
+
+```console
 ./cb-non-package-installer-<platform-suffix> --upgrade --install-location ./cb-install \
---package ./couchbase-server-enterprise-7.1.0-amzn2.<platform-suffix>.rpm  
+--package ./couchbase-server-enterprise-7.1.0-amzn2.<platform-suffix>.rpm
 ```
 
 During upgrade, the following message may appear:

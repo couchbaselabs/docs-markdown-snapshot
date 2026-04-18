@@ -2,7 +2,7 @@
 title: setting-audit
 description: Modifies audit log settings (EE only)
 editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-setting-audit.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-18T05:14:52.159Z
 link: xref:7.6@server:cli:cbcli/couchbase-cli-setting-audit.adoc[]
 ---
 
@@ -160,6 +160,7 @@ UUID: 44726500
 Log path: /opt/couchbase/var/lib/couchbase/logs
 Rotate interval: 86400
 Rotate size: 20971520
+Prune age: N/A
 Disabled users: []
 
 To retrieve the list of events that can be audited use the command:

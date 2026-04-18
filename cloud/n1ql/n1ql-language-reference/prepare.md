@@ -2,7 +2,7 @@
 title: PREPARE
 description: The PREPARE statement prepares a query for repeated execution.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/prepare.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-18T05:14:52.159Z
 link: xref:cloud:n1ql:n1ql-language-reference/prepare.adoc[]
 ---
 
@@ -155,11 +155,30 @@ When you create an anonymous prepared statement, i.e. a prepared statement witho
 > [!NOTE]
 > When you create an anonymous prepared statement, if there is a named prepared statement in the cache with identical statement text, the named prepared statement is not returned. The anonymous prepared statement is added to the cache in addition to the named prepared statement.
 
-## [](#auto-reprepare)Manual Reprepare
+## [](#auto-reprepare-index)Automatic Reprepare on Index Changes
 
-Couchbase Server 8.0
+The Query Service validates a statement's prepared plan before executing it. If the plan is invalid—for example, if any indexes or keyspaces become unavailable—the service automatically reprepares the statement. This is the [default behavior](execute.md#auto-reprepare).
 
-If no indexes exist when you prepare a statement, then the prepared plan uses a sequential scan. If you create a primary index or a secondary index later, the statement still continues to use the sequential scan and does not automatically benefit from the new indexes.
+The Query Service also provides an opt-in feature that extends this behavior. When enabled, the service monitors GSI metadata version changes (such as when you create or drop indexes) and flags affected statements for repreparation. The next time a flagged statement runs, the service generates a new plan to match the updated index set. This ensures statements automatically use newer, more efficient indexes as they become available.
+
+The following example shows how the feature works when it's active:
+
+1. You prepare a statement and no suitable indexes exist to support it; the Query Service creates a plan that uses a sequential scan.
+2. You then create a primary index that better supports the statement; the service flags the statement, and on the next run generates a new plan that uses the primary index.
+3. You later create a secondary index that is an even better choice for the statement; the service flags the statement again, and on the next run generates a new plan that uses the secondary index.
+
+If the feature is inactive, the statement continues to use the original plan (such as a sequential scan) even after you create new indexes.
+
+To enable the feature, contact [Couchbase Support](../../support/manage-support.md).
+
+You can also manually reprepare statements at any time. For more information, see [Manual Reprepare](#manual-reprepare).
+
+> [!IMPORTANT]
+> This feature can increase the load on the Query Service. Any index change, even one unrelated to a given statement, can trigger a repreparation. For example, creating or dropping an index that a statement does not use can still flag it for repreparation. In such cases, the statement reprepares only to select the same plan again, resulting in redundant work.
+> 
+> To reduce this overhead, enable the feature temporarily when you create or drop indexes, and disable it after all statements are reprepared. If index changes are infrequent, the effect is minimal.
+
+## [](#manual-reprepare)Manual Reprepare
 
 To manually reprepare a statement, update [system:prepareds](../n1ql-manage/monitoring-n1ql-query.md#sys-prepared) and unset the `planPreparedTime` field for the statement.
 
