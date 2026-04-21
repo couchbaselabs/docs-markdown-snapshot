@@ -3,7 +3,7 @@ title: Capella App Services Release Notes
 description: Release notes for Capella App Services, including new features,
   enhancements, and updates.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/release-notes/release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-21T05:28:09.835Z
 link: xref:app-services::release-notes/release-notes.adoc[]
 ---
 
@@ -15,6 +15,25 @@ link: xref:app-services::release-notes/release-notes.adoc[]
 > Release notes for Capella App Services, including new features, enhancements, and updates. 
 
 This page contains release notes specific to Capella App Services. For general Capella release notes, see [Couchbase Capella Release Notes](../../cloud/release-notes/release-notes.md).
+
+## [](#april-2026)April 2026
+
+* App Services 4.0.4  
+New App Services deployments now deploy Sync Gateway 4.0.4\. This release includes the following fixed issues and enhancements:
+
+  * [CBG-5173](https://issues.couchbase.com/browse/CBG-5173) — Fixed an issue where the `/db/_index_init` endpoint would panic if the database was started in offline mode.
+  * [CBG-5202](https://issues.couchbase.com/browse/CBG-5202) — Fixed an issue where remote-wins conflict resolution incorrectly generated a new revision ID.
+  * [CBG-5157](https://issues.couchbase.com/browse/CBG-5157) — Added support for EdDSA tokens for OIDC and JWT authentication.
+  * [CBG-5214](https://issues.couchbase.com/browse/CBG-5214) — CBL-JS ping BLIP requests are now handled silently to reduce noise in logs.  
+For more information about all changes within this maintenance release, see the [Sync Gateway 4.0.4 Release Notes](../../sync-gateway/current/product-notes/release-notes.md#maint-4-0-4).
+* New App Services deployments now deploy Sync Gateway 3.3.4  
+This release includes the following fixed issues and enhancements:
+
+  * [CBG-5147](https://issues.couchbase.com/browse/CBG-5147) — Fixed an issue where replacement revisions were never utilized for unfiltered replications.
+  * [CBG-5174](https://issues.couchbase.com/browse/CBG-5174) — Fixed an issue where the `/db/_index_init` endpoint would panic if the database was started in offline mode.
+  * [CBG-5158](https://issues.couchbase.com/browse/CBG-5158) — Added support for EdDSA tokens for OIDC and JWT authentication.
+  * [CBG-5215](https://issues.couchbase.com/browse/CBG-5215) — CBL-JS ping BLIP requests are now handled silently to reduce noise in logs.  
+For more information about all changes within this maintenance release, see the [Sync Gateway 3.3.4 Release Notes](../../sync-gateway/3.3/product-notes/release-notes.md#maint-3-3-4).
 
 ## [](#march-2026)March 2026
 

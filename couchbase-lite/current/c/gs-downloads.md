@@ -2,7 +2,7 @@
 title: Download Links
 description: Download links for Couchbase Lite for C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/gs-downloads.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-21T05:28:09.835Z
 link: xref:couchbase-lite:c:gs-downloads.adoc[]
 ---
 
@@ -19,7 +19,7 @@ Steps in Getting Started
 
 Downloads are available for the following versions:
 
-[Couchbase Lite Release 4.0.3](#release-4-0-3) | [Vector Search Release 1.0.0](#vs-release-1-0-0) |
+[Couchbase Lite Release 4.0.3](#release-4-0-3) | [Vector Search Release 2.0.0](#vs-release-2-0-0) |
 
 ## [](#release-4-0-3)Couchbase Lite Release 4.0.3
 
@@ -133,7 +133,7 @@ Download link table
 
 Please use the [Debian .deb download](#debian-4-0-3) choosing the appropriate version (`debian9` or `debian10`) and architecture.
 
-## [](#vs-release-1-0-0)Vector Search Release 1.0.0
+## [](#vs-release-2-0-0)Vector Search Release 2.0.0
 
 _Couchbase Lite Vector Search - C_ is available for all {supported-os—​xref}. You can obtain downloads for _Linux_ and _macOS_ from the links here in the downloads table. Ensure you select the correct package for your application's compiler and architecture.
 
@@ -141,12 +141,12 @@ Alternatively, check the [install](gs-install.md)page for instructions on how to
 
 Available platforms are:
 
-[Android](#android-1-0-0) | [MacOS](#macos-1-0-0) | [iOS](#ios-1-0-0) | [Windows](#windows-1-0-0) | [Linux](#linux-1-0-0) |
+[Android](#android-2-0-0) | [MacOS](#macos-2-0-0) | [iOS](#ios-2-0-0) | [Windows](#windows-2-0-0) | [Linux](#linux-2-0-0) |
 
 > [!IMPORTANT]
 > You must have Couchbase Lite installed before you can use the Vector Search Extension. Vector Search is available only for 64-bit architectures. The Vector Search extension is an **Enterprise-only** feature.
 
-### [](#android-1-0-0)Android
+### [](#android-2-0-0)Android
 
 Download link table
 
@@ -154,10 +154,10 @@ Download link table
 
 | Platform                                                                                                                                                                                     | Download                                                                                                                                                                                                   | SHA                                                                                                                                                                                                           |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android                                                                                                                                                                                      | [couchbase-lite-vector-search-1.0.0-android-arm64-v8a.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-android-arm64-v8a.zip)            | [couchbase-lite-vector-search-1.0.0-android-arm64-v8a.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-android-arm64-v8a.zip.sha256) |
-| [couchbase-lite-vector-search-1.0.0-android-x86\_64.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-android-x86%5F64.zip) | [couchbase-lite-vector-search-1.0.0-android-x86\_64.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-android-x86%5F64.zip.sha256) |                                                                                                                                                                                                               |
+| Android                                                                                                                                                                                      | [couchbase-lite-vector-search-2.0.0-android-arm64-v8a.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-android-arm64-v8a.zip)            | [couchbase-lite-vector-search-2.0.0-android-arm64-v8a.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-android-arm64-v8a.zip.sha256) |
+| [couchbase-lite-vector-search-2.0.0-android-x86\_64.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-android-x86%5F64.zip) | [couchbase-lite-vector-search-2.0.0-android-x86\_64.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-android-x86%5F64.zip.sha256) |                                                                                                                                                                                                               |
 
-### [](#macos-1-0-0)MacOS
+### [](#macos-2-0-0)MacOS
 
 Download link table
 
@@ -165,9 +165,9 @@ Download link table
 
 | Platform | Download                                                                                                                                                                | SHA                                                                                                                                                                                   | Debug Symbols                                                                                                                                                                           |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MacOS    | [couchbase-lite-vector-search-1.0.0-macos.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-macos.zip) | [couchbase-lite-vector-search-1.0.0-macos.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-macos.zip.sha256) | [couchbase-lite-vector-search-1.0.0-macos-symbols.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-macos-symbols.zip) |
+| MacOS    | [couchbase-lite-vector-search-2.0.0-macos.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-macos.zip) | [couchbase-lite-vector-search-2.0.0-macos.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-macos.zip.sha256) | [couchbase-lite-vector-search-2.0.0-macos-symbols.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-macos-symbols.zip) |
 
-### [](#ios-1-0-0)iOS
+### [](#ios-2-0-0)iOS
 
 Download link table
 
@@ -175,9 +175,9 @@ Download link table
 
 | Platform | Download                                                                                                                                                                                  | SHA                                                                                                                                                                                                     |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| iOS      | [couchbase-lite-vector-search\_xcframework\_1.0.0.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search%5Fxcframework%5F1.0.0.zip) | [couchbase-lite-vector-search\_xcframework\_1.0.0.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search%5Fxcframework%5F1.0.0.zip.sha256) |
+| iOS      | [couchbase-lite-vector-search\_xcframework\_2.0.0.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search%5Fxcframework%5F2.0.0.zip) | [couchbase-lite-vector-search\_xcframework\_2.0.0.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search%5Fxcframework%5F2.0.0.zip.sha256) |
 
-### [](#windows-1-0-0)Windows
+### [](#windows-2-0-0)Windows
 
 Download link table
 
@@ -185,10 +185,10 @@ Download link table
 
 | Platform                                                                                                                                                                                     | Download                                                                                                                                                                                            | SHA                                                                                                                                                                                            |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Windows                                                                                                                                                                                      | [couchbase-lite-vector-search-1.0.0-windows-arm64.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-windows-arm64.zip)             | [couchbase-lite-vector-search-1.0.0-windows-arm64.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-windows-arm64.zip) |
-| [couchbase-lite-vector-search-1.0.0-windows-x86\_64.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-windows-x86%5F64.zip) | [couchbase-lite-vector-search-1.0.0-windows-x86\_64.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-windows-x86%5F64.zip) |                                                                                                                                                                                                |
+| Windows                                                                                                                                                                                      | [couchbase-lite-vector-search-2.0.0-windows-arm64.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-windows-arm64.zip)             | [couchbase-lite-vector-search-2.0.0-windows-arm64.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-windows-arm64.zip) |
+| [couchbase-lite-vector-search-2.0.0-windows-x86\_64.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-windows-x86%5F64.zip) | [couchbase-lite-vector-search-2.0.0-windows-x86\_64.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-windows-x86%5F64.zip) |                                                                                                                                                                                                |
 
-### [](#linux-1-0-0)Linux
+### [](#linux-2-0-0)Linux
 
 Download link table
 
@@ -196,8 +196,8 @@ Download link table
 
 | Platform                                                                                                                                                                                 | Download                                                                                                                                                                                               | SHA                                                                                                                                                                                                      | Debug Symbols                                                                                                                                                                                           |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Linux                                                                                                                                                                                    | [couchbase-lite-vector-search-1.0.0-linux-aarch64.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-linux-aarch64.zip)                | [couchbase-lite-vector-search-1.0.0-linux-aarch64.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-linux-aarch64.zip.sha256)    | [couchbase-lite-vector-search-1.0.0-linux-aarch64-symbols.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-linux-aarch64-symbols.zip) |
-| [couchbase-lite-vector-search-1.0.0-linux-x86\_64.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-linux-x86%5F64.zip) | [couchbase-lite-vector-search-1.0.0-linux-x86\_64.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-linux-x86%5F64.zip.sha256) | [couchbase-lite-vector-search-1.0.0-linux-x86\_64-symbols.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0/couchbase-lite-vector-search-1.0.0-linux-x86%5F64-symbols.zip) |                                                                                                                                                                                                         |
+| Linux                                                                                                                                                                                    | [couchbase-lite-vector-search-2.0.0-linux-aarch64.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-linux-aarch64.zip)                | [couchbase-lite-vector-search-2.0.0-linux-aarch64.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-linux-aarch64.zip.sha256)    | [couchbase-lite-vector-search-2.0.0-linux-aarch64-symbols.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-linux-aarch64-symbols.zip) |
+| [couchbase-lite-vector-search-2.0.0-linux-x86\_64.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-linux-x86%5F64.zip) | [couchbase-lite-vector-search-2.0.0-linux-x86\_64.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-linux-x86%5F64.zip.sha256) | [couchbase-lite-vector-search-2.0.0-linux-x86\_64-symbols.zip](https://packages.couchbase.com/releases/couchbase-lite-vector-search/2.0.0/couchbase-lite-vector-search-2.0.0-linux-x86%5F64-symbols.zip) |                                                                                                                                                                                                         |
 
 ## [](#related-content)Related Content
 

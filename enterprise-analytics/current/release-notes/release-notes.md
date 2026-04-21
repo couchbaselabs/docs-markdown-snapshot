@@ -1,7 +1,7 @@
 ---
 title: Enterprise Analytics Release Notes
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-04-17T05:26:26.225Z
+pubDate: 2026-04-21T05:28:09.835Z
 link: xref:enterprise-analytics:release-notes:release-notes.adoc[]
 ---
 
@@ -36,6 +36,12 @@ For more information, see [Configure Enterprise Analytics](../manage/manage-node
 | Query Engine & Indexes                  | Per-micro operator profiling for subplans                                                                                                                                                       | Query execution profiles now include per-micro operator timing for nested subplans, providing more granular performance diagnostics.                                   | [MB-67666](https://jira.issues.couchbase.com/browse/MB-67666) |
 | Improved OR predicate index utilization | Queries using OR predicates can now leverage secondary indexes more effectively, improving performance in disjunctive workloads.                                                                | [MB-70726](https://jira.issues.couchbase.com/browse/MB-70726)                                                                                                          |                                                               |
 | Metrics & Monitoring                    | Workbench metrics panel improvements                                                                                                                                                            | The Enterprise Analytics Workbench now shows compilation time and adds a Copy Metrics button to easily export query metrics.                                           | [MB-71071](https://jira.issues.couchbase.com/browse/MB-71071) |
+
+### [](#known-issues)Known Issues
+
+| Category               | Topic                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Issue                                                         |
+| ---------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |
+| Storage & Connectivity | Static credential rotation after driver restart | When blob storage credentials, such as AWS\_ACCESS\_KEY\_ID or AWS\_SECRET\_ACCESS\_KEY, are updated, the Analytics service continues to use the previously cached credentials after a driver restart. This is caused by the environment being cached across Analytics driver starts, preventing updated credentials from being picked up. **Workaround:** Restart the cbas process to force the new credentials to take effect. For example: pkill -9 cbas. | [MB-71496](https://jira.issues.couchbase.com/browse/MB-71496) |
 
 ## [](#release-2-1-november-2025)Release 2.1 (November 2025)
 

@@ -1,7 +1,7 @@
 ---
 title: Edge Server Public REST API
 editUrl: https://github.com/couchbase/edge-server/edit/main/docs/modules/public-api-reference/pages/index.adoc
-pubDate: 2026-03-28T05:05:12.980Z
+pubDate: 2026-04-21T05:28:09.835Z
 link: xref:couchbase-edge-server:public-api-reference:index.adoc[]
 ---
 
@@ -1119,19 +1119,19 @@ Instructs Edge Server to initiate replication with another server, e.g. Sync Gat
 
 ##### Request Body schema: application/json
 
-| source               | string The source database name or URL                                                          |
-| -------------------- | ----------------------------------------------------------------------------------------------- |
-| target               | string The destination database name or URL                                                     |
-| bidirectional        | boolean Default: false Set to true for bidirectional push/pull replication                      |
-| continuous           | boolean Default: false Set to true for continuous replication                                   |
-| channels             | Array of strings unique Channel filter (incompatible with 'collections')                        |
-| doc\_ids             | Array of strings unique Document IDs to replicate (incompatible with 'collections')             |
-| headers              | object Extra HTTP headers; keys are header names, values are header values                      |
-| collections          | Array of strings or object                                                                      |
-| trusted\_root\_certs | string The certificate data of an additional root certificate to be trusted                     |
-| pinned\_cert         | string The certificate data of the server certificate                                           |
-| auth                 | object Configuration for authentication to a remote server. Either for replication, or a proxy. |
-| proxy                | object (ProxyConfig) Configuration of a proxy to use during replication.                        |
+| source               | string The source database name or URL                                                                                                               |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| target               | string The destination database name or URL                                                                                                          |
+| bidirectional        | boolean Default: false Set to true for bidirectional push/pull replication                                                                           |
+| continuous           | boolean Default: false Set to true for continuous replication                                                                                        |
+| channels             | Array of strings unique Channel filter (incompatible with 'collections')                                                                             |
+| doc\_ids             | Array of strings unique Document IDs to replicate (incompatible with 'collections')                                                                  |
+| headers              | object Extra HTTP headers; keys are header names, values are header values                                                                           |
+| collections          | Array of strings or object Default: \["\_default"\] Collections to replicate. If omitted, defaults to \["\_default"\] (the default collection only). |
+| trusted\_root\_certs | string The certificate data of an additional root certificate to be trusted                                                                          |
+| pinned\_cert         | string The certificate data of the server certificate                                                                                                |
+| auth                 | object Configuration for authentication to a remote server. Either for replication, or a proxy.                                                      |
+| proxy                | object (ProxyConfig) Configuration of a proxy to use during replication.                                                                             |
 
 ### Responses
 
@@ -1177,7 +1177,7 @@ Copy
   * "property2": "string"  
 },
 * "collections": [
-  * "string"  
+  * "_default"  
 ],
 * "trusted_root_certs": "string",
 * "pinned_cert": "string",
