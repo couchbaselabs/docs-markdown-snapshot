@@ -2,7 +2,7 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-04-10T05:25:10.333Z
+pubDate: 2026-04-22T05:22:16.908Z
 link: xref:go-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -35,6 +35,28 @@ The Go SDK docs note whenever a shortcut is being taken, but here is a non-exhau
 * Skipping certificate verification
 
 The best way to accommodate developing an application that is to be deployed to production is to use the platform's default approach for configuration files.
+
+## [](#couchbase-operational-cluster-feature-compatibility)Couchbase Operational Cluster Feature Compatibility
+
+All of the SDKs have API compatibility with most of the features in Couchbase Operational Clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Go SDK and Couchbase Server with which some features were introduced.
+
+__Table 1\. Couchbase Server and SDK Supported Version Matrix__
+|                                                                                              | Server 7.2  | Server 7.6.x      | Server 8.0 |
+| -------------------------------------------------------------------------------------------- | ----------- | ----------------- | ---------- |
+| KV Range Scan                                                                                | N/A         | From 2.7.0        |            |
+| Zone aware replica reads                                                                     | N/A         | From 2.9.2        |            |
+| Vector Search with Search Vector Index                                                       | N/A         | From 2.8.0        |            |
+| Vector Query using Hyperscale Vector Index                                                   | N/A         | From SDK 2.11.0 ① |            |
+| Vector Query using Composite (GSI & vector) index                                            | N/A         | From SDK 2.11.0 ① |            |
+| Distributed ACID Transactions                                                                | From 2.4.0  |                   |            |
+| DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 2.6.0  |                   |            |
+| Circuit Breakers                                                                             | From 2.0.0  |                   |            |
+| OTel                                                                                         | From 2.12.0 |                   |            |
+| Field Level Encryption                                                                       | From 1.5.0  |                   |            |
+| Cloud Native Gateway                                                                         | 2.7.0       |                   |            |
+
+| **1** | As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested. |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------- |
 
 ## [](#further-reading)Further Reading
 

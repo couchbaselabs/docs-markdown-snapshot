@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-04-14T05:27:53.923Z
+pubDate: 2026-04-22T05:22:16.908Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -12,6 +12,12 @@ link: xref:cloud:release-notes:release-notes.adoc[]
 
 ## [](#april-2026-changelog)April 2026 Changelog
 
+* New AWS instance types available  
+Additional compute and memory configurations are now available for Capella operational clusters hosted on AWS, including:
+
+  * 32 vCPUs with 64 GB of memory
+  * 64 vCPUs with 128 GB of memory  
+For a full list of the available instance types for AWS, see [Amazon Web Services (AWS)](../reference/aws.md#compute-and-memory).
 * Couchbase Server 8.0.1  
 Creating a new operational cluster with Couchbase Server 8.0 now deploys the Couchbase Server 8.0.1 maintenance release. This version includes bug fixes.  
 For more information about this version of Couchbase Server, see [Couchbase Server 8.0.1](../../server/current/release-notes/relnotes.md#release-801).

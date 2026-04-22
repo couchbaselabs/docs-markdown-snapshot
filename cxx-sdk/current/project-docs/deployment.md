@@ -2,7 +2,7 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-04-10T05:25:10.333Z
+pubDate: 2026-04-22T05:22:16.908Z
 link: xref:cxx-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -35,6 +35,26 @@ The C++ SDK docs note whenever a shortcut is being taken, but here is a non-exha
 * Skipping certificate verification
 
 The best way to accommodate developing an application that is to be deployed to production is to use the platform's default approach for configuration files.
+
+All of the SDKs have API compatibility with most of the features in Couchbase Operational Clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the C++ SDK and Couchbase Server with which some features were introduced.
+
+__Table 1\. Couchbase Server and SDK Supported Version Matrix__
+|                                                                                              | Server 7.2       | Server 7.6.x     | Server 8.0 |
+| -------------------------------------------------------------------------------------------- | ---------------- | ---------------- | ---------- |
+| KV Range Scan                                                                                | N/A              | From 1.0.0       |            |
+| Zone aware replica reads                                                                     | N/A              | From 1.0.0       |            |
+| Vector Search with Search Vector Index                                                       | N/A              | From 1.0.0       |            |
+| Vector Query using Hyperscale Vector Index                                                   | N/A              | From SDK 1.2.0 ① |            |
+| Vector Query using Composite (GSI & vector) index                                            | N/A              | From SDK 1.2.0 ① |            |
+| Distributed ACID Transactions                                                                | From 1.0.0       |                  |            |
+| DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 1.0.0       |                  |            |
+| Circuit Breakers                                                                             | From Unsupported |                  |            |
+| OTel                                                                                         | From 1.3.0       |                  |            |
+| Field Level Encryption                                                                       | From 1.0.0       |                  |            |
+| Cloud Native Gateway                                                                         | Unsupported      |                  |            |
+
+| **1** | As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested. |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------- |
 
 ## [](#further-reading)Further Reading
 

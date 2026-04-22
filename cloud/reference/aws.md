@@ -2,7 +2,7 @@
 title: Amazon Web Services (AWS)
 description: Couchbase Capella supports deploying clusters onto Amazon Web Services (AWS).
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/aws.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-22T05:22:16.908Z
 link: xref:cloud:reference:aws.adoc[]
 ---
 
@@ -105,11 +105,13 @@ __Table 1\. AWS compute configurations__
 | 16 vCPUs                     | 32 GB  |
 | 16 vCPUs                     | 64 GB  |
 | 16 vCPUs                     | 128 GB |
+| 32 vCPUs                     | 64 GB  |
 | 32 vCPUs                     | 128 GB |
 | 32 vCPUs                     | 256 GB |
 | 48 vCPUs                     | 96 GB  |
 | 48 vCPUs                     | 192 GB |
 | 48 vCPUs                     | 384 GB |
+| 64 vCPUs                     | 128 GB |
 | 64 vCPUs                     | 256 GB |
 | 64 vCPUs                     | 512 GB |
 
