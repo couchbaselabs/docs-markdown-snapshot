@@ -1,7 +1,7 @@
 ---
 title: Couchbase Rust SDK 1.0
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-23T05:28:56.075Z
 link: xref:rust-sdk:hello-world:overview.adoc[]
 ---
 
@@ -126,17 +126,8 @@ Deployment
 All of the SDKs have API compatibility with most of the features in Couchbase Operational clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Rust SDK and Couchbase Server with which some features were introduced.
 
 __Couchbase Server and SDK Supported Version Matrix__
-|                                  | Server 7.6.x               | Server 8.0       |
-| -------------------------------- | -------------------------- | ---------------- |
-| KV Range Scan                    | All SDK versions           |                  |
-| Vector Search                    | All SDK versions           |                  |
-| Zone aware replica reads         | All SDK versions           |                  |
-| KV preferred server groups reads | All SDK versions           |                  |
-| Vector Query using GSI           | N/A                        | All SDK versions |
-| Distributed ACID Transactions    | N/A                        |                  |
-| Response Time Observability      | All supported SDK versions |                  |
-| Field Level Encryption           | N/A                        |                  |
-| Cloud Native Gateway             | N/A                        |                  |
+|  | Server 7.6.x | Server 8.0 |
+|  | ------------ | ---------- |
 
   
 > [!TIP]

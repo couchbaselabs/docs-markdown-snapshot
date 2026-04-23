@@ -3,7 +3,7 @@ title: Passive Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/p2psync-websocket-using-passive.adoc
-pubDate: 2026-04-08T05:18:32.349Z
+pubDate: 2026-04-23T05:28:56.075Z
 link: xref:couchbase-lite:csharp:p2psync-websocket-using-passive.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:couchbase-lite:csharp:p2psync-websocket-using-passive.adoc[]
 
 > Description — _Couchbase Lite's Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — How to set up a Listener to accept a Replicator connection and sync using peer-to-peer_  
-> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
+> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net) | [Active Peer](p2psync-websocket-using-active.md)
 
 > [!NOTE]
 > Code Snippets
@@ -207,7 +207,7 @@ The auto-generated anonymous self-signed identity is saved in secure storage for
 Here are some example code snippets showing:
 
 * Importing a TLS identity — see: [Example 7](#ex-import-tls-id)
-* Setting TLS identity to expect self-signed certificate — — see: [Example 8](#ex-create-tls-id)
+* Setting TLS identity to expect self-signed certificate — see: [Example 8](#ex-create-tls-id)
 * Setting TLS identity to expect anonymous certificate — see: [Example 9](#ex-anon-tls-id)
 
 Example 7\. Import Listener's TLS identity
@@ -215,9 +215,19 @@ Example 7\. Import Listener's TLS identity
 Import an identity from a secure key and certificate data source.
 
 ```C#
-var endpointConfig = new URLEndpointListenerConfiguration([collection])
+    var endpointConfig = new URLEndpointListenerConfiguration([collection])
+    {
+       DisableTLS = false (1)
+    };
+var serverData = File.ReadAllBytes("server.p12"); (2)
+var serverIdentity = TLSIdentity.ImportIdentity(store,
+    serverData,
+    "password", (3)
+    "CBL-Server-Cert",
+    null); (4)
+var endpointConfigCa = new URLEndpointListenerConfiguration([collection])
 {
-   DisableTLS = false (1)
+    TlsIdentity = serverIdentity (5)
 };
 ```
 
@@ -232,9 +242,24 @@ Example 8\. Create Self-Signed Cert
 Create a TLSIdentity for the server using convenience API. The system generates a self-signed certificate.
 
 ```C#
-var endpointConfig = new URLEndpointListenerConfiguration([collection])
+    var endpointConfig = new URLEndpointListenerConfiguration([collection])
+    {
+       DisableTLS = false (1)
+    };
+var certAttrs = new Dictionary<string, string>
 {
-   DisableTLS = false (1)
+    { Certificate.CommonNameAttribute, "Couchbase Inc" } (2)
+};
+var selfSignedIdentity = TLSIdentity.CreateIdentity(
+    KeyUsages.ServerAuth,
+    certAttrs,
+    null,
+    store,
+    "CBL-Server-Cert", (3)
+    null);
+var endpointConfigSs = new URLEndpointListenerConfiguration([collection])
+{
+    TlsIdentity = selfSignedIdentity (4)
 };
 ```
 
@@ -315,7 +340,7 @@ The client response to the certificate request is passed to the method supplied 
 
 Example 11\. Set Certificate Authorization
 
-Configure the server (listener) to authenticate the client against a list of one or more certificates provided by the server to the the [ListenerCertificateAuthenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.P2P.ListenerCertificateAuthenticator.html).
+Configure the server (listener) to authenticate the client against a list of one or more certificates provided by the server to the [ListenerCertificateAuthenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.P2P.ListenerCertificateAuthenticator.html).
 
 ```C#
 // Configure the client authenticator
@@ -388,8 +413,12 @@ You can remove unwanted TLS identities from secure storage using the convenience
 Example 13\. Deleting TLS Identities
 
 ```C#
-
+var store = new X509Store(StoreName.My);
+TLSIdentity.DeleteIdentity(store, "CBL-Server-Cert", null); (1)
 ```
+
+| **1** | Remove the TLS identity stored under the specified label from secure storage. |
+| ----- | ----------------------------------------------------------------------------- |
 
 ### [](#the-impact-of-tls-settings)The Impact of TLS Settings
 
@@ -416,6 +445,10 @@ var listener = new URLEndpointListener(endpointConfig); (1)
 listener.Start(); (2)
 ```
 
+| **1** | Initialize the listener using the completed configuration. |
+| ----- | ---------------------------------------------------------- |
+| **2** | Start the listener.                                        |
+
 ## [](#monitor-listener)Monitor Listener
 
 Use the Listener's `[Status](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListener.html#Couchbase%5FLite%5FP2P%5FURLEndpointListener%5FStatus)` property/method to get counts of total and active connections — see: [Example 15](#get-connection-counts).
@@ -429,9 +462,12 @@ var connectionCount = listener.Status.ConnectionCount; (1)
 var activeConnectionCount = listener.Status.ActiveConnectionCount;  (2)
 ```
 
+1. Retrieve the total number of connections established with the listener.
+2. Retrieve the number of connections actively replicating data. This is a subset of the total connection count.
+
 ## [](#stop-listener)Stop Listener
 
-It is best practice to check the status of the Listener's connections and stop only when you have confirmed that there are no active connections — see [Example 15](#get-connection-counts).
+It's best practice to check the status of the Listener's connections and stop only when you have confirmed that there are no active connections — see [Example 15](#get-connection-counts).
 
 Example 16\. Stop listener using `stop` method
 
@@ -448,7 +484,6 @@ listener.Stop();
 
 How to
 
-* [Passive Peer](p2psync-websocket-using-passive.md)
 * [Active Peer](p2psync-websocket-using-active.md)
 
 .

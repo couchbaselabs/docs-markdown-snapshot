@@ -2,7 +2,7 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-04-10T05:25:10.333Z
+pubDate: 2026-04-23T05:28:56.075Z
 link: xref:rust-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -41,17 +41,8 @@ The best way to accommodate developing an application that is to be deployed to 
 All of the SDKs have API compatibility with most of the features in Couchbase Operational clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Rust SDK and Couchbase Server with which some features were introduced.
 
 __Table 1\. Couchbase Server and SDK Supported Version Matrix__
-|                                  | Server 7.6.x               | Server 8.0       |
-| -------------------------------- | -------------------------- | ---------------- |
-| KV Range Scan                    | All SDK versions           |                  |
-| Vector Search                    | All SDK versions           |                  |
-| Zone aware replica reads         | All SDK versions           |                  |
-| KV preferred server groups reads | All SDK versions           |                  |
-| Vector Query using GSI           | N/A                        | All SDK versions |
-| Distributed ACID Transactions    | N/A                        |                  |
-| Response Time Observability      | All supported SDK versions |                  |
-| Field Level Encryption           | N/A                        |                  |
-| Cloud Native Gateway             | N/A                        |                  |
+|  | Server 7.6.x | Server 8.0 |
+|  | ------------ | ---------- |
 
 ## [](#further-reading)Further Reading
 

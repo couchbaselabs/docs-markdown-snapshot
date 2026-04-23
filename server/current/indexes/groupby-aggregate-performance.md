@@ -3,7 +3,7 @@ title: Grouping and Aggregate Pushdowns
 description: SQL++ Pushdowns optimize the performance of SQL++ queries by
   supporting grouping and aggregate expressions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/indexes/pages/groupby-aggregate-performance.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-23T05:28:56.075Z
 link: xref:server:indexes:groupby-aggregate-performance.adoc[]
 ---
 
@@ -62,13 +62,13 @@ The query plan shows the accelerated aggregation details. For details, see [Appe
 
 Here's how a query executes when the indexer handles the grouping and aggregation. Note that the query engine does not fetch any data from the data service (KV service).
 
-![Query execution process, showing grouping and aggregation pushed down to the indexer](_images/GBAP_55execution-05aec3830817f8e60dd350b4eb0987179aa6c10f.svg) 
+![Query execution process, showing grouping and aggregation pushed down to the indexer](_images/GBAP_55execution-76685dfeaba51c3a8b7d7e807a73d9ecf42d11ed.svg) 
 
 Figure 1\. Query execution process, showing grouping and aggregation pushed down to the indexer
 
 For reference, this is how the same query would be executed without grouping and aggregate pushdown.
 
-![Query execution process, showing grouping and aggregation performed by the query engine](_images/GBAP_pre55execution-0f5d5ff374ef6881d46a7df81a81a4e676ba7f5d.svg) 
+![Query execution process, showing grouping and aggregation performed by the query engine](_images/GBAP_pre55execution-c0be7f918e689d37da55b9962f4dc99f6f1f20b1.svg) 
 
 Figure 2\. Query execution process, showing grouping and aggregation performed by the query engine
 

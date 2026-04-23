@@ -3,7 +3,7 @@ title: Handling Errors
 description: Errors are inevitable. That's why the SDK has very extensive error
   handling and retry capabilties
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-23T05:28:56.075Z
 link: xref:java-sdk:howtos:error-handling.adoc[]
 ---
 
@@ -35,7 +35,7 @@ All the specifics are discussed below, but a broad categorization of exceptions 
 1. If a response arrived and it indicates non-success and the SDK determines that it cannot be retried the operation will fail with an explicit exception. For example, if you perform an `insert` operation and the document already exists, the SDK will fail the operation with a `DocumentExistsException`.
 2. Failures in all other cases, especially during pre-dispatch and dispatch, will result in either a `TimeoutException` or a `RequestCanceledException`.
 
-### [](#the-ubiquitous-timeoutexception)The Ubiquitous TimeoutException
+### [](#timeoutexceptionambiguous-or-unambiguous)TimeoutException — Ambiguous or Unambiguous
 
 The one exception that you are inevitably going to hit is the `TimeoutException`, or more specifically its child implementations the `UnambiguousTimeoutException` and the `AmbiguousTimeoutException`.
 

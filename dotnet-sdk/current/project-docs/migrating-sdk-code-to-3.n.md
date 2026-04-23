@@ -3,7 +3,7 @@ title: Migrating to SDK 3 API
 description: The 3.0 API breaks the existing 2.0 APIs in order to provide a
   number of improvements. Collections and Scopes are introduced.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-23T05:28:56.075Z
 link: xref:dotnet-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -676,6 +676,15 @@ if (!result.MetaData.Errors.Any()) {
 ```
 
 ### [](#views)Views
+
+> [!CAUTION]
+> Views Service Deprecation
+> 
+> MapReduce Views has been deprecated since Couchbase Server 7.0, and is deprecated in the current .NET SDK. Use the SQL++ Query Service, which benefits from [Multi-Dimensional Scaling](../../../server/current/learn/services-and-indexes/services/services.md#services-and-multi-dimensional-scaling).
+> 
+> The guide below is for those migrating a Views application from the previous major release of the SDK (2.x API). However, the best advice is to migrate the app directly to the Query Service.
+> 
+> If you are provisioning Views on Couchbase Server for a legacy application, _they must run on a [couchstore](../../../server/current/learn/buckets-memory-and-storage/storage-engines.md#couchstore) bucket_.
 
 Views have stayed at the `Bucket` level, because it does not have the concept of collections and is scoped at the bucket level on the server as well. The API has stayed mostly the same, the most important change is that `staleness` is unified under the `ViewConsistency` enum.
 

@@ -3,7 +3,7 @@ title: MapReduce Views
 description: Our legacy MapReduce Views Service is best replaced by the scalable
   Query Service.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/view-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-04-23T05:28:56.075Z
 link: xref:java-sdk:howtos:view-queries-with-sdk.adoc[]
 ---
 
@@ -21,6 +21,6 @@ Views are the only service which does not benefit from [Multi-Dimensional Scalin
 > [!CAUTION]
 > If you are provisioning Views on Couchbase Server for a legacy application, _they must run on a [couchstore](../../../server/current/learn/buckets-memory-and-storage/storage-engines.md#couchstore) bucket_.
 
-We will maintain support for Views in the SDKs for so long as it can be used with a supported version of Couchbase Server.
+Use of Views in the Java SDK is now deprecated.
 
 Information on using MapReduce Views with the SDK can still be accessed in our [documentation archive](https://docs-archive.couchbase.com/java-sdk/3.1/howtos/view-queries-with-sdk.html).
