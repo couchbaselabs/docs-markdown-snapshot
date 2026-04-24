@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-04-22T05:22:16.908Z
+pubDate: 2026-04-24T05:30:11.901Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -12,6 +12,9 @@ link: xref:cloud:release-notes:release-notes.adoc[]
 
 ## [](#april-2026-changelog)April 2026 Changelog
 
+* Couchbase Server 7.6.11  
+Creating a new operational cluster with Couchbase Server 7.6 now deploys the Couchbase Server 7.6.11 maintenance release. This version includes bug fixes.  
+For more information about this version of Couchbase Server, see [Couchbase Server 7.6.11](../../server/7.6/release-notes/relnotes.md#release-7611).
 * New AWS instance types available  
 Additional compute and memory configurations are now available for Capella operational clusters hosted on AWS, including:
 
