@@ -4,7 +4,7 @@ description: To get started with the Couchbase Edge Server REST API, you must
   specify the interface and authentication options using the Edge Server
   configuration file.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/rest-api-start.adoc
-pubDate: 2026-04-15T05:26:28.652Z
+pubDate: 2026-04-25T05:17:48.861Z
 link: xref:couchbase-edge-server:rest-based-access:rest-api-start.adoc[]
 ---
 
@@ -44,6 +44,17 @@ Add these to the [https](../configuration/edge-server-configuration.md#https) pr
 | **tls\_key\_path** _required_  | Path of file containing matching private key.                                                                                                                 | string |
 | **client\_cert\_path**         | Path of file containing Certificate Authority (CA) certificate for clients. See [Client Certificate Authentication (mTLS)](#client-cert-authentication-mtls). | string |
 
+Example 1\. Enable server TLS
+
+```json5
+{
+  https: {
+    tls_cert_path: "./cert.pem",
+    tls_key_path: "./private.key"
+  }
+}
+```
+
 If you encrypted the private-key file, the server prompts you for its password on stdin. If unencrypted, restrict the file permissions so that only the server administrator can access it.
 
 ### [](#creating-a-self-signed-certificate)Create a Self-Signed Certificate
@@ -80,6 +91,18 @@ If a Couchbase Lite application is to sync with this server, it needs a copy of 
 To configure TLS client authentication (mTLS), add a [client\_cert\_path](../configuration/edge-server-configuration.md#https-client%5Fcert%5Fpath) property to the configuration file's [https](../configuration/edge-server-configuration.md#https) object, whose value is the path to the file containing the client CA certificate — that's, the master certificate that signs each client's certificate.
 
 The server's TLS handshake then requires a client certificate, and verifies that it's signed by the configured CA. Couchbase Edge Server derives the client's username from the Common Name (`CN`) field of the certificate.
+
+Example 2\. Enable mTLS client certificate authentication
+
+```json5
+{
+  https: {
+    tls_cert_path: "./cert.pem",
+    tls_key_path: "./private.key",
+    client_cert_path: "./ca.pem"
+  }
+}
+```
 
 ### [](#usernames-and-passwords)Usernames and Passwords
 
@@ -137,7 +160,7 @@ The `roles` property of a user object adds privileges to that user account. Avai
 
 ## [](#examples)Examples
 
-Example 1\. Create a self-signed certificate
+Example 3\. Create a self-signed certificate
 
 This example creates a self-signed certificate called `cert.cer` and a keyfile called `key.pem`. The `CN` attribute for the certificate is set to `localhost`.
 
@@ -145,7 +168,7 @@ This example creates a self-signed certificate called `cert.cer` and a keyfile c
 ./couchbase-edge-server --create-cert CN=localhost cert.cer key.pem
 ```
 
-Example 2\. Create a users file and add a user
+Example 4\. Create a users file and add a user
 
 This example creates a users file called `users.json` and adds a user called `seatuser`.
 
