@@ -4,7 +4,7 @@ description: Monitoring and profiling SQL++ queries, Query Service nodes, and
   corresponding system resources is important for smoother operational
   performance and efficiency of the system.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-manage/monitoring-n1ql-query.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-28T05:36:31.051Z
 link: xref:7.6@server:n1ql:n1ql-manage/monitoring-n1ql-query.adoc[]
 ---
 
@@ -642,6 +642,9 @@ curl $BASE_URL/admin/settings -u $USER:$PASSWORD \
   -H 'Content-Type: application/json' \
   -d '{"completed-limit":1000}'
 ```
+
+> [!NOTE]
+> To optimize performance, the completed requests catalog uses a generic cache that does not guarantee a strict eviction order. When the catalog reaches the specified limit, it evicts requests based on when they complete, and not when they start. As a result, it may remove a request with a later start time (`requestTime`) that completes quickly before it removes a long-running request with an earlier start time that completes later.
 
 ## [](#sys-history)Stream Completed Requests
 

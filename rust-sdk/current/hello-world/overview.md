@@ -1,7 +1,7 @@
 ---
 title: Couchbase Rust SDK 1.0
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-04-23T05:28:56.075Z
+pubDate: 2026-04-28T05:36:31.051Z
 link: xref:rust-sdk:hello-world:overview.adoc[]
 ---
 
@@ -126,8 +126,19 @@ Deployment
 All of the SDKs have API compatibility with most of the features in Couchbase Operational clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Rust SDK and Couchbase Server with which some features were introduced.
 
 __Couchbase Server and SDK Supported Version Matrix__
-|  | Server 7.6.x | Server 8.0 |
-|  | ------------ | ---------- |
+|                                                                                              | Server 7.6.x | Server 8.0     |
+| -------------------------------------------------------------------------------------------- | ------------ | -------------- |
+| KV Range Scan                                                                                | Unsupported  |                |
+| Zone aware replica reads                                                                     | Unsupported  |                |
+| Vector Search with Search Vector Index                                                       | From 1.0.0   |                |
+| Vector Query using Hyperscale Vector Index                                                   | N/A          | From SDK 1.0.0 |
+| Vector Query using Composite (GSI & vector) index                                            | N/A          | From SDK 1.0.0 |
+| Distributed ACID Transactions                                                                | Unsupported  |                |
+| DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 1.0.0   |                |
+| Circuit Breakers                                                                             | Unsupported  |                |
+| OTel                                                                                         | From 1.0.0   |                |
+| Field Level Encryption                                                                       | Unsupported  |                |
+| Cloud Native Gateway                                                                         | Unsupported  |                |
 
   
 > [!TIP]

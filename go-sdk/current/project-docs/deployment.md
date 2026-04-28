@@ -2,7 +2,7 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-04-22T05:22:16.908Z
+pubDate: 2026-04-28T05:36:31.051Z
 link: xref:go-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -53,7 +53,7 @@ __Table 1\. Couchbase Server and SDK Supported Version Matrix__
 | Circuit Breakers                                                                             | From 2.0.0  |                   |            |
 | OTel                                                                                         | From 2.12.0 |                   |            |
 | Field Level Encryption                                                                       | From 1.5.0  |                   |            |
-| Cloud Native Gateway                                                                         | 2.7.0       |                   |            |
+| Cloud Native Gateway                                                                         | From 2.7.0  |                   |            |
 
 | **1** | As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested. |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------- |
