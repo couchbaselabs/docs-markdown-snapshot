@@ -4,7 +4,7 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-29T05:35:23.064Z
 link: xref:scala-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -178,7 +178,7 @@ __SDK API Versions__
 | **2** | For most purposes better productivity and functionality can be found in our [C++ SDK](../../../cxx-sdk/current/hello-world/overview.md).                                                                  |
 | **3** | With the Java 3.9 release, the other JVM SDKs hosted in the Java SDK monorepo adopted common release versions. This includes a number of other artifacts, as can be seen referenced in the release notes. |
 
-**SDK API 3.9**: Provides support for JWT based authentication, as well as mTLS Certs Refresh (without restart). Adds Amazon Graviton 3 support. Deprecates SDK support for MapReduce Views.
+**SDK API 3.9**: Provides support for JWT based authentication, as well as mTLS Certs Refresh (without restart). Deprecates SDK support for MapReduce Views.
 
 **SDK API 3.8**: Introduced alongside Couchbase Server 8.0, which adds support for 128 vBuckets on Magma. Server 8.0 introduced vector query using Global Secondary Indexes (GSI), the Query Service index — using either a fast Hyperscale index, or a composite index to combine scalar queries with semantic search.
 

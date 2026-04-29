@@ -4,7 +4,7 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-29T05:35:23.064Z
 link: xref:dotnet-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -112,16 +112,16 @@ Note, Capella is offered as a fully provisioned service, so the underlying versi
 ### [](#couchbase-new-feature-availability-matrix)Couchbase New Feature Availability Matrix
 
 __Couchbase Server and SDK Supported Version Matrix__
-|                                                                      | Server 7.0 & 7.1 | Server 7.2                                              | Server 7.6 |
-| -------------------------------------------------------------------- | ---------------- | ------------------------------------------------------- | ---------- |
-| Enhanced Durability                                                  | All SDK versions |                                                         |            |
-| Durable Writes                                                       | Since 3.0        |                                                         |            |
-| Analytics                                                            | Since 2.7        |                                                         |            |
-| Collections                                                          | Since 3.0.1      |                                                         |            |
-| Scope-Level SQL++ (formerly N1QL) Queries & all Collections features | Since SDK 3.2.0  |                                                         |            |
-| Request Tracing                                                      | Since SDK 3.0.3  |                                                         |            |
-| Cloud Native Gateway                                                 | Not Supported    |                                                         |            |
-| Vector Search                                                        | N/A              | From SDK 3.5.1 (includes base64-encoded from SDK 3.6.1) |            |
+|                                      | Server 7.2 | Server 7.6                                              | Server 8.0 |
+| ------------------------------------ | ---------- | ------------------------------------------------------- | ---------- |
+| KV Range Scan                        | N/A        | All supported SDK versions                              |            |
+| Vector Search                        | N/A        | From SDK 3.5.1 (includes base64-encoded from SDK 3.6.1) |            |
+| Preferred Server Group Replica Reads | N/A        | From SDK 3.8.0 (with Server 7.6.2 onwards)              |            |
+| Vector Query using GSI               | N/A        | From SDK 3.9.0 ①                                        |            |
+
+① As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested.
+
+This table is not an exhaustive list — just a few highlights — provided to help assess compatibility of older versions in particular. For alignment of SDKs and new Server features, scroll down to the information below the [API Version table](#api-version).
 
 ### [](#api-version)API Version
 
@@ -150,7 +150,7 @@ __SDK API Versions__
 | **2** | For most purposes better productivity and functionality can be found in our [C++ SDK](../../../cxx-sdk/current/hello-world/overview.md).                                                                  |
 | **3** | With the Java 3.9 release, the other JVM SDKs hosted in the Java SDK monorepo adopted common release versions. This includes a number of other artifacts, as can be seen referenced in the release notes. |
 
-**SDK API 3.9**: Provides support for JWT based authentication, as well as mTLS Certs Refresh (without restart). Adds Amazon Graviton 3 support. Deprecates SDK support for MapReduce Views.
+**SDK API 3.9**: Provides support for JWT based authentication, as well as mTLS Certs Refresh (without restart). Deprecates SDK support for MapReduce Views.
 
 **SDK API 3.8**: Introduced alongside Couchbase Server 8.0, which adds support for 128 vBuckets on Magma. Server 8.0 introduced vector query using Global Secondary Indexes (GSI), the Query Service index — using either a fast Hyperscale index, or a composite index to combine scalar queries with semantic search.
 
