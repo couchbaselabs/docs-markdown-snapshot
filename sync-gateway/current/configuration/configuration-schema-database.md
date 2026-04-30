@@ -2,7 +2,7 @@
 title: Database Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage databases
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-schema-database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-04-30T05:37:08.077Z
 link: xref:sync-gateway:configuration:configuration-schema-database.adoc[]
 ---
 
@@ -44,7 +44,7 @@ This example creates a new sync gateway database.
 curl --location --request PUT 'http://127.0.0.1:4985/traveldb/' \ (1)
 --header 'Authorization: Basic c3luY19nYXRld2F5OnBhc3N3b3Jk' \ (2)
 --header 'Content-Type: application/json' \
---data-raw '{
+--data '{
 "bucket": "todo", (3)
 "index": {"num_replicas": 0}
 }'
@@ -82,17 +82,17 @@ This example configures an existing sync gateway database.
 * HTTP
 
 ```bash
-curl --location --request PUT 'http://127.0.0.1:4985/traveldb/_config/' \ (1)
+curl --location --request PUT 'http://127.0.0.1:4985/traveldb/_config' \ (1)
 --header 'Authorization: Basic c3luY19nYXRld2F5OnBhc3N3b3Jk' \ (2)
 --header 'Content-Type: application/json' \
---data-raw '{
+--data '{
   "enable_shared_bucket_access": true,
   "import_docs": true
 }' (3)
 ```
 
 ```http
-PUT /traveldb/_config/ HTTP/1.1  (1)
+PUT /traveldb/_config HTTP/1.1  (1)
 Host: 127.0.0.1:4985
 Authorization: Basic c3luY19nYXRld2F5OnBhc3N3b3Jk  (2)
 Content-Type: application/json

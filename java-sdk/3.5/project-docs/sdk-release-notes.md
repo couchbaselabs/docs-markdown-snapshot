@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Java Client.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.5/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-04-08T05:18:32.349Z
+pubDate: 2026-04-30T05:37:08.077Z
 link: xref:3.5@java-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -24,6 +24,37 @@ See the [Full Installation](sdk-full-installation.md) guide for details.
 
 We always recommend using the latest version of the SDK — it contains all of the latest security patches and support for new and upcoming features. All patch releases for each dot minor release should be API compatible, and safe to upgrade; any changes to expected behavior are noted in the release notes that follow.
 
+### [](#version-3-5-4-27-april-2026)Version 3.5.4 (27 April 2026)
+
+This is a maintenance release.
+
+[Download](https://packages.couchbase.com/clients/java/3.5.4/Couchbase-Java-Client-3.5.4.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-java-client-3.5.4/index.html) | [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.5.4/)
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.5.8**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+Optional artifacts on top of this SDK version are tested for the following compatibilities:
+
+__Table 1\. Optional Artifact Version Compatibility__
+| Artifact              | Couchbase Version | Built Against        | API Stability |
+| --------------------- | ----------------- | -------------------- | ------------- |
+| tracing-opentelemetry | 1.3.4             | OpenTelemetry 1.31.0 | Committed     |
+| tracing-opentracing   | 1.3.4             | OpenTracing 0.33.0   | Committed     |
+| metrics-opentelemetry | 0.5.4             | OpenTelemetry 1.31.0 | Volatile      |
+| metrics-micrometer    | 0.5.4             | Micrometer 1.10.9    | Volatile      |
+
+#### [](#improvements)Improvements
+
+* [JVMCBC-1729](https://issues.couchbase.com/browse/JVMCBC-1729): When running on Linux, the SDK now sets the `TCP_USER_TIMEOUT` socket option so it can detect dead connections more quickly. By default, the SDK sets the timeout to 20 seconds. You can override the default by configuring the new `io.tcpUserTimeout` client setting. For example, to set the timeout to 30 seconds you would configure the `ClusterEnvironment.Builder` like this:  
+```java  
+env.ioConfig(io -> io.tcpUserTimeout(Duration.ofSeconds(30)))  
+```  
+Thank you to community member Omer Cilingir <[omer.cilingir@bkm.com.tr](mailto:omer.cilingir@bkm.com.tr)\> for this contribution.  
+> [!NOTE]  
+> This is a backport of a feature from version 3.12.0\. It is not present in SDK versions before 3.12.0 unless mentioned in the release notes.
+
 ### [](#version-3-5-3-6-february-2024)Version 3.5.3 (6 February 2024)
 
 This is a regular maintenance release.
@@ -37,7 +68,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 1\. Optional Artifact Version Compatibility__
+__Table 2\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.3.3             | OpenTelemetry 1.31.0 | Committed     |
@@ -45,7 +76,7 @@ __Table 1\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.5.3             | OpenTelemetry 1.31.0 | Volatile      |
 | metrics-micrometer    | 0.5.3             | Micrometer 1.10.9    | Volatile      |
 
-#### [](#improvements)Improvements
+#### [](#improvements-2)Improvements
 
 * [JVMCBC-1460](https://issues.couchbase.com/browse/JVMCBC-1460): `couchbase2` now supports compressing data between the SDK and the server.
 * [JVMCBC-1464](https://issues.couchbase.com/browse/JVMCBC-1464): The `metrics-opentelemetry` package is now aligned with the same `OpenTelemetry` version as `tracing-opentelemetry`.
@@ -71,7 +102,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 2\. Optional Artifact Version Compatibility__
+__Table 3\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.3.2             | OpenTelemetry 1.31.0 | Committed     |
@@ -79,7 +110,7 @@ __Table 2\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.5.2             | OpenTelemetry 1.31.0 | Volatile      |
 | metrics-micrometer    | 0.5.2             | Micrometer 1.10.9    | Volatile      |
 
-#### [](#improvements-2)Improvements
+#### [](#improvements-3)Improvements
 
 * [JCBC-2113](https://issues.couchbase.com/browse/JCBC-2113): Added a `QueryMetadata.signatureBytes()` method for accessing query signatures that are not JSON Objects.
 
@@ -101,7 +132,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 3\. Optional Artifact Version Compatibility__
+__Table 4\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.3.1             | OpenTelemetry 1.31.0 | Committed     |
@@ -109,7 +140,7 @@ __Table 3\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.5.1             | OpenTelemetry 1.31.0 | Volatile      |
 | metrics-micrometer    | 0.5.1             | Micrometer 1.10.9    | Volatile      |
 
-#### [](#improvements-3)Improvements
+#### [](#improvements-4)Improvements
 
 * [JVMCBC-1435](https://issues.couchbase.com/browse/JVMCBC-1435), [JVMCBC-1436](https://issues.couchbase.com/browse/JVMCBC-1436): Upgraded Netty and Jackson dependencies.
 * [JVMCBC-1440](https://issues.couchbase.com/browse/JVMCBC-1440): Adding `DocumentNotLockedException` supporting future Couchbase Server versions that will return an error code when unlocking a document that is not locked.
@@ -138,7 +169,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 4\. Optional Artifact Version Compatibility__
+__Table 5\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.3.0             | OpenTelemetry 1.31.0 | Committed     |
@@ -156,7 +187,7 @@ As [previously announced](https://www.couchbase.com/forums/t/embracing-slf4j-in-
   * `logger.consoleLoggerFormatter`  
   If your project does not already use SLF4J, please follow the announcement link for details and a mini-migration guide.
 
-#### [](#improvements-4)Improvements
+#### [](#improvements-5)Improvements
 
 * [JVMCBC-1402](https://issues.couchbase.com/browse/JVMCBC-1402), [JVMCBC-1410](https://issues.couchbase.com/browse/JVMCBC-1410): Upgraded Netty from 4.1.96 to 4.1.100, and upgraded `OpenTelemetry` dependency.
 * [JVMCBC-1430](https://issues.couchbase.com/browse/JVMCBC-1430): Optimization: removed creation of unnecessary metrics labels when default `LoggingMeter` is used.
@@ -183,7 +214,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 5\. Optional Artifact Version Compatibility__
+__Table 6\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.2.11            | OpenTelemetry 1.19.0 | Committed     |
@@ -191,7 +222,7 @@ __Table 5\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.4.11            | OpenTelemetry 1.19.0 | Volatile      |
 | metrics-micrometer    | 0.4.11            | Micrometer 1.10.9    | Volatile      |
 
-#### [](#improvements-5)Improvements
+#### [](#improvements-6)Improvements
 
 * [JCBC-2046](https://issues.couchbase.com/browse/JCBC-2046): With thanks to our community for the contribution, support for Micrometer Observation has been added via the new `tracing-micrometer-observation` module.
 * [JVMCBC-1327](https://issues.couchbase.com/browse/JVMCBC-1327): Internal improvements to support upcoming faster failover and config push features.
@@ -213,7 +244,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 6\. Optional Artifact Version Compatibility__
+__Table 7\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.2.10            | OpenTelemetry 1.19.0 | Committed     |
@@ -221,7 +252,7 @@ __Table 6\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.4.10            | OpenTelemetry 1.19.0 | Volatile      |
 | metrics-micrometer    | 0.4.10            | Micrometer 1.10.9    | Volatile      |
 
-#### [](#improvements-6)Improvements
+#### [](#improvements-7)Improvements
 
 * [JVMCBC-1367](https://issues.couchbase.com/browse/JVMCBC-1367): The `db.couchbase.operations` metric now has `db.name` (bucket), `db.couchbase.scope`, `db.couchbase.collection` and `outcome` labels (tags). This new feature is at Stability.Volatile, and may change before it is promoted to Stability.Committed in a future release.
 * [JVMCBC-1311](https://issues.couchbase.com/browse/JVMCBC-1311), [JVMCBC-1352](https://issues.couchbase.com/browse/JVMCBC-1352): Upgraded dependencies.
@@ -247,7 +278,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 7\. Optional Artifact Version Compatibility__
+__Table 8\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.2.9             | OpenTelemetry 1.19.0 | Committed     |
@@ -255,7 +286,7 @@ __Table 7\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.4.9             | OpenTelemetry 1.19.0 | Volatile      |
 | metrics-micrometer    | 0.4.9             | Micrometer 1.10.0    | Volatile      |
 
-#### [](#improvements-7)Improvements
+#### [](#improvements-8)Improvements
 
 * [JVMCBC-1339](https://issues.couchbase.com/browse/JVMCBC-1339): When KV traffic capture is enabled, each `ReadTrafficCapturedEvent` now contains a single protocol frame, and the human-readable frame description is more accurate.
 * [JVMCBC-1320](https://issues.couchbase.com/browse/JVMCBC-1320): The `waitUntilReady` method is now more aggressive about retrying failed pings. Also, waiting for a desired state of `DEGRADED` no longer fails when the client is fully connected to the cluster.
@@ -275,7 +306,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 8\. Optional Artifact Version Compatibility__
+__Table 9\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.2.8             | OpenTelemetry 1.19.0 | Committed     |
@@ -283,7 +314,7 @@ __Table 8\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.4.8             | OpenTelemetry 1.19.0 | Volatile      |
 | metrics-micrometer    | 0.4.8             | Micrometer 1.10.0    | Volatile      |
 
-#### [](#improvements-8)Improvements
+#### [](#improvements-9)Improvements
 
 * [JCBC-2077](https://issues.couchbase.com/browse/JCBC-2077): Upcoming Couchbase server release 7.6 will support having SQL++ queries read from replicas, in scenarios where the active is unavailable (such as failover). This improves availability, though users should be aware that they may be reading stale data. The option is activated with `scope.query("…​", queryOptions().useReplica(true))`, and is disabled by default. It will only work against 7.6 and above: against older server versions, it will raise a `FeatureNotAvailableException`.
 * [JVMCBC-1322](https://issues.couchbase.com/browse/JVMCBC-1322): The `waitUntilReady()` method now logs additional diagnostic information to the `com.couchbase.core.WaitUntilReady` logging category at `DEBUG` level.
@@ -303,7 +334,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 9\. Optional Artifact Version Compatibility__
+__Table 10\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.2.7             | OpenTelemetry 1.19.0 | Committed     |
@@ -315,7 +346,7 @@ __Table 9\. Optional Artifact Version Compatibility__
 
 * [JCBC-2075](https://issues.couchbase.com/browse/JCBC-2075): Deprecated `ArrayInsert.createPath()`. Calling this method always causes `mutateIn` to throw an exception, because the "array insert" sub-document command does not support creating missing parent objects. If you want to create missing parent objects, please use `MutateInSpec.arrayAppend()` or `arrayPrepend()` instead of `arrayInsert()`.
 
-#### [](#improvements-9)Improvements
+#### [](#improvements-10)Improvements
 
 * [JCBC-2069](https://issues.couchbase.com/browse/JCBC-2069): `Collection.getAndTouch` now has an additional overload that allows specifying the expiry as an `Instant` instead of a `Duration`.
 * [JVMCBC-1290](https://issues.couchbase.com/browse/JVMCBC-1290): Added a new environment config property, `SecurityConfig.enableCertificateVerification(boolean)`, which defaults to true. The purpose of this property is to allow disabling TLS certificate verification in development environments where configuring the CA certificate to trust is not practical. Setting this to false is equivalent to configuring the environment to use `InsecureTrustManager.INSTANCE`. For compatibility with other modern Couchbase SDKs, certificate verification can now be disabled using the connection string parameter: `tls_verify=none`. This config property is introduced at stability level `Volatile`, meaning it may change in a patch release without notice.
@@ -340,7 +371,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 10\. Optional Artifact Version Compatibility__
+__Table 11\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.2.6             | OpenTelemetry 1.19.0 | Committed     |
@@ -348,7 +379,7 @@ __Table 10\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.4.6             | OpenTelemetry 1.19.0 | Volatile      |
 | metrics-micrometer    | 0.4.6             | Micrometer 1.10.0    | Volatile      |
 
-#### [](#improvements-10)Improvements
+#### [](#improvements-11)Improvements
 
 * [JCBC-1570](https://issues.couchbase.com/browse/JCBC-1570), [JCBC-2058](https://issues.couchbase.com/browse/JCBC-2058): The `osgi-feature` artifact now uses Log4j 2 instead of Log4j 1.
 
@@ -372,7 +403,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 11\. Optional Artifact Version Compatibility__
+__Table 12\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.2.5             | OpenTelemetry 1.19.0 | Committed     |
@@ -380,7 +411,7 @@ __Table 11\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.4.5             | OpenTelemetry 1.19.0 | Volatile      |
 | metrics-micrometer    | 0.4.5             | Micrometer 1.10.0    | Volatile      |
 
-#### [](#improvements-11)Improvements
+#### [](#improvements-12)Improvements
 
 * [JVMCBC-1223](https://issues.couchbase.com/browse/JVMCBC-1223): Adds a `RetryReason.AUTHENTICATION_ERROR` at `Uncommitted` API stability level. A custom `RetryStrategy` can use this new, more granular information to distinguish if a connection problem is down to an authentication issue.
 
@@ -403,7 +434,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 12\. Optional Artifact Version Compatibility__
+__Table 13\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.2.4             | OpenTelemetry 1.19.0 | Committed     |
@@ -411,7 +442,7 @@ __Table 12\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.4.4             | OpenTelemetry 1.19.0 | Volatile      |
 | metrics-micrometer    | 0.4.4             | Micrometer 1.10.0    | Volatile      |
 
-#### [](#improvements-12)Improvements
+#### [](#improvements-13)Improvements
 
 * [JCBC-2050](https://issues.couchbase.com/browse/JCBC-2050): Coordinates in Full-Text Search geographic queries can now be specified using a staged builder, so it's harder to accidentally swap the latitude and longitude components. Example usage:
 
@@ -445,7 +476,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 13\. Optional Artifact Version Compatibility__
+__Table 14\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.2.3             | OpenTelemetry 1.19.0 | Committed     |
@@ -453,7 +484,7 @@ __Table 13\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.4.3             | OpenTelemetry 1.19.0 | Volatile      |
 | metrics-micrometer    | 0.4.3             | Micrometer 1.10.0    | Volatile      |
 
-#### [](#improvements-13)Improvements
+#### [](#improvements-14)Improvements
 
 * [JCBC-2034](https://issues.couchbase.com/browse/JCBC-2034): `CollectionQueryIndexManager` has been added at a `@Stability.Volatile` level, to better allow management of query indexes at the Collection level. Documentation and an upgrade to a higher stability level will follow in the next minor SDK bump. Until then, users are encourage to try out the new functionality and provide feedback — but should expect the possibility of API changes.
 * [JVMCBC-1181](https://issues.couchbase.com/browse/JVMCBC-1181): It is now possible to authenticate over secure connections even if the JVM does not support the SASL PLAIN authentication mechanisms.
@@ -480,7 +511,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 14\. Optional Artifact Version Compatibility__
+__Table 15\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.2.2             | OpenTelemetry 1.19.0 | Committed     |
@@ -488,7 +519,7 @@ __Table 14\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.4.2             | OpenTelemetry 1.19.0 | Volatile      |
 | metrics-micrometer    | 0.4.2             | Micrometer 1.10.0    | Volatile      |
 
-#### [](#improvements-14)Improvements
+#### [](#improvements-15)Improvements
 
 * [JVMCBC-1175](https://issues.couchbase.com/browse/JVMCBC-1175): The SDK now includes native libraries for IO and TLS that can enhance performance on `aarch_64` architectures like Graviton and Apple Silicon. Previously, native libraries were included only for `x86_64` architectures. Native libraries for IO and TLS are enabled by default. If you need to disable native IO, set the `ioEnvironment.enableNativeIo` client setting to false. To disable native TLS, set the `security.enableNativeTls` client setting to false.
 
@@ -514,7 +545,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 15\. Optional Artifact Version Compatibility__
+__Table 16\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.2.1             | OpenTelemetry 1.19.0 | Committed     |
@@ -522,7 +553,7 @@ __Table 15\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.4.1             | OpenTelemetry 1.19.0 | Volatile      |
 | metrics-micrometer    | 0.4.1             | Micrometer 1.10.0    | Volatile      |
 
-#### [](#improvements-15)Improvements
+#### [](#improvements-16)Improvements
 
 * [JVMCBC-1163](https://issues.couchbase.com/browse/JVMCBC-1163): Dependencies have been updated.
 * [JVMCBC-1156](https://issues.couchbase.com/browse/JVMCBC-1156): The traffic tracing functionality has been enchanced to perform Wireshark-style dissection of portions of the KV protocol.
@@ -559,7 +590,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 16\. Optional Artifact Version Compatibility__
+__Table 17\. Optional Artifact Version Compatibility__
 | Artifact              | Couchbase Version | Built Against        | API Stability |
 | --------------------- | ----------------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.2.0             | OpenTelemetry 1.16.0 | Committed     |
@@ -567,7 +598,7 @@ __Table 16\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.4.0             | OpenTelemetry 1.16.0 | Volatile      |
 | metrics-micrometer    | 0.4.0             | Micrometer 1.9.2     | Volatile      |
 
-#### [](#improvements-16)Improvements
+#### [](#improvements-17)Improvements
 
 * [JVMCBC-1102](https://issues.couchbase.com/browse/JVMCBC-1102): Added support for serverless execution environments including AWS Lambda.
 * [JCBC-2004](https://issues.couchbase.com/browse/JCBC-2004): Changed `AuthenticationFailureException` error message to indicate that bucket hibernation is now a potential cause. Bucket hibernation is a feature coming in a future Couchbase release.
@@ -599,7 +630,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 17\. Optional Artifact Version Compatibility__
+__Table 18\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against        | API Stability |
 | --------------------- | ------- | -------------------- | ------------- |
 | tracing-opentelemetry | 1.1.4   | OpenTelemetry 1.16.0 | Committed     |
@@ -607,7 +638,7 @@ __Table 17\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.3.4   | OpenTelemetry 1.16.0 | Volatile      |
 | metrics-micrometer    | 0.3.4   | Micrometer 1.9.2     | Volatile      |
 
-#### [](#improvements-17)Improvements
+#### [](#improvements-18)Improvements
 
 * [JVMCBC-1131](https://issues.couchbase.com/browse/JVMCBC-1131): Added ability to track the number of created instances. Users can now set to hard-fail if too many instances are created.
 * [JVMCBC-1134](https://issues.couchbase.com/browse/JVMCBC-1134): Updated `MemcachedProtocol::decodeStatus` to be inlineable.
@@ -642,7 +673,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 18\. Optional Artifact Version Compatibility__
+__Table 19\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against              | API Stability |
 | --------------------- | ------- | -------------------------- | ------------- |
 | tracing-opentelemetry | 1.1.2   | OpenTelemetry 1.13.0       | Committed     |
@@ -650,7 +681,7 @@ __Table 18\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.3.2   | OpenTelemetry 1.13.0-alpha | Volatile      |
 | metrics-micrometer    | 0.3.2   | Micrometer 1.8.4           | Volatile      |
 
-#### [](#improvements-18)Improvements
+#### [](#improvements-19)Improvements
 
 * [JVMCBC-1116](https://issues.couchbase.com/browse/JVMCBC-1116): Dependency versions have been increased.
 * [JVMCBC-1121](https://issues.couchbase.com/browse/JVMCBC-1121): In some rare cases — such as an application crash — a transaction is left for the async cleanup algorithm to finish; by default it will find this within one minute. In cases where this does not happen, this will trigger a warning after two hours — not the two days that was previously the case.
@@ -678,7 +709,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 19\. Optional Artifact Version Compatibility__
+__Table 20\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against              | API Stability |
 | --------------------- | ------- | -------------------------- | ------------- |
 | tracing-opentelemetry | 1.1.2   | OpenTelemetry 1.13.0       | Committed     |
@@ -706,7 +737,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 20\. Optional Artifact Version Compatibility__
+__Table 21\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against              | API Stability |
 | --------------------- | ------- | -------------------------- | ------------- |
 | tracing-opentelemetry | 1.1.1   | OpenTelemetry 1.13.0       | Committed     |
@@ -714,7 +745,7 @@ __Table 20\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.3.1   | OpenTelemetry 1.13.0-alpha | Volatile      |
 | metrics-micrometer    | 0.3.1   | Micrometer 1.8.4           | Volatile      |
 
-#### [](#improvements-19)Improvements
+#### [](#improvements-20)Improvements
 
 * [JVMCBC-1089](https://issues.couchbase.com/browse/JVMCBC-1089): SDK users can now customize the `ConsoleLogger` format.
 * [JVMCBC-1093](https://issues.couchbase.com/browse/JVMCBC-1093): Previously, when a DNS SRV lookup failure occured, the SDK logged this as a `WARNING` along with a stack trace. The lookup failure is typically harmless, so the log message has now been downgraded to `INFO` level, without a stack trace.
@@ -741,7 +772,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 21\. Optional Artifact Version Compatibility__
+__Table 22\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against              | API Stability |
 | --------------------- | ------- | -------------------------- | ------------- |
 | tracing-opentelemetry | 1.1.0   | OpenTelemetry 1.13.0       | Committed     |
@@ -749,7 +780,7 @@ __Table 21\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.3.0   | OpenTelemetry 1.13.0-alpha | Volatile      |
 | metrics-micrometer    | 0.3.0   | Micrometer 1.8.4           | Volatile      |
 
-#### [](#improvements-20)Improvements
+#### [](#improvements-21)Improvements
 
 * [JCBC-1929](https://issues.couchbase.com/browse/JCBC-1929): Integrated transactions library into SDK.
 * [JVMCBC-1070](https://issues.couchbase.com/browse/JVMCBC-1070): Bundled public Capella CA certificate.
@@ -784,7 +815,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 22\. Optional Artifact Version Compatibility__
+__Table 23\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against             | API Stability |
 | --------------------- | ------- | ------------------------- | ------------- |
 | tracing-opentelemetry | 1.0.7   | OpenTelemetry 1.9.1       | Committed     |
@@ -797,7 +828,7 @@ __Table 22\. Optional Artifact Version Compatibility__
 * [JCBC-1922](https://issues.couchbase.com/browse/JCBC-1922): The KeyValue error code `NOT_STORED` is now properly mapped to `DocumentExistsException` on `insert` and `mutateIn`.
 * [JVMCBC-1077](https://issues.couchbase.com/browse/JVMCBC-1077): The environment now properly shuts down the `Meter` if it is owned and not passed in externally.
 
-#### [](#improvements-21)Improvements
+#### [](#improvements-22)Improvements
 
 * [JVMCBC-1082](https://issues.couchbase.com/browse/JVMCBC-1082): Updated internal and external dependencies.
 * Netty from 4.1.73 to 4.1.76
@@ -819,7 +850,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 23\. Optional Artifact Version Compatibility__
+__Table 24\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against             | API Stability |
 | --------------------- | ------- | ------------------------- | ------------- |
 | tracing-opentelemetry | 1.0.6   | OpenTelemetry 1.9.1       | Committed     |
@@ -840,7 +871,7 @@ __Table 23\. Optional Artifact Version Compatibility__
 * [JVMCBC-1057](https://issues.couchbase.com/browse/JVMCBC-1057): Added core infrastructure for the Backup service. Users can now make custom HTTP requests to the Backup service.
 * [JVMCBC-1064](https://issues.couchbase.com/browse/JVMCBC-1064): When implementing a custom `RetryStrategy`, a new overload of `RetryAction.noRetry` lets you specify an exception translator for converting the default request cancellation exception into your preferred exception class.
 
-#### [](#improvements-22)Improvements
+#### [](#improvements-23)Improvements
 
 * [JVMCBC-1065](https://issues.couchbase.com/browse/JVMCBC-1065): `RetryReason.allowsNonIdempotentRetry()` is now public, so you can call it from a custom `RetryStrategy`.
 * [JVMCBC-1066](https://issues.couchbase.com/browse/JVMCBC-1066): When `SecurityConfig.Builder.trustCertificate(Path)` is given a file containing more than one certificate, it now trusts all the certificates instead of just the first one. Likewise, the result of `SecurityConfig.decodeCertificates(List<String>)` now includes all certificates in each string, not just the first certificate in each string.
@@ -867,7 +898,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 24\. Optional Artifact Version Compatibility__
+__Table 25\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against             | API Stability |
 | --------------------- | ------- | ------------------------- | ------------- |
 | tracing-opentelemetry | 1.0.5   | OpenTelemetry 1.9.1       | Committed     |
@@ -887,7 +918,7 @@ __Table 24\. Optional Artifact Version Compatibility__
 * [JVMCBC-1046](https://issues.couchbase.com/browse/JVMCBC-1046): Added fix to not load the global config if a node is not in the seed node list anymore.
 * [JVMCBC-1058](https://issues.couchbase.com/browse/JVMCBC-1058): The SDK now throws a more descriptive `FeatureNotAvailableException` for scopes and collections on memcached buckets.
 
-#### [](#improvements-23)Improvements
+#### [](#improvements-24)Improvements
 
 * [JCBC-1860](https://issues.couchbase.com/browse/JCBC-1860): `ConflictResolutionType.CUSTOM` has now been added to the bucket management API.
 * [JCBC-1864](https://issues.couchbase.com/browse/JCBC-1864): FTS options now include `IncludeLocations` and `Operator`.
@@ -924,7 +955,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 25\. Optional Artifact Version Compatibility__
+__Table 26\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against             | API Stability |
 | --------------------- | ------- | ------------------------- | ------------- |
 | tracing-opentelemetry | 1.0.4   | OpenTelemetry 1.7.1       | Committed     |
@@ -936,7 +967,7 @@ __Table 25\. Optional Artifact Version Compatibility__
 
 * [JCBC-1892](https://issues.couchbase.com/browse/JCBC-1892): `EventingFunctionSettings` can now be empty - this fixes an issue with loading eventing functions from the cluster.
 
-#### [](#improvements-24)Improvements
+#### [](#improvements-25)Improvements
 
 * [JVMCBC-1033](https://issues.couchbase.com/browse/JVMCBC-1033), [JVMCBC-1034](https://issues.couchbase.com/browse/JVMCBC-1034): Updated internal and external dependencies to their latest bugfix versions. This also updates OpenTelemetry to 1.7.x.
 * [JCBC-1881](https://issues.couchbase.com/browse/JCBC-1881): Added (volatile) support for the `magma` storage backend when creating a bucket through the bucket manager.
@@ -959,7 +990,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 26\. Optional Artifact Version Compatibility__
+__Table 27\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against             | API Stability |
 | --------------------- | ------- | ------------------------- | ------------- |
 | tracing-opentelemetry | 1.0.3   | OpenTelemetry 1.3.0       | Committed     |
@@ -967,7 +998,7 @@ __Table 26\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.2.3   | OpenTelemetry 1.3.0-alpha | Volatile      |
 | metrics-micrometer    | 0.2.3   | Micrometer 1.7.0          | Volatile      |
 
-#### [](#improvements-25)Improvements
+#### [](#improvements-26)Improvements
 
 * [JVMCBC-1026](https://issues.couchbase.com/browse/JVMCBC-1026): Support for error map v2 has been added to ensure the config can be parsed without failure.
 
@@ -986,7 +1017,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 27\. Optional Artifact Version Compatibility__
+__Table 28\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against             | API Stability |
 | --------------------- | ------- | ------------------------- | ------------- |
 | tracing-opentelemetry | 1.0.2   | OpenTelemetry 1.3.0       | Committed     |
@@ -994,7 +1025,7 @@ __Table 27\. Optional Artifact Version Compatibility__
 | metrics-opentelemetry | 0.2.2   | OpenTelemetry 1.3.0-alpha | Volatile      |
 | metrics-micrometer    | 0.2.2   | Micrometer 1.7.0          | Volatile      |
 
-#### [](#improvements-26)Improvements
+#### [](#improvements-27)Improvements
 
 * [JCBC-1872](https://issues.couchbase.com/browse/JCBC-1872): Bring `NodeLocatorHelper` to SDK 3 from 2.
 * [JCBC-1875](https://issues.couchbase.com/browse/JCBC-1875): Document and polish Eventing Management API.
@@ -1023,7 +1054,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 28\. Optional Artifact Version Compatibility__
+__Table 29\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against             | API Stability |
 | --------------------- | ------- | ------------------------- | ------------- |
 | tracing-opentelemetry | 1.0.1   | OpenTelemetry 1.3.0       | Committed     |
@@ -1041,7 +1072,7 @@ __Table 28\. Optional Artifact Version Compatibility__
 * [JVMCBC-1007](https://issues.couchbase.com/browse/JVMCBC-1007): `LoggingMeter` was incorrectly marked as Volatile in SDK 3.2 — now fixed.
 * [JCBC-1850](https://issues.couchbase.com/browse/JCBC-1850): Fixed `NullPointerException` with `OpenTracing`.
 
-#### [](#improvements-27)Improvements
+#### [](#improvements-28)Improvements
 
 * [JCBC-1732](https://issues.couchbase.com/browse/JCBC-1732): Eventing Management API added.
 * [JCBC-1852](https://issues.couchbase.com/browse/JCBC-1852): FLE: Optionally read @Encrypted POJO properties from unencrypted JSON fields.
@@ -1070,7 +1101,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 29\. Optional Artifact Version Compatibility__
+__Table 30\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against             | API Stability |
 | --------------------- | ------- | ------------------------- | ------------- |
 | tracing-opentelemetry | 1.0.0   | OpenTelemetry 1.3.0       | Committed     |
@@ -1134,7 +1165,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 30\. Optional Artifact Version Compatibility__
+__Table 31\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against             | API Stability |
 | --------------------- | ------- | ------------------------- | ------------- |
 | tracing-opentelemetry | 0.3.8   | OpenTelemetry 1.2.0       | Volatile      |
@@ -1165,7 +1196,7 @@ The supported and tested dependencies for this release are:
 
 Optional artifacts on top of this SDK version are tested for the following compatibilities:
 
-__Table 31\. Optional Artifact Version Compatibility__
+__Table 32\. Optional Artifact Version Compatibility__
 | Artifact              | Version | Built Against             | API Stability |
 | --------------------- | ------- | ------------------------- | ------------- |
 | tracing-opentelemetry | 0.3.7   | OpenTelemetry 1.2.0       | Volatile      |
@@ -1181,7 +1212,7 @@ __Table 31\. Optional Artifact Version Compatibility__
 * [JCBC-1850](https://issues.couchbase.com/browse/JCBC-1850): Ignore null values for attributed in OpenTelemetry and OpenTracing.
 * [JVMCBC-990](https://issues.couchbase.com/browse/JVMCBC-990): Gracefully handle cluster-level WaitUntilReady against clusters < 6.5.
 
-#### [](#improvements-28)Improvements
+#### [](#improvements-29)Improvements
 
 * [JVMCBC-996](https://issues.couchbase.com/browse/JVMCBC-996): Throw `FeatureNotAvailableException` if scope level queries are not available.
 * [JVMCBC-988](https://issues.couchbase.com/browse/JVMCBC-988): Query error code 13014 is now mapped to `AuthenticationException`.
@@ -1207,7 +1238,7 @@ The supported and tested dependencies for this release are:
 * [JCBC-1676](https://issues.couchbase.com/browse/JCBC-1676): Bucket creation now succeeds against Community Edition 6.5 and above.
 * [JVMCBC-972](https://issues.couchbase.com/browse/JVMCBC-972): Only open one GCCCP connection per node.
 
-#### [](#improvements-29)Improvements
+#### [](#improvements-30)Improvements
 
 * [JCBC-1808](https://issues.couchbase.com/browse/JCBC-1808): Updated tracing and metrics module dependencies.
 * [JCBC-1649](https://issues.couchbase.com/browse/JCBC-1649): Update analytics management API to support compound dataverse names.
@@ -1237,7 +1268,7 @@ The supported and tested dependencies for this release are:
 * [JVMCBC-963](https://issues.couchbase.com/browse/JVMCBC-963): Add better retry handling for local and global bucket config fetch failures, making it more resilient.
 * [JVMCBC-967](https://issues.couchbase.com/browse/JVMCBC-967): Work around and fix a `OverflowException` with `PersistTo`/`ReplicateTo`, caused by Reactor.
 
-#### [](#improvements-30)Improvements
+#### [](#improvements-31)Improvements
 
 * [JVMCBC-958](https://issues.couchbase.com/browse/JVMCBC-958): Improve the performance of individual collection ID fetches, speeding up the time of bootstrap whan a lot of collections are opened.
 * [JCBC-1756](https://issues.couchbase.com/browse/JCBC-1756): Adds volatile support for preserving the expiry on certain mutation operations.
@@ -1270,7 +1301,7 @@ The supported and tested dependencies for this release are:
 * [JVMCBC-950](https://issues.couchbase.com/browse/JVMCBC-950): waitUntilReady is now more resilient to just-created buckets.
 * [JVMCBC-954](https://issues.couchbase.com/browse/JVMCBC-954): More resilient handling of rebalances.
 
-#### [](#improvements-31)Improvements
+#### [](#improvements-32)Improvements
 
 * [JCBC-1786](https://issues.couchbase.com/browse/JCBC-1786): Transcoders now allow contentAs(Object.class). Java Map and List collections are used to represent JSON objects and arrays.
 * [JCBC-1795](https://issues.couchbase.com/browse/JCBC-1795): Allow `MutateInSpec.remove("")`, which removes the entire document.
@@ -1295,7 +1326,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.3**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-#### [](#improvements-32)Improvements
+#### [](#improvements-33)Improvements
 
 * [JCBC-1776](https://issues.couchbase.com/browse/JCBC-1776), [JVMCBC-924](https://issues.couchbase.com/browse/JVMCBC-924), [JVMCBC-925](https://issues.couchbase.com/browse/JVMCBC-925): Updated dependencies: OpenTelemetry to 1.0.0, Netty dependency to 4.1.59, netty-tcnative-boringssl-static to 2.0.36, Reactor to 2.4.3, Jackson to 2.12.1.
 * [JCBC-1774](https://issues.couchbase.com/browse/JCBC-1774): Added pre-flight sanity check before using a JacksonJsonSerializer found on the classpath.
