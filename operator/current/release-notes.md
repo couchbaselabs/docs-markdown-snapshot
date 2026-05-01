@@ -1,7 +1,7 @@
 ---
 title: Release Notes for Couchbase Kubernetes Operator 2.9
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-05-01T05:41:53.582Z
 link: xref:operator::release-notes.adoc[]
 ---
 
@@ -10,19 +10,197 @@ link: xref:operator::release-notes.adoc[]
 
 # Release Notes for Couchbase Kubernetes Operator 2.9
 
-This page summarizes the fixes and known issues in Couchbase Kubernetes Operator 2.9, and links to the associated issues.
+This page summarizes the fixes and known issues in Couchbase Kubernetes Operator 2.9.x, and links to the associated issues.
 
 ## [](#new-features)New Features
 
 For information about new features and major improvements made in Couchbase Kubernetes Operator 2.9, see [What's New](whats-new.md).
+
+## [](#release-291)Release 2.9.1 (April 2026)
+
+Couchbase Kubernetes Operator 2.9.1 was released in April 2026\. This release contains fixes to issues.
+
+### [](#fixed-issues-v291)Fixed Issues in 2.9.1
+
+**[K8S-3517](https://jira.issues.couchbase.com/browse/K8S-3517/)**
+
+`cao collect logs` now has the option `--backup-logs` which allows the collection of backup logs.
+
+**[K8S-3828](https://jira.issues.couchbase.com/browse/K8S-3828/)**
+
+Fixed a race condition that allowed Operator to attempt to add a pod before it's ready on port 18091.
+
+**[K8S-3839](https://jira.issues.couchbase.com/browse/K8S-3839/)**
+
+Fixed an issue could cause the Operator to fail to reconcile the cluster when removing a server group from a cluster that uses `InPlaceUpgrades`.
+
+**[K8S-3918](https://jira.issues.couchbase.com/browse/K8S-3918/)**
+
+Operator will now allow multiple pods to be attempted to be created and then use all pods that are successfully created.
+
+**[K8S-4033](https://jira.issues.couchbase.com/browse/K8S-4033/)**
+
+Reschedule Annotations can now happen, even while other operations are taking place.
+
+**[K8S-4163](https://jira.issues.couchbase.com/browse/K8S-4163/)**
+
+Fixed an issue with `cao collect logs --upload-logs` to ensure it appropriately names the archive.
+
+**[K8S-4200](https://jira.issues.couchbase.com/browse/K8S-4200/)**
+
+InPlace Upgrades can now be performed in parallel as long as serverGroups are selected as the UpgradeOrder.
+
+**[K8S-4347](https://jira.issues.couchbase.com/browse/K8S-4347/)**
+
+By default, the operator will now upgrade arbiter nodes last where possible.
+
+**[K8S-4361](https://jira.issues.couchbase.com/browse/K8S-4361/)**
+
+Fixed an issue where a user could take an action on a user that would have no effect.
+
+**[K8S-4373](https://jira.issues.couchbase.com/browse/K8S-4373/)**
+
+Fixed an issue where inconsistent values for vbucket count could lead to repeated failed reconciliations.
+
+**[K8S-4431](https://jira.issues.couchbase.com/browse/K8S-4431/)**
+
+Added the flag `--use-high-cardinality-metrics=true` to the `cao create operator` command.
+
+**[K8S-4433](https://jira.issues.couchbase.com/browse/K8S-4433/)**
+
+Fixed an issue where creating a Memcached bucket could cause the Operator to fail reconciliation if running in mixed mode and before an upgrade to 8.0 completes.
+
+**[K8S-4436](https://jira.issues.couchbase.com/browse/K8S-4436/)**
+
+Fixed an issue where upgrading the Couchbase Kubernetes Operator while the cluster is not fully upgraded causes the Operator to complete the cluster upgrade immediately.
+
+**[K8S-4445](https://jira.issues.couchbase.com/browse/K8S-4445/)**
+
+Fixed an issue where CouchbaseRestore resource status could fail to update from Couchbase Backup containers.
+
+**[K8S-4448](https://jira.issues.couchbase.com/browse/K8S-4448/)**
+
+Fixed an issue where changing the server groups applied to a server class while the Operator was recovering a pod could block reconciliation.
+
+**[K8S-4469](https://jira.issues.couchbase.com/browse/K8S-4469/)**
+
+Fixed an issue where editing a Couchbase bucket storage backend while enabling or disabling `BucketMigrationRoutines` on a CouchbaseCluster could trigger a race condition that lead to an unreconcilable state.
+
+**[K8S-4471](https://jira.issues.couchbase.com/browse/K8S-4471/)**
+
+Fixed an issue where if `spec.networking.addressFamily` is set to `IPv6Priority` or `IPv6Only`, the Operator created the cluster Service as IPv4 SingleStack, which caused pod launch failures.
+
+**[K8S-4474](https://jira.issues.couchbase.com/browse/K8S-4474/)**
+
+Fixed an issue where attempting to change bucket settings during a storage backend migration causes the Operator to fail to reconcile the cluster.
+
+**[K8S-4477](https://jira.issues.couchbase.com/browse/K8S-4477/)**
+
+It's no longer possible for the admission controller to allow the setting of `collectionHistoryDefault` value on Couchstore buckets.
+
+**[K8S-4482](https://jira.issues.couchbase.com/browse/K8S-4482/)**
+
+Fixed an issue where attempting to change the `evictionPolicy` setting during a storage backend migration while `OnlineEvictionPolicyChange` is `true` could lead to an unreconcilable state.
+
+**[K8S-4485](https://jira.issues.couchbase.com/browse/K8S-4485/)**
+
+Fixed an issue where manually editing a bucket's storage backend with `BucketMigrationRoutines` disabled could prevent the Operator from reconciling the cluster.
+
+**[K8S-4486](https://jira.issues.couchbase.com/browse/K8S-4486/)**
+
+Fixed an issue where it was possible to start a Couchbase Server upgrade while a Bucket Storage Backend Migration is in progress.
+
+**[K8S-4487](https://jira.issues.couchbase.com/browse/K8S-4487/)**
+
+Manual Intervention Watchdog now clears the rebalancing condition when entering the Manual Intervention Required condition.
+
+**[K8S-4488](https://jira.issues.couchbase.com/browse/K8S-4488/)**
+
+Fixed an issue where reconciliation can begin before the Manual Intervention Watchdog is fully disabled.
+
+**[K8S-4490](https://jira.issues.couchbase.com/browse/K8S-4490/)**
+
+Fixed an issue where operator would not reconcile cluster settings during stabilization.
+
+**[K8S-4496](https://jira.issues.couchbase.com/browse/K8S-4496/)**
+
+It's no longer possible to set replicas lower than the minimum required for a CouchbaseCluster when using an Ephemeral bucket.
+
+**[K8S-4497](https://jira.issues.couchbase.com/browse/K8S-4497/)**
+
+Fixed an issue where the dynamic admission controller treated the default bucket storage backend as Couchstore, even on 8.0 clusters.
+
+**[K8S-4498](https://jira.issues.couchbase.com/browse/K8S-4498/)**
+
+Fixed a reconciliation order issue where password policy and user passwords order could cause aborted reconciles.
+
+**[K8S-4499](https://jira.issues.couchbase.com/browse/K8S-4499/)**
+
+Fixed an issue where the operator would not check that a password adheres to the password policy before attempting to rotate it.
+
+**[K8S-4504](https://jira.issues.couchbase.com/browse/K8S-4504/)**
+
+Fixed issues where new values were possible while in mixed mode.
+
+**[K8S-4507](https://jira.issues.couchbase.com/browse/K8S-4507/)**
+
+Fixed issues where new features could be enabled while in mixed mode.
+
+**[K8S-4510](https://jira.issues.couchbase.com/browse/K8S-4510/)**
+
+Fixed issues where new settings could be attempted while in mixed mode.
+
+**[K8S-4511](https://jira.issues.couchbase.com/browse/K8S-4511/)**
+
+You can now specify 'Arbiter' nodes in the services order during an upgrade.
+
+**[K8S-4512](https://jira.issues.couchbase.com/browse/K8S-4512/)**
+
+The Kubernetes Operator no longer updates Index Storage settings twice.
+
+**[K8S-4514](https://jira.issues.couchbase.com/browse/K8S-4514/)**
+
+The Kubernetes Operator no longer updates the Fluent Bit configuration accidentally.
+
+**[K8S-4515](https://jira.issues.couchbase.com/browse/K8S-4515/)**
+
+Fixed an issue where the Kubernetes Operator would not send the correct online change flag when changing the Eviction Policy value.
+
+**[K8S-4520](https://jira.issues.couchbase.com/browse/K8S-4520/)**
+
+The admission controller no longer allows encryption at rest to be enabled in mixed mode.
+
+**[K8S-4521](https://jira.issues.couchbase.com/browse/K8S-4521/)**
+
+Fixed an issue where the admission controller allowed the use of CouchbaseUser's `spec.user` field for users that reference clusters not running version 8.0.0.
+
+**[K8S-4566](https://jira.issues.couchbase.com/browse/K8S-4566/)**
+
+Fixed an issue where a pod on a previous version as part of previous version pod count could inadvertently be upgraded due to a non-image change.
+
+**[K8S-4580](https://jira.issues.couchbase.com/browse/K8S-4580/)**
+
+Added `cao.couchbase.com/upgrade.swapRebalanceIndexServiceUpgrades` which allows Index service nodes to be swap rebalanced while in place upgrading the rest of the cluster.
+
+**[K8S-4607](https://jira.issues.couchbase.com/browse/K8S-4607/)**
+
+Fixed an issue where operator would not respect stabilization period on InPlace upgrades.
+
+**[K8S-4614](https://jira.issues.couchbase.com/browse/K8S-4614/)**
+
+Fixed an issue where version checks were lexicographical and not numerical.
+
+### [](#known-issues-v291)Known Issues in 2.9.1
+
+**[K8S-4691](https://jira.issues.couchbase.com/browse/K8S-4691/)**
+
+If a bucket resource exists and the storage backend is manually changed via the Couchbase Server API, the operator will not perform the swap rebalances necessary to make these changes, even if the cluster's `spec.buckets.managed` is `false`.
 
 ## [](#release-290)Release 2.9 (December 2025)
 
 Couchbase Kubernetes Operator 2.9 was released in December 2025\. This release contains fixes to issues and known issues.
 
 ### [](#fixed-issues-v290)Fixed Issues in 2.9
-
-For Couchbase Kubernetes Operator 2.9 released in December 2025, these are the fixed issues.
 
 **[K8S-1537](https://jira.issues.couchbase.com/browse/K8S-1537/)**
 
