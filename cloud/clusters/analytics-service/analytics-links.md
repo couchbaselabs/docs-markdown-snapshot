@@ -2,7 +2,7 @@
 title: Analytics Links
 description: In the Analytics Workbench, you can create and manage external links.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/analytics-service/analytics-links.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-05-02T05:28:41.565Z
 link: xref:cloud:clusters:analytics-service/analytics-links.adoc[]
 ---
 
@@ -23,21 +23,19 @@ To use all of the functionality in the Analytics Workbench, you must have the [P
 
 The Analytics Scopes area shows all Analytics scopes, and any links that exist within each scope. This includes information about the type of link, their connection status, and a Trash button () that allows you to drop each remote link.
 
-![The links in the Analytics Scopes area.](../_images/analytics-scopes-working-area.png) 
-
 > [!NOTE]
-> It is not possible to modify an existing link. If you want to modify an existing link, you must delete it and recreate it.
+> It's not possible to modify an existing link. If you want to modify an existing link, you must delete it and recreate it.
 
 ## [](#s3)Create an Amazon S3 Link
 
 To create an S3 link:
 
-1. Click the **Add Remote Link** button (+) next to the Analytics scope where you want to create the link.  
+1. Click the **Add Remote Link** button () next to the Analytics scope where you want to create the link.  
 The **Add Link** flyout is shown.
 2. Click the **S3** option.
 3. In the **Name** field, enter a name for the link.
-4. In the **Access Key ID** field, enter the access AWS key ID you are using to access Amazon S3.
-5. In the **Secret Access Key** field, enter the secret access key you are using to access Amazon S3.
+4. In the **Access Key ID** field, enter the access AWS key ID you're using to access Amazon S3.
+5. In the **Secret Access Key** field, enter the secret access key you're using to access Amazon S3.
 6. Using the **Region** drop-down menu, choose the AWS region where your S3 bucket resides.
 7. (Optional) In the **Service Endpoint** field, enter a service endpoint to connect to rather than the default S3 endpoint.
 8. Click **Create** to create the link.  
@@ -52,7 +50,7 @@ If you close the Add Link flyout without creating the link, any information you 
 
 To create a Google Cloud Storage link:
 
-1. Click the **Add Remote Link** button (+) next to the Analytics scope where you want to create the link.  
+1. Click the **Add Remote Link** button () next to the Analytics scope where you want to create the link.  
 The **Add Link** flyout is shown.
 2. Click the **Google Cloud Storage** option.
 3. In the **Name** field, enter a name for the link.
@@ -71,7 +69,7 @@ If you close the Add Link flyout without creating the link, any information you 
 
 To create an Azure Blob link:
 
-1. Click the **Add Remote Link** button (+) next to the Analytics scope where you want to create the link.  
+1. Click the **Add Remote Link** button () next to the Analytics scope where you want to create the link.  
 The **Add Link** flyout is shown.
 2. Click the **Azure Blob** option.
 3. In the **Name** field, enter a name for the link.
@@ -110,5 +108,5 @@ If you close the Add Link flyout without creating the link, any information you 
 To delete a link:
 
 1. In the list of existing links, click on the Trash icon () next to the link entry.  
-A flyout appears, asking if you are sure that you want to delete the link.
+A flyout appears, asking if you're sure that you want to delete the link.
 2. In the provided field, type the name of the link you're deleting and click **Drop**.

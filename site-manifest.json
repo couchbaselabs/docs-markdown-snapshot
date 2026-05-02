@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1777614443496,
+  "generated": 1777700054268,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -49013,7 +49013,7 @@
               "module": "hello-world",
               "path": "overview.adoc",
               "url": "/kotlin-sdk/current/hello-world/overview.md",
-              "title": "Couchbase Kotlin SDK 3.9"
+              "title": "Couchbase Kotlin SDK 3.11"
             },
             {
               "module": "hello-world",
@@ -49196,7 +49196,7 @@
               "module": "ROOT",
               "path": "index.adoc",
               "url": "/kotlin-sdk/current/hello-world/overview.md",
-              "title": "Couchbase Kotlin SDK 3.9"
+              "title": "Couchbase Kotlin SDK 3.11"
             },
             {
               "alias": true,
@@ -49459,7 +49459,7 @@
               "module": "hello-world",
               "path": "overview.adoc",
               "url": "/kotlin-sdk/3.10/hello-world/overview.md",
-              "title": "Couchbase Kotlin SDK 3.9"
+              "title": "Couchbase Kotlin SDK 3.10"
             },
             {
               "module": "hello-world",
@@ -49636,7 +49636,7 @@
               "module": "ROOT",
               "path": "index.adoc",
               "url": "/kotlin-sdk/3.10/hello-world/overview.md",
-              "title": "Couchbase Kotlin SDK 3.9"
+              "title": "Couchbase Kotlin SDK 3.10"
             },
             {
               "alias": true,

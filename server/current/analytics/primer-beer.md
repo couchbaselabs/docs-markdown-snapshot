@@ -3,7 +3,7 @@ title: Analytics Tutorial
 description: This tutorial introduces the main features of Couchbase Analytics
   through examples.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/primer-beer.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-05-02T05:28:41.565Z
 link: xref:server:analytics:primer-beer.adoc[]
 ---
 
@@ -20,34 +20,34 @@ This tutorial explores the use of Analytics for the important task of vacation p
 
 As you read through this document, you should try each step for yourself on your own Analytics instance. You can use your favorite Analytics interface to do this: the Analytics Workbench, the [cbq shell](../n1ql/n1ql-intro/cbq.md), or the REST API. For details, see [Running Queries](run-query.md).
 
-You can verify that everything's working by issuing a simple SQL++ for Analytics test query as shown below:
+You can verify that everything's working by issuing a minimal SQL++ for Analytics test query as shown below:
 
 ```sqlpp
 "It's time for a vacation!";
 ```
 
-Once you have reached the end of this tutorial, you will be armed and dangerous, having all the basic Analytics knowledge that you'll need to start down the path of exploring the power of NoSQL data Analytics. You will find this to be a freeing experience: Analytics queries never touch your Couchbase data servers, running instead (in parallel) on real-time shadow copies of your data. As a result, you won't need to worry about slowing down the Couchbase Server nodes with complex queries, you won't have to create indexes before you can begin exploring your data, and the query language won't try to keep you from asking queries that would be too performance-costly for your data servers.
+Once you have reached the end of this tutorial, you'll be armed and dangerous, having all the basic Analytics knowledge that you'll need to start down the path of exploring the power of NoSQL data Analytics. You'll find this to be a freeing experience: Analytics queries never touch your Couchbase data servers, running instead (in parallel) on real-time shadow copies of your data. As a result, you won't need to worry about slowing down the Couchbase Server nodes with complex queries, you won't have to create indexes before you can begin exploring your data, and the query language won't try to keep you from asking queries that would be too performance-costly for your data servers.
 
 ## [](#The%5Fworld%5Fof%5Fdata%5Fin%5Fanalytics)The World of Data in Analytics
 
-In this section you will learn about the Analytics world model for data.
+In this section you'll learn about the Analytics world model for data.
 
 ### [](#Organizing%5Fdata%5Fin%5Fanalytics)Organizing Data in Analytics
 
 The top-level organizing concept in the Analytics data world is the **Analytics scope**, also previously known as a dataverse (short for data universe). An Analytics scope (dataverse) is a namespace that gives you a place to create and manage Analytics collections and other artifacts for a given Analytics application. In that respect, an Analytics scope is similar to a database or a schema in a relational DBMS. To store your data in Analytics, you can create an Analytics scope and then use it to hold the Analytics collections for your data. You also get a **Default** Analytics scope. Analytics will use this scope automatically if you do not specify another Analytics scope.
 
-**Analytics collections**, also previously known as datasets, are containers that hold collections of JSON objects. They are similar to tables in an RDBMS or keyspaces (collections) in the Couchbase Query service. An Analytics collection (dataset) is linked to a Couchbase bucket or a collection so that the Analytics collection can ingest data from Couchbase Server. In this tutorial, the Analytics collections that you create will each contain real-time synchronized copies of data from Couchbase Server collections. Analytics uses DCP to automatically maintain its own local representations for the JSON documents in the Couchbase Server data nodes.
+**Analytics collections**, also previously known as datasets, are containers that hold collections of JSON objects. They're similar to tables in an RDBMS or keyspaces (collections) in the Couchbase Query Service. An Analytics collection (dataset) is linked to a Couchbase bucket or a collection so that the Analytics collection can ingest data from Couchbase Server. In this tutorial, the Analytics collections that you create will each contain real-time synchronized copies of data from Couchbase Server collections. Analytics uses DCP to automatically maintain its own local representations for the JSON documents in the Couchbase Server data nodes.
 
 Like the rest of the Couchbase Server platform, Analytics does not prescribe a schema for the information that an Analytics collection may contain. This allows your data items to vary from one instance to another, and it leaves room for your applications to evolve immediately as their data requirements change.
 
-From a data perspective, a newly created Analytics service instance starts out empty. That is, it contains no data other than the Analytics system catalogs. These system catalogs live in a special Analytics scope called the **Metadata** scope.
+From a data perspective, a newly created Analytics Service instance starts out empty. This means it contains no data other than the Analytics system catalogs. These system catalogs live in a special Analytics scope called the **Metadata** scope.
 
 > [!NOTE]
-> The current terminology in the system catalogs uses the terms dataverse and dataset, as you will see if you query them directly. Again, those are older synonyms for the terms Analytics scope and Analytics collection.
+> The current terminology in the system catalogs uses the terms dataverse and dataset, as you'll see if you query them directly. Again, those are older synonyms for the terms Analytics scope and Analytics collection.
 
-If you want to see what Analytics scopes have been defined so far for your user data, the simplest way is to look at the **Analytics Scopes, Links, & Collections** panel on the Analytics Workbench in the Couchbase Server Web Console. Initially you will see one Analytics scope, named **Default**, which has no collections yet but is available for holding user collections when no other scope has been specified. That panel is organized by scope; within each scope you will see one or more links — references to Couchbase Server clusters — and under each link is a list of the Analytics collections in this Analytics service instance that are coming from Data service collections in the referenced cluster. Initially there is just a Local link, referring to the cluster where this Analytics service instance is running.
+If you want to see what Analytics scopes have been defined so far for your user data, the simplest way is to look at the **Analytics Scopes, Links, & Collections** panel on the Analytics Workbench in the Couchbase Server Web Console. Initially you'll see one Analytics scope, named **Default**, which has no collections yet but is available for holding user collections when no other scope has been specified. That panel is organized by scope; within each scope you'll see one or more links — references to Couchbase Server clusters — and under each link is a list of the Analytics collections in this Analytics Service instance that are coming from Data service collections in the referenced cluster. Initially there is just a Local link, referring to the cluster where this Analytics Service instance is running.
 
-Our sample scenario here deals with travel information. You should start by installing the travel-sample bucket (using the Couchbase Web Console **Settings** **Sample Buckets**tab) in order to try all of the steps for yourself. Your first task will be to tell Analytics about the Data service collections that you want it to shadow and the Analytics collections where you want the data to live. There is quite a bit of mapping flexibility available there, but we will keep things simple for now. The following series of Analytics DDL statements shows you how to tell Analytics to track the collections of interest in the travel-sample bucket in the Data service, which is where the desired travel data resides. These statements instruct Analytics to shadow the Data service collections in a set of corresponding Analytics collections:
+Our sample scenario here deals with travel information. You should start by installing the travel-sample bucket (using the Couchbase Web Console **Settings** **Sample Buckets**tab) in order to try all of the steps for yourself. Your first task will be to tell Analytics about the Data service collections that you want it to shadow and the Analytics collections where you want the data to live. Quite a bit of mapping flexibility is available there, but we will keep things straightforward for now. The following series of Analytics DDL statements shows you how to tell Analytics to track the collections of interest in the travel-sample bucket in the Data service, which is where the desired travel data resides. These statements instruct Analytics to shadow the Data service collections in a set of corresponding Analytics collections:
 
 ```sqlpp
 ALTER COLLECTION `travel-sample`.inventory.airport ENABLE ANALYTICS;
@@ -57,13 +57,13 @@ ALTER COLLECTION `travel-sample`.inventory.landmark ENABLE ANALYTICS;
 ALTER COLLECTION `travel-sample`.inventory.hotel ENABLE ANALYTICS;
 ```
 
-In slightly more detail, these `ALTER COLLECTION` statements operate on the `airport`, `airline`, `route`, `landmark`, and `hotel` collections, respectively, each of which resides in the inventory scope of the `travel-sample` bucket in the local cluster's Data service. Since your Analytics instance started out empty, the first of these statements will have an extra side-effect — it will also create a corresponding scope in Analytics where your Analytics collections will reside. The statements then create the target Analytics collections in Analytics for the data of interest. You can also do the same by clicking **Map From Data Service Collections**. The resulting Analytics collections are separate copies of your data that will be hash-partitioned (sharded) across all of the nodes running instances of the Analytics service. The hash partitioning sets the stage for the parallel processing that Analytics employs when processing complex analytical queries.
+In slightly more detail, these `ALTER COLLECTION` statements operate on the `airport`, `airline`, `route`, `landmark`, and `hotel` collections, respectively, each of which resides in the inventory scope of the `travel-sample` bucket in the local cluster's Data service. Since your Analytics instance started out empty, the first of these statements will have an extra side-effect — it will also create a corresponding scope in Analytics where your Analytics collections will reside. The statements then create the target Analytics collections in Analytics for the data of interest. You can also do the same by clicking **Map From Data Service**. The resulting Analytics collections are separate copies of your data that will be hash-partitioned (sharded) across all of the nodes running instances of the Analytics Service. The hash partitioning sets the stage for the parallel processing that Analytics employs when processing complex analytical queries.
 
-The shadowing relationship of these Analytics collections to the data in Couchbase Server begins immediately upon execution of each `ALTER COLLECTION` statement (as you may have already inferred from the activity on the right-hand side of the Analytics Workbench). As each statement is run, Analytics begins ingesting its own copy of the corresponding Couchbase Server collection and continuously monitors it for changes. To do so, it makes use of a link (in this case the Local link) between your Analytics scope and the Data service of the Couchbase Server cluster where the to-be-shadowed data resides. In this case, the data of interest is in the local server (i.e., it is managed by the Data service in the same cluster). Remember: Analytics creates its own copy of your data, which provides the performance isolation that makes it safe to run potentially expensive queries at the same time the Data Service is servicing your operational applications. This is also why it is crucial for the Analytics Service to run on its own nodes within your Couchbase Server cluster; no other services should ever be co-located with Analytics in production.
+The shadowing relationship of these Analytics collections to the data in Couchbase Server begins immediately upon execution of each `ALTER COLLECTION` statement (as you may have already inferred from the activity on the right-hand side of the Analytics Workbench). As each statement is run, Analytics begins ingesting its own copy of the corresponding Couchbase Server collection and continuously monitors it for changes. To do so, it makes use of a link (in this case the Local link) between your Analytics scope and the Data service of the Couchbase Server cluster where the to-be-shadowed data resides. In this case, the data of interest is in the local server: in other words, it's managed by the Data service in the same cluster). Remember: Analytics creates its own copy of your data, which provides the performance isolation that makes it safe to run potentially expensive queries at the same time the Data Service is servicing your operational applications. This is also why it's crucial for the Analytics Service to run on its own nodes within your Couchbase Server cluster; no other services should ever be co-located with Analytics in production.
 
 ### [](#Whats%5Flurking%5Fin%5Fthe%5Fshadows)Querying the Shadow Data
 
-You can see that your Analytics collections are all there and being populated by looking at the **Analytics Scopes, Links, & Collections** panel. If you have been following along with the tutorial, you will see only your five new Analytics collections listed.
+You can see that your Analytics collections are all there and being populated by looking at the **Analytics Scopes, Links, & Collections** panel. If you have been following along with the tutorial, you'll see only your five new Analytics collections listed.
 
 You can now have a look at your Analytics data.
 
@@ -81,18 +81,18 @@ It returns:
 ]
 ```
 
-Since always specifying the scope explicitly for a collection can be tedious, you can use the **query context**drop-down list at the top right of the Query Editor to select `travel-sample.inventory` as the default scope for the collection names in your queries:
+Since always specifying the scope explicitly for a collection can be tedious, you can use the **query context**drop-down list at the top right of the query editor to select `travel-sample.inventory` as the default scope for the collection names in your queries:
 
 ![The query context drop-down menu](_images/workbench-context-menu.png) 
 
-You can then simply enter the following to obtain the same result as above:
+You can then enter the following to obtain the same result as above:
 
 ```sqlpp
 SELECT VALUE COUNT(*) FROM airline;
 ```
 
 > [!IMPORTANT]
-> For the rest of this tutorial, it is assumed that the query context is set to `travel-sample.inventory`.
+> For the rest of this tutorial, it's assumed that the query context is set to `travel-sample.inventory`.
 
 The next query retrieves a sample airline:
 
@@ -316,11 +316,11 @@ SELECT VALUE ht FROM hotel ht ORDER BY name LIMIT 1;
 
 Congratulations! You now have your Couchbase Server travel-related data being shadowed in Analytics. You're ready to start running ad hoc queries against your Analytics travel collections.
 
-To do this, you'll query Analytics using SQL++ for Analytics, a SQL-inspired language designed for working with semistructured data. This language has much in common with SQL, but there are differences due to the data model that SQL++ for Analytics is designed to serve. SQL was designed in the 1970s to interact with the flat, schematic world of relational databases. SQL++ for Analytics is designed for the nested, schemaless world of NoSQL systems. SQL++ for Analytics offers a mostly familiar paradigm for experienced SQL users to use to query and manipulate data in Analytics. SQL++ for Analytics is also closely related to SQL++ for Query, the query language used in the Query service of Couchbase Server. SQL++ for Analytics is mostly a functional superset of SQL++ for Query that is a bit closer to SQL, and the differences between the two SQL++ variants is shrinking over time (and should all but disappear) from release to release.
+To do this, you'll query Analytics using SQL++ for Analytics, a SQL-inspired language designed for working with semistructured data. This language has much in common with SQL, but there are differences due to the data model that SQL++ for Analytics is designed to serve. SQL was designed in the 1970s to interact with the flat, schematic world of relational databases. SQL++ for Analytics is designed for the nested, schemaless world of NoSQL systems. SQL++ for Analytics offers a mostly familiar paradigm for experienced SQL users to use to query and manipulate data in Analytics. SQL++ for Analytics is also closely related to SQL++ for Query, the query language used in the Query Service of Couchbase Server. SQL++ for Analytics is mostly a functional superset of SQL++ for Query that's a bit closer to SQL, and the differences between the two SQL++ variants is shrinking over time (and should all but disappear) from release to release.
 
 In this section, we introduce SQL++ for Analytics via a set of example queries with their expected results, based on the data above, to help you get started. Many of the most important features of SQL++ for Analytics are presented in this set of representative queries.
 
-For more information on the query language, see [SQL++ for Analytics Reference](1%5Fintro.md)and the list of built-in functions in [Builtin Functions](8%5Fbuiltin.md). As you will learn, SQL++ for Analytics is a highly composable expression language. Even the very simple expression `1 + 1` is a valid query that evaluates to `2`. Try it for yourself!
+For more information on the query language, see [SQL++ for Analytics Reference](1%5Fintro.md)and the list of built-in functions in [Builtin Functions](8%5Fbuiltin.md). As you'll learn, SQL++ for Analytics is a highly composable expression language. Even the expression `1 + 1` is a valid query that evaluates to `2`. Try it for yourself!
 
 It's worth noting that each time you execute a query, the Analytics query engine employs state-of-the-art parallel processing algorithms similar to those used by the parallel relational DBMSs that power many enterprise data warehouses. Unlike those systems, Analytics also works on rich, flexible schema data.
 
@@ -389,7 +389,7 @@ This query's expected result is:
 ]
 ```
 
-In SQL++ for Analytics you can select a single value (whether it be an atomic or scalar value or an object value or an array value) by using a `SELECT VALUE` clause as shown above. If you instead use the more SQL-familiar `SELECT` clause, SQL++ for Analytics will return objects instead of values, and you will get a slightly differently shaped result using `SELECT al` instead of `SELECT VALUE al`:
+In SQL++ for Analytics you can select a single value (whether it be an atomic or scalar value or an object value or an array value) by using a `SELECT VALUE` clause as shown above. If you instead use the more SQL-familiar `SELECT` clause, SQL++ for Analytics will return objects instead of values, and you'll get a slightly differently shaped result using `SELECT al` instead of `SELECT VALUE al`:
 
 ```json
 [
@@ -460,7 +460,7 @@ The expected result for this query is as follows:
 
 ### [](#Query%5Fequijoin)Equijoin
 
-In addition to simply binding variables to data instances and returning them whole, a SQL++ for Analytics query can construct new objects to return based on combinations of variable bindings. This gives SQL++ for Analytics the power to do projections and joins much like those done using multi-table `FROM`clauses in SQL. For example, suppose that you wanted a list of all airlines paired with their associated non-stop routes, with the list enumerating the airline name and the source and destination airports for each such pair. You can do this as follows in SQL++ for Analytics while also ordering the results and limiting the answer set size to at most 3 results:
+In addition to binding variables to data instances and returning them whole, a SQL++ for Analytics query can construct new objects to return based on combinations of variable bindings. This gives SQL++ for Analytics the power to do projections and joins much like those done using multi-table `FROM`clauses in SQL. For example, suppose that you wanted a list of all airlines paired with their associated non-stop routes, with the list enumerating the airline name and the source and destination airports for each such pair. You can do this as follows in SQL++ for Analytics while also ordering the results and limiting the answer set size to at most 3 results:
 
 Query 3
 
@@ -511,7 +511,7 @@ ORDER BY al.airline, rt.origin, rt.destination
 LIMIT 3;
 ```
 
-In SQL++ for Analytics this `SELECT *` query will produce a new nested object for each airline/route pair. Each result object contains one field (named after the `airline` variable) to hold the airline object and another field (named after the `route` variable) to hold the matching route object. Note that the nested nature of this `SELECT *` result is different than traditional SQL, as SQL was not designed to handle the richer, nested data model that underlies the design of SQL++ for Analytics.
+In SQL++ for Analytics this `SELECT *` query will produce a new nested object for each airline/route pair. Each result object contains one field (named after the `airline` variable) to hold the airline object and another field (named after the `route` variable) to hold the matching route object. The nested nature of this `SELECT *` result is different than traditional SQL, as SQL was not designed to handle the richer, nested data model that underlies the design of SQL++ for Analytics.
 
 The expected result of this version of the join query for our sample data set is as follows:
 
@@ -652,7 +652,7 @@ ORDER BY al.airline, rt.origin, rt.destination
 LIMIT 3;
 ```
 
-Finally (for now 🙂), another more explicit SQL++ for Analytics way of achieving the very same result as above is:
+Finally (for now 🙂), another more explicit SQL++ for Analytics way of achieving the same result as above is:
 
 ```sqlpp
 SELECT VALUE {"al": al, "rt": rt}
@@ -663,9 +663,9 @@ ORDER BY al.airline, rt.origin, rt.destination
 LIMIT 3;
 ```
 
-This version of the query uses an explicit object constructor to build each result object. Note that the string field names `"al"` and `"rt"` in the object constructor above are both simple query expressions themselves, so in the most general case, even the resulting field names can be computed as part of the query.
+This version of the query uses an explicit object constructor to build each result object. The string field names `"al"` and `"rt"` in the object constructor above are both query expressions themselves, so in the most general case, even the resulting field names can be computed as part of the query.
 
-(It is worth knowing, with respect to influencing Analytics' query evaluation, that `FROM` and `JOIN` clauses — also known as joins — are currently evaluated in order, with the left clause probing the data of the right clause.)
+(It's worth knowing, with respect to influencing Analytics' query evaluation, that `FROM` and `JOIN` clauses — also known as joins — are currently evaluated in order, with the left clause probing the data of the right clause.)
 
 ### [](#Query%5Fnested%5Fouter%5Fjoin)Nested Outer Join
 
@@ -673,7 +673,7 @@ To support joins between tables with missing or dangling join tuples, SQL's `FRO
 
 The SQL++ for Analytics language supports nesting, both of queries and of query results, and the combination allows for a cleaner and more natural approach to such queries.
 
-As an example, suppose you wanted for each airline to produce an object that contains the airline name along with a list of their associated non-stop routes — i.e., a nested version of our earlier example, with the information on each route being its source and destination airports. In the flat (also known as 1NF) world of SQL, approximating this query would involve a left outer join between the airline and route collections, ordered by airline name, with the information for each route being repeated alongside each airline's information. You can also handle this use case using the following:
+As an example, suppose you wanted for each airline to produce an object that contains the airline name along with a list of their associated non-stop routes — in other words, a nested version of our earlier example, with the information on each route being its source and destination airports. In the flat (also known as 1NF) world of SQL, approximating this query would involve a left outer join between the airline and route collections, ordered by airline name, with the information for each route being repeated alongside each airline's information. You can also handle this use case using the following:
 
 Query 4
 
@@ -722,13 +722,13 @@ Below is this example query's expected output:
 ]
 ```
 
-Notice that, as desired in left outer join use cases, the query's result includes airlines that have no non-stop routes.
+As desired in left outer join use cases, the query's result includes airlines that have no non-stop routes.
 
 ### [](#Query%5Ftheta%5Fjoin)Theta Join
 
 Not all joins are expressible as equijoins and computable using equijoin-oriented algorithms. The join predicates for some use cases involve predicates with functions; Analytics supports the expression of such queries and will still evaluate them as best it can using nested loop based techniques (and broadcast joins in the parallel case).
 
-As an example of such a use case, suppose that you wanted for each California landmark to get the landmark's name, location, and a list of neighboring landmark's names — where neighbors are other landmarks that are geographically close to their location. In SQL++ for Analytics, this can be accomplished in a manner similar to the previous query, but with locality plus name inequality instead of a simple key equality condition in the correlated query's `WHERE` clause:
+As an example of such a use case, suppose that you wanted for each California landmark to get the landmark's name, location, and a list of neighboring landmark's names — where neighbors are other landmarks that are geographically close to their location. In SQL++ for Analytics, this can be accomplished in a manner similar to the previous query, but with locality plus name inequality instead of a key equality condition in the correlated query's `WHERE` clause:
 
 Query 5
 
@@ -903,7 +903,7 @@ Here is the expected result for this query:
 
 ### [](#Query%5Fexistential%5Fquantification)Existential Quantification
 
-SQL++ for Analytics includes support for queries involving some (existentially quantified) and all (universally quantified) query semantics. Quantified predicates are especially useful for querying Analytics collections involving nested collections of objects, in order to find objects where some or all of their nested sets' objects satisfy a condition of interest. To illustrate their use in such situations, we use an existential (`SOME`) predicate to find the names and phone numbers of hotels in Buena Park, California whose nested sets of reviews include at least one review with an overall rating of 5\. Here is the resulting SQL++ for Analytics query:
+SQL++ for Analytics includes support for queries involving some (existentially quantified) and all (universally quantified) query semantics. Quantified predicates are especially useful for querying Analytics collections involving nested collections of objects, in order to find objects where some or all of their nested sets' objects satisfy a condition of interest. To demonstrate their use in such situations, we use an existential (`SOME`) predicate to find the names and phone numbers of hotels in Buena Park, California whose nested sets of reviews include at least one review with an overall rating of 5\. Here is the resulting SQL++ for Analytics query:
 
 Query 6
 
@@ -953,7 +953,7 @@ WHERE ht.city = 'Buena Park'
   AND ARRAY_COUNT(ht.reviews) > 0
 ```
 
-Notice how the query's predicate also makes sure that the set of reviews for a qualifying hotel is non-empty; this is needed if we want our results to exclude hotels that have no reviews, as an empty set trivially satisfies a universal predicate. The expected result in this case is:
+The query's predicate also makes sure that the set of reviews for a qualifying hotel is non-empty; this is needed if we want our results to exclude hotels that have no reviews, as an empty set trivially satisfies a universal predicate. The expected result in this case is:
 
 ```json
 [
@@ -974,7 +974,7 @@ Notice how the query's predicate also makes sure that the set of reviews for a q
 
 ### [](#Query%5Funnesting)Unnesting
 
-When dealing with objects with nested data, it is sometimes necessary to unnest the nested data in order to operate on it more easily or to include it in a flat report. For example, we might want to print the hotel names and phone numbers and review text for reviews of hotels in Buena Park, California that rate the hotel as being a 5 in value as well as a 5 overall. Here is the resulting SQL++ for Analytics query:
+When dealing with objects with nested data, it's sometimes necessary to unnest the nested data in order to operate on it more easily or to include it in a flat report. For example, we might want to print the hotel names and phone numbers and review text for reviews of hotels in Buena Park, California that rate the hotel as being a 5 in value as well as a 5 overall. Here is the resulting SQL++ for Analytics query:
 
 Query 8
 
@@ -988,7 +988,7 @@ WHERE ht.city = 'Buena Park'
 ORDER BY ht.name;
 ```
 
-The `FROM` clause in this query clause binds the variable `ht` to hotels and, for each hotel, binds the variable `r` to each of their reviews, thus unnesting the hotels' reviews. This query can also be expressed equivalently as:
+The `FROM` clause in this query clause binds the variable `ht` to hotels and, for each hotel, binds the variable `r` to each of their reviews, unnesting the hotels' reviews. This query can also be expressed equivalently as:
 
 ```sqlpp
 SELECT ht.name, ht.phone, r.content
@@ -1049,7 +1049,7 @@ Both versions of the query produce the following result:
 
 ### [](#Query%5Fsimple%5Faggregation)Simple Aggregation
 
-Like SQL, the SQL++ for Analytics language provides support for computing aggregates over large amounts of data. As a very simple example, the following query computes the total number of hotels in a SQL-like way:
+Like SQL, the SQL++ for Analytics language provides support for computing aggregates over large amounts of data. As an example, the following query computes the total number of hotels in a SQL-like way:
 
 Query 9
 
@@ -1073,7 +1073,7 @@ If you prefer an unwrapped value, you could use the following variant instead:
 SELECT VALUE COUNT(ht) FROM hotel ht;
 ```
 
-This time the result will simply be:
+This time the result will be:
 
 ```json
 [
@@ -1081,7 +1081,7 @@ This time the result will simply be:
 ]
 ```
 
-In SQL++ for Analytics aggregate functions can be applied to arbitrary collections, including subquery results. To illustrate, here is a less SQL-like, and also more explicit, way to express the query above:
+In SQL++ for Analytics aggregate functions can be applied to arbitrary collections, including subquery results. To demonstrate, here is a less SQL-like, and also more explicit, way to express the query above:
 
 ```sqlpp
 SELECT VALUE ARRAY_COUNT((SELECT ht FROM hotel ht));
@@ -1194,7 +1194,7 @@ The result of this query is the same (albeit in a slightly different order):
 
 ### [](#Query%5Fgrouping%5Fand%5Flimits)Grouping and Limits
 
-In some use cases it is not necessary to compute the entire answer to a query. In some cases, just having the first N or top N results are sufficient. This is expressible in SQL++ for Analytics using the `LIMIT` clause combined with the `ORDER BY` clause. Previous examples have used the `LIMIT` clause to keep the result set sizes small.
+In some use cases it's not necessary to compute the entire answer to a query. In some cases, just having the first N or top N results are sufficient. This is expressible in SQL++ for Analytics using the `LIMIT` clause combined with the `ORDER BY` clause. Previous examples have used the `LIMIT` clause to keep the result set sizes small.
 
 The following query returns the top five hotels in Los Angeles based on their overall average review score. It also illustrates the use of multiple aggregate functions to compute various review statistics, and it uses a `HAVING` clause to avoid considering hotels where any of the reviews had an overall score of 3 or lower:
 
@@ -1263,7 +1263,7 @@ The expected result for this query is:
 
 ### [](#Everything%5Fmust%5Fchange)Everything Must Change
 
-So far you have been walking through the read-only query capabilities of Analytics. What really makes Analytics interesting, however, is that it brings this query power to bear on your nearly-current Couchbase Server data, enabling you to harness the power of parallelism in Analytics to analyze what's going on with your data "up front" in essentially real time, without perturbing your Couchbase Server applications' performance (or the resulting end user experience). Before closing this tutorial, let's take a very quick look at that aspect of Analytics.
+So far you have been walking through the read-only query capabilities of Analytics. What really makes Analytics interesting, however, is that it brings this query power to bear on your nearly-current Couchbase Server data, enabling you to harness the power of parallelism in Analytics to analyze what's going on with your data "up front" in essentially real time, without perturbing your Couchbase Server applications' performance (or the resulting end user experience). Before closing this tutorial, let's take a quick look at that aspect of Analytics.
 
 Let's launch a new hotel in Buena Park, California, a city close to both Disneyland and Knott's Berry Farm. Our new hotel will be called "Post-Pandemic Paradise and Paws". Let's see how we can add our new hotel to the travel database via the Query Service and watch it be reflected immediately in Analytics.
 
@@ -1303,7 +1303,7 @@ The result of this query will be a list of the following four hotels:
 ]
 ```
 
-To illustrate Analytics in action, let's open the new hotel. You can use your favorite Couchbase Server interface to modify the server's hotel content accordingly, for example, by switching to the Query service and running the following SQL++ insert query. Make sure the query context is set to `travel-sample.inventory` before running this query.
+To demonstrate Analytics in action, let's open the new hotel. You can use your favorite Couchbase Server interface to modify the server's hotel content accordingly, for example, by switching to the Query Service and running the following SQL++ insert query. Make sure the query context is set to `travel-sample.inventory` before running this query.
 
 ```sqlpp
 INSERT INTO hotel ( KEY, VALUE )
@@ -1336,7 +1336,7 @@ INSERT INTO hotel ( KEY, VALUE )
 RETURNING META().id as docid, *;
 ```
 
-Analytics will shadow this change, updating the hotel Analytics collection as a result. Switch back to the Analytics service and make sure the query context is still set to `travel-sample.inventory`. Then go ahead and rerun the query that lists the Buena Park hotels.
+Analytics will shadow this change, updating the hotel Analytics collection as a result. Switch back to the Analytics Service and make sure the query context is still set to `travel-sample.inventory`. Then go ahead and rerun the query that lists the Buena Park hotels.
 
 ```sqlpp
 SELECT ht.name, ht.phone, ht.address
@@ -1377,16 +1377,16 @@ The result of the query now includes our new venture:
 ]
 ```
 
-To further illustrate Analytics in action, suppose that that we fail to obtain a liquor license for our new hotel. If that happens, we might as well not open our new hotel after all, in which case you can use your favorite SQL++ interface again to modify the Couchbase Server's hotel content accordingly. Again, when you switch to the Query service, make sure the query context is still set to `travel-sample.inventory`.
+To further demonstrate Analytics in action, suppose that we fail to obtain a liquor license for our new hotel. If that happens, we might as well not open our new hotel after all, in which case you can use your favorite SQL++ interface again to modify the Couchbase Server's hotel content accordingly. Again, when you switch to the Query Service, make sure the query context is still set to `travel-sample.inventory`.
 
 ```sqlpp
 DELETE FROM hotel ht USE KEYS "hotel_7777";
 ```
 
-Finally, if you run the Buena Park hotel list query on Analytics once again, you will find that this deletion has been immediately shadowed in Analytics as well. Again, when you switch to the Analytics service, make sure the query context is still set to `travel-sample.inventory`.
+Finally, if you run the Buena Park hotel list query on Analytics once again, you'll find that this deletion has been immediately shadowed in Analytics as well. Again, when you switch to the Analytics Service, make sure the query context is still set to `travel-sample.inventory`.
 
 > [!NOTE]
-> Changes in the data are usually shadowed in Analytics in almost real time. However, if a Data node fails over, the Analytics service may have to resynchronize data from scratch. When this happens, there is a chance that Analytics queries may return incomplete results until the resynchronization process is complete. You can use the [Analytics Workbench](run-query.md#Using%5Fanalytics%5Fworkbench)or the [REST API](rest-analytics.md) to check the progress of resynchronization.
+> Changes in the data are usually shadowed in Analytics in almost real time. However, if a Data node fails over, the Analytics Service may have to resynchronize data from scratch. When this happens, there is a chance that Analytics queries may return incomplete results until the resynchronization process is complete. You can use the [Analytics Workbench](run-query.md#Using%5Fanalytics%5Fworkbench)or the [REST API](rest-analytics.md) to check resynchronization.
 
 ## [](#Indexing)And of Course, Indexing
 
@@ -1414,9 +1414,9 @@ This query returns:
 ]
 ```
 
-For the curious, you can verify the use of an index by comparing the query plans that are produced (by using the **Plan** tab in the Analytics Query Editor) both with and without the existence of the index.
+For the curious, you can verify the use of an index by comparing the query plans that are produced (by using the **Plan** tab in the Analytics query editor) both with and without the existence of the index.
 
-If you execute the above query in the absence of an index and click on **Plan** to see the query plan, you will see a result that looks like the following:
+If you execute the above query in the absence of an index and click on **Plan** to see the query plan, you'll see a result that looks like the following:
 
 ![Query plan showing no index](_images/query-plan-no-index.png) 
 
@@ -1430,19 +1430,19 @@ The following DDL statement can be used to accelerate the execution of this quer
 CREATE INDEX callsignidx ON airline (callsign: STRING);
 ```
 
-Note that a CREATE INDEX statement needs to specify the type as well as the name of the field to be indexed; the above `callsignidx` will be used to speed queries that have string-based `callsign` predicates.
+A CREATE INDEX statement needs to specify the type as well as the name of the field to be indexed; the above `callsignidx` will be used to speed queries that have string-based `callsign` predicates.
 
-If you execute the query again after creating the index, you will see a more complex query plan that uses the newly created index:
+If you execute the query again after creating the index, you'll see a more complex query plan that uses the newly created index:
 
 ![Query plan showing use of index](_images/query-plan-index.png) 
 
-Notice how the plan's summary line shows that it uses the `airline` Analytics collection (`"travel-sample/inventory"."airline"`) and its `callsignidx` secondary index. The query plan involves first performing an index scan on the secondary index (the first `unnest-map` operation) to find airlines whose `callsign` is "SUN COUNTRY". Doing so yields a sequence of primary keys for qualifying airlines; that sequence is then sorted (the `order`operation) and used to look up the associated airlines (the second `unnest-map` operation) in the `hotel` Analytics collection (using its primary index). Clicking on a node in the query plan will reveal more of its details. The remainder of the query plan is similar to the earlier unindexed plan.
+The plan's summary line shows that it uses the `airline` Analytics collection (`"travel-sample/inventory"."airline"`) and its `callsignidx` secondary index. The query plan involves first performing an index scan on the secondary index (the first `unnest-map` operation) to find airlines whose `callsign` is `"SUN COUNTRY"`. Doing so yields a sequence of primary keys for qualifying airlines; that sequence is then sorted (the `order`operation) and used to look up the associated airlines (the second `unnest-map` operation) in the `hotel` Analytics collection (using its primary index). Clicking on a node in the query plan will reveal more of its details. The remainder of the query plan is similar to the earlier unindexed plan.
 
 ## [](#Further%5Fhelp)Further Help
 
-That's it! You are now armed and dangerous with respect to semistructured data management using Analytics via SQL++ for Analytics. For more information, see [SQL++ for Analytics Reference](1%5Fintro.md), or consult the complete list of built-in functions in [Builtin Functions](8%5Fbuiltin.md).
+That's it! You're now armed and dangerous with respect to semistructured data management using Analytics via SQL++ for Analytics. For more information, see [SQL++ for Analytics Reference](1%5Fintro.md), or consult the complete list of built-in functions in [Builtin Functions](8%5Fbuiltin.md).
 
-Couchbase Analytics lets you bring a powerful new NoSQL parallel query engine to bear on your data, using the latest state of the art parallel query processing techniques under the hood. We hope you find it useful in exploring and analyzing your Couchbase Server data — without having to worry about end user performance impact or doing additional schema design and ETL grunt work to make your NoSQL data analyses possible.
+Couchbase Analytics lets you bring a powerful new NoSQL parallel query engine to bear on your data, using the latest state of the art parallel query processing techniques under the hood. We hope you find it useful in exploring and analyzing your Couchbase Server data — without having to worry about end user performance or doing additional schema design and ETL grunt work to make your NoSQL data analyses possible.
 
 Use it wisely, and remember: "With great power comes great responsibility…​" 🙂
 

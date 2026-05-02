@@ -3,7 +3,7 @@ title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-05-02T05:28:41.565Z
 link: xref:go-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -188,7 +188,9 @@ if err != nil {
 }
 ```
 
-Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API. Here's an example of one which replaces one path and removes another.
+Dictionary values can also be replaced or removed, and you may combine any multiple Sub-Document operations — these are formed into a single command packet, which is then executed atomically on the server. You can submit up to 16 operations at a time.
+
+Here's an example of one which replaces one path and removes another.
 
 Combine multiple mutate operations
 

@@ -2,7 +2,7 @@
 title: Make an API Call with Capella AI Services APIs
 description: How to make an API call with the Couchbase AI Services APIs.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-use.adoc
-pubDate: 2026-04-01T05:25:30.286Z
+pubDate: 2026-05-02T05:28:41.565Z
 link: xref:ai:api-guide:api-use.adoc[]
 ---
 
@@ -40,9 +40,7 @@ You can use a client such as [cURL](https://curl.se) or a native SDK call to mak
 To make an API call:
 
 1. Use the following base URL:  
-```text  
-https://cloudapi.cloud.couchbase.com  
-```
+https://cloudapi.cloud.couchbase.com
 2. Pass your API key as a Bearer token using the HTTP `Authorization` header.
 3. If a request body is required, pass it in JSON format.
 
