@@ -3,7 +3,7 @@ title: Application Telemetry
 description: You can enable application telemetry to have Couchbase Server
   periodically collect telemetry from your clients that use the Couchbase SDK.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/application-telemetry.adoc
-pubDate: 2026-03-31T05:15:32.656Z
+pubDate: 2026-05-06T05:34:55.761Z
 link: xref:server:rest-api:application-telemetry.adoc[]
 ---
 
@@ -44,7 +44,7 @@ Your Couchbase Server cluster and your clients must meet the following requireme
 | [Python](../../../python-sdk/current/hello-world/overview.md)  | 4.5                                                |
 | [Ruby](../../../ruby-sdk/current/hello-world/overview.md)      | 3.7                                                |
 | [Scala](../../../scala-sdk/current/hello-world/overview.md)    | 3.9                                                |
-* Your clients must be able to connect to the node's management port to create the WebSocket connection for telemetry data collection. The default management port is 8091 for unencrypted connections and 18901 for encrypted connections. Make sure any firewall rules between your clients and the nodes allow traffic on the management port.
+* Your clients must be able to connect to the node's management port to create the WebSocket connection for telemetry data collection. The default management port is 8091 for unencrypted connections and 18091 for encrypted connections. Make sure any firewall rules between your clients and the nodes allow traffic on the management port.
 
 ## [](#http-methods)HTTP Methods
 

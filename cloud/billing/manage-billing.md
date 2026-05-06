@@ -2,7 +2,7 @@
 title: Manage Billing Information
 description: Manage and audit billing information for your organization and clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/manage-billing.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-05-06T05:34:55.761Z
 link: xref:cloud:billing:manage-billing.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:cloud:billing:manage-billing.adoc[]
 > [!NOTE]
 > If you do not have a Couchbase Capella account, see [Create an Account and Deploy Your Free Tier Operational Cluster](../get-started/create-account.md).
 
-You can [view your billing and usage information](#access-billing) for Couchbase Capella from your organization's **Billing** tab.
+You can [view your billing and usage information](usage-invoices.md) for Couchbase Capella from your organization's **Billing** tab, or the [Management REST API](../management-api-reference/index.md#tag/Billing).
 
 To upgrade from a free tier operational plan to a paid Support Plan, see [Upgrade Your Account](upgrade-account.md).
 

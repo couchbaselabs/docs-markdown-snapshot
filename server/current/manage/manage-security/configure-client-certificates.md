@@ -2,7 +2,7 @@
 title: Configure Client Certificates
 description: Couchbase Server supports client-authentication by means of X.509 certificates.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/configure-client-certificates.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-05-06T05:34:55.761Z
 link: xref:server:manage:manage-security/configure-client-certificates.adoc[]
 ---
 
@@ -173,7 +173,7 @@ export STOREPASS=storepass
 ```
 3. If necessary, install a package containing the `keytool` utility:  
 ```bash  
-sudo apt install openjdk-11-jre-headless  
+sudo apt install openjdk-17-jre-headless  
 ```  
 Note that available packages can be found by means of `sudo apt-cache search openjdk`.
 4. Generate the keystore. Note that the password you specify for the alias, by means of the `--keypass` flag, must be identical to the password you specify for the keystore, by means of the `--storepass` flag. In this case, both passwords are specified as `${STOREPASS}`; which resolves to `storepass`.  
@@ -228,7 +228,7 @@ cd javaclient
 export KEYSTORE_FILE=my.keystore  
 export STOREPASS=storepass
 3. If necessary, install a package containing the `keytool` utility:  
-sudo apt install openjdk-11-jre-headless
+sudo apt install openjdk-17-jre-headless
 4. Generate the keystore. Note that the password you specify for the alias, by means of the `--keypass` flag, must be identical to the password you specify for the keystore, by means of the `--storepass` flag. In this case, both passwords are specified as `${STOREPASS}`; which resolves to `storepass`.  
 keytool -genkey -keyalg RSA -alias selfsigned \
 -keystore ${KEYSTORE_FILE} -storepass ${STOREPASS} -validity 360 \

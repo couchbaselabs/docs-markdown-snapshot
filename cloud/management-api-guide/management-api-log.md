@@ -2,7 +2,7 @@
 title: Capella Operational Management API Change Log
 description: The change log for the Couchbase Capella Operational Management API.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-log.adoc
-pubDate: 2026-04-08T05:18:32.349Z
+pubDate: 2026-05-06T05:34:55.761Z
 link: xref:cloud:management-api-guide:management-api-log.adoc[]
 ---
 
@@ -16,6 +16,12 @@ This page is for Capella operational. For Capella AI Services, see [Capella AI S
 ## [](#version-4-0-0)Version 4.0.0
 
 Initial release.
+
+### [](#may-2026-changes)May 2026 Changes
+
+| Operation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Get Categorized Billing](../management-api-reference/index.md#tag/Billing/operation/categorizedBilling) [Get Itemized Billing Per Cluster](../management-api-reference/index.md#tag/Billing/operation/itemizedBillingPerCluster) [Get Prepaid Credits Billing](../management-api-reference/index.md#tag/Billing/operation/prepaidCreditsBilling) [Get Pay As You Go Billing](../management-api-reference/index.md#tag/Billing/operation/payAsYouGoBilling) [Download Categorized Billing](../management-api-reference/index.md#tag/Billing/operation/downloadCategorizedBilling) [Download Itemized Billing](../management-api-reference/index.md#tag/Billing/operation/downloadItemizedBilling) | Added the Billing API. Use this API to retrieve billing information for your organization, clusters, App Services, and AI Services. You can view usage data by date range and filter it by category, project, or instance. The [Get Itemized Billing Per Cluster](../management-api-reference/index.md#tag/Billing/operation/itemizedBillingPerCluster) and [Download Itemized Billing](../management-api-reference/index.md#tag/Billing/operation/downloadItemizedBilling) endpoints support operational clusters only. |
 
 ### [](#april-2026-changes)April 2026 Changes
 

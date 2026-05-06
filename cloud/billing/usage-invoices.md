@@ -3,7 +3,7 @@ title: View Capella Usage and Invoices
 description: You can view current and past usage for the clusters and services
   in your organization, and view and download invoices.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/usage-invoices.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-05-06T05:34:55.761Z
 link: xref:cloud:billing:usage-invoices.adoc[]
 ---
 
@@ -18,6 +18,8 @@ From your organization's **Billing** tab, you can:
 
 * [Access Your Usage Overview](#access-billing)
 * [View and Filter Usage Reports](#filter-usage)
+
+To retrieve billing information for your organization through the Management REST API, use the [Billing API](../management-api-reference/index.md#tag/Billing).
 
 ## [](#prerequisites)Prerequisites
 

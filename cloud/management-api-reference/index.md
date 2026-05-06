@@ -1,7 +1,7 @@
 ---
 title: Capella Operational Management API Reference
 editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/public/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-04-08T05:18:32.349Z
+pubDate: 2026-05-06T05:34:55.761Z
 link: xref:cloud:management-api-reference:index.adoc[]
 ---
 
@@ -122,6 +122,13 @@ link: xref:cloud:management-api-reference:index.adoc[]
     * getGet Backup
     * delDelete Backup Cycle
     * postRestore Backup
+  * Billing
+    * postGet Categorized Billing
+    * postGet Itemized Billing Per Cluster
+    * getGet Prepaid Credits Billing
+    * getGet Pay As You Go Billing
+    * postDownload Categorized Billing
+    * postDownload Itemized Billing
   * Buckets, Scopes, & Collections
     * postCreate Bucket
     * getList Buckets
@@ -3325,12 +3332,12 @@ _token_
 
 ##### Request Body schema: application/json
 
-| originrequired | Array of strings List of allowed origins, use \['\*'\] to allow access from everywhere                             |
-| -------------- | ------------------------------------------------------------------------------------------------------------------ |
-| loginOrigin    | Array of strings List of allowed login origins                                                                     |
-| headers        | Array of strings List of allowed headers                                                                           |
-| maxAge         | integer Default: 5 Specifies the duration (in seconds) for which the results of a preflight request can be cached. |
-| disabled       | boolean disable CORS                                                                                               |
+| originrequired | Array of strings List of allowed origins, use \['\*'\] to allow access from everywhere. This is required when CORS is enabled (i.e. disabled is false). |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| loginOrigin    | Array of strings List of allowed login origins                                                                                                          |
+| headers        | Array of strings List of allowed headers                                                                                                                |
+| maxAge         | integer Default: 5 Specifies the duration (in seconds) for which the results of a preflight request can be cached.                                      |
+| disabled       | boolean Disable CORS headers in all App Endpoint responses. When true, no other CORS configuration properties should be provided.                       |
 
 ### Responses
 
@@ -10461,6 +10468,780 @@ Copy
 * "code": 1002,
 * "message": "Access Denied.",
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Billing)Billing
+
+The Billing endpoints allow you to retrieve billing information for your organization. You can view usage data organized by time period and filter by categories, projects, or instances.
+
+## [](#tag/Billing/operation/categorizedBilling)Get Categorized Billing 
+
+Retrieves billing information for the organization within the specified date range and filters.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### Request Body schema: application/json
+
+| startDaterequired | string <date\> The start date of the billing period in YYYY-MM-DD format. |
+| ----------------- | ------------------------------------------------------------------------- |
+| endDaterequired   | string <date\> The end date of the billing period in YYYY-MM-DD format.   |
+| filters           | object (BillingFilters) Filters to narrow down the billing information.   |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the categorized billing information.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/billing
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/billing
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "value": {
+  * "startDate": "2025-04-01",
+  * "endDate": "2025-04-30",
+  * "filters": {
+    * "categories": [
+      * "analyticsCompute",
+      * "analyticsStorage"  
+      ],
+    * "projectIds": [
+      * "ffffffff-aaaa-1414-eeee-000000000000",
+      * "ffffffff-aaaa-1414-eeee-000000000001"  
+      ],
+    * "instanceIds": [
+      * "ffffffff-aaaa-1414-eeee-000000000000",
+      * "ffffffff-aaaa-1414-eeee-000000000001"  
+      ]  
+  }  
+}
+}`
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Example
+
+Monthly usage in amount (currency)Monthly usage in creditsDaily usage (for date ranges within a month)Monthly usage in amount (currency)
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": {
+  * "periods": [
+    * {
+      * "startDate": "2025-04-01",
+      * "endDate": "2025-04-30",
+      * "categories": [
+        * {
+          * "category": "analyticsCompute",
+          * "creditSpend": null,
+          * "currencySpend": 90.1,
+          * "contributionPercent": 74  
+                    },
+        * {
+          * "category": "analyticsStorage",
+          * "creditSpend": null,
+          * "currencySpend": 31.65,
+          * "contributionPercent": 26  
+                    }  
+            ],
+      * "totalCreditSpend": null,
+      * "totalCurrencySpend": 3302.11  
+      }  
+  ],
+  * "total": {
+    * "startDate": "2025-04-01",
+    * "endDate": "2025-04-30",
+    * "categories": [
+      * {
+        * "category": "analyticsCompute",
+        * "creditSpend": null,
+        * "currencySpend": 2914.46,
+        * "contributionPercent": 11.15  
+            },
+      * {
+        * "category": "analyticsStorage",
+        * "creditSpend": null,
+        * "currencySpend": 1250.25,
+        * "contributionPercent": 4.78  
+            }  
+      ],
+    * "totalCreditSpend": null,
+    * "totalCurrencySpend": 26120.18  
+  },
+  * "billingCurrency": "USD"  
+}
+}`
+
+## [](#tag/Billing/operation/itemizedBillingPerCluster)Get Itemized Billing Per Cluster 
+
+Retrieves itemized billing information for a specific cluster within the specified date range and filters. Note: This endpoint supports operational clusters only.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### Request Body schema: application/json
+
+| startDaterequired | string <date\> The start date of the billing period in YYYY-MM-DD format.                |
+| ----------------- | ---------------------------------------------------------------------------------------- |
+| endDaterequired   | string <date\> The end date of the billing period in YYYY-MM-DD format.                  |
+| filters           | object (ItemizedBillingFilters) Filters to narrow down the itemized billing information. |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the itemized billing information for the cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/billing
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/billing
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "value": {
+  * "startDate": "2025-04-01",
+  * "endDate": "2025-04-30",
+  * "filters": {
+    * "categories": [
+      * "operationalComputeAndStorage",
+      * "operationalBucketBackup"  
+      ]  
+  }  
+}
+}`
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": {
+  * "clusterName": "test-123",
+  * "supportPlan": "DeveloperPro",
+  * "periods": [
+    * {
+      * "startDate": "2025-04-01",
+      * "endDate": "2025-04-30",
+      * "categories": [
+        * {
+          * "category": "operationalComputeAndStorage",
+          * "creditSpend": null,
+          * "currencySpend": 90.1,
+          * "contributionPercent": 74  
+                    },
+        * {
+          * "category": "operationalBucketBackup",
+          * "creditSpend": null,
+          * "currencySpend": 31.65,
+          * "contributionPercent": 26  
+                    }  
+            ],
+      * "totalCreditSpend": null,
+      * "totalCurrencySpend": 3302.11  
+      }  
+  ],
+  * "total": {
+    * "startDate": "2025-04-01",
+    * "endDate": "2025-04-30",
+    * "categories": [
+      * {
+        * "category": "operationalComputeAndStorage",
+        * "creditSpend": null,
+        * "currencySpend": 2914.46,
+        * "contributionPercent": 11.15  
+            },
+      * {
+        * "category": "operationalBucketBackup",
+        * "creditSpend": null,
+        * "currencySpend": 1250.25,
+        * "contributionPercent": 4.78  
+            }  
+      ],
+    * "totalCreditSpend": null,
+    * "totalCurrencySpend": 26120.18  
+  },
+  * "billingCurrency": "USD"  
+}
+}`
+
+## [](#tag/Billing/operation/prepaidCreditsBilling)Get Prepaid Credits Billing 
+
+Retrieves prepaid credits information for the organization, including credit details, usage, and remaining amounts.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| page    | integer Sets the page you would like to view.                           |
+| ------- | ----------------------------------------------------------------------- |
+| perPage | integer Sets the number of results you would like to have on each page. |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the prepaid credits billing information.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/billing/prePaidCredits
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/billing/prePaidCredits
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "sfdc-credit-id-12345",
+    * "creditName": "CN-12345",
+    * "supportPlan": "Plan: Developer Pro",
+    * "startDate": "2024-01-01T00:00:00Z",
+    * "expirationDate": "2024-12-31T23:59:59Z",
+    * "total": 1000,
+    * "used": 350.5,
+    * "remaining": 649.5,
+    * "remainingPercent": 64.95  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/Billing/operation/payAsYouGoBilling)Get Pay As You Go Billing 
+
+Retrieves pay-as-you-go billing information for the organization within the specified date range, broken down by support plan type.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| startDate | string <date\> Example: startDate=2025-04-01The start date of the billing period in YYYY-MM-DD format. |
+| --------- | ------------------------------------------------------------------------------------------------------ |
+| endDate   | string <date\> Example: endDate=2025-05-31The end date of the billing period in YYYY-MM-DD format.     |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the pay-as-you-go billing information.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/billing/payAsYouGo
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/billing/payAsYouGo
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": {
+  * "periods": [
+    * {
+      * "startDate": "2025-04-01",
+      * "endDate": "2025-04-30",
+      * "cost": {
+        * "basic": 0,
+        * "devPro": 316.62,
+        * "enterprise": 150  
+            },
+      * "total": 466.62  
+      },
+    * {
+      * "startDate": "2025-05-01",
+      * "endDate": "2025-05-31",
+      * "cost": {
+        * "basic": 100,
+        * "devPro": 450.25,
+        * "enterprise": 200  
+            },
+      * "total": 750.25  
+      }  
+  ],
+  * "total": {
+    * "startDate": "2025-04-01",
+    * "endDate": "2025-05-31",
+    * "cost": {
+      * "basic": 100,
+      * "devPro": 766.87,
+      * "enterprise": 350  
+      },
+    * "total": 1216.87  
+  },
+  * "billingCurrency": "USD"  
+}
+}`
+
+## [](#tag/Billing/operation/downloadCategorizedBilling)Download Categorized Billing 
+
+Downloads a csv file with categorized billing information for the organization within the specified date range and filters. Downloaded CSV file named `capella-categorized-billing-{organizationId}-{startDate}_to_{endDate}.csv` with the following columns:
+
+* `startDate` : The start date
+* `endDate` : The end date
+* `category`: The category name
+* `creditSpend`: Usage in Capella credits for this category
+* `currencySpend`: Usage in dollar or any billingCurrency amount for this category
+* `contributionPercent`: contributionPercent of total consumption
+* `billingCurrency`: currency
+
+`Total` \- The final row of the CSV will contain totals across all categories over the full time period
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### Request Body schema: application/json
+
+| startDaterequired | string <date\> The start date of the billing period in YYYY-MM-DD format. |
+| ----------------- | ------------------------------------------------------------------------- |
+| endDaterequired   | string <date\> The end date of the billing period in YYYY-MM-DD format.   |
+| filters           | object (BillingFilters) Filters to narrow down the billing information.   |
+
+### Responses
+
+**200** 
+
+Successfully downloaded the categorized billing information as a CSV file.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/billing/download
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/billing/download
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "startDate": "2025-04-01",
+* "endDate": "2025-04-30",
+* "filters": {
+  * "categories": [
+    * "analyticsCompute",
+    * "analyticsStorage"  
+  ],
+  * "projectIds": [
+    * "ffffffff-aaaa-1414-eeee-000000000000",
+    * "ffffffff-aaaa-1414-eeee-000000000001"  
+  ],
+  * "instanceIds": [
+    * "ffffffff-aaaa-1414-eeee-000000000000",
+    * "ffffffff-aaaa-1414-eeee-000000000001"  
+  ]  
+}
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Billing/operation/downloadItemizedBilling)Download Itemized Billing 
+
+Downloads a CSV file with itemized billing information for a specific cluster within the specified date range and filters. Note: This endpoint supports operational clusters only. Downloaded CSV file named `capella-itemized-billing-{clusterId}-{startDate}_to_{endDate}.csv` with the following columns:
+
+* `startDate` : The start date
+* `endDate` : The end date
+* `category`: The category name
+* `projectId`: The UUID of the project containing the cluster
+* `clusterId`: The UUID of the cluster
+* `clusterName`: The name of the cluster
+* `supportPlan`: The support plan of the cluster (e.g., DeveloperPro, Enterprise).
+* `creditSpend`: Usage in Capella credits for this category
+* `currencySpend`: Usage in dollar or any billingCurrency amount for this category
+* `contributionPercent`: contributionPercent of total consumption
+* `billingCurrency`: currency
+
+`Total` \- The final row of the CSV will contain totals across all categories over the full time period
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### Request Body schema: application/json
+
+| startDaterequired | string <date\> The start date of the billing period in YYYY-MM-DD format.                |
+| ----------------- | ---------------------------------------------------------------------------------------- |
+| endDaterequired   | string <date\> The end date of the billing period in YYYY-MM-DD format.                  |
+| filters           | object (ItemizedBillingFilters) Filters to narrow down the itemized billing information. |
+
+### Responses
+
+**200** 
+
+Successfully downloaded the itemized billing information as a CSV file.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/billing/download
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/billing/download
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "startDate": "2025-04-01",
+* "endDate": "2025-04-30",
+* "filters": {
+  * "categories": [
+    * "operationalComputeAndStorage",
+    * "operationalBucketBackup"  
+  ]  
+}
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
 }`
 
 ## [](#tag/Buckets-Scopes-and-Collections)Buckets, Scopes, & Collections
