@@ -3,7 +3,7 @@ title: Memory and Storage
 description: To facilitate high-speed data-access, Couchbase Server provides a
   caching layer and tunable disk I/O priorities.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/memory-and-storage.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-05-07T05:36:39.341Z
 link: xref:server:learn:buckets-memory-and-storage/memory-and-storage.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:server:learn:buckets-memory-and-storage/memory-and-storage.adoc[]
 
 Couchbase Server provides a fully integrated _caching layer_, which provides high-speed data-access. Couchbase Server automatically manages the caching layer, ensuring that sufficient memory is available in relation to occupied disk-space, in order to maintain optimal performance. Data associated with _Couchbase_ (as opposed to _Ephemeral_) buckets is also maintained _persistently_, on disk. Such items, when they come into the caching layer, are placed on the disk queue, to be written to disk; and at the same time, if appropriate, are placed on a replication queue, so that one or more replica buckets can be created or updated.
 
-Memory quotas, established by the Full Administrator when the server is configured, are automatically managed by Couchbase Server with reference to _watermarks_, which specify how much free memory should be consistently maintained within the caching layer. Consequently, infrequently used items are written to disk; and are then removed from memory in order to free up space. This process, referred to as _ejection_, is managed asynchronously, while the server continues to service active requests. Items ejected from _Couchbase_ buckets can subsequently be re-acquired from disk, as necessary. A _working-set_ of most frequently used data is tracked and maintained, and the items kept in memory to ensure high performance. The priority of disk I/O is configurable per bucket.
+Memory quotas, established by the Full Administrator when the server is configured, are automatically managed by Couchbase Server with reference to _watermarks_, which specify how much free memory should be consistently maintained within the caching layer. Consequently, infrequently used items are written to disk; and are then removed from memory in order to free up space. This process, referred to as _ejection_, is managed asynchronously, while the server continues to service active requests. Items ejected from _Couchbase_ buckets can subsequently be re-acquired from disk, as necessary. A _working-set_ of most frequently used data is tracked and maintained, and the items kept in memory to ensure high performance.
 
 ## [](#saving-new-items)Saving New Items
 
