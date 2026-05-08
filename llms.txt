@@ -831,6 +831,7 @@
             - Performance Functions
                 - [fasterToLocalString](/cloud/eventing/eventing-handler-fasterToLocalString.md)
         - [Terminology](/cloud/eventing/eventing-Terminologies.md)
+        - [Statistics](/cloud/eventing/eventing-statistics.md)
         - [Troubleshooting and Best Practices](/cloud/eventing/troubleshooting-best-practices.md)
         - [Frequently Asked Questions](/cloud/eventing/eventing-faq.md)
     - [Analyze Large Datasets](/cloud/clusters/analytics-service/analytics-service.md)

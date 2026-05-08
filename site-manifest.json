@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1778132509077,
+  "generated": 1778218544995,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -3556,6 +3556,12 @@
               "path": "eventing-rbac.adoc",
               "url": "/cloud/eventing/eventing-rbac.md",
               "title": "Eventing Access Control"
+            },
+            {
+              "module": "eventing",
+              "path": "eventing-statistics.adoc",
+              "url": "/cloud/eventing/eventing-statistics.md",
+              "title": "Statistics"
             },
             {
               "module": "eventing",
