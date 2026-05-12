@@ -3,7 +3,7 @@ title: Add a Capella Cluster to a Prometheus Server
 description: Connect a Prometheus server to your Couchbase Capella cluster and
   collect metrics.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/prometheus.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-05-12T05:41:22.753Z
 link: xref:cloud:clusters:monitoring/prometheus.adoc[]
 ---
 
@@ -23,8 +23,8 @@ Use the following procedure to add a Capella cluster to your Prometheus server, 
 You need the following prerequisites for each Capella cluster that you want to collect metrics from:
 
 * Copy the Public Connection String to specify the Capella cluster endpoint for your client connection. For more information, see [Connect To Your Cluster](../../get-started/connect.md).
-* Create or get cluster access credentials with Read access to all buckets and scopes in your cluster. For more information, see [Configure Cluster Credentials](../manage-database-users.md).
-* Download the security certificate for your cluster and copy it into your Prometheus directory. For more information, see [Download the Security Certificate](../../get-started/sdk-playground.md#next-steps).
+* Create or get cluster access credentials with Read access to all buckets and scopes in your cluster. For more information, see [Manage Cluster Access Credentials](../manage-database-users.md).
+* Download the security certificate for your cluster and copy it into your Prometheus directory. For more information, see [Capella Root Certificates](../../security/security-certificates.md).
 * Add a list of allowed IP addresses for your cluster. For more information, see [Configure Allowed IP Addresses](../allow-ip-address.md).
 * Have a Prometheus server running. For more information, see [Collecting Cluster Metrics Blog](https://www.couchbase.com/blog/scraping-database-metrics-from-couchbase-capella-with-prometheus/) and [Configure Prometheus to Collect Couchbase Metrics](../../../server/current/manage/monitor/set-up-prometheus-for-monitoring.md).
 
@@ -75,14 +75,14 @@ The sample configuration file contains the following information:
 > [!NOTE]
 > Collecting Prometheus metrics over private endpoints is only available upon request from Capella Support. To open a Support ticket, see [Create a Support Ticket](../../support/manage-support.md#create-support-ticket).
 
-To collect metrics over a private endpoint connection, your cluster's configuration must meet specific requirements. If your configurations do not meet the requirements, use [VPC Peering](#vpc-peering).
+To collect metrics over a private endpoint connection, your cluster's configuration must meet specific requirements. If your configurations do not meet the requirements, use [VPC Peering](../../clouds/private-network.md).
 
 Collecting metrics over a [private endpoint](../../security/private-endpoints.md) is only available with the following conditions:
 
-| Supported Clusters                                 | Additional Requirements                                                                                                                                                                                                                                                                                                   |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Clusters deployed on [AWS](../../reference/aws.md) | Clusters deployed on [AWS](../../reference/aws.md) can only have a maximum of 20 nodes. If you previously contacted Capella Support to map Query nodes separately with 1:1 node mapping over private endpoints, enabling metrics over private endpoints limits your cluster to a maximum of 13 nodes.\[[1](#footnote-1)\] |
-| Clusters deployed on [GCP](../../reference/gcp.md) | There are no additional requirements for GCP clusters.                                                                                                                                                                                                                                                                    |
+| Supported Clusters                                                                      | Additional Requirements                                                                                                                                                                                                                                                                                                   |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Clusters deployed on [AWS](../../reference/aws.md)                                      | Clusters deployed on [AWS](../../reference/aws.md) can only have a maximum of 20 nodes. If you previously contacted Capella Support to map Query nodes separately with 1:1 node mapping over private endpoints, enabling metrics over private endpoints limits your cluster to a maximum of 13 nodes.\[[1](#footnote-1)\] |
+| Clusters deployed on [GCP](../../reference/gcp.md) or [Azure](../../reference/azure.md) | There are no additional requirements for GCP or Azure clusters.                                                                                                                                                                                                                                                           |
 
 \[[1](#node-caution)\] Enabling both 1:1 Query mapping and metrics requires the Data and Query Services to have dedicated listeners on each node, which reduces the number of nodes you can have to 13\. For more information, contact [Capella Support](../../support/manage-support.md#create-support-ticket).
 

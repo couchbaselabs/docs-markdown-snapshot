@@ -2,7 +2,7 @@
 title: Access()
 description: Enabling Sync Gateway data access
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/access-control/pages/sync-function/sync-function-api-access-cmd.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-05-12T05:41:22.753Z
 link: xref:3.3@sync-gateway:access-control:sync-function/sync-function-api-access-cmd.adoc[]
 ---
 
@@ -40,7 +40,9 @@ You can invoke this function multiple times from within your Sync Function.
 > [!TIP]
 > Prefix the `username` argument value with `role:` to apply this function to a role rather than a user. This grants access to the specified channel(s) for all users assigned that role.
 
-The effects of all access calls by all active documents are effectively combined in a union, so if _any_ document grants a user access to a channel, that user has access to the channel.
+The effects of all access calls by all active documents are effectively combined in a union, so if any document grants a user access to a channel, that user has access to the channel.
+
+The `access()` function can grant access to users or roles that do not yet exist. When you create new users or define roles later, the previous granted access permissions apply to them.
 
 > [!NOTE]
 > The sync function `access()` call does not support the wildcard ('**\***') for granting access to all channels. To grant a user access to all channels, use the REST API channel grant endpoint.

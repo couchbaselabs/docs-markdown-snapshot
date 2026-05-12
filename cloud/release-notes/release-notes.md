@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-04-24T05:30:11.901Z
+pubDate: 2026-05-12T05:41:22.753Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -9,6 +9,17 @@ link: xref:cloud:release-notes:release-notes.adoc[]
 [View original HTML](/cloud/release-notes/release-notes.html)
 
 # Couchbase Capella Release Notes
+
+## [](#may-2026-changelog)May 2026 Changelog
+
+* XDCR for Multi-Node Clusters Over Private Link on Azure  
+Couchbase Capella's support for XDCR through private endpoint connectivity is now extended to clusters hosted on Azure. Replicate data between clusters entirely over a private network connection without exposing traffic to the public Internet.  
+This feature is currently only available upon request from [Couchbase Capella Support](../support/manage-support.md#create-support-ticket).  
+For more information, see [Replicate Data Across a Private Endpoint Connection](../clusters/xdcr/manage-xdcr-security.md#private-endpoints).
+* Prometheus for Multi-Node Clusters Over Private Link on Azure  
+Couchbase Capella's native support for scraping Prometheus metrics endpoints through private endpoint connectivity is now extended to clusters hosted on Azure. This capability allows you to collect observability data from your internal resources without exposing endpoints to the public Internet.  
+This feature is currently only available upon request from [Couchbase Capella Support](../support/manage-support.md#create-support-ticket).  
+For more information, see [Add a Capella Cluster to a Prometheus Server](../clusters/monitoring/prometheus.md).
 
 ## [](#april-2026-changelog)April 2026 Changelog
 
@@ -51,7 +62,7 @@ For more information about advanced access credentials, see [Cluster Access](../
 Couchbase Capella has enhanced the security of your multi-cluster topology. Capella can now support XDCR through private endpoint connectivity, allowing you to replicate data between clusters entirely over a private network connection.  
 This feature is currently only available upon request from [Couchbase Capella Support](../support/manage-support.md#create-support-ticket).  
 For more information, see [Replicate Data Across a Private Endpoint Connection](../clusters/xdcr/manage-xdcr-security.md#private-endpoints).
-* Prometheus for Multi-Node Cluster Over Private Link  
+* Prometheus for Multi-Node Clusters Over Private Link  
 Couchbase Capella is announcing native support for scraping Prometheus metrics endpoints through private endpoint connectivity. This capability allows you to collect observability data from your internal resources without exposing endpoints to the public Internet.  
 This feature is currently only available upon request from [Couchbase Capella Support](../support/manage-support.md#create-support-ticket).  
 For more information, see [Add a Capella Cluster to a Prometheus Server](../clusters/monitoring/prometheus.md).
