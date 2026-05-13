@@ -3,7 +3,7 @@ title: Install Sync Gateway
 description: Install a <em>Sync Gateway</em> instance; securely sync enterprise
   data from cloud to edge.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-install.adoc
-pubDate: 2026-04-09T05:16:09.658Z
+pubDate: 2026-05-13T05:45:28.868Z
 link: xref:sync-gateway:start-here:get-started-install.adoc[]
 ---
 
@@ -19,6 +19,8 @@ link: xref:sync-gateway:start-here:get-started-install.adoc[]
 > Preparatory Steps
 > 
 > Make sure you have read and acted-upon the information in [Prepare](get-started-prepare.md) before proceeding.
+
+These instructions are for local or server based deployments. If you're using Docker, see [Deploy Sync Gateway with Docker](get-started-install-docker.md) instead.
 
 Steps in Getting Started
 
@@ -404,7 +406,7 @@ For Mac OS this will be the `.plist` file `com.couchbase.mobile.sync_gateway.pli
 
 One way to do this would be:
 
-1. Ensure the new file path includes a useable Sync Gateway configuration file
+1. Make sure the new file path includes a useable Sync Gateway configuration file
 2. Within a terminal, stop the service — see: [start and stop the service](#lbl-macos-run)
 3. Copy the existing `com.couchbase.mobile.sync_gateway.plist` file to a safe location as a back-up
 4. Open the `com.couchbase.mobile.sync_gateway.plist` file in an editor. You'll need to use `sudo`

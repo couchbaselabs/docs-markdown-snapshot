@@ -3857,6 +3857,7 @@
 - [<strong><em>New in 4.0</em></strong>](/sync-gateway/current/whatsnew.md)
 - Start Here!
     - [Prepare](/sync-gateway/current/start-here/get-started-prepare.md)
+    - [Deploy with Docker](/sync-gateway/current/start-here/get-started-install-docker.md)
     - [Install](/sync-gateway/current/start-here/get-started-install.md)
     - [Configure](/sync-gateway/current/start-here/get-started-configure.md)
     - [Explore](/sync-gateway/current/start-here/get-started-explore.md)

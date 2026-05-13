@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1778564788177,
+  "generated": 1778651426854,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -104995,6 +104995,12 @@
               "path": "get-started-explore.adoc",
               "url": "/sync-gateway/current/start-here/get-started-explore.md",
               "title": "Explore Sync Gateway"
+            },
+            {
+              "module": "start-here",
+              "path": "get-started-install-docker.adoc",
+              "url": "/sync-gateway/current/start-here/get-started-install-docker.md",
+              "title": "Deploy Sync Gateway with Docker"
             },
             {
               "module": "start-here",

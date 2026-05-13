@@ -3,7 +3,7 @@ title: Configure a Sync Gateway Install
 description: Configure your <em>Sync Gateway</em> installation; securely sync
   enterprise data from cloud to edge!
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-configure.adoc
-pubDate: 2026-04-09T05:16:09.658Z
+pubDate: 2026-05-13T05:45:28.868Z
 link: xref:sync-gateway:start-here:get-started-configure.adoc[]
 ---
 
@@ -20,7 +20,7 @@ link: xref:sync-gateway:start-here:get-started-configure.adoc[]
 > 
 > Make sure you have read and acted-upon the information and steps in [Prepare](get-started-prepare.md) and [Install](get-started-install.md) before proceeding.
 
-These instructions are for local or server based deployments. If you're using a container such as Docker, see this [blog post on using Docker with Couchbase Mobile](https://blog.couchbase.com/using-docker-with-couchbase-mobile/) for additional details.
+These instructions are for local or server based deployments. If you're using Docker, see [Deploy Sync Gateway with Docker](get-started-install-docker.md) instead.
 
 Steps in Getting Started
 
