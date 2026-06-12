@@ -4,7 +4,7 @@ description: The Search Manager Options REST API is provided by the Search
   Service. This API enables you to set cluster-level Search settings; in
   particular, to configure rebalance based on file transfer.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/fts-rest-manage/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.6@server:fts-rest-manage:index.adoc[]
 ---
 
@@ -37,7 +37,7 @@ The URL scheme, host, and port are as follows.
 
 In the HTTP request examples:
 
-* `$HOST` is the host name or IP address of a node running the Search Service.
+* `$BASEPATH` is the URL scheme, host, and port for a node running the Search Service.
 * `$USER` is the user name of an authorized user — see [Security](#security).
 * `$PASSWORD` is the password to connect to Couchbase Server.
 
@@ -94,14 +94,12 @@ Body Parameter
 
 #### [](#put%5Foptions-ex-curl)Example HTTP Request
 
-The [Disable](#put%5Foptions-ex-curl-0) request disables the creation of new partitions by means of file transfer. From this point, Search Service index partitions are built on the new nodes assigned to them during rebalance.
-
-The [Enable](#put%5Foptions-ex-curl-1) request re-enables the creation of new partitions by means of file transfer. From this point, Search Service index partitions are again created by file transfer, on the new nodes assigned to them during rebalance.
-
 Disable
 
+This request disables the creation of new partitions by means of file transfer. From this point, Search Service index partitions are built on the new nodes assigned to them during rebalance.
+
 ```sh
-curl -X PUT http://$HOST:8094/api/managerOptions \
+curl -X PUT $BASEPATH/api/managerOptions \
 -u $USER:$PASSWORD \
 -H "Content-type:application/json" \
 -d '{"disableFileTransferRebalance": "true" }'
@@ -109,11 +107,21 @@ curl -X PUT http://$HOST:8094/api/managerOptions \
 
 Enable
 
+This request re-enables the creation of new partitions by means of file transfer. From this point, Search Service index partitions are again created by file transfer, on the new nodes assigned to them during rebalance.
+
 ```sh
-curl -X PUT http://$HOST:8094/api/managerOptions \
+curl -X PUT $BASEPATH/api/managerOptions \
 -u $USER:$PASSWORD \
 -H "Content-type:application/json" \
 -d '{"disableFileTransferRebalance": "false" }'
+```
+
+#### [](#put%5Foptions-ex-request)Example Request Body
+
+```json
+{
+  "disableFileTransferRebalance" : false
+}
 ```
 
 #### [](#put%5Foptions-ex-response)Example HTTP Response

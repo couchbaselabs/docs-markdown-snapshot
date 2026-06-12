@@ -1,7 +1,7 @@
 ---
 title: Manage Bucket Backups
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-backup.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:manage-backup.adoc[]
 ---
 
@@ -90,25 +90,25 @@ To change a bucket's backup schedule from the **Backup** page:
 > Using the **Bucket** list, you can select multiple buckets to bulk edit backup schedules.
 5. Choose a backup schedule for the bucket according to the relative importance of the workload and data.
 
-  1. Select **Do Not Backup** to not schedule any backups.  
+  * **Do Not Backup**: Do not schedule any backups.  
   > [!WARNING]  
-  > **Do Not Backup** is not recommended for production clusters. To avoid data loss, you should regularly back up a production cluster.  
-  To set a weekly incremental schedule:
-  2. Choose **Set Weekly Schedule**.
-  3. Choose the **Day of the week** when you want Capella to take the full backup. The default value is `Sunday`.
-  4. Set the **Start at** time of day for the full backup.  
-  Select a **Start at** time when your application isn't using Capella heavily unless you've chosen a cluster configuration with more capacity than you need.
-  5. Use the **Incremental Every** list to set the frequency of incremental backups.  
-  > [!TIP]  
-  > If you change the **Start at** time, the next incremental backup might happen at a different time than you expect. Capella calculates the **Incremental Value** backward from the configured **Start at** time.  
-  >  
-  > For example, **Incremental Every** is `8 hours`, and the **Start at** time is 4 AM. If the current time is 9 PM, Capella takes an incremental backup at 8 PM, an eight-hour interval backward from 4 AM. If you change the **Start at** to 6 AM, you would see another incremental backup at 10 PM, two hours after the last backup. The backup occurs at this time because Capella recalculates the eight-hour backup interval back from the new 6 AM **Start at** time.
-  6. Select **Cost Optimized Retention**. When selected, the cost optimized retention policy applies to your bucket backup. For more information, see [Cost Optimized Retention Policy](backup-restore.md#cost-optimized-retention-policy).
-  7. Set a **Retention Time** in line with your data retention policy.  
-  If you selected Cost Optimized Retention, the **Retention Time** applies only to the monthly restore point.  
-  Capella preserves each backup from `30 Days` to `5 Years`. After the retention time lapses, Capella schedules the backup for deletion.  
-  > [!NOTE]  
-  > The **Retention Time** setting applies to all future backups for a bucket. Changes to this setting do not affect previous backups.
+  > **Do Not Backup** is not recommended for production clusters. To avoid data loss, you should regularly back up a production cluster.
+  * **Set Weekly Schedule**: Set a weekly incremental schedule.
+
+    1. Choose the **Day of the week** when you want Capella to take the full backup. The default value is `Sunday`.
+    2. Set the **Start at** time of day for the full backup.  
+      Select a **Start at** time when your application isn't using Capella heavily unless you've chosen a cluster configuration with more capacity than you need.
+    3. Use the **Incremental Every** list to set the frequency of incremental backups.  
+      > [!TIP]  
+      > If you change the **Start at** time, the next incremental backup might happen at a different time than you expect. Capella calculates the **Incremental Value** backward from the configured **Start at** time.  
+      >  
+      > For example, **Incremental Every** is `8 hours`, and the **Start at** time is 4 AM. If the current time is 9 PM, Capella takes an incremental backup at 8 PM, an eight-hour interval backward from 4 AM. If you change the **Start at** to 6 AM, you would see another incremental backup at 10 PM, two hours after the last backup. The backup occurs at this time because Capella recalculates the eight-hour backup interval back from the new 6 AM **Start at** time.
+    4. Set a **Retention Time** in line with your data retention policy.  
+      If you enabled **Cost Optimized Retention**, the **Retention Time** applies only to the monthly restore point.  
+      Capella preserves each backup from `30 Days` to `5 Years`. After the retention time lapses, Capella schedules the backup for deletion.  
+      > [!NOTE]  
+      > The **Retention Time** setting applies to all future backups for a bucket. Changes to this setting do not affect previous backups.
+    5. Enable or disable **Cost Optimized Retention**. When enabled, the cost optimized retention policy applies to your bucket backup. For more information, see [Cost Optimized Retention Policy](backup-restore.md#cost-optimized-retention-policy).
 6. Click **Apply**.  
 The first automatic backup occurs at the next increment of the **Incremental Every** value, calculated backward from the configured **Start at** time.
 

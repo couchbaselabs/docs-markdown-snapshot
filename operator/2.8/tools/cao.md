@@ -1,7 +1,7 @@
 ---
 title: cao
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.8.x/docs/user/modules/ROOT/pages/tools/cao.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:2.8@operator::tools/cao.adoc[]
 ---
 
@@ -437,11 +437,13 @@ Scope: cluster
 
 Reason: Used to determine issues with Couchbase Cluster state, server environment variables, and logging configuration
 
-Endpoints
+EndpointSlice
 
 Log Level: Required
 
 Scope: cluster
+
+Reason: Used to inspect service endpoint topology without hitting deprecated Endpoints API
 
 PersistentVolumeClaim
 

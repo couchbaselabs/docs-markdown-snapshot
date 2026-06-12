@@ -2,7 +2,7 @@
 title: Single Query Transactions
 description: Learn how to perform bulk-loading transactions with the SDK.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/transactions-single-query.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:howtos:transactions-single-query.adoc[]
 ---
 
@@ -66,8 +66,8 @@ and configure it:
 // with the Builder pattern.
 await transactions.QueryAsync<object>(bulkLoadStatement, SingleQueryTransactionConfigBuilder.Create()
     // Single query transactions will often want to increase the default timeout
-    .ExpirationTime(TimeSpan.FromSeconds(360)));
+    .Timeout(TimeSpan.FromSeconds(360)));
 
 // using the lambda style
-await transactions.QueryAsync<object>(bulkLoadStatement, config => config.ExpirationTime(TimeSpan.FromSeconds(360)));
+await transactions.QueryAsync<object>(bulkLoadStatement, config => config.Timeout(TimeSpan.FromSeconds(360)));
 ```

@@ -1,9 +1,9 @@
 ---
 title: Alert Integrations
-description: An alert integration lets Capella send metric‑based notifications
-  to a third‑party tool using a webhook.
+description: Use alert integrations in Capella to send metrics-based alerts to a
+  third-party tool.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/alert-integration.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:monitoring/alert-integration.adoc[]
 ---
 
@@ -12,156 +12,88 @@ link: xref:cloud:clusters:monitoring/alert-integration.adoc[]
 
 # Alert Integrations
 
-> An alert integration lets Capella send metric‑based notifications to a third‑party tool using a webhook. 
+> Use alert integrations in Capella to send metrics-based alerts to a third-party tool. 
+
+Capella alert integrations are designed to integrate into your existing workflows, and centralize metrics-based alerts for operational clusters and App Services inside your projects. [Metrics-based Capella alerts](../../reference/alert-reference.md#metric-alerts) can include high disk IOPS usage and data encryption key rotation failures. All alert integrations are configured at the project level in your organization.
+
+You can also view alerts in the [Capella UI](activity-log.md) and receive them by [email](alerts.md).
+
+> [!CAUTION]
+> Alert integrations send only [metrics-based alerts](../../reference/alert-reference.md#metric-alerts). Capella alert integrations do not send [operational alerts](../../reference/alert-reference.md#operational-alerts), which are alerts caused by operational disruption.
+
+When Capella flags an alert, it sends a [JSON payload](#alert-payload) with structured alert data to a [supported third-party tool](#third-party-tool). Capella applies a first-in, first-out queue to send 1 alert notification at a time. Typically, Capella sends alert notifications within milliseconds of creation. After Capella sends a notification, the third-party tool controls queuing and the timing of delivery via the connection method.
+
+## [](#third-party-tool)Supported Third-Party Tools
+
+In Capella, you can configure a new alert integration with the following third-party tools:
+
+* [Slack](#slack)
+* [Microsoft Teams](#microsoft-teams)
+* [Webhooks](#webhooks)
+
+### [](#slack)Slack
+
+Use a Slack alert integration to send Capella alerts to a Slack workspace. In Capella, you can:
+
+* Configure your alert payload with variables and static values to support your alerting needs. The template for Slack integrations uses the [Slack Block Kit](https://api.slack.com/block-kit) message format.
+* Connect to Slack with a [bot token](https://docs.slack.dev/authentication/tokens/#bot) or [webhook URL](https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks/).
+
+For more information about configuring a Slack alert integration, see [Configure a Slack Alert Integration](configure-slack-integration.md). For more information about Slack alert payloads, see [Slack Alert Payload](slack-reference.md).
+
+### [](#microsoft-teams)Microsoft Teams
+
+Use a Microsoft Teams alert integration to send Capella alerts to a Microsoft Teams channel. In Capella, you can:
+
+* Configure your alert payload with variables and static values to support your alerting needs. The template for Microsoft Teams integrations uses the [Adaptive Cards](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/connectors-using?tabs=cURL%2Ctext1#send-adaptive-cards-using-an-incoming-webhook) message format.
+* Connect to Microsoft Teams with a [webhook URL](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook).
+
+For more information about configuring a Microsoft Teams alert integration, see [Configure a Microsoft Teams Alert Integration](configure-microsoft-integration.md). For more information about Microsoft Teams alert payloads, see [Microsoft Teams Alert Payload](microsoft-reference.md).
+
+### [](#webhooks)Webhooks
+
+Use a generic Webhooks alert integration to send Capella alerts to any third-party tool that supports webhooks. For example, you can send alerts to [ServiceNow](https://www.servicenow.com/community/in-other-news/how-to-integrate-webhooks-into-servicenow/ba-p/2271745), an incident management tool.
+
+Capella automatically configures a fixed alert payload structure that's compatible with the webhook format. Connect to your third-party tool with a destination URL for the webhook, along with either basic or bearer token authentication and authorization.
+
+For more information about configuring a Webhook alert integration, see [Configure a Webhooks Alert Integration](configure-webhook-integration.md). For more information about Webhook alert payloads, see [Webhooks Alert Payload](webhook-reference.md).
+
+## [](#alert-payload)Alert Payload
+
+The notification message that an alert integration sends includes an alert payload in JSON format. The structure of your alert payload can vary depending on the [third-party tool](#third-party-tool) you're integrating with:
+
+* When you configure a [Slack](configure-slack-integration.md) or [Microsoft Teams](configure-microsoft-integration.md) integration in Capella, you can customize the structure of your alert payload with an [Advanced Template](#advanced-template).
+* Webhooks alert integrations have a fixed payload structure that you cannot modify in Capella.
+
+For more information about the alert payload structure for each supported third-party tool, including an example payload, see:
+
+* [Slack Alert Payload](slack-reference.md)
+* [Microsoft Teams Alert Payload](microsoft-reference.md)
+* [Webhooks Alert Payload](webhook-reference.md)
+
+> [!TIP]
+> When you configure workflows in the receiving platform, you can refer to the alert payload to identify actionable values. Your third-party tool might use values in the payload to route, prioritize, or enrich messages from Capella. For example, you might use an alert's severity field to automatically route high-severity alerts to the appropriate destination, such as a channel or assignment group.
+
+### [](#advanced-template)Advanced Template
 
 > [!NOTE]
-> Capella only offers alert integrations for clusters and App Services on the paid [Enterprise](../../billing/billing.md#enterprise) or the [Developer Pro](../../billing/billing.md#dev-pro) Support Plans. Alert integrations are not available for the [Basic](../../billing/billing.md#basic) plan.
+> The **Advanced Template** is only available for [Slack](configure-slack-integration.md) and [Microsoft Teams](configure-microsoft-integration.md) integrations.
 
-## [](#about-alert-integrations)About Alert Integrations
+The **Advanced Template** option in the Capella UI includes a JSON editor for customizing your alert payload. Capella initializes the template with default variables. You can modify the template for your workflow requirements by customizing variables, static values, or the layout of the alert payload. A real-time preview displays a valid alert payload with placeholders that update as your template changes. Capella also validates your JSON formatting and flags any syntax issues.
 
-A webhook is a user-defined HTTP callback mechanism. The webhook allows an application—​in this case Capella—​to send an HTTP request with a JSON alert payload to a previously configured URL. On the receiving end, you can customize the third-party tool to direct alert messages from Capella into appropriate workflows and recipients.
-
-The Capella alert integration feature is generic. You can configure alert integrations for any third-party tool that supports an incoming webhook. An alert integration requires a publicly accessible destination URL for the webhook, along with either basic or bearer token authentication and authorization.
-
-Couchbase has verified the use of **ServiceNow** with the Capella alert integration feature. Refer to [How to Integrate Webhooks into ServiceNow](https://www.servicenow.com/community/in-other-news/how-to-integrate-webhooks-into-servicenow/ba-p/2271745) on the ServiceNow website for more information.
-
-To send alert notifications from Capella to this and other third-party tools automatically:
-
-1. In your third-party tool of choice, set up the incoming webhook. You'll need the URL and the authentication details.
-2. In Capella, add an alert integration to the project.
-
-You can also view alert notifications in the Capella UI and receive them by email. See [Receive Alerts](alerts.md).
-
-### [](#key-features)Key Features
-
-UI and API
-
-Capella offers both a UI and a [Capella Management API](../../management-api-reference/index.md#tag/alert-integration) for working with alert integrations.
-
-Project-level Definition
-
-Rather than define alert integrations repetitively for every cluster, you configure alert integrations at the [project](../../projects/projects.md) level.
-
-Metric-based Alerts
-
-Alert integrations send metric-based alerts. The alert integration feature does not send alerts generated by operational failures. For a complete list of Capella alerts, see the [Alert Reference](../../reference/alert-reference.md).
-
-Filtering
-
-You can limit the notifications that an alert integration sends for the project. You can exclude specific clusters or App Services.
-
-> [!NOTE]
-> By default, an alert integration sends notifications for all of a project's clusters and App Services that are on the paid Enterprise or Developer Pro plan. For clusters or App Services that are on the paid Basic plan, alerts are delivered only in the UI or by email.
-
-Authentication and Authorization Options
-
-You can use either basic or bearer token auth for messages posted by an alert integration.
-
-JSON Payload
-
-The notification messages that an alert integration sends include a [JSON payload](#payload). The payload provides a structured framework for the message content, organizing its information into a set of easy-to-read JSON objects and key-value pairs.
-
-HTTP Headers
-
-You can define up to 20 HTTP headers to include with notification messages. HTTP headers provide additional flexibility for defining what occurs when the third-party tool receives a Capella alert notification. For example, a header can include information that further authenticates the notification, or that triggers a particular action or event.
-
-Testing
-
-Before you save an alert integration, you test the connection to the third-party tool to verify that its configuration is accurate.
-
-Audit Trail
-
-The [activity log](activity-log.md) records all add, edit, and delete events for alert integrations. In addition, the activity log records any connection failure events that occur for an alert integration.
-
-### [](#payload)JSON Payload
-
-The alert notification messages posted to a third-party tool by an alert integration include a JSON payload. The JSON payload provides a reliable, structured framework for message content.
-
-When you configure workflow options for the incoming webhook, you can refer to the JSON payload to identify different actionable values. For example, the third-party tool might support the ability to route messages from Capella differently based on the project ID, severity, or resource identified in the JSON payload.
-
-The payload of each message consists of the following JSON objects and keys:
-
-| Object or Key | Key         | Description                                                                                                                                               |
-| ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| details       | kind        | An abbreviated name for the alert.                                                                                                                        |
-|               | name        | The display name of the alert.                                                                                                                            |
-|               | severity    | Identifies the alert as either "critical" or "warning".                                                                                                   |
-|               | summary     | A brief description of the alert.                                                                                                                         |
-|               | description | A detailed description with potential causes and solutions. For more detailed information, see the [Alert Reference](../../reference/alert-reference.md). |
-| tenant        | id          | The unique identifier of the project's tenant.                                                                                                            |
-|               | name        | The user-defined name of the tenant.                                                                                                                      |
-| project       | id          | The unique identifier of the project that contains the affected cluster or App Service.                                                                   |
-|               | name        | The user-defined name of the project.                                                                                                                     |
-| resource      | kind        | Identifies the affected entity as "cluster" for a cluster or "appService" for an App Service.                                                             |
-|               | id          | The unique identifier of the affected cluster or App Service.                                                                                             |
-|               | name        | The user-defined name of the resource.                                                                                                                    |
-| createdAt     |             | When the event occurred: date and time in ISO 8601 format.                                                                                                |
-
-Example: Low Node Disk Storage
-
-```JSON
-{
-    "details": {
-        "kind": "disk_usage_high",
-        "name": "Low Node Disk Storage",
-        "severity": "warning",
-        "summary": "A node has low disk storage.",
-        "description": "A cluster node has low disk storage. The addition of more documents could fill the cluster and result in a service interruption. This issue could be due to spikes in data usage or natural data growth. Consider expanding the storage to resolve the issue."
-    },
-    "tenant": {
-        "id": "b2e38a87-25a2-472a-ab10-e5f43862773d",
-        "name": "Organization ABC"
-    },
-    "project": {
-        "id": "13cfa96f-ade3-442e-ac37-eaa6ace76143",
-        "name": "Mega App OLTP"
-    },
-    "resource": {
-        "kind": "cluster",
-        "id": "b5d3f347-3bad-4c6a-ad12-cf2b1f06647b",
-        "name": "concavekonradzuse"
-
-    },
-    "createdAt": "2024-02-29T11:22:38.036547755Z"
-}
-```
-
-Example: App Service High Access Errors Warning
-
-```JSON
-{
-    "details": {
-        "kind": "syncgateway_import_errors_high_warning",
-        "name": "App Service High Access Errors Warning",
-        "severity": "warning",
-        "summary": "In the last 5 minutes, more than 50 requests made to the App Endpoint failed to successfully authenticate.",
-        "description": "In the last 5 minutes, more than 50 requests made to the App Endpoint failed to successfully authenticate. A high volume of unsuccessful authentications may indicate malicious clients attempting to access the system."
-    },
-    "tenant": {
-        "id": "b5d3f347-472a-ade3-ad12-cf2b1f06647b",
-        "name": "Acme Company"
-    },
-    "project": {
-        "id": "b2e38a87-25a2-3bad-ab10-e5f43862773d",
-        "name": "Wiley Genius"
-    },
-    "resource": {
-        "kind": "appService",
-        "id": "13cfa96f-4c6a-442e-ac37-eaa6ace76143",
-        "name": "Platinum"
-    },
-    "createdAt": "2024-02-29T08:12:47.150356547Z"
-}
-```
+For more information about how to customize your alert payload templates, see [Add a Slack Alert Integration](configure-slack-integration.md#add) or [Add a Microsoft Teams Alert Integration](configure-microsoft-integration.md#add).
 
 ## [](#next-steps)Next Steps
 
-Configure your alert integration to send Capella metric-based notifications to a third-party tool. To get started with:
+Configure your alert integration to send Capella metrics-based alerts to a third-party tool. To get started with:
 
-* The Capella UI, see [Configure an Alert Integration](configure-alert-integration.md).
+* The Capella UI, see:
+
+  * [Configure a Slack Alert Integration](configure-slack-integration.md).
+  * [Configure a Microsoft Teams Alert Integration](configure-microsoft-integration.md).
+  * [Configure a Webhooks Alert Integration](configure-webhook-integration.md).
 * The Management REST API, see [Capella Management API](../../management-api-reference/index.md#tag/Alert-Integration).
 
-For more information about monitoring your operational clusters, see
+For more information about monitoring your operational clusters, see:
 
 * [Alert Reference](../../reference/alert-reference.md)
 * [Receive Alerts](alerts.md)

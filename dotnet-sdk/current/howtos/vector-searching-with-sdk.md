@@ -3,7 +3,7 @@ title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-04-02T05:14:13.149Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
@@ -150,19 +150,19 @@ You can run multiple vector queries together:
 ```csharp
 var searchRequest = SearchRequest.Create(
     VectorSearch.Create(new[]
-        {
+    {
         vectorQuery.WithOptions(
             new VectorQueryOptions().WithNumCandidates(2).WithBoost(0.3f)),
         anotherVectorQuery.WithOptions(
             new VectorQueryOptions().WithNumCandidates(5).WithBoost(0.7f)),
-        })
+    })
 );
 
 // or with C# record syntax
 var searchRequest2 = SearchRequest.Create(
     new VectorSearch(new[]
         {
-            vectorQuery 
+            vectorQuery
                 with { Options = new VectorQueryOptions() { NumCandidates = 2, Boost = 0.3f } },
             anotherVectorQuery
                 with { Options = new VectorQueryOptions() { NumCandidates = 5, Boost = 0.3f } },
@@ -182,7 +182,7 @@ You can combine a traditional Search query with vector queries:
 ```csharp
 var searchRequest = new SearchRequest(
     SearchQuery: new MatchQuery("swanky"),
-    VectorSearch: VectorSearch.Create(new VectorQuery("vector_field", preGeneratedVectors))
+    VectorSearch: VectorSearch.Create(new VectorQuery("vector_field").WithVector(preGeneratedVectors))
 );
 
 var searchResult = scope.SearchAsync("travel-index", searchRequest, new SearchOptions());

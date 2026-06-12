@@ -3,7 +3,7 @@ title: Buckets, Scopes, and Collections
 description: The data in a Couchbase Capella cluster is categorized and
   organized into different data containers.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/about-buckets-scopes-collections.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:data-service/about-buckets-scopes-collections.adoc[]
 ---
 
@@ -38,6 +38,30 @@ Buckets are the top-level storage containers for data in a Capella cluster.
 You must create a bucket before you can store any data in your cluster. A Capella cluster can have a maximum of 30 buckets.
 
 ![Diagram](../_images/diag-651804110f3bcc1ed3ab2ef8e49fe60e1641975a.svg) 
+
+### [](#bucket-types)Bucket Types
+
+Capella has two distinct bucket types:
+
+* **Memory and Disk**: The bucket holds data in-memory and persists it to disk.
+* **Memory Only**: The bucket holds data in-memory but does not persist it to disk.  
+> [!WARNING]  
+> Memory Only buckets lose data during cluster restarts, whether planned or unplanned, and may also lose data due to concurrent failure of multiple nodes.
+
+For a detailed overview of buckets, see [Buckets](../../../server/current/learn/buckets-memory-and-storage/buckets.md) in the Couchbase Server documentation.
+
+### [](#buckets-storage)Buckets and Storage
+
+Couchbase Capella operational clusters store document data and metadata in append-only files. This format ensures consistent updates to files and reduces the risk of corruption. Every file change, including additions, modifications, or deletions, creates a new entry at the end of the file. Even when document deletion removes user data, the file temporarily grows in size because of the append-only format.
+
+Capella periodically reduces file sizes through automated compaction. Automated compaction purges metadata items and runs other necessary maintenance tasks. During compaction, Capella removes any item marked as a deleted item, or tombstone, when its age exceeds a set purge age. The delay for deleting tombstones is necessary for replication consistency.
+
+Automated compaction tasks and purging automatically run on Capella buckets. When database fragmentation reaches 30% for Couchstore buckets and 50% for Magma buckets, Capella triggers its automated compaction. Capella purges any items marked for deletion, or tombstones, that are more than 3 days old. A dedicated purge task also runs [purging](#buckets-storage) for Memory-Only buckets.
+
+If the cluster links to an App Service, deleted or tombstoned documents remain in buckets for 60 days. This allows disconnected clients to sync deleted documents when they come back online within the 60 day window.
+
+> [!TIP]
+> You must provision a Memory Only bucket with enough memory to be able to restore from backups. For more information about backup and restore, see [Backup and Restore Data](../backup-restore.md).
 
 For more information about how to create a new bucket, see [Create a Bucket](manage-buckets.md#add-bucket).
 

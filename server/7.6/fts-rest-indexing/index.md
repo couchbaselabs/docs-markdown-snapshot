@@ -3,7 +3,7 @@ title: Couchbase Search Index Management and Monitoring API
 description: The Search Indexing REST API is provided by the Search Service.
   This API enables you to manage and monitor your Search indexes.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/fts-rest-indexing/pages/index.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.6@server:fts-rest-indexing:index.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:7.6@server:fts-rest-indexing:index.adoc[]
 
 ## [](#overview)Overview
 
-The Search Indexing REST API is provided by the Search service. This API enables you to manage and monitor your Search indexes.
+The Search Indexing REST API is provided by the Search Service. This API enables you to manage and monitor your Search indexes.
 
 ### Version information
 
@@ -710,6 +710,74 @@ Body Parameter
 | ------------ | ------------------------ |
 | http (basic) | [Write](#security-Write) |
 
+##### [](#p-api-index-name-ex-request)Example Request Body
+
+```json
+{
+  "type" : "fulltext-index",
+  "name" : "landmark-content-index",
+  "sourceType" : "gocbcore",
+  "sourceName" : "travel-sample",
+  "planParams" : {
+    "maxPartitionsPerPIndex" : 1024,
+    "indexPartitions" : 1
+  },
+  "params" : {
+    "doc_config" : {
+      "docid_prefix_delim" : "",
+      "docid_regexp" : "",
+      "mode" : "scope.collection.type_field",
+      "type_field" : "type"
+    },
+    "mapping" : {
+      "analysis" : { },
+      "default_analyzer" : "standard",
+      "default_datetime_parser" : "dateTimeOptional",
+      "default_field" : "_all",
+      "default_mapping" : {
+        "dynamic" : true,
+        "enabled" : false
+      },
+      "default_type" : "_default",
+      "docvalues_dynamic" : false,
+      "index_dynamic" : true,
+      "store_dynamic" : false,
+      "type_field" : "_type",
+      "types" : {
+        "inventory.landmark" : {
+          "dynamic" : false,
+          "enabled" : true,
+          "properties" : {
+            "_$xattrs" : {
+              "dynamic" : true,
+              "enabled" : true
+            },
+            "content" : {
+              "dynamic" : false,
+              "enabled" : true,
+              "fields" : [ {
+                "docvalues" : true,
+                "include_in_all" : true,
+                "include_term_vectors" : true,
+                "index" : true,
+                "name" : "content",
+                "store" : true,
+                "type" : "text"
+              } ]
+            }
+          }
+        }
+      }
+    },
+    "store" : {
+      "indexType" : "scorch",
+      "segmentVersion" : 15
+    }
+  },
+  "sourceParams" : { }
+}
+```
+
 ##### [](#p-api-index-name-ex-response)Example HTTP Response
 
 Response 200
@@ -717,7 +785,7 @@ Response 200
 ```json
 {
   "status" : "ok",
-  "name" : "travel-test",
+  "name" : "landmark-content-index",
   "uuid" : "565ca041af3baf9d"
 }
 ```
@@ -777,6 +845,74 @@ Body Parameter
 | ------------ | ------------------------ |
 | http (basic) | [Write](#security-Write) |
 
+##### [](#p-api-scoped-index-name-ex-request)Example Request Body
+
+```json
+{
+  "type" : "fulltext-index",
+  "name" : "landmark-content-index",
+  "sourceType" : "gocbcore",
+  "sourceName" : "travel-sample",
+  "planParams" : {
+    "maxPartitionsPerPIndex" : 1024,
+    "indexPartitions" : 1
+  },
+  "params" : {
+    "doc_config" : {
+      "docid_prefix_delim" : "",
+      "docid_regexp" : "",
+      "mode" : "scope.collection.type_field",
+      "type_field" : "type"
+    },
+    "mapping" : {
+      "analysis" : { },
+      "default_analyzer" : "standard",
+      "default_datetime_parser" : "dateTimeOptional",
+      "default_field" : "_all",
+      "default_mapping" : {
+        "dynamic" : true,
+        "enabled" : false
+      },
+      "default_type" : "_default",
+      "docvalues_dynamic" : false,
+      "index_dynamic" : true,
+      "store_dynamic" : false,
+      "type_field" : "_type",
+      "types" : {
+        "inventory.landmark" : {
+          "dynamic" : false,
+          "enabled" : true,
+          "properties" : {
+            "_$xattrs" : {
+              "dynamic" : true,
+              "enabled" : true
+            },
+            "content" : {
+              "dynamic" : false,
+              "enabled" : true,
+              "fields" : [ {
+                "docvalues" : true,
+                "include_in_all" : true,
+                "include_term_vectors" : true,
+                "index" : true,
+                "name" : "content",
+                "store" : true,
+                "type" : "text"
+              } ]
+            }
+          }
+        }
+      }
+    },
+    "store" : {
+      "indexType" : "scorch",
+      "segmentVersion" : 15
+    }
+  },
+  "sourceParams" : { }
+}
+```
+
 ##### [](#p-api-scoped-index-name-ex-response)Example HTTP Response
 
 Response 200
@@ -784,8 +920,8 @@ Response 200
 ```json
 {
   "status" : "ok",
-  "name" : "travel-sample.inventory.travel-test",
-  "uuid" : "654cb62baebf2d26"
+  "name" : "travel-sample.inventory.landmark-content-index",
+  "uuid" : "49563a96ea6d3686"
 }
 ```
 
@@ -1145,7 +1281,7 @@ GET /api/stats
 
 Returns indexing and data-related metrics, timings, counters, and detailed partition information for all Search indexes, from the node running the Search Service.
 
-This endpoint returns statistics provided by the Search service. For additional statistics, see [Get Query, Mutation, and Partition Statistics for the Search Service](../fts-rest-stats/index.html#g-api-nsstats).
+This endpoint returns statistics provided by the Search Service. For additional statistics, see [Get Query, Mutation, and Partition Statistics for the Search Service](../fts-rest-stats/index.html#g-api-nsstats).
 
 Produces
 
@@ -1219,7 +1355,7 @@ GET /api/stats/index/{INDEX_NAME}
 
 Returns indexing and data-related metrics, timings, counters, and detailed partition information for the Search index specified in the endpoint URL.
 
-This endpoint returns statistics provided by the Search service. For additional statistics, see [Get Query, Mutation, and Partition Statistics for an Index](../fts-rest-stats/index.html#g-api-nsstats-index-name).
+This endpoint returns statistics provided by the Search Service. For additional statistics, see [Get Query, Mutation, and Partition Statistics for an Index](../fts-rest-stats/index.html#g-api-nsstats-index-name).
 
 Produces
 
@@ -1439,7 +1575,7 @@ Body Parameter
 
 | Name             | Description                                      | Schema                |
 | ---------------- | ------------------------------------------------ | --------------------- |
-| **Body**required | Add any valid JSON document to the request body. | [\[Object\]](#Object) |
+| **Body**required | Add any valid JSON document to the request body. | [Document](#Document) |
 
 ##### [](#g-api-stats-index-name-analyzeDoc-responses)Responses
 
@@ -1463,11 +1599,6 @@ Body Parameter
 ```
 
 ##### [](#g-api-stats-index-name-analyzeDoc-ex-response)Example HTTP Response
-
-[Response 200](#g-api-stats-index-name-analyzeDoc-ex-response-200) shows the result of analyzing the document from the [Example Request Body](#g-api-stats-index-name-analyzeDoc-ex-request) using a Search index with the following settings:
-
-* A `keyword` analyzer for the `title` field.
-* An `ngram` token filter with a `min` of 2 and a `max` of 5 for the `name` field.
 
 Response 200
 
@@ -1570,6 +1701,11 @@ Response 200
 }
 ```
 
+[Response 200](#g-api-stats-index-name-analyzeDoc-ex-response-200) shows the result of analyzing the document from the [Example Request Body](#g-api-stats-index-name-analyzeDoc-ex-request) using a Search index with the following settings:
+
+* A `keyword` analyzer for the `title` field.
+* An `ngram` token filter with a `min` of 2 and a `max` of 5 for the `name` field.
+
 ### [](#tag-Querying)Querying
 
 Use the following endpoints to query the contents of a Search index.
@@ -1661,16 +1797,6 @@ Body Parameter
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | 200       | The response object has a status section that must be checked for every request. Under nearly all circumstances, the query response will be HTTP 200 even though individual index shards (partitions) may encounter a timeout or return an error. | [Query Response](#QueryResponse) |
 
-##### [](#consistency-and-timeouts)Consistency and Timeouts
-
-A query can specify a timeout value, a consistency requirement, or both. This section explains how this affects the query behavior and how to handle the resulting query return values.
-
-* Logical first phase consistency wait — if timeout in this period, get 416 error with message saying request could not be satisfied.
-* If consistency wait times out with 416, return value to client will indicate the sequence number range processed so the client will have an idea how far the processing got and has the option of retrying more intelligently.
-* In phase 2, you have the normal pindex timeout. This will start whenever the first phase completes. At this point, request will return 200 HTTP response code unless there is an internal server error.
-* The client must check response status, which returns any errors or timeouts for each pindex. If the response includes the number of errors, and the client can determine whether they need the complete results or can continue as long as enough pindexes return to give a reasonable user experience. The query return status is 200 even if all pindexes return errors, so it's critical to check the response status and code accordingly.
-* If the client sets timeout low, for example 1 ms, you may receive a 200 error with all timeouts instead of a consistency wait timeout.
-
 ##### [](#p-api-index-name-query-security)Security
 
 | Type         | Name                       |
@@ -1679,81 +1805,58 @@ A query can specify a timeout value, a consistency requirement, or both. This se
 
 ##### [](#p-api-index-name-query-ex-request)Example Request Body
 
-The [Regular Query](#p-api-index-name-query-ex-request-0) request searches for the text `a sample query` in the documents included in the Search index.
-
-The [Query with Options](#p-api-index-name-query-ex-request-1) request uses from/size for results paging, with `ctl` for a timeout and the `"at_plus"` consistency level. On consistency, the index must have incorporated at least mutation sequence-number 123 for partition (vbucket) 0 and mutation sequence-number 234 for partition (vbucket) 1, where vbucket 1 should have a `vbucketUUID` of `a0b1c2`.
-
-The [Hybrid Query](#p-api-index-name-query-ex-request-2) request searches for a specified normalized color vector in `colorvect_dot`, but uses regular query parameters to limit the `brightness` value of the returned color to the range of `70-80`.
-
-For more information about vector searches, see [Use Vector Search for AI Applications](../vector-search/vector-search.md).
-
-Regular Query
-
 ```json
 {
+  "fields" : [ "*" ],
   "query" : {
-    "query" : "a sample query",
-    "boost" : 1
+    "query" : "+view +food +beach"
   },
   "size" : 10,
-  "from" : 0,
-  "highlight" : null,
-  "fields" : null,
-  "facets" : null,
-  "explain" : false
+  "from" : 0
 }
 ```
 
-Query with Options
+##### [](#p-api-index-name-query-ex-response)Example HTTP Response
+
+Response 200
 
 ```json
 {
-  "ctl" : {
-    "timeout" : 10000,
-    "consistency" : {
-      "level" : "at_plus",
-      "vectors" : {
-        "customerIndex" : {
-          "0" : 123,
-          "1/a0b1c2" : 234
-        }
-      }
+  "status" : {
+    "total" : 1,
+    "failed" : 0,
+    "successful" : 1
+  },
+  "hits" : [ {
+    "index" : "travel-sample.inventory.landmark-content-index_49563a96ea6d3686_4c1c5584",
+    "id" : "landmark_4428",
+    "score" : 2.425509689250102,
+    "sort" : [ "_score" ],
+    "fields" : {
+      "content" : "serves fresh food at very reasonable prices - view of stoney beach with herons"
     }
-  },
-  "query" : {
-    "query" : "alice smith",
-    "boost" : 1
-  },
-  "size" : 10,
-  "from" : 20,
-  "highlight" : {
-    "style" : null,
-    "fields" : null
-  },
-  "fields" : [ "*" ],
-  "facets" : null,
-  "explain" : true
-}
-```
-
-Hybrid Query
-
-```json
-{
-  "fields" : [ "*" ],
-  "query" : {
-    "min" : 70,
-    "max" : 80,
-    "inclusive_min" : false,
-    "inclusive_max" : true,
-    "field" : "brightness"
-  },
-  "knn" : [ {
-    "k" : 10,
-    "field" : "colorvect_dot",
-    "vector" : [ 0.707106781186548, 0, 0.707106781186548 ]
+  }, {
+    "index" : "travel-sample.inventory.landmark-content-index_49563a96ea6d3686_4c1c5584",
+    "id" : "landmark_26385",
+    "score" : 1.6270812956011347,
+    "sort" : [ "_score" ],
+    "fields" : {
+      "content" : "Burgers, seafood, and other simple but tasty meals right at the harbor. You can take your food around the corner to sit on the beach or the sea wall and enjoy the ocean view while you eat."
+    }
+  }, {
+    "index" : "travel-sample.inventory.landmark-content-index_49563a96ea6d3686_4c1c5584",
+    "id" : "landmark_38035",
+    "score" : 1.1962539437368078,
+    "sort" : [ "_score" ],
+    "fields" : {
+      "content" : "Famous for &quot;the Blue Lady&quot;, a ghost rumored to haunt the premises, the Moss Beach distillery offers a full menu, Sunday brunch, drinks, and a tremendous ocean view with comfortable fire pits. Happy hour Mon-Fri from 5PM to 7PM offers half-priced drinks and a discounted food menu."
+    }
   } ],
-  "size" : 10
+  "total_hits" : 3,
+  "cost" : 150479,
+  "max_score" : 2.425509689250102,
+  "took" : 1441203,
+  "facets" : null
 }
 ```
 
@@ -1863,11 +1966,103 @@ Body Parameter
 | 200       | The response object has a status section that must be checked for every request. Under nearly all circumstances, the query response will be HTTP 200 even though individual index shards (partitions) may encounter a timeout or return an error. | [Query Response](#QueryResponse) |
 | Default   | The Search Service returns a non-200 HTTP error code when a request fails.                                                                                                                                                                        |                                  |
 
+##### [](#consistency-and-timeouts)Consistency and Timeouts
+
+A query can specify a timeout value, a consistency requirement, or both. This section explains how this affects the query behavior and how to handle the resulting query return values.
+
+* Logical first phase consistency wait — if timeout in this period, get 416 error with message saying request could not be satisfied.
+* If consistency wait times out with 416, return value to client will indicate the sequence number range processed so the client will have an idea how far the processing got and has the option of retrying more intelligently.
+* In phase 2, you have the normal pindex timeout. This will start whenever the first phase completes. At this point, request will return 200 HTTP response code unless there is an internal server error.
+* The client must check response status, which returns any errors or timeouts for each pindex. If the response includes the number of errors, and the client can determine whether they need the complete results or can continue as long as enough pindexes return to give a reasonable user experience. The query return status is 200 even if all pindexes return errors, so it's critical to check the response status and code accordingly.
+* If the client sets timeout low, for example 1 ms, you may receive a 200 error with all timeouts instead of a consistency wait timeout.
+
 ##### [](#p-api-scoped-query-security)Security
 
 | Type         | Name                       |
 | ------------ | -------------------------- |
 | http (basic) | [Manage](#security-Manage) |
+
+##### [](#p-api-scoped-query-ex-request)Example Request Body
+
+Regular Query
+
+This request searches for the text `a sample query` in the documents included in the Search index.
+
+```json
+{
+  "query" : {
+    "query" : "a sample query",
+    "boost" : 1
+  },
+  "size" : 10,
+  "from" : 0,
+  "highlight" : null,
+  "fields" : null,
+  "facets" : null,
+  "explain" : false
+}
+```
+
+Query with Options
+
+This request uses from/size for results paging, with `ctl` for a timeout and the `"at_plus"` consistency level.
+
+On consistency, the index must have incorporated at least mutation sequence-number 123 for partition (vBucket) 0 and mutation sequence-number 234 for partition (vBucket) 1, where vBucket 1 should have a `vbucketUUID` of `a0b1c2`.
+
+```json
+{
+  "ctl" : {
+    "timeout" : 10000,
+    "consistency" : {
+      "level" : "at_plus",
+      "vectors" : {
+        "customerIndex" : {
+          "0" : 123,
+          "1/a0b1c2" : 234
+        }
+      }
+    }
+  },
+  "query" : {
+    "query" : "alice smith",
+    "boost" : 1
+  },
+  "size" : 10,
+  "from" : 20,
+  "highlight" : {
+    "style" : null,
+    "fields" : null
+  },
+  "fields" : [ "*" ],
+  "facets" : null,
+  "explain" : true
+}
+```
+
+Hybrid Query
+
+This request searches for a specified normalized color vector in `colorvect_dot`, but uses regular query parameters to limit the `brightness` value of the returned color to the range of `70-80`.
+
+```json
+{
+  "fields" : [ "*" ],
+  "query" : {
+    "min" : 70,
+    "max" : 80,
+    "inclusive_min" : false,
+    "inclusive_max" : true,
+    "field" : "brightness"
+  },
+  "knn" : [ {
+    "k" : 10,
+    "field" : "colorvect_dot",
+    "vector" : [ 0.707106781186548, 0, 0.707106781186548 ]
+  } ],
+  "size" : 10
+}
+```
+
+For more information about vector searches, see [Use Vector Search for AI Applications](../vector-search/vector-search.md).
 
 ##### [](#p-api-scoped-query-ex-response)Example HTTP Response
 
@@ -2158,6 +2353,7 @@ Default Response
 This section describes the properties consumed and returned by this REST API.
 
 [Delete Response](#DeleteIndexResponse)  
+[Document](#Document)  
 [Document Analysis](#DocumentAnalysis)  
 [Analysis Item](#DocumentAnalysisItem)  
 [Analysis Token](#DocumentAnalysisItemToken)  
@@ -2189,10 +2385,18 @@ This section describes the properties consumed and returned by this REST API.
 
  Object
 
-| Property           |                                                                                                                         | Schema |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------ |
-| **status**optional | The status of the operation.                                                                                            | String |
-| **uuid**optional   | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial). | String |
+| Property           |                                                                                                                         | Schema      |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **status**optional | The status of the operation.                                                                                            | String      |
+| **uuid**optional   | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial). | UUID (UUID) |
+
+### [](#Document)Document
+
+ Object
+
+| Property           |                                         | Schema   |
+| ------------------ | --------------------------------------- | -------- |
+| additionalproperty | Any valid JSON value. **Nullable:** yes | Any Type |
 
 ### [](#DocumentAnalysis)Document Analysis
 
@@ -2256,20 +2460,20 @@ This section describes the properties consumed and returned by this REST API.
 
  Object
 
-| Property                     |                                                                                                                                                         | Schema                                                         |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| **indexName**optional        | The name of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | String                                                         |
-| **indexParams**optional      | The Search index's type identifier, type mappings, and analyzers. For more information, see [Params Object](../search/search-index-params.html#params). | Object                                                         |
-| **indexType**optional        | The type of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | String                                                         |
-| **indexUUID**optional        | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | String                                                         |
-| **name**optional             | The name of the Search index partition.                                                                                                                 | String                                                         |
-| **nodes**optional            | An object containing information about 1 or more Search index partition nodes.                                                                          | [Partition Nodes Wrapper](#GetIndexResponsePIndexNodesWrapper) |
-| **sourceName**optional       | The name of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).      | String                                                         |
-| **sourceParams**optional     | Advanced settings for Search index behavior. For more information, see [Initial Settings](../search/search-index-params.html#initial).                  | Object                                                         |
-| **sourcePartitions**optional |                                                                                                                                                         | String                                                         |
-| **sourceType**optional       | The type of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).      | String                                                         |
-| **sourceUUID**optional       | The UUID of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).      | String                                                         |
-| **uuid**optional             | The UUID of the Search index partition.                                                                                                                 | String                                                         |
+| Property                     |                                                                                                                                                                        | Schema                                                         |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| **indexName**optional        | The name of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                                | String                                                         |
+| **indexParams**optional      | The Search index's type identifier, type mappings, and analyzers. For more information, see [Params Object](../search/search-index-params.html#params).                | Object                                                         |
+| **indexType**optional        | The type of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial). **Values:** "fulltext-index", "fulltext-alias" | String                                                         |
+| **indexUUID**optional        | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                                | UUID (UUID)                                                    |
+| **name**optional             | The name of the Search index partition.                                                                                                                                | String                                                         |
+| **nodes**optional            | An object containing information about 1 or more Search index partition nodes.                                                                                         | [Partition Nodes Wrapper](#GetIndexResponsePIndexNodesWrapper) |
+| **sourceName**optional       | The name of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | String                                                         |
+| **sourceParams**optional     | Advanced settings for Search index behavior. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | Object                                                         |
+| **sourcePartitions**optional |                                                                                                                                                                        | String                                                         |
+| **sourceType**optional       | The type of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | String                                                         |
+| **sourceUUID**optional       | The UUID of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | UUID (UUID)                                                    |
+| **uuid**optional             | The UUID of the Search index partition.                                                                                                                                | String                                                         |
 
 #### Partition Nodes Wrapper
 
@@ -2320,18 +2524,18 @@ This section describes the properties consumed and returned by this REST API.
 
  Object
 
-| Property                  |                                                                                                                                                                  | Schema                                        |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **name**required          | The name of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                          | String                                        |
-| **type**required          | The type of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                          | String                                        |
-| **sourceName**required    | The name of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).               | String                                        |
-| **sourceUUID**optional    | The UUID of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).               | String                                        |
-| **sourceParams**optional  | Advanced settings for Search index behavior. For more information, see [Initial Settings](../search/search-index-params.html#initial).                           | Object                                        |
-| **sourceType**required    | The type of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).               | String                                        |
-| **params**required        | The Search index's type identifier, type mappings, and analyzers. For more information, see [Params Object](../search/search-index-params.html#params).          | Object                                        |
-| **planParams**required    | The Search index's partitioning and replication settings. For more information, see [Plan Params Object](../search/search-index-params.html#planParams).         | [Plan Parameters](#IndexDefinitionPlanParams) |
-| **prevIndexUUID**optional | The UUID of the previous index. Intended for clients that want to check that they are not overwriting the Search index definition updates of concurrent clients. | String                                        |
-| **uuid**optional          | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                          | String                                        |
+| Property                  |                                                                                                                                                                        | Schema                                        |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **name**required          | The name of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                                | String                                        |
+| **type**required          | The type of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial). **Values:** "fulltext-index", "fulltext-alias" | String                                        |
+| **sourceName**required    | The name of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | String                                        |
+| **sourceUUID**optional    | The UUID of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | UUID (UUID)                                   |
+| **sourceParams**optional  | Advanced settings for Search index behavior. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | Object                                        |
+| **sourceType**required    | The type of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | String                                        |
+| **params**required        | The Search index's type identifier, type mappings, and analyzers. For more information, see [Params Object](../search/search-index-params.html#params).                | Object                                        |
+| **planParams**required    | The Search index's partitioning and replication settings. For more information, see [Plan Params Object](../search/search-index-params.html#planParams).               | [Plan Parameters](#IndexDefinitionPlanParams) |
+| **prevIndexUUID**optional | The UUID of the previous index. Intended for clients that want to check that they're not overwriting the Search index definition updates of concurrent clients.        | UUID (UUID)                                   |
+| **uuid**optional          | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                                | UUID (UUID)                                   |
 
 #### Plan Parameters
 
@@ -2391,11 +2595,11 @@ This section describes the properties consumed and returned by this REST API.
 
  Object
 
-| Property           |                                                                                                                         | Schema |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------ |
-| **status**optional | The status of the operation.                                                                                            | String |
-| **name**optional   | The name of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial). | String |
-| **uuid**optional   | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial). | String |
+| Property           |                                                                                                                         | Schema      |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **status**optional | The status of the operation.                                                                                            | String      |
+| **name**optional   | The name of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial). | String      |
+| **uuid**optional   | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial). | UUID (UUID) |
 
 ### [](#QueryRequest)Query Request
 

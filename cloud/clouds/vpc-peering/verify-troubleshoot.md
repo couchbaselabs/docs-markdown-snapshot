@@ -3,7 +3,7 @@ title: Verify VPC Peering Connectivity
 description: Use the procedures on this page to verify that a VPC peering
   connection is working correctly and help troubleshoot connectivity issues.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/verify-troubleshoot.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clouds:vpc-peering/verify-troubleshoot.adoc[]
 ---
 
@@ -83,16 +83,16 @@ If you entered an incorrect CIDR block, application VPC, VPC ID, or other inform
 
 AWS
 
-* On your AWS VPC, check that you have enabled the DNS hostname and DNS resolution settings. If you need to change these settings, allow time for DNS caching before trying again. For more information, see [AWS VPC Peering Prerequisites](peer-gcp.md#Prerequisites).
+* On your AWS VPC, check that you have enabled the DNS hostname and DNS resolution settings. If you need to change these settings, allow time for DNS caching before trying again. For more information, see [AWS VPC Peering Prerequisites](peer-aws.md#prerequisites).
 
 Azure
 
-* While Capella supports multiple subscriptions within a single Azure tenant, VNet peering across two or more Azure tenants is not supported.
-* Check that you have accepted the permissions request from Capella.
+* While Capella supports multiple subscriptions within a single Azure tenant, VNet peering across 2 or more Azure tenants is not supported.
+* Check that you have accepted the permissions request from Capella. For more information, see [Azure VPC Connection Setup](peer-azure.md#procedure).
 
 GCP
 
-* Check that you have finished the setup by running the `gcloud` commands to accept the peering request and link your VPC to the appropriate DNS server for hostname resolution. For more information, see [Finish GCP VPC Connection Setup](peer-gcp.md#finish-gcp-peer).
+* Check that you have finished the setup by running the `gcloud` commands to accept the peering request and link your VPC to the appropriate DNS server for hostname resolution. For more information, see [GCP VPC Connection Setup](peer-gcp.md#procedure).
 
 ### [](#status-information)Status Information
 

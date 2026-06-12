@@ -1,7 +1,7 @@
 ---
 title: Couchbase Go SDK 2.12
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/hello-world/pages/overview.adoc
-pubDate: 2026-04-28T05:36:31.051Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:go-sdk:hello-world:overview.adoc[]
 ---
 
@@ -16,7 +16,7 @@ The Couchbase Go SDK allows Go applications to access a Couchbase cluster — Ca
 
 [Quickstart Guide](start-using-sdk.md) | [SDK Release Notes](../project-docs/sdk-release-notes.md) | [Go SDK API Reference](https://pkg.go.dev/github.com/couchbase/gocb/v2) | [Go SDK source code](https://github.com/couchbase/gocb)
 
-What's the point of a fast and scalable database if it's not easy to develop for? Couchbase gives you the Go APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
+A fast and scalable database is even better when it's easy to develop for. Couchbase gives you the Go APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
 
 * Data Ops (CRUD)
 * SQL++ Query (OLTP)

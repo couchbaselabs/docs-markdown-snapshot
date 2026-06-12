@@ -2,7 +2,7 @@
 title: SDK Release Notes
 description: Release notes for the Couchbase Kotlin Client.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.4/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-04-17T05:26:26.225Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:1.4@kotlin-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -22,13 +22,23 @@ Unresolved include directive in modules/project-docs/pages/sdk-release-notes.ado
 
 We always recommend using the latest version of the SDK — it contains all of the latest security patches and support for new and upcoming features. All patch releases for each dot minor release should be API compatible, and safe to upgrade; any changes to expected behavior are noted in the release notes that follow.
 
+### [](#v3.11.3)Version 3.11.3 (21 May 2026)
+
+[API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-3.11.3/index.html) | [Core API Reference](https://docs.couchbase.com/sdk-api/couchbase-core-io-3.11.3/)
+
+This maintenance release improves the exception message when the SDK cannot parse the file containing trusted server certificates.
+
+#### [](#improvements)Improvements
+
+* [JVMCBC-1737](https://jira.issues.couchbase.com/browse/JVMCBC-1737): When `TrustSource.certificate(Path)` fails to parse the specified file, the exception message no longer includes the file contents.
+
 ### [](#v3.11.2)Version 3.11.2 (13 April 2026)
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-3.11.2/index.html) | [Core API Reference](https://docs.couchbase.com/sdk-api/couchbase-core-io-3.11.2/)
 
 This maintenance release upgrades Netty and Jackson to the latest versions.
 
-#### [](#improvements)Improvements
+#### [](#improvements-2)Improvements
 
 * [JVMCBC-1726](https://jira.issues.couchbase.com/browse/JVMCBC-1726): Upgraded Netty from to `4.2.9` to `4.2.12`.
 * [JVMCBC-1723](https://jira.issues.couchbase.com/browse/JVMCBC-1723): Upgraded Jackson from `2.20.1` to `2.21.2`.
@@ -43,7 +53,7 @@ This critical release fixes a regression in `3.11.0` that caused documents inser
 
 * [JVMCBC-1712](https://jira.issues.couchbase.com/browse/JVMCBC-1712): Document inserted in transactions no longer expire immediately. This fixes a regression in `3.11.0`.
 
-#### [](#improvements-2)Improvements
+#### [](#improvements-3)Improvements
 
 * [KCBC-198](https://jira.issues.couchbase.com/browse/KCBC-198): Exposed the `observabilitySemanticConventions` client setting.
 
@@ -60,7 +70,7 @@ Kotlin 2.1 is now the minimum required version.
 
 * [JVMCBC-1705](https://jira.issues.couchbase.com/browse/JVMCBC-1705): Fixed an issue that could cause the transaction cleanup task to terminate unexpectedly, leaving the SDK unable to clean up incomplete transactions.
 
-#### [](#improvements-3)Improvements
+#### [](#improvements-4)Improvements
 
 * [KCBC-199](https://jira.issues.couchbase.com/browse/KCBC-199): The Couchbase Kotlin SDK now requires Kotlin 2.1 or later.
 * [JVMCBC-1708](https://jira.issues.couchbase.com/browse/JVMCBC-1708): Upgraded `OpenTelemetry` from `1.31.0` to `1.57.0`.
@@ -81,7 +91,7 @@ Kotlin 2.1 is now the minimum required version.
 
 * [JVMCBC-1709](https://jira.issues.couchbase.com/browse/JVMCBC-1709): Enabling TLS inside an OSGi container no longer causes `java.lang.ClassNotFoundException: javax.net.ssl.TrustManagerFactory not found by core-io`.
 
-#### [](#improvements-4)Improvements
+#### [](#improvements-5)Improvements
 
 * [JVMCBC-1707](https://jira.issues.couchbase.com/browse/JVMCBC-1707): Upgraded `Netty` from `4.1.128` to `4.1.130`.
 * [KCBC-197](https://jira.issues.couchbase.com/browse/KCBC-197): Deprecated the Views API.  
@@ -97,7 +107,7 @@ Kotlin 2.1 is now the minimum required version.
 * [JVMCBC-1696](https://couchbasecloud.atlassian.net/browse/JVMCBC-1696): The client no longer makes bucketful KV connections to nodes that aren't hosting the bucket, ensuring that unconnected endpoints don't cause SDC health check to fail.
 * [JVMCBC-1697](https://couchbasecloud.atlassian.net/browse/JVMCBC-1697): Fixed a problem that caused the SDK to use more bandwidth than necessary when polling Couchbase Server 7.6 and later, for cluster topology updates when the topology is in a steady state.
 
-##### [](#improvements-5)Improvements
+##### [](#improvements-6)Improvements
 
 * [JVMCBC-1693](https://couchbasecloud.atlassian.net/browse/JVMCBC-1693): The SDK now tracks server cluster topology changes more efficiently, and no longer sends redundant "get topology" requests during failover and rebalance.
 * [JVMCBC-1699](https://couchbasecloud.atlassian.net/browse/JVMCBC-1699): If the bootstrap address resolution task does not complete before the cluster is disconnected, the task now terminates gracefully instead of logging a scary warning.
@@ -122,7 +132,7 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 This is the second maintenance release of the 3.9 series.
 
-#### [](#improvements-6)Improvements
+#### [](#improvements-7)Improvements
 
 * [JVMCBC-1694](https://couchbasecloud.atlassian.net/browse/JVMCBC-1694): Updated `Netty` to `4.1.127`.
 
@@ -132,7 +142,7 @@ This is the second maintenance release of the 3.9 series.
 
 This is the first maintenance release of the 3.9 series.
 
-#### [](#improvements-7)Improvements
+#### [](#improvements-8)Improvements
 
 * [JVMCBC-1678](https://couchbasecloud.atlassian.net/browse/JVMCBC-1678): Upgraded `Netty` to `4.1.124`.
 * [JVMCBC-1680](https://couchbasecloud.atlassian.net/browse/JVMCBC-1680): When parsing cluster topology into a `ClusterTopology` object, the original JSON is now retained, so it can be re-parsed with different parameters later.
@@ -187,7 +197,7 @@ Regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.5.2/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-3.8.2/)
 
-#### [](#improvements-8)Improvements
+#### [](#improvements-9)Improvements
 
 * [JVMCBC-1647](https://couchbasecloud.atlassian.net/browse/JVMCBC-1647): Upgraded `Jackson` from `2.17.2` to `2.17.3`.
 
@@ -197,7 +207,7 @@ Regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.5.1/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-3.8.1/)
 
-#### [](#improvements-9)Improvements
+#### [](#improvements-10)Improvements
 
 * [JVMCBC-1631](https://couchbasecloud.atlassian.net/browse/JVMCBC-1631): Updated `Netty` to `4.1.119`.
 
@@ -213,7 +223,7 @@ Regular maintenance release.
 > The stable version of this class is not binary compatible with the experimental version. If you were already using `KotlinxSerializationJsonSerializer`, you will need to recompile your project.
 * [JVMCBC-1602](https://couchbasecloud.atlassian.net/browse/JVMCBC-1602:): Application Telemetry improvements.
 
-#### [](#improvements-10)Improvements
+#### [](#improvements-11)Improvements
 
 * [KCBC-187](https://jira.issues.couchbase.com/browse/KCBC-187): The bucket management API now supports specifying the number of VBuckets for a Magma bucket (requires Couchbase Server 8.0 or later).
 * [KCBC-184](https://jira.issues.couchbase.com/browse/KCBC-184): Added transaction methods `getMulti` and `getMultiReplicasFromPreferredServerGroup` for getting a batch of documents with minimal read skew.
@@ -226,7 +236,7 @@ Regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.4.9/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-3.7.9/)
 
-#### [](#improvements-11)Improvements
+#### [](#improvements-12)Improvements
 
 * [JVMCBC-1616](https://couchbasecloud.atlassian.net/browse/JVMCBC-1616)Upgraded Netty from `4.1.15` to `4.1.118`.
 
@@ -236,7 +246,7 @@ Regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.4.8/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-3.7.8/)
 
-#### [](#improvements-12)Improvements
+#### [](#improvements-13)Improvements
 
 * [KCBC-163](https://jira.issues.couchbase.com/browse/KCBC-163): When using Couchbase Server 7.6.2 or later, you can now specify a "preferred server group" for replica reads. To use this feature, configure the cluster environment with a `preferredServerGroup` name. The following `Collection` methods now have an optional `readPreference` parameter:
 
@@ -315,7 +325,7 @@ This regular maintenance release updates dependency versions.
 
 * [JVMCBC-1583](https://jira.issues.couchbase.com/browse/JVMCBC-1583): Fixed a race condition that could cause the SDK to continuously attempt to reconnect to a node, even after the node is rebalanced out of the cluster.
 
-#### [](#improvements-13)Improvements
+#### [](#improvements-14)Improvements
 
 * [JVMCBC-1560](https://jira.issues.couchbase.com/browse/JVMCBC-1560): Added cluster UUID and name to metrics and spans.
 * [JVMCBC-1582](https://jira.issues.couchbase.com/browse/JVMCBC-1582): Upgraded `Netty` from `4.1.112` to `4.1.115`.
@@ -342,7 +352,7 @@ This regular maintenance release adds an experimental API for Couchbase transact
 
 * [JVMCBC-1570](https://jira.issues.couchbase.com/browse/JVMCBC-1570): The SDK was producing an incorrect partition map in `CouchbaseBucketConfig`, for buckets with >= 2 replicas. This has now been fixed.
 
-#### [](#improvements-14)Improvements
+#### [](#improvements-15)Improvements
 
 * [KCBC-96](https://jira.issues.couchbase.com/browse/KCBC-96): Added experimental API for Couchbase transactions. This is a new [Kotlin-flavored candy shell](https://www.couchbase.com/forums/t/kotlin-sdk-1-4-4-adds-experimental-support-for-couchbase-transactions/39307) on the same Couchbase transactions engine used by the Java SDK.  
 > [!WARNING]  
@@ -354,7 +364,7 @@ This regular maintenance release updates dependency versions.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.4.3/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-3.7.3/)
 
-#### [](#improvements-15)Improvements
+#### [](#improvements-16)Improvements
 
 * [JVMCBC-1564](https://jira.issues.couchbase.com/browse/JVMCBC-1564): Query index manager operation `watchIndexes()` now uses any provided `parentSpan`, and sets required span attributes.
 * [JVMCBC-1562](https://jira.issues.couchbase.com/browse/JVMCBC-1562): Updated version dependencies:
@@ -374,7 +384,7 @@ This regular maintenance release updates dependency versions.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.4.2/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-3.7.2/)
 
-#### [](#improvements-16)Improvements
+#### [](#improvements-17)Improvements
 
 * [JVMCBC-1547](https://issues.couchbase.com/browse/JVMCBC-1547): Updated DnsJava to 3.6.0.
 
@@ -384,7 +394,7 @@ This regular maintenance release updates dependency versions.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.4.1/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.7.1/)
 
-#### [](#improvements-17)Improvements
+#### [](#improvements-18)Improvements
 
 * [JVMCBC-1523](https://issues.couchbase.com/browse/JVMCBC-1523): Upgraded `org.iq80.snappy` from 0.4 to 0.5.
 * [JVMCBC-1532](https://issues.couchbase.com/browse/JVMCBC-1532): Upgraded Jackson from 2.17.0 to 2.17.2.
@@ -396,7 +406,7 @@ This version promotes vector search to the committed API, and adds support for s
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.4.0/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.7.0/)
 
-#### [](#improvements-18)Improvements
+#### [](#improvements-19)Improvements
 
 * [KCBC-165](https://issues.couchbase.com/browse/KCBC-165): Adds support for base64-encoded vectors in `VectorQuery`.
 
@@ -408,7 +418,7 @@ This is a regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.3.2/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.6.2/)
 
-#### [](#improvements-19)Improvements
+#### [](#improvements-20)Improvements
 
 * [JVMCBC-1508](https://issues.couchbase.com/browse/JVMCBC-1508)Upgraded Netty dependency.
 * [JVMCBC-1509](https://issues.couchbase.com/browse/JVMCBC-1509)Upgraded Jackson dependency.
@@ -424,7 +434,7 @@ This is a regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.3.1/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.6.1/)
 
-#### [](#improvements-20)Improvements
+#### [](#improvements-21)Improvements
 
 * [JVMCBC-1477](https://issues.couchbase.com/browse/JVMCBC-1477)Reduced the rate at which messages appear in the server's `http_access.log` when invalid credentials are provided resulting in 401 errors. Issues resulting in 403 errors will be handled in a future release.
 * [JVMCBC-1499](https://issues.couchbase.com/browse/JVMCBC-1499)Disabled DNS SRV caching. The SDK now responds quicker to DNS changes in dynamic environments like Kubernetes.
@@ -437,7 +447,7 @@ Additionally, several methods that were previously "volatile" or "uncommitted" a
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.3.0/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.6.0/)
 
-#### [](#improvements-21)Improvements
+#### [](#improvements-22)Improvements
 
 * [KCBC-145](https://issues.couchbase.com/browse/KCBC-145): Added support for vector search, a new feature in Couchbase Server 7.6\. This API is currently at `@Stability.Uncommitted` level.
 * [JVMCBC-1491](https://issues.couchbase.com/browse/JVMCBC-1491): Added support for KV range scan, a new feature in Couchbase Server 7.6\. The `Collection.scanDocuments()` and `Collection.scanIds()` methods are now part of the SDK's committed public API.
@@ -462,7 +472,7 @@ This is a regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.2.3/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.5.3/)
 
-#### [](#improvements-22)Improvements
+#### [](#improvements-23)Improvements
 
 * [KCBC-146](https://issues.couchbase.com/browse/KCBC-146) Collection manager improvements:
 
@@ -484,7 +494,7 @@ This is a regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.2.2/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.5.2/)
 
-#### [](#improvements-23)Improvements
+#### [](#improvements-24)Improvements
 
 * [KCBC-141](https://issues.couchbase.com/browse/KCBC-141): Added new `QueryMetadata.signatureBytes` property. The value is a byte array containing the signature encoded as JSON (`QueryMetadata.signature` failed if the signature was not a JSON Object). Deprecated `QueryMetadata.signature` in favor of `signatureBytes`.
 
@@ -499,7 +509,7 @@ This is a regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.2.1/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.5.1/)
 
-#### [](#improvements-24)Improvements
+#### [](#improvements-25)Improvements
 
 * [JVMCBC-1435](https://issues.couchbase.com/browse/JVMCBC-1435), [JVMCBC-1436](https://issues.couchbase.com/browse/JVMCBC-1436): Upgraded Netty and Jackson dependencies.
 * [JVMCBC-1440](https://issues.couchbase.com/browse/JVMCBC-1440): Adding `DocumentNotLockedException` supporting future Couchbase Server versions that will return an error code when unlocking a document that is not locked.
@@ -534,7 +544,7 @@ When upgrading from a previous version of the SDK, please be aware of this behav
 > 
 > If your project does not already use SLF4J, please follow the announcement link for details and a mini-migration guide.
 
-#### [](#improvements-25)Improvements
+#### [](#improvements-26)Improvements
 
 * [KCBC-132](https://issues.couchbase.com/browse/KCBC-132): `BucketManager` and `CollectionManager` now know about the history preservation settings added in Couchbase Server 7.2.  
 `CollectionManager` has a new `updateCollection` method for changing the settings of an existing collection. Note that updating a collection's `maxExpiry` setting requires Couchbase Server 7.6.
@@ -557,7 +567,7 @@ This is a regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.1.11/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.11/)
 
-#### [](#improvements-26)Improvements
+#### [](#improvements-27)Improvements
 
 * [JCBC-2046](https://issues.couchbase.com/browse/JCBC-2046): With thanks to community member [Marcin Grzejszczak](https://github.com/marcingrzejszczak) for the contribution, support for Micrometer Observation has been added to all JVM SDKs via the new `tracing-micrometer-observation` module.
 * [JVMCBC-1327](https://issues.couchbase.com/browse/JVMCBC-1327): Internal improvements to support upcoming faster failover and config push features.
@@ -570,7 +580,7 @@ This is a regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.1.10/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.10/)
 
-#### [](#improvements-27)Improvements
+#### [](#improvements-28)Improvements
 
 * [JVMCBC-1367](https://issues.couchbase.com/browse/JVMCBC-1367): The `db.couchbase.operations` metric now has `db.name` (bucket), `db.couchbase.scope`, `db.couchbase.collection` and `outcome` labels (tags). This new feature is at Stability.Volatile, and may change before it is promoted to Stability.Committed in a future release.
 * [JVMCBC-1311](https://issues.couchbase.com/browse/JVMCBC-1311), [JVMCBC-1352](https://issues.couchbase.com/browse/JVMCBC-1352): Upgraded dependencies.
@@ -587,7 +597,7 @@ This is a regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.1.9/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.9/)
 
-#### [](#improvements-28)Improvements
+#### [](#improvements-29)Improvements
 
 * [JVMCBC-1339](https://issues.couchbase.com/browse/JVMCBC-1339): When KV traffic capture is enabled, each `ReadTrafficCapturedEvent` now contains a single protocol frame, and the human-readable frame description is more accurate.
 * [JVMCBC-1320](https://issues.couchbase.com/browse/JVMCBC-1320): The `waitUntilReady` method is now more aggressive about retrying failed pings. Also, waiting for a desired state of `DEGRADED` no longer fails when the client is fully connected to the cluster.
@@ -597,7 +607,7 @@ This is a regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.1.8/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.8/)
 
-#### [](#improvements-29)Improvements
+#### [](#improvements-30)Improvements
 
 * [JVMCBC-1322](https://issues.couchbase.com/browse/JVMCBC-1322): The `waitUntilReady()` method now logs additional diagnostic information to the `com.couchbase.core.WaitUntilReady` logging category at `DEBUG` level.
 
@@ -607,7 +617,7 @@ This is a regular maintenance release.
 
 This release refines the sub-document counter methods, and adds a new connection string parameter for disabling TLS certificate verification.
 
-#### [](#improvements-30)Improvements
+#### [](#improvements-31)Improvements
 
 * [KCBC-123](https://issues.couchbase.com/browse/KCBC-123): Added new versions of `MutateInSpec.incrementAndGet` and `decrementAndGet` without a `delta` parameter ("increment/decrement" implies the delta is 1). Added a `MutateInSpec.addAndGet` method that takes a delta. Deprecated the old increment/decrement methods that take a delta, in favor of the new `addAndGet` method.
 * [JVMCBC-1290](https://issues.couchbase.com/browse/JVMCBC-1290): Added a new client setting, `security.enableCertificateVerification`, which defaults to true. This setting allows disabling TLS certificate verification in development environments where configuring the CA certificate to trust is not practical. Setting this to false is equivalent to configuring the environment to use `InsecureTrustManager.INSTANCE`. For compatibility with other modern Couchbase SDKs, certificate verification can now be disabled using the connection string parameter `tls_verify=none`. This feature is introduced at stability level `Volatile`, meaning it may change in a patch release without notice.
@@ -625,7 +635,7 @@ This is a regular maintenance release, with no notable changes apart from depede
 
 This is a regular maintenance release.
 
-#### [](#improvements-31)Improvements
+#### [](#improvements-32)Improvements
 
 * [JVMCBC-1223](https://issues.couchbase.com/browse/JVMCBC-1223): Adds a `RetryReason.AUTHENTICATION_ERROR` at `Uncommitted` API stability level. A custom `RetryStrategy` can use this new, more granular information to distinguish if a connection problem is down to an authentication issue.
 
@@ -644,7 +654,7 @@ This is a regular maintenance release.
 
 This is a regular maintenance release.
 
-#### [](#improvements-32)Improvements
+#### [](#improvements-33)Improvements
 
 * [JVMCBC-1237](https://issues.couchbase.com/browse/JVMCBC-1237): Added "network" as an alias for the "io.networkResolution" connection string parameter. For example, the connection string "couchbase://example.com?network=external" is now equivalent to "couchbase://example.com?io.networkResolution=external". This was done for compatibility with other Couchbase SDKs that use "network" as the name of this parameter.
 
@@ -658,7 +668,7 @@ This is a regular maintenance release.
 
 This is a regular maintenance release.
 
-#### [](#improvements-33)Improvements
+#### [](#improvements-34)Improvements
 
 * [JVMCBC-1181](https://issues.couchbase.com/browse/JVMCBC-1181): It is now possible to authenticate over secure connections even if the JVM does not support the SASL PLAIN authentication mechanism.
 * [JVMCBC-1184](https://issues.couchbase.com/browse/JVMCBC-1184): Updated dependencies.
@@ -673,7 +683,7 @@ This is a regular maintenance release.
 
 This is a regular maintenance release.
 
-#### [](#improvements-34)Improvements
+#### [](#improvements-35)Improvements
 
 * [JVMCBC-1175](https://issues.couchbase.com/browse/JVMCBC-1175): The SDK now includes native libraries for IO and TLS that can enhance performance on `aarch_64` architectures like Graviton and Apple Silicon. Previously, native libraries were included only for `x86_64` architectures. Native libraries for IO and TLS are enabled by default. If you need to disable native IO, set the `ioEnvironment.enableNativeIo` client setting to false. To disable native TLS, set the `security.enableNativeTls` client setting to false.
 
@@ -687,7 +697,7 @@ This is a regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.1.1/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.1/)
 
-#### [](#improvements-35)Improvements
+#### [](#improvements-36)Improvements
 
 * [JVMCBC-1163](https://issues.couchbase.com/browse/JVMCBC-1163): Dependencies have been updated.
 * [JVMCBC-1156](https://issues.couchbase.com/browse/JVMCBC-1156): The traffic tracing functionality has been enhanced to perform Wireshark-style dissection of portions of the KV protocol.
@@ -704,7 +714,7 @@ This is a regular maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.1.0/index.html)| [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.0/)
 
-#### [](#improvements-36)Improvements
+#### [](#improvements-37)Improvements
 
 * [JVMCBC-1102](https://issues.couchbase.com/browse/JVMCBC-1102): Added support for serverless execution environments including AWS Lambda.
 * [KCBC-101](https://issues.couchbase.com/browse/KCBC-101): Added an experimental JSON serializer backed by `kotlinx.serialization`. See this [sample code](https://github.com/couchbase/couchbase-jvm-clients/blob/c9ffa30f56294a0b82721bfa42f91e7bc7021bae/kotlin-client/src/main/kotlin/com/couchbase/client/kotlin/samples/KotlinxSerializationSamples.kt#L30-L43) for usage and caveats.
@@ -733,7 +743,7 @@ This maintenance release adds more cluster management APIs, and updates dependen
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.0.4/index.html)
 
-#### [](#improvements-37)Improvements
+#### [](#improvements-38)Improvements
 
 * [KCBC-94](https://issues.couchbase.com/browse/KCBC-94): `UserManager` has a new `changePassword` function that lets you change the password of the currently authenticated user.
 * [KCBC-99](https://issues.couchbase.com/browse/KCBC-99): `Bucket` has a new `collections` property of type `CollectionManager`. You can use the collection manager to create and delete scopes and collections. (Requires Couchbase Server 7.0 or later.)
@@ -749,7 +759,7 @@ Maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.0.3/index.html)
 
-#### [](#improvements-38)Improvements
+#### [](#improvements-39)Improvements
 
 * [JVMCBC-1116](https://issues.couchbase.com/browse/JVMCBC-1116): Dependency versions have been increased.
 
@@ -777,7 +787,7 @@ Maintenance release.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.0.1/index.html)
 
-#### [](#improvements-39)Improvements
+#### [](#improvements-40)Improvements
 
 * [KCBC-79](https://issues.couchbase.com/browse/KCBC-79): `JacksonJsonSerializer` now accepts the jackson `ObjectMapper` which for example makes it easier to use out of the box with Spring Boot.
 * [JVMCBC-1093](https://issues.couchbase.com/browse/JVMCBC-1093): Previously, when a DNS SRV lookup failure occurred, the SDK logged this as a `WARNING` along with a stack trace. The lookup failure is typically harmless, so the log message has now been downgraded to `INFO` level, without a stack trace.

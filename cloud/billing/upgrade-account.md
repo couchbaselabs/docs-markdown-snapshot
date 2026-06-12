@@ -3,7 +3,7 @@ title: Upgrade Your Account
 description: Add an Activation ID or a credit card to upgrade from a free tier
   plan and access all Couchbase Capella features for your operational clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/upgrade-account.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:billing:upgrade-account.adoc[]
 ---
 
@@ -16,15 +16,12 @@ link: xref:cloud:billing:upgrade-account.adoc[]
 
 To upgrade from a free tier plan to a paid Support plan in Capella, you need to either:
 
-* [Use an Activation ID from Couchbase Sales](#use-activation-id).
+* [Add an Activation ID](#use-activation-id).
 * [Add a credit card to your organization](#add-credit-card).
 
 You must keep a valid credit card on your account or use an Activation ID to keep using a paid Support Plan and other paid features.
 
-> [!TIP]
-> You can switch from credit card payments to purchasing credits through Couchbase Sales with an Activation ID at any time. You cannot switch your organization to credit card payments after you add an Activation ID to your account.
-
-You can also go to one of the Capella Cloud Service Provider marketplaces to purchase credits and start using paid Support Plans without an Activation ID or adding a credit card to Capella:
+You can purchase credits and receive an Activation ID through email from Couchbase Sales or 1 of the Capella cloud service provider marketplaces:
 
 * [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-xrhx5zgue5c26)
 * [GCP Marketplace](https://console.cloud.google.com/marketplace/product/couchbase-public/couchbase-capella-database-as-a-service?pli=1)
@@ -32,13 +29,16 @@ You can also go to one of the Capella Cloud Service Provider marketplaces to pur
 
 For more information about the available Support Plans for Couchbase Capella, see [About Cluster and Service Support Plans](billing.md#paid-plan).
 
+> [!TIP]
+> You can switch from credit card payments to purchasing credits through Couchbase Sales or a cloud service provider marketplace at any time. You cannot switch your organization to credit card payments after you add an Activation ID to your account.
+
 ## [](#prerequisites)Prerequisites
 
 * To upgrade your organization to a paid Support Plan, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role.
 
 ## [](#use-activation-id)Use an Activation ID from Couchbase Sales
 
-You can upgrade your account by [getting an Activation ID from Couchbase Sales](#get-activation-id) and [adding that Activation ID to your organization](#add-activation-id).
+You can upgrade your account by [getting an Activation ID from Couchbase Sales](#get-activation-id) or purchasing credits on a marketplace and [adding that Activation ID to your organization](#add-activation-id).
 
 When you add an Activation ID, you can create clusters with any Support Plan, based on the credits you add to your organization. For more information, see [About Cluster and Service Support Plans](billing.md#support-plans).
 
@@ -86,7 +86,7 @@ If you have already deployed a free tier cluster, your current free tier cluster
 
 ## [](#transition-from-free)Transitioning from a Free Tier Plan
 
-Capella allows only one free tier operational cluster per organization at any time.
+Capella allows only 1 free tier operational cluster per organization at any time.
 
 > [!WARNING]
 > When you upgrade to a paid Support Plan, Couchbase deletes your old free tier operational cluster.

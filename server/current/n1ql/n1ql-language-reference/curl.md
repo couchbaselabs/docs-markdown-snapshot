@@ -4,7 +4,7 @@ description: The CURL() function implements a subset of cURL functionality and
   enables SQL++ queries to interact and integrate with external JSON data
   sources available over HTTP/REST.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/curl.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:server:n1ql:n1ql-language-reference/curl.adoc[]
 ---
 
@@ -13,9 +13,9 @@ link: xref:server:n1ql:n1ql-language-reference/curl.adoc[]
 
 # CURL Function
 
-The `CURL()` function implements a subset of [cURL](https://en.wikipedia.org/wiki/CURL) functionality and enables SQL++ queries to interact and integrate with external JSON data sources available over HTTP/REST. This allows federated queries against external data sources, such as the [Google geocoding API](https://maps.googleapis.com), [Yahoo API](https://developer.yahoo.com/api/), or other Couchbase clusters. The federated queries can leverage full querying capabilities of SQL++, including functions, expressions, sub-queries, JOINs, NESTs, UNNESTs etc.
+The `CURL()` function implements a subset of [cURL](https://en.wikipedia.org/wiki/CURL) functionality and enables SQL++ queries to interact and integrate with external JSON data sources available over HTTP/REST. This allows federated queries against external data sources, such as the [Google geocoding API](https://maps.googleapis.com), [Yahoo API](https://developer.yahoo.com/api/), or other Couchbase clusters. The federated queries can use full querying capabilities of SQL++, including functions, expressions, subqueries, JOINs, NESTs, UNNESTs, and so on.
 
-The `CURL()` function can be used in various SQL++ expressions and in various clauses of the DML statements such as projection, WHERE predicates, FROM data source, and so on. For example, you can use the CURL function with the INSERT-SELECT statement to import external data into Couchbase Server.
+You can use the `CURL()` function in various SQL++ expressions and clauses of DML statements such as projection, WHERE predicates, FROM data source, and more. For example, you can use it with an INSERT-SELECT statement to import external data into Couchbase Server.
 
 ## [](#syntax)Syntax
 
@@ -36,16 +36,16 @@ An optional JSON object representing various supported options. This includes op
 ### [](#options)Options
 
 __Table 1\. Security Options__
-| Option         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Value   |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| **user**       | Server user name and password, in the form USERNAME\[:PASSWORD\]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | String  |
-| **basic**      | Use HTTP Basic Authentication.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Boolean |
-| **insecure**   | Allow connections to SSL sites without certificates (H).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Boolean |
-| **anyauth**    | CURL to figure out authentication method by itself, and use the most secure one. This supports only basic authentication.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Boolean |
-| **cacert**     | The CA signed certificate file name. Certificates should be stored on the local machine, on each query node within a cluster. To store certificates, access /Couchbase/var/lib/couchbase/n1qlcerts. This is not visible to the user. The file name cannot contain a path. If the certificate is not a match to the existing contents of n1qlcerts directory, the function returns an error. All expired and invalid certificates return an error. When you add a new node, the cacert file must be copied to the new node and must have read access. If this option is omitted, the insecure option must be true. For example, this is the certificate .pem file for AWS.                                               | String  |
-| **cert**       | The chain certificate file name. Certificates should be stored on the local machine, on each query node within a cluster. To store certificates, access /Couchbase/var/lib/couchbase/n1qlcerts. This is not visible to the user. The file name cannot contain a path. If the certificate is not a match to the existing contents of n1qlcerts directory, the function returns an error. All expired and invalid certificates return an error. When you add a new node, the cert file must be copied to the new node and must have read access. If this option is omitted, the insecure option must be true. Example: "chain.pem"                                                                                        | String  |
-| **key**        | The client key file name. Key files should be stored on the local machine, on each query node within a cluster. If the key file is encrypted, it should use PKS8 v2, and you must supply the passphrase to decrypt it. To store key files, access /Couchbase/var/lib/couchbase/n1qlcerts. This is not visible to the user. The file name cannot contain a path. If the key file is not a match to the existing contents of n1qlcerts directory, the function returns an error. All expired and invalid certificates return an error. When you add a new node, the key file must be copied to the new node and must have read access. If this option is omitted, the insecure option must be true. Example: "client.key" | String  |
-| **passphrase** | The the passphrase to decrypt the key file. Owing to its sensitive nature, you are recommended to use a named parameter for this option. The parameter name should start and end with an underscore \_ to mask the parameter value in request catalogs, cbq shell history, query logs, and so on. Example: $\_passphrase\_                                                                                                                                                                                                                                                                                                                                                                                              | String  |
+| Option         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Value   |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| **user**       | Server user name and password, in the form USERNAME\[:PASSWORD\]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | String  |
+| **basic**      | Use HTTP Basic Authentication.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Boolean |
+| **insecure**   | Allow connections to SSL sites without certificates (H).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Boolean |
+| **anyauth**    | CURL to figure out authentication method by itself, and use the most secure one. This supports only basic authentication.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Boolean |
+| **cacert**     | The CA signed certificate filename. Certificates should be stored on the local machine, on each query node within a cluster. To store certificates, access /Couchbase/var/lib/couchbase/n1qlcerts. This is not visible to the user. The filename cannot contain a path. If the certificate is not a match to the existing contents of n1qlcerts directory, the function returns an error. All expired and invalid certificates return an error. When you add a new node, the cacert file must be copied to the new node and must have read access. If this option is omitted, the insecure option must be true. For example, this is the certificate .pem file for AWS.                                               | String  |
+| **cert**       | The chain certificate filename. Certificates should be stored on the local machine, on each query node within a cluster. To store certificates, access /Couchbase/var/lib/couchbase/n1qlcerts. This is not visible to the user. The filename cannot contain a path. If the certificate is not a match to the existing contents of n1qlcerts directory, the function returns an error. All expired and invalid certificates return an error. When you add a new node, the cert file must be copied to the new node and must have read access. If this option is omitted, the insecure option must be true. Example: "chain.pem"                                                                                        | String  |
+| **key**        | The client key filename. Key files should be stored on the local machine, on each query node within a cluster. If the key file is encrypted, it should use PKS8 v2, and you must supply the passphrase to decrypt it. To store key files, access /Couchbase/var/lib/couchbase/n1qlcerts. This is not visible to the user. The filename cannot contain a path. If the key file is not a match to the existing contents of n1qlcerts directory, the function returns an error. All expired and invalid certificates return an error. When you add a new node, the key file must be copied to the new node and must have read access. If this option is omitted, the insecure option must be true. Example: "client.key" | String  |
+| **passphrase** | The passphrase to decrypt the key file. Owing to its sensitive nature, you're recommended to use a named parameter for this option. The parameter name should start and end with an underscore \_ to mask the parameter value in request catalogs, cbq shell history, query logs, and so on. Example: $\_passphrase\_                                                                                                                                                                                                                                                                                                                                                                                                 | String  |
 
 __Table 2\. Transfer-related Options__
 | Option              | Description                                                                                                                                                                                                                                                                             | Value                      |
@@ -63,22 +63,33 @@ __Table 2\. Transfer-related Options__
 
 ### [](#return-value)Return Value
 
-The CURL() function returns either a single JSON object, or multiple objects in an array. These objects are returned by the HTTP/REST service at the URL. Note that the result is expected to be JSON, and the function itself doesn't do any additional processing. However, if the query parameter `pretty=true`, then the data received is in pretty format. If the returned data from the URL is not a well defined JSON, it may result in errors or undefined behavior. The errors returned by CURL (such as moved permanently) can be in different formats, like HTML, XML, plain strings, and can be a large blob. The SQL++ function returns a "Not a JSON endpoint" error when it returns any other format other than JSON.
+The `CURL()` function returns the response from the HTTP/REST service at the specified URL as one of the following:
+
+* A single JSON object
+* An array of JSON objects
+
+The function returns the data as is, without any additional processing.
+
+If you include the query parameter `pretty=true`, the function returns the data in a formatted, readable JSON structure.
+
+Responses that are not in a well-defined JSON format can result in errors or undefined behavior. For example, if the URL returns any other format other than JSON, the function returns `Not a JSON endpoint` error.
+
+The function can return errors in different formats such as HTML, XML, plain strings, or a large blob.
 
 ## [](#security)Security
 
-It is important to understand the potential security implications in using the `CURL()` function. Note that `CURL()` function can connect to any REST end point accessible to the Query node (where the function is executed) inside or outside the firewall. To avoid security vulnerabilities, multiple security measures have been implemented. These can be used to control and minimize the risks associated with using the `CURL()` function. See [Table 1](#table%5Fsecurity%5Foptions) for the list of security options that can be used with the `CURL()` function.
+The `CURL()` function can connect to any REST end point accessible to the Query node, inside or outside the firewall. To avoid security vulnerabilities, the `CURL()` function includes multiple security measures and options. You can use them to control and minimize the risks associated with using the function. For a complete list of security options, see [Table 1](#table%5Fsecurity%5Foptions).
 
-In addition to the security options, a Full Administrator can also list URLs and REST endpoints that can be accessed by the `CURL()` function. The `CURL()` function can access URLs that satisfy a prefix match, which means only URLs specified on the list or the prefixes.
+Additionally, a Full Administrator can define a list of URLs and REST endpoints that the `CURL()` function can access. The `CURL()` function can access only URLs that match a specified prefix, meaning only URLs specified on the list or their prefixes are accessible.
 
-Consider the following use case where a deployment of Couchbase Server and Mobile Sync Gateway exist on the same machine, and the user has access to the query service but not the Sync Gateway admin endpoint. Let's assume that the user has been granted QUERY\_EXTERNAL\_ACCESS role by the Full Administrator. This means that the user can write queries using the CURL() function and potentially use CURL to access the Mobile Sync Gateway admin endpoint. To avoid this, the Full Administrator can create an access list for CURL() access and add the Admin endpoint of Sync Gateway to the `disallowed_urls` list.
+Consider a use case where a deployment of Couchbase Server and Mobile Sync Gateway exist on the same machine, and the user has access to the Query Service but not the Sync Gateway Admin endpoint. If the Full Administrator grants the user the `QUERY_EXTERNAL_ACCESS` role, the user can write queries using the `CURL()` function and potentially access the Sync Gateway Admin endpoint. To avoid this, the Full Administrator can create an access list for `CURL()` and add the Sync Gateway Admin endpoint to the `disallowed_urls` list.
 
-For more details on creating the access list and the structure of the access list file, see [Creating an Access List for CURL()](#curl-access-list).
+For more information on creating the access list and the structure of the access list file, see [Creating an Access List for CURL()](#curl-access-list).
 
 The following security measures help control risks when using the `CURL()` function:
 
 * Enable the `CURL()` function only for the Full Administrator role.
-* For all other users, the RBAC role QUERY\_EXTERNAL\_ACCESS is required to run the `CURL()` function. Only the Full Administrator can assign the QUERY\_EXTERNAL\_ACCESS role to other users.
+* For all other users, the RBAC role `QUERY_EXTERNAL_ACCESS` is required to run the `CURL()` function. Only the Full Administrator can assign the `QUERY_EXTERNAL_ACCESS` role to other users.
 * An access list of URLs and REST points must be configured on the query nodes before being able to use the `CURL()` function. See [Creating an Access List for CURL()](#curl-access-list) for details.
 * Each query node in the cluster must define its access list file.
 * The `CURL()` function internally supports a specific set of SSL ciphers (MEDIUM or HIGH). This is dependent on the `COUCHBASE_SSL_CIPHER_LIST`.
@@ -96,53 +107,46 @@ An access list allows a Full Administrator to list out the permitted REST endpoi
 
 #### [](#from-the-query-workbench)From the Query Workbench
 
-In the Query Workbench, navigate to the **Settings** **Advanced Query Settings** section as shown below:
+To create an access list for the `CURL()` function from the Query Workbench:
 
-![The Settings Screen showing the Advanced Query Settings](../_images/CURL_Access.png) 
+1. Go to the **Settings** **Query** tab.
+2. Under **CURL() Function Access**, select one of the following options:
 
-After expanding the Advanced Query Settings section, you can choose the Function Access:
-
-| **Restricted**   | Access applies only the sites explicitly listed.                |
-| ---------------- | --------------------------------------------------------------- |
-| **Unrestricted** | Access applies to all sites within the explicitly listed sites. |
-
-Under the **Allowed CURL URLs** and **Disallowed CURL URLs** headings, enter your allowed or disallowed URL in the appropriate textbox, and press the Enter key or click anywhere else on this screen to enter your URL.
-
-Click **+** to add another URL to the list.
-
-Click **\-** to remove a URL from the list.
+  * **Restricted**:: Access applies only the sites explicitly listed.
+  * **Unrestricted**:: Access applies to all sites within the explicitly listed sites.
+3. Under the **Allowed CURL URLs** and **Disallowed CURL URLs** headings, enter your allowed or disallowed URL in the appropriate text field.
+4. Press Enter or click anywhere outside the text field to save the URL.
+5. To add another URL, click **+**.
+6. To remove a URL, click **\-**.
 
 #### [](#from-the-query-settings-rest-api)From the Query Settings REST API
 
 You can send a call to the Query Settings REST API to allow or disallow specific URLs, for example:
 
 ```sh
-
+curl -v -X POST -u Administrator:password \
+http://localhost:8091/settings/querySettings/curlWhitelist \
+-d '{"all_access": false,
+     "allowed_urls": ["https://company1.com"],
+     "disallowed_urls": ["https://company2.com"]}'
 ```
 
 The access list file command structure is described in the following table.
 
 __Table 3\. Structure of Access List for CURL()__
-| Property                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Schema       |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| **all\_access**required      | Defines whether the user has access to all URLs, or only URLs specified by the access list. This field set must be set to false to enable the allowed\_urls and disallowed\_urls fields. Setting this field to true enables access to all endpoints.                                                                                                                                                                                                    | Boolean      |
-| **allowed\_urls**optional    | An array of strings, each of which is a URL to which you wish to grant access. Each URL is a prefix match. The CURL() function will allow any URL that starts with this value. For example, if you wish to allow access to all Google APIs, add the URL https://maps.googleapis.com to the array. To allow complete access to localhost, use http://localhost. Note that each URL must include the port, protocol, and all other components of the URL. | String array |
-| **disallowed\_urls**optional | An array of strings, each of which is a URL that will be restricted for all roles. Each URL is a prefix match. The CURL() function will disallow any URL that starts with this value. If both allowed\_urls and disallowed\_urls fields are populated, the disallowed\_urls field takes precedence over allowed\_urls. Note that each URL must include the port, protocol, and all other components of the URL.                                         | String array |
+| Property                     |                                                                                                                                                                                                                                                                                                                                                                                                                                               | Schema       |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| **all\_access**required      | Defines whether the user has access to all URLs, or only URLs specified by the access list. This field set must be set to false to enable the allowed\_urls and disallowed\_urls fields. Setting this field to true enables access to all endpoints.                                                                                                                                                                                          | Boolean      |
+| **allowed\_urls**optional    | An array of strings, each of which is a URL to which you wish to grant access. Each URL is a prefix match. The CURL() function will allow any URL that starts with this value. For example, if you wish to allow access to all Google APIs, add the URL https://maps.googleapis.com to the array. To allow complete access to localhost, use http://localhost. Each URL must include the port, protocol, and all other components of the URL. | String array |
+| **disallowed\_urls**optional | An array of strings, each of which is a URL that will be restricted for all roles. Each URL is a prefix match. The CURL() function will disallow any URL that starts with this value. If both allowed\_urls and disallowed\_urls fields are populated, the disallowed\_urls field takes precedence over allowed\_urls. Each URL must include the port, protocol, and all other components of the URL.                                         | String array |
 
 ## [](#design-considerations)Design Considerations
 
-Here are some of the design considerations to keep in mind when using CURL:
+When using CURL, consider the following:
 
-* The URL needs to point to a JSON endpoint. The redirection of URL is not allowed.
-* Only HTTP and HTTPS protocols are supported. This means that files on the local file system cannot be accessed.
+* The URL must point to a JSON endpoint. The redirection of URL is not allowed.
+* Only HTTP and HTTPS protocols are supported. You cannot access files on the local filesystem.
 * The amount of memory used for the CURL result is controlled using the `result-cap` option. The default is 20MB.
-* Any values passed to the arguments of `CURL()` must be static values. That means, they cannot include any references to names, aliases of documents, attributes in the documents, or any SQL++ functions or expressions that need to be evaluated.  
-Consider the following example:  
-```sqlpp  
-SELECT CURL(b.url, { "data" : "address="||b.data })  
-FROM keyspace b;  
-```  
-The above example is invalid, because the first argument `b.url` refers to the alias `b` and the attribute `url` in the document. In the second argument, the string concatenation operator (||) cannot be evaluated.
 
 ## [](#examples)Examples
 
@@ -165,7 +169,7 @@ The following examples are using CURL in the query projection list.
 
 Example 1\. Use Google Maps API to convert static address into coordinates
 
-The following SQL++ query fetches details about the address "Half Moon Bay" using the [Google maps API](https://maps.googleapis.com). The Geocoding API from Google Maps allows you to convert static addresses into coordinates. (For more information refer to the [Geocoding API Developer Guide](https://developers.google.com/maps/documentation/geocoding/intro).) The corresponding `curl` command is also provided below.
+The following SQL++ query and `curl` command fetch details about the address `"Half Moon Bay"` using the [Google maps API](https://maps.googleapis.com). The Geocoding API from Google Maps allows you to convert static addresses into coordinates. For more information, see the [Geocoding API Developer Guide](https://developers.google.com/maps/documentation/geocoding/intro).
 
 Request
 
@@ -265,7 +269,7 @@ Results
 
 Example 2\. Use Google Maps API to extract geometry (address and geographic location bounds) of a given street address
 
-This is similar to [Example 1](#Ex1), but following SQL++ query fetches details about Santa Cruz in Spain using the [Google geocoding API](https://maps.googleapis.com) and extracts the `geometry` field from the result. This query retrieves the address and geographic location bounds of the address, Santa Cruz, ES. We use the `address` and `components` parameters from the Geocoding API. The `data` option represents the HTTP POST data.
+This is similar to [Example 1](#Ex1), but following SQL++ query fetches details about Santa Cruz in Spain using the [Google geocoding API](https://maps.googleapis.com) and extracts the `geometry` field from the result. This query retrieves the address and geographic location bounds of the address, Santa Cruz, ES, by using the `address` and `components` parameters from the Geocoding API. The `data` option specifies the HTTP POST data.
 
 Request
 
@@ -365,9 +369,9 @@ Results
 
 Example 3\. Join two keyspaces on different Couchbase clusters
 
-This SQL++ query shows how to JOIN two keyspaces on different Couchbase clusters. The JOIN is the same as is explained in the section on the [JOIN Clause](join.md), but the left and right side keyspaces are in two different Couchbase clusters.
+This SQL++ query shows how to JOIN two keyspaces on different Couchbase clusters. The JOIN is the same as is explained in [JOIN Clause](join.md), but the left and right side keyspaces are in two different Couchbase clusters.
 
-* The left side keyspace `route` is from the cluster running on `hostname`. If you don't have a second cluster running, you should substitute the `hostname` with 127.0.0.1 or the IP-address of the local cluster.
+* The left side keyspace `route` is from the cluster running on `hostname`. If you do not have a second cluster running, you should substitute the `hostname` with 127.0.0.1 or the IP-address of the local cluster.
 * The right side keyspace `airline` is from the local cluster.
 
 For this example, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
@@ -387,9 +391,9 @@ ON KEYS route.airlineid
 LIMIT 4;
 ```
 
-Note that the results from the `CURL()` output are embedded in the `results[]` array under the keyspace alias `t` used in the remote query. So, we extract the result documents appropriately with the expression `CURL(...).results[*].t` and alias it to `route` as the left side keyspace for the `JOIN`.
+The results from the `CURL()` output are embedded in the `results[]` array under the keyspace alias `t` used in the remote query. To extract the result documents for the left side keyspace of the `JOIN`, use the expression `CURL(...).results[*].t` and alias it as `route`.
 
-RBAC credentials are required when CURL() is accessing Couchbase Server version 5.0 or later.
+RBAC credentials are required when `CURL()` accesses Couchbase Server version 5.0 or later.
 
 Results
 
@@ -407,9 +411,9 @@ Results
 
 Example 4\. Full text search (FTS) in a SQL++ query
 
-The following example shows how to use the `CURL()` function to include a full text search from the [Search service](../../search/search.md) in a SQL++ query. Assuming the FTS index `fts_travel` is created on the default collection in the default scope of the travel sample dataset, running the following SQL++ query finds all documents that have "sanfrancisco" anywhere in the document.
+The following example shows how to use the `CURL()` function to include a full-text search from the [Search Service](../../search/search.md) in a SQL++ query. If the FTS index `fts_travel` is created on the default collection in the default scope of the `travel-sample` dataset, running the following query finds all documents that contain `"sanfrancisco"`.
 
-Note that in Couchbase Server 6.5 and later, you can use [search functions](searchfun.md) to use a full text search in a SQL++ query, as long as the Search service is available on the cluster. You can still use the `CURL()` function if you need to access the Search service on another cluster.
+In Couchbase Server 6.5 and later, you can use [Search functions](searchfun.md) to use a full-text search in a query, as long as the Search Service is available on the cluster. However, to access the Search Service on another cluster, you must use the `CURL()` function.
 
 Query
 
@@ -594,11 +598,11 @@ Query
 SELECT CURL(b.url, $params) FROM keyspace b WHERE b.username = "joe";
 ```
 
-If we wanted to use Node.JS, we would use:
+To execute the query in Node.js, use:
 
 ```javascript
 keyspace.query(SELECT CURL(b.url, $params) FROM keyspace b WHERE b.username = "joe", { params: { data: "..." } },
  (error, result) => {} );
 ```
 
-`$params` is a named parameter, so we name it in the parameters object when executing the query. Then we populate the properties with the data that's in the documents since those properties can be variables.
+Because `$params` is a named parameter, you must define it within the parameters object when executing the query. You can populate these properties dynamically using data from your documents.

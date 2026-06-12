@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/product-notes/pages/release-notes.adoc
-pubDate: 2026-04-02T05:14:13.149Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:3.3@sync-gateway:product-notes:release-notes.adoc[]
 ---
 
@@ -23,17 +23,20 @@ Quicklinks
 > 
 > The migration to 3.x configuration is a ONE WAY process — see: [Upgrading](../upgrading.md) for more.
 
-## [](#maint-latest)3.3.4 — April 2026
+## [](#maint-latest)3.3.5 — June 2026
+
+> [!IMPORTANT]
+> If you use OIDC-based authentication for deployments and manage users through the Sync Gateway Admin REST API, upgrade to this release to receive critical fixes.
 
 ### [](#fixed-issues)Fixed Issues
 
-* [CBG-5147 — replacement revs never utilized for unfiltered replications](https://jira.issues.couchbase.com/browse/CBG-5147)
-* [CBG-5174 — /db/\_index\_init panics if db started offline](https://jira.issues.couchbase.com/browse/CBG-5174)
+* [CBG-5286 — \_changes feeds with active\_only=true and limit parameters can miss expected changes with revocations](https://jira.issues.couchbase.com/browse/CBG-5286)
+* [CBG-5382 — Resync regenerate sequences will not set \_default metadata id when finished](https://jira.issues.couchbase.com/browse/CBG-5382)
+* [CBG-5384 — Panic in revoked feed handling](https://jira.issues.couchbase.com/browse/CBG-5384)
 
 ### [](#enhancements)Enhancements
 
-* [CBG-5158 — Support EdDSA tokens for OIDC/JWTs](https://jira.issues.couchbase.com/browse/CBG-5158)
-* [CBG-5215 — silently handle cbl-js ping blip requests](https://jira.issues.couchbase.com/browse/CBG-5215)
+None for this release.
 
 ### [](#known-issues)Known Issues
 
@@ -43,17 +46,17 @@ None for this release.
 
 None for this release.
 
-## [](#3-3-3february-2026)3.3.3 — February 2026
+## [](#3-3-4april-2026)3.3.4 — April 2026
 
 ### [](#fixed-issues-2)Fixed Issues
 
-* [CBG-5015 — Panic in \_config?include\_runtime=true endpoint](https://jira.issues.couchbase.com/browse/CBG-5015)
-* [CBG-5131 — Clients fetching a delta can panic when the revision cache is disabled](https://jira.issues.couchbase.com/browse/CBG-5131)
+* [CBG-5147 — replacement revs never utilized for unfiltered replications](https://jira.issues.couchbase.com/browse/CBG-5147)
+* [CBG-5174 — /db/\_index\_init panics if db started offline](https://jira.issues.couchbase.com/browse/CBG-5174)
 
 ### [](#enhancements-2)Enhancements
 
-* [CBG-4765 — Caching performance improvements](https://jira.issues.couchbase.com/browse/CBG-4765)
-* [CBG-5093 — Increase websocket control frame timeouts](https://jira.issues.couchbase.com/browse/CBG-5093)
+* [CBG-5158 — Support EdDSA tokens for OIDC/JWTs](https://jira.issues.couchbase.com/browse/CBG-5158)
+* [CBG-5215 — silently handle cbl-js ping blip requests](https://jira.issues.couchbase.com/browse/CBG-5215)
 
 ### [](#known-issues-2)Known Issues
 
@@ -63,17 +66,17 @@ None for this release.
 
 None for this release.
 
-## [](#3-3-2december-2025)3.3.2 — December 2025
+## [](#3-3-3february-2026)3.3.3 — February 2026
 
 ### [](#fixed-issues-3)Fixed Issues
 
-* [CBG-5009 - \_ping (and all endpoints) acquire ServerContext.lock.RLock and blocks if the write lock is acquired](https://jira.issues.couchbase.com/browse/CBG-5009)
-* [CBG-5028 - Have rev cache lock and rev cache value unlocks use defer where possible](https://jira.issues.couchbase.com/browse/CBG-5028)
-* [CBG-5030 - Panic during memory based cache eviction can deadlock revision cache shard](https://jira.issues.couchbase.com/browse/CBG-5030)
+* [CBG-5015 — Panic in \_config?include\_runtime=true endpoint](https://jira.issues.couchbase.com/browse/CBG-5015)
+* [CBG-5131 — Clients fetching a delta can panic when the revision cache is disabled](https://jira.issues.couchbase.com/browse/CBG-5131)
 
 ### [](#enhancements-3)Enhancements
 
-* [CBG-5034 - Synchronize Computation of Deltas](https://jira.issues.couchbase.com/browse/CBG-5034)
+* [CBG-4765 — Caching performance improvements](https://jira.issues.couchbase.com/browse/CBG-4765)
+* [CBG-5093 — Increase websocket control frame timeouts](https://jira.issues.couchbase.com/browse/CBG-5093)
 
 ### [](#known-issues-3)Known Issues
 
@@ -83,22 +86,42 @@ None for this release.
 
 None for this release.
 
-## [](#3-3-1november-2025)3.3.1 — November 2025
+## [](#3-3-2december-2025)3.3.2 — December 2025
 
 ### [](#fixed-issues-4)Fixed Issues
 
-* [CBG-4973 - Don't set SameSite=None when no TLS is used](https://jira.issues.couchbase.com/browse/CBG-4973)
-* [CBG-4941 - Couchbase Lite 4.0 is allowed to connect to Sync Gateway 3.3.0](https://jira.issues.couchbase.com/browse/CBG-4941)
+* [CBG-5009 - \_ping (and all endpoints) acquire ServerContext.lock.RLock and blocks if the write lock is acquired](https://jira.issues.couchbase.com/browse/CBG-5009)
+* [CBG-5028 - Have rev cache lock and rev cache value unlocks use defer where possible](https://jira.issues.couchbase.com/browse/CBG-5028)
+* [CBG-5030 - Panic during memory based cache eviction can deadlock revision cache shard](https://jira.issues.couchbase.com/browse/CBG-5030)
 
 ### [](#enhancements-4)Enhancements
 
-* [CBG-4970 - Allow cookieless auth from cbl-js](https://jira.issues.couchbase.com/browse/CBG-4970)
+* [CBG-5034 - Synchronize Computation of Deltas](https://jira.issues.couchbase.com/browse/CBG-5034)
 
 ### [](#known-issues-4)Known Issues
 
 None for this release.
 
 ### [](#deprecations-4)Deprecations
+
+None for this release.
+
+## [](#3-3-1november-2025)3.3.1 — November 2025
+
+### [](#fixed-issues-5)Fixed Issues
+
+* [CBG-4973 - Don't set SameSite=None when no TLS is used](https://jira.issues.couchbase.com/browse/CBG-4973)
+* [CBG-4941 - Couchbase Lite 4.0 is allowed to connect to Sync Gateway 3.3.0](https://jira.issues.couchbase.com/browse/CBG-4941)
+
+### [](#enhancements-5)Enhancements
+
+* [CBG-4970 - Allow cookieless auth from cbl-js](https://jira.issues.couchbase.com/browse/CBG-4970)
+
+### [](#known-issues-5)Known Issues
+
+None for this release.
+
+### [](#deprecations-5)Deprecations
 
 None for this release.
 
@@ -162,7 +185,7 @@ Version 3.3.0 of Sync Gateway also delivers the following features and enhanceme
 * [CBG-4670 — Document import should not write the document body back to bucket](https://jira.issues.couchbase.com/browse/CBG-4670)
 * [CBG-4697 — Recover from panics when importing a document via DCP feed](https://jira.issues.couchbase.com/browse/CBG-4697)
 
-### [](#enhancements-5)Enhancements
+### [](#enhancements-6)Enhancements
 
 * [CBG-603 — Throttle changes notify broadcasts under high load to reduce CPU overhead and mutex contention](https://jira.issues.couchbase.com/browse/CBG-603)
 * [CBG-2838 — Aggregate system:indexes lookups for collections](https://jira.issues.couchbase.com/browse/CBG-2838)
@@ -205,11 +228,11 @@ Version 3.3.0 of Sync Gateway also delivers the following features and enhanceme
 * [CBG-4688 — Bump Go version](https://jira.issues.couchbase.com/browse/CBG-4688)
 * [CBG-4712 — Support non-default admin API port with /sgcollect\_info REST API](https://jira.issues.couchbase.com/browse/CBG-4712)
 
-### [](#known-issues-5)Known Issues
+### [](#known-issues-6)Known Issues
 
 None for this release.
 
-### [](#deprecations-5)Deprecations
+### [](#deprecations-6)Deprecations
 
 * [CBG-4575 — Set default value of allow\_conflicts to false](https://jira.issues.couchbase.com/browse/CBG-4575)
 * [CBG-4617 — Allow public /\_all\_docs endpoint to be disabled](https://jira.issues.couchbase.com/browse/CBG-4617)

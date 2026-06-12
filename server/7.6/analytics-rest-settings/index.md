@@ -2,7 +2,7 @@
 title: Analytics Settings REST API
 description: A description of the Settings REST API for Couchbase Analytics.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/analytics-rest-settings/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.6@server:analytics-rest-settings:index.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:7.6@server:analytics-rest-settings:index.adoc[]
 
 ## [](#overview)Overview
 
-The Analytics Settings REST API is provided by the Analytics service. This API enables you to view or set cluster-level Analytics settings.
+The Analytics Settings REST API is provided by the Analytics Service. This API enables you to view or set cluster-level Analytics settings.
 
 ### Version information
 
@@ -25,11 +25,11 @@ The Analytics Settings REST API is provided by the Analytics service. This API e
 
 The URL scheme, host, and port are as follows.
 
-| Component  | Description                                                                                                                                                                                                      |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **scheme** | The URL scheme. Use https for secure access. **Values:** http, https                                                                                                                                             |
-| **host**   | The host name or IP address of a node running the Analytics Service. **Example:** localhost                                                                                                                      |
-| **port**   | The Cluster administration REST port. Use 18091 for secure access. Note that the port numbers for this REST API are different to the port numbers used by the other Analytics REST APIs. **Values:** 8091, 18091 |
+| Component  | Description                                                                                                                                                                                            |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **scheme** | The URL scheme. Use https for secure access. **Values:** http, https                                                                                                                                   |
+| **host**   | The host name or IP address of a node running the Analytics Service. **Example:** localhost                                                                                                            |
+| **port**   | The Cluster administration REST port. Use 18091 for secure access. The port numbers for this REST API are different to the port numbers used by the other Analytics REST APIs. **Values:** 8091, 18091 |
 
 ## [](#resources)Resources
 
@@ -44,7 +44,7 @@ GET /settings/analytics
 
 #### [](#get%5Fsettings-description)Description
 
-Retrieves cluster-level Analytics settings. Note that only one setting is available: `numReplicas`.
+Retrieves cluster-level Analytics settings. Only one setting is available: `numReplicas`.
 
 You can also retrieve the number of Analytic replicas using the [Couchbase Web Console](../manage/manage-settings/general-settings.md#analytics-replicas) or the [CLI](../manage/manage-settings/general-settings.md#analytics-settings-via-cli). For more information about Analytics replicas, see [Rebalance](../learn/clusters-and-availability/rebalance.md#rebalancing-the-analytics-service) and [Hard Failover](../learn/clusters-and-availability/hard-failover.md#hard-failover-and-the-analytics-service).
 
@@ -90,7 +90,7 @@ POST /settings/analytics
 
 #### [](#post%5Fsettings-description)Description
 
-Sets cluster-level Analytics settings. Note that only one setting is available: `numReplicas`.
+Sets cluster-level Analytics settings. Only one setting is available: `numReplicas`.
 
 You can also set the number of Analytic replicas using the [Couchbase Web Console](../manage/manage-settings/general-settings.md#analytics-replicas) or the [CLI](../manage/manage-settings/general-settings.md#analytics-settings-via-cli). For more information about Analytics replicas, see [Rebalance](../learn/clusters-and-availability/rebalance.md#rebalancing-the-analytics-service) and [Hard Failover](../learn/clusters-and-availability/hard-failover.md#hard-failover-and-the-analytics-service).
 

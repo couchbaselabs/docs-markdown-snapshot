@@ -3,7 +3,7 @@ title: Analytics using the C SDK
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -52,7 +52,7 @@ lcb_cmdanalytics_destroy(cmd);
 lcb_wait(instance, LCB_WAIT_DEFAULT);
 ```
 
-For a full example, see the [API documentation](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/example%5F2analytics%5F2analytics%5F8c-example.html).
+For a full example, see the [API documentation](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/example%5F2analytics%5F2analytics%5F8c-example.html).
 
 ## [](#analytics-result)Analytics Result
 

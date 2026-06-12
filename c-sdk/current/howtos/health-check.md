@@ -3,7 +3,7 @@ title: Diagnosing and preventing Network Problems with Health Check
 description: In today's distributed and virtual environments, users will often
   not have full administrative control over their whole network.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/health-check.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:howtos:health-check.adoc[]
 ---
 
@@ -71,4 +71,4 @@ void diag_callback(lcb_INSTANCE, int, const lcb_RESPBASE *rb)
 }
 ```
 
-For more information on `lcb_diag()`, refer to [API Documentation](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-ping.html#ga5229063d7be73f0231233a3c0dd1e3c4).
+For more information on `lcb_diag()`, refer to [API Documentation](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/group%5F%5Flcb-ping.html#ga5229063d7be73f0231233a3c0dd1e3c4).

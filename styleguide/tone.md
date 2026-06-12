@@ -1,7 +1,7 @@
 ---
 title: Voice and Tone
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/tone.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:styleguide::tone.adoc[]
 ---
 
@@ -12,23 +12,19 @@ link: xref:styleguide::tone.adoc[]
 
 The Couchbase Voice aims to be:
 
-Confident 
+Honest and Dedicated
 
-We know what we're talking about, and how to communicate it to our users. We have the answers and we know it.
+We're always ready for a conversation or finding a way to help. We do not use euphemisms and avoid unnecessary jargon. We aim to be clear and tell it like it is.
 
-Reassuring and Empathetic 
+Guiding and Warm
 
-We know where the user is coming from and what they want to do. We know that databases can be complicated, but we're right there with them and will lead them to what they're looking for. We're the user's friend, not their adversary.
+We do not talk down to the user. We're the user's coach, with a passion to help and provide a clear direction forward. We invite people in and deepen relationships as we go.
 
-Approachable 
+Imaginative and Inspiring
 
-We do not talk down to the user. We're the user's coach, and we're always open to questions.
+We do not just promise capabilities. We help lay the groundwork for big moves, starting with small steps. We know it requires a bold approach to make progress and we have a grand vision of the future of databases that we want to share.
 
-Opinionated and Visionary 
-
-We have a strong opinion about our product and what it can do to solve a user's problems. We know it requires a bold approach to make progress and we have a grand vision of the future of databases that we want to share.
-
-To achieve these goals, there are certain things that the Couchbase Voice avoids.
+To achieve these goals, there are certain things that the Couchbase Voice for technical documentation avoids.
 
 |                                                       | Explanation                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                      |
 | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

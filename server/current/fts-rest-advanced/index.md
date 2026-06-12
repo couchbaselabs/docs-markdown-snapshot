@@ -4,7 +4,7 @@ description: The Search Advanced REST APIs are provided by the Search Service.
   These APIs enable you to manage and monitor advanced settings of your Search
   indexes.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/fts-rest-advanced/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:server:fts-rest-advanced:index.adoc[]
 ---
 
@@ -164,6 +164,17 @@ Path Parameters
 | ------------ | ---------------------- |
 | http (basic) | [Read](#security-Read) |
 
+##### [](#getPartitionCount-ex-response)Example HTTP Response
+
+Response 200
+
+```json
+{
+  "count" : 0,
+  "status" : "status"
+}
+```
+
 #### [](#queryPartition)Query Index Partition
 
 POST /api/pindex/{pindexName}/query
@@ -205,6 +216,39 @@ Body Parameter
 | Type         | Name                     |
 | ------------ | ------------------------ |
 | http (basic) | [Write](#security-Write) |
+
+##### [](#queryPartition-ex-request)Example Request Body
+
+```json
+{
+  "explain" : true,
+  "query" : "{}",
+  "knn" : [ "{}", "{}" ],
+  "sort" : [ "", "" ],
+  "includeLocations" : true,
+  "facets" : "{}",
+  "highlight" : "{}",
+  "score" : "score",
+  "search_after" : [ "search_after", "search_after" ],
+  "size" : 0,
+  "collections" : [ "collections", "collections" ],
+  "ctl" : "{}",
+  "from" : 6,
+  "fields" : [ "fields", "fields" ],
+  "search_before" : [ "search_before", "search_before" ]
+}
+```
+
+##### [](#queryPartition-ex-response)Example HTTP Response
+
+Response 200
+
+```json
+{
+  "results" : [ "{}", "{}" ],
+  "status" : "status"
+}
+```
 
 ### [](#tag-Quota)Quota
 

@@ -3,7 +3,7 @@ title: Manage Replication Security
 description: Configure your Cross Datacenter Replication (XDCR) to securely
   replicate data between source and destination buckets.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/manage-xdcr-security.adoc
-pubDate: 2026-05-12T05:41:22.753Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:xdcr/manage-xdcr-security.adoc[]
 ---
 
@@ -61,8 +61,18 @@ To enable replication over the public Internet:
 
 VPC Peering can secure XDCR by replicating data over a private network. This approach avoids exposure to the public Internet and provides stronger network isolation than public Internet connectivity.
 
-> [!NOTE]
-> You can only use VPC Peering when your replication is between an Capella operational cluster and a self-managed cluster with the same CSP.
+You can only use VPC Peering when your replication is between an Capella operational cluster and a self-managed cluster with the same CSP.
+
+> [!CAUTION]
+> Limitations for VPC Peering with GCP
+> 
+> Capella clusters on GCP do not support XDCR over a VPC Peering connection when both the source and target clusters:
+> 
+> * Are deployed on Capella through GCP.
+> * Have private endpoints enabled.
+> * Share the same major network prefix of either `10.x.x.x`, `172.x.x.x`, or `192.x.x.x`.
+> 
+> To use XDCR on Capella with this configuration, you must [replicate over private endpoints](#private-endpoints).
 
 ### [](#enable-replication-over-vpc-peering)Enable Replication Over VPC Peering
 

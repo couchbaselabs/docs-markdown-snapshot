@@ -3,7 +3,7 @@ title: MapReduce Views Using the C SDK with Couchbase Server
 description: You can use MapReduce views to create queryable indexes in
   Couchbase Data Platform.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/view-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:howtos:view-queries-with-sdk.adoc[]
 ---
 
@@ -28,7 +28,7 @@ MapReduce queries can be further customized during query time to allow only a su
 > [!TIP]
 > See the [Incremental MapReduce Views](../../../server/current/learn/views/views-writing.md) and [Querying Data with Views](#7.1@server:learn:views/views-querying.adoc) sections of the general documentation to learn more about views and their architecture.
 
-You can find further information [in the API docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-view-api.html).
+You can find further information [in the API docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/group%5F%5Flcb-view-api.html).
 
 ## [](#querying-views)Querying Views
 

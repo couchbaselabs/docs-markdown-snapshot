@@ -4,7 +4,7 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/n1ql-queries-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 ---
 
@@ -83,7 +83,7 @@ __Table 1\. Available Query options__
 
 ## [](#examples)Examples
 
-As well as the [API docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-n1ql-api.html), there are examples in the GitHub repo for:
+As well as the [API docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/group%5F%5Flcb-n1ql-api.html), there are examples in the GitHub repo for:
 
 * [Query Example](https://github.com/couchbase/docs-sdk-c/blob/release/3.3/modules/devguide/examples/c/query-criteria.cc)
 * [Querying with Placeholders](https://github.com/couchbase/docs-sdk-c/blob/release/3.3/modules/devguide/examples/c/query-placeholders.cc)
@@ -94,7 +94,7 @@ As well as the [API docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-
 
 It is possible to query off the [Scope level](../../../server/current/learn/data/scopes-and-collections.md) _with Couchbase Server 7.0_, using the `lcb_cmdquery_scope_name()` method. It takes the statement as a required argument, and then allows additional options if needed.
 
-Usage details for this and `lcb_cmdquery_scope_qualifier()` can be found in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-n1ql-api.html#gadcd89153027afd789e2d31e250424c48).
+Usage details for this and `lcb_cmdquery_scope_qualifier()` can be found in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/group%5F%5Flcb-n1ql-api.html#gadcd89153027afd789e2d31e250424c48).
 
 ## [](#additional-resources)Additional Resources
 

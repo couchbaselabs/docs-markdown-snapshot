@@ -2,7 +2,7 @@
 title: Logging
 description: Couchbase Lite JavaScript -- Logging and Debugging
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/logging.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:couchbase-lite-javascript::logging.adoc[]
 ---
 
@@ -687,8 +687,8 @@ How to . . .
 
 Learn more . . .
 
-* [Troubleshooting Queries](troubleshooting-queries.md)
-* [Storage Issues](troubleshooting-storage.md)
+* [Troubleshooting Queries](#troubleshooting-queries.adoc)
+* [Storage Issues](#troubleshooting-storage.adoc)
 * [Databases](database.md)
 * [LogTape Documentation](https://logtape.org/)
 

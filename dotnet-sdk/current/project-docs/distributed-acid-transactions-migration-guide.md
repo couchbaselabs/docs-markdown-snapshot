@@ -2,7 +2,7 @@
 title: Transactions Migration Guide
 description: For those transitioning from using the Couchbase Transactions library for .NET.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/distributed-acid-transactions-migration-guide.adoc
-pubDate: 2026-04-17T05:26:26.225Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:project-docs:distributed-acid-transactions-migration-guide.adoc[]
 ---
 
@@ -38,9 +38,10 @@ await transactions.RunAsync(async (ctx) => {
 After
 
 ```csharp
-
+var cluster = await Cluster.ConnectAsync("couchbase://your-ip", "Administrator", "password").ConfigureAwait(false);
 var bucket = await cluster.BucketAsync("default").ConfigureAwait(false);
-var collection = await bucket.ScopeAsync("inventory").CollectionAsync("airport").ConfigureAwait(false);
+var scope = await bucket.ScopeAsync("inventory").ConfigureAwait(false);
+var collection = await scope.CollectionAsync("airport").ConfigureAwait(false);
 
 // Use the cluster's Transactions object
 var transactions = cluster.Transactions;
@@ -109,12 +110,9 @@ var cleanupConfig = TransactionCleanupConfigBuilder.Create()
 var transactionsConfig =
     TransactionsConfigBuilder.Create()
         .CleanupConfig(cleanupConfig).Build();
-var options = new ClusterOptions()
-{
-    UserName = "Administrator",
-    Password = "Administrator",
-    TransactionsConfig = transactionsConfig,
-};
+var options = new ClusterOptions();
+options.TransactionsConfig = transactionsConfig;
+options.WithPasswordAuthentication("Administrator", "password");
 var cluster = await Cluster.ConnectAsync("couchbase://your-ip", options).ConfigureAwait(false);
 ```
 
@@ -188,10 +186,10 @@ After
 // with the Builder pattern.
 await transactions.QueryAsync<object>(bulkLoadStatement, SingleQueryTransactionConfigBuilder.Create()
     // Single query transactions will often want to increase the default timeout
-    .ExpirationTime(TimeSpan.FromSeconds(360)));
+    .Timeout(TimeSpan.FromSeconds(360)));
 
 // using the lambda style
-await transactions.QueryAsync<object>(bulkLoadStatement, config => config.ExpirationTime(TimeSpan.FromSeconds(360)));
+await transactions.QueryAsync<object>(bulkLoadStatement, config => config.Timeout(TimeSpan.FromSeconds(360)));
 ```
 
 ## [](#cleanup)Cleanup

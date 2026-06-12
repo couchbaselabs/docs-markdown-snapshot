@@ -3,7 +3,7 @@ title: Use Capella AI Functions
 description: Use AI Functions to summarize text, classify content, detect
   sentiment, explain patterns, and more — all within your SQL++ queries.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/ai-functions.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:ai:build:ai-functions.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:ai:build:ai-functions.adoc[]
 
 > Use AI Functions to summarize text, classify content, detect sentiment, explain patterns, and more — all within your SQL++ queries. 
 
-Capella AI Functions combine SQL++ with language models to analyze your data. Use LLMs such as OpenAI, Bedrock, or models hosted in the [Capella Model Service](model-service/deploy-llm-model.md) to run task-based functions using familiar SQL++ queries directly within Capella's query editor.
+Capella AI Functions combine SQL++ with language models to analyze your data. Use large language models (LLMs) such as OpenAI, Bedrock, or models hosted in the [Capella Model Service](model-service/deploy-llm-model.md) to run task-based functions using familiar SQL++ queries directly within Capella's query editor.
 
 The following Capella AI Functions are available:
 
@@ -42,17 +42,23 @@ The following Capella AI Functions are available:
   * [Multiple Availability Zones](../../cloud/clusters/databases.md#availability) (AZ).
   * A bucket with scopes, collections, and JSON documents. For more information about how to upload data to Capella, see [Import and Export Data](../../cloud/guides/load.md).  
   If you do not have a dataset, use the `travel-sample` dataset.
-* To enable and update AI Functions, you need 1 of the following organization or project roles:
+* To enable and update AI Functions in the Capella UI, you need 1 of the following organization or project roles:
 
   * [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner)
   * [Project Owner](../../cloud/projects/project-roles.md#project-owner-role)
   * [Cluster Manager](../../cloud/projects/project-roles.md#project-cluster-manager-role)
   * [Data Writer](../../cloud/projects/project-roles.md#project-cluster-data-reader-writer)
-* To view and run AI Functions in the Query tab, you must have either a role that allows enabling or updating AI Functions, or 1 of the following project roles:
+* To view and run AI Functions:
 
-  * [Cluster Viewer](../../cloud/projects/project-roles.md#project-cluster-viewer-role)
-  * [Data Reader](../../cloud/projects/project-roles.md#project-cluster-data-reader)
-* A deployed LLM model with:
+  * In the Capella UI Query tab, you must have 1 of the following project roles:
+
+    * [Cluster Viewer](../../cloud/projects/project-roles.md#project-cluster-viewer-role)
+    * [Data Reader](../../cloud/projects/project-roles.md#project-cluster-data-reader)
+  * Your application must connect using 1 of the following types of cluster access credentials:
+
+    * [Basic access credentials](../../cloud/clusters/cluster-rbac.md#basic-access-credentials)
+    * [Advanced access credentials](../../cloud/clusters/cluster-rbac.md#advanced-access-credentials) assigned with a role that includes the `Query Curl Access` [privilege](../../cloud/clusters/cluster-rbac.md#privileges-for-advanced-access-credentials).
+* A deployed LLM with:
 
   * The [Capella Model Service](model-service/deploy-llm-model.md)
   * [OpenAI](https://openai.com/)

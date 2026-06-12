@@ -3,7 +3,7 @@ title: Couchbase Search Node API
 description: The Search Node Configuration REST API is provided by the Search
   Service. This API enables you to manage and monitor your Search nodes.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/fts-rest-nodes/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:server:fts-rest-nodes:index.adoc[]
 ---
 
@@ -31,6 +31,14 @@ The URL scheme, host, and port are as follows.
 | **scheme** | The URL scheme. Use https for secure access. **Values:** http, https                     |
 | **host**   | The host name or IP address of a node running the Search Service. **Example:** localhost |
 | **port**   | The Search Service REST port. Use 18094 for secure access. **Values:** 8094, 18094       |
+
+### Examples on this page
+
+In the HTTP request examples:
+
+* `$NODE1`, `$NODE2`, and `$NODE3` are the host names or IP addresses of nodes running the Search Service.
+* `$USER` is the user name of an authorized user — see [Security](#security).
+* `$PASSWORD` is the password to connect to Couchbase Server.
 
 ## [](#resources)Resources
 
@@ -673,11 +681,9 @@ This section describes the properties consumed and returned by this REST API.
 
  Array
 
-An array of warnings. The name of the property is the name of the Search index.
-
-Schema
-
-String array
+| Item |  | Schema |
+| ---- |  | ------ |
+| …​   |  | String |
 
 #### Index Definitions Wrapper
 

@@ -1,7 +1,7 @@
 ---
 title: Couchbase C SDK 3.3
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:hello-world:overview.adoc[]
 ---
 
@@ -46,7 +46,7 @@ Reference Guides
 
 The documentation supplements the practical Howto docs with references and [concept guides](../concept-docs/concepts.md), for those who prefer a broader understanding before diving in and coding.
 
-[API Docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/index.html)
+[API Docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/index.html)
 
 ###### 
 

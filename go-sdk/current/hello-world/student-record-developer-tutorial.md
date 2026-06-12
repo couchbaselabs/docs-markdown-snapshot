@@ -3,7 +3,7 @@ title: "Developer Tutorial: Student Record System"
 description: Learn how to create and deploy a student records database on
   Capella Operational and connect it to your application, using the Go SDK.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/hello-world/pages/student-record-developer-tutorial.adoc
-pubDate: 2026-04-01T05:25:30.286Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:go-sdk:hello-world:student-record-developer-tutorial.adoc[]
 ---
 
@@ -222,14 +222,15 @@ Next, connect your Go SDK to your cluster.
 
 Before we connect to the cluster we want a way to see the output of the SDK and any errors that may occur.
 
-1. In your `student-record` directory, create a new file called `logger.go`.  
+1. In your `student-record` directory, create a new directory `internal` containing a file called `logger.go`.  
 📂 ~ (your home directory)  
   📂 student-record  
     📃 go.mod  
-    📃 logger.go ⬅ here!
-2. Paste the following code block into your `logger.go` file:  
+    📂 internal  
+        📃 logger.go ⬅ here!
+2. Paste the following code block into your `internal/logger.go` file:  
 ```go  
-package main  
+package internal  
 import (  
 	"os"  
 	"github.com/couchbase/gocb/v2"  
@@ -276,13 +277,15 @@ func (logger *Logger) Log(level gocb.LogLevel, offset int, format string, v ...i
 
 To connect to the cluster:
 
-1. In your `student-record` directory, create a new file called `connect_student.go`.  
+1. In your `student-record` directory, create a new directory called `connect_student` containing a `main.go` file.  
 📂 ~ (your home directory)  
   📂 student-record  
     📃 go.mod  
-    📃 logger.go  
-    📃 connect_student.go ⬅ here!
-2. Paste the following code block into your `connect_student.go` file:  
+    📂 internal  
+        📃 logger.go  
+    📂 connect_student  
+        📃 main.go ⬅ here!
+2. Paste the following code block into your `connect_student/main.go` file:  
 ```go  
 package main  
 import (  
@@ -291,13 +294,14 @@ import (
 	"time"  
 	"github.com/couchbase/gocb/v2"  
 	"github.com/sirupsen/logrus"  
+	"student-record/internal"  
 )  
 func main() {  
 	connectionString := "<<connection-string>>" // Replace this with Connection String  
 	username := "<<username>>"                  // Replace this with username from cluster access credentials  
 	password := "<<password>>"                  // Replace this with password from cluster access credentials  
 	// Setup info level logging.  
-	gocb.SetLogger(NewLogger(logrus.InfoLevel))  
+	gocb.SetLogger(internal.NewLogger(logrus.InfoLevel))  
 	// Connecting to the cluster  
 	options := gocb.ClusterOptions{  
 		Authenticator: gocb.PasswordAuthenticator{  
@@ -333,11 +337,11 @@ func main() {
 	}  
 }  
 ```
-3. In the `connect_student.go` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
+3. In the `connect_student/main.go` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
 4. Open a terminal window and navigate to your `student-record` directory.
 5. Run the following command to check that the connection works:  
 ```console  
-go run connect_student.go  
+go run ./connect_student  
 ```  
 If the connection is successful, the collection name outputs in the console log.  
 time="2026-03-31T11:19:30+01:00" level=info msg="SDK Version: gocbcore/v10.9.1"  
@@ -380,22 +384,23 @@ After connecting to the cluster, you can create a student record in the form of 
 
 To create a student record:
 
-1. In your `student-record` directory, create a new file called `insert_student.go`.
-2. Paste the following code block into your `insert_student.go` file:  
+1. In your `student-record` directory, create a new directory called `insert_student` containing a `main.go` file.
+2. Paste the following code block into your `insert_student/main.go` file:  
 ```go  
 package main  
 import (  
-	"github.com/sirupsen/logrus"  
 	"log"  
 	"time"  
 	"github.com/couchbase/gocb/v2"  
+	"github.com/sirupsen/logrus"  
+	"student-record/internal"  
 )  
 func main() {  
 	connectionString := "<<connection-string>>" // Replace this with Connection String  
 	username := "<<username>>"                  // Replace this with username from cluster access credentials  
 	password := "<<password>>"                  // Replace this with password from cluster access credentials  
 	// Setup info level logging.  
-	gocb.SetLogger(NewLogger(logrus.InfoLevel))  
+	gocb.SetLogger(internal.NewLogger(logrus.InfoLevel))  
 	options := gocb.ClusterOptions{  
 		Authenticator: gocb.PasswordAuthenticator{  
 			Username: username,  
@@ -435,11 +440,11 @@ func main() {
 	}  
 }  
 ```
-3. In the `insert_student.go` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
+3. In the `insert_student/main.go` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
 4. Open a terminal window and navigate to your `student-record` directory.
 5. Run the following command to insert the student record into the collection:  
 ```console  
-go run insert_student.go  
+go run ./insert_student  
 ```
 6. From the Capella UI, go to your student cluster and check the `student-record-collection` for the new student record you just added:
 
@@ -452,22 +457,23 @@ go run insert_student.go
 
 Creating course records is similar to creating student records. To create course records:
 
-1. In your `student-record` directory, create a new file called `insert_courses.go`.
-2. Paste the following code block into your `insert_courses.go` file:  
+1. In your `student-record` directory, create a new directory called `insert_courses` containing a `main.go` file.
+2. Paste the following code block into your `insert_courses/main.go` file:  
 ```go  
 package main  
 import (  
-	"github.com/sirupsen/logrus"  
 	"log"  
 	"time"  
 	"github.com/couchbase/gocb/v2"  
+	"github.com/sirupsen/logrus"  
+	"student-record/internal"  
 )  
 func main() {  
 	connectionString := "<<connection-string>>" // Replace this with Connection String  
 	username := "<<username>>"                  // Replace this with username from cluster access credentials  
 	password := "<<password>>"                  // Replace this with password from cluster access credentials  
 	// Setup info level logging.  
-	gocb.SetLogger(NewLogger(logrus.InfoLevel))  
+	gocb.SetLogger(internal.NewLogger(logrus.InfoLevel))  
 	options := gocb.ClusterOptions{  
 		Authenticator: gocb.PasswordAuthenticator{  
 			Username: username,  
@@ -509,11 +515,11 @@ func addCourse(collection *gocb.Collection, id, name, faculty string, creditPoin
 	}  
 }  
 ```
-3. In the `insert_courses.go` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
+3. In the `insert_courses/main.go` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
 4. Open a terminal window and navigate to your `student-record` directory.
 5. Run the following command to insert the course records into the collection:  
 ```console  
-go run insert_courses.go  
+go run ./insert_courses  
 ```
 6. From the Capella UI, go to your student cluster and check the `course-record-collection` for the new course records you just added.  
 ![Courses added to the course-record-collection in the cluster](_images/new-course-records.png)
@@ -647,22 +653,23 @@ You can use the SDK to retrieve all course records at once, or narrow your searc
 
 To retrieve all of your course records using the Go SDK:
 
-1. In your `student-record` directory, create a new file called `art_school_retriever_all.go`.
-2. Paste the following code block into your `art_school_retriever_all.go` file:  
+1. In your `student-record` directory, create a new directory called `art_school_retriever_all` containing a `main.go` file.
+2. Paste the following code block into your `art_school_retriever_all/main.go` file:  
 ```go  
 package main  
 import (  
 	"fmt"  
-	"github.com/sirupsen/logrus"  
 	"log"  
 	"github.com/couchbase/gocb/v2"  
+	"github.com/sirupsen/logrus"  
+	"student-record/internal"  
 )  
 func main() {  
 	connectionString := "<<connection-string>>" // Replace this with Connection String  
 	username := "<<username>>"                  // Replace this with username from cluster access credentials  
 	password := "<<password>>"                  // Replace this with password from cluster access credentials  
 	// Setup info level logging.  
-	gocb.SetLogger(NewLogger(logrus.InfoLevel))  
+	gocb.SetLogger(internal.NewLogger(logrus.InfoLevel))  
 	options := gocb.ClusterOptions{  
 		Authenticator: gocb.PasswordAuthenticator{  
 			Username: username,  
@@ -703,11 +710,11 @@ func retrieveCourses(cluster *gocb.Cluster) {
 	}  
 }  
 ```
-3. In the `art_school_retriever_all.go` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
+3. In the `art_school_retriever_all/main.go` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
 4. Open a terminal window and navigate to your `student-record` directory.
 5. Run the following command to retrieve all course records:  
 ```console  
-go run art_school_retriever_all.go  
+go run ./art_school_retriever_all  
 ```  
 If the retrieval is successful, the course information outputs in the console log.  
 time="2026-03-31T12:02:57+01:00" level=info msg="SDK Version: gocbcore/v10.9.1"  
@@ -734,22 +741,23 @@ time="2026-03-31T12:02:59+01:00" level=info msg="Agent close complete"
 
 You can set parameters in your code to narrow your search down further. To retrieve only courses with less than 200 `credit-points` using the Go SDK:
 
-1. In your `student-record` directory, create a new file called `art_school_retriever.go`.
-2. Paste the following code block into your `art_school_retriever.go` file:  
+1. In your `student-record` directory, create a new directory called `art_school_retriever` containing a `main.go` file.
+2. Paste the following code block into your `art_school_retriever/main.go` file:  
 ```go  
 package main  
 import (  
 	"fmt"  
-	"github.com/sirupsen/logrus"  
 	"log"  
 	"github.com/couchbase/gocb/v2"  
+	"github.com/sirupsen/logrus"  
+	"student-record/internal"  
 )  
 func main() {  
 	connectionString := "<<connection-string>>" // Replace this with Connection String  
 	username := "<<username>>"                  // Replace this with username from cluster access credentials  
 	password := "<<password>>"                  // Replace this with password from cluster access credentials  
 	// Setup info level logging.  
-	gocb.SetLogger(NewLogger(logrus.InfoLevel))  
+	gocb.SetLogger(internal.NewLogger(logrus.InfoLevel))  
 	options := gocb.ClusterOptions{  
 		Authenticator: gocb.PasswordAuthenticator{  
 			Username: username,  
@@ -794,11 +802,11 @@ func retrieveCoursesWithParameters(cluster *gocb.Cluster) {
 	}  
 }  
 ```
-3. In the `art_school_retriever.go` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
+3. In the `art_school_retriever/main.go` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
 4. Open a terminal window and navigate to your `student-record` directory.
 5. Run the following command to retrieve course records with parameters:  
 ```console  
-go run art_school_retriever.go  
+go run ./art_school_retriever  
 ```  
 If the retrieval is successful, the course information with your parameters outputs in the console log.  
 time="2026-03-31T12:04:10+01:00" level=info msg="SDK Version: gocbcore/v10.9.1"  
@@ -830,22 +838,23 @@ After retrieving student and course records, you can add enrollment details to t
 
 To add enrollment details to a student record:
 
-1. In your `student-record` directory, create a new file called `add_enrollments.go`.
-2. Paste the following code block into your `add_enrollments.go` file:  
+1. In your `student-record` directory, create a new directory called `add_enrollments` containing a `main.go` file.
+2. Paste the following code block into your `add_enrollments/main.go` file:  
 ```go  
 package main  
 import (  
-	"github.com/sirupsen/logrus"  
 	"log"  
 	"time"  
 	"github.com/couchbase/gocb/v2"  
+	"github.com/sirupsen/logrus"  
+	"student-record/internal"  
 )  
 func main() {  
 	connectionString := "<<connection-string>>" // Replace this with Connection String  
 	username := "<<username>>"                  // Replace this with username from cluster access credentials  
 	password := "<<password>>"                  // Replace this with password from cluster access credentials  
 	// Setup info level logging.  
-	gocb.SetLogger(NewLogger(logrus.InfoLevel))  
+	gocb.SetLogger(internal.NewLogger(logrus.InfoLevel))  
 	options := gocb.ClusterOptions{  
 		Authenticator: gocb.PasswordAuthenticator{  
 			Username: username,  
@@ -960,11 +969,11 @@ func retrieveCourse(cluster *gocb.Cluster, course string) map[string]interface{}
 ```  
 > [!NOTE]  
 > Because this is a tutorial, you do not need to add an error check to make sure that your collection has returned an item. In a live application, error checks must be made to prevent errors and keep the application running.
-3. In the `add_enrollments.go` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
+3. In the `add_enrollments/main.go` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
 4. Open a terminal window and navigate to your `student-record` directory.
 5. Run the following command to add the enrollment details to the student record:  
 ```console  
-go run add_enrollments.go  
+go run ./add_enrollments  
 ```
 6. From the Capella UI, go to your student cluster.
 7. Go to the `student-record-collection` and click the document ID to see the new information you just added to Hilary's student record.  

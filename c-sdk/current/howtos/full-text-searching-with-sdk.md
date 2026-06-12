@@ -3,7 +3,7 @@ title: Search Service Using the C SDK with Couchbase Server
 description: You can use the Search service to create queryable Search indexes
   in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -25,4 +25,4 @@ After familiarizing yourself with how to create and query a search index in the 
 
 ## [](#example)Example
 
-For a full Search example, see the [API documentation](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/example%5F2fts%5F2fts%5F8c-example.html).
+For a full Search example, see the [API documentation](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/example%5F2fts%5F2fts%5F8c-example.html).

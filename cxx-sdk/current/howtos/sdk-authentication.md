@@ -3,7 +3,7 @@ title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cxx-sdk:howtos:sdk-authentication.adoc[]
 ---
 
@@ -21,10 +21,7 @@ Our [Getting Started](../hello-world/start-using-sdk.md) guide covered the basic
 Our [Getting Started](../hello-world/start-using-sdk.md) guide introduced basic authentication against a Couchbase cluster:
 
 ```scala
-Cluster.connect("10.112.180.101", "username", "password") match {
-  case Success(cluster) => // Use the cluster
-  case Failure(err) => println(s"Failed to open cluster: $err")
-}
+Unresolved include directive in modules/howtos/pages/sdk-authentication.adoc - include::devguide:example$scala/Auth.scala[]
 ```
 
 Couchbase uses Role Base Access Control (RBAC), and has since Server 5.0 was released. For a general overview of Couchbase-Server authorization, see [Authorization](../../../server/current/learn/security/authorization-overview.md). For a list of available roles and corresponding privileges, see [Roles](../../../server/current/learn/security/roles.md).
@@ -44,40 +41,7 @@ For a more detailed conceptual description of using certificates, see [Certifica
 For sample procedures whereby certificates can be generated and deployed, see [Manage Certificates](../../../server/current/manage/manage-security/manage-certificates.md). The rest of this document assumes that the processes there, or something similar, have been followed. That is, a cluster certificate has been created and installed on the server, a client certificate has been created, and it is stored in a JVM keystore along with the cluster's certificate.
 
 ```scala
-// Open the keystore using standard JVM classes
-val keystorePassword = new String("storepass").toCharArray
-val keystoreFilename = "my.keystore"
-
-// The format to use here depends on the format of the keystore.
-// "PKCS12" is what JDK 9+ creates by default.
-// "JKS" was the default for JDK 8 and below.
-val keystore = KeyStore.getInstance("PKCS12")
-val keystoreStream =
-  getClass.getClassLoader.getResourceAsStream(keystoreFilename)
-keystore.load(keystoreStream, keystorePassword)
-keystoreStream.close()
-
-val kmf =
-  KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm)
-kmf.init(keystore, keystorePassword)
-
-val trustMan =
-  TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm)
-trustMan.init(keystore)
-
-// Create a Couchbase CertificateAuthenticate that will use that keystore
-val auth =
-  CertificateAuthenticator.fromKeyManagerFactory(() => kmf)
-
-// Create a Couchbase ClusterEnvironment to enable TLS (required)
-val cluster = ClusterEnvironment.builder
-  .securityConfig(
-    SecurityConfig().enableTls(true).trustManagerFactory(trustMan)
-  )
-  .build
-  .flatMap(
-    env => Cluster.connect(hostname, ClusterOptions(auth).environment(env))
-  )
+Unresolved include directive in modules/howtos/pages/sdk-authentication.adoc - include::devguide:example$scala/Auth.scala[]
 ```
 
 ## [](#ldap)LDAP

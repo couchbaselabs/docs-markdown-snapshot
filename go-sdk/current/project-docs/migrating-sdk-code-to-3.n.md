@@ -3,7 +3,7 @@ title: Migrating to SDK 3 API
 description: The SDK 3.x API used in Go SDK 2.x breaks the existing 2.x APIs
   (used in Go SDK 1.6) in order to provide a number of improvements.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:go-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -205,6 +205,9 @@ In addition, 2.x of the SDK provides the ability to gather additional contextual
 	queryResult, err := cluster.Query("select 1=1", &gocb.QueryOptions{
 		Timeout: 3 * time.Second,
 	})
+	if err != nil {
+		panic(err)
+	}
 	log.Printf("Query Result: %+v\n", queryResult)
 
 	cluster.Close(&gocb.ClusterCloseOptions{})
@@ -244,7 +247,7 @@ func certauthenticator() {
 	cluster.Close(&gocb.ClusterCloseOptions{})
 }
 
-func main() {
+func Example_migrating() {
 	basic()
 	passauthenticator()
 	certauthenticator()

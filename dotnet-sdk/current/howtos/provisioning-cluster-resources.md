@@ -3,7 +3,7 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
@@ -42,7 +42,7 @@ Management operations in the SDK may be performed through several interfaces dep
 
 The `IBucketManager` interface may be used to create and delete buckets from the Couchbase cluster. It is referenced via the `Cluster.Buckets` property.
 
-```golang
+```csharp
 var cluster = await Cluster.ConnectAsync("couchbase://your-ip", "Administrator", "password");
 var bucketMgr = cluster.Buckets;
 ```

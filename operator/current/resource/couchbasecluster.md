@@ -1,7 +1,7 @@
 ---
 title: CouchbaseCluster Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbasecluster.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:operator::resource/couchbasecluster.adoc[]
 ---
 
@@ -2826,7 +2826,7 @@ Networking defines Couchbase cluster networking options such as network topology
 
 #### [](#description-195)Description
 
-AddressFamily allows the manual selection of the address family to use. Setting this field to either IPv4Only or IPv6Only will exclusively use that address family. Setting this field to IPv4Priority or IPv6Priority will allow dual stack networking with the given address family being prioritised. When this field is not set, Couchbase server will default to using IPv4 for internal communication and also support IPv6 on dual stack systems. This is only supported in Couchbase Server 7.0.2+.
+AddressFamily allows the manual selection of the address family to use. Setting this to either IPv4Only or IPv6Only will restrict the cluster to only using that address family for internal communication. Alternatively, set this to IPv4Priority or IPv6Priority to allow dual stack networking with the given address family being prioritised. If this field changes the address family (IPv4Only/Priority to IPv6Only/Priority), all couchbase services hosted on each node other than the Data service will be restarted. When this field is not set, Couchbase server will default to IPv4Priority. This is only supported in Couchbase Server 7.0.2+.
 
 ### [](#couchbaseclusters-spec-networking-adminconsoleservicetemplate)couchbaseclusters.spec.networking.adminConsoleServiceTemplate
 
@@ -2939,6 +2939,8 @@ ServiceTemplate can be used to provice a template used by the Operator when crea
 **Default**: `75`
 
 #### [](#description-204)Description
+
+**DEPRECATED** \- field no longer has any effect.
 
 TerminationGracePeriodSeconds specifies the grace period for the container to terminate. Defaults to 75 seconds.
 
@@ -5537,6 +5539,8 @@ MergeFunctionMapping maps collection specifiers (scope.collection) to merge func
 **Enumerations**: `Off, Active`
 
 #### [](#description-433)Description
+
+**DEPRECATED**: This should be set per-replication.
 
 Mobile enables mobile (Sync Gateway) active-active mode. This field must be one of "Active" or "Off", defaulting to "Off".
 

@@ -3,7 +3,7 @@ title: Start Using the .NET SDK
 description: The Couchbase .NET SDK enables you to interact with a Couchbase
   Server cluster from .NET using C# and other .NET languages.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -37,17 +37,9 @@ using System.Threading.Tasks;
 
 namespace Couchbase.Net.DevGuide.Cloud;
 
-public class Progam
-{
-    public static async Task Main(string[] args)
-    {
-        await new CloudExample().Main();
-    }
-}
-
 class CloudExample
 {
-    public async Task Main()
+    public async Task RunAsync()
     {
         var options = new ClusterOptions
         {
@@ -97,9 +89,14 @@ The Couchbase Capella free tier version comes with the Travel Sample Bucket, and
 ```csharp
 using System;
 using System.Threading.Tasks;
-using Couchbase;await ExampleUsing();
-async Task ExampleUsing()
+using Couchbase;
+
+namespace Couchbase.Docs.Examples.HelloWorld.StartUsing;
+
+internal static class StartUsingExample
 {
+    static async Task ExampleUsing()
+    {
     var cluster = await Cluster.ConnectAsync(
         // Update these credentials for your Local Couchbase instance!
         "couchbase://localhost",
@@ -126,6 +123,7 @@ async Task ExampleUsing()
     // Iterate over the rows to access result data and print to the terminal.
     await foreach (var row in queryResult) {
         Console.WriteLine(row);
+    }
     }
 }
 ```
@@ -187,7 +185,7 @@ Firstly, you will need to have a few `using` statements at the top of **Program.
 ```csharp
 using System;
 using System.Threading.Tasks;
-using Couchbase;await ExampleUsing();
+using Couchbase;
 ```
 
 ### [](#connect)Connect

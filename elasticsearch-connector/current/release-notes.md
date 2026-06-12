@@ -1,7 +1,7 @@
 ---
 title: Release Notes
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:elasticsearch-connector::release-notes.adoc[]
 ---
 
@@ -15,6 +15,19 @@ link: xref:elasticsearch-connector::release-notes.adoc[]
 ## [](#installation)Installation
 
 Scroll down to the version you want, then click the "Download" link to get the full connector distribution. Refer to [Getting Started](getting-started.md) for detailed installation instructions.
+
+## [](#v4.4.15)Version 4.4.15 (2026-05-20)
+
+[Download](https://packages.couchbase.com/clients/connectors/elasticsearch/4.4.15/couchbase-elasticsearch-connector-4.4.15.zip)
+
+This version updates various dependencies to more recent versions.
+
+### [](#enhancements)Enhancements
+
+* [CBES-344](https://jira.issues.couchbase.com/browse/CBES-344): Upgraded `okhttp3` from `4.12.0` to `5.3.2`.
+* [CBES-346](https://jira.issues.couchbase.com/browse/CBES-346): Upgraded `log4j` from `2.23.1` to `2.25.4`.
+* [CBES-347](https://jira.issues.couchbase.com/browse/CBES-347): Ensure transitive dependency on `vertx-core` is version `4.5.27` or higher.
+* [CBES-348](https://jira.issues.couchbase.com/browse/CBES-348): Upgraded `netty` from `4.1.119` to `4.1.133`.
 
 ## [](#v4.4.14)Version 4.4.14 (2025-10-23)
 
@@ -32,7 +45,7 @@ Previously, if there was no exact match between an address in the connection str
 > [!TIP]  
 > If this change causes the connector to select the incorrect network for your deployment (you'll know because the connector will be unable to connect to the Couchbase Server cluster), specify `network = 'default'` in the `[couchbase]` section of your connector config to force the connector to use the same network as before.
 
-### [](#enhancements)Enhancements
+### [](#enhancements-2)Enhancements
 
 * [CBES-337](https://jira.issues.couchbase.com/browse/CBES-337): Connector metrics are now tagged with "bucket" and "clusterUuid".
 * [CBES-338](https://jira.issues.couchbase.com/browse/CBES-338): Upgraded Couchbase Java SDK from `3.8.0` to `3.9.2`.
@@ -44,7 +57,7 @@ Previously, if there was no exact match between an address in the connection str
 
 This maintenance release fixes an issue with AWS IRSA authentication in Kubernetes, and upgrades dependency versions.
 
-### [](#enhancements-2)Enhancements
+### [](#enhancements-3)Enhancements
 
 * [CBES-332](https://jira.issues.couchbase.com/browse/CBES-332): Upgraded awssdk to version `2.31.2` for IRSA compatability. Thanks to [Christopher Lupo](https://github.com/clupo).
 * [CBES-334](https://jira.issues.couchbase.com/browse/CBES-334): Upgraded Couchbase Java SDK from `3.7.9` to `3.8.0`.
@@ -56,7 +69,7 @@ This maintenance release fixes an issue with AWS IRSA authentication in Kubernet
 
 This maintenance release adds support for AWS IRSA authentication in Kubernetes, improves the connector's checkpoint behavior, and upgrades dependency versions.
 
-### [](#enhancements-3)Enhancements
+### [](#enhancements-4)Enhancements
 
 * [CBES-327](https://jira.issues.couchbase.com/browse/CBES-327): Added support for AWS IRSA authentication in Kubernetes. Thanks to [Christopher Lupo](https://github.com/clupo).
 * [CBES-326](https://jira.issues.couchbase.com/browse/CBES-326): Added a `defaultCheckpoint` property to the `[couchbase]` section of the connector config file. This new property controls where in history the connector starts from if there is no replication checkpoint for a partition.  
@@ -77,7 +90,7 @@ This maintenance release updates the Couchbase Java SDK (and a few other depende
 
 Elasticsearch 8.16 and OpenSearch 2.18 join the list of supported versions.
 
-### [](#enhancements-4)Enhancements
+### [](#enhancements-5)Enhancements
 
 * [CBES-320](https://jira.issues.couchbase.com/browse/CBES-320): Support connecting to a Kubernetes API server that requires TLS 1.3\. (Upgrade `io.fabric8:kubernetes-client` from 5.11.2 to 7.0.0.)
 * [CBES-321](https://jira.issues.couchbase.com/browse/CBES-321): Upgrade Couchbase Java Client from 3.7.5 to 3.7.6
@@ -89,7 +102,7 @@ Elasticsearch 8.16 and OpenSearch 2.18 join the list of supported versions.
 
 This maintenance release updates the Couchbase Java SDK to the most recent version.
 
-### [](#enhancements-5)Enhancements
+### [](#enhancements-6)Enhancements
 
 * [CBES-318](https://jira.issues.couchbase.com/browse/CBES-318): Upgrade Couchbase Java Client from 3.7.1 to 3.7.5
 * [CBES-319](https://jira.issues.couchbase.com/browse/CBES-319): Upgrade Java DCP client from 0.51.0 to 0.52.0
@@ -106,7 +119,7 @@ This maintenance release updates the Couchbase Java SDK to the most recent versi
 
 Added Elasticsearch 8.14, OpenSearch 2.15, and Consul 1.19.1 to the compatibility matrix as supported versions.
 
-### [](#enhancements-6)Enhancements
+### [](#enhancements-7)Enhancements
 
 * [CBES-311](https://issues.couchbase.com/browse/CBES-311): The connector now includes the `co.elastic.logging:log4j2-ecs-layout` library as a convenience for users who want to configure Log4j2 to use this layout.
 * [CBES-314](https://issues.couchbase.com/browse/CBES-314): Upgrade Couchbase Java SDK from `3.6.1` to `3.7.1`.
@@ -120,7 +133,7 @@ Added Elasticsearch 8.14, OpenSearch 2.15, and Consul 1.19.1 to the compatibilit
 
 This maintenance release updates the Couchbase Java SDK to the most recent version.
 
-### [](#enhancements-7)Enhancements
+### [](#enhancements-8)Enhancements
 
 * [CBES-308](https://issues.couchbase.com/browse/CBES-308): Upgrade Couchbase Java SDK from `3.5.2` to `3.6.1`.  
 Notably:
@@ -135,7 +148,7 @@ This maintenance release improves the robustness of the connector in certain con
 
 Added Elasticsearch 8.12, OpenSearch 2.11, and Consul 1.17.1 to the compatibility matrix as supported versions.
 
-### [](#enhancements-8)Enhancements
+### [](#enhancements-9)Enhancements
 
 * [CBES-305](https://issues.couchbase.com/browse/CBES-305): Upgrade Couchbase Java SDK from `3.4.6` to `3.5.2`.
 * [CBES-306](https://issues.couchbase.com/browse/CBES-306): Upgrade Couchbase DCP client from `0.46.0` to `0.48.0`.
@@ -154,7 +167,7 @@ If the connector is stopped for an extended period of time, it can now resume fr
 
 Added Elasticsearch 8.7 and OpenSearch 2.7 to the compatibility matrix as supported versions.
 
-### [](#enhancements-9)Enhancements
+### [](#enhancements-10)Enhancements
 
 * [CBES-297](https://issues.couchbase.com/browse/CBES-297): When resuming from an old checkpoint (where the connector's sequence number is lower than Couchbase Server's purge sequence number), the connector no longer rolls back to zero. This behavior requires Couchbase Server 7.2 or later.
 * [CBES-300](https://issues.couchbase.com/browse/CBES-300): Upgrade Couchbase Java SDK from `3.4.4` to `3.4.6`.
@@ -170,7 +183,7 @@ Added Elasticsearch 8.7 and OpenSearch 2.7 to the compatibility matrix as suppor
 
 This version adds experimental support for Elastic Cloud, OpenSearch, and Amazon OpenSearch Service. If you'd like to share feedback on these features, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum.
 
-### [](#enhancements-10)Enhancements
+### [](#enhancements-11)Enhancements
 
 * [CBES-286](https://issues.couchbase.com/browse/CBES-286): Add [experimental support for Elastic Cloud](configuration.md#elastic-cloud).
 * [CBES-285](https://issues.couchbase.com/browse/CBES-285): Add experimental support for OpenSearch. No special configuration is required; the connector automatically detects you're using OpenSearch instead of Elasticsearch.
@@ -186,7 +199,7 @@ This version adds experimental support for Elastic Cloud, OpenSearch, and Amazon
 
 This maintenance release upgrades various dependencies, and adds Elasticsearch 8.6 to the compatibility matrix as a supported version.
 
-### [](#enhancements-11)Enhancements
+### [](#enhancements-12)Enhancements
 
 * [CBES-283](https://issues.couchbase.com/browse/CBES-283): Upgrade Couchbase Java SDK from `3.4.1` to `3.4.3`.
 * [CBES-284](https://issues.couchbase.com/browse/CBES-284): Upgrade Couchbase DCP client from `0.43.0` to `0.44.0`.
@@ -195,7 +208,7 @@ This maintenance release upgrades various dependencies, and adds Elasticsearch 8
 
 [Download](https://packages.couchbase.com/clients/connectors/elasticsearch/4.4.3/couchbase-elasticsearch-connector-4.4.3.zip)
 
-### [](#enhancements-12)Enhancements
+### [](#enhancements-13)Enhancements
 
 * [CBES-278](https://issues.couchbase.com/browse/CBES-278): Elasticsearch 8.5 and Consul 1.14.3 are now supported.
 * [CBES-276](https://issues.couchbase.com/browse/CBES-276): Upgrade Couchbase DCP client from `0.42.0` to `0.43.0`.
@@ -212,7 +225,7 @@ This maintenance release upgrades various dependencies, and adds Elasticsearch 8
 
 You can now authenticate with Couchbase as an LDAP user, as long as secure connections are enabled.
 
-### [](#enhancements-13)Enhancements
+### [](#enhancements-14)Enhancements
 
 * [JDCP-224](https://issues.couchbase.com/browse/JDCP-224): Use SASL mechanism `PLAIN` when authenticating with Couchbase on a secure connection. `PLAIN` is the fastest mechanism, and the only one that works with LDAP users.
 * [JDCP-217](https://issues.couchbase.com/browse/JDCP-217): Support Couchbase clusters that advertise only TLS ports.
@@ -238,7 +251,7 @@ Elasticsearch 8.4 joins the list of supported versions.
 --consul <path/to/consul.toml>  
 ```
 
-### [](#enhancements-14)Enhancements
+### [](#enhancements-15)Enhancements
 
 * [CBES-237](https://issues.couchbase.com/browse/CBES-237): **Autonomous Operations Mode** HashiCorp Consul 1.13, 1.12, and 1.11 are now supported.
 * [CBES-144](https://issues.couchbase.com/browse/CBES-144): **Autonomous Operations Mode** The connector now recovers from transient Consul errors that sometimes occur during leader election. When Consul returns HTTP status code 500 or 503, the connector now retries the request instead of immediately terminating.
@@ -258,7 +271,7 @@ The connector now supports Elasticsearch 8, and it's easier to configure the tru
 * The minimum required version of Elasticsearch is now `7.14.0`.
 * OpenSearch and Amazon OpenSearch Service are not supported. If you're using a previous version of the connector with OpenSearch, please remain on that version for now. We're investigating restoring support in a future version. **UPDATE**: [Version 4.4.5 (2023-03-21)](#v4.4.5) restores support for OpenSearch and Amazon OpenSearch Service as an experimental feature.
 
-### [](#enhancements-15)Enhancements
+### [](#enhancements-16)Enhancements
 
 * [CBES-254](https://issues.couchbase.com/browse/CBES-254): Added support for Elasticsearch 8.
 * [CBES-258](https://issues.couchbase.com/browse/CBES-258): When using secure connections, the connector can now read the Couchbase and Elasticsearch CA certificates from separate PEM files instead of a single Java keystore. The `[couchbase]` and `[elasticsearch]` config sections each have a new `pathToCaCertificate` property that points to the respective PEM file.
@@ -276,7 +289,7 @@ The connector now supports Elasticsearch 8, and it's easier to configure the tru
 
 This release bumps various dependency versions. There are no new features or bug fixes.
 
-### [](#enhancements-16)Enhancements
+### [](#enhancements-17)Enhancements
 
 * [CBES-279](https://issues.couchbase.com/browse/CBES-279): Upgrade the Docker base image to the latest version of `ubi8/openjdk-11-runtime`. The Dockerfile now uses a floating tag for the base image. This makes it easier to refresh the connector image when the base image is updated.
 * Upgraded `commons-text` from `1.9` to `1.10.0`. Please see [our official response to CVE-2022-42889 (also known as Text4Shell)](https://www.couchbase.com/blog/security-vulnerability-text4shell/). In brief, no version of the Elasticsearch connector is vulnerable.
@@ -287,7 +300,7 @@ This release bumps various dependency versions. There are no new features or bug
 
 This release bumps various dependency versions. There are no new features or bug fixes.
 
-### [](#enhancements-17)Enhancements
+### [](#enhancements-18)Enhancements
 
 * [CBES-255](https://issues.couchbase.com/browse/CBES-255): Upgrade Couchbase Java SDK from 3.3.0 to 3.3.1.
 * [CBES-253](https://issues.couchbase.com/browse/CBES-253): Upgrade the Docker base image to the latest version of `ubi8/openjdk-11-runtime`.
@@ -298,7 +311,7 @@ This release bumps various dependency versions. There are no new features or bug
 
 This release bumps various dependency versions. There are no new features or bug fixes.
 
-### [](#enhancements-18)Enhancements
+### [](#enhancements-19)Enhancements
 
 * [CBES-249](https://issues.couchbase.com/browse/CBES-249): Upgrade Couchbase Java SDK from 3.2.6 to 3.3.0.
 * [CBES-252](https://issues.couchbase.com/browse/CBES-252): Upgrade `ubi8/openjdk-11-runtime` base image from 1.11-2.1648459559 to 1.12-1.1651233103.
@@ -309,7 +322,7 @@ This release bumps various dependency versions. There are no new features or bug
 
 This release adds a new `/info` HTTP endpoint that displays information about the connector.
 
-### [](#enhancements-19)Enhancements
+### [](#enhancements-20)Enhancements
 
 * [CBES-247](https://issues.couchbase.com/browse/CBES-247): The new `/info` HTTP endpoint reports the connector version and membership in a machine-readable format.
 * [CBES-248](https://issues.couchbase.com/browse/CBES-248): Upgrade Couchbase Java SDK from 3.2.4 to 3.2.6.
@@ -320,7 +333,7 @@ This release adds a new `/info` HTTP endpoint that displays information about th
 
 This is a maintenance released focused on upgrading dependencies to the latest versions.
 
-### [](#enhancements-20)Enhancements
+### [](#enhancements-21)Enhancements
 
 * [CBES-238](https://issues.couchbase.com/browse/CBES-238): Resolved an incompatibility with Consul 1.10.
 * [CBES-241](https://issues.couchbase.com/browse/CBES-241): Upgraded Log4j from 2.17.0 to 2.17.1.
@@ -342,7 +355,7 @@ This release upgrades Log4j again (sigh).
 > [!NOTE]
 > **Regarding CVE-2021-44832:** The connector's out-of-the-box logging configuration does not use Log4j's JDBC appender. You may still wish to upgrade to avoid false positives from vulnerability scanners.
 
-### [](#enhancements-21)Enhancements
+### [](#enhancements-22)Enhancements
 
 * [CBES-241](https://issues.couchbase.com/browse/CBES-241): Upgrade Log4j from 2.17.0 to 2.17.1.
 
@@ -352,7 +365,7 @@ This release upgrades Log4j again (sigh).
 
 This release makes it easier to [deploy the connector in Kubernetes](kubernetes.md), and upgrades Log4j from 2.15.0 to 2.17.0.
 
-### [](#enhancements-22)Enhancements
+### [](#enhancements-23)Enhancements
 
 * [CBES-232](https://issues.couchbase.com/browse/CBES-232): Upgraded Log4j from 2.15.0 to 2.17.0\. This prevents vulnerability scanners from flagging Log4j 2.15.0 as a potential security risk.
 
@@ -370,7 +383,7 @@ This release makes it easier to [deploy the connector in Kubernetes](kubernetes.
 
 This release upgrades Log4j from 2.15.0 to 2.17.0.
 
-### [](#enhancements-23)Enhancements
+### [](#enhancements-24)Enhancements
 
 * [CBES-232](https://issues.couchbase.com/browse/CBES-232): Upgraded Log4j from 2.15.0 to 2.17.0\. This prevents vulnerability scanners from flagging Log4j 2.15.0 as a potential security risk.
 
@@ -403,7 +416,7 @@ This release fixes a high severity vulnerability related to Log4j 2\. All users 
 
 This version reduces the default flow control buffer size to a more reasonable value and improves DCP diagnostics.
 
-### [](#enhancements-24)Enhancements
+### [](#enhancements-25)Enhancements
 
 * [CBES-224](https://issues.couchbase.com/browse/CBES-224): The default flow control buffer size is now 16 MB instead of 128 MB. This makes it less likely the connector will run out of memory under heavy load with the default heap size. The documentation now describes how the DCP [flowControlBuffer](https://docs.couchbase.com/elasticsearch-connector/current/configuration.html#dcp) config property affects the connector's memory requirements.
 * [CBES-223](https://issues.couchbase.com/browse/CBES-223): Upgraded DCP client from 0.36.0 to 0.37.0\. This upgrade adds a workaround for [MB-48655](https://issues.couchbase.com/browse/MB-48655) so all versions of Couchbase now correctly log DCP diagnostic messages from the connector.
@@ -417,7 +430,7 @@ This release restores compatibility with Couchbase Server 7.0.2.
 
 If you are currently using a connector version between 4.2.2 and 4.3.0 inclusive, please upgrade to 4.3.1 or later before upgrading Couchbase Server beyond 7.0.1.
 
-### [](#enhancements-25)Enhancements
+### [](#enhancements-26)Enhancements
 
 * [CBES-221](https://issues.couchbase.com/browse/CBES-221): Upgraded the DCP client from 0.35.0 to 0.36.0 for compatibility with Couchbase Server 7.0.2.
 
@@ -427,7 +440,7 @@ If you are currently using a connector version between 4.2.2 and 4.3.0 inclusive
 
 This release stabilizes the configuration options for working with Couchbase 7 Scopes and Collections. All previously "uncommitted" options are promoted to "committed" status.
 
-### [](#enhancements-26)Enhancements
+### [](#enhancements-27)Enhancements
 
 * The config options for working with Couchbase 7 Scopes and Collections are now part of the "committed" API.
 * All other "uncommitted" config options are promoted to "committed" status as well.
@@ -444,7 +457,7 @@ This release stabilizes the configuration options for working with Couchbase 7 S
 
 This release upgrades various dependencies to the latest versions and improves how permanent indexing failures are logged.
 
-### [](#enhancements-27)Enhancements
+### [](#enhancements-28)Enhancements
 
 * [CBES-213](https://issues.couchbase.com/browse/CBES-213): When logging permanent indexing failures, the connector now sanitizes the contents of the failure message to ensure sensitive information is redacted.
 * [CBES-209](https://issues.couchbase.com/browse/CBES-209): Upgraded the Couchbase Java SDK from 3.1.3 to 3.2.0.
@@ -457,7 +470,7 @@ This release upgrades various dependencies to the latest versions and improves h
 
 This release makes it easier for custom tools to parse config files that have environment variable placeholders.
 
-### [](#enhancements-28)Enhancements
+### [](#enhancements-29)Enhancements
 
 * [CBES-206](https://issues.couchbase.com/browse/CBES-206): Integer and boolean config properties can now be specified as strings. For example: `7` and `'7'` are now both valid for an integer property, and `true` and `'true'` are now both valid for a boolean property. This lets you use environment variable placeholders for integer and boolean properties without invalidating the TOML syntax — just enclose them in quotes, like: `'${SOME_INTEGER}'`. The connector resolves placeholders before parsing the TOML, so it doesn't care about the invalid syntax; this change just makes it easier for other tools to parse the connector config file.
 
@@ -467,7 +480,7 @@ This release makes it easier for custom tools to parse config files that have en
 
 This release brings minor improvements to monitoring and configurability.
 
-### [](#enhancements-29)Enhancements
+### [](#enhancements-30)Enhancements
 
 * [CBES-202](https://issues.couchbase.com/browse/CBES-202): The connector now waits until it has connected to both Couchbase and Elasticsearch before starting the HTTP server for the `/metrics` endpoint. This makes it more useful as a "readiness" probe.
 * [CBES-204](https://issues.couchbase.com/browse/CBES-204): Added a new `[couchbase.env]` [config section](configuration.md#couchbase-env) for tuning Couchbase Java SDK settings.
@@ -480,7 +493,7 @@ This release brings minor improvements to monitoring and configurability.
 
 This release improves diagnostic logging and fixes an issue with scopes & collections.
 
-### [](#enhancements-30)Enhancements
+### [](#enhancements-31)Enhancements
 
 * [CBES-192](https://issues.couchbase.com/browse/CBES-192): When the new `logDocumentLifecycle` config property is set to true in the [logging](https://docs.couchbase.com/elasticsearch-connector/4.2/configuration.html#logging) section, the connector writes detailed log entries as each document flows through the connector.
 * [CBES-198](https://issues.couchbase.com/browse/CBES-198): Log redaction is now configurable via the new `redactionLevel` config property in the [logging](https://docs.couchbase.com/elasticsearch-connector/4.2/configuration.html#logging) section.
@@ -496,7 +509,7 @@ This release improves diagnostic logging and fixes an issue with scopes & collec
 
 This release adds uncommitted support for client certificate authentication (mTLS), adds hostname verification for secure DCP connections, and improves the stability of the connector.
 
-### [](#enhancements-31)Enhancements
+### [](#enhancements-32)Enhancements
 
 * [CBES-183](https://issues.couchbase.com/browse/CBES-183): When secure connections are enabled, it is now possible to authenticate with Couchbase and/or Elasticsearch using an X.509 certificate instead of a username & password. See the [Client Certificates documentation](https://docs.couchbase.com/elasticsearch-connector/current/configuration.html#client-certificates) for details. (This feature is added as "uncommitted", meaning it may change without notice.)
 * [CBES-187](https://issues.couchbase.com/browse/CBES-187): Errors during an early phase of connector startup were written to the console instead of being logged. Now these errors will appear in the log as well.
@@ -515,7 +528,7 @@ This release adds uncommitted support for client certificate authentication (mTL
 
 For those running the connector in Autonomous Operations mode, this release improves compatibility with recent Consul versions.
 
-### [](#enhancements-32)Enhancements
+### [](#enhancements-33)Enhancements
 
 * [CBES-185](https://issues.couchbase.com/browse/CBES-185): The connector no longer fails to start when using Consul version 1.8.4 and later. The list of tested and supported Consul versions now includes Consul 1.9.1.
 
@@ -525,7 +538,7 @@ For those running the connector in Autonomous Operations mode, this release impr
 
 This release brings improvements to monitoring and adds an option for disabling TLS certificate hostname verification.
 
-### [](#enhancements-33)Enhancements
+### [](#enhancements-34)Enhancements
 
 * [CBES-184](https://issues.couchbase.com/browse/CBES-184): The connector now exposes Prometheus metrics at `/metrics/prometheus`. Prometheus metrics are "Uncommitted API" and subject to change between releases without notice. The original Dropwizard JSON metrics are still available at `/metrics`, and can now be accessed at the alternative path `/metrics/dropwizard`.
 * [CBES-181](https://issues.couchbase.com/browse/CBES-181): Added a new config property, `hostnameVerification` (default: `true`). Couchbase TLS certificate hostname verification was silently enabled by default in version 4.2.3\. If this caused problems for your deployment, and you are unable to issue certificates matching the Couchbase server nodes, you can now disable hostname verification by setting this new config property to `false`.
@@ -537,7 +550,7 @@ This release brings improvements to monitoring and adds an option for disabling 
 
 This release fixes an issue with configuring secure connections to Elasticsearch using custom ports. It also adds a new metric for monitoring the replication backlog.
 
-### [](#enhancements-34)Enhancements
+### [](#enhancements-35)Enhancements
 
 * [CBES-121](https://issues.couchbase.com/browse/CBES-121): Added new `cbes.backlog` metric which estimates the number of Couchbase document changes yet to be processed. This is a general indication of how well the connector is keeping up with changes in Couchbase. Note that the count only includes changes in the Couchbase partitions handled by the connector instance reporting the metric. Unlike `cbes.backfill`, this value is dynamic; it goes up when changes happen in Couchbase, and goes down as the changes are processed by the connector.
 * [CBES-178](https://issues.couchbase.com/browse/CBES-178): Upgraded the DCP client from 0.30.0 to 0.31.0.
@@ -552,7 +565,7 @@ This release fixes an issue with configuring secure connections to Elasticsearch
 
 This release improves compatibility with Couchbase Cloud, and fixes a few minor issues.
 
-### [](#enhancements-35)Enhancements
+### [](#enhancements-36)Enhancements
 
 * [CBES-170](https://issues.couchbase.com/browse/CBES-170): Bootstrap performance is improved when specifying custom ports.
 * [CBES-175](https://issues.couchbase.com/browse/CBES-175): Upgraded the Couchbase Java SDK from 3.0.6 to 3.0.9\. The connector no longer logs spurious warnings about being unable to fetch collections manifests.
@@ -569,7 +582,7 @@ This release improves compatibility with Couchbase Cloud, and fixes a few minor 
 
 This release adds "uncommitted" support for Collections and Scopes, a new feature planned for Couchbase Server 7.0.
 
-### [](#enhancements-36)Enhancements
+### [](#enhancements-37)Enhancements
 
 * [CBES-163](https://issues.couchbase.com/browse/CBES-163): Type definitions now have a `matchOnQualifiedKey` property that lets a rule match against the qualified document name, which includes the scope and collection. This enables type definition rules that write to an Elasticsearch index whose name matches the Couchbase collection name.
 * [CBES-164](https://issues.couchbase.com/browse/CBES-164): The `[couchbase]` config section now has optional `scope` and `collection` properties that limit the replication to a single scope or to a set of collections.
@@ -599,7 +612,7 @@ The compatibility matrix is updated to add support for Elasticsearch 7.6 and 7.7
 
 * [CBES-155](https://issues.couchbase.com/browse/CBES-155) Couchbase client ignores 'couchbase.network' config setting
 
-### [](#enhancements-37)Enhancements
+### [](#enhancements-38)Enhancements
 
 * [JDCP-163](https://issues.couchbase.com/browse/JDCP-156) Force DNS lookups on reconnect
 * [JDCP-156](https://issues.couchbase.com/browse/JDCP-156) Enable Netty native transports by default
@@ -623,7 +636,7 @@ Metrics from the Couchbase DCP client are now included in the metrics report, al
 * [CBES-147](https://issues.couchbase.com/browse/CBES-147) Stuck shutdown hook can prevent/delay JVM termination
 * [CBES-149](https://issues.couchbase.com/browse/CBES-149) Bulk request timeout is capped at 30 seconds
 
-### [](#enhancements-38)Enhancements
+### [](#enhancements-39)Enhancements
 
 * [CBES-143](https://issues.couchbase.com/browse/CBES-143) Report DCP metrics
 * [CBES-148](https://issues.couchbase.com/browse/CBES-148) Report CPU usage metrics
@@ -639,7 +652,7 @@ Also new in 4.2, the `cbes-consul` command now takes an optional `--consul-confi
 
 On the version compatibility front, we've added support for Elasticsearch 7.4 and removed support for Elasticsearch 5.4 (which reached EOL on 2018-11-04).
 
-### [](#enhancements-39)Enhancements
+### [](#enhancements-40)Enhancements
 
 * [CBES-129](https://issues.couchbase.com/browse/CBES-129) Support direct connections to Amazon Elasticsearch Service
 * [CBES-140](https://issues.couchbase.com/browse/CBES-140) Support ACL Token Authentication when communicating with Consul
@@ -657,7 +670,7 @@ Also new in this release is support for multi-network configuration. This featur
 
 Finally, the range of supported Elasticsearch versions is extended to include 7.1, 7.2\. and 7.3.
 
-### [](#enhancements-40)Enhancements
+### [](#enhancements-41)Enhancements
 
 * [CBES-65](https://issues.couchbase.com/browse/CBES-65) Autonomous Operations Mode with Consul
 * [CBES-135](https://issues.couchbase.com/browse/CBES-135) Expose multi-network config options
@@ -671,7 +684,7 @@ This maintenance release fixes a bug that prevented some versions of Couchbase S
 
 It also adds compatibility with the official Docker images for Elasticsearch 6.7.x and 7.0.x, and is the first version tested against OpenJDK 8 and OpenJDK 11.
 
-### [](#enhancements-41)Enhancements
+### [](#enhancements-42)Enhancements
 
 * [CBES-122](https://issues.couchbase.com/browse/CBES-122) Add support for OpenJDK
 * [CBES-123](https://issues.couchbase.com/browse/CBES-123) Support Elasticsearch 6.7 & 7.0 docker images
@@ -687,7 +700,7 @@ It also adds compatibility with the official Docker images for Elasticsearch 6.7
 
 This maintenance release improves the stability of the connector and adds new configuration options.
 
-### [](#enhancements-42)Enhancements
+### [](#enhancements-43)Enhancements
 
 * [CBES-90](https://issues.couchbase.com/browse/CBES-90) Ability to use environment variables inside config
 * [CBES-107](https://issues.couchbase.com/browse/CBES-107) Misleading error message when can't connect to Elasticsearch

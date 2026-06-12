@@ -3,7 +3,7 @@ title: Create a VPC Peering Connection with GCP
 description: Use this procedure to create a VPC Peering connection between
   Capella hosted with GCP and your application's VPC on GCP.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/peer-gcp.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clouds:vpc-peering/peer-gcp.adoc[]
 ---
 
@@ -13,6 +13,17 @@ link: xref:cloud:clouds:vpc-peering/peer-gcp.adoc[]
 # Create a VPC Peering Connection with GCP
 
 > Use this procedure to create a VPC Peering connection between Capella hosted with GCP and your application's VPC on GCP. 
+
+> [!CAUTION]
+> Limitations for XDCR
+> 
+> Capella clusters on GCP do not support XDCR over a VPC Peering connection when both the source and target clusters:
+> 
+> * Are deployed on Capella through GCP.
+> * Have private endpoints enabled.
+> * Share the same major network prefix of either `10.x.x.x`, `172.x.x.x`, or `192.x.x.x`.
+> 
+> To use XDCR on Capella with this configuration, you must [replicate over private endpoints](../../clusters/xdcr/manage-xdcr-security.md#private-endpoints).
 
 ## [](#prerequisites)Prerequisites
 

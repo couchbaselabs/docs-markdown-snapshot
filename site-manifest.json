@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1778651426854,
+  "generated": 1781282227358,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -1292,6 +1292,12 @@
             },
             {
               "module": "ROOT",
+              "path": "monitoring/alert-integration.adoc",
+              "url": "/app-services/monitoring/alert-integration.md",
+              "title": "Alert Integrations for App Services"
+            },
+            {
+              "module": "ROOT",
               "path": "monitoring/audit-logging.adoc",
               "url": "/app-services/monitoring/audit-logging.md",
               "title": "Audit Logging"
@@ -1307,6 +1313,24 @@
               "path": "monitoring/configure-log-streaming-app-endpoint.adoc",
               "url": "/app-services/monitoring/configure-log-streaming-app-endpoint.md",
               "title": "Configure Log Streaming for an App Endpoint"
+            },
+            {
+              "module": "ROOT",
+              "path": "monitoring/configure-microsoft-integration.adoc",
+              "url": "/app-services/monitoring/configure-microsoft-integration.md",
+              "title": "Configure a Microsoft Teams Alert Integration for App Services"
+            },
+            {
+              "module": "ROOT",
+              "path": "monitoring/configure-slack-integration.adoc",
+              "url": "/app-services/monitoring/configure-slack-integration.md",
+              "title": "Configure a Slack Alert Integration for App Services"
+            },
+            {
+              "module": "ROOT",
+              "path": "monitoring/configure-webhook-integration.adoc",
+              "url": "/app-services/monitoring/configure-webhook-integration.md",
+              "title": "Configure a Webhook Alert Integration for App Services"
             },
             {
               "module": "ROOT",
@@ -1334,9 +1358,27 @@
             },
             {
               "module": "ROOT",
+              "path": "monitoring/microsoft-reference.adoc",
+              "url": "/app-services/monitoring/microsoft-reference.md",
+              "title": "Microsoft Teams JSON Payload for App Services"
+            },
+            {
+              "module": "ROOT",
               "path": "monitoring/monitoring-in-ui.adoc",
               "url": "/app-services/monitoring/monitoring-in-ui.md",
               "title": "Monitor through the UI"
+            },
+            {
+              "module": "ROOT",
+              "path": "monitoring/slack-reference.adoc",
+              "url": "/app-services/monitoring/slack-reference.md",
+              "title": "Slack JSON Payload for App Services"
+            },
+            {
+              "module": "ROOT",
+              "path": "monitoring/webhook-reference.adoc",
+              "url": "/app-services/monitoring/webhook-reference.md",
+              "title": "Webhook JSON Payload for App Services"
             },
             {
               "module": "ROOT",
@@ -1607,17 +1649,6 @@
               "path": "sample-application.adoc",
               "url": "/c-sdk/current/hello-world/sample-application.md",
               "title": "Sample Application"
-            },
-            {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/c-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/c-sdk/current/hello-world/sdk-authentication.md"
             },
             {
               "module": "hello-world",
@@ -2904,6 +2935,12 @@
             },
             {
               "module": "clusters",
+              "path": "manage-maintenance.adoc",
+              "url": "/cloud/clusters/manage-maintenance.md",
+              "title": "Manage Cluster Maintenance Jobs"
+            },
+            {
+              "module": "clusters",
               "path": "manage-restore.adoc",
               "url": "/cloud/clusters/manage-restore.md",
               "title": "Restore a Bucket Backup"
@@ -2941,9 +2978,21 @@
             },
             {
               "module": "clusters",
-              "path": "monitoring/configure-alert-integration.adoc",
-              "url": "/cloud/clusters/monitoring/configure-alert-integration.md",
-              "title": "Configure an Alert Integration"
+              "path": "monitoring/configure-microsoft-integration.adoc",
+              "url": "/cloud/clusters/monitoring/configure-microsoft-integration.md",
+              "title": "Configure a Microsoft Teams Alert Integration"
+            },
+            {
+              "module": "clusters",
+              "path": "monitoring/configure-slack-integration.adoc",
+              "url": "/cloud/clusters/monitoring/configure-slack-integration.md",
+              "title": "Configure a Slack Alert Integration"
+            },
+            {
+              "module": "clusters",
+              "path": "monitoring/configure-webhook-integration.adoc",
+              "url": "/cloud/clusters/monitoring/configure-webhook-integration.md",
+              "title": "Configure a Webhooks Alert Integration"
             },
             {
               "module": "clusters",
@@ -2959,6 +3008,12 @@
             },
             {
               "module": "clusters",
+              "path": "monitoring/microsoft-reference.adoc",
+              "url": "/cloud/clusters/monitoring/microsoft-reference.md",
+              "title": "Microsoft Teams Alert Payload"
+            },
+            {
+              "module": "clusters",
               "path": "monitoring/monitoring.adoc",
               "url": "/cloud/clusters/monitoring/monitoring.md",
               "title": "Monitor Clusters"
@@ -2968,6 +3023,18 @@
               "path": "monitoring/prometheus.adoc",
               "url": "/cloud/clusters/monitoring/prometheus.md",
               "title": "Add a Capella Cluster to a Prometheus Server"
+            },
+            {
+              "module": "clusters",
+              "path": "monitoring/slack-reference.adoc",
+              "url": "/cloud/clusters/monitoring/slack-reference.md",
+              "title": "Slack Alert Payload"
+            },
+            {
+              "module": "clusters",
+              "path": "monitoring/webhook-reference.adoc",
+              "url": "/cloud/clusters/monitoring/webhook-reference.md",
+              "title": "Webhooks Alert Payload"
             },
             {
               "module": "clusters",
@@ -3078,6 +3145,12 @@
               "path": "upgrade-database.adoc",
               "url": "/cloud/clusters/upgrade-database.md",
               "title": "Upgrading a Cluster"
+            },
+            {
+              "module": "clusters",
+              "path": "view-database.adoc",
+              "url": "/cloud/clusters/view-database.md",
+              "title": "View Your Clusters"
             },
             {
               "module": "clusters",
@@ -22832,16 +22905,6 @@
             },
             {
               "module": "ROOT",
-              "path": "troubleshooting-queries.adoc",
-              "url": "/couchbase-lite-javascript/current/troubleshooting-queries.md"
-            },
-            {
-              "module": "ROOT",
-              "path": "troubleshooting-storage.adoc",
-              "url": "/couchbase-lite-javascript/current/troubleshooting-storage.md"
-            },
-            {
-              "module": "ROOT",
               "path": "whats-new.adoc",
               "url": "/couchbase-lite-javascript/current/whats-new.md",
               "title": "New In 1.0"
@@ -23061,17 +23124,6 @@
               "path": "sample-application.adoc",
               "url": "/cxx-sdk/current/hello-world/sample-application.md",
               "title": "Sample Application"
-            },
-            {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/cxx-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/cxx-sdk/current/hello-world/sdk-authentication.md"
             },
             {
               "module": "hello-world",
@@ -23659,17 +23711,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/cxx-sdk/1.2/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/cxx-sdk/1.2/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/cxx-sdk/1.2/hello-world/start-using-sdk.md",
@@ -24242,17 +24283,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/cxx-sdk/1.1/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/cxx-sdk/1.1/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/cxx-sdk/1.1/hello-world/start-using-sdk.md",
@@ -24816,17 +24846,6 @@
               "path": "sample-application.adoc",
               "url": "/cxx-sdk/1.0/hello-world/sample-application.md",
               "title": "Sample Application"
-            },
-            {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/cxx-sdk/1.0/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/cxx-sdk/1.0/hello-world/sdk-authentication.md"
             },
             {
               "module": "hello-world",
@@ -30813,6 +30832,12 @@
             },
             {
               "module": "install",
+              "path": "integration.adoc",
+              "url": "/enterprise-analytics/current/install/integration.md",
+              "title": "Integrations, Connectors, and Tools"
+            },
+            {
+              "module": "install",
               "path": "introduction-linux-installation.adoc",
               "url": "/enterprise-analytics/current/install/introduction-linux-installation.md",
               "title": "Install Enterprise Analytics"
@@ -35730,17 +35755,6 @@
               "title": "Quickstart with Golang and the Gin Web Framework"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/go-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/go-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/go-sdk/current/hello-world/start-using-sdk.md",
@@ -35944,11 +35958,6 @@
               "path": "tracing-from-the-sdk.adoc",
               "url": "/go-sdk/current/howtos/tracing-from-the-sdk.md",
               "title": "Tracing from the Go SDK"
-            },
-            {
-              "module": "howtos",
-              "path": "transactions-single-query.adoc",
-              "url": "/go-sdk/current/howtos/transactions-single-query.md"
             },
             {
               "module": "howtos",
@@ -36655,17 +36664,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/go-sdk/2.11/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/go-sdk/2.11/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/go-sdk/2.11/hello-world/start-using-sdk.md",
@@ -36844,11 +36842,6 @@
               "path": "tracing-from-the-sdk.adoc",
               "url": "/go-sdk/2.11/howtos/tracing-from-the-sdk.md",
               "title": "Tracing from the Go SDK"
-            },
-            {
-              "module": "howtos",
-              "path": "transactions-single-query.adoc",
-              "url": "/go-sdk/2.11/howtos/transactions-single-query.md"
             },
             {
               "module": "howtos",
@@ -37544,17 +37537,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/go-sdk/2.10/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/go-sdk/2.10/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/go-sdk/2.10/hello-world/start-using-sdk.md",
@@ -37733,11 +37715,6 @@
               "path": "tracing-from-the-sdk.adoc",
               "url": "/go-sdk/2.10/howtos/tracing-from-the-sdk.md",
               "title": "Tracing from the Go SDK"
-            },
-            {
-              "module": "howtos",
-              "path": "transactions-single-query.adoc",
-              "url": "/go-sdk/2.10/howtos/transactions-single-query.md"
             },
             {
               "module": "howtos",
@@ -38427,17 +38404,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/go-sdk/2.9/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/go-sdk/2.9/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/go-sdk/2.9/hello-world/start-using-sdk.md",
@@ -38616,11 +38582,6 @@
               "path": "tracing-from-the-sdk.adoc",
               "url": "/go-sdk/2.9/howtos/tracing-from-the-sdk.md",
               "title": "Tracing from the Go SDK"
-            },
-            {
-              "module": "howtos",
-              "path": "transactions-single-query.adoc",
-              "url": "/go-sdk/2.9/howtos/transactions-single-query.md"
             },
             {
               "module": "howtos",
@@ -41636,17 +41597,6 @@
               "title": "Quickstart in Couchbase with Spring Boot and Java"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/java-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/java-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "spring-data-sample-application.adoc",
               "url": "/java-sdk/current/hello-world/spring-data-sample-application.md",
@@ -42695,17 +42645,6 @@
               "title": "Quickstart in Couchbase with Spring Boot and Java"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/java-sdk/3.10/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/java-sdk/3.10/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "spring-data-sample-application.adoc",
               "url": "/java-sdk/3.10/hello-world/spring-data-sample-application.md",
@@ -43746,17 +43685,6 @@
               "path": "sample-application.adoc",
               "url": "/java-sdk/3.9/hello-world/sample-application.md",
               "title": "Quickstart in Couchbase with Spring Boot and Java"
-            },
-            {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/java-sdk/3.9/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/java-sdk/3.9/hello-world/sdk-authentication.md"
             },
             {
               "module": "hello-world",
@@ -44801,17 +44729,6 @@
               "title": "Quickstart in Couchbase with Spring Boot and Java"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/java-sdk/3.8/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/java-sdk/3.8/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "spring-data-sample-application.adoc",
               "url": "/java-sdk/3.8/hello-world/spring-data-sample-application.md",
@@ -45824,17 +45741,6 @@
               "path": "sample-application.adoc",
               "url": "/java-sdk/3.7/hello-world/sample-application.md",
               "title": "Sample Application"
-            },
-            {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/java-sdk/3.7/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/java-sdk/3.7/hello-world/sdk-authentication.md"
             },
             {
               "module": "hello-world",
@@ -52367,17 +52273,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/nodejs-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/nodejs-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-ottoman.adoc",
               "url": "/nodejs-sdk/current/hello-world/start-using-ottoman.md",
@@ -52536,11 +52431,6 @@
               "path": "subdocument-operations.adoc",
               "url": "/nodejs-sdk/current/howtos/subdocument-operations.md",
               "title": "Sub-Document Operations"
-            },
-            {
-              "module": "howtos",
-              "path": "transactions-single-query.adoc",
-              "url": "/nodejs-sdk/current/howtos/transactions-single-query.md"
             },
             {
               "module": "howtos",
@@ -53212,17 +53102,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/nodejs-sdk/4.5/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/nodejs-sdk/4.5/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-ottoman.adoc",
               "url": "/nodejs-sdk/4.5/hello-world/start-using-ottoman.md",
@@ -53381,11 +53260,6 @@
               "path": "subdocument-operations.adoc",
               "url": "/nodejs-sdk/4.5/howtos/subdocument-operations.md",
               "title": "Sub-Document Operations"
-            },
-            {
-              "module": "howtos",
-              "path": "transactions-single-query.adoc",
-              "url": "/nodejs-sdk/4.5/howtos/transactions-single-query.md"
             },
             {
               "module": "howtos",
@@ -54039,17 +53913,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/nodejs-sdk/4.4/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/nodejs-sdk/4.4/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-ottoman.adoc",
               "url": "/nodejs-sdk/4.4/hello-world/start-using-ottoman.md",
@@ -54208,11 +54071,6 @@
               "path": "subdocument-operations.adoc",
               "url": "/nodejs-sdk/4.4/howtos/subdocument-operations.md",
               "title": "Sub-Document Operations"
-            },
-            {
-              "module": "howtos",
-              "path": "transactions-single-query.adoc",
-              "url": "/nodejs-sdk/4.4/howtos/transactions-single-query.md"
             },
             {
               "module": "howtos",
@@ -61125,17 +60983,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/php-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/php-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/php-sdk/current/hello-world/start-using-sdk.md",
@@ -61973,17 +61820,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/php-sdk/4.3/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/php-sdk/4.3/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/php-sdk/4.3/hello-world/start-using-sdk.md",
@@ -62807,17 +62643,6 @@
               "path": "sample-application.adoc",
               "url": "/php-sdk/4.2/hello-world/sample-application.md",
               "title": "Sample Application"
-            },
-            {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/php-sdk/4.2/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/php-sdk/4.2/hello-world/sdk-authentication.md"
             },
             {
               "module": "hello-world",
@@ -63996,17 +63821,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/python-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/python-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/python-sdk/current/hello-world/start-using-sdk.md",
@@ -64920,17 +64734,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/python-sdk/4.4/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/python-sdk/4.4/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/python-sdk/4.4/hello-world/start-using-sdk.md",
@@ -65830,17 +65633,6 @@
               "path": "sample-application.adoc",
               "url": "/python-sdk/4.3/hello-world/sample-application.md",
               "title": "Sample Application"
-            },
-            {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/python-sdk/4.3/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/python-sdk/4.3/hello-world/sdk-authentication.md"
             },
             {
               "module": "hello-world",
@@ -67800,17 +67592,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/ruby-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/ruby-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/ruby-sdk/current/hello-world/start-using-sdk.md",
@@ -68621,17 +68402,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/ruby-sdk/3.6/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/ruby-sdk/3.6/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/ruby-sdk/3.6/hello-world/start-using-sdk.md",
@@ -69430,17 +69200,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/ruby-sdk/3.5/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/ruby-sdk/3.5/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/ruby-sdk/3.5/hello-world/start-using-sdk.md",
@@ -70219,17 +69978,6 @@
               "title": "Setting Up Couchbase Rust SDK with rustup"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/rust-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/rust-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/rust-sdk/current/hello-world/start-using-sdk.md",
@@ -70771,17 +70519,6 @@
               "path": "sample-application.adoc",
               "url": "/scala-sdk/current/hello-world/sample-application.md",
               "title": "Sample Application"
-            },
-            {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/scala-sdk/current/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/scala-sdk/current/hello-world/sdk-authentication.md"
             },
             {
               "module": "hello-world",
@@ -71390,17 +71127,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/scala-sdk/3.10/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/scala-sdk/3.10/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/scala-sdk/3.10/hello-world/start-using-sdk.md",
@@ -71992,17 +71718,6 @@
               "path": "sample-application.adoc",
               "url": "/scala-sdk/3.9/hello-world/sample-application.md",
               "title": "Sample Application"
-            },
-            {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/scala-sdk/3.9/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/scala-sdk/3.9/hello-world/sdk-authentication.md"
             },
             {
               "module": "hello-world",
@@ -72604,17 +72319,6 @@
               "title": "Sample Application"
             },
             {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/scala-sdk/1.8/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/scala-sdk/1.8/hello-world/sdk-authentication.md"
-            },
-            {
               "module": "hello-world",
               "path": "start-using-sdk.adoc",
               "url": "/scala-sdk/1.8/hello-world/start-using-sdk.md",
@@ -73205,17 +72909,6 @@
               "path": "sample-application.adoc",
               "url": "/scala-sdk/1.7/hello-world/sample-application.md",
               "title": "Sample Application"
-            },
-            {
-              "alias": true,
-              "module": "hello-world",
-              "path": "sdk-authentication-overview.adoc",
-              "url": "/scala-sdk/1.7/hello-world/sdk-authentication.md"
-            },
-            {
-              "module": "hello-world",
-              "path": "sdk-authentication.adoc",
-              "url": "/scala-sdk/1.7/hello-world/sdk-authentication.md"
             },
             {
               "module": "hello-world",
@@ -83098,13 +82791,6 @@
               "path": "sdk-doctor.adoc",
               "url": "/server/current/sdk/sdk-doctor.md",
               "title": "SDK Doctor"
-            },
-            {
-              "alias": true,
-              "module": "sdks",
-              "path": "java-2.2/download-links.adoc",
-              "url": "/java-sdk/current/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
             },
             {
               "module": "search",

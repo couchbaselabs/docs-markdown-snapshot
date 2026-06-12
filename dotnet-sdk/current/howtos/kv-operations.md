@@ -4,7 +4,7 @@ description: Data service offers the simplest way to retrieve or mutate data
   where the key is known. Here we cover CRUD operations, document expiration,
   and optimistic locking with CAS.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -297,16 +297,16 @@ Here's an example of a KV range scan that gets all documents in a collection:
 KV Range Scan for all documents in a collection
 
 ```csharp
-IAsyncEnumerable<IScanResult> results = collection.ScanAsync(new RangeScan());
+IAsyncEnumerable<IScanResult> results = collection.ScanAsync(new Couchbase.KeyValue.RangeScan.RangeScan());
 
 await foreach (var scanResult in results)
 {
-    Log.Information(scanResult.Id);
-    Log.Information(scanResult.ContentAs<Hotel>().ToString());
+    Console.WriteLine(scanResult.Id);
+    Console.WriteLine(scanResult.ContentAs<Hotel>().ToString());
 }
 
 // alternate declaration
-var scan2 = new RangeScan(from: ScanTerm.Inclusive("id001"), to: ScanTerm.Inclusive("id999"));
+var scan2 = new Couchbase.KeyValue.RangeScan.RangeScan(from: ScanTerm.Inclusive("id001"), to: ScanTerm.Inclusive("id999"));
 ```
 
 | **1** | The RangeScan() constructor has two optional nullable parameters: from and to. If you pass null like in this example, you'll get all documents in the collection. These parameters are for advanced use cases; you probably won't need to specify them. Instead, it's more common to use the "prefix" scan type shown in the next example. |
@@ -329,7 +329,7 @@ IAsyncEnumerable<IScanResult> results = collection.ScanAsync(
 
 await foreach (var scanResult in results)
 {
-    Log.Information(scanResult.Id);
+    Console.WriteLine(scanResult.Id);
 }
 ```
 
@@ -349,7 +349,7 @@ IAsyncEnumerable<IScanResult> results = collection.ScanAsync(
 
 await foreach (var scanResult in results)
 {
-    Log.Information(scanResult.Id);
+    Console.WriteLine(scanResult.Id);
 }
 ```
 
@@ -364,12 +364,12 @@ KV Range Scan for all document IDs in a collection
 
 ```csharp
 IAsyncEnumerable<IScanResult> results = collection.ScanAsync(
-    new RangeScan(),
+    new Couchbase.KeyValue.RangeScan.RangeScan(),
     new ScanOptions().IdsOnly(true));
 
 await foreach (var scanResult in results)
 {
-    Log.Information(scanResult.Id);
+    Console.WriteLine(scanResult.Id);
 }
 ```
 

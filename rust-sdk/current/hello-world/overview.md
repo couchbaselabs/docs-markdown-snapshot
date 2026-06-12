@@ -1,7 +1,7 @@
 ---
 title: Couchbase Rust SDK 1.0
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-04-28T05:36:31.051Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:rust-sdk:hello-world:overview.adoc[]
 ---
 
@@ -16,7 +16,7 @@ The Couchbase Rust SDK allows Rust applications to access a Couchbase cluster â€
 
 [Quickstart Guide](start-using-sdk.md) | [SDK Release Notes](../project-docs/sdk-release-notes.md) | [Rust SDK API Reference](https://docs.rs/couchbase/latest/couchbase/) | [Rust SDK source code](https://github.com/couchbase/couchbase-rs/)
 
-What's the point of a fast and scalable database if it's not easy to develop for? Couchbase gives you the Rust APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
+A fast and scalable database is even better when it's easy to develop for. Couchbase gives you the Rust APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
 
 * Data Ops (CRUD)
 * SQL++ Query (OLTP)

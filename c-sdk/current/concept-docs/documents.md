@@ -3,7 +3,7 @@ title: Document
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/concept-docs/pages/documents.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:concept-docs:documents.adoc[]
 ---
 
@@ -208,7 +208,7 @@ You can also use [sub-document counter operations](subdocument-operations.md) to
 
 ### [](#use-cases)Use Cases
 
-The SDK provides a high-level abstraction over the simple `incr()`/`decr()` of Couchbase Server's memcached binary protocol, using `collections.binary()`. This enables you to work with counters using `get()` and `upsert()` operations — allowing, _inter alia_, the use of durability options with the operations. You will find several ways of working with counters [in the API docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-counter.html#gab4462a5e34c3d94fbce946cb6c5351d1).
+The SDK provides a high-level abstraction over the simple `incr()`/`decr()` of Couchbase Server's memcached binary protocol, using `collections.binary()`. This enables you to work with counters using `get()` and `upsert()` operations — allowing, _inter alia_, the use of durability options with the operations. You will find several ways of working with counters [in the API docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/group%5F%5Flcb-counter.html#gab4462a5e34c3d94fbce946cb6c5351d1).
 
 ## [](#expiry)Expiration Overview
 

@@ -3,7 +3,7 @@ title: Search
 description: You can use the Search service to create queryable search indexes
   in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-05-07T05:36:39.341Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -47,7 +47,7 @@ var searchResult = await cluster.SearchAsync(
 );
 
 // as a scope-level search
-[data-source-url=https://github.com/couchbase/docs-sdk-dotnet/blob/0af9139433617b34f528aebb970074187a155eba/modules/howtos/examples/Couchbase.Examples.SearchV2/SearchV2Examples/Program.cs#L59-L62]
+[data-source-url=https://github.com/couchbase/docs-sdk-dotnet/blob/801506f0e8ff74dd19219a144e1fefdc88f872ac/modules/howtos/examples/Search.cs#L35-L38]
 var searchResult = await scope.SearchAsync("index-hotel-description",
     SearchRequest.Create(
         new MatchQuery("swanky")),
@@ -62,7 +62,7 @@ var searchResult = await scope.SearchAsync("index-name",
         new DateRangeQuery()
             .Start(DateTime.Parse("2021-01-01"), inclusive: true)
             .End(DateTime.Parse("2021-02-01"), inclusive: false)
-        ), new SearchOptions().Limit(10));
+    ), new SearchOptions().Limit(10));
 ```
 
 A conjunction query contains multiple child queries; its result documents must satisfy all of the child queries:
@@ -71,10 +71,10 @@ A conjunction query contains multiple child queries; its result documents must s
 var searchResult = await scope.SearchAsync("index-name",
     SearchRequest.Create(
         new ConjunctionQuery(
-        new DateRangeQuery()
-            .Start(DateTime.Parse("2021-01-01"), inclusive: true)
-            .End(DateTime.Parse("2021-02-01"), inclusive: false),
-        new MatchQuery("swanky"))
+            new DateRangeQuery()
+                .Start(DateTime.Parse("2021-01-01"), inclusive: true)
+                .End(DateTime.Parse("2021-02-01"), inclusive: false),
+            new MatchQuery("swanky"))
     ), new SearchOptions().Limit(10));
 ```
 
@@ -122,8 +122,8 @@ Like the Couchbase Query Service, Search Service allows `RequestPlus` queries â€
 var mutationResult =  await collection.UpsertAsync("key",new {description = "swanky"});
 var mutationState = MutationState.From(mutationResult);
 
-var searchResult = cluster.SearchQueryAsync("travel-sample-index",new QueryStringQuery("swanky"),
-            new SearchOptions().ConsistentWith(mutationState));
+var searchResult = await cluster.SearchQueryAsync("travel-sample-index",new QueryStringQuery("swanky"),
+    new SearchOptions().ConsistentWith(mutationState));
 ```
 
 ## [](#scoped-vs-global-indexes)Scoped vs Global Indexes

@@ -1,7 +1,7 @@
 ---
 title: CouchbaseCluster Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.8.x/docs/user/modules/ROOT/pages/resource/couchbasecluster.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:2.8@operator::resource/couchbasecluster.adoc[]
 ---
 
@@ -647,7 +647,7 @@ ImagePullSecrets allow you to use an image from private repositories and non-doc
 
 #### [](#description-20)Description
 
-Name of the referent. More info: <https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names>TODO: Add other useful fields. apiVersion, kind, uid?.
+Name of the referent. More info: <https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names>.
 
 ### [](#couchbaseclusters-spec-backup-labels)couchbaseclusters.spec.backup.labels
 

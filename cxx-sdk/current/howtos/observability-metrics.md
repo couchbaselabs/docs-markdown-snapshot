@@ -3,7 +3,7 @@ title: Metrics Reporting
 description: Individual request tracing presents a very specific (though
   isolated) view of the system.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/observability-metrics.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cxx-sdk:howtos:observability-metrics.adoc[]
 ---
 
@@ -33,38 +33,19 @@ Developer Preview
 Before starting, here are all imports used in the following examples:
 
 ```scala
-
-import com.couchbase.client.metrics.opentelemetry.OpenTelemetryMeter
-import com.couchbase.client.scala.env.{ClusterEnvironment, LoggingMeterConfig}
-import com.couchbase.client.scala.{Cluster, ClusterOptions}
-import io.opentelemetry.api.metrics.GlobalMeterProvider
-
-import scala.concurrent.duration._
-import scala.util.Try
+Unresolved include directive in modules/howtos/pages/observability-metrics.adoc - include::devguide:example$scala/Metrics.scala[]
 ```
 
 The default implementation aggregates and logs request and response metrics. Since the feature is in developer preview, you need to manually enable it on the environment:
 
 ```scala
-val config: Try[ClusterEnvironment] = ClusterEnvironment.builder
-  .loggingMeterConfig(LoggingMeterConfig()
-    .enabled(true))
-  .build
-
-val cluster: Try[Cluster] = config.flatMap(c =>
-  Cluster.connect("localhost", ClusterOptions
-    .create("username", "password")
-    .environment(c)))
+Unresolved include directive in modules/howtos/pages/observability-metrics.adoc - include::devguide:example$scala/Metrics.scala[]
 ```
 
 By default the metrics will be emitted every 10 minutes, but you can customize the emit interval as well:
 
 ```scala
-val config: Try[ClusterEnvironment] = ClusterEnvironment.builder
-  .loggingMeterConfig(LoggingMeterConfig()
-    .enabled(true)
-    .emitInterval(10.minutes))
-  .build
+Unresolved include directive in modules/howtos/pages/observability-metrics.adoc - include::devguide:example$scala/Metrics.scala[]
 ```
 
 Once enabled, there is no further configuration needed. The `AggregatingMeter` will emit the collected request statistics every interval. A possible report looks like this (prettified for better readability):
@@ -126,9 +107,7 @@ libraryDependencies += "com.couchbase.client" % "metrics-opentelemetry" % "0.1.4
 Now you can initialise the SDK with OpenTelemetry:
 
 ```scala
-val config: Try[ClusterEnvironment] = ClusterEnvironment.builder
-  .meter(OpenTelemetryMeter.wrap(GlobalMeterProvider.get()))
-  .build
+Unresolved include directive in modules/howtos/pages/observability-metrics.adoc - include::devguide:example$scala/Metrics.scala[]
 ```
 
 ## [](#micrometer-integration)Micrometer Integration

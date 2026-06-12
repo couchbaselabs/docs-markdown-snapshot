@@ -3,7 +3,7 @@ title: Manage Replications
 description: Use the procedures on this page to create and manage XDCR (Cross
   Data Center Replication) with Capella operational clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/manage-xdcr-replications.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:xdcr/manage-xdcr-replications.adoc[]
 ---
 
@@ -24,22 +24,6 @@ Configure XDCR to replicate data between source and destination buckets. XDCR co
 
 > [!IMPORTANT]
 > Replication on single node clusters is only supported for development or test use cases.
-
-## [](#view-your-replications)View Your Replications
-
-To view and manage replications:
-
-1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
-
-  1. Click your organization name and go to **Operational**.
-  2. Click your current project name or search for a project and go to **Operational**.
-  3. Expand the cluster breadcrumb and search for a cluster.
-2. Select the cluster where you want to view and manage replications.
-3. Go to **Settings** **Replication**.
-
-If you have not set up a replication for your cluster, you can click **Set Up Replication**. For more information about adding **Self-Managed Targets**, see [Create a Replication from Capella to a Self-Managed Cluster](#from-capella-to-self-managed).
-
-If you have already created replications for your cluster, you'll see a summary of your replications in a table. For an example, see [Observe an Ongoing Replication](#observing).
 
 ## [](#create-replication)Create a Replication
 
@@ -110,7 +94,7 @@ For more information about filtering binary documents from XDCR, see [Filtering 
   3. (Optional) To add another scope and collection pairing on your source and target clusters, click **Add Source and Target**.
 13. To start the replication, click **Setup Replication**.
 
-It may take some time for your replication to be set up and start replicating documents.
+Capella returns you to the **Replications** page, which lists the new replication with a **Creating** status while setup is in progress. Setting up a replication for the first time between 2 operational clusters may take 2 to 20 minutes, depending on their configuration and cloud service provider (CSP). You may also see both clusters enter a **Deploying** state as Capella sets up networking between them. This does not affect applications connected to the cluster or any ongoing operations. When setup is complete, the status changes to **Active**.
 
 > [!IMPORTANT]
 > Bi-directional XDCR with Sync Gateway requires Server versions 7.6.6+, and Sync Gateway (App Services) versions 4.0+.
@@ -315,9 +299,32 @@ To configure a replication from Capella to a self-managed target:
 8. Configure other settings for your replication, such as **Filter Documents**, **Select Replication Priority**, **Set Network Usage Limit**, and **Replicate All Scopes and Collections**.
 9. Click **Set Up Replication**.
 
-## [](#observing)Observe an Ongoing Replication
+Capella returns you to the **Replications** page, which lists the new replication with a **Creating** status while setup is in progress. When setup is complete, the status changes to **Active**.
 
-You can view the details for a current replication at any time from **Settings** **Replication** on your cluster.
+## [](#view-replication)View Your Replications
+
+To view the details of any current replications:
+
+1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
+
+  1. Click your organization name and go to **Operational**.
+  2. Click your current project name or search for a project and go to **Operational**.
+  3. Expand the cluster breadcrumb and search for a cluster.
+2. Select the cluster where you want to view and manage replications.
+3. Go to **Settings** **Replication**.  
+The **Replications** page lists replications with their current status. Replication status can be 1 of the following:
+
+| Status           | Description                                                                                                                                                                                  |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Creating**     | Capella is setting up a replication.                                                                                                                                                         |
+| **Active**       | The replication is running.                                                                                                                                                                  |
+| **Pausing**      | Capella is processing a pause request.                                                                                                                                                       |
+| **Paused**       | Capella paused the replication.                                                                                                                                                              |
+| **Deleting**     | Capella is processing a delete request.                                                                                                                                                      |
+| **Create Error** | Capella could not create a replication. Click the **Create Error** link in the **Status** column to view error details and click **Create New Replication** to try again.                    |
+| **Delete Error** | Capella could not delete the replication and it remains in the list. Click the **Delete Error** link in the **Status** column to view error details and click **Retry Delete** to try again. |
+
+If you have not set up a replication for your cluster, you can click **Set Up Replication**. For more information, see [Create a Replication](#create-replication).
 
 ## [](#pause-resume-replication)Pause and Resume a Replication
 

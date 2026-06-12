@@ -3,7 +3,7 @@ title: Release Notes for Couchbase Server 7.6
 description: Couchbase Server 7.6.x introduces multiple new features and fixes,
   as well as some deprecations and removals.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/release-notes/pages/relnotes.adoc
-pubDate: 2026-04-18T05:14:52.159Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.6@server:release-notes:relnotes.adoc[]
 ---
 
@@ -11,6 +11,11 @@ link: xref:7.6@server:release-notes:relnotes.adoc[]
 [View original HTML](/server/7.6/release-notes/relnotes.html)
 
 # Release Notes for Couchbase Server 7.6
+
+> [!WARNING]
+> Data consistency issue for buckets using Magma storage engine
+> 
+> If you're using Magma buckets and upgrading from any release prior to 7.6.7, then follow the upgrade instructions as described in [MB-67762](https://jira.issues.couchbase.com/browse/MB-67762)
 
 ## [](#release-7611)Release 7.6.11 (April 2026)
 

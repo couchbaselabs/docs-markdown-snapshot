@@ -2,7 +2,7 @@
 title: Known Limitations
 description: Couchbase Lite JavaScript -- known limitations and constraints
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/known-limitations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:couchbase-lite-javascript::known-limitations.adoc[]
 ---
 
@@ -74,4 +74,4 @@ No `UNION`, `INTERSECT`, `EXCEPT`, `RIGHT OUTER JOIN`, `NEST`/`UNNEST`, `COLLATE
 * [Compatibility](compatibility.md)
 * [Feature Limitations](compatibility.md#feature-limitations)
 * [Supported Browsers](supported-browsers.md)
-* [Troubleshooting Queries](troubleshooting-queries.md)
+* [Troubleshooting Queries](#troubleshooting-queries.adoc)

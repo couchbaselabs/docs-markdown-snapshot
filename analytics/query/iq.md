@@ -3,7 +3,7 @@ title: Get Assistance from Capella iQ
 description: Capella iQ is a service that leverages a large language model to
   help you write queries.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/iq.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:analytics:query:iq.adoc[]
 ---
 
@@ -17,14 +17,17 @@ link: xref:analytics:query:iq.adoc[]
 > [!NOTE]
 > Remember that Capella iQ harnesses the power of third-party large language models (LLM) to improve your queries. Do not provide sensitive data in the prompt such as personally identifiable information or any confidential information that you would not want shared. Because technology built on LLMs can also suffer from hallucinations from time to time, be sure to review the output.
 
-Capella iQ is your partner in Capella Analytics, allowing you to work faster and assist you directly in the Capella UI. It uses a large language model (LLM) to generate queries based on plain language prompts.
+Capella iQ is your partner in Capella Analytics, allowing you to work faster and assist you directly in the Capella UI. It uses a large language model (LLM) to generate queries based on plain language prompts. For more information on how Capella iQ works and the model providers available to you, see [How Does Capella iQ Work](../../cloud/get-started/capella-iq/work-with-capellaiq.md#how-does-capella-iq-work).
 
 For example, if you [loaded the travel-sample dataset](../intro/examples.md#travel-sample), you could use a prompt like `Show me the flights flying from JFK to SFO` to get Capella iQ to generate a SQL++ for Capella Analytics query using the `airline` and `route` collections. Capella iQ also produces responses based on context - you could refine the query with another prompt, such as `Only show those with the call sign United`, without repeating your first request.
 
 ## [](#prerequisites)Prerequisites
 
-* If you're the [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner), accept Capella iQ's supplemental terms and turn it on for your organization. For more information, see [Configure Capella iQ](../../cloud/get-started/capella-iq/configure-capellaiq.md).
-* (Optional) Create a data source for Couchbase sample data. For the first example on this page, you need the `travel-sample` dataset. See [Access Data](../intro/examples.md).
+* If you're the [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner):
+
+  * Accept [Capella iQ's supplemental terms](https://www.couchbase.com/capella-feature-specific-terms/) and turn it on for your organization. For more information, see [Accept Capella iQ Supplemental Terms](../../cloud/get-started/capella-iq/configure-capellaiq.md#T&C).
+  * Select a model provider available to the organization for Capella iQ. You can choose either OpenAI, AWS Bedrock, or both. For more information, see [Select Your Capella iQ Model Provider](../../cloud/get-started/capella-iq/configure-capellaiq.md#select-org-model).
+* (Optional) Create a data source for Couchbase sample data. For the first example on this page, you need the `travel-sample` dataset. For more information, see [Access Data](../intro/examples.md).
 
 ## [](#open-capella-iq)Open Capella iQ
 

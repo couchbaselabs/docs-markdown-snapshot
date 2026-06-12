@@ -3,7 +3,7 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:c-sdk:howtos:provisioning-cluster-resources.adoc[]
 
 # Provisioning Cluster Resources
 
-> Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected. Common use cases are outlined here, less common use cases are covered in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/). 
+> Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected. Common use cases are outlined here, less common use cases are covered in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/). 
 
 > [!TIP]
 > Managing Capella Clusters
@@ -41,7 +41,7 @@ And the [dropping bucket example](https://github.com/couchbase/docs-sdk-c/blob/r
 
 When a bucket is flushed, all content is removed. Because this operation is potentially dangerous it is disabled by default for each bucket. Bucket flushing may be useful in test environments where it becomes a simpler alternative to removing and creating a test bucket. You may enable bucket flushing on a per-bucket basis using the Couchbase Web Console or when creating a bucket.
 
-You can flush a bucket in the SDK by using the [lcb\_cbflush3() method](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-flush.html).
+You can flush a bucket in the SDK by using the [lcb\_cbflush3() method](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/group%5F%5Flcb-flush.html).
 
 The `lcb_cbflush3()` operation may fail if the bucket does not have flush enabled, in that case it will return an `ErrBucketNotFlushable`.
 

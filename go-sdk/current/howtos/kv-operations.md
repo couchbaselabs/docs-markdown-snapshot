@@ -3,7 +3,7 @@ title: Data Operations
 description: Key Value (KV) or data service offers the simplest way to retrieve
   or mutate data where the key is known.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:go-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:go-sdk:howtos:kv-operations.adoc[]
 
 > Key Value (KV) or data service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS. 
 
-The complete code sample used on this page can be downloaded from [here](https://github.com/couchbase/docs-sdk-go/blob/temp/2.12/modules/devguide/examples/go/kv-crud.go) — from which you can see in context how to authenticate and connect to a Couchbase Cluster, then perform these Collection operations.
+The complete code sample used on this page can be downloaded from [here](https://github.com/couchbase/docs-sdk-go/blob/temp/2.12/modules/devguide/examples/go/kv-crud%5Ftest.go) — from which you can see in context how to authenticate and connect to a Couchbase Cluster, then perform these Collection operations.
 
 ## [](#documents)Documents
 
@@ -84,6 +84,9 @@ Typically we would want to use CAS for something more meaningful like performing
 	updateResult, err := collection.Replace("document-key", doc, &gocb.ReplaceOptions{
 		Cas: updateGetResult.Cas(),
 	})
+	if err != nil {
+		panic(err)
+	}
 ```
 
 Expiry sets an explicit time to live (TTL) for a document in seconds. For a discussion of item (Document) _vs_ Bucket expiration, see the [Expiration Overview page](../../../server/current/learn/data/expiration.md#expiration-bucket-versus-item).

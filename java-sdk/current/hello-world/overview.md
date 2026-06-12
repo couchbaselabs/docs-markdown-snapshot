@@ -1,7 +1,7 @@
 ---
 title: Couchbase Java SDK 3.11
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/hello-world/pages/overview.adoc
-pubDate: 2026-04-17T05:26:26.225Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:java-sdk:hello-world:overview.adoc[]
 ---
 
@@ -16,7 +16,7 @@ The Couchbase Java SDK allows Java applications to access a Couchbase cluster â€
 
 [Quickstart Guide](start-using-sdk.md) | [SDK Release Notes](../project-docs/sdk-release-notes.md) | [Java SDK API Reference](https://docs.couchbase.com/sdk-api/couchbase-java-client/) | [Java SDK source code](https://github.com/couchbase/couchbase-jvm-clients/)
 
-What's the point of a fast and scalable database if it's not easy to develop for? Couchbase gives you the Java APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
+A fast and scalable database is even better when it's easy to develop for. Couchbase gives you the Java APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
 
 * Data Ops (CRUD)
 * SQL++ Query (OLTP)
@@ -49,7 +49,7 @@ Installing the SDK via Maven
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>java-client</artifactId>
-        <version>3.11.2</version>
+        <version>3.11.3</version>
     </dependency>
 </dependencies>
 ```

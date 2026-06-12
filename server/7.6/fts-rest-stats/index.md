@@ -4,7 +4,7 @@ description: The Search Statistics REST API is provided by the Search Service.
   This API enables you to get statistics for the Search Service and your Search
   indexes.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/fts-rest-stats/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.6@server:fts-rest-stats:index.adoc[]
 ---
 
@@ -70,10 +70,6 @@ Produces
 | http (basic) | [Admin](#security-Admin) |
 
 #### [](#g-api-nsstats-ex-response)Example HTTP Response
-
-A successful response returns an object like [Response 200](#g-api-nsstats-ex-response-200), which contains statistics on 2 indexes, `travel-sample-index` and `color-test`.
-
-If a user authenticates but does not have the appropriate permissions, the API returns a `403 Forbidden` response with an object similar to [Response 403](#g-api-nsstats-ex-response-403).
 
 Response 200
 
@@ -252,6 +248,10 @@ Response 403
   "permissions" : [ "cluster.fts!read" ]
 }
 ```
+
+A successful response returns an object like [Response 200](#g-api-nsstats-ex-response-200), which contains statistics on 2 indexes, `travel-sample-index` and `color-test`.
+
+If a user authenticates but does not have the appropriate permissions, the API returns a `403 Forbidden` response with an object similar to [Response 403](#g-api-nsstats-ex-response-403).
 
 ### [](#g-api-nsstats-index-name)Get Query, Mutation, and Partition Statistics for an Index
 

@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on C#.Net
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/releasenotes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:couchbase-lite:csharp:releasenotes.adoc[]
 ---
 
@@ -10,6 +10,8 @@ link: xref:couchbase-lite:csharp:releasenotes.adoc[]
 [View original HTML](/couchbase-lite/current/csharp/releasenotes.html)
 
 # Couchbase Lite Release Notes
+
+Unresolved include directive in modules/csharp/pages/releasenotes.adoc - include::partial$release-notes/couchbase-mobile-csharp-release-note.4.0.4.adoc\[\]
 
 ## [](#maint-4-0-3)4.0.3 — February 2026
 

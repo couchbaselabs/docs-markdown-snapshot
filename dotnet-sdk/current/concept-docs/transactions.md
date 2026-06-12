@@ -2,7 +2,7 @@
 title: Transaction Concepts
 description: A high-level overview of Distributed ACID Transactions with Couchbase.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/transactions.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:concept-docs:transactions.adoc[]
 ---
 
@@ -158,11 +158,11 @@ var options = new ClusterOptions()
     Password = "Administrator",
     TransactionsConfig = transactionsConfig,
 };
-var cluster = await Cluster.ConnectAsync("couchbase://your-ip", options).ConfigureAwait(false);
+var metadataCluster = await Cluster.ConnectAsync("couchbase://your-ip", options).ConfigureAwait(false);
 
 // now all transactions using the Transactions in this cluster will use the
 // specified keyspace for the metadata.
-var transactionsWithCustomMetadataCollection = cluster.Transactions;
+var transactionsWithCustomMetadataCollection = metadataCluster.Transactions;
 ```
 
 When specified:

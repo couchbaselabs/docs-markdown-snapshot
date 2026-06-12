@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-05-12T05:41:22.753Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -10,8 +10,19 @@ link: xref:cloud:release-notes:release-notes.adoc[]
 
 # Couchbase Capella Release Notes
 
+## [](#june-2026-changelog)June 2026 Changelog
+
+* Slack and Microsoft Teams Integrations for Alerts  
+Capella now supports native alert integrations for Slack and Microsoft Teams. You can send cluster and App Service [metric-based alerts](../reference/alert-reference.md#metric-alerts) directly to your team's preferred Slack or Microsoft Teams channels by using the Capella UI or the Management REST API.  
+Customize alert payloads with either standard or advanced templates for Slack and Microsoft Teams integrations. To configure an alert integration, see [Configure a Slack Alert Integration](../clusters/monitoring/configure-slack-integration.md)and [Configure a Microsoft Teams Alert Integration](../clusters/monitoring/configure-microsoft-integration.md).  
+For more information about alert integrations, see [Alert Integrations](../clusters/monitoring/alert-integration.md).
+
 ## [](#may-2026-changelog)May 2026 Changelog
 
+* Capella iQ Expands with AWS Bedrock Support  
+Capella iQ now leverages multiple AI model providers to power its AI-assisted capabilities, delivering flexibility, improved reliability, and greater scalability. Support for AWS Bedrock-hosted models enables a more robust and performant experience across query generation and insights.  
+This enhancement is fully managed and requires no changes to your existing workflows.  
+For more information about model usage and configuration, see [Work Faster with Capella IQ](../get-started/capella-iq/work-with-capellaiq.md#model-provider).
 * XDCR for Multi-Node Clusters Over Private Link on Azure  
 Couchbase Capella's support for XDCR through private endpoint connectivity is now extended to clusters hosted on Azure. Replicate data between clusters entirely over a private network connection without exposing traffic to the public Internet.  
 This feature is currently only available upon request from [Couchbase Capella Support](../support/manage-support.md#create-support-ticket).  

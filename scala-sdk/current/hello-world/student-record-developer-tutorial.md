@@ -3,7 +3,7 @@ title: "Couchbase Tutorial: A Student Record System"
 description: A short tutorial that will guide the developer in downloading and
   installing Couchbase, then creating a database to store student records.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/hello-world/pages/student-record-developer-tutorial.adoc
-pubDate: 2026-04-17T05:26:26.225Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:scala-sdk:hello-world:student-record-developer-tutorial.adoc[]
 ---
 
@@ -218,7 +218,7 @@ More details of the installation process are in the [full installation guide](..
 * Maven
 
 ```sbt
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.11.2"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.11.3"
 ```
 
 This will automatically use the correct build for your Scala version.
@@ -227,7 +227,7 @@ For Scala 2.13 or Scala 3.3 through 3.7, include the following in your `build.gr
 
 ```groovy
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_3', version: '3.11.2'
+    compile group: 'com.couchbase.client', name: 'scala-client_3', version: '3.11.3'
 }
 ```
 
@@ -240,7 +240,7 @@ For Scala 2.13 or Scala 3.3 through 3.7, include the following in your Maven `po
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_3</artifactId>
-        <version>3.11.2</version>
+        <version>3.11.3</version>
     </dependency>
 </dependencies>
 ```
@@ -261,7 +261,7 @@ pom.xml
 Unresolved directive in student-record-developer-tutorial.adoc - include::{java-sample-location}pom.xml[]
 ```
 
-| **1** | The dependencies section lists all the libraries required to build the application. In our case, we only need the Couchbase client SDK (version 3.11.2, in this case). |
+| **1** | The dependencies section lists all the libraries required to build the application. In our case, we only need the Couchbase client SDK (version 3.11.3, in this case). |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 Unresolved include directive in modules/hello-world/pages/student-record-developer-tutorial.adoc - include::partial$student-mvn-directory-structure.adoc\[\]

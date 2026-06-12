@@ -3,7 +3,7 @@ title: Configure Your Cluster
 description: Understand the different configuration options available to
   customize your Couchbase Capella cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/databases.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:databases.adoc[]
 ---
 
@@ -87,9 +87,9 @@ You can choose a previous version of Couchbase Server to maintain compatibility 
 Capella deploys new and upgraded clusters with the latest available patch version available for each minor Couchbase Server release automatically. Capella provides version upgrades for clusters when they become available.
 
 > [!NOTE]
-> [Organization Owners](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owners](../projects/project-roles.md#project-owner-role) can schedule certain upgrade maintenance jobs when they become available. To see the upgrades available to you, go to [Schedule a Maintenance Job](upgrade-database.md#schedule-maintenance-jobs).
+> [Organization Owners](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owners](../projects/project-roles.md#project-owner-role) can schedule certain upgrade maintenance jobs when they become available. To see the upgrades available to you, go to [Schedule a Maintenance Job](manage-maintenance.md#schedule-maintenance-jobs).
 
-For more information about how to upgrade or schedule maintenance for a cluster, see [Upgrading a Cluster](upgrade-database.md).
+For more information about upgrade policies and maintenance on Capella clusters, see [Upgrading a Cluster](upgrade-database.md).
 
 #### [](#guardrails)Couchbase Server Guardrails
 
@@ -264,6 +264,7 @@ Capella provides the physical zone location names for AWS Availability Zones, us
 
 See the following pages for more information about managing clusters:
 
+* [View Your Clusters](view-database.md)
 * [Create A Paid Cluster](create-database.md)
 * [Modify a Paid Cluster](modify-database.md)
 * [Cluster Scaling](scale-database.md)

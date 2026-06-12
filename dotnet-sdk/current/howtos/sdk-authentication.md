@@ -3,7 +3,7 @@ title: Authenticating
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:howtos:sdk-authentication.adoc[]
 ---
 
@@ -180,7 +180,7 @@ var newClientCerts = new X509Certificate2Collection();
 newClientCerts.Add(new X509Certificate2("path/to/new-client-cert.pfx", "newCertPassword"));
 
 var newCertFactory = new PredefinedCertificateFactory(newClientCerts);
-cluster.Authenticator(new CertificateAuthenticator(newCertFactory));
+((IClusterAuthenticator)cluster).Authenticator(new CertificateAuthenticator(newCertFactory));
 ```
 
 You may experience brief disruptions to HTTP requests in-flight during the \`HttpMessageHandler's reconfiguration. Existing KV connections are not closed or re-authenticated, they continue using the old certificate until they are recycled by the connection pool.
@@ -199,7 +199,7 @@ var cluster = await Cluster.ConnectAsync(options);
 // When credentials change, swap in a new authenticator.
 // New connections will use the updated credentials immediately;
 // existing connections continue with the old credentials until recycled.
-cluster.Authenticator(new PasswordAuthenticator("Administrator", "newPassword"));
+((IClusterAuthenticator)cluster).Authenticator(new PasswordAuthenticator("Administrator", "newPassword"));
 ```
 
 ### [](#constraints)Constraints

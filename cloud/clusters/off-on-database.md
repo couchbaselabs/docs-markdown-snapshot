@@ -3,7 +3,7 @@ title: Turn Clusters Off or On
 description: You can turn your cluster off to save costs. To resume operations,
   turn it back on.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/off-on-database.adoc
-pubDate: 2026-04-01T05:25:30.286Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:off-on-database.adoc[]
 ---
 
@@ -89,3 +89,5 @@ To check the status of your cluster:
 | Turning Off | Your cluster is turning OFF. Wait for the status to change to **OFF** before trying to turn on.                           |
 | Turning On  | Your cluster is turning on. This may take a few minutes. You can use your cluster when the status changes to **Healthy**. |
 | Healthy     | Your cluster is operational.                                                                                              |
+
+For more information about your cluster, see [View Your Clusters](view-database.md).

@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:3.2@sync-gateway::release-notes.adoc[]
 ---
 
@@ -23,16 +23,18 @@ Quicklinks
 > 
 > The migration to 3.x configuration is a ONE WAY process — see: [Upgrading](upgrading.md) for more.
 
-## [](#maint-latest)3.2.7 — November 2025
+## [](#maint-latest)3.2.8 — June 2026
 
-### [](#maint-3-2-7)Fixed Issues
+> [!IMPORTANT]
+> If you use OIDC-based authentication for deployments and manage users through the Sync Gateway Admin REST API, upgrade to this release to receive critical fixes.
 
-* [CBG-4940 - Couchbase Lite 4.0 is allowed to connect to Sync Gateway 3.2.6/3.3.0](https://jira.issues.couchbase.com/browse/CBG-4940)
-* [CBG-4694 - calling GET /db/\_session/sessionID returns invalidated session](https://jira.issues.couchbase.com/browse/CBG-4694)
+### [](#maint-3-2-8)Fixed Issues
+
+* [CBG-5008 — /\_ping (and all endpoints) acquire ServerContext.lock.RLock and blocks if the write lock is acquired](https://jira.issues.couchbase.com/browse/CBG-5008)
 
 ### [](#enhancements)Enhancements
 
-* [CBG-4971 - Allow cookieless authentication from cbl-js](https://jira.issues.couchbase.com/browse/CBG-4971)
+None for this release.
 
 ### [](#known-issues)Known Issues
 
@@ -45,21 +47,43 @@ None for this release.
 > [!NOTE]
 > For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md).
 
-## [](#3-2-6july-2025)3.2.6 — July 2025
+## [](#3-2-7november-2025)3.2.7 — November 2025
 
-### [](#maint-3-2-6)Fixed Issues
+### [](#maint-3-2-7)Fixed Issues
 
-* Improved sgcollect execution and output
+* [CBG-4940 - Couchbase Lite 4.0 is allowed to connect to Sync Gateway 3.2.6/3.3.0](https://jira.issues.couchbase.com/browse/CBG-4940)
+* [CBG-4694 - calling GET /db/\_session/sessionID returns invalidated session](https://jira.issues.couchbase.com/browse/CBG-4694)
 
 ### [](#enhancements-2)Enhancements
 
-None for this release.
+* [CBG-4971 - Allow cookieless authentication from cbl-js](https://jira.issues.couchbase.com/browse/CBG-4971)
 
 ### [](#known-issues-2)Known Issues
 
 None for this release.
 
 ### [](#deprecations-2)Deprecations
+
+None for this release.
+
+> [!NOTE]
+> For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md).
+
+## [](#3-2-6july-2025)3.2.6 — July 2025
+
+### [](#maint-3-2-6)Fixed Issues
+
+* Improved sgcollect execution and output
+
+### [](#enhancements-3)Enhancements
+
+None for this release.
+
+### [](#known-issues-3)Known Issues
+
+None for this release.
+
+### [](#deprecations-3)Deprecations
 
 None for this release.
 
@@ -74,16 +98,16 @@ None for this release.
 * [CBG-4655 - Server MgmtRequest panics on request failure](https://jira.issues.couchbase.com/browse/CBG-4655)
 * [CBG-4663 - Resync performance degrades over time](https://jira.issues.couchbase.com/browse/CBG-4663)
 
-### [](#enhancements-3)Enhancements
+### [](#enhancements-4)Enhancements
 
 * [CBG-4656 - Include the blip correlation ID in go-blip logging](https://jira.issues.couchbase.com/browse/CBG-4656)
 * [CBG-4659 - Prevent JavaScript stack overflow](https://jira.issues.couchbase.com/browse/CBG-4659)
 
-### [](#known-issues-3)Known Issues
+### [](#known-issues-4)Known Issues
 
 None for this release.
 
-### [](#deprecations-3)Deprecations
+### [](#deprecations-4)Deprecations
 
 None for this release.
 
@@ -101,7 +125,7 @@ None for this release.
 * [CBG-4573 - Blip leaks nextFrameToSend goroutines if non ack'd messages are queued](https://jira.issues.couchbase.com/browse/CBG-4573)
 * [CBG-4598 - Caching DCP feed does not utilize network connstr option](https://jira.issues.couchbase.com/browse/CBG-4598)
 
-### [](#enhancements-4)Enhancements
+### [](#enhancements-5)Enhancements
 
 * [CBG-4189 - Add metric for Assertions](https://jira.issues.couchbase.com/browse/CBG-4189)
 * [CBG-4543 - Avoid retention of DCP sync.Pool instances during import processing](https://jira.issues.couchbase.com/browse/CBG-4543)
@@ -109,11 +133,11 @@ None for this release.
 * [CBG-4583 - Upper bound on number of sequences to release for nextSequenceGreaterThan](https://jira.issues.couchbase.com/browse/CBG-4583)
 * [CBG-4590 - New stat for value of last sequence allocated (or batched) by SG node](https://jira.issues.couchbase.com/browse/CBG-4590)
 
-### [](#known-issues-4)Known Issues
+### [](#known-issues-5)Known Issues
 
 None for this release.
 
-### [](#deprecations-4)Deprecations
+### [](#deprecations-5)Deprecations
 
 None for this release.
 
@@ -131,7 +155,7 @@ None for this release.
 * [CBG-4446 - changes feed error will not cause blip clients to disconnect](https://jira.issues.couchbase.com/browse/CBG-4446)
 * [CBG-4517 - Support bucket names containing . character](https://jira.issues.couchbase.com/browse/CBG-4517)
 
-### [](#enhancements-5)Enhancements
+### [](#enhancements-6)Enhancements
 
 * [CBG-4314 - Release unused sequences in db.UpdatePrincipal](https://jira.issues.couchbase.com/browse/CBG-4314)
 * [CBG-4342 - Add createdAt / updatedAt timestamps to written configs](https://jira.issues.couchbase.com/browse/CBG-4342)
@@ -144,11 +168,11 @@ None for this release.
 * [CBG-4476 - Uptake GOCBC-1659 panic fix](https://jira.issues.couchbase.com/browse/CBG-4476)
 * [CBG-4515 - Improve observability errors for online processes](https://jira.issues.couchbase.com/browse/CBG-4515)
 
-### [](#known-issues-5)Known Issues
+### [](#known-issues-6)Known Issues
 
 None for this release.
 
-### [](#deprecations-5)Deprecations
+### [](#deprecations-6)Deprecations
 
 None for this release.
 
@@ -166,15 +190,15 @@ None for this release.
 * [CBG-4488 - Deadlock in revision cache with Get and a demand import.](https://jira.issues.couchbase.com/browse/CBG-4488)
 * [CBG-4495 - Skip revcache insertion for on-demand imports.](https://jira.issues.couchbase.com/browse/CBG-4495)
 
-### [](#enhancements-6)Enhancements
+### [](#enhancements-7)Enhancements
 
 None for this release.
 
-### [](#known-issues-6)Known Issues
+### [](#known-issues-7)Known Issues
 
 None for this release.
 
-### [](#deprecations-6)Deprecations
+### [](#deprecations-7)Deprecations
 
 None for this release.
 
@@ -190,7 +214,7 @@ None for this release.
 * [CBG-4165 - rotated\_logs\_size\_limit not used by ConsoleLogger's FileOutput](https://jira.issues.couchbase.com/browse/CBG-4165)
 * [CBG-4243 - Default log file permissions changed from 644 to 600](https://jira.issues.couchbase.com/browse/CBG-4243)
 
-### [](#enhancements-7)Enhancements
+### [](#enhancements-8)Enhancements
 
 * [CBG-3825 - Memory-based rev cache size](https://jira.issues.couchbase.com/browse/CBG-3825)
 * [CBG-4150 - Index optimizations for large number of collections](https://jira.issues.couchbase.com/browse/CBG-4150)
@@ -203,11 +227,11 @@ None for this release.
 * [CBG-4201 - Add missing logging for ChangesOptions for Changes requests](https://jira.issues.couchbase.com/browse/CBG-4201)
 * [CBG-4294 - Resolve pattern matching for rocky and alma linux to fall into rhel pathways](https://jira.issues.couchbase.com/browse/CBG-4294)
 
-### [](#known-issues-7)Known Issues
+### [](#known-issues-8)Known Issues
 
 None for this release.
 
-### [](#deprecations-7)Deprecations
+### [](#deprecations-8)Deprecations
 
 None for this release.
 
@@ -272,7 +296,7 @@ Version 3.2.0 of Sync Gateway also delivers the following features and enhanceme
 * [CBG-4221 - Pending unused sequences shouldn't update high cache sequence](https://jira.issues.couchbase.com/browse/CBG-4221)
 * [CBG-4218 - Fixed duplicated sequences can cause SGW to be unresponsive](https://jira.issues.couchbase.com/browse/CBG-4218)
 
-### [](#enhancements-8)Enhancements
+### [](#enhancements-9)Enhancements
 
 * [CBG-2807 - Allow DB Scoped CORS config](https://jira.issues.couchbase.com/browse/CBG-2807)
 * [CBG-2837 - Streamline database creation when using many collections](https://jira.issues.couchbase.com/browse/CBG-2837)
@@ -327,11 +351,11 @@ Version 3.2.0 of Sync Gateway also delivers the following features and enhanceme
 * [CBG-4163 - Log the origin of setting metadata ID when updating a dbconfig](https://jira.issues.couchbase.com/browse/CBG-4163)
 * [CBG-4172 - Improve "could not verify JWT" error logging](https://jira.issues.couchbase.com/browse/CBG-4172)
 
-### [](#known-issues-8)Known Issues
+### [](#known-issues-9)Known Issues
 
 None for this release.
 
-### [](#deprecations-8)Deprecations
+### [](#deprecations-9)Deprecations
 
 * [CBG-3795 - Deprecate enable\_star\_channel config option](https://jira.issues.couchbase.com/browse/CBG-3795)
 

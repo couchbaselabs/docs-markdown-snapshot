@@ -2,7 +2,7 @@
 title: Start Using the Go SDK
 description: A quick start guide to get you up and running with Couchbase and the Go SDK.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:go-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -103,7 +103,7 @@ import (
 )
 
 
-func main() {
+func Example_cloud() {
 	// Uncomment following line to enable logging
 	// gocb.SetLogger(gocb.VerboseStdioLogger())
 
@@ -174,10 +174,7 @@ func main() {
 
 	// Perform a N1QL Query
 	inventoryScope := bucket.Scope("inventory")
-	queryResult, err := inventoryScope.Query(
-		fmt.Sprintf("SELECT * FROM airline WHERE id=10"),
-		&gocb.QueryOptions{},
-	)
+	queryResult, err := inventoryScope.Query("SELECT * FROM airline WHERE id=10", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -379,6 +376,9 @@ Typically we would want to use CAS for something more meaningful like performing
 	updateResult, err := collection.Replace("document-key", doc, &gocb.ReplaceOptions{
 		Cas: updateGetResult.Cas(),
 	})
+	if err != nil {
+		panic(err)
+	}
 ```
 
 ### [](#remove-delete)Remove (Delete)

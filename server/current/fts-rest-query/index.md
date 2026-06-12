@@ -3,7 +3,7 @@ title: Couchbase Search Active Queries REST API
 description: The Search Active Queries REST API is provided by the Search
   Service. This API enables you to get information about active Search queries.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/fts-rest-query/pages/index.adoc
-pubDate: 2026-04-10T05:25:10.333Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:server:fts-rest-query:index.adoc[]
 ---
 
@@ -36,7 +36,7 @@ The URL scheme, host, and port are as follows.
 
 In the HTTP request examples:
 
-* `$HOST` is the host name or IP address of a node running the Search Service.
+* `$BASEPATH` is the URL scheme, host, and port for a node running the Search Service.
 * `$USER` is the user name of an authorized user — see [Security](#security).
 * `$PASSWORD` is the password to connect to Couchbase Server.
 
@@ -81,10 +81,6 @@ Query Parameters
 | http (basic) | [Default](#security-Default) |
 
 #### [](#api-query-ex-curl)Example HTTP Request
-
-The [All](#api-query-ex-curl-0) request finds all active queries across the Search cluster.
-
-The [Filtered](#api-query-ex-curl-1) request finds all queries across the cluster that have been running for longer than 7 s.
 
 All
 
@@ -251,8 +247,6 @@ Body Parameter
 
 #### [](#api-query-cancel-ex-curl)Example HTTP Request
 
-This request cancels a long running query with query ID `24` whose coordinator node has a UUID `b91d75480470f979f65f04e8f20a1f7b`.
-
 ```sh
 curl -X POST -H "Content-Type: application/json" -u $USER:$PASSWORD \
   "http://$HOST:8094/api/query/24/cancel" -d \
@@ -317,8 +311,6 @@ Query Parameters
 | http (basic) | [Default](#security-Default) |
 
 #### [](#api-query-index-ex-curl)Example HTTP Request
-
-This request finds queries on the index `DemoIndex1` that have been running for longer than 1 ms.
 
 ```sh
 curl -XGET -H "Content-Type: application/json" \

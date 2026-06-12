@@ -2,7 +2,7 @@
 title: Modify a Paid Cluster
 description: Review, modify, and rename Couchbase Capella clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/modify-database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:modify-database.adoc[]
 ---
 
@@ -266,7 +266,9 @@ To change the deletion protection setting for a cluster:
 
 ## [](#see-also)See Also
 
+* [View Your Clusters](view-database.md)
 * [Sizing a Cluster](sizing.md)
 * [Cluster Scaling](scale-database.md)
 * [Upgrading a Cluster](upgrade-database.md)
+* [Manage Cluster Maintenance Jobs](manage-maintenance.md)
 * [Delete a Cluster](delete-database.md)

@@ -1,7 +1,7 @@
 ---
 title: Capella Operational Management API Reference
 editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/public/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-05-06T05:34:55.761Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:management-api-reference:index.adoc[]
 ---
 
@@ -14,6 +14,7 @@ link: xref:cloud:management-api-reference:index.adoc[]
   * Alert Integration
     * postCreate Alert Integration
     * getList Alert Integrations
+    * postList Channels for an Alert Integration
     * getGet Alert Integration
     * putUpdate Alert Integration
     * delDelete Alert Integration
@@ -171,6 +172,7 @@ link: xref:cloud:management-api-reference:index.adoc[]
     * postTurn On Cluster
     * delTurn Off Cluster
     * putMigrate Buckets
+    * putUpdate Deletion Protection
   * CMEK
     * getGet Cloud Accounts
     * getGet Azure Application ID
@@ -360,10 +362,10 @@ _token_
 
 ##### Request Body schema: application/json
 
-| kindrequired   | string Value: "webhook" Type of alert integration, currently supports only 'webhook'. |
-| -------------- | ------------------------------------------------------------------------------------- |
-| namerequired   | string <= 1024 characters Name of the alert integration (up to 1024 characters).      |
-| configrequired | object (RequestConfig)                                                                |
+| kindrequired   | string Enum: "webhook" "slack" "teams" Type of alert integration.                |
+| -------------- | -------------------------------------------------------------------------------- |
+| namerequired   | string <= 1024 characters Name of the alert integration (up to 1024 characters). |
+| configrequired | object or object or object (RequestConfig)                                       |
 
 ### Responses
 
@@ -379,6 +381,10 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
 **422** 
 
 Request validation error.
@@ -390,6 +396,10 @@ Returned when the client exceeds the rate limit for the given APIKey.
 **500** 
 
 An unexpected error occurred in the server while processing this request.
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
 
 post/v4/organizations/{organizationId}/projects/{projectId}/alertIntegrations
 
@@ -408,7 +418,7 @@ Copy
  Expand all  Collapse all 
 
 `{
-* "kind": "webhook",
+* "kind": "slack",
 * "name": "test alert 1",
 * "config": {
   * "webhook": {
@@ -433,6 +443,60 @@ Copy
         * "..."  
             ]  
       }  
+  },
+  * "slack": {
+    * "botToken": "string",
+    * "channel": "#alerts",
+    * "clusterChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "appServiceChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "clusterWebhookChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "appServiceWebhookChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "channelWebhookUrlMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
+      }  
+  },
+  * "teams": {
+    * "webhookUrlMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "clusterWebhookMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "appServiceWebhookMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
+      }  
   }  
 }
 }`
@@ -442,9 +506,11 @@ Copy
 * 201
 * 403
 * 404
+* 409
 * 422
 * 429
 * 500
+* 504
 
 Content type
 
@@ -518,6 +584,10 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
 get/v4/organizations/{organizationId}/projects/{projectId}/alertIntegrations
 
 https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/alertIntegrations
@@ -531,6 +601,7 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/
 * 422
 * 429
 * 500
+* 504
 
 Content type
 
@@ -547,7 +618,7 @@ Copy
     * "name": "test alert 1",
     * "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
     * "projectId": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "kind": "webhook",
+    * "kind": "teams",
     * "configKey": "ffffffff-aaaa-1414-eeee-000000000000-alert-integration",
     * "status": "healthy",
     * "enabled": false,
@@ -568,6 +639,51 @@ Copy
             * "ffffffff-aaaa-1414-eeee-000000000000",
             * "..."  
                               ]  
+                    }  
+            },
+      * "slack": {
+        * "channel": "#alerts",
+        * "clusterChannelMappings": {
+          * "property1": "string",
+          * "property2": "string"  
+                    },
+        * "appServiceChannelMappings": {
+          * "property1": "string",
+          * "property2": "string"  
+                    },
+        * "clusterWebhookChannelMappings": {
+          * "property1": "string",
+          * "property2": "string"  
+                    },
+        * "appServiceWebhookChannelMappings": {
+          * "property1": "string",
+          * "property2": "string"  
+                    },
+        * "customPayloads": {
+          * "property1": {
+            * "payload": { }  
+                              },
+          * "property2": {
+            * "payload": { }  
+                              }  
+                    }  
+            },
+      * "teams": {
+        * "clusterWebhookMappings": {
+          * "property1": "string",
+          * "property2": "string"  
+                    },
+        * "appServiceWebhookMappings": {
+          * "property1": "string",
+          * "property2": "string"  
+                    },
+        * "customPayloads": {
+          * "property1": {
+            * "payload": { }  
+                              },
+          * "property2": {
+            * "payload": { }  
+                              }  
                     }  
             }  
       },
@@ -596,6 +712,120 @@ Copy
     * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
   }  
 }
+}`
+
+## [](#tag/Alert-Integration/operation/postListAlertIntegrationChannels)List Channels for an Alert Integration 
+
+Lists Slack or Teams channels available to a bot token or existing alert integration, for populating channel mappings.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+
+##### Request Body schema: application/json
+
+One of 
+
+objectobject
+
+| botTokenrequired | string Slack bot token (starts with xoxb-). Mutually exclusive with integrationId.                   |
+| ---------------- | ---------------------------------------------------------------------------------------------------- |
+| integrationId    | string <uuid\> ID of an existing Slack or Teams alert integration. Mutually exclusive with botToken. |
+
+### Responses
+
+**200** 
+
+Successfully listed the channels.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/alertIntegrations/channels
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/alertIntegrations/channels
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "botToken": "xoxb-1234567890-1234567890123-AbCdEfGhIjKlMnOpQrStUvWx",
+* "integrationId": "497a18ca-284e-40c0-985d-f72be35d468e"
+}`
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "channels": [
+  * {
+    * "id": "C01234ABCDE",
+    * "name": "alerts",
+    * "type": "public"  
+  }  
+]
 }`
 
 ## [](#tag/Alert-Integration/operation/getAlertIntegrationByID)Get Alert Integration 
@@ -649,6 +879,10 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
 get/v4/organizations/{organizationId}/projects/{projectId}/alertIntegrations/{alertIntegrationId}
 
 https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/alertIntegrations/{alertIntegrationId}
@@ -661,6 +895,7 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/
 * 422
 * 429
 * 500
+* 504
 
 Content type
 
@@ -675,7 +910,7 @@ Copy
 * "name": "test alert 1",
 * "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
 * "projectId": "ffffffff-aaaa-1414-eeee-000000000000",
-* "kind": "webhook",
+* "kind": "teams",
 * "configKey": "ffffffff-aaaa-1414-eeee-000000000000-alert-integration",
 * "status": "healthy",
 * "enabled": false,
@@ -696,6 +931,51 @@ Copy
         * "ffffffff-aaaa-1414-eeee-000000000000",
         * "..."  
             ]  
+      }  
+  },
+  * "slack": {
+    * "channel": "#alerts",
+    * "clusterChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "appServiceChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "clusterWebhookChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "appServiceWebhookChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
+      }  
+  },
+  * "teams": {
+    * "clusterWebhookMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "appServiceWebhookMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
       }  
   }  
 },
@@ -733,13 +1013,15 @@ _token_
 
 ##### Request Body schema: application/json
 
-| name           | string <= 1024 characters Name of the alert integration (up to 1024 characters). |
-| -------------- | -------------------------------------------------------------------------------- |
-| configrequired | object (RequestConfig)                                                           |
+| kind    | string Enum: "webhook" "slack" "teams" Type of alert integration. If provided, must match the existing integration's kind. This field cannot be used to change the integration kind. |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| name    | string or null <= 1024 characters Name of the alert integration (up to 1024 characters).                                                                                             |
+| enabled | boolean Enables or disables the integration.                                                                                                                                         |
+| config  | object or object or object (UpdateRequestConfig)                                                                                                                                     |
 
 ### Responses
 
-**204** 
+**200** 
 
 Successfully updated the metadata for the alert integration.
 
@@ -755,9 +1037,17 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
 **412** 
 
 Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
 
 **429** 
 
@@ -766,6 +1056,10 @@ Returned when the client exceeds the rate limit for the given APIKey.
 **500** 
 
 An unexpected error occurred in the server while processing this request.
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
 
 put/v4/organizations/{organizationId}/projects/{projectId}/alertIntegrations/{alertIntegrationId}
 
@@ -784,7 +1078,9 @@ Copy
  Expand all  Collapse all 
 
 `{
+* "kind": "slack",
 * "name": "test alert 1",
+* "enabled": true,
 * "config": {
   * "webhook": {
     * "method": "POST",
@@ -808,18 +1104,76 @@ Copy
         * "..."  
             ]  
       }  
+  },
+  * "slack": {
+    * "botToken": "string",
+    * "channel": "string",
+    * "clusterChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "appServiceChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "clusterWebhookChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "appServiceWebhookChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "channelWebhookUrlMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
+      }  
+  },
+  * "teams": {
+    * "webhookUrlMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "clusterWebhookMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "appServiceWebhookMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
+      }  
   }  
 }
 }`
 
 ### Response samples 
 
+* 200
 * 400
 * 403
 * 404
+* 409
 * 412
+* 422
 * 429
 * 500
+* 504
 
 Content type
 
@@ -827,11 +1181,89 @@ application/json
 
 Copy
 
+ Expand all  Collapse all 
+
 `{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "name": "test alert 1",
+* "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
+* "projectId": "ffffffff-aaaa-1414-eeee-000000000000",
+* "kind": "teams",
+* "configKey": "ffffffff-aaaa-1414-eeee-000000000000-alert-integration",
+* "status": "healthy",
+* "enabled": false,
+* "config": {
+  * "webhook": {
+    * "method": "POST",
+    * "url": "<https://company.servicenow.com>",
+    * "headers": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "exclude": {
+      * "clusters": [
+        * "ffffffff-aaaa-1414-eeee-000000000000",
+        * "..."  
+            ],
+      * "appServices": [
+        * "ffffffff-aaaa-1414-eeee-000000000000",
+        * "..."  
+            ]  
+      }  
+  },
+  * "slack": {
+    * "channel": "#alerts",
+    * "clusterChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "appServiceChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "clusterWebhookChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "appServiceWebhookChannelMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
+      }  
+  },
+  * "teams": {
+    * "clusterWebhookMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "appServiceWebhookMappings": {
+      * "property1": "string",
+      * "property2": "string"  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
+      }  
+  }  
+},
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56Z",
+  * "version": 1  
+}
 }`
 
 ## [](#tag/Alert-Integration/operation/deleteAlertIntegrationByID)Delete Alert Integration 
@@ -879,6 +1311,10 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
 delete/v4/organizations/{organizationId}/projects/{projectId}/alertIntegrations/{alertIntegrationId}
 
 https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/alertIntegrations/{alertIntegrationId}
@@ -889,6 +1325,7 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/
 * 404
 * 429
 * 500
+* 504
 
 Content type
 
@@ -927,9 +1364,13 @@ _token_
 
 ##### Request Body schema: application/json
 
-| kindrequired   | string Value: "webhook" Type of alert integration, currently supports only 'webhook'. |
-| -------------- | ------------------------------------------------------------------------------------- |
-| configrequired | object (RequestConfig)                                                                |
+One of 
+
+objectobjectobject
+
+| kindrequired   | string Enum: "webhook" "slack" "teams" Type of alert integration. |
+| -------------- | ----------------------------------------------------------------- |
+| configrequired | object or object or object                                        |
 
 ### Responses
 
@@ -957,6 +1398,10 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
 post/v4/organizations/{organizationId}/projects/{projectId}/alertIntegrationTest
 
 https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/alertIntegrationTest
@@ -974,7 +1419,7 @@ Copy
  Expand all  Collapse all 
 
 `{
-* "kind": "webhook",
+* "kind": "slack",
 * "config": {
   * "webhook": {
     * "method": "POST",
@@ -998,6 +1443,16 @@ Copy
         * "..."  
             ]  
       }  
+  },
+  * "slack": {
+    * "webhookURL": "<http://example.com>",
+    * "webhookUrl": "<http://example.com>",
+    * "channelName": "#alerts",
+    * "channel": "#alerts",
+    * "botToken": "string"  
+  },
+  * "teams": {
+    * "url": "<http://example.com>"  
   }  
 }
 }`
@@ -1009,6 +1464,7 @@ Copy
 * 422
 * 429
 * 500
+* 504
 
 Content type
 
@@ -13389,6 +13845,10 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
 **422** 
 
 Request validation error.
@@ -13423,6 +13883,7 @@ Copy
 
 * 403
 * 404
+* 409
 * 422
 * 429
 * 500
@@ -13479,6 +13940,10 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
 **422** 
 
 Request validation error.
@@ -13500,6 +13965,7 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/
 * 202
 * 403
 * 404
+* 409
 * 422
 * 429
 * 500
@@ -14472,6 +14938,7 @@ Copy
       },
     * "cmekId": "ffffffff-aaaa-1414-eeee-000000000000",
     * "enablePrivateDNSResolution": true,
+    * "deletionProtection": false,
     * "expressScaling": "enabled"  
   }  
 ],
@@ -14612,6 +15079,7 @@ Copy
 },
 * "cmekId": "ffffffff-aaaa-1414-eeee-000000000000",
 * "enablePrivateDNSResolution": true,
+* "deletionProtection": false,
 * "expressScaling": "enabled"
 }`
 
@@ -15184,6 +15652,106 @@ Copy
 
 * 400
 * 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Clusters/operation/putClusterDeletionProtection)Update Deletion Protection 
+
+Enable or disable deletion protection for a cluster.
+
+When deletion protection is enabled, the cluster, its app service, and its buckets cannot be deleted, and bucket data cannot be flushed.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### Request Body schema: application/json
+
+| deletionProtectionrequired | boolean Set to true to enable deletion protection for the cluster, false to disable it. When enabled, the cluster, its app service, and its buckets cannot be deleted, and bucket data cannot be flushed. |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**204** 
+
+Successfully updated deletion protection setting.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/deletionProtection
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/deletionProtection
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "deletionProtection": true
+}`
+
+### Response samples 
+
+* 400
 * 403
 * 404
 * 422

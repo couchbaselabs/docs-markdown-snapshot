@@ -1,7 +1,7 @@
 ---
 title: Capella Analytics Release Notes
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-03-27T05:16:21.194Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:analytics:release-notes:release-notes.adoc[]
 ---
 
@@ -9,6 +9,23 @@ link: xref:analytics:release-notes:release-notes.adoc[]
 [View original HTML](/analytics/release-notes/release-notes.html)
 
 # Capella Analytics Release Notes
+
+## [](#may-2026-changelog)May 2026 Changelog
+
+* Capella iQ Expands with AWS Bedrock Support  
+Capella iQ now leverages multiple AI model providers to power its AI-assisted capabilities, delivering flexibility, improved reliability, and greater scalability. Support for AWS Bedrock-hosted models enables a more robust and performant experience across query generation and insights.  
+This enhancement is fully managed and requires no changes to your existing workflows.  
+For more information about model usage and configuration, see [Work Faster with Capella IQ](../../cloud/get-started/capella-iq/work-with-capellaiq.md#model-provider). For more information about Capella iQ, see [Get Assistance from Capella iQ](../query/iq.md).
+
+### [](#fixed-issues-improvements)Fixed Issues & Improvements
+
+| Category                                | Topic                                                                                                                                                                                                                                                                     | Description                                                                                                                                                            | Issue                                                         |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| Storage & Connectivity                  | Stale DNS entries on reconnect                                                                                                                                                                                                                                            | The cluster retry logic is updated to re-resolve DNS addresses on every attempt. This prevents extended retry loops on stale IPs, ensuring faster connection recovery. | [MB-70678](https://jira.issues.couchbase.com/browse/MB-70678) |
+| Blob storage heartbeat timeout extended | Enhanced system stability by extending the blob storage heartbeat timeout, reducing the likelihood of unnecessary service halts.                                                                                                                                          | [MB-71270](https://jira.issues.couchbase.com/browse/MB-71270)                                                                                                          |                                                               |
+| Blob verification timeouts              | CloudGuardian blob verification timeouts during high load caused node halts, leaving the cluster in an unusable state. Timeout handling has been improved to prevent this under sustained load.                                                                           | [MB-71392](https://jira.issues.couchbase.com/browse/MB-71392)                                                                                                          |                                                               |
+| Query Engine & Indexes                  | Per-micro operator profiling for subplans                                                                                                                                                                                                                                 | Query execution profiles now include per-micro operator timing for nested subplans, providing more granular performance diagnostics.                                   | [MB-67666](https://jira.issues.couchbase.com/browse/MB-67666) |
+| Improved OR predicate index utilization | Queries using OR predicates can now leverage secondary indexes more effectively, improving performance of such queries. This improvement is enabled automatically on newly provisioned clusters. Upgraded clusters must enable it manually via the service configuration. | [MB-70726](https://jira.issues.couchbase.com/browse/MB-70726)                                                                                                          |                                                               |
 
 ## [](#march-2026-changelog)March 2026 Changelog
 

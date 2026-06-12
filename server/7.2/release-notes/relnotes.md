@@ -1,7 +1,7 @@
 ---
 title: Release Notes for Couchbase Server 7.2
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/release-notes/pages/relnotes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.2@server:release-notes:relnotes.adoc[]
 ---
 
@@ -10,23 +10,16 @@ link: xref:7.2@server:release-notes:relnotes.adoc[]
 
 # Release Notes for Couchbase Server 7.2
 
-## [](#release-729)Release 7.2.9 (January 2026)
-
-Couchbase Server 7.2.9 was released in January 2026\. This maintenance release contains fixes to issues.
-
-## [](#fixed-issues)Fixed Issues
-
-### [](#index-service)Index Service
-
-| Issue                                                          | Description                                                                                                                                                                                                                                                                                        | Resolution     |
-| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| [MB-66193](https://jira.issues.couchbase.com/browse/MB-66193/) | The latest release includes a backported feature allowing TLS certificates to refresh without closing the listener, enhancing server uptime and reliability. The update ensures that servers remain operational during certificate refreshes, providing a more seamless and uninterrupted service. | Issue resolved |
+> [!WARNING]
+> Data consistency issue for buckets using Magma storage engine
+> 
+> If you're using Magma buckets and upgrading from any release prior to 7.2.7, then follow the upgrade instructions as described in [MB-67762](https://jira.issues.couchbase.com/browse/MB-67762)
 
 ## [](#release-728)Release 7.2.8 (August 2025)
 
 Couchbase Server 7.2.8 was released in August 2025\. This maintenance release contains fixes to issues.
 
-## [](#fixed-issues-2)Fixed Issues
+## [](#fixed-issues)Fixed Issues
 
 ### [](#data-service)Data Service
 
@@ -46,7 +39,7 @@ Couchbase Server 7.2.8 was released in August 2025\. This maintenance release co
 | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
 | [MB-67849](https://jira.issues.couchbase.com/browse/MB-67849/) | The recent builds of Couchbase Server versions 7.2.7 through 8.1.0 and Enterprise Analytics 2.1.0 include updates from the go\_json library to address int64 overflow issues reported under MB-67849\. The updates involve implementing proper checks for int64 overflow in order to properly represent large numbers (greater than \\$2^63\\$ or less than \\$-2^63\\$). | Issue resolved |
 
-### [](#index-service-2)Index Service
+### [](#index-service)Index Service
 
 | Issue                                                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Resolution     |
 | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
@@ -62,7 +55,7 @@ Couchbase Server 7.2.8 was released in August 2025\. This maintenance release co
 
 ## [](#release-727)Release 7.2.7 (March 2025)
 
-### [](#fixed-issues-3)Fixed Issues
+### [](#fixed-issues-2)Fixed Issues
 
 Couchbase Server 7.2.7 was released in March 2025\. This maintenance release contains the following fixes.
 
@@ -91,7 +84,7 @@ Couchbase Server 7.2.6 was released in September 2024\. This maintenance release
 
 For details on new features and enhancements, see the [What's New page](../introduction/whats-new.md).
 
-### [](#fixed-issues-4)Fixed Issues
+### [](#fixed-issues-3)Fixed Issues
 
 #### [](#cluster-manager)Cluster Manager
 
@@ -206,7 +199,7 @@ Couchbase Server 7.2.5 was released in April 2024\. This maintenance release con
 | -------------------------------------------------------- | -------------------------------------------------------- | --------------- |
 | [MB-60294](https://issues.couchbase.com/browse/MB-60294) | COUNT(\*) on system:indexes can return incorrect results | Issue resolved. |
 
-#### [](#index-service-3)Index Service
+#### [](#index-service-2)Index Service
 
 | Issue                                                    | Description                                                                                                                                                                                                                                                     | Resolution                                                                                                                                          |
 | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -256,7 +249,7 @@ This maintenance release contains new features and fixes.
 
 ### [](#fixed-issues-724)Fixed Issues
 
-### [](#index-service-4)Index Service
+### [](#index-service-3)Index Service
 
 | Issue                                                     | Description                                                                                                                             | Resolution                                                                 |
 | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
@@ -303,7 +296,7 @@ This release contains:
 
 * Fixes to issues
 
-### [](#fixed-issues-5)Fixed Issues
+### [](#fixed-issues-4)Fixed Issues
 
 ### [](#xdcr-7)XDCR
 
@@ -323,7 +316,7 @@ This release contains:
 
 * Fixes to issues
 
-### [](#fixed-issues-6)Fixed issues
+### [](#fixed-issues-5)Fixed issues
 
 #### [](#analytics-service-2)Analytics Service
 
@@ -401,7 +394,7 @@ This release adds support for the following new platforms:
 * Alma Linux 9
 * Rocky Linux 9
 
-### [](#fixed-issues-7)Fixed Issues
+### [](#fixed-issues-6)Fixed Issues
 
 This release contains the following fixes.
 
@@ -428,7 +421,7 @@ This release contains the following fixes.
 | [MB-57400](https://issues.couchbase.com/browse/MB-57400) | The computation count for the items remaining DCP/Checkpoint stats exposed to Prometheus was the O(N) function. Where N is the number of items in a checkpoint. This caused various performance issues including Prometheus stats timeouts when checkpoints accumulated a high number of items.                  | The computation count has been optimized and now is O(1).                                                                  |
 | [MB-57609](https://issues.couchbase.com/browse/MB-57609) | A spurious auto-failover could happen when Magma compaction visited a TTL'd document that was already deleted.                                                                                                                                                                                                   | Document not found does not now increment the number of read failures.                                                     |
 
-#### [](#index-service-5)Index Service
+#### [](#index-service-4)Index Service
 
 | Issue                                                    | Description                                                                                                                                                                                                                           | Resolution                                                                                                                                                                                    |
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -607,7 +600,7 @@ This release contains the following fixes.
 | [MB-55864](https://issues.couchbase.com/browse/MB-55864) | Memory exceeded quota error with ARRAY\_AGG.                                                                           |
 | [MB-57215](https://issues.couchbase.com/browse/MB-57215) | OBJECT\_ functions may return incorrect results.                                                                       |
 
-#### [](#index-service-6)Index Service
+#### [](#index-service-5)Index Service
 
 | Issue                                                    | Description                                                                                                              |
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |

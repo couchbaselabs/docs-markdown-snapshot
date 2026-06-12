@@ -4,7 +4,7 @@ description: The Search Advanced REST APIs are provided by the Search Service.
   These APIs enable you to manage and monitor advanced settings of your Search
   indexes.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/fts-rest-advanced/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.6@server:fts-rest-advanced:index.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:7.6@server:fts-rest-advanced:index.adoc[]
 
 ## [](#overview)Overview
 
-The Advanced Search REST APIs are provided by the Search service. These APIs enable you to manage and query Search index partitions and to specify advanced settings.
+The Advanced Search REST APIs are provided by the Search Service. These APIs enable you to manage and query Search index partitions and to specify advanced settings.
 
 ### Version information
 
@@ -164,6 +164,17 @@ Path Parameters
 | ------------ | ---------------------- |
 | http (basic) | [Read](#security-Read) |
 
+##### [](#getPartitionCount-ex-response)Example HTTP Response
+
+Response 200
+
+```json
+{
+  "count" : 0,
+  "status" : "ok"
+}
+```
+
 #### [](#queryPartition)Query Index Partition
 
 POST /api/pindex/{pindexName}/query
@@ -206,6 +217,63 @@ Body Parameter
 | ------------ | ------------------------ |
 | http (basic) | [Write](#security-Write) |
 
+##### [](#queryPartition-ex-request)Example Request Body
+
+```json
+{
+  "fields" : [ "*" ],
+  "query" : {
+    "query" : "+view +food +beach"
+  },
+  "size" : 10,
+  "from" : 0
+}
+```
+
+##### [](#queryPartition-ex-response)Example HTTP Response
+
+Response 200
+
+```json
+{
+  "status" : {
+    "total" : 1,
+    "failed" : 0,
+    "successful" : 1
+  },
+  "hits" : [ {
+    "index" : "travel-sample.inventory.landmark-content-index_49563a96ea6d3686_4c1c5584",
+    "id" : "landmark_4428",
+    "score" : 2.425509689250102,
+    "sort" : [ "_score" ],
+    "fields" : {
+      "content" : "serves fresh food at very reasonable prices - view of stoney beach with herons"
+    }
+  }, {
+    "index" : "travel-sample.inventory.landmark-content-index_49563a96ea6d3686_4c1c5584",
+    "id" : "landmark_26385",
+    "score" : 1.6270812956011347,
+    "sort" : [ "_score" ],
+    "fields" : {
+      "content" : "Burgers, seafood, and other simple but tasty meals right at the harbor. You can take your food around the corner to sit on the beach or the sea wall and enjoy the ocean view while you eat."
+    }
+  }, {
+    "index" : "travel-sample.inventory.landmark-content-index_49563a96ea6d3686_4c1c5584",
+    "id" : "landmark_38035",
+    "score" : 1.1962539437368078,
+    "sort" : [ "_score" ],
+    "fields" : {
+      "content" : "Famous for &quot;the Blue Lady&quot;, a ghost rumored to haunt the premises, the Moss Beach distillery offers a full menu, Sunday brunch, drinks, and a tremendous ocean view with comfortable fire pits. Happy hour Mon-Fri from 5PM to 7PM offers half-priced drinks and a discounted food menu."
+    }
+  } ],
+  "total_hits" : 3,
+  "cost" : 150479,
+  "max_score" : 2.425509689250102,
+  "took" : 1441203,
+  "facets" : null
+}
+```
+
 ### [](#tag-Quota)Quota
 
 Operations for managing Search memory quota.
@@ -230,7 +298,7 @@ Form Parameters
 
 | Name                       | Description                                              | Schema  |
 | -------------------------- | -------------------------------------------------------- | ------- |
-| **ftsMemoryQuota**optional | The memory quota for the Search service. **Example:** 56 | Integer |
+| **ftsMemoryQuota**optional | The memory quota for the Search Service. **Example:** 56 | Integer |
 
 ##### [](#setFtsMemoryQuota-responses)Responses
 
@@ -285,19 +353,19 @@ This section describes the properties consumed and returned by this REST API.
 
  Object
 
-| Property                     |                                                                                                                                                         | Schema |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| **indexName**optional        | The name of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | String |
-| **indexParams**optional      | The Search index's type identifier, type mappings, and analyzers. For more information, see [Params Object](../search/search-index-params.html#params). | Object |
-| **indexType**optional        | The type of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | String |
-| **indexUUID**optional        | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | String |
-| **name**optional             | The name of the Search index partition.                                                                                                                 | String |
-| **sourceName**optional       | The name of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).      | String |
-| **sourceParams**optional     | Advanced settings for Search index behavior. For more information, see [Initial Settings](../search/search-index-params.html#initial).                  | Object |
-| **sourcePartitions**optional |                                                                                                                                                         | String |
-| **sourceType**optional       | The type of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).      | String |
-| **sourceUUID**optional       | The UUID of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).      | String |
-| **uuid**optional             | The UUID of the Search index partition.                                                                                                                 | String |
+| Property                     |                                                                                                                                                                        | Schema      |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **indexName**optional        | The name of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                                | String      |
+| **indexParams**optional      | The Search index's type identifier, type mappings, and analyzers. For more information, see [Params Object](../search/search-index-params.html#params).                | Object      |
+| **indexType**optional        | The type of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial). **Values:** "fulltext-index", "fulltext-alias" | String      |
+| **indexUUID**optional        | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                                | UUID (UUID) |
+| **name**optional             | The name of the Search index partition.                                                                                                                                | String      |
+| **sourceName**optional       | The name of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | String      |
+| **sourceParams**optional     | Advanced settings for Search index behavior. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | Object      |
+| **sourcePartitions**optional |                                                                                                                                                                        | String      |
+| **sourceType**optional       | The type of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | String      |
+| **sourceUUID**optional       | The UUID of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | UUID (UUID) |
+| **uuid**optional             | The UUID of the Search index partition.                                                                                                                                | String      |
 
 ### [](#QueryRequest)Query Request
 

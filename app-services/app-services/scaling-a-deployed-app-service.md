@@ -3,7 +3,7 @@ title: Scale a Deployed App Service
 description: Having deployed an App Service, you may wish to scale it up or down
   by adjusting its configuration.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-services/scaling-a-deployed-app-service.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:app-services::app-services/scaling-a-deployed-app-service.adoc[]
 ---
 
@@ -29,4 +29,4 @@ From here you can adjust the number of nodes and the number of CPUs/amount of me
 > 
 > If you deployed a Single Node App Service to use with a [Single Node cluster](../../cloud/clusters/databases.md#option), you cannot add additional nodes. You can choose to switch between the 2 available Compute configuration options for Single Node App Services.
 
-For more details on deployment configurations, see [./configuring-app-endpoints.adoc](#./configuring-app-endpoints.adoc)
+For more details on deployment configurations, see [Manage App Endpoints Lifecycle](../app-endpoints/configuring-app-endpoints.md)

@@ -3,7 +3,7 @@ title: Setting Up Couchbase Go SDK
 description: Discover how to get up and running developing applications with the
   Couchbase Go SDK.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/hello-world/pages/platform-help.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:go-sdk:hello-world:platform-help.adoc[]
 ---
 
@@ -27,5 +27,5 @@ A simple Go orientation intro for _non-_Go folk who are evaluating the Couchbase
 > `go get` only works if you have initialised a [Go module](https://go.dev/blog/using-go-modules), and have a `go.mod` file in your working directory.  
 Install the latest version of the Couchbase 2.12 Go SDK  
 ```console  
-$ go get github.com/couchbase/gocb/v2@v2.12.1  
+$ go get github.com/couchbase/gocb/v2@v2.12.3  
 ```

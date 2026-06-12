@@ -1,7 +1,7 @@
 ---
 title: Prometheus Metrics Reference
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/reference-prometheus-metrics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:2.8@operator::reference-prometheus-metrics.adoc[]
 ---
 
@@ -16,6 +16,7 @@ link: xref:2.8@operator::reference-prometheus-metrics.adoc[]
 
 | Metric                                                                                                                                     | Type      | Unit         | Labels                        | Optional Labels             | Stability | Added |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ------------ | ----------------------------- | --------------------------- | --------- | ----- |
+| \`\`                                                                                                                                       |           |              |                               |                             |           |       |
 | backup\_jobs\_created\_total Total number of backup jobs that have been created by the operator                                            | counter   |              | namespace,backup\_type        | cluster\_uuid,cluster\_name | committed | 2.8.0 |
 | cpu\_under\_management Total cpu requests for operator managed pods in k8s cpu units                                                       | gauge     |              | namespace,name                | cluster\_uuid,cluster\_name | committed | 2.8.0 |
 | in\_place\_upgrade\_failures The number of times in place upgrades have failed                                                             | counter   |              | name                          | cluster\_uuid,cluster\_name | committed | 2.7.0 |

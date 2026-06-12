@@ -4,7 +4,7 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-04-29T05:35:23.064Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -130,20 +130,20 @@ This release of the SDK is written to version 3.9 of the SDK API specification (
 Whilst these two numbers match for the .NET SDK, this is not the case for the others, as version numbers for individual SDKs are bumped up in line with [Semantic Versioning](https://semver.org/) — check the [release notes](#sdk-release-notes) of each SDK for individual details.
 
 __SDK API Versions__
-|                                                                    | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      | API 3.9 |
-| ------------------------------------------------------------------ | --------- | ------- | ------- | ------- | ------------ | ------- |
-| [.NET](../hello-world/overview.md)                                 | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          | 3.9     |
-| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        | N/A ②   |
-| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-        | \-      | 1.0     | 1.1     | 1.2          | 1.3     |
-| [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         | 2.12    |
-| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   | 3.11    |
-| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ | 3.11    |
-| [Node.js](../../../nodejs-sdk/current/hello-world/overview.md)     | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          | 4.7     |
-| [PHP](../../../php-sdk/current/hello-world/overview.md)            | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          | 4.5     |
-| [Python](../../../python-sdk/current/hello-world/overview.md)      | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          | 4.6     |
-| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          | 3.8     |
-| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-        | \-      | \-      | \-      | \-           | 1.0     |
-| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ | 3.11    |
+|                                                                    | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      | API 3.9     |
+| ------------------------------------------------------------------ | --------- | ------- | ------- | ------- | ------------ | ----------- |
+| [.NET](../hello-world/overview.md)                                 | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          | 3.9         |
+| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        | N/A ②       |
+| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-        | \-      | 1.0     | 1.1     | 1.2          | 1.3         |
+| [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         | 2.12        |
+| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   | 3.11 & 3.12 |
+| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ | 3.11 & 3.12 |
+| [Node.js](../../../nodejs-sdk/current/hello-world/overview.md)     | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          | 4.7         |
+| [PHP](../../../php-sdk/current/hello-world/overview.md)            | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          | 4.5         |
+| [Python](../../../python-sdk/current/hello-world/overview.md)      | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          | 4.6         |
+| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          | 3.8         |
+| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-        | \-      | \-      | \-      | \-           | 1.0         |
+| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ | 3.11 & 3.12 |
 
 | **1** | Excludes DNS SRV refresh support in Serverless Environments.                                                                                                                                              |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -4,7 +4,7 @@ description: Monitoring and profiling SQL++ queries, Query Service nodes, and
   corresponding system resources is important for smoother operational
   performance and efficiency of the system.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-manage/monitoring-n1ql-query.adoc
-pubDate: 2026-04-28T05:36:31.051Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.6@server:n1ql:n1ql-manage/monitoring-n1ql-query.adoc[]
 ---
 
@@ -1097,7 +1097,7 @@ If you're using the cbq shell or the Query REST API, the following statistics ar
 }
 ```
 
-For field names and meanings, see [Profile](../../n1ql-rest-query/index.md#Profile).
+For field names and meanings, see [Profile](../../n1ql-rest-query/index.md#ResponseProfile).
 
 ### [](#plan)Profiling Details in System Catalogs
 
@@ -1236,7 +1236,7 @@ Getting the plan for a statement that you ran when the profile was set to `timin
 ]
 ```
 
-For field names and meanings, see [Execution Timings](../../n1ql-rest-query/index.md#Execution%5FTimings).
+For field names and meanings, see [Execution Timings](../../n1ql-rest-query/index.md#ResponseProfileTiming).
 
 ## [](#query-profiling-summary)Query Profiling Summary
 

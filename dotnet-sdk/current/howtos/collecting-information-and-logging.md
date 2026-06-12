@@ -6,7 +6,7 @@ description: Couchbase .NET SDK3 relies on the Microsoft.Extensions.Logging API
   a wide variety of compatible 3rd party logging implementations such as
   Serilog, NLog, and others.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
@@ -50,7 +50,7 @@ var loggerFactory = serviceCollection.BuildServiceProvider().GetService<ILoggerF
 loggerFactory.AddFile("Logs/myapp-{Date}.txt", LogLevel.Debug);
 
 var clusterOptions = new ClusterOptions().
-    WithCredentials("Administrator", "password").
+    WithPasswordAuthentication("Administrator", "password").
     WithLogging(loggerFactory);
 
 var cluster = Cluster.ConnectAsync("couchbase://10.112.211.101", clusterOptions).

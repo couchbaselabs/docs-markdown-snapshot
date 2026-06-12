@@ -2,7 +2,7 @@
 title: Choosing an API
 description: Async &amp; batching
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:c-sdk:howtos:concurrent-async-apis.adoc[]
 
 > Async & batching 
 
-Libcouchbase is an asynchronous client that may also be used in blocking mode. The library contains I/O plugins for common libraries such as _libevent_, _libev_, and _libuv_, and a libevent-based example can be found [here](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/example%5F2libeventdirect%5F2main%5F8c-example.html).
+Libcouchbase is an asynchronous client that may also be used in blocking mode. The library contains I/O plugins for common libraries such as _libevent_, _libev_, and _libuv_, and a libevent-based example can be found [here](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/example%5F2libeventdirect%5F2main%5F8c-example.html).
 
 Batching examples are given for [bulk store](https://github.com/couchbase/docs-sdk-c/blob/release/3.3/modules/devguide/examples/c/bulk-store.cc) and for [bulk get](https://github.com/couchbase/docs-sdk-c/blob/release/3.3/modules/devguide/examples/c/bulk-get.cc).
 

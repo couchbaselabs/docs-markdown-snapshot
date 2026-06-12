@@ -2,7 +2,7 @@
 title: Full Installation
 description: Installation instructions for the Couchbase Java Client.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-04-17T05:26:26.225Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:java-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -25,7 +25,7 @@ The Java SDK is tested against LTS versions of Oracle JDK and OpenJDK — see ou
 
 At least Java 8 is required for current releases; see the [Compatibility](compatibility.md#jdk-compat) section for details. We recommend running the latest Java LTS version (i.e. at the time of writing JDK 25) with the highest patch version available.
 
-Couchbase publishes all stable artifacts to [Maven Central](https://central.sonatype.com/namespace/com.couchbase.client). The latest version of the 3.11 SDK is [3.11.2](https://central.sonatype.com/artifact/com.couchbase.client/java-client/3.11.2/jar).
+Couchbase publishes all stable artifacts to [Maven Central](https://central.sonatype.com/namespace/com.couchbase.client). The latest version of the 3.11 SDK is [3.11.3](https://central.sonatype.com/artifact/com.couchbase.client/java-client/3.11.3/jar).
 
 You can use your favorite dependency management tool to install the SDK.
 
@@ -38,7 +38,7 @@ For [Maven](https://maven.apache.org), you can insert the following into the dep
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>java-client</artifactId>
-        <version>3.11.2</version>
+        <version>3.11.3</version>
     </dependency>
 ```
 
@@ -47,7 +47,7 @@ Refer to the [Maven Documentation](https://maven.apache.org/guides/introduction/
 For [Gradle](https://gradle.org/), you can use:
 
 ```groovy
-implementation 'com.couchbase.client:java-client:3.11.2'
+implementation 'com.couchbase.client:java-client:3.11.3'
 ```
 
 Alternatively, we provide a zip file with all the dependencies bundled if you wish to manually include the `jar` files in your classpath. Refer to the [Release Notes](sdk-release-notes.md) for further details. You can also find links to the hosted javadocs there.

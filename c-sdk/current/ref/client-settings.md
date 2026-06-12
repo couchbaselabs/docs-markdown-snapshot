@@ -2,7 +2,7 @@
 title: Client Settings
 description: Client settings
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:ref:client-settings.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:c-sdk:ref:client-settings.adoc[]
 
 > Client settings 
 
-Refer to the [API doc on lcb\_cntl()](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-cntl.html)and the [settings list](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-cntl-settings.html).
+Refer to the [API doc on lcb\_cntl()](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/group%5F%5Flcb-cntl.html)and the [settings list](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/group%5F%5Flcb-cntl-settings.html).
 
 ## [](#io-options)I/O Options
 

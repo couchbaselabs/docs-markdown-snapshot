@@ -3,7 +3,7 @@ title: Cluster Scaling
 description: Clusters can be multi-dimensionally scaled by adding or removing
   Service instances and whole Services, and by adjusting Service instance sizes.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/scale-database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:scale-database.adoc[]
 ---
 
@@ -129,11 +129,7 @@ __Table 2\. Azure Ultra Disk default IOPS values__
 
 ## [](#cluster-status)Cluster Scaling Statuses
 
-When you create, delete, or modify a cluster, you can see its status when you [open its project](../projects/manage-projects.md#accessing-projects-in-the-capella-ui).
-
-![Check the cluster statuses](_images/check-database-statuses.png) 
-
-Figure 1\. List of clusters in a project
+[View a cluster](view-database.md) after you create, delete, or modify it to see its current status.
 
 A cluster status can be:
 
@@ -143,7 +139,17 @@ A cluster status can be:
 * `Unhealthy`
 * `Scaling`
 * `Scaling Failed`
+* `Rebalancing`
 * `Rebalance Failed`
+* `Upgrading`
+* `Restoring`
+* `Peering`
+* `Peering Failed`
+* `Turning Off`
+* `Turning Off Failed`
+* `Turning On`
+* `Turning On Failed`
+* `Turned Off`
 * `Destroying`
 * `Destroy Failed`
 
@@ -161,7 +167,7 @@ You can find a list of all your cluster events by opening the Activity Log:
 
 ![database activity log](_images/database-activity-log.png) 
 
-Figure 2\. Cluster Activity Log
+Figure 1\. Cluster Activity Log
 
 When scaling your cluster, you'll see these events:
 

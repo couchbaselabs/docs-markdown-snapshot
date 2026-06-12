@@ -2,7 +2,7 @@
 title: Handling Errors with the C SDK
 description: How to handle errors when programming with the C SDK.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:howtos:error-handling.adoc[]
 ---
 
@@ -43,7 +43,7 @@ Transient errors — such as those caused by resource starvation — are best ad
 * Retry with an exponentially increasing delay.
 * Retry with a random delay.
 
-In addition to application specific retry logic, a **global retry strategy** can also be configured. See the [lcb\_retry\_strategy()](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-error-codes.html#gae5e21e2fe95c1e8ef890719bbb582e89) function in the API reference.
+In addition to application specific retry logic, a **global retry strategy** can also be configured. See the [lcb\_retry\_strategy()](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/group%5F%5Flcb-error-codes.html#gae5e21e2fe95c1e8ef890719bbb582e89) function in the API reference.
 
 ## [](#error-handling-constructs)Error Handling Constructs
 
@@ -73,7 +73,7 @@ Error handling can be an expansive topic. We have provided some general guidance
 
 ### [](#related-topics)Related Topics
 
-Consider the [concepts of durability](../concept-docs/durability-replication-failure-considerations.md) that may have a role in your overall error handling strategy as well as any [client settings](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-cntl-settings.html) that can control timeouts and retry logic.
+Consider the [concepts of durability](../concept-docs/durability-replication-failure-considerations.md) that may have a role in your overall error handling strategy as well as any [client settings](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/group%5F%5Flcb-cntl-settings.html) that can control timeouts and retry logic.
 
 Diagnostic methods are available to check on the [health of the cluster](health-check.md), and the [health of the network](tracing-from-the-sdk.md).
 
@@ -81,6 +81,6 @@ Logging methods are dependent upon the platform and SDK used. We offer [recommen
 
 ### [](#error-code-api-reference)Error Code API Reference
 
-The [Error Codes](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-error-codes.html) section of the API reference documentation is a good starting point to read about the various error codes and related functions.
+The [Error Codes](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/group%5F%5Flcb-error-codes.html) section of the API reference documentation is a good starting point to read about the various error codes and related functions.
 
-However, the [libcouchbase error header file](https://github.com/couchbase/libcouchbase/blob/3.3.18/include/libcouchbase/error.h) is the definitive source which declares all error codes that can be returned and all related utility functions that can be used to obtain additional context.
+However, the [libcouchbase error header file](https://github.com/couchbase/libcouchbase/blob/3.3.19/include/libcouchbase/error.h) is the definitive source which declares all error codes that can be returned and all related utility functions that can be used to obtain additional context.

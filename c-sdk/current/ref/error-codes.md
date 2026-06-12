@@ -3,7 +3,7 @@ title: Errors &amp; Exceptions Reference
 description: The standardized error codes returned by the Couchbase C SDK, from
   cloud connection to sub-document.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/ref/pages/error-codes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:ref:error-codes.adoc[]
 ---
 
@@ -484,4 +484,4 @@ Couldn't bootstrap from cluster. Received code 0x419 (LCB_ERR_UNKNOWN_HOST (1049
 ## [](#further-reading)Further Reading
 
 * [Discussion document](../concept-docs/errors.md) on handling exceptions.
-* Further reference material in the [API Guide](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/index.html).
+* Further reference material in the [API Guide](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/index.html).

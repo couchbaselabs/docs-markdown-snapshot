@@ -2,7 +2,7 @@
 title: Error Handling
 description: Handling transaction errors with Couchbase.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/transactions-error-handling.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:concept-docs:transactions-error-handling.adoc[]
 ---
 
@@ -47,12 +47,9 @@ Generally, debugging exactly why a given transaction failed requires review of t
 var transactionsConfig = TransactionsConfigBuilder.Create()
     .ExpirationTime(TimeSpan.FromSeconds(120))
     .Build();
-var options = new ClusterOptions()
-{
-    UserName = "Administrator",
-    Password = "Administrator",
-    TransactionsConfig = transactionsConfig,
-};
+var options = new ClusterOptions();
+options.TransactionsConfig = transactionsConfig;
+options.WithPasswordAuthentication("Administrator", "password");
 var cluster = await Cluster.ConnectAsync("couchbase://your-ip", options).ConfigureAwait(false);
 // the transactions associated with this cluster will now expire in 120 seconds.
 var transactions = cluster.Transactions;

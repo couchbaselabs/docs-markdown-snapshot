@@ -5,7 +5,7 @@ description: Each Capella cluster runs a specific version of Couchbase Server.
   include enhancements or changes to performance and compatibility. These best
   practices help ensure a secure and smooth upgrade process.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/upgrade-best-practices.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:upgrade-best-practices.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:cloud:clusters:upgrade-best-practices.adoc[]
 
 Use this page as a reference for methods and more information about how to apply best practices to your cluster upgrades.
 
-Before upgrading your operational cluster with a patch, minor, or major release version, back up your entire production cluster and review SDK compatibility.
+Before upgrading your operational cluster with a patch, minor, or major release version, [back up your entire production cluster](#backup-cluster) and [review SDK compatibility](#sdk-compatibility).
 
 For minor and major cluster upgrades, [test your application](#test-application) in a controlled staging environment. A [staging environment](#create-staging-cluster) lets you verify performance and compatibility while not disrupting your production workflow.
 
@@ -55,11 +55,11 @@ Use a staging cluster to mirror your production setup as closely as possible. St
 * Non-production clusters
 * Lower clusters
 
-[Upgrade](upgrade-database.md#self-service-maintenance-jobs) your staging cluster to the minor or major release version available and test your application within this staging environment. If you do not have a staging cluster or need to update your staging environment, see [Create a Staging Cluster](#create-staging-cluster).
+[Upgrade](manage-maintenance.md#schedule-maintenance-jobs) your staging cluster to the minor or major release version available and test your application within this staging environment. If you do not have a staging cluster or need to update your staging environment, see [Create a Staging Cluster](#create-staging-cluster).
 
 Run the necessary security, performance, compatibility, and operational tests with your application. Testing the upgrade allows you to verify if your application continues to function as expected in the new environment and does not introduce any regressions or unexpected behaviors.
 
-If the tests are successful and you can confirm your application performs as expected with the upgrade, you can [upgrade your production cluster](upgrade-database.md#self-service-maintenance-jobs).
+If the tests are successful and you can confirm your application performs as expected with the upgrade, you can [upgrade your production cluster](manage-maintenance.md#schedule-maintenance-jobs).
 
 ### [](#create-staging-cluster)Create a Staging Cluster
 
@@ -95,3 +95,4 @@ When a minor or major release version becomes available, use this staging cluste
 ## [](#see-also)See Also
 
 * [Upgrading a Cluster](upgrade-database.md)
+* [Manage Cluster Maintenance Jobs](manage-maintenance.md)

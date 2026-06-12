@@ -1,7 +1,7 @@
 ---
 title: Eventing REST API
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/eventing-rest-api/pages/index.adoc
-pubDate: 2026-03-28T05:05:12.980Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:server:eventing-rest-api:index.adoc[]
 ---
 
@@ -1283,7 +1283,7 @@ POST /api/v1/functions/{function}/appcode
 
 ##### [](#adv%5Ftext%5Fupdate-description)Description
 
-Import only the JavaScript code for the specified function. Unlike [Create or Import Function](#adv%5Ffunction%5Fimport), the JavaScript is not escaped and could come from other environments. It is highly recommended that you use the flag `--data-binary` or `--upload-file` when importing your JavaScript appcode fragments to avoid potential encoding issues due to string escaping.
+Import only the JavaScript code for the specified function. Unlike [Create or Import Function](#adv%5Ffunction%5Fimport), the JavaScript is not escaped and could come from other environments. It's highly recommended that you use the flag `--data-binary` or `--upload-file` when importing your JavaScript appcode fragments to avoid potential encoding issues due to string escaping.
 
 Consumes
 

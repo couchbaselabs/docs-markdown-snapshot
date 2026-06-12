@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on Java Desktop
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/java/pages/releasenotes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:3.2@couchbase-lite:java:releasenotes.adoc[]
 ---
 
@@ -11,18 +11,22 @@ link: xref:3.2@couchbase-lite:java:releasenotes.adoc[]
 
 # Couchbase Lite Release Notes
 
-## [](#maint-3-2-4)3.2.4 — June 2025
+## [](#maint-3-2-6)3.2.6 — May 2026
 
-Version 3.2.4 for Java delivers the following features and enhancements:
+Version 3.2.6 for Java delivers the following features and enhancements:
 
 ### [](#enhancements)Enhancements
 
-* [CBL-6978 — Stopping a Replicator should stop all Conflict Resolutions](https://jira.issues.couchbase.com/browse/CBL-6978)
+* [CBL-7550 — Add CouchbaseLite.shutdown() to release shared executor services](https://jira.issues.couchbase.com/browse/CBL-7550)
+* [CBL-8071 — Improve replicator WebSocket close completion when the server fails to acknowledge close](https://jira.issues.couchbase.com/browse/CBL-8071)
+* [CBL-8102 — Upgrade SQLite to 3.53.0](https://jira.issues.couchbase.com/browse/CBL-8102)
+* [CBL-8181 — Upgrade mbedTLS to 3.6.6](https://jira.issues.couchbase.com/browse/CBL-8181)
 
 ### [](#issues-and-resolutions)Issues and Resolutions
 
-* [CBL-7006 — Blobs Not Downloaded on Update with Delta Sync in Peer-to-Peer Replication](https://jira.issues.couchbase.com/browse/CBL-7006)
-* [CBL-7015 — Invalid or Inconsistent Certificate Locality Key Name](https://jira.issues.couchbase.com/browse/CBL-7015)
+* [CBL-7065 — Replicator authentication failure with non-ASCII passwords](https://jira.issues.couchbase.com/browse/CBL-7065)
+* [CBL-7386 — Potential pull replicator crash when pulling a large number of documents](https://jira.issues.couchbase.com/browse/CBL-7386)
+* [CBL-8291 — Push and pull filters letting documents through on unexpected errors](https://jira.issues.couchbase.com/browse/CBL-8291)
 
 ### [](#known-issues)Known Issues
 
@@ -35,19 +39,18 @@ None for this release
 > [!NOTE]
 > For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
 
-## [](#maint-3-2-3)3.2.3 — April 2025
+## [](#maint-3-2-4)3.2.4 — June 2025
 
-Version 3.2.3 for Java delivers the following features and enhancements:
+Version 3.2.4 for Java delivers the following features and enhancements:
 
 ### [](#enhancements-2)Enhancements
 
-* [CBL-6884 — Support 16 KB page size](https://jira.issues.couchbase.com/browse/CBL-6884)
+* [CBL-6978 — Stopping a Replicator should stop all Conflict Resolutions](https://jira.issues.couchbase.com/browse/CBL-6978)
 
 ### [](#issues-and-resolutions-2)Issues and Resolutions
 
-* [CBL-6886 — Replicator should stop on a SQLite disk-full error](https://jira.issues.couchbase.com/browse/CBL-6886)
-* [CBL-6883 — Error when creating a partial value index with compound expressions](https://jira.issues.couchbase.com/browse/CBL-6883)
-* [CBL-6820 — ListenerCertificateAuthenticator callback not working with certificate chain](https://jira.issues.couchbase.com/browse/CBL-6820)
+* [CBL-7006 — Blobs Not Downloaded on Update with Delta Sync in Peer-to-Peer Replication](https://jira.issues.couchbase.com/browse/CBL-7006)
+* [CBL-7015 — Invalid or Inconsistent Certificate Locality Key Name](https://jira.issues.couchbase.com/browse/CBL-7015)
 
 ### [](#known-issues-2)Known Issues
 
@@ -60,25 +63,50 @@ None for this release
 > [!NOTE]
 > For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
 
-## [](#maint-3-2-2)3.2.2 — March 2025
+## [](#maint-3-2-3)3.2.3 — April 2025
 
-Version 3.2.2 for Java delivers the following features and enhancements:
+Version 3.2.3 for Java delivers the following features and enhancements:
 
 ### [](#enhancements-3)Enhancements
 
-* [CBL-5185 - Support for Partial Indexes in Value and Full-Text Indexes](https://jira.issues.couchbase.com/browse/CBL-5185)
-* [CBL-6451 - LogSink API for Configuring Couchbase Lite Logging](https://jira.issues.couchbase.com/browse/CBL-6451)
+* [CBL-6884 — Support 16 KB page size](https://jira.issues.couchbase.com/browse/CBL-6884)
 
 ### [](#issues-and-resolutions-3)Issues and Resolutions
 
-* [CBL-6534 - No Such Table Error When Upgrading from 3.1.9 to 3.2.1](https://jira.issues.couchbase.com/browse/CBL-6534)
-* [CBL-6822 - Replicator may hang while stopping the housekeeper task during stop](https://jira.issues.couchbase.com/browse/CBL-6822)
+* [CBL-6886 — Replicator should stop on a SQLite disk-full error](https://jira.issues.couchbase.com/browse/CBL-6886)
+* [CBL-6883 — Error when creating a partial value index with compound expressions](https://jira.issues.couchbase.com/browse/CBL-6883)
+* [CBL-6820 — ListenerCertificateAuthenticator callback not working with certificate chain](https://jira.issues.couchbase.com/browse/CBL-6820)
 
 ### [](#known-issues-3)Known Issues
 
 None for this release
 
 ### [](#deprecations-3)Deprecations
+
+None for this release
+
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
+
+## [](#maint-3-2-2)3.2.2 — March 2025
+
+Version 3.2.2 for Java delivers the following features and enhancements:
+
+### [](#enhancements-4)Enhancements
+
+* [CBL-5185 - Support for Partial Indexes in Value and Full-Text Indexes](https://jira.issues.couchbase.com/browse/CBL-5185)
+* [CBL-6451 - LogSink API for Configuring Couchbase Lite Logging](https://jira.issues.couchbase.com/browse/CBL-6451)
+
+### [](#issues-and-resolutions-4)Issues and Resolutions
+
+* [CBL-6534 - No Such Table Error When Upgrading from 3.1.9 to 3.2.1](https://jira.issues.couchbase.com/browse/CBL-6534)
+* [CBL-6822 - Replicator may hang while stopping the housekeeper task during stop](https://jira.issues.couchbase.com/browse/CBL-6822)
+
+### [](#known-issues-4)Known Issues
+
+None for this release
+
+### [](#deprecations-4)Deprecations
 
 * [CBL-6679 - Deprecated: Database.log API for Configuring Couchbase Lite Logging — Use LogSink API Instead](https://jira.issues.couchbase.com/browse/CBL-6679)
 
@@ -89,24 +117,24 @@ None for this release
 
 Version 3.2.1 for Java delivers the following features and enhancements:
 
-### [](#enhancements-4)Enhancements
+### [](#enhancements-5)Enhancements
 
 * [CBL-5169 - Support for Unnest Query and Array Index](https://jira.issues.couchbase.com/browse/CBL-5169)
 * [CBL-6303 - Add ability to disable mmap usage](https://jira.issues.couchbase.com/browse/CBL-6303)
 
 * [CBL-6074 - Replace Java Finalizer with Cleaner Using Phantom Reference](https://jira.issues.couchbase.com/browse/CBL-6074)
 
-### [](#issues-and-resolutions-4)Issues and Resolutions
+### [](#issues-and-resolutions-5)Issues and Resolutions
 
 * [CBL-6131 - Fixed race creating the expiration column in a collection table](https://jira.issues.couchbase.com/browse/CBL-6131)
 * [CBL-6245 - Fixed query parser regression related to brackets](https://jira.issues.couchbase.com/browse/CBL-6245)
 * [CBL-6378 - Crash when calling onWebSocketGotTLSCertificate callback after the connection is closed](https://jira.issues.couchbase.com/browse/CBL-6378)
 
-### [](#known-issues-4)Known Issues
+### [](#known-issues-5)Known Issues
 
 None for this release
 
-### [](#deprecations-4)Deprecations
+### [](#deprecations-5)Deprecations
 
 No new deprecations for GA release
 
@@ -121,7 +149,7 @@ Version 3.2.0 for Java delivers the following features and enhancements:
 
 Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 
-### [](#enhancements-5)Enhancements
+### [](#enhancements-6)Enhancements
 
 * [CBL-5287 - Enable Prediction Function in SQL++](https://issues.couchbase.com/browse/CBL-5287)
 * [CBL-5634 - NoRev enhancement with Replacement Rev in pull replication](https://issues.couchbase.com/browse/CBL-5634)
@@ -150,7 +178,7 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 * [CBL-5361 - Control the JNI library's publication of symbols](https://issues.couchbase.com/browse/CBL-5361)
 * [CBL-5847 - Dates in Parameters can now be encoded](https://issues.couchbase.com/browse/CBL-5487)
 
-### [](#issues-and-resolutions-5)Issues and Resolutions
+### [](#issues-and-resolutions-6)Issues and Resolutions
 
 * [CBL-3846 - Fixed corrupt Revision Data error when saving documents](https://issues.couchbase.com/browse/CBL-3846)
 * [CBL-4247 - Fixed Replicator binary logs with collections cannot be decoded](https://issues.couchbase.com/browse/CBL-4247)
@@ -208,11 +236,11 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 * [CBL-5853 - Dictionary and Array should allow adding self](https://issues.couchbase.com/browse/CBL-5853)
 * [CBL-5455 - Fixed Result.toJSON is annotated @NonNull, but can return null](https://issues.couchbase.com/browse/CBL-5455)
 
-### [](#known-issues-5)Known Issues
+### [](#known-issues-6)Known Issues
 
 None for this release
 
-### [](#deprecations-5)Deprecations
+### [](#deprecations-6)Deprecations
 
 No new deprecations for GA release
 
@@ -223,7 +251,7 @@ No new deprecations for GA release
 
 Version 3.2.0 Beta 2 for Java delivers the following features and enhancements:
 
-### [](#enhancements-6)Enhancements
+### [](#enhancements-7)Enhancements
 
 * [CBL-5213 - Implement Proxy Authenticator API for Android / Java](https://issues.couchbase.com/browse/CBL-5213)
 * [CBL-5207 - Implement Collection's database property](https://issues.couchbase.com/browse/CBL-5207)
@@ -245,7 +273,7 @@ Version 3.2.0 Beta 2 for Java delivers the following features and enhancements:
 * [CBL-61 - MILLIS\_TO\_STR(date1 \[, fmt ](https://issues.couchbase.com/browse/CBL-61))\]
 * [CBL-60 - DATE\_DIFF\_STR(date1, date2, part)](https://issues.couchbase.com/browse/CBL-60)
 
-### [](#issues-and-resolutions-6)Issues and Resolutions
+### [](#issues-and-resolutions-7)Issues and Resolutions
 
 * [CBL-5280 - Fixed not releasing LocalRefs on callbacks.](https://issues.couchbase.com/browse/CBL-5280)
 * [CBL-5310 - Fix concurrent modification during iteration](https://issues.couchbase.com/browse/CBL-5310)
@@ -295,11 +323,11 @@ Version 3.2.0 Beta 2 for Java delivers the following features and enhancements:
 * [Uninitialized struct](https://issues.couchbase.com/browse/CBL-4424)
 * [CBL-3836 - Corrupt Revision Data error when saving documents](https://issues.couchbase.com/browse/CBL-3836)
 
-### [](#known-issues-6)Known Issues
+### [](#known-issues-7)Known Issues
 
 None for this release
 
-### [](#deprecations-6)Deprecations
+### [](#deprecations-7)Deprecations
 
 * [CBL-5491 - Default's MAX\_ATTEMPT\_WAIT\_TIME and USE\_PLAIN\_TEXT are deprecated](https://issues.couchbase.com/browse/CBL-5491)
 * [CBL-4316 - Replicator's getPendingDocumentIds() and isDocumentPending(String id) are deprecated](https://issues.couchbase.com/browse/CBL-4316)

@@ -2,7 +2,7 @@
 title: Storage Engines
 description: "Capella supports two different backend storage engines: Magma and Couchstore."
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/storage-engines.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:data-service/storage-engines.adoc[]
 ---
 
@@ -32,9 +32,9 @@ __Table 1\. Couchstore and Magma at a glance__
 > [!IMPORTANT]
 > XDCR between Magma and Couchstore
 > 
-> Only Couchbase Server 8.0 and later supports XDCR replication between buckets with different numbers of vBuckets.
+> Only Couchbase Server 8.0 and later supports XDCR replication between buckets with different numbers of vBuckets. Couchstore buckets use 1024 vBuckets, while Magma buckets can use either 128 or 1024 vBuckets.
 > 
-> Couchstore buckets use 1024 vBuckets, while Magma buckets can use either 128 or 1024 vBuckets. To create an XDCR replication from a bucket on a cluster using Couchbase Server 7.6 or earlier, you must use Magma with 1024 vBuckets or Couchstore.
+> To create an XDCR replication from a bucket on a cluster using Couchbase Server 7.6 or earlier, you must use Magma with 1024 vBuckets or Couchstore.
 
 ## [](#storage-engine-magma)Magma
 

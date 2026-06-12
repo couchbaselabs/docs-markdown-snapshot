@@ -2,7 +2,7 @@
 title: Connect to Couchbase Server
 description: How to connect to a Couchbase Cluster.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/connect.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:server:guides:connect.adoc[]
 ---
 
@@ -113,20 +113,7 @@ Call the `Cluster.ConnectAsync()` method with a connection URL, username and pas
 The example below connects to a single-node cluster environment with basic auth credentials.
 
 ```csharp
-var cluster = await Cluster.ConnectAsync("couchbase://your-ip", "Administrator", "password");
-var bucket =  await cluster.BucketAsync("travel-sample");
-var collection = bucket.DefaultCollection();
-
-// You can access multiple buckets using the same Cluster object.
-var anotherBucket = await cluster.BucketAsync("travel-sample");
-
-// You can access collections other than the default
-// if your version of Couchbase Server supports this feature.
-var inventory = bucket.Scope("inventory");
-var airline = inventory.Collection("airline");
-
-// For a graceful shutdown, disconnect from the cluster when the program ends.
-await cluster.DisposeAsync();
+Unresolved include directive in modules/guides/pages/connect.adoc - include::dotnet-sdk:howtos:example$ManagingConnections.csx[]
 ```
 
 Click the  View button to see this code in context.
@@ -251,7 +238,7 @@ The example below connects to a single-node cluster over a secure connection wit
 It's assumed that a valid client certificate and certificate store have been set up.
 
 ```csharp
-
+Unresolved include directive in modules/guides/pages/connect.adoc - include::dotnet-sdk:howtos:example$Auth.csx[]
 ```
 
 Click the  View button to see this code in context.

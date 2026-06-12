@@ -3,7 +3,7 @@ title: Configure Access Control and Data Validation
 description: Access Control and Data Validation is vital to the security of your
   App Endpoint.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/access-control-data-validation.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:app-services::app-endpoints/access-control-data-validation.adoc[]
 ---
 
@@ -24,7 +24,7 @@ The Access Control and Data Validation function is performed on every document w
 
 ## [](#prerequisites)Prerequisites
 
-The examples used on this page will make use of the `channel()` API call. Channels allow you to assign access rights at the document level by allocating documents to a channel. Users who have access to the channel can then access the document. For more information on `channels` see ⇒ [Add Security with Channels](../security/channels.md)
+The examples used on this page will make use of the `channel()` API call. Channels allow you to assign access rights at the document level by allocating documents to a channel. Users who have access to the channel can then access the document. For more information on `channels` see [Add Security with Channels](../security/channels.md).
 
 ## [](#procedure)Procedure
 
@@ -55,11 +55,11 @@ function (doc, oldDoc, meta) {
 
 The function arguments are:
 
-| Name              | Description                                                                                                                                                                                                                                                                                                                                                                 |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| doc               | This object references the content of the document that is being saved. It matches the JSON saved by the Couchbase Lite application and replicated to the App Service. The document's \_id property contains the document ID The document's \_rev property is the new revision ID. If the document is being deleted, it will have a \_deleted property with the value true. |
-| oldDoc (optional) | If the document has been saved before, this object references the revision being replaced; otherwise it is null. In the case of a document with conflicts, the current provisional winning revision is passed in oldDoc.                                                                                                                                                    |
-| meta (optional)   | This argument references the user-defined XATTR that you can use to hold access grant data. The referenced object can include items such as channels or roles. So, instead of embedding channel information directly within the document body, users can specify the user-defined XATTR associated with the document.                                                       |
+| Name              | Description                                                                                                                                                                                                                                                                                                                                                                  |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| doc               | This object references the content of the document that is being saved. It matches the JSON saved by the Couchbase Lite application and replicated to the App Service. The document's \_id property contains the document ID. The document's \_rev property is the new revision ID. If the document is being deleted, it will have a \_deleted property with the value true. |
+| oldDoc (optional) | If the document has been saved before, this object references the revision being replaced; otherwise it is null. In the case of a document with conflicts, the current provisional winning revision is passed in oldDoc.                                                                                                                                                     |
+| meta (optional)   | This argument references the user-defined XATTR that you can use to hold access grant data. The referenced object can include items such as channels or roles. So, instead of embedding channel information directly within the document body, users can specify the user-defined XATTR associated with the document.                                                        |
 
 > [!IMPORTANT]
 > The default function differs depending on the following situations:
@@ -158,7 +158,7 @@ If `oldDoc` is not passed to the function, then a new document is being created.
 
 If `oldDoc` is passed to the function, we know that document is being modified. In this example:
 
-* Only users in the existing doc's writers list can change a document
+* Only users in the existing doc's writers list can change a document.
 * The 'creator' property is immutable.
 
 ```javascript
@@ -178,6 +178,57 @@ In this example, we assign the document to the channels in the list:
 ```javascript
     channel(meta.xattrs.[xattrName]);
 ```
+
+## [](#test-your-access-control-and-data-validation-function)Test Your Access Control and Data Validation Function
+
+Use the Test Function panel to simulate a document write and validate your Access Control and Data Validation function without affecting production data.
+
+To open the Test Function panel, click **Run Test** on the Access Control and Data Validation function page.
+
+![Test Function panel](../_images/app-endpoint/test-function-panel.png) 
+
+Figure 3\. Test Function Panel
+
+The panel provides the following inputs:
+
+### [](#document-doc)Document (doc)
+
+Provide the document that the function will process. You can fetch an existing document from the database by ID or provide a JSON document body directly.
+
+Select **Document ID** to enter a document ID and click **Fetch**, or select **JSON** to paste a JSON document body.
+
+### [](#old-document-olddoc)Old Document (oldDoc)
+
+_Optional._
+
+Provide the previous version of the document to simulate an update. Leave this field empty to simulate a new document creation.
+
+Select **Document ID** to enter a document ID and click **Fetch**, or select **JSON** to paste a JSON document body.
+
+### [](#user-context)User Context
+
+_Optional._
+
+Specify the user context under which the function runs to test access control behavior. Leave this field empty to simulate an Admin role with full access.
+
+Select one of the following:
+
+* **Mock User** — Enter a username, comma-separated roles, and comma-separated channels to define a test user.
+* **App Service User** — Enter an existing App Service username and click **Fetch** to retrieve that user's roles and channels.
+
+### [](#extended-attributes-xattr)Extended Attributes (XATTR)
+
+_Optional._
+
+Provide XATTR properties to simulate metadata changes. Leave this field empty to use the existing XATTR values as-is.
+
+Enter the target XATTR name in the **Target XATTR Name** field. Define properties using **Simplified Builder** or **JSON**.
+
+### [](#run-the-test)Run the Test
+
+After configuring your inputs, click **Run Test**.
+
+The results panel displays the outcome of the function execution. No production data is affected.
 
 ## [](#see-also)See Also
 

@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/c/pages/releasenotes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:3.2@couchbase-lite:c:releasenotes.adoc[]
 ---
 
@@ -11,23 +11,19 @@ link: xref:3.2@couchbase-lite:c:releasenotes.adoc[]
 
 # Couchbase Lite Release Notes
 
-## [](#maint-3-2-4)3.2.4 — June 2025
+## [](#maint-3-2-6)3.2.6 — May 2026
 
-Version 3.2.4 for C delivers the following features and enhancements:
+Version 3.2.6 for C delivers the following features and enhancements:
 
 ### [](#enhancements)Enhancements
 
-* [CBL-7004 — Add API to Access the TLSIdentity Used by CBLURLEndpointListener](https://jira.issues.couchbase.com/browse/CBL-7004)
+* [CBL-8071 — Improve replicator WebSocket close completion when the server fails to acknowledge close](https://jira.issues.couchbase.com/browse/CBL-8071)
+* [CBL-8102 — Upgrade SQLite to 3.53.0](https://jira.issues.couchbase.com/browse/CBL-8102)
+* [CBL-8181 — Upgrade mbedTLS to 3.6.6](https://jira.issues.couchbase.com/browse/CBL-8181)
 
 ### [](#issues-and-resolutions)Issues and Resolutions
 
-* [CBL-7006 — Blobs Not Downloaded on Update with Delta Sync in Peer-to-Peer Replication](https://jira.issues.couchbase.com/browse/CBL-7006)
-* [CBL-7048 — Anonymous TLSIdentity Not Regenerated on Listener Restart](https://jira.issues.couchbase.com/browse/CBL-7048)
-* [CBL-7046 — Crash When CBLKeyPair\_PublicKeyDigest or PublicKeyData Fails to Retrieve External Public Key](https://jira.issues.couchbase.com/browse/CBL-7046)
-* [CBL-7044 — Add Missing mbedTLS Error Domain](https://jira.issues.couchbase.com/browse/CBL-7044)
-* [CBL-7041 — Invalid or Inconsistent Certificate Locality Key Name](https://jira.issues.couchbase.com/browse/CBL-7041)
-* [CBL-6999 — Missing Implementation of CBLReplicator\_ServerCertificate for Accessing Server TLS Certificate](https://jira.issues.couchbase.com/browse/CBL-6999)
-* [CBL-6975 — CreateIdentity with Persistent Key Crashes Inside Autorelease Pool on iOS ](https://jira.issues.couchbase.com/browse/CBL-6975)
+* [CBL-7386 — Potential pull replicator crash when pulling a large number of documents](https://jira.issues.couchbase.com/browse/CBL-7386)
 
 ### [](#known-issues)Known Issues
 
@@ -40,26 +36,55 @@ None for this release
 > [!NOTE]
 > For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
 
+## [](#maint-3-2-4)3.2.4 — June 2025
+
+Version 3.2.4 for C delivers the following features and enhancements:
+
+### [](#enhancements-2)Enhancements
+
+* [CBL-7004 — Add API to Access the TLSIdentity Used by CBLURLEndpointListener](https://jira.issues.couchbase.com/browse/CBL-7004)
+
+### [](#issues-and-resolutions-2)Issues and Resolutions
+
+* [CBL-7006 — Blobs Not Downloaded on Update with Delta Sync in Peer-to-Peer Replication](https://jira.issues.couchbase.com/browse/CBL-7006)
+* [CBL-7048 — Anonymous TLSIdentity Not Regenerated on Listener Restart](https://jira.issues.couchbase.com/browse/CBL-7048)
+* [CBL-7046 — Crash When CBLKeyPair\_PublicKeyDigest or PublicKeyData Fails to Retrieve External Public Key](https://jira.issues.couchbase.com/browse/CBL-7046)
+* [CBL-7044 — Add Missing mbedTLS Error Domain](https://jira.issues.couchbase.com/browse/CBL-7044)
+* [CBL-7041 — Invalid or Inconsistent Certificate Locality Key Name](https://jira.issues.couchbase.com/browse/CBL-7041)
+* [CBL-6999 — Missing Implementation of CBLReplicator\_ServerCertificate for Accessing Server TLS Certificate](https://jira.issues.couchbase.com/browse/CBL-6999)
+* [CBL-6975 — CreateIdentity with Persistent Key Crashes Inside Autorelease Pool on iOS ](https://jira.issues.couchbase.com/browse/CBL-6975)
+
+### [](#known-issues-2)Known Issues
+
+None for this release
+
+### [](#deprecations-2)Deprecations
+
+None for this release
+
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
+
 ## [](#maint-3-2-3)3.2.3 — April 2025
 
 Version 3.2.3 for C delivers the following features and enhancements:
 
-### [](#enhancements-2)Enhancements
+### [](#enhancements-3)Enhancements
 
 * [CBL-6953 — Support Android with 16 KB page size](https://jira.issues.couchbase.com/browse/CBL-6953)
 * [CBL-6817 — Allow the document from the same collection but different collection instance to be saved or deleted](https://jira.issues.couchbase.com/browse/CBL-6817)
 
-### [](#issues-and-resolutions-2)Issues and Resolutions
+### [](#issues-and-resolutions-3)Issues and Resolutions
 
 * [CBL-6886 — Replicator should stop on a SQLite disk-full error](https://jira.issues.couchbase.com/browse/CBL-6886)
 * [CBL-6883 — Error when creating a partial value index with compound expressions](https://jira.issues.couchbase.com/browse/CBL-6883)
 * [CBL-6820 — ListenerCertificateAuthenticator callback not working with certificate chain](https://jira.issues.couchbase.com/browse/CBL-6820)
 
-### [](#known-issues-2)Known Issues
+### [](#known-issues-3)Known Issues
 
 * [CBL-6951 — Cannot create URLEndpoint with database name containing dot](https://jira.issues.couchbase.com/browse/CBL-6951)
 
-### [](#deprecations-2)Deprecations
+### [](#deprecations-3)Deprecations
 
 None for this release
 
@@ -70,12 +95,12 @@ None for this release
 
 Version 3.2.2 for C delivers the following features and enhancements:
 
-### [](#enhancements-3)Enhancements
+### [](#enhancements-4)Enhancements
 
 * [CBL-5185 - Support for Partial Indexes in Value and Full-Text Indexes](https://jira.issues.couchbase.com/browse/CBL-5185)
 * [CBL-6451 - LogSink API for Configuring Couchbase Lite Logging](https://jira.issues.couchbase.com/browse/CBL-6451)
 
-### [](#issues-and-resolutions-3)Issues and Resolutions
+### [](#issues-and-resolutions-4)Issues and Resolutions
 
 * [CBL-6534 - No Such Table Error When Upgrading from 3.1.9 to 3.2.1](https://jira.issues.couchbase.com/browse/CBL-6534)
 * [CBL-6822 - Replicator may hang while stopping the housekeeper task during stop](https://jira.issues.couchbase.com/browse/CBL-6822)
@@ -83,11 +108,11 @@ Version 3.2.2 for C delivers the following features and enhancements:
 * [CBL-6669 - CBLArrayIndexConfiguration.path requires null terminated char](https://jira.issues.couchbase.com/browse/CBL-6669)
 * [CBL-6678 - Log directory is not automatically created](https://jira.issues.couchbase.com/browse/CBL-6678)
 
-### [](#known-issues-3)Known Issues
+### [](#known-issues-4)Known Issues
 
 None for this release
 
-### [](#deprecations-3)Deprecations
+### [](#deprecations-4)Deprecations
 
 * [CBL-6679 - Deprecated: Database.log API for Configuring Couchbase Lite Logging — Use LogSink API Instead](https://jira.issues.couchbase.com/browse/CBL-6679)
 
@@ -98,22 +123,22 @@ None for this release
 
 Version 3.2.1 for C delivers the following features and enhancements:
 
-### [](#enhancements-4)Enhancements
+### [](#enhancements-5)Enhancements
 
 * [CBL-5169 - Support for Unnest Query and Array Index](https://jira.issues.couchbase.com/browse/CBL-5169)
 * [CBL-6303 - Add ability to disable mmap usage](https://jira.issues.couchbase.com/browse/CBL-6303)
 
-### [](#issues-and-resolutions-4)Issues and Resolutions
+### [](#issues-and-resolutions-5)Issues and Resolutions
 
 * [CBL-6131 - Fixed race creating the expiration column in a collection table](https://jira.issues.couchbase.com/browse/CBL-6131)
 * [CBL-6245 - Fixed query parser regression related to brackets](https://jira.issues.couchbase.com/browse/CBL-6245)
 * [CBL-6378 - Crash when calling onWebSocketGotTLSCertificate callback after the connection is closed](https://jira.issues.couchbase.com/browse/CBL-6378)
 
-### [](#known-issues-4)Known Issues
+### [](#known-issues-5)Known Issues
 
 None for this release
 
-### [](#deprecations-4)Deprecations
+### [](#deprecations-5)Deprecations
 
 No new deprecations for GA release
 
@@ -128,7 +153,7 @@ Version 3.2.0 for C delivers the following features and enhancements:
 
 Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 
-### [](#enhancements-5)Enhancements
+### [](#enhancements-6)Enhancements
 
 * [CBL-5287 - Enable Prediction Function in SQL++](https://issues.couchbase.com/browse/CBL-5287)
 * [CBL-5634 - NoRev enhancement with Replacement Rev in pull replication](https://issues.couchbase.com/browse/CBL-5634)
@@ -150,7 +175,7 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 * [CBL-5202 - Implementation Collection's full-name property](https://issues.couchbase.com/browse/CBL-5202)
 * [CBL-5380 - Update iOS Target Version to 12](https://issues.couchbase.com/browse/CBL-5380)
 
-### [](#issues-and-resolutions-5)Issues and Resolutions
+### [](#issues-and-resolutions-6)Issues and Resolutions
 
 * [CBL-3846 - Fixed corrupt Revision Data error when saving documents](https://issues.couchbase.com/browse/CBL-3846)
 * [CBL-4247 - Fixed Replicator binary logs with collections cannot be decoded](https://issues.couchbase.com/browse/CBL-4247)
@@ -194,11 +219,11 @@ Downgrades from 3.2.x to any other version of Couchbase Lite are not supported.
 * [CBL-5666 - Fixed Invalidated context may be used in query observer callback](https://issues.couchbase.com/browse/CBL-5666)
 * [CBL-4348 - Fixed missing nullable marks in CBLReplicatorConfiguration's property encryption callbacks](https://issues.couchbase.com/browse/CBL-4348)
 
-### [](#known-issues-5)Known Issues
+### [](#known-issues-6)Known Issues
 
 None for this release
 
-### [](#deprecations-5)Deprecations
+### [](#deprecations-6)Deprecations
 
 No new deprecations for GA release
 
@@ -209,7 +234,7 @@ No new deprecations for GA release
 
 Version 3.2.0 Beta 3 for C delivers the following features and enhancements:
 
-### [](#enhancements-6)Enhancements
+### [](#enhancements-7)Enhancements
 
 * [CBL-5202 - Implement Collection's full-name property](https://issues.couchbase.com/browse/CBL-5202)
 * [CBL-5208 - Implement Collection's database property](https://issues.couchbase.com/browse/CBL-5208)
@@ -227,7 +252,7 @@ Version 3.2.0 Beta 3 for C delivers the following features and enhancements:
 * [CBL-61 - MILLIS\_TO\_STR(date1 \[, fmt ](https://issues.couchbase.com/browse/CBL-61))\]
 * [CBL-60 - DATE\_DIFF\_STR(date1, date2, part)](https://issues.couchbase.com/browse/CBL-60)
 
-### [](#issues-and-resolutions-6)Issues and Resolutions
+### [](#issues-and-resolutions-7)Issues and Resolutions
 
 * [CBL-4248 - Fixed UserAgent contains some extra / debug string](https://issues.couchbase.com/browse/CBL-4248)
 * [CBL-4282 - Fixed fleece headers listed in iOS framework module map files are not correct](https://issues.couchbase.com/browse/CBL-4282)
@@ -266,11 +291,11 @@ Version 3.2.0 Beta 3 for C delivers the following features and enhancements:
 * [Uninitialized struct](https://issues.couchbase.com/browse/CBL-4424)
 * [CBL-3836 - Corrupt Revision Data error when saving documents](https://issues.couchbase.com/browse/CBL-3836)
 
-### [](#known-issues-6)Known Issues
+### [](#known-issues-7)Known Issues
 
 None for this release
 
-### [](#deprecations-6)Deprecations
+### [](#deprecations-7)Deprecations
 
 * [CBL-5491 - Default's MAX\_ATTEMPT\_WAIT\_TIME and USE\_PLAIN\_TEXT are deprecated](https://issues.couchbase.com/browse/CBL-5491)
 * [CBL-4316 - Replicator's getPendingDocumentIds() and isDocumentPending(String id) are deprecated](https://issues.couchbase.com/browse/CBL-4316)

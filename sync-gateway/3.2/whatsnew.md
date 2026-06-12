@@ -2,7 +2,7 @@
 title: New In 3.2
 description: Couchbase Sync Gateway -- What's new in the latest release
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/whatsnew.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:3.2@sync-gateway::whatsnew.adoc[]
 ---
 
@@ -16,6 +16,18 @@ link: xref:3.2@sync-gateway::whatsnew.adoc[]
 
 > [!WARNING]
 > Do not deploy Eventing/Sync Gateway until all SGW nodes are at version 3.2\. For earlier Sync Gateway versions that do not write import XATTRs, Eventing functions may encounter infinite recursions and duplicate mutations if deployed in a mixed mode SGW environment. This occurs if you have a mixed installation consisting of Sync Gateway 3.2 and an earlier version, and you deploy a new Eventing or Sync Gateway function during an upgrade.
+
+## [](#release-3-2-8-june-2026)Release 3.2.8 (June 2026)
+
+Sync Gateway 3.2.8 is a maintenance release.
+
+For more information about all the changes within this maintenance release. see [3.2 release notes](release-notes.md).
+
+## [](#release-3-2-7-november-2025)Release 3.2.7 (November 2025)
+
+Sync Gateway 3.2.7 is a maintenance release.
+
+For more information about all the changes within this maintenance release. see [3.2 release notes](release-notes.md).
 
 ## [](#release-3-2-6-july-2025)Release 3.2.6 (July 2025)
 

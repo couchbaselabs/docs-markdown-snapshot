@@ -3,7 +3,7 @@ title: Manage Cluster Access Credentials
 description: Cluster access credentials provide programmatic and
   application-level access to data on a cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-database-users.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:manage-database-users.adoc[]
 ---
 
@@ -163,7 +163,9 @@ To create a new access role:
 4. Enter a role name and optional description.
 5. Click **Assign Privileges**.
 6. Select 1 or more privileges to assign to this role.  
-The **Privileges** list organizes privileges into groups based on scope and functionality. For more information about each privilege, see [Privileges for Advanced Access Credentials](cluster-rbac.md#table-database-privileges).
+The **Privileges** list organizes privileges into groups based on scope and functionality. For more information about each privilege, see [Privileges for Advanced Access Credentials](cluster-rbac.md#table-database-privileges).  
+> [!NOTE]  
+> To use [AI Functions](../../ai/build/ai-functions.md) with an advanced access credential, you must assign the `Query Curl Access` privilege to 1 of the credential's roles.
 7. After selecting all the privileges you want to assign to this role, review what resources each privilege has access to and adjust as needed.  
 For example, some privileges default to **All Scopes** access, but you can change this to a specific scope. Global privileges have **All Buckets** access, which you cannot change.
 8. Click **Assign**.

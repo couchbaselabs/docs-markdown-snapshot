@@ -3,7 +3,7 @@ title: Migrating from SDK2 to SDK3 API
 description: The 3.0 API breaks the existing 2.0 APIs in order to provide a
   number of improvements. Collections and Scopes are introduced.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -38,7 +38,7 @@ Note, most of the bootstrap sequence is now lazy (happening behind the scenes). 
 
 ## [](#next-steps)Next Steps
 
-Information on the new API is to be found in the [libcouchbase API pages](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/index.html).
+Information on the new API is to be found in the [libcouchbase API pages](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/index.html).
 
 ## [](#comparing-older-documentation)Comparing Older Documentation
 

@@ -1,7 +1,7 @@
 ---
 title: Couchbase Cluster Conditions
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/reference-couchbasecluster-conditions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:operator::reference-couchbasecluster-conditions.adoc[]
 ---
 
@@ -173,3 +173,43 @@ This document provides an overview of the possible conditions that a Couchbase c
 * `True`: The cluster is migrating a bucket storage backend.
 * `False`: The cluster is not migrating a bucket storage backend.
 * `Unknown`: The bucket migration status of the cluster cannot be determined.
+
+### [](#clusterunreconcilable)ClusterUnreconcilable
+
+**Description:** Indicates that the Couchbase cluster spec is invalid and cannot be reconciled.
+
+**Possible Values:**
+
+* `True`: The cluster spec has failed validation and/or reconciliation cannot be completed.
+* `False`: The cluster spec is valid and reconciliation is proceeding normally.
+* `Unknown`: The validity of the cluster spec cannot be determined.
+
+### [](#mixedmode)MixedMode
+
+**Description:** The Couchbase cluster is running nodes on two different Couchbase Server versions.
+
+**Possible Values:**
+
+* `True`: The cluster contains nodes running different Couchbase Server versions.
+* `False`: All nodes in the cluster are running the same Couchbase Server version.
+* `Unknown`: The version uniformity of cluster nodes cannot be determined.
+
+### [](#servicesmismatch)ServicesMismatch
+
+**Description:** One or more Couchbase nodes from server classes in the Couchbase cluster are running Couchbase services that do not match the desired services defined in the cluster spec.
+
+**Possible Values:**
+
+* `True`: At least one server class has nodes whose active services differ from the desired services.
+* `False`: All server classes are running their desired services.
+* `Unknown`: Whether a services mismatch exists cannot be determined.
+
+### [](#manualinterventionrequired)ManualInterventionRequired
+
+**Description:** The Couchbase cluster has encountered a problem that the operator cannot resolve automatically and requires administrator action. This condition is only active when the MIR watchdog is enabled via the `spec.mirWatchdog` field. Possible causes include authentication failures, exhausted rebalance retries, unrecoverable down nodes, or expired TLS certificates.
+
+**Possible Values:**
+
+* `True`: The cluster has encountered one or more conditions requiring manual administrator intervention.
+* `False`: No conditions requiring manual intervention are present.
+* `Unknown`: Manual intervention required cannot be determined.

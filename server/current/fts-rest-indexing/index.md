@@ -3,7 +3,7 @@ title: Couchbase Search Index Management and Monitoring API
 description: The Search Indexing REST API is provided by the Search Service.
   This API enables you to manage and monitor your Search indexes.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/fts-rest-indexing/pages/index.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:server:fts-rest-indexing:index.adoc[]
 ---
 
@@ -710,6 +710,30 @@ Body Parameter
 | ------------ | ------------------------ |
 | http (basic) | [Write](#security-Write) |
 
+##### [](#p-api-index-name-ex-request)Example Request Body
+
+```json
+{
+  "planParams" : {
+    "hierarchyRules" : "hierarchyRules",
+    "numReplicas" : 1,
+    "planFrozen" : true,
+    "indexPartitions" : 6,
+    "maxPartitionsPerPIndex" : 0,
+    "nodePlanParams" : "nodePlanParams"
+  },
+  "sourceType" : "sourceType",
+  "sourceUUID" : "sourceUUID",
+  "name" : "name",
+  "prevIndexUUID" : "prevIndexUUID",
+  "sourceName" : "sourceName",
+  "sourceParams" : "{}",
+  "type" : "type",
+  "params" : "{}",
+  "uuid" : "uuid"
+}
+```
+
 ##### [](#p-api-index-name-ex-response)Example HTTP Response
 
 Response 200
@@ -776,6 +800,30 @@ Body Parameter
 | Type         | Name                     |
 | ------------ | ------------------------ |
 | http (basic) | [Write](#security-Write) |
+
+##### [](#p-api-scoped-index-name-ex-request)Example Request Body
+
+```json
+{
+  "planParams" : {
+    "hierarchyRules" : "hierarchyRules",
+    "numReplicas" : 1,
+    "planFrozen" : true,
+    "indexPartitions" : 6,
+    "maxPartitionsPerPIndex" : 0,
+    "nodePlanParams" : "nodePlanParams"
+  },
+  "sourceType" : "sourceType",
+  "sourceUUID" : "sourceUUID",
+  "name" : "name",
+  "prevIndexUUID" : "prevIndexUUID",
+  "sourceName" : "sourceName",
+  "sourceParams" : "{}",
+  "type" : "type",
+  "params" : "{}",
+  "uuid" : "uuid"
+}
+```
 
 ##### [](#p-api-scoped-index-name-ex-response)Example HTTP Response
 
@@ -1464,11 +1512,6 @@ Body Parameter
 
 ##### [](#g-api-stats-index-name-analyzeDoc-ex-response)Example HTTP Response
 
-[Response 200](#g-api-stats-index-name-analyzeDoc-ex-response-200) shows the result of analyzing the document from the [Example Request Body](#g-api-stats-index-name-analyzeDoc-ex-request) using a Search index with the following settings:
-
-* A `keyword` analyzer for the `title` field.
-* An `ngram` token filter with a `min` of 2 and a `max` of 5 for the `name` field.
-
 Response 200
 
 ```json
@@ -1570,6 +1613,11 @@ Response 200
 }
 ```
 
+[Response 200](#g-api-stats-index-name-analyzeDoc-ex-response-200) shows the result of analyzing the document from the [Example Request Body](#g-api-stats-index-name-analyzeDoc-ex-request) using a Search index with the following settings:
+
+* A `keyword` analyzer for the `title` field.
+* An `ngram` token filter with a `min` of 2 and a `max` of 5 for the `name` field.
+
 ### [](#tag-Querying)Querying
 
 Use the following endpoints to query the contents of a Search index.
@@ -1661,16 +1709,6 @@ Body Parameter
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | 200       | The response object has a status section that must be checked for every request. Under nearly all circumstances, the query response will be HTTP 200 even though individual index shards (partitions) may encounter a timeout or return an error. | [Query Response](#QueryResponse) |
 
-##### [](#consistency-and-timeouts)Consistency and Timeouts
-
-A query can specify a timeout value, a consistency requirement, or both. This section explains how this affects the query behavior and how to handle the resulting query return values.
-
-* Logical first phase consistency wait — if timeout in this period, get 416 error with message saying request could not be satisfied.
-* If consistency wait times out with 416, return value to client will indicate the sequence number range processed so the client will have an idea how far the processing got and has the option of retrying more intelligently.
-* In phase 2, you have the normal pindex timeout. This will start whenever the first phase completes. At this point, request will return 200 HTTP response code unless there is an internal server error.
-* The client must check response status, which returns any errors or timeouts for each pindex. If the response includes the number of errors, and the client can determine whether they need the complete results or can continue as long as enough pindexes return to give a reasonable user experience. The query return status is 200 even if all pindexes return errors, so it's critical to check the response status and code accordingly.
-* If the client sets timeout low, for example 1 ms, you may receive a 200 error with all timeouts instead of a consistency wait timeout.
-
 ##### [](#p-api-index-name-query-security)Security
 
 | Type         | Name                       |
@@ -1678,14 +1716,6 @@ A query can specify a timeout value, a consistency requirement, or both. This se
 | http (basic) | [Manage](#security-Manage) |
 
 ##### [](#p-api-index-name-query-ex-request)Example Request Body
-
-The [Regular Query](#p-api-index-name-query-ex-request-0) request searches for the text `a sample query` in the documents included in the Search index.
-
-The [Query with Options](#p-api-index-name-query-ex-request-1) request uses from/size for results paging, with `ctl` for a timeout and the `"at_plus"` consistency level. On consistency, the index must have incorporated at least mutation sequence-number 123 for partition (vbucket) 0 and mutation sequence-number 234 for partition (vbucket) 1, where vbucket 1 should have a `vbucketUUID` of `a0b1c2`.
-
-The [Hybrid Query](#p-api-index-name-query-ex-request-2) request searches for a specified normalized color vector in `colorvect_dot`, but uses regular query parameters to limit the `brightness` value of the returned color to the range of `70-80`.
-
-For more information about vector searches, see [Vector Search Using Search Vector Indexes](../vector-search/vector-search.md).
 
 Regular Query
 
@@ -1754,6 +1784,17 @@ Hybrid Query
     "vector" : [ 0.707106781186548, 0, 0.707106781186548 ]
   } ],
   "size" : 10
+}
+```
+
+##### [](#p-api-index-name-query-ex-response)Example HTTP Response
+
+Response 200
+
+```json
+{
+  "results" : [ "{}", "{}" ],
+  "status" : "status"
 }
 ```
 
@@ -1863,11 +1904,45 @@ Body Parameter
 | 200       | The response object has a status section that must be checked for every request. Under nearly all circumstances, the query response will be HTTP 200 even though individual index shards (partitions) may encounter a timeout or return an error. | [Query Response](#QueryResponse) |
 | Default   | The Search Service returns a non-200 HTTP error code when a request fails.                                                                                                                                                                        |                                  |
 
+##### [](#consistency-and-timeouts)Consistency and Timeouts
+
+A query can specify a timeout value, a consistency requirement, or both. This section explains how this affects the query behavior and how to handle the resulting query return values.
+
+* Logical first phase consistency wait — if timeout in this period, get 416 error with message saying request could not be satisfied.
+* If consistency wait times out with 416, return value to client will indicate the sequence number range processed so the client will have an idea how far the processing got and has the option of retrying more intelligently.
+* In phase 2, you have the normal pindex timeout. This will start whenever the first phase completes. At this point, request will return 200 HTTP response code unless there is an internal server error.
+* The client must check response status, which returns any errors or timeouts for each pindex. If the response includes the number of errors, and the client can determine whether they need the complete results or can continue as long as enough pindexes return to give a reasonable user experience. The query return status is 200 even if all pindexes return errors, so it's critical to check the response status and code accordingly.
+* If the client sets timeout low, for example 1 ms, you may receive a 200 error with all timeouts instead of a consistency wait timeout.
+
 ##### [](#p-api-scoped-query-security)Security
 
 | Type         | Name                       |
 | ------------ | -------------------------- |
 | http (basic) | [Manage](#security-Manage) |
+
+##### [](#p-api-scoped-query-ex-request)Example Request Body
+
+```json
+{
+  "explain" : true,
+  "query" : "{}",
+  "knn" : [ "{}", "{}" ],
+  "sort" : [ "", "" ],
+  "includeLocations" : true,
+  "facets" : "{}",
+  "highlight" : "{}",
+  "score" : "score",
+  "search_after" : [ "search_after", "search_after" ],
+  "size" : 0,
+  "collections" : [ "collections", "collections" ],
+  "ctl" : "{}",
+  "from" : 6,
+  "fields" : [ "fields", "fields" ],
+  "search_before" : [ "search_before", "search_before" ]
+}
+```
+
+For more information about vector searches, see [Vector Search Using Search Vector Indexes](../vector-search/vector-search.md).
 
 ##### [](#p-api-scoped-query-ex-response)Example HTTP Response
 

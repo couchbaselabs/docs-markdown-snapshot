@@ -1,7 +1,7 @@
 ---
 title: New in 4.0
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/ROOT/pages/cbl-whatsnew.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:couchbase-lite::cbl-whatsnew.adoc[]
 ---
 
@@ -14,11 +14,17 @@ link: xref:couchbase-lite::cbl-whatsnew.adoc[]
 > Couchbase Lite 4.0 introduces some breaking changes.  
 > If you're upgrading from 3.x, see the appropriate upgrade page — [Upgrading](#lbl-upgrade). You cannot downgrade from 4.0 to earlier versions of Couchbase Lite.
 
+## [](#release-4-0-4-may-2026)Release 4.0.4 (May 2026)
+
+Couchbase Lite Release 4.0.4 introduces fixes and enhancements for:
+
+[Android](android/releasenotes.md#maint-4-0-4)| [C](c/releasenotes.md#maint-4-0-4)| [.NET](csharp/releasenotes.md#maint-4-0-4)| [Java](java/releasenotes.md#maint-4-0-4)| [Objective-C](objc/releasenotes.md#maint-4-0-4)| [Swift](swift/releasenotes.md#maint-4-0-4)
+
 ## [](#release-4-0-3-february-2026)Release 4.0.3 (February 2026)
 
 Couchbase Lite Release 4.0.3 introduces fixes and enhancements for:
 
-[Android](android/releasenotes.md#maint-latest)| [C](c/releasenotes.md#maint-latest)| [.NET](csharp/releasenotes.md#maint-latest)| [Java](java/releasenotes.md#maint-latest)| [Objective-C](objc/releasenotes.md#maint-latest)| [Swift](swift/releasenotes.md#maint-latest)
+[Android](android/releasenotes.md#maint-4-0-3)| [C](c/releasenotes.md#maint-4-0-3)| [.NET](csharp/releasenotes.md#maint-4-0-3)| [Java](java/releasenotes.md#maint-4-0-3)| [Objective-C](objc/releasenotes.md#maint-4-0-3)| [Swift](swift/releasenotes.md#maint-4-0-3)
 
 ## [](#release-4-0-2-december-2025)Release 4.0.2 (December 2025)
 

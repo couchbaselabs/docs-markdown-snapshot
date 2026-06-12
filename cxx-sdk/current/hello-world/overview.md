@@ -1,7 +1,7 @@
 ---
 title: Couchbase C++ SDK 1.3
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/hello-world/pages/overview.adoc
-pubDate: 2026-04-23T05:28:56.075Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cxx-sdk:hello-world:overview.adoc[]
 ---
 
@@ -16,7 +16,7 @@ The Couchbase C++ SDK allows C++ applications to access a Couchbase cluster — 
 
 [Quickstart Guide](start-using-sdk.md) | [SDK Release Notes](../project-docs/sdk-release-notes.md) | [C++ SDK API Reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client/) | [C++ SDK source code](https://github.com/couchbaselabs/couchbase-cxx-client/)
 
-What's the point of a fast and scalable database if it's not easy to develop for? Couchbase gives you the C++ APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
+A fast and scalable database is even better when it's easy to develop for. Couchbase gives you the C++ APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
 
 * Data Ops (CRUD)
 * SQL++ Query (OLTP)
@@ -148,7 +148,7 @@ __Table 1\. Couchbase Server and SDK Supported Version Matrix__
 | Vector Query using Composite (GSI & vector) index                                            | N/A         | From SDK 1.2.0 ① |            |
 | Distributed ACID Transactions                                                                | From 1.0.0  |                  |            |
 | DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 1.0.0  |                  |            |
-| Circuit Breakers                                                                             | Unsupported |                  |            |
+| Circuit Breakers                                                                             | From 1.3.2  |                  |            |
 | OTel                                                                                         | From 1.3.0  |                  |            |
 | Field Level Encryption                                                                       | From 1.0.0  |                  |            |
 | Cloud Native Gateway                                                                         | Unsupported |                  |            |

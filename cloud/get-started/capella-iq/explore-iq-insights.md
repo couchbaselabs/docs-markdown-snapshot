@@ -4,7 +4,7 @@ description: iQ Insights uses the power of AI to provide you with key insights
   into your query results. Use it to better understand your data with generated
   questions and visualizations.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/capella-iq/explore-iq-insights.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:get-started:capella-iq/explore-iq-insights.adoc[]
 ---
 
@@ -15,7 +15,10 @@ link: xref:cloud:get-started:capella-iq/explore-iq-insights.adoc[]
 
 > iQ Insights uses the power of AI to provide you with key insights into your query results. Use it to better understand your data with generated questions and visualizations. 
 
-iQ Insights uses the power of Large Language Models (LLMs) to generate valuable insights from your query results. By integrating AI with your data, iQ Insights can automatically generate relevant questions based on your query outcomes. These questions are then answered with descriptions and data visualizations, offering you a deeper analysis of your results to enhance your understanding of your data.
+> [!NOTE]
+> The [model provider](work-with-capellaiq.md#model-provider) you select for Capella iQ (OpenAI or AWS Bedrock) also applies to iQ Insights, ensuring consistent responses across both services.
+
+iQ Insights uses the power of large language models (LLMs) to generate valuable insights from your query results. By integrating AI with your data, iQ Insights can automatically generate relevant questions based on your query outcomes. These questions are then answered with descriptions and data visualizations, offering you a deeper analysis of your results to enhance your understanding of your data.
 
 Use [Capella iQ](get-started-with-iq.md) to create SQL++ queries based on your natural language questions and use iQ Insights to get better insights from the data in your query results.
 
@@ -25,16 +28,16 @@ iQ Insights is available on all plans for Capella operational and Capella Analyt
 
 iQ Insights uses an LLM to suggest relevant questions based on your query results and generate responses with descriptions and visualizations. It analyzes and extracts the structure of your document schema from the JSON datasets of query results to generate relevant bar charts, line graphs, scatter plots, or other more complex visualizations.
 
-Before you can use Capella iQ or iQ Insights, an [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) must accept the [Supplemental Terms](https://www.couchbase.com/iQ-terms/). Once the terms and conditions are accepted, all users in an organization can use Capella iQ and iQ Insights in any Capella operational and Analytics clusters.
+Before you can use Capella iQ or iQ Insights, an [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) must accept the [Supplemental Terms](https://www.couchbase.com/capella-feature-specific-terms/). Once the terms and conditions are accepted, all users in an organization can use Capella iQ and iQ Insights in any Capella operational and Analytics clusters.
 
 By accepting the Supplemental Terms for Capella iQ, you also accept the terms for iQ Insights.
 
 > [!IMPORTANT]
-> To disable iQ Insights, an `Organization Owner` must disable Capella iQ at the organizational level. Disabling Capella iQ also disables iQ Insights. For more information, see [Turn Capella iQ Off for Your Organization](configure-capellaiq.md#turn-capella-iq-off-for-your-organization).
+> To disable iQ Insights, an [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) must disable Capella iQ at the organizational level. Disabling Capella iQ also disables iQ Insights. For more information, see [Turn Capella iQ Off for Your Organization](configure-capellaiq.md#iq-on-off).
 
 ## [](#prerequisites)Prerequisites
 
-* An organization owner has accepted the iQ Insights Supplemental Terms. For more information, see [Privacy and Security](#privacy-and-security).
+* An [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) has accepted the iQ Insights Supplemental Terms. For more information, see [Privacy and Security](#privacy-and-security).
 * You have deployed a [Capella operational cluster](../../clusters/create-database.md) or a [Capella Analytics cluster](../../../analytics/admin/prepare-project.md). If you're working with an operational cluster, it must have the Data, Query, and Index Service deployed on at least 1 Service Group.
 * Your queries must:
 
@@ -67,15 +70,15 @@ iQ Insights is available to use with all SELECT queries, including those generat
 
 ### [](#privacy-and-security)Privacy and Security
 
-iQ Insights has the same privacy and security terms as Capella iQ. By accepting the Supplemental Terms for Capella iQ, you also accept the terms for iQ Insights. For more information about using [OpenAI](https://openai.com/) based tools in Couchbase Capella, see [Privacy and Security](work-with-capellaiq.md#privacy-and-security).
+iQ Insights has the same privacy and security terms as Capella iQ. By [accepting the Supplemental Terms for Capella iQ](configure-capellaiq.md#T&C), you also accept the terms for iQ Insights. For more information about using AI based tools in Couchbase Capella, see [Privacy and Security](work-with-capellaiq.md#privacy-and-security).
 
 Shared responsibility
 
 As a user of iQ Insights, Couchbase would like to remind you that you share a responsibility when using this tool. Users of iQ Insights must keep the following in mind:
 
-* Do not generate a chart using confidential query results, such as personally identifiable information or any confidential information you would not want shared with a third party. See [Privacy and Security](work-with-capellaiq.md#privacy-and-security) for more information.
+* Do not generate a chart using confidential query results, such as personally identifiable information or any confidential information you would not want shared with a third party. For more information, see [Privacy and Security](work-with-capellaiq.md#privacy-and-security).
 * Verify the output of iQ Insights before using it. iQ Insights results are a visualization aid. LLMs can experience hallucinations and provide incorrect information from time to time.
-* Respect the use policies set out in the [Couchbase Capella iQ Supplemental Terms](https://www.couchbase.com/iQ-terms/).
+* Respect the use policies set out in the [Couchbase Capella iQ Supplemental Terms](https://www.couchbase.com/capella-feature-specific-terms/).
 
 ### [](#rate-limits)Rate Limits
 
@@ -89,3 +92,4 @@ Paid clusters can generate a maximum of 5 charts per query.
 
 * [Work Faster with Capella iQ](work-with-capellaiq.md)
 * [Get Started with Capella iQ](get-started-with-iq.md)
+* [Configure Capella iQ](configure-capellaiq.md)

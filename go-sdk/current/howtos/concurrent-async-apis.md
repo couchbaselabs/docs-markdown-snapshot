@@ -4,7 +4,7 @@ description: The Go SDK offers a synchronous blocking interface but this does
   not stop you from using it asynchronously, or from performing bulk operations
   concurrently.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:go-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -93,8 +93,7 @@ Once those are setup we can start loading up our JSON files and sending them to 
 
 	for _, f := range r.File {
 		// We only want json files from the docs directory.
-		if f.FileInfo().IsDir() || !(strings.HasPrefix(f.Name, sampleName+"/docs/") &&
-			strings.HasSuffix(f.Name, ".json")) {
+		if f.FileInfo().IsDir() || !strings.HasPrefix(f.Name, sampleName+"/docs/") || !strings.HasSuffix(f.Name, ".json") {
 			continue
 		}
 
@@ -103,7 +102,7 @@ Once those are setup we can start loading up our JSON files and sending them to 
 			panic(err)
 		}
 
-		fileContent, err := ioutil.ReadAll(fileReader)
+		fileContent, err := io.ReadAll(fileReader)
 		if err != nil {
 			fileReader.Close()
 			panic(err)
@@ -152,10 +151,6 @@ Here we can see that we create a map containing 8 batches of documents which we 
 
 ```golang
 	numBatches := 8 // number of batches
-	type docType struct {
-		Name string
-		Data interface{}
-	}
 	sampleName := "beer-sample"
 	sampleZip := fmt.Sprintf("/opt/couchbase/samples/%s.zip", sampleName)
 	batches := make(map[int][]gocb.BulkOp)
@@ -169,8 +164,7 @@ Here we can see that we create a map containing 8 batches of documents which we 
 
 	for i, f := range r.File {
 		// We only want json files from the docs directory.
-		if f.FileInfo().IsDir() || !(strings.HasPrefix(f.Name, sampleName+"/docs/") &&
-			strings.HasSuffix(f.Name, ".json")) {
+		if f.FileInfo().IsDir() || !strings.HasPrefix(f.Name, sampleName+"/docs/") || !strings.HasSuffix(f.Name, ".json") {
 			continue
 		}
 
@@ -178,12 +172,11 @@ Here we can see that we create a map containing 8 batches of documents which we 
 		if err != nil {
 			panic(err)
 		}
-		defer fileReader.Close()
-
-		fileContent, err := ioutil.ReadAll(fileReader)
+		fileContent, err := io.ReadAll(fileReader)
 		if err != nil {
 			panic(err)
 		}
+		fileReader.Close()
 
 		var docContent interface{}
 		err = json.Unmarshal(fileContent, &docContent)

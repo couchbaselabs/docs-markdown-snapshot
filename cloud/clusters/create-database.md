@@ -2,7 +2,7 @@
 title: Create A Paid Cluster
 description: Create a cluster to store and access data in Couchbase Capella.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/create-database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:create-database.adoc[]
 ---
 
@@ -62,7 +62,7 @@ If you pay for your usage with [pre-paid credits](../billing/billing.md#pre-paid
 
 Capella creates and deploys your cluster in your chosen cloud provider's region. The process typically takes less than 5 minutes, but this can change based on cluster size and cloud provider performance.
 
-After your cluster shows a status of **Healthy**, you can:
+To check the current status of a deploying cluster, [view your cluster](view-database.md) from the **Operational** tab. After your cluster shows a status of **Healthy**, you can:
 
 * [Choose which IP addresses can connect to your cluster](allow-ip-address.md)
 * [Create cluster access credentials](manage-database-users.md)

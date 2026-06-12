@@ -5,7 +5,7 @@ description: <em>General</em> settings allow configuration of <em>cluster
   availability</em> for the cluster; and of <em>advanced settings</em> for the
   Index and Query Services.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-settings/general-settings.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.6@server:manage:manage-settings/general-settings.adoc[]
 ---
 
@@ -590,10 +590,7 @@ See [Threading](../../learn/buckets-memory-and-storage/storage-settings.md#threa
 To set the directory for temporary backfill data, and establish its size-limit, use the `/settings/querySettings` method.
 
 ```shell
-curl -v -X POST -u $USER:$PASSWORD \
-  $BASEPATH/settings/querySettings \
-  -d 'queryTmpSpaceDir=/tmp' \
-  -d 'queryTmpSpaceSize=2048'
+Unresolved include directive in modules/manage/pages/manage-settings/general-settings.adoc - include::n1ql-rest-settings:example$query-settings-post-settings.sh[]
 ```
 
 This specifies that the directory for temporary backfill data should be `/tmp`; and that the maximum size should be 2048 megabytes.
@@ -609,12 +606,7 @@ The document's values indicate that the specified values for directory and size 
 To specify particular URLs as allowed and disallowed, use the `/settings/querySettings/curlWhitelist` method:
 
 ```shell
-curl -v -X POST -u $USER:$PASSWORD \
-  $BASEPATH/settings/querySettings/curlWhitelist \
-  -H 'Content-Type: application/json' \
-  -d '{"all_access": false,
-       "allowed_urls": ["https://company1.com"],
-       "disallowed_urls": ["https://company2.com"]}'
+Unresolved include directive in modules/manage/pages/manage-settings/general-settings.adoc - include::n1ql-rest-settings:example$query-settings-post-access.sh[]
 ```
 
 A JSON document is specified as the payload for the method. The document's values indicate that `https://company1.com` is allowed, and `https://company2.com` is disallowed.

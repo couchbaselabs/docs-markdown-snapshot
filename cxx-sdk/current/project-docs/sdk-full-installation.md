@@ -2,7 +2,7 @@
 title: Full Installation of the C&#43;&#43; SDK
 description: Installation instructions for the Couchbase C&#43;&#43; Client.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cxx-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -30,9 +30,9 @@ CPMAddPackage(
   NAME
   couchbase_cxx_client
   GIT_TAG
-  1.3.1
+  1.3.2
   VERSION
-  1.3.1
+  1.3.2
   GITHUB_REPOSITORY
   "couchbase/couchbase-cxx-client"
   OPTIONS

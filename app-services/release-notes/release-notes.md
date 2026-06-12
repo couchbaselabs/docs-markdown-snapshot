@@ -3,7 +3,7 @@ title: Capella App Services Release Notes
 description: Release notes for Capella App Services, including new features,
   enhancements, and updates.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/release-notes/release-notes.adoc
-pubDate: 2026-04-21T05:28:09.835Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:app-services::release-notes/release-notes.adoc[]
 ---
 
@@ -15,6 +15,20 @@ link: xref:app-services::release-notes/release-notes.adoc[]
 > Release notes for Capella App Services, including new features, enhancements, and updates. 
 
 This page contains release notes specific to Capella App Services. For general Capella release notes, see [Couchbase Capella Release Notes](../../cloud/release-notes/release-notes.md).
+
+## [](#june-2026)June 2026
+
+* Slack and Microsoft Teams Integrations for Alerts  
+Capella now supports native alert integrations for Slack and Microsoft Teams. You can send cluster and App Service [metric-based alerts](../../cloud/reference/alert-reference.md#metric-alerts) directly to your team's preferred Slack or Microsoft Teams channels by using the Capella UI or the Management REST API.  
+Customize alert payloads with either standard or advanced templates for Slack and Microsoft Teams integrations. To configure an alert integration, see [Configure a Slack Alert Integration for App Services](../monitoring/configure-slack-integration.md)and [Configure a Microsoft Teams Alert Integration for App Services](../monitoring/configure-microsoft-integration.md).  
+For more information about alert integrations, see [Alert Integrations for App Services](../monitoring/alert-integration.md).
+* Access to the Metrics and Admin REST APIs over private endpoints no longer requires configuration of IP allow list for the associated Metrics or Admin user.
+
+## [](#may-2026)May 2026
+
+* Test Your Access Control and Data Validation Function  
+You can now validate your Access Control and Data Validation function directly in the Capella UI without affecting production data. The new Test Function panel lets you simulate a document write by providing a document, an optional previous document version, an optional user context, and optional XATTRs. The results panel displays channel assignments, role assignments, access grants, and any user-defined console log output from the function execution.  
+For more information, see [Test Your Access Control and Data Validation Function](../app-endpoints/access-control-data-validation.md#test-your-access-control-and-data-validation-function).
 
 ## [](#april-2026)April 2026
 

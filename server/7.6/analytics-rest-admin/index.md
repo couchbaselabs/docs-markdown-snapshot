@@ -2,7 +2,7 @@
 title: Analytics Administration REST APIs
 description: A description of the Administration REST APIs for Couchbase Analytics.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/analytics-rest-admin/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.6@server:analytics-rest-admin:index.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:7.6@server:analytics-rest-admin:index.adoc[]
 
 ## [](#overview)Overview
 
-The Analytics Administration REST APIs are provided by the Analytics service. These APIs enables you to manage and monitor the Analytics service.
+The Analytics Administration REST APIs are provided by the Analytics Service. These APIs enables you to manage and monitor the Analytics Service.
 
 ### Version information
 
@@ -64,18 +64,18 @@ Produces
 
 Form Parameters
 
-| Name                            | Description                                                                                 | Schema |
-| ------------------------------- | ------------------------------------------------------------------------------------------- | ------ |
-| **client\_context\_id**required | Identifier passed by the client that is used to identify an active request to be cancelled. | String |
+| Name                            | Description                                                                                | Schema |
+| ------------------------------- | ------------------------------------------------------------------------------------------ | ------ |
+| **client\_context\_id**required | Identifier passed by the client that's used to identify an active request to be cancelled. | String |
 
 #### [](#cancel%5Frequest-responses)Responses
 
-| HTTP Code | Description                                                                                                                                                              | Schema |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
-| 200       | The operation was successful.                                                                                                                                            |        |
-| 400       | Bad request. Incorrect parameter or missing value.                                                                                                                       |        |
-| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. Refer to [Error Codes](/server/7.6/analytics/error-codes.html). | Object |
-| 404       | Not found. The path may be incorrect, or there is no active request with the specified identifier.                                                                       |        |
+| HTTP Code | Description                                                                                                                                                                               | Schema |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| 200       | The operation was successful.                                                                                                                                                             |        |
+| 400       | Bad request. Incorrect parameter or missing value.                                                                                                                                        |        |
+| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. For more information, see [Error Codes](/server/7.6/analytics/error-codes.html). | Object |
+| 404       | Not found. The path may be incorrect, or there is no active request with the specified identifier.                                                                                        |        |
 
 #### [](#cancel%5Frequest-security)Security
 
@@ -109,11 +109,11 @@ Produces
 
 #### [](#cluster%5Fstatus-responses)Responses
 
-| HTTP Code | Description                                                                                                                                                              | Schema            |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
-| 200       | Success. Returns an object giving the current status of the Analytics Service.                                                                                           | [Status](#Status) |
-| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. Refer to [Error Codes](/server/7.6/analytics/error-codes.html). | Object            |
-| 404       | Not found. The path may be incorrect.                                                                                                                                    |                   |
+| HTTP Code | Description                                                                                                                                                                               | Schema            |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| 200       | Success. Returns an object giving the current status of the Analytics Service.                                                                                                            | [Status](#Status) |
+| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. For more information, see [Error Codes](/server/7.6/analytics/error-codes.html). | Object            |
+| 404       | Not found. The path may be incorrect.                                                                                                                                                     |                   |
 
 #### [](#cluster%5Fstatus-security)Security
 
@@ -252,11 +252,11 @@ Produces
 
 #### [](#completed%5Frequests-responses)Responses
 
-| HTTP Code | Description                                                                                                                                                              | Schema                    |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
-| 200       | Success. Returns a list of all completed analytic requests.                                                                                                              | [Request](#Request) array |
-| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. Refer to [Error Codes](/server/7.6/analytics/error-codes.html). | Object                    |
-| 404       | Not found. The path may be incorrect.                                                                                                                                    |                           |
+| HTTP Code | Description                                                                                                                                                                               | Schema                    |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| 200       | Success. Returns a list of all completed analytic requests.                                                                                                                               | [Request](#Request) array |
+| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. For more information, see [Error Codes](/server/7.6/analytics/error-codes.html). | Object                    |
+| 404       | Not found. The path may be incorrect.                                                                                                                                                     |                           |
 
 #### [](#completed%5Frequests-security)Security
 
@@ -333,7 +333,7 @@ GET /analytics/status/ingestion
 
 #### [](#ingestion%5Fstatus-description)Description
 
-Shows the progress of ingestion by the Analytics service, for each Analytics collection.
+Shows the progress of ingestion by the Analytics Service, for each Analytics collection.
 
 Produces
 
@@ -341,11 +341,11 @@ Produces
 
 #### [](#ingestion%5Fstatus-responses)Responses
 
-| HTTP Code | Description                                                                                                                                                              | Schema                  |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------- |
-| 200       | Success. Returns an object giving the ingestion status of each Analytics collection.                                                                                     | [Ingestion](#Ingestion) |
-| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. Refer to [Error Codes](/server/7.6/analytics/error-codes.html). | Object                  |
-| 404       | Not found. The path may be incorrect.                                                                                                                                    |                         |
+| HTTP Code | Description                                                                                                                                                                               | Schema                  |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| 200       | Success. Returns an object giving the ingestion status of each Analytics collection.                                                                                                      | [Ingestion](#Ingestion) |
+| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. For more information, see [Error Codes](/server/7.6/analytics/error-codes.html). | Object                  |
+| 404       | Not found. The path may be incorrect.                                                                                                                                                     |                         |
 
 #### [](#ingestion%5Fstatus-security)Security
 
@@ -443,7 +443,7 @@ GET /analytics/node/agg/stats/remaining
 
 #### [](#monitor%5Fnode-description)Description
 
-Shows the number of mutations in the DCP queue that have not yet been ingested by the Analytics service, for each Analytics collection.
+Shows the number of mutations in the DCP queue that have not yet been ingested by the Analytics Service, for each Analytics collection.
 
 NOTE: This endpoint may not return meaningful results in Couchbase Server 7.0 and later. The reported number of mutations may be different to the actual number of mutations in the Analytics collection. For this reason, this endpoint has been deprecated, and you should use the [Ingestion Status](#ingestion%5Fstatus) endpoint instead.
 
@@ -453,11 +453,11 @@ Produces
 
 #### [](#monitor%5Fnode-responses)Responses
 
-| HTTP Code | Description                                                                                                                                                              | Schema                  |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------- |
-| 200       | Success. Returns an object giving the number of pending mutations for each Analytics collection.                                                                         | [Mutations](#Mutations) |
-| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. Refer to [Error Codes](/server/7.6/analytics/error-codes.html). | Object                  |
-| 404       | Not found. The path may be incorrect.                                                                                                                                    |                         |
+| HTTP Code | Description                                                                                                                                                                               | Schema                  |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| 200       | Success. Returns an object giving the number of pending mutations for each Analytics collection.                                                                                          | [Mutations](#Mutations) |
+| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. For more information, see [Error Codes](/server/7.6/analytics/error-codes.html). | Object                  |
+| 404       | Not found. The path may be incorrect.                                                                                                                                                     |                         |
 
 #### [](#monitor%5Fnode-security)Security
 
@@ -500,11 +500,11 @@ Produces
 
 #### [](#restart%5Fcluster-responses)Responses
 
-| HTTP Code | Description                                                                                                                                                              | Schema |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
-| 202       | Accepted. Returns an object showing the status of the cluster.                                                                                                           | Object |
-| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. Refer to [Error Codes](/server/7.6/analytics/error-codes.html). | Object |
-| 404       | Not found. The path may be incorrect.                                                                                                                                    |        |
+| HTTP Code | Description                                                                                                                                                                               | Schema |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| 202       | Accepted. Returns an object showing the status of the cluster.                                                                                                                            | Object |
+| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. For more information, see [Error Codes](/server/7.6/analytics/error-codes.html). | Object |
+| 404       | Not found. The path may be incorrect.                                                                                                                                                     |        |
 
 #### [](#restart%5Fcluster-security)Security
 
@@ -558,11 +558,11 @@ Produces
 
 #### [](#restart%5Fnode-responses)Responses
 
-| HTTP Code | Description                                                                                                                                                              | Schema |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
-| 202       | Accepted. Returns an object showing the status of the node.                                                                                                              | Object |
-| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. Refer to [Error Codes](/server/7.6/analytics/error-codes.html). | Object |
-| 404       | Not found. The path may be incorrect.                                                                                                                                    |        |
+| HTTP Code | Description                                                                                                                                                                               | Schema |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| 202       | Accepted. Returns an object showing the status of the node.                                                                                                                               | Object |
+| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. For more information, see [Error Codes](/server/7.6/analytics/error-codes.html). | Object |
+| 404       | Not found. The path may be incorrect.                                                                                                                                                     |        |
 
 #### [](#restart%5Fnode-security)Security
 
@@ -604,11 +604,11 @@ Produces
 
 #### [](#return%5Factive%5Frequests-responses)Responses
 
-| HTTP Code | Description                                                                                                                                                              | Schema                    |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
-| 200       | Success. Returns an array id details on the running requests.                                                                                                            | [Request](#Request) array |
-| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. Refer to [Error Codes](/server/7.6/analytics/error-codes.html). | Object                    |
-| 404       | Not found. The path may be incorrect.                                                                                                                                    |                           |
+| HTTP Code | Description                                                                                                                                                                               | Schema                    |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| 200       | Success. Returns an array id details on the running requests.                                                                                                                             | [Request](#Request) array |
+| 401       | Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. For more information, see [Error Codes](/server/7.6/analytics/error-codes.html). | Object                    |
+| 404       | Not found. The path may be incorrect.                                                                                                                                                     |                           |
 
 #### [](#return%5Factive%5Frequests-security)Security
 
@@ -697,14 +697,14 @@ This section describes the properties consumed and returned by this REST API.
 
  Object
 
-| Property                   |                                                                                                                                                                                                                                                                                      | Schema                                         |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
-| **timestamp**required      | The time since epoch that this sample was calculated, in milliseconds. **Example:** 1631273689161                                                                                                                                                                                    | Integer                                        |
-| **progress**required       | The percentage (fraction from 0 to 1) of ingestion progress at the current time. **Minimum:** 0 **Maximum:** 1 **Example:** 0                                                                                                                                                        | Double (double)                                |
-| **timeLag**optional        | The estimated time that the ingestion lags behind the Data service, in milliseconds. Only displayed for Analytics collections that are not fully ingested. **Example:** 9744                                                                                                         | Integer                                        |
-| **itemsProcessed**optional | The number of items ingested since last connect; that is, the total number of mutations and deletions processed. Only displayed for Analytics collections that are not fully ingested. Note that this value is reset on connect, so it may appear to get smaller. **Example:** 12301 | Integer                                        |
-| **seqnoAdvances**optional  | The change in sequence number (seqno) since last connect. Only displayed for Analytics collections that are not fully ingested. **Example:** 61                                                                                                                                      | Integer                                        |
-| **scopes**required         | An array of objects, each one giving information about a single Analytics scope.                                                                                                                                                                                                     | [State Scopes](#IngestionLinkStateScope) array |
+| Property                   |                                                                                                                                                                                                                                                                                   | Schema                                         |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **timestamp**required      | The time since epoch that this sample was calculated, in milliseconds. **Example:** 1631273689161                                                                                                                                                                                 | Integer                                        |
+| **progress**required       | The percentage (fraction from 0 to 1) of ingestion progress at the current time. **Minimum:** 0 **Maximum:** 1 **Example:** 0                                                                                                                                                     | Double (double)                                |
+| **timeLag**optional        | The estimated time that the ingestion lags behind the Data service, in milliseconds. Only displayed for Analytics collections that are not fully ingested. **Example:** 9744                                                                                                      | Integer                                        |
+| **itemsProcessed**optional | The number of items ingested since last connect; in other words, the total number of mutations and deletions processed. Only displayed for Analytics collections that are not fully ingested. This value is reset on connect, so it may appear to get smaller. **Example:** 12301 | Integer                                        |
+| **seqnoAdvances**optional  | The change in sequence number (seqno) since last connect. Only displayed for Analytics collections that are not fully ingested. **Example:** 61                                                                                                                                   | Integer                                        |
+| **scopes**required         | An array of objects, each one giving information about a single Analytics scope.                                                                                                                                                                                                  | [State Scopes](#IngestionLinkStateScope) array |
 
 #### State Scopes
 

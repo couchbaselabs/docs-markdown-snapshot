@@ -1,7 +1,7 @@
 ---
 title: Query Functions REST API
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/n1ql-rest-functions/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.6@server:n1ql-rest-functions:index.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:7.6@server:n1ql-rest-functions:index.adoc[]
 
 ## [](#overview)Overview
 
-The Query Functions REST API is a secondary API provided by the Query service. This API enables you to manage the JavaScript libraries and objects that are used to create SQL++ user-defined functions.
+The Query Functions REST API is a secondary API provided by the Query Service. This API enables you to manage the JavaScript libraries and objects that are used to create SQL++ user-defined functions.
 
 ### Version information
 
@@ -93,11 +93,11 @@ Query Parameters
 | http (basic) | [Scope](#security-Scope)   |
 | http (basic) | [Global](#security-Global) |
 
-#### [](#example-http-request)Example HTTP Request
+#### [](#delete%5Flibrary-ex-curl)Example HTTP Request
 
-Request 1: Delete a global library entirely.
+Global
 
-curl request
+Delete a global library entirely.
 
 ```sh
 curl -X DELETE \
@@ -105,9 +105,9 @@ curl -X DELETE \
 -u $USER:$PASSWORD
 ```
 
-Request 2: Delete a scoped library entirely.
+Scoped
 
-curl request
+Delete a scoped library entirely.
 
 ```sh
 curl -X DELETE \
@@ -155,11 +155,11 @@ Query Parameters
 | http (basic) | [Scope](#security-Scope)   |
 | http (basic) | [Global](#security-Global) |
 
-#### [](#example-http-request-2)Example HTTP Request
+#### [](#get%5Fcollection-ex-curl)Example HTTP Request
 
-Request 3: Fetch all defined libraries.
+All
 
-curl request
+Fetch all defined libraries.
 
 ```sh
 curl -X GET \
@@ -167,9 +167,9 @@ curl -X GET \
 -u $USER:$PASSWORD
 ```
 
-Request 4: Fetch all defined libraries in the specified scope.
+Scoped
 
-curl request
+Fetch all defined libraries in the specified scope.
 
 ```sh
 curl -X GET \
@@ -255,11 +255,11 @@ Query Parameters
 | http (basic) | [Scope](#security-Scope)   |
 | http (basic) | [Global](#security-Global) |
 
-#### [](#example-http-request-3)Example HTTP Request
+#### [](#get%5Flibrary-ex-curl)Example HTTP Request
 
-Request 5: Get all functions in the specified global library.
+Global
 
-curl request
+Get all functions in the specified global library.
 
 ```sh
 curl -X GET \
@@ -267,9 +267,9 @@ curl -X GET \
 -u $USER:$PASSWORD
 ```
 
-Request 6: Get all functions in the specified scoped library.
+Scoped
 
-curl request
+Get all functions in the specified scoped library.
 
 ```sh
 curl -X GET \
@@ -355,11 +355,11 @@ Body Parameter
 | http (basic) | [Scope](#security-Scope)   |
 | http (basic) | [Global](#security-Global) |
 
-#### [](#example-http-request-4)Example HTTP Request
+#### [](#post%5Flibrary-ex-curl)Example HTTP Request
 
-Request 7: Create or update a global library called `math`. The library contains two functions, `add` and `sub`.
+Global
 
-curl request
+Create or update a global library called `math`. The library contains two functions, `add` and `sub`.
 
 ```sh
 curl -X POST \
@@ -370,9 +370,9 @@ curl -X POST \
     function sub(a, b) { let data = a - b; return data; }'
 ```
 
-Request 8: Add a function called `mul` to the global library, leaving the other functions unchanged.
+Add
 
-curl request
+Add a function called `mul` to the global library, leaving the other functions unchanged.
 
 ```sh
 curl -X POST \
@@ -384,9 +384,9 @@ curl -X POST \
     function mul(a, b) { let data = a * b; return data; }'
 ```
 
-Request 9: Edit the function called `sub` to use a helper function called `helper`, leaving the other functions unchanged.
+Edit
 
-curl request
+Edit the function called sub to use a helper function called `helper`, leaving the other functions unchanged.
 
 ```sh
 curl -X POST \
@@ -399,9 +399,9 @@ curl -X POST \
     function helper(a, b) { return a - b; }'
 ```
 
-Request 10: Remove the function called `sub` and the helper function called `helper`, leaving the other functions unchanged.
+Delete
 
-curl request
+Remove the function called `sub` and the helper function called `helper`, leaving the other functions unchanged.
 
 ```sh
 curl -X POST \
@@ -412,9 +412,9 @@ curl -X POST \
     function mul(a, b) { let data = a * b; return data; }'
 ```
 
-Request 11: Create or update a scoped library called `science`. The library contains one function, `f2c`.
+Scoped
 
-curl request
+Create or update a scoped library called `science`. The library contains one function, `f2c`.
 
 ```sh
 curl -X POST \
@@ -422,6 +422,12 @@ curl -X POST \
 -u $USER:$PASSWORD \
 -H 'content-type: application/json' \
 -d 'function f2c(f) { return (5/9)*(f-32); }'
+```
+
+#### [](#post%5Flibrary-ex-request)Example Request Body
+
+```json
+"function f2c(f) { return (5/9)*(f-32); }"
 ```
 
 ## [](#models)Definitions

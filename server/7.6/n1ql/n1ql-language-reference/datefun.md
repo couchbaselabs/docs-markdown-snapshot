@@ -3,7 +3,7 @@ title: Date Functions
 description: SQL++ date functions return the system clock value or manipulate
   the datetime values, which are represented as a string or an integer.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/datefun.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/datefun.adoc[]
 ---
 
@@ -26,7 +26,11 @@ All SQL++ functions which accept a timezone as an argument also accept `UTC`.
 
 ### [](#iana-timezones)IANA Timezones
 
-Many applications operate across multiple different time zones and may not necessarily use `UTC`. Therefore, it is important for the database to be able to handle and manipulate dates in these time zones in a consistent manner. Many date functions take the time zone as an additional argument.
+Many applications operate across multiple different time zones and may not necessarily use `UTC`. Therefore, it is important for the database to be able to handle and manipulate dates in these time zones in a consistent manner.
+
+Many date functions take the time zone as an additional argument and use data from the [IANA Time Zone Database](https://www.iana.org/time-zones). Most operating systems provide this database through the `tzdata` package. On some platforms, legacy time zones (for example, `US/Central`) may require an additional package, such as `tzdata-legacy`.
+
+If these packages are missing or outdated, date functions may fail with unknown or missing time zone errors. To resolve such issues, install or update the necessary packages using your operating system's package manager. For detailed instructions, refer to your operating system's documentation.
 
 > [!NOTE]
 > Timezones are case sensitive, `Europe/London` is not the same as `europe/london`.
@@ -45,7 +49,7 @@ __Table 1\. Common Timezones__
 | Asia/Tel\_Aviv    | +02:00                                     | +03:00                                    |
 | Asia/Kolkata      | +05:30                                     | +05:30                                    |
 
-For a complete list of supported timezones, see [the Timezone Database](https://www.iana.org/time-zones)
+For a complete list of supported timezones, see [the Timezone Database](https://www.iana.org/time-zones).
 
 ### [](#local-system-timezone)Local System Timezone
 

@@ -2,7 +2,7 @@
 title: Tracing
 description: Tracing Couchbase Distributed ACID transactions.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/transactions-tracing.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cxx-sdk:howtos:transactions-tracing.adoc[]
 ---
 
@@ -26,19 +26,11 @@ The application may wish to indicate that the transaction is part of a larger sp
 This can be done using the SDK's `RequestTracer` abstraction as so:
 
 ```scala
-val span = cluster.env.core.requestTracer.requestSpan("your-span-name", null)
-cluster.transactions.run((ctx: TransactionAttemptContext) => {
-  Success()
-}, Some(TransactionOptions().parentSpan(span)))
+Unresolved include directive in modules/howtos/pages/transactions-tracing.adoc - include::devguide:example$scala/TransactionsExample.scala[]
 ```
 
 Or if you have an existing OpenTelemetry span you can easily convert it to a Couchbase `RequestSpan` and pass it to the SDK:
 
 ```scala
-val span = Span.current // this is a span created by your code earlier
-
-val wrapped = OpenTelemetryRequestSpan.wrap(span)
-cluster.transactions.run((ctx: TransactionAttemptContext) => {
-  Success()
-}, Some(TransactionOptions().parentSpan(wrapped)))
+Unresolved include directive in modules/howtos/pages/transactions-tracing.adoc - include::devguide:example$scala/TransactionsExample.scala[]
 ```

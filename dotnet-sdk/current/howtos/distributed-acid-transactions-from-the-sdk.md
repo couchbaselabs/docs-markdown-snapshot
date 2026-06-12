@@ -3,7 +3,7 @@ title: Using Couchbase Transactions
 description: A practical guide to using Couchbase's distributed ACID
   transactions, via the .NET SDK.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
@@ -50,9 +50,10 @@ Refer to the [Transaction Concepts](../concept-docs/transactions.md) page for a 
 The starting point is the `Transactions` object, which is a property of the `Cluster`. It is very important that an application ensures that only one of these is created per cluster, as it performs automated background clean-up processes that should not be duplicated. In a dependency injection context, this instance should be injected as a singleton.
 
 ```csharp
-
+var cluster = await Cluster.ConnectAsync("couchbase://your-ip", "Administrator", "password").ConfigureAwait(false);
 var bucket = await cluster.BucketAsync("default").ConfigureAwait(false);
-var collection = await bucket.ScopeAsync("inventory").CollectionAsync("airport").ConfigureAwait(false);
+var scope = await bucket.ScopeAsync("inventory").ConfigureAwait(false);
+var collection = await scope.CollectionAsync("airport").ConfigureAwait(false);
 
 // Use the cluster's Transactions object
 var transactions = cluster.Transactions;
@@ -149,7 +150,7 @@ Here is an example of configuring a `Microsoft.Extensions.Logging.ILoggingFactor
     });
     await using var provider = services.BuildServiceProvider();
     var loggerFactory = provider.GetService<ILoggerFactory>();
-    var logger = loggerFactory.CreateLogger<Program>();
+    var logger = loggerFactory.CreateLogger<TransactionsExample>();
 
     // create the cluster, passing in the ILoggerFactory for the transactions to use
     var transactionsConfig =
@@ -180,7 +181,7 @@ Here is an example of configuring a `Microsoft.Extensions.Logging.ILoggingFactor
         logger.LogInformation("Transaction failed with TransactionFailed, logs:");
         Console.Error.WriteLine(err);
     }
-} 
+}
 ```
 
 ## [](#key-value-operations)Key-Value Operations

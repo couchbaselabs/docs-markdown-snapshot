@@ -3,7 +3,7 @@ title: Request Tracing
 description: Collecting information about an individual request and its response
   is an essential feature of every observability stack.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/observability-tracing.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cxx-sdk:howtos:observability-tracing.adoc[]
 ---
 
@@ -23,16 +23,7 @@ By default, the SDK will emit information about requests that are over a configu
 It is possible to customize this behavior by modifying the configuration:
 
 ```scala
-val config: Try[ClusterEnvironment] = ClusterEnvironment.builder
-  .thresholdRequestTracerConfig(ThresholdRequestTracerConfig()
-    .emitInterval(1.minutes)
-    .kvThreshold(2.seconds))
-  .build
-
-val cluster: Try[Cluster] = config.flatMap(c =>
-  Cluster.connect("localhost", ClusterOptions
-    .create("username", "password")
-    .environment(c)))
+Unresolved include directive in modules/howtos/pages/observability-tracing.adoc - include::devguide:example$scala/Tracing.scala[]
 ```
 
 In this case the emit interval is one minute and Key/Value requests will only be considered if their latency is greater or equal than two seconds.
@@ -130,55 +121,19 @@ libraryDependencies += "io.grpc" % "grpc-netty" % "1.35.0"
 Before starting, here are all imports used in the following examples:
 
 ```scala
-
-import com.couchbase.client.core.cnc.RequestSpan.StatusCode
-import com.couchbase.client.core.cnc.RequestTracer
-import com.couchbase.client.scala.durability.Durability
-import com.couchbase.client.scala.env.{ClusterEnvironment, ThresholdRequestTracerConfig}
-import com.couchbase.client.scala.json.JsonObject
-import com.couchbase.client.scala.kv.{GetOptions, UpsertOptions}
-import com.couchbase.client.scala.{Cluster, ClusterOptions, Collection}
-import com.couchbase.client.tracing.opentelemetry.{OpenTelemetryRequestSpan, OpenTelemetryRequestTracer}
-import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter
-import io.opentelemetry.sdk.trace.SdkTracerProvider
-import io.opentelemetry.sdk.trace.`export`.{BatchSpanProcessor, SimpleSpanProcessor}
-import io.opentelemetry.sdk.trace.samplers.Sampler
-
-import scala.concurrent.duration._
-import scala.util.Try
+Unresolved include directive in modules/howtos/pages/observability-tracing.adoc - include::devguide:example$scala/Tracing.scala[]
 ```
 
 Now, you can configure an OpenTelemetry `TracerProvider`. We are using the OTLP GRPC exporter, which the OpenTelemetry Collector is configured to listen for:
 
 ```scala
-
-// Configure OpenTelemetry
-val spanExporter = OtlpGrpcSpanExporter.getDefault
-val spanProcessor = BatchSpanProcessor.builder(spanExporter)
-  .setScheduleDelay(java.time.Duration.ofMillis(100))
-  .build
-
-val tracerProvider = SdkTracerProvider.builder
-  .setSampler(Sampler.alwaysOn)
-  .addSpanProcessor(spanProcessor)
-  .build
+Unresolved include directive in modules/howtos/pages/observability-tracing.adoc - include::devguide:example$scala/Tracing.scala[]
 ```
 
 Once the OpenTelemetry `TracerProvider` is set up, it can be wrapped into a Couchbase `RequestTracer` and passed into the environment:
 
 ```scala
-// Get a Couchbase RequestTracer from the OpenTelemetry TracerProvider
-val tracer: RequestTracer = OpenTelemetryRequestTracer.wrap(tracerProvider)
-
-// Use the RequestTracer
-val config: Try[ClusterEnvironment] = ClusterEnvironment.builder
-  .requestTracer(tracer)
-  .build
-
-val cluster: Try[Cluster] = config.flatMap(c =>
-  Cluster.connect("localhost", ClusterOptions
-    .create("Administrator", "password")
-    .environment(c)))
+Unresolved include directive in modules/howtos/pages/observability-tracing.adoc - include::devguide:example$scala/Tracing.scala[]
 ```
 
 At this point, all spans will be sent into the OpenTelemetry collector. Once you are performing operations, you should see the collector (if it's using the configuration above) outputting spans to console:
@@ -208,10 +163,7 @@ Attributes:
 If you want to set a parent for an SDK request, you can do it in the respective `*Options` for any operation. Just call `OpenTelemetryRequestSpan.wrap` to wrap your OpenTelemetry span into a Couchbase span:
 
 ```scala
-def getWithSpan(collection: Collection, span: io.opentelemetry.api.trace.Span) {
-  collection.get("id", GetOptions()
-    .parentSpan(OpenTelemetryRequestSpan.wrap(span)))
-}
+Unresolved include directive in modules/howtos/pages/observability-tracing.adoc - include::devguide:example$scala/Tracing.scala[]
 ```
 
 ## [](#opentracing-integration)OpenTracing Integration

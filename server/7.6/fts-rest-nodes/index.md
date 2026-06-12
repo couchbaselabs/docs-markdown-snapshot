@@ -3,7 +3,7 @@ title: Couchbase Search Node API
 description: The Search Node Configuration REST API is provided by the Search
   Service. This API enables you to manage and monitor your Search nodes.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/fts-rest-nodes/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.6@server:fts-rest-nodes:index.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:7.6@server:fts-rest-nodes:index.adoc[]
 
 ## [](#overview)Overview
 
-The Search Node Configuration REST API is provided by the Search service. This API enables you to manage and monitor your Search nodes.
+The Search Node Configuration REST API is provided by the Search Service. This API enables you to manage and monitor your Search nodes.
 
 ### Version information
 
@@ -31,6 +31,14 @@ The URL scheme, host, and port are as follows.
 | **scheme** | The URL scheme. Use https for secure access. **Values:** http, https                     |
 | **host**   | The host name or IP address of a node running the Search Service. **Example:** localhost |
 | **port**   | The Search Service REST port. Use 18094 for secure access. **Values:** 8094, 18094       |
+
+### Examples on this page
+
+In the HTTP request examples:
+
+* `$NODE1`, `$NODE2`, and `$NODE3` are the host names or IP addresses of nodes running the Search Service.
+* `$USER` is the user name of an authorized user — see [Security](#security).
+* `$PASSWORD` is the password to connect to Couchbase Server.
 
 ## [](#resources)Resources
 
@@ -297,15 +305,6 @@ GET /api/diag
 
 Returns the full set of diagnostic information from the node as JSON. The response is the union of the responses from the node's other REST API diagnostic and monitoring endpoints.
 
-For example, for a 3 node cluster, you could capture diagnostics for each node with something like:
-
-```shell
-curl http://cbft-01:8094/api/diag > cbft-01.json
-curl http://cbft-02:8094/api/diag > cbft-02.json
-curl http://cbft-03:8094/api/diag > cbft-03.json
-
-```
-
 The response JSON object can be quite large, 100s of KB or much more.
 
 The motivation for this operation is to simplify working with the Couchbase community, forums, technical support, and other engineers, by making data capture from each Search node a single step.
@@ -325,6 +324,21 @@ Produces
 | Type         | Name                                         |
 | ------------ | -------------------------------------------- |
 | http (basic) | [readClusterLogs](#security-readClusterLogs) |
+
+##### [](#getDiagnostics-ex-curl)Example HTTP Request
+
+Capture diagnostics for each node in a 3 node cluster.
+
+```sh
+curl -X GET -u $USER:$PASSWORD \
+  "http://$NODE1:8094/api/diag" > cbft-01.json
+
+curl -X GET -u $USER:$PASSWORD \
+  "http://$NODE2:8094/api/diag" > cbft-02.json
+
+curl -X GET -u $USER:$PASSWORD \
+  "http://$NODE3:8094/api/diag" > cbft-03.json
+```
 
 #### [](#getLogs)Get Node Logs
 
@@ -541,16 +555,16 @@ This section describes the properties consumed and returned by this REST API.
 | Property                      |                                                                        | Schema                                     |
 | ----------------------------- | ---------------------------------------------------------------------- | ------------------------------------------ |
 | **indexDefs**optional         | An object containing Search index definitions and related information. | [Index Definitions](#clusterConfigIndexes) |
-| **indexDefsCAS**optional      | Search index definition concurrency (compare and swap) value.          | Integer                                    |
+| **indexDefsCAS**optional      | Search index definition concurrency (Compare and Swap) value.          | Integer                                    |
 | **indexDefsErr**optional      | Search index definition error. **Nullable:** yes                       | String                                     |
 | **nodeDefsKnown**optional     | An object containing known node definitions and related information.   | [Known Nodes](#clusterConfigNodesKnown)    |
-| **nodeDefsKnownCAS**optional  | Known node definition concurrency (compare and swap) value.            | Integer                                    |
+| **nodeDefsKnownCAS**optional  | Known node definition concurrency (Compare and Swap) value.            | Integer                                    |
 | **nodeDefsKnownErr**optional  | Known node definition error. **Nullable:** yes                         | String                                     |
 | **nodeDefsWanted**optional    | An object containing wanted node definitions and related information.  | [Wanted Nodes](#clusterConfigNodesWanted)  |
-| **nodeDefsWantedCAS**optional | Wanted node definition concurrency (compare and swap) value.           | Integer                                    |
+| **nodeDefsWantedCAS**optional | Wanted node definition concurrency (Compare and Swap) value.           | Integer                                    |
 | **nodeDefsWantedErr**optional | Wanted node definition error. **Nullable:** yes                        | String                                     |
 | **planPIndexes**optional      | An object containing Search index partitions and related information.  | [Plan Partitions](#clusterConfigPlan)      |
-| **planPIndexesCAS**optional   | Search index partition concurrency (compare and swap) value.           | Integer                                    |
+| **planPIndexesCAS**optional   | Search index partition concurrency (Compare and Swap) value.           | Integer                                    |
 | **planPIndexesErr**optional   | Search index partition error. **Nullable:** yes                        | String                                     |
 | **status**optional            | The status of the operation.                                           | String                                     |
 
@@ -628,20 +642,20 @@ This section describes the properties consumed and returned by this REST API.
 
  Object
 
-| Property                     |                                                                                                                                                         | Schema                                                         |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| **indexName**optional        | The name of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | String                                                         |
-| **indexParams**optional      | The Search index's type identifier, type mappings, and analyzers. For more information, see [Params Object](../search/search-index-params.html#params). | Object                                                         |
-| **indexType**optional        | The type of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | String                                                         |
-| **indexUUID**optional        | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | String                                                         |
-| **name**optional             | The name of the Search index partition.                                                                                                                 | String                                                         |
-| **nodes**optional            | An object containing information about 1 or more Search index partition nodes.                                                                          | [Partition Nodes Wrapper](#GetIndexResponsePIndexNodesWrapper) |
-| **sourceName**optional       | The name of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).      | String                                                         |
-| **sourceParams**optional     | Advanced settings for Search index behavior. For more information, see [Initial Settings](../search/search-index-params.html#initial).                  | Object                                                         |
-| **sourcePartitions**optional |                                                                                                                                                         | String                                                         |
-| **sourceType**optional       | The type of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).      | String                                                         |
-| **sourceUUID**optional       | The UUID of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).      | String                                                         |
-| **uuid**optional             | The UUID of the Search index partition.                                                                                                                 | String                                                         |
+| Property                     |                                                                                                                                                                        | Schema                                                         |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| **indexName**optional        | The name of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                                | String                                                         |
+| **indexParams**optional      | The Search index's type identifier, type mappings, and analyzers. For more information, see [Params Object](../search/search-index-params.html#params).                | Object                                                         |
+| **indexType**optional        | The type of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial). **Values:** "fulltext-index", "fulltext-alias" | String                                                         |
+| **indexUUID**optional        | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                                | UUID (UUID)                                                    |
+| **name**optional             | The name of the Search index partition.                                                                                                                                | String                                                         |
+| **nodes**optional            | An object containing information about 1 or more Search index partition nodes.                                                                                         | [Partition Nodes Wrapper](#GetIndexResponsePIndexNodesWrapper) |
+| **sourceName**optional       | The name of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | String                                                         |
+| **sourceParams**optional     | Advanced settings for Search index behavior. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | Object                                                         |
+| **sourcePartitions**optional |                                                                                                                                                                        | String                                                         |
+| **sourceType**optional       | The type of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | String                                                         |
+| **sourceUUID**optional       | The UUID of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | UUID (UUID)                                                    |
+| **uuid**optional             | The UUID of the Search index partition.                                                                                                                                | String                                                         |
 
 #### Partition Nodes Wrapper
 
@@ -673,11 +687,9 @@ This section describes the properties consumed and returned by this REST API.
 
  Array
 
-An array of warnings. The name of the property is the name of the Search index.
-
-Schema
-
-String array
+| Item |  | Schema |
+| ---- |  | ------ |
+| …​   |  | String |
 
 #### Index Definitions Wrapper
 
@@ -691,18 +703,18 @@ String array
 
  Object
 
-| Property                  |                                                                                                                                                                  | Schema                                        |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **name**required          | The name of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                          | String                                        |
-| **type**required          | The type of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                          | String                                        |
-| **sourceName**required    | The name of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).               | String                                        |
-| **sourceUUID**optional    | The UUID of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).               | String                                        |
-| **sourceParams**optional  | Advanced settings for Search index behavior. For more information, see [Initial Settings](../search/search-index-params.html#initial).                           | Object                                        |
-| **sourceType**required    | The type of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).               | String                                        |
-| **params**required        | The Search index's type identifier, type mappings, and analyzers. For more information, see [Params Object](../search/search-index-params.html#params).          | Object                                        |
-| **planParams**required    | The Search index's partitioning and replication settings. For more information, see [Plan Params Object](../search/search-index-params.html#planParams).         | [Plan Parameters](#IndexDefinitionPlanParams) |
-| **prevIndexUUID**optional | The UUID of the previous index. Intended for clients that want to check that they are not overwriting the Search index definition updates of concurrent clients. | String                                        |
-| **uuid**optional          | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                          | String                                        |
+| Property                  |                                                                                                                                                                        | Schema                                        |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **name**required          | The name of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                                | String                                        |
+| **type**required          | The type of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial). **Values:** "fulltext-index", "fulltext-alias" | String                                        |
+| **sourceName**required    | The name of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | String                                        |
+| **sourceUUID**optional    | The UUID of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | UUID (UUID)                                   |
+| **sourceParams**optional  | Advanced settings for Search index behavior. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                 | Object                                        |
+| **sourceType**required    | The type of the bucket where the Search index is stored. For more information, see [Initial Settings](../search/search-index-params.html#initial).                     | String                                        |
+| **params**required        | The Search index's type identifier, type mappings, and analyzers. For more information, see [Params Object](../search/search-index-params.html#params).                | Object                                        |
+| **planParams**required    | The Search index's partitioning and replication settings. For more information, see [Plan Params Object](../search/search-index-params.html#planParams).               | [Plan Parameters](#IndexDefinitionPlanParams) |
+| **prevIndexUUID**optional | The UUID of the previous index. Intended for clients that want to check that they're not overwriting the Search index definition updates of concurrent clients.        | UUID (UUID)                                   |
+| **uuid**optional          | The UUID of the Search index. For more information, see [Initial Settings](../search/search-index-params.html#initial).                                                | UUID (UUID)                                   |
 
 #### Plan Parameters
 

@@ -3,7 +3,7 @@ title: Read Data and Return Results
 description: How to use a SQL++ selection query to read data from a data source
   and return results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/select.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:server:guides:select.adoc[]
 ---
 
@@ -64,14 +64,7 @@ Result
 The following example uses the `Cluster.QueryAsync<T>` method to execute the query. The result includes each row found.
 
 ```csharp
-// Call the QueryAsync() function on the scope object and store the result.
-var inventoryScope = bucket.Scope("inventory");
-var queryResult = await inventoryScope.QueryAsync<dynamic>("SELECT * FROM airline WHERE id = 10");
-
-// Iterate over the rows to access result data and print to the terminal.
-await foreach (var row in queryResult) {
-    Console.WriteLine(row);
-}
+Unresolved include directive in modules/guides/pages/select.adoc - include::dotnet-sdk:hello-world:example$StartUsing.csx[]
 ```
 
 Click the  View button to see this code in context.

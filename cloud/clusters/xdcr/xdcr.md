@@ -3,7 +3,7 @@ title: Cross Data Center Replication (XDCR)
 description: Cross Data Center Replication (XDCR) allows data to be replicated
   across clusters in cloud environments or on-premises.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/xdcr.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cloud:clusters:xdcr/xdcr.adoc[]
 ---
 
@@ -30,7 +30,7 @@ Replication sources and destinations can be on clusters in an organization. The 
 You can create replications for single node or multi-node clusters.
 
 > [!IMPORTANT]
-> You cannot [create a replication](manage-xdcr-replications.md#create-replication) between 2 Capella operational clusters that are within 2 different [cloud service providers](../../clouds/cloud-providers.md) (CSPs). Replications for single node clusters are only supported for development or test use cases.
+> You cannot [create a replication](manage-xdcr-replications.md#create-replication) between 2 Capella operational clusters that are within 2 different [cloud service providers](../../clouds/cloud-providers.md) (CSPs).
 
 ### [](#about-scopes-and-collections)About Scopes and Collections
 

@@ -2,7 +2,7 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-04-23T05:28:56.075Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:cxx-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -48,7 +48,7 @@ __Table 1\. Couchbase Server and SDK Supported Version Matrix__
 | Vector Query using Composite (GSI & vector) index                                            | N/A         | From SDK 1.2.0 ① |            |
 | Distributed ACID Transactions                                                                | From 1.0.0  |                  |            |
 | DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 1.0.0  |                  |            |
-| Circuit Breakers                                                                             | Unsupported |                  |            |
+| Circuit Breakers                                                                             | From 1.3.2  |                  |            |
 | OTel                                                                                         | From 1.3.0  |                  |            |
 | Field Level Encryption                                                                       | From 1.0.0  |                  |            |
 | Cloud Native Gateway                                                                         | Unsupported |                  |            |

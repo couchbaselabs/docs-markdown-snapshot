@@ -2,7 +2,7 @@
 title: Databases
 description: Working with Couchbase Lite Databases in JavaScript
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:couchbase-lite-javascript::database.adoc[]
 ---
 
@@ -387,7 +387,7 @@ await configure({
 * Compact the database
 * Delete unnecessary documents
 
-See [troubleshooting-storage.adoc](troubleshooting-storage.md) for more solutions.
+See [troubleshooting-storage.adoc](#troubleshooting-storage.adoc) for more solutions.
 
 #### [](#incorrect-password)EncryptionError
 

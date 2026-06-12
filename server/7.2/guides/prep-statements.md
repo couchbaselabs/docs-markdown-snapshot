@@ -3,7 +3,7 @@ title: Prepared Statements
 description: How to create and execute prepared statements, including
   placeholder parameters.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/prep-statements.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:7.2@server:guides:prep-statements.adoc[]
 ---
 
@@ -145,19 +145,13 @@ To supply values for placeholder parameters, use the `Parameter` method on the `
 The following example supplies a single positional parameter.
 
 ```csharp
-var result = await cluster.QueryAsync<dynamic>(
-    "SELECT t.* FROM `travel-sample` t WHERE t.type=$1",
-    options => options.Parameter("landmark")
-);
+Unresolved include directive in modules/guides/pages/prep-statements.adoc - include::dotnet-sdk:howtos:example$/N1qlQueries.csx[]
 ```
 
 The following example supplies a single named parameter.
 
 ```csharp
-var result = await cluster.QueryAsync<dynamic>(
-    "SELECT t.* FROM `travel-sample` t WHERE t.type=$type",
-    options => options.Parameter("type", "landmark")
-);
+Unresolved include directive in modules/guides/pages/prep-statements.adoc - include::dotnet-sdk:howtos:example$/N1qlQueries.csx[]
 ```
 
 For details, see [QueryOptions](https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.Query.QueryOptions.html).

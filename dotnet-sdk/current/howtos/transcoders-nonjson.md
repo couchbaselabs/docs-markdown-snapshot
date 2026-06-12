@@ -2,7 +2,7 @@
 title: Transcoders and Non-JSON Documents
 description: The .NET SDK supports common JSON document requirements out-of-the-box.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-04-02T05:14:13.149Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:dotnet-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
@@ -189,7 +189,7 @@ public class DotnetJsonSerializer : ITypeSerializer
 
     public ValueTask<T> DeserializeAsync<T>(Stream stream, CancellationToken cancellationToken = default)
     {
-        return JsonSerializer.DeserializeAsync<T>(stream, null, cancellationToken);
+        return JsonSerializer.DeserializeAsync<T>(stream, (JsonSerializerOptions)null, cancellationToken);
     }
 
     public void Serialize(Stream stream, object obj)
@@ -200,7 +200,7 @@ public class DotnetJsonSerializer : ITypeSerializer
 
     public ValueTask SerializeAsync(Stream stream, object obj, CancellationToken cancellationToken = default)
     {
-        return new ValueTask(JsonSerializer.SerializeAsync(stream, obj, null, cancellationToken));
+        return new ValueTask(JsonSerializer.SerializeAsync(stream, obj, (JsonSerializerOptions)null, cancellationToken));
     }
 }
 ```
@@ -296,7 +296,7 @@ public class MsgPackTranscoder : BaseTranscoder
     {
         var typeCode = Type.GetTypeCode(typeof(T));
         var dataFormat = DataFormat.Binary;
-        return new Flags { Compression = Compression.None, DataFormat = dataFormat, TypeCode = typeCode };
+        return new Flags { Compression = Couchbase.Core.IO.Operations.Compression.None, DataFormat = dataFormat, TypeCode = typeCode };
     }
 
     public override void Encode<T>(Stream stream, T value, Flags flags, OpCode opcode)
@@ -316,7 +316,15 @@ Note the use of `DataFormat.Binary`. The other Common Flags that can be used are
 Create a POCO properly adjorned with the MessagePack attributes:
 
 ```csharp
+[MessagePackObject]
+public class User2
+{
+    [Key(0)]
+    public string Name { get; set; }
 
+    [Key(1)]
+    public int Age { get; set; }
+}
 ```
 
 Now we can use the new transcoder to seamlessly store MessagePack data in Couchbase Server:

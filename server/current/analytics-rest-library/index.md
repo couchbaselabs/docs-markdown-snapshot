@@ -2,7 +2,7 @@
 title: Analytics Library REST API
 description: A description of the Library REST API for Couchbase Analytics.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/analytics-rest-library/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:server:analytics-rest-library:index.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:server:analytics-rest-library:index.adoc[]
 
 ## [](#overview)Overview
 
-The Analytics Library REST API is provided by the Analytics service. This API enables you to manage the libraries that are used to create SQL++ for Analytics user-defined functions.
+The Analytics Library REST API is provided by the Analytics Service. This API enables you to manage the libraries that are used to create SQL++ for Analytics user-defined functions.
 
 ### Version information
 

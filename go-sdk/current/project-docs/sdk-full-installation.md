@@ -2,7 +2,7 @@
 title: Couchbase Go SDK Installation
 description: Installation instructions for the Couchbase Go Client.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:go-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -29,7 +29,7 @@ Version 2 of the Go SDK has added support for [Go Modules](https://github.com/go
 Install the latest version of the Couchbase 2.12 Go SDK
 
 ```console
-$ go get github.com/couchbase/gocb/v2@v2.12.1
+$ go get github.com/couchbase/gocb/v2@v2.12.3
 ```
 
 ## [](#further-information)Further Information

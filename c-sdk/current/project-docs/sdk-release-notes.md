@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase C Client, libcouchbase (LCB).
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-12T16:31:57.907Z
 link: xref:c-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -246,6 +246,71 @@ cbc:
 
 We always recommend using the latest version of the SDK — it contains all of the latest security patches and support for new and upcoming features. All patch releases for each dot minor release should be API compatible, and safe to upgrade; any changes to expected behavior are noted in the release notes that follow.
 
+### [](#version-3-3-19-13-may-2026)Version 3.3.19 (13 May 2026)
+
+[API Reference](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.19/index.html)
+
+This is a maintenance release.
+
+* [CCBC-1685](https://issues.couchbase.com/browse/CCBC-1685): Added `lcb_trim_memory()` to release cached pool memory.  
+Long-lived instances that occasionally burst and then idle retain the peak working set of every pipeline's internal allocator until `lcb_destroy()`. In memory-constrained environments (containers, tight cgroup limits) this plateau is easily mistaken for a leak and can trigger the OOM killer once several instances are stacked in one process.  
+The new API releases the backing buffers of cached blocks without touching in-flight operations or connections. Intended for periodic invocation from an application's idle tick when RSS approaches a configured limit.
+* [CCBC-1702](https://issues.couchbase.com/browse/CCBC-1702): Requeue operations when the vBucket map briefly has no master.  
+During failover, rebalance, and the moment a new configuration is being installed the vbmap can transiently show no master for a vBucket. Previously such operations failed immediately with `LCB_ERR_NO_MATCHING_SERVER`; they are now retried until the operation deadline expires, matching the contract customers expect during topology changes. Opt-out remains available via `retry=missingnode=0`.  
+This change also closes several latent use-after-free races on the configuration-replacement path that the longer retry window made reachable.
+* [CCBC-1699](https://issues.couchbase.com/browse/CCBC-1699), [CCBC-1695](https://issues.couchbase.com/browse/CCBC-1695), [CCBC-1694](https://issues.couchbase.com/browse/CCBC-1694): Fixed TLS and `libuv` crashes, and hangs around instance teardown and live configuration updates.  
+Pre-fix symptoms included `SIGABRT` in the SSL context destructor on Couchbase Server 7.6 and 6.6, a deadlock in `lcb_destroy()` that prevented async-destroy callbacks from firing, and a use-after-free crash during rebalance and failover against CBS 6.0.x under TLS.  
+The libuv I/O plugin now caps its teardown drain and force-closes orphaned timers and sockets so `lcb_destroy_io_ops()` no longer hangs or asserts on `uv_loop_close`.
+* [CCBC-1686](https://issues.couchbase.com/browse/CCBC-1686), [CCBC-1687](https://issues.couchbase.com/browse/CCBC-1687), [CCBC-1692](https://issues.couchbase.com/browse/CCBC-1692): Hardened the `conn-state-invalidated` error path.  
+A server-side error carrying this errmap attribute (e.g. `EINTERNAL` 0x84) could leave the client exposed to a destroy/refresh race that crashed on Windows IOCP and was a latent use-after-free on Linux.  
+Configuration providers are now paused synchronously at the start of `lcb_destroy()`, and an inverted guard in the error handler that could deliver `LCB_SUCCESS` to user callbacks (or clobber a more specific status with `LCB_ERR_GENERIC`) has been corrected.
+* [CCBC-1688](https://issues.couchbase.com/browse/CCBC-1688): Fixed use-after-free in the threshold-logging tracer.  
+Host and port tags attached to a span used to point into the owning socket's connection info, which could be freed before the span was finished — for example when a sockpool entry was torn down by its timer while the outer HTTP/View request was still draining. The tracer now copies these short strings.
+* [CCBC-1684](https://issues.couchbase.com/browse/CCBC-1684):  
+Preserve the `deadline >= start` invariant when an operation is re-stamped at flush time. With `LCB_CNTL_RESET_TIMEOUT_ON_WAIT` enabled and a short per-op timeout, the flush callback could produce a packet with `start > deadline` and abort the process via an assertion on the next `lcb_wait()`.  
+Both fields are now rebased to flush time, preserving the remaining timeout budget.
+* Fixed packet replacement and memory management in the retry queue. When a collection is being flushed and packets are renewed in place, the old packet's bytes can still be referenced by the netbuf PDU queue or an in-flight kernel write. The new `MCREQ_F_REPLACED` flag lets the retry path safely replace such packets without freeing memory that is still on the wire.
+* [CCBC-1693](https://issues.couchbase.com/browse/CCBC-1693): Avoid copying the cached collection path on every KV response. `CollectionCache::id_to_name` now returns a stable reference into the cache instead of a fresh `std::string`, eliminating a per-reply allocation for collection paths longer than the small-string optimisation threshold.
+* [CCBC-1682](https://issues.couchbase.com/browse/CCBC-1682): Fixed Analytics discovery with Alternate Addresses.  
+When connecting to Couchbase Operational or Enterprise Analytics using `LCB_TYPE_CLUSTER`, the client used `/poolsStreaming/default`, which returns a legacy configuration without `nodesExt` and triggers the 2.x parser fallback. As a result the Analytics service was not discovered, alternate addresses were ignored, and callers saw `LCB_ERR_UNSUPPORTED_OPERATION`. The cluster-level HTTP bootstrap now uses `/pools/default/nodeServicesStreaming`.
+* [CCBC-1678](https://issues.couchbase.com/browse/CCBC-1678): Deprecate the Views (Map-Reduce) API in public headers. Couchbase Server 7.0 deprecated the Views service in favour of the Query Service (SQL++). All public view entry points now emit `-Wdeprecated-declarations` at call sites with a guiding message. ABI is preserved; existing binaries continue to link and run.  
+Translation units that legitimately use the Views API can opt out by predefining `LCB_DEPRECATE_VIEWS(X)` before including `couchbase.h`.
+* Honor `op→trytime` strictly when flushing scheduled retries. The previous 5 ms early-fire window could let a retry land below the errmap retry-spec's documented "wait at least N ms before the first retry" floor, observable on slower CI runners.
+* [CCBC-1689](https://issues.couchbase.com/browse/CCBC-1689), [CCBC-1690](https://issues.couchbase.com/browse/CCBC-1690), [CCBC-1691](https://issues.couchbase.com/browse/CCBC-1691): Stabilised the test suite around failover/replica-read, libuv-specific timer races, and slow Windows Debug bootstrap. SDK behaviour is unchanged.
+
+#### [](#downloads)Downloads
+
+| Platform                      | Architecture | File                                                                                                                                                 |
+| ----------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Checksums                     | Any          | [libcouchbase-3.3.19.sha256sum](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19.sha256.txt)                                             |
+| Source Archive                | Any          | [libcouchbase-3.3.19.tar.gz](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19.tar.gz)                                                    |
+| Amazon Linux 2023             | x86\_64      | [libcouchbase-3.3.19\_amzn2023\_x86\_64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Famzn2023%5Fx86%5F64.tar)                 |
+| Amazon Linux 2023             | aarch64      | [libcouchbase-3.3.19\_amzn2023\_aarch64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Famzn2023%5Faarch64.tar)                  |
+| Amazon Linux 2                | x86\_64      | [libcouchbase-3.3.19\_amzn2\_x86\_64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Famzn2%5Fx86%5F64.tar)                       |
+| Amazon Linux 2                | aarch64      | [libcouchbase-3.3.19\_amzn2\_aarch64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Famzn2%5Faarch64.tar)                        |
+| Enterprise Linux 8            | x86\_64      | [libcouchbase-3.3.19\_rhel8\_x86\_64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Frhel8%5Fx86%5F64.tar)                       |
+| Enterprise Linux 8            | aarch64      | [libcouchbase-3.3.19\_rhel8\_aarch64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Frhel8%5Faarch64.tar)                        |
+| Enterprise Linux 9            | x86\_64      | [libcouchbase-3.3.19\_rhel9\_x86\_64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Frhel9%5Fx86%5F64.tar)                       |
+| Enterprise Linux 9            | aarch64      | [libcouchbase-3.3.19\_rhel9\_aarch64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Frhel9%5Faarch64.tar)                        |
+| Enterprise Linux 10           | x86\_64      | [libcouchbase-3.3.19\_rhel10\_x86\_64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Frhel10%5Fx86%5F64.tar)                     |
+| Enterprise Linux 10           | aarch64      | [libcouchbase-3.3.19\_rhel10\_aarch64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Frhel10%5Faarch64.tar)                      |
+| Ubuntu 22.04 (jammy)          | x86\_64      | [libcouchbase-3.3.19\_ubuntu2204\_jammy\_amd64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fubuntu2204%5Fjammy%5Famd64.tar)   |
+| Ubuntu 22.04 (jammy)          | aarch64      | [libcouchbase-3.3.19\_ubuntu2204\_jammy\_arm64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fubuntu2204%5Fjammy%5Farm64.tar)   |
+| Ubuntu 24.04 (noble)          | x86\_64      | [libcouchbase-3.3.19\_ubuntu2404\_noble\_amd64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fubuntu2404%5Fnoble%5Famd64.tar)   |
+| Ubuntu 24.04 (noble)          | aarch64      | [libcouchbase-3.3.19\_ubuntu2404\_noble\_arm64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fubuntu2404%5Fnoble%5Farm64.tar)   |
+| Debian 11 (bullseye)          | x86\_64      | [libcouchbase-3.3.19\_debian11\_bullseye\_amd64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fdebian11%5Fbullseye%5Famd64.tar) |
+| Debian 11 (bullseye)          | aarch64      | [libcouchbase-3.3.19\_debian11\_bullseye\_arm64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fdebian11%5Fbullseye%5Farm64.tar) |
+| Debian 12 (bookworm)          | x86\_64      | [libcouchbase-3.3.19\_debian12\_bookworm\_amd64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fdebian12%5Fbookworm%5Famd64.tar) |
+| Debian 12 (bookworm)          | aarch64      | [libcouchbase-3.3.19\_debian12\_bookworm\_arm64.tar](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fdebian12%5Fbookworm%5Farm64.tar) |
+| Visual Studio 2015 (VC14)     | x86\_64      | [libcouchbase-3.3.19\_vc14\_amd64.zip](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fvc14%5Famd64.zip)                              |
+| Visual Studio 2017 (VC15)     | x86\_64      | [libcouchbase-3.3.19\_vc15\_amd64.zip](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fvc15%5Famd64.zip)                              |
+| Visual Studio 2019 (VC16)     | x86\_64      | [libcouchbase-3.3.19\_vc16\_amd64.zip](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fvc16%5Famd64.zip)                              |
+| Visual Studio 2022 (VC17)     | x86\_64      | [libcouchbase-3.3.19\_vc17\_amd64.zip](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fvc17%5Famd64.zip)                              |
+| Visual Studio 2015 TLS (VC14) | x86\_64      | [libcouchbase-3.3.19\_vc14\_amd64\_openssl3.zip](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fvc14%5Famd64%5Fopenssl3.zip)         |
+| Visual Studio 2017 TLS (VC15) | x86\_64      | [libcouchbase-3.3.19\_vc15\_amd64\_openssl3.zip](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fvc15%5Famd64%5Fopenssl3.zip)         |
+| Visual Studio 2019 TLS (VC16) | x86\_64      | [libcouchbase-3.3.19\_vc16\_amd64\_openssl3.zip](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fvc16%5Famd64%5Fopenssl3.zip)         |
+| Visual Studio 2022 TLS (VC17) | x86\_64      | [libcouchbase-3.3.19\_vc17\_amd64\_openssl3.zip](https://packages.couchbase.com/clients/c/libcouchbase-3.3.19%5Fvc17%5Famd64%5Fopenssl3.zip)         |
+
 ### [](#version-3-3-18-10-september-2025)Version 3.3.18 (10 September 2025)
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/index.html)
@@ -265,7 +330,7 @@ This is a maintenance release.
 * Raised minimum `cmake` version to 3.17.
 * Log local port to make it easier to correlate with the Server logs.
 
-#### [](#downloads)Downloads
+#### [](#downloads-2)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                                 |
 | ----------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -306,7 +371,7 @@ This is a maintenance release.
 
 * [CCBC-1666](https://issues.couchbase.com/browse/CCBC-1666): Configuration manager was not correctly handling `LCB_ERR_REQUEST_CANCELED` during instance destruction. With completion-based IO (`libuv`, Windows `IOCP`), the library could try to schedule a configuration update on an already deallocated pipeline and cause a use-after-free condition. To fix the issue, the configuration manager has now been updated to handle `LCB_ERR_REQUEST_CANCELED` and return without issuing a new request.
 
-#### [](#downloads-2)Downloads
+#### [](#downloads-3)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                                 |
 | ----------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -346,7 +411,7 @@ This is a maintenance release and includes several bugs fixes and stability impr
 * Define `LCB_CC_STRING` for MS VS 17 to fix packaging scripts.
 * [CCBC-1658](https://issues.couchbase.com/browse/CCBC-1658): Added support for encrypted TLS keys. The key password should be specified in connection options with `lcb_createopts_tls_key_password()`.
 
-#### [](#downloads-3)Downloads
+#### [](#downloads-4)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                                 |
 | ----------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -382,7 +447,7 @@ This is a maintenance release and includes several bugs fixes and stability impr
 * [CCBC-1652](https://issues.couchbase.com/browse/CCBC-1652): Allow to force SASL when client certificate is being used.
 * Windows binaries now linked with OpenSSL 3.
 
-#### [](#downloads-4)Downloads
+#### [](#downloads-5)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                                 |
 | ----------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -416,7 +481,7 @@ This is a maintenance release and includes several bugs fixes and stability impr
 * [CCBC-1598](https://jira.issues.couchbase.com/browse/CCBC-1598): Fixed documentation issues for cbc tools.
 * Fixed tests on 7.6 Server.
 
-#### [](#downloads-5)Downloads
+#### [](#downloads-6)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                                 |
 | ----------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -447,7 +512,7 @@ This is a maintenance release and includes several bugs fixes and stability impr
 * Fix build with `-DLCB_DUMP_PACKETS=ON`.
 * Fix `pkg-config` for MacOS.
 
-#### [](#downloads-6)Downloads
+#### [](#downloads-7)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                                 |
 | ----------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -481,7 +546,7 @@ This is a maintenance release and includes several bugs fixes and stability impr
 * [CCBC-1630](https://issues.couchbase.com/browse/CCBC-1630): Check collection id before storing packet to pipeline. Every time `check_collection_id()` is invoked, the caller should ensure that this function potentially is rewriting the packet, if it decides to insert/update an encoded collection ID. This will help to avoid problems when running in mixed mode — during an upgrade rebalance from Server 6.6 to 7.2, for instance.
 * [CCBC-1627](https://issues.couchbase.com/browse/CCBC-1627): Fixed `bodylen` value when `ffextlen` (flexible frame extra length) is not zero.
 
-#### [](#downloads-7)Downloads
+#### [](#downloads-8)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                                 |
 | ----------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -514,7 +579,7 @@ This is a maintenance release and includes several bugs fixes and stability impr
 * [CCBC-1618](https://issues.couchbase.com/browse/CCBC-1618): Updated query error codes for dynamic authenticator. This is an update to the internal interface, that allows more granular detection of stale authentication conditions for the Query Service.
 * Prevent full rebuild on every run of `cmake`. The SDK no longer renders the built timestamp into the header, but instead only uses it in the object file.
 
-#### [](#downloads-8)Downloads
+#### [](#downloads-9)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                                 |
 | ----------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -549,7 +614,7 @@ This is a maintenance release and includes several bugs fixes and stability impr
   * The old behaviour still works when `wait_for_config=true` is passed in the connection string (or `LCB_CNTL_WAIT_FOR_CONFIG` is set to non-zero value): in this case the library will wait for the configuration.
   * This setting does not affect the mode when the event loop is executed by the application, and without `lcb_wait`.
 
-#### [](#downloads-9)Downloads
+#### [](#downloads-10)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                                 |
 | ----------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -588,7 +653,7 @@ This is a maintenance release and includes several bugs fixes and stability impr
 * [CCBC-1611](https://issues.couchbase.com/browse/CCBC-1611): To handle `0x0d` (`ECONFIG_ONLY`) status code — we now treat this status code as a signal to refresh the configuration. The new or failed over nodes are set into config-only mode, where all data operations will be failed with code `0x0d`. It is possible that the SDK might be using stale configuration and send requests to the node that is not part of the cluster any more, so to work around this the library will update the configuration and retry the operation.
 * [CCBC-1610](https://issues.couchbase.com/browse/CCBC-1610): Fixed a memory issues when setting collection id in the cluster with mixed server versions, where some of the nodes do not support collections (such as in a swap rebalance upgrade).
 
-#### [](#downloads-10)Downloads
+#### [](#downloads-11)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -624,7 +689,7 @@ This is a maintenance release and includes several bugs fixes and stability impr
 * [CCBC-1603](https://issues.couchbase.com/browse/CCBC-1603): Do not log if logger is not accessible in `iotssl_log_errors`.
 * [CCBC-1599](https://issues.couchbase.com/browse/CCBC-1599): Account NUL-byte when format IPv6 address (fixes potential invalid memory access).
 
-#### [](#downloads-11)Downloads
+#### [](#downloads-12)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -661,7 +726,7 @@ This is a maintenance release and includes several bugs fixes and stability impr
   * Constants for tracing system defined as mutable static strings, this patch replaces it with const static strings.
   * Updated examples for thread-safe usage is updated to SDK3 API and added them to the build pipeline
 
-#### [](#downloads-12)Downloads
+#### [](#downloads-13)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -707,7 +772,7 @@ Do not share the same value of expiry for get operations. Also it does not turn 
 
 * [CCBC-1596](https://issues.couchbase.com/browse/CCBC-1596): Fix various compiler warnings.
 
-#### [](#downloads-13)Downloads
+#### [](#downloads-14)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -742,7 +807,7 @@ Do not share the same value of expiry for get operations. Also it does not turn 
 * [CCBC-1585](https://issues.couchbase.com/browse/CCBC-1585): Fix build for GCC 13.
 * [CCBC-1587](https://issues.couchbase.com/browse/CCBC-1587): Allow to disable uninstall target.
 
-#### [](#downloads-14)Downloads
+#### [](#downloads-15)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -773,7 +838,7 @@ Do not share the same value of expiry for get operations. Also it does not turn 
 
 * [CCBC-1583](https://issues.couchbase.com/browse/CCBC-1583): Collections support is disabled in 3.x SDKs if the configuration does not have collections capabilities. Now, it is also disabled when a KV node does not negotiate collection support in HELLO flags. This should help with clusters in mixed mode (with both 6.x and 7.x Server versions) during an upgrade.
 
-#### [](#downloads-15)Downloads
+#### [](#downloads-16)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -813,7 +878,7 @@ This patch ensures that once socket context has been closed, its pointer in SSL 
 
 * Added cbc-bucket-list command to list all buckets.
 
-#### [](#downloads-16)Downloads
+#### [](#downloads-17)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -857,7 +922,7 @@ As a fix, we run `lcb_tick_nowait` in case of failure, which is enough for libco
 
 The library will cache cluster-level configurations only if the `config_cache=` connection string option is set to directory (ends with '/' symbol), otherwise it will cache only buckets configurations (note that in this case the application should use unique cache name for each bucket, otherwise the library will ignore cache if the bucket name will not match).
 
-#### [](#downloads-17)Downloads
+#### [](#downloads-18)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -893,7 +958,7 @@ Version 3.3.1 is the second release of the 3.3 series.
 * [CCBC-1550](https://issues.couchbase.com/browse/CCBC-1550): Fixed RPM packages for CentOS 7, now they will require OpenSSL 1.1 during build. Also build script will not automatically define `LCB_NO_SSL` option if OpenSSL is not found. For builds without TLS support, this option must be explicitly defined.
 * [CCBC-1546](https://issues.couchbase.com/browse/CCBC-1546): cbc-pillowfight: add `--rand-space-per-thread` to allow threads to work from different rand numbers.
 
-#### [](#downloads-18)Downloads
+#### [](#downloads-19)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -931,7 +996,7 @@ Version 3.3.0 is the first release of the 3.3 series.
 * [CCBC-1526](https://issues.couchbase.com/browse/CCBC-1526): The SDK no longer validates the length of collection specifier. This will be checked on the server-side.
 * [CCBC-1527](https://issues.couchbase.com/browse/CCBC-1527): Fixed issue where `Pillowfight` was leaking a large number of memory allocations, which occured during startup. Pillowfight will now deallocate all memory during shutdown.
 
-#### [](#downloads-19)Downloads
+#### [](#downloads-20)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -967,7 +1032,7 @@ Version 3.2.4 is the fifth release of the 3.2 series.
 * [CCBC-1514](https://issues.couchbase.com/browse/CCBC-1514): Do not translate unknown error with "item-only" attribute into `LCB_ERR_CAS_MISMATCH`.
 * [CCBC-1515](https://issues.couchbase.com/browse/CCBC-1515): Performance optimization: replace `sstream` with string `append()`. Only if list of IO vectors supplied for value in mutation operations.
 
-#### [](#downloads-20)Downloads
+#### [](#downloads-21)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1002,7 +1067,7 @@ Version 3.2.3 is the fourth release of the 3.2 series.
 * [CCBC-1506](https://issues.couchbase.com/browse/CCBC-1506): Duration values now accepted golang style encoding. Connection string and `lcb_cntl_string` now can parse strings with duration encoded in golang style, e.g. `analytics_timeout=5s42us`. The result still converted into 32-bit value with microsecond resolution.
 * Improved test coverage, stability and documentation.
 
-#### [](#downloads-21)Downloads
+#### [](#downloads-22)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1043,7 +1108,7 @@ Version 3.2.2 is the third release of the 3.2 series.
 * [CCBC-1216](https://issues.couchbase.com/browse/CCBC-1216): Implement user impersonation API, for use-cases where SDK performs work on behalf of an application.
 * Improved test coverage and stability.
 
-#### [](#downloads-22)Downloads
+#### [](#downloads-23)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1084,7 +1149,7 @@ Version 3.2.1 is the second release of the 3.2 series.
 * [CCBC-1445](https://issues.couchbase.com/browse/CCBC-1445): Always invoke callbacks for pending HTTP operations. When destroying `lcb_INSTANCE` make sure that all HTTP requests (views, query, search, analytics) will have their callbacks invoked.
 * [CCBC-1438](https://issues.couchbase.com/browse/CCBC-1438): Fixed frame size for mutations with durability. Counter, Store and Subdoc mutations were sending incorrect frame size of durability encoding, which led to rejection of the command by the server.
 
-#### [](#downloads-23)Downloads
+#### [](#downloads-24)Downloads
 
 | Platform                               | Architecture | File                                                                                                                                               |
 | -------------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1145,7 +1210,7 @@ In order to improve UX and allow caller to implement credential caching the API 
 * [CCBC-1402](https://issues.couchbase.com/browse/CCBC-1402): Fix parsing JSON primitives as query rows.
 * Various improvements and fixes in test and build infrastructure
 
-#### [](#downloads-24)Downloads
+#### [](#downloads-25)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1184,7 +1249,7 @@ Version 3.1.3 is the fourth release of the 3.1 series.
 * Fix `cbc-proxy` tool.
 * Upgrade snappy to 1.1.8
 
-#### [](#downloads-25)Downloads
+#### [](#downloads-26)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1219,7 +1284,7 @@ Version 3.1.2 is the third release of the 3.1 series.
 * [CCBC-1330](https://issues.couchbase.com/browse/CCBC-1330): Detect unknown collection during "populate" phase of `cbc-pillowfight`.
 * [CCBC-1386](https://issues.couchbase.com/browse/CCBC-1386): Remove legacy options for `cbc-bucket-create`.
 
-#### [](#downloads-26)Downloads
+#### [](#downloads-27)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1260,7 +1325,7 @@ Version 3.1.1 is the second release of the 3.1 series.
 lcb_cntl_setu32(instance, LCB_CNTL_QUERY_GRACE_PERIOD, 100000);  
 ```
 
-#### [](#downloads-27)Downloads
+#### [](#downloads-28)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1299,7 +1364,7 @@ Version 3.1.0 is the first release of the 3.1 series.
 * [CCBC-1323](https://issues.couchbase.com/browse/CCBC-1323): Return `LCB_ERR_DOCUMENT_EXISTS` only for insert operation.
 * [CCBC-1346](https://issues.couchbase.com/browse/CCBC-1346): Return `LCB_ERR_DOCUMENT_LOCKED` for locked documents.
 
-#### [](#downloads-28)Downloads
+#### [](#downloads-29)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1349,7 +1414,7 @@ Version 3.0.7 is the eighth release of the 3.0 series, bringing enhancements and
 * Remove verbosity and mcversions commands. These parts of API are non-standard and volatile.
 * Bundle HdrHistogram\_c v0.11.2 and allow to fall back to it.
 
-#### [](#downloads-29)Downloads
+#### [](#downloads-30)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1386,7 +1451,7 @@ Version 3.0.6 is the seventh release of the 3.0 series, bringing enhancements an
 * [CCBC-1314](https://issues.couchbase.com/browse/CCBC-1314): Extra checks for socket state in `lcb_ping` to avoid invalid access issues.
 * [CCBC-1316](https://issues.couchbase.com/browse/CCBC-1316): Fixed two-step bootstrap (`lcb_connect` \+ `lcb_open`) for memcached bucket.
 
-#### [](#downloads-30)Downloads
+#### [](#downloads-31)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1416,7 +1481,7 @@ Version 3.0.5 is the sixth release of the 3.0 series, bringing enhancements and 
 * [CCBC-1312](https://issues.couchbase.com/browse/CCBC-1312): Fixed return values for `lcb_cmdquery_scope_*`.
 * [CCBC-1313](https://issues.couchbase.com/browse/CCBC-1313): Replaced `std::random_shuffle` with `std::shuffle`. fixing build of `cbc-n1qlback` tool.
 
-#### [](#downloads-31)Downloads
+#### [](#downloads-32)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1445,7 +1510,7 @@ Version 3.0.4 is the fifth release of the 3.0 series, bringing enhancements and 
 * [CCBC-1301](https://issues.couchbase.com/browse/CCBC-1301): Expose cmake option to help dissect TLS traffic.
 * Detect configuration change when replica indexes changed.
 
-#### [](#downloads-32)Downloads
+#### [](#downloads-33)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1483,7 +1548,7 @@ Version 3.0.3 is the fourth release of the 3.0 series, bringing enhancements and
 * Improved build on Windows (fixed static build, and PDB installation).
 * Fixed collections issues for future server release.
 
-#### [](#downloads-33)Downloads
+#### [](#downloads-34)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1523,7 +1588,7 @@ Version 3.0.2 is the third release of the 3.0 series, bringing enhancements and 
 * [CCBC-1218](https://issues.couchbase.com/browse/CCBC-1218): Fixed intermittent segfault in client durable store.
 * Documentation issues addressed ([CCBC-1240](https://issues.couchbase.com/browse/CCBC-1240), [CCBC-1241](https://issues.couchbase.com/browse/CCBC-1241), [CCBC-1243](https://issues.couchbase.com/browse/CCBC-1243), [CCBC-1245](https://issues.couchbase.com/browse/CCBC-1245))
 
-#### [](#downloads-34)Downloads
+#### [](#downloads-35)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1562,7 +1627,7 @@ Version 3.0.1 is the second release of the 3.0 series, bringing enhancements and
 
 * Attempting to install libcouchbase via homebrew on OS X prior to June 8th, 2020 would result in libcouchbase 2.10 being installed instead of 3.0.
 
-#### [](#downloads-35)Downloads
+#### [](#downloads-36)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1605,7 +1670,7 @@ This is the first GA release of the third generation C SDK.
 
 * Attempting to install libcouchbase via homebrew on OS X prior to June 8th, 2020 would result in libcouchbase 2.10 being installed instead of 3.0.
 
-#### [](#downloads-36)Downloads
+#### [](#downloads-37)Downloads
 
 | Platform                      | Architecture | File                                                                                                                                               |
 | ----------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
