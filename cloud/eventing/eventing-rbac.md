@@ -1,7 +1,7 @@
 ---
 title: Eventing Access Control
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-rbac.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-16T06:19:19.898Z
 link: xref:cloud:eventing:eventing-rbac.adoc[]
 ---
 
@@ -12,9 +12,43 @@ link: xref:cloud:eventing:eventing-rbac.adoc[]
 
 > To create and manage Eventing Functions, you need the proper Organization Role, Project Role, or Cluster Access Credentials. 
 
-To be able to use the Eventing service through the Capella UI, you need to have one of the following organization or project roles:
+## [](#description)Access Eventing with the Capella UI
 
-* The Organization Owner, Project Creator, or Organization Member role, as described in [Organization Roles](../organizations/organization-user-roles.md).
-* The Project Owner or Data Writer role, as described in [Project Roles](../projects/project-roles.md).
+To be able to use the Eventing service through the Capella UI, you must have one of the following project roles:
 
-To be able to use the Eventing service, via an SDK or a REST API, your client application must have cluster access credentials with Read or Read/write access to the buckets, scopes, and collections that your Eventing functions listen to. Also, you need Write or Read/Write access to the buckets, scopes, and collections that the Eventing functions write to, as described in [Manage Cluster Access Credentials](../clusters/manage-database-users.md).
+* Data Reader
+* Data Writer
+* Project Owner
+
+For more information about the project roles and their privileges, see [Project Roles](../projects/project-roles.md).
+
+The following table summarizes the actions that you can perform with the Eventing Service using each of these project roles.
+
+| Action                           | Data Reader | Data Writer | Project Owner |
+| -------------------------------- | ----------- | ----------- | ------------- |
+| Create / Import / Edit Function  | No          | Yes         | Yes           |
+| Deploy / Undeploy                | No          | Yes         | Yes           |
+| View Logs / JavaScript/ Settings | Yes         | Yes         | Yes           |
+| Delete Function                  | No          | Yes         | Yes           |
+| Export Function                  | Yes         | Yes         | Yes           |
+
+> [!NOTE]
+> The Cluster Viewer and Cluster Manager roles do not grant Eventing privileges.
+
+## [](#access-eventing-with-cluster-access-credentials)Access Eventing with Cluster Access Credentials
+
+To access the Eventing Service programmatically via an SDK or API, your client must have the appropriate cluster access credentials, with access to the buckets, scopes, and collections that your Eventing functions use. For more information, see [Cluster Access](../clusters/cluster-rbac.md).
+
+The following table summarizes the basic access levels or advanced access privileges that your cluster access credentials must have, for each of the target keyspaces that your Eventing functions read from or write to.
+
+| Target Keyspace    | Basic Access Level   | Advanced Access Privilege     |
+| ------------------ | -------------------- | ----------------------------- |
+| Source / Mutation  | Read or Read / Write | Data Read and Eventing Manage |
+| Metadata / Storage | Read / Write         | Data Read and Eventing Manage |
+| Bindings           | Read or Read / Write | Data Read and Eventing Manage |
+
+## [](#see-also)See Also
+
+* [Organizations and Organization Users Overview](../organizations/organizations.md)
+* [Projects Overview](../projects/projects.md)
+* [Cluster Access](../clusters/cluster-rbac.md)
