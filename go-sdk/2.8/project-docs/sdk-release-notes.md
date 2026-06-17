@@ -3,7 +3,7 @@ title: Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Go Client.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-06-17T06:07:18.814Z
 link: xref:2.8@go-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -35,6 +35,20 @@ The most current and up to date API Documentation is always available through th
 
 We always recommend using the latest version of the SDK — it contains all of the latest security patches and support for new and upcoming features. All patch releases for each dot minor release should be API compatible, and safe to upgrade; any changes to expected behavior are noted in the release notes that follow.
 
+### [](#version-2-12-4-16-june-2026)Version 2.12.4 (16 June 2026)
+
+Version 2.12.4 is a maintenance release for the Go SDK 2.12.
+
+[API Documentation](https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.12.4?tab=doc)
+
+#### [](#fixed-issues)Fixed issues
+
+* [GOCBC-1824](https://jira.issues.couchbase.com/browse/GOCBC-1824): Resolved a data race in `Collection.Scan` when `ScanOptions.Concurrency` is set to a value greater than 1.
+* [GOCBC-1816](https://jira.issues.couchbase.com/browse/GOCBC-1816): Resolved a data race during when `Cluster.Close` is called while operations are ongoing, due to how the meter was accessed internally.
+* [GOCBC-1821](https://jira.issues.couchbase.com/browse/GOCBC-1816): Fixed the value of `ScanTermMaximum`, which had been encoded incorrectly. This could lead to documents missing from a scan result when document keys include nonstandard unicode characters. `ScanTermMaximum` is now equivalent to `utf8.MaxRune`.
+* [GOCBC-1828](https://jira.issues.couchbase.com/browse/GOCBC-1828): Fixed an issue with `Collection.Scan` where any fatal errors from initial vBucket scans, could either be returned immediately, or via `ScanResult.Err` depending on goroutine scheduling. Now they are consistently returned immediately by `Collection.Scan`.
+* [GOCBC-1835](https://jira.issues.couchbase.com/browse/GOCBC-1835): Fixed an issue when an already cancelled `context.Context` is provided to an operation where the operation may still succeed. It is now guaranteed that the operation will fail with `ErrRequestCanceled`.
+
 ### [](#version-2-12-3-20-may-2026)Version 2.12.3 (20 May 2026)
 
 Version 2.12.3 is a maintenance release for the Go SDK 2.12.
@@ -47,7 +61,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 
 * [GOCBC-1815](https://jira.issues.couchbase.com/browse/GOCBC-1815): When `snappy.Decode` fails a warning was emitted, but no information included on what went wrong. This warning is now updated to include the command, opaque, status and, datatype. (If redaction is enabled then the key if redacted.)
 
-#### [](#fixed-issues)Fixed Issues
+#### [](#fixed-issues-2)Fixed Issues
 
 * [GOCBC-1812](https://jira.issues.couchbase.com/browse/GOCBC-1812): Fixed an issue where `WaitUntilReady` can fail with `ErrRequestCanceled` during the initial network resolution when the seed endpoints don't match either the 'default' or 'external' network's endpoints. In that case, existing connections are dropped, cancelling the in-progress bootstrap, but this does not indicate an error.
 
@@ -59,7 +73,7 @@ Version 2.12.2 is a maintenance release for the Go SDK 2.12.
 
 Tracing and metrics with the `couchbase2` scheme should be considered stability level **volatile** at this time.
 
-#### [](#fixed-issues-2)Fixed Issues
+#### [](#fixed-issues-3)Fixed Issues
 
 * [GOCBC-1803](https://jira.issues.couchbase.com/browse/GOCBC-1803): Reverted a behavioral change, where a non-empty username, but an empty password, result in a timeout instead of a `ErrAuthenticationFailure` (for example, in `WaitUntilReady`).
 * [GOCBC-1805](https://jira.issues.couchbase.com/browse/GOCBC-1805): Updated to the latest version of the `couchbase2` protocol, which resolves an issue where the latest `gocb` and `goprotostellar` versions were incompatible.
@@ -75,7 +89,7 @@ Version 2.12.1 is a maintenance release for the Go SDK 2.12.
 
 Tracing and metrics with the `couchbase2` scheme should be considered stability level **volatile** at this time.
 
-#### [](#fixed-issues-3)Fixed issues
+#### [](#fixed-issues-4)Fixed issues
 
 * [GOCBC-1796](https://jira.issues.couchbase.com/browse/GOCBC-1796): Fixed a rare "send on closed channel" panic that could occur during a transactions `BulkGet` operation when documents were being fetched concurrently.
 * [GOCBC-1799](https://jira.issues.couchbase.com/browse/GOCBC-1799): Fixed issue where concurrent calls to `Cluster.Bucket` could race and result in multiple bucket agents being opened internally, which would leak even after `Cluster.Close` is called.
@@ -94,7 +108,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 * [GOCBC-1775](https://jira.issues.couchbase.com/browse/GOCBC-1775): Deprecated support for MapReduce Views.
 * [GOCBC-1776](https://jira.issues.couchbase.com/browse/GOCBC-1776): Added support for OpenTelemetry semantic conventions.
 
-#### [](#fixed-issues-4)Fixed Issues
+#### [](#fixed-issues-5)Fixed Issues
 
 * [GOCBC-1782](https://jira.issues.couchbase.com/browse/GOCBC-1782): Fixed issue where specified scope was ignored when creating group. it is now possible to specify role scope when creating a group.
 
@@ -104,7 +118,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 
 Version 2.11.3 is a maintenance release for the Go SDK 2.11.
 
-#### [](#fixed-issues-5)Fixed Issues
+#### [](#fixed-issues-6)Fixed Issues
 
 * [GOCBC-1788](https://jira.issues.couchbase.com/browse/GOCBC-1788): Fixed issue where app telemetry could panic when multiple nodes share an address (e.g. a load balanced environment).
 
@@ -116,7 +130,7 @@ Version 2.11.2 is a maintenance release for the Go SDK 2.11.
 
 * [GOCBC-1780](https://jira.issues.couchbase.com/browse/GOCBC-1780): Updated dependencies.
 
-#### [](#fixed-issues-6)Fixed Issues
+#### [](#fixed-issues-7)Fixed Issues
 
 * [GOCBC-1774](https://jira.issues.couchbase.com/browse/GOCBC-1774): Fixed issue where get projections with > 16 would not correctly rebuild the projection.
 * [GOCBC-1778](https://jira.issues.couchbase.com/browse/GOCBC-1778): Fixed issue where it was not able to reset durability level to none using `UpdateBucket`.
@@ -125,7 +139,7 @@ Version 2.11.2 is a maintenance release for the Go SDK 2.11.
 
 Version 2.11.1 is a maintenance release for the Go SDK 2.11.
 
-#### [](#fixed-issues-7)Fixed Issues
+#### [](#fixed-issues-8)Fixed Issues
 
 * [GOCBC-1764](https://jira.issues.couchbase.com/browse/GOCBC-1764): Non-TLS connections are not possible with the `couchbase2://` scheme. TLS is now always enabled when the `couchbase2://` scheme is used, and the system certificate pool is used by default if no certificate options are specified.
 * [GOCBC-1762](https://jira.issues.couchbase.com/browse/GOCBC-1762): Improved logging for `WaitUntilReady` when no bootstrap error is found before a config is seen, to make it clearer that there was no error.
@@ -148,7 +162,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 * [GOCBC-1716](https://jira.issues.couchbase.com/browse/GOCBC-1716): Added support for FTS like pre-filters while doing vector search.
 * [GOCBC-1759](https://jira.issues.couchbase.com/browse/GOCBC-1759): Updated FTS `BooleanQuery` to accept a variadic parameter to allow a list of queries to be specified.
 
-#### [](#fixed-issues-8)Fixed Issues
+#### [](#fixed-issues-9)Fixed Issues
 
 * [GOCBC-1669](https://jira.issues.couchbase.com/browse/GOCBC-1669): Fixed issue where management operations had the incorrect metrics/span value for the `db.couchbase.service` attribute.
 * [GOCBC-1723](https://jira.issues.couchbase.com/browse/GOCBC-1723): Fixed issue where the incorrect error was returned for not locked in `couchbase2` mode.
@@ -166,7 +180,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 
 Version 2.10.1 is a maintenance release for the Go SDK 2.10.
 
-#### [](#fixed-issues-9)Fixed Issues
+#### [](#fixed-issues-10)Fixed Issues
 
 * [GOCBC-1724](https://jira.issues.couchbase.com/browse/GOCBC-1724): Fixed issue where `Append` and `Prepend` could panic in `couchbase2` mode if a retry occured.
 * [GOCBC-1735](https://jira.issues.couchbase.com/browse/GOCBC-1735): Fixed issue where Eventing function `QueryConsistency` was sent as the incorrect type on the wire.
@@ -197,7 +211,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 * [GOCBC-1707](https://jira.issues.couchbase.com/browse/GOCBC-1707): Updated minimum compatible Go version to 1.21.
 * [GOCBC-1713](https://jira.issues.couchbase.com/browse/GOCBC-1713): Updated bucket management operations to convert HTTP status code 400 into `ErrInvalidArgument`.
 
-#### [](#fixed-issues-10)Fixed Issues
+#### [](#fixed-issues-11)Fixed Issues
 
 * [GOCBC-1648](https://jira.issues.couchbase.com/browse/GOCBC-1648): Fixed issue where `highlight.fields` would be sent in a search request payload even when the option wasn't specified.
 * [GOCBC-1712](https://jira.issues.couchbase.com/browse/GOCBC-1712): Fixed issue where `Append` and `Prepend` would return `ErrDocExists` rather than `ErrCasMismatch`.
@@ -213,7 +227,7 @@ Version 2.9.4 is a maintenance release for the Go SDK 2.9.
 
 Tracing and metrics with the `couchbase2` scheme should be considered stability level **volatile** at this time.
 
-#### [](#fixed-issues-11)Fixed Issues
+#### [](#fixed-issues-12)Fixed Issues
 
 * [GOCBC-1696](https://jira.issues.couchbase.com/browse/GOCBC-1696): Fixed an issue where scope-level SQL++ queries would fail if the scope or bucket names contained a period character (`.`).
 
@@ -246,7 +260,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 * [GOCBC-1632](https://jira.issues.couchbase.com/browse/GOCBC-1632): Added support for zone-aware replica reads, at API stability level **uncommitted**.
 * [GOCBC-1657](https://jira.issues.couchbase.com/browse/GOCBC-1657): Updated tracing when using the `couchbase2` scheme, to send traces to the server over gRPC.
 
-#### [](#fixed-issues-12)Fixed Issues
+#### [](#fixed-issues-13)Fixed Issues
 
 * [GOCBC-1655](https://jira.issues.couchbase.com/browse/GOCBC-1655): Fixed the error messages for some connection string parameter parsing errors, where the message was not referring to the correct parameter.
 * [GOCBC-1660](https://jira.issues.couchbase.com/browse/GOCBC-1660): Fixed a possible data race that occurred because the value of a lock was being logged at debug-level.
@@ -263,7 +277,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 
 * [GOCBC-1640](https://issues.couchbase.com/browse/GOCBC-1640): Adjusted logging levels when logging about receiving cluster configs older than the SDK already has.
 
-#### [](#fixed-issues-13)Fixed Issues
+#### [](#fixed-issues-14)Fixed Issues
 
 * [GOCBC-1625](https://issues.couchbase.com/browse/GOCBC-1625): Fixed issue where a data race could occur when requests were retried concurrently with being cancelled.
 * [GOCBC-1643](https://issues.couchbase.com/browse/GOCBC-1643): Fixed issue where couchbase2 mode did not wait for operations to complete on close.
@@ -283,7 +297,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 * [GOCBC-1634](https://issues.couchbase.com/browse/GOCBC-1634): Added support for base64 encoded vector queries.
 * [GOCBC-1642](https://issues.couchbase.com/browse/GOCBC-1642): Moved vector search API support level to committed.
 
-#### [](#fixed-issues-14)Fixed Issues
+#### [](#fixed-issues-15)Fixed Issues
 
 * [GOCBC-1625](https://issues.couchbase.com/browse/GOCBC-1625): Fixed issue where SDK could not receive large (> 4MB) documents in `couchbase2` mode.
 * [GOCBC-1636](https://issues.couchbase.com/browse/GOCBC-1636): Fixed issue where a race accessing config watchers could occur on agent close.
@@ -305,7 +319,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 * [GOCBC-1615](https://issues.couchbase.com/browse/GOCBC-1615): Updated SCRAM client to relax some validation checks, in line with SCRAM RFC 7677.
 * [GOCBC-1623](https://issues.couchbase.com/browse/GOCBC-1623): Added support for `Scope` level eventing functions at API stability level uncommitted.
 
-#### [](#fixed-issues-15)Fixed Issues
+#### [](#fixed-issues-16)Fixed Issues
 
 * [GOCBC-1617](https://issues.couchbase.com/browse/GOCBC-1617): Fixed issue where service not available errors were not always retried in `couchbase2` mode.
 * [GOCBC-1617](https://issues.couchbase.com/browse/GOCBC-1617): Fixed issue where the degraded cluster target state for `WaitUntilReady` would check all services by default, rather than only those available on the cluster.
@@ -333,7 +347,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
   * Moved Scope level Search and SearchIndexes to committed,
   * Moved Vector Search to uncommitted.
 
-#### [](#fixed-issues-16)Fixed Issues
+#### [](#fixed-issues-17)Fixed Issues
 
 * [GOCBC-1582](https://issues.couchbase.com/browse/GOCBC-1582): Fixed issue where `math.MaxUint32` was causing an error when used with `fmt.Errorf`.
 
@@ -361,7 +375,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 * [GOCBC-1590](https://issues.couchbase.com/browse/GOCBC-1590): Added support for `FlushBucket` in `couchbase2` mode.
 * [GOCBC-1591](https://issues.couchbase.com/browse/GOCBC-1591): Added support for `Scope.Search()` and `Scope.SearchIndexes()` for querying and managing scoped search indexes.
 
-#### [](#fixed-issues-17)Fixed Issues
+#### [](#fixed-issues-18)Fixed Issues
 
 * [GOCBC-1367](https://issues.couchbase.com/browse/GOCBC-1367): Fixed issue where `ExpiryTime` in `GetResult` had the epoch value instead of zero time (`time.Time{}`) when the document has no expiry.
 * [GOCBC-1599](https://issues.couchbase.com/browse/GOCBC-1599): Fixed issue where the `DropIndex` search management operation was not converting server errors to any of the known error values (e.g. `ErrIndexNotFound`) where applicable.
@@ -384,7 +398,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
 * [GOCBC-1560](https://issues.couchbase.com/browse/GOCBC-1560): Added support in the `couchbase2` mode for history retention settings in the bucket management API.
 * [GOCBC-1562](https://issues.couchbase.com/browse/GOCBC-1562): Added support for `UpdateCollection` in the `couchbase2` mode.
 
-#### [](#fixed-issues-18)Fixed Issues
+#### [](#fixed-issues-19)Fixed Issues
 
 * [GOCBC-1573](https://issues.couchbase.com/browse/GOCBC-1573): Fixed issue where the SDK's prepared query cache was not differentiating between queries which have the same statement but are in a different query context.
 * [GOCBC-1581](https://issues.couchbase.com/browse/GOCBC-1581): Fixed issue where the partition counts in `SearchMetrics` were not populated.
@@ -418,7 +432,7 @@ Tracing and metrics with the `couchbase2` scheme should be considered stability 
   * Return an error for all other statuses
 * [GOCBC-1540](https://issues.couchbase.com/browse/GOCBC-1540): Added support for `ErrDocumentTooDeep` which is only used in `couchbase2` mode, equivalent to `ErrPathTooDeep`.
 
-#### [](#fixed-issues-19)Fixed Issues
+#### [](#fixed-issues-20)Fixed Issues
 
 * [GOCBC-1471](https://issues.couchbase.com/browse/GOCBC-1471): Fixed issue where calling `.Bucket` immediately after `.Connect` could lead to the config poller failing to stop.
 * [GOCBC-1479](https://issues.couchbase.com/browse/GOCBC-1479): Fixed issue where a cluster config fetched as a part of bootstrap would be applied even if select bucket failed.
@@ -441,7 +455,7 @@ Version 2.6.5 is a maintenance release for the Go SDK 2.6.
 
 * [GOCBC-1489](https://issues.couchbase.com/browse/GOCBC-1489): Exposed `ErrCircuitBreakOpen` as API stability uncommitted.
 
-#### [](#fixed-issues-20)Fixed Issues
+#### [](#fixed-issues-21)Fixed Issues
 
 * [GOCBC-1485](https://issues.couchbase.com/browse/GOCBC-1485): Fixed issue where operations queue for collection id refresh would not be dequeued on refresh.
 * [GOCBC-1493](https://issues.couchbase.com/browse/GOCBC-1493): Fixed issue where key value operation transcoding errors would be swallowed by the SDK.
@@ -466,7 +480,7 @@ Version 2.6.3 is a maintenance release for the Go SDK 2.6.
 
 * [GOCBC-1403](https://issues.couchbase.com/browse/GOCBC-1403): Updated CCCP polling to start running on startup rather than waiting for memcached connections to fetch a cluster config.
 
-#### [](#fixed-issues-21)Fixed Issues
+#### [](#fixed-issues-22)Fixed Issues
 
 * [GOCBC-1400](https://issues.couchbase.com/browse/GOCBC-1400): Fixed issue where connection string parsing was missing some timeout values.
 * [GOCBC-1402](https://issues.couchbase.com/browse/GOCBC-1402): Fixed issue where wan-development config profile was missing some timeout values.
@@ -498,7 +512,7 @@ Version 2.6.1 is a maintenance release for the Go SDK 2.6.
   * Added support for sending `query_context` when `Scope` is set on `TransactionQueryyOptions`.
   * Added support for handling query error code 1197 as feature not available.
 
-#### [](#fixed-issues-22)Fixed Issues
+#### [](#fixed-issues-23)Fixed Issues
 
 * [GOCBC-1376](https://issues.couchbase.com/browse/GOCBC-1376): Fixed issue where lost cleanup would log an incorrectly formatted log line, leading to spamming the log.
 * [GOCBC-1387](https://issues.couchbase.com/browse/GOCBC-1387): Fixed issue where an edge case could trigger a race between releasing connection buffers and reading on the connection — leading to a panic.
@@ -518,7 +532,7 @@ Version 2.6.0 is the first release in the Go SDK 2.6 series.
 * [GOCBC-1352](https://issues.couchbase.com/browse/GOCBC-1352): Added support for trusting the system cert store when TLS is enabled with no `CertPool` registered and `SkipVerify` not set.
 * [GOCBC-1356](https://issues.couchbase.com/browse/GOCBC-1356): Updated the behaviour when `MutateIn` or `Insert` returns `NOT_STORED` from the server to return a `ErrDocumentExists`.
 
-#### [](#fixed-issues-23)Fixed Issues
+#### [](#fixed-issues-24)Fixed Issues
 
 * [GOCBC-1347](https://issues.couchbase.com/browse/GOCBC-1347): Fixed issue where a nil agent value could cause logging `TransactionATRLocation` to log a panic.
 * [GOCBC-1348](https://issues.couchbase.com/browse/GOCBC-1348): Fixed issue where a race on creating a client record could lead to a panic.
@@ -531,7 +545,7 @@ Version 2.5.4 is a maintenance release for the Go SDK 2.5.
 
 [API Documentation](https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.5.4?tab=doc)
 
-#### [](#fixed-issues-24)Fixed Issues
+#### [](#fixed-issues-25)Fixed Issues
 
 * [GOCBC-1347](https://issues.couchbase.com/browse/GOCBC-1347): Fixed issue where a nil agent value could cause logging `TransactionATRLocation` to log a panic.
 * [GOCBC-1348](https://issues.couchbase.com/browse/GOCBC-1348): Fixed issue where a race on creating a client record could lead to a panic.
@@ -542,7 +556,7 @@ Version 2.5.3 is a maintenance release for the Go SDK 2.5.
 
 [API Documentation](https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.5.3?tab=doc)
 
-#### [](#fixed-issues-25)Fixed Issues
+#### [](#fixed-issues-26)Fixed Issues
 
 * [GOCBC-1338](https://issues.couchbase.com/browse/GOCBC-1338): Fixed issue where `lazyCircuitBreaker` was not using 64-bit aligned values.
 
@@ -563,7 +577,7 @@ Version 2.5.2 is a maintenance release for the Go SDK 2.5.
 * [GOCBC-1314](https://issues.couchbase.com/browse/GOCBC-1314): Improved logging in the lost transactions process.
 * [GOCBC-1318](https://issues.couchbase.com/browse/GOCBC-1318): Changed `WaitUntilReady` to always wait for any explicitly defined services to be online.
 
-#### [](#fixed-issues-26)Fixed Issues
+#### [](#fixed-issues-27)Fixed Issues
 
 * [GOCBC-1320](https://issues.couchbase.com/browse/GOCBC-1320): Fixed issue where vbucket hashing function wasn't masking out the 16th bit of the key.
 
@@ -580,7 +594,7 @@ Version 2.5.1 is a maintenance release for the Go SDK 2.5.
 * [GOCBC-1298](https://issues.couchbase.com/browse/GOCBC-1298): Masked the underlying error reason for `TransactionOperationFailedError`.
 * [GOCBC-1213](https://issues.couchbase.com/browse/GOCBC-1213): Added uncommitted API level support for `UserManager` `ChangePassword`.
 
-#### [](#fixed-issues-27)Fixed Issues
+#### [](#fixed-issues-28)Fixed Issues
 
 * [GOCBC-1300](https://issues.couchbase.com/browse/GOCBC-1300): Fixed issue where transactions lost cleanup would not remove deleted collections from the cleanup list.
 * [GOCBC-1304](https://issues.couchbase.com/browse/GOCBC-1304): Fixed issue where transactions lost cleanup could temporarily block further responses being processed for a connection.
@@ -599,7 +613,7 @@ Version 2.5.0 is the first release in the Go SDK 2.5 series.
 * [GOCBC-1265](https://issues.couchbase.com/browse/GOCBC-1265): Bundle Capella CA certificate with the SDK.
 * [TXNG-1253](https://issues.couchbase.com/browse/GOCBC-1253): Removed `ServerDurationDisabled` from `ThresholdLoggingOptions`.
 
-#### [](#fixed-issues-28)Fixed Issues
+#### [](#fixed-issues-29)Fixed Issues
 
 * [GOCBC-1267](https://issues.couchbase.com/browse/GOCBC-1267): Fixed issue where `GetAllIndexes` could incorrectly omit the default collection.
 
@@ -618,7 +632,7 @@ Version 2.4.1 is a maintenance release for the Go SDK 2.4.0.
 * [GOCBC-1244](https://issues.couchbase.com/browse/GOCBC-1244): Updated SDK dependencies.
 * [GOCBC-1254](https://issues.couchbase.com/browse/GOCBC-1254): Added `NewLoggingMeter` and `LoggingMeterOptions` for creating the `LoggingMeter`. `AggregatingMeterOptions` and `NewAggregatingMeter` will be deprecated in the next dot minor release.
 
-#### [](#fixed-issues-29)Fixed Issues
+#### [](#fixed-issues-30)Fixed Issues
 
 * [GOCBC-1248](https://issues.couchbase.com/browse/GOCBC-1248): Fixed issue where a hard close of a memdclient during a graceful close could trigger a panic.
 * [GOCBC-1251](https://issues.couchbase.com/browse/GOCBC-1251): Fixed issue where `SearchOptions` `ConsistentWith` was using an incorrect key within the JSON payload.
@@ -638,7 +652,7 @@ Version 2.4.0 is the first release in the Go SDK 2.4 series, adding multi-docume
 * [GOCBC-1239](https://issues.couchbase.com/browse/GOCBC-1239): Added `DurabilityLevelUnknown` as default durability level.
 * [TXNG-127](https://issues.couchbase.com/browse/GOCBC-TXNG-127): Integrated transactions into the SDK.
 
-#### [](#fixed-issues-30)Fixed Issues
+#### [](#fixed-issues-31)Fixed Issues
 
 * [GOCBC-1240](https://issues.couchbase.com/browse/GOCBC-1240): Fixed issue where `MutateIn` was not setting durability level.
 
@@ -658,7 +672,7 @@ Version 2.3.5 is a maintenance release for the Go SDK 2.3.0.
 * [GOCBC-1196](https://issues.couchbase.com/browse/GOCBC-1196): Added the `ErrorText` of the response body field to `AnalyticsError`, `SearchError`, `ManagementError`, and `ViewError`, to allow easier debugging and error handling. Renamed the `ResponseBody` of the `QueryError` to be `ErrorText` and contain only the error text. Added the `StatusCode` of the response to `AnalyticsError`, `QueryError`, `ManagementError`, and `ViewError`.
 * [GOCBC-1200](https://issues.couchbase.com/browse/GOCBC-1200): Renamed `ErrRateLimiting` and `ErrQuotaLimiting` to `ErrRateLimited` and `ErrQuotaLimited`. Note: this is a breaking change, it not expected to impact any users.
 
-#### [](#fixed-issues-31)Fixed Issues
+#### [](#fixed-issues-32)Fixed Issues
 
 * [GOCBC-1202](https://issues.couchbase.com/browse/GOCBC-1202):
 * [GOCBC-1211](https://issues.couchbase.com/browse/GOCBC-1211): Fixed issues relating to rate limit error message parsing.
@@ -676,7 +690,7 @@ Version 2.3.4 is a maintenance release for the Go SDK 2.3.0.
 * [GOCBC-1154](https://issues.couchbase.com/browse/GOCBC-1154); [GOCBC-1184](https://issues.couchbase.com/browse/GOCBC-1184): Added RateLimitFailure and QuotaLimitFailure support for Couchbase Capella.
 * [GOCBC-1193](https://issues.couchbase.com/browse/GOCBC-1193): Added the ResponseBody field to QueryError, to allow easier debugging and error handling.
 
-#### [](#fixed-issues-32)Fixed Issues
+#### [](#fixed-issues-33)Fixed Issues
 
 * [GOCBC-1185](https://issues.couchbase.com/browse/GOCBC-1185): Fixed an issue with Queue and Set retrying during pop and remove operations.
 * [GOCBC-1186](https://issues.couchbase.com/browse/GOCBC-1186): Fixed issue where logging meter could cause a deadlock on closing the cluster object.
@@ -693,7 +707,7 @@ Version 2.3.3 is a maintenance release for the Go SDK 2.3.0.
 
 * [GOCBC-1178](https://issues.couchbase.com/browse/GOCBC-1178): We no longer remove poller controller watcher from cluster config updates.
 
-#### [](#fixed-issues-33)Fixed Issues
+#### [](#fixed-issues-34)Fixed Issues
 
 * [GOCBC-1177](https://issues.couchbase.com/browse/GOCBC-1177): Fixed issue where a connection being closed by the server during bootstrap could cause the SDK to loop reconnect without backoff.
 * [GOCBC-1183](https://issues.couchbase.com/browse/GOCBC-1183): Fixed issue where SSL certificates were be not verified when no root CAs were provided.
@@ -709,7 +723,7 @@ Version 2.3.2 is a maintenance release for the Go SDK 2.3.0.
 * [GOCBC-1009](https://issues.couchbase.com/browse/GOCBC-1009): Add support for Eventing function management.
 * [GOCBC-1166](https://issues.couchbase.com/browse/GOCBC-1166): Check error codes and fallback to parsing messages in query index management.
 
-#### [](#fixed-issues-34)Fixed Issues
+#### [](#fixed-issues-35)Fixed Issues
 
 * [GOCBC-1168](https://issues.couchbase.com/browse/GOCBC-1168): Fixed issue where cluster level HTTP operations could hang indefinitely.
 * [GOCBC-1170](https://issues.couchbase.com/browse/GOCBC-1170): Fixed issue where Search `ScanConsistency` was sending an incorrect value for `NotBounded`.
@@ -720,7 +734,7 @@ Version 2.3.1 is a maintenance release for the Go SDK 2.3.0.
 
 [API Documentation](https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.3.1?tab=doc)
 
-#### [](#fixed-issues-35)Fixed Issues
+#### [](#fixed-issues-36)Fixed Issues
 
 * [GOCBC-1140](https://issues.couchbase.com/browse/GOCBC-1140): Fixed issue where `ViewOptions` would return an error when using `group_level`.
 * [GOCBC-1144](https://issues.couchbase.com/browse/GOCBC-1144): Added missing `min` function to `Disjunction` search query.
@@ -735,7 +749,7 @@ Version 2.2.5 is a maintenance release for the Go SDK 2.2.0.
 
 [API Documentation](https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.2.5?tab=doc)
 
-#### [](#fixed-issues-36)Fixed Issues
+#### [](#fixed-issues-37)Fixed Issues
 
 * [GOCBC-1147](https://issues.couchbase.com/browse/GOCBC-1147): Fixed issue where an error occuring whilst fetching the error map during bootstrap could cause an indefinite hang.
 * [GOCBC-1149](https://issues.couchbase.com/browse/GOCBC-1149): Fixed issue where `GetAllScopes` would panic on HTTP request send failure.
@@ -758,7 +772,7 @@ Version 2.3.0 is the first release in the Go SDK 2.3 series.
 * [GOCBC-1077](https://issues.couchbase.com/browse/GOCBC-1077): Updated errors returned on Query error code return of 12009.
 * [GOCBC-1130](https://issues.couchbase.com/browse/GOCBC-1130): Updated Query error handling to return an authentication error on error code 13104.
 
-#### [](#fixed-issues-37)Fixed Issues
+#### [](#fixed-issues-38)Fixed Issues
 
 * [GOCBC-1095](https://issues.couchbase.com/browse/GOCBC-1095): Fixed issue where View error contents were being parsed incorrectly.
 * [GOCBC-1100](https://issues.couchbase.com/browse/GOCBC-1100): Fixed issue where the Search metrics `took` field was being parsed incorrectly.
@@ -773,7 +787,7 @@ Version 2.2.4 is a maintenance release for the Go SDK 2.2.0.
 
 [API Documentation](https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.2.4?tab=doc)
 
-#### [](#fixed-issues-38)Fixed Issues
+#### [](#fixed-issues-39)Fixed Issues
 
 * [GOCBC-1095](https://issues.couchbase.com/browse/GOCBC-1095): Fixed issue where errors returned from views was parsed incorrectly.
 * [GOCBC-1102](https://issues.couchbase.com/browse/GOCBC-1102): Fixed issue where `WaitUntilReady` would never recover if one of the HTTP based services returned an error.
@@ -794,7 +808,7 @@ Version 2.2.3 is a maintenance release for the Go SDK 2.2.0.
 * [GOCBC-1079](https://issues.couchbase.com/browse/GOCBC-1079): During bootstrap don't retry authentication if the error is request cancelled.
 * [GOCBC-1081](https://issues.couchbase.com/browse/GOCBC-1081): During CCCP polling don't retry request if the error is request cancelled.
 
-#### [](#fixed-issues-39)Fixed Issues
+#### [](#fixed-issues-40)Fixed Issues
 
 * [GOCBC-1074](https://issues.couchbase.com/browse/GOCBC-1074): Fixed issue where threshold log tracer was missing fields in log output.
 * [GOCBC-1080](https://issues.couchbase.com/browse/GOCBC-1080): Fixed issue where SDK would always rebuild connections on first cluster config fetched against server 7.0.
@@ -814,7 +828,7 @@ Version 2.2.2 is a maintenance release for the Go SDK 2.2.0.
 * [GOCBC-1056](https://issues.couchbase.com/browse/GOCBC-1056): Various performance enhancements to improve CPU usage.
 * [GOCBC-1068](https://issues.couchbase.com/browse/GOCBC-1068): Dropped log level to warn for when applying a cluster config object is preempted.
 
-#### [](#fixed-issues-40)Fixed Issues
+#### [](#fixed-issues-41)Fixed Issues
 
 * [GOCBC-1070](https://issues.couchbase.com/browse/GOCBC-1070): Fixed issue where `BucketManager` `FlushBucket` didn't return `ErrBucketNotFound` when the bucket doesn't exist.
 * [GOCBC-1066](https://issues.couchbase.com/browse/GOCBC-1066): Fixed issue where shutting down cluster config polling could lead to a panic.
@@ -831,7 +845,7 @@ Version 2.2.1 is a maintenance release for the Go SDK 2.2.0.
 * [GOCBC-1040](https://issues.couchbase.com/browse/GOCBC-1040): Updated json serialization of errors to include the underlying cause.
 * [GOCBC-1054](https://issues.couchbase.com/browse/GOCBC-1054): Updated `MutateIn` to allow a blank path with `RemoveSpec`.
 
-#### [](#fixed-issues-41)Fixed Issues
+#### [](#fixed-issues-42)Fixed Issues
 
 * [GOCBC-1047](https://issues.couchbase.com/browse/GOCBC-1047): Fixed issue where `GetAllScopes` was not setting the max expiry value for any collections.
 * [GOCBC-1052](https://issues.couchbase.com/browse/GOCBC-1052): Fixed issue where `GetAllDesignDocuments` was ignoring the provided `namespace`.
@@ -855,7 +869,7 @@ Version 2.2.0 is the first release in the Go SDK 2.2 series. It brings enhanceme
 * [GOCBC-1015](https://issues.couchbase.com/browse/GOCBC-1015): Updated `QueryOptions` `FlexIndex` support to API stability committed.
 * [GOCBC-1026](https://issues.couchbase.com/browse/GOCBC-1026): Updated `BucketSettings` ephemeral eviction policies support to API stability committed.
 
-#### [](#fixed-issues-42)Fixed Issues
+#### [](#fixed-issues-43)Fixed Issues
 
 * [GOCBC-1022](https://issues.couchbase.com/browse/GOCBC-1022): Fixed issue where having multiple buckets open could cause view requests to be sent to an incorrect bucket.
 * [GOCBC-1021](https://issues.couchbase.com/browse/GOCBC-1021): Fixed issue where having multiple buckets open could cause view manager requests to be sent to an incorrect bucket.
@@ -875,7 +889,7 @@ Version 2.1.8 is a maintenance release for the Go SDK 2.1.0.
 * [GOCBC-1005](https://issues.couchbase.com/browse/GOCBC-1005): Added document id to key value errors.
 * [GOCBC-1006](https://issues.couchbase.com/browse/GOCBC-1006): Changed the log level for retry strategy retries from info to debug.
 
-#### [](#fixed-issues-43)Fixed Issues
+#### [](#fixed-issues-44)Fixed Issues
 
 * [GOCBC-1007](https://issues.couchbase.com/browse/GOCBC-1007): Fixed issue some operations were being incorrectly sent to the retry orchestrator on errors.
 
@@ -894,7 +908,7 @@ Version 2.1.7 is a maintenance release for the Go SDK 2.1.0.
 * [GOCBC-994](https://issues.couchbase.com/browse/GOCBC-994): Fixed issue where nil values used in subdoc `MutateIn` operations would be rejected by the server. These values are now coerced into JSON `null` values before sending.
 * [GOCBC-1001](https://issues.couchbase.com/browse/GOCBC-1001): Added missing `Terms`, `DateRanges`, and `NumericRanges` fields to `SearchFacetResult`.
 
-#### [](#fixed-issues-44)Fixed Issues
+#### [](#fixed-issues-45)Fixed Issues
 
 * [GOCBC-977](https://issues.couchbase.com/browse/GOCBC-977): Fixed issue where analytics `GetPendingMutations` was looking for the incorrect data structure in the HTTP response body.
 * [GOCBC-990](https://issues.couchbase.com/browse/GOCBC-990): Fixed issue where enhanced durability timeout adaptive algorithm was incorrect.
@@ -911,7 +925,7 @@ Version 2.1.6 is a maintenance release for the Go SDK 2.1.0.
 
 * [GOCBC-979](https://issues.couchbase.com/browse/GOCBC-979): Add ExpiryTime to GetResult, providing the point in time at which a document will expire.
 
-#### [](#fixed-issues-45)Fixed Issues
+#### [](#fixed-issues-46)Fixed Issues
 
 * [GOCBC-969](https://issues.couchbase.com/browse/GOCBC-969): Fixed issue where the SDK would attempt to parse query metrics even if they weren't present.
 * [GOCBC-976](https://issues.couchbase.com/browse/GOCBC-976): Fixed issue where custom transcoders were not supported for performing a get request with expiry.
@@ -929,7 +943,7 @@ Version 2.1.5 is a maintenance release for the Go SDK 2.1.0.
 * [GOCBC-926](https://issues.couchbase.com/browse/GOCBC-926): Added a new `Cluster` level option to set which authentication mechanisms to use.
 * [GOCBC-962](https://issues.couchbase.com/browse/GOCBC-962): Exposed the `ThresholdLogTracer` and corresponding options so that threshold logging can be configured. The threshold logger can then be set on the `Cluster` level options as `Tracer`. Note: The threshold logger is the default tracer used by the SDK.
 
-#### [](#fixed-issues-46)Fixed Issues
+#### [](#fixed-issues-47)Fixed Issues
 
 * [GOCBC-718](https://issues.couchbase.com/browse/GOCBC-718): Fixed issue where errors would be silently swallwed when performing JSON unmarshalling of search and view queries. Unmarshalling errors will now be surfaced by the `result.Err()` function after iterating results.
 * [GOCBC-950](https://issues.couchbase.com/browse/GOCBC-950): Fixed issue where the SDK was not performing HELLO with the JSON feature enabled, leading to some KV error message context being lost.
@@ -947,7 +961,7 @@ Version 2.1.4 is a maintenance release for the Go SDK 2.1.0.
 * [GOCBC-932](https://issues.couchbase.com/browse/GOCBC-932): Added support for ephemeral bucket eviction types in the `BucketManager`.
 * [GOCBC-951](https://issues.couchbase.com/browse/GOCBC-951): Adjusted the default max idle http connection timeout to be 4.5s from unlimited.
 
-#### [](#fixed-issues-47)Fixed Issues
+#### [](#fixed-issues-48)Fixed Issues
 
 * [GOCBC-925](https://issues.couchbase.com/browse/GOCBC-925): Fixed issue where errors could not be accessed for queries responding with a HTTP 200 status code but containing errors. Any errors that are included in the query response when the status code is 200 will now be surfaced through the result `Err` call.
 * [GOCBC-928](https://issues.couchbase.com/browse/GOCBC-928): Fixed issue where enhanced durability could be incorrectly flagged as unsupported.
@@ -962,7 +976,7 @@ Version 2.1.3 is an off-cadence release for the Go SDK 2.1.0.
 
 [API Documentation](https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.1.3?tab=doc)
 
-#### [](#fixed-issues-48)Fixed Issues
+#### [](#fixed-issues-49)Fixed Issues
 
 * [GOCBC-941](https://issues.couchbase.com/browse/GOCBC-941): Fixed issue where `WaitUntilReady` at the `Cluster` level would always timeout.
 
@@ -978,7 +992,7 @@ Version 2.1.2 is a maintenance release for the Go SDK 2.1.0.
 * [GOCBC-913](https://issues.couchbase.com/browse/GOCBC-913): Ensure that only available services are used for Ping if no services specified.
 * [GOCBC-923](https://issues.couchbase.com/browse/GOCBC-923): Updated const declarations to add types to improve API reference.
 
-#### [](#fixed-issues-49)Fixed Issues
+#### [](#fixed-issues-50)Fixed Issues
 
 * [GOCBC-879](https://issues.couchbase.com/browse/GOCBC-879), [GOCBC-890](https://issues.couchbase.com/browse/GOCBC-890): Fixed issue causing `Cluster` level operations to return errors when performed before underlying cluster or bucket connections are ready. These operations (query, search, analytics, views, management APIs) will now behave like key value operations - waiting for connections to be ready before they are sent. The [WaitUntilReady](https://docs.couchbase.com/go-sdk/2.1/howtos/managing-connections.html#waiting-for-bootstrap-completion) call can still be used for verifying that connections are ready.
 * [GOCBC-891](https://issues.couchbase.com/browse/GOCBC-891): Fixed issue where the `Name` property of a `Role` was being sent as the incorrect json field name.
@@ -1006,7 +1020,7 @@ Version 2.1.1 is a maintenance release for the Go SDK 2.1.0.
 * [GOCBC-884](https://issues.couchbase.com/browse/GOCBC-884): Improved logging to always log the cluster config when fetched.
 * [GOCBC-888](https://issues.couchbase.com/browse/GOCBC-888): Re-enabled HTTP dispatch traces.
 
-#### [](#fixed-issues-50)Fixed Issues
+#### [](#fixed-issues-51)Fixed Issues
 
 * [GOCBC-691](https://issues.couchbase.com/browse/GOCBC-691): Fixed issue where operations on unknown collections (when using 6.5 developer preview) are not automatically retried.
 * [GOCBC-757](https://issues.couchbase.com/browse/GOCBC-757): Fixed issue where an array of arrays could cause a failure when using `Get` with `Projections`.
@@ -1043,7 +1057,7 @@ Version 2.0.4 is a maintenance release for the Go SDK 2.0.0.
 
 * [GOCBC-844](https://issues.couchbase.com/browse/GOCBC-844): Updated to the latest version of gocbconnstr.
 
-#### [](#fixed-issues-51)Fixed Issues
+#### [](#fixed-issues-52)Fixed Issues
 
 * [GOCBC-838](https://issues.couchbase.com/browse/GOCBC-838): Fixed issue where HTTP endpoints were being used when SSL is enabled.
 * [GOCBC-851](https://issues.couchbase.com/browse/GOCBC-851): Fixed issue where `ServerName` was not being set on the `tls.Config` when SSL was use.
@@ -1066,7 +1080,7 @@ Version 2.0.3 is a maintenance release for the Go SDK 2.0.0.
 * [GOCBC-807](https://issues.couchbase.com/browse/GOCBC-807): Updated best effort retry strategy to use an exponential backoff calculator.
 * [GOCBC-820](https://issues.couchbase.com/browse/GOCBC-820): Removed `context.Context` from search index manager operations. Note that whilst this is a breaking change it was deemed best to break it and make sure any users who are using it know that they are using unused functionality.
 
-#### [](#fixed-issues-52)Fixed Issues
+#### [](#fixed-issues-53)Fixed Issues
 
 * [GOCBC-814](https://issues.couchbase.com/browse/GOCBC-814): Fixed issue where search was looking for incorrect field in the JSON response.
 * [GOCBC-817](https://issues.couchbase.com/browse/GOCBC-817): Fixed issue where opening a bucket with the same name twice led to incorrect behaviour on both buckets.
@@ -1081,7 +1095,7 @@ Version 2.0.2 is an off-cycle release for the Go SDK 2.0.0.
 
 * [GOCBC-805](https://issues.couchbase.com/browse/GOCBC-805): Updated timeout behavior across the SDK to be consistent. If an operation level timeout is provided then it is used, otherwise the respective global timeout is used.
 
-#### [](#fixed-issues-53)Fixed Issues
+#### [](#fixed-issues-54)Fixed Issues
 
 * [GOCBC-804](https://issues.couchbase.com/browse/GOCBC-804): Fixed issue with timeouts not being respected for HTTP requests, leading to them never timing out.
 
@@ -1097,7 +1111,7 @@ Version 2.0.1 is a maintenance release for the Go SDK 2.0.0.
 * [GOCBC-776](https://issues.couchbase.com/browse/GOCBC-776): Added support for KVDurableTimeout.
 * [GOCBC-786](https://issues.couchbase.com/browse/GOCBC-786): Improve error messages for the UserManager GetUser function.
 
-#### [](#fixed-issues-54)Fixed Issues
+#### [](#fixed-issues-55)Fixed Issues
 
 * [GOCBC-701](https://issues.couchbase.com/browse/GOCBC-701): Fixed issue with enhanced prepared statements not being used.
 * [GOCBC-702](https://issues.couchbase.com/browse/GOCBC-702): Fixed issue with CA root certificates not being able to be provided.

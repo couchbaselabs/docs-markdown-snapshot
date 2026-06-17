@@ -1,7 +1,7 @@
 ---
 title: Manage Your Couchbase Capella Account
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/manage-account.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-17T06:07:18.814Z
 link: xref:cloud:organizations:manage-account.adoc[]
 ---
 
@@ -12,25 +12,77 @@ link: xref:cloud:organizations:manage-account.adoc[]
 
 > Couchbase Capella accounts are independent of organizations. 
 
-## [](#access-your-account-management-settings)Access Your Account Management Settings
+Your Couchbase Capella account is your personal account that you use to sign in to the Couchbase Capella UI. Your account can be part of multiple organizations, and you can manage your account settings independently from your organizations.
 
-To manage your Couchbase Capella account settings, click your initials in the upper-right corner of the Capella UI. In the dropdown menu that appears, click **My Account** to open your account management page.
+To manage your Couchbase Capella account settings:
 
-![The Dashboard screen highlighting the drop-down that appears after clicking your name in the upper-right of the UI.](_images/select-account-settings.png) 
+1. Click your initials in the upper-right corner of the Capella UI.
+2. Click **My Account** to open your account management page.
+
+In **My Account**, you can:
+
+* [Manage your account's general settings](#manage-general-settings)
+* [Manage invitations to Couchbase Capella organizations](#manage-invitations)
+* [View the list of organizations where you're a member](#manage-organizations)
+* [View the activity log](#view-activity-log)
 
 ## [](#manage-general-settings)Manage General Settings
-
-In the account management menu, the **General** option offers settings to update your profile information, password, region and timezone, and enable notifications. Make sure you save any changes.
 
 > [!IMPORTANT]
 > Users who sign in with SSO cannot change their name, email, password, or activate Multi-Factor Authentication (MFA) settings.
 
-![The General settings screen.](_images/general.png) 
+To manage your profile's general settings and information, go to **General**. You can manage the following settings:
+
+* [Profile name](#change-profile-name)
+* [Account password](#change-password)
+* [Multi-Factor Authentication (MFA) settings](#multi-factor-authentication)
+* [Region and time settings](#update-region-time)
+* [Email notification settings](#update-notifications)
+* [Linking or unlinking your Capella account to a Google or GitHub account](#link-social-account)
+
+### [](#change-profile-name)Change Your Profile Name
+
+To change your account's profile name, go to the **Name** field and enter a new profile name. Click **Save** to save your changes.
+
+### [](#change-password)Change Your Password
+
+To change your password:
+
+1. In **Login Credentials**, click **Reset Password** to manage your password settings.
+2. Enter your existing password, and then enter and confirm your new password. Your new password must contain:
+
+  * At least 12 characters
+  * Uppercase characters (A-Z)
+  * Lowercase characters (a-z)
+  * Numbers (0-9)
+  * Special characters, such as @, #, or $
+3. Click **Change Password** to save your changes.
 
 > [!NOTE]
-> You can also reset your password by selecting **Forgot Password** from the log-in screen, which will send you a recovery email. No matter how many times you click **Forgot Password**, you will only receive one password reset email per minute.
+> You can also reset your password by selecting **Forgot Password** from the log-in screen, which will send you a recovery email. You can only receive 1 password reset email per minute.
 
-To activate MFA, see [Manage MFA](ui-auth/mfa.md).
+### [](#multi-factor-authentication)Activate Multi-Factor Authentication (MFA)
+
+> [!IMPORTANT]
+> Users who sign in with SSO cannot use Capella's multi-factor authentication (MFA) solution. Instead, they use the configured identity provider's MFA.
+
+To activate MFA for your Capella account, go to the **Multi-Factor Authentication (MFA)** field and click **Activate MFA**.
+
+For more information about activating MFA for your Capella account, see [Manage Multi-Factor Authentication (MFA)](ui-auth/mfa.md).
+
+### [](#update-region-time)Update Region and Time
+
+To update the region and time:
+
+1. Click **Region** and select the part of the world you live in.
+2. Click **Timezone** and select the time relative to where you are within your geographical region.
+3. Click **Save** to save your changes.
+
+### [](#update-notifications)Enable Email Notifications
+
+You can enable email notifications to receive email alerts from all clusters in projects where you have a [project role](../projects/project-roles.md).
+
+To enable email notifications, select **Receive email notifications** and click **Save** to save your changes.
 
 ### [](#link-social-account)Link Your Capella Account to a Google or GitHub Account
 
@@ -85,31 +137,23 @@ To unlink your Couchbase Capella account from a Google or GitHub account:
 2. Enter a new password for your Capella account and confirm it.  
 > [!NOTE]  
 > If Multi-Factor Authentication (MFA) is on for your Capella account, Capella keeps this, and you'll need your MFA time-based one-time password (TOTP) to sign in to your account after unlinking from a Google or GitHub account.
-3. Click **Unlink from Google** or **Unlink from Google**.  
+3. Click **Unlink from Google** or **Unlink from GitHub**.  
 The next time you sign in, you must use your email address and the new password that you set.
-
-### [](#update-notifications)Update Notifications
-
-Click **General** on the account management menu to change your notification settings.
-
-Check the **Receive Email Notifications** check box if you want to receive notifications concerning activity within your account. Clear if you don't want to receive notifications.
-
-Click **Save** to apply your changes.
 
 ## [](#access-invites)Manage Invitations
 
-Click **Invitations** on the **Account Management** menu to view and accept your new invitations to organizations and projects.
+To view and accept your new invitations to organizations and projects, go to **Invitations**.
+
+For more information about sending invitations, see [Organization Users](organizations.md#users).
 
 ## [](#access-organizations)Manage Organizations
 
-In the account management menu, click **Organizations** to view and access your organizations.
+To view a list of the organizations where you're a member, go to **Organizations**. Click on the name of an organization to open its **Organization** page, where you can make changes relative to your user permissions.
 
-Click on the name of an organization to open its **Organization** page, where you can make changes relative to your user permissions.
+For more information about Organizations, see [Organizations and Organization Users Overview](organizations.md).
 
 ## [](#activity-log)View Activity Log
 
-In the account management menu, click **Activity Log** to access your user activity logs.
+Go to **Activity Log** to view your user activity logs. The Activity Log provides you with insight into user actions and cluster activity.
 
-The [Activity Log](../clusters/monitoring/activity-log.md) is where you can view the activity in the organizations and the projects you're involved. This tool displays a summary of all events in a chosen timespan.
-
-The Activity Log provides you with insight into user actions and cluster activity. It can also give details and actionable recommendations to help resolve cluster issues before they impact downstream applications.
+For more information, see [View Activity Logs](../clusters/monitoring/activity-log.md).

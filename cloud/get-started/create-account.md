@@ -2,7 +2,7 @@
 title: Create an Account and Deploy Your Free Tier Operational Cluster
 description: Create an account and start managing your data with Couchbase Capella.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/create-account.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-17T06:07:18.814Z
 link: xref:cloud:get-started:create-account.adoc[]
 ---
 
@@ -38,7 +38,7 @@ Procedure
   * Your **Email Address**
   * A **Password** that contains:
 
-    * At least eight characters
+    * At least 12 characters
     * Uppercase characters (A-Z)
     * Lowercase characters (a-z)
     * Numbers (0-9)
