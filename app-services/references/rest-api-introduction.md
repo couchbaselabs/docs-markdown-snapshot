@@ -1,8 +1,8 @@
 ---
 title: Manage App Services with the App Services API
-description: App Services can be accessed through a secure REST API
+description: App Services can be accessed through a secure REST API.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/references/rest-api-introduction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-18T06:06:41.045Z
 link: xref:app-services::references/rest-api-introduction.adoc[]
 ---
 
@@ -11,9 +11,9 @@ link: xref:app-services::references/rest-api-introduction.adoc[]
 
 # Manage App Services with the App Services API
 
-> App Services can be accessed through a secure REST API 
+> App Services can be accessed through a secure REST API. 
 
-App Services provides secure access to its REST APIs, namely:
+To create and manage App Services on Capella, use the [Management API](../management-api-guide/management-api-intro.md). Once you create your App Services, you have secure access to its REST APIs, namely:
 
 * [Capella App Services Admin API Reference](rest%5Fapi%5Fadmin.md) — for the administration of App Services.
 * [Capella App Services Metrics API Reference](rest%5Fapi%5Fmetric.md) — for monitoring App Services performance metrics.

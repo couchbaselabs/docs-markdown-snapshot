@@ -2,7 +2,7 @@
 title: Manage Indexes
 description: You can perform some index management tasks using the Couchbase Capella UI.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/index-service/manage-indexes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-18T06:06:41.045Z
 link: xref:cloud:clusters:index-service/manage-indexes.adoc[]
 ---
 
@@ -31,6 +31,14 @@ To view the Indexes page for a cluster that's running the [Index Service](../../
   3. Expand the cluster breadcrumb and search for a cluster.
 2. Select the cluster where you want to work with indexes.
 3. Go to **Data Tools** **Indexes**.
+4. To find a specific index:
+
+  * Use the search bar to find your index by **Name**.
+  * Use filters to narrow the list of indexes by:
+
+    * Bucket
+    * Scope
+    * Collection
 
 ### [](#index-summary)Index Summary
 

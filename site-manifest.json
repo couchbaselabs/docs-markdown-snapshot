@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1781676758531,
+  "generated": 1781763144787,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -1276,6 +1276,36 @@
               "path": "maintenance/upgrading-app-services.adoc",
               "url": "/app-services/maintenance/upgrading-app-services.md",
               "title": "Upgrade App Services"
+            },
+            {
+              "module": "ROOT",
+              "path": "management-api-guide/management-api-errors.adoc",
+              "url": "/app-services/management-api-guide/management-api-errors.md",
+              "title": "Capella App Services Management API Errors"
+            },
+            {
+              "module": "ROOT",
+              "path": "management-api-guide/management-api-intro.adoc",
+              "url": "/app-services/management-api-guide/management-api-intro.md",
+              "title": "Manage Deployments with the Capella App Services Management API"
+            },
+            {
+              "module": "ROOT",
+              "path": "management-api-guide/management-api-log.adoc",
+              "url": "/app-services/management-api-guide/management-api-log.md",
+              "title": "Capella App Services Management API Change Log"
+            },
+            {
+              "module": "ROOT",
+              "path": "management-api-guide/management-api-start.adoc",
+              "url": "/app-services/management-api-guide/management-api-start.md",
+              "title": "Get Started with the Capella App Services Management API"
+            },
+            {
+              "module": "ROOT",
+              "path": "management-api-guide/management-api-use.adoc",
+              "url": "/app-services/management-api-guide/management-api-use.md",
+              "title": "Make an API Call with the Capella App Services Management API"
             },
             {
               "module": "ROOT",

@@ -496,6 +496,12 @@
     - [Configure Private Endpoints on AWS Using the API](/app-services/private-endpoints/app-services-private-endpoints-aws-api.md)
 - App Services REST APIs
     - [REST API Introduction](/app-services/references/rest-api-introduction.md)
+    - [Manage Deployments with the Capella App Services Management API](/app-services/management-api-guide/management-api-intro.md)
+        - [Get Started](/app-services/management-api-guide/management-api-start.md)
+        - [Make an API Call](/app-services/management-api-guide/management-api-use.md)
+        - [Management API Reference](/cloud/management-api-reference/index.md)
+        - [Error Reference](/app-services/management-api-guide/management-api-errors.md)
+        - [Change Log](/app-services/management-api-guide/management-api-log.md)
     - [Public REST API](/app-services/references/rest_api_public.md)
     - [Metrics REST API](/app-services/references/rest_api_metric.md)
     - [Admin REST API](/app-services/references/rest_api_admin.md)
