@@ -3,7 +3,7 @@ title: Release Notes for Couchbase Server 8.0
 description: Couchbase Server 8.0.0 introduces many fixes, as well as some
   deprecations and removals.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/release-notes/pages/relnotes.adoc
-pubDate: 2026-03-31T05:15:32.656Z
+pubDate: 2026-06-20T05:58:01.881Z
 link: xref:server:release-notes:relnotes.adoc[]
 ---
 
@@ -17,6 +17,30 @@ link: xref:server:release-notes:relnotes.adoc[]
 These release notes are focused on bug fixes and breaking changes.
 
 For information about new features and major improvements made in Couchbase Server 8.0, see [What's New](../introduction/whats-new.md).
+
+## [](#release-802)Release 8.0.2 (June 2026)
+
+Couchbase Server 8.0.2 was released in June 2026\. This maintenance release contains fixes to issues.
+
+## [](#dlist-fixed-issues-802)Fixed Issues
+
+### [](#dlist-fixed-issues-802-cluster-manager)Cluster Manager
+
+**[MB-70951](https://jira.issues.couchbase.com/browse/MB-70951/)**
+
+The following stats were reported twice by the `/metrics` REST API. This has been corrected to only report each once.
+
+`<count>cm_rest_request_enters_total{}<count>`
+
+`<count>cm_rest_request_leaves_total{}<count>`
+
+**[MB-72097](https://jira.issues.couchbase.com/browse/MB-72097/)**
+
+Fixes a critical bug whereby an undefined storage mode property for a bucket causes the storage mode that implicitly defaults to Couchstore to flip to magma(the new default storage mode in 8.0.x) on a cluster upgrade to 8.0.
+
+The undefined storage mode could only occur if the bucket was created pre-Couchbase Server 5.0.x, and bucket properties have not been modified since.
+
+To check if this issue might potentially affect any cluster, run the `fix_undefined_storage_mode scan` script attached to [MB-72097](https://jira.issues.couchbase.com/browse/MB-72097). '''
 
 ## [](#release-801)Release 8.0.1 (March 2026)
 
