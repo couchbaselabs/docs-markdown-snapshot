@@ -1,7 +1,7 @@
 ---
 title: Annotation Documentation
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/reference-annotations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-23T05:47:02.601Z
 link: xref:operator::reference-annotations.adoc[]
 ---
 
@@ -90,18 +90,32 @@ Use this annotation to set a custom OTLP endpoint for the Cloud Native Gateway. 
 
 #### [](#cao-couchbase-comfull-additionalargs)`cao.couchbase.com/full.additionalArgs`
 
-Use this annotation to set additional arguments for `cbbackupmgr` in full backup jobs. Provide a string that includes any values supported by [cbbackupmgr](#server:backup-restore/cbbackupmgr-backup.html).
+Use this annotation to set additional arguments for `cbbackupmgr` in full backup jobs. Provide a string that includes any values supported by [cbbackupmgr](../../server/current/backup-restore/cbbackupmgr-backup.md).
 
 #### [](#cao-couchbase-comincremental-additionalargs)`cao.couchbase.com/incremental.additionalArgs`
 
-Use this annotation to set additional arguments for `cbbackupmgr` in incremental backup jobs. Provide a string that includes any values supported by [cbbackupmgr](#server:backup-restore/cbbackupmgr-backup.html).
+Use this annotation to set additional arguments for `cbbackupmgr` in incremental backup jobs. Provide a string that includes any values supported by [cbbackupmgr](../../server/current/backup-restore/cbbackupmgr-backup.md).
 
 #### [](#cao-couchbase-commerge-additionalargs)`cao.couchbase.com/merge.additionalArgs`
 
-Use this annotation to set additional arguments for `cbbackupmgr` in merge backup jobs. Provide a string that includes any values supported by [cbbackupmgr](#server:backup-restore/cbbackupmgr-backup.html).
+Use this annotation to set additional arguments for `cbbackupmgr` in merge backup jobs. Provide a string that includes any values supported by [cbbackupmgr](#server:backup-restore:cbbackupmgr-merge.html).
 
 ### [](#additional-operator-backup-args)Additional Operator Backup Args
 
 #### [](#cao-couchbase-comadditionaloperatorbackupargs)`cao.couchbase.com/additionalOperatorBackupArgs`
+
+Use this annotation to set additional arguments for the backup container that are not used by `cbbackupmgr`, for example, `--force-delete-lockfile`. Provide a string value with the flags to set.
+
+## [](#backup-restore)Backup Restore
+
+### [](#additional-args-2)Additional Args
+
+#### [](#cao-couchbase-comadditionalargs)`cao.couchbase.com/additionalArgs`
+
+Use this annotation to set additional arguments for `cbbackupmgr` in restore jobs. Provide a string that includes any values supported by [cbbackupmgr](https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-restore.html).
+
+### [](#additional-operator-backup-restore-args)Additional Operator Backup Restore Args
+
+#### [](#cao-couchbase-comadditionaloperatorrestoreargs)`cao.couchbase.com/additionalOperatorRestoreArgs`
 
 Use this annotation to set additional arguments for the backup container that are not used by `cbbackupmgr`, for example, `--force-delete-lockfile`. Provide a string value with the flags to set.
