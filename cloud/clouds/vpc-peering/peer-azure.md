@@ -3,7 +3,7 @@ title: Create a VNet Peering Connection with Azure
 description: Use this procedure to create a VNet Peering connection between
   Capella hosted with Azure and your application's VNet on Azure.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/peer-azure.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-24T05:48:50.601Z
 link: xref:cloud:clouds:vpc-peering/peer-azure.adoc[]
 ---
 
@@ -16,10 +16,14 @@ link: xref:cloud:clouds:vpc-peering/peer-azure.adoc[]
 
 ## [](#prerequisites)Prerequisites
 
-To configure Couchbase Capella VNet peering with Microsoft Azure, you need the following:
+To configure Couchbase Capella VNet peering with Microsoft Azure, you need:
 
-* An Azure user with the [Global Administrator Role](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference#global-administrator).
-* One of the following Capella roles:
+* An Azure user with 1 of the following roles:
+
+  * [Global Administrator](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference#global-administrator)
+  * [Cloud Application Administrator](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference#cloud-application-administrator)
+  * [Application Administrator](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference#application-administrator)
+* 1 of the following Capella roles:
 
   * [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)
   * [Project Owner](../../projects/project-roles.md#project-owner-role)
