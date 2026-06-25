@@ -3,7 +3,7 @@ title: Differentiate between Expiration and Deletion
 description: Differentiate between document deletion and document expiration in
   Eventing Function logs.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-delete-v-expiry.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-25T05:47:47.215Z
 link: xref:cloud:eventing:eventing-examples-delete-v-expiry.adoc[]
 ---
 
@@ -18,15 +18,13 @@ The `OnDelete` handler in an Eventing Function runs whenever a document is delet
 
 ## [](#prerequisites)Prerequisites
 
-Before trying out the examples on this page, you must first:
+Before trying out the examples on this page, you must:
 
-* Create two buckets called `bulk` and `rr100` with a minimum size of 100MB.
-* Inside the `bulk` bucket, create two keyspaces called `bulk.data.source` and `bulk.data.target`.
-* Inside the `rr100` bucket, create one keyspace called `rr100.eventing.metadata`.
+* Create 2 buckets called `bulk` and `rr100` with a minimum size of 100MB.
+* Inside the `bulk` bucket, create 2 keyspaces called `bulk.data.source` and `bulk.data.target`.
+* Inside the `rr100` bucket, create 1 keyspace called `rr100.eventing.metadata`.
 
 For more information about creating buckets, scopes, and collections, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
-
-clusters:eventing-service/add-eventing-functions.adoc
 
 > [!NOTE]
 > Do not add, modify, or delete documents in the Eventing storage keyspace `rr100.eventing.metadata` while your Eventing Functions are in a deployed state.

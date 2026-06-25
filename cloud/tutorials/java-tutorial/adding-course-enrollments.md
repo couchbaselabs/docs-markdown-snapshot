@@ -2,7 +2,7 @@
 title: Add Course Enrollments
 description: Add enrollment information to the student records using the Couchbase SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/adding-course-enrollments.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-25T05:47:47.215Z
 link: xref:cloud:tutorials:java-tutorial/adding-course-enrollments.adoc[]
 ---
 
@@ -21,7 +21,7 @@ link: xref:cloud:tutorials:java-tutorial/adding-course-enrollments.adoc[]
 
   * The recommended version is the latest Java LTS release. Make sure to install the highest available patch for the LTS version.
 * You have installed [Apache Maven](https://maven.apache.org/) (version 3+).
-* You have connected the Java SDK to your free tier cluster. For more information, see [install-couchbase-java-sdk.adoc](#install-couchbase-java-sdk.adoc).
+* You have connected the Java SDK to your free tier cluster. For more information, see [Set Up and Connect the Couchbase Java SDK](install-couchbase-java-sdk.md).
 * You have created student and course records on your cluster. For more information, see [Create Student and Course Records](create-records.md).
 
 ## [](#add-enrollment-details)Add Enrollment Details

@@ -3,7 +3,7 @@ title: Back Up and Restore Bucket Data
 description: Couchbase recommends a robust scheduled backup and retention time
   policy as part of an overall disaster recovery plan for production data.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/backup-restore.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-25T05:47:47.215Z
 link: xref:cloud:clusters:backup-restore.adoc[]
 ---
 
@@ -223,4 +223,4 @@ See the following pages for more information about creating, managing, and delet
 
 * [Manage Bucket Backups](manage-backup.md)
 * [Restore a Bucket Backup](manage-restore.md)
-* [clusters:manage-backup.adoc#delete-backup](manage-backup.md#delete-backup)
+* [Delete a Bucket Bucket](manage-backup.md#delete-backup)

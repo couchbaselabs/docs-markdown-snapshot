@@ -2,7 +2,7 @@
 title: Create Student and Course Records
 description: Learn how to use the SDK to create student and course records.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/create-records.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-25T05:47:47.215Z
 link: xref:cloud:tutorials:java-tutorial/create-records.adoc[]
 ---
 
@@ -21,7 +21,7 @@ link: xref:cloud:tutorials:java-tutorial/create-records.adoc[]
 
   * The recommended version is the latest Java LTS release. Make sure to install the highest available patch for the LTS version.
 * You have installed [Apache Maven](https://maven.apache.org/) (version 3+).
-* You have connected the Java SDK to your free tier cluster. For more information, see [install-couchbase-java-sdk.adoc](#install-couchbase-java-sdk.adoc).
+* You have connected the Java SDK to your free tier cluster. For more information, see [Set Up and Connect the Couchbase Java SDK](install-couchbase-java-sdk.md).
 
 ## [](#create-a-student-record)Create a Student Record
 

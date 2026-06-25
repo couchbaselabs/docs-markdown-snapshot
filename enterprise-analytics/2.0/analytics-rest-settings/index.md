@@ -2,7 +2,7 @@
 title: Analytics Settings REST API
 description: A description of the Settings REST API for Couchbase Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/analytics-rest-settings/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-06-25T05:47:47.215Z
 link: xref:2.0@enterprise-analytics:analytics-rest-settings:index.adoc[]
 ---
 
@@ -59,7 +59,7 @@ Copy
 
 `{
 * "blobStorageScheme": "s3",
-* "blobStorageBucket": "enteprise-analytics-bucket",
+* "blobStorageBucket": "enterprise-analytics-bucket",
 * "blobStorageRegion": "us-west-2",
 * "blobStoragePrefix": "analytics-data/",
 * "blobStorageAnonymousAuth": false,
@@ -77,14 +77,14 @@ _ClusterWrite_
 
 ##### Request Body schema: application/x-www-form-urlencoded
 
-| blobStorageScheme         | string Specifies the blob storage scheme.                                                                                   |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| blobStorageBucket         | string Specifies the blob storage bucket name.                                                                              |
-| blobStorageRegion         | string Specifies the blob storage bucket region.                                                                            |
-| blobStoragePrefix         | string Specifies the blob storage bucket prefix where enteprise analytics will store its data.                              |
-| blobStorageAnonymousAuth  | boolean Specifies if anonymous authentication should be used when accessing the blob storage bucket.                        |
-| blobStorageForcePathStyle | boolean Specifies if path style should be should be used when accessing the blob storage bucket.                            |
-| numStoragePartitions      | integer \[ 1 .. 1024 \] Specifies the number partitions that will be used when storing the data in the blob storage bucket. |
+| blobStorageScheme         | string Specifies the blob storage scheme.                                                                                      |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| blobStorageBucket         | string Specifies the blob storage bucket name.                                                                                 |
+| blobStorageRegion         | string Specifies the blob storage bucket region.                                                                               |
+| blobStoragePrefix         | string Specifies the blob storage bucket prefix where Enterprise Analytics stores its data.                                    |
+| blobStorageAnonymousAuth  | boolean Specifies if anonymous authentication should be used when accessing the blob storage bucket.                           |
+| blobStorageForcePathStyle | boolean Specifies if path style should be should be used when accessing the blob storage bucket.                               |
+| numStoragePartitions      | integer \[ 1 .. 1024 \] Specifies the number of partitions that will be used when storing the data in the blob storage bucket. |
 
 ### Responses
 
@@ -120,7 +120,7 @@ Copy
 
 `{
 * "blobStorageScheme": "s3",
-* "blobStorageBucket": "enteprise-analytics-bucket",
+* "blobStorageBucket": "enterprise-analytics-bucket",
 * "blobStorageRegion": "us-west-2",
 * "blobStoragePrefix": "analytics-data/",
 * "blobStorageAnonymousAuth": false,

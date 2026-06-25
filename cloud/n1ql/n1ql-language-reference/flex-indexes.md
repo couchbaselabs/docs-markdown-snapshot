@@ -3,7 +3,7 @@ title: Use Search Indexes with a Query
 description: The Flex Index feature enables you run a SQL++ query as a full-text
   search query, using a full-text index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/flex-indexes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-06-25T05:47:47.215Z
 link: xref:cloud:n1ql:n1ql-language-reference/flex-indexes.adoc[]
 ---
 
@@ -152,7 +152,7 @@ If the full-text index has multiple custom type mappings, all the fields that yo
 
 Child mappings and fields mapped under top level type mappings can all be used within a query, provided they are enabled.
 
-When clusters:search-service/create-full-text-indexes.adoc#inserting-a-child-field\[creating a full-text definition in the Couchbase Capella UI\], the child fields listed by field name or by **searchable as** may be used within a SQL++ query.
+When [creating a full-text definition in the Couchbase Capella UI](../../search/create-type-mapping.md#field), the child fields listed by field name or by **searchable as** may be used within a SQL++ query.
 
 > [!NOTE]
 > The type field in a custom type mapped index is _not_ searchable.
