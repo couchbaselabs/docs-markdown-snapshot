@@ -1,7 +1,7 @@
 ---
 title: Develop with Enterprise Analytics
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/analytics-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-06-26T05:54:04.226Z
 link: xref:home::analytics-sdk.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Analytics SDKs are developed from the ground-up and while they maintain some syn
 * Node.js
 * Python
 
-[.NET Analytics SDK Docs](../dotnet-analytics-sdk/current/hello-world/overview.md) | [Quickstart](../dotnet-analytics-sdk/current/hello-world/start-using-sdk.md) | | [.NET Analytics API Reference](https://docs.couchbase.com/sdk-api/analytics-dotnet-client)
+[.NET Analytics SDK Docs](../dotnet-analytics-sdk/current/hello-world/overview.md) | [Quickstart](../dotnet-analytics-sdk/current/hello-world/start-using-sdk.md) | [.NET Analytics API Reference](https://docs.couchbase.com/sdk-api/analytics-dotnet-client)
 
 [Go Analytics SDK Docs](../go-analytics-sdk/current/hello-world/overview.md) | [Quickstart](../go-analytics-sdk/current/hello-world/start-using-sdk.md) | [Go API Reference](https://pkg.go.dev/github.com/couchbase/gocbanalytics)
 
