@@ -3,7 +3,7 @@ title: Filtered Search Using Composite Vector Indexes
 description: A Composite Vector index is a Global Secondary Index (GSI) with a
   single vector column that combines scalar queries with semantic search.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-index/pages/composite-vector-index.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:cloud:vector-index:composite-vector-index.adoc[]
 ---
 
@@ -26,7 +26,7 @@ When your query contains an embedded vector, the Index Service uses any non-vect
 * You must have a bucket with scopes and collections in your database. For more information about how to create a bucket, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
 * Your account must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Owner](../projects/project-roles.md#project-owner-role), or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role to be able to create an index.
 * You have documents in a collection that contain one or more vector embeddings. You can add a single vector to a Composite Vector index. If your documents contain multiple embedded vectors, you can create multiple indexes — one for each vector attribute.  
-Embeddings can be an array of floating point numbers or a base64 encoded string. Couchbase Capella does not embed vectors itself. You can use an external embedding model to embed vectors into your data and add them to your documents, or use [Capella AI Services](../../ai/build/model-service/deploy-embed-model.md).
+Embeddings can be an array of floating point numbers or a base64 encoded string. Couchbase Capella does not embed vectors itself. You can use an external embedding model to embed vectors into your data and add them to your documents, or use [the {ai-long}](../../ai/build/model-service/deploy-embed-model.md).
 * You must know the number of dimensions the vector contains. The embedding model you use to embed the vectors may determine this value for you. For example, OpenAI API's `text-embedding-ada-002` embedding model that embedded the sample data demonstrated later in this page creates vectors that have 1536 dimensions.
 * You must decide what distance metric and quantization you want your index to use. The metrics affect how the index compares vectors. The quantization determines how much memory your index uses and the amount of processing Couchbase Capella must perform to train and search them. See [Vector Similarity Metrics](vectors-and-indexes-overview.md#vector%5Fsimilarity) and [Quantization](vectors-and-indexes-overview.md#quantization) for more information.
 

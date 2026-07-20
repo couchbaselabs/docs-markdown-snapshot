@@ -3,7 +3,7 @@ title: Monitor Clusters
 description: Couchbase Capella provides a variety of monitoring tools to assess
   the performance, health, and stability of your cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/monitoring.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:cloud:clusters:monitoring/monitoring.adoc[]
 ---
 
@@ -31,7 +31,7 @@ These dashboards display a range of cluster metrics through the [Overview](#clus
 
 The **Cluster Overview** dashboard provides a general summary of your cluster's metrics, including a quick view of its configuration, Health Advisor status, and recent entries from the Activity Log.
 
-For more information, see [View Cluster Overview](#clusters:clusters:monitoring/metrics-dashboard.adoc#cluster-overview).
+For more information, see [View Cluster Overview](metrics-dashboard.md#cluster-overview).
 
 ### [](#workload-monitoring)Workload Dashboards
 

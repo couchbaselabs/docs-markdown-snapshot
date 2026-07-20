@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/product-notes/pages/release-notes.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:sync-gateway:product-notes:release-notes.adoc[]
 ---
 
@@ -16,29 +16,32 @@ Quicklinks
 [Release 3.3](../../3.3/product-notes/release-notes.md) | [Release 3.2](../../3.2/release-notes.md) | [Release 3.1](../../3.1/release-notes.md) | [Release 3.0](../../3.0/release-notes.md) | [Archived documentation](https://docs-archive.couchbase.com/home/index.html)
 
 > Couchbase Sync Gateway  
-> This content describes the key features and changes implemented by release 4.0.0 of Couchbase Sync Gateway
+> This content describes the key features and changes implemented by release 4.0 of Couchbase Sync Gateway
 
 > [!CAUTION]
 > One Way Upgrade
 > 
 > The migration to a 4.x configuration is a ONE WAY process — see: [Upgrading](../upgrading.md) for more.
 
-## [](#maint-latest)4.0.5 — June 2026
+## [](#maint-4-0-7)4.0.7 — July 2026
 
 > [!IMPORTANT]
-> If you use OIDC-based authentication for deployments and manage users through the Sync Gateway Admin REST API, upgrade to this release to receive critical fixes.
+> If you use Sync Gateway 4.0.5 or 4.0.6, upgrade to this release to receive critical fixes.
 
-### [](#maint-4-0-5)Fixed Issues
+### [](#fixed-issues)Fixed Issues
 
 * [CBG-5255 — Upgrading from non persistent config to persistent config will trigger database requiring resync](https://jira.issues.couchbase.com/browse/CBG-5255)
 * [CBG-5287 — \_changes feeds with active\_only=true and limit parameters can miss expected changes with revocations](https://jira.issues.couchbase.com/browse/CBG-5287)
 * [CBG-5361 — Panic in revoked feed handling](https://jira.issues.couchbase.com/browse/CBG-5361)
 * [CBG-5368 — Problem with channel removal macro expansion when channel names have . in them](https://jira.issues.couchbase.com/browse/CBG-5368)
 * [CBG-5383 — Resync regenerate sequences will not set \_default metadata id when finished](https://jira.issues.couchbase.com/browse/CBG-5383)
+* [CBG-5453 — Subdoc operation failure on multiple channel removal](https://jira.issues.couchbase.com/browse/CBG-5453)
+* [CBG-5553 — activeOnly replication can miss documents for channels over the pagination limit](https://jira.issues.couchbase.com/browse/CBG-5553)
 
 ### [](#enhancements)Enhancements
 
-None for this release
+* [CBG-5394 — REST endpoint for pruning document channel history](https://jira.issues.couchbase.com/browse/CBG-5394)
+* [CBG-5396 — REST endpoint for pruning user channel history](https://jira.issues.couchbase.com/browse/CBG-5396)
 
 ### [](#known-issues)Known Issues
 

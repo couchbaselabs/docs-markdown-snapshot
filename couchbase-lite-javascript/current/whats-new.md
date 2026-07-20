@@ -2,7 +2,7 @@
 title: New In 1.0
 description: Couchbase Lite for JavaScript -- What's new in the latest release
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/whats-new.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:couchbase-lite-javascript::whats-new.adoc[]
 ---
 
@@ -10,6 +10,12 @@ link: xref:couchbase-lite-javascript::whats-new.adoc[]
 [View original HTML](/couchbase-lite-javascript/current/whats-new.html)
 
 # New In 1.0
+
+## [](#release-1-0-1-june-2026)Release 1.0.1 (June 2026)
+
+Couchbase Lite JavaScript Release 1.0.1 introduces fixes and enhancements.
+
+For a full breakdown of the individual issues resolved, see the [Release Notes](releasenotes.md).
 
 ## [](#release-1-0-november-2025)Release 1.0 (November 2025)
 

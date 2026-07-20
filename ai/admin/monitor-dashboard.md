@@ -4,7 +4,7 @@ description: Couchbase Capella provides metrics for Workflows and the Model
   Service for you to discover and trend model performance, identify performance
   issues, and more.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/monitor-dashboard.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:admin:monitor-dashboard.adoc[]
 ---
 
@@ -15,9 +15,9 @@ link: xref:ai:admin:monitor-dashboard.adoc[]
 
 > Couchbase Capella provides metrics for Workflows and the Model Service for you to discover and trend model performance, identify performance issues, and more. 
 
-You can use the metrics from the **Monitoring** dashboards for troubleshooting your AI Services. Use the dashboards to investigate intermittent issues with multi-metric views and adjustable timeframes.
+You can use the metrics from the **Monitoring** dashboards for troubleshooting the {ai-long}. Use the dashboards to investigate intermittent issues with multi-metric views and adjustable timeframes.
 
-Capella AI Services has the following real-time monitoring dashboards for:
+The {ai} has the following real-time monitoring dashboards for:
 
 * [Workflows](#workflow-metrics), such as:
 
@@ -47,13 +47,13 @@ The **Unstructured Data** dashboard presents a general summary of the metrics, h
 
 To see your **Unstructured Data** workflow's status and metrics:
 
-1. Go to **AI Services** **Monitoring**.
+1. Go to menu:{ai}\[Monitoring\].
 2. Select **Unstructured Data**.
 3. In the workflow list, select the **Workflow** you want to view metrics for.
 
 You can adjust the metric charts by timeframe. For more information, see [Adjust Metrics](#use-metrics).
 
-For more information about Workflows, see [Process Your Data For Capella AI Services](../build/vectorization-service/data-processing.md).
+For more information about Workflows, see [Process Your Data For the {ai-long}](../build/vectorization-service/data-processing.md).
 
 ### [](#structured-data)View Structured Data Metrics
 
@@ -65,13 +65,13 @@ The **Structured Data** dashboard presents a general summary of the metrics, hea
 
 To see your **Structured Data** Workflow's status and metrics:
 
-1. Go to **AI Services** **Monitoring**.
+1. Go to menu:{ai}\[Monitoring\].
 2. Click **Structured Data**.
 3. In the workflow list, select the **Workflow** you want to view metrics for.
 
 You can adjust the metric charts by timeframe. For more information, see [Adjust Metrics](#use-metrics).
 
-For more information about Workflows, see [Process Your Data For Capella AI Services](../build/vectorization-service/data-processing.md).
+For more information about Workflows, see [Process Your Data For the {ai-long}](../build/vectorization-service/data-processing.md).
 
 ## [](#model-llm-emb)View Model Metrics
 
@@ -83,13 +83,13 @@ The **Model** dashboard presents a general summary of your model's metrics, heal
 
 To see your model's status and metrics:
 
-1. Go to **AI Services** **Monitoring**.
+1. Go to menu:{ai}\[Monitoring\].
 2. Click **Model**.
 3. In the **Model** list, select the model you want to view metrics for.
 
 You can adjust the metric charts by timeframe. For more information, see [Adjust Metrics](#use-metrics).
 
-For more information about models on Capella AI Services, see [Deploy Models with the Capella Model Service](../build/model-service/model-service.md).
+For more information about models on the {ai}, see [Deploy Models with the {ai} Model Service](../build/model-service/model-service.md).
 
 ## [](#use-metrics)Adjust Metrics
 

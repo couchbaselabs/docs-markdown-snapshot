@@ -3,7 +3,7 @@ title: Integrate an Agent with the Agent Catalog
 description: Use the Couchbase Agent Catalog to create your own custom AI agents
   with your preferred Large Language Model (LLM) and agent framework.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/integrate-agent-with-catalog.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:build:integrate-agent-with-catalog.adoc[]
 ---
 
@@ -16,17 +16,17 @@ link: xref:ai:build:integrate-agent-with-catalog.adoc[]
 
 An AI agent could be a simple application like a chatbot, or a more specialized application designed to solve a specific problem, like a smart web crawler.
 
-Use Capella AI Services together with the Couchbase Agent Catalog to integrate Capella-hosted models into your agent. The Agent Catalog features a command-line tool and a Python SDK to support your development. It works with Capella as a profile store, transactional store, or vector store.
+Use the {ai-long} together with the Couchbase Agent Catalog to integrate {ai}-hosted models into your agent. The Agent Catalog features a command-line tool and a Python SDK to support your development. It works with Capella or Couchbase Server as a profile store, transactional store, or vector store.
 
 > [!TIP]
-> Couchbase AI Services also offers notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework:
+> The {ai} also offers notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework:
 > 
 > * Colab: [LangGraph](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb)
 > * GitHub: [LangGraph](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb)
 
 The Agent Catalog also helps you:
 
-* Write tools for using data you have stored in a Capella operational cluster.
+* Write tools for using data you have stored in a Capella operational or Couchbase Server cluster.
 * Centralize and reuse your tools across your development teams.
 * Examine and monitor agent responses with the [Agent Tracer](agent-tracer/agent-tracer.md).
 * Version your user and system prompts and other agent-specific metadata.
@@ -50,6 +50,19 @@ You can create new projects with the Agent Catalog, or integrate it into an exis
 
 ## [](#prerequisites)Prerequisites
 
+* Couchbase Server
+* Couchbase Capella
+
+* You have created a Couchbase Server cluster that has the following:
+
+  * Couchbase Server version 8.0 or later.
+  * (Optional) To support the full capabilities of the Agent Catalog, including semantic search, make sure the Search Service is running on at least 1 Service Group. For more information about how to deploy a new node and Services on your cluster, see [Manage Nodes and Clusters](../../server/current/manage/manage-nodes/node-management-overview.md).
+  * A bucket that can store data from the Agent Catalog.  
+  Use any bucket settings you would prefer for your particular use case. For more information, see [Create a Bucket](../../server/current/manage/manage-buckets/create-bucket.md).
+  * A username and password for a user account that has read and write access to your Agent Catalog bucket. For more information about how to manage users in Couchbase Server, see [Manage Users, Groups, and Roles](../../server/current/manage/manage-security/manage-users-and-roles.md).
+* You have installed [Python version 3.12 or later](https://www.python.org/downloads/).
+* You have installed [Git](https://git-scm.com/) and set up a GitHub repository for your project inside your Python virtual environment. For more information about how to set up a GitHub repository, see the [GitHub Documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories?tool=cli).
+
 * You have created an operational cluster in Capella that has the following:
 
   * Couchbase Server version 8.0 or later.
@@ -59,7 +72,7 @@ You can create new projects with the Agent Catalog, or integrate it into an exis
   * Cluster access credentials that have read and write access to your Agent Catalog bucket. For more information, see [Manage Cluster Access Credentials](../../cloud/clusters/manage-database-users.md).
 * You have added the IP address you want to use to connect to your Capella cluster to your list of Allowed IP Addresses. For more information about allowed IP addresses, see [Configure Allowed IP Addresses](../../cloud/clusters/allow-ip-address.md).
 * You have the connection string for your Capella cluster.  
-From the **Databases** page, go to **Connect** and copy the **Public Connection String** from any of the connection methods.
+To find your connection string, from the **Operational** page, click your cluster and go to **Connect**. Copy the **Public Connection String** from any of the connection methods.
 * You have installed [Python version 3.12 or later](https://www.python.org/downloads/).
 * You have installed [Git](https://git-scm.com/) and set up a GitHub repository for your project inside your Python virtual environment. For more information about how to set up a GitHub repository, see the [GitHub Documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories?tool=cli).
 
@@ -85,11 +98,13 @@ pip install agentc
 > For alternate installation instructions for Agent Catalog, see the [agent-catalog documentation](https://couchbaselabs.github.io/agent-catalog/install.html#installation).
 3. Add the required environment variables for the Agent Catalog to an `.env` file at the root of your project:  
 ```txt  
-# Enter the connection string for your Capella cluster.  
+# Enter the connection string for your cluster.  
+# For Capella, this will be the string you copied in the Prerequisites.  
+# For Server, this will be the IP address of the node in your cluster, prefixed by "couchbase://" or "couchbases://", or "localhost"  
 AGENT_CATALOG_CONN_STRING=$CONNECTION_STRING  
-# Enter the username from the cluster access credentials you created for your Agent Catalog bucket.  
+# Enter the username from the cluster access credentials or user account you created for your Agent Catalog bucket.  
 AGENT_CATALOG_USERNAME=$CLUSTER_ACCESS_CREDENTIALS_USERNAME  
-# Enter the password from the cluster access credentials you created for your Agent Catalog bucket.  
+# Enter the password from the cluster access credentials or user account you created for your Agent Catalog bucket.  
 AGENT_CATALOG_PASSWORD=$CLUSTER_ACCESS_CREDENTIALS_PASSWORD  
 # Enter the name of the bucket you created for the Agent Catalog.  
 AGENT_CATALOG_BUCKET=$BUCKET_NAME  
@@ -676,7 +691,7 @@ After you have written new tools or prompts or prepared existing tools and promp
 
 When you publish, you send these JSON index files to the Couchbase cluster configured in your environment variables, where you can [Use the Agent Catalog Tools and Prompts Hub](tools-prompts-hub.md).
 
-The Tools and Prompts Hub and the Agent Catalog rely on Git for versioning and source control for your tools and prompts. It's important to push your agent project to Git, and index your tools and prompts often.
+The [Tools and Prompts Hub](tools-prompts-hub.md) and the Agent Catalog rely on Git for versioning and source control for your tools and prompts. It's important to push your agent project to Git, and index your tools and prompts often.
 
 To index and publish your tools or prompts:
 

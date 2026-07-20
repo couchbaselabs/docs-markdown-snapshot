@@ -3,7 +3,7 @@ title: Command Line Tools
 description: Use Couchbase command line tools to import and export data, manage
   backups, and interact with your cluster from the command line.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/command-line-tools.adoc
-pubDate: 2026-04-24T05:30:11.901Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:cloud:reference:command-line-tools.adoc[]
 ---
 
@@ -62,23 +62,23 @@ Download the command line tools package that corresponds to the server version y
 
 Linux
 
-<https://packages.couchbase.com/releases/8.0.1/couchbase-server-dev-tools-8.0.1-linux%5Fx86%5F64.tar.gz>
+<https://packages.couchbase.com/releases/8.0.2/couchbase-server-dev-tools-8.0.2-linux%5Fx86%5F64.tar.gz>
 
 Linux aarch64
 
-<https://packages.couchbase.com/releases/8.0.1/couchbase-server-dev-tools-8.0.1-linux%5Faarch64.tar.gz>
+<https://packages.couchbase.com/releases/8.0.2/couchbase-server-dev-tools-8.0.2-linux%5Faarch64.tar.gz>
 
 macOS x86
 
-<https://packages.couchbase.com/releases/8.0.1/couchbase-server-dev-tools-8.0.1-macos%5Fx86%5F64.zip>
+<https://packages.couchbase.com/releases/8.0.2/couchbase-server-dev-tools-8.0.2-macos%5Fx86%5F64.zip>
 
 macOS arm64
 
-<https://packages.couchbase.com/releases/8.0.1/couchbase-server-dev-tools-8.0.1-macos%5Farm64.zip>
+<https://packages.couchbase.com/releases/8.0.2/couchbase-server-dev-tools-8.0.2-macos%5Farm64.zip>
 
 Windows
 
-<https://packages.couchbase.com/releases/8.0.1/couchbase-server-dev-tools-8.0.1-windows%5Famd64.zip>
+<https://packages.couchbase.com/releases/8.0.2/couchbase-server-dev-tools-8.0.2-windows%5Famd64.zip>
 
 > [!TIP]
 > On Windows, you need a recent Microsoft Visual C++ Redistributable installed. Download the latest Visual C++ Redistributable from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
@@ -88,17 +88,17 @@ Unzip or untar the packages, and the binaries are ready to run. The extracted pa
 For example, for Linux x86\_64:
 
 ```console
-$ wget https://packages.couchbase.com/releases/8.0.1/couchbase-server-dev-tools_8.0.1-linux_x86_64.tar.gz
+$ wget https://packages.couchbase.com/releases/8.0.2/couchbase-server-dev-tools_8.0.2-linux_x86_64.tar.gz
 ```
 
 ```console
-$ tar -xf couchbase-server-dev-tools_8.0.1-linux_x86_64.tar.gz
+$ tar -xf couchbase-server-dev-tools_8.0.2-linux_x86_64.tar.gz
 ```
 
 ```console
 $ ls -1
 bin
-couchbase-server-dev-tools_8.0.1-linux_x86_64.tar.gz
+couchbase-server-dev-tools_8.0.2-linux_x86_64.tar.gz
 lib
 LICENSE.txt
 NOTICES.txt
@@ -121,28 +121,28 @@ cbq
 
 ```console
 $ ./cbimport --version
-cbimport version 8.0.1-4792 (983714b2)
+cbimport version 8.0.2-5503 (983714b2)
 ```
 
 ```console
 $ ./cbexport --version
-cbexport version 8.0.1-4792 (983714b2)
+cbexport version 8.0.2-5503 (983714b2)
 ```
 
 ```console
 $ ./cbbackupmgr --version
-cbbackupmgr version 8.0.1-4792 (983714b2)
+cbbackupmgr version 8.0.2-5503 (983714b2)
 ```
 
 ```console
 $ ./cbdatarecovery --version
-cbdatarecovery version 8.0.1-4792 (983714b2)
+cbdatarecovery version 8.0.2-5503 (983714b2)
 ```
 
 ```console
 $ ./cbq --version
  GO VERSION : go1.25.5
- SHELL VERSION : 8.0.1-4792
+ SHELL VERSION : 8.0.2-5503
 
  Use N1QL queries select version(); or select min_version(); to display server version.
 ```

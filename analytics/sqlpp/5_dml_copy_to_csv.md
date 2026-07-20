@@ -1,9 +1,10 @@
 ---
 title: CSV
 description: This topic explains how to use the COPY TO statement to export data
-  from a database to Amazon S3 or Google Cloud Storage (GCS) in CSV format.
+  from a database to Amazon S3, Google Cloud Storage (GCS), or Azure Blob
+  Storage in CSV format.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_copy_to_csv.adoc
-pubDate: 2026-03-27T05:16:21.194Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:analytics:sqlpp:5_dml_copy_to_csv.adoc[]
 ---
 
@@ -12,11 +13,11 @@ link: xref:analytics:sqlpp:5_dml_copy_to_csv.adoc[]
 
 # CSV
 
-> This topic explains how to use the COPY TO statement to export data from a database to Amazon S3 or Google Cloud Storage (GCS) in CSV format. 
+> This topic explains how to use the COPY TO statement to export data from a database to Amazon S3, Google Cloud Storage (GCS), or Azure Blob Storage in CSV format. 
 
 COPY TO CSV introduces the ability to write results of queries or entire collections to external stores (such as AWS S3 and Google Cloud Storage) in CSV format.
 
-For more information, see [Amazon S3](../sources/external-s3.md) and [Google Cloud Storage (GCS)](../sources/external-gcs.md).
+For more information, see [Amazon S3](../sources/external-s3.md), [Google Cloud Storage (GCS)](../sources/external-gcs.md), and [Azure Blob Storage](../sources/external-azure.md).
 
 > [!NOTE]
 > To be able to read or write data to or from external cloud storage exclusive permissions are required. For more information see [Cloud Read/Write Permissions](#reference:cloud%5Fread%5Fwrite%5Fpermissions.adoc).

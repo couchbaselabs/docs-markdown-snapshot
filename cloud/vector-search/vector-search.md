@@ -3,7 +3,7 @@ title: Vector Search Using Search Vector Indexes
 description: Use Couchbase Capella's Vector Search features to add fast and
   accurate semantic search to your applications.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/vector-search.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:cloud:vector-search:vector-search.adoc[]
 ---
 
@@ -39,7 +39,7 @@ To get started using Vector Search in Capella:
 
 In addition to supporting integrations with frameworks like LangChain and LlamaIndex, you can also use the API for an existing LLM and one of their embedding models to generate vector embeddings for your data. For example, the OpenAI `embeddings` endpoint can generate embeddings for a text string using a specified embedding model. You can then store that embedding as a new field in your documents. For more information about how to generate and obtain embeddings for text strings using the OpenAI API, see the [Embeddings documentation](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings).
 
-You can also use [Capella AI Services](../../ai/build/model-service/deploy-embed-model.md) to generate and store embeddings in your Capella operational cluster.
+You can also use [the {ai-long}](../../ai/build/model-service/deploy-embed-model.md) to generate and store embeddings in your Capella operational cluster.
 
 > [!NOTE]
 > When you create a Search Vector Index, the [dimension](../search/type-mapping-options.md#dimension) of your data vector embeddings must match the dimension for any search query vectors. Otherwise, a Vector Search query fails to return any results.

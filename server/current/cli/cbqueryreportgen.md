@@ -1,9 +1,9 @@
 ---
 title: cbqueryreportgen
-description: The <code>cbqueryreportgen</code> tool returns the complete details
-  of any Query service to generate reports.
+description: The <code>cbqueryreportgen</code> tool generates performance
+  reports based on Query Service statistics.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbqueryreportgen.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:server:cli:cbqueryreportgen.adoc[]
 ---
 
@@ -12,12 +12,11 @@ link: xref:server:cli:cbqueryreportgen.adoc[]
 
 # cbqueryreportgen
 
-> A query tool that returns the complete details of any Query Service to generate reports. 
+> The `cbqueryreportgen` tool generates performance reports based on Query Service statistics. 
 
 ## [](#syntax)Syntax
 
-cbqueryreportgen [-<args>
-                  [ -c, --cluster <cluster> ]
+cbqueryreportgen  [ -c, --cluster <cluster> ]
                   [ -u, --username <username> ]
                   [ -p, --password <password> ]
                   [ -k, <keyspace> ]
@@ -27,7 +26,6 @@ cbqueryreportgen [-<args>
                   [ -l, --limit <limit> ]
                   [ -v, --verbose ]
                   [ -h, --help ]
-                 ]
 
 ## [](#description)Description
 
@@ -51,27 +49,27 @@ Required flags:
 
 The following flags are required to run the `cbqueryreportgen` command.
 
-The `-c, --cluster` flag specifies the hostname of the Couchbase cluster. Example: `couchbase://localhost`.
+The `-c` or `--cluster` flag specifies the hostname of the Couchbase cluster. Example: `couchbase://localhost`.
 
-The `-u, --username` flag specifies the username of the Couchbase cluster. Example: `-u Administrator`.
+The `-u` or `--username` flag specifies the username of the Couchbase cluster. Example: `Administrator`.
 
-The `-p, --password` flag specifies the password of the Couchbase cluster. Example: `-p password`.
+The `-p` or `--password` flag specifies the password of the Couchbase cluster. Example: `password`.
 
 The `-k` flag specifies the keyspace. The keyspace is the AWR repository in the `bucket.scope.collection` format. Example: `travel-sample._default.awr`.
 
 The `-t1` flag specifies the start-time and end-time for the report, in the local timezone. Enter both start-time and end-time in the `YYYY-MM-DDTHH:MM:SS` format, separated by a comma. Example: `2025-09-01T00:00:00,2025-09-02T00:00:00`.
 
-The `-o, --output` flag specifies the output file for the report. Example: `report.html`.
+The `-o` or `--output` flag specifies the output file for the report. Example: `report.html`.
 
 Optional flags:
 
 The `-t2` flag specifies the start-time and end-time of the second time period, in the local timezone. Enter both start-time and end-time in the `YYYY-MM-DDTHH:MM:SS` format, separated by a comma. Example: `2025-09-02T00:00:00,2025-09-03T00:00:00`.
 
-The `-l, --limit` flag specifies the maximum number of results to include for every query. The default is `1000`.
+The `-l` or `--limit` flag specifies the maximum number of results to include for every query. The default is `1000`.
 
-The `-v, --verbose` flag enables verbose logging for debugging purposes.
+The `-v` or `--verbose` flag enables verbose logging for debugging purposes.
 
-The `-h, --help` flag prints the help information.
+The `-h` or `--help` flag prints the help information.
 
 For more information about how the specific command works, run `cbqueryreportgen --help`.
 
@@ -91,4 +89,4 @@ The output of the command is a report in HTML format, saved to the file `report.
 
 ## [](#see-also)See Also
 
-For detailed information, see [Automatic Workload Repository](../n1ql/n1ql-manage/query-awr.md).
+For more information, see [Automatic Workload Repository](../n1ql/n1ql-manage/query-awr.md).

@@ -2,7 +2,7 @@
 title: SDK Release Notes
 description: Release notes for the Couchbase Kotlin Client.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/1.2/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-04-08T05:18:32.349Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:1.2@kotlin-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -12,6 +12,13 @@ link: xref:1.2@kotlin-sdk:project-docs:sdk-release-notes.adoc[]
 # SDK Release Notes
 
 > Release notes for the Couchbase Kotlin Client. 
+
+> [!IMPORTANT]
+> Refer to the Latest Release Notes
+> 
+> This page is an archive snapshot, and does not contain release notes for the latest version of the SDK.
+> 
+> See the [latest SDK release notes](../../current/project-docs/sdk-release-notes.md) for more recent improvements and bug fixes.
 
 ## [](#kotlin-sdk-1-2-releases)Kotlin SDK 1.2 Releases
 

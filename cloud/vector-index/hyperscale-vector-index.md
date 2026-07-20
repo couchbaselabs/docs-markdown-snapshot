@@ -4,7 +4,7 @@ description: Hyperscale Vector Indexes are optimized to index a single vector
   column. They offer the highest performance of any index when it comes to
   vector data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-index/pages/hyperscale-vector-index.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:cloud:vector-index:hyperscale-vector-index.adoc[]
 ---
 
@@ -31,7 +31,7 @@ Hyperscale Vector Indexes have the following requirements:
 * Your account must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Owner](../projects/project-roles.md#project-owner-role), or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role to be able to create an index.
 * You must have a bucket your database. For more information about how to create a bucket, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
 * You have documents in a collection that contain one or more vector embeddings. You can add a single vector to a Hyperscale Vector Index. If your documents contain multiple embedded vectors, you can create multiple indexes — one for each vector attribute.  
-Embeddings can be an array of floating point numbers or a base64 encoded string. Couchbase Capella does not embed vectors itself. You can use an external embedding model to embed vectors into your data and add them to your documents, or use [Capella AI Services](../../ai/build/model-service/deploy-embed-model.md).
+Embeddings can be an array of floating point numbers or a base64 encoded string. Couchbase Capella does not embed vectors itself. You can use an external embedding model to embed vectors into your data and add them to your documents, or use [the {ai-long}](../../ai/build/model-service/deploy-embed-model.md).
 * The vectors you add to an index must contain the same number of dimensions. Also the values in the vector must be 32-bit floating point numbers. If a vector does not meet both of these requirements, the vector index treats it as a NULL value and the document is not added to the index.
 * You must know the number of dimensions the vector contains. The embedding model you use to embed the vectors may determine this value for you. For example, OpenAI API's `text-embedding-ada-002` embedding model creates vectors that have 1536 dimensions.
 * You must decide whether you want to use the default distance metric and quantization for your index. By default, a Hyperscale Vector index uses the [Euclidean distance squared](vectors-and-indexes-overview.md#euclidean-squared) metric and [Scalar Quantization (SQ)](vectors-and-indexes-overview.md#sq) with 8 bits per vector dimension (`SQ8`). The metrics affect how the index compares vectors. The quantization determines how much memory your index uses and the amount of processing Couchbase Capella must perform to train and search them. See [Vector Similarity Metrics](vectors-and-indexes-overview.md#vector%5Fsimilarity) and [Quantization](vectors-and-indexes-overview.md#quantization) for more information.

@@ -3,7 +3,7 @@ title: About RAG Blueprints
 description: Learn about common RAG (Retrieval-Augmented Generation) patterns
   and how they are applied in knowledge bases, support, and search.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/rag-patterns.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:agent-tutorial:rag-patterns.adoc[]
 ---
 
@@ -25,7 +25,7 @@ RAG allows an LLM to:
 * Reduce hallucinations by grounding responses in real data.
 
 > [!TIP]
-> Capella AI Services offers a guided workflow to get you started with RAG. For more information and to view the interactive tutorials, go to **AI Services** **Offerings** in the Capella UI.
+> The {ai-long} offers a guided workflow to get you started with RAG. For more information and to view the interactive tutorials, go to menu:{ai}\[Offerings\] in the Capella UI.
 > 
 > You can also use notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework:
 > 
@@ -71,7 +71,7 @@ If a document is not chunked properly, you might lose context or semantic meanin
 
 Your chunking strategy should suit the structure of your documents, including the specific formatting features, while also efficiently returning results.
 
-For more information about configuring chunking in a Capella AI Services Workflow, see [Chunking](../build/vectorization-service/data-processing.md#chunking).
+For more information about configuring chunking in an {ai} Workflow, see [Chunking](../build/vectorization-service/data-processing.md#chunking).
 
 Embedding quality
 
@@ -114,7 +114,7 @@ For a knowledge base assistant, consider using an embedding model like `nv-embed
 
 In general, choose a richer model that gives better semantic embeddings, or higher recall scores, or a model that's tuned to your specific use case. Better semantics helps connect information across the chunks in your documents.
 
-For more information about how to deploy an embedding model on Capella, like `nv-embedqa-mistral-7b-v2`, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md).
+For more information about how to deploy an embedding model on the {ai}, like `nv-embedqa-mistral-7b-v2`, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md).
 
 Similarity Metric
 
@@ -173,7 +173,7 @@ You might want your guardrails to filter unsafe or biased content from user quer
 
 Guardrails could be as simple as keyword or semantic filtering, or as complex as contextual grounding checks and AI-powered moderation.
 
-For more information about how to configure guardrails on a model deployed on Capella, see [Configure Guardrails and Security](../build/model-service/configure-guardrails-security.md).
+For more information about how to configure guardrails on a model deployed on the {ai}, see [Configure Guardrails and Security](../build/model-service/configure-guardrails-security.md).
 
 #### [](#specific-blueprint-configuration-settings-2)Specific Blueprint Configuration Settings
 
@@ -199,13 +199,13 @@ For a customer support assistant, consider using an embedding model like `nv-emb
 
 You can choose a smaller model for this use case to save and support better scaling on query volumes, since you need shorter, predictable responses.
 
-For more information about how to deploy an embedding model on Capella, like `nv-embedqa-e5-v5`, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md).
+For more information about how to deploy an embedding model on the {ai}, like `nv-embedqa-e5-v5`, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md).
 
 Similarity Metric
 
 Use cosine similarity to get the best directional, conceptual alignment between a query and a chunk.
 
-For more information about how to set the similarity metric for your vectors in Capella, see:
+For more information about how to set the similarity metric for your vectors in the {ai}, see:
 
 * [Create a Search Vector Index in Quick Mode](../../cloud/vector-search/create-vector-search-index-ui.md)
 * [Create a HyperScale Vector Index with the Capella UI](../../cloud/vector-index/hyperscale-vector-index.md#create-index)
@@ -274,13 +274,13 @@ For a search and discovery tool, consider using an embedding model like `arctic-
 
 You want a larger, more capable model to handle the number of vectors and the size of the dataset for this use case.
 
-For more information about how to deploy an embedding model on Capella, like `arctic-embed-l`, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md).
+For more information about how to deploy an embedding model on the {ai}, like `arctic-embed-l`, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md).
 
 Similarity Metric
 
 Use dot product similarity for a search and discovery agent to get the fastest performance when comparing your vectors.
 
-For more information about how to set the similarity metric for your vectors in Capella, see:
+For more information about how to set the similarity metric for your vectors in the {ai}, see:
 
 * [Create a Search Vector Index in Quick Mode](../../cloud/vector-search/create-vector-search-index-ui.md)
 * [Create a HyperScale Vector Index with the Capella UI](../../cloud/vector-index/hyperscale-vector-index.md#create-index)
@@ -301,5 +301,5 @@ The key is that RAG allows your app to stay grounded in real data, while still b
 
 * [About Agentic Apps](about-agentic-app.md)
 * [Plan Your Agentic App](plan-agentic-app.md)
-* [Capella AI Services](../get-started/intro.md)
+* [{ai-long}](../get-started/intro.md)
 * [Integrate an Agent with the Agent Catalog](../build/integrate-agent-with-catalog.md)

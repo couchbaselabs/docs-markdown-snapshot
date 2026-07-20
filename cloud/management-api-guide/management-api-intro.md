@@ -4,7 +4,7 @@ description: The Couchbase Capella Operational Management API is a secure REST
   API that enables you to provision, deploy, and configure Capella deployments
   across all supported cloud service providers.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-intro.adoc
-pubDate: 2026-04-01T05:25:30.286Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:cloud:management-api-guide:management-api-intro.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:cloud:management-api-guide:management-api-intro.adoc[]
 
 > The Couchbase Capella Operational Management API is a secure REST API that enables you to provision, deploy, and configure Capella deployments across all supported cloud service providers. 
 
-This page is for Capella operational. For Capella AI Services, see [Manage Deployments with Capella AI Services APIs](../../ai/api-guide/api-intro.md). For Capella Analytics, see [Manage Deployments with the Capella Analytics Management API](../../analytics/management-api-guide/management-api-intro.md).
+This page is for Capella operational. For the {ai-long}, see [Manage Deployments with the {ai-long} APIs](../../ai/api-guide/api-intro.md). For Capella Analytics, see [Manage Deployments with the Capella Analytics Management API](../../analytics/management-api-guide/management-api-intro.md).
 
 Clients do not need any special tools, SDKs, or libraries to access the Management API. The Management API supports off-the-shelf HTTP clients, such as [Insomnia](https://insomnia.rest) or [Postman](https://www.postman.com).
 
@@ -61,7 +61,7 @@ Lists are paginated.
 
 ## [](#service-limits)Service Limits
 
-Service limits set boundaries for managing clusters, App Services, and AI Services with the Management API.
+Service limits set boundaries for managing clusters, App Services, and the {ai-long} with the Management API.
 
 Long-Running Requests
 

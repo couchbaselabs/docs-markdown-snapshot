@@ -1,7 +1,7 @@
 ---
 title: Capella Analytics Release Notes
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:analytics:release-notes:release-notes.adoc[]
 ---
 
@@ -9,6 +9,13 @@ link: xref:analytics:release-notes:release-notes.adoc[]
 [View original HTML](/analytics/release-notes/release-notes.html)
 
 # Capella Analytics Release Notes
+
+## [](#june-2026-changelog)June 2026 Changelog
+
+* Microsoft Azure Support  
+Capella Analytics is now available on Microsoft Azure, expanding cloud deployment options beyond AWS and GCP. This initial rollout launches in the Sweden Central region, with plans to expand to additional Azure regions in the coming months.  
+Azure Blob Storage is also supported as an external data source. You can query data files stored in Azure Blob Storage directly using external collections, without requiring data movement, and use the `COPY TO` statement to export processed results back to Azure Blob Storage.  
+For more information, see [Capella Analytics on Azure](../reference/azure.md) and [Copy Results to External Storage](../query/copy-to-external.md).
 
 ## [](#may-2026-changelog)May 2026 Changelog
 

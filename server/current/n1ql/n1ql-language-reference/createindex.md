@@ -3,7 +3,7 @@ title: CREATE INDEX
 description: The CREATE INDEX statement allows you to create secondary indexes
   and Composite Vector indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/createindex.adoc
-pubDate: 2026-05-05T05:30:35.327Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:server:n1ql:n1ql-language-reference/createindex.adoc[]
 ---
 
@@ -178,6 +178,13 @@ Specifies the sort order of the index key. For non-vector fields only.
 | DESC | The index key is sorted in descending order. |
 
 This clause is optional; if omitted, the default is `ASC`.
+
+> [!TIP]
+> If any queries that use this index include an ordering term on the same field as this index key, the sort order of the ordering term should match the sort order of the index key to ensure the best performance.
+> 
+> For example, if the index uses a descending sort order, then the query should also use a descending sort order. If the query uses the opposite sort order to the index, you may experience reduced performance.
+> 
+> If necessary, you could create two indexes that are identical except for opposite sort orders, and then use an index hint in the query to select the appropriate index.
 
 ##### [](#include-missing)INCLUDE MISSING Clause
 

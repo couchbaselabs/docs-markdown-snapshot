@@ -2,7 +2,7 @@
 title: Sync with Couchbase Server
 description: Use Sync Gateway to sync Couchbase Server changes securely from cloud to edge
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/sync/pages/sync-with-couchbase-server.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:3.3@sync-gateway:sync:sync-with-couchbase-server.adoc[]
 ---
 
@@ -125,6 +125,9 @@ SELECT meta().xattrs._sync FROM scope.collection WHERE meta().id = "mydocId"
 ### [](#enable-shared-bucket-access)Enable Shared Bucket Access
 
 Shared bucket access is an opt-in feature. You can enable it without bringing down the entire Sync Gateway cluster — see [Example 2](#enable-sba).
+
+> [!WARNING]
+> Enabling shared bucket access on your existing deployment is **not** reversible. We recommend testing the upgrade on a staging environment before upgrading the production environment.
 
 Example 2\. Enable Bucket-Sharing
 

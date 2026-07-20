@@ -2,7 +2,7 @@
 title: Running Queries
 description: How to run queries in Couchbase Analytics.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/run-query.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:server:analytics:run-query.adoc[]
 ---
 
@@ -116,7 +116,7 @@ again including the envelope that we've seen in the example above.
 
 ## [](#Using%5Fthe%5FSDKs)Using the SDKs, ODBC, or JDBC
 
-You can also run Analytics queries using a software development kit (SDK). For details, refer to [sdk:overview.adoc](#sdk:overview.adoc) and select the required language.
+You can also run Analytics queries using a software development kit (SDK). For details, refer to [SDKs & Connectors](../../../home/sdk.md) and select the required language.
 
 For example, to get more information about running an Analytics query using the Java SDK, refer to [Analytics using the Java SDK](https://docs.couchbase.com/java-sdk/3.0/howtos/analytics-using-sdk.html). A similar page is available for each SDK.
 

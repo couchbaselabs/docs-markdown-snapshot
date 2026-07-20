@@ -3,7 +3,7 @@ title: cbbackupmgr
 description: <code>cbbackupmgr</code> is a tool for managing the backup and
   restore of Couchbase-Server data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/backup-restore/pages/enterprise-backup-restore.adoc
-pubDate: 2026-04-11T05:05:55.612Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:server:backup-restore:enterprise-backup-restore.adoc[]
 ---
 
@@ -16,9 +16,9 @@ link: xref:server:backup-restore:enterprise-backup-restore.adoc[]
 
 ## [](#understanding-cbbackupmgr)Understanding cbbackupmgr
 
-The `cbbackupmgr` tool backs up and restores data, scripts, configurations, and more. It allows large data sets to be managed with extremely high performance. Use of AWS S3 storage is supported.
+The `cbbackupmgr` tool backs up and restores data, scripts, configurations, and more. It allows large data sets to be managed with high performance. Use of AWS S3 storage is supported.
 
-Only Full Administrators can use `cbbackupmgr`; which is available for both Couchbase Server _Enterprise Edition_ and Couchbase Server _Community Edition_.
+Only Full Administrators can use `cbbackupmgr`; which is available for both Couchbase Server Enterprise Edition and Couchbase Server Community Edition.
 
 > [!NOTE]
 > `cbbackupmgr` is not backward compatible with backups created by means of `cbbackup`.
@@ -27,11 +27,11 @@ Only Full Administrators can use `cbbackupmgr`; which is available for both Couc
 
 ### [](#planning-for-disaster-recovery)Planning for Disaster Recovery
 
-Backup and restore capabilities are critical to an overall Disaster Recovery Plan, and ensuring thereby business continuity. Administrators are therefore recommended to define plans for both [Recovery Time Objective](https://en.wikipedia.org/wiki/Recovery%5Ftime%5Fobjective) (RTO) and [Recovery Point Objective](https://en.wikipedia.org/wiki/Recovery%5Fpoint%5Fobjective) (RPO), and make use of `cbbackupmgr` correspondingly.
+Backup and restore capabilities are critical to an overall Disaster Recovery Plan and ensuring thereby business continuity. Administrators are therefore recommended to define plans for both [Recovery Time Objective](https://en.wikipedia.org/wiki/Recovery%5Ftime%5Fobjective) (RTO) and [Recovery Point Objective](https://en.wikipedia.org/wiki/Recovery%5Fpoint%5Fobjective) (RPO) and make use of `cbbackupmgr` correspondingly.
 
 ### [](#backup-repositories)Backup Repositories
 
-All backup is stored in and recovered from a _Backup Repository_. In turn, a _Backup Repository_ is stored in a Backup Archive on the filesystem. Each backup job in the _Backup Repository_ stores its backup in 2 ways:
+All backup is stored in and recovered from a \[.term\]Backup Repository. In turn, a \[.term\]Backup Repository is stored in a Backup Archive on the filesystem. Each backup job in the \[.term\]Backup Repository stores its backup in 2 ways:
 
 * You can store all bucket data in a small, secondary database.
 * You can store all bucket creation scripts and configuration files on the filesystem, as files.
@@ -40,14 +40,14 @@ All backup is stored in and recovered from a _Backup Repository_. In turn, a _Ba
 
 By default, backups include your database's data and metadata.
 
-You can change what the tool backs up and restores by using arguments to the `cbbackupmgr config` command. For example, if you only want to back up your cluster's metadata, use the `--disable-data` command line flag when configuring your backup repository. You may to choose to use this flag if you want to transfer settings to a new database cluster. When you use this flag, `cbbackupmgr` backs up just the following:
+You can change what the tool backs up and restores by using arguments to the `cbbackupmgr config` command. For example, if you only want to back up your cluster's metadata, use the `--disable-data` command line flag when configuring your backup repository. You may choose to use this flag if you want to transfer settings to a new database cluster. When you use this flag, `cbbackupmgr` backs up just the following:
 
 * analytic collections and indexes for local links and synonyms
 * bucket configuration
 * eventing functions
-* full-text Search indexes and aliases
-* GSI indexes
-* Query SQL++ UDFs
+* Full-Text Search indexes and aliases
+* Global Secondary Indexes
+* Query SQL++ User-Defined Functions
 * scopes and collections definitions (Couchbase Server version 7.6 and later)
 * views
 
@@ -59,13 +59,13 @@ Another useful flag is `--enable-users` which backs up users and user groups. Us
 > [!NOTE]
 > Backups that include users contain the user's hashed passwords.
 
-Other flags let you exclude specific metadata, or select a subset of data to back up. See [cbbackupmgr config](cbbackupmgr-config.md) for a list of the arguments you can use to control what `cbbackupmgr` backs up.
+Other flags let you exclude specific metadata, or select a subset of data to back up. See [cbbackupmgr configuration](cbbackupmgr-config.md) for a list of the arguments you can use to control what `cbbackupmgr` backs up.
 
-You can also use command line flags to control how the `cbbackupmgr restore` command restores data. For example, use `--overwrite-users` to have `cbbackupmgr` overwrite existing users and groups in the database if the backup contains a matching user or group. By default, `cbbackupmgr` does not overwrite existing users in the database. Instead, it restores just the users in the backup that do not exist in database. See [cbbackupmgr restore](cbbackupmgr-restore.md) for a list of the arguments you can use to control what `cbbackupmgr` restores.
+You can also use command line flags to control how the `cbbackupmgr restore` command restores data. For example, use `--overwrite-users` to have `cbbackupmgr` overwrite existing users and groups in the database if the backup contains a matching user or group. By default, `cbbackupmgr` does not overwrite existing users in the database. Instead, it restores just the users in the backup that do not exist in the database. See [cbbackupmgr restore](cbbackupmgr-restore.md) for a list of the arguments you can use to control what `cbbackupmgr` restores.
 
 ### [](#tool-locations)Tool Locations
 
-When installed as part of the Couchbase Server install, `cbbackupmgr` tool is stored with all other tools in the following per platform locations:
+When installed as part of the Couchbase Server installation, `cbbackupmgr` tool is stored with all other tools in the following per-platform locations:
 
 __Table 1\. Backup Tool Locations__
 | Operating system | Directory locations                                                                            |
@@ -80,7 +80,7 @@ By default, the `cbbackupmgr` tool performs incremental backups to back up only 
 
 ## [](#archive-repository)Archive Repository
 
-The backup archive is a directory that contains a set of backup repositories as well as logs for the backup client. The backup directory should be modified only by the backup client, and any modifications that are not done by that client might result in a corruption of backup data.
+The backup archive is a directory that contains a set of backup repositories as well as logs for the backup client. The backup directory should be modified only by the backup client, and any modifications that are not done by that client might result in the corruption of backup data.
 
 Only 1 backup client can access the backup archive at 1 time. If multiple instances of the backup client are running on the same archive at the same time, this might result in corruption. To prevent such corruption instances, you may be required to create multiple backup archives depending on your use case.
 
@@ -88,16 +88,17 @@ Only 1 backup client can access the backup archive at 1 time. If multiple instan
 
 For 7.2 and later versions, you can use `cbbackupmgr` to back up data either from a cluster running its own version, or from a cluster running a prior, `compatible` version. You can also use it to restore data to any of these versions from backups created on any of them.
 
-The following table lists the compatible cluster-versions for each version of `cbbackupmgr`. Unless otherwise specified, backup and restore apply both to _local_ and to _cloud_ data.
+The following table lists the compatible cluster-versions for each version of `cbbackupmgr`. Unless otherwise specified, backup and restore apply both to local and to cloud data.
 
 __Table 2\. Compatibility Requirements for Backup and Restore__
-| **cbbackupmgr version** | **8.0** | **7.6** | **7.2** |
-| ----------------------- | ------- | ------- | ------- |
-| 8.0                     | ✓       | ✓       | ✓       |
-| 7.6                     |         | ✓       | ✓       |
-| 7.2                     |         |         | ✓       |
+|                                            | cbbackupmgr version → |   |     |     |     |
+| ------------------------------------------ | --------------------- | - | --- | --- | --- |
+|                                            |                       |   | 8.0 | 7.6 | 7.2 |
+| Compatible withCouchbase Server version: ↓ | 8.0                   | ✓ |     |     |     |
+| 7.6                                        | ✓                     | ✓ |     |     |     |
+| 7.2                                        | ✓                     | ✓ | ✓   |     |     |
 
-## [](#restoring-metadata-and-users)Restoring metadata and users
+## [](#restoring-metadata-and-users)Restoring Metadata and Users
 
 * When restoring metadata to a newer Server version, if the feature that the metadata applies to no longer exists in the newer Server version, then the metadata may not be restorable.
 * If the user roles no longer exist in the version that you want to restore to, then an error is logged for the target user.

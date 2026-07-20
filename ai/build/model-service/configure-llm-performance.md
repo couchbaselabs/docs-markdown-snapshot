@@ -1,8 +1,8 @@
 ---
 title: Configure LLM Performance
-description: The Capella Model Service offers options to tweak the performance of your LLM.
+description: The {ai} Model Service offers options to tweak the performance of your LLM.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/configure-llm-performance.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:build:model-service/configure-llm-performance.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:ai:build:model-service/configure-llm-performance.adoc[]
 
 # Configure LLM Performance
 
-> The Capella Model Service offers options to tweak the performance of your LLM. 
+> The {ai} Model Service offers options to tweak the performance of your LLM. 
 
 The following performance settings are available when deploying a Large Language Model (LLM):
 

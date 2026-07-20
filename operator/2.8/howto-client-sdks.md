@@ -1,7 +1,7 @@
 ---
 title: Configure Client SDKs
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-client-sdks.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:2.8@operator::howto-client-sdks.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:2.8@operator::howto-client-sdks.adoc[]
 
 Couchbase Server requires clients in order to do productive work. The operator is only concerned with cluster life cycle and high availability.
 
-Configuration and use of a client SDK is available in [language specific documentation](#server:sdk:overview.adoc). All client SDKs share a common connection string format; used by the SDK to connect to the Couchbase cluster and discover nodes. This how-to documents how to calculate the required connection string based on your chosen [network architecture](concept-couchbase-networking.md).
+Configuration and use of a client SDK is available in [language specific documentation](../../home/sdk.md). All client SDKs share a common connection string format; used by the SDK to connect to the Couchbase cluster and discover nodes. This how-to documents how to calculate the required connection string based on your chosen [network architecture](concept-couchbase-networking.md).
 
 > [!NOTE]
 > While we discuss client SDKs, these configurations also apply to Couchbase Connectors and Couchbase Mobile.

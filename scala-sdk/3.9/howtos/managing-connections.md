@@ -2,7 +2,7 @@
 title: Managing Connections
 description: This section describes how to connect the Scala SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:3.9@scala-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -86,7 +86,7 @@ clusterTry match {
 }
 ```
 
-Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../operator/current/concept-cloud-native-gateway.md):
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](#operator:ROOT:concept-cloud-native-gateway.adoc):
 
 ```scala
 .connect(

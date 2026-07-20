@@ -1,9 +1,9 @@
 ---
 title: Monitoring Reference
-description: This reference lists the metric graphs displayed in the Capella AI
-  Services UI Monitoring dashboards.
+description: This reference lists the metric graphs displayed in the {ai-long}
+  UI Monitoring dashboards.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/reference/pages/monitoring-reference.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:reference:monitoring-reference.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:ai:reference:monitoring-reference.adoc[]
 
 # Monitoring Reference
 
-> This reference lists the metric graphs displayed in the Capella AI Services UI Monitoring dashboards. 
+> This reference lists the metric graphs displayed in the {ai-long} UI Monitoring dashboards. 
 
-The Capella AI Services **Monitoring** dashboards display a set of metric graphs for unstructured data, structured data, and models, enabling users to monitor AI Services performance in real time.
+The {ai-long} **Monitoring** dashboards display a set of metric graphs for unstructured data, structured data, and models, enabling users to monitor {ai} performance in real time.
 
 For more information about Capella's Monitoring dashboards, see [View Monitoring Dashboards](../admin/monitor-dashboard.md).
 

@@ -2,7 +2,7 @@
 title: Couchbase .NET SDK Release Notes and Archives
 description: Release notes and download archive for the Couchbase .NET Client.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.5/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:3.5@dotnet-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -21,18 +21,40 @@ The full installation instructions that were previously on this page can now be 
 
 We always recommend using the latest version of the SDK — it contains all of the latest security patches and support for new and upcoming features. All patch releases for each dot minor release should be API compatible, and safe to upgrade; any changes to expected behavior are noted in the release notes that follow.
 
+### [](#version-3-9-4-16-july-2026)Version 3.9.4 (16 July 2026)
+
+[Download](https://packages.couchbase.com/clients/net/3.9/Couchbase-Net-Client-3.9.4.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.9.4) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.9.4)
+
+#### [](#fixed-issues)Fixed Issues
+
+* [NCBC-4243](https://couchbasecloud.atlassian.net/browse/NCBC-4243): Fixed corruption when reading `byte[]` values from sub-documents. `PersistentQueue<byte[]>`, `PersistentList<byte[]>`, and `LookupIn(…​).ContentAs<byte[]>()` returned the raw JSON fragment instead of the decoded bytes (a regression affecting 3.8.1+ and 3.9.0+).
+* [NCBC-4244](https://couchbasecloud.atlassian.net/browse/NCBC-4244): Extended the `byte[]` sub-document read fix to Protostellar (`couchbase2` protocol), and fixed `LookupIn`/`MutateIn` over Protostellar to honor a per-operation `Transcoder` instead of always using the cluster default.
+* [NCBC-4176](https://couchbasecloud.atlassian.net/browse/NCBC-4176): Corrected several KV sub-document behaviours to match the cross-SDK spec: `LookupInAllReplicas` now returns an empty stream on a top-level failure, a `Get` with projections omits non-existent paths (including nested ones) rather than emitting nulls, and a sub-document counter overflow now surfaces `ValueInvalidException`.
+* [NCBC-4036](https://couchbasecloud.atlassian.net/browse/NCBC-4036): Fixed the transactional query error "cause" so it deserializes correctly under the default serializer; a retryable CAS mismatch at commit is now retried instead of being surfaced as a non-retryable `TransactionFailedException`.
+* [NCBC-4240](https://couchbasecloud.atlassian.net/browse/NCBC-4240): TLS trust now loads the full certificate chain from a multi-certificate PEM (for example a cluster CA plus root CA), fixing `CustomRootTrust` handshake failures where only the first certificate was previously loaded.
+* [NCBC-4214](https://couchbasecloud.atlassian.net/browse/NCBC-4214): `StellarCluster` now disposes the HTTP handler it creates, fixing a leak of the handler and its keep-alive timers when the cluster is disposed.
+* [NCBC-4242](https://couchbasecloud.atlassian.net/browse/NCBC-4242): On .NET Framework, the per-ATR transaction cleanup time budget is now computed with sub-millisecond precision instead of being rounded to the nearest millisecond.
+* [NCBC-4226](https://couchbasecloud.atlassian.net/browse/NCBC-4226): Analytics link and dataverse identifiers now escape embedded backticks, preventing SQL++ identifier injection.
+
+#### [](#improvements)Improvements
+
+* [NCBC-4100](https://couchbasecloud.atlassian.net/browse/NCBC-4100): SASL authentication now negotiates the strongest mechanism the server and client both support, and defaults to stronger SCRAM (SHA-256/SHA-512) instead of SCRAM-SHA1, aligning with NIST SP 800-131A. (netstandard targets remain SHA-1 due to platform limitations.)
+* [NCBC-4218](https://couchbasecloud.atlassian.net/browse/NCBC-4218): Applications that do not use transactions no longer eagerly start the transaction cleanup machinery, avoiding a parked thread-pool thread and the resulting latency spikes (for example on `Ping`) in CPU-constrained environments such as Kubernetes pods.
+* [NCBC-4009](https://couchbasecloud.atlassian.net/browse/NCBC-4009): Lost-transaction cleanup now processes ATRs in adaptive batches, so it keeps pace under CPU pressure and stays within its configured window.
+* [NCBC-4219](https://couchbasecloud.atlassian.net/browse/NCBC-4219): Lost-transaction cleanup now resolves its collections lazily, per cleanup cycle, instead of resolving them eagerly (via sync-over-async) at construction.
+
 ### [](#version-3-9-3-03-june-2026)Version 3.9.3 (03 June 2026)
 
 [Download](https://packages.couchbase.com/clients/net/3.9/Couchbase-Net-Client-3.9.3.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.9.3) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.9.3)
 
-#### [](#fixed-issues)Fixed Issues
+#### [](#fixed-issues-2)Fixed Issues
 
 * [NCBC-4038](https://couchbasecloud.atlassian.net/browse/NCBC-4038): Query, Analytics, and Search requests that hit a node going offline during a rebalance now fail over to a healthy node within the request timeout, instead of surfacing a `RequestCanceledException` to the caller.
 * [NCBC-4205](https://couchbasecloud.atlassian.net/browse/NCBC-4205): A Stellar `GetAsync` with projections that match no fields now returns an empty JSON object (`{}`), matching the behavior of the classic SDK.
 * [NCBC-4204](https://couchbasecloud.atlassian.net/browse/NCBC-4204): Fixed an issue where explicitly-set `false` boolean flags (such as `Deferred` and `IgnoreIfExists`) were rejected by the Stellar gateway, causing query index management operations to fail. This change also adds support for rotating authentication credentials at runtime on long-lived Stellar clusters via a new `Authenticator(IAuthenticator)` method on `StellarCluster`.
 * [NCBC-4201](https://couchbasecloud.atlassian.net/browse/NCBC-4201): Fixed Stellar timeout enforcement and unbounded retry loops, and ensured transient HTTP/2 transport errors (such as connection resets) are now safely retried rather than surfaced as fatal errors.
 
-#### [](#improvements)Improvements
+#### [](#improvements-2)Improvements
 
 * [NCBC-4209](https://couchbasecloud.atlassian.net/browse/NCBC-4209): `ICluster` now implements `IClusterAuthenticator`, so `cluster.Authenticator()` can be called without first casting to the concrete `Cluster` type.
 * [NCBC-4202](https://couchbasecloud.atlassian.net/browse/NCBC-4202): Improved Stellar observability so that spans carry the correct OpenTelemetry parent-child relationships and standard semantic attributes (`db.system`, `db.couchbase.service`, `db.operation`, `db.name`), including span status mapping for exceptions.
@@ -42,11 +64,11 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 [Download](https://packages.couchbase.com/clients/net/3.9/Couchbase-Net-Client-3.9.2.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.9.2) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.9.2)
 
-#### [](#fixed-issues-2)Fixed Issues
+#### [](#fixed-issues-3)Fixed Issues
 
 * [NCBC-4195](https://couchbasecloud.atlassian.net/browse/NCBC-4195): Fixed an issue where an empty `ConnectionPool` would not resize on authenticator rotation.
 
-#### [](#improvements-2)Improvements
+#### [](#improvements-3)Improvements
 
 * [NCBC-4198](https://couchbasecloud.atlassian.net/browse/NCBC-4198): Updated Snappier due to vulnerability.
 * [NCBC-4187](https://couchbasecloud.atlassian.net/browse/NCBC-4187): Fixed an issue where config versions were sometimes null in logs.
@@ -56,7 +78,7 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 [Download](https://packages.couchbase.com/clients/net/3.9/Couchbase-Net-Client-3.9.1.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.9.1) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.9.1)
 
-#### [](#fixed-issues-3)Fixed Issues
+#### [](#fixed-issues-4)Fixed Issues
 
 * [NCBC-4192](https://couchbasecloud.atlassian.net/browse/NCBC-4192): Resolved `GetErrorMap` error while bootstrapping.
 * [NCBC-4139](https://couchbasecloud.atlassian.net/browse/NCBC-4139): Implemented tracing spans and metrics for the Management API.
@@ -68,7 +90,7 @@ We always recommend using the latest version of the SDK — it contains all of t
 * [NCBC-4146](https://couchbasecloud.atlassian.net/browse/NCBC-4146): Fixed an issue where a possible null byte was prepended to keys.
 * [NCBC-4127](https://couchbasecloud.atlassian.net/browse/NCBC-4127): Resolved Transaction issues with older (7.2) servers.
 
-#### [](#improvements-3)Improvements
+#### [](#improvements-4)Improvements
 
 * [NCBC-4183](https://couchbasecloud.atlassian.net/browse/NCBC-4183): Ensured correctness of recorded metrics and improved performance of AppTelemetry.
 * [NCBC-4165](https://couchbasecloud.atlassian.net/browse/NCBC-4165): Added Snappy compression support in Stellar (also addresses NCBC-4155 and NCBC-4156).
@@ -79,7 +101,7 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 [Download](https://packages.couchbase.com/clients/net/3.9/Couchbase-Net-Client-3.9.0.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.9.0) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.9.0)
 
-#### [](#fixed-issues-4)Fixed Issues
+#### [](#fixed-issues-5)Fixed Issues
 
 * [NCBC-4143](https://couchbasecloud.atlassian.net/browse/NCBC-4143): Fixed an assertion issue in `MultiplexingConnection.CloseAsync`.
 * [NCBC-4135](https://couchbasecloud.atlassian.net/browse/NCBC-4135): `HttpMessageHandler` is now correctly recreated when the instance changes, regardless of authenticator type.
@@ -104,7 +126,7 @@ We always recommend using the latest version of the SDK — it contains all of t
 * [NCBC-4023](https://couchbasecloud.atlassian.net/browse/NCBC-4023): Support added for Transcoders in Stellar.
 * [NCBC-3996](https://couchbasecloud.atlassian.net/browse/NCBC-3996): Added support for FTS-like pre-filters while performing Vector Search.
 
-#### [](#improvements-4)Improvements
+#### [](#improvements-5)Improvements
 
 * [NCBC-4102](https://couchbasecloud.atlassian.net/browse/NCBC-4102): Refactored the SDK to use `Authenticators` for improved security handling.
 * [NCBC-4121](https://couchbasecloud.atlassian.net/browse/NCBC-4121): Upgraded all Microsoft dependencies to the latest .NET 10 versions.
@@ -124,7 +146,7 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 [Download](https://packages.couchbase.com/clients/net/3.8/Couchbase-Net-Client-3.8.1.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.8.1) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.8.1)
 
-#### [](#fixed-issues-5)Fixed Issues
+#### [](#fixed-issues-6)Fixed Issues
 
 * [NCBC-3898](https://couchbasecloud.atlassian.net/browse/NCBC-3898): `Cluster.Dispose` now safely ensures disposed `ChannelConnectionPool` objects cannot be re-used.
 * [NCBC-4053](https://couchbasecloud.atlassian.net/browse/NCBC-4053): `accessedDeleted` should now be sent when using `ReadPreference`.
@@ -138,7 +160,7 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 [Download](https://packages.couchbase.com/clients/net/3.8/Couchbase-Net-Client-3.8.0.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.8.0) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.8.0)
 
-#### [](#fixed-issues-6)Fixed Issues
+#### [](#fixed-issues-7)Fixed Issues
 
 * [NCBC-3900](https://couchbasecloud.atlassian.net/browse/NCBC-3900): Added logic to ensure a disposed `ChannelConnectionPool` is not reused.
 * [NCBC-4032](https://jira.issues.couchbase.com/browse/NCBC-4032): Fixed serialization issues in Transactions when mixing `System.Text.Json` and `Newtonsoft.Json`.
@@ -153,7 +175,7 @@ We always recommend using the latest version of the SDK — it contains all of t
 * [NCBC-4018](https://couchbasecloud.atlassian.net/browse/NCBC-4018): Stellar client: Implemented Binary Collection KV API.
 * [NCBC-3896](https://couchbasecloud.atlassian.net/browse/NCBC-3896): Added SDK telemetry collection in Server.
 
-#### [](#improvements-5)Improvements
+#### [](#improvements-6)Improvements
 
 * [NCBC-3846](https://couchbasecloud.atlassian.net/browse/NCBC-3846): Sealed internal classes for devirtualization performance gains.
 * [NCBC-3847](https://couchbasecloud.atlassian.net/browse/NCBC-3847): Optimized reading of operation response lengths.
@@ -171,13 +193,13 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 [Download](https://packages.couchbase.com/clients/net/3.7/Couchbase-Net-Client-3.7.2.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.7.2) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.7.2)
 
-#### [](#fixed-issues-7)Fixed Issues
+#### [](#fixed-issues-8)Fixed Issues
 
 * [NCBC-4027](https://couchbasecloud.atlassian.net/browse/NCBC-4027): `ForceIpAsTargetHost` is now `false` by default. This is in line with most production needs, and will prevent hostname verification failing (since TLS certificates are tied to the hostname).
 * [NCBC-3715](https://couchbasecloud.atlassian.net/browse/NCBC-3715): For Cloud Native Gateway \[CNG\]: Subdoc Mutation Array now handles `removeBrackets` bool properly.
 * [NCBC-4017](https://couchbasecloud.atlassian.net/browse/NCBC-4017): `ReplaceAsync` CAS field is now properly set on the operation.
 
-#### [](#improvements-6)Improvements
+#### [](#improvements-7)Improvements
 
 * [NCBC-4026](https://couchbasecloud.atlassian.net/browse/NCBC-4026): Upgraded `Grpc.Net.Client` and other related `Grpc` dependencies, owing to [CVE-2023-32731](https://nvd.nist.gov/vuln/detail/CVE-2023-32731) ([GHSA-cfgp-2977-2fmm](https://osv.dev/vulnerability/GHSA-cfgp-2977-2fmm))
 * [NCBC-4008](https://couchbasecloud.atlassian.net/browse/NCBC-4008): CNG: Some new `BucketSettings` fields have been added to the request.
@@ -188,11 +210,11 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 [Download](https://packages.couchbase.com/clients/net/3.7/Couchbase-Net-Client-3.7.1.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.7.1) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.7.1)
 
-#### [](#fixed-issues-8)Fixed Issues
+#### [](#fixed-issues-9)Fixed Issues
 
 * [NCBC-4002](https://couchbasecloud.atlassian.net/browse/NCBC-4002): Fixed an issue specific to .NET Framework when streaming HTTP results larger than 2GB, causing an OOM error (`Cannot write more bytes to the buffer than the configured maximum buffer size`).
 
-#### [](#improvements-7)Improvements
+#### [](#improvements-8)Improvements
 
 * [NCBC-3992](https://couchbasecloud.atlassian.net/browse/NCBC-3992): `KvIgnoreRemoteCertificateNameMismatch = true` was clearing other `RemoteCertificateChainErrors`. Further validation has been added, and this no longer occurs.  
 > [!IMPORTANT]  
@@ -207,12 +229,12 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 [Download](https://packages.couchbase.com/clients/net/3.6/Couchbase-Net-Client-3.7.0.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.7.0) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.7.0)
 
-#### [](#fixed-issues-9)Fixed Issues
+#### [](#fixed-issues-10)Fixed Issues
 
 * [NCBC-3932](https://couchbasecloud.atlassian.net/browse/NCBC-3932): Prevented maximum buffer size exceeded when fetching large datasets with Query.
 * [NCBC-3978](https://couchbasecloud.atlassian.net/browse/NCBC-3978): Resolved Query Error Deserialization with `Custom System.Text.Json` Options.
 
-#### [](#improvements-8)Improvements
+#### [](#improvements-9)Improvements
 
 * [NCBC-3975](https://couchbasecloud.atlassian.net/browse/NCBC-3975): Clarified error message for server version where `RangeScan` is unsupported.
 * [NCBC-3899](https://couchbasecloud.atlassian.net/browse/NCBC-3899): Improved `RetryHandler` signaling in `ChannelConnectionPool`.
@@ -230,12 +252,12 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 [Download](https://packages.couchbase.com/clients/net/3.6/Couchbase-Net-Client-3.6.6.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.6.6) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.6.6)
 
-#### [](#fixed-issues-10)Fixed Issues
+#### [](#fixed-issues-11)Fixed Issues
 
 * [NCBC-3885](https://couchbasecloud.atlassian.net/browse/NCBC-3885): System certificate store should continue to be used in default TLS/SSL configuration.
 * [NCBC-3964](https://jira.issues.couchbase.com/browse/NCBC-3964): Fixed issue where queries were not evenly distributed amongst Query Nodes.
 
-#### [](#improvements-9)Improvements
+#### [](#improvements-10)Improvements
 
 * [NCBC-3945](https://couchbasecloud.atlassian.net/browse/NCBC-3945): Make `ScopeSpec` and `CollectionSpec` instance equality determinable.
 * [NCBC-3948](https://couchbasecloud.atlassian.net/browse/NCBC-3948): Add new `TryGetRawParameter` to `ClusterOptions`.
@@ -244,11 +266,11 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 [Download](https://packages.couchbase.com/clients/net/3.6/Couchbase-Net-Client-3.6.5.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.6.5) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.6.5)
 
-#### [](#fixed-issues-11)Fixed Issues
+#### [](#fixed-issues-12)Fixed Issues
 
 * [NCBC-3906](https://couchbasecloud.atlassian.net/browse/NCBC-3906): A missing `ConfigureAwait False` in `AttemptContext` was causing a build error. This has now been fixed.
 
-#### [](#improvements-10)Improvements
+#### [](#improvements-11)Improvements
 
 * [NCBC-3920](https://couchbasecloud.atlassian.net/browse/NCBC-3920): Renamed `Couchbase.Integrated.Transactions` to `Couchbase.Client.Transactions`.
 * [NCBC-3919](https://couchbasecloud.atlassian.net/browse/NCBC-3919): A final refactor of the transactions integration to match the initial commit for `ExtThreadSafety`, `ExtSdkIntegration`, and others.
@@ -263,7 +285,7 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 [Download](https://packages.couchbase.com/clients/net/3.6/Couchbase-Net-Client-3.6.4.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.6.4) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.6.4)
 
-#### [](#fixed-issues-12)Fixed Issues
+#### [](#fixed-issues-13)Fixed Issues
 
 [NCBC-3840](https://couchbasecloud.atlassian.net/browse/NCBC-3840): \[Rider IDE\] `:nq` is not a valid format specifier notice now correctly uses Debugger Display reference.
 
@@ -277,7 +299,7 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 [NCBC-3883](https://couchbasecloud.atlassian.net/browse/NCBC-3883): Updated `System.Text.Json` dependency, owing to a security vulnerability.
 
-#### [](#improvements-11)Improvements
+#### [](#improvements-12)Improvements
 
 [NCBC-3851](https://couchbasecloud.atlassian.net/browse/NCBC-3851): More Contextual labels have been added to metrics, as part of improvements to the observability spec.
 
@@ -287,7 +309,7 @@ Version 3.6.3 is a hotfix release. Some NuGet packages were upgraded as a result
 
 [Download](https://packages.couchbase.com/clients/net/3.6/Couchbase-Net-Client-3.6.3.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.6.3) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.6.3)
 
-#### [](#fixed-issues-13)Fixed Issues
+#### [](#fixed-issues-14)Fixed Issues
 
 * [NCBC-3863](https://jira.issues.couchbase.com/browse/NCBC-3863): Performance problems and timeouts fixes during rebalance when the cluster contains non-KV nodes.
 * [NCBC-3832](https://jira.issues.couchbase.com/browse/NCBC-3832): Query timeout set to exceed 100 seconds is now respected.
@@ -299,7 +321,7 @@ Version 3.6.3 is a hotfix release. Some NuGet packages were upgraded as a result
 * [NCBC-3854](https://jira.issues.couchbase.com/browse/NCBC-3854): Improvements made for `LightweightStopwatch` unit test.
 * [NCBC-3876](https://jira.issues.couchbase.com/browse/NCBC-3876): `CancellationTokenSource` is not disposed when returned to pool on legacy frameworks.
 
-#### [](#improvements-12)Improvements
+#### [](#improvements-13)Improvements
 
 * [NCBC-3839](https://jira.issues.couchbase.com/browse/NCBC-3839): Updated packages based on BlackDuck scan.
 * [NCBC-3710](https://jira.issues.couchbase.com/browse/NCBC-3710): Included operation outcome tag in operation metrics.
@@ -313,11 +335,11 @@ Version 3.6.2 is a hotfix release. Microsoft disclosed a CVE affecting their `Sy
 
 [Download](https://packages.couchbase.com/clients/net/3.6/Couchbase-Net-Client-3.6.2.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.6.2) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.6.2)
 
-#### [](#fixed-issues-14)Fixed Issues
+#### [](#fixed-issues-15)Fixed Issues
 
 * [NCBC-3817](https://issues.couchbase.com/browse/NCBC-3817): Vulnerability in `System.Text.Json` 8.0.0 is fixed.
 
-#### [](#improvements-13)Improvements
+#### [](#improvements-14)Improvements
 
 * [NCBC-3821](https://issues.couchbase.com/browse/NCBC-3821): Updated `CouchbaseNetClientReleasedVerison` to 3.6.2.
 * [NCBC-3726](https://issues.couchbase.com/browse/NCBC-3726): Applied some miscellaneous performance optimizations to transcoders.
@@ -329,7 +351,7 @@ Version 3.6.1 is a hotfix release.
 
 [Download](https://packages.couchbase.com/clients/net/3.6/Couchbase-Net-Client-3.6.1.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.6.1) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.6.1)
 
-#### [](#fixed-issues-15)Fixed Issues
+#### [](#fixed-issues-16)Fixed Issues
 
 * [NCBC-3791](https://issues.couchbase.com/browse/NCBC-3791): `BucketConfig` version used to be compared against the latest applied config, not the latest one received.
 * [NCBC-3698](https://issues.couchbase.com/browse/NCBC-3698): Manually setting `ScopeName` and/or `CollectionName` in the `CollectionQueryIndexManager` API's options will now throw an `InvalidArgumentException`. Previously, the SDK was ignoring the `ScopeName` and `CollectionName` in options, instead of throwing `InvalidArgumentException` as per RFC.
@@ -349,7 +371,7 @@ Version 3.6.0 is the first release of the 3.6 series.
 
 * There is an edge case that can cause high CPU usage against Couchbase Server 7.6 and later. Users are advised to upgrade to 3.6.1.
 
-#### [](#fixed-issues-16)Fixed Issues
+#### [](#fixed-issues-17)Fixed Issues
 
 * [NCBC-3572](https://issues.couchbase.com/browse/NCBC-3572): For management services, `CancellationTokens` are now more accurate to the operation's lifetime.
 * [NCBC-3702](https://issues.couchbase.com/browse/NCBC-3702): Stellar client: Use `DefaultSerializer` as default at Cluster level
@@ -364,7 +386,7 @@ Version 3.6.0 is the first release of the 3.6 series.
 
 * [NCBC-3788](https://issues.couchbase.com/browse/NCBC-3788): Support added for base64 encoded vector types.
 
-#### [](#improvements-14)Improvements
+#### [](#improvements-15)Improvements
 
 * [NCBC-3771](https://issues.couchbase.com/browse/NCBC-3771): Refactored `RetryOrcestrator` for Data Service operations to be clearer.
 * [NCBC-3792](https://issues.couchbase.com/browse/NCBC-3792): Optimize for larger InFlightOperationSet for high latency connections.
@@ -379,7 +401,7 @@ Version 3.5.3 is the fourth release of the 3.5 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.5/Couchbase-Net-Client-3.5.3.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.5.3) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.5.3)
 
-#### [](#fixed-issues-17)Fixed Issues
+#### [](#fixed-issues-18)Fixed Issues
 
 Microsoft disclosed a CVE affecting their System.Text.Json (STJ) library on the 9th of July 2024\. This release upgrades STJ to the patched version in our SDK.
 
@@ -399,7 +421,7 @@ Version 3.5.2 is the third release of the 3.5 series.
 > [!NOTE]
 > Owing to [NCBC-3794](https://issues.couchbase.com/browse/NCBC-3794), it is recommended that all customers using Server 7.6 or later upgrade to SDK 3.5.3, or SDK 3.6.2 or later, immediately.
 
-#### [](#fixed-issues-18)Fixed Issues
+#### [](#fixed-issues-19)Fixed Issues
 
 * [NCBC-3745](https://issues.couchbase.com/browse/NCBC-3745): `MultiplexingConnection` will throw a `SocketNotAvailableException` if disposed.
 * [NCBC-3756](https://issues.couchbase.com/browse/NCBC-3756): Handle empty `VBucketMap` in server config.
@@ -422,7 +444,7 @@ Version 3.5.1 is the second release of the 3.5 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.5/Couchbase-Net-Client-3.5.1.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.5.1) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.5.1)
 
-#### [](#fixed-issues-19)Fixed Issues
+#### [](#fixed-issues-20)Fixed Issues
 
 * [NCBC-3690](https://issues.couchbase.com/browse/NCBC-3690): FIT Management: Implement Scoped Search Index Management.
 * [NCBC-3699](https://issues.couchbase.com/browse/NCBC-3699): FIT Query: QueryOptionTest failures fixed.
@@ -460,7 +482,7 @@ Version 3.5.0 is the first release of the 3.5 series. A number of regressions me
 
 [Download](https://packages.couchbase.com/clients/net/3.5/Couchbase-Net-Client-3.5.0.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.5.0) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.5.0)
 
-#### [](#fixed-issues-20)Fixed Issues
+#### [](#fixed-issues-21)Fixed Issues
 
 * [NCBC-2901](https://issues.couchbase.com/browse/NCBC-2901): Fixed the percentiles printed by `LoggingMeter` to comply with the RFC.
 * [NCBC-3058](https://issues.couchbase.com/browse/NCBC-3058): Eliminated the `App.Metrics` dependency and implemented a better approach for tracking logging meter histograms.
@@ -525,7 +547,7 @@ Example:
 * `await collection.Binary.IncrementAsync("thisKeyDoesNotExist").ConfigureAwait(false);` → Now throws `DocumentNotFoundException`
 * `await collection.Binary.IncrementAsync("thisKeyDoesNotExist", options ⇒ options.Initial(0)).ConfigureAwait(false);` → Creates the document with counter at 0
 
-#### [](#fixed-issues-21)Fixed Issues
+#### [](#fixed-issues-22)Fixed Issues
 
 * [NCBC-3599](https://issues.couchbase.com/browse/NCBC-3599): Fixed SDK bugs related to Nullability of Increment, Decrement, and related options.
 * [NCBC-3565](https://issues.couchbase.com/browse/NCBC-3565): Added error handling for "index does not exist" query error.
@@ -546,7 +568,7 @@ Version 3.4.14 is the fifteenth release of the 3.4 series.
 
 * [NCBC-3716](https://issues.couchbase.com/browse/NCBC-3716): If you are using Capella or Server versions 7.6.0+, we strongly encourage you to upgrade to SDK v3.5.1+. While this version will continue be compatible and supported with server 7.6 (and newer instances of Capella, using 7.6), you may encounter timeout exceptions during rebalances under KV high workload.
 
-#### [](#fixed-issues-22)Fixed Issues
+#### [](#fixed-issues-23)Fixed Issues
 
 * [NCBC-3434](https://issues.couchbase.com/browse/NCBC-3434): A regression introduced in a recent release prevented `WaitUntilReady` from pinging nodes — this has been fixed, and `WaitUntilReady` now correctly detects state.
 * [NCBC-3503](https://issues.couchbase.com/browse/NCBC-3503): There was a possibility of `ClusterVersionProvider.GetVersionAsync` failing, if nodes have no `ManagementUri`, owing to randomized node order. This has been fixed, and `GetRandomManagementUri()` should never now throw `NullReferenceException`.
@@ -572,7 +594,7 @@ Version 3.4.13 is the fourteenth release of the 3.4 series.
 
 * [NCBC-3716](https://issues.couchbase.com/browse/NCBC-3716): If you are using Capella or Server versions 7.6.0+, we strongly encourage you to upgrade to SDK v3.5.1+. While this version will continue be compatible and supported with server 7.6 (and newer instances of Capella, using 7.6), you may encounter timeout exceptions during rebalances under KV high workload.
 
-#### [](#fixed-issues-23)Fixed Issues
+#### [](#fixed-issues-24)Fixed Issues
 
 * [NCBC-3397](https://issues.couchbase.com/browse/NCBC-3397): `IOperation.Elapsed` was not correctly counting duration between retries — the stopwatch field of `IOperation/OperationBase` is stopped in `HandleOperationCompleted()` and never re-started. This has now been fixed, and the `Elapsed` field of `OperationBase` now correctly increments with the stopwatch time after each retry cycle.
 * [NCBC-3498](https://issues.couchbase.com/browse/NCBC-3498): Added code documentation to `PersistentList` as the internals use reference comparisons, but there is no guarantee that internally the document might be reloaded by the database. The documention instructs users to override the `Object.Equals` method on their POCOs so that that values of the objects will be compared and not the objects' reference.
@@ -605,7 +627,7 @@ Version 3.4.12 is the thirteenth release of the 3.4 series.
 
 * [NCBC-3716](https://issues.couchbase.com/browse/NCBC-3716): If you are using Capella or Server versions 7.6.0+, we strongly encourage you to upgrade to SDK v3.5.1+. While this version will continue be compatible and supported with server 7.6 (and newer instances of Capella, using 7.6), you may encounter timeout exceptions during rebalances under KV high workload.
 
-#### [](#fixed-issues-24)Fixed Issues
+#### [](#fixed-issues-25)Fixed Issues
 
 * [NCBC-3490](https://issues.couchbase.com/browse/NCBC-3490): When a request includes a CAS, `MutateIn` should now throw a `CasMismatch` exception if the status is `KeyExists`. Otherwise, for `KeyExists`, it will continue to throw `DocumentExistsException`.
 * [NCBC-3493](https://issues.couchbase.com/browse/NCBC-3493): When a Private Link is enabled, the SDK was not properly using the provided config and all of the VBuckets were mapped to the same node. This could cause a recurring `KvNotMyVBucket`, which would eventually become an `AmbiguousTimeoutException` thrown to the user. This behavior has now been fixed — changes have been made so that `NetworkResolution` is propagated to `BucketConfig`, duplicate nodes not added to nodes list, and entries in `LookupDictionary` are only made for nodes with actual ports.
@@ -634,7 +656,7 @@ Version 3.4.11 is the twelfth release of the 3.4 series.
 
 * [NCBC-3716](https://issues.couchbase.com/browse/NCBC-3716): If you are using Capella or Server versions 7.6.0+, we strongly encourage you to upgrade to SDK v3.5.1+. While this version will continue be compatible and supported with server 7.6 (and newer instances of Capella, using 7.6), you may encounter timeout exceptions during rebalances under KV high workload.
 
-#### [](#fixed-issues-25)Fixed Issues
+#### [](#fixed-issues-26)Fixed Issues
 
 * [NCBC-3446](https://issues.couchbase.com/browse/NCBC-3446): When passed as `readonly(true)`, Readonly Query was accepting `UPDATE` query and was updating the document in collection, when it should have failed. This should no longer occur.
 * [NCBC-3448](https://issues.couchbase.com/browse/NCBC-3448): `IndexNotFoundException` was not raised when `QueryIndexManager.watchIndex` was called with a non-existent index — this has been fixed, and the correct exception should now be thrown.
@@ -663,7 +685,7 @@ Version 3.4.10 is the eleventh release of the 3.4 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.4/Couchbase-Net-Client-3.4.10.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.4.10) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.4.10)
 
-#### [](#fixed-issues-26)Fixed Issues
+#### [](#fixed-issues-27)Fixed Issues
 
 * [NCBC-3424](https://issues.couchbase.com/browse/NCBC-3424): Future server versions will add an extra item to the features list returned, which effects the parsing of the body. This change prepares for the effects of those flexible framing extras.
 * [NCBC-3445](https://issues.couchbase.com/browse/NCBC-3445): At some point, `SubDocMultiPathFailureDeleted` was added as a special case of `SubDocMultiPathFailure`, but from an SDK point of view they should be handled them similarly. This change ensures that when doing a `LookupIn` against a Tombstone with `AccessDeleted` flag set, `SubDocMultiPathFailureDeleted` response status should not throw, and should be treated the same as `SubDocMultiPathFailure`.
@@ -686,7 +708,7 @@ Version 3.4.9 is the tenth release of the 3.4 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.4/Couchbase-Net-Client-3.4.9.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.4.9) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.4.9)
 
-#### [](#fixed-issues-27)Fixed Issues
+#### [](#fixed-issues-28)Fixed Issues
 
 * [NCBC-3367](https://issues.couchbase.com/browse/NCBC-3367): The SDK was returning `QueryIndexes` with null values for Bucket/Scope/Collection names (BucketName should return the Keyspace value when null). Added BucketName field with backing field for conditionally returning either BucketNameField or Keyspace.
 * [NCBC-3417](https://issues.couchbase.com/browse/NCBC-3417): `MutateIn` was modifying global Transcoder setting; nothing registered as a Singleton should be mutable and changes have been made to ensure that this can no longer happen.
@@ -709,7 +731,7 @@ Version 3.4.8 is the ninth release of the 3.4 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.4/Couchbase-Net-Client-3.4.8.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.4.8) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.4.8)
 
-#### [](#fixed-issues-28)Fixed Issues
+#### [](#fixed-issues-29)Fixed Issues
 
 * [NCBC-3392](https://issues.couchbase.com/browse/NCBC-3392): Scan: `RangeScanCreate` operation did not receive the `MutationTokens` from the `ScanOptions`, as `ConsistentWit` was not sent in RangeScanCreate packets. This has been remedied, and `MutationState` tokens are now sent in `RangeScanCreate` packets.
 * [NCBC-3395](https://issues.couchbase.com/browse/NCBC-3395): Scan: Sampling Scan Limit parameter must be < 0\. An `InvalidArgumentException` is now thrown when creating a `SamplingScan` with Limit < 0.
@@ -725,7 +747,7 @@ Version 3.4.7 is the eighth release of the 3.4 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.4/Couchbase-Net-Client-3.4.7.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.4.7) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.4.7)
 
-#### [](#fixed-issues-29)Fixed Issues
+#### [](#fixed-issues-30)Fixed Issues
 
 * [NCBC-3350](https://issues.couchbase.com/browse/NCBC-3350): `NotMyVBucket` will no longer result in `TaskCancellationException`.
 * [NCBC-3376](https://issues.couchbase.com/browse/NCBC-3376): Correct timeout response will now be returned during a rebalance.
@@ -751,7 +773,7 @@ Version 3.4.6 is the seventh release of the 3.4 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.4/Couchbase-Net-Client-3.4.6.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.4.6) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.4.6)
 
-#### [](#fixed-issues-30)Fixed Issues
+#### [](#fixed-issues-31)Fixed Issues
 
 * [NCBC-3300](https://issues.couchbase.com/browse/NCBC-3300): SamplingScan: Fixed bug in limiting option
 * [NCBC-3301](https://issues.couchbase.com/browse/NCBC-3301): SamplingScan: Fixed bug where requesting too few documents returned incorrect responses.
@@ -768,7 +790,7 @@ Version 3.4.5 is the sixth release of the 3.4 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.4/Couchbase-Net-Client-3.4.5.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.4.5) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.4.5)
 
-#### [](#fixed-issues-31)Fixed Issues
+#### [](#fixed-issues-32)Fixed Issues
 
 * [NCBC-3334](https://issues.couchbase.com/browse/NCBC-3334): `KvNotMyVBucket` errors after add node + rebalance.
 * [NCBC-3337](https://issues.couchbase.com/browse/NCBC-3337): NullReferenceException when bootstrapping against a non-existent bucket.
@@ -795,7 +817,7 @@ Version 3.4.4 is the fifth release of the 3.4 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.4/Couchbase-Net-Client-3.4.4.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.4.4) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.4.4)
 
-#### [](#fixed-issues-32)Fixed Issues
+#### [](#fixed-issues-33)Fixed Issues
 
 * [NCBC-3340](https://issues.couchbase.com/browse/NCBC-3340): When an op timed out, the socket connection was closed and then recreated. With a large number of unexpected timeouts, many sockets could be left in `TIME_WAIT`. Making `ChannelConnectionProcessor` reuse connections after timeout should reduce the number of file descripters and local ports left open.
 * [NCBC-3356](https://issues.couchbase.com/browse/NCBC-3356): Cluster level `query_context`, which is not supported by Server versions earlier than 7.0, has been removed for these versions.
@@ -813,7 +835,7 @@ Version 3.4.3 is the fourth release of the 3.4 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.4/Couchbase-Net-Client-3.4.3.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.4.3) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.4.3)
 
-#### [](#fixed-issues-33)Fixed Issues
+#### [](#fixed-issues-34)Fixed Issues
 
 * [NCBC-3316](https://issues.couchbase.com/browse/NCBC-3316): Scan: Refactored operation parsing, so `RangeScanContinue.OnNext()` doesn't get called after the first batch of a partition has been consumed.
 * [NCBC-3329](https://issues.couchbase.com/browse/NCBC-3329): `NamedBucketProxyGenerator` and `NamedCollectionProxyGenerator` caches were not thread-safe during start up. This applies primarily to unit testing scenarios — most MVC applications were not affected, as it doesn't affect anything once the DI container is configured, because startup DI registration is single-threaded.
@@ -833,7 +855,7 @@ Version 3.4.2 is the third release of the 3.4 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.4/Couchbase-Net-Client-3.4.2.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.4.2) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.4.2)
 
-#### [](#fixed-issues-34)Fixed Issues
+#### [](#fixed-issues-35)Fixed Issues
 
 * [NCBC-3269](https://issues.couchbase.com/browse/NCBC-3269): InternalServerFailureException error message caught in SDK Query Response
 * [NCBC-3297](https://issues.couchbase.com/browse/NCBC-3297): KV Range Scan breaks with NCBC-2167
@@ -847,7 +869,7 @@ Version 3.4.1 is the second release of the 3.4 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.4/Couchbase-Net-Client-3.4.1.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.4.1) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.4.1)
 
-#### [](#fixed-issues-35)Fixed Issues
+#### [](#fixed-issues-36)Fixed Issues
 
 * [NCBC-3204](https://issues.couchbase.com/browse/NCBC-3204): CombinationTest failure: Test\_GetAndLockAsync\_Locked
 * [NCBC-3283](https://issues.couchbase.com/browse/NCBC-3283): Search: Min function throws an exception if the argument is > 0
@@ -866,7 +888,7 @@ Version 3.4.0 is the first release of the 3.4 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.4/Couchbase-Net-Client-3.4.0.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.4.0) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.4.0)
 
-#### [](#fixed-issues-36)Fixed Issues
+#### [](#fixed-issues-37)Fixed Issues
 
 * [NCBC-3246](https://issues.couchbase.com/browse/NCBC-3246): EndpointDiagnostics.State always returns "Authenticating" for KV and not implemented per RFC
 * [NCBC-3266](https://issues.couchbase.com/browse/NCBC-3266): A timeout may have a status of "success"
@@ -885,7 +907,7 @@ Version 3.3.6 is the seventh release of the 3.3 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.3/Couchbase-Net-Client-3.3.6.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.3.6) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.3.6)
 
-#### [](#fixed-issues-37)Fixed Issues
+#### [](#fixed-issues-38)Fixed Issues
 
 * [NCBC-3265](https://issues.couchbase.com/browse/NCBC-3265): Ensure SDK can bootstrap from a non-data-service node.
 * [NCBC-3270](https://issues.couchbase.com/browse/NCBC-3270): Make `Increment` and `Decrement` take unsigned long delta, per the RFC.
@@ -906,7 +928,7 @@ Version 3.3.5 is the sixth release of the 3.3 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.3/Couchbase-Net-Client-3.3.5.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.3.5) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.3.5)
 
-#### [](#fixed-issues-38)Fixed Issues
+#### [](#fixed-issues-39)Fixed Issues
 
 * [NCBC-3256](https://issues.couchbase.com/browse/NCBC-3256): Fixed issue where `Search.MetaData.TimeTook` was being parsed as ticks, not nanoseconds.
 * [NCBC-3257](https://issues.couchbase.com/browse/NCBC-3257): Fixed a bug where operations failed on memcached bucket types.
@@ -917,7 +939,7 @@ Version 3.3.4 is the fifth release of the 3.3 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.3/Couchbase-Net-Client-3.3.4.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.3.4) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.3.4)
 
-#### [](#fixed-issues-39)Fixed Issues
+#### [](#fixed-issues-40)Fixed Issues
 
 * [NCBC-3248](https://issues.couchbase.com/browse/NCBC-3248): Fixed issue where bootstrap did not continue after an `AuthenticationFailureException`.
 * [NCBC-3252](https://issues.couchbase.com/browse/NCBC-3252): Fixed issue where the wrong error message was returned when bootstrapping a bucket.
@@ -933,7 +955,7 @@ Version 3.3.3 is the fourth release of the 3.3 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.3/Couchbase-Net-Client-3.3.3.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.3.3) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.3.3)
 
-#### [](#fixed-issues-40)Fixed Issues
+#### [](#fixed-issues-41)Fixed Issues
 
 * [NCBC-3010](https://issues.couchbase.com/browse/NCBC-3010): `BucketNotFoundException` incorrectly raised when there is no database running.
 * [NCBC-3191](https://issues.couchbase.com/browse/NCBC-3191): `EventingFunctionManager` throws wrong exception for compilation failure.
@@ -956,7 +978,7 @@ Version 3.3.2 is the third release of the 3.3 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.3/Couchbase-Net-Client-3.3.2.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.3.2) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.3.2)
 
-#### [](#fixed-issues-41)Fixed Issues
+#### [](#fixed-issues-42)Fixed Issues
 
 * [NCBC-3067](https://issues.couchbase.com/browse/NCBC-3067): GetAndLockAsync times out instead of throwing DocumentLockedException.
 * [NCBC-3195](https://issues.couchbase.com/browse/NCBC-3195): N1QL queries with the default serializer don't read DateTimeOffset correctly.
@@ -1002,7 +1024,7 @@ Version 3.3.1 is the second release of the 3.3 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.3/Couchbase-Net-Client-3.3.1.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.3.1) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.3.1)
 
-#### [](#fixed-issues-42)Fixed Issues
+#### [](#fixed-issues-43)Fixed Issues
 
 * [NCBC-3192](https://issues.couchbase.com/browse/NCBC-3192): Fixed erroneous `InvalidArgumentException` with default TLS settings.
 
@@ -1019,7 +1041,7 @@ Version 3.3.0 is the first release of the 3.3 series (delisted from NuGet 4/28/2
 
 * During a rebalance upgrade from 6.x (or any earlier version) to 7x, in mixed mode (where you are communicating with Couchbase Server whilst some but not all nodes are upgraded), there is a known issue where data may be written to the wrong location. The solution is to either upgrade to 3.2.9 or greater, or to pause application processing so there are no writes until you have upgraded all nodes. If you encounter a similar situation during migration and need help with mitigation, please contact our support team.
 
-#### [](#fixed-issues-43)Fixed Issues
+#### [](#fixed-issues-44)Fixed Issues
 
 * [NCBC-2847](https://issues.couchbase.com/browse/NCBC-2847), [NCBC-3123](https://issues.couchbase.com/browse/NCBC-3123), [NCBC-3115](https://issues.couchbase.com/browse/NCBC-3115), [NCBC-3124](https://issues.couchbase.com/browse/NCBC-3124), [NCBC-3151](https://issues.couchbase.com/browse/NCBC-3151), [NCBC-3179](https://issues.couchbase.com/browse/NCBC-3179), [NCBC-3000](https://issues.couchbase.com/browse/NCBC-3000): Made it simpler to diagnose failures by ensuring that various exceptions including `AuthenticationFailureException`, `BucketNotFoundException`, `EventingFunctionNotFoundException`, FTS exceptions, `ScopeNotFoundException`, `BucketExistsException`, `AuthenticationFailedException` are correctly thrown.
 * [NCBC-3164](https://issues.couchbase.com/browse/NCBC-3164), [NCBC-3177](https://issues.couchbase.com/browse/NCBC-3177): Fix bugs where NullReferenceException were thrown in SendAsync (because the OperationBuilder has not been set for a NOOP) and rebalancing (when the cluster map was missing an alternate address).
@@ -1050,7 +1072,7 @@ Version 3.2.9 is the ninth release of the 3.2 series.
 * During a rebalance upgrade from 6.x (or any earlier version) to 7x, in mixed mode (where you are communicating with Couchbase Server whilst some but not all nodes are upgraded), there is a known issue where data may be written to the wrong location. The solution is to either upgrade to 3.2.9, or to pause application processing so there are no writes until you have upgraded all nodes. If you encounter a similar situation during migration and need help with mitigation, please contact our support team.
 * Between bug fixes and performance improvements, the `ChannelConnectionPool` will be made the default in a future release. Give it a try now with `ClusterOptions.Experiments.ChannelConnectionPools = true;`
 
-#### [](#fixed-issues-44)Fixed Issues
+#### [](#fixed-issues-45)Fixed Issues
 
 * [NCBC-3174](https://issues.couchbase.com/browse/NCBC-3174): Out of Retries misclassified as Operation Timed Out
 * [NCBC-3176](https://issues.couchbase.com/browse/NCBC-3176): ExponentialBackoff only ever increases globally
@@ -1086,7 +1108,7 @@ Version 3.2.8 is the eighth release of the 3.2 series.
 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 
-#### [](#fixed-issues-45)Fixed Issues
+#### [](#fixed-issues-46)Fixed Issues
 
 * [NCBC-3091](https://issues.couchbase.com/browse/NCBC-3091): NRE GetDocumentFromReplicaAsync when EndPoint is null v3.2.X
 * [NCBC-3110](https://issues.couchbase.com/browse/NCBC-3110): PingReport does not honor token or default timeout
@@ -1120,7 +1142,7 @@ Version 3.2.7 is the seventh release of the 3.2 series.
 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 
-#### [](#fixed-issues-46)Fixed Issues
+#### [](#fixed-issues-47)Fixed Issues
 
 * [NCBC-3085](https://issues.couchbase.com/browse/NCBC-3085): Fixed potential issue with `Random.Next` returning only zero, by using `RandomNumberGenerator.GetInt32` if available.
 * [NCBC-3086](https://issues.couchbase.com/browse/NCBC-3086): Improved error handling in QueryIndexManager.
@@ -1157,7 +1179,7 @@ Version 3.2.6 is the sixth release of the 3.2 series.
 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 
-#### [](#fixed-issues-47)Fixed Issues
+#### [](#fixed-issues-48)Fixed Issues
 
 * [NCBC-2647](https://issues.couchbase.com/browse/NCBC-2647): `CreatePrimaryIndexAsync` throws exceptions / ignores `IgnoreIfExists`.
 * [NCBC-2829](https://issues.couchbase.com/browse/NCBC-2829): NoOp operations can fail with an `ObjectDisposedException` on MultiplexingConnection.
@@ -1211,7 +1233,7 @@ Version 3.2.5 is the fifth release of the 3.2 series.
 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 
-#### [](#fixed-issues-48)Fixed Issues
+#### [](#fixed-issues-49)Fixed Issues
 
 * [NCBC-2851](https://issues.couchbase.com/browse/NCBC-2851): Fixed TimeoutExceptions after rebound in Failover/Eject tests.
 * [NCBC-2983](https://issues.couchbase.com/browse/NCBC-2983): Allowed query timeouts to exceed 100ms.
@@ -1251,7 +1273,7 @@ Version 3.2.4 is the fourth release of the 3.2 series.
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 * [NCBC-2851](https://issues.couchbase.com/browse/NCBC-2851): TimeoutExceptions continue after rebound in Failover/Eject tests.
 
-#### [](#fixed-issues-49)Fixed Issues
+#### [](#fixed-issues-50)Fixed Issues
 
 * [NCBC-2974](https://issues.couchbase.com/browse/NCBC-2974): When `GetCid` failed, an infinite loop could be triggered, causing the `CidLock` to time out. The regression that caused this in the previous release has now been fixed.
 * [NCBC-2989](https://issues.couchbase.com/browse/NCBC-2989): Fixed side effects related to singleton `CouchbaseHttpClient`. Now each consuming service can safely manipulate the \`HttpClient's timeout and connection ID headers and such without affecting other services.
@@ -1276,7 +1298,7 @@ Version 3.2.3 is the third release of the 3.2 series.
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 * [NCBC-2851](https://issues.couchbase.com/browse/NCBC-2851): TimeoutExceptions continue after rebound in Failover/Eject tests.
 
-#### [](#fixed-issues-50)Fixed Issues
+#### [](#fixed-issues-51)Fixed Issues
 
 * [NCBC-2965](https://issues.couchbase.com/browse/NCBC-2965): Don't capture ExecutionContext for long-running tasks/timers, as this could cause memory leaks.
 * [NCBC-2966](https://issues.couchbase.com/browse/NCBC-2966): Allow ILoggerFactory from the DI container to be overridden.
@@ -1329,7 +1351,7 @@ Version 3.2.0 is the first release of the 3.2 series, featuring collections and 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 * [NCBC-2851](https://issues.couchbase.com/browse/NCBC-2851): TimeoutExceptions continue after rebound in Failover/Eject tests.
 
-#### [](#fixed-issues-51)Fixed Issues
+#### [](#fixed-issues-52)Fixed Issues
 
 * [NCBC-2660](https://issues.couchbase.com/browse/NCBC-2660): After a failure that causes the circuit breaker to open, such as full send queue, new operation will immediately fail with CircuitBreakerException. The retry orchestrator now retries in this situation, preventing silent failure.
 * [NCBC-2730](https://issues.couchbase.com/browse/NCBC-2730): Expose Partition Information in Query Management API.
@@ -1384,7 +1406,7 @@ Version 3.1.7 is the eighth release of the 3.1 series, bringing enhancements and
 * [NCBC-2851](https://issues.couchbase.com/browse/NCBC-2851): TimeoutExceptions continue after rebound in Failover/Eject tests.
 * [NCBC-2891](https://issues.couchbase.com/browse/NCBC-2891): Send 0x0 for default scope/collections for certain Server 7.0 beta versions.
 
-#### [](#fixed-issues-52)Fixed Issues
+#### [](#fixed-issues-53)Fixed Issues
 
 * [NCBC-2879](https://issues.couchbase.com/browse/NCBC-2879): Combi test failure fixed by only running tests with `CollectionTests.CollectionIdChanged_RetriesAuto` on servers which support collections and the newer management URI structure.
 * [NCBC-2888](https://issues.couchbase.com/browse/NCBC-2888): Converting null literal or possible null value to non-nullable type — a rare compile time error for certain environments fixed by using `var` instead of `TValue`.
@@ -1406,7 +1428,7 @@ Version 3.1.6 is the seveneth release of the 3.1 series, bringing enhancements a
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 * [NCBC-2851](https://issues.couchbase.com/browse/NCBC-2851): TimeoutExceptions continue after rebound in Failover/Eject tests.
 
-#### [](#fixed-issues-53)Fixed Issues
+#### [](#fixed-issues-54)Fixed Issues
 
 * [NCBC-2881](https://issues.couchbase.com/browse/NCBC-2881): The SDK now uses Hello to determine if collections are available, giving improved accuracy over the heuristic method.
 * [NCBC-2877](https://issues.couchbase.com/browse/NCBC-2877): Collection GIT\_CID Eaccess error fix.
@@ -1422,7 +1444,7 @@ Version 3.1.5 is the sixth release of the 3.1 series, bringing enhancements and 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 * [NCBC-2851](https://issues.couchbase.com/browse/NCBC-2851): TimeoutExceptions continue after rebound in Failover/Eject tests
 
-#### [](#fixed-issues-54)Fixed Issues
+#### [](#fixed-issues-55)Fixed Issues
 
 * [NCBC-2551](https://issues.couchbase.com/browse/NCBC-2551): GetAllBucketsAsync always throws ArgumentNullException
 * [NCBC-2860](https://issues.couchbase.com/browse/NCBC-2860): Configuration revisions should be parsed and compared with 64-bit precision.
@@ -1449,7 +1471,7 @@ Version 3.1.4 is the fifth release of the 3.1 series, bringing enhancements and 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 * [NCBC-2851](https://issues.couchbase.com/browse/NCBC-2851): TimeoutExceptions continue after rebound in Failover/Eject tests
 
-#### [](#fixed-issues-55)Fixed Issues
+#### [](#fixed-issues-56)Fixed Issues
 
 * [NCBC-2720](https://issues.couchbase.com/browse/NCBC-2720): Change QueryMetrics Property from ElaspedTime to ElapsedTime
 * [NCBC-2831](https://issues.couchbase.com/browse/NCBC-2831): MutateIn is not throwing and classifying sub-doc errors correctly.
@@ -1472,7 +1494,7 @@ Version 3.1.3 is the fourth release of the 3.1 series, bringing enhancements and
 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 
-#### [](#fixed-issues-56)Fixed Issues
+#### [](#fixed-issues-57)Fixed Issues
 
 * [NCBC-2801](https://issues.couchbase.com/browse/NCBC-2801): `NodeAdapter` incorrectly shows N1QL service is not available.
 * [NCBC-2817](https://issues.couchbase.com/browse/NCBC-2817): `LookupInAsync` and `MutateInAsync` builder extensions should accept null options.
@@ -1500,7 +1522,7 @@ Version 3.1.2 is the third release of the 3.1 series, bringing enhancements and 
 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 
-#### [](#fixed-issues-57)Fixed Issues
+#### [](#fixed-issues-58)Fixed Issues
 
 * [NCBC-2763](https://issues.couchbase.com/browse/NCBC-2763): MutationToken throwing ArgumentNullException on static initialization.
 * [NCBC-2766](https://issues.couchbase.com/browse/NCBC-2766): CreateScopeAsync not creating collections in ScopeSpec.
@@ -1536,7 +1558,7 @@ Version 3.1.1 is the second release of the 3.1 series, bringing enhancements and
 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 
-#### [](#fixed-issues-58)Fixed Issues
+#### [](#fixed-issues-59)Fixed Issues
 
 * [NCBC-2565](https://issues.couchbase.com/browse/NCBC-2565): WaitUntilReady failure for 6.5.
 * [NCBC-2660](https://issues.couchbase.com/browse/NCBC-2660), [NCBC-2935](https://issues.couchbase.com/browse/NCBC-2935): Operations are now retried if they hit an open circuit breaker.
@@ -1611,7 +1633,7 @@ This is the first GA release of the 3.1 series, bringing enhancements and bugfix
 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 
-#### [](#fixed-issues-59)Fixed Issues
+#### [](#fixed-issues-60)Fixed Issues
 
 * [NCBC-2643](https://issues.couchbase.com/browse/NCBC-2643): `DataFlowConnectionPool` was creating unbounded connections in certain situations, such as pinging for a buckets which had not yet been created. This fix resolves the issue, although the number of connections will go up still but then trend back down, as they are in a `TIME_WAIT` state and it takes a little time for them to be reclaimed.
 * [NCBC-2660](https://issues.couchbase.com/browse/NCBC-2660): Operations were not retried if they hit an open circuit breaker (`CircuitBreakerException`); the retry orchestrator will now retry these failures.
@@ -1644,7 +1666,7 @@ Version 3.0.7 is the eighth release of the 3.0 series, bringing enhancements and
 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 
-#### [](#fixed-issues-60)Fixed Issues
+#### [](#fixed-issues-61)Fixed Issues
 
 * [NCBC-2641](https://issues.couchbase.com/browse/NCBC-2641): ConfigHandler has already been started.
 * [NCBC-2651](https://issues.couchbase.com/browse/NCBC-2651): IncrementOptions and DecrementOptions are missing Expiry.
@@ -1675,7 +1697,7 @@ Version 3.0.6 is the seventh release of the 3.0 series, bringing enhancements an
 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 
-#### [](#fixed-issues-61)Fixed Issues
+#### [](#fixed-issues-62)Fixed Issues
 
 * [NCBC-2187](https://issues.couchbase.com/browse/NCBC-2187): CollectionManager - 400: Not allowed on this version of cluster (verify).
 * [NCBC-2604](https://issues.couchbase.com/browse/NCBC-2604): exception.IsRetryable() in docs.
@@ -1709,7 +1731,7 @@ Version 3.0.5 is the sixth release of the 3.0 series, bringing enhancements and 
 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 
-#### [](#fixed-issues-62)Fixed Issues
+#### [](#fixed-issues-63)Fixed Issues
 
 * [NCBC-2504](https://issues.couchbase.com/browse/NCBC-2504): Intermittent ViewQuery failures after rebound Rb2OutEpt-HYBRID
 * [NCBC-2559](https://issues.couchbase.com/browse/NCBC-2559): Test\_BootStrap\_Error\_Propagates\_To\_View\_Operations fails w/BucketNotFoundException
@@ -1737,7 +1759,7 @@ Version 3.0.4 is the fifth release of the 3.0 series, bringing enhancements and 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 * [NCBC-2187](https://issues.couchbase.com/browse/NCBC-2187): CollectionManager — 400: Not allowed on this version of cluster.
 
-#### [](#fixed-issues-63)Fixed Issues
+#### [](#fixed-issues-64)Fixed Issues
 
 * [NCBC-2605](https://issues.couchbase.com/browse/NCBC-2605): Expiration less than 1000ms creates a doc with an infinite lifespan
 * [NCBC-2608](https://issues.couchbase.com/browse/NCBC-2608): Connection fails if first node in connection string array is unavailable.
@@ -1768,7 +1790,7 @@ Version 3.0.3 is the fourth release of the 3.0 series, bringing enhancements and
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 * [NCBC-2187](https://issues.couchbase.com/browse/NCBC-2187): CollectionManager — 400: Not allowed on this version of cluster.
 
-#### [](#fixed-issues-64)Fixed Issues
+#### [](#fixed-issues-65)Fixed Issues
 
 * [NCBC-2588](https://issues.couchbase.com/browse/NCBC-2588): LookupIn should re-order subdoc requests so that XATTRs come first.
 * [NCBC-2450](https://issues.couchbase.com/browse/NCBC-2450): KV failure after removing entry point node for pre-MH server
@@ -1805,7 +1827,7 @@ Version 3.0.2 is the third release of the 3.0 series, bringing enhancements and 
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 * [NCBC-2187](https://issues.couchbase.com/browse/NCBC-2187): CollectionManager — 400: Not allowed on this version of cluster.
 
-#### [](#fixed-issues-65)Fixed Issues
+#### [](#fixed-issues-66)Fixed Issues
 
 * [NCBC-2436](https://issues.couchbase.com/browse/NCBC-2436): User connstr example in migration guide
 * [NCBC-2459](https://issues.couchbase.com/browse/NCBC-2459): Remove QueryOptions from StartUsing.cs in docs
@@ -1867,7 +1889,7 @@ Version 3.0.1 is the second release of the 3.0 series, bringing enhancements and
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 * [NCBC-2187](https://issues.couchbase.com/browse/NCBC-2187): CollectionManager — 400: Not allowed on this version of cluster.
 
-#### [](#fixed-issues-66)Fixed Issues
+#### [](#fixed-issues-67)Fixed Issues
 
 * [NCBC-2033](https://issues.couchbase.com/browse/NCBC-2033): 3.0 API Query snippets in concept doc
 * [NCBC-2204](https://issues.couchbase.com/browse/NCBC-2204): Improve exception when bootstrapping fails
@@ -1917,7 +1939,7 @@ This release features significant changes to the API, simplifies the programming
 * [NCBC-3171](https://issues.couchbase.com/browse/NCBC-3171): Documents may be written to the wrong location in a mixed-mode cluster set-up. See the [Special Note](#special-note) for more details.
 * [NCBC-2187](https://issues.couchbase.com/browse/NCBC-2187): CollectionManager — 400: Not allowed on this version of cluster.
 
-#### [](#fixed-issues-67)Fixed Issues
+#### [](#fixed-issues-68)Fixed Issues
 
 * [NCBC-2149](https://issues.couchbase.com/browse/NCBC-2149): ConfigConext throws NullReferenceException when processing new cluster maps
 * [NCBC-2153](https://issues.couchbase.com/browse/NCBC-2153): Fix failing integration tests for SDK3

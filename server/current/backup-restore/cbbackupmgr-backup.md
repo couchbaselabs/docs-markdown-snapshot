@@ -2,7 +2,7 @@
 title: cbbackupmgr backup
 description: Backs up data from a Couchbase cluster
 editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-backup.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:server:backup-restore:cbbackupmgr-backup.adoc[]
 ---
 
@@ -114,14 +114,9 @@ Specifies a compression policy for backed up values. When Couchbase sends data t
 
 Specifies the number of concurrent clients to use when taking a backup. Fewer clients means backups will take longer, but there will be less cluster resources used to complete the backup. More clients means faster backups, but at the cost of more cluster resource usage.
 
-This parameter defaults to 1 if it is not specified and it is recommended
-that this parameter is not set to be higher than the number of CPUs on the
-machine where the backup is taking place.
+This parameter defaults to 1 if it is not specified and it is recommended that this parameter is not set to be higher than the number of CPUs on the machine where the backup is taking place.
 
-Each client connects to each data node in the cluster, so when choosing a
-value it is recommended to also consider the number of nodes also. For
-example, when backing up a six node cluster the threads value should be set
-to half that of backing up a three node cluster to get similar throughput.
+Each client connects to each data node in the cluster, so when choosing a value it is recommended to also consider the number of nodes also. For example, when backing up a six node cluster the threads value should be set to half that of backing up a three node cluster to get similar throughput.
 
 \--no-progress-bar
 

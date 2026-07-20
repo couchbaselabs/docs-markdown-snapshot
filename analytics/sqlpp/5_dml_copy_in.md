@@ -4,7 +4,7 @@ description: This topic describes how you use the  <code>COPY INTO</code> DML
   statement to upsert&mdash;both insert and update&mdash;objects from an
   external collection to a standalone collection.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_copy_in.adoc
-pubDate: 2026-03-27T05:16:21.194Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:analytics:sqlpp:5_dml_copy_in.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:analytics:sqlpp:5_dml_copy_in.adoc[]
 > You can also populate a standalone collection by importing a file in a supported format from your local network. See [Import Data to a Standalone Collection](../sources/import-data-standalone.md).
 
 > [!NOTE]
-> To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](#reference:cloud%5Fread%5Fwrite%5Fpermissions.adoc).
+> To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information, see [AWS](../sources/required-permissions-aws.md), [GCS](../sources/required-permissions-gcs.md), and [Azure](../sources/required-permissions-azure.md).
 
 ## [](#syntax)Syntax
 
@@ -58,11 +58,11 @@ After you use `COPY INTO`, you can run `ANALYZE COLLECTION` on the collection to
 
 FROM
 
-The **`FROM`** clause identifies the bucket name on the external data source, such as an Amazon S3 bucket.
+The **`FROM`** clause identifies the bucket or container name on the external data source, such as an Amazon S3 bucket, a Google Cloud Storage (GCS) bucket, or an Azure Blob Storage container.
 
 AT
 
-The **`AT`** clause specifies the name of the link that contains credentials for the S3 bucket name. The specified link must have a type of S3.
+The **`AT`** clause specifies the name of the link that contains credentials for the external data source. The link type must match the external cloud storage provider (S3, GCS, or Azure).
 
 PATH
 

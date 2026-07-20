@@ -3,7 +3,7 @@ title: ORDER BY clause
 description: The ORDER BY clause sorts the result-set by one or more columns, in
   ascending or descending order.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/orderby.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/orderby.adoc[]
 ---
 
@@ -51,6 +51,13 @@ The results are ordered in ascending order.
 The results are ordered in descending order.
 
 If the collation clause is missing, the default is `ASC`.
+
+> [!TIP]
+> If this query uses an index which includes an index key on the same field as this ordering term, the sort order of the ordering term should match the sort order of the index key to ensure the best performance.
+> 
+> For example, if the index uses a descending sort order, then the query should also use a descending sort order. If the query uses the opposite sort order to the index, you may experience reduced performance.
+> 
+> If necessary, you could create two indexes that are identical except for opposite sort orders, and then use an index hint in the query to select the appropriate index.
 
 ### [](#nulls-ordering)Nulls Ordering
 

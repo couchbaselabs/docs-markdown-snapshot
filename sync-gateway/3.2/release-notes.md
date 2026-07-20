@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:3.2@sync-gateway::release-notes.adoc[]
 ---
 
@@ -51,7 +51,7 @@ None for this release.
 
 ### [](#maint-3-2-7)Fixed Issues
 
-* [CBG-4940 - Couchbase Lite 4.0 is allowed to connect to Sync Gateway 3.2.6/3.3.0](https://jira.issues.couchbase.com/browse/CBG-4940)
+* [CBG-4940 - SG 3.x erroneously reports it can support Version Vector replication (affects CBL and ISGR >= v4)](https://jira.issues.couchbase.com/browse/CBG-4940)
 * [CBG-4694 - calling GET /db/\_session/sessionID returns invalidated session](https://jira.issues.couchbase.com/browse/CBG-4694)
 
 ### [](#enhancements-2)Enhancements

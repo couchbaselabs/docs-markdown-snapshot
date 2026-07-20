@@ -2,7 +2,7 @@
 title: Create A Paid Cluster
 description: Create a cluster to store and access data in Couchbase Capella.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/create-database.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:cloud:clusters:create-database.adoc[]
 ---
 
@@ -66,6 +66,9 @@ To check the current status of a deploying cluster, [view your cluster](view-dat
 
 * [Choose which IP addresses can connect to your cluster](allow-ip-address.md)
 * [Create cluster access credentials](manage-database-users.md)
+* [Add private endpoints](#security/private-endpoints.adoc)
+* [Configure a VPC peering connection](#private-network.adoc)
+* [Set up Cross Data Center Replication (XDCR)](xdcr/xdcr.md)
 * [Connect to your cluster](../get-started/connect.md)
 * [Create and manage buckets for your data](data-service/manage-buckets.md)
 * [Create and manage scopes and collections for your data](data-service/scopes-collections.md)

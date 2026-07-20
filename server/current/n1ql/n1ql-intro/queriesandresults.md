@@ -3,7 +3,7 @@ title: Query Concepts
 description: An overview of common concepts that you will need to understand in
   order to use the Query service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-intro/queriesandresults.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:server:n1ql:n1ql-intro/queriesandresults.adoc[]
 ---
 
@@ -115,11 +115,11 @@ For compatibility with legacy versions of Couchbase Server, a keyspace reference
 
 ## [](#query-context)Query Context
 
-The query context specifies the the namespace, bucket, and scope used to resolve partial keyspace references.
+The query context specifies the namespace, bucket, and scope used to resolve partial keyspace references.
 
 When the query context is set, you can refer to a collection using just the collection name, without having to enter the keyspace path. When the query context is not set, it defaults to the `default` namespace, with no bucket, scope, or collection.
 
-* To set the query context in the Query Workbench, use the the [query context](../../tools/query-workbench.md#query-context) drop-down menu in the Query Editor.
+* To set the query context in the Query Workbench, use the [query context](../../tools/query-workbench.md#query-context) drop-down menu in the Query Editor.
 * To set the query context from the cbq shell or the REST API, use the [query\_context](../n1ql-manage/query-settings.md#query%5Fcontext) request-level parameter.
 
 > [!IMPORTANT]

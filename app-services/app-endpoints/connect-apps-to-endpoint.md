@@ -1,7 +1,7 @@
 ---
 title: Connect your Apps to an App Endpoint
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/connect-apps-to-endpoint.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:app-services::app-endpoints/connect-apps-to-endpoint.adoc[]
 ---
 
@@ -18,10 +18,10 @@ You can use Couchbase Lite as a standalone embedded database within your mobile 
 * [Kotlin (Android)](../../couchbase-lite/current/android/kotlin.md)
 * [Java (Android](../../couchbase-lite/current/android/gs-install.md))
 * [.Net (Desktop, Xamarin)](../../couchbase-lite/current/csharp/gs-install.md)
-* [C (Desktop, Mobile, Embedded)](../../couchbase-lite/current/c/gs-install.md)
+* [C/C++ (Desktop, Mobile, Embedded)](../../couchbase-lite/current/c/gs-install.md)
 * [Java (Desktop)](../../couchbase-lite/current/java/gs-install.md)
 * [Obj-C (iOS, macOS)](../../couchbase-lite/current/objc/gs-install.md)
-* [Javascript](#couchbase-lite:javascript:quickstart.adoc)
+* [Javascript (Web)](#couchbase-lite:javascript:quickstart.adoc)
 
 ## [](#setting-up-the-connection)Setting up the Connection
 

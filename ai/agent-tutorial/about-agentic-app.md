@@ -2,7 +2,7 @@
 title: About Agentic Apps
 description: An overview of the key concepts involved in agentic apps.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/about-agentic-app.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:agent-tutorial:about-agentic-app.adoc[]
 ---
 
@@ -28,10 +28,10 @@ The defining feature of agentic apps is that they use an LLM to make decisions a
 
 There's no universally agreed definition for an agentic app. Apps can range from straight-forward assistants to fully autonomous agents.
 
-Couchbase offers AI services that can support your agentic apps, making them easier to build, faster to run and cheaper to support. For more information about AI Services, see [Capella AI Services](../get-started/intro.md).
+Couchbase offers AI services that can support your agentic apps, making them easier to build, faster to run and cheaper to support. For more information about the {ai-long}, see [{ai-long}](../get-started/intro.md).
 
 > [!TIP]
-> Couchbase AI Services also offers notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework:
+> The {ai} also offers notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework:
 > 
 > * Colab: [LangGraph](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb)
 > * GitHub: [LangGraph](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb)
@@ -87,7 +87,7 @@ It's responsible for:
 * Deciding which tools to use and in what order.
 * Integrating results into a coherent response.
 
-For more information about how to deploy an LLM on Capella AI Services, see [Deploy a Large Language Model (LLM)](../build/model-service/deploy-llm-model.md).
+For more information about how to deploy an LLM on the {ai}, see [Deploy a Large Language Model (LLM)](../build/model-service/deploy-llm-model.md).
 
 ### [](#the-orchestration-layer)The Orchestration Layer
 
@@ -130,7 +130,7 @@ The model does not know everything and specific tasks require specialist context
 
 For more information about RAG, see [About RAG Blueprints](rag-patterns.md).
 
-For more information about using a Capella operational cluster as a vector store, see [Process Your Data For Capella AI Services](../build/vectorization-service/data-processing.md).
+For more information about using a Capella operational cluster as a vector store, see [Process Your Data For the {ai-long}](../build/vectorization-service/data-processing.md).
 
 ### [](#the-tools)The Tools
 
@@ -144,7 +144,7 @@ Tools might be:
 * Pre-written code functions
 * Other agents
 
-Depending on the framework, the LLM may suggest tool usage, or the orchestration layer may decide when to invoke tools. Capella AI Services can also help you manage tool calling and tool versioning in your agentic apps. For more information, see [Integrate an Agent with the Agent Catalog](../build/integrate-agent-with-catalog.md).
+Depending on the framework, the LLM may suggest tool usage, or the orchestration layer may decide when to invoke tools. The {ai} can also help you manage tool calling and tool versioning in your agentic apps. For more information, see [Integrate an Agent with the Agent Catalog](../build/integrate-agent-with-catalog.md).
 
 ### [](#the-frameworks)The Frameworks
 
@@ -176,5 +176,5 @@ This cycle can repeat, allowing the user to respond in natural language and allo
 
 * [Plan Your Agentic App](plan-agentic-app.md)
 * [About RAG Blueprints](rag-patterns.md)
-* [Capella AI Services](../get-started/intro.md)
+* [{ai-long}](../get-started/intro.md)
 * [Integrate an Agent with the Agent Catalog](../build/integrate-agent-with-catalog.md)

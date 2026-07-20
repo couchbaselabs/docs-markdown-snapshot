@@ -3,7 +3,7 @@ title: Choose the Right Vector Index
 description: Use Couchbase Server's vector indexes to find documents based on
   content similarity or semantic meaning.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/use-vector-indexes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:server:vector-index:use-vector-indexes.adoc[]
 ---
 
@@ -108,7 +108,7 @@ Anomaly detection applications, such as those used in Internet of Things (IoT) s
 
 To create and use a Hyperscale Vector index, your application follows the workflow shown in the following diagram:
 
-![Application Workflow with Hyperscale Vector Indexes](_images/hyperscale-vector-app-workflow-8710299d15d20560cb34b1a24014a6666b4bb9a3.svg) 
+![Application Workflow with Hyperscale Vector Indexes](_images/hyperscale-vector-app-workflow-fe0d68b4ed3afd21a92d9aa98940afc6faba8259.svg) 
 
 Figure 1\. Application Workflow with Hyperscale Vector Indexes
 
@@ -145,7 +145,7 @@ Supply chain management applications often need to query based on product type, 
 
 To create and use a Composite Vector index, your application follows the workflow shown in the following diagram:
 
-![Application Workflow with Composite Vector Indexes](_images/composite-vector-app-workflow-689a6d5bb9bd20254d06780ffd7b01185591a178.svg) 
+![Application Workflow with Composite Vector Indexes](_images/composite-vector-app-workflow-658f3a05c4d4c29fa54eb78dea77ae69c7d477cb.svg) 
 
 Figure 2\. Application Workflow with Composite Vector Indexes
 
@@ -188,7 +188,7 @@ Real estate applications can use Search Vector Indexes to find properties within
 
 To create and use a Search Vector Index, your application follows the workflow shown in the following diagram:
 
-![Application Workflow with Search Vector Indexes](_images/fts-app-workflow-7c24fbc6ae86a43ec0d9d44e38c555df326dbdf2.svg) 
+![Application Workflow with Search Vector Indexes](_images/fts-app-workflow-8a4286d6c01260f86e1bf1716e1833084383902c.svg) 
 
 Figure 3\. Application Workflow with Search Vector Indexes
 

@@ -3,7 +3,7 @@ title: Upgrade
 description: To upgrade a Couchbase-Server cluster means to upgrade the version
   of Couchbase Server that's running on every node.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/upgrade.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:server:install:upgrade.adoc[]
 ---
 
@@ -25,18 +25,18 @@ link: xref:server:install:upgrade.adoc[]
 
 Before upgrading, consider the following version compatibility concerns.
 
-### [](#8-0-storage-backend)New Default Storage Backend in Couchbase Server Version 8.0
+### [](#storage-backend-8)New Default Storage Backend in Couchbase Server Version 8.0
 
 After you fully upgrade to Couchbase Server 8.0.x or later, the default storage backend for buckets is Magma with 128 vBuckets. Previous versions of Couchbase Server used Couchstore with 1024 vBuckets as the default storage backend.
 
 This new default results in 2 behavior changes from previous versions:
 
 * If you create a bucket and do not specify the storage backend, your bucket uses the Magma storage backend instead of the Couchstore backend.
-* If you specify Magma as the storage backend but do not set the new `numVBuckets` parameter, the bucket has 128 vBuckets instead of the prior default of 1024 vBuckets. Magma buckets with 128 vBuckets is a new feature in Couchbase Server 8.0 and later.
+* If you specify Magma as the storage backend but do not set the new `numVBuckets` parameter, the bucket has 128 vBuckets instead of the prior default of 1024 vBuckets. Magma buckets with 128 vBuckets are a new feature in Couchbase Server 8.0 and later.
 
 These behavior changes could cause issues if you rely on the prior behavior and you use deployment scripts. If you have deployment scripts that create buckets, review them to determine if you need to make changes.
 
-For example, suppose your deployment script does not specify the storage backend when it creates a bucket that you intend to use with the [views](../learn/views/views-intro.md) feature. On versions prior to Couchbase Server 8.0, your script created a Couchstore bucket with 1024 vBuckets, In version 8.0, due to change in the default backend, your script creates a bucket with the Magma storage backend with 128 vBuckets. Attempting to use MapReduce Views with this bucket results in errors, because Magma buckets do not support this feature.
+For example, suppose your deployment script does not specify the storage backend when it creates a bucket that you intend to use with the [views](../learn/views/views-intro.md) feature. On versions prior to Couchbase Server 8.0, your script created a Couchstore bucket with 1024 vBuckets, In version 8.0, due to change in the default backend, your script creates a bucket with the Magma storage backend with 128 vBuckets. Attempting to use MapReduce Views with this bucket results in errors because Magma buckets do not support this feature.
 
 > [!IMPORTANT]
 > Views are deprecated in Couchbase Server 7.0 and later versions. Views support in Couchbase Server will be removed in a future release. Instead of views, use indexes and queries using the [Index Service](../learn/services-and-indexes/services/index-service.md) (GSI) and the [Query Service](../learn/services-and-indexes/services/query-service.md) (SQL++). Views will not run on the newer [Magma storage engine](../learn/buckets-memory-and-storage/storage-engines.md).
@@ -99,19 +99,19 @@ You can perform all supported upgrades with the cluster either offline or online
 
 ### [](#table-upgrade-enterprise)Enterprise Edition Upgrade Paths
 
-| Starting Version | Path to Current Version                                                                                            |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------ |
-| 5.x              | Any 5.0.x / 5.1.x / 5.5.x → 6.6 → 7.2.3 → latest 7.2.x → 8.0.1                                                     |
-| 6.x              | Any 6.0.x / 6.5.x → 6.6 → 7.2.3 → latest 7.2.x → 8.0.1                                                             |
-| 7.x              | Any 7.0.x / 7.1.x → 7.2.3 → latest 7.2.x → 8.0.1 Any 7.2.x → latest 7.2.x → 8.0.1 Any 7.6.x → latest 7.6.x → 8.0.1 |
+| Starting Version | Path to Current Version                                                                                          |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------- |
+| 5.x              | Any 5.0.x / 5.1.x / 5.5.x → 6.6 → 7.2.3 → latest 7.2.x → 8.0.1                                                   |
+| 6.x              | Any 6.0.x / 6.5.x → 6.6 → 7.2.3 → latest 7.2.x → 8.0.1                                                           |
+| 7.x              | Any 7.0.x / 7.1.x → 7.2.3 → latest 7.2.x → 8.0.1Any 7.2.x → latest 7.2.x → 8.0.1Any 7.6.x → latest 7.6.x → 8.0.1 |
 
 ### [](#table-upgrade-community)Community Edition Upgrade Paths
 
-| Starting Version | Path to Current Version                                                                                            |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------ |
-| 5.x              | Any 5.0.x / 5.1.x / 5.5.x → 6.6 → 7.2.3 → latest 7.2.x → 8.0.1                                                     |
-| 6.x              | Any 6.0.x / 6.5.x → 6.6 → 7.2.3 → latest 7.2.x → 8.0.1                                                             |
-| 7.x              | Any 7.0.x / 7.1.x → 7.2.3 → latest 7.2.x → 8.0.1 Any 7.2.x → latest 7.2.x → 8.0.1 Any 7.6.x → latest 7.6.x → 8.0.1 |
+| Starting Version | Path to Current Version                                                                                          |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------- |
+| 5.x              | Any 5.0.x / 5.1.x / 5.5.x → 6.6 → 7.2.3 → latest 7.2.x → 8.0.1                                                   |
+| 6.x              | Any 6.0.x / 6.5.x → 6.6 → 7.2.3 → latest 7.2.x → 8.0.1                                                           |
+| 7.x              | Any 7.0.x / 7.1.x → 7.2.3 → latest 7.2.x → 8.0.1Any 7.2.x → latest 7.2.x → 8.0.1Any 7.6.x → latest 7.6.x → 8.0.1 |
 
 > [!NOTE]
 > Important note when upgrading from 7.0.4 to 7.2.x on Windows 2019
@@ -142,12 +142,12 @@ Example 1\. Upgrading from version 6.6.x to 8.0.x
 
 ## [](#upgrade-community-enterprise)Upgrade from Community Edition to Enterprise
 
-If you're currently operating a Couchbase Server cluster on Community Edition, you can upgrade it to Enterprise Edition by way of a [rolling online upgrade](upgrade-procedure-selection.md#online-upgrade). This involves switching out the Community Edition nodes with fresh, net-new Enterprise Edition nodes. Both swap rebalance and remove and rebalance methods are supported. Delta Recovery is not supported since the new nodes must be fresh Enterprise Edition installations without any pre-existing Community Edition data remaining on them.
+If you're operating a Couchbase Server cluster on Community Edition, you can upgrade it to Enterprise Edition by way of a [rolling online upgrade](upgrade-procedure-selection.md#online-upgrade). This involves switching out the Community Edition nodes with fresh, net-new Enterprise Edition nodes. Both swap rebalance and remove and rebalance methods are supported. Delta Recovery is not supported since the new nodes must be fresh Enterprise Edition installations without any pre-existing Community Edition data remaining on them.
 
 > [!NOTE]
 > Rolling upgrades from CE to EE are not supported if there are index service nodes running in the cluster.
 
-The Enterprise Edition nodes must be running the same version number of Couchbase Server as the Community Edition nodes that they're replacing, otherwise the upgrade may fail. This means you can not upgrade to a later version of Couchbase Server while also upgrading to Enterprise Edition during the same rolling upgrade.
+The Enterprise Edition nodes must be running the same version number of Couchbase Server as the Community Edition nodes that they're replacing, otherwise the upgrade may fail. This means you cannot upgrade to a later version of Couchbase Server while also upgrading to Enterprise Edition during the same rolling upgrade.
 
 If you want to upgrade from an earlier version of `Community Edition` to a later version of `Enterprise Edition`, you need to perform 2 separate upgrade procedures:
 
@@ -179,11 +179,11 @@ In Couchbase Enterprise Server Version 7.2 or later, the node-name must be ident
 
 ## [](#downgrade)Downgrade
 
-If you have issues with an upgrade, you may want to downgrade to the earlier version of Couchbase Server. Your ability to downgrade depends on the whether the upgrade was between and major or minor version numbers or a maintenance version. See [Couchbase Server Version Numbers](#version-numbers) for an explanation of Couchbase Server's version numbering scheme.
+If you have issues with an upgrade, you may want to downgrade to the earlier version of Couchbase Server. Your ability to downgrade depends on whether the upgrade was between major or minor version numbers or a maintenance version. See [Couchbase Server Version Numbers](#version-numbers) for an explanation of Couchbase Server's version numbering scheme.
 
 ### [](#downgrade%5Fmajor%5Fminor)Downgrading an Upgrade Between Major or Minor Versions
 
-A major or minor version upgrade is an upgrade between versions that have different first or second digit in their version numbers. Examples of a major or minor version upgrade include:
+A major or minor version upgrade is an upgrade between versions that have a different first or second digit in their version numbers. Examples of a major or minor version upgrade include:
 
 * Upgrading from version 6.6.0 to version 7.2.3 is a major upgrade.
 * Upgrading from version 7.2.3 to version 7.6.10 is a minor upgrade.
@@ -205,11 +205,11 @@ Once you finalize your major or minor upgrade, you cannot roll it back. Couchbas
 Because finalization increases the difficulty in rolling back an upgrade, it's vital to test the new version with your applications before you finalize it. See the next section for tips on preventing finalization until you're ready to finalize your upgrade.
 
 > [!NOTE]
-> If you do need to roll back a finalized upgrade and you have a disaster recovery cluster running the previous version synced via XDCR, consider switching to it. Then you can create a new cluster running the prior version and either use it as the disaster recovery cluster or switch back to it after it has synched all data.
+> If you do need to roll back a finalized upgrade and you have a disaster recovery cluster running the previous version synced via XDCR, consider switching to it. Then you can create a new cluster running the prior version and either use it as the disaster recovery cluster or switch back to it after it has synced all data.
 
 ### [](#prevent-finalization)Preventing Finalization
 
-You should verify that your applications perform well using the new version of Couchbase Server before you finalize your upgrade. Fully testing your applications may require you to upgrade all nodes in the cluster. However, Couchbase Server finalizes your installation when you upgrade the last node to the new version of Couchbase Server.
+You should verify that your applications perform well when using the new version of Couchbase Server before you finalize your upgrade. Fully testing your applications may require you to upgrade all nodes in the cluster. However, Couchbase Server finalizes your installation when you upgrade the last node to the new version of Couchbase Server.
 
 A workaround is to add a small arbiter node running the earlier version of Couchbase Server to your cluster before completing your upgrade. An arbiter node does not host any services, including the data service, so you can allocate minimal resources to it.
 
@@ -253,7 +253,7 @@ To perform an online downgrade:
 3. On the node you removed, install the earlier version of Couchbase Server.
 4. [Add the node back to the cluster](../manage/manage-nodes/add-node-and-rebalance.md).
 5. Perform a rebalance to complete the addition.
-6. Repeat steps 1-5 for each node in the cluster until all nodes are running the earlier version of Couchbase Server.
+6. Repeat steps 1–5 for each node in the cluster until all nodes are running the earlier version of Couchbase Server.
 7. If you added an arbiter node to prevent finalization, remove the arbiter node and perform a rebalance to complete the downgrade. See [Preventing Finalization](#prevent-finalization) for more information about using an arbiter node to prevent finalization.
 
 > [!NOTE]

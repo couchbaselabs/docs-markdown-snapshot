@@ -1,22 +1,22 @@
 ---
-title: Use Capella AI Functions
+title: Use {ai-long} AI Functions
 description: Use AI Functions to summarize text, classify content, detect
   sentiment, explain patterns, and more — all within your SQL++ queries.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/ai-functions.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:build:ai-functions.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/build/ai-functions.html)
 
-# Use Capella AI Functions
+# Use {ai-long} AI Functions
 
 > Use AI Functions to summarize text, classify content, detect sentiment, explain patterns, and more — all within your SQL++ queries. 
 
-Capella AI Functions combine SQL++ with language models to analyze your data. Use large language models (LLMs) such as OpenAI, Bedrock, or models hosted in the [Capella Model Service](model-service/deploy-llm-model.md) to run task-based functions using familiar SQL++ queries directly within Capella's query editor.
+{ai-long} AI Functions combine SQL++ with language models to analyze your data. Use large language models (LLMs) such as OpenAI, Bedrock, or models hosted in the [{ai} Model Service](model-service/deploy-llm-model.md) to run task-based functions using familiar SQL++ queries directly within Capella's query editor.
 
-The following Capella AI Functions are available:
+The following {ai} AI Functions are available:
 
 * **Sentiment Analysis**: Determines text sentiment, such as positive, negative, neutral, or mixed.
 * **Summarization**: Condenses lengthy text into key insights.
@@ -60,23 +60,23 @@ The following Capella AI Functions are available:
     * [Advanced access credentials](../../cloud/clusters/cluster-rbac.md#advanced-access-credentials) assigned with a role that includes the `Query Curl Access` [privilege](../../cloud/clusters/cluster-rbac.md#privileges-for-advanced-access-credentials).
 * A deployed LLM with:
 
-  * The [Capella Model Service](model-service/deploy-llm-model.md)
+  * The [{ai} Model Service](model-service/deploy-llm-model.md)
   * [OpenAI](https://openai.com/)
   * [Amazon Bedrock](https://aws.amazon.com/bedrock/)
 * (Recommended) If you have a production workload, [enable private networking](../security/add-aws-privatelink.md) to use AI Functions.  
 > [!NOTE]  
-> If you want to enable private networking for your AI Functions, your Capella model and Capella operational cluster need to be deployed within the same AWS region.
+> If you want to enable private networking for your AI Functions, your {ai} model and Capella operational cluster need to be deployed within the same AWS region.
 * (Recommended) You have guardrails selected for your chosen model. This includes keyword filtering and jailbreak detection. Guardrails are important to have when you use the completion function. For more information, see [Deploy a Large Language Model (LLM)](model-service/deploy-llm-model.md).
 
 ## [](#enable-ai-functions)Enable AI Functions
 
 You can enable AI Functions on any of your Capella operational clusters. Enabling AI Functions on 1 cluster does not automatically enable it on your other clusters. You need to enable AI Functions individually for each cluster.
 
-To enable Capella AI Functions:
+To enable {ai} AI Functions:
 
 1. Do 1 of the following:
 
-  1. Go to **AI Services** **AI Functions**.
+  1. Go to menu:{ai}\[AI Functions\].
   2. On the **Operational** tab, click the name of the cluster where you want to enable AI Functions.
 
     1. Go to **AI Functions**.
@@ -84,15 +84,15 @@ To enable Capella AI Functions:
 3. Select the functions you want to use, and click **Next**.
 4. Select 1 of the model options:  
 > [!NOTE]  
-> Private networking is only available for Capella models.
+> Private networking is only available for {ai} models.
 
-  * Capella Model
+  * {ai} Model
   * OpenAI Model
   * AWS Bedrock Model
 
   1. Select **Capella Model**.
-  2. Choose your Capella model.
-  3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for Capella models, see [Get Started with Capella AI Services APIs](../api-guide/api-start.md).
+  2. Choose your {ai} model.
+  3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for {ai} models, see [Get Started with the {ai-long} APIs](../api-guide/api-start.md).
   4. Click **Next**.
 
   1. Select **OpenAI Model**.
@@ -117,7 +117,7 @@ To enable Capella AI Functions:
   4. Choose your Bedrock credentials.
   5. Click **Next**.
 5. Choose a Capella operational cluster for your functions.
-6. (Optional) If your Capella model and your Capella operational cluster have the same AWS region, choose whether you want to enable private networking for your functions. This enables private networking between your LLM's AWS region and your Capella operational cluster.  
+6. (Optional) If your {ai} model and your Capella operational cluster have the same AWS region, choose whether you want to enable private networking for your functions. This enables private networking between your LLM's AWS region and your Capella operational cluster.  
 > [!NOTE]  
 > You cannot disable private networking later.
 7. Click **Complete Setup**.
@@ -127,7 +127,7 @@ To enable Capella AI Functions:
 Run AI Functions like any other SQL++ query using the [Query tab](../../cloud/clusters/query-service/query-workbench.md) on the operational cluster where you have configured AI Functions.
 
 > [!IMPORTANT]
-> When using input prompts with Capella, Bedrock, or OpenAI LLMs, turn on model guardrails for security.
+> When using input prompts with {ai}, Bedrock, or OpenAI LLMs, turn on model guardrails for security.
 
 Experiment with AI Functions with your own data or by loading a sample query into the Query tab of your operational cluster. The following sample queries require the `travel-sample` dataset on the same cluster where you configured your AI Functions LLM.
 
@@ -135,7 +135,7 @@ For more information about how to load the `travel-sample` into your operational
 
 To load a sample query:
 
-1. Copy a [sample query](#sample-queries) from the list of Capella AI Functions available. For example, copy the sample query for [Sentiment Analysis](#sentiment-analysis).
+1. Copy a [sample query](#sample-queries) from the list of {ai} AI Functions available. For example, copy the sample query for [Sentiment Analysis](#sentiment-analysis).
 2. In your Capella operational cluster, go to **Data Tools** **Query**.
 3. In the query editor, replace the existing text with the sample query you copied.
 4. Press Enter or click **Run**. The query results are automatically displayed in JSON format.
@@ -173,7 +173,7 @@ To view your AI Functions and their statuses:
 
 You can change the model associated with your AI Function. The model options for AI Functions include:
 
-* A Capella model
+* An {ai} model
 * An OpenAI model
 * An AWS Bedrock model
 
@@ -184,13 +184,13 @@ To change the model associated with your AI Function:
 3. Find the AI Function you want to associate with a different model and go to **More Options (⋮)** **Edit associated model**.
 4. Select 1 of the model options:
 
-  * Capella Model
+  * {ai} Model
   * OpenAI Model
   * AWS Bedrock Model
 
   1. Select **Capella Model**.
-  2. Choose your Capella model.
-  3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for Capella models, see [Get Started with Capella AI Services APIs](../api-guide/api-start.md).
+  2. Choose your {ai} model.
+  3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for {ai} models, see [Get Started with the {ai-long} APIs](../api-guide/api-start.md).
   4. Click **Next**.
 
   1. Select **OpenAI Model**.

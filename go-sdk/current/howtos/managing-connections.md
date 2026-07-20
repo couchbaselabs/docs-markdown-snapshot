@@ -2,7 +2,7 @@
 title: Managing Connections
 description: This section describes how to connect the Go SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:go-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -58,7 +58,7 @@ if err != nil {
 }
 ```
 
-Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../operator/current/concept-cloud-native-gateway.md):
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](#operator:ROOT:concept-cloud-native-gateway.adoc):
 
 ```golang
 	cluster, err := gocb.Connect("couchbase2://"+connectionString, gocb.ClusterOptions{
@@ -309,7 +309,7 @@ Proceeding with normal bootstrap.
 
 ## [](#cloud-native-gateway)Cloud Native Gateway
 
-Couchbase's next generation connection protocol, introduced in Go SDK 2.7 and [Couchbase Autonomous Operator 2.6.1](../../../operator/current/concept-cloud-native-gateway.md), is enabled by changing the connection string to `couchbase2://` — but there are a few differences to be aware of, described [below](#limitations).
+Couchbase's next generation connection protocol, introduced in Go SDK 2.7 and [Couchbase Autonomous Operator 2.6.1](#operator::concept-cloud-native-gateway.adoc), is enabled by changing the connection string to `couchbase2://` — but there are a few differences to be aware of, described [below](#limitations).
 
 The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a recent version of [Couchbase Autonomous Operator](../../../operator/current/overview.md)).
 

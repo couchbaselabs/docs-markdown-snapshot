@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/product-notes/pages/release-notes.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:3.3@sync-gateway:product-notes:release-notes.adoc[]
 ---
 
@@ -16,27 +16,29 @@ Quicklinks
 [Release 3.2](../../3.2/release-notes.md) | [Release 3.1](../../3.1/release-notes.md) | [Release 3.0](../../3.0/release-notes.md) | [Release 2.8](../../2.8/release-notes.md) | [Archived documentation](https://docs-archive.couchbase.com/home/index.html)
 
 > Couchbase Sync Gateway  
-> This content describes the key features and changes implemented by release 3.3.2 of Couchbase Sync Gateway
+> This content describes the key features and changes implemented by release 3.3 of Couchbase Sync Gateway
 
 > [!CAUTION]
 > One Way Upgrade
 > 
 > The migration to 3.x configuration is a ONE WAY process — see: [Upgrading](../upgrading.md) for more.
 
-## [](#maint-latest)3.3.5 — June 2026
+## [](#maint-3-3-7)3.3.7 — July 2026
 
 > [!IMPORTANT]
-> If you use OIDC-based authentication for deployments and manage users through the Sync Gateway Admin REST API, upgrade to this release to receive critical fixes.
+> If you use Sync Gateway 3.3.6 or 3.3.5, upgrade to this release to receive critical fixes.
 
 ### [](#fixed-issues)Fixed Issues
 
-* [CBG-5286 — \_changes feeds with active\_only=true and limit parameters can miss expected changes with revocations](https://jira.issues.couchbase.com/browse/CBG-5286)
 * [CBG-5382 — Resync regenerate sequences will not set \_default metadata id when finished](https://jira.issues.couchbase.com/browse/CBG-5382)
 * [CBG-5384 — Panic in revoked feed handling](https://jira.issues.couchbase.com/browse/CBG-5384)
+* [CBG-5286 — \_changes feeds with active\_only=true and limit parameters can miss expected changes with revocations](https://jira.issues.couchbase.com/browse/CBG-5286)
+* [CBG-5554 — activeOnly replication can miss documents for channels over the pagination limit](https://jira.issues.couchbase.com/browse/CBG-5554)
 
 ### [](#enhancements)Enhancements
 
-None for this release.
+* [CBG-5393 — REST endpoint for pruning document channel history](https://jira.issues.couchbase.com/browse/CBG-5393)
+* [CBG-5395 — REST endpoint for pruning user channel history](https://jira.issues.couchbase.com/browse/CBG-5395)
 
 ### [](#known-issues)Known Issues
 
@@ -111,7 +113,7 @@ None for this release.
 ### [](#fixed-issues-5)Fixed Issues
 
 * [CBG-4973 - Don't set SameSite=None when no TLS is used](https://jira.issues.couchbase.com/browse/CBG-4973)
-* [CBG-4941 - Couchbase Lite 4.0 is allowed to connect to Sync Gateway 3.3.0](https://jira.issues.couchbase.com/browse/CBG-4941)
+* [CBG-4941 - SG 3.x erroneously reports it can support Version Vector replication (affects CBL and ISGR >= v4)](https://jira.issues.couchbase.com/browse/CBG-4941)
 
 ### [](#enhancements-5)Enhancements
 

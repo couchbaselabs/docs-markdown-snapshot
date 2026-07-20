@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Java Client.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.5/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-04-30T05:37:08.077Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:3.5@java-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -13,6 +13,13 @@ link: xref:3.5@java-sdk:project-docs:sdk-release-notes.adoc[]
 # SDK Release Notes
 
 > Release notes, installation instructions, and download archive for the Couchbase Java Client. 
+
+> [!IMPORTANT]
+> Refer to the Latest Release Notes
+> 
+> This page is an archive snapshot, and does not contain release notes for the latest version of the SDK.
+> 
+> See the [latest SDK release notes](../../current/project-docs/sdk-release-notes.md) for more recent improvements and bug fixes.
 
 These pages cover the 3._x_ versions of the Couchbase Java SDK. For release notes, download links, and installation methods for 2.7 and earlier releases of the Couchbase Java Client, which will not work with Distributed Transactions, please see the [2.x Java Release Notes & Download Archive](https://docs-archive.couchbase.com/java-sdk/2.7/sdk-release-notes.html).
 

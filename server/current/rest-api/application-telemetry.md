@@ -3,7 +3,7 @@ title: Application Telemetry
 description: You can enable application telemetry to have Couchbase Server
   periodically collect telemetry from your clients that use the Couchbase SDK.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/application-telemetry.adoc
-pubDate: 2026-05-06T05:34:55.761Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:server:rest-api:application-telemetry.adoc[]
 ---
 
@@ -16,9 +16,15 @@ link: xref:server:rest-api:application-telemetry.adoc[]
 
 ## [](#description)Description
 
-Having Couchbase Server collect telemetry from your applications can help you troubleshoot client issues. This telemetry data is useful to diagnose issues such as poor performance or timeouts.
+Having Couchbase Server collect telemetry from your applications can help you troubleshoot client issues. This visibility into metrics data from the application's point of view is useful to diagnose issues such as poor performance or timeouts.
 
-When you enable application telemetry, Couchbase Server advertises to SDK clients that it can collect telemetry data. When an SDK client connects to a cluster with application telemetry enabled, it opens a WebSocket connection to a node in the cluster. Couchbase Server uses this connection to periodically gather telemetry data from the client in Prometheus format.
+![Telemetry Architecture](_images/diag-adcaf9fcded364fc485c5699f432f36452c5f0a8.svg) 
+
+Figure 1\. Telemetry Architecture
+
+When you enable application telemetry, Couchbase Server advertises to SDK clients that it can collect telemetry data. When an SDK client connects to a cluster with application telemetry enabled, it opens a WebSocket connection to a node in the cluster.  
+The clients send metrics to any node in the cluster — the cluster forwards the metrics on to other nodes.  
+Couchbase Server uses this connection to periodically gather telemetry data from the client in Prometheus format.
 
 > [!NOTE]
 > Application telemetry is off by default in Couchbase Server 8.0\. Future versions of Couchbase Server may enable it by default.
@@ -45,6 +51,35 @@ Your Couchbase Server cluster and your clients must meet the following requireme
 | [Ruby](../../../ruby-sdk/current/hello-world/overview.md)      | 3.7                                                |
 | [Scala](../../../scala-sdk/current/hello-world/overview.md)    | 3.9                                                |
 * Your clients must be able to connect to the node's management port to create the WebSocket connection for telemetry data collection. The default management port is 8091 for unencrypted connections and 18091 for encrypted connections. Make sure any firewall rules between your clients and the nodes allow traffic on the management port.
+
+> [!IMPORTANT]
+> Enabling telemetry
+> 
+> Telemetry is turned off by default on Couchbase Server.
+> 
+> Use the following `curl` command to view the telemetry state on your server:
+> 
+> ```bash
+> curl -u Administrator:password -X GET http://localhost:8091/settings/appTelemetry | jq
+> ```
+> 
+> This returns a JSON object that contains the telemetry state as `true` or `false`.
+> 
+> ```json
+> {
+>   "enabled": false,
+>   "maxScrapeClientsPerNode": 1024,
+>   "scrapeIntervalSeconds": 60
+> }
+> ```
+> 
+> Execute the following `curl` command to enable telemetry on your cluster.
+> 
+> ```bash
+> curl -u Administrator:password -X POST \
+> http://localhoast:8091/settings/appTelemetry \
+> -d enabled=true
+> ```
 
 ## [](#http-methods)HTTP Methods
 
@@ -199,7 +234,7 @@ Valid values are `60` to `600`.
 
 The default value is `60`.
 
-You can increase this value to reduce the overhead of collecting telemetry data on your nodes. However, increasing this value means Couchbase Server will miss collecting more telemetry data from clients before they disconnect. For example, suppose you set this value to `300`. Then Couchbase Server could lose up to 5 minutes of telemetry data from a client that disconnects just before the next scheduled telemetry collection.
+You can increase this value to reduce the overhead of collecting telemetry data on your nodes. However, increasing this value means Couchbase Server misses collecting more telemetry data from clients before they disconnect. For example, suppose you set this value to `300`. Then Couchbase Server could lose up to 5 minutes of telemetry data from a client that disconnects just before the next scheduled telemetry collection.
 
 If your applications have short-lived client connections to the cluster, consider keeping this value low to increase the chances of collecting telemetry before the clients disconnect.
 
@@ -218,7 +253,7 @@ Returned when the call is successful. A successful call also returns a JSON obje
 
 `400 Bad Request`
 
-Returned if you attempt to enable application telemetry on a cluster that's running in mixed mode where some nodes are running a version earlier than 8.0\. All of the nodes in the cluster must be running version 8.0 or later to enable application telemetry. See [Prerequisites](#prerequisites) for more requirements.
+Returned if you attempt to enable application telemetry on a cluster that's running in mixed mode where some nodes are running a version earlier than 8.0\. All the nodes in the cluster must be running version 8.0 or later to enable application telemetry. See [Prerequisites](#prerequisites) for more requirements.
 
 `403 Forbidden`
 
@@ -226,7 +261,7 @@ Returned if you do not have the proper roles to call this API. See [Required Pri
 
 `404 Not Found`
 
-Returned if you attempt to call the endpoint on a running a version of Couchbase Server earlier than 8.0.
+Returned if you attempt to call the endpoint on a version of Couchbase Server earlier than 8.0.
 
 ### [](#config-examples)Examples
 

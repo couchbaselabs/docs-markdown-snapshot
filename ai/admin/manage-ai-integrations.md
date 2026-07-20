@@ -1,9 +1,10 @@
 ---
 title: Manage AI Integration Settings
 description: Use the Capella UI to manage settings for your integrations between
-  an operational database, Capella AI Services, and OpenAI or Amazon S3.
+  an operational database, the {ai-long}, and Amazon Bedrock, OpenAI, or Amazon
+  S3.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/manage-ai-integrations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:admin:manage-ai-integrations.adoc[]
 ---
 
@@ -12,29 +13,69 @@ link: xref:ai:admin:manage-ai-integrations.adoc[]
 
 # Manage AI Integration Settings
 
-> Use the Capella UI to manage settings for your integrations between an operational database, Capella AI Services, and OpenAI or Amazon S3\. 
+> Use the Capella UI to manage settings for your integrations between an operational database, the {ai-long}, and Amazon Bedrock, OpenAI, or Amazon S3\. 
 
-* Use **Amazon S3** to load data into Capella.
-* Use **OpenAI** as a foundation model for your AI applications. Add Retrieval-Augmented Generation (RAG) to your applications through your Capella operational database and get more accurate responses.
+* Use **Amazon S3** to load data into the {ai}.
+* Use **OpenAI** as a foundation model for your AI applications. Add Retrieval-Augmented Generation (RAG) to your applications through your operational database and get more accurate responses.
+* Use **Amazon Bedrock** as an embedding model provider for [Vectorization Workflows](../build/vectorization-service/data-processing.md).
 
-Other integrations are available. Use the available filters or search for a supported Capella AI Services integration, to explore the full AI ecosystem available in Capella.
+Other integrations are available. Use the available filters or search for a supported {ai} integration, to explore the full AI ecosystem available in the {ai}.
 
-You can directly manage your OpenAI API keys or Amazon S3 bucket credentials from the **AI Services > Integrations** page. The **Integrations** page lets you see available integrations, and your current API keys or credentials. You can [edit your API keys or credentials](#edit-integration) or [delete them](#delete-integration) from your organization. Reuse your credentials across workflows to save time during workflow configuration.
+You can directly manage your Amazon Bedrock API keys, OpenAI API keys, or Amazon S3 bucket credentials from the **{ai} > Integrations** page. The **Integrations** page lets you see available integrations, and your current API keys or credentials. You can [edit your API keys or credentials](#edit-integration) or [delete them](#delete-integration) from your organization. Reuse your credentials across workflows to save time during workflow configuration.
 
-You can add multiple OpenAI API keys or Amazon S3 bucket connections to Capella at once. For more information about how to add a new OpenAI model or Amazon S3 bucket connection to Capella, see [Vectorize Structured Data from Amazon S3](../build/vectorization-service/vectorize-structured-data-s3.md) or [Process and Vectorize Unstructured Data](../build/vectorization-service/vectorize-unstructured-data.md).
+You can add multiple OpenAI API keys or Amazon S3 bucket connections to the {ai} at once. For more information about how to add a new OpenAI model or Amazon S3 bucket connection to the {ai}, see [Vectorize Structured Data from Amazon S3](../build/vectorization-service/vectorize-structured-data-s3.md) or [Process and Vectorize Unstructured Data](../build/vectorization-service/vectorize-unstructured-data.md).
 
 ## [](#prerequisites)Prerequisites
 
-* You have an OpenAI API key or credentials for an Amazon S3 bucket.
-* You have logged in to the Couchbase Capella UI.
+* You have a short-term Amazon Bedrock API key, an OpenAI API key, or credentials for an Amazon S3 bucket.
+* You have logged in to the Capella UI.
 
-## [](#edit-integration)Edit an OpenAI API Key or Amazon S3 Credentials
+## [](#add-bedrock)Add an Amazon Bedrock API Key for Vectorization Workflows
 
-To edit an API Key or credentials in your organization or cluster:
+Use a short-term Amazon Bedrock API key to connect Vectorization Workflows to an Amazon Bedrock embedding model in your AWS account.
 
-1. From your organization, go to **AI Services** **Integrations**.
+> [!NOTE]
+> When using Amazon Bedrock as an embedding model provider for Vectorization Workflows, you must use a short-term API key from AWS. If your key does not start with `bedrock-api-key-`, it's not a valid short-term key.
+
+### [](#set-up-iam-permissions)Set Up IAM Permissions
+
+Before generating a Bedrock API key, make sure the IAM role you use to generate it has permission to invoke your embedding model. As a minimum requirement, the role needs the `bedrock:InvokeModel` action scoped to the specific foundation model ARN. For guidance on setting up IAM permissions for Amazon Bedrock, see [Identity-based policy examples for Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/security%5Fiam%5Fid-based-policy-examples.html) in the AWS documentation.
+
+### [](#generate-a-short-term-key)Generate a Short-Term Key
+
+Short-term Bedrock API keys inherit the duration of the IAM session used to generate them, up to a maximum of 12 hours. To minimize Workflow interruptions, generate your key using the maximum 12-hour session duration. Keys that use shorter durations are also valid, but they have a greater risk of expiring in the middle of a Workflow run and causing interruptions.
+
+For more information about how to generate a short-term Bedrock API key, see [Amazon Bedrock API keys](https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys.html) in the AWS documentation.
+
+### [](#add-your-key-to-the-ai)Add Your Key to the {ai}
+
+To add your Amazon Bedrock API key to the {ai-long}:
+
+1. From your organization, go to menu:{ai}\[Integrations\].
+2. Find **Amazon Bedrock** in the list of integrations and click **Add Credentials**.
+3. Click **Add Credentials**.
+4. Enter a name to identify your key in the {ai}.
+5. Select the AWS region where you generated your short-term key.
+6. Enter your short-term Amazon Bedrock API key. The key must start with `bedrock-api-key-`.
+7. Click **Add Credentials**.
+
+### [](#key-expiry-and-renewal)Key Expiry and Renewal
+
+Short-term Bedrock API keys expire when the IAM session expires, up to a maximum of 12 hours. When a key expires, Workflows using it stop generating embeddings and fail with error messages indicating an AWS authentication error.
+
+An existing workflow that fails due to API key expiration cannot automatically use updated API keys. To resume vectorization, you must:
+
+1. Delete the existing Workflow that failed due to API key expiration.
+2. Create a new Workflow using the integration that contains the updated API key.
+
+## [](#edit-integration)Edit an API Key or Credentials
+
+To edit an API key or credentials in your organization:
+
+1. From your organization, go to menu:{ai}\[Integrations\].
 2. Search for what you want to edit:
 
+  * **Amazon Bedrock** API keys
   * **Amazon S3** credentials
   * **OpenAI** API keys
 3. Click **Manage Credentials**.
@@ -42,13 +83,14 @@ To edit an API Key or credentials in your organization or cluster:
 5. Update the API key or Amazon S3 credentials
 6. Click **Save API Key** or **Save Credentials**.
 
-## [](#delete-integration)Delete an OpenAI API Key or Amazon S3 Credentials
+## [](#delete-integration)Delete an API Key or Credentials
 
-To delete an API key or Amazon S3 credentials from your organization:
+To delete an API key or credentials from your organization:
 
-1. From your organization, go to **AI Services** **Integrations**.
-2. Search for what you want to edit:
+1. From your organization, go to menu:{ai}\[Integrations\].
+2. Search for what you want to delete:
 
+  * **Amazon Bedrock** API keys
   * **Amazon S3** credentials
   * **OpenAI** API keys
 3. Click **Manage Credentials**.

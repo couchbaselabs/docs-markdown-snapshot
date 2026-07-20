@@ -1,7 +1,7 @@
 ---
 title: Create VPC Peering Connection
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/create_vpc_peering_connection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:analytics:admin:create_vpc_peering_connection.adoc[]
 ---
 
@@ -18,3 +18,4 @@ Capella Analytics services allows you to create VPC Peering with the below servi
 
 * [Amazon Web Services (AWS)](vpc-peering.md)
 * [Google Cloud Platform (GCP)](vpc-peering-gcp.md)
+* [Microsoft Azure](vpc-peering-azure.md)

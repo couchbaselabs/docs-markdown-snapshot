@@ -1,10 +1,10 @@
 ---
 title: Troubleshoot a Workflow
-description: If your Capella AI Services Workflows complete with errors or have
-  documents that cannot be processed, you can query a document's extended
-  attributes (XATTRs) data for more information.
+description: If your {ai-long} Workflows complete with errors or have documents
+  that cannot be processed, you can query a document's extended attributes
+  (XATTRs) data for more information.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/troubleshoot-vectorization.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:build:vectorization-service/troubleshoot-vectorization.adoc[]
 ---
 
@@ -13,20 +13,20 @@ link: xref:ai:build:vectorization-service/troubleshoot-vectorization.adoc[]
 
 # Troubleshoot a Workflow
 
-> If your Capella AI Services Workflows complete with errors or have documents that cannot be processed, you can query a document's extended attributes (XATTRs) data for more information. 
+> If your {ai-long} Workflows complete with errors or have documents that cannot be processed, you can query a document's extended attributes (XATTRs) data for more information. 
 
 Workflows create a `META().xattrs.vectorization.status` field on a document when that document is skipped during vectorization. You can use a SQL++ query to get information from this field and troubleshoot your Workflow.
 
 If your Workflow returns a `LCB_ERR_DURABILITY_AMBIGUOUS` error, see [Resolve a LCB\_ERR\_DURABILITY\_AMBIGUOUS Error](#resolve).
 
-For more information about Workflows, see [Process Your Data For Capella AI Services](data-processing.md).
+For more information about Workflows, see [Process Your Data For the {ai-long}](data-processing.md).
 
 > [!NOTE]
 > If you deleted or modified your Workflow's metadata scope, collections, or Eventing functions, your Workflow might fail to run correctly. You must delete the Workflow and create a new one.
 
 ## [](#prerequisites)Prerequisites
 
-* You created and ran a Workflow on Capella AI Services. For more information, see:
+* You created and ran a Workflow on the {ai-long}. For more information, see:
 
   * [Vectorize Structured Data from Capella](vectorize-structured-data-capella.md)
   * [Vectorize Structured Data from Amazon S3](vectorize-structured-data-s3.md)
@@ -114,7 +114,7 @@ A Workflow can return a `LCB_ERR_DURABILITY_AMBIGUOUS` error when:
 
 If your Workflow fails to run and returns this error, rerun your Workflow after your destination cluster has finished rebalancing:
 
-1. Go to **AI Services** **Workflows**.
+1. Go to menu:{ai}\[Workflows\].
 2. Go to **More Options (⋮)** **Rerun Workflow**.
 
 ## [](#next-steps)Next Steps

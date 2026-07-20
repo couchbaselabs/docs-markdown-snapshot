@@ -1,11 +1,11 @@
 {
   "version": 3,
-  "generated": 1782453595686,
+  "generated": 1784556004849,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
       "name": "ai",
-      "title": "Capella AI Services",
+      "title": "Couchbase AI Data Plane",
       "latest": "",
       "versions": [
         {
@@ -35,7 +35,7 @@
               "module": "admin",
               "path": "upgrade-ai-services.adoc",
               "url": "/ai/admin/upgrade-ai-services.md",
-              "title": "Upgrades for AI Services"
+              "title": "Upgrades for the {ai}"
             },
             {
               "module": "agent-tutorial",
@@ -65,31 +65,67 @@
               "module": "api-guide",
               "path": "api-errors.adoc",
               "url": "/ai/api-guide/api-errors.md",
-              "title": "Capella AI Services API Errors"
+              "title": "The {ai-long} API Errors"
             },
             {
               "module": "api-guide",
               "path": "api-intro.adoc",
               "url": "/ai/api-guide/api-intro.md",
-              "title": "Manage Deployments with Capella AI Services APIs"
+              "title": "Manage Deployments with the {ai-long} APIs"
             },
             {
               "module": "api-guide",
               "path": "api-log.adoc",
               "url": "/ai/api-guide/api-log.md",
-              "title": "Capella AI Services API Change Log"
+              "title": "The {ai-long} API Change Log"
             },
             {
               "module": "api-guide",
               "path": "api-start.adoc",
               "url": "/ai/api-guide/api-start.md",
-              "title": "Get Started with Capella AI Services APIs"
+              "title": "Get Started with the {ai-long} APIs"
             },
             {
               "module": "api-guide",
               "path": "api-use.adoc",
               "url": "/ai/api-guide/api-use.md",
-              "title": "Make an API Call with Capella AI Services APIs"
+              "title": "Make an API Call with the {ai-long} APIs"
+            },
+            {
+              "module": "build",
+              "path": "agent-memory/about-agent-mem.adoc",
+              "url": "/ai/build/agent-memory/about-agent-mem.md",
+              "title": "Agent Memory for Persistent Memory Storage"
+            },
+            {
+              "module": "build",
+              "path": "agent-memory/config-agent-mem-auth.adoc",
+              "url": "/ai/build/agent-memory/config-agent-mem-auth.md",
+              "title": "Configure Agent Memory Authentication"
+            },
+            {
+              "module": "build",
+              "path": "agent-memory/config-agent-mem-env.adoc",
+              "url": "/ai/build/agent-memory/config-agent-mem-env.md",
+              "title": "Agent Memory Environment Variable Reference"
+            },
+            {
+              "module": "build",
+              "path": "agent-memory/deploy-agent-mem-prod.adoc",
+              "url": "/ai/build/agent-memory/deploy-agent-mem-prod.md",
+              "title": "Deploy Agent Memory for Production"
+            },
+            {
+              "module": "build",
+              "path": "agent-memory/develop-agent-mem.adoc",
+              "url": "/ai/build/agent-memory/develop-agent-mem.md",
+              "title": "Develop with the Agent Memory SDK"
+            },
+            {
+              "module": "build",
+              "path": "agent-memory/get-started-agent-mem.adoc",
+              "url": "/ai/build/agent-memory/get-started-agent-mem.md",
+              "title": "Get Started with Agent Memory"
             },
             {
               "module": "build",
@@ -119,7 +155,7 @@
               "module": "build",
               "path": "ai-functions.adoc",
               "url": "/ai/build/ai-functions.md",
-              "title": "Use Capella AI Functions"
+              "title": "Use {ai-long} AI Functions"
             },
             {
               "module": "build",
@@ -167,7 +203,7 @@
               "module": "build",
               "path": "model-service/model-service.adoc",
               "url": "/ai/build/model-service/model-service.md",
-              "title": "Deploy Models with the Capella Model Service"
+              "title": "Deploy Models with the {ai} Model Service"
             },
             {
               "module": "build",
@@ -179,7 +215,7 @@
               "module": "build",
               "path": "vectorization-service/data-processing.adoc",
               "url": "/ai/build/vectorization-service/data-processing.md",
-              "title": "Process Your Data For Capella AI Services"
+              "title": "Process Your Data For the {ai-long}"
             },
             {
               "module": "build",
@@ -210,13 +246,13 @@
               "module": "get-started",
               "path": "about-ai-services.adoc",
               "url": "/ai/get-started/intro.md",
-              "title": "Capella AI Services"
+              "title": "{ai-long}"
             },
             {
               "module": "get-started",
               "path": "intro.adoc",
               "url": "/ai/get-started/intro.md",
-              "title": "Capella AI Services"
+              "title": "{ai-long}"
             },
             {
               "module": "model-service-api-reference",
@@ -240,14 +276,14 @@
               "module": "reference",
               "path": "release-notes.adoc",
               "url": "/ai/reference/release-notes.md",
-              "title": "Capella AI Services Release Notes"
+              "title": "{ai-long} Release Notes"
             },
             {
               "alias": true,
               "module": "ROOT",
               "path": "index.adoc",
               "url": "/ai/get-started/intro.md",
-              "title": "Capella AI Services"
+              "title": "{ai-long}"
             },
             {
               "module": "security",
@@ -280,6 +316,12 @@
               "path": "auth/auth-ui.adoc",
               "url": "/analytics/admin/auth/auth-ui.md",
               "title": "Assign Roles for UI Access"
+            },
+            {
+              "module": "admin",
+              "path": "azure-private-endpoint.adoc",
+              "url": "/analytics/admin/azure-private-endpoint.md",
+              "title": "Azure Private Endpoint Connection"
             },
             {
               "module": "admin",
@@ -370,6 +412,12 @@
               "path": "upgrade-cluster.adoc",
               "url": "/analytics/admin/upgrade-cluster.md",
               "title": "Upgrading a Cluster"
+            },
+            {
+              "module": "admin",
+              "path": "vpc-peering-azure.adoc",
+              "url": "/analytics/admin/vpc-peering-azure.md",
+              "title": "VNet Peering with Azure"
             },
             {
               "module": "admin",
@@ -493,6 +541,12 @@
             },
             {
               "module": "query",
+              "path": "integration.adoc",
+              "url": "/analytics/query/integration.md",
+              "title": "Integrations, Connectors, and Tools"
+            },
+            {
+              "module": "query",
               "path": "iq-insights.adoc",
               "url": "/analytics/query/iq-insights.md",
               "title": "Explore Results with iQ Insights"
@@ -547,6 +601,12 @@
             },
             {
               "module": "reference",
+              "path": "azure.adoc",
+              "url": "/analytics/reference/azure.md",
+              "title": "Microsoft Azure"
+            },
+            {
+              "module": "reference",
               "path": "cloud-providers.adoc",
               "url": "/analytics/reference/cloud-providers.md",
               "title": "Supported Cloud Providers"
@@ -593,6 +653,12 @@
               "path": "dynamic-prefixes.adoc",
               "url": "/analytics/sources/dynamic-prefixes.md",
               "title": "Design a Location Path"
+            },
+            {
+              "module": "sources",
+              "path": "external-azure.adoc",
+              "url": "/analytics/sources/external-azure.md",
+              "title": "Azure Blob Storage"
             },
             {
               "module": "sources",
@@ -686,6 +752,12 @@
             },
             {
               "module": "sources",
+              "path": "required-permissions-azure.adoc",
+              "url": "/analytics/sources/required-permissions-azure.md",
+              "title": "Required Permissions for Azure Blob Storage"
+            },
+            {
+              "module": "sources",
               "path": "required-permissions-gcs.adoc",
               "url": "/analytics/sources/required-permissions-gcs.md",
               "title": "Cloud Read/Write Permissions for GCS"
@@ -695,6 +767,12 @@
               "path": "setup-aws-s3-external-source.adoc",
               "url": "/analytics/sources/setup-aws-s3-external-source.md",
               "title": "Set Up Amazon S3 External Source"
+            },
+            {
+              "module": "sources",
+              "path": "setup-azure-blob-external-source.adoc",
+              "url": "/analytics/sources/setup-azure-blob-external-source.md",
+              "title": "Set Up Azure Blob Storage External Source"
             },
             {
               "module": "sources",
@@ -1306,6 +1384,12 @@
               "path": "management-api-guide/management-api-use.adoc",
               "url": "/app-services/management-api-guide/management-api-use.md",
               "title": "Make an API Call with the Capella App Services Management API"
+            },
+            {
+              "module": "ROOT",
+              "path": "migrating/migrate-sync-metadata.adoc",
+              "url": "/app-services/migrating/migrate-sync-metadata.md",
+              "title": "Sync Metadata Isolation"
             },
             {
               "module": "ROOT",
@@ -2374,6 +2458,13 @@
             {
               "alias": true,
               "module": "app-services",
+              "path": "channels/channels.adoc",
+              "url": "/app-services/security/channels.md",
+              "title": "Add Security with Channels"
+            },
+            {
+              "alias": true,
+              "module": "app-services",
               "path": "connect/connect-apps-to-endpoint.adoc",
               "url": "/app-services/app-endpoints/connect-apps-to-endpoint.md",
               "title": "Connect your Apps to an App Endpoint"
@@ -2461,6 +2552,13 @@
               "path": "maintenance/upgrading-app-services.adoc",
               "url": "/app-services/maintenance/upgrading-app-services.md",
               "title": "Upgrade App Services"
+            },
+            {
+              "alias": true,
+              "module": "app-services",
+              "path": "migrating/migrate-sync-metadata.adoc",
+              "url": "/app-services/migrating/migrate-sync-metadata.md",
+              "title": "Sync Metadata Isolation"
             },
             {
               "alias": true,
@@ -6292,6 +6390,13 @@
             {
               "alias": true,
               "module": "admin",
+              "path": "azure-private-endpoint.adoc",
+              "url": "/analytics/admin/azure-private-endpoint.md",
+              "title": "Azure Private Endpoint Connection"
+            },
+            {
+              "alias": true,
+              "module": "admin",
               "path": "backup-restore.adoc",
               "url": "/analytics/admin/backup-restore.md",
               "title": "Back Up or Restore a Capella Analytics Cluster"
@@ -6393,6 +6498,13 @@
               "path": "upgrade-cluster.adoc",
               "url": "/analytics/admin/upgrade-cluster.md",
               "title": "Upgrading a Cluster"
+            },
+            {
+              "alias": true,
+              "module": "admin",
+              "path": "vpc-peering-azure.adoc",
+              "url": "/analytics/admin/vpc-peering-azure.md",
+              "title": "VNet Peering with Azure"
             },
             {
               "alias": true,
@@ -6593,6 +6705,13 @@
             {
               "alias": true,
               "module": "reference",
+              "path": "azure.adoc",
+              "url": "/analytics/reference/azure.md",
+              "title": "Microsoft Azure"
+            },
+            {
+              "alias": true,
+              "module": "reference",
               "path": "cloud-providers.adoc",
               "url": "/analytics/reference/cloud-providers.md",
               "title": "Supported Cloud Providers"
@@ -6638,6 +6757,13 @@
               "path": "dynamic-prefixes.adoc",
               "url": "/analytics/sources/dynamic-prefixes.md",
               "title": "Design a Location Path"
+            },
+            {
+              "alias": true,
+              "module": "sources",
+              "path": "external-azure.adoc",
+              "url": "/analytics/sources/external-azure.md",
+              "title": "Azure Blob Storage"
             },
             {
               "alias": true,
@@ -6740,6 +6866,13 @@
             {
               "alias": true,
               "module": "sources",
+              "path": "required-permissions-azure.adoc",
+              "url": "/analytics/sources/required-permissions-azure.md",
+              "title": "Required Permissions for Azure Blob Storage"
+            },
+            {
+              "alias": true,
+              "module": "sources",
               "path": "required-permissions-gcs.adoc",
               "url": "/analytics/sources/required-permissions-gcs.md",
               "title": "Cloud Read/Write Permissions for GCS"
@@ -6750,6 +6883,13 @@
               "path": "setup-aws-s3-external-source.adoc",
               "url": "/analytics/sources/setup-aws-s3-external-source.md",
               "title": "Set Up Amazon S3 External Source"
+            },
+            {
+              "alias": true,
+              "module": "sources",
+              "path": "setup-azure-blob-external-source.adoc",
+              "url": "/analytics/sources/setup-azure-blob-external-source.md",
+              "title": "Set Up Azure Blob Storage External Source"
             },
             {
               "alias": true,
@@ -7154,109 +7294,13 @@
     },
     {
       "name": "couchbase-edge-server",
-      "title": "Couchbase Edge Server",
-      "latest": "1.0",
+      "title": "couchbase-edge-server",
+      "latest": "1.1",
       "versions": [
         {
-          "version": "1.0",
-          "url": "/couchbase-edge-server/current/introduction/intro.html",
+          "version": "1.1",
+          "url": "/couchbase-edge-server/current/index.html",
           "pages": [
-            {
-              "module": "administer",
-              "path": "administer-landing.adoc",
-              "url": "/couchbase-edge-server/current/administer/administer-landing.md",
-              "title": "Administer"
-            },
-            {
-              "module": "administer",
-              "path": "audit-logging.adoc",
-              "url": "/couchbase-edge-server/current/administer/audit-logging.md",
-              "title": "Audit Logging"
-            },
-            {
-              "module": "administer",
-              "path": "encrypt-database.adoc",
-              "url": "/couchbase-edge-server/current/administer/encrypt-database.md",
-              "title": "Encrypt a Database"
-            },
-            {
-              "module": "administer",
-              "path": "operational-logging.adoc",
-              "url": "/couchbase-edge-server/current/administer/operational-logging.md",
-              "title": "Operational Logging"
-            },
-            {
-              "module": "configuration",
-              "path": "authentication.adoc",
-              "url": "/couchbase-edge-server/current/configuration/authentication.md",
-              "title": "Authentication"
-            },
-            {
-              "module": "configuration",
-              "path": "configuration-schema.adoc",
-              "url": "/couchbase-edge-server/current/configuration/configuration-schema.md",
-              "title": "Edge Server Configuration Schema"
-            },
-            {
-              "module": "configuration",
-              "path": "edge-server-configuration.adoc",
-              "url": "/couchbase-edge-server/current/configuration/edge-server-configuration.md",
-              "title": "Edge Server Configuration"
-            },
-            {
-              "module": "get-started",
-              "path": "get-started-landing.adoc",
-              "url": "/couchbase-edge-server/current/get-started/get-started-landing.md",
-              "title": "Getting Started"
-            },
-            {
-              "module": "get-started",
-              "path": "install.adoc",
-              "url": "/couchbase-edge-server/current/get-started/install.md",
-              "title": "Install and Verify"
-            },
-            {
-              "module": "get-started",
-              "path": "prereqs.adoc",
-              "url": "/couchbase-edge-server/current/get-started/prereqs.md",
-              "title": "Prerequisites"
-            },
-            {
-              "module": "introduction",
-              "path": "intro.adoc",
-              "url": "/couchbase-edge-server/current/introduction/intro.md",
-              "title": "Introducing Couchbase Edge Server"
-            },
-            {
-              "module": "introduction",
-              "path": "whats-new.adoc",
-              "url": "/couchbase-edge-server/current/introduction/whats-new.md",
-              "title": "New In 1.0"
-            },
-            {
-              "module": "product-notes",
-              "path": "compatibility.adoc",
-              "url": "/couchbase-edge-server/current/product-notes/compatibility.md",
-              "title": "Product Compatibility"
-            },
-            {
-              "module": "product-notes",
-              "path": "product-notes-landing.adoc",
-              "url": "/couchbase-edge-server/current/product-notes/product-notes-landing.md",
-              "title": "Product Notes"
-            },
-            {
-              "module": "product-notes",
-              "path": "release-notes.adoc",
-              "url": "/couchbase-edge-server/current/product-notes/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "module": "product-notes",
-              "path": "supported-platforms.adoc",
-              "url": "/couchbase-edge-server/current/product-notes/supported-platforms.md",
-              "title": "Supported Platforms"
-            },
             {
               "module": "public-api-reference",
               "path": "index.adoc",
@@ -7264,82 +7308,184 @@
               "title": "Edge Server Public REST API"
             },
             {
+              "alias": true,
+              "module": "ROOT",
+              "path": "",
+              "url": "/couchbase-edge-server/current"
+            }
+          ]
+        },
+        {
+          "version": "1.0",
+          "url": "/couchbase-edge-server/1.0/introduction/intro.html",
+          "pages": [
+            {
+              "module": "administer",
+              "path": "administer-landing.adoc",
+              "url": "/couchbase-edge-server/1.0/administer/administer-landing.md",
+              "title": "Administer"
+            },
+            {
+              "module": "administer",
+              "path": "audit-logging.adoc",
+              "url": "/couchbase-edge-server/1.0/administer/audit-logging.md",
+              "title": "Audit Logging"
+            },
+            {
+              "module": "administer",
+              "path": "encrypt-database.adoc",
+              "url": "/couchbase-edge-server/1.0/administer/encrypt-database.md",
+              "title": "Encrypt a Database"
+            },
+            {
+              "module": "administer",
+              "path": "operational-logging.adoc",
+              "url": "/couchbase-edge-server/1.0/administer/operational-logging.md",
+              "title": "Operational Logging"
+            },
+            {
+              "module": "configuration",
+              "path": "authentication.adoc",
+              "url": "/couchbase-edge-server/1.0/configuration/authentication.md",
+              "title": "Authentication"
+            },
+            {
+              "module": "configuration",
+              "path": "configuration-schema.adoc",
+              "url": "/couchbase-edge-server/1.0/configuration/configuration-schema.md",
+              "title": "Edge Server Configuration Schema"
+            },
+            {
+              "module": "configuration",
+              "path": "edge-server-configuration.adoc",
+              "url": "/couchbase-edge-server/1.0/configuration/edge-server-configuration.md",
+              "title": "Edge Server Configuration"
+            },
+            {
+              "module": "get-started",
+              "path": "get-started-landing.adoc",
+              "url": "/couchbase-edge-server/1.0/get-started/get-started-landing.md",
+              "title": "Getting Started"
+            },
+            {
+              "module": "get-started",
+              "path": "install.adoc",
+              "url": "/couchbase-edge-server/1.0/get-started/install.md",
+              "title": "Install and Verify"
+            },
+            {
+              "module": "get-started",
+              "path": "prereqs.adoc",
+              "url": "/couchbase-edge-server/1.0/get-started/prereqs.md",
+              "title": "Prerequisites"
+            },
+            {
+              "module": "introduction",
+              "path": "intro.adoc",
+              "url": "/couchbase-edge-server/1.0/introduction/intro.md",
+              "title": "Introducing Couchbase Edge Server"
+            },
+            {
+              "module": "introduction",
+              "path": "whats-new.adoc",
+              "url": "/couchbase-edge-server/1.0/introduction/whats-new.md",
+              "title": "New In 1.0"
+            },
+            {
+              "module": "product-notes",
+              "path": "compatibility.adoc",
+              "url": "/couchbase-edge-server/1.0/product-notes/compatibility.md",
+              "title": "Product Compatibility"
+            },
+            {
+              "module": "product-notes",
+              "path": "product-notes-landing.adoc",
+              "url": "/couchbase-edge-server/1.0/product-notes/product-notes-landing.md",
+              "title": "Product Notes"
+            },
+            {
+              "module": "product-notes",
+              "path": "release-notes.adoc",
+              "url": "/couchbase-edge-server/1.0/product-notes/release-notes.md",
+              "title": "Release Notes"
+            },
+            {
+              "module": "product-notes",
+              "path": "supported-platforms.adoc",
+              "url": "/couchbase-edge-server/1.0/product-notes/supported-platforms.md",
+              "title": "Supported Platforms"
+            },
+            {
               "module": "rest-based-access",
               "path": "changes-feed.adoc",
-              "url": "/couchbase-edge-server/current/rest-based-access/changes-feed.md",
+              "url": "/couchbase-edge-server/1.0/rest-based-access/changes-feed.md",
               "title": "Monitor Changes with Edge Server"
             },
             {
               "module": "rest-based-access",
               "path": "database-operations.adoc",
-              "url": "/couchbase-edge-server/current/rest-based-access/database-operations.md",
+              "url": "/couchbase-edge-server/1.0/rest-based-access/database-operations.md",
               "title": "Database Operations with Edge Server"
             },
             {
               "module": "rest-based-access",
               "path": "document-access.adoc",
-              "url": "/couchbase-edge-server/current/rest-based-access/document-access.md",
+              "url": "/couchbase-edge-server/1.0/rest-based-access/document-access.md",
               "title": "Document Access with Edge Server"
             },
             {
               "module": "rest-based-access",
               "path": "queries-api.adoc",
-              "url": "/couchbase-edge-server/current/rest-based-access/queries-api.md",
+              "url": "/couchbase-edge-server/1.0/rest-based-access/queries-api.md",
               "title": "Run Queries with Edge Server"
             },
             {
               "module": "rest-based-access",
               "path": "replication.adoc",
-              "url": "/couchbase-edge-server/current/rest-based-access/replication.md",
+              "url": "/couchbase-edge-server/1.0/rest-based-access/replication.md",
               "title": "Manage Replication with Edge Server"
             },
             {
               "module": "rest-based-access",
               "path": "rest-api-landing.adoc",
-              "url": "/couchbase-edge-server/current/rest-based-access/rest-api-landing.md",
+              "url": "/couchbase-edge-server/1.0/rest-based-access/rest-api-landing.md",
               "title": "Edge Server REST API"
             },
             {
               "module": "rest-based-access",
               "path": "rest-api-start.adoc",
-              "url": "/couchbase-edge-server/current/rest-based-access/rest-api-start.md",
+              "url": "/couchbase-edge-server/1.0/rest-based-access/rest-api-start.md",
               "title": "Get Started with the Edge Server REST API"
             },
             {
               "alias": true,
               "module": "ROOT",
-              "path": "",
-              "url": "/couchbase-edge-server/current"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
               "path": "index.adoc",
-              "url": "/couchbase-edge-server/current/introduction/intro.md",
+              "url": "/couchbase-edge-server/1.0/introduction/intro.md",
               "title": "Introducing Couchbase Edge Server"
             },
             {
               "module": "sync",
               "path": "edge-sync-cbl.adoc",
-              "url": "/couchbase-edge-server/current/sync/edge-sync-cbl.md",
+              "url": "/couchbase-edge-server/1.0/sync/edge-sync-cbl.md",
               "title": "Edge Sync with Couchbase Lite"
             },
             {
               "module": "sync",
               "path": "edge-to-edge-sync.adoc",
-              "url": "/couchbase-edge-server/current/sync/edge-to-edge-sync.md",
+              "url": "/couchbase-edge-server/1.0/sync/edge-to-edge-sync.md",
               "title": "Sync with Edge Server"
             },
             {
               "module": "sync",
               "path": "remote-sync.adoc",
-              "url": "/couchbase-edge-server/current/sync/remote-sync.md",
+              "url": "/couchbase-edge-server/1.0/sync/remote-sync.md",
               "title": "Remote Sync with App Services / Sync Gateway"
             },
             {
               "module": "sync",
               "path": "sync-landing.adoc",
-              "url": "/couchbase-edge-server/current/sync/sync-landing.md",
+              "url": "/couchbase-edge-server/1.0/sync/sync-landing.md",
               "title": "Sync"
             }
           ]
@@ -41082,13 +41228,6 @@
               "path": "server.adoc",
               "url": "/home/server.md",
               "title": "Couchbase Server"
-            },
-            {
-              "alias": true,
-              "module": "sdks",
-              "path": "intro.adoc",
-              "url": "/home/sdk.md",
-              "title": "SDKs &amp; Connectors"
             }
           ]
         }
@@ -55024,7 +55163,7 @@
               "module": "project-docs",
               "path": "sdk-release-notes.adoc",
               "url": "/nodejs-sdk/4.3/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Couchbase Node.js Release Notes and Archives"
             },
             {
               "module": "ref",
@@ -55256,14 +55395,14 @@
               "module": "ROOT",
               "path": "release-notes.adoc",
               "url": "/nodejs-sdk/4.3/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Couchbase Node.js Release Notes and Archives"
             },
             {
               "alias": true,
               "module": "ROOT",
               "path": "relnotes-nodejs-sdk.adoc",
               "url": "/nodejs-sdk/4.3/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Couchbase Node.js Release Notes and Archives"
             },
             {
               "alias": true,
@@ -55298,7 +55437,7 @@
               "module": "ROOT",
               "path": "sdk-release-notes.adoc",
               "url": "/nodejs-sdk/4.3/project-docs/sdk-release-notes.md",
-              "title": "SDK Release Notes"
+              "title": "Couchbase Node.js Release Notes and Archives"
             },
             {
               "alias": true,
@@ -55428,12 +55567,6 @@
               "path": "concept-backup.adoc",
               "url": "/operator/current/concept-backup.md",
               "title": "Couchbase Backup and Restore"
-            },
-            {
-              "module": "ROOT",
-              "path": "concept-cloud-native-gateway.adoc",
-              "url": "/operator/current/concept-cloud-native-gateway.md",
-              "title": "Cloud Native Gateway"
             },
             {
               "module": "ROOT",
@@ -75709,6 +75842,12 @@
             },
             {
               "module": "cli",
+              "path": "cbcat.adoc",
+              "url": "/server/current/cli/cbcat.md",
+              "title": "cbcat"
+            },
+            {
+              "module": "cli",
               "path": "cbcli/cblogredaction.adoc",
               "url": "/server/current/cli/cbcli/cblogredaction.md",
               "title": "cblogredaction"
@@ -78698,6 +78837,13 @@
               "title": "Supported Platforms"
             },
             {
+              "alias": true,
+              "module": "install",
+              "path": "install-client-server.adoc",
+              "url": "/home/sdk.md",
+              "title": "SDKs &amp; Connectors"
+            },
+            {
               "module": "install",
               "path": "install-environments.adoc",
               "url": "/server/current/install/install-environments.md",
@@ -80415,6 +80561,12 @@
               "path": "analytics-service-metrics.adoc",
               "url": "/server/current/metrics-reference/analytics-service-metrics.md",
               "title": "Analytics Service Metrics"
+            },
+            {
+              "module": "metrics-reference",
+              "path": "application-telemetry-metrics.adoc",
+              "url": "/server/current/metrics-reference/application-telemetry-metrics.md",
+              "title": "Application Telemetry Metrics"
             },
             {
               "module": "metrics-reference",
@@ -82815,6 +82967,13 @@
               "path": "development-intro.adoc",
               "url": "/server/current/guides/kv-operations.md",
               "title": "Work with Documents"
+            },
+            {
+              "alias": true,
+              "module": "sdk",
+              "path": "overview.adoc",
+              "url": "/home/sdk.md",
+              "title": "SDKs &amp; Connectors"
             },
             {
               "module": "sdk",

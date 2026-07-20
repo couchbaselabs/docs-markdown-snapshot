@@ -3,7 +3,7 @@ title: Manage Your Billing
 description: Couchbase Capella bills you for the size and number of operational
   clusters in your organization.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/billing.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:cloud:billing:billing.adoc[]
 ---
 
@@ -158,9 +158,9 @@ You'll be charged for Data API access based on the following costs:
 > 
 > Enabling private endpoint support with the Data API has no additional cost beyond the regular charges associated with the Data API.
 
-### [](#ai-services)AI Services
+### [](#ai-long){ai-long}
 
-For Capella AI Services, Couchbase charges your usage of the following services:
+For the {ai}, Couchbase charges you for your usage of the following services:
 
 * [Workflows](#ai:build:data-processing.adoc):
 
@@ -176,7 +176,7 @@ For a limited time, your [AI Functions](../../ai/build/ai-functions.md) usage is
 
 #### [](#workflows)Workflows
 
-Couchbase charges you depending on the type of data you upload into your AI Services [Workflows](#ai:build:data-processing.adoc):
+Couchbase charges you depending on the type of data you upload into your {ai} [Workflows](#ai:build:data-processing.adoc):
 
 | Workflow Type                                                                         | Billing Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

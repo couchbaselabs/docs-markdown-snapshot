@@ -1,9 +1,9 @@
 ---
 title: Add an AWS PrivateLink Connection
 description: Add an AWS PrivateLink connection that peers your Amazon Web
-  Service (AWS) network with AI Services using AWS as its cloud provider.
+  Service (AWS) network with the {ai-long} using AWS as its cloud provider.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/security/pages/add-aws-privatelink.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:security:add-aws-privatelink.adoc[]
 ---
 
@@ -12,28 +12,28 @@ link: xref:ai:security:add-aws-privatelink.adoc[]
 
 # Add an AWS PrivateLink Connection
 
-> Add an AWS PrivateLink connection that peers your Amazon Web Service (AWS) network with AI Services using AWS as its cloud provider. 
+> Add an AWS PrivateLink connection that peers your Amazon Web Service (AWS) network with the {ai-long} using AWS as its cloud provider. 
 
 > [!IMPORTANT]
-> To link a Capella operational cluster with a model on the [Model Service](../get-started/intro.md#model), you only need to enable private networking. You do not have to perform any other configuration, Capella handles the connection automatically.
+> To link a Capella operational cluster with a model on the [Model Service](../get-started/intro.md#model), you only need to enable private networking. You do not have to perform any other configuration, the {ai-long} handles the connection automatically.
 
-Private endpoints for AI Services are region-based. You're linking the AWS region for your AI Services to your AWS VPC.
+Private endpoints for the {ai-long} are region-based. You're linking the AWS region for your {ai} features to your AWS VPC.
 
-A single private endpoint can be shared by all your AI Services, as long as the models they access are deployed in the same region. For example, you can deploy multiple models within the same AWS region and use 1 private endpoint to link them all. You do not need to create a separate private endpoint for each model.
+A single private endpoint can be shared by all your {ai} features, as long as the models they access are deployed in the same region. For example, you can deploy multiple models within the same AWS region and use 1 private endpoint to link them all. You do not need to create a separate private endpoint for each model.
 
 You can create another private endpoint when:
 
-* You need to connect your AI Services AWS region to an application in a different AWS VPC.
-* You deploy a model with a new AWS region. AI Services using models deployed in different regions need to add their own private endpoints.
+* You need to connect your {ai} AWS region to an application in a different AWS VPC.
+* You deploy a model with a new AWS region. {ai} features using models deployed in different regions need to add their own private endpoints.
 
 ## [](#prerequisites)Prerequisites
 
-To use [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html) with Capella AI Services, you need:
+To use [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html) with the {ai}, you need:
 
-* A deployed Capella model with:
+* A deployed {ai} model with:
 
   * The same AWS region as your AWS VPC.  
-  For more information about Capella models, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md) or [Deploy a Large Language Model (LLM)](../build/model-service/deploy-llm-model.md).
+  For more information about {ai} models, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md) or [Deploy a Large Language Model (LLM)](../build/model-service/deploy-llm-model.md).
 * The [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner) role assigned to your user account.
 * Information about your AWS network, including:
 
@@ -60,15 +60,15 @@ To get started, open the Capella UI, the AWS command line interface, and the AWS
 
 ### [](#enable-pe)Enable Private Endpoints
 
-In Capella AI Services, enable Private Endpoints:
+In the {ai}, enable Private Endpoints:
 
 > [!NOTE]
 > Enabling Private Endpoints bills your account hourly for AWS PrivateLink until you turn off this option.
 
-1. Go to **AI Services** **Private Endpoints**.
+1. Go to menu:{ai}\[Private Endpoints\].
 2. Find the region you want and click **Enable Private Endpoint**.
 
-It can take several minutes for Capella to enable private endpoints.
+It can take several minutes for the {ai} to enable private endpoints.
 
 ### [](#add-pe)Add a Private Endpoint
 
@@ -85,7 +85,7 @@ To add a private endpoint:
 > [!IMPORTANT]  
 > Before you complete your AWS PrivateLink connection, confirm that the port 8081 is open on your AWS VPC.
 4. Click **Get Script**.
-5. Download and run the shell script provided by Capella:
+5. Download and run the shell script provided by the {ai}:
 
   1. In the **Run the following script** area, click the download icon to download the shell script.
   2. Using the AWS CLI, run the downloaded shell script.  
@@ -206,4 +206,4 @@ To configure your network access control list (ACL) with an **Inbound** and **Ou
 
 ### [](#verify-connection)Verify the Connection
 
-Verify the connection in Capella AI Services by opening the **Private Endpoints** page. The new private endpoint shows a **Linked** status when the connection is complete. This status change can take several minutes after completing the configuration procedure.
+Verify the connection in the {ai} by opening the **Private Endpoints** page. The new private endpoint shows a **Linked** status when the connection is complete. This status change can take several minutes after completing the configuration procedure.

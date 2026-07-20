@@ -2,9 +2,10 @@
 title: JSON
 description: This topic describes how you use <code>COPY TO</code> statements to
   structure and write the results of a query--or a copy of an entire
-  collection--out to an external data store such as Amazon S3 and GCS.
+  collection--out to an external data store such as Amazon S3, GCS, and Azure
+  Blob Storage.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_copy_to_json.adoc
-pubDate: 2026-03-27T05:16:21.194Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:analytics:sqlpp:5_dml_copy_to_json.adoc[]
 ---
 
@@ -13,13 +14,13 @@ link: xref:analytics:sqlpp:5_dml_copy_to_json.adoc[]
 
 # JSON
 
-> This topic describes how you use `COPY TO` statements to structure and write the results of a query—​or a copy of an entire collection—​out to an external data store such as Amazon S3 and GCS. 
+> This topic describes how you use `COPY TO` statements to structure and write the results of a query—​or a copy of an entire collection—​out to an external data store such as Amazon S3, GCS, and Azure Blob Storage. 
 
 Structuring the data on the external store is helpful in use cases where you plan to directly query the data there later, and to use [dynamic prefixes](../sources/dynamic-prefixes.md) to optimize those queries.
 
 The output format of the data is JSON.
 
-For more information, see [Amazon S3](../sources/external-s3.md) and [Google Cloud Storage (GCS)](../sources/external-gcs.md).
+For more information, see [Amazon S3](../sources/external-s3.md), [Google Cloud Storage (GCS)](../sources/external-gcs.md), and [Azure Blob Storage](../sources/external-azure.md).
 
 > [!NOTE]
 > To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](#reference:cloud%5Fread%5Fwrite%5Fpermissions.adoc).

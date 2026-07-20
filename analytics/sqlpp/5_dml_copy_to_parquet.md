@@ -1,9 +1,10 @@
 ---
 title: Parquet
 description: This topic explains how to use the COPY TO statement to export data
-  from a database to Amazon S3 or Google Cloud Storage (GCS) in Parquet format.
+  from a database to Amazon S3, Google Cloud Storage (GCS), or Azure Blob
+  Storage in Parquet format.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_copy_to_parquet.adoc
-pubDate: 2026-03-27T05:16:21.194Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:analytics:sqlpp:5_dml_copy_to_parquet.adoc[]
 ---
 
@@ -12,7 +13,7 @@ link: xref:analytics:sqlpp:5_dml_copy_to_parquet.adoc[]
 
 # Parquet
 
-> This topic explains how to use the COPY TO statement to export data from a database to Amazon S3 or Google Cloud Storage (GCS) in Parquet format. 
+> This topic explains how to use the COPY TO statement to export data from a database to Amazon S3, Google Cloud Storage (GCS), or Azure Blob Storage in Parquet format. 
 
 Having results in Parquet format is highly efficient due to its Capella Analytics storage, which enables better compression and faster query performance.
 
@@ -20,7 +21,7 @@ Parquet files takes less storage space, making it cost-effective for large-scale
 
 The optimized format is for read-heavy workloads making it ideal for big data processing, data warehousing, and machine learning pipelines.
 
-For more information, see [Amazon S3](../sources/external-s3.md) and [Google Cloud Storage (GCS)](../sources/external-gcs.md).
+For more information, see [Amazon S3](../sources/external-s3.md), [Google Cloud Storage (GCS)](../sources/external-gcs.md), and [Azure Blob Storage](../sources/external-azure.md).
 
 > [!NOTE]
 > To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](#reference:cloud%5Fread%5Fwrite%5Fpermissions.adoc).

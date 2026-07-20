@@ -3,7 +3,7 @@ title: Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Scala Client.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.5/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-04-10T05:25:10.333Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:1.5@scala-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -13,6 +13,13 @@ link: xref:1.5@scala-sdk:project-docs:sdk-release-notes.adoc[]
 # Release Notes
 
 > Release notes, installation instructions, and download archive for the Couchbase Scala Client. 
+
+> [!IMPORTANT]
+> Refer to the Latest Release Notes
+> 
+> This page is an archive snapshot, and does not contain release notes for the latest version of the SDK.
+> 
+> See the [latest SDK release notes](../../current/project-docs/sdk-release-notes.md) for more recent improvements and bug fixes.
 
 Version 1.5 of the Scala SDK implements the 3.4 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Couchbase Server.
 

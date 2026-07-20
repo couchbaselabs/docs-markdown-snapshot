@@ -1,7 +1,7 @@
 ---
 title: Set Up an External Data Source
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/manage-external.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:analytics:sources:manage-external.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:analytics:sources:manage-external.adoc[]
 
 ## [](#supported-external-sources)Supported External Sources
 
-Capella Analytics supports external links to data in [Amazon S3](external-s3.md) and [GCS](external-gcs.md). This data remains in the storage bucket—​Capella Analytics does not copy it into a collection. You can query `Delta` tables residing in S3 buckets or GCS buckets that are in one of the following formats:
+Capella Analytics supports external links to data in [Amazon S3](external-s3.md), [GCS](external-gcs.md), and [Azure Blob Storage](external-azure.md). This data remains in the storage bucket or container—​Capella Analytics does not copy it into a collection. You can query `Delta` tables residing in S3 buckets, GCS buckets, or Azure Blob Storage containers that are in one of the following formats:
 
 * JSON
 * CSV

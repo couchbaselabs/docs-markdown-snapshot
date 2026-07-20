@@ -1,23 +1,23 @@
 ---
-title: Manage Deployments with Capella AI Services APIs
+title: Manage Deployments with the {ai-long} APIs
 description: The Couchbase Capella Management API and the Model Serving API are
-  secure REST APIs that enable you to provision, deploy, and configure Capella
-  AI Services.
+  secure REST APIs that enable you to provision, deploy, and configure the
+  {ai-long}.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-intro.adoc
-pubDate: 2026-04-01T05:25:30.286Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:api-guide:api-intro.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/api-guide/api-intro.html)
 
-# Manage Deployments with Capella AI Services APIs
+# Manage Deployments with the {ai-long} APIs
 
-> The Couchbase Capella Management API and the Model Serving API are secure REST APIs that enable you to provision, deploy, and configure Capella AI Services. 
+> The Couchbase Capella Management API and the Model Serving API are secure REST APIs that enable you to provision, deploy, and configure the {ai-long}. 
 
-This page is for Capella AI Services. It covers the AI Services features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Manage Deployments with the Capella Operational Management API](../../cloud/management-api-guide/management-api-intro.md).
+This page is for the {ai}. It covers the {ai} features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Manage Deployments with the Capella Operational Management API](../../cloud/management-api-guide/management-api-intro.md).
 
-For Capella AI Services, you can use REST APIs to interact with and manage services. This includes:
+For the {ai}, you can use REST APIs to interact with and manage services. This includes:
 
 * [The Management API](#management-rest-api).
 * [The Model Service API](#model-service-api).
@@ -31,7 +31,7 @@ To get started with the APIs, [create an API key](api-start.md) and [make an API
 
 ## [](#management-rest-api)The Management API
 
-The Capella Management API is a secure, versioned REST API provided by Couchbase Capella that allows users to manage tasks for Couchbase operational clusters, App Services, and AI Services. This includes management tasks such as scaling clusters, configuring access controls, and deploying embedding models and Large Language Models (LLMs) for AI Services.
+The Capella Management API is a secure, versioned REST API provided by Couchbase Capella that allows users to manage tasks for Couchbase operational clusters, App Services, and the {ai}. This includes management tasks such as scaling clusters, configuring access controls, and deploying embedding models and Large Language Models (LLMs) for the {ai}.
 
 For a full Management API reference guide, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
 
@@ -72,7 +72,7 @@ Lists are paginated.
 
 ### [](#service-limits)Service Limits
 
-Service limits set boundaries for managing clusters, App Services, and AI Services with the Management API.
+Service limits set boundaries for managing clusters, App Services, and the {ai-long} with the Management API.
 
 Long-Running Requests
 
@@ -91,7 +91,7 @@ Requests and response payloads are restricted to 18 MB.
 
 ## [](#model-service-api)The Model Service API
 
-The Model Service API is a secure, versioned inference REST API for Capella's Model Service. Provided by Couchbase Capella AI Services, this API allows you to use your Large Language Models (LLMs) and embedding models. This includes sending inference requests and receiving outputs such as chats, completions, and embeddings.
+The Model Service API is a secure, versioned inference REST API for Capella's Model Service. Provided by Couchbase the {ai}, this API allows you to use your Large Language Models (LLMs) and embedding models. This includes sending inference requests and receiving outputs such as chats, completions, and embeddings.
 
 For a full Model Service API reference guide, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 
@@ -110,7 +110,7 @@ The Model Service API uses Model Service API keys for authentication and authori
 
 #### [](#model-service-api-keys)Model Service API Keys
 
-Model Service API keys are different from the API keys required by the Management API. For more information about the difference in API keys, see [Get Started with Capella AI Services APIs](api-start.md).
+Model Service API keys are different from the API keys required by the Management API. For more information about the difference in API keys, see [Get Started with the {ai-long} APIs](api-start.md).
 
 Couchbase Capella associates Model Service API keys with an AWS region. Your Model Service API key must have the same AWS region as the model you want it to connect to.
 
@@ -260,10 +260,10 @@ Retry Configuration
 
 ## [](#see-also)See Also
 
-* To create an API key, see [Get Started with Capella AI Services APIs](api-start.md).
-* To make an API call, see [Make an API Call with Capella AI Services APIs](api-use.md).
+* To create an API key, see [Get Started with the {ai-long} APIs](api-start.md).
+* To make an API call, see [Make an API Call with the {ai-long} APIs](api-use.md).
 * For a full Management API reference guide, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
 * For a full Model Service API reference guide, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 * For a reference of the Management API errors, see [Management API Error Messages ](api-errors.md#management-api-errors).
-* For a reference of the AI Services Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).
-* For the change log, see [Capella AI Services API Change Log](api-log.md).
+* For a reference of the {ai} Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).
+* For the change log, see [The {ai-long} API Change Log](api-log.md).

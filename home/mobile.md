@@ -1,7 +1,7 @@
 ---
 title: Couchbase Mobile - Embedded Database on the Edge
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/mobile.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:home::mobile.adoc[]
 ---
 
@@ -35,7 +35,7 @@ Sync Gateway is an internet-facing synchronization mechanism designed to provide
 Edge Server
 
 Edge Server is a lightweight standalone database for resource-constrained edge. It exposes a REST API that enables you to get database information, perform document operations, run SQL++ queries, and manage change feeds and replication.  
-[Go to Edge Server Docs](../couchbase-edge-server/current/introduction/intro.md)
+[Go to Edge Server Docs](#couchbase-edge-server:introduction:intro.adoc)
 
 Tutorials
 

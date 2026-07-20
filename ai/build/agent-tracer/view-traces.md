@@ -1,9 +1,9 @@
 ---
 title: View Traces in Agent Tracer
-description: Use the Agent Tracer inside Capella AI Services to view logs from
-  an agent app integrated with Agent Catalog.
+description: Use the Agent Tracer inside the {ai-long} to view logs from an
+  agent app integrated with Agent Catalog.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-tracer/view-traces.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:build:agent-tracer/view-traces.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:ai:build:agent-tracer/view-traces.adoc[]
 
 # View Traces in Agent Tracer
 
-> Use the Agent Tracer inside Capella AI Services to view logs from an agent app integrated with Agent Catalog. 
+> Use the Agent Tracer inside the {ai-long} to view logs from an agent app integrated with Agent Catalog. 
 
 Use these logs to debug problematic user-agent sessions.
 
@@ -38,7 +38,7 @@ For more information about how to add Services to a cluster, see [Modify the Clu
 
 To view agent traces in the Agent Tracer UI:
 
-1. In the Capella UI, go to **AI Services** **Agent Tracer**.
+1. In the Capella UI, go to menu:{ai}\[Agent Tracer\].
 2. In the **Operational Cluster** list, select the cluster you added to your environment variables and configured to collect logs from the Agent Catalog.
 3. To filter the displayed logs, do any of the following:
 

@@ -3,7 +3,7 @@ title: Configure Your Cluster
 description: Understand the different configuration options available to
   customize your Couchbase Capella cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/databases.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:cloud:clusters:databases.adoc[]
 ---
 
@@ -24,7 +24,9 @@ When you [Create A Paid Cluster](create-database.md), you can configure the foll
 
 * Your cluster name and description
 * [A basic cluster option](#option)
-* [Cloud service provider, region, and CIDR block](#cloud-provider)
+* [Cloud service provider and region](#cloud-provider)
+* [CIDR block](#cidr-block)
+* [Restricting public access](#public-access)
 * [Couchbase Server version](#cluster-version)
 * [Services and Service Groups](#couchbase-services)
 * [Nodes](#nodes)
@@ -33,7 +35,7 @@ When you [Create A Paid Cluster](create-database.md), you can configure the foll
 * [Support Plan](#plan)
 * [Availability Zones](#availability)
 
-After you create a cluster, if you want to [Modify a Paid Cluster](modify-database.md), you can only change:
+After you create a cluster, you can configure its operational, security, and replication settings to fit your infrastructure requirements. For a full list of post-deployment configuration options, see [Next Steps](create-database.md). If you want to [Modify a Paid Cluster](modify-database.md), you can only change:
 
 * Your cluster name and description
 * [Support Plan](#plan)
@@ -53,7 +55,7 @@ When you create a new paid cluster, you can choose a basic option to automatical
 | **Multi-Node**  | Deploy a cluster on a Multi-Node configuration by choosing from one of the available pre-configured templates for a 3 node, 5 node, or 7 node cluster. Using the Multi-Node option helps you quickly configure multiple [Service Groups](#couchbase-services) and choose the best [compute](#compute) and [storage](#storage) configuration. Multi-Node clusters also support multiple [Availability Zones](#availability).                                                                                          |
 | **Custom**      | Deploy a cluster with a custom configuration suited to your needs. Custom configurations are best for heavy, enterprise workloads. Create [Service Groups](#couchbase-services) and assign a specific number of [nodes](#nodes) to each Group. You can also customize the [compute](#compute) and [storage](#storage) for the nodes in each Group. By default, Custom configurations start with 4 Service Groups with a total of 9 nodes. Custom clusters also support multiple [Availability Zones](#availability). |
 
-### [](#cloud-provider)Cloud Service Provider, Region, and CIDR Block
+### [](#cloud-provider)Cloud Service Provider and Region
 
 Capella offers cluster deployments through the following Cloud Service Providers (CSPs):
 
@@ -69,12 +71,49 @@ For the available regions for each CSP, see:
 * [GCP Supported Regions](../reference/gcp.md#supported-regions)
 * [Azure Supported Regions](../reference/azure.md#supported-regions)
 
-Your chosen region can change your available [Availability Zone](#availability) options.
+Your chosen region can change your available [Availability Zone](#availability) options and affect your application's performance.
+
+> [!TIP]
+> Optimize Network Latency
+> 
+> * The physical distance between your application's servers and your operational cluster directly affects network latency. For optimal results, deploy your application's servers in a cloud region closest to your concentrated user base, and deploy your Couchbase operational cluster within that same region to minimize total round-trip network latency.
+> * To further improve network latency, configure private networking for your cluster. For more information, see [Public Access](#public-access).
+
+Capella supports deployments in multiple regions, allowing you to choose a strategy that best matches where you host your application's servers. When choosing a region, consider:
+
+* Where your application's servers are hosted.
+* Where your users are located.
+* If you have any data residency requirements.
+
+For deployment recommendations based on different use cases, see the following table:
+
+| Region                  | Availability Zones                                                                                                                                               | When to Use                                                                                                                                                                                                                       | Recommendation                                                                                                                                                                                                                            |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Single Region**       | Single Availability Zone                                                                                                                                         | For development, testing, or non-production workloads where high availability is not required.                                                                                                                                    | Deploy your operational cluster in the same cloud region and Availability Zone as your application's servers. This is the lowest-cost option, but if your cluster's Availability Zone goes offline, your cluster will become unavailable. |
+| Multi-Availability Zone | Your application requires high availability in a single region where your users are concentrated, or when serving a global user base with a read-heavy workload. | Deploy your operational cluster in the same cloud region as your application's servers and enable a multi-Availability Zone deployment. This provides high availability within the region and keeps application performance high. |                                                                                                                                                                                                                                           |
+| **Multi-Region**        | Multi-Availability Zone                                                                                                                                          | For globally distributed applications where user reads and writes are active across multiple regions, such as the Americas, Europe, and Asia.                                                                                     | Deploy separate operational clusters in each region hosting your application's servers and connect them using [XDCR](xdcr/xdcr.md) to keep data in sync and maintain high availability across regions.                                    |
+| **Regional Sharding**   | Per-region, isolated                                                                                                                                             | When user data belongs to specific regions or must remain in certain locations due to data residency and compliance laws.                                                                                                         | Deploy separate, isolated Capella clusters in each required region and route users to the appropriate regional application's servers.                                                                                                     |
+
+### [](#cidr-block)CIDR Block
 
 You can choose to customize the CIDR block for your Capella cluster or leave it as the default value. Use IPv4 syntax to define your CIDR block for your cluster.
 
-> [!TIP]
-> If you plan to use [private networks (VPC or VNet Peering)](../clouds/private-network.md) with your Capella cluster, make sure to customize your CIDR block to avoid overlap between your VPC CIDR and Capella.
+> [!CAUTION]
+> If you plan to use private networking, [VPC Peering](../clouds/private-network.md) or [private endpoints](#security:private-endpoints), with your Capella cluster, make sure to customize your CIDR block to avoid overlap between your VPC CIDR and Capella.
+
+### [](#public-access)Restrict Public Access
+
+To secure your cluster, you can restrict public access and route all traffic exclusively over a private network. In Capella, private networking is available through VPC Peering or Private Endpoints, depending on your chosen cloud provider and cluster configuration.
+
+A private network connection enhances security and reduces network latency by keeping your traffic on the cloud provider's internal network instead of the public Internet. The connection method you choose directly affects your application's security and network latency:
+
+| Category               | Connection Method               | Network Latency | Security                                                                                                                                                                                                                                                                                                          | How It Works                                                                                                                                                                                                                                                                      |
+| ---------------------- | ------------------------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Private Networking** | **VPC Peering**                 | Lowest          | High                                                                                                                                                                                                                                                                                                              | Traffic stays entirely within the cloud provider's private network by connecting the 2 networks directly. This results in low and consistent network latency. While secure, this routing-layer approach connects full subnets rather than isolating traffic to a single endpoint. |
+| **Private Endpoints**  | Low                             | Highest         | Traffic stays off the public Internet, but requests are routed through a load balancer, which introduces additional overhead compared to VPC Peering. While this overhead causes higher network latency, it maximizes security by exposing only a single, isolated endpoint instead of connecting whole networks. |                                                                                                                                                                                                                                                                                   |
+| **Public Internet**    | **IP Allowlisting** and **TLS** | Highest         | Lowest                                                                                                                                                                                                                                                                                                            | Traffic travels over the public Internet, passing through multiple carriers and networks outside the cloud provider's control. This results in higher, less predictable network latency and lower security.                                                                       |
+
+For most production workloads, private networking is strongly recommended. For more information about private networking, see [Configure a VPC Peering Connection](../clouds/private-network.md) and [Add Private Endpoints](../security/private-endpoints.md).
 
 ### [](#cluster-version)Supported Couchbase Server Version
 
@@ -241,24 +280,26 @@ For more information about how to change your Support Plan after you have alread
 
 ### [](#availability)Availability Zones
 
-Based on your chosen [cluster option](#option), [CSP](#cloud-provider) region, and [Support Plan](#plan), you can choose between a **Single** or **Multiple** Availability Zones for your cluster.
+Availability Zones (AZs) can help minimize downtime and make sure your data remains highly available and fault tolerant.
 
-Availability Zones can help minimize downtime and make sure your data remains highly available and fault resistant. It's recommended to use **Multiple** Availability Zones for production clusters with the Multi-Node or Custom [cluster option](#option).
+Based on your chosen [cluster option](#option), [CSP](#cloud-provider) region, and [Support Plan](#plan), you can choose between a **Single** or **Multiple** Availability Zones for your cluster:
+
+| Availability Zones              | Recommended For                                                                                     | Benefits                                                                                                                                                                                                                                                                                                                                                                                                      | Tradeoffs                                                                                                                                                                                                            |
+| ------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Single Availability Zone**    | Development, testing, caching, or non-production workloads where occasional downtime is acceptable. | Lower cost by eliminating cross-Availability Zone data transfer fees. Optimized network latency as all the cluster nodes are located in the same datacenter.                                                                                                                                                                                                                                                  | Provides no datacenter fault tolerance. Your cluster becomes entirely unavailable if that specific Availability Zone goes offline. Not recommended for production workloads that require uninterrupted availability. |
+| **Multiple Availability Zones** | Production workloads requiring uninterrupted availability.                                          | Higher availability by distributing your nodes across 2 or more datacenters within the region. To prevent data loss or downtime during a zone outage, you must configure an adequate number of replicas to match your node distribution. Provided fault tolerance as your cluster continues serving requests from the remaining operational Availability Zones if an entire datacenter experiences an outage. | Increased network latency and overhead to synchronize data and replicas across separate physical datacenters. Higher costs by increasing your base cloud footprint and data transfer expenses across separate zones. |
 
 > [!NOTE]
-> Clusters on the **Basic** [Support Plan](#plan) support only a **Single** Availability Zone.
-
-| Cluster Option  | Availability Zones                                               |
-| --------------- | ---------------------------------------------------------------- |
-| **Single Node** | 1 Availability Zone                                              |
-| **Multi-Node**  | Multiple Availability Zones, based on [region](#cloud-provider). |
-| **Custom**      | Multiple Availability Zones, based on [region](#cloud-provider). |
+> Single Availability Zone Considerations
+> 
+> * You can deploy a single node cluster on a **Single** Availability Zone only.
+> * Clusters on the **Basic** [Support Plan](#plan) support only a **Single** Availability Zone.
 
 #### [](#aws-availability-zones)AWS Availability Zones
 
 If you deploy a cluster on AWS, you can choose the specific Availability Zone or Zones to use with your cluster.
 
-Capella provides the physical zone location names for AWS Availability Zones, using AZ IDs. These IDs may be different from the labels you would see in your own AWS configurations. For more information about AZ IDs, see the [AWS Elastic Compute Cloud documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#az-ids)
+Capella provides the physical zone location names for AWS Availability Zones, using Availability Zone IDs. These IDs may be different from the labels you would see in your own AWS configurations. For more information about Availability Zone IDs, see the [AWS Elastic Compute Cloud documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#az-ids)
 
 ## [](#see-also)See Also
 

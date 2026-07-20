@@ -3,7 +3,7 @@ title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Scala SDK.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:scala-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -357,7 +357,7 @@ val cluster = Cluster
   .get
 ```
 
-Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../operator/current/concept-cloud-native-gateway.md):
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](#operator:ROOT:concept-cloud-native-gateway.adoc):
 
 ```scala
 .connect(

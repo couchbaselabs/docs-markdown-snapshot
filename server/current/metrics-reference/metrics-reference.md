@@ -2,7 +2,7 @@
 title: Metrics Reference
 description: A list of the metrics used by Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/metrics-reference/pages/metrics-reference.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:server:metrics-reference:metrics-reference.adoc[]
 ---
 
@@ -26,3 +26,4 @@ In this section, metrics are listed according to service, as follows:
 * [Backup Service Metrics](backup-service-metrics.md)
 * [Cluster Manager Metrics](ns-server-metrics.md)
 * [XDCR Metrics](xdcr-metrics.md)
+* [Application Telemetry Metrics](application-telemetry-metrics.md)

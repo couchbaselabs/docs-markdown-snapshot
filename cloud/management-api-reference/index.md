@@ -1,7 +1,7 @@
 ---
 title: Capella Operational Management API Reference
 editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/public/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:cloud:management-api-reference:index.adoc[]
 ---
 
@@ -73,6 +73,8 @@ link: xref:cloud:management-api-reference:index.adoc[]
     * putUpdate App Service Admin User
     * delDelete App Service Admin User
     * getGet App Service Admin User
+    * putOpt App Service Back In to Metadata Isolation
+    * getGet App Service Metadata Isolation State
     * getGet Public Certificate for App Service
     * getList App Endpoint Admin Users
   * App Services Audit Logging
@@ -205,6 +207,16 @@ link: xref:cloud:management-api-reference:index.adoc[]
     * getGet Database Credentials
     * putUpdate Database Credentials
     * delDelete Database Credentials
+  * Eventing Functions
+    * getGet Eventing Function Code
+    * putUpdate Eventing Function Code
+    * getGet Eventing Function
+    * delDelete Eventing Function
+    * putUpdate Eventing Function
+    * postCreate Eventing Function
+    * getList Eventing Functions
+    * putSet Eventing Function State
+    * getGet Function Logs
   * Events
     * getList Events
     * getGet Event
@@ -284,8 +296,8 @@ link: xref:cloud:management-api-reference:index.adoc[]
     * getGet User
     * patchUpdate User
     * delDelete User
-* Capella AI Services
-  * AI Services Providers
+* AI Data Plane
+  * AI Data Plane Providers
     * getList providers
     * postCreate provider
     * getGet provider
@@ -301,12 +313,13 @@ link: xref:cloud:management-api-reference:index.adoc[]
     * delStop AI Workflow Run
     * getGet AI Workflow Run
     * getGet AI Workflow Run Processed Files
-  * Model Services API Keys (AI Services)
+    * getGet Supported External Embedding Models
+  * Model Services API Keys (AI Data Plane)
     * postCreate API Key
     * getList API keys
     * getGet API Key
     * delDelete API key
-  * Models (AI Services)
+  * Models (AI Data Plane)
     * getList Models
     * postCreate Model
     * getGet Model
@@ -1378,6 +1391,10 @@ objectobjectobject
 
 Successfully tested an alert integration.
 
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
 **403** 
 
 The client does not have the necessary permissions to access this resource.
@@ -1459,6 +1476,7 @@ Copy
 
 ### Response samples 
 
+* 400
 * 403
 * 404
 * 422
@@ -1473,10 +1491,10 @@ application/json
 Copy
 
 `{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
 }`
 
 ## [](#tag/Allowed-CIDRs-%28App-Services%29)Allowed CIDRs (App Services)
@@ -6684,6 +6702,181 @@ Copy
 }
 }`
 
+## [](#tag/App-Services/operation/putAppServiceMetadataIsolation)Opt App Service Back In to Metadata Isolation 
+
+Opt an App Service back in to system metadata collection (metadata isolation) after a support-initiated opt-out. Only the value `true` is accepted, and opting back in is permanent: once enabled the App Service cannot be opted out again. Requires App Services version 4.1 or later.
+
+New App Services are opted in automatically and existing App Services are opted in on upgrade to 4.1, so this endpoint is only useful after a previous opt-out via Couchbase support.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### Request Body schema: application/json
+
+| enabledrequired | boolean Value: true Whether metadata isolation is enabled on the App Service. Only true is accepted via this API to opt back in after support has previously opted the App Service out. Opting back in is permanent: the App Service cannot be opted out again once enabled. |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**204** 
+
+App Service successfully opted back in to metadata isolation.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/metadataIsolation
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/metadataIsolation
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "enabled": true
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Services/operation/getAppServiceMetadataIsolation)Get App Service Metadata Isolation State 
+
+Retrieve the current metadata isolation state for the App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**200** 
+
+Current metadata isolation state.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/metadataIsolation
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/metadataIsolation
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "enabled": true
+}`
+
 ## [](#tag/App-Services/operation/getAppServiceCertificate)Get Public Certificate for App Service 
 
 The public certificate is a trusted Certificate Authority (CA) signed certificate. You can copy or download the endpoint's SSL public certificate to bundle into your mobile application. Pinning your certificate to your App is not recommended as it can increase maintenance overhead and downtime risks. For more information, see [here](https://docs.couchbase.com/cloud/app-services/connect/connect-apps-to-endpoint.html#setting-up-the-connection).
@@ -7941,13 +8134,13 @@ Copy
     * "appServiceId": "01071798-23e5-4ec6-b814-13bebef70572",
     * "tenantId": "333d2ad2-1408-405e-9995-68338d20ab5c",
     * "clusterId": "71dd1cb2-34ac-43ae-a503-b2a9202f02d4",
-    * "createdByUserID": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
-    * "upsertedByUserID": "",
-    * "createdAt": "2024-08-05T13:43:45.998790923Z",
-    * "upsertedAt": "0001-01-01T00:00:00Z",
-    * "modifiedByUserID": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
-    * "modifiedAt": "2024-08-05T13:43:48.420521466Z",
-    * "version": 3  
+    * "audit": {
+      * "createdBy": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
+      * "createdAt": "2024-08-05T13:43:45.998790923Z",
+      * "modifiedBy": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
+      * "modifiedAt": "2024-08-05T13:43:48.420521466Z",
+      * "version": 3  
+      }  
   }  
 ],
 * "cursor": {
@@ -8044,6 +8237,8 @@ application/json
 
 Copy
 
+ Expand all  Collapse all 
+
 `{
 * "id": "920e7b93-28c7-421b-993b-9fffecfd3598",
 * "download_id": "<https://cb-audit-logs-333d2ad2-1408-405e-9995-XXXX.s3.us-east-1.amazonaws.com/export/app-service-audit-logs-XXXX-from-2024-07-06-to-2024-08-05.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X>",
@@ -8052,13 +8247,13 @@ Copy
 * "appServiceId": "01071798-23e5-4ec6-b814-13bebef70572",
 * "tenantId": "333d2ad2-1408-405e-9995-68338d20ab5c",
 * "clusterId": "71dd1cb2-34ac-43ae-a503-b2a9202f02d4",
-* "createdByUserID": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
-* "upsertedByUserID": "",
-* "createdAt": "2024-08-05T13:43:45.998790923Z",
-* "upsertedAt": "0001-01-01T00:00:00Z",
-* "modifiedByUserID": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
-* "modifiedAt": "2024-08-05T13:43:48.420521466Z",
-* "version": 3
+* "audit": {
+  * "createdBy": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
+  * "createdAt": "2024-08-05T13:43:45.998790923Z",
+  * "modifiedBy": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
+  * "modifiedAt": "2024-08-05T13:43:48.420521466Z",
+  * "version": 3  
+}
 }`
 
 ## [](#tag/App-Services-Log-Streaming)App Services Log Streaming
@@ -18481,6 +18676,1061 @@ Copy
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
+## [](#tag/Eventing-Functions)Eventing Functions
+
+The Eventing Service runs JavaScript code in response to data changes in a collection. You define OnUpdate and OnDelete handlers, and Couchbase invokes them whenever documents are created, modified, or deleted. It works like a database trigger which runs asynchronously on dedicated Eventing nodes.
+
+## [](#tag/Eventing-Functions/operation/getFunctionCode)Get Eventing Function Code 
+
+Retrieves the JavaScript code for the specified function. The code is not escaped.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                  |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                       |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                       |
+| functionNamerequired   | string \[ 1 .. 100 \] characters ^\[a-zA-Z0-9\]\[a-zA-Z0-9\_-\]\*$ Example: my\_eventing\_functionThe name of the eventing function to target. |
+
+### Responses
+
+**200** 
+
+Successfully returned the Eventing function code.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}/code
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}/code
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`"function OnUpdate(doc, meta, xattrs) {\n log(\"Doc created/updated\", meta.id);\n}\n\nfunction OnDelete(meta, options) {\n log(\"Doc deleted/expired\", meta.id);\n}\n"`
+
+## [](#tag/Eventing-Functions/operation/updateFunctionCode)Update Eventing Function Code 
+
+Update the JavaScript code for the specified function.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                  |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                       |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                       |
+| functionNamerequired   | string \[ 1 .. 100 \] characters ^\[a-zA-Z0-9\]\[a-zA-Z0-9\_-\]\*$ Example: my\_eventing\_functionThe name of the eventing function to target. |
+
+##### Request Body schema: application/javascript
+
+string (UpdateFunctionCodeRequest) 
+
+The JavaScript code of the eventing function that gets executed in response to document mutations.
+
+The eventing service compresses the code before storing it. The compressed code must not exceed 128 KiB (131072 bytes); code larger than this limit after compression is rejected.
+
+### Responses
+
+**204** 
+
+Successfully updated the Eventing function code.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}/code
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}/code
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Eventing-Functions/operation/getEventingFunction)Get Eventing Function 
+
+Retrieves the full definition of an eventing function, including its JavaScript code, deployment configuration, runtime settings, and bindings.
+
+By default the response includes the current `status` of the function. Set the `export` query parameter to `true` to omit read-only fields (currently only `status`) so that the response payload can be used as the body of a create request. This is useful for backing up an eventing function or for transferring it to a different cluster. Note that any URL bindings retain their redacted sensitive fields (passwords and bearer tokens are returned as `*****`), which must be replaced with their actual values before the payload is passed to the create eventing function endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                  |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                       |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                       |
+| functionNamerequired   | string \[ 1 .. 100 \] characters ^\[a-zA-Z0-9\]\[a-zA-Z0-9\_-\]\*$ Example: my\_eventing\_functionThe name of the eventing function to target. |
+
+##### query Parameters
+
+| export | boolean Default: false Example: export=trueWhen set to true, read-only fields are omitted from the response so that the payload can be used as the body of a create request. This is useful for backing up an eventing function or transferring it to a different cluster. Any URL bindings retain their redacted sensitive fields (passwords and bearer tokens are returned as \*\*\*\*\*). These must be replaced with their actual values before the payload is passed to the create eventing function endpoint. |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the eventing function definition.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "my_function",
+* "description": "Replicates document mutations to a downstream collection.",
+* "status": "deployed",
+* "code": "function OnUpdate(doc, meta, xattrs) {\n log(\"Doc created/updated\", meta.id);\n}\n\nfunction OnDelete(meta, options) {\n log(\"Doc deleted/expired\", meta.id);\n}\n",
+* "eventSource": {
+  * "bucket": "travel-sample",
+  * "scope": "inventory",
+  * "collection": "airline"  
+},
+* "eventMetadataStorage": {
+  * "bucket": "travel-sample",
+  * "scope": "inventory",
+  * "collection": "airline"  
+},
+* "settings": {
+  * "workerCount": 1,
+  * "scriptTimeout": 30,
+  * "sqlConsistency": "request",
+  * "languageCompatibility": "7.2.0",
+  * "feedBoundary": "everything",
+  * "maxTimerContextSize": 1024,
+  * "allowSyncDocuments": false,
+  * "cursorAware": true  
+},
+* "bindings": {
+  * "buckets": [
+    * {
+      * "alias": "src",
+      * "bucket": "travel-sample",
+      * "scope": "*",
+      * "collection": "*",
+      * "permission": "readWrite"  
+      }  
+  ],
+  * "urls": [
+    * {
+      * "alias": "api",
+      * "url": "<https://api.example.com/path>",
+      * "allowCookies": true,
+      * "validateTLSCertificate": true,
+      * "authentication": {
+        * "type": "none"  
+            }  
+      }  
+  ],
+  * "constants": [
+    * {
+      * "alias": "maxRetries",
+      * "value": "3"  
+      }  
+  ]  
+}
+}`
+
+## [](#tag/Eventing-Functions/operation/deleteEventingFunction)Delete Eventing Function 
+
+Delete an eventing function. The function must be undeployed prior to deletion.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                  |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                       |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                       |
+| functionNamerequired   | string \[ 1 .. 100 \] characters ^\[a-zA-Z0-9\]\[a-zA-Z0-9\_-\]\*$ Example: my\_eventing\_functionThe name of the eventing function to target. |
+
+### Responses
+
+**204** 
+
+Successfully deleted the eventing function.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Eventing-Functions/operation/putEventingFunction)Update Eventing Function 
+
+Applies a partial update to an existing eventing function on the specified cluster.
+
+Only the fields that are supplied in the request body are modified; any field that is omitted is left unchanged on the function. For nested objects (`eventSource`, `eventMetadataStorage`, `settings`), the same rule applies recursively. For the binding lists under `bindings`, supplying a category replaces that list in full with the value provided, and omitting a category leaves it unchanged.
+
+Updates to `feedBoundary` only take effect when the function goes from undeployed to deployed. Other settings, code, and bindings changes are applied immediately.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Database Data Reader/Writer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                  |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                       |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                       |
+| functionNamerequired   | string \[ 1 .. 100 \] characters ^\[a-zA-Z0-9\]\[a-zA-Z0-9\_-\]\*$ Example: my\_eventing\_functionThe name of the eventing function to target. |
+
+##### Request Body schema: application/json
+
+required
+
+| description          | string The eventing function description.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| code                 | string The JavaScript code of the eventing function that gets executed in response to document mutations. The eventing service compresses the code before storing it. The compressed code must not exceed 128 KiB (131072 bytes); a function whose code is larger than this limit after compression is rejected.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| eventSource          | object A reference to a Couchbase keyspace, identified by its bucket, scope, and collection. Every field is optional in an update request, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| eventMetadataStorage | object A reference to a Couchbase keyspace, identified by its bucket, scope, and collection. Every field is optional in an update request, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| settings             | object Runtime settings that control how the eventing function is executed. Every field is optional, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| bindings             | object A binding is a construct that lets you separate environment-specific variables, like keyspace names, external endpoint URLs and credentials, and global constants, from the source code of the eventing function. A binding provides indirection between environment-specific artifacts and symbolic names, and helps move a function definition from a development to a production environment without changing the eventing code. Binding names must be valid JavaScript identifiers, and cannot conflict with built-in types. When a binding category (buckets, urls, or constants) is supplied, the corresponding list on the function is replaced in full with the value provided. Categories that are omitted are left unchanged. To remove every binding in a category, supply an empty array. Aliases must be unique across all three binding types. |
+
+### Responses
+
+**204** 
+
+Successfully applied the update to the eventing function.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "description": "Replicates document mutations to a downstream collection.",
+* "code": "function OnUpdate(doc, meta, xattrs) {\n log(\"Doc created/updated\", meta.id);\n}\n\nfunction OnDelete(meta, options) {\n log(\"Doc deleted/expired\", meta.id);\n}\n",
+* "eventSource": {
+  * "bucket": "travel-sample",
+  * "scope": "inventory",
+  * "collection": "airline"  
+},
+* "eventMetadataStorage": {
+  * "bucket": "travel-sample",
+  * "scope": "inventory",
+  * "collection": "airline"  
+},
+* "settings": {
+  * "workerCount": 1,
+  * "scriptTimeout": 30,
+  * "sqlConsistency": "request",
+  * "languageCompatibility": "7.2.0",
+  * "feedBoundary": "everything",
+  * "maxTimerContextSize": 1024,
+  * "allowSyncDocuments": false,
+  * "cursorAware": true  
+},
+* "bindings": {
+  * "buckets": [
+    * {
+      * "alias": "src",
+      * "bucket": "travel-sample",
+      * "scope": "*",
+      * "collection": "*",
+      * "permission": "readWrite"  
+      }  
+  ],
+  * "urls": [
+    * {
+      * "alias": "api",
+      * "url": "<https://api.example.com/path>",
+      * "allowCookies": true,
+      * "validateTLSCertificate": true,
+      * "authentication": {
+        * "type": "none"  
+            }  
+      }  
+  ],
+  * "constants": [
+    * {
+      * "alias": "maxRetries",
+      * "value": "3"  
+      }  
+  ]  
+}
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Eventing-Functions/operation/postEventingFunction)Create Eventing Function 
+
+Creates a new eventing function on the specified cluster. The function is created in the `undeployed` state and must be deployed separately before it begins processing mutations.
+
+The cluster must have at least one eventing node available in order to create a function.
+
+The function includes its JavaScript code, the source and metadata keyspaces, runtime settings, and any bucket, URL, or constant bindings. Optional fields that are omitted from the payload are populated with the defaults documented on the request schema.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Database Data Reader/Writer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### Request Body schema: application/json
+
+required
+
+| namerequired                 | string \[ 1 .. 100 \] characters ^\[a-zA-Z0-9\]\[a-zA-Z0-9\_-\]\*$ The name of the eventing function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| description                  | string or null The eventing function description.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| code                         | string Default: "function OnUpdate(doc, meta, xattrs) {\\n // Add your mutation logic here\\n}\\n\\nfunction OnDelete(meta, options) {\\n // Add your delete handling logic here\\n}\\n" The JavaScript code of the eventing function that gets executed in response to document mutations. The eventing service compresses the code before storing it. The compressed code must not exceed 128 KiB (131072 bytes); a function whose code is larger than this limit after compression is rejected.                                                                                                                                                                                                     |
+| eventSourcerequired          | object A reference to a Couchbase keyspace, identified by its bucket, scope, and collection.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| eventMetadataStoragerequired | object A reference to a Couchbase keyspace, identified by its bucket, scope, and collection.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| settings                     | object (EventingFunctionSettings) Runtime settings that control how the function is executed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| bindings                     | object (EventingFunctionBindings) A binding is a construct that lets you separate environment-specific variables, like keyspace names, external endpoint URLs and credentials, and global constants, from the source code of the Eventing Function. A binding provides indirection between environment-specific artifacts and symbolic names, and helps move a function definition from a development to a production environment without changing the eventing code. Binding names must be valid JavaScript identifiers, and cannot conflict with built-in types. An Eventing Function can have no bindings, one binding, or several bindings. Aliases must be unique across all three binding types. |
+
+### Responses
+
+**201** 
+
+Successfully created the eventing function.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "my_function",
+* "description": "Replicates document mutations to a downstream collection.",
+* "code": "function OnUpdate(doc, meta, xattrs) {\n log(\"Doc created/updated\", meta.id);\n}\n\nfunction OnDelete(meta, options) {\n log(\"Doc deleted/expired\", meta.id);\n}\n",
+* "eventSource": {
+  * "bucket": "travel-sample",
+  * "scope": "inventory",
+  * "collection": "airline"  
+},
+* "eventMetadataStorage": {
+  * "bucket": "travel-sample",
+  * "scope": "inventory",
+  * "collection": "airline"  
+},
+* "settings": {
+  * "workerCount": 1,
+  * "scriptTimeout": 30,
+  * "sqlConsistency": "request",
+  * "languageCompatibility": "7.2.0",
+  * "feedBoundary": "everything",
+  * "maxTimerContextSize": 1024,
+  * "allowSyncDocuments": false,
+  * "cursorAware": true  
+},
+* "bindings": {
+  * "buckets": [
+    * {
+      * "alias": "src",
+      * "bucket": "travel-sample",
+      * "scope": "*",
+      * "collection": "*",
+      * "permission": "readWrite"  
+      }  
+  ],
+  * "urls": [
+    * {
+      * "alias": "api",
+      * "url": "<https://api.example.com/path>",
+      * "allowCookies": true,
+      * "validateTLSCertificate": true,
+      * "authentication": {
+        * "type": "none"  
+            }  
+      }  
+  ],
+  * "constants": [
+    * {
+      * "alias": "maxRetries",
+      * "value": "3"  
+      }  
+  ]  
+}
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Eventing-Functions/operation/listEventingFunctions)List Eventing Functions 
+
+Lists the eventing functions on the cluster, including their status. You can optionally filter on status.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                                                                                                                                                            |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                                                                                                                                  |
+| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **status**.                                                                                                                                        |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                                                                                                                         |
+| status        | Array of stringsItems Enum: "deployed" "deploying" "undeployed" "undeploying" "paused" "pausing" Filter eventing functions by one or more status. When this query parameter is not set, all eventing functions will be returned no matter the state. Accepts a comma-separated list, or the same query parameter defined multiple times. |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the list of eventing functions.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "name": "my_function",
+    * "description": "Replicates document mutations to a downstream collection.",
+    * "status": "deployed",
+    * "code": "function OnUpdate(doc, meta, xattrs) {\n log(\"Doc created/updated\", meta.id);\n}\n\nfunction OnDelete(meta, options) {\n log(\"Doc deleted/expired\", meta.id);\n}\n",
+    * "eventSource": {
+      * "bucket": "travel-sample",
+      * "scope": "inventory",
+      * "collection": "airline"  
+      },
+    * "eventMetadataStorage": {
+      * "bucket": "travel-sample",
+      * "scope": "inventory",
+      * "collection": "airline"  
+      },
+    * "settings": {
+      * "workerCount": 1,
+      * "scriptTimeout": 30,
+      * "sqlConsistency": "request",
+      * "languageCompatibility": "7.2.0",
+      * "feedBoundary": "everything",
+      * "maxTimerContextSize": 1024,
+      * "allowSyncDocuments": false,
+      * "cursorAware": true  
+      },
+    * "bindings": {
+      * "buckets": [
+        * {
+          * "alias": "src",
+          * "bucket": "travel-sample",
+          * "scope": "*",
+          * "collection": "*",
+          * "permission": "readWrite"  
+                    }  
+            ],
+      * "urls": [
+        * {
+          * "alias": "api",
+          * "url": "<https://api.example.com/path>",
+          * "allowCookies": true,
+          * "validateTLSCertificate": true,
+          * "authentication": {
+            * "type": "none"  
+                              }  
+                    }  
+            ],
+      * "constants": [
+        * {
+          * "alias": "maxRetries",
+          * "value": "3"  
+                    }  
+            ]  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/Eventing-Functions/operation/setFunctionState)Set Eventing Function State 
+
+This endpoint allows the user to change the eventing function to a deployed, undeployed, or paused state.
+
+The mapping for this is as follows:
+
+* deploy: deploys an undeployed eventing function causing it to start processing events.
+* undeploy: undeploys a deployed or paused eventing function, causing it to stop processing any events.
+* pause: pauses a deployed eventing function, causing it to stop processing events with the ability to resume its current progress in the future.
+* resume: resumes a paused eventing function (back to deployed state), causing it to continue to process events from where it was paused.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles: - Organization Owner - Project Owner - Project Manager
+
+To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                  |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                       |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                       |
+| functionNamerequired   | string \[ 1 .. 100 \] characters ^\[a-zA-Z0-9\]\[a-zA-Z0-9\_-\]\*$ Example: my\_eventing\_functionThe name of the eventing function to target. |
+
+##### Request Body schema: application/json
+
+| staterequired | string Enum: "deploy" "undeploy" "pause" "resume" The action to take on the specified eventing function. |
+| ------------- | -------------------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**204** 
+
+Successfully set the Eventing function state.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}/activationState
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}/activationState
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "state": "deploy"
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Eventing-Functions/operation/getFunctionLogs)Get Function Logs 
+
+Returns the most recent 40960 bytes of application log messages for the specified function.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                  |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                       |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                       |
+| functionNamerequired   | string \[ 1 .. 100 \] characters ^\[a-zA-Z0-9\]\[a-zA-Z0-9\_-\]\*$ Example: my\_eventing\_functionThe name of the eventing function to target. |
+
+### Responses
+
+**200** 
+
+Successfully returned the Eventing function logs.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}/logs
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/eventingFunctions/{functionName}/logs
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+text/plain
+
+Copy
+
+2026-05-07T18:39:00.742+00:00 [INFO] "Doc created/updated" "doc1"
+
 ## [](#tag/Events)Events
 
 Events represent a trail of actions that users performs within Capella at an organization or project level
@@ -21976,6 +23226,7 @@ Copy
 
 `{
 * "enabled": true,
+* "status": "enabled",
 * "routes": {
   * "xdcr": true,
   * "metrics": false  
@@ -25592,11 +26843,11 @@ Copy
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
-## [](#tag/AI-Services-Providers)AI Services Providers
+## [](#tag/AI-Data-Plane-Providers)AI Data Plane Providers
 
-Providers represents the integrations with external services that are required by AI Services. These endpoints facilitate interactions with external services providers required by AI Services.
+Providers represents the integrations with external services that are required by the AI Data Plane. These endpoints facilitate interactions with external services providers required by the AI Data Plane.
 
-## [](#tag/AI-Services-Providers/operation/listProviders)List providers 
+## [](#tag/AI-Data-Plane-Providers/operation/listProviders)List providers 
 
 Lists all the Provider integrations configured a given organization. Use the `providerType` to filter on the type of Provider.
 
@@ -25707,9 +26958,9 @@ Copy
 }
 }`
 
-## [](#tag/AI-Services-Providers/operation/createProvider)Create provider 
+## [](#tag/AI-Data-Plane-Providers/operation/createProvider)Create provider 
 
-Creates a new OpenAI integration for a given organization.
+Creates a new integration for a given organization.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
@@ -25777,7 +27028,7 @@ application/json
 
 Example
 
-CreateOpenAIProviderExampleCreateS3ProviderExampleCreateS3ProviderWithSessionTokenExampleCreateBedrockProviderExampleCreateOpenAIProviderExample
+CreateOpenAIProviderExampleCreateS3ProviderExampleCreateS3ProviderWithSessionTokenExampleCreateBedrockProviderExampleCreateBedrockProviderWithAPIKeyExampleCreateOpenAIProviderExample
 
 Copy
 
@@ -25811,7 +27062,7 @@ Copy
 * "id": "provider1-ffffffff-aaaa-1414-eeee-000000000000"
 }`
 
-## [](#tag/AI-Services-Providers/operation/getProvider)Get provider 
+## [](#tag/AI-Data-Plane-Providers/operation/getProvider)Get provider 
 
 Fetches the details of a specific provider.
 
@@ -25895,7 +27146,7 @@ Copy
 }
 }`
 
-## [](#tag/AI-Services-Providers/operation/updateProvider)Update provider 
+## [](#tag/AI-Data-Plane-Providers/operation/updateProvider)Update provider 
 
 Updates an existing provider.
 
@@ -25973,7 +27224,7 @@ application/json
 
 Example
 
-UpdateOpenAIProviderExampleUpdateS3ProviderExampleUpdateS3ProviderWithSessionTokenExampleUpdateBedrockProviderExampleUpdateOpenAIProviderExample
+UpdateOpenAIProviderExampleUpdateS3ProviderExampleUpdateS3ProviderWithSessionTokenExampleUpdateBedrockProviderExampleUpdateBedrockProviderWithAPIKeyExampleUpdateBedrockProviderAPIKeyOnlyExampleUpdateOpenAIProviderExample
 
 Copy
 
@@ -26008,7 +27259,7 @@ Copy
 * "hint": "The request was malformed or invalid."
 }`
 
-## [](#tag/AI-Services-Providers/operation/deleteProvider)Delete provider 
+## [](#tag/AI-Data-Plane-Providers/operation/deleteProvider)Delete provider 
 
 Deletes an existing provider.
 
@@ -26311,7 +27562,7 @@ application/json
 
 Example
 
-Structured Data WorkflowUnstructured Data WorkflowVectorization WorkflowStructured Data Workflow
+Structured Data WorkflowUnstructured Data WorkflowVectorization WorkflowStructured Data Workflow with BedrockUnstructured Data Workflow with BedrockVectorization Workflow with BedrockStructured Data Workflow
 
 Copy
 
@@ -27024,13 +28275,174 @@ Copy
 ]
 }`
 
-## [](#tag/Model-Services-API-Keys-%28AI-Services%29)Model Services API Keys (AI Services)
+## [](#tag/AI-Workflows/operation/getSupportedExternalEmbeddingModels)Get Supported External Embedding Models 
 
-Couchbase Capella Model Services uses Bearer token authentication for secure access to the AI models. Each inference request to access the models must include a valid API key in the Authorization header. The Model API Keys endpoints enable users to manage (create, retrieve, update, and delete) API keys for the models of a specific region, ensuring secure and controlled access to the models during inferencing. The API keys created for a specific region can be used to access all the models available in that region.
+Retrieves a list of supported external embedding models that can be used for vectorization. This endpoint allows you to see which models are available for use in your projects. In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Cluster Owner To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### query Parameters
+
+| page     | integer Sets the page you would like to view.                                                                                                   |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage  | integer Sets the number of results you would like to have on each page.                                                                         |
+| provider | string Enum: "openAI" "awsBedrock" Example: provider=openAIType of external model provider to filter on. By default all providers are returned. |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the list of supported external embedding models.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/workflows/supportedExternalEmbeddingModels
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/workflows/supportedExternalEmbeddingModels
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Example
+
+Supported External Embedding Models Response ExampleSupported External Embedding Models Response with AWS Bedrock ExampleSupported External Embedding Models Response Example
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "name": "text-embedding-3-small",
+    * "provider": "openAI",
+    * "dimensions": {
+      * "supported": [
+        * 512,
+        * 1536  
+            ],
+      * "default": 1536  
+      },
+    * "contextWindowSize": 8192  
+  },
+  * {
+    * "name": "text-embedding-3-large",
+    * "provider": "openAI",
+    * "dimensions": {
+      * "supported": [
+        * 256,
+        * 1024,
+        * 3072  
+            ],
+      * "default": 3072  
+      },
+    * "contextWindowSize": 8192  
+  },
+  * {
+    * "name": "text-embedding-ada-002",
+    * "provider": "openAI",
+    * "dimensions": {
+      * "supported": [
+        * 1536  
+            ],
+      * "default": 1536  
+      },
+    * "contextWindowSize": 8192  
+  },
+  * {
+    * "name": "amazon.titan-embed-text-v1",
+    * "provider": "awsBedrock",
+    * "dimensions": {
+      * "supported": [
+        * 1536  
+            ],
+      * "default": 1536  
+      },
+    * "contextWindowSize": 8192  
+  },
+  * {
+    * "name": "amazon.titan-embed-text-v2:0",
+    * "provider": "awsBedrock",
+    * "dimensions": {
+      * "supported": [
+        * 256,
+        * 512,
+        * 1024  
+            ],
+      * "default": 1024  
+      },
+    * "contextWindowSize": 8192  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 1,
+    * "last": 1,
+    * "perPage": 25,
+    * "totalItems": 5  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/organizations/ffffffff-aaaa-1414-eeee-000000000000/projects/ffffffff-bbbb-2525-dddd-111111111111/clusters/ffffffff-cccc-3636-cccc-222222222222/aiServices/workflows/supportedExternalEmbeddingModels?page=1&perPage=25>",
+    * "last": "<https://cloud.couchbase.com/v4/organizations/ffffffff-aaaa-1414-eeee-000000000000/projects/ffffffff-bbbb-2525-dddd-111111111111/clusters/ffffffff-cccc-3636-cccc-222222222222/aiServices/workflows/supportedExternalEmbeddingModels?page=1&perPage=25>",
+    * "previous": "",
+    * "next": ""  
+  }  
+}
+}`
+
+## [](#tag/Model-Services-API-Keys-%28AI-Data-Plane%29)Model Services API Keys (AI Data Plane)
+
+Couchbase AI Data Plane Model Services uses Bearer token authentication for secure access to the AI models. Each inference request to access the models must include a valid API key in the Authorization header. The Model API Keys endpoints enable users to manage (create, retrieve, update, and delete) API keys for the models of a specific region, ensuring secure and controlled access to the models during inferencing. The API keys created for a specific region can be used to access all the models available in that region.
 
 To send inference requests to your models and receive outputs, use the [Model Service API](https://docs.couchbase.com/ai/model-service-api-reference/rest-api.html). For more information, see [Make an API Call with the Model Service API](https://docs.couchbase.com/ai/api-guide/api-use.html#model-api-call).
 
-## [](#tag/Model-Services-API-Keys-%28AI-Services%29/operation/createModelAPIKey)Create API Key 
+## [](#tag/Model-Services-API-Keys-%28AI-Data-Plane%29/operation/createModelAPIKey)Create API Key 
 
 Creates a new API Key for the specified region within an organization. API Key created for a region can be used to access all the models of that region for inferencing.
 
@@ -27079,6 +28491,10 @@ The client does not have the valid credentials to access this resource.
 
 The client does not have the necessary permissions to access this resource.
 
+**404** 
+
+AI Gateway doesn't exist for the tenant in the specified region.
+
 **422** 
 
 Request validation error.
@@ -27123,6 +28539,7 @@ Copy
 * 400
 * 401
 * 403
+* 404
 * 422
 * 500
 
@@ -27137,7 +28554,7 @@ Copy
 * "token": "cb_api_sk_1234567890abcdef"
 }`
 
-## [](#tag/Model-Services-API-Keys-%28AI-Services%29/operation/listModelAPIKeys)List API keys 
+## [](#tag/Model-Services-API-Keys-%28AI-Data-Plane%29/operation/listModelAPIKeys)List API keys 
 
 Lists all API keys for the given region in an organization.
 
@@ -27256,7 +28673,7 @@ Copy
 }
 }`
 
-## [](#tag/Model-Services-API-Keys-%28AI-Services%29/operation/getModelAPIKey)Get API Key 
+## [](#tag/Model-Services-API-Keys-%28AI-Data-Plane%29/operation/getModelAPIKey)Get API Key 
 
 Returns an API Key for the given region in the organization by its ID.
 
@@ -27362,7 +28779,7 @@ Copy
 }
 }`
 
-## [](#tag/Model-Services-API-Keys-%28AI-Services%29/operation/deleteModelAPIKey)Delete API key 
+## [](#tag/Model-Services-API-Keys-%28AI-Data-Plane%29/operation/deleteModelAPIKey)Delete API key 
 
 Deletes an existing API Key for the given region in the organization.
 
@@ -27436,13 +28853,13 @@ Copy
 * "hint": "The request is unauthorized. Please ensure you have proper authentication credentials and try again."
 }`
 
-## [](#tag/Models-%28AI-Services%29)Models (AI Services)
+## [](#tag/Models-%28AI-Data-Plane%29)Models (AI Data Plane)
 
 The Model Service endpoints allows you to deploy and manage your models - open LLMs like Llama3 and embedding models in Capella close to your data. The users can create, get, update, and delete language models.
 
-To send inference requests to your models and receive outputs, use the [Model Service API](https://docs.couchbase.com/ai/model-service-api-reference/rest-api.html). For more information about the Model Service API, see [Manage Deployments with AI Services APIs](https://docs.couchbase.com/ai/api-guide/api-intro.html#model-service-api).
+To send inference requests to your models and receive outputs, use the [Model Service API](https://docs.couchbase.com/ai/model-service-api-reference/rest-api.html). For more information about the Model Service API, see [Manage Deployments with AI Data Plane APIs](https://docs.couchbase.com/ai/api-guide/api-intro.html#model-service-api).
 
-## [](#tag/Models-%28AI-Services%29/operation/listModels)List Models 
+## [](#tag/Models-%28AI-Data-Plane%29/operation/listModels)List Models 
 
 Fetches the details of all the models.
 
@@ -27603,7 +29020,7 @@ Copy
 }
 }`
 
-## [](#tag/Models-%28AI-Services%29/operation/createModel)Create Model 
+## [](#tag/Models-%28AI-Data-Plane%29/operation/createModel)Create Model 
 
 Create a new model deployment.
 
@@ -27729,7 +29146,7 @@ Copy
 * "id": "fffffffff-aaaa-1414-eeee-000000000000"
 }`
 
-## [](#tag/Models-%28AI-Services%29/operation/getModel)Get Model 
+## [](#tag/Models-%28AI-Data-Plane%29/operation/getModel)Get Model 
 
 Fetches the details of the given model.
 
@@ -27858,7 +29275,7 @@ Copy
 }
 }`
 
-## [](#tag/Models-%28AI-Services%29/operation/destroyModel)Delete Model 
+## [](#tag/Models-%28AI-Data-Plane%29/operation/destroyModel)Delete Model 
 
 Destroys an existing model.
 
@@ -27929,7 +29346,7 @@ Copy
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
-## [](#tag/Models-%28AI-Services%29/operation/putModel)Update Model 
+## [](#tag/Models-%28AI-Data-Plane%29/operation/putModel)Update Model 
 
 Updates an existing model.
 
@@ -28068,7 +29485,7 @@ Copy
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
-## [](#tag/Models-%28AI-Services%29/operation/getConnectionString)Get Model Connection String 
+## [](#tag/Models-%28AI-Data-Plane%29/operation/getConnectionString)Get Model Connection String 
 
 Fetches the connection string to connect to the model.
 
@@ -28139,7 +29556,7 @@ Copy
 * "connectionString": "<https://abcdefgh.ai.com>"
 }`
 
-## [](#tag/Models-%28AI-Services%29/operation/modelOn)Turn On Model 
+## [](#tag/Models-%28AI-Data-Plane%29/operation/modelOn)Turn On Model 
 
 Resumes the model or turns the model to On state.
 
@@ -28222,7 +29639,7 @@ Copy
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
-## [](#tag/Models-%28AI-Services%29/operation/modelOff)Turn Off Model 
+## [](#tag/Models-%28AI-Data-Plane%29/operation/modelOff)Turn Off Model 
 
 Pauses the model or turns the model to off state.
 

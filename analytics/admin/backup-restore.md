@@ -3,7 +3,7 @@ title: Back Up or Restore a Capella Analytics Cluster
 description: With a Cloud Snapshot cluster backup, you can backup and restore
   your entire Capella Analytics cluster with a single backup.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/backup-restore.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:analytics:admin:backup-restore.adoc[]
 ---
 
@@ -100,6 +100,10 @@ To restore a backup to a cluster:
 ### [](#export-to-google-cloud-storage-gcs)Export to Google Cloud Storage (GCS)
 
 Capella Analytics allows you to export the data into Google Cloud Storage. This can serve as a backup of your database in Capella Analytics, and the exported database can be loaded back to Capella Analytics in case the original database are corrupted/deleted.
+
+### [](#export-to-azure-blob-storage)Export to Azure Blob Storage
+
+Capella Analytics allows you to export data into Azure Blob Storage. This can serve as a backup of your database in Capella Analytics, and the exported data can be loaded back to Capella Analytics in case the original database is corrupted or deleted.
 
 ### [](#next-steps-2)Next Steps
 

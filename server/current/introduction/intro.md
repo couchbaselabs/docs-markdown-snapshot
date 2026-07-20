@@ -1,7 +1,7 @@
 ---
 title: Couchbase Server
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/introduction/pages/intro.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:server:introduction:intro.adoc[]
 ---
 
@@ -52,7 +52,7 @@ Tutorials
 CRUD Operations
 
 * [Developer's Intro](../develop/intro.md)
-* [SDKs](#sdk:overview.adoc)
+* [SDKs](../../../home/sdk.md)
 * [CRUD Using SDKs](../../../java-sdk/current/howtos/kv-operations.md)
 
 Transactions & Durability

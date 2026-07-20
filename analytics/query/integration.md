@@ -1,0 +1,59 @@
+---
+title: Integrations, Connectors, and Tools
+description: An overview of the integrations, connectors, and tools available
+  for Capella Analytics, including data visualization, feature stores, and data
+  ingestion pipelines.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/integration.adoc
+pubDate: 2026-07-20T13:54:32.914Z
+link: xref:analytics:query:integration.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/analytics/query/integration.html)
+
+# Integrations, Connectors, and Tools
+
+> An overview of the integrations, connectors, and tools available for Capella Analytics, including data visualization, feature stores, and data ingestion pipelines. 
+
+## [](#data-visualization)Data Visualization
+
+__Table 1\. Data Visualization Integrations__
+| Integration                  | Description                                                                                                                                                               | Links                                                                                                                                                                                                                               | Capella | Self-Managed | [Support Model](#support-model) |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------ | ------------------------------- |
+| Couchbase Tableau Connector  | The Couchbase Tableau Connector provides integration between Capella Analytics tabular views and the Tableau interactive data visualization platform.                     | [Documentation](../../tableau-connector/current/index.md) [Download](https://www.tableau.com/products/desktop/download) [Tableau Exchange](../../tableau-connector/current/index.md)                                                | ✔       | ✔            | Couchbase Officially Supported  |
+| Couchbase Power BI Connector | Connects Power BI Desktop and Power BI Service to Capella Analytics as a data source, in both import and direct query modes.                                              | [Documentation](../../power-bi-connector/current/index.md) [Release Notes](../../power-bi-connector/current/release-notes.md)                                                                                                       | ✔       | ✔            | Couchbase Officially Supported  |
+| Couchbase Superset Connector | Connects Capella Analytics to Apache Superset using SQLAlchemy, so you can create interactive visualizations from your tabular data.                                      | [Apache Superset Documentation](https://docs.couchbase.com/superset-connector/current/index.html) [Repository](https://github.com/couchbase/couchbase-sqlalchemy)                                                                   | ✔       | ✔            | Couchbase Officially Supported  |
+| Data Studio                  | Connects Looker Studio to Capella Analytics. Looker Studio is a web-based data visualization tool that turns raw data into interactive, shareable dashboards and reports. | [Looker Studio with Couchbase Data API](https://developer.couchbase.com/tutorial-looker-studio-dataapi) [Couchbase Looker Studio Connector Repository](https://github.com/Couchbase-Ecosystem/couchbase-gcp-lookerstudio-connector) | ✔       | ✔            | Couchbase Community Supported   |
+| JDBC Driver                  | An open source, read-only JDBC driver to provide connectivity to any BI tool that supports a generic JDBC connection.                                                     | [Repository](https://github.com/couchbaselabs/couchbase-jdbc-driver)                                                                                                                                                                | ✔       | ✔            | Couchbase Community Supported   |
+
+## [](#feature-store)Feature Store (AI/ML)
+
+__Table 2\. Feature Store Integrations__
+| Integration | Description                                                                                                                                                                          | Links                                                                                                                                  | Capella                                                                        | Self-Managed | [Support Model](#support-model) |                               |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ------------ | ------------------------------- | ----------------------------- |
+| Feast       | Feast is an open source feature store that helps teams operate production ML systems at scale with the ability to define, manage, validate, and serve features for production AI/ML. | [Couchbase Columnar (contrib) \| Feast: Offline store](https://docs.feast.dev/reference/offline-stores/couchbase) [Couchbase (contrib) | Feast: Online store](https://docs.feast.dev/reference/online-stores/couchbase) | ✔            | ✔                               | Couchbase Community Supported |
+
+## [](#data-ingestion)Data Ingestion
+
+__Table 3\. Data Ingestion Integrations__
+| Integration                                            | Description                                                                                                            | Links                                                                                                                                                                                                                                          | Capella | Self-Managed | [Support Model](#support-model) |
+| ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------ | ------------------------------- |
+| Amazon Managed Streaming for Apache Kafka (Amazon MSK) | Native integration with Amazon MSK to stream and analyze real-time data directly from your managed AWS Kafka clusters. | [Create a Kafka Pipeline Link](../sources/remote-kafka.md) [Create a Kafka Pipeline Collection](../sources/kafka-collection.md)                                                                                                                | ✔       | ✔            | Couchbase Officially Supported  |
+| Confluent Kafka                                        | Confluent Cloud Kafka integration for streaming data into Capella Analytics.                                           | [Create a Kafka Pipeline Link](../sources/remote-kafka.md) [Create a Kafka Pipeline Collection](../sources/kafka-collection.md)                                                                                                                | ✔       | ✔            | Couchbase Officially Supported  |
+| MongoDB                                                | Change Data Capture (CDC) support using Kafka as the data pipeline and Debezium or MongoDB connectors.                 | [Create a Kafka Pipeline Link](../sources/remote-kafka.md) [Create a Kafka Pipeline Collection](../sources/kafka-collection.md)                                                                                                                | ✔       | ✔            | Couchbase Officially Supported  |
+| MySQL                                                  | Change Data Capture (CDC) support using Kafka as the data pipeline and Debezium connector.                             | [Create a Kafka Pipeline Link](../sources/remote-kafka.md) [Create a Kafka Pipeline Collection](../sources/kafka-collection.md) [Debezium MySQL Connector](https://debezium.io/documentation/reference/stable/connectors/mysql.html)           | ✔       | ✔            | Couchbase Officially Supported  |
+| PostgreSQL                                             | Change Data Capture (CDC) support using Kafka as the data pipeline and Debezium connector.                             | [Create a Kafka Pipeline Link](../sources/remote-kafka.md) [Create a Kafka Pipeline Collection](../sources/kafka-collection.md) [Debezium PostgreSQL Connector](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) | ✔       | ✔            | Couchbase Officially Supported  |
+| DynamoDB                                               | Change Data Capture (CDC) support using Kafka as the data pipeline and GlueSync connector.                             | [Create a Kafka Pipeline Link](../sources/remote-kafka.md) [Create a Kafka Pipeline Collection](../sources/kafka-collection.md)                                                                                                                | ✔       | ✔            | Couchbase Officially Supported  |
+| Amazon S3                                              | Read from or write to external object storage (Amazon S3).                                                             | [Query Data in External Data Sources](../sources/external-s3.md) [Design a Location Path](../sources/dynamic-prefixes.md)                                                                                                                      | ✔       | ✔            | Couchbase Officially Supported  |
+| Google Cloud Storage                                   | Read from or write to external object storage (GCS).                                                                   | [Query Data in External Data Sources](../sources/external-gcs.md)                                                                                                                                                                              | ✔       | ✔            | Couchbase Officially Supported  |
+| Azure Blob Storage                                     | Read from or write to external object storage (ABS).                                                                   | [Query Data in External Data Sources](../sources/external-azure.md)                                                                                                                                                                            | ✔       | ✔            | Couchbase Officially Supported  |
+
+## [](#support-model)Support Models
+
+Couchbase Officially Supported
+
+Integration developed by Couchbase and officially supported. For more information, see [Enterprise Software Support Policy](https://www.couchbase.com/support-policy/enterprise-software/).
+
+Couchbase Community Supported
+
+Open source integration developed by Couchbase. For more information, see [Couchbase Support Policies](https://www.couchbase.com/support-policy/).

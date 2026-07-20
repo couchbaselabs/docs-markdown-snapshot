@@ -3,7 +3,7 @@ title: cbbackupmgr
 description: <code>cbbackupmgr</code> is a tool for managing the backup and
   restore of Couchbase-Server data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/backup-restore/pages/enterprise-backup-restore.adoc
-pubDate: 2026-06-25T05:47:47.215Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:7.6@server:backup-restore:enterprise-backup-restore.adoc[]
 ---
 
@@ -86,25 +86,24 @@ Only one backup client can access the backup archive at a time. If multiple inst
 
 ## [](#version-compatibility)Version Compatibility
 
-For 6.5 and all later versions, `cbbackupmgr` can be used to back up data either from a cluster running its own version, or from a cluster running a prior, compatible version. For example, the 6.6.0 tool can back up data from a cluster running 6.6.0, 6.5.x, 6.0.x, or 5.5.x.
+For 6.5 and all later versions, `cbbackupmgr` can be used to back up data either from a cluster running its own version or from a cluster running a prior, compatible version. For example, the 6.6.0 tool can back up data from a cluster running 6.6.0, 6.5.x, 6.0.x, or 5.5.x.
 
-You can also restore to any of the listed versions if the data was backed up from a cluster with the same version or an earlier version as the cluster you're restoring to. For example, a `cbbackupmgr` backup for Couchbase 7.0 can be restored to 7.0, 7.1, 7.2, 7.6, 8.0, (Assuming you're using the latest `cbbackupmgr` version supported for the cluster you're restoring to.)
+You can also restore to any of the listed versions if the data was backed up from a cluster with the same version or an earlier version as the cluster you're restoring to. For example, a `cbbackupmgr` backup for Couchbase 7.0 can be restored to 7.0, 7.1, 7.2, 7.6 (Assuming you're using the latest `cbbackupmgr` version supported for the cluster you're restoring to.)
 
 The following table lists the compatible cluster-versions for each version of `cbbackupmgr`. Unless otherwise specified, backup and restore apply both to local and to cloud data.
 
 __Table 2\. Compatibility Requirements for Backup and Restore__
-|                                            | cbbackupmgr version → |   |     |     |     |     |     |                 |     |       |       |
-| ------------------------------------------ | --------------------- | - | --- | --- | --- | --- | --- | --------------- | --- | ----- | ----- |
-|                                            |                       |   | 8.0 | 7.6 | 7.2 | 7.1 | 7.0 | 6.6.0 and above | 6.5 | 6.0.x | 5.5.x |
-| Compatible withCouchbase Server version: ↓ | 8.0                   | ✓ |     |     |     |     |     |                 |     |       |       |
-| 7.6                                        | ✓                     | ✓ |     |     |     |     |     |                 |     |       |       |
-| 7.2                                        | ✓                     | ✓ | ✓   |     |     |     |     |                 |     |       |       |
-| 7.1                                        | ✓                     | ✓ | ✓   | ✓   |     |     |     |                 |     |       |       |
-| 7.0                                        | ✓                     | ✓ | ✓   | ✓   | ✓   |     |     |                 |     |       |       |
-| 6.6                                        |                       |   | ✓   | ✓   | ✓   | ✓   |     |                 |     |       |       |
-| 6.5.x                                      |                       |   |     | ✓\* | ✓\* | ✓\* | ✓   |                 |     |       |       |
-| 6.0.x                                      |                       |   |     |     | ✓\* | ✓\* | ✓   | ✓               |     |       |       |
-| 5.5.x                                      |                       |   |     |     |     | ✓\* | ✓   | ✓               | ✓   |       |       |
+|                                            | cbbackupmgr version → |   |     |     |     |     |                 |     |       |       |
+| ------------------------------------------ | --------------------- | - | --- | --- | --- | --- | --------------- | --- | ----- | ----- |
+|                                            |                       |   | 7.6 | 7.2 | 7.1 | 7.0 | 6.6.0 and above | 6.5 | 6.0.x | 5.5.x |
+| Compatible withCouchbase Server version: ↓ | 7.6                   | ✓ |     |     |     |     |                 |     |       |       |
+| 7.2                                        | ✓                     | ✓ |     |     |     |     |                 |     |       |       |
+| 7.1                                        | ✓                     | ✓ | ✓   |     |     |     |                 |     |       |       |
+| 7.0                                        | ✓                     | ✓ | ✓   | ✓   |     |     |                 |     |       |       |
+| 6.6                                        |                       | ✓ | ✓   | ✓   | ✓   |     |                 |     |       |       |
+| 6.5.x                                      |                       |   | ✓\* | ✓\* | ✓\* | ✓   |                 |     |       |       |
+| 6.0.x                                      |                       |   |     | ✓\* | ✓\* | ✓   | ✓               |     |       |       |
+| 5.5.x                                      |                       |   |     |     | ✓\* | ✓   | ✓               | ✓   |       |       |
 
 \* For local backup only — not for cloud.
 

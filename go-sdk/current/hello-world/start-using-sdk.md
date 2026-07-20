@@ -2,7 +2,7 @@
 title: Start Using the Go SDK
 description: A quick start guide to get you up and running with Couchbase and the Go SDK.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:go-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -246,7 +246,7 @@ if err != nil {
 
 For developing locally on the same machine as Couchbase Server, your URI can be `couchbase://localhost` as shown here. For production deployments, you will want to use a TLS, enabled with `couchbases://`.
 
-Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../operator/current/concept-cloud-native-gateway.md):
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](#operator:ROOT:concept-cloud-native-gateway.adoc):
 
 ```golang
 	cluster, err := gocb.Connect("couchbase2://"+connectionString, gocb.ClusterOptions{

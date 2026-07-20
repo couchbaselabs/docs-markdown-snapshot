@@ -1,7 +1,7 @@
 ---
 title: Welcome to Couchbase Capella
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/cloud.adoc
-pubDate: 2026-03-28T05:05:12.980Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:home::cloud.adoc[]
 ---
 
@@ -16,7 +16,7 @@ Capella operational is the easiest way to use Couchbase Server. Get access to SQ
 
 Capella Analytics is an analytical database (RT-OLAP) for real-time apps and operational intelligence. Capella Analytics is a standalone, cloud-only offering from Couchbase under the Capella family of products.
 
-Capella AI Services is a fully managed set of tools that help you build, deploy, and scale your agentic and retrieval-augmented generation (RAG) AI applications.
+The {ai-long} is a fully managed set of tools that help you build, deploy, and scale your agentic and retrieval-augmented generation (RAG) AI applications.
 
 ## Explore Couchbase Capella
 
@@ -50,14 +50,14 @@ Create your account and follow our tutorial on how to load data into your Analyt
 * [Access Data](../analytics/intro/examples.md)
 * [Query and Explore with the Workbench](../analytics/query/workbench.md)
 
-###  Get Started With Capella AI Services
+###  Get Started With the {ai-long}
 
-Create your account and start working with Capella AI Services.
+Create your account and start working with the {ai}.
 
 * [Sign Up](https://cloud.couchbase.com/sign-up)
-* [Capella AI Services](../ai/get-started/intro.md)
-* [Process Your Data For Capella AI Services](../ai/build/vectorization-service/data-processing.md)
+* [{ai-long}](../ai/get-started/intro.md)
+* [Process Your Data For the {ai-long}](../ai/build/vectorization-service/data-processing.md)
 * [Deploy a Large Language Model (LLM)](../ai/build/model-service/deploy-llm-model.md)
 * [Deploy an Embedding Model](../ai/build/model-service/deploy-embed-model.md)
 * [Integrate an Agent with the Agent Catalog](../ai/build/integrate-agent-with-catalog.md)
-* [Use Capella AI Functions](../ai/build/ai-functions.md)
+* [Use {ai-long} AI Functions](../ai/build/ai-functions.md)

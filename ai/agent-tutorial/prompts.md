@@ -2,7 +2,7 @@
 title: About Prompts and Prompt Engineering
 description: Learn how prompts, context, and orchestration work together in agentic apps.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/prompts.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:agent-tutorial:prompts.adoc[]
 ---
 
@@ -49,7 +49,7 @@ Context is everything the LLM needs to make a good decision. It comes in 2 main 
 
 Context engineering is the practice of deciding what to include in the prompt and how to structure it. Too little context, and the LLM makes poor decisions. With too much context, the prompt becomes slow or confusing. The size of the prompt is also limited by the context size of the LLM.
 
-Capella AI Services can help you manage your prompts using the [Agent Catalog](../build/integrate-agent-with-catalog.md) and the [Prompts Hub](../build/tools-prompts-hub.md#prompts-hub).
+The {ai-long} can help you manage your prompts using the [Agent Catalog](../build/integrate-agent-with-catalog.md) and the [Prompts Hub](../build/tools-prompts-hub.md#prompts-hub).
 
 ## [](#guardrails)Guardrails
 
@@ -72,7 +72,7 @@ For example, a prompt could include the following to add guardrails:
 
 Guardrails help make sure the LLM does not go off track whether by accident or through a malicious user.
 
-For more information about guardrails on the Capella Model Service, see [Configure Guardrails and Security](../build/model-service/configure-guardrails-security.md).
+For more information about guardrails on the {ai} Model Service, see [Configure Guardrails and Security](../build/model-service/configure-guardrails-security.md).
 
 ## [](#the-orchestration-layers-role)The Orchestration Layer's Role
 
@@ -120,7 +120,7 @@ Hotels API results: Hotel X $100/night, Hotel Y $150/night.
 ```
 
 > [!TIP]
-> Couchbase AI Services also offers notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework:
+> The {ai} also offers notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework:
 > 
 > * Colab: [LangGraph](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb)
 > * GitHub: [LangGraph](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb)

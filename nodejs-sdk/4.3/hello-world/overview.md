@@ -1,7 +1,7 @@
 ---
 title: Couchbase Node.js SDK 4.3
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.3/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:4.3@nodejs-sdk:hello-world:overview.adoc[]
 ---
 
@@ -93,7 +93,7 @@ Reference
 
 Project Docs
 
-* [SDK Release Notes](../project-docs/sdk-release-notes.md)
+* [Couchbase Node.js Release Notes and Archives](../project-docs/sdk-release-notes.md)
 * [Compatibility](../project-docs/compatibility.md)
 * [Older Versions Archive](https://docs-archive.couchbase.com/home/index.html)
 * [Migrating to SDK API 3](../project-docs/migrating-sdk-code-to-3.n.md)

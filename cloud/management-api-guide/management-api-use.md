@@ -2,7 +2,7 @@
 title: Make an API Call with the Capella Operational Management API
 description: How to make an API call with the Couchbase Capella Operational Management API.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-use.adoc
-pubDate: 2026-05-02T05:28:41.565Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:cloud:management-api-guide:management-api-use.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:cloud:management-api-guide:management-api-use.adoc[]
 
 > How to make an API call with the Couchbase Capella Operational Management API. 
 
-This page is for Capella operational. For Capella AI Services, see [Make an API Call with Capella AI Services APIs](../../ai/api-guide/api-use.md). For Capella Analytics, see [Make an API Call with the Capella Analytics Management API](../../analytics/management-api-guide/management-api-use.md).
+This page is for Capella operational. For the {ai-long}, see [Make an API Call with the {ai-long} APIs](../../ai/api-guide/api-use.md). For Capella Analytics, see [Make an API Call with the Capella Analytics Management API](../../analytics/management-api-guide/management-api-use.md).
 
 ## [](#prerequisites)Prerequisites
 

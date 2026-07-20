@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -12,6 +12,9 @@ link: xref:cloud:release-notes:release-notes.adoc[]
 
 ## [](#june-2026-changelog)June 2026 Changelog
 
+* Couchbase Server 8.0.2  
+Creating a new operational cluster with Couchbase Server 8.0 now deploys the Couchbase Server 8.0.2 maintenance release. This version includes bug fixes.  
+For more information about this version of Couchbase Server, see [Couchbase Server 8.0.2](../../server/current/release-notes/relnotes.md#release-802).
 * Slack and Microsoft Teams Integrations for Alerts  
 Capella now supports native alert integrations for Slack and Microsoft Teams. You can send cluster and App Service [metric-based alerts](../reference/alert-reference.md#metric-alerts) directly to your team's preferred Slack or Microsoft Teams channels by using the Capella UI or the Management REST API.  
 Customize alert payloads with either standard or advanced templates for Slack and Microsoft Teams integrations. To configure an alert integration, see [Configure a Slack Alert Integration](../clusters/monitoring/configure-slack-integration.md)and [Configure a Microsoft Teams Alert Integration](../clusters/monitoring/configure-microsoft-integration.md).  

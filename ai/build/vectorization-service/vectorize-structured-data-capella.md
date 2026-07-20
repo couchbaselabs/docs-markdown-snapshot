@@ -4,7 +4,7 @@ description: Use a Data from Capella Workflow to automatically generate
   embedding vectors from JSON data in your Capella operational cluster. Use
   embedding vectors for similarity searches on your data.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/vectorize-structured-data-capella.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:build:vectorization-service/vectorize-structured-data-capella.adoc[]
 ---
 
@@ -19,16 +19,17 @@ The Vectorization Service automatically creates a [Vector Search index](../../..
 
 Your data must already be extracted, filtered, and chunked in preparation for generating embeddings.
 
-To generate your embeddings, you can use a model [hosted by the Capella Model Service](../model-service/deploy-embed-model.md) or [OpenAI](https://openai.com/). Capella stores the generated vector embeddings and Vector Search index in an operational cluster.
+To generate your embeddings, you can use a model [hosted by the {ai} Model Service](../model-service/deploy-embed-model.md), [OpenAI](https://openai.com/), or [Amazon Bedrock](https://aws.amazon.com/bedrock/). The {ai} stores the generated vector embeddings and Vector Search index in an operational cluster.
 
 ## [](#prerequisites)Prerequisites
 
 * You have data available in JSON format inside a Capella operational cluster. If your data is not yet in JSON format, see [Process and Vectorize Unstructured Data](vectorize-unstructured-data.md).
-* If you want to use a model hosted on Capella, you must have:
+* If you want to use a model hosted on the {ai}, you must have:
 
-  * Deployed a Capella embedding model. For more information, see [Deploy an Embedding Model](../model-service/deploy-embed-model.md).
-  * Your model's **API Key ID** and **API Key Token**. For more information about API keys for Capella models, see [Get Started with Capella AI Services APIs](../../api-guide/api-start.md).
+  * Deployed an {ai} embedding model. For more information, see [Deploy an Embedding Model](../model-service/deploy-embed-model.md).
+  * Your model's **API Key ID** and **API Key Token**. For more information about API keys for {ai} models, see [Get Started with the {ai-long} APIs](../../api-guide/api-start.md).
 * If you want to use a model hosted by OpenAI, you have your OpenAI API Key. For more information about how to find your OpenAI API Key, see [the OpenAI Help Center](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
+* If you want to use an Amazon Bedrock model, you need a short-term Amazon Bedrock API key. For more information, see [Add an Amazon Bedrock API Key](../../admin/manage-ai-integrations.md#add-bedrock).
 * You have deployed an operational cluster that has the following:
 
   * Couchbase Server version 8.0 or later.
@@ -40,7 +41,7 @@ To generate your embeddings, you can use a model [hosted by the Capella Model Se
 
 To create a new Data from Capella workflow and process your JSON data from a Capella operational cluster:
 
-1. Go to **AI Services** **Workflows**.
+1. Go to menu:{ai}\[Workflows\].
 2. Click **Create New Workflow**.
 3. Click **Data from Capella**.
 4. In the **Workflow Name** field, enter a name to identify your Data from Capella Workflow, or accept the automatically generated name.  
@@ -81,17 +82,18 @@ To create custom mappings and only vectorize specific fields from your documents
 
 ### [](#choose-embedding)Choose Your Embedding Model
 
-You can choose to use an embedding model [hosted by the Capella Model Service](../model-service/deploy-embed-model.md) or hosted by OpenAI to vectorize your data.
+You can choose to use an embedding model [hosted by the {ai} Model Service](../model-service/deploy-embed-model.md), hosted by OpenAI, or hosted by Amazon Bedrock to vectorize your data.
 
-* Use a Capella Model
+* Use an {ai} Model
 * Use an OpenAI Model
+* Use an AWS Bedrock Model
 
-To use a Capella Model:
+To use an {ai} Model:
 
 1. Click **Capella Model**.
 2. Select the name of the model you want to use in this workflow.
-3. Upload or manually enter your embedding model's **API Key ID** and **API Key Token**. For more information about API keys for Capella models, see [Get Started with Capella AI Services APIs](../../api-guide/api-start.md).
-4. (Optional) Choose whether to set up **Private Networking** for your Capella embedding model. For more information about Private Networking for AI Services, see [Add an AWS PrivateLink Connection](../../security/add-aws-privatelink.md).
+3. Upload or manually enter your embedding model's **API Key ID** and **API Key Token**. For more information about API keys for {ai} models, see [Get Started with the {ai-long} APIs](../../api-guide/api-start.md).
+4. (Optional) Choose whether to set up **Private Networking** for your {ai} embedding model. For more information about Private Networking for the {ai-long}, see [Add an AWS PrivateLink Connection](../../security/add-aws-privatelink.md).
 5. Click **Next**.
 6. Continue with the rest of the [Procedure](#procedure).
 
@@ -110,11 +112,22 @@ To use an OpenAI model:
 > [!NOTE]  
 > Workflows do not use the OpenAI Batch API.
 
+Before you begin, generate a short-term Amazon Bedrock API key and add it to the {ai-long} integrations. For more information, see [Add an Amazon Bedrock API Key](../../admin/manage-ai-integrations.md#add-bedrock).
+
+To use an AWS Bedrock model:
+
+1. Click **AWS Bedrock Model**.
+2. Add your **Bedrock Model ID**.  
+Use a Bedrock embedding model ID, for example `amazon.titan-embed-text-v2:0`.
+3. In the **Integrations Name** list, select the Bedrock API key you want to use.
+4. Click **Next**.
+5. Continue with the rest of the [Procedure](#procedure).
+
 ## [](#next-steps)Next Steps
 
-The Capella AI Services UI shows the documents that have been processed by your Data from Capella Workflow. You can click the **Failed** icon to view error information for failed documents.
+The {ai} UI shows the documents that have been processed by your Data from Capella Workflow. You can click the **Failed** icon to view error information for failed documents.
 
-Data from Capella Workflows for Capella data display with a **Capella** Type.
+Data from {ai} Workflows for Capella data display with a **Capella** Type.
 
 For more information about Workflow statuses, see [Workflow Statuses](data-processing.md#status).
 

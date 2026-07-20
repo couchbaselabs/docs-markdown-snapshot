@@ -4,7 +4,7 @@ description: The CREATE INDEX statement allows you to create a secondary index.
   Secondary indexes contain a filtered or a full set of keys in a given
   keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/createindex.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/createindex.adoc[]
 ---
 
@@ -204,6 +204,13 @@ The index key is sorted in ascending order.
 The index key is sorted in descending order.
 
 This clause is optional; if omitted, the default is `ASC`.
+
+> [!TIP]
+> If any queries that use this index include an ordering term on the same field as this index key, the sort order of the ordering term should match the sort order of the index key to ensure the best performance.
+> 
+> For example, if the index uses a descending sort order, then the query should also use a descending sort order. If the query uses the opposite sort order to the index, you may experience reduced performance.
+> 
+> If necessary, you could create two indexes that are identical except for opposite sort orders, and then use an index hint in the query to select the appropriate index.
 
 #### [](#include-missing)INCLUDE MISSING Clause
 

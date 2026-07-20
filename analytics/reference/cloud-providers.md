@@ -2,7 +2,7 @@
 title: Supported Cloud Providers
 description: The cloud providers supported by Capella Analytics services.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/reference/pages/cloud-providers.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:analytics:reference:cloud-providers.adoc[]
 ---
 
@@ -15,6 +15,7 @@ Capella Analytics services supports deploying clusters on the below cloud servic
 
 * [Amazon Web Services (AWS)](aws.md)
 * [Google Cloud Platform](gcp.md)
+* [Microsoft Azure](azure.md)
 
 > [!NOTE]
 > The cloud service providers for Capella Analytics are different from those in Capella operational. To see the details of the cloud service providers for Capella operational, see [Supported Cloud Providers](../../cloud/clouds/cloud-providers.md).

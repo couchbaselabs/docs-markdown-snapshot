@@ -3,7 +3,7 @@ title: Search
 description: You can use the Search service to create queryable search indexes
   in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:dotnet-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -47,7 +47,7 @@ var searchResult = await cluster.SearchAsync(
 );
 
 // as a scope-level search
-[data-source-url=https://github.com/couchbase/docs-sdk-dotnet/blob/801506f0e8ff74dd19219a144e1fefdc88f872ac/modules/howtos/examples/Search.cs#L35-L38]
+[data-source-url=https://github.com/couchbase/docs-sdk-dotnet/blob/5efac49f8d18968a6a22cb103426017b0b7354b8/modules/howtos/examples/Search.cs#L35-L38]
 var searchResult = await scope.SearchAsync("index-hotel-description",
     SearchRequest.Create(
         new MatchQuery("swanky")),

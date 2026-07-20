@@ -3,7 +3,7 @@ title: Index Scans
 description: This section discusses how index spans are generated from query
   predicates and provides a number of examples.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/indexes/pages/index-scans.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:server:indexes:index-scans.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Couchbase SQL++ is a modern query processing engine designed to provide SQL for 
 
 Applications and database drivers submit the SQL++ query to one of the available Query nodes on a cluster. The Query node analyzes the query, uses metadata on underlying objects to figure out the optimal execution plan, which it then executes. During execution, depending on the query, using applicable indexes, the Query node works with the Index and Data nodes to retrieve and perform the planned operations. Because Couchbase is a modular clustered database, you scale out data, index, and query services to fit your performance and availability goals.
 
-![Query Execution Overview](_images/query-execution-174e626781cc4e23347d1158d4a8a9b93c1a93ff.svg) 
+![Query Execution Overview](_images/query-execution-753745aceedd624171a073ca90962b01d3d35924.svg) 
 
 Figure 1\. Query Execution Overview
 

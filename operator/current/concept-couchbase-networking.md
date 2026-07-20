@@ -1,7 +1,7 @@
 ---
 title: Couchbase Networking
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-couchbase-networking.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:operator::concept-couchbase-networking.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:operator::concept-couchbase-networking.adoc[]
 
 > Connecting to a Couchbase cluster in Kubernetes is challenging. This section outlines supported strategies and key concepts. 
 
-Couchbase Server is a high performance database, where data is distributed across all pods in a cluster. Clients are aware of which pod a data item should reside on and perform client-side load balancing. By performing the load balancing in the client, this avoids unnecessary network hops and improves performance. For this reason Couchbase Server cannot be accessed using normal Kubernetes `Service` or `Ingress` resources, unless accessed via [Cloud Native Gateway](concept-cloud-native-gateway.md) (CNG).
+Couchbase Server is a high performance database, where data is distributed across all pods in a cluster. Clients are aware of which pod a data item should reside on and perform client-side load balancing. By performing the load balancing in the client, this avoids unnecessary network hops and improves performance. For this reason Couchbase Server cannot be accessed using normal Kubernetes `Service` or `Ingress` resources, unless accessed via [Cloud Native Gateway](#concept-cloud-native-gateway.adoc) (CNG).
 
 The following options depict the possible networking topologies for connecting clients to a Couchbase cluster. Clients includes all Couchbase Client SDKs, Couchbase Mobile and Couchbase XDCR connections unless otherwise stated.
 

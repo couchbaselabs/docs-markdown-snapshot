@@ -1,8 +1,8 @@
 ---
 title: Deploy an Embedding Model
-description: Use the Capella Model Service to deploy embedding models for vectorizing text.
+description: Use the {ai} Model Service to deploy embedding models for vectorizing text.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/deploy-embed-model.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:build:model-service/deploy-embed-model.adoc[]
 ---
 
@@ -11,9 +11,9 @@ link: xref:ai:build:model-service/deploy-embed-model.adoc[]
 
 # Deploy an Embedding Model
 
-> Use the Capella Model Service to deploy embedding models for vectorizing text. 
+> Use the {ai} Model Service to deploy embedding models for vectorizing text. 
 
-An embedding model vectorizes text into numerical vectors that capture their semantic meaning, allowing AI systems to identify similarities between content. You can use embedding models you deploy through the Capella Model Service with [Capella AI Services Workflows](../vectorization-service/data-processing.md).
+An embedding model vectorizes text into numerical vectors that capture their semantic meaning, allowing AI systems to identify similarities between content. You can use embedding models you deploy through the {ai} Model Service with [the {ai-long} Workflows](../vectorization-service/data-processing.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -21,7 +21,7 @@ An embedding model vectorizes text into numerical vectors that capture their sem
 
 ## [](#procedure)Procedure
 
-1. From your organization, go to **AI Services** **Models**.
+1. From your organization, go to menu:{ai}\[Models\].
 2. Click **Deploy New Model**.
 3. Choose an embedding model to deploy:
 

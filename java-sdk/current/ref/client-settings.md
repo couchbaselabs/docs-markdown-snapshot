@@ -3,7 +3,7 @@ title: Client Settings
 description: The <code>ClusterEnvironment</code> class enables you to configure
   Java SDK options for security, timeouts, reliability, and performance.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:java-sdk:ref:client-settings.adoc[]
 ---
 
@@ -763,7 +763,7 @@ __Table 1\. Profile Settings__
 
 ## [](#cloud-native-gateway)Cloud Native Gateway
 
-Using the [Cloud Native Gateway](../howtos/managing-connections.md#cloud-native-gateway) protocol (to connect to Couchbase Server running on [Couchbase Autonomous Operator](../../../operator/current/concept-cloud-native-gateway.md) 2.6.1 or newer) should not need any changes to config.
+Using the [Cloud Native Gateway](../howtos/managing-connections.md#cloud-native-gateway) protocol (to connect to Couchbase Server running on [Couchbase Autonomous Operator](#operator::concept-cloud-native-gateway.adoc) 2.6.1 or newer) should not need any changes to config.
 
 Some settings will be ignored when using the `couchbase2://` protocol. Currently, these include:
 

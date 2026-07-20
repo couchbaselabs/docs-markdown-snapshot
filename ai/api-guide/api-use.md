@@ -1,28 +1,28 @@
 ---
-title: Make an API Call with Capella AI Services APIs
-description: How to make an API call with the Couchbase AI Services APIs.
+title: Make an API Call with the {ai-long} APIs
+description: How to make an API call with the Couchbase {ai} APIs.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-use.adoc
-pubDate: 2026-05-02T05:28:41.565Z
+pubDate: 2026-07-20T13:54:32.914Z
 link: xref:ai:api-guide:api-use.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/api-guide/api-use.html)
 
-# Make an API Call with Capella AI Services APIs
+# Make an API Call with the {ai-long} APIs
 
-> How to make an API call with the Couchbase AI Services APIs. 
+> How to make an API call with the Couchbase {ai} APIs. 
 
-This page is for Capella AI Services. It covers the AI Services features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Make an API Call with the Capella Operational Management API](../../cloud/management-api-guide/management-api-use.md).
+This page is for the {ai-long}. It covers the {ai} features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Make an API Call with the Capella Operational Management API](../../cloud/management-api-guide/management-api-use.md).
 
-Capella AI Services has different APIs that you can use. You can:
+the {ai} has different APIs that you can use. You can:
 
 1. [Make an API call with the Management API](#management-api-call) to manage **Provider** integrations, **Workflows**, AI **Models**, and **Model Service API Keys**.
 2. [Make an API call with Model Service API](#model-api-call) to send inference requests to your embedding models or Large Language Models (LLMs) and receive outputs.
 
 ## [](#management-api-call)Make an API Call with the Management API
 
-Use the Management API to manage your AI Services.
+Use the Management API to manage your {ai}.
 
 ### [](#prerequisites)Prerequisites
 
@@ -280,7 +280,7 @@ The Model Service API uses a model's **Model Endpoint** as its base URL. This is
 
 To get your model connection string:
 
-1. Go to **AI Services** **Models**.
+1. Go to menu:{ai}\[Models\].
 2. Find your model and copy the **Model Endpoint**.
 
 To get your model connection string using the Management API, see [Get a Model's Connection String](#get-model-string-example).
@@ -365,4 +365,4 @@ HTTP Response
 * For a full reference guide of the Management API, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
 * For a full reference guide of the Model Service API, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 * For a reference of the Management API errors, see [Management API Error Messages ](api-errors.md#management-api-errors).
-* For a reference of the AI Services Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).
+* For a reference of the {ai} Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).
