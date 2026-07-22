@@ -3,7 +3,7 @@ title: Manage AWS Private Endpoints Using the Capella UI
 description: Configure and manage AWS private endpoints for App Services using
   the Capella UI.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/private-endpoints/app-services-private-endpoints-aws-ui.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-07-22T05:30:13.485Z
 link: xref:app-services::private-endpoints/app-services-private-endpoints-aws-ui.adoc[]
 ---
 
@@ -201,7 +201,7 @@ To configure your network access control list (ACL) with an **Inbound** and **Ou
 
 ### [](#turn-app-services-on-and-off)Turn App Services On and Off
 
-The [App Services On/Off](../app-services/turn-on-off.md) feature is fully compatible with private endpoints. When an App Service is turned off, any private endpoints will remain in place, although not usable. When the App Service is turned back on, any private endpoints will begin working again. You do not need to re-create any private endpoints.
+The [App Services On/Off](../app-services/turn-on-off.md) feature is fully compatible with private endpoints. When an App Service is turned off, any private endpoints remain in place, although not usable. When the App Service is turned back on, any private endpoints begin working again. You do not need to re-create any private endpoints.
 
 > [!NOTE]
 > When an App Service is turned off, a network load balancer remains active in the infrastructure to maintain the private endpoint state. There is some cost associated with this, even though the App Service is turned off. To avoid this cost, you must fully tear down the private endpoint and disable it, before turning off the App Service.

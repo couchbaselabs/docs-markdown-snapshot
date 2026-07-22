@@ -3,7 +3,7 @@ title: Create an App Service
 description: Using the Capella UI, you can create an App Service for your mobile
   apps to connect to.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-services/creating-an-app-service.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-22T05:30:13.485Z
 link: xref:app-services::app-services/creating-an-app-service.adoc[]
 ---
 
@@ -74,6 +74,23 @@ You can scale an application after it's deployed by changing its configuration. 
 > * 4vCPU with 8 GB RAM
 > 
 > You cannot scale a Single Node App Service to add more nodes later.
+
+## [](#requested-cidr)Requested CIDR
+
+> [!IMPORTANT]
+> This option is only available for App Services deployed on Azure.
+
+You can specify the CIDR range of the subnet that hosts the App Service load balancer. If you do not specify a value, Capella assigns a CIDR range automatically.
+
+The CIDR value persists when you turn the App Service off and back on. This prevents CIDR conflicts when peering with a Capella deployment.
+
+To specify a CIDR range:
+
+1. In the **Requested CIDR** field, enter the CIDR range for the App Service subnet.  
+> [!NOTE]  
+> Capella validates that the CIDR range does not conflict with existing Capella clusters. If the range is in use, Capella returns an error and you must enter a different value.
+
+After creation, you can view the assigned CIDR value in **Settings** **General** under **Summary**. You cannot change the CIDR value after the App Service is created.
 
 ## [](#service-cluster-size-implications)Service Cluster Size Implications
 

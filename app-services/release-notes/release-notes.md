@@ -3,7 +3,7 @@ title: Capella App Services Release Notes
 description: Release notes for Capella App Services, including new features,
   enhancements, and updates.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/release-notes/release-notes.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-07-22T05:30:13.485Z
 link: xref:app-services::release-notes/release-notes.adoc[]
 ---
 
@@ -15,6 +15,12 @@ link: xref:app-services::release-notes/release-notes.adoc[]
 > Release notes for Capella App Services, including new features, enhancements, and updates. 
 
 This page contains release notes specific to Capella App Services. For general Capella release notes, see [Couchbase Capella Release Notes](../../cloud/release-notes/release-notes.md).
+
+## [](#july-2026)July 2026
+
+* Specify a Static CIDR Range for Azure App Services  
+When creating an App Service on Azure, you can now optionally specify a static CIDR range for the subnet where the App Service load balancer is deployed. The CIDR value persists when you turn the App Service off and back on, preventing CIDR conflicts when peering with a Capella deployment. If you do not specify a value, Capella assigns a CIDR range automatically.  
+For more information, see [Requested CIDR](../app-services/creating-an-app-service.md#requested-cidr).
 
 ## [](#june-2026)June 2026
 
