@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1784698619367,
+  "generated": 1784784998151,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -41215,7 +41215,7 @@
               "module": "ROOT",
               "path": "mobile.adoc",
               "url": "/home/mobile.md",
-              "title": "Couchbase Mobile - Embedded Database on the Edge"
+              "title": "Couchbase Mobile"
             },
             {
               "module": "ROOT",

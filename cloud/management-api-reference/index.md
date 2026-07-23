@@ -1,7 +1,7 @@
 ---
 title: Capella Operational Management API Reference
 editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/public/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-07-23T05:30:31.135Z
 link: xref:cloud:management-api-reference:index.adoc[]
 ---
 
@@ -455,6 +455,14 @@ Copy
         * "ffffffff-aaaa-1414-eeee-000000000000",
         * "..."  
             ]  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
       }  
   },
   * "slack": {
@@ -652,6 +660,14 @@ Copy
             * "ffffffff-aaaa-1414-eeee-000000000000",
             * "..."  
                               ]  
+                    },
+        * "customPayloads": {
+          * "property1": {
+            * "payload": { }  
+                              },
+          * "property2": {
+            * "payload": { }  
+                              }  
                     }  
             },
       * "slack": {
@@ -944,6 +960,14 @@ Copy
         * "ffffffff-aaaa-1414-eeee-000000000000",
         * "..."  
             ]  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
       }  
   },
   * "slack": {
@@ -1116,6 +1140,14 @@ Copy
         * "ffffffff-aaaa-1414-eeee-000000000000",
         * "..."  
             ]  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
       }  
   },
   * "slack": {
@@ -1222,6 +1254,14 @@ Copy
         * "ffffffff-aaaa-1414-eeee-000000000000",
         * "..."  
             ]  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
       }  
   },
   * "slack": {
@@ -1459,6 +1499,14 @@ Copy
         * "ffffffff-aaaa-1414-eeee-000000000000",
         * "..."  
             ]  
+      },
+    * "customPayloads": {
+      * "property1": {
+        * "payload": { }  
+            },
+      * "property2": {
+        * "payload": { }  
+            }  
       }  
   },
   * "slack": {
@@ -2199,7 +2247,7 @@ _token_
 | namerequired              | string (APIKeyName) Name of the API key.                                                                                                                                                                                                                                  |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | description               | string (APIKeyDescription) Default: "" Description for the API key.                                                                                                                                                                                                       |
-| expiry                    | number <float\>  (APIKeyExpiry) Default: 180 Expiry of the API key in number of days. If set to -1, the token will not expire.                                                                                                                                            |
+| expiry                    | number <float\>  (APIKeyExpiry) Default: 180 Expiry of the API key in number of days. Must be at least 0.01 days. If set to -1, the token will not expire.                                                                                                                |
 | allowedCIDRs              | Array of strings (APIKeyAllowedCIDRs) Default: \["0.0.0.0/0"\] List of inbound CIDRs for the API key. The system making a request must come from one of the allowed CIDRs.                                                                                                |
 | organizationRolesrequired | Array of strings (APIKeyOrganizationRoles) Items Enum: "organizationOwner" "organizationMember" "projectCreator"                                                                                                                                                          |
 | resources                 | Array of objects (APIKeyResources) Default: \[\] Resources are the resource level permissions associated with the API key. To learn more about Organization Roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html). |
@@ -5499,12 +5547,13 @@ _token_
 
 ##### Request Body schema: application/json
 
-| namerequired | string <= 256 characters Name of the cluster (up to 256 characters).                                                                                       |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| description  | string A short description of the App Service.                                                                                                             |
-| nodes        | integer Number of nodes configured for the App Service. Number of nodes configured for the App Service. The number of nodes can range from 2 to 12.        |
-| compute      | object (AppServiceCompute) The CPU and RAM configuration of the App Service. The supported combinations are: CPU (cores) RAM (GB) 2 4 4 8 8 16 16 32 36 72 |
-| version      | string The version of the App Service server. If left empty, it will be defaulted to the latest available version.                                         |
+| namerequired     | string <= 256 characters Name of the cluster (up to 256 characters).                                                                                                                                                                                                  |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| description      | string A short description of the App Service.                                                                                                                                                                                                                        |
+| nodes            | integer Number of nodes configured for the App Service. Number of nodes configured for the App Service. The number of nodes can range from 2 to 12.                                                                                                                   |
+| compute          | object (AppServiceCompute) The CPU and RAM configuration of the App Service. The supported combinations are: CPU (cores) RAM (GB) 2 4 4 8 8 16 16 32 36 72                                                                                                            |
+| version          | string The version of the App Service server. If left empty, it will be defaulted to the latest available version.                                                                                                                                                    |
+| loadBalancerCidr | string^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\/\\d{1,2}$... Optional. Pins the CIDR block used for the App Service load balancer subnet. Supported for Azure App Services only and rejected for other providers. When omitted, the CIDR is allocated dynamically. |
 
 ### Responses
 
@@ -5560,7 +5609,8 @@ Copy
   * "cpu": 2,
   * "ram": 4  
 },
-* "version": "3.0"
+* "version": "3.0",
+* "loadBalancerCidr": "10.1.0.0/24"
 }`
 
 ### Response samples 
@@ -5680,7 +5730,8 @@ Copy
       * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
       * "modifiedAt": "2021-09-01T12:34:56Z",
       * "version": 1  
-      }  
+      },
+    * "loadBalancerCidr": "10.1.0.0/24"  
   }  
 ],
 * "cursor": {
@@ -5790,7 +5841,8 @@ Copy
   * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
   * "modifiedAt": "2021-09-01T12:34:56Z",
   * "version": 1  
-}
+},
+* "loadBalancerCidr": "10.1.0.0/24"
 }`
 
 ## [](#tag/App-Services/operation/putAppService)Update App Service 
@@ -5824,9 +5876,10 @@ _token_
 
 ##### Request Body schema: application/json
 
-| nodesrequired   | integer Number of nodes configured for the App Service. The number of nodes can range from 2 to 12.                                                        |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| computerequired | object (AppServiceCompute) The CPU and RAM configuration of the App Service. The supported combinations are: CPU (cores) RAM (GB) 2 4 4 8 8 16 16 32 36 72 |
+| nodesrequired    | integer Number of nodes configured for the App Service. The number of nodes can range from 2 to 12.                                                                                                                                                                                |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| computerequired  | object (AppServiceCompute) The CPU and RAM configuration of the App Service. The supported combinations are: CPU (cores) RAM (GB) 2 4 4 8 8 16 16 32 36 72                                                                                                                         |
+| loadBalancerCidr | string^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\/\\d{1,2}$... Optional and immutable. The CIDR block pinned for the App Service load balancer subnet at creation time (Azure only). It cannot be changed after creation; supplying a different value returns a validation error. |
 
 ### Responses
 
@@ -5879,7 +5932,8 @@ Copy
 * "compute": {
   * "cpu": 2,
   * "ram": 4  
-}
+},
+* "loadBalancerCidr": "10.1.0.0/24"
 }`
 
 ### Response samples 
@@ -23226,6 +23280,7 @@ Copy
 
 `{
 * "enabled": true,
+* "serviceName": "com.amazonaws.vpce.us-east-1.vpce-svc-1234",
 * "status": "enabled",
 * "routes": {
   * "xdcr": true,
