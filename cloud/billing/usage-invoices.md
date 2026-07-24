@@ -3,7 +3,7 @@ title: View Capella Usage and Invoices
 description: You can view current and past usage for the clusters and services
   in your organization, and view and download invoices.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/usage-invoices.adoc
-pubDate: 2026-05-06T05:34:55.761Z
+pubDate: 2026-07-24T05:33:21.264Z
 link: xref:cloud:billing:usage-invoices.adoc[]
 ---
 
@@ -40,6 +40,9 @@ The **Overview** page lets you:
 * View your organization's monthly credit usage from the last year by category. Categories include App Services, Analytics, Data Transfer, and Cluster.
 * Buy Capella credits through [Couchbase Sales](https://info.couchbase.com/Capella-Contact.html), [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-xrhx5zgue5c26), [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/couchbase.couchbase%5Fcapella%5Fdbaas?tab=overview), or [GCP Marketplace](https://console.cloud.google.com/marketplace/product/couchbase-public/couchbase-capella-database-as-a-service?pli=1).
 * View your organization's [pay-as-you-go credit usage](billing.md#pay-as-you-go-credits) information for your last 3 months of usage. Capella displays your usage across your organization's Basic, Developer Pro, and Enterprise Support Plans.
+
+> [!TIP]
+> To monitor billing at a glance, go to **Operational** and view the credit usage for each of your active clusters in the overview table.
 
 ## [](#filter-usage)View and Filter Usage Reports
 

@@ -3,7 +3,7 @@ title: View Your Clusters
 description: You can view, copy, or download a list of all Couchbase Capella
   clusters in a project, along with their status and key configuration details.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/view-database.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-07-24T05:33:21.264Z
 link: xref:cloud:clusters:view-database.adoc[]
 ---
 
@@ -28,21 +28,34 @@ To view the clusters in your organization or project:
   * Click your current project name or search for a project and go to **Operational**.
 2. To find a specific cluster:
 
-  * Use the search bar to find your cluster by **Name**.
-  * Use filters to narrow the list of clusters by:
+  * Use the search bar to find your cluster by **Name** or **Public Connection String**.
+  * Use the default filters to narrow the list of clusters by:
 
     * Project
-    * Cloud service provider ([AWS](../reference/aws.md), [GCP](../reference/gcp.md), or [Azure](../reference/azure.md))
     * [Cluster status](scale-database.md#cluster-status)
+    * Cloud service provider ([AWS](../reference/aws.md), [GCP](../reference/gcp.md), or [Azure](../reference/azure.md))
+    * Services ([Data](data-service/data-service.md), [Query](../n1ql/query.md), [Index](../indexes/indexing-overview.md), [Search](../search/search.md), [Eventing](../eventing/eventing-overview.md), or [Analytics](analytics-service/analytics-service.md))
+    * Support Plan ([Free Tier](../billing/billing.md#free), [Basic](../billing/billing.md#basic), [Developer Pro](../billing/billing.md#dev-pro), or [Enterprise](../billing/billing.md#enterprise))
+    * Nodes ([Single or Multi Node](databases.md#nodes))
+3. To view more information about your cluster, click ![angle down icon](_images/angle-down-icon.png) to expand the table.
+4. (Optional) To configure the columns of the table, click ![sliders icon](_images/sliders-icon.png) and select or deselect the columns you want to show as default. You can select up to 4 additional columns to display at a time.
 
-The **Operational Clusters** page lists all clusters in your organization or selected project. Each row displays:
+The **Operational Clusters** page lists all clusters in your organization or selected project. Each row expands and displays:
 
 * Cluster name
 * Current status
 * Cloud service provider (CSP) and region
-* Linked App Service, if applicable
-* Name of the user who created the cluster
 * Couchbase Server version
+* Linked App Service, if applicable
+* CIDR
+* Public connection string
+* Private connection string, if applicable
+* Number of nodes
+* Enabled services
+* Support plan
+* Creation date
+* Creator
+* Cost in credits
 
 ## [](#copy-or-download-the-cluster-list)Copy or Download the Cluster List
 

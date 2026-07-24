@@ -3,7 +3,7 @@ title: Use {ai-long} AI Functions
 description: Use AI Functions to summarize text, classify content, detect
   sentiment, explain patterns, and more — all within your SQL++ queries.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/ai-functions.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-07-24T05:33:21.264Z
 link: xref:ai:build:ai-functions.adoc[]
 ---
 
@@ -149,7 +149,19 @@ AI Function performance depends on the number and size of query nodes, data volu
 
 ## [](#view-ai-functions)View AI Functions
 
-You can view the list of AI Functions for your operational cluster and their statuses.
+To view a list of AI Functions in your organization and their associated operational clusters:
+
+1. Go to menu:{ai}\[AI Functions\].
+2. (Optional) Filter the list of AI Functions by their associated operational cluster, function name, and model service provider.
+
+To view more details about the AI Functions associated with an operational cluster, do 1 of the following:
+
+1. Go to **Operational** and click the name of the cluster.
+
+  1. Go to **AI Functions**.
+2. From menu:{ai}\[AI Functions\], click the name of an operational cluster.
+
+You can view the status of each of your AI Functions and [change their associated model](#change-model-association). Click the name of the associated model to get more information.
 
 The status of your AI Function can be dependent on the status of its associated model. An AI function can have 1 of the following statuses:
 
@@ -160,14 +172,6 @@ The status of your AI Function can be dependent on the status of its associated 
 | Deploying         | After you enable your AI Functions, they enter a deploying state. This may take some time. You can use your AI Functions when the status changes to **Healthy**.      |
 | Deployment Failed | Your AI Functions failed to deploy.                                                                                                                                   |
 | Updating          | Your AI Functions are updating after you changed the associated model. This may take some time. You can use your AI Functions when the status changes to **Healthy**. |
-
-You can click the name of the associated model to get more information.
-
-To view your AI Functions and their statuses:
-
-1. On the **Operational** tab, click the name of the cluster where you want to view AI Functions.
-2. Go to **AI Functions**.
-3. You can view the status of each AI Function and [change the model associated](#change-model-association) with it.
 
 ## [](#change-model-association)Change Model Association for an AI Function
 
