@@ -3,7 +3,7 @@ title: Data Sync using Sync Gateway
 description: Couchbase Lite JavaScript -- Synchronizing data changes between
   local and remote databases using Sync Gateway
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/replication.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-28T05:30:40.250Z
 link: xref:couchbase-lite-javascript::replication.adoc[]
 ---
 
@@ -239,7 +239,7 @@ To create a Basic Auth user in Sync Gateway, you use the Admin REST API. The Adm
 
 To create a new user, send a POST request to `[{db}/_user/{username}](https://docs.couchbase.com/sync-gateway/current/rest-api/rest%5Fapi%5Fadmin.html#tag/Database-Security/operation/post%5Fdb-%5Fuser-)` with a minimal JSON body:
 
-Example 4\. Example: Create User Request
+Example 4\. Create User Request
 
 ```json
 {
@@ -250,20 +250,22 @@ Example 4\. Example: Create User Request
 
 This creates a user with Basic Authentication enabled, meaning you can authenticate against Sync Gateway using username and password in your Couchbase Lite for JavaScript replicator configuration.
 
-Example 5\. Example: Using Credentials in Replicator
+Example 5\. Using Credentials in Replicator
 
 ```javascript
 const replicator = new Replicator({
   database: database,
   url: 'wss://sync-gateway.example.com:4984/myapp',
   collections: {
-    tasks: { pull: {}, push: {} }
+    tasks: {
+      pull: { continuous: true },
+      push: { continuous: true }
+    }
   },
   credentials: {
     username: 'alice',
     password: 'secret123'
-  },
-  continuous: true
+  }
 });
 
 await replicator.start();

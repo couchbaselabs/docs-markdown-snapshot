@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1785131465656,
+  "generated": 1785216969344,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -23299,7 +23299,7 @@
               "module": "hello-world",
               "path": "sample-application.adoc",
               "url": "/cxx-sdk/current/hello-world/sample-application.md",
-              "title": "Sample Application"
+              "title": "Quickstart in Couchbase with C&#43;&#43;"
             },
             {
               "module": "hello-world",

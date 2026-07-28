@@ -4,7 +4,7 @@ description: In addition to request tracing and metrics reporting, logging
   orphaned requests provides additional insight into why an operation might have
   timed out (or got cancelled for a different reason).
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/observability-orphan-logger.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-28T05:30:40.250Z
 link: xref:cxx-sdk:howtos:observability-orphan-logger.adoc[]
 ---
 
@@ -117,34 +117,14 @@ Each individual request has the following format:
 }
 ```
 
-__Table 2\. Experimental JSON Output Format Descriptions__
-| Property                      | Description                                                          |
-| ----------------------------- | -------------------------------------------------------------------- |
-| total\_duration\_us           | The duration of the orphaned request.                                |
-| encode\_duration\_us          | The duration of the encode span, if present.                         |
-| last\_dispatch\_duration\_us  | The duration of the last dispatch span if present.                   |
-| total\_dispatch\_duration\_us | The duration of all dispatch spans, summed up.                       |
-| last\_server\_duration\_us    | The server duration attribute of the last dispatch span, if present. |
-| operation\_name               | The name of the outer request span, with "cb." prefix removed.       |
-| last\_local\_id               | The local\_id from the last dispatch span, if present.               |
-| operation\_id                 | The operation\_id from the outer request span, if present.           |
-| last\_local\_socket           | The local\_address from the last dispatch span, if present.          |
-| last\_remote\_socket          | The remote\_address from the last dispatch span, if present.         |
-| timeout\_ms                   | The operation timeout in milliseconds.                               |
-
-If a field is not available, it will not be included in the output.
-
 ## [](#configuration)Configuration
 
-The orphan logger can be configured through the `OrphanReporterConfig`.
+The orphan logger can be configured through `tracing_options`. The following properties can be configured:
 
-The following properties can be configured:
+__Table 2\. OrphanReporterConfig Properties__
+| Property     | Default             | Description                                   |
+| ------------ | ------------------- | --------------------------------------------- |
+| emitInterval | 10,000 milliseconds | The interval where found orphans are emitted. |
+| sampleSize   | 10                  | The number of samples to store per service.   |
 
-__Table 3\. OrphanReporterConfig Properties__
-| Property     | Default    | Description                                                          |
-| ------------ | ---------- | -------------------------------------------------------------------- |
-| emitInterval | 10 seconds | The interval where found orphans are emitted.                        |
-| sampleSize   | 10         | The number of samples to store per service.                          |
-| queueLength  | 1024       | Maximum buffer size of orphans to store to pick up for the reporter. |
-
-In addition to those properties, if you want to try out the new logging format you can set the `com.couchbase.orphanReporterNewOutputFormat` system property to `true`.
+Configuration details can be found in the [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.3.2/classcouchbase%5F1%5F1tracing%5F%5Foptions.html#a2872a66bcf62fa033181a3da656bec9e).

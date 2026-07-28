@@ -3,7 +3,7 @@ title: Async APIs
 description: The Couchbase C&#43;&#43; SDK allows the use, and mixing, of two
   asynchronous APIs.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-28T05:30:40.250Z
 link: xref:cxx-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -66,3 +66,7 @@ collection.upsert("document-key", content, {}, [](auto err, auto res) {
 So which API should you choose?
 
 It's really down to you and the needs of your application. If you're already writing code using callbacks then it may make sense to continue that way. The callback-based API provides an easy and intuitive way to chain operations together, whereas the future-based API provides a clean and modern way to access results of asynchronous operations. And you can use different APIs at different times.
+
+### [](#bulk-operations)Bulk Operations
+
+The C++ source repo contains an example of [implementing a bulk get](https://github.com/couchbase/couchbase-cxx-client/blob/1.3.2/examples/bulk%5Fbase%5Fapi.cxx). Careful benchmarking would be required to ensure that this approach is beneficial for your particular workload.
