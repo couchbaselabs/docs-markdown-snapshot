@@ -4,7 +4,7 @@ description: "To access Couchbase Server, users must be authenticated: this can
   occur in either the <em>local</em> or the <em>external</em> authentication
   domain."
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/authentication-domains.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-07-30T05:32:24.566Z
 link: xref:7.6@server:learn:security/authentication-domains.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Couchbase Server authenticates each user by means of one of two _authentication 
   * _Locally Defined Users_, which are explicitly created by a Couchbase Server administrator; and each feature a username and password unique within the Local domain.
   * _Internal Components_ within Couchbase Server that support core functionality (for example, indexing, searching, and replicating), and run with full administrative privileges.
   * _Generated Users_, which are created by Couchbase Server as part of the upgrade process from pre-5.0 to 5.0 and post-5.0 versions; each in correspondence with a legacy bucket. Each Generated User is assigned a _username_ that is identical to the bucket-name; and either a _password_ that is identical to the bucket's pre-5.0 password, or _no password_, if the bucket did not feature a password. Generated Users are created to ensure that legacy applications can continue to access legacy buckets after upgrade to 5.0 or post-5.0, with the same username-password combination being used for authentication.  
-  Note that from release 7.6, Couchbase Server no longer supports {sqlpp) operations on buckets without password specification.
+  Note that from release 7.6, Couchbase Server no longer supports SQL++ operations on buckets without password specification.
 * _External_: Contains either or both of the following:
 
   * Users that are explicitly registered on Couchbase Server as _external_; as supported either by _LDAP_, _Security Assertion Markup Language (SAML)_, or _PAM_. Usernames and passwords are defined and stored remotely; with the usernames also stored on Couchbase Server. Note that external usernames do not clash with local usernames.
