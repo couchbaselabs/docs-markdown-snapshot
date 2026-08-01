@@ -3,7 +3,7 @@ title: Deploy Agent Memory for Production
 description: Deploy the Agent Memory server to a Linux server with HTTPS, Docker
   Compose, and persistent storage.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/deploy-agent-mem-prod.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-01T05:32:35.777Z
 link: xref:ai:build:agent-memory/deploy-agent-mem-prod.adoc[]
 ---
 
@@ -486,6 +486,8 @@ The server is ready when the response includes `"status": "healthy"`. If you're 
 > 
 > * Swagger: `https://<YOUR_DOMAIN>/docs`
 > * Redocly: `https://<YOUR_DOMAIN>/redoc`
+> 
+> You can also browse the same endpoints without a deployment, in the [Agent Memory API Reference](../../agent-memory-api-reference/rest-api.md).
 
 ## [](#manage-your-deployment)Manage Your Deployment
 

@@ -3,7 +3,7 @@ title: Get Started with Agent Memory
 description: Deploy the Couchbase Agent Memory server and store and retrieve
   memory using its Python SDK.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/get-started-agent-mem.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-01T05:32:35.777Z
 link: xref:ai:build:agent-memory/get-started-agent-mem.adoc[]
 ---
 
@@ -221,6 +221,9 @@ Swagger UI. Try any endpoint directly in the browser, with request and response 
 `http://localhost:8080/redoc`
 
 ReDoc. A read-only reference view of the full API spec.
+
+> [!TIP]
+> You can also browse the same endpoints without running a server, in the [Agent Memory API Reference](../../agent-memory-api-reference/rest-api.md).
 
 ## [](#troubleshooting)Troubleshooting
 

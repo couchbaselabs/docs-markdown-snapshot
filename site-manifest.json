@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1785476741818,
+  "generated": 1785562688684,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -36,6 +36,12 @@
               "path": "upgrade-ai-services.adoc",
               "url": "/ai/admin/upgrade-ai-services.md",
               "title": "Upgrades for the {ai}"
+            },
+            {
+              "module": "agent-memory-api-reference",
+              "path": "rest-api.adoc",
+              "url": "/ai/agent-memory-api-reference/rest-api.md",
+              "title": "Agent Memory API Reference"
             },
             {
               "module": "agent-tutorial",

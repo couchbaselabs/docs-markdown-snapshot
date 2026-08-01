@@ -3,7 +3,7 @@ title: Agent Memory for Persistent Memory Storage
 description: Couchbase Agent Memory provides a unified, persistent memory layer
   for agentic applications to maintain context across user sessions.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/about-agent-mem.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-01T05:32:35.777Z
 link: xref:ai:build:agent-memory/about-agent-mem.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:ai:build:agent-memory/about-agent-mem.adoc[]
 
 > Couchbase Agent Memory provides a unified, persistent memory layer for agentic applications to maintain context across user sessions. 
 
-Couchbase Agent Memory stores conversation history, extracted facts, and vector embeddings so that agents can recall relevant past context across sessions. You access it through the [Agent Memory Python SDK](https://pypi.org/project/couchbase-agent-memory/) or its [REST API](get-started-agent-mem.md#api-endpoints).
+Couchbase Agent Memory stores conversation history, extracted facts, and vector embeddings so that agents can recall relevant past context across sessions. You access it through the [Agent Memory Python SDK](https://pypi.org/project/couchbase-agent-memory/) or its [REST API](../../agent-memory-api-reference/rest-api.md).
 
 Without persistent memory, agents rely on in-context memory that disappears when the context window fills up, or they operate as stateless agents with no memory at all. Agent Memory solves this by acting as the persistence layer between your agent framework and its long-term memory store. You do not need to build custom session tables, summarization flows, or retrieval logic.
 
@@ -48,10 +48,10 @@ A fraud analysis agent stores flagged transaction patterns with a TTL set to mat
 
 Agent Memory deploys as a stateless Docker container on your own server. It connects to an existing Capella or Couchbase Server Enterprise Edition cluster. You can scale your Agent Memory server as needed and manage its configuration and settings through an environment file.
 
-You can retrieve and store memories on your Agent Memory deployment through the Agent Memory Python SDK or its REST API.
+You can retrieve and store memories on your Agent Memory deployment through the Agent Memory Python SDK or its [REST API](../../agent-memory-api-reference/rest-api.md).
 
 > [!TIP]
-> Once your server is running, Swagger UI is available at `/docs` and ReDoc at `/redoc`, with no additional setup, to view documentation for the Agent Memory REST API.
+> Once your server is running, Swagger UI is available at `/docs` and ReDoc at `/redoc`, with no additional setup, to view documentation for the Agent Memory REST API. See the [Agent Memory API Reference](../../agent-memory-api-reference/rest-api.md) for the full endpoint reference.
 
 Agent Memory organizes memory using a hierarchy of [users](#user), [sessions](#session), and [memory blocks](#memory-block).
 
@@ -143,3 +143,4 @@ Agent Memory isolates data at the user and session level. One user cannot access
 
 * [Get Started with Agent Memory](get-started-agent-mem.md)
 * [Develop with the Agent Memory SDK](develop-agent-mem.md)
+* [Agent Memory API Reference](../../agent-memory-api-reference/rest-api.md)

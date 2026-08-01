@@ -3,7 +3,7 @@ title: Develop with the Agent Memory SDK
 description: Use the Couchbase Agent Memory Python SDK to add persistent memory
   to your AI agent application.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/develop-agent-mem.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-01T05:32:35.777Z
 link: xref:ai:build:agent-memory/develop-agent-mem.adoc[]
 ---
 
@@ -347,7 +347,7 @@ The SDK raises typed exceptions that map to specific error categories, so you ca
 | Authentication           | AuthenticationError                                                             | Do not retry. Obtain a fresh token or correct credentials.                 |
 
 > [!TIP]
-> For the complete request and response schemas for every endpoint, see the interactive API reference at `/docs` on your running server.
+> For the complete request and response schemas for every endpoint, see the interactive API reference at `/docs` on your running server, or the [Agent Memory API Reference](../../agent-memory-api-reference/rest-api.md).
 
 ## [](#integrate-with-agent-frameworks)Integrate with Agent Frameworks
 
