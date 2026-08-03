@@ -1,10 +1,10 @@
 ---
 title: Sizing Guidelines
 description: Evaluate the overall performance and capacity goals that you have
-  for Couchbase, and use that information to determine the necessary resources
+  for Couchbase and use that information to determine the necessary resources
   that you'll need in your deployment.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/sizing-general.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-08-03T05:42:31.565Z
 link: xref:server:install:sizing-general.adoc[]
 ---
 
@@ -13,9 +13,9 @@ link: xref:server:install:sizing-general.adoc[]
 
 # Sizing Guidelines
 
-> Evaluate the overall performance and capacity goals that you have for Couchbase, and use that information to determine the necessary resources that you'll need in your deployment. 
+> Evaluate the overall performance and capacity goals that you have for Couchbase and use that information to determine the necessary resources that you'll need in your deployment. 
 
-The most common and important questions you need to ask when deploying a new Couchbase Server cluster are how many nodes you need, and what size they need to be.
+The most common and important questions you need to ask when deploying a new Couchbase Server cluster are how many nodes you need and what size they need to be.
 
 With the increasing number of Couchbase services and the flexibility of the Couchbase Data Platform, the answer to this question can be challenging. This guide aims to help you better size your deployment.
 
@@ -26,9 +26,9 @@ If you want detailed recommendations for your specific deployment, you can conta
 
 ## [](#general-considerations)General Considerations
 
-The sizing of your Couchbase Server cluster is critical to its overall stability and performance. While there are some [basic system requirements](pre-install.md) to run Couchbase Server, you still need to evaluate the overall performance and capacity requirements for your workload and dataset, and then divide that into the hardware and resources you have available.
+The sizing of your Couchbase Server cluster is critical to its overall stability and performance. While there are some [basic system requirements](pre-install.md) to run Couchbase Server, you still need to evaluate the overall performance and capacity requirements for your workload and dataset and then divide that into the hardware and resources you have available.
 
-Your application wants the majority of reads to come out of the cache, and to have the I/O capacity to handle the writes. There needs to be enough capacity in all areas to support everything the system is doing while maintaining the required level of performance.
+Your application wants the majority of reads to come out of the cache and to have the I/O capacity to handle the writes. There needs to be enough capacity in all areas to support everything the system is doing while maintaining the required level of performance.
 
 ### [](#multi-dimensional-scaling)Multi-Dimensional Scaling
 
@@ -36,7 +36,7 @@ Couchbase Services allow you to access and maintain your data. You can deploy, m
 
 Multi-Dimensional Scaling lets you fine-tune your cluster for optimal handling of changing workload-requirements, for each individual Couchbase Service.
 
-Every Service has different demands on hardware resources. Multi-Dimensional Scaling plays an important role when sizing your Couchbase cluster, both pre and post-deployment. For example, core Data Service operations can often benefit from scaling out smaller commodity nodes. Low latency operations with the Query Service might see a greater benefit from scaling up hardware resources on a given node.
+Every Service has different demands on hardware resources. Multi-Dimensional Scaling plays an important role when sizing your Couchbase cluster, both pre- and post-deployment. For example, core Data Service operations can often benefit from scaling out smaller commodity nodes. Low-latency operations with the Query Service might see a greater benefit from scaling up hardware resources on a given node.
 
 For more information about the nature and resource demands of each Couchbase Service, see [Services](../learn/services-and-indexes/services/services.md).
 
@@ -60,7 +60,7 @@ Your RAM represents the main memory you allocate to Couchbase Server. Determine 
 
 Some components that require RAM are:
 
-* All index storage types which need sufficient memory quota allocation for proper functioning.
+* All index storage types that need sufficient memory quota allocation for proper functioning.
 * The Search Service.
 
 __Table 1\. Minimum RAM Quota for Couchbase Server Components__
@@ -79,18 +79,19 @@ Storage (disk space)
 Requirements for your disk subsystem are:
 
 * **Disk size** — Specifies the disk storage space needed to hold your entire dataset.
-* **Disk I/O** — Combines your sustained read/write rate, database file compaction, and any other operations that requires disk access.
+* **Disk I/O** — Combines your sustained read/write rate, database file compaction, and any other operations that require disk access.
 
 To better support Couchbase Server, keep in mind the following:
 
-* Disk space continues to grow if fragmentation ratio keeps climbing. To mitigate this, add enough buffer in your disk space to store all of the data. Monitor your cluster's fragmentation ratio in the Couchbase Server Web Console and trigger compaction processes as needed.
+* Disk space continues to grow if the fragmentation ratio keeps climbing. To mitigate this, add enough buffer in your disk space to store all the data. Monitor your cluster's fragmentation ratio in the Couchbase Server Web Console and trigger compaction processes as needed.
 * Couchbase recommends using Solid State Drives (SSD) when possible. An SSD gives much better performance than a Hard Disk Drive (HDD) when it comes to disk throughput and latency.
 
 Network
 
-Enough network bandwidth is vital to the performance of Couchbase Server. A reliable high-speed network for intra-cluster and inter-cluster communications has a huge effect on overall performance and scalability of Couchbase Server.
+Enough network bandwidth is vital to the performance of Couchbase Server. A reliable high-speed network for intra-cluster and inter-cluster communications has a huge effect on the overall performance and scalability of Couchbase Server.
 
-Most deployments can achieve optimal performance with 1 Gbps interconnects, but some may need 10 Gbps.
+> [!NOTE]
+> For optimal performance, Couchbase Server must be deployed with a minimum bandwidth of _at least_ 1 Gbps, but some deployments may need more.
 
 ## [](#sizing-data-service-nodes)Sizing Data Service Nodes
 
@@ -98,7 +99,7 @@ Data Service nodes handle data service operations, such as create/read/update/de
 
 Couchbase recommends reviewing the differences between the available storage engines before attempting to size the Data Service nodes in your cluster. For information, see [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md).
 
-It's important to keep use-cases and application workloads in mind since different application workloads have different resource requirements. For example, if your working set needs to be fully in-memory, your cluster might need more RAM. If your application requires only 10% of data in-memory, you need disks with enough space to store all of the data, and that are fast enough for your read/write operations.
+It's important to keep use-cases and application workloads in mind since different application workloads have different resource requirements. For example, if your working set needs to be fully in-memory, your cluster might need more RAM. If your application requires only 10% of data in-memory, you need disks with enough space to store all the data, and that are fast enough for your read/write operations.
 
 ### [](#ram-sizing-for-data-service-nodes)RAM Sizing for Data Service Nodes
 
@@ -106,7 +107,7 @@ You can start sizing the Data Service nodes by answering the following questions
 
 * Is the application primarily using individual document access?
 * Do you plan to use XDCR?
-* What's your working set size and what are your data operation throughput and latency requirements?
+* What's your working set size, and what are your data operation throughput and latency requirements?
 
 Answers to the above questions can help you better understand the capacity requirement of your cluster and provide a better estimation for sizing.
 
@@ -165,12 +166,12 @@ When sizing disk space for the Data Service nodes, you first must determine the 
 
 * The total number of documents that you plan to store in the cluster. If this value constantly grows, consider the growth rate into the future when sizing.
 * The average size of each document.
-* Whether the documents can be compressed, and if they can, what compression ratio Couchbase Server can achieve. Couchbase Server always compresses documents when storing them on disk. See [Compression](../learn/buckets-memory-and-storage/compression.md) for more information about compression in Couchbase Server. Documents containing JSON data or binaries can be compressed. Binary data that's already compressed (such as compressed images or videos) cannot be compressed further.  
+* Whether the documents can be compressed, and if they can, what compression ratio Couchbase Server can achieve. Couchbase Server always compresses documents when storing them on disk. See [Compression](../learn/buckets-memory-and-storage/compression.md) for more information about compression in Couchbase Server. Documents containing JSON data or binaries can be compressed. Binary data that's already compressed, (such as compressed images or videos,) cannot be compressed further.  
 Couchbase Server uses the [Snappy](https://en.wikipedia.org/wiki/Snappy%5F%28compression%29) compression algorithm, which prioritizes speed while still providing reasonable compression. You can estimate the compression ratio Couchbase Server can achieve for your data by compressing a sample set of documents using a snappy-based command line tool such as `snzip`. Otherwise, you can choose to use an estimated compression ratio of 0.7 for JSON documents.
 * The number of replicas for your buckets. See [Intra-Cluster Replication](../learn/clusters-and-availability/intra-cluster-replication.md) for more information about replicas.
 * The number of documents that you plan to delete each day. This number includes both the number of documents directly deleted by your applications and those that expire due to TTL (time to live) settings. See [Expiration](../learn/data/expiration.md) for more information about document expiration.  
 This value is important because in the short term, deletions actually take a bit more disk space rather than less. Because of Couchbase Server's append-only system, the deleted documents remain on disk until a compaction process runs. Also, Couchbase Server creates a tombstone record for each deleted document. This record consumes a small amount of additional disk space.
-* The metadata purge interval you'll use. This purge process removes tombstones that records the deletion of documents. The default purge interval is 3 days. For more information about the purge interval, see [Metadata Purge Interval](../manage/manage-settings/configure-compact-settings.md#tombstone-purge-interval).
+* The metadata purge interval you'll use. This purge process removes tombstones that record the deletion of documents. The default purge interval is 3 days. For more information about the purge interval, see [Metadata Purge Interval](../manage/manage-settings/configure-compact-settings.md#tombstone-purge-interval).
 * Which storage engine your cluster will use. The storage engine affects the append-only multiplier that you use when sizing disk space. See [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md) for more information
 
 To determine the amount of storage you need in your cluster:
@@ -212,7 +213,7 @@ Using the formulas above, you can calculate the total disk space required as fol
 4. Calculate the tombstone space:  
 \\\[S\_{\\mathrm{tombstones}} = (32 + 60) \\times 3 \\times (1 + 1) \\times 5,000 = 2,760,000 \\text{bytes}\\\]
 5. Calculate the total disk space:  
-\\\[\\begin{equation} \\begin{split} \\text{total disk space} = & ( 7,000,000,000 \\times (1 + 1) \\\\ & + 56,000,000 + 32,000,000 ) \\\\ & \\times 2.2 \\\\ & + 2,760,000 \\\\ & = 30,996,360,000 \\text{bytes} \\end{split} \\end{equation}\\\]
+\\\[\\begin{equation} \\begin{split} \\text{total disk space} = & (7,000,000,000 \\times (1 + 1) \\\\ & + 56,000,000 + 32,000,000) \\\\ & \\times 2.2 \\\\ & + 2,760,000 \\\\ & = 30,996,360,000 \\text{bytes} \\end{split} \\end{equation}\\\]
 
 Therefore, for the cluster in this example, you need at least 31 GB of disk space to store your data.
 
@@ -235,9 +236,9 @@ Similar to the nodes that run the Data Service, answer the following questions t
 * What is the minimum, maximum, or average value size of the indexed fields?
 * How many indexes do you need?
 * How many documents need to be indexed?
-* What is the working set percentage of index required memory?
+* What is the working set percentage of index-required memory?
 
-Answers to these questions can help you better understand the capacity requirement of your cluster, and provide a better estimation for sizing.
+Answers to these questions can help you better understand the capacity requirement of your cluster and provide a better estimation for sizing.
 
 **The following is an example use-case for sizing RAM for the Index service:**
 
@@ -282,10 +283,10 @@ __Table 9\. Suggested Sizing Guideline__
 | index\_memory\_required(20% resident) (Plasma)   | (2000000000) \* (1 + 0.25) \* 0.2 = 1000000000 bytes  |
 | index\_memory\_required(20% resident) (ForestDB) | (3200000000) \* (1 + 0.25) \* 0.2 = 800000000 bytes   |
 
-The previous example shows the memory requirement of a secondary index with 10M index entries, each with a 50 bytes secondary key and a 30 bytes DocumentID. The memory usage requirements are 2.5 GB (Nitro, 100% resident), 1 GB (plasma, 20% resident), 800 MB (ForestDB, 20% resident).
+The previous example shows the memory requirement of a secondary index with 10M index entries, each with a 50-byte secondary key and a 30-byte DocumentID. The memory usage requirements are 2.5 GB (Nitro, 100% resident), 1 GB (plasma, 20% resident), 800 MB (ForestDB, 20% resident).
 
 > [!NOTE]
-> The storage engine used in the sizing calculation corresponds to the storage mode chosen for Index Service as explained in the table below.
+> The storage engine used in the sizing calculation corresponds to the storage mode chosen for Index Service, as explained in the table below.
 
 __Table 10\. Storage engine and storage mode__
 | Storage Engine                        | Storage Mode |
@@ -313,7 +314,7 @@ To size the Search Service nodes in your cluster, you need the following informa
 * A sample document or documents that show the structure of your data.
 * The specific queries per second (QPS) target you need from the Search Service.
 
-You should also consider your replication, recovery, and high availability needs.
+You should also consider your replication, recovery, and high-availability needs.
 
 With all this information, you can work with Couchbase Support to get the most accurate sizing for your Search workload.
 
@@ -329,7 +330,7 @@ For example, if your target QPS is 30,000 and your queries are less complex, div
 
 \\\[30,0000\_{\\mathrm{QPS}} \\div 200\_{\\mathrm{Mid}} = 150\_{\\mathrm{vCPUs}}\\\] 
 
-The formula gives a target of 150 vCPUs for a mid range workload with a less complex query.
+The formula gives a target of 150 vCPUs for a mid-range workload with a less complex query.
 
 If your queries were more complex, but the QPS target was the same, the calculation changes to use a value of 150 and a result of 200 vCPUs:
 
@@ -360,25 +361,25 @@ To calculate a more precise estimate for the required RAM for the Search Service
 
 Use the following formula first to calculate the number of bytes per document in your Search index:
 
-\\\[\\begin{equation} \\begin{split} \\text{Per Doc Index Bytes} = ( ( W \\cdot 1024 \\cdot \\text{f\_text} \\cdot \\text{m\_text} ) + ( W \\cdot 1024 \\cdot \\text{f\_kw} \\cdot \\text{m\_kw} ) + B ) \\times (1 + D) \\end{split} \\end{equation}\\\] 
+\\\[\\begin{equation} \\begin{split} \\text{Per Doc Index Bytes} = (( W \\cdot 1024 \\cdot \\text{f\_text} \\cdot \\text{m\_text} ) + (W \\cdot 1024 \\cdot \\text{f\_kw} \\cdot \\text{m\_kw} ) + B) \\times (1 + D) \\end{split} \\end{equation}\\\] 
 
 You need to know the following variables for the formula:
 
 | Variable                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | \\(W\\)                 | The average size of your JSON documents, in KB.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| \\({\\text{f\_text}}\\) | A measure of the analyzed text from your JSON documents. You can omit this value if you're using primarily keyword searches and do not have longer-form text fields that require an [analyzer](../search/customize-index.md#analyzers). You can use the following value ranges based on the kind of analyzed text you have in your index: **Product descriptions, titles and body snippets, support ticket descriptions**: 0.10-0.20 **Long note fields, email bodies, articles, knowledge-base content**: 0.20-0.40 **Log files, message streams, event payloads with large message fields**: 0.40-0.70 If you're not sure about the size and complexity of the text fields in your documents and how they match to the example ranges, use a value of 0.25 to get a rough estimate. To get the most accurate values for \\({\\text{f\_text}}\\) and your RAM sizing calculations, contact Couchbase Support. |
+| \\({\\text{f\_text}}\\) | A measure of the analyzed text from your JSON documents. You can omit this value if you're primarily using keyword searches and do not have longer-form text fields that require an [analyzer](../search/customize-index.md#analyzers). You can use the following value ranges based on the kind of analyzed text you have in your index: **Product descriptions, titles and body snippets, support ticket descriptions**: 0.10-0.20 **Long note fields, email bodies, articles, knowledge-base content**: 0.20-0.40 **Log files, message streams, event payloads with large message fields**: 0.40-0.70 If you're not sure about the size and complexity of the text fields in your documents and how they match to the example ranges, use a value of 0.25 to get a rough estimate. To get the most accurate values for \\({\\text{f\_text}}\\) and your RAM sizing calculations, contact Couchbase Support. |
 | \\({\\text{m\_text}}\\) | A multiplier for calculating how the bytes in your documents translate into your Search index for analyzed text fields. For a good planning range, try a value between 0.12-0.35, increasing based on the complexity of your analyzed text fields. To get the most accurate values for \\({\\text{m\_text}}\\) and your RAM sizing calculations, contact Couchbase Support.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | \\({\\text{f\_kw}}\\)   | A measure of the keywords from your JSON documents. For a good planning range for a keyword search use case or a filter-heavy workload, use a value of 0.10. To get the most accurate values for \\({\\text{f\_kw}}\\) and your RAM sizing calculations, contact Couchbase Support.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | \\({\\text{m\_kw}}\\)   | A multiplier for calculating how the bytes in your documents translate into your Search index for keywords. For a good planning range, try a value between 0.10-0.18. To get the most accurate values for \\({\\text{m\_kw}}\\) and your RAM sizing calculations, contact Couchbase Support.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| \\(B\\)                 | The number of bytes needed for storing field values for your documents, if [store](../search/child-field-options-reference.md#store) is enabled for a child field mapping. If you're not storing any field values in your Search index, set this value to 0.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| \\(B\\)                 | The number of bytes needed for storing field values for your documents if [store](../search/child-field-options-reference.md#store) is enabled for a child field mapping. If you're not storing any field values in your Search index, set this value to 0.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | \\(D\\)                 | The additional overhead from adding [doc values](../search/child-field-options-reference.md#doc-values) to your Search index from a child field mapping. Use a value from 0-1. If you're not using doc values in your Search index, set this value to 0.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 If you want to add numeric and geospatial fields to your sizing estimate, change the formula to the following:
 
-\\$\\text{Per Doc Index Bytes} = ( ( W \\cdot 1024 \\cdot \\text{f\_text} \\cdot \\text{m\_text} ) + ( W \\cdot 1024 \\cdot \\text{f\_kw} \\cdot \\text{m\_kw} )\\$   
-\\$+ ( W \\cdot 1024 \\cdot 0.02\_\\text{f\_numeric} \\cdot 2.0\_\\text{m\_numeric} )\\$   
-\\$+ ( W \\cdot 1024 \\cdot 0.002\_\\text{f\_geo} \\cdot 2.0\_\\text{m\_geo} )+ B ) \\times (1 + D)\\$ 
+\\$\\text{Per Doc Index Bytes} = (( W \\cdot 1024 \\cdot \\text{f\_text} \\cdot \\text{m\_text} ) + (W \\cdot 1024 \\cdot \\text{f\_kw} \\cdot \\text{m\_kw})\\$   
+\\$+ (W \\cdot 1024 \\cdot 0.02\_\\text{f\_numeric} \\cdot 2.0\_\\text{m\_numeric})\\$   
+\\$+ (W \\cdot 1024 \\cdot 0.002\_\\text{f\_geo} \\cdot 2.0\_\\text{m\_geo} )+ B) \\times (1 + D)\\$ 
 
 The values provided in the preceding formula for \\({\\text{f\_numeric}}\\), \\({\\text{m\_numeric}}\\), \\({\\text{f\_geo}}\\) and \\({\\text{m\_geo}}\\) are reasonable defaults for most numeric and geospatial search workloads.
 
@@ -479,7 +480,7 @@ Answer the following questions to help size the Query Service nodes on your clus
 
 Different queries have different resource requirements. A simple query might return results within milliseconds while a complex query may require several seconds.
 
-The formula used to calculate the number of queries that's processed simultaneously is `CPU_cores * 4`. The formula used to calculate the maximum queue-length for queries is `CPU_cores * 256`. If you reach either limit, the system rejects additional queries with a 503 error.
+The formula used to calculate the number of queries that are processed simultaneously is `CPU_cores * 4`. The formula used to calculate the maximum queue-length for queries is `CPU_cores * 256`. If you reach either limit, the system rejects additional queries with a 503 error.
 
 ## [](#sizing-analytics-service-nodes)Sizing Analytics Service Nodes
 
@@ -492,7 +493,7 @@ The Analytics Service is dependent on the Data Service and requires the Data ser
 * Make sure that the data space for your Analytics Service nodes takes into account metadata replicas. The Analytics Service only replicates the metadata and not the actual data. There's a small overhead for metadata replicas as metadata is generally small.
 * When evaluating a query, the Analytics engine uses temporary disk space. The type of query you want to run determines the required amount of temporary disk space.  
 For example, queries with heavy JOINs, aggregates, windowing, or additional predicates require more temporary disk space. Typically, the temporary disk space can be 2x the data space.
-* The percent of data shadowed, which is dependent on your use case.
+* The percentage of data shadowed, which is dependent on your use case.
 * When you load data from the Data Service into the Analytics Service, you can apply a filter to reduce both the loaded data size and the Analytics Service storage requirements proportionally.
 
 ### [](#disk-types-and-partitioning)Disk Types and Partitioning
