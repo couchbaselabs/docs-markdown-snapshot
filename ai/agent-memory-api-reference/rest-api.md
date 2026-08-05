@@ -1,7 +1,7 @@
 ---
 title: Agent Memory API Reference
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-memory-api-reference/pages/rest-api.adoc
-pubDate: 2026-08-01T05:32:35.777Z
+pubDate: 2026-08-05T05:30:11.218Z
 link: xref:ai:agent-memory-api-reference:rest-api.adoc[]
 ---
 
@@ -74,12 +74,7 @@ When a memory block is written, AgentMemory automatically generates a vector emb
 
 Authentication is optional and controlled by the `OIDC_AUTH_ENABLED` server configuration. When enabled, all endpoints except `GET /health` and `GET /metrics` require a valid JWT Bearer token issued by the configured OIDC provider.
 
-Include the token in every request:
-
-```
-Authorization: Bearer <token>
-
-```
+Include the token in every request: `Authorization: Bearer <token>`
 
 Tokens are validated against the provider's JWKS endpoint. A `401` response indicates a missing, malformed, or expired token. A `403` response indicates a valid token with insufficient permissions.
 

@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1785821853791,
+  "generated": 1785908140459,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -41228,6 +41228,12 @@
               "path": "sdk.adoc",
               "url": "/home/sdk.md",
               "title": "SDKs &amp; Connectors"
+            },
+            {
+              "module": "ROOT",
+              "path": "search.adoc",
+              "url": "/home/search.md",
+              "title": "Search the site"
             },
             {
               "module": "ROOT",

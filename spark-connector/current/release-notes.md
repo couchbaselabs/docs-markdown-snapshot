@@ -1,7 +1,7 @@
 ---
 title: Release Notes
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-08-05T05:30:11.218Z
 link: xref:spark-connector::release-notes.adoc[]
 ---
 
@@ -12,13 +12,9 @@ link: xref:spark-connector::release-notes.adoc[]
 
 > Release notes for the Spark Connector. 
 
-## [](#couchbase-spark-connector-3-5-4-19-november-2025)Couchbase Spark Connector 3.5.4 (19 November 2025)
+## [](#couchbase-spark-connector-3-5-5-4-august-2026)Couchbase Spark Connector 3.5.5 (4 August 2026)
 
-Version 3.5.4 is built and tested against Spark 3.5.7, and supports Scala 2.12 and 2.13.
-
-### [](#new-features)New Features
-
-* [SPARKC-232](https://couchbasecloud.atlassian.net/browse/SPARKC-232): KV DataFrame sub-document write support added. See [these docs](subdocument.md) for more information.
+Version 3.5.5 is built and tested against Spark 3.5.9, and supports Scala 2.12 and 2.13\. The only change from 3.5.4 is to bump all dependencies, include the underlying Couchbase Scala SDK which is now 3.12.2.
 
 ## [](#couchbase-spark-connector-3-3-7-10-september-2025)Couchbase Spark Connector 3.3.7 (10 September 2025)
 
@@ -26,7 +22,25 @@ Important: most users should use the 3.5 series of the Spark Connector, which is
 
 This 3.3.7 connector release is for users of Apache Spark 3.3\. It is built and tested against Spark 3.3.4.
 
+### [](#new-features)New Features
+
+* [SPARKC-232](https://couchbasecloud.atlassian.net/browse/SPARKC-232): KV DataFrame sub-document write support added. See [these docs](subdocument.md) for more information.
+
+## [](#couchbase-spark-connector-3-5-4-19-november-2025)Couchbase Spark Connector 3.5.4 (19 November 2025)
+
+Version 3.5.4 is built and tested against Spark 3.5.7, and supports Scala 2.12 and 2.13.
+
 ### [](#new-features-2)New Features
+
+* [SPARKC-232](https://couchbasecloud.atlassian.net/browse/SPARKC-232): KV DataFrame sub-document write support added. See [these docs](subdocument.md) for more information.
+
+## [](#couchbase-spark-connector-3-3-7-10-september-2025-2)Couchbase Spark Connector 3.3.7 (10 September 2025)
+
+Important: most users should use the 3.5 series of the Spark Connector, which is compatible with Apache Spark 3.5.
+
+This 3.3.7 connector release is for users of Apache Spark 3.3\. It is built and tested against Spark 3.3.4.
+
+### [](#new-features-3)New Features
 
 * [SPARKC-232](https://couchbasecloud.atlassian.net/browse/SPARKC-232): KV DataFrame sub-document write support added. See [these docs](subdocument.md) for more information.
 
@@ -36,7 +50,7 @@ Version 3.5.3 is built and tested against Spark 3.5.6, and supports Scala 2.12 a
 
 The main feature in this release is support for Couchbase Enterprise Analytics.
 
-### [](#new-features-3)New Features
+### [](#new-features-4)New Features
 
 * [SPARKC-235](https://couchbasecloud.atlassian.net/browse/SPARKC-235): Support Enterprise Analytics.
 * [SPARKC-233](https://couchbasecloud.atlassian.net/browse/SPARKC-233): Add CAS to query DataFrame reads and KV DataFrame writes.
@@ -55,7 +69,7 @@ This 3.3.6 connector release is for users of Apache Spark 3.3 and primarily back
 
 Version 3.3.6 is built and tested against Spark 3.3.4, and uses Couchbase Scala SDK 1.8.2 internally.
 
-### [](#new-features-4)New Features
+### [](#new-features-5)New Features
 
 * [SPARKC-231](https://couchbasecloud.atlassian.net/browse/SPARKC-231): Add KV replace support for DataFrame writes
 * [SPARKC-196](https://couchbasecloud.atlassian.net/browse/SPARKC-196): Support authentication with client certificates. See [Client Certificates](configuration.md) for more information.
