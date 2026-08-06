@@ -2,8 +2,8 @@
 title: Documents
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/concept-docs/pages/documents.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/concept-docs/pages/documents.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:concept-docs:documents.adoc[]
 ---
 
@@ -129,7 +129,7 @@ You can also specify additional options when storing a document in Couchbase
 
 ## [](#retrieving-documents)Retrieving Documents
 
-This section discusses retrieving documents using their IDs, or primary keys. Documents can also be accessed using secondary lookups via [SQL++ queries](n1ql-query.md) and [MapReduce Views](../howtos/view-queries-with-sdk.md). Primary key lookups are performed using the key-value API, which simplifies use and increases performance (as applications may interact with the KV store directly, rather than a secondary index or query processor).
+This section discusses retrieving documents using their IDs, or primary keys. Documents can also be accessed using secondary lookups via [SQL++ queries](n1ql-query.md) and [MapReduce Views](querying-your-data.md). Primary key lookups are performed using the key-value API, which simplifies use and increases performance (as applications may interact with the KV store directly, rather than a secondary index or query processor).
 
 In Couchbase, documents are stored with their IDs. Retrieving a document via its ID is the simplest and quickest operation in Couchbase.
 

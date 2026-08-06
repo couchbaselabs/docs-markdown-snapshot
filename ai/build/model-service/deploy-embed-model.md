@@ -1,8 +1,9 @@
 ---
 title: Deploy an Embedding Model
-description: Use the {ai} Model Service to deploy embedding models for vectorizing text.
+description: Use the AI Data Plane Model Service to deploy embedding models for
+  vectorizing text.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/deploy-embed-model.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:build:model-service/deploy-embed-model.adoc[]
 ---
 
@@ -11,9 +12,9 @@ link: xref:ai:build:model-service/deploy-embed-model.adoc[]
 
 # Deploy an Embedding Model
 
-> Use the {ai} Model Service to deploy embedding models for vectorizing text. 
+> Use the AI Data Plane Model Service to deploy embedding models for vectorizing text. 
 
-An embedding model vectorizes text into numerical vectors that capture their semantic meaning, allowing AI systems to identify similarities between content. You can use embedding models you deploy through the {ai} Model Service with [the {ai-long} Workflows](../vectorization-service/data-processing.md).
+An embedding model vectorizes text into numerical vectors that capture their semantic meaning, allowing AI systems to identify similarities between content. You can use embedding models you deploy through the AI Data Plane Model Service with [the Couchbase AI Data Plane Workflows](../vectorization-service/data-processing.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -21,7 +22,7 @@ An embedding model vectorizes text into numerical vectors that capture their sem
 
 ## [](#procedure)Procedure
 
-1. From your organization, go to menu:{ai}\[Models\].
+1. From your organization, go to **AI Data Plane** **Models**.
 2. Click **Deploy New Model**.
 3. Choose an embedding model to deploy:
 

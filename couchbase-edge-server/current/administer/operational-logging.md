@@ -1,7 +1,7 @@
 ---
 title: Operational Logging
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/administer/pages/operational-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/administer/pages/operational-logging.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-edge-server:administer:operational-logging.adoc[]
 ---
 

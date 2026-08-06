@@ -1,8 +1,8 @@
 ---
 title: QueryBuilder
 description: How to use QueryBuilder to build effective queries with Couchbase Lite on Swift
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/querybuilder.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/swift/pages/querybuilder.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:swift:querybuilder.adoc[]
 ---
 
@@ -173,7 +173,7 @@ Like SQL, you can use the `WHERE` statement to choose which documents are return
 
 ### [](#lbl-comp-ops)Comparison Operators
 
-The [Expression Comparators](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Expression.html) can be used in the WHERE statement to specify on which property to match documents. In the example below, we use the `equalTo` operator to query documents where the `type` property equals "hotel".
+The [Expression Comparators](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Expression.html) can be used in the WHERE statement to specify on which property to match documents. In the example below, we use the `equalTo` operator to query documents where the `type` property equals "hotel".
 
 ```json
 [
@@ -212,11 +212,11 @@ do {
 
 ### [](#lbl-coll-ops)Collection Operators
 
-[Array Collection Operators](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/ArrayExpression.html) are useful to check if a given value is present in an array.
+[Array Collection Operators](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/ArrayExpression.html) are useful to check if a given value is present in an array.
 
 #### [](#contains-operator)CONTAINS Operator
 
-The following example uses the `[ArrayFunction](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/ArrayFunction.html)` to find documents where the `public_likes` array property contains a value equal to "Armani Langworth".
+The following example uses the `[ArrayFunction](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/ArrayFunction.html)` to find documents where the `public_likes` array property contains a value equal to "Armani Langworth".
 
 ```json
 {
@@ -270,7 +270,7 @@ In this section
 
 #### [](#lbl-string-match)String Matching
 
-The [like(\_:)](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Protocols/ExpressionProtocol.html#/#/s:18CouchbaseLiteSwift18ExpressionProtocolP4likeyAaB%5FpAaB%5FpF) operator can be used for string matching — see [Example 7](#ex-like-case-insensitive)
+The [like(\_:)](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Protocols/ExpressionProtocol.html#/#/s:18CouchbaseLiteSwift18ExpressionProtocolP4likeyAaB%5FpAaB%5FpF) operator can be used for string matching — see [Example 7](#ex-like-case-insensitive)
 
 > [!NOTE]
 > The `like` operator performs **case sensitive** matches.  
@@ -851,7 +851,7 @@ Couchbase Lite for Swift provides a convenience API to convert query results to 
 
 Example 28\. Using JSON Results
 
-Use [result.toJSON()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Result.html#/s:18CouchbaseLiteSwift6ResultC6toJSONSSyF) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 28](#ex-json) for a working example.
+Use [result.toJSON()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Result.html#/s:18CouchbaseLiteSwift6ResultC6toJSONSSyF) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 28](#ex-json) for a working example.
 
 ```swift
 // In this example the Hotel class is defined using Codable

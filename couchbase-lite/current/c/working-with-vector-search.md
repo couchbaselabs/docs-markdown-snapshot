@@ -1,8 +1,8 @@
 ---
 title: Working with Vector Search
 description: Use Vector Search with Full Text Search and Query.
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/working-with-vector-search.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/working-with-vector-search.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:working-with-vector-search.adoc[]
 ---
 
@@ -24,6 +24,9 @@ To configure a project to use vector search, follow the [installation instructio
 
 This method shows how you can create a vector index using the Couchbase Lite Vector Search extension.
 
+* C
+* C++
+
 ```c
         // Create a vector index configuration with a document property named "vector",
         // 3 dimensions, and 100 centroids. Customize the encoding, the distance metric,
@@ -39,6 +42,18 @@ This method shows how you can create a vector index using the Couchbase Lite Vec
         config.encoding = CBLVectorEncoding_CreateNone();
         config.minTrainingSize = 2500;
         config.maxTrainingSize = 5000;
+```
+
+```cpp
+    // Create a vector index configuration with a document property named "vector",
+    // 3 dimensions, and 100 centroids. Customize the encoding, the distance metric,
+    // the number of probes, and the training size.
+    cbl::VectorIndexConfiguration config(kCBLN1QLLanguage, "vector", 3, 100);
+    config.metric = kCBLDistanceMetricCosine;
+    config.numProbes = 8;
+    config.encoding = cbl::VectorEncoding::none();
+    config.minTrainingSize = 2500;
+    config.maxTrainingSize = 5000;
 ```
 
 First, initialize the `config` object with the `VectorIndexConfiguration()` method with the following parameters:
@@ -85,6 +100,9 @@ Below are example configurations of the previously mentioned methods.
 
 This method shows you how to create a Vector Index with embeddings.
 
+* C
+* C++
+
 ```c
         CBLError err {};
         // Get the collection object named "colors" in the default scope.
@@ -107,12 +125,27 @@ This method shows you how to create a Vector Index with embeddings.
         CBLCollection_Release(collection);
 ```
 
+```cpp
+    // Get the collection object named "colors" in the default scope.
+    cbl::Collection collection = database.getCollection("colors", "_default");
+
+    // Create a vector index configuration with a document property named "vector",
+    // 3 dimensions, and 100 centroids.
+    cbl::VectorIndexConfiguration config(kCBLN1QLLanguage, "vector", 3, 100);
+
+    // Create a vector index from the configuration with the name "colors_index".
+    collection.createVectorIndex("colors_index", config);
+```
+
 1. First, create the standard configuration, setting up an expression, number of dimensions and number of centroids for the vector embedding.
 2. Next, create a vector index, `colors_index`, on a collection and pass it the configuration.
 
 ### [](#create-vector-index-embeddings-from-a-predictive-model)Create Vector Index Embeddings from a Predictive Model
 
 This method generates vectors to be indexed for each document at the index time by using the `prediction()` function. The key difference to note is that the `config` object uses the output of the `prediction()` function as the `expression` parameter to generate the vector index.
+
+* C
+* C++
 
 ```c
         // Register the predictive model named "ColorModel".
@@ -139,12 +172,31 @@ This method generates vectors to be indexed for each document at the index time 
         CBLCollection_Release(collection);
 ```
 
+```cpp
+    // Register the predictive model named "ColorModel".
+    cbl::Prediction::registerModel("ColorModel", model);
+
+    // Get the collection object named "colors" in the default scope.
+    cbl::Collection collection = database.getCollection("colors", "_default");
+
+    // Create a vector index configuration with an expression using the prediction
+    // function to get the vectors from the registered predictive model.
+    cbl::VectorIndexConfiguration config(kCBLN1QLLanguage,
+        "prediction(ColorModel, {\"colorInput\": color}).vector", 3, 100);
+
+    // Create a vector index from the configuration with the name "colors_index".
+    collection.createVectorIndex("colors_index", config);
+```
+
 > [!NOTE]
 > You can use less storage by using the `prediction()` function as the encoded vectors will only be stored in the index. However, the index time will be longer as vector embedding generation is occurring at run time.
 
 ## [](#create-a-lazy-vector-index)Create a Lazy Vector Index
 
 Lazy indexing is an alternate approach to using the standard predictive model with regular vector indexes which handle the indexing process automatically. You can use lazy indexing to use a ML model that is not available locally on the device and to create vector indexes without having vector embeddings in the documents.
+
+* C
+* C++
 
 ```c
         // Creating a lazy vector index using the document's 'color' key.
@@ -157,6 +209,13 @@ Lazy indexing is an alternate approach to using the standard predictive model wi
         config.isLazy = true;
 ```
 
+```cpp
+    // Create a lazy vector index using the document's 'color' key. The value of
+    // this key is used to compute a vector when updating the index.
+    cbl::VectorIndexConfiguration config(kCBLN1QLLanguage, "color", 3, 100);
+    config.isLazy = true;
+```
+
 You can enable lazy vector indexing by setting the `isLazy` property to `true` in your vector index configuration.
 
 > [!NOTE]
@@ -165,6 +224,9 @@ You can enable lazy vector indexing by setting the `isLazy` property to `true` i
 ### [](#updating-the-lazy-index)Updating the Lazy Index
 
 Below is an example of how you can update your lazy index.
+
+* C
+* C++
 
 ```c
         // Get the collection object
@@ -237,6 +299,51 @@ Below is an example of how you can update your lazy index.
         CBLQueryIndex_Release(index);
 ```
 
+```cpp
+    // Get the collection and the index objects.
+    cbl::Collection collection = database.getCollection("colors", "_default");
+    cbl::QueryIndex index = collection.getIndex("colors_index");
+
+    while (true) {
+        // Start an update on the index (in this case, limit to 50 entries at a time).
+        cbl::IndexUpdater updater = index.beginUpdate(50);
+        // A falsy updater means there are no more entries to process.
+        if (!updater) {
+            break;
+        }
+
+        for (size_t i = 0; i < updater.count(); i++) {
+            // The value type depends on the expression set in the index.
+            // In this example, it is a string property.
+            std::string colorString = updater.value(i).asstring();
+
+            std::vector<float> vector;
+            try {
+                // Call an ML model to get a vector.
+                vector = Color::getVector(colorString);
+            } catch (const TransientError& e) {
+                // The vector cannot be generated right now, so skip this entry;
+                // it will be considered again the next time beginUpdate is called.
+                updater.skipVector(i);
+                continue;
+            }
+
+            if (!vector.empty()) {
+                // The vector size must match the index's number of dimensions.
+                updater.setVector(i, vector.data(), vector.size());
+            } else {
+                // No vector applicable: setting a null vector leaves the
+                // underlying document out of the index.
+                updater.setVector(i, nullptr, 0);
+            }
+        }
+
+        // Write the vectors to the index. All entries must be set or skipped
+        // before calling finish().
+        updater.finish();
+    }
+```
+
 You procedurally update the vectors in the index by looping through the vectors in batches until you reach the value of the `limit` parameter.
 
 The update process follows the following sequence:
@@ -271,6 +378,9 @@ You can use Hybrid Vector Search (Hybrid Search) to perform vector search in con
 ### [](#hybrid-vector-search-with-full-text-match)Hybrid Vector Search with Full Text Match
 
 Below is an example of using Hybrid Search with the Full Text `match()` function.
+
+* C
+* C++
 
 ```c
         // Create a hybrid vector search query by using ORDER BY and WHERE clause.
@@ -316,9 +426,40 @@ Below is an example of using Hybrid Search with the Full Text `match()` function
         }
 ```
 
+```cpp
+    // Create a hybrid vector search query combining a full-text MATCH() with
+    // approx_vector_distance() in the ORDER BY clause.
+    cbl::Query query(database, kCBLN1QLLanguage,
+        "SELECT meta().id, color "
+        "FROM _default.colors "
+        "WHERE MATCH(color_desc_index, $text) "
+        "ORDER BY approx_vector_distance(vector, $vector) "
+        "LIMIT 8");
+
+    std::vector<float> colorVector = Color::getVector("FF00AA");
+
+    fleece::MutableArray colorArray = fleece::MutableArray::newArray();
+    for (float val : colorVector) {
+        colorArray.append(val);
+    }
+    fleece::MutableDict params = fleece::MutableDict::newDict();
+    // Set the vector array to the parameter "$vector".
+    params["vector"] = colorArray;
+    // Set the search text to the parameter "$text".
+    params["text"] = "vibrant";
+    query.setParameters(params);
+
+    for (cbl::Result result : query.execute()) {
+        // Process result
+    }
+```
+
 ### [](#prediction-with-hybrid-vector-search)Prediction with Hybrid Vector Search
 
 Below is an example of using Hybrid Search with an array of vectors generated by the `Prediction()` function at index time.
+
+* C
+* C++
 
 ```c
         // Create a hybrid vector search query by using ORDER BY and WHERE clause.
@@ -362,6 +503,30 @@ Below is an example of using Hybrid Search with an array of vectors generated by
         }
 ```
 
+```cpp
+    // Create a hybrid vector search query using prediction() for computing vectors.
+    cbl::Query query(database, kCBLN1QLLanguage,
+        "SELECT meta().id, color "
+        "FROM _default.colors "
+        "WHERE saturation > 0.5 "
+        "ORDER BY approx_vector_distance(prediction(ColorModel, {\"colorInput\": color}).vector, $vector) "
+        "LIMIT 8");
+
+    std::vector<float> colorVector = Color::getVector("FF00AA");
+
+    fleece::MutableArray colorArray = fleece::MutableArray::newArray();
+    for (float val : colorVector) {
+        colorArray.append(val);
+    }
+    fleece::MutableDict params = fleece::MutableDict::newDict();
+    params["vector"] = colorArray;
+    query.setParameters(params);
+
+    for (cbl::Result result : query.execute()) {
+        // Process result
+    }
+```
+
 ## [](#approx%5Fvector%5Fdistancevector-expr-target-vector-metric-nprobes-accurate)`APPROX_VECTOR_DISTANCE(vector-expr, target-vector, [metric], [nprobes], [accurate])`
 
 > [!WARNING]
@@ -376,6 +541,9 @@ Below is an example of using Hybrid Search with an array of vectors generated by
 | accurate      | ![no](../_images/no.png)   | If not present, false will be used, which means that the quantized/encoded vectors in the index will be used for calculating the distance. IMPORTANT: Only accurate = false is supported                                                                                                                                     |
 
 ### [](#use-approx%5Fvector%5Fdistance)Use `APPROX_VECTOR_DISTANCE()`
+
+* C
+* C++
 
 ```c
         // Create a query by using the approx_vector_distance() in the WHERE clause.
@@ -417,11 +585,37 @@ Below is an example of using Hybrid Search with an array of vectors generated by
         }
 ```
 
+```cpp
+    // Create a query using approx_vector_distance() in the WHERE clause.
+    cbl::Query query(database, kCBLN1QLLanguage,
+        "SELECT id, color "
+        "FROM _default.colors "
+        "WHERE approx_vector_distance(vector, $vector) < 0.5 "
+        "LIMIT 8");
+
+    std::vector<float> colorVector = Color::getVector("FF00AA");
+
+    fleece::MutableArray colorArray = fleece::MutableArray::newArray();
+    for (float val : colorVector) {
+        colorArray.append(val);
+    }
+    fleece::MutableDict params = fleece::MutableDict::newDict();
+    params["vector"] = colorArray;
+    query.setParameters(params);
+
+    for (cbl::Result result : query.execute()) {
+        // Process result
+    }
+```
+
 This function returns the approximate distance between a given vector, typically generated from your ML model, and an array of vectors with size equal to the `LIMIT` parameter, collected by a SQL++ query using `APPROX_VECTOR_DISTANCE()`.
 
 ### [](#prediction-with-approx%5Fvector%5Fdistance)Prediction with `APPROX_VECTOR_DISTANCE()`
 
 Below is an example of using `APPROX_VECTOR_DISTANCE()` with an array of vectors generated by the `Prediction()` function at index time.
+
+* C
+* C++
 
 ```c
         // Create a vector search query that uses prediction() for computing vectors.
@@ -461,6 +655,32 @@ Below is an example of using `APPROX_VECTOR_DISTANCE()` with an array of vectors
         while(CBLResultSet_Next(results)) {
             // Process result
         }
+```
+
+```cpp
+    // Create a vector search query that uses prediction() for computing vectors.
+    cbl::Query query(database, kCBLN1QLLanguage,
+        "SELECT id, color "
+        "FROM _default.colors "
+        "ORDER BY approx_vector_distance(prediction(ColorModel, {\"colorInput\": color}).vector, $vector) "
+        "LIMIT 8");
+
+    // Use the ML model to get a vector (an array of floats) for the input color.
+    std::vector<float> colorVector = Color::getVector("FF00AA");
+
+    // Set the vector array to the parameter "$vector".
+    fleece::MutableArray colorArray = fleece::MutableArray::newArray();
+    for (float val : colorVector) {
+        colorArray.append(val);
+    }
+    fleece::MutableDict params = fleece::MutableDict::newDict();
+    params["vector"] = colorArray;
+    query.setParameters(params);
+
+    // Execute the query:
+    for (cbl::Result result : query.execute()) {
+        // Process result
+    }
 ```
 
 ## [](#see-also)See Also

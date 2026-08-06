@@ -1,8 +1,8 @@
 ---
 title: Logging
 description: Logging with the Python SDK.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/collecting-information-and-logging.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
@@ -41,7 +41,7 @@ logging.basicConfig(filename='example.log',
 logger = logging.getLogger()
 couchbase.configure_logging(logger.name, level=logger.level)
 
-cluster = Cluster('couchbase://your-ip',
+cluster = Cluster.connect('couchbase://your-ip',
                   ClusterOptions(PasswordAuthenticator("Administrator", "password")))
 
 cluster.wait_until_ready(timedelta(seconds=3),
@@ -127,6 +127,8 @@ And the Prometheus-format metrics fetched with:
 ```console
 curl --user Administrator:password http://172.17.0.2:8091/metrics
 ```
+
+Further details can be found in the [Application Telemetry](../../../server/current/rest-api/application-telemetry.md) page.
 
 There may be advantages to collecting information this way, but note that metrics are collected per node, and a central Prometheus instance should be set to collect all metrics so that information is not lost in case of a sudden failover.
 

@@ -2,8 +2,8 @@
 title: Supported Operating System Versions
 description: Couchbase Lite on C -- the OS and SDK versions on which this
   framework is supported
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/supported-os.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/supported-os.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:supported-os.adoc[]
 ---
 
@@ -24,8 +24,8 @@ Couchbase Lite for C is available on the platforms shown in the tables below.
 > 
 > Support for the following will be deprecated in this release and will be removed in a future release:
 > 
-> * macOS 13 (Ventura)
 > * Windows 10
+> * Debian Linux 11 (Bullseye)
 > 
 > Please plan to migrate your apps to use an appropriate alternative version.
 
@@ -50,14 +50,14 @@ Couchbase Lite for C is available on the platforms shown in the tables below.
 
 | Version            | x64                        | ARM 64                     |
 | ------------------ | -------------------------- | -------------------------- |
+| macOS 15 (Sequoia) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
 | macOS 14 (Sonoma)  | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
-| macOS 13 (Ventura) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
 
 ### [](#linux)Linux
 
 | Distro          | Version                    | x64                        | ARM 32                     | ARM 64                     |
 | --------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| Debian          | 11 (Bullseye)              | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
+| Debian          | 11 (Bullseye) (Deprecated) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
 | 12 (Bookworm)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |                            |
 | 13 (Trixie)     | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |                            |
 | Raspberry Pi OS | 11 (Bullseye)              |                            | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
@@ -70,7 +70,7 @@ Couchbase Lite for C is available on the platforms shown in the tables below.
 
 | Distro          | Version                    | x64                        | ARM 32                     | ARM 64                     |
 | --------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| Debian          | 11 (Bullseye)              | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
+| Debian          | 11 (Bullseye) (Deprecated) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
 | 12 (Bookworm)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |                            |
 | 13 (Trixie)     | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |                            |
 | Raspberry Pi OS | 11 (Bullseye)              |                            | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |

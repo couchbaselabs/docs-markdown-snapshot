@@ -1,81 +1,94 @@
 ---
-title: New in 4.0
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/ROOT/pages/cbl-whatsnew.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+title: New in 4.1
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/ROOT/pages/cbl-whatsnew.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite::cbl-whatsnew.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-lite/current/cbl-whatsnew.html)
 
-# New in 4.0
+# New in 4.1
 
 > [!NOTE]
-> Couchbase Lite 4.0 introduces some breaking changes.  
-> If you're upgrading from 3.x, see the appropriate upgrade page — [Upgrading](#lbl-upgrade). You cannot downgrade from 4.0 to earlier versions of Couchbase Lite.
+> Couchbase Lite 4.1 introduces some breaking changes.  
+> If you're upgrading from 3.x or 4.0, see the appropriate upgrade page — [Upgrading](#lbl-upgrade). You cannot downgrade from 4.1 to earlier versions of Couchbase Lite.
 
-## [](#release-4-0-4-may-2026)Release 4.0.4 (May 2026)
-
-Couchbase Lite Release 4.0.4 introduces fixes and enhancements for:
-
-[Android](android/releasenotes.md#maint-4-0-4)| [C](c/releasenotes.md#maint-4-0-4)| [.NET](csharp/releasenotes.md#maint-4-0-4)| [Java](java/releasenotes.md#maint-4-0-4)| [Objective-C](objc/releasenotes.md#maint-4-0-4)| [Swift](swift/releasenotes.md#maint-4-0-4)
-
-## [](#release-4-0-3-february-2026)Release 4.0.3 (February 2026)
-
-Couchbase Lite Release 4.0.3 introduces fixes and enhancements for:
-
-[Android](android/releasenotes.md#maint-4-0-3)| [C](c/releasenotes.md#maint-4-0-3)| [.NET](csharp/releasenotes.md#maint-4-0-3)| [Java](java/releasenotes.md#maint-4-0-3)| [Objective-C](objc/releasenotes.md#maint-4-0-3)| [Swift](swift/releasenotes.md#maint-4-0-3)
-
-## [](#release-4-0-2-december-2025)Release 4.0.2 (December 2025)
-
-Couchbase Lite Release 4.0.2 introduces fixes and enhancements for:
-
-[Android](android/releasenotes.md#maint-4-0-2)| [C](c/releasenotes.md#maint-4-0-2)| [.NET](csharp/releasenotes.md#maint-4-0-2)| [Java](java/releasenotes.md#maint-4-0-2)| [Objective-C](objc/releasenotes.md#maint-4-0-2)| [Swift](swift/releasenotes.md#maint-4-0-2)
-
-## [](#release-4-0-1-november-2025)Release 4.0.1 (November 2025)
-
-Couchbase Lite Release 4.0.1 introduces fixes and enhancements for:
-
-[Objective-C](objc/releasenotes.md#maint-4-0-1)| [Swift](swift/releasenotes.md#maint-4-0-1)
-
-## [](#release-4-0-0-october-2025)Release 4.0.0 (October 2025)
-
-Couchbase Lite Release 4.0 fundamentally transforms document versioning and conflict resolution by introducing version vectors, replacing the traditional revision tree approach. This architectural change enables superior conflict resolution, improved synchronization performance, and seamless data consistency.
+## [](#release-4-1-0)Release 4.1.0
 
 ### [](#new-features)New Features
 
-[Version Vectors](#version-vectors) | [Mobile XDCR Coexistence](#mobile-xdcr-coexistence)
+#### [](#ootb-support-for-peer-to-peer-sync-over-bluetooth-low-energy-ble-via-the-multipeer-replicator)OOTB Support for Peer-to-Peer Sync over Bluetooth Low Energy (BLE) via the Multipeer Replicator
 
-#### [](#version-vectors)Version Vectors
+Couchbase Lite 4.1 extends the Multipeer Replicator with Bluetooth Low Energy (BLE) as an additional transport alongside Wi-Fi. You can now configure the Multipeer Replicator to use Wi-Fi only, Bluetooth only, or both transports simultaneously.
 
-Couchbase Lite 4.0 replaces revision trees with version vectors for document versioning and conflict resolution. This change aligns Couchbase Lite with Couchbase Server and Sync Gateway, ensuring more consistent behavior in distributed and multi-cluster deployments.
+When you enable both transports, the replicator automatically selects the best available transport for each peer and switches between them as network conditions change. The replicator prefers Wi-Fi when available. The replicator falls back to Bluetooth when Wi-Fi is unavailable and switches back to Wi-Fi when it becomes reachable again, without interrupting active replication.
 
-Key changes include:
+BLE transport uses TLS encryption over L2CAP channels, providing the same security guarantees as Wi-Fi transport without requiring device pairing.
 
-* **Revision IDs → Versions**: Each revision is now identified by a version in the format `<timestamp>@<source-id>`.
-* **Revision Trees → Version Vectors**: A version vector is an ordered list of the latest versions from all sources that have modified a document. This uniquely identifies both the state and history of a document.
-* **Hybrid Logical Clocks (HLCs)**: Timestamps are now based on hybrid logical clocks, enabling last-writer-wins conflict resolution and simpler pruning of old revisions.
+Platform requirements for Bluetooth transport:
 
-For more information about version vectors, see:
+* iOS 15 or later
+* Android API 29 or later
 
-* [Android - version vectors](android/version-vectors.md)
-* [C - version vectors](c/version-vectors.md)
-* [.NET - version vectors](csharp/version-vectors.md)
-* [Java - version vectors](java/version-vectors.md)
-* [Objective-C - version vectors](objc/version-vectors.md)
-* [Swift - version vectors](swift/version-vectors.md)
+This feature is available on Swift, Android (Kotlin/Java), and Objective-C.
 
-#### [](#mobile-xdcr-coexistence)Mobile XDCR Coexistence
+For more information, see:
 
-Couchbase Lite 4.0 version vector model brings it into alignment with Couchbase Server Cross Data Center Replication (XDCR) and Sync Gateway. This ensures that documents can sync seamlessly across:
+* [Swift Multipeer Replicator](swift/p2psync-multipeer.md)
+* [Android Multipeer Replicator](android/p2psync-multipeer.md)
+* [Objective-C Multipeer Replicator](objc/p2psync-multipeer.md)
 
-* Mobile-to-Server replication.
-* Multi-cluster Couchbase Server environments.
-* Peer-to-peer topologies.
+> [!NOTE]
+> Bluetooth has lower throughput and higher latency than Wi-Fi, and its reliability can decrease as more peers join the Bluetooth network. Use Wi-Fi as the primary transport for multipeer sync, with Bluetooth as a fallback.
 
-## [](#see-also)See Also
+#### [](#couchbase-lite-c-api-now-supported)Couchbase Lite C++ API Now Supported
 
-[What's new in previous version 3.3](../3.3/cbl-whatsnew.md)
+Couchbase Lite 4.1 promotes the C++ wrapper API from volatile to a committed, supported API surface for Couchbase Lite C.
+
+As of 4.1, the C++ API is a first-class, committed API with the following guarantees:
+
+* Source compatibility across patch and minor releases within a major line
+* Full availability across all Couchbase Lite C platforms, including iOS, Android, Windows, and Linux
+* Inclusion in official QA coverage and release testing
+* Documented deprecation policy for any future breaking changes
+
+The cbl++ headers ship in all official Couchbase Lite C distributions. A small set of golden-path examples covering CRUD, query, replication, and logging is available in the documentation.
+
+For more information, see [Couchbase Lite for C/C++](c/quickstart.md).
+
+#### [](#windows-arm-support-for-couchbase-lite-c)Windows ARM Support for Couchbase Lite C
+
+Couchbase Lite C 4.1 adds official support for Windows ARM64\. This enables developers targeting ARM-based Windows devices including laptops, tablets, and mini PCs to use Couchbase Lite C with full build and test coverage.
+
+#### [](#replication-correlation-id)Replication Correlation ID
+
+Couchbase Lite 4.1 exposes the Sync Gateway session correlation ID as a read-only property on the replicator. Sync Gateway generates and sends an `X-Correlation-ID` header during the WebSocket handshake that uniquely identifies each replication session. You can now read this ID from the replicator and include it in client-side logs to correlate them with Sync Gateway server-side logs when diagnosing replication issues.
+
+This feature is available on all platforms: Swift, Objective-C, Android (Kotlin/Java), C, Java, and .NET.
+
+For more information, see the Monitor section of the replication documentation for your platform:
+
+* [Swift](swift/replication.md#lbl-repl-correlation-id)
+* [Objective-C](objc/replication.md#lbl-repl-correlation-id)
+* [Android](android/replication.md#lbl-repl-correlation-id)
+* [C/C++](c/replication.md#lbl-repl-correlation-id)
+* [Java](java/replication.md#lbl-repl-correlation-id)
+* [.NET](csharp/replication.md#lbl-repl-correlation-id)
+
+#### [](#kotlin-serialization-support-android)Kotlin Serialization Support (Android)
+
+Couchbase Lite 4.1 for Android introduces native integration with `kotlinx.serialization`.
+
+You can now decode Couchbase Lite `Document` and `Dictionary` types directly into `@Serializable` Kotlin data classes without reflection-based workarounds such as Gson or Jackson. The integration respects Kotlin nullability constraints and default property values during decoding.
+
+This feature is Android-only.
+
+For more information, see [Kotlin Serialization](android/kotlin-serialization.md).
+
+## [](#see-also)See also
+
+[What's new in previous version 4.0](../4.0/cbl-whatsnew.md)
 
 ### [](#couchbase-lite-release-notes)Couchbase Lite Release Notes
 

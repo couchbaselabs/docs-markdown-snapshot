@@ -1,8 +1,8 @@
 ---
 title: Public REST API
 description: Description of the Sync Gateway REST API
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/rest-api/pages/rest-api.adoc
-pubDate: 2026-04-07T05:16:09.470Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/rest-api/pages/rest-api.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:rest-api:rest-api.adoc[]
 ---
 

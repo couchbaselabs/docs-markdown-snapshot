@@ -2,8 +2,8 @@
 title: Inter-Sync Gateway Replication
 description: Use inter-Sync Gateway replication to keep clusters in different
   mobile data centers in sync.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/sync/pages/sync-inter-syncgateway-overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/sync/pages/sync-inter-syncgateway-overview.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:sync:sync-inter-syncgateway-overview.adoc[]
 ---
 

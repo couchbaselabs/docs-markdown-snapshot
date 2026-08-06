@@ -1,9 +1,9 @@
 ---
 title: Multipeer P2P Replicator
 description: The Multipeer Replicator enables lightweight, self-organizing mesh
-  networks for apps running on the same local Wi-Fi.
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/p2psync-multipeer.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+  networks over Wi-Fi and Bluetooth Low Energy.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/p2psync-multipeer.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:android:p2psync-multipeer.adoc[]
 ---
 
@@ -12,19 +12,19 @@ link: xref:couchbase-lite:android:p2psync-multipeer.adoc[]
 
 # Multipeer P2P Replicator
 
-> The Multipeer Replicator enables lightweight, self-organizing mesh networks for apps running on the same local Wi-Fi. This approach requires minimal setup and automates peer discovery and connectivity management, making it simpler than [active-passive P2P configurations](p2psync-websocket.md). 
+> The Multipeer Replicator enables lightweight, self-organizing mesh networks over Wi-Fi and Bluetooth Low Energy. This approach requires minimal setup and automates peer discovery and connectivity management, making it simpler than [active-passive P2P configurations](p2psync-websocket.md). 
 
 ## [](#introduction)Introduction
 
 Couchbase Lite's Peer-to-Peer synchronization solution offers secure storage and bidirectional data synchronization between mobile and IoT devices without needing a centralized cloud-based control point.
 
-For small mesh topologies, Multipeer Replicator offers `autodiscovery` for Wi-Fi-based networks and secure communication via TLS and certificate-based authentication.
+For small mesh topologies, Multipeer Replicator offers autodiscovery over Wi-Fi and Bluetooth Low Energy, with secure communication via TLS and certificate-based authentication.
 
 The dynamic mesh topology gives optimal peer connectivity and the lightweight and low-maintenance configuration requires less management and less code than using active-passive peer-to-peer sync.
 
 ## [](#overview)Overview
 
-To maintain optimal connectivity, efficient data transport, and balanced workloads, the Multipeer Replicator forms a dynamic mesh network among peers in the same group. The mesh network provides resilience through multiple communication pathways - if one connection fails, data can flow through alternative routes.
+To maintain optimal connectivity, efficient data transport, and balanced workloads, the Multipeer Replicator forms a dynamic mesh network among peers in the same group. The mesh network provides resilience through multiple communication pathways. If one connection fails, data can flow through alternative routes.
 
 It avoids redundant direct connections, evenly distributes connections across peers, and optimizes communication paths through intelligent routing.
 
@@ -32,17 +32,109 @@ The mesh network continuously adapts as peers join or leave, automatically heali
 
 This self-organizing approach ensures reliable data synchronization even in challenging network conditions, where individual peer connections may be intermittent or unreliable.
 
-Multipeer Replicator supports Wi-Fi (IP-based transport) as of CBL 3.3.
+> [!NOTE]
+> The Multipeer Replicator supports cross-platform replication between Android and iOS peers running Couchbase Lite 4.1 or higher. An Android powered device and an iOS device using the same group ID, identity certificates from the same CA, and matching transport configuration can discover and replicate with each other over both Wi-Fi and Bluetooth.
 
 ## [](#prerequisites)Prerequisites
 
-### [](#transport-and-peer-discovery-protocol)Transport and Peer Discovery Protocol
+The Multipeer Replicator supports two transports for peer discovery and replication: Wi-Fi and Bluetooth Low Energy (BLE). Wi-Fi is enabled by default. Bluetooth is optional and you enable it through the replicator configuration. See [Transports](#transports).
 
-Multipeer Replicator supports Wi-Fi transport, using `DNS-SD` (also known as Bonjour) for peer discovery. Peers connect to the same Wi-Fi network to discover and establish connections with one another.
+### [](#transport-support)Transport Support
+
+__Table 1\. Transport support__
+| Transport            | Available from | Discovery                    | Minimum Android API | Notes                                                                                                                            |
+| -------------------- | -------------- | ---------------------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Wi-Fi                | CBL 3.3        | DNS-SD (Bonjour)             | API 24              | Peers must connect to the same Wi-Fi network.                                                                                    |
+| Bluetooth Low Energy | CBL 4.1        | BLE advertising and scanning | API 29              | Requires additional manifest permissions and runtime permission requests. See [Platform Configuration](#platform-configuration). |
 
 ### [](#supported-platforms)Supported Platforms
 
-For Android, we recommend using a recent release, preferably supporting minimum API level 24, or more recent but earlier versions should work with the multipeer sync feature. See [Supported Platforms](#kotlin:supported-os.adoc) for more details.
+For Wi-Fi transport, CBL supports Android API 24 and higher.
+
+For Bluetooth transport, CBL supports Android API 29 and higher. On API 29 and 30, Bluetooth uses the legacy `BLUETOOTH`, `BLUETOOTH_ADMIN`, and `ACCESS_FINE_LOCATION` permissions. On API 31 and higher, Bluetooth uses the runtime permissions `BLUETOOTH_SCAN`, `BLUETOOTH_ADVERTISE`, and `BLUETOOTH_CONNECT`.
+
+See [Supported Platforms](#kotlin:supported-os.adoc) for the full platform support matrix.
+
+### [](#platform-configuration)Platform Configuration
+
+This section applies only if your application enables Bluetooth transport. Applications that use Wi-Fi only do not require these permissions.
+
+#### [](#manifest-permissions)Manifest Permissions
+
+Declare the required Bluetooth permissions in your `AndroidManifest.xml`. The permissions differ between Android 11 (API 30) and lower, and Android 12 (API 31) and higher.
+
+```xml
+<manifest ...>
+
+    <!-- Android 11 (API 30) and lower -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:maxSdkVersion="30" />
+
+    <!-- Android 12 (API 31) and higher -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <!-- Android 13 (API 33) and higher: required for Wi-Fi peer discovery -->
+    <uses-permission
+        android:name="android.permission.NEARBY_WIFI_DEVICES"
+        android:usesPermissionFlags="neverForLocation"
+        tools:targetApi="33" />
+
+</manifest>
+```
+
+#### [](#runtime-permission-request)Runtime Permission Request
+
+On Android 12 (API 31) and higher, your application must request `BLUETOOTH_SCAN`, `BLUETOOTH_ADVERTISE`, and `BLUETOOTH_CONNECT` at runtime before starting the Multipeer Replicator. On Android 11 (API 30) and lower, your application must request `ACCESS_FINE_LOCATION` at runtime.
+
+On Android 13 (API 33) and higher, your application must also request `NEARBY_WIFI_DEVICES` at runtime for Wi-Fi peer discovery.
+
+> [!CAUTION]
+> On Android 13 (API 33) and higher, the runtime permission prompt is labelled **Nearby devices**, not Bluetooth. You must still explicitly request `BLUETOOTH_SCAN`, `BLUETOOTH_ADVERTISE`, and `BLUETOOTH_CONNECT` at runtime on these devices. Declaring permissions in the manifest alone is not sufficient: Android 13+ devices will not show a prompt and BLE sync will not work.
+
+Requesting Bluetooth permissions at runtime
+
+```kotlin
+private val requestPermissions =
+    registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {}
+
+private fun requestMissingPermissions() {
+    val needed = buildList {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            add(Manifest.permission.BLUETOOTH_SCAN)
+            add(Manifest.permission.BLUETOOTH_ADVERTISE)
+            add(Manifest.permission.BLUETOOTH_CONNECT)
+        } else {
+            add(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+        // On Android 13 (API 33) and higher, also request Wi-Fi peer discovery.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            add(Manifest.permission.NEARBY_WIFI_DEVICES)
+        }
+    }.filter {
+        ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
+    }
+
+    if (needed.isNotEmpty()) {
+        requestPermissions.launch(needed.toTypedArray())
+    }
+}
+```
+
+> [!TIP]
+> If you have already created a `MultipeerReplicator`, you can call `getNecessaryPermissions()` on it to get the exact set of runtime permissions required for its configured transports, rather than listing them manually.
 
 ## [](#configuration)Configuration
 
@@ -220,6 +312,54 @@ val certObject = certificateFactory.generateCertificate(inputStream) as X509Cert
 val authenticator = MultipeerCertificateAuthenticator(listOf(certObject))
 ```
 
+### [](#transports)Transports
+
+The `transports` property on `MultipeerReplicatorConfiguration` controls which transports the replicator uses for peer discovery and replication. The default is Wi-Fi only.
+
+To enable Bluetooth Low Energy alongside Wi-Fi, add `MultipeerTransport.BLUETOOTH` to the transports set.
+
+Default (Wi-Fi only)
+
+```kotlin
+// Wi-Fi is the default transport. No additional configuration is required.
+val config = MultipeerReplicatorConfiguration.Builder()
+    .setPeerGroupID("com.myapp")
+    .setIdentity(identity)
+    .setAuthenticator(authenticator)
+    .setCollections(collections)
+    .build()
+// transports defaults to EnumSet.of(MultipeerTransport.WIFI)
+```
+
+Wi-Fi and Bluetooth
+
+```kotlin
+val config = MultipeerReplicatorConfiguration.Builder()
+    .setPeerGroupID("com.myapp")
+    .setIdentity(identity)
+    .setAuthenticator(authenticator)
+    .setCollections(collections)
+    .setTransports(EnumSet.of(MultipeerTransport.WIFI, MultipeerTransport.BLUETOOTH))
+    .build()
+```
+
+> [!NOTE]
+> Bluetooth has lower throughput and higher latency than Wi-Fi, and its reliability can decrease as more peers join the Bluetooth network. We recommend using Wi-Fi as the primary transport for multipeer sync, with Bluetooth as a fallback, rather than relying on Bluetooth alone.
+
+Bluetooth only
+
+```kotlin
+val config = MultipeerReplicatorConfiguration.Builder()
+    .setPeerGroupID("com.myapp")
+    .setIdentity(identity)
+    .setAuthenticator(authenticator)
+    .setCollections(collections)
+    .setTransports(EnumSet.of(MultipeerTransport.BLUETOOTH))
+    .build()
+```
+
+When you enable both transports, the replicator automatically selects the best available transport for each peer and switches between them as reachability changes. See [Automatic Transport Switching](#automatic-transport-switching).
+
 ### [](#create-multipeerreplicatorconfiguration)Create MultipeerReplicatorConfiguration
 
 The `MultipeerReplicatorConfiguration` can be created with a `peerGroupID` which is an identifier that identifies the peer-to-peer network used by the app, collection configurations, peer identity, and authenticator.
@@ -237,6 +377,24 @@ val config = MultipeerReplicatorConfiguration.Builder()
 
 > [!TIP]
 > Performance may vary in mesh networks depending on your specific environment and number of peers. We recommend running tests with your network configuration to assess any effects on packet loss or latency.
+
+## [](#automatic-transport-switching)Automatic Transport Switching
+
+When `MultipeerReplicator` is configured with both Wi-Fi and Bluetooth transports, it automatically selects the best available transport for each peer and switches transports as reachability changes.
+
+### [](#transport-preference)Transport Preference
+
+The replicator prefers Wi-Fi over Bluetooth when both transports can reach a peer. Bluetooth acts as a fallback when Wi-Fi cannot reach a peer.
+
+### [](#fallback-to-bluetooth)Fallback to Bluetooth
+
+For an individual peer, `MultipeerReplicator` falls back to Bluetooth when the peer is no longer reachable over Wi-Fi. This can occur if the peer disables Wi-Fi, becomes unreachable on the local network, or if replication over Wi-Fi fails because of a network-related error.
+
+In cases of connection or replication failure over Wi-Fi, `MultipeerReplicator` performs a small number of retries before falling back to Bluetooth.
+
+### [](#return-to-wi-fi)Return to Wi-Fi
+
+If a peer becomes reachable over Wi-Fi while replication is active over Bluetooth, `MultipeerReplicator` establishes a Wi-Fi connection in parallel with the existing Bluetooth connection. The Bluetooth connection remains active until the Wi-Fi connection is fully established and replication has resumed over Wi-Fi. This prevents any interruption in synchronization during the transition.
 
 ## [](#life-cycle)Life Cycle
 
@@ -274,7 +432,11 @@ You should make sure that the application has the necessary permissions to run i
 
 ### [](#events)Events
 
-In general, the connection should just work, and most of these optional listen events give status you may only want to use during development and testing. Event types include the following:
+In general, the connection should just work, and most of these optional listen events give status you may only want to use during development and testing.
+
+Status events include a `transport` property that identifies which transport the event applies to. `MultipeerReplicatorStatus` events are delivered per enabled transport and also as an aggregated status (where `transport` is `null`) representing the overall replicator state.
+
+Event types include the following:
 
 #### [](#multipeer-replicator-status)Multipeer Replicator Status
 
@@ -359,6 +521,8 @@ replicator.neighborPeers.forEach { peer -> Log.i(TAG, " $peer") }
 
 ### [](#peer-info-2)Peer Info
 
+The `PeerInfo` object provides information about a peer, including its identifier, certificate, online status, replicator status, neighbor peers, the transports on which the peer was discovered, and the transport currently used for replication.
+
 Getting peer info
 
 ```kotlin
@@ -375,14 +539,30 @@ fun printPeerInfo(info: PeerInfo) {
 }
 
 for(peer in replicator.neighborPeers) {
-    val info = replicator.getPeerInfo(peer)
-    if (info != null) {
-       printPeerInfo(info)
-    } else {
-        Log.i(TAG, "Peer $peer no longer known")
-    }
+    replicator.getPeerInfo(peer)?.let { printPeerInfo(it) }
 }
 ```
+
+## [](#lbl-testing)Testing
+
+### [](#testing-device-requirements)Device Requirements
+
+The Multipeer Replicator requires physical devices for end-to-end testing. Android emulators and iOS simulators do not support Bluetooth Low Energy. Test on real devices connected to the same Wi-Fi network for Wi-Fi transport, or in close physical proximity for Bluetooth.
+
+### [](#testing-isolating-ble)Isolating the Bluetooth Path
+
+To verify that BLE transport is working independently of Wi-Fi:
+
+1. Enable airplane mode on both test devices to disable Wi-Fi.
+2. Re-enable Bluetooth on both devices (airplane mode allows this on both Android and iOS).
+3. Start the Multipeer Replicator on both devices.
+4. Confirm replication completes using the BLE transport only.
+
+This approach removes any ambiguity about which transport is carrying the data.
+
+### [](#testing-android-doze)Android Doze Mode
+
+Android Doze mode can silently suspend background network activity, including Multipeer Replication, when a device is idle. During testing, keep the screen on or disable battery optimization for your test application to prevent Doze from interfering with replication. In production, see [Background Behavior](#background-behavior) for configuration guidance.
 
 ## [](#logging)Logging
 
@@ -399,4 +579,4 @@ LogSinks.get().console = ConsoleLogSink(LogLevel.VERBOSE, LogDomain.PEER_DISCOVE
 
 ## [](#api-reference)API Reference
 
-You can find [Kotlin API References](https://docs.couchbase.com/mobile/4.0.{maintenance-kotlin}/couchbase-lite-kotlin) here.
+You can find [Kotlin API References](https://docs.couchbase.com/mobile/4.1.{maintenance-kotlin}/couchbase-lite-kotlin) here.

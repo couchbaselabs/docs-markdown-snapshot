@@ -1,8 +1,8 @@
 ---
 title: Indexing
 description: Couchbase mobile database indexes and indexing concepts
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/indexing.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/swift/pages/indexing.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:swift:indexing.adoc[]
 ---
 

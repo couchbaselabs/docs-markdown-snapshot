@@ -1,9 +1,9 @@
 ---
 title: Monitoring Reference
-description: This reference lists the metric graphs displayed in the {ai-long}
-  UI Monitoring dashboards.
+description: This reference lists the metric graphs displayed in the Couchbase
+  AI Data Plane UI Monitoring dashboards.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/reference/pages/monitoring-reference.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:reference:monitoring-reference.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:ai:reference:monitoring-reference.adoc[]
 
 # Monitoring Reference
 
-> This reference lists the metric graphs displayed in the {ai-long} UI Monitoring dashboards. 
+> This reference lists the metric graphs displayed in the Couchbase AI Data Plane UI Monitoring dashboards. 
 
-The {ai-long} **Monitoring** dashboards display a set of metric graphs for unstructured data, structured data, and models, enabling users to monitor {ai} performance in real time.
+The Couchbase AI Data Plane **Monitoring** dashboards display a set of metric graphs for unstructured data, structured data, and models, enabling users to monitor AI Data Plane performance in real time.
 
 For more information about Capella's Monitoring dashboards, see [View Monitoring Dashboards](../admin/monitor-dashboard.md).
 

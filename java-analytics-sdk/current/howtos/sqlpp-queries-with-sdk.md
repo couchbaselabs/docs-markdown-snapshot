@@ -1,10 +1,10 @@
 ---
 title: Querying with SQL++
 description: You can query for documents in Couchbase using the SQL++ query
-  language, a language based on SQL, but designed for structured and flexible
+  language -- a language based on SQL, but designed for structured and flexible
   JSON documents.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.1/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-analytics-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -13,19 +13,24 @@ link: xref:java-analytics-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 
 # Querying with SQL++
 
-> You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. 
+> You can query for documents in Couchbase using the SQL++ query language — a language based on SQL, but designed for structured and flexible JSON documents. 
 
 On this page we dive straight into using the Query Service API from the Java Analytics SDK. For a deeper look at the concepts, to help you better understand the Query Service, and the SQL++ language, see the links in the [Further Information](#further-information) section at the end of this page.
 
-Here we show queries against the Travel Sample collection, at cluster and scope level, and give links to information on adding other collections to your data.
-
 ## [](#before-you-start)Before You Start
 
-This page assumes that you have [installed the Java Analytics SDK](../hello-world/start-using-sdk.md), and created an [Enterprise Analytics cluster](../../../enterprise-analytics/current/install/introduction-linux-installation.md).
+This page assumes that you have [installed the Java Analytics SDK](../hello-world/start-using-sdk.md), added your IP address to the allowlist, and [created an Enterprise Analytics cluster](#analytics:manage:manage-nodes/create-cluster.adoc#cluster).
 
-Create a collection to work upon by [importing the travel-sample dataset](../../../enterprise-analytics/current/intro/connecting-to-data-sources.md#import-the-travel-sample-collections) into your cluster.
+Create a collection to work upon by [importing the travel-sample dataset](#analytics:intro:connecting-to-data-sources.adoc#import-the-travel-sample-collections) into your cluster.
 
 ## [](#querying-your-dataset)Querying Your Dataset
+
+> [!TIP]
+> API Enhancements & Async
+> 
+> The 1.1 Java Analytics SDK adds support for JWT and client certificate authentication, as well as a new poll-based Server Asynchronous Request API that uses request handles to fetch results. Introduced in self-managed Enterprise Analytics Server 2.2, this API eliminates the need for long-running server connections.
+> 
+> The examples in this first section of the page are for the standard API, working with all 2.x releases of Enterprise Analytics (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). Note, you will still be able to use this API with 2.2+ releases of Enterprise Analytics, in addition to the new API.
 
 Execute a query and buffer all result rows in client memory:
 
@@ -79,6 +84,67 @@ cluster.executeStreamingQuery(
 );
 ```
 
+## [](#server-asynchronous-api)Server Asynchronous Request API
+
+Enterprise Analytics Server 2.2 adds a Server Asynchronous Request API. The SDK will send a request, poll for results, and then fetch once the result is available.
+
+Server Asynchronous API Example
+
+```java
+static void queryHandleExample(Queryable clusterOrScope) throws InterruptedException, TimeoutException {
+    String slowStatement = """
+      SELECT COUNT (1) AS c
+          FROM
+          ARRAY_RANGE(0,10000) AS d1,
+          ARRAY_RANGE(0,10000) AS d2
+      """;
+
+    Duration timeout = Duration.ofMinutes(15);
+
+    QueryHandle queryHandle = clusterOrScope.startQuery(
+      slowStatement,
+      opt -> opt.timeout(timeout)
+    );
+
+    QueryResultHandle resultHandle = waitForResult(queryHandle, timeout);
+    try {
+      // Process rows one by one as they arrive from the server.
+      QueryMetadata metadata = resultHandle.streamRows(row -> System.out.println("Got row: " + row));
+      System.out.println("Got metadata: " + metadata);
+
+      // Alternatively, if the result is known to fit in memory:
+      QueryResult buffered = resultHandle.bufferRows();
+      System.out.println("Got result: " + buffered);
+
+    } finally {
+      // Tell the server it can forget the result.
+      resultHandle.discard();
+    }
+  }
+
+  private static QueryResultHandle waitForResult(
+    QueryHandle queryHandle,
+    Duration timeout
+  ) throws InterruptedException, TimeoutException {
+    final long timeoutNanos = timeout.toNanos();
+    final long startNanos = System.nanoTime();
+
+    while (true) {
+      QueryStatus status = queryHandle.fetchStatus();
+      if (status.resultReady()) return status.resultHandle();
+
+      System.out.println("Waiting for query to finish; current status: " + status);
+
+      long elapsedNanos = System.nanoTime() - startNanos;
+      if (elapsedNanos > timeoutNanos) {
+        throw new TimeoutException("Query result not ready after " + timeout);
+      }
+
+      SECONDS.sleep(1); // or use exponential backoff
+    }
+  }
+```
+
 ## [](#query-options)Query Options
 
 The query service accepts various options to customize your query. The following table lists them all:
@@ -96,4 +162,4 @@ __Table 1\. Available Query Options__
 
 ## [](#further-information)Further Information
 
-The [SQL++ for Analytics Reference](../../../server/current/analytics/1%5Fintro.md)offers a complete guide to the SQL++ language for both of our analytics services, including all of the latest additions.
+The [SQL++ for Analytics Reference](../../../analytics/sqlpp/1%5Fintro.md)offers a complete guide to the SQL++ language for both of our analytics services, including all of the latest additions.

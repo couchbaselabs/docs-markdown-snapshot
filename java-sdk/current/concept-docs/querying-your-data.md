@@ -1,8 +1,8 @@
 ---
 title: Querying Your Data
 description: Choosing the right service to query your data.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/concept-docs/pages/querying-your-data.adoc
-pubDate: 2026-04-01T05:25:30.286Z
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/concept-docs/pages/querying-your-data.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-sdk:concept-docs:querying-your-data.adoc[]
 ---
 

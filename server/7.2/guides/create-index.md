@@ -2,7 +2,7 @@
 title: Creating Indexes
 description: How to create primary indexes and secondary indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/create-index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:7.2@server:guides:create-index.adoc[]
 ---
 
@@ -144,19 +144,13 @@ If you do not specify a name, the index is called `#primary`.
 The following example creates an unnamed primary index.
 
 ```nodejs
-await cluster.queryIndexes().createPrimaryIndex(
-  'travel-sample',
-  // Don't error if the primary index already exists.
-  { ignoreIfExists: true }
-)
+Unresolved include directive in modules/guides/pages/create-index.adoc - include::nodejs-sdk:hello-world:example$index-hello-world.js[]
 ```
 
 The following example creates a named primary index on the specified keyspace.
 
 ```nodejs
-await cluster
-  .queryIndexes()
-  .createPrimaryIndex('travel-sample', { name: 'named_primary_index' })
+Unresolved include directive in modules/guides/pages/create-index.adoc - include::nodejs-sdk:hello-world:example$index-hello-world.js[]
 ```
 
 Click the  View button to see this code in context.
@@ -292,9 +286,7 @@ To create a secondary index, use the `createIndex` function on a `QueryIndexMana
 The following example creates a secondary index on the `name` field in the specified keyspace.
 
 ```nodejs
-await cluster
-  .queryIndexes()
-  .createIndex('travel-sample', 'index_name', ['name'])
+Unresolved include directive in modules/guides/pages/create-index.adoc - include::nodejs-sdk:hello-world:example$index-hello-world.js[]
 ```
 
 Click the  View button to see this code in context.
@@ -392,14 +384,7 @@ To create a composite index, specify multiple fields in the index definition.
 The following example creates a secondary index on the `name`, `id`, `icao`, and `iata` fields in the specified keyspace.
 
 ```nodejs
-await cluster
-  .queryIndexes()
-  .createIndex('travel-sample', 'index_travel_info', [
-    'name',
-    'id',
-    'icao',
-    'iata',
-  ])
+Unresolved include directive in modules/guides/pages/create-index.adoc - include::nodejs-sdk:hello-world:example$index-hello-world.js[]
 ```
 
 Click the  View button to see this code in context.

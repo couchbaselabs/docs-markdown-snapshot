@@ -2,8 +2,8 @@
 title: Diagnosing and preventing Network Problems with Health Check
 description: In today's distributed and virtual environments, users will often
   not have full administrative control over their whole network.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/health-check.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/health-check.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:howtos:health-check.adoc[]
 ---
 

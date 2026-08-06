@@ -1,8 +1,8 @@
 ---
 title: Transactions&#8201;&#8212;&#8201;Server Compatibility
 description: How Sync Gateway works with <em>Couchbase Server Transactions</em>
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/server-compatibility/pages/server-compatibility-transactions.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/server-compatibility/pages/server-compatibility-transactions.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:server-compatibility:server-compatibility-transactions.adoc[]
 ---
 
@@ -34,7 +34,7 @@ Within the Couchbase mobile ecosystem all transactions are local, either to the 
 
 * Couchbase Server supports server side transactions — see: [Couchbase Transactions](../../../server/current/learn/data/transactions.md).  
 Changes made on the server within a transaction block are guaranteed to be imported by the Sync Gateway only after all the changes in a transaction are committed.
-* Similarly, Couchbase Lite supports transactions that are local to the Couchbase Lite database — see: [Database.inBatch()](http://docs.couchbase.com/mobile/4.0.0/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC7inBatch5usingyyyKXE%5FtKF).  
+* Similarly, Couchbase Lite supports transactions that are local to the Couchbase Lite database — see: [Database.inBatch()](http://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC7inBatch5usingyyyKXE%5FtKF).  
 Only committed transactions will ever reach Sync Gateway.
 
 There is no guarantee that a series of updates made within a transaction block, on either the Couchbase Server or Couchbase Lite client side, will be ACID compliant when they sync to the other end.

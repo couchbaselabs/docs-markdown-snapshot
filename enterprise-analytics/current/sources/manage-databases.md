@@ -3,8 +3,8 @@ title: Manage Enterprise Analytics Databases
 description: In an Enterprise Analytics cluster, a database is the top-level
   container for organizing related information.You can add or delete databases
   using the UI or SQL++ for Enterprise Analytics statements.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/manage-databases.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sources/pages/manage-databases.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sources:manage-databases.adoc[]
 ---
 

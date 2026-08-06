@@ -1,8 +1,8 @@
 ---
 title: Field Level Encryption
 description: Client-side Field Level Encryption on Couchbase Lite C Clients
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/field-level-encryption.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/field-level-encryption.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:field-level-encryption.adoc[]
 ---
 
@@ -41,12 +41,12 @@ Example 1\. Encryptable-type Dictionary Structure
 ```c
 {
   "@type": "encryptable",
-  “value” : <Decrypted Value>
+  "value" : <Decrypted Value>
 } (1)
 
 {
   "@type": "encryptable",
-  “ciphertext”: <Encrypted Value in BASE64 String>
+  "ciphertext": <Encrypted Value in BASE64 String>
 } (2)
 ```
 
@@ -81,8 +81,8 @@ Push replicator
 Example 2\. Stored Encryptable  
 ```c  
 {  
-    “alg”: <User-Specified or CB_MOBILE_CUSTOM>,  
-    “ciphertext” : <Encrypted Value in BASE64 String>  
+    "alg": <User-Specified or CB_MOBILE_CUSTOM>,  
+    "ciphertext" : <Encrypted Value in BASE64 String>  
 }  
 ```
 
@@ -102,9 +102,9 @@ Server SDK's field (property) level encryption uses key mangling, by add a prefi
 ```c
 {
     encrypted$mykey: {
-        “alg” : “AEAD_AES_256_CBC_HMAC_SHA512”, (1)
-        “kid” : “my-key-id”,
-        “ciphertext”: “<BASE64-TEXT>”
+        "alg" : "AEAD_AES_256_CBC_HMAC_SHA512", (1)
+        "kid" : "my-key-id",
+        "ciphertext": "<BASE64-TEXT>"
     }
 }
 ```
@@ -116,7 +116,7 @@ Server SDK's field (property) level encryption uses key mangling, by add a prefi
 
 ### [](#lbl-encryption-callback)Encryption
 
-Provide an encryption callback function [CBLPropertyEncryptor](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Freplication.html#gab116a23be8bd24b86349379f370ef60c) to encrypt encryptable properties during replication.
+Provide an encryption callback function [CBLPropertyEncryptor](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Freplication.html#gab116a23be8bd24b86349379f370ef60c) to encrypt encryptable properties during replication.
 
 After encryption the FLSliceResult is released and the returned value zeroed. See [Example 4](#ex-get-att) for an example encryptor callback function.
 
@@ -124,7 +124,7 @@ If you return a null slice the replicator will fail and log a crypto error messa
 
 ### [](#lbl-decryption-callback)Decryption
 
-Provide a decryption callback function [CBLPropertyDecryptor](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Freplication.html#ga24a60a3d6f9816e1d32464cc31a15c0c) to decrypt any encryptable properties. After decryption the FLSliceResult is released and the returned value zeroed. See [Example 4](#ex-get-att) for an example decryptor callback function.
+Provide a decryption callback function [CBLPropertyDecryptor](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Freplication.html#ga24a60a3d6f9816e1d32464cc31a15c0c) to decrypt any encryptable properties. After decryption the FLSliceResult is released and the returned value zeroed. See [Example 4](#ex-get-att) for an example decryptor callback function.
 
 If you return a null slice without an error the replicator skips and saves the property as received.
 
@@ -132,11 +132,14 @@ If you return a null slice with an error the replicator logs the error and does 
 
 Example 4\. Simple Encryption-Decryption Callback
 
-```C
+* C
+* C++
+
+```c
 // Purpose: Declare property-level encryptor callback functions
 static FLSliceResult my_cipher_function(FLSlice input) {
     FLSliceResult result = FLSliceResult_New(input.size);
-    for(int i = 0; i < input.size; ++i) {
+    for(size_t i = 0; i < input.size; ++i) {
         ((uint8_t*)(result.buf))[i] = ((uint8_t*)input.buf)[i] ^ 'K';}
     return result;
 }
@@ -171,9 +174,35 @@ static FLSliceResult property_decryptor(
 }
 ```
 
+```cpp
+// Purpose: Declare property-level encryptor/decryptor callback functions
+
+// A simple symmetric XOR cipher shared by the encryptor and decryptor.
+static fleece::alloc_slice my_cipher_function(fleece::slice input) {
+    fleece::alloc_slice result(input.size);
+    for (size_t i = 0; i < input.size; ++i) {
+        ((uint8_t*)result.buf)[i] = ((const uint8_t*)input.buf)[i] ^ 'K';
+    }
+    return result;
+}
+
+static cbl::PropertyEncryptor property_encryptor =
+    [](fleece::slice scope, fleece::slice collection, fleece::slice documentID,
+       fleece::Dict properties, fleece::slice keyPath, fleece::slice input) -> cbl::EncryptionResult {
+        return { my_cipher_function(input), "MyEnc" };
+    };
+
+static cbl::PropertyDecryptor property_decryptor =
+    [](fleece::slice scope, fleece::slice collection, fleece::slice documentID,
+       fleece::Dict properties, fleece::slice keyPath, fleece::slice input,
+       std::optional<std::string_view> algorithm, std::optional<std::string_view> keyID) -> cbl::DecryptionResult {
+        return { my_cipher_function(input) };
+    };
+```
+
 ## [](#callback-configuration)Callback Configuration
 
-You register the callback function for use by declaring them in the replicator configuration using [propertyEncryptor()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Freplicator%5Fconfiguration.html#ab731bf9f140158d6967c1af645d8744a) and-or [propertyDecryptor()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Freplicator%5Fconfiguration.html#ab6a0d9e0830755d284039018a09c27d6) — see: [Example 5](#ex-callback-config)
+You register the callback function for use by declaring them in the replicator configuration using [propertyEncryptor()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Freplicator%5Fconfiguration.html#ab731bf9f140158d6967c1af645d8744a) and-or [propertyDecryptor()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Freplicator%5Fconfiguration.html#ab6a0d9e0830755d284039018a09c27d6) — see: [Example 5](#ex-callback-config)
 
 If you do not provide an encryption callback:
 
@@ -182,11 +211,14 @@ If you do not provide an encryption callback:
 
 Example 5\. Simple Callback Replicator Configuration
 
-```C
+* C
+* C++
+
+```c
 // Purpose: Declare property-level encryptor callback functions
 static FLSliceResult my_cipher_function(FLSlice input) {
     FLSliceResult result = FLSliceResult_New(input.size);
-    for(int i = 0; i < input.size; ++i) {
+    for(size_t i = 0; i < input.size; ++i) {
         uint8_t*)(result.buf[i] = uint8_t*)input.buf)[i] ^ 'K';}     return result; }  static FLSliceResult property_encryptor(     void* context,     FLString scope,     FLString collection,     FLString docID,     FLDict props,     FLString path,     FLSlice input,     FLStringResult* algorithm,     FLStringResult* keyID,     CBLError* error) {     *algorithm = FLSlice_Copy(FLSTR("MyEnc";
     return my_cipher_function(input);
 }
@@ -207,14 +239,14 @@ static FLSliceResult property_decryptor(
 
     // Purpose: Show how to declare en(de)cryptors in replicator config
     // NOTE: No error handling, for brevity (see getting started)
-    CBLCollectionConfiguration collectionConfig = {0};
+    CBLCollectionConfiguration collectionConfig = {};
     collectionConfig.collection = collection;
 
-    CBLError err{};
+    CBLError err = {};
     FLString url = FLSTR("ws://localhost:4984/db");
     CBLEndpoint* target = CBLEndpoint_CreateWithURL(url, &err);
 
-    CBLReplicatorConfiguration replConfig = {0};
+    CBLReplicatorConfiguration replConfig = {};
     replConfig.collections = &collectionConfig;
     replConfig.collectionCount = 1;
     replConfig.endpoint = target;
@@ -225,6 +257,43 @@ static FLSliceResult property_decryptor(
     CBLEndpoint_Free(target);
 
     CBLReplicator_Start(replicator, false);
+```
+
+```cpp
+// Purpose: Declare property-level encryptor/decryptor callback functions
+
+// A simple symmetric XOR cipher shared by the encryptor and decryptor.
+static fleece::alloc_slice my_cipher_function(fleece::slice input) {
+    fleece::alloc_slice result(input.size);
+    for (size_t i = 0; i < input.size; ++i) {
+        ((uint8_t*)result.buf)[i] = ((const uint8_t*)input.buf)[i] ^ 'K';
+    }
+    return result;
+}
+
+static cbl::PropertyEncryptor property_encryptor =
+    [](fleece::slice scope, fleece::slice collection, fleece::slice documentID,
+       fleece::Dict properties, fleece::slice keyPath, fleece::slice input) -> cbl::EncryptionResult {
+        return { my_cipher_function(input), "MyEnc" };
+    };
+
+static cbl::PropertyDecryptor property_decryptor =
+    [](fleece::slice scope, fleece::slice collection, fleece::slice documentID,
+       fleece::Dict properties, fleece::slice keyPath, fleece::slice input,
+       std::optional<std::string_view> algorithm, std::optional<std::string_view> keyID) -> cbl::DecryptionResult {
+        return { my_cipher_function(input) };
+    };
+    // Purpose: Show how to declare en(de)cryptors in the replicator config
+    cbl::Endpoint target = cbl::Endpoint::urlEndpoint("ws://localhost:4984/db");
+
+    cbl::CollectionConfiguration collectionConfig(collection);
+
+    cbl::ReplicatorConfiguration replConfig({ collectionConfig }, target);
+    replConfig.documentPropertyEncryptor = property_encryptor; (1)
+    replConfig.documentPropertyDecryptor = property_decryptor; (2)
+
+    cbl::Replicator replicator(replConfig);
+    replicator.start();
 ```
 
 ## [](#querying-encryptables)Querying Encryptables
@@ -275,7 +344,7 @@ Example 7\. Sample brute-force mitigation code
 
 ```C
 void secureRandomize(void *bytes, size_t count) {
-    // This sample code uses Apple’s Common Crypto API to generate a secure random bytes.
+    // This sample code uses Apple's Common Crypto API to generate a secure random bytes.
     CCRandomGenerateBytes(bytes, count);
 }
 ```
@@ -293,7 +362,7 @@ FLValue nonceValue = FLValue_NewData({nonceBuf, sizeof(nonceBuf)});
 FLSliceResult nonceBase64 = FLValue_ToJSON(nonceValue);
 FLValue_Release(nonceValue);
 
-// Create an encryptable value from the random bytes and add to the document’s property:
+// Create an encryptable value from the random bytes and add to the document's property:
 auto nonce = CBLEncryptable_CreateWithString({nonceBase64.buf, nonceBase64.size});
 FLMutableDict_SetEncryptableValue(props, "nonce"_sl, nonce);
 

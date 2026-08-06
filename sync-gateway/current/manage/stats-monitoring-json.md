@@ -2,8 +2,8 @@
 title: JSON Metrics
 description: This content covers the statistics and metrics collected and made
   available by Sync Gateway
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/stats-monitoring-json.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/manage/pages/stats-monitoring-json.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:manage:stats-monitoring-json.adoc[]
 ---
 

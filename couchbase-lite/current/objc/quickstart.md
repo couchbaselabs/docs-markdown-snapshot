@@ -2,8 +2,8 @@
 title: Couchbase Lite on Objective-C
 description: Start your Couchbase for Mobile and Edge adventure, get up and
   running with Couchbase Lite
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/quickstart.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/objc/pages/quickstart.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:objc:quickstart.adoc[]
 ---
 
@@ -30,7 +30,7 @@ Get Started
 
 * [Install](gs-install.md)
 * [Build](gs-build.md)
-* [Browse API References …​](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc)
+* [Browse API References …​](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc)
 
 ### [](#-4)
 
@@ -59,7 +59,7 @@ Key Concepts
 
 Product Notes
 
-* [New in 4.0](../cbl-whatsnew.md)
+* [New in 4.1](../cbl-whatsnew.md)
 * [Couchbase Lite Release Notes](releasenotes.md)
 * [Vector Search Release Notes](vs-releasenotes.md)
 * [Supported Platforms](supported-os.md)

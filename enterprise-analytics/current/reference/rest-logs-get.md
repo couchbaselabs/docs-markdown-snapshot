@@ -4,8 +4,8 @@ description: Diagnostic information can be retrieved by using the
   <code>GET</code> method with the <code>/diag</code> URI. The current content
   of a log file can be returned by using <code>GET</code> with the
   <code>/sasl_logs</code> URI.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-logs-get.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/rest-logs-get.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:reference:rest-logs-get.adoc[]
 ---
 

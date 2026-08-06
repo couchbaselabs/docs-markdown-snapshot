@@ -1,8 +1,8 @@
 ---
 title: Resync
 description: Recalculating routing and data access following Sync Function changes
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/resync.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/manage/pages/resync.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:manage:resync.adoc[]
 ---
 
@@ -42,7 +42,7 @@ The Admin REST API provides a [POST /{db}/\_resync](../rest-api/rest%5Fapi%5Fadm
 The resync operation runs asynchronously. Use [GET /{db}/\_resync](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Management/operation/get%5Fdb-%5Fresync) to monitor the current status of a resync operation.
 
 > [!IMPORTANT]
-> When using nonpersistent (legacy) configuration, the resync action is carried out **only** on the node that the POST is made to. It is not cross-node aware. In a multi-node cluster, the resync must only run on 1 node. Starting resync on more than 1 node results in multiple instances running, with undefined system behavior. When using persistent configuration (default since Sync Gateway 3.0), resync operations work across all nodes automatically.
+> When using nonpersistent (legacy) configuration, the resync action is carried out **only** on the node that the POST is made to. It's not cross-node aware. In a multi-node cluster, the resync must only run on 1 node. Starting resync on more than 1 node results in multiple instances running, with undefined system behavior. When using persistent configuration (default since Sync Gateway 3.0), resync operations work across all nodes automatically.
 
 > [!NOTE]
 > There's also a 'support-only' option to regenerate sequences while resyncing.
@@ -66,12 +66,12 @@ Procedure
 
   1. Update the configuration file of the Sync Gateway instance.
   2. Restart Sync Gateway.
-  3. [Take the database offline](database-offline.md#%5Fpersistent%5Fconfiguration) using `PUT /{db}/_config` with `{"offline": true}` (can use Load Balancer).  
+  3. [Take the database offline](database-offline.md#%5Fpersistent%5Fconfiguration) using `POST /{db}/_config` with `{"offline": true}` (can use Load Balancer).  
   This updates the database configuration persisted in the bucket, and all nodes will go offline.
   4. Run resync using [POST /{db}/\_resync](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Management/operation/post%5Fdb-%5Fresync) (you can call this on any node or through Load Balancer).
   5. Monitor resync status using [GET /{db}/\_resync](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Management/operation/get%5Fdb-%5Fresync).  
   The message body of the response contains the number of changes that resync made.
-  6. [Bring the database back online](database-offline.md#%5Fpersistent%5Fconfiguration%5F2) using `PUT /{db}/_config` with `{"offline": false}` (can use Load Balancer).  
+  6. [Bring the database back online](database-offline.md#%5Fpersistent%5Fconfiguration%5F2) using `POST /{db}/_config` with `{"offline": false}` (can use Load Balancer).  
   This updates the database configuration persisted in the bucket, and all nodes go online.
 
 Use this method when local config files store your Sync Gateway configuration (legacy mode).

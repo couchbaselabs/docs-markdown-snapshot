@@ -3,8 +3,8 @@ title: Supported Platforms
 description: Enterprise Analytics supports several popular operating systems and
   virtual environments. The Enterprise Analytics Web Console supports most
   recent major browsers.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/supported-platform.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/install/pages/supported-platform.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:install:supported-platform.adoc[]
 ---
 
@@ -64,6 +64,7 @@ __Table 4\. Recommended Nodes Requirement__
 
 Enterprise Analytics employs a compute-storage separation architecture that allows for scaling compute and storage independently. As a result, it requires an object store as its persistent storage. The certified supported object storage solutions are:
 
-* [AWS S3](../manage/manage-nodes/aws-s3.md)
+* [Amazon S3](../manage/manage-nodes/aws-s3.md)
 * [S3-Compatible Storage](../manage/manage-nodes/s3-compatible-storage.md)
 * [Azure Blob Storage](../manage/manage-nodes/azure-blob-storage.md)
+* [Google Cloud Storage (GCS)](../manage/manage-nodes/google-cloud-storage.md)

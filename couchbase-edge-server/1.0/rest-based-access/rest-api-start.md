@@ -4,7 +4,7 @@ description: To get started with the Couchbase Edge Server REST API, you must
   specify the interface and authentication options using the Edge Server
   configuration file.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/rest-api-start.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:1.0@couchbase-edge-server:rest-based-access:rest-api-start.adoc[]
 ---
 
@@ -186,4 +186,4 @@ On running the command, you're prompted to enter and confirm a password for the 
 * [Monitor Changes with Edge Server](changes-feed.md)
 * [Run Queries with Edge Server](queries-api.md)
 * [Manage Replication with Edge Server](replication.md)
-* [public-api-reference:index.adoc](#public-api-reference:index.adoc)
+* [Edge Server Public REST API](../public-api-reference/index.md)

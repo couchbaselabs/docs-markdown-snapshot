@@ -2,8 +2,8 @@
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase
   Lite on Android
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/gs-build.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/gs-build.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:android:gs-build.adoc[]
 ---
 
@@ -280,7 +280,7 @@ You should be able to create a document and persist it to the database.
 
 Mostly around Gradle and versions. You may find you need to change IDE Build Tools settings to use Java 11 for Gradle, for instance.
 
-Using this app with Sync Gateway and Couchbase Server obviously requires you have, or install, working versions of both. See also — [Install Sync Gateway](#sync-gateway::get-started-install.adoc)
+Using this app with Sync Gateway and Couchbase Server obviously requires you have, or install, working versions of both. See also — [Install Sync Gateway](../../../sync-gateway/current/start-here/get-started-install.md)
 
 ## [](#minification)Minification
 

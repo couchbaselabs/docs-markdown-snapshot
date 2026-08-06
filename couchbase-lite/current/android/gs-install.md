@@ -1,8 +1,8 @@
 ---
 title: Installing Couchbase Lite on Android
 description: How to install Couchbase Lite on Android
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/gs-install.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/gs-install.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:android:gs-install.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Enterprise users can also download the Couchbase Lite Vector Search extension li
 
 Couchbase Lite Quick Steps
 
-For experienced developers, this is all you need to add \_Couchbase Lite for Android 4.0.3 to your application projects.
+For experienced developers, this is all you need to add \_Couchbase Lite for Android 4.1.0 to your application projects.
 
 * Kotlin - Enterprise
 * Kotlin - Community
@@ -33,7 +33,7 @@ For experienced developers, this is all you need to add \_Couchbase Lite for And
 
 1. Create a Kotlin Android app project in Android Studio
 2. Add Couchbase Lite as a dependency in your app-level `build.gradle`  
-`implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:4.0.3'`
+`implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:4.1.0'`
 3. Add the following _maven_ repo to your repositories (in `build.gradle` or `settings.gradle` as required  
 `<https://mobile.maven.couchbase.com/maven2/dev/>`
 
@@ -45,13 +45,13 @@ For experienced developers, this is all you need to add \_Couchbase Lite for And
 
 1. Create a Kotlin Android app project in Android Studio
 2. Add Couchbase Lite as a dependency in your app-level `build.gradle`  
-`implementation 'com.couchbase.lite:couchbase-lite-android-ktx:4.0.3'`
+`implementation 'com.couchbase.lite:couchbase-lite-android-ktx:4.1.0'`
 3. Check you have `mavenCentral()` in `repositories` (or in `settings.gradle`)
 4. Build the project and it will pull Couchbase Lite down.
 
 1. Create a Java Android app project in Android Studio
 2. Add Couchbase Lite as a dependency in your app-level `build.gradle`  
-`implementation 'com.couchbase.lite:couchbase-lite-android-ee:4.0.3'`
+`implementation 'com.couchbase.lite:couchbase-lite-android-ee:4.1.0'`
 3. Add the following _maven_ repo to your repositories (in `build.gradle` or `settings.gradle` as required  
 `<https://mobile.maven.couchbase.com/maven2/dev/>`
 
@@ -63,7 +63,7 @@ For experienced developers, this is all you need to add \_Couchbase Lite for And
 
 1. Create a Java Android app project in Android Studio
 2. Add Couchbase Lite as a dependency in your app-level `build.gradle`  
-`implementation 'com.couchbase.lite:couchbase-lite-android:4.0.3'`
+`implementation 'com.couchbase.lite:couchbase-lite-android:4.1.0'`
 3. Check you have `mavenCentral()` in `repositories` (or in `settings.gradle`)
 4. Build the project and it will pull Couchbase Lite down.
 
@@ -93,7 +93,7 @@ repositories {
 2. Add the following in the `dependencies{}` section:  
 ```kotlin  
 dependencies {  
-  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:4.0.3'  
+  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:4.1.0'  
 //   ... other section content as required by user  
 }  
 ```
@@ -108,7 +108,7 @@ repositories {
 2. Add _Couchbase Lite_ to the `dependencies{}` section:  
 ```kotlin  
 dependencies {  
-  implementation "com.couchbase.lite:couchbase-lite-android-ktx:4.0.3"  
+  implementation "com.couchbase.lite:couchbase-lite-android-ktx:4.1.0"  
 //   ... other section content as required by user  
 }  
 ```
@@ -139,7 +139,7 @@ repositories {
 2. For architectures other than x86\_64:  
 ```kotlin  
 dependencies {  
-  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:4.0.3'  
+  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:4.1.0'  
   // All standard 64-bit ARM architectures  
   implementation 'com.couchbase.lite:couchbase-lite-android-vector-search-arm64-2.0.0'  
 //   ... other section content as required by user  
@@ -149,7 +149,7 @@ dependencies {
   1. For x86\_64 architectures:  
   ```kotlin  
   dependencies {  
-    implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:4.0.3'  
+    implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:4.1.0'  
     implementation 'com.couchbase.lite:couchbase-lite-android-vector-search-x86_64-2.0.0'  
   //   ... other section content as required by user  
   }  
@@ -184,7 +184,7 @@ repositories {
 2. Add _Couchbase Lite_ to your `dependencies{}` section:  
 ```groovy  
 dependencies {  
-  implementation 'com.couchbase.lite:couchbase-lite-android-ee:4.0.3'  
+  implementation 'com.couchbase.lite:couchbase-lite-android-ee:4.1.0'  
 //   ... other section content as required by user  
 }  
 ```
@@ -199,7 +199,7 @@ repositories {
 2. Include the following in the `dependencies{}` section:  
 ```groovy  
 dependencies {  
-  implementation 'com.couchbase.lite:couchbase-lite-android:4.0.3'  
+  implementation 'com.couchbase.lite:couchbase-lite-android:4.1.0'  
 //   ... other section content as required by user  
 }  
 ```
@@ -232,7 +232,7 @@ repositories {
 2. Include the following in the `dependencies{}` section:  
 ```kotlin  
 dependencies {  
-  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:4.0.3'  
+  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:4.1.0'  
   // All standard 64-bit ARM architectures  
   implementation 'com.couchbase.lite:couchbase-lite-android-vector-search-arm64-2.0.0'  
 //   ... other section content as required by user  
@@ -242,7 +242,7 @@ dependencies {
   1. For running on x86\_64 architectures, include the following in the `dependencies{}` section instead:  
   ```kotlin  
   dependencies {  
-    implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:4.0.3'  
+    implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:4.1.0'  
     implementation 'com.couchbase.lite:couchbase-lite-android-vector-search-x86_64-1.0.0-2.0.0'  
   //   ... other section content as required by user  
   }  

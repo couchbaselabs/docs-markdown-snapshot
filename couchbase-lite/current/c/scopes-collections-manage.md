@@ -1,8 +1,8 @@
 ---
 title: Manage Scopes and Collections
 description: Scopes and collections allow you to organize your documents within a database.
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/scopes-collections-manage.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/scopes-collections-manage.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:scopes-collections-manage.adoc[]
 ---
 
@@ -54,9 +54,16 @@ Naming conventions for collections and scopes:
 
 Example 1\. Create a scope and collection
 
+* C
+* C++
+
 ```c
-CBLError err{};
+CBLError err = {};
 CBLDatabase_CreateCollection(db, FLSTR("collA"), FLSTR("scopeA"), &err);
+```
+
+```cpp
+db.createCollection("collA", "scopeA");
 ```
 
 In the example above, you can see that `db.createCollection()` can take two parameters. The first is the scope assigned to the created collection, if this parameter is omitted then a collection of the given name will be assigned to the `_default` scope. In this case, creating a collection called `Verlaine`.
@@ -70,22 +77,40 @@ The second parameter is the name of the collection you want to create, in this c
 
 Example 2\. Index a Collection
 
+* C
+* C++
+
 ```c
-CBLValueIndexConfiguration config{};
+CBLValueIndexConfiguration config = {};
 config.expressionLanguage = kCBLN1QLLanguage;
 config.expressions = FLSTR("type, name");
 
-CBLError err{};
+CBLError err = {};
 CBLCollection_CreateValueIndex(collection, FLSTR("TypeNameIndex"), config, &err);
+```
+
+```cpp
+cbl::ValueIndexConfiguration config{};
+config.expressionLanguage = kCBLN1QLLanguage;
+config.expressions = "type, name";
+
+collection.createValueIndex("TypeNameIndex", config);
 ```
 
 ## [](#drop-a-collection)Drop a Collection
 
 Example 3\. Drop a Collection
 
+* C
+* C++
+
 ```c
-CBLError err{};
+CBLError err = {};
 CBLDatabase_DeleteCollection(db, FLSTR("collA"), FLSTR("scopeA"), &err);
+```
+
+```cpp
+db.deleteCollection("collA", "scopeA");
 ```
 
 > [!NOTE]
@@ -95,8 +120,11 @@ CBLDatabase_DeleteCollection(db, FLSTR("collA"), FLSTR("scopeA"), &err);
 
 Example 4\. List Scopes and Collections
 
+* C
+* C++
+
 ```c
-CBLError err{};
+CBLError err = {};
 
 // Get Scopes
 FLMutableArray scopes = CBLDatabase_ScopeNames(db, &err);
@@ -110,4 +138,17 @@ FLMutableArray collections = CBLDatabase_CollectionNames(db, FLSTR("scopeA"), &e
 CBLCollection *collection = CBLDatabase_DefaultCollection(db, &err);
 // Get specific Collection named collA of a specific Scope named scopeA
 CBLCollection *collA = CBLDatabase_Collection(db, FLSTR("collA"), FLSTR("scopeA"), &err);
+```
+
+```cpp
+// Get Scope names
+fleece::MutableArray scopes = db.getScopeNames();
+// Get Collection names of a specific Scope named scopeA
+fleece::MutableArray collections = db.getCollectionNames("scopeA");
+// Get default Collection
+cbl::Collection collection = db.getDefaultCollection();
+// Get specific Collection named collA of a specific Scope named scopeA
+cbl::Collection collA = db.getCollection("collA", "scopeA");
+// Get the Scope name of a Collection
+std::string scopeName = collA.scopeName();
 ```

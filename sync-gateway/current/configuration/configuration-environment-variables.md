@@ -1,8 +1,8 @@
 ---
 title: Configuration Environment Variables
 description: Using environment variables in the configuration of Sync Gateway
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-environment-variables.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-environment-variables.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:configuration:configuration-environment-variables.adoc[]
 ---
 
@@ -75,7 +75,7 @@ Sync Gateway replaces each variable occurrence before parsing the configuration 
 
 The variables are immutable. This means changes to the values of the environment variables are not detected by Sync Gateway while it's running. Such changes only become effective after a restart of Sync Gateway.
 
-Any references to undefined variables found in the configuration cause sync gateway to throw an error. This prevents sync gateway from processing an invalid configuration.
+Any references to undefined variables found in the configuration cause Sync Gateway to throw an error. This prevents Sync Gateway from processing an invalid configuration.
 
 ## [](#variable-definition)Variable Definition
 

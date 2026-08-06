@@ -1,8 +1,8 @@
 ---
 title: Admin REST API
 description: Description of the Sync Gateway Admin REST API
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/rest-api/pages/rest-api-admin.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/rest-api/pages/rest-api-admin.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:rest-api:rest-api-admin.adoc[]
 ---
 

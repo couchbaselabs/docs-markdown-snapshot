@@ -2,8 +2,8 @@
 title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Java SDK.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -81,7 +81,7 @@ The code examples also assume:
 
 We recommend running the latest Java LTS version (i.e. at the time of writing JDK 25) with the highest patch version available. Couchbase publishes all stable artifacts to [Maven Central](https://central.sonatype.com/namespace/com.couchbase.client).
 
-The latest version of 3.11.x is [3.11.3](https://central.sonatype.com/artifact/com.couchbase.client/java-client/3.11.3/jar).
+The latest version of 3.12.x is [3.12.2](https://central.sonatype.com/artifact/com.couchbase.client/java-client/3.12.2/jar).
 
 More details of the installation process are in the [full installation guide](../project-docs/sdk-full-installation.md). In most cases, given the above prerequisites, use your favorite dependency management tool to install the SDK.
 
@@ -93,13 +93,13 @@ More details of the installation process are in the [full installation guide](..
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>java-client</artifactId>
-        <version>3.11.3</version>
+        <version>3.12.2</version>
     </dependency>
 </dependencies>
 ```
 
 ```groovy
-implementation 'com.couchbase.client:java-client:3.11.3'
+implementation 'com.couchbase.client:java-client:3.12.2'
 ```
 
 ### [](#ide-plugins)IDE Plugins
@@ -296,7 +296,7 @@ Cluster cluster = Cluster.connect(
 );
 ```
 
-Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](#operator:ROOT:concept-cloud-native-gateway.adoc):
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md):
 
 ```scala
 Cluster cluster = Cluster.connect(

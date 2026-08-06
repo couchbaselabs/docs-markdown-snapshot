@@ -2,8 +2,8 @@
 title: Managing Connections
 description: This section describes how to connect the Java Analytics SDK to an
   Analytics cluster.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.1/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-analytics-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -50,11 +50,17 @@ public class Example {
 
 ## [](#connection-strings)Connection Strings
 
-Typically, an Enterprise Analytics cluster will be behind a load balancer, and you will be making a connection over TLS — so the port used will be `443`. This is the defaut for the SDK, so port `443` does not need to be specified: `<https://analytics.example.com>`.
+Typically, an Enterprise Analytics cluster will be behind a load balancer, and you will be making a connection over TLS — so the port used will be `443`. This is the defaut for the SDK, so port `443` does not need to be specified:
+
+https://analytics.example.com
 
 You must specify the schema — either `https://` (for TLS) or `http://` (for insecure connections — perhaps on a development machine) in the connection string. The default port for insecure connections is port `80`.
 
-If you're connecting to a cluster directly, without a load balancer, you can specify the port in the connection string: `<https://analytics.example.com:18095>`. For a standalone Analytics cluster, the port is usually `18095` (or `8095` for an insecure connection). Make sure to check with your administrator.
+If you're connecting to a cluster directly, without a load balancer, you can specify the port in the connection string:
+
+https://analytics.example.com:18095
+
+For a standalone Analytics cluster, the port is usually `18095` (or `8095` for an insecure connection). Make sure to check with your administrator.
 
 ### [](#client-settings-parameters)Client Settings Parameters
 
@@ -66,12 +72,52 @@ https://analytics.example.com?timeout.connect_timeout=30s&timeout.query_timeout=
 
 The full list of recognized parameters is documented in the [client settings reference](../ref/client-settings.md).
 
-Connection string with two parameters
+## [](#authentication-by-credential)Authentication by Credential
 
-http://localhost:8095?timeout.connect_timeout=30s&timeout.query_timeout=2m
+Similarly to the `Authenticator` abstraction in Couchbase Operational SDKs, Analytics SDKs use a `Credential` abstraction covering regular password authentication (Basic Access Authentication), JSON Web Tokens (JWT), and Client Certificates through mTLS.
 
-The full list of recognized parameters is documented in the [client settings reference](../ref/client-settings.md).
+Basic Access Authentication is shown in the example [above](#connecting-to-a-cluster).
+
+### [](#json-web-tokens-jwt)JSON Web Tokens (JWT)
+
+From the 1.1 SDK (with Enterprise Analytics Server 2.2+) JWT is supported.
+
+```java
+var credential = Credential.ofJwt("...");
+var cluster = Cluster.newInstance(connectionString, credential);
+```
+
+Typically, JWTs have a short validity period. Renew JWTs with `cluster.credential(freshJwtCredential)`
+
+### [](#certificate-authentication)Certificate Authentication
+
+From the 1.1 Analytics SDK (with Enterprise Analytics Server 2.2+) certificate authentication is supported. A conceptual and architectural overview of Enterprise Analytics's support of X.509 certificates is provided in the [Server certificates docs](../../../server/current/learn/security/certificates.md). Practical information on handling certificates can be found in the [Enterprise Analytics certificates docs](../../../enterprise-analytics/current/manage/manage-security/manage-certificates.md).
+
+The Analytics SDK authenticates the client during the TLS handshake. The SDK reads the certificate and private key from a `PKCS#12` file:
+
+```java
+var credential = Credential.fromKeyStore(
+    Paths.get("path/to/client-cert-and-key.p12"),
+    password
+);
+var cluster = Cluster.newInstance(connectionString, credential);
+```
+
+## [](#certificate-authority)Certificate Authority
+
+By default, the Analytics SDK trusts the same well-known Certificate Authorities (CAs) as the JVM, plus the Couchbase Capella CA. This works for most deployments.
+
+If you need to trust a different CA, or want to trust only a specific CA, you can override the default trust settings by telling the Analytics SDK which CA certificates to trust.
+
+```java
+var cluster = Cluster.newInstance(
+  connectionString,
+  credential,
+  options -> options
+    .security(sec -> sec.trustOnlyPemFile(Paths.get("path/to/ca.pem")))
+);
+```
 
 ## [](#local-development)Local Development
 
-We strongly recommend that the client and server [are in the same LAN-like environment](../project-docs/compatibility.md#network-requirements) (e.g. AWS Region). As this may not always be possible during development, read the guidance on working with [constrained network environments](../ref/client-settings.md#commonly-used-options).
+We strongly recommend that the client and server [are in the same LAN-like environment](../project-docs/compatibility.md#network-requirements) (e.g. AWS Region).

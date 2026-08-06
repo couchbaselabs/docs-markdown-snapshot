@@ -1,8 +1,8 @@
 ---
 title: Full Installation
 description: Installation instructions for the Node.js Analytics SDK.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.1/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-analytics-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -19,9 +19,9 @@ Set up an [Enterprise Analytics](../../../enterprise-analytics/current/intro/int
 
 ### [](#prerequisites)Prerequisites
 
-The Columnar Node.js SDK supports LTS versions of Node.js — these are 24 and 22 at the time of the 1.0.0 release (August 2025). See the [compatibility page](compatibility.md#platform-compatibility) for more information about platform support.
+The Analytics Node.js SDK supports LTS versions of Node.js — these are 26, 24, and 22 at the time of the 1.1.0 release (April 2026). See the [compatibility page](compatibility.md#platform-compatibility) for more information about platform support.
 
-We recommend using the most recent long-term support (LTS) version of Node.js — at the time of writing (August 2025) this is version 24.
+We recommend using the most recent long-term support (LTS) version of Node.js — at the time of writing (April 2026) this is version 26.
 
 ## [](#getting-the-sdk)Getting the SDK
 

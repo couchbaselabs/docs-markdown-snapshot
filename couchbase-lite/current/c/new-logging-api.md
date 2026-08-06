@@ -1,8 +1,8 @@
 ---
 title: New Logging API
-description: Couchbase Lite 3.2.2 introduces a new Logging API.
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/new-logging-api.adoc
-pubDate: 2026-04-02T05:14:13.149Z
+description: Couchbase Lite introduces a new Logging API.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/new-logging-api.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:new-logging-api.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:couchbase-lite:c:new-logging-api.adoc[]
 
 # New Logging API
 
-> Couchbase Lite 3.2.2 introduces a new Logging API. 
+> Couchbase Lite introduces a new Logging API. 
 
 ## [](#upgrading-to-the-new-cbl-logging-api)Upgrading to the New CBL Logging API
 
@@ -55,19 +55,29 @@ For greater flexibility you can implement a custom logging class.
 
 The changes necessary convert the installation of a console logger from the old to the new API are minimal. Create an instance of `ConsoleLogSink` initialized with the desired log level and domains and install it.
 
-Old API
+Example 1\. Old API
 
 ```c
-
+CBLLog_SetConsoleLevel(kCBLLogVerbose);
 ```
 
 New API
 
+* C
+* C++
+
 ```c
-CBLConsoleLogSink logSink {};
+CBLConsoleLogSink logSink = {};
 logSink.level = kCBLLogVerbose;
 logSink.domains = kCBLLogDomainMaskAll;
 CBLLogSinks_SetConsole(logSink);
+```
+
+```cpp
+cbl::ConsoleLogSink logSink{};
+logSink.level = kCBLLogVerbose;
+logSink.domains = kCBLLogDomainMaskAll;
+cbl::LogSinks::setConsole(logSink);
 ```
 
 ### [](#lbl-file-logsink)Logging to the Couchbase File Log
@@ -77,16 +87,30 @@ The changes necessary to convert the installation of a file logger are also simi
 > [!NOTE]
 > `setRotateCount` from the old API is slightly different from `setMaxKeptFiles`. `setMaxKeptFiles` is the maximum number of log files that will exist at any time and is the count of rotated files (`setRotateCount`) plus one.
 
-Old API
+Example 2\. Old API
 
 ```c
+    // NOTE: No error handling, for brevity (see getting started)
+    // NOTE: Use a platform-appropriate method to find a temporary directory
+ 
+    CBLLogFileConfiguration config = {}; // Skip zeroing, since all fields are explicitly set
+    config.level = kCBLLogInfo;
+    config.directory = FLSTR("/tmp/logs");
+    config.maxRotateCount = 12;
+    config.maxSize = 1048576;
+    config.usePlaintext = false;
 
+    CBLError err = {};
+    CBLLog_SetFileConfig(config, &err);
 ```
 
 New API
 
+* C
+* C++
+
 ```c
-CBLFileLogSink logSink {};
+CBLFileLogSink logSink = {};
 logSink.level = kCBLLogVerbose;
 logSink.directory = FLSTR("/tmp/logs");
 logSink.maxKeptFiles = 12;
@@ -95,37 +119,61 @@ logSink.usePlaintext = false;
 CBLLogSinks_SetFile(logSink);
 ```
 
+```cpp
+cbl::FileLogSink logSink{};
+logSink.level = kCBLLogVerbose;
+logSink.directory = "/tmp/logs";
+logSink.maxKeptFiles = 12;
+logSink.maxSize = 1048576;
+logSink.usePlaintext = false;
+cbl::LogSinks::setFile(logSink);
+```
+
 ### [](#lbl-custom-logsink)Using a Custom Logger
 
 Installing a custom log sink with the new API is also streamlined: create an instance of your custom sink, and to install it use `LogSinks.get().setCustom` in Java, or the appropriate static method in Swift, Objective-C, .NET, and C.
 
-As with the other log sinks, you will have to specify the level and domain at which Couchbase logs are forwarded to your custom sink at its creation.
+As with the other log sinks, you have to specify the level and domain at which Couchbase logs are forwarded to your custom sink at its creation.
 
-Your custom log sink code will have to change as well. In C, the custom log sink implementation is a callback that is assigned to CBLCustomLogSink object during creation.
+Your custom log sink code will have to change as well. In C, the custom log sink implementation is a callback that's assigned to CBLCustomLogSink object during creation.
 
-A second important change is that your logger will receive only logs at the level and domain for which it is initialized. There is no need to record or filter the logs forwarded to the protected `writeLog` method which replaces the public `log` method from the old API.
+A second important change is that your logger will receive only logs at the level and domain for which it's initialized. There's no need to record or filter the logs forwarded to the protected `writeLog` method which replaces the public `log` method from the old API.
 
 Related to this last point, the Couchbase `Loggers`, now `LogSinks` are meant to support logging by the Couchbase Lite platform. They were never meant as a general framework for logging.
 
 > [!IMPORTANT]
 > With the new API, customer code can no longer log, directly, to any of the Couchbase log sinks. The Console and File log sinks cannot be subclassed and do not publish methods that allow writing logs. If you need to log to the console for example, you'll have to create your own way of doing so.
 
-Old API
+Example 3\. Old API
 
 ```c
 static void custom_log_callback(CBLLogDomain domain, CBLLogLevel level, FLString message) {
     // handle the message, for example piping it to a third party framework
 }
+    CBLLog_SetCallback(custom_log_callback);
 ```
 
 New API
+
+* C
+* C++
 
 ```c
 static void custom_log_sink_callback(CBLLogDomain domain, CBLLogLevel level, FLString message) {
     // handle the message, for example piping it to a third party framework.
 }
-    CBLCustomLogSink logSink {};
+    CBLCustomLogSink logSink = {};
     logSink.level = kCBLLogVerbose;
     logSink.callback = custom_log_sink_callback;
     CBLLogSinks_SetCustom(logSink);
+```
+
+```cpp
+static void custom_log_sink_callback(CBLLogDomain domain, CBLLogLevel level, FLString message) {
+    // handle the message, for example piping it to a third party framework.
+}
+    cbl::CustomLogSink logSink{};
+    logSink.level = kCBLLogVerbose;
+    logSink.callback = custom_log_sink_callback;
+    cbl::LogSinks::setCustom(logSink);
 ```

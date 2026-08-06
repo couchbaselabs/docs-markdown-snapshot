@@ -2,8 +2,8 @@
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase
   Lite on Objective-C
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/gs-build.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/objc/pages/gs-build.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:objc:gs-build.adoc[]
 ---
 
@@ -132,7 +132,7 @@ Append the following inside of the `<dict>` XML tags to disable Application Tran
 </dict>
 ```
 
-See: [Install Sync Gateway](#sync-gateway::get-started-install.adoc)
+See: [Install Sync Gateway](../../../sync-gateway/current/start-here/get-started-install.md)
 
 ## [](#related-content)Related Content
 

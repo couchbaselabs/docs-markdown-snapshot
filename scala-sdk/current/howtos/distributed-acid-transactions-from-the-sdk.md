@@ -2,8 +2,8 @@
 title: Using Couchbase Transactions
 description: A practical guide on using Couchbase Distributed ACID transactions,
   via the Scala SDK.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:scala-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 

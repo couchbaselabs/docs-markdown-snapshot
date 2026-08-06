@@ -1,8 +1,8 @@
 ---
 title: Result Sets
 description: How to use Couchbase Lite Query's Result Sets
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/query-resultsets.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/java/pages/query-resultsets.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:java:query-resultsets.adoc[]
 ---
 
@@ -221,7 +221,7 @@ try (ResultSet resultSet = listQuery.execute()) {
 
 Example 6\. Using JSON Results
 
-Use [Result.toJSON()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/Result.html#toJSON--) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 6](#ex-json) for a working example.
+Use [Result.toJSON()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-java/com/couchbase/lite/Result.html#toJSON--) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 6](#ex-json) for a working example.
 
 ```Java
 // Uses Jackson JSON processor

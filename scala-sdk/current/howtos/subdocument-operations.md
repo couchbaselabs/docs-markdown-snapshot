@@ -2,8 +2,8 @@
 title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/subdocument-operations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:scala-sdk:howtos:subdocument-operations.adoc[]
 ---
 

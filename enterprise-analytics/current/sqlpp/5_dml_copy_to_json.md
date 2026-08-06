@@ -4,8 +4,8 @@ description: This topic describes how you use <code>COPY TO</code> statements to
   structure and write the results of a query--or a copy of an entire
   collection--out to an external data store such as Amazon S3 or Azure Blob
   Storage.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_dml_copy_to_json.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_dml_copy_to_json.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sqlpp:5_dml_copy_to_json.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Structuring the data on the external store is helpful in use cases where you pla
 
 This page provides information about copying data in JSON format.
 
-For more information, see [Query Data in External Data Sources](../sources/external-s3.md).
+For more information, see [Query Data in Amazon S3](../sources/external-s3.md).
 
 > [!NOTE]
 > To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](../reference/cloud%5Fread%5Fwrite%5Fpermissions.md).

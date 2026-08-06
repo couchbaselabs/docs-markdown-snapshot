@@ -2,8 +2,8 @@
 title: Manage Authentication
 description: To access Enterprise Analytics, administrators and applications
   must be authenticated.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/manage-authentication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/manage-security/manage-authentication.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:manage:manage-security/manage-authentication.adoc[]
 ---
 
@@ -12,10 +12,11 @@ link: xref:enterprise-analytics:manage:manage-security/manage-authentication.ado
 
 # Manage Authentication
 
-> To access Enterprise Analytics, administrators and applications must be authenticated. _Authentication_ is a process for identifying a user who is attempting to access a system. 
+> To access Enterprise Analytics, administrators and applications must be authenticated. 
 
-## [](#passing-credentials)Passing Credentials
+To use Enterprise Analytics, authenticate using a username and password. You can validate and manage these credentials with Enterprise Analytics itself, or through 1 of the following methods on a network-accessible directory server:
 
-Couchbase-Server authentication relies on _credentials_, which must be passed into the system by the user who is attempting access. Credentials can be entered manually, or passed into the system by an application. The credentials passed must match ones already stored and accessible by the system: if a match is achieved, the user is thereby recognized, and so _may_ be granted access. If no match is achieved, the user is denied access.
+* Lightweight Directory Access Protocol (LDAP)
+* Pluggable Authentication Modules (PAM)
 
-To access Enterprise Analytics, administrators authenticate by means of a username and password. These credentials can be validated by Enterprise Analytics itself: alternatively if the Enterprise Edition of Enterprise Analytics for Linux is used, validation can be performed either on a network-accessible directory-server, by means of the _Lightweight Directory Access Protocol_ (LDAP); or by means of the _Pluggable Authentication Modules_ (PAM) authentication-framework.
+Enterprise Analytics 2.2 and later also supports JSON Web Token (JWT) authentication. JWT allows clients to authenticate using a bearer token issued by a trusted Identity Provider (IdP) — such as Keycloak or Okta — instead of a username and password. See [Configure JWT Authentication](configure-jwt.md).

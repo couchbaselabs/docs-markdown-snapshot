@@ -2,8 +2,8 @@
 title: Data Operations
 description: Key Value (KV) or data service offers the simplest way to retrieve
   or mutate data where the key is known.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -136,7 +136,7 @@ Couchbase does not recommend this feature where read consistency is critical, bu
 > * The cluster should have enough nodes and group to make sure that copies of the same document are not stored on the same node, and each group has nodes that cover all 1024 vbuckets (in other words, the number of the groups does not exceeds number of the copies: `active+num_replicas`). The Admin UI should emit small yellow warning if the configuration is considered unbalanced.
 > * Setting **three** replicas for the bucket [disables durability for sync writes](../../../server/current/learn/data/durability.md#majority), also precluding the use of [multi-document ACID transactions](../concept-docs/transactions.md).
 
-## [](#retrieving-full-documents)Retrieving full documents
+## [](#retrieving-full-documents)Retrieving Full Documents
 
 Using the `Get()` method with the document key can be done in a similar fashion to the other operations:
 
@@ -238,7 +238,7 @@ Decrement
 $res = $binaryCollection->decrement("foo");
 ```
 
-Decrement (with options)
+Decrement (With Options)
 
 ```php
 $opts = new DecrementOptions();
@@ -265,7 +265,7 @@ A range scan gives you documents from a collection, even if you don't know the d
 > [!TIP]
 > KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
-### [](#kv-range-scan-range)Range scan
+### [](#kv-range-scan-range)Range Scan
 
 Here's an example of a KV range scan that gets all documents in a collection:
 
@@ -282,7 +282,7 @@ foreach ($results as $result) {
 | **1** | The RangeScan class has two optional parameters: from and to. If you omit them like in this example, you'll get all documents in the collection. These parameters are for advanced use cases; you probably won't need to specify them. Instead, it's more common to use the "prefix" scan type shown in the next example. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-### [](#kv-range-scan-prefix)Prefix scan
+### [](#kv-range-scan-prefix)Prefix Scan
 
 KV range scan can also give you all documents whose IDs start with the same prefix. Imagine you have a collection where documents are named like this: `<username>::<uuid>`. In other words, the document ID starts with the name of the user associated with the document, followed by a delimiter, and then a UUID. If you use this document naming scheme, you can use a prefix range scan to get all documents associated with a user. For example, to get all documents associated with user "alice", you would write:
 
@@ -299,7 +299,7 @@ foreach ($results as $result) {
 | **1** | Note the scan type is PrefixScan |
 | ----- | -------------------------------- |
 
-### [](#kv-range-scan-sample)Sample scan
+### [](#kv-range-scan-sample)Sample Scan
 
 If you want to get random documents from a collection, use a sample scan.
 
@@ -313,7 +313,7 @@ foreach ($results as $result) {
 }
 ```
 
-### [](#kv-range-scan-only-ids)Get IDs instead of full documents
+### [](#kv-range-scan-only-ids)Get IDs Instead of Full Documents
 
 If you only want the document IDs, set the `idsOnly()` in `ScanOptions` to `true`, like this:
 

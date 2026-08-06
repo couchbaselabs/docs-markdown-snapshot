@@ -2,8 +2,8 @@
 title: Managing Enterprise Analytics Links
 description: This page describes how to manage remote links and external links
   using the Analytics Workbench.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/manage-links.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sources/pages/manage-links.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sources:manage-links.adoc[]
 ---
 
@@ -15,7 +15,8 @@ link: xref:enterprise-analytics:sources:manage-links.adoc[]
 The Analytics Workbench enables you to create or edit remote links and external links:
 
 * A remote link is a link to a remote Couchbase cluster.
-* An external link is a link to an external data source, such as Amazon S3 or S3-compatible storage.
+* An external link is a link to an external data source, such as Amazon S3, S3-compatible storage, Azure Blob Storage, or Google Cloud Storage.
+* Links are also used to authenticate access to [Apache Iceberg catalogs](../sqlpp/5%5Fddl%5Ficeberg.md) and their underlying data files in object storage.
 
 After you have created a remote link or an external link, you must create an Analytics collection on that link to query the data.
 
@@ -25,7 +26,9 @@ An external link cannot be connected or disconnected. An external Analytics coll
 
 In the insights sidebar, links are labeled as follows:
 
-* External links to the Amazon S3 or S3-compatible storage — `S3`
+* External links to Amazon S3 or S3-compatible storage — `S3`
+* External links to Azure Blob Storage — `Azure Blob`
+* External links to Google Cloud Storage — `GCS`
 * Remote links — `cb remote`
 * Kafka links — `KAFKA`
 

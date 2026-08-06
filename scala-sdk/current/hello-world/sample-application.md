@@ -3,8 +3,8 @@ title: Sample Application
 description: Discover how to program interactions with the Couchbase Server via
   the data, query, and search services -- using the Travel Sample Application
   with the built-in Travel Sample data Bucket.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/hello-world/pages/sample-application.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/hello-world/pages/sample-application.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:scala-sdk:hello-world:sample-application.adoc[]
 ---
 

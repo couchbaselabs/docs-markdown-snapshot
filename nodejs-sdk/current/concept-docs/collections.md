@@ -1,8 +1,8 @@
 ---
 title: Collections and Scopes
 description: Fully supported in Couchbase Server 7.0.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/concept-docs/pages/collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/concept-docs/pages/collections.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:concept-docs:collections.adoc[]
 ---
 

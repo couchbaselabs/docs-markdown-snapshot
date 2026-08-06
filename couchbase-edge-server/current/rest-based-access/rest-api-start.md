@@ -3,8 +3,8 @@ title: Get Started with the Edge Server REST API
 description: To get started with the Couchbase Edge Server REST API, you must
   specify the interface and authentication options using the Edge Server
   configuration file.
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/rest-api-start.adoc
-pubDate: 2026-04-25T05:17:48.861Z
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/rest-based-access/pages/rest-api-start.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-edge-server:rest-based-access:rest-api-start.adoc[]
 ---
 

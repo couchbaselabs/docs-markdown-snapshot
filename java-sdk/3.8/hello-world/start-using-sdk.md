@@ -3,7 +3,7 @@ title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Java SDK.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:3.8@java-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -291,7 +291,7 @@ Cluster cluster = Cluster.connect(
 );
 ```
 
-Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](#operator:ROOT:concept-cloud-native-gateway.adoc):
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md):
 
 ```scala
 Cluster cluster = Cluster.connect(

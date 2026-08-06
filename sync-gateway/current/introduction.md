@@ -2,8 +2,8 @@
 title: Sync Gateway
 description: Sync Gateway is a secure, high-performance gateway designed for
   cloud-to-edge data synchronization.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/introduction.adoc
-pubDate: 2026-04-09T05:16:09.658Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/ROOT/pages/introduction.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway::introduction.adoc[]
 ---
 
@@ -50,7 +50,7 @@ The business logic behind the validation and authorization of document access is
 # 
 
 > [!TIP]
-> For more information about the latest changes to Sync Gateway, see [New In 4.0](whatsnew.md).
+> For more information about the latest changes to Sync Gateway, see [New In 4.1](whatsnew.md).
 
 ## Get Started
 
@@ -127,6 +127,7 @@ Perform administrative and operational tasks to maintain and monitor Sync Gatewa
 * [View Statistics and Metrics](manage/stats-monitoring.md)
 * [Take Database Offline/Online](manage/database-offline.md)
 * [Logging](manage/logging.md)
+* [Channel History Management](manage/channel-history.md)
 
 ## Deploy
 

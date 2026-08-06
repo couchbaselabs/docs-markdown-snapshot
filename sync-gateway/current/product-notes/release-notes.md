@@ -1,8 +1,8 @@
 ---
 title: Release Notes
 description: Couchbase Sync Gateway
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/product-notes/pages/release-notes.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/product-notes/pages/release-notes.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:product-notes:release-notes.adoc[]
 ---
 
@@ -13,35 +13,83 @@ link: xref:sync-gateway:product-notes:release-notes.adoc[]
 
 Quicklinks
 
-[Release 3.3](../../3.3/product-notes/release-notes.md) | [Release 3.2](../../3.2/release-notes.md) | [Release 3.1](../../3.1/release-notes.md) | [Release 3.0](../../3.0/release-notes.md) | [Archived documentation](https://docs-archive.couchbase.com/home/index.html)
+[Release 4.0](../../4.0/product-notes/release-notes.md) | [Release 3.3](../../3.3/product-notes/release-notes.md) | [Release 3.2](../../3.2/release-notes.md) | [Release 3.1](../../3.1/release-notes.md) | [Release 3.0](../../3.0/release-notes.md) | [Archived documentation](https://docs-archive.couchbase.com/home/index.html)
 
 > Couchbase Sync Gateway  
-> This content describes the key features and changes implemented by release 4.0 of Couchbase Sync Gateway
+> This content describes the key features and changes implemented by release 4.1 of Couchbase Sync Gateway
 
 > [!CAUTION]
 > One Way Upgrade
 > 
 > The migration to a 4.x configuration is a ONE WAY process — see: [Upgrading](../upgrading.md) for more.
 
-## [](#maint-4-0-7)4.0.7 — July 2026
+## [](#maint-4-1-1)4.1.1 — July 2026
 
 > [!IMPORTANT]
-> If you use Sync Gateway 4.0.5 or 4.0.6, upgrade to this release to receive critical fixes.
+> If you use Sync Gateway 4.1.0, upgrade to this release to receive critical fixes.
+
+Version 4.1 of Sync Gateway delivers the following features and enhancements.
+
+### [](#non-disruptive-rolling-upgrades)Non-Disruptive Rolling Upgrades
+
+Sync Gateway 4.1 introduces cluster compatibility version, enabling node-by-node upgrades without downtime, with a safe rollback path throughout the upgrade window.
+
+For more information, see [Cluster Compatibility Version](../cluster-compatibility-version.md).
+
+### [](#distributed-resync)Distributed Resync
+
+Sync Gateway 4.1 redesigns resync to distribute work in parallel across all cluster nodes, replacing the previous single-node sequential approach.
+
+For more information, see [Resync](../manage/resync.md).
+
+### [](#channel-history-management)Channel History Management
+
+Sync Gateway 4.1 introduces Admin REST API endpoints for retrieving and pruning channel history on both user records and documents, reducing metadata bloat and unnecessary revocation messages during zero-checkpoint replications.
+
+For more information, see [Channel History Management](../manage/channel-history.md).
+
+### [](#metadata-isolation-migrate-to-system-collection)Metadata Isolation: Migrate to System Collection
+
+Sync Gateway 4.1 introduces an opt-in migration that moves Sync Gateway internal metadata from `_default._default` to `_system._mobile`, isolating it from user application data. The migration is never applied automatically at upgrade and cannot be reversed.
+
+For more information, see [Migrate Metadata to System Collection](../migrate-metadata-system-collection.md).
+
+For a full overview of new features in this release, see [New in 4.1](../whatsnew.md).
 
 ### [](#fixed-issues)Fixed Issues
 
-* [CBG-5255 — Upgrading from non persistent config to persistent config will trigger database requiring resync](https://jira.issues.couchbase.com/browse/CBG-5255)
-* [CBG-5287 — \_changes feeds with active\_only=true and limit parameters can miss expected changes with revocations](https://jira.issues.couchbase.com/browse/CBG-5287)
-* [CBG-5361 — Panic in revoked feed handling](https://jira.issues.couchbase.com/browse/CBG-5361)
-* [CBG-5368 — Problem with channel removal macro expansion when channel names have . in them](https://jira.issues.couchbase.com/browse/CBG-5368)
-* [CBG-5383 — Resync regenerate sequences will not set \_default metadata id when finished](https://jira.issues.couchbase.com/browse/CBG-5383)
-* [CBG-5453 — Subdoc operation failure on multiple channel removal](https://jira.issues.couchbase.com/browse/CBG-5453)
-* [CBG-5553 — activeOnly replication can miss documents for channels over the pagination limit](https://jira.issues.couchbase.com/browse/CBG-5553)
+* [CBG-3214 — Unhandled cbgt panic after removing database](https://jira.issues.couchbase.com/browse/CBG-3214)
+* [CBG-4345 — Couchbase Server timeout error causes panic in GetUser](https://jira.issues.couchbase.com/browse/CBG-4345)
+* [CBG-4939 — Couchbase Lite 4.0 is allowed to connect to Sync Gateway 3.2.6/3.3.0](https://jira.issues.couchbase.com/browse/CBG-4939)
+* [CBG-5006 — /\_ping (and all endpoints) acquire ServerContext.lock.RLock and blocks if the write lock is acquired](https://jira.issues.couchbase.com/browse/CBG-5006)
+* [CBG-5020 — Panic during memory based cache eviction can deadlock revision cache shard](https://jira.issues.couchbase.com/browse/CBG-5020)
+* [CBG-5051 — Non-integer sequence numbers are incorrectly encoded for norev messages for CBL](https://jira.issues.couchbase.com/browse/CBG-5051)
+* [CBG-5133 — Backup revs loaded from bucket in CV pathway incorrectly assigning deleted status to document revision](https://jira.issues.couchbase.com/browse/CBG-5133)
+* [CBG-5134 — Current revision attachments can be loaded when loading backup rev by CV](https://jira.issues.couchbase.com/browse/CBG-5134)
+* [CBG-5145 — Replacement revs never utilized for unfiltered replications](https://jira.issues.couchbase.com/browse/CBG-5145)
+* [CBG-5262 — \_changes feeds with active\_only=true and limit parameters can miss expected changes with revocations](https://jira.issues.couchbase.com/browse/CBG-5262)
+* [CBG-5355 — Panic in revoked feed handling](https://jira.issues.couchbase.com/browse/CBG-5355)
+* [CBG-5365 — Problem with channel removal macro expansion when channel names have . in them](https://jira.issues.couchbase.com/browse/CBG-5365)
+* [CBG-5381 — Resync regenerate sequences will not set \_default metadata id when finished](https://jira.issues.couchbase.com/browse/CBG-5381)
+* [CBG-5436 — Subdoc operation failure on multiple channel removal](https://jira.issues.couchbase.com/browse/CBG-5436)
+* [CBG-5541 — Metadata migration never reaches 'completed' state with non-metadata \_sync: docs stored in the \_default](https://jira.issues.couchbase.com/browse/CBG-5541)
+* [CBG-5552 — activeOnly replication can miss documents for channels over the pagination limit](https://jira.issues.couchbase.com/browse/CBG-5552)
 
 ### [](#enhancements)Enhancements
 
-* [CBG-5394 — REST endpoint for pruning document channel history](https://jira.issues.couchbase.com/browse/CBG-5394)
-* [CBG-5396 — REST endpoint for pruning user channel history](https://jira.issues.couchbase.com/browse/CBG-5396)
+* [CBG-3848 — Distributed resync via sharding for improved throughput and HA](https://jira.issues.couchbase.com/browse/CBG-3848)
+* [CBG-4363 — Enable xattr only DCP stream for Sync Gateway caching feed](https://jira.issues.couchbase.com/browse/CBG-4363)
+* [CBG-4542 — Skip revcache insertion on all write operations](https://jira.issues.couchbase.com/browse/CBG-4542)
+* [CBG-4651 — Support persistent-config cluster-wide operation via /db/\_offline](https://jira.issues.couchbase.com/browse/CBG-4651)
+* [CBG-4966 — Allow cookieless auth from cbl-js](https://jira.issues.couchbase.com/browse/CBG-4966)
+* [CBG-4967 — Don't set SameSite=None when no TLS is used](https://jira.issues.couchbase.com/browse/CBG-4967)
+* [CBG-5091 — Increase websocket control frame timeouts](https://jira.issues.couchbase.com/browse/CBG-5091)
+* [CBG-5143 — Support EdDSA tokens for OIDC/JWTs](https://jira.issues.couchbase.com/browse/CBG-5143)
+* [CBG-5203 — Silently handle cbl-js ping blip requests](https://jira.issues.couchbase.com/browse/CBG-5203)
+* [CBG-5206 — Cluster Compatibility and Rolling Upgrade Enhancements](https://jira.issues.couchbase.com/browse/CBG-5206)
+* [CBG-5221 — System scoped metadata and online migration process](https://jira.issues.couchbase.com/browse/CBG-5221)
+* [CBG-5253 — REST endpoint for pruning user channel history](https://jira.issues.couchbase.com/browse/CBG-5253)
+* [CBG-5254 — REST endpoint for pruning document channel history](https://jira.issues.couchbase.com/browse/CBG-5254)
 
 ### [](#known-issues)Known Issues
 
@@ -50,127 +98,6 @@ None for this release.
 ### [](#deprecations)Deprecations
 
 None for this release.
-
-## [](#4-0-4april-2026)4.0.4 — April 2026
-
-### [](#maint-4-0-4)Fixed Issues
-
-* [CBG-5173 — /db/\_index\_init panics if db started offline](https://jira.issues.couchbase.com/browse/CBG-5173)
-* [CBG-5202 — Remote wins conflict resoultion results in new revID](https://jira.issues.couchbase.com/browse/CBG-5202)
-
-### [](#enhancements-2)Enhancements
-
-* [CBG-5157 — Support EdDSA tokens for OIDC/JWTs](https://jira.issues.couchbase.com/browse/CBG-5157)
-* [CBG-5214 — silently handle cbl-js ping blip requests](https://jira.issues.couchbase.com/browse/CBG-5214)
-
-### [](#known-issues-2)Known Issues
-
-None for this release.
-
-### [](#deprecations-2)Deprecations
-
-None for this release.
-
-## [](#4-0-3february-2026)4.0.3 — February 2026
-
-### [](#maint-4-0-3)Fixed Issues
-
-* [CBG-4949 — Duplicate conflict logging during legacy rev processing](https://jira.issues.couchbase.com/browse/CBG-4949)
-* [CBG-4998 — Import feed panics for docs with CV in \_sync.rev.ver but no \_vv xattr](https://jira.issues.couchbase.com/browse/CBG-4998)
-* [CBG-5016 — Panic in \_config?include\_runtime=true endpoint when database has failed to start](https://jira.issues.couchbase.com/browse/CBG-5016)
-* [CBG-5042 — Couchbase Server timeout error causes panic in GetUser](https://jira.issues.couchbase.com/browse/CBG-5042)
-* [CBG-5055 — Non-integer sequence numbers are incorrectly encoded for norev messages for CBL](https://jira.issues.couchbase.com/browse/CBG-5055)
-* [CBG-5068 — Corrupted document metadata causes unchecked subslice panic in sendRevision→toHistory(docRev.History)](https://jira.issues.couchbase.com/browse/CBG-5068)
-* [CBG-5107 — Channel information unavailable for non-current revisions](https://jira.issues.couchbase.com/browse/CBG-5107)
-* [CBG-5108 — Rev cache can associate stale body with cv or revtreeID when loading revision body backups for non-current revs](https://jira.issues.couchbase.com/browse/CBG-5108)
-* [CBG-5132 — Clients fetching a delta can panic when the revision cache is disabled](https://jira.issues.couchbase.com/browse/CBG-5132)
-* [CBG-5135 — Current revision attachments can be loaded when loading backup rev by CV](https://jira.issues.couchbase.com/browse/CBG-5135)
-* [CBG-5136 — Backup revs loaded from bucket in CV pathway incorrectly assigning deleted status to document revision](https://jira.issues.couchbase.com/browse/CBG-5136)
-* [CBG-5146 — replacement revs never utilized for unfiltered replications](https://jira.issues.couchbase.com/browse/CBG-5146)
-
-### [](#enhancements-3)Enhancements
-
-* [CBG-4765 — Caching performance improvements](https://jira.issues.couchbase.com/browse/CBG-4765)
-* [CBG-5092 — Increase websocket control frame timeouts](https://jira.issues.couchbase.com/browse/CBG-5092)
-
-### [](#known-issues-3)Known Issues
-
-None for this release.
-
-### [](#deprecations-3)Deprecations
-
-None for this release.
-
-## [](#4-0-2december-2025)4.0.2 — December 2025
-
-### [](#maint-4-0-2)Fixed Issues
-
-* [CBG-5007 — \_ping (and all endpoints) acquire ServerContext.lock.RLock and blocks if the write lock is acquired](https://jira.issues.couchbase.com/browse/CBG-5007)
-* [CBG-5026 — Resync on documents last mutated prior to Sync Gateway 4.0 will fail](https://jira.issues.couchbase.com/browse/CBG-5026)
-* [CBG-5027 — Have rev cache lock and rev cache value unlocks use defer where possible](https://jira.issues.couchbase.com/browse/CBG-5027)
-* [CBG-5029 — Panic during memory based cache eviction can deadlock revision cache shard](https://jira.issues.couchbase.com/browse/CBG-5029)
-
-### [](#enhancements-4)Enhancements
-
-* [CBG-5034 — Synchronize Computation of Deltas](https://jira.issues.couchbase.com/browse/CBG-5034)
-
-### [](#known-issues-4)Known Issues
-
-None for this release.
-
-### [](#deprecations-4)Deprecations
-
-None for this release.
-
-## [](#4-0-1november-2025)4.0.1 — November 2025
-
-### [](#maint-4-0-1)Fixed Issues
-
-* [CBG-4972 — Don't set SameSite=None when no TLS is used](https://jira.issues.couchbase.com/browse/CBG-4972)
-
-### [](#enhancements-5)Enhancements
-
-* [CBG-4969 — Allow cookieless auth from cbl-js](https://jira.issues.couchbase.com/browse/CBG-4969)
-
-### [](#known-issues-5)Known Issues
-
-None for this release.
-
-### [](#deprecations-5)Deprecations
-
-None for this release.
-
-## [](#4-0-0october-2025)4.0.0 — October 2025
-
-### [](#maint-4-0-0)Fixed Issues
-
-* [CBG-4767 - Make raw doc endpoint return persisted state of document](https://jira.issues.couchbase.com/browse/CBG-4767)
-* [CBG-4768 - Silence logging for Admin API expvar requests](https://jira.issues.couchbase.com/browse/CBG-4768)
-
-### [](#enhancements-6)Enhancements
-
-* [CBG-3203 - Shrink revision tree storage by removing channel information](https://jira.issues.couchbase.com/browse/CBG-3203)
-* [CBG-4206 - Store attachment metadata in \_globalSync xattr](https://jira.issues.couchbase.com/browse/CBG-4206)
-* [CBG-4729 - Add metrics for deleted documents](https://jira.issues.couchbase.com/browse/CBG-4729)
-* [CBG-4737 - Disallow basic auth command line flags](https://jira.issues.couchbase.com/browse/CBG-4737)
-* [CBG-4754 - Silence debug logging for ping and metrics endpoints](https://jira.issues.couchbase.com/browse/CBG-4754)
-* [CBG-4757 - Improve ISGR reconnect logging](https://jira.issues.couchbase.com/browse/CBG-4757)
-
-### [](#known-issues-6)Known Issues
-
-* [CBG-4772 - User xattr only update results in new HLV entry](https://jira.issues.couchbase.com/browse/CBG-4772)
-* [CBG-4844 - Attachment audit events do not show CV, only RevTree ID](https://jira.issues.couchbase.com/browse/CBG-4844)
-* [CBG-4887 - Orphaned attachments can be left in bucket after removal](https://jira.issues.couchbase.com/browse/CBG-4887)
-* [CBG-4939 - Couchbase Lite 4.0 with Sync Gateway versions before 4.0 is unsupported](https://jira.issues.couchbase.com/browse/CBG-4939)
-
-### [](#deprecations-6)Deprecations
-
-* [CBG-3796 - Disallow enable\_star\_channel=false](https://jira.issues.couchbase.com/browse/CBG-3796)
-* [CBG-4316 - Disallow allow\_conflicts=true](https://jira.issues.couchbase.com/browse/CBG-4316)
-* [CBG-4726 - Disallow enable\_shared\_bucket\_access=false](https://jira.issues.couchbase.com/browse/CBG-4726)
-
-> [!NOTE]
-> For an overview of the latest features offered in Sync Gateway 4.0.0, see [New in 4.0](../whatsnew.md).
 
 ## [](#upgrading)Upgrading
 

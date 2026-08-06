@@ -1,10 +1,11 @@
 ---
 title: React Native
-description: The React Native plugin for Couchbase Lite is now in public
-  preview. This is an open-source, community-supported project developed by
-  Couchbase.
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/hybrid/pages/react.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+description: Couchbase Lite for React Native is a fully enterprise-supported,
+  TypeScript-friendly Native Module that brings Couchbase Lite's embedded NoSQL
+  database and data sync capabilities to React Native and Expo applications with
+  full TypeScript/JavaScript support.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/hybrid/pages/react.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:hybrid:react.adoc[]
 ---
 
@@ -15,30 +16,65 @@ link: xref:couchbase-lite:hybrid:react.adoc[]
 
 ## [](#overview)Overview
 
-Couchbase Lite Enterprise Edition for React Native is a Native Module implementation that uses TypeScript. This public preview release enables developers using React to integrate Couchbase Lite into their mobile applications, ensuring they can build offline-first, cross-platform solutions with ease.
-
-More information on React Native Native Modules can be found at [Couchbase Lite Enterprise Edition for React Native](https://cbl-reactnative.dev/).
-
-## [](#important-notes)Important Notes
-
-* Platform Support - This plugin currently only supports iOS and Android platforms. Web, Windows, and macOS are not currently supported.
-* Couchbase Community Supported - This open-source plugin is Couchbase Community supported. Note that the Couchbase Lite binary linked to the plugin is Couchbase Lite Enterprise Edition (EE) and its use is guided by the terms and conditions of the [Couchbase Lite Enterprise license agreement](https://www.couchbase.com/2018-04-30v3%5FLicense%5FAgreement/).
+Couchbase Lite for React Native enables developers to build fast, responsive mobile apps with local data storage, powerful querying, and secure data sync with Capella App Services or Sync Gateway, all with a modern TypeScript/JavaScript developer experience. It provides local data storage, SQL++ querying, and bi-directional data sync with Capella App Services or Sync Gateway.
 
 > [!NOTE]
-> _**Couchbase Community Supported**_ is an Open source integration that is developed by Couchbase. Issues related to the integration can be raised in the relevant GitHub repositories or via Couchbase forums or Discord. Support is provided best effort by development team. For more information, see [Support Models](../../../cloud/third-party/integrations.md#support-model).
+> Couchbase Lite for React Native has graduated from a community project to a fully enterprise-supported offering. You must have a [Couchbase Lite Enterprise license](https://www.couchbase.com/pricing/) to use this plugin.
 
-## [](#getting-started)Getting Started
+The plugin uses React Native's Turbo Module architecture. Developers write in TypeScript/JavaScript while the plugin runs the underlying database operations natively on device.
 
-You can use the links below to help you get started with the React Native plugin for Couchbase Lite:
+## [](#platform-support)Platform Support
 
-* [Official Documentation](https://cbl-reactnative.dev).
-* [Example Project](https://github.com/couchbase-examples/expo-cbl-travel) \- A hands-on demonstration using Expo to showcase Couchbase Lite in a React Native app.
-* [Project Repository](https://github.com/Couchbase-Ecosystem/cbl-reactnative).
+| Environment | Support Status |
+| ----------- | -------------- |
+| iOS         | Supported      |
+| Android     | Supported      |
+| Web         | Not supported  |
+| Windows     | Not supported  |
 
-### [](#why-use-expo)Why Use Expo?
+## [](#capabilities)Capabilities
 
-Couchbase recommends using Expo. Expo makes working with React Native simpler and more efficient. You can find information on the prerequisites and setup, including Expo configuration at [Couchbase Lite for React Native Prerequisites](https://cbl-reactnative.dev/StartHere/prerequisites).
+Couchbase Lite for React Native has near-complete feature parity with other Couchbase Lite platform implementations.
 
-## [](#next-steps)Next Steps
+SQL++ Query Language
 
-As this is a community-supported project, we encourage you to explore, test, and provide feedback to help us improve the React Native plugin for Couchbase Lite. Feel free to file issues through the [GitHub issue tracker](https://github.com/Couchbase-Ecosystem/cbl-reactnative/issues), our [Community Discord](https://www.couchbase.com/blog/couchbase-on-discord/) or [Couchbase Forums](https://www.couchbase.com/forums/).
+Write expressive queries using SQL++, with support for indexes, built-in functions, and Full-Text Search (FTS).
+
+Data Sync
+
+Sync data bi-directionally with Capella App Services or {sgw}.
+
+Blob Handling
+
+Store and sync binary data, including images and PDFs.
+
+Real-time Change Notifications
+
+Listen for changes to documents, collections, queries, and replication status.
+
+Database Encryption
+
+Encrypt local databases at rest.
+
+Pre-built Databases
+
+Bundle a pre-populated database with your app to reduce initial sync time and bandwidth on first launch.
+
+## [](#limitations)Limitations
+
+The following Couchbase Lite features are not currently supported in this plugin:
+
+* **Vector Search** — not yet available on this platform.
+* **Peer-to-Peer Sync** — the plugin does not include a platform-specific peer discovery mechanism.
+
+## [](#get-started)Get Started
+
+Use the following resources to get started with Couchbase Lite for React Native:
+
+* [Prerequisites and Installation](https://cbl-reactnative.dev/category/start-here) — environment requirements and initial setup.
+* [Migration Guide](https://cbl-reactnative.dev/Guides/Migration/migration-guide-v1) — upgrade instructions for projects moving from version 1.0.x.
+* [Full Plugin Documentation](https://cbl-reactnative.dev/) — API reference, guides, and examples.
+* [Example App](https://github.com/couchbase-examples/expo-cbl-travel) — a hands-on Expo demonstration project.
+
+> [!NOTE]
+> Couchbase recommends Expo for React Native development. Expo reduces setup complexity and provides a managed workflow that's compatible with this plugin.

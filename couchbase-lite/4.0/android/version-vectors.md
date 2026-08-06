@@ -1,0 +1,309 @@
+---
+title: Version Vectors
+description: Couchbase Lite 4.0 -- Version Vectors -- Document versioning and
+  conflict resolution
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/version-vectors.adoc
+pubDate: 2026-08-06T05:31:06.200Z
+link: xref:4.0@couchbase-lite:android:version-vectors.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/couchbase-lite/4.0/android/version-vectors.html)
+
+# Version Vectors
+
+> Description — _Couchbase Lite 4.0 — Version Vectors — Document versioning and conflict resolution_  
+> Related Content — [Databases](database.md) | [Documents](document.md) | [Handling Data Conflicts](conflict.md) | [Data Sync](replication.md)
+
+## [](#overview)Overview
+
+Couchbase Lite 4.0 introduces version vectors as a replacement for the previous revision tree system used in earlier versions. This change improves how Couchbase Lite tracks document changes, handles conflicts, and synchronizes data across devices and with Sync Gateway.
+
+Version vectors provide a more efficient and scalable approach to document versioning that aligns Couchbase Lite with Couchbase Server's versioning system, enabling seamless synchronization across the entire Couchbase ecosystem.
+
+## [](#what-are-version-vectors)What are Version Vectors?
+
+A version vector is a data structure that tracks the complete history of document modifications across different sources. Instead of maintaining a tree-like structure of document revisions, version vectors use a more efficient approach based on logical timestamps.
+
+### [](#key-components)Key Components
+
+Source ID
+
+A unique identifier for each Couchbase Lite database instance that can modify documents. Each Couchbase Lite database on a device receives its own unique source ID, ensuring that document changes tracks back to their originating database.
+
+Timestamp
+
+A logical clock value that establishes the ordering of document changes within a single source. Couchbase Lite 4.0 uses Hybrid Logical Clocks (HLC), which combine real-time with logical counters to verify proper tracking.
+
+Version
+
+A combination of timestamp and source ID that uniquely identifies the specific point in time and location where the development process creates a particular document revision. This approach replaces traditional revision ID concepts.
+
+Version Vector
+
+An ordered array containing the latest version from every source that's modified the document.
+
+## [](#version-vectors-vs-revision-trees)Version Vectors vs. Revision Trees
+
+Version vectors represents an improvement over revision tree system used in Couchbase Lite 3.x and earlier versions. While the revision tree approach maintained complex branching trees of all document revisions with revision IDs in the format `<generation>-<document-hash>`, version vectors use a more efficient structure that tracks only the latest version from each source using timestamp-based identifiers in the format `<timestamp>@<source-id>`.
+
+This change eliminates the storage overhead of maintaining complete revision history trees and replaces the `"most active wins"` conflict resolution logic with `"last write wins"` approach based on hybrid logical timestamps.
+
+As a result, version vectors reduce storage requirements and simplify synchronization through vector comparison rather than tree merging operations. It also improves overall performance and scalability as the number of collaborating devices increases.
+
+### [](#benefits-of-version-vectors)Benefits of Version Vectors
+
+Improved Performance
+
+Version vectors require less storage space and processing power compared to maintaining complete revision trees.
+
+Better Scalability
+
+The system scales more efficiently as the number of collaborating devices increases.
+
+Simplified Conflict Resolution
+
+Last-write-wins logic based on timestamps is more predictable and easier to understand.
+
+Enhanced Synchronization
+
+Alignment with Couchbase Server's versioning enables more efficient sync operations.
+
+Reduced Complexity
+
+Eliminates the need to manage complex tree structures and revision genealogies.
+
+## [](#impact-on-document-identification)Impact on Document Identification
+
+The transition to version vectors transforms how documents receive identification and referencing within Android applications.
+
+### [](#revision-id-format-changes)Revision ID Format Changes
+
+**CBL 3.x Format**
+
+```Kotlin
+1-7bf9c5c9d5e2c7a5d8f0e3c6a9d2f4b7
+```
+
+**CBL 4.0 Format**
+
+```Kotlin
+1773b25174850000@4a7c8e5f-2d3b-4f9e-8c1a-6b4d9e2f7a5c
+```
+
+The new format contains:
+
+* **Timestamp portion**: `1773b25174850000` (hybrid logical clock value)
+* **Source ID portion**: `4a7c8e5f-2d3b-4f9e-8c1a-6b4d9e2f7a5c` (UUID)
+
+### [](#document-api-changes)Document API Changes
+
+The `Document.getRevisionID()` method continues to work but now returns version-based IDs. Additionally, a new timestamp property provides direct access to the document's logical timestamp:
+
+Example 1\. Accessing Document Version Information
+
+* Java
+* Kotlin
+
+```Java
+// Existing revision ID access (now returns version format)
+String revisionId = document.getRevisionID();
+
+// New timestamp property
+long timestamp = document.getTimestamp();
+```
+
+```Kotlin
+// Existing revision ID access (now returns version format)
+val revisionId = document.revisionID
+
+// New timestamp property
+val timestamp = document.timestamp
+```
+
+The timestamp value is returned as a `long` representing nanoseconds since the Unix epoch (January 1, 1970 00:00:00 UTC).
+
+## [](#impact-on-conflict-resolution)Impact on Conflict Resolution
+
+Version vectors change how Couchbase Lite resolves conflicts during synchronization.
+
+### [](#previous-conflict-resolution)Previous Conflict Resolution (CBL 3.x)
+
+The revision tree system used "most active wins" logic:
+
+* Conflicts were resolved by comparing revision generation numbers
+* The document with the highest generation number (most edits) would win
+* This could lead to scenarios where older documents with more edits would override newer documents with fewer edits
+
+### [](#new-conflict-resolution)New Conflict Resolution (CBL 4.0)
+
+Version vectors implement "last write wins" conflict resolution:
+
+Example 2\. Default Conflict Resolution Logic
+
+* Java
+* Kotlin
+
+```Java
+public Document resolve(Conflict conflict) {
+    if (conflict.getRemoteDocument() == null || conflict.getLocalDocument() == null) {
+        return null; // Deleted revision always wins
+    } else if (conflict.getLocalDocument().getTimestamp() > conflict.getRemoteDocument().getTimestamp()) {
+        return conflict.getLocalDocument();
+    } else {
+        return conflict.getRemoteDocument();
+    }
+}
+```
+
+```Kotlin
+fun resolve(conflict: Conflict): Document? {
+    return when {
+        conflict.remoteDocument == null || conflict.localDocument == null -> null // Deleted revision always wins
+        conflict.localDocument!!.timestamp > conflict.remoteDocument!!.timestamp -> conflict.localDocument
+        else -> conflict.remoteDocument
+    }
+}
+```
+
+This approach:
+
+* Compares hybrid logical timestamps to determine which revision was written last
+* Provides more intuitive conflict resolution behavior
+* Ensures that the most recent change (by wall-clock time) typically wins
+* Reduces unexpected conflict resolution outcomes
+
+### [](#custom-conflict-resolution)Custom Conflict Resolution
+
+While the default resolver changes, you can still implement custom conflict resolution logic. The new timestamp property provides additional context for making resolution decisions.
+
+Example 3\. Custom Conflict Resolution Example
+
+* Java
+* Kotlin
+
+```Java
+public Document customResolve(Conflict conflict) {
+    Document local = conflict.getLocalDocument();
+    Document remote = conflict.getRemoteDocument();
+
+    // Use timestamp along with other business logic
+    if (local.getTimestamp() > remote.getTimestamp()) {
+        // Local is newer, but check business rules
+        return applyBusinessRules(local, remote);
+    } else {
+        return applyBusinessRules(remote, local);
+    }
+}
+```
+
+```Kotlin
+fun customResolve(conflict: Conflict): Document? {
+    val local = conflict.localDocument
+    val remote = conflict.remoteDocument
+
+    // Use timestamp along with other business logic
+    return if (local != null && remote != null) {
+        if (local.timestamp > remote.timestamp) {
+            // Local is newer, but check business rules
+            applyBusinessRules(local, remote)
+        } else {
+            applyBusinessRules(remote, local)
+        }
+    } else null
+}
+```
+
+## [](#compatibility-and-migration)Compatibility
+
+Couchbase Lite 4.0 provides backward compatibility for existing databases:
+
+Automatic Upgrade
+
+When opening a CBL 3.1 or 3.2 database with CBL 4.0, documents are automatically upgraded to use version vectors.
+
+Lazy Migration
+
+The upgrade occurs incrementally as documents are accessed and modified.
+
+No Downgrade
+
+Once upgraded to version vectors, databases cannot be opened with CBL 3.x versions.
+
+### [](#synchronization-compatibility)Synchronization Compatibility
+
+Version vector synchronization has specific requirements:
+
+Sync Gateway Compatibility
+
+CBL 4.0 requires Sync Gateway 4.0 or later. Attempting to sync with older Sync Gateway versions will result in an error.
+
+Peer-to-Peer Compatibility
+
+CBL 4.0 can only perform peer-to-peer sync with other CBL 4.0+ instances. Sync attempts with CBL 3.x peers will fail with an appropriate error message.
+
+## [](#development-considerations)Development Considerations
+
+### [](#testing-applications)Testing Applications
+
+When testing applications with version vectors, be aware that:
+
+* **Non-deterministic IDs**: Version-based revision IDs cannot be predicted in advance due to timestamp components
+* **Test Assertions**: Update test cases to verify revision ID existence and ordering rather than specific values
+* **Conflict Testing**: Verify that conflict resolution now uses timestamp-based logic
+
+Example 4\. Testing Document Revisions
+
+* Java
+* Kotlin
+
+```Java
+// Instead of testing specific revision ID values
+// assertThat(doc.getRevisionID(), equalTo("1-abc123"));
+
+// Test for presence and format
+assertThat(doc.getRevisionID(), notNullValue());
+assertThat(doc.getRevisionID(), containsString("@"));
+
+// Test timestamp ordering
+Document updatedDoc = // ... update document
+assertThat(updatedDoc.getTimestamp(), greaterThan(doc.getTimestamp()));
+```
+
+```Kotlin
+// Instead of testing specific revision ID values
+// assertThat(doc.revisionID, `is`("1-abc123"))
+
+// Test for presence and format
+assertThat(doc.revisionID, notNullValue())
+assertThat(doc.revisionID, containsString("@"))
+
+// Test timestamp ordering
+val updatedDoc = // ... update document
+assertThat(updatedDoc.timestamp, greaterThan(doc.timestamp))
+```
+
+## [](#related-content)Related Content
+
+### [](#)
+
+How to . . .
+
+* [Prerequisites](gs-prereqs.md)
+* [Install](gs-install.md)
+* [Build and Run](gs-build.md)
+
+### [](#-2)
+
+Learn more . . .
+
+* [Databases](database.md)
+* [Documents](document.md)
+* [Handling Data Conflicts](conflict.md)
+* [Data Sync](replication.md)
+
+### [](#-3)
+
+Dive Deeper . . .
+
+[Mobile Forum](https://forums.couchbase.com/c/mobile/14) | [Blog](https://blog.couchbase.com/) | [Tutorials](https://docs.couchbase.com/tutorials/)

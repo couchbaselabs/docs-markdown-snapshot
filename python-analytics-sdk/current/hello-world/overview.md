@@ -1,7 +1,7 @@
 ---
 title: Python Analytics SDK
-editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.1/modules/hello-world/pages/overview.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-analytics-sdk:hello-world:overview.adoc[]
 ---
 
@@ -10,7 +10,7 @@ link: xref:python-analytics-sdk:hello-world:overview.adoc[]
 
 # Python Analytics SDK
 
-# Python Analytics SDK
+# Python Analytics SDK 1.1
 
 The Analytics Python SDK allows you to connect to an [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) cluster from Python. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [Python Operational SDK](../../../python-sdk/current/hello-world/overview.md).
 

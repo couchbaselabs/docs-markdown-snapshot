@@ -1,8 +1,8 @@
 ---
 title: Secure API Access
 description: Sync Gateway REST API Access
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/rest-api/pages/rest-api-access.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/rest-api/pages/rest-api-access.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:rest-api:rest-api-access.adoc[]
 ---
 
@@ -21,14 +21,14 @@ Related _REST API_ topics: [Public REST API](rest-api.md) | [Admin REST API](res
 Sync Gateway provides secure access to its REST APIs, namely the:
 
 * [Public REST API](rest-api.md)
-* [Admin REST API](rest-api-admin.md) — for the administration and configuration of sync gateway
-* [Metrics REST API](rest-api-metrics.md) — for the monitoring of sync gateway performance metrics
+* [Admin REST API](rest-api-admin.md) — for the administration and configuration of Sync Gateway
+* [Metrics REST API](rest-api-metrics.md) — for the monitoring of Sync Gateway performance metrics
 
 Each REST API is accessed through a different, [user-specifiable](#lbl-port-cfg), TCP port. This makes it easy to control their physical exposure, perhaps to keep the Admin REST API secure behind your firewall.
 
-Sync gateway 4.0.0 brings additional optional but default layers of security through [enforcing TLS encryption](../security/secure-sgw-access.md) for all API traffic and Couchbase Server Role-Based Access Control (RBAC) authorization and authentication for all [Admin and Metrics API users](#lbl-secure-users).
+Sync Gateway 4.1.0 brings additional optional but default layers of security through [enforcing TLS encryption](../security/secure-sgw-access.md) for all API traffic and Couchbase Server Role-Based Access Control (RBAC) authorization and authentication for all [Admin and Metrics API users](#lbl-secure-users).
 
-RBAC user authentication enables [Secure Administration](#lbl-secure-users) of sync gateway clusters. This is critical in cloud native deployments. The use of different RBAC roles for uses also provides secure and fine-grained access control — for more on the available roles see [Available Server RBAC Roles on Sync Gateway](#lbl-rbac-roles)
+RBAC user authentication enables [Secure Administration](#lbl-secure-users) of Sync Gateway clusters. This is critical in cloud native deployments. The use of different RBAC roles for uses also provides secure and fine-grained access control — for more on the available roles see [Available Server RBAC Roles on Sync Gateway](#lbl-rbac-roles)
 
 ## [](#tls)TLS
 
@@ -52,7 +52,7 @@ When referencing the [Admin REST API](rest-api-admin.md) you will see that each 
 
 Note that the only role available for community-edition users is the **Full Admin** role.
 
-__Table 1\. Sync gateway role availability by release__
+__Table 1\. Sync Gateway role availability by release__
 | Role                               | Capability                                                                                                                       | 7.1.0+                     | 7.0.2 DP[1](#more-on-developer-previews) | 6.1 - 7.0                  |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------- | -------------------------- |
 | Sync Gateway Architect             | Can manage Sync Gateway databases and users, and access Sync Gateway's metrics endpoint. This user cannot read application data. | ![yes](../_images/yes.png) | ![yes](../_images/yes.png)               | ![no](../_images/no.png)   |
@@ -92,7 +92,7 @@ However, this can increase the risk of performance and or connection issues — 
 
 ## [](#lbl-port-cfg)Port Configuration
 
-You can change the ports used for any of the interface types by editing its bootstrap configuration property, for example, [api.admin\_interface](../configuration/configuration-schema-bootstrap.md#api-admin%5Finterface) — as shown in [Example 1](#ex-port-cfg) — and restarting the sync gateway node. The default ports are shown in [Table 2](#network-ports).
+You can change the ports used for any of the interface types by editing its bootstrap configuration property, for example, [api.admin\_interface](../configuration/configuration-schema-bootstrap.md#api-admin%5Finterface) — as shown in [Example 1](#ex-port-cfg) — and restarting the Sync Gateway node. The default ports are shown in [Table 2](#network-ports).
 
 Example 1\. Configuring ports
 

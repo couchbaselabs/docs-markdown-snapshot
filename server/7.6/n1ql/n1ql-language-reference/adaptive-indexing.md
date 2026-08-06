@@ -3,7 +3,7 @@ title: Adaptive Index
 description: Adaptive Indexes are a special type of GSI array index that can
   index all or specified fields of a document.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/adaptive-indexing.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/adaptive-indexing.adoc[]
 ---
 
@@ -86,28 +86,28 @@ To try the examples in this section, set the query context to the `inventory` sc
 
 Consider the following indexes, which are included with the `travel-sample` data that is shipped with the product. To install sample data, see [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md).
 
-C1
+CAI Data Planf
 
 ```sqlpp
 CREATE INDEX `def_inventory_airport_airportname`
 ON `travel-sample`.`inventory`.`airport`(`airportname`) WITH { "defer_build":true }
 ```
 
-C2
+CAI Data Plang
 
 ```sqlpp
 CREATE INDEX `def_inventory_airport_city`
 ON `travel-sample`.`inventory`.`airport`(`city`) WITH { "defer_build":true }
 ```
 
-C3
+CAI Data Planh
 
 ```sqlpp
 CREATE INDEX `def_inventory_airport_faa`
 ON `travel-sample`.`inventory`.`airport`(`faa`) WITH { "defer_build":true }
 ```
 
-Here, three different indexes are needed to help different queries whose WHERE clause predicates may refer to different fields. For instance, the following queries [Q1](#Q1), [Q2](#Q2), and [Q3](#Q3) will use the indexes created in [C1](#C1), [C2](#C2), and [C3](#C3), respectively:
+Here, three different indexes are needed to help different queries whose WHERE clause predicates may refer to different fields. For instance, the following queries [Q1](#Q1), [Q2](#Q2), and [Q3](#Q3) will use the indexes created in [CAI Data Planf](#C1), [CAI Data Plang](#C2), and [CAI Data Planh](#C3), respectively:
 
 Q1
 
@@ -127,9 +127,9 @@ Q3
 SELECT * FROM airport WHERE faa = "SFO";
 ```
 
-However, the following single adaptive index [C4](#C4) can serve all three of the following queries [Q1A](#Q1A), [Q2A](#Q2A), and [Q3A](#Q3A):
+However, the following single adaptive index [CAI Data Plani](#C4) can serve all three of the following queries [Q1A](#Q1A), [Q2A](#Q2A), and [Q3A](#Q3A):
 
-C4
+CAI Data Plani
 
 ```sqlpp
 CREATE INDEX `ai_airport_day_faa`
@@ -160,16 +160,16 @@ USE INDEX (ai_airport_day_faa)
 WHERE faa = "SFO";
 ```
 
-Similarly, the following adaptive index over `SELF` in [C5](#C5) is also qualified for these queries. In fact, an adaptive index that includes all fields in the documents can serve any query on the keyspace, though it might have different performance characteristics when compared to specific indexes created for a particular query. See the section [Performance Implications](#section%5Fm12%5F552%5Fdbb) for details. For example, the following queries [Q5](#Q5) and [Q5A](#Q5A) show how the generic adaptive index [C5](#C5) is used to query predicates on different fields of the "airport" documents.
+Similarly, the following adaptive index over `SELF` in [CAI Data Planj](#C5) is also qualified for these queries. In fact, an adaptive index that includes all fields in the documents can serve any query on the keyspace, though it might have different performance characteristics when compared to specific indexes created for a particular query. See the section [Performance Implications](#section%5Fm12%5F552%5Fdbb) for details. For example, the following queries [QAI Data Plane](#Q5) and [QAI Data PlaneA](#Q5A) show how the generic adaptive index [CAI Data Planj](#C5) is used to query predicates on different fields of the "airport" documents.
 
-C5
+CAI Data Planj
 
 ```sqlpp
 CREATE INDEX `ai_self`
 ON airport(DISTINCT PAIRS(self));
 ```
 
-Q5
+QAI Data Plane
 
 ```sqlpp
 EXPLAIN SELECT * FROM airport
@@ -215,7 +215,7 @@ Result
 // ...
 ```
 
-Q5A
+QAI Data PlaneA
 
 ```sqlpp
 EXPLAIN SELECT *
@@ -266,19 +266,19 @@ Result
 
 To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
-Traditionally, composite secondary indexes are used to create indexes with multiple index keys. For example, consider the following index in [C6](#C6):
+Traditionally, composite secondary indexes are used to create indexes with multiple index keys. For example, consider the following index in [CAI Data Plank](#C6):
 
-C6
+CAI Data Plank
 
 ```sqlpp
 CREATE INDEX `idx_city_faa_airport`
 ON airport(city, faa, airportname);
 ```
 
-Such composite indexes are very different from the adaptive index in [C4](#C4) in many ways:
+Such composite indexes are very different from the adaptive index in [CAI Data Plani](#C4) in many ways:
 
-1. **Order of index keys is vital for composite indexes.** When an index key is used in the WHERE clause, all prefixing index keys in the index definition must also be specified in the WHERE clause. For example, to use the index [C6](#C6), a query to _"find details of airports with FAA code SFO"_, must specify the prefixing index key `city` also in the WHERE clause just to qualify the index [C6](#C6). Contrast the following query [Q6](#Q6) with [Q3](#Q3) above that uses the adaptive index in [C3](#C3).  
-Q6  
+1. **Order of index keys is vital for composite indexes.** When an index key is used in the WHERE clause, all prefixing index keys in the index definition must also be specified in the WHERE clause. For example, to use the index [CAI Data Plank](#C6), a query to _"find details of airports with FAA code SFO"_, must specify the prefixing index key `city` also in the WHERE clause just to qualify the index [CAI Data Plank](#C6). Contrast the following query [QAI Data Plane](#Q6) with [Q3](#Q3) above that uses the adaptive index in [CAI Data Planh](#C3).  
+QAI Data Plane  
 ```sqlpp  
 SELECT * FROM airport  
 WHERE faa = "SFO"  
@@ -299,9 +299,9 @@ To try the examples in this section, set the query context to the `inventory` sc
 
 An adaptive index may also be a [partial index](../../learn/services-and-indexes/indexes/indexing-and-query-perf.md#partial-index). For a partial adaptive index, you must ensure that any fields filtered by the WHERE clause in the index definition are also referenced by the [PAIRS()](metafun.md#pairs) function.
 
-For example, the following query [Q7](#Q9) cannot select the index defined in [C7A](#C9A).
+For example, the following query [QAI Data Plane](#Q9) cannot select the index defined in [CAI Data PlanlA](#C9A).
 
-C7A
+CAI Data PlanlA
 
 ```sqlpp
 CREATE INDEX ai_geo ON landmark
@@ -312,7 +312,7 @@ WHERE activity = "see"; (1)
 | **1** | The WHERE clause filters on activity, but the [PAIRS()](metafun.md#pairs) function does not include the activity field. |
 | ----- | ----------------------------------------------------------------------------------------------------------------------- |
 
-Q7
+QAI Data Plane
 
 ```sqlpp
 EXPLAIN SELECT META(t).id FROM landmark t
@@ -338,9 +338,9 @@ Result
 | **1** | The query does not use the incorrectly-defined partial adaptive index. |
 | ----- | ---------------------------------------------------------------------- |
 
-However, the same query [Q7](#Q9) does select the partial adaptive index defined in [C7B](#C9B).
+However, the same query [QAI Data Plane](#Q9) does select the partial adaptive index defined in [CAI Data PlaneB](#C9B).
 
-C7B
+CAI Data PlaneB
 
 ```sqlpp
 CREATE INDEX ai_geo_activity ON landmark
@@ -379,7 +379,7 @@ Result
 | **1** | The query does an IntersectScan, including the correct partial adaptive index. |
 | ----- | ------------------------------------------------------------------------------ |
 
-Alternatively, you can use the `SELF` keyword to ensure that the fields used in the WHERE clause are included in the [PAIRS()](metafun.md#pairs) function. Refer to [C5](#C5) for an example.
+Alternatively, you can use the `SELF` keyword to ensure that the fields used in the WHERE clause are included in the [PAIRS()](metafun.md#pairs) function. Refer to [CAI Data Planj](#C5) for an example.
 
 An IntersectScan does not eliminate redundant queries, and this may impact performance. Refer to [Performance Implications](#section%5Fm12%5F552%5Fdbb) for details.
 
@@ -444,14 +444,14 @@ To try the examples in this section, set the query context to the `inventory` sc
 It is important to understand that adaptive indexes are not a panacea and that they have trade-offs compared to traditional composite indexes:
 
 1. **Adaptive Indexes are bound to the limitations of Array Indexes** because they are built over [Array Indexing](indexing-arrays.md) technology. Index Joins can't use Adaptive Indexes because Index Joins can't use array indexes, and Adaptive Index is basically an array index.
-2. **Indexed entries of the Adaptive Index are typically larger in size compared to the simple index** on respective fields because the indexed items are elements of the [PAIRS()](metafun.md#pairs) array, which are basically name-value pairs of the document fields. So, it may be relatively slower when compared with equivalent simple index. For example, in the following equivalent queries, [C8](#C7)/[Q8](#Q7) may perform better than [C9](#C8)/[Q9](#Q8).  
+2. **Indexed entries of the Adaptive Index are typically larger in size compared to the simple index** on respective fields because the indexed items are elements of the [PAIRS()](metafun.md#pairs) array, which are basically name-value pairs of the document fields. So, it may be relatively slower when compared with equivalent simple index. For example, in the following equivalent queries, [CAI Data Planm](#C7)/[QAI Data Plane](#Q7) may perform better than [CAI Data Plann](#C8)/[QAI Data Plane](#Q8).  
 This example uses the `def_inventory_hotel_city` index, which is installed with the `travel-sample` bucket.  
-C8  
+CAI Data Planm  
 ```sqlpp  
 CREATE INDEX `def_inventory_hotel_city`  
 ON `travel-sample`.`inventory`.`hotel`(`city`) WITH { "defer_build":true };  
 ```  
-Q8  
+QAI Data Plane  
 ```sqlpp  
 EXPLAIN SELECT city FROM hotel  
 USE INDEX (def_inventory_hotel_city)  
@@ -497,11 +497,11 @@ Result
       },  
 // ...  
 ```  
-C9  
+CAI Data Plann  
 ```sqlpp  
 CREATE INDEX `ai_city` ON hotel(DISTINCT PAIRS({city}));  
 ```  
-Q9  
+QAI Data Plane  
 ```sqlpp  
 EXPLAIN SELECT city FROM hotel  
 USE INDEX (ai_city)  
@@ -578,10 +578,10 @@ Result
   ```  
 So, the generic adaptive indexes (with `SELF`) should be employed carefully. Whenever applicable, it is recommended to use the following techniques to minimize the size and scope of the adaptive index:
 
-  * Instead of `SELF`, use selective adaptive indexes by specifying the field names of interest to the [PAIRS()](metafun.md#pairs) function. For examples, refer to [C4](#C4), [Q1](#Q1), [Q2](#Q2), and [Q3](#Q3) above.
-  * Use partial adaptive indexes with a WHERE clause that will filter the number of documents that will be indexed. For examples, refer to [C5](#C5), [Q5](#Q5), and [Q5A](#Q5A) above.
+  * Instead of `SELF`, use selective adaptive indexes by specifying the field names of interest to the [PAIRS()](metafun.md#pairs) function. For examples, refer to [CAI Data Plani](#C4), [Q1](#Q1), [Q2](#Q2), and [Q3](#Q3) above.
+  * Use partial adaptive indexes with a WHERE clause that will filter the number of documents that will be indexed. For examples, refer to [CAI Data Planj](#C5), [QAI Data Plane](#Q5), and [QAI Data PlaneA](#Q5A) above.
 4. **A generic adaptive index (on SELF) will be qualified for all queries on the keyspace**. So, when using with other GSI indexes, this will result in more IntersectScan operations for queries that qualify other non-adaptive indexes. This may impact query performance and overall load on query and indexer nodes. To alleviate the negative effects, you may want to specify the `USE INDEX` clause in `SELECT` queries whenever possible.
-5. **Adaptive Indexes cannot be used as Covered Indexes** for any queries. See example [Q9](#Q8) above.
+5. **Adaptive Indexes cannot be used as Covered Indexes** for any queries. See example [QAI Data Plane](#Q8) above.
 6. **Adaptive Indexes can be created only on document field identifiers**, not on functional expressions on the fields. For example, the following query uses a default index, such as `def_inventory_hotel_city`, instead of the specified adaptive index `ai_city1`:  
 ```sqlpp  
 CREATE INDEX `ai_city1`  

@@ -2,8 +2,8 @@
 title: Prepare to Install Sync Gateway
 description: Prerequisites for installing <em>Sync Gateway</em>; to synchronize
   your data from cloud to edge.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-prepare.adoc
-pubDate: 2026-04-09T05:16:09.658Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/start-here/pages/get-started-prepare.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:start-here:get-started-prepare.adoc[]
 ---
 
@@ -79,6 +79,8 @@ __Table 2\. Sync Gateway/Couchbase Server Compatibility Matrix__
 | Sync Gateway ↓ | Couchbase Server →                             |                            |                            |                            |                            |                            |                            |
 | -------------- | ---------------------------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
 | Version        | Scenario                                       | 8.0.0                      | 7.6.5                      | 7.6.4                      | 7.6                        | 7.2                        | 7.1                        |
+| 4.1.0          |                                                | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
+| 4.1.0          | Bidirectional Active-Active XDCR               | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
 | 4.0.0          |                                                | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
 | 4.0.0          | Bidirectional Active-Active XDCR               | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
 | 3.3.0          |                                                | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
@@ -100,7 +102,7 @@ __Table 2\. Sync Gateway/Couchbase Server Compatibility Matrix__
 > * SGW 3.1 will only run with `use_views` with a default scope/collection configuration
 > * You cannot run `use_views` with a defined scope/collection
 > 
-> Sync Gateway 4.0 requires CBS 7.6.1+. Active-Active XDCR requires CBS 7.6.5+. Sync Gateway 3.x does not support Active-Active XDCR.
+> Sync Gateway 4.0 and later requires CBS 7.6.1+. Active-Active XDCR requires CBS 7.6.5+. Sync Gateway 3.x does not support Active-Active XDCR.
 
 > [!IMPORTANT]
 > Couchbase Server Bucket Types
@@ -111,7 +113,7 @@ __Table 2\. Sync Gateway/Couchbase Server Compatibility Matrix__
 
 For Couchbase Server versions 5.0, 5.1, 5.5-6.0, and 6.5-7.0:
 
-* Sync Gateway 4.0.0 is not compatible with these versions
+* Sync Gateway 4.0.0 and later are not compatible with these versions
 * Sync Gateway 3.x and 2.x versions are fully compatible with these versions
 
 ## [](#compatibility-with-couchbase-lite)Compatibility with Couchbase Lite
@@ -119,23 +121,24 @@ For Couchbase Server versions 5.0, 5.1, 5.5-6.0, and 6.5-7.0:
 The table below summarizes the compatible versions of Couchbase Lite with Sync Gateway.
 
 __Table 3\. Sync Gateway and Couchbase Lite Compatibility Matrix__
-| Sync Gateway Versions ↓                                                                                         | Couchbase Lite →           |                            |                            |                            |                            |                            |                            |                            |                            |
-| --------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| 1.4 **\[[1](#%5Ffootnotedef%5F1 "View footnote.")\]**                                                           | 2.0                        | 2.1                        | 2.5 - 2.8                  | 3.0.0                      | 3.1.0                      | 3.2.0                      | 3.3.0                      | 4.0.0                      |                            |
-| 1.4 **\[[2](#%5Ffootnotedef%5F2 "View footnote.")\]** and 1.5 **\[[3](#%5Ffootnotedef%5F3 "View footnote.")\]** | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
-| 2.0 and 2.1                                                                                                     | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   |
-| 2.5 to 2.8with delta sync disabled                                                                              | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   |
-| 2.5 to 2.8with delta sync enabled                                                                               | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   |
-| 3.0.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   |
-| 3.1.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   |
-| 3.2.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   |
-| 3.3.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   |
-| 4.0.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
+| Sync Gateway Versions ↓                                                                                         | Couchbase Lite →           |                            |                            |                            |                            |                            |                            |                            |                            |                            |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
+| 1.4 **\[[1](#%5Ffootnotedef%5F1 "View footnote.")\]**                                                           | 2.0                        | 2.1                        | 2.5 - 2.8                  | 3.0.0                      | 3.1.0                      | 3.2.0                      | 3.3.0                      | 4.0.0                      | 4.1.0                      |                            |
+| 1.4 **\[[2](#%5Ffootnotedef%5F2 "View footnote.")\]** and 1.5 **\[[3](#%5Ffootnotedef%5F3 "View footnote.")\]** | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
+| 2.0 and 2.1                                                                                                     | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
+| 2.5 to 2.8with delta sync disabled                                                                              | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
+| 2.5 to 2.8with delta sync enabled                                                                               | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
+| 3.0.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
+| 3.1.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
+| 3.2.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
+| 3.3.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   | ![no](../_images/no.png)   |
+| 4.0.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
+| 4.1.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
 
 > [!WARNING]
-> **Couchbase Lite 4.0 requires Sync Gateway 4.0.**
+> **Couchbase Lite 4.x requires Sync Gateway 4.0 or later.**
 > 
-> Couchbase Lite 4.0 is only compatible with Sync Gateway 4.0\. Connecting Couchbase Lite 4.0 to Sync Gateway versions before 4.0 is not supported due to version vector architecture changes. However, Sync Gateway 4.0 is compatible with all supported Couchbase Lite versions (2.0+), allowing customers to upgrade Sync Gateway first.
+> Couchbase Lite 4.x is only compatible with Sync Gateway 4.0 and later. Connecting Couchbase Lite 4.x to Sync Gateway versions before 4.0 is not supported due to version vector architecture changes. Sync Gateway 4.0 and later is compatible with all supported Couchbase Lite versions (2.0+), allowing customers to upgrade Sync Gateway first.
 
 ## [](#supported-operating-systems)Supported Operating Systems
 
@@ -144,14 +147,16 @@ __Table 4\. Supported Operating Systems for Development, Testing, and Production
 | ------------------------------- | ---------------------------- |
 | Red Hat Enterprise Linux (RHEL) | 10.x                         |
 | 9.x                             |                              |
-| Alma Linux                      | 9.x                          |
-| Rocky Linux                     | 9.x                          |
+| Alma Linux                      | 10.x                         |
+| 9.x                             |                              |
+| Rocky Linux                     | 10.x                         |
+| 9.x                             |                              |
 | Ubuntu                          | 24.04 LTS ARM, 24.04 LTS x86 |
 | 22.04 LTS ARM, 22.04 LTS x86    |                              |
 | Debian                          | 13.x                         |
 | 12.x                            |                              |
-| 11.x                            |                              |
-| Windows Server                  | 2022                         |
+| Windows Server                  | 2025                         |
+| 2022                            |                              |
 
 __Table 5\. Supported Operating Systems for Development and Testing Only__
 | Operating System    | Supported Versions  |
@@ -205,14 +210,14 @@ Use this bucket to test the deployment of Sync Gateway, later in the Getting Sta
 
 ### [](#step-2create-rbac-user)Step 2 — Create RBAC User
 
-You'll need to create at least one RBAC user in Couchbase Server as sync gateway requires RBAC user credentials to authenticate and authorize access not only to Couchbase Server buckets, but also to its Admin and Metrics API. If you plan to use these API then create at least one user for each of:
+You'll need to create at least one RBAC user in Couchbase Server as Sync Gateway requires RBAC user credentials to authenticate and authorize access not only to Couchbase Server buckets, but also to its Admin and Metrics API. If you plan to use these API then create at least one user for each of:
 
 * Couchbase Server Access  
 Add an RBAC user that Sync Gateway uses to authenticate and authorize access to Couchbase Server. Use the _sync\_gateway_ role.
 * Admin API  
-Add an RBAC user that administrators can use to authenticate and authorize access to the sync gateway Admin REST API Use the _Full Admin_ role.
+Add an RBAC user that administrators can use to authenticate and authorize access to the Sync Gateway Admin REST API Use the _Full Admin_ role.
 * Metrics API  
-Add an RBAC user that devops can use to authenticate and authorize access to the sync gateway Metrics REST API Use the _Read-Only Admin_ or _Application Access_ roles.
+Add an RBAC user that devops can use to authenticate and authorize access to the Sync Gateway Metrics REST API Use the _Read-Only Admin_ or _Application Access_ roles.
 
 Enterprise edition users can exert a finer-grained control using additional roles appropriate to the capabilities required for the specific user.
 

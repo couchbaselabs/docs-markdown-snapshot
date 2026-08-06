@@ -1,8 +1,8 @@
 ---
 title: Full Installation
 description: Installation instructions, and download archive for the Couchbase PHP Client.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -81,6 +81,13 @@ Then follow the [post-installation steps](#post-installation).
 When using Microsoft Windows, instead of using PECL, download the pre-built binary package matching your environment. You may also download the [php-couchbase source code](https://github.com/couchbase/php-couchbase) for the SDK and build it directly in your environment if you have a complete build toolchain.
 
 From [PHP SDK version 4.2.1](sdk-release-notes.md#version-4-2-1-23-april-2024)Windows binaries are available to download — see the [Release Notes page](sdk-release-notes.md) for links to the binary built for your preferred PHP version.
+
+> [!TIP]
+> PECL Packages
+> 
+> The download packages given on the [Release Notes page](sdk-release-notes.md#latest-release) are officially supported. The source tarball found on <https://pecl.php.net/> at <https://pecl.php.net/package/couchbase> is also the same one as the one linked [here](sdk-release-notes.md#latest-release).
+> 
+> However the Windows binaries at <https://pecl.php.net/> are produced there, not through Couchbase's CI/CD pipeline, and are not necessarily the same as the Couchbase-produced binaries.
 
 For older versions of the PHP 4.x SDK, there are no pre-built binaries for the Windows platform. Instead, you will need to follow [these steps](https://github.com/couchbase/couchbase-php-client/blob/4.0.0/WINDOWS.md) to build an extension along with the PHP interpreter. We recommend always running the latest version of the SDK.
 

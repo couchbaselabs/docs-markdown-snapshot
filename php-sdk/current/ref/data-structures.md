@@ -1,6 +1,6 @@
 ---
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/ref/pages/data-structures.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/ref/pages/data-structures.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:ref:data-structures.adoc[]
 ---
 

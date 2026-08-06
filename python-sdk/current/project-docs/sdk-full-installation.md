@@ -1,8 +1,8 @@
 ---
 title: Full Installation
 description: Installation instructions for the Couchbase Python Client.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -13,11 +13,9 @@ link: xref:python-sdk:project-docs:sdk-full-installation.adoc[]
 
 > Installation instructions for the Couchbase Python Client. 
 
-This page covers installation of the SDK. A quick start guide in our [Getting Started Guide](../hello-world/start-using-sdk.md) should work for most users — and for anyone in a hurry to try out the SDK and our _Hello World_ program, that page is usually the best place to get started — but more detailed installation instructions are provided here on this page for every supported platform. This guide assumes you have some familiarity with development using Python — if you are evaluating the SDK as a software architect, tester, or other non-Python role, you will benefit from our [Platform Help page](../hello-world/platform-help.md).
+This page covers installation of the SDK. A quick start guide in our [Getting Started Guide](../hello-world/start-using-sdk.md) should work for most users — and for anyone in a hurry to try out the SDK and our _Hello World_ program, that page is usually the best place to get started — but more detailed installation instructions are provided here on this page for every supported platform.
 
-The Couchbase SDK 3.x API (used in the Python SDK 3.0 - 4.0) is a complete rewrite of the API, reducing the number of overloads to present a simplified surface area, and adding support for Couchbase Server features like [Collections and Scopes](../concept-docs/collections.md) (available from Couchbase Server 7.0).
-
-3.x Python SDK introduced comprehensive [PEP-484](https://www.python.org/dev/peps/pep-0484/) style type annotations.
+This guide assumes you have some familiarity with development using Python — if you are evaluating the SDK as a software architect, tester, or other non-Python role, you may benefit from our [Platform Help page](../hello-world/platform-help.md).
 
 ## [](#requirements)Requirements
 
@@ -31,6 +29,10 @@ The Python SDK 4.x requires Python 3\. See the [Python Version Compatibility](co
 > ```console
 > $ python3 -m pip install --upgrade pip setuptools wheel
 > ```
+
+### [](#pypy-support)PyPy support
+
+Because the Python SDK is written primarily in C using the CPython API, the official SDK will not work on PyPy.
 
 ## [](#installation)Installation
 
@@ -200,6 +202,18 @@ python -m pip install couchbase
 > [!NOTE]
 > If you require a version that doesn't have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo.
 
-### [](#pypy-support)PyPy support
+### [](#installing-a-specific-version)Installing a Specific Version
 
-Because the Python SDK is written primarily in C using the CPython API, the official SDK will not work on PyPy.
+You may install previous versions of the SDK using pip.
+
+```console
+$ python3 -m pip install couchbase==VERSION
+```
+
+Where VERSION is the version you wish to install. For example, to install version 4.5.0:
+
+```console
+$ python3 -m pip install couchbase==4.5.0
+```
+
+For more detailed installation instructions, see the [full installation guide](sdk-full-installation.md).

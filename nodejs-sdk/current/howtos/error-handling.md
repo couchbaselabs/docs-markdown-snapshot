@@ -2,8 +2,8 @@
 title: Handling Errors
 description: Errors are inevitable. The developer’s job is to be prepared for
   whatever is likely to come up
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/error-handling.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:howtos:error-handling.adoc[]
 ---
 

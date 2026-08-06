@@ -2,8 +2,8 @@
 title: Import Filter Configuration
 description: Using Sync Gateway's Admin REST API and the Import Filter function
   to configure access
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-schema-import-filter.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-import-filter.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:configuration:configuration-schema-import-filter.adoc[]
 ---
 

@@ -2,8 +2,8 @@
 title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/provisioning-cluster-resources.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
@@ -50,30 +50,13 @@ See the [API docs](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couc
 The following example creates a new bucket, adding settings including making it flushable:
 
 ```ruby
-bucket_name = "new_bucket"
-
-settings = Management::BucketSettings.new
-settings.name = bucket_name
-settings.ram_quota_mb = 100
-settings.flush_enabled = true
-measure("New bucket #{bucket_name.inspect} created") { cluster.buckets.create_bucket(settings) }
+Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::example$provisioning-resources-buckets.rb[]
 ```
 
 We can retrieve information on various settings:
 
 ```ruby
-settings = cluster.buckets.get_bucket(bucket_name)
-puts "Bucket #{bucket_name.inspect} settings:"
-puts " * healthy?           : #{settings.healthy?}"
-puts " * RAM quota          : #{settings.ram_quota_mb}"
-puts " * number of replicas : #{settings.num_replicas}"
-puts " * flush enabled:     : #{settings.flush_enabled}"
-puts " * max TTL            : #{settings.max_expiry}"
-puts " * compression mode   : #{settings.compression_mode}"
-puts " * replica indexes    : #{settings.replica_indexes}"
-puts " * eviction policy    : #{settings.eviction_policy}"
-
-measure("Bucket #{bucket_name.inspect} flushed") { cluster.buckets.flush_bucket(bucket_name) }
+Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::example$provisioning-resources-buckets.rb[]
 ```
 
 As well as flushing the bucket.
@@ -95,11 +78,7 @@ The `flush_bucket()` operation may fail if the bucket does not have flush enable
 The CollectionManager interface may be used to create and delete scopes and collections from the Couchbase cluster. It is instantiated through the `Bucket.collections()` method. Refer to the [CollectionManager API documentation](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/CollectionManager.html)for further details.
 
 ```ruby
-options = Cluster::ClusterOptions.new
-options.authenticate("scope_admin", "password")
-cluster = Cluster.connect("couchbase://localhost", options)
-bucket = cluster.bucket("travel-sample")
-collections = bucket.collections
+Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::example$provisioning-resources-collections.rb[]
 ```
 
 ### [](#creating-and-deleting-scopes-and-collections)Creating and Deleting Scopes and Collections
@@ -107,31 +86,21 @@ collections = bucket.collections
 You can create a scope:
 
 ```ruby
-scopes = collections.get_all_scopes
-
-if scopes.any? { |scope| scope.name == "example-scope" }
-puts "Scope already exists"
-else
-    collections.create_scope("example-scope")
-end
+Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::example$provisioning-resources-collections.rb[]
 ```
 
 You can then create a collection within that scope:
 
 ```ruby
-collection = Management::CollectionSpec.new {|spec|
-    spec.name = "example-collection"
-    spec.scope_name = "example-scope" }
-
-collections.create_collection(collection)
+Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::example$provisioning-resources-collections.rb[]
 ```
 
 Finally, you can drop unneeded collections and scopes:
 
 ```ruby
-collections.drop_collection(collection)
+Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::example$provisioning-resources-collections.rb[]
 
-collections.drop_scope("example-scope")
+Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::example$provisioning-resources-collections.rb[]
 ```
 
 Note that the most minimal permissions to create and drop a Scope or Collection is [Manage Scopes](../../../server/current/learn/security/roles.md#manage-scopes)along with [Data Reader](../../../server/current/learn/security/roles.md#data-reader)
@@ -139,20 +108,7 @@ Note that the most minimal permissions to create and drop a Scope or Collection 
 You can create users with the appropriate RBAC programmatically:
 
 ```ruby
-user = Management::User.new {|user|
-    user.username = "scope_admin"
-    user.password = "password"
-    user.display_name = "Manage Scopes [travel-sample:*]"
-    user.roles = [
-        Management::Role.new {|role|
-            role.name = "scope_admin"
-            role.bucket = "travel-sample"},
-        Management::Role.new {|role|
-            role.name = "data_reader"
-            role.bucket = "travel-sample"}
-    ]
-}
-users.upsert_user(user)
+Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::example$provisioning-resources-collections.rb[]
 ```
 
 ### [](#listing-the-scopes-and-collections-available)Listing the Scopes and Collections available
@@ -160,12 +116,7 @@ users.upsert_user(user)
 You can enumerate Scopes and Collections using the `CollectionManager.get_all_scopes()` method and the `Scope.collections` property.
 
 ```ruby
-collections.get_all_scopes().each {|scope|
-    puts "#{scope.name} :"
-    scope.collections.each {|collection|
-        puts "  * #{collection.name}"
-    }
-}
+Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::example$provisioning-resources-collections.rb[]
 ```
 
 ### [](#more-examples)More examples

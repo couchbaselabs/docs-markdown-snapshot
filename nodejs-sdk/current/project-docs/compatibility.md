@@ -3,8 +3,8 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/project-docs/pages/compatibility.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -28,37 +28,37 @@ __Supported Node.js Versions__
 | ------------------- | ---------------- | -------------------------------- |
 | 20                  | until 2026-04-30 | from 4.2.5                       |
 | 22                  | until 2027-04-30 | from 4.5.0                       |
+| 24                  | until 2028-04-30 | from 4.7.0                       |
+| 26                  | until 2029-04-30 | from 4.7.0                       |
 
 ### [](#os-compatibility)OS Compatibility
 
-In general, the SDK can be expected to run on all of the Operating Systems supported by [Couchbase Server](../../../server/current/install/install-platforms.md).
-
-However, the Node.js SDK is tested and supported specifically on the following OSs and platforms:
+The Node.js SDK will run on, and is supported on, the following OSs and platforms. The SDK has been tested on a representative subset of the platforms listed below.
 
 ### GNU/Linux
 
 * Amazon Linux 2 & AL2023.
-* Red Hat Enterprise Linux 8 & 9;
-* Oracle Linux 8 & 9.
+* Red Hat Enterprise Linux 8, 9, & 10.
+* Oracle Linux 8, 9, & 10.
 * Ubuntu (LTS) 22.04 (_Jammy_) & 24.04 (_Noble_).
-* Debian 11 (_Bullseye_) & Debian 12 (_Bookworm_).
+* Debian 11 (_Bullseye_), Debian 12 (_Bookworm_), & Debian 13 (_Trixie_).
 * SUSE Enterprise Linux 12 & 15.
-* Alpine Linux 3.18.
+* Alpine Linux 3.21 - 3.23.
 
 ### Microsoft Windows
 
 * Microsoft Windows 10 & 11;
-* Windows Server 2019 & 2022.
+* Windows Server 2019, 2022, & 2025.
 
 ### Mac OS X
 
-The current and previous two releases of OS X. At time of writing (June 2024): 14 (Sonoma), 13 (Ventura), and 12 (Monterey). M1 ARM architecture is fully supported in the .Node.js SDK.
+* The current and previous two releases of OS X. At time of writing (March 2026): 26 (Tahoe), 15 (Sequoia), and 14 (Sonoma).
 
-### ARM Processor Support
+#### [](#platforms-chipsets-and-virtual-environments)Platforms, Chipsets, and Virtual Environments
 
-AWS Amazon Graviton2, Apple M1 ARM processors, and ARMv8 on Ubuntu 20.04+.
+Couchbase SDKs can be expected to run on modern ARM chips (such as AWS Graviton) and virtualised platforms (such as Microsoft Hyper-V). Nevertheless, there are so many products available that not all can be tested — as such, we do not call out specific support for any particular product. Please contact our support organisation if you run into any issues.
 
-Alpine 3.18 on ARM from Node.js SDK 4.4.1.
+As always, running the very latest version of the SDKs will pick up any fixes already made to platform support (see the [Release Notes](sdk-release-notes.md)).
 
 ### [](#network-requirements)Network Requirements
 
@@ -125,30 +125,32 @@ __Couchbase Server and SDK Supported Version Matrix__
 
 ### [](#api-version)API Version
 
-This release of the SDK is written to version 3.8 of the SDK API specification (and matching the features available in Couchbase 8.0.0 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
+This release of the SDK is written to version 3.9 of the SDK API specification (and matching the features available in Couchbase 8.0.1 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
 
 Whilst these two numbers match for the .NET SDK, this is not the case for the others, as version numbers for individual SDKs are bumped up in line with [Semantic Versioning](https://semver.org/) — check the [release notes](#sdk-release-notes) of each SDK for individual details.
 
 __SDK API Versions__
-|                                                                    | API 3.3       | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      |
-| ------------------------------------------------------------------ | ------------- | --------- | ------- | ------- | ------- | ------------ |
-| [.NET](../../../dotnet-sdk/current/hello-world/overview.md)        | 3.3           | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          |
-| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.0 - 3.3.2 | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        |
-| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-            | \-        | \-      | 1.0     | 1.1     | 1.2          |
-| [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.5           | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         |
-| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.3           | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   |
-| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.0           | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ |
-| [Node.js](../hello-world/overview.md)                              | 4.1           | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          |
-| [PHP](../../../php-sdk/current/hello-world/overview.md)            | 4.0           | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          |
-| [Python](../../../python-sdk/current/hello-world/overview.md)      | 4.0           | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          |
-| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.3           | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          |
-| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-            | \-        | \-      | \-      | \-      | 1.0          |
-| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.3           | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ |
+|                                                                    | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      | API 3.9     |
+| ------------------------------------------------------------------ | --------- | ------- | ------- | ------- | ------------ | ----------- |
+| [.NET](../../../dotnet-sdk/current/hello-world/overview.md)        | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          | 3.9         |
+| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        | N/A ②       |
+| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-        | \-      | 1.0     | 1.1     | 1.2          | 1.3         |
+| [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         | 2.12        |
+| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   | 3.11 & 3.12 |
+| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ | 3.11 & 3.12 |
+| [Node.js](../hello-world/overview.md)                              | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          | 4.7         |
+| [PHP](../../../php-sdk/current/hello-world/overview.md)            | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          | 4.5         |
+| [Python](../../../python-sdk/current/hello-world/overview.md)      | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          | 4.6         |
+| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          | 3.8         |
+| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-        | \-      | \-      | \-      | \-           | 1.0         |
+| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ | 3.11 & 3.12 |
 
 | **1** | Excludes DNS SRV refresh support in Serverless Environments.                                                                                                                                              |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | For most purposes better productivity and functionality can be found in our [C++ SDK](../../../cxx-sdk/current/hello-world/overview.md).                                                                  |
 | **3** | With the Java 3.9 release, the other JVM SDKs hosted in the Java SDK monorepo adopted common release versions. This includes a number of other artifacts, as can be seen referenced in the release notes. |
+
+**SDK API 3.9**: Provides support for JWT based authentication, as well as mTLS Certs Refresh (without restart). Deprecates SDK support for MapReduce Views.
 
 **SDK API 3.8**: Introduced alongside Couchbase Server 8.0, which adds support for 128 vBuckets on Magma. Server 8.0 introduced vector query using Global Secondary Indexes (GSI), the Query Service index — using either a fast Hyperscale index, or a composite index to combine scalar queries with semantic search.
 

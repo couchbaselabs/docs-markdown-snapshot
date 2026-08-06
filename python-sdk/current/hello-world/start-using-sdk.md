@@ -1,357 +1,107 @@
 ---
-title: Start Using the Python SDK
-description: Get up and running quickly, installing the Couchbase Python SDK,
-  and running our Hello World example.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+title: Hello World
+description: Install, connect, try. A quick start guide to get you up and
+  running with Couchbase and the Python SDK.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/python-sdk/current/hello-world/start-using-sdk.html)
 
-# Start Using the Python SDK
+# Hello World
 
-> Get up and running quickly, installing the Couchbase Python SDK, and running our Hello World example. 
+> Install, connect, try. A quick start guide to get you up and running with Couchbase and the Python SDK. 
 
-The Couchbase Python SDK allows Python applications to access a Couchbase cluster. It offers a traditional synchronous API as well as integration with _twisted_ and _asyncio_.
+Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let's look at those data operations, and installing the Python SDK.
 
-In this guide, you will learn:
-
-* How to [connect to Couchbase Capella or Couchbase Server](#connect).
-* How to [add and retrieve Documents](#add-and-retrieve-documents).
-* How to [lookup documents](#sql-lookup) with the [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) query language.
-
-## [](#hello-couchbase)Hello Couchbase
-
-We will go through the code sample step by step, but for those in a hurry to see it, here it is:
-
-* Couchbase Capella Sample
-* Local Couchbase Server
-
-To connect to [Couchbase Capella](../../../home/cloud.md), be sure to get the correct endpoint as well as user, password, and bucket name. The certificate for connecting to Capella is included in the 4.1 Python SDK.
+Upsert with Replication set to [Majority Durability](../concept-docs/data-durability-acid-transactions.md#durable-writes):
 
 ```python
-from datetime import timedelta
-
-# needed for any cluster connection
-from couchbase.auth import PasswordAuthenticator
-from couchbase.cluster import Cluster
-# needed for options -- cluster, timeout, SQL++ (N1QL) query, etc.
-from couchbase.options import (ClusterOptions, ClusterTimeoutOptions,
-                               QueryOptions)
-
-
-# Update this to your cluster
-endpoint = "--your-instance--.dp.cloud.couchbase.com"
-username = "username"
-password = "Password!123"
-bucket_name = "travel-sample"
-# User Input ends here.
-
-# Connect options - authentication
-auth = PasswordAuthenticator(username, password)
-
-# get a reference to our cluster
-options = ClusterOptions(auth)
-# Sets a pre-configured profile called "wan_development" to help avoid latency issues
-# when accessing Capella from a different Wide Area Network
-# or Availability Zone(e.g. your laptop).
-options.apply_profile('wan_development')
-cluster = Cluster.connect('couchbases://{}'.format(endpoint), options)
-
-# Wait until the cluster is ready for use.
-cluster.wait_until_ready(timedelta(seconds=5))
-
-# get a reference to our bucket
-cb = cluster.bucket(bucket_name)
-
-cb_coll = cb.scope("inventory").collection("airline")
-
-
-def upsert_document(doc):
-    print("\nUpsert CAS: ")
-    try:
-        # key will equal: "airline_8091"
-        key = doc["type"] + "_" + str(doc["id"])
-        result = cb_coll.upsert(key, doc)
-        print(result.cas)
-    except Exception as e:
-        print(e)
-
-# get document function
-
-
-def get_airline_by_key(key):
-    print("\nGet Result: ")
-    try:
-        result = cb_coll.get(key)
-        print(result.content_as[str])
-    except Exception as e:
-        print(e)
-
-# query for new document by callsign
-
-
-def lookup_by_callsign(cs):
-    print("\nLookup Result: ")
-    try:
-        inventory_scope = cb.scope('inventory')
-        sql_query = 'SELECT VALUE name FROM airline WHERE callsign = $1'
-        row_iter = inventory_scope.query(
-            sql_query,
-            QueryOptions(positional_parameters=[cs]))
-        for row in row_iter:
-            print(row)
-    except Exception as e:
-        print(e)
-
-
-airline = {
-    "type": "airline",
-    "id": 8091,
-    "callsign": "CBS",
-    "iata": None,
-    "icao": None,
-    "name": "Couchbase Airways",
-}
-
-upsert_document(airline)
-
-get_airline_by_key("airline_8091")
-
-lookup_by_callsign("CBS")
+# Upsert with Durability level Majority
+document = dict(foo="bar", bar="foo")
+opts = UpsertOptions(durability=ServerDurability(Durability.MAJORITY))
+result = collection.upsert("document-key", document, opts)
 ```
 
-```python
-from datetime import timedelta
-
-# needed for any cluster connection
-from couchbase.auth import PasswordAuthenticator
-from couchbase.cluster import Cluster
-# needed for options -- cluster, timeout, SQL++ (N1QL) query, etc.
-from couchbase.options import (ClusterOptions, ClusterTimeoutOptions,
-                               QueryOptions)
-
-# Update this to your cluster
-username = "Administrator"
-password = "password"
-bucket_name = "travel-sample"
-# User Input ends here.
-
-# Connect options - authentication
-auth = PasswordAuthenticator(
-    username,
-    password,
-)
-
-# Get a reference to our cluster
-# NOTE: For non-TLS/SSL connection use 'couchbase://<your-ip-address>' instead
-cluster = Cluster.connect('couchbases://your-ip', ClusterOptions(auth))
-
-# Wait until the cluster is ready for use.
-cluster.wait_until_ready(timedelta(seconds=5))
-
-# get a reference to our bucket
-cb = cluster.bucket(bucket_name)
-
-cb_coll = cb.scope("inventory").collection("airline")
-
-# Get a reference to the default collection, required for older Couchbase server versions
-cb_coll_default = cb.default_collection()
-
-# upsert document function
-
-
-def upsert_document(doc):
-    print("\nUpsert CAS: ")
-    try:
-        # key will equal: "airline_8091"
-        key = doc["type"] + "_" + str(doc["id"])
-        result = cb_coll.upsert(key, doc)
-        print(result.cas)
-    except Exception as e:
-        print(e)
-
-# get document function
-
-
-def get_airline_by_key(key):
-    print("\nGet Result: ")
-    try:
-        result = cb_coll.get(key)
-        print(result.content_as[str])
-    except Exception as e:
-        print(e)
-
-# query for new document by callsign
-
-
-def lookup_by_callsign(cs):
-    print("\nLookup Result: ")
-    try:
-        inventory_scope = cb.scope('inventory')
-        sql_query = 'SELECT VALUE name FROM airline WHERE callsign = $1'
-        row_iter = inventory_scope.query(
-            sql_query,
-            QueryOptions(positional_parameters=[cs]))
-        for row in row_iter:
-            print(row)
-    except Exception as e:
-        print(e)
-
-
-airline = {
-    "type": "airline",
-    "id": 8091,
-    "callsign": "CBS",
-    "iata": None,
-    "icao": None,
-    "name": "Couchbase Airways",
-}
-
-upsert_document(airline)
-
-get_airline_by_key("airline_8091")
-
-lookup_by_callsign("CBS")
-```
-
-As well as the Python SDK (see below), and a running instance of Couchbase Server, you will need to load up the Travel Sample Bucket using either the [Web interface](../../../server/current/manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-ui)or the [command line](../../../server/current/manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-cli).
-
-The [Couchbase Capella free tier](https://cloud.couchbase.com/sign-up) version comes with the Travel Sample Bucket, and its Query indexes, loaded and ready.
-
-## [](#quick-installation)Quick Installation
-
-The SDK will run on [supported versions Python](#compatibility.adoc#python-version-compat). A more detailed guide in our [Installation page](../project-docs/sdk-full-installation.md) covers every supported platform, but this section should be enough to get up and running for _most_ [supported Operating Systems](#compatibility.adoc#platform-compatibility).
-
-* macOS 12 & 13
-* Red Hat & CentOS
-* Debian & Ubuntu
-* Windows
-
-If you are running Catalina (macOS 10.15) — or have other detailed requirements — take a look at our [full installation guide](#project-pages:sdk-full-installation.adoc). Otherwise, read on for a quick install on macOS _Big Sur_ or _Monterey_.
-
-The Python SDK has wheels are available on macOS for [supported versions of Python](#compatibility.adoc#python-version-compat).
-
-First, make sure that your _brew_ package index is up-to-date:
-
-```console
-$ brew update
-```
-
-Install a compatible Python 3:
-
-```console
-$ brew install python3
-```
-
-Ensure that the Python installation can be called from the shell:
-
-```console
-$ echo 'export PATH="/usr/local/bin:"$PATH' >> ~/.zshrc
-```
-
-```console
-$ source ~/.zshrc
-```
-
-Now, install the Python SDK:
-
-```console
-$ sudo -H python3 -m pip install couchbase
-```
-
-> [!NOTE]
-> Starting with Python 3.11.5, macOS installers from python.org now use [OpenSSL 3.0](https://docs.python.org/3/whatsnew/3.11.html#notable-changes-in-3-11-5). If using a version prior to 4.1.9 of the Python SDK, a potential side-effect of this change is an `ImportError: DLL load failed while importing pycbc_core` error. Upgrade the SDK to a version >= 4.1.9 to avoid this side-effect. If unable to upgrade, a work-around is to set the `PYCBC_OPENSSL_DIR` environment variable to the path where the OpenSSL 1.1 libraries (`` libssl.1.1.dylib ` and `libcrypto.1.1.dylib ``) can be found.
-
-Note, check that you have a [supported version of Python](#compatibility.adoc#python-version-compat). Suggestions for platforms with an outdated build chain, such as CentOS 7, can be found in our [Installation Guide](../project-docs/sdk-full-installation.md). Assuming you have an updated build environment, follow these steps.
-
-The Python SDK has manylinux wheels available for [supported versions of Python](#compatibility.adoc#python-version-compat).
-
-During first-time setup, install the prerequisites:
-
-```console
-$ sudo yum install gcc gcc-c++ git python3-devel python3-pip
-```
-
-Full details of prerequisites can be found [here](../project-docs/sdk-full-installation.md#requirements).
-
-Now you can install the latest Python SDK (for older versions, see the [Release Notes page](../project-docs/sdk-release-notes.md)):
-
-```console
-$ python3 -m pip install couchbase
-```
-
-Note, check that you have a [supported version of Python](#compatibility.adoc#python-version-compat). Suggestions for platforms with an outdated build chain, such as Debian 9, can be found in our [Installation Guide](../project-docs/sdk-full-installation.md). Assuming you have an updated build environment, follow these steps.
-
-The Python SDK has manylinux wheels available for [supported versions of Python](#compatibility.adoc#python-version-compat).
-
-During first-time setup, install the prerequisites:
-
-```console
-$ sudo apt-get install git python3-dev python3-pip python3-setuptools build-essential
-```
-
-Full details of prerequisites can be found [here](../project-docs/sdk-full-installation.md#requirements).
-
-Now you can install the latest Python SDK (for older versions, see the [Release Notes page](../project-docs/sdk-release-notes.md)):
-
-```console
-$ python3 -m pip install couchbase
-```
-
-Download and install Python from [python.org](https://www.python.org/downloads). Best practice is to use a Python virtual environment such as _venv_ or _pyenv_.
+`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We'll explore creating and retrieving data records in more detail [below](#create-read-update-delete), after walking through a quick installation.
 
 > [!TIP]
-> Checkout the [pyenv-win](https://github.com/pyenv-win/pyenv-win) project to manage multiple versions of Python.
+> This page walks you through a quick installation, and CRUD examples against the Data Service. Elsewhere in this section you can find a fully worked-through [Sample Application](sample-application.md).
 
-The Python SDK has wheels available on Windows for [supported versions of Python](#compatibility.adoc#python-version-compat).
+## [](#before-you-start)Before You Start
 
-```console
-python -m pip install couchbase
-```
-
-> [!NOTE]
-> Starting with Python 3.11.5, Windows builds from python.org now use [OpenSSL 3.0](https://docs.python.org/3/whatsnew/3.11.html#notable-changes-in-3-11-5). If using a version prior to 4.1.9 of the Python SDK, a potential side-effect of this change is an `ImportError: DLL load failed while importing pycbc_core` error. Upgrade the SDK to a version >= 4.1.9 to avoid this side-effect. If unable to upgrade, a work-around is to set the `PYCBC_OPENSSL_DIR` environment variable to the path where the OpenSSL 1.1 libraries (`libssl-1_1.dll` and `libcrypto-1_1.dll`) can be found.
-
-The standard Python distributions for Windows include OpenSSL DLLs, as PIP and the inbuilt `ssl` module require it for correct operation. Prior to version 4.1.9 of the Python SDK, the binary wheels for Windows are built against OpenSSL 1.1\. Version 4.1.9 and beyond statically link against BoringSSL thus removing the OpenSSL requirement.
-
-> [!NOTE]
-> If you require a version that doesn't have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo.
-
-If there are any problems, refer to the full [Installation page](../project-docs/sdk-full-installation.md).
-
-## [](#prerequisites)Prerequisites
-
-The following code samples assume:
+Couchbase Capella, our Database-as-a-Service, lets you get on with what matters, while we take care of the administration for you. Alternately, if you need to control every aspect of deployment — or just want to run the Server in a VM on your laptop — there are several self-managed options available:
 
 * Couchbase Capella
-* Local Couchbase Server
+* Self-Managed Couchbase Server
+
+If you haven't already got a cluster set up, the easiest route is to [sign up to Couchbase Capella and deploy a free tier cluster](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
+
+Install Couchbase Server locally, or in your private Cloud:
+
+* [Deployment overview](../../../server/current/install/get-started.md)
+* [Docker Install](../../../server/current/install/getting-started-docker.md)
+* [Couchbase Autonomous Operator](../../../operator/current/overview.md)
+
+  * [Kubernetes](../../../operator/current/install-kubernetes.md)
+  * [Openshift](../../../operator/current/install-openshift.md)
+* [Cloud Marketplace](#8.0server:cloud:couchbase-cloud-deployment.adoc):
+
+  * [AWS Marketplace](../../../server/current/cloud/couchbase-aws-marketplace.md)
+  * [Azure Marketplace](../../../server/current/cloud/couchbase-azure-marketplace.md)
+  * [GCP Marketplace](../../../server/current/cloud/couchbase-gcp-cloud-launcher.md)
+
+For the example code below to run, you'll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
+
+### [](#prerequisites)Prerequisites
+
+The Couchbase Python SDK aims to support [Python versions](https://devguide.python.org/versions/#supported-versions) in security or bug-fix (a.k.a. maintenance) status.
+
+Details of all build dependencies are in the [full installation guide](../project-docs/sdk-full-installation.md).
+
+The code examples also assume:
+
+* Couchbase Capella
+* Self-Managed Couchbase Server
 
 * You have signed up to [Couchbase Capella](https://cloud.couchbase.com/sign-up).
 * You have created your own bucket, or loaded the Travel Sample dataset. Note, the Travel Sample dataset is installed automatically when deploying a Capella free tier cluster.
 * A user is created with permissions to access the cluster (at least Application Access permissions). See the [Capella connection page](../../../cloud/get-started/run-first-queries.md#credentials) for more details.
 
 > [!IMPORTANT]
-> Couchbase Capella uses [Roles](../../../cloud/organizations/organization-projects-overview.md) to control user access to cluster resources. For the purposes of this guide, you can use the **Organization Owner** role automatically assigned to your account during installation of the Capella cluster. In a production scenario, we strongly recommend setting up users with more granular access roles as a best practice.
+> Couchbase Capella uses [Roles](../../../cloud/organizations/organization-projects-overview.md) to control user access to cluster resources. For the purposes of this guide, you can use the **Organization Owner** role automatically assigned to your account during installation of the Capella cluster. In production, Couchbase strongly recommends setting up users with more granular access roles as a best practice for data security.
 
 * [Couchbase Server](#8.0@server:getting-started/do-a-quick-install.adoc) is installed and accessible locally.
 * You have created your own bucket, or loaded the Travel Sample dataset using the [Web interface](../../../server/current/manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-ui).
 * A user is created with permissions to access your cluster (at least Application Access permissions). See [Manage Users, Groups and Roles](../../../server/current/manage/manage-security/manage-users-and-roles.md) for more details.
 
 > [!IMPORTANT]
-> Couchbase Server uses [Role Based Access Control (RBAC)](../../../server/current/learn/security/roles.md) to control access to resources. In this guide we suggest using the **Full Admin** role created during setup of your local Couchbase Server cluster. For production client code, you will want to use more appropriate, restrictive settings.
+> Couchbase Server uses [Role-Based Access Control (RBAC)](../../../server/current/learn/security/roles.md) to control access to cluster resources. In this guide we suggest using the **Full Admin** role created during setup of your local Couchbase Server cluster. In production, Couchbase strongly recommends setting up users with more granular access roles as a best practice for data security.
 
-## [](#step-by-step)Step-by-Step
+## [](#installation)Installation
 
-At this point we want to transition from the terminal to your code editor of choice.
+Given the above prerequisites, use `pip` to install the SDK:
 
-Let's now create an empty file named `cb-test.py` and walk through adding code step-by-step.
+```console
+$ sudo -H python3 -m pip install couchbase
+```
 
-Here are all the import statements that you will need to run the sample code:
+Details of all build dependencies and platform variations are in the [full installation guide](../project-docs/sdk-full-installation.md). The [compatibility guide](../project-docs/compatibility.md) lists compatible OSs and Python versions.
+
+### [](#ide-plugins)IDE Plugins
+
+To make development easier, Couchbase plugins are available for VSCode and the IntelliJ family of IDEs and editors. For links and more information on these and other integrations across the Python ecosystem, check out the [Integrations & Ecosystem](../project-docs/third-party-integrations.md) page.
+
+### [](#grab-the-code)Grab the Code
+
+If you're all set up and in a real hurry, just grab this code sample and add in your Capella details.
+
+Complete Hello World code sample \[**Click to open or collapse the listing**\] 
 
 ```python
+# tag::imports[]
 from datetime import timedelta
 
 # needed for any cluster connection
@@ -360,16 +110,122 @@ from couchbase.cluster import Cluster
 # needed for options -- cluster, timeout, SQL++ (N1QL) query, etc.
 from couchbase.options import (ClusterOptions, ClusterTimeoutOptions,
                                QueryOptions)
+
+# end::imports[]
+
+# tag::connect[]
+# Update this to your cluster
+endpoint = "--your-instance--.dp.cloud.couchbase.com"
+username = "username"
+password = "Password!123"
+bucket_name = "travel-sample"
+# User Input ends here.
+
+# Connect options - authentication
+auth = PasswordAuthenticator(username, password)
+
+# get a reference to our cluster
+options = ClusterOptions(auth)
+# Sets a pre-configured profile called "wan_development" to help avoid latency issues
+# when accessing Capella from a different Wide Area Network
+# or Availability Zone(e.g. your laptop).
+options.apply_profile('wan_development')
+cluster = Cluster.connect(f'couchbases://{endpoint}', options)
+
+# Wait until the cluster is ready for use.
+cluster.wait_until_ready(timedelta(seconds=35))
+# end::connect[]
+
+# tag::bucket[]
+# get a reference to our bucket
+cb = cluster.bucket(bucket_name)
+# end::bucket[]
+
+# tag::collection[]
+cb_coll = cb.scope("inventory").collection("airline")
+# end::collection[]
+
+# tag::upsert-func[]
+
+
+def upsert_document(doc):
+    print("\nUpsert CAS: ")
+    try:
+        # key will equal: "airline_8091"
+        key = doc["type"] + "_" + str(doc["id"])
+        result = cb_coll.upsert(key, doc)
+        print(result.cas)
+    except Exception as e:
+        print(e)
+# end::upsert-func[]
+
+# tag::get-func[]
+# get document function
+
+
+def get_airline_by_key(key):
+    print("\nGet Result: ")
+    try:
+        result = cb_coll.get(key)
+        print(result.content_as[str])
+    except Exception as e:
+        print(e)
+# end::get-func[]
+
+# tag::lookup-func[]
+# query for new document by callsign
+
+
+def lookup_by_callsign(cs):
+    print("\nLookup Result: ")
+    try:
+        inventory_scope = cb.scope('inventory')
+        sql_query = 'SELECT VALUE name FROM airline WHERE callsign = $1'
+        row_iter = inventory_scope.query(
+            sql_query,
+            QueryOptions(positional_parameters=[cs]))
+        for row in row_iter:
+            print(row)
+    except Exception as e:
+        print(e)
+# end::lookup-func[]
+
+
+# tag::test-doc[]
+airline = {
+    "type": "airline",
+    "id": 8091,
+    "callsign": "CBS",
+    "iata": None,
+    "icao": None,
+    "name": "Couchbase Airways",
+}
+# end::test-doc[]
+
+# tag::upsert-invoke[]
+upsert_document(airline)
+# end::upsert-invoke[]
+
+# tag::get-invoke[]
+get_airline_by_key("airline_8091")
+# end::get-invoke[]
+
+# tag::lookup-invoke[]
+lookup_by_callsign("CBS")
+# end::lookup-invoke[]
 ```
 
-### [](#connect)Connect
+Otherwise, read on as we introduce the CRUD API and connection to Capella or self-managed Couchbase Server.
 
-The basic connection details that you'll need are given below — for more background information, refer to the [Managing Connections page](../howtos/managing-connections.md#connection-strings).
+> [!TIP]
+> There's a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown.
+
+## [](#connect-to-your-database)Connect to your Database
+
+Connect to your Couchbase Capella operational cluster (or your local Couchbase Cluster, if you are trying out self-managed Couchbase).
 
 * Couchbase Capella
-* Local Couchbase Server
-
-From version 4.0, the Python SDK includes Capella's standard certificates by default, so you don't need any additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
+* Self-Managed Couchbase Server
 
 ```python
 # Update this to your cluster
@@ -388,16 +244,13 @@ options = ClusterOptions(auth)
 # when accessing Capella from a different Wide Area Network
 # or Availability Zone(e.g. your laptop).
 options.apply_profile('wan_development')
-cluster = Cluster.connect('couchbases://{}'.format(endpoint), options)
+cluster = Cluster.connect(f'couchbases://{endpoint}', options)
 
 # Wait until the cluster is ready for use.
-cluster.wait_until_ready(timedelta(seconds=5))
+cluster.wait_until_ready(timedelta(seconds=35))
 ```
 
-When accessing Capella from a different Wide Area Network or Availability Zone, you may experience latency issues with the default connection settings. SDK 4.1 introduces a `wan_development` Configuration Profile, which provides pre-configured timeout settings suitable for working in high latency environments. Basic usage is shown in the example above, but if you want to learn more see [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
-
-> [!CAUTION]
-> The Configuration Profiles feature is currently a [Volatile API](../project-docs/compatibility.md#interface-stability) and may be subject to change.
+Note, the client certificate for connecting to a Capella cluster is included in the SDK installation.
 
 ```python
 # Update this to your cluster
@@ -420,60 +273,37 @@ cluster = Cluster.connect('couchbases://your-ip', ClusterOptions(auth))
 cluster.wait_until_ready(timedelta(seconds=5))
 ```
 
-For developing locally on the same machine as Couchbase Server, your URI can be `couchbase://localhost`. For production deployments, you will want to use a secure server, with `couchbases://`.
+`wait_until_ready` is an optional call, but it is good practice to use it. Making connections, and opening resources such as buckets, is asynchronous — that is, the `cluster.bucket` call (below) returns immediately and proceeds in the background. `waitUntilReady` ensures that the bucket resource is fully loaded before proceeding.
 
-Following successful authentication, add this code snippet to access your `Bucket`:
+For a deeper look at connection options, read [Managing Connections](../howtos/managing-connections.md).
+
+> [!IMPORTANT]
+> The connection code for getting started uses the Administrator password that you were given during set up. In any production app you should create a role restricted to the permissions needed for your app — more on this in [the Security documentation](../concept-docs/best-practices.md#roles-and-rbac).
+
+### [](#opening-a-bucket)Opening a Bucket
+
+Following successful authentication, open the bucket with:
 
 ```python
 # get a reference to our bucket
 cb = cluster.bucket(bucket_name)
 ```
 
-> [!TIP]
-> WaitUntilReady()
-> 
-> For some of the SDKs, such as [Java](../../../java-sdk/current/hello-world/start-using-sdk.md#opening-a-bucket), you'll see a recommendation to use `waitUntilReady()`, which ensures that the bucket resource is fully loaded before proceeding.
-> 
-> Although this is an element of the [SDK bootstrapping RFC](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0048-sdk3-bootstrapping.md), it's not required for successful operation of the "wrapper" SDKs (Node.js, PHP, Python, and Ruby — wrappers over the C++ SDK), as `Cluster.connect()` blocks until bootstrap is complete and a cluster config is seen. Any bootstrap errors are returned there.
-
-### [](#add-and-retrieve-documents)Add and Retrieve Documents
-
-The Python SDK supports full integration with the [Collections](../concept-docs/collections.md) feature introduced in Couchbase Server 7.0\. **Collections** allow documents to be grouped by purpose or theme, according to a specified _Scope_.
-
-Here we refer to the `users` collection within the `tenant_agent_00` scope from the Travel Sample bucket as an example, but you may replace this with your own data.
+**Collections** allow documents to be grouped by purpose or theme, according to a specified **scope** — see data modeling, [below](#data-modeling). Here we will use the `airport` collection within the `inventory` scope from `travel-sample` bucket as an example.
 
 ```python
 cb_coll = cb.scope("inventory").collection("airline")
 ```
 
-The code shows how you would use a named collection and scope.
+## [](#create-read-update-delete)Create, Read, Update, Delete
 
-> [!IMPORTANT]
-> For Local Couchbase Server only
-> 
-> The `default_collection` must be used when connecting to a 6.6 cluster or earlier.
-> 
-> ```python
-> # Get a reference to the default collection, required for older Couchbase server versions
-> cb_coll_default = cb.default_collection()
-> ```
+Couchbase documents are organized into buckets, scopes, and collections. [CRUD operations](https://en.wikipedia.org/wiki/CRUD) — Create, Read, Update, Delete — can be performed upon documents in a collection.
 
-Let's create a dictionary object in our application that we can add to our `travel-sample` bucket that conforms to the structure of a document of type `airline`.
+### [](#insert-create-and-upsert)Insert (Create) and Upsert
 
-```python
-airline = {
-    "type": "airline",
-    "id": 8091,
-    "callsign": "CBS",
-    "iata": None,
-    "icao": None,
-    "name": "Couchbase Airways",
-}
-```
+`insert` and `upsert` will both create a new document. The difference between the two is that if a document with that key already exists, the `insert` operation will fail, while the `upsert` operation will succeed, replacing the content.
 
-[Data operations](../howtos/kv-operations.md), such as storing and retrieving documents, can be done using simple methods on the `Collection` class such as `Collection.get` and `Collection.upsert`. Simply pass the key (and value, if applicable) to the relevant methods.
-
-The following function will _upsert_ a document and print the returned [CAS](../howtos/concurrent-document-mutations.md) value:
+Here is a function to wrap upsert:
 
 ```python
 
@@ -489,13 +319,32 @@ def upsert_document(doc):
         print(e)
 ```
 
-Call the `upsert_document()` function passing in our `airline` document:
+We'll create a new document…​
+
+Creating a new document
+
+```python
+airline = {
+    "type": "airline",
+    "id": 8091,
+    "callsign": "CBS",
+    "iata": None,
+    "icao": None,
+    "name": "Couchbase Airways",
+}
+```
+
+… And call our wrapper function
+
+Upserting the document
 
 ```python
 upsert_document(airline)
 ```
 
-Now let's retrieve that document using a key-value operation. The following function runs a `get()` for a document key and either logs out the result or error in our console:
+### [](#get-read)Get (Read)
+
+The `get` method reads a document from a collection.
 
 ```python
 # get document function
@@ -510,87 +359,61 @@ def get_airline_by_key(key):
         print(e)
 ```
 
-Call the `get_airline_by_key` function passing in our valid document key `airline_8091`:
+### [](#replace-update-and-overloads)Replace (Update) and Overloads
+
+The replace method updates the value of an existing document
 
 ```python
-get_airline_by_key("airline_8091")
+# Replace document with CAS
+result = collection.get("document-key")
+doc = result.content_as[dict]
+doc["bar"] = "baz"
+opts = ReplaceOptions(cas=result.cas)
+result = collection.replace("document-key", doc, opts)
 ```
 
-### [](#sql-lookup)SQL++ Lookup
+When you replace a document, it's usually good practice to use [optimistic locking](../howtos/kv-operations.md#optimistic-locking), as in the above example, using CAS. Otherwise, changes might get lost if two people change the same document at the same time.
 
-Couchbase SQL++ queries can be performed at the `Cluster` or `Scope` level by invoking `Cluster.query()` or `Scope.query()`.
+### [](#remove-delete)Remove (Delete)
 
-Cluster level queries require you to specify the fully qualified keyspace each time (e.g. `travel-sample.inventory.airline`). However, with a Scope level query you only need to specify the Collection name — which in this case is `airline`:
+The remove method deletes a document from a collection:
 
 ```python
-# query for new document by callsign
-
-
-def lookup_by_callsign(cs):
-    print("\nLookup Result: ")
-    try:
-        inventory_scope = cb.scope('inventory')
-        sql_query = 'SELECT VALUE name FROM airline WHERE callsign = $1'
-        row_iter = inventory_scope.query(
-            sql_query,
-            QueryOptions(positional_parameters=[cs]))
-        for row in row_iter:
-            print(row)
-    except Exception as e:
-        print(e)
+# remove document with options
+result = collection.remove(
+    "document-key",
+    RemoveOptions(
+        cas=12345,
+        durability=ServerDurability(
+            Durability.MAJORITY)))
 ```
 
-We call the `lookup_by_callsign` function passing in our callsign `CBS`:
+Like `replace`, `remove` also optionally takes the CAS value if you want to make sure you are only removing the document if it hasn't changed since you last fetched it.
 
-```python
-lookup_by_callsign("CBS")
-```
+## [](#data-modeling)Data Modeling
 
-### [](#execute)Execute!
+Documents are organized into collections — collections of documents that belong together. You get to decide what it means to "belong." Developers usually put documents of the same type in the same collection.
 
-Now we can run our code using the following command:
+For example, imagine you have two types of documents: customers and invoices. You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
 
-```console
-$ python3 cb-test.py
-```
+Each document belongs to exactly one collection. A document's ID is unique _within_ the collection.
 
-The results you should expect are as follows:
+Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection's name is unique within the scope.
 
-```console
-Upsert CAS:
-1598469741559152640
+More details can be found on the [Data Model page](../concept-docs/data-model.md).
 
-Get Result:
-{'type': 'airline', 'id': 8091, 'callsign': 'CBS', 'iata': None, 'icao': None, 'name': 'Couchbase Airways'}
+## [](#what-next)What Next?
 
-Lookup Result:
-Couchbase Airways
-```
+### [](#help-and-troubleshooting)Help and Troubleshooting
 
-## [](#next-steps)Next Steps
+* [Troubleshooting common network problems](../howtos/troubleshooting-cloud-connections.md).
+* [Help forum](https://www.couchbase.com/forums/c/python-sdk/10).
+* [Discord channel](https://discord.com/channels/915294689681362954/1217642561645318194).
+* Read the [error handling page](../howtos/error-handling.md).
+* [Get help from Couchbase iQ](../../../cloud/get-started/capella-iq/get-started-with-iq.md#generate-sdk-code-preview).
 
-Now you're up and running, try one of the following:
+### [](#next-steps)Next Steps
 
-* Our [Travel Sample Application](sample-application.md) demonstrates all the basics you need to know;
-* Explore [Key Value Operations](../howtos/kv-operations.md) (CRUD) against a document database;
-* Or [Query](../howtos/n1ql-queries-with-sdk.md) with our SQL-based SQL++ query language;
-* Or read up on [which service fits your use case](../concept-docs/data-services.md).
-
-### [](#additional-resources)Additional Resources
-
-The API reference is generated for each release and the latest can be found [here](http://docs.couchbase.com/sdk-api/couchbase-python-client/).
-
-Older API references are linked from their respective sections in the [Individual Release Notes](../project-docs/sdk-release-notes.md). Most of the API documentation can also be accessed via `pydoc`.
-
-[Migration page](../project-docs/migrating-sdk-code-to-3.n.md) highlights the main differences to be aware of when migrating your code.
-
-Couchbase welcomes community contributions to the Python SDK. The Python SDK source code is available on [GitHub](https://github.com/couchbase/couchbase-python-client).
-
-### [](#troubleshooting)Troubleshooting
-
-* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you're running the SDK on your laptop against a Capella cluster, see further information on:
-
-  * Notes on [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
-  * [Network Requirements](../project-docs/compatibility.md#network-requirements).
-  * If you have a consumer-grade router which has problems with DNS-SRV records review our [Troubleshooting Guide](../howtos/troubleshooting-cloud-connections.md#troubleshooting-host-not-found).
-* Our [community forum](https://forums.couchbase.com/c/python-sdk/10) is a great source of help.
+* [Learn more about the Data Service](../concept-docs/data-durability-acid-transactions.md).
+* [Discover SQL++](../concept-docs/querying-your-data.md) — our SQL-family querying language.
+* Explore some of the [third party integrations](../project-docs/third-party-integrations.md) with Couchbase and the Python SDK, across the Python ecosystem.

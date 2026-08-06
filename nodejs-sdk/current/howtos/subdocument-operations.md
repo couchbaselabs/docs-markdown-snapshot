@@ -2,8 +2,8 @@
 title: Sub-Document Operations
 description: <em>Sub-document</em> operations can be used to efficiently access
   <em>parts</em> of documents.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/subdocument-operations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -65,21 +65,13 @@ The _lookup-in_ operations query the document for certain path(s); these path(s)
 Retrieve sub-document value
 
 ```javascript
-var result = await collection.lookupIn('customer123', [
-  couchbase.LookupInSpec.get('addresses.delivery.country'),
-])
-var country = result.content[0].value //'United Kingdom'
+
 ```
 
 Check existence of sub-document path
 
 ```javascript
-  var result = await collection.lookupIn('customer123', [
-    couchbase.LookupInSpec.exists('purchases.pending[-1]'),
-  ])
-  console.log('Path exists? ', result.content[0].value)
 
-  // Path exists? false
 ```
 
 Multiple operations can be combined as well:
@@ -87,13 +79,7 @@ Multiple operations can be combined as well:
 Combine multiple lookup operations
 
 ```javascript
-  var result = await collection.lookupIn('customer123', [
-    couchbase.LookupInSpec.get('addresses.delivery.country'),
-    couchbase.LookupInSpec.exists('purchases.pending[-1]'),
-  ])
 
-  console.log(result.content[0].value) // United Kingdom
-  console.log('Path exists?', result.content[1].value) // false
 ```
 
 ## [](#mutating)Mutating
@@ -103,9 +89,7 @@ Mutation operations modify one or more paths in the document. The simplest of th
 Upserting a new sub-document
 
 ```javascript
-await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.upsert('fax', '311-555-0151'),
-])
+
 ```
 
 Likewise, the _subdoc-insert_ operation will only add the new value to the path if it does not exist:
@@ -113,31 +97,13 @@ Likewise, the _subdoc-insert_ operation will only add the new value to the path 
 Inserting a sub-document
 
 ```javascript
-  await collection.mutateIn('customer123', [
-    couchbase.MutateInSpec.insert('purchases.complete', [42, true, 'None']),
-  ])
-  // Success
 
-  try {
-    await collection.mutateIn('customer123', [
-      couchbase.MutateInSpec.insert('purchases.complete', [42, true, 'None']),
-    ])
-  } catch (e) {
-    if (e instanceof couchbase.PathExistsError) {
-      console.log('Path already exists...')
-    } else {
-      throw e
-    }
-  }
 ```
 
 Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutate-in_ API. Here's an example of one which replaces one path and removes another.
 
 ```javascript
-await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.remove('addresses.billing'),
-  couchbase.MutateInSpec.replace('email', 'dougr96@hotmail.com'),
-])
+
 ```
 
 Mutate with store semantics
@@ -145,25 +111,7 @@ Mutate with store semantics
 The `storeSemantics` option can be used to define the document storage semantics for a _mutate-in_ operation. In this particular example we use the `Upsert` semantics, which means the document will be updated if it exists, and created if it doesn't. Note that when a document is updated, only the specified paths will be modified.
 
 ```javascript
-try {
-  // Mutate fields in a document that may or may not exist.
-  await collection.mutateIn(
-    'alice-123',
-    [
-      couchbase.MutateInSpec.insert('name', 'Alice'),
-      couchbase.MutateInSpec.upsert('email', 'alice@test.com'),
-    ],
-    {
-      storeSemantics: couchbase.StoreSemantics.Upsert,
-    }
-  )
-} catch (e) {
-  if (e instanceof couchbase.PathExistsError) {
-    console.log('Path already exists, not adding unique value')
-  } else {
-    throw e
-  }
-}
+
 ```
 
 > [!NOTE]
@@ -174,19 +122,11 @@ try {
 The _subdoc-array-prepend_ and _subdoc-array-append_ operations are true array prepend and append operations. Unlike fulldoc _append_/_prepend_ operations (which simply concatenate bytes to the existing value), _subdoc-array-append_ and _subdoc-array-prepend_ are JSON-aware:
 
 ```javascript
-  await collection.mutateIn('customer123', [
-    couchbase.MutateInSpec.arrayAppend('purchases.complete', 777),
-  ])
 
-  // purchases.complete is now [339, 976, 442, 666, 777]
 ```
 
 ```javascript
-  await collection.mutateIn('customer123', [
-    couchbase.MutateInSpec.arrayPrepend('purchases.abandoned', 18),
-  ])
 
-  // purchases.abandoned is now [18, 157, 49, 999]
 ```
 
 If your document only needs to contain an array, you do not have to create a top-level object wrapper to contain it. Simply initialize the document with an empty array and then use the empty path for subsequent sub-document array operations:
@@ -194,12 +134,7 @@ If your document only needs to contain an array, you do not have to create a top
 Creating and populating an array document
 
 ```javascript
-  await collection.upsert('my_array', [])
-  await collection.mutateIn('my_array', [
-    couchbase.MutateInSpec.arrayAppend('', 'some element'),
-  ])
 
-  // the document my_array is now ['some element']
 ```
 
 If you wish to add multiple values to an array, you may do so by passing multiple values to the _array-append_, _array-prepend_, or _array-insert_ operations. Be sure to know the difference between passing a collection of multiple elements (in which case the collection is inserted as a single element in the array, as a sub-array) and passing multiple elements (in which case the elements are appended individually to the array):
@@ -207,23 +142,13 @@ If you wish to add multiple values to an array, you may do so by passing multipl
 Add multiple elements to an array
 
 ```javascript
-  await collection.mutateIn('my_array', [
-    couchbase.MutateInSpec.arrayAppend('', ['elem1', 'elem2', 'elem3'], {
-      multi: true,
-    }),
-  ])
 
-  // the document my_array is now ['some_element', 'elem1', 'elem2', 'elem3']
 ```
 
 Add single array as element to existing array
 
 ```javascript
-  await collection.mutateIn('my_array', [
-    couchbase.MutateInSpec.arrayAppend('', ['elem1', 'elem2', 'elem3']),
-  ])
 
-  // the document my_array is now ['some_element', ['elem1', 'elem2', 'elem3']]
 ```
 
 Note that passing multiple values to a single _array-append_ operation results in greater performance increase and bandwidth savings than simply specifying a single _array-append_ for each element.
@@ -231,21 +156,13 @@ Note that passing multiple values to a single _array-append_ operation results i
 Adding multiple elements to array (slow)
 
 ```javascript
-await collection.mutateIn('my_array', [
-  couchbase.MutateInSpec.arrayAppend('', 'elem1'),
-  couchbase.MutateInSpec.arrayAppend('', 'elem2'),
-  couchbase.MutateInSpec.arrayAppend('', 'elem3'),
-])
+
 ```
 
 If you wish to create an array if it does not exist and also push elements to it within the same operation you may use the [_create-path_](#subdoc-create-parents) option:
 
 ```javascript
-await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.arrayAppend('some.path', 'Hello World', {
-    createPath: true,
-  }),
-])
+
 ```
 
 ## [](#arrays-as-unique-sets)Arrays as Unique Sets
@@ -253,23 +170,7 @@ await collection.mutateIn('customer123', [
 Limited support also exists for treating arrays like unique sets, using the _subdoc-array-addunique_ command. This will do a check to determine if the given value exists or not before actually adding the item to the array:
 
 ```javascript
-  await collection.mutateIn('customer123', [
-    couchbase.MutateInSpec.arrayAddUnique('purchases.complete', 95),
-  ])
 
-  // => Success
-
-  try {
-    await collection.mutateIn('customer123', [
-      couchbase.MutateInSpec.arrayAddUnique('purchases.complete', 95),
-    ])
-  } catch (e) {
-    if (e instanceof couchbase.PathExistsError) {
-      console.log('Path already exists, not adding unique value')
-    } else {
-      throw e
-    }
-  }
 ```
 
 Note that currently the _addunique_ will fail with a _Path Mismatch_ error if the array contains JSON _floats_, _objects_, or _arrays_. The _addunique_ operation will also fail with _Cannot Insert_ if the value to be added is one of those types as well.
@@ -281,9 +182,7 @@ Note that the actual position of the new element is undefined, and that the arra
 New elements can also be _inserted_ into an array. While _append_ will place a new item at the _end_ of an array and _prepend_ will place it at the beginning, _insert_ allows an element to be inserted at a specific _position_. The position is indicated by the last path component, which should be an array index. For example, to insert `'cruel'` as the second element in the array `['Hello', 'world']`, the code would look like:
 
 ```javascript
-await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.arrayInsert('tags[0]', 'cruel'),
-])
+
 ```
 
 Note that the array must already exist and that the index must be valid (i.e. it must not point to an element which is out of bounds).
@@ -293,24 +192,13 @@ Note that the array must already exist and that the index must be valid (i.e. it
 Counter operations allow the manipulation of a _numeric_ value inside a document. These operations are logically similar to the _counter_ operation on an entire document:
 
 ```javascript
-  var result = await collection.mutateIn('customer123', [
-    couchbase.MutateInSpec.increment('logins', 1),
-  ])
 
-  console.log(result.content[0]) // 1
 ```
 
 The _subdoc-counter_ operation performs simple arithmetic against a numeric value, either incrementing or decrementing the existing value. The new value is returned.
 
 ```javascript
-  await collection.upsert('player432', {
-    gold: 1000,
-  })
 
-  var result = await collection.mutateIn('player432', [
-    couchbase.MutateInSpec.decrement('gold', 150),
-  ])
-  // => player 432 now has 850 gold remaining
 ```
 
 The existing value for _subdoc-counter_ operations must be within range of a 64 bit signed integer. If the value does not exist, the _subdoc-counter_ operation will create it (and its parents, if _create-path_ is enabled).
@@ -355,18 +243,7 @@ Looking at the `some_field` field (which is really `level_0.level_1.level_2.leve
 By default the automatic creation of parents is disabled, as a simple typo in application code can result in a rather confusing document structure. Sometimes it is necessary to have the server create the hierarchy however. In this case, the _create-path_ option may be used.
 
 ```javascript
-await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.upsert(
-    'level_0.level_1.foo.bar.phone',
-    {
-      num: '311-555-0101',
-      ext: 16,
-    },
-    {
-      createPath: true,
-    }
-  ),
-])
+
 ```
 
 ## [](#reading-sub-documents-from-replicas)Reading Sub-Documents From Replicas
@@ -376,42 +253,13 @@ Couchbase Server 7.6 and later support Sub-Doc lookup from replicas.
 The `collection.lookupInAnyReplica()` method returns the first response — from active or replica:
 
 ```javascript
-try {
-  result = await collection.lookupInAnyReplica('customer123', [
-    couchbase.LookupInSpec.get('addresses.delivery.country'),
-  ])
-  const country = result.content[0].value //'United Kingdom'
-  console.log(`Country=${country}`)
-  console.log(`Is result replica=${result.isReplica}`)
-} catch (err) {
-  if (err instanceof couchbase.PathNotFoundError) {
-    console.log(`The version of the document on the server node 
-    that responded quickest did not have the requested 
-    field.`)
-  } else if (err instanceof couchbase.DocumentUnretrievableError) {
-    console.log('Document not present on any server node.')
-  }
-}
+
 ```
 
 The `collection.lookupInAllReplicas()` fetches all available replicas (and the active copy), and returns all responses.
 
 ```javascript
-result = await collection.lookupInAllReplicas('customer123', [
-  couchbase.LookupInSpec.get('addresses.delivery.country'),
-])
-result.forEach((res) => {
-  try {
-    const country = res.content[0].value //'United Kingdom'
-    console.log(`Country=${country}`)
-    console.log(`Is result replica=${res.isReplica}`)
-  } catch (err) {
-    if (err instanceof couchbase.PathNotFoundError) {
-      console.log(`The version of the document on one of the server nodes 
-      did not have the requested field.`)
-    }
-  }
-})
+
 ```
 
 You may want to use `lookupInAllReplicas` to build a consensus, but it's more likely that you'll make use of `lookupInAnyReplica` as a fallback to a `lookupIn`, when the active node times out.
@@ -421,19 +269,11 @@ You may want to use `lookupInAllReplicas` to build a consensus, but it's more li
 Subdoc mostly eliminates the need for tracking the [CAS](concurrent-document-mutations.md) value. Subdoc operations are atomic and therefore if two different threads access two different sub-documents then no conflict will arise. For example the following two blocks can execute concurrently without any risk of conflict:
 
 ```javascript
-await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.arrayAppend('purchases.complete', {
-    some_id: SOME_ID,
-  }),
-])
+
 ```
 
 ```javascript
-await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.arrayAppend('purchases.abandoned', {
-    some_other_id: SOME_OTHER_ID,
-  }),
-])
+
 ```
 
 Even when modifying the _same_ part of the document, operations will not necessarily conflict. For example, two concurrent _subdoc-array-append_ operations to the same array will both succeed, never overwriting the other.
@@ -441,13 +281,7 @@ Even when modifying the _same_ part of the document, operations will not necessa
 While CAS is no longer so strongly required to ensure document updates are preserved, as Sub-Doc reduces the chance of losing a mutation, it may still be needed to ensure document state remains consistent over multiple invocations of _mutate-in_: Sometimes it's important to ensure the entire document didn't change state since the last operation, such as in the case _subdoc-remove_ operations to ensure that the element being removed was not already replaced by something else.
 
 ```javascript
-await collection.mutateIn(
-  'customer123',
-  [couchbase.MutateInSpec.insert('addresses.delivery.line1', '17 Olcott St')],
-  {
-    cas: SOME_CAS,
-  }
-)
+
 ```
 
 ## [](#error-handling)Error handling

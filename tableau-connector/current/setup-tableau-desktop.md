@@ -1,41 +1,50 @@
 ---
-title: Install the Couchbase Analytics Connector on Tableau Desktop
-description: The Couchbase Analytics Connector for Tableau Desktop can be
-  installed on both macOS and Windows.
-editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/setup-tableau-desktop.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+title: Install the Couchbase Tableau Connector on Tableau Desktop
+description: You can install the Couchbase Tableau Connector for Tableau Desktop
+  on both macOS and Windows.
+editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/setup-tableau-desktop.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:tableau-connector::setup-tableau-desktop.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/tableau-connector/current/setup-tableau-desktop.html)
 
-# Install the Couchbase Analytics Connector on Tableau Desktop
+# Install the Couchbase Tableau Connector on Tableau Desktop
 
-> The Couchbase Analytics Connector for Tableau Desktop can be installed on both macOS and Windows. 
+> You can install the Couchbase Tableau Connector for Tableau Desktop on both macOS and Windows. 
 
-First, download the connector file and the JDBC driver from the [Tableau Connector Release Notes](release-notes.md) page.
+After you [download the Couchbase Tableau Connector](setup-tableau-connector.md), extract the ZIP archive to a local directory. The archive contains a `.taco` file and a `.jar` file.
 
-## [](#install-couchbase-analytics-connector-for-tableau-on-windows)Install Couchbase Analytics Connector for Tableau on Windows
+## [](#install-the-connector-on-windows)Install the Connector on Windows
 
-1. On Windows, copy the **couchbase-analytics-<version>.taco** file into the `C:\Users\<Windows User>\Documents\My Tableau Repository\Connectors` directory to add the connector to Tableau.
-2. Next, copy the **couchbase-jdbc-driver-<version>.jar** file to the `C:\Program Files\Tableau\Drivers` directory to add the required JDBC driver to Tableau.
+To install the Couchbase Tableau Connector on Windows:
 
-## [](#install-couchbase-analytics-connector-for-tableau-on-macos)Install Couchbase Analytics Connector for Tableau on macOS
+1. Copy the `.taco` file into `C:\Users\<Windows User>\Documents\My Tableau Repository\Connectors`
+2. Copy the `.jar` file into `C:\Program Files\Tableau\Drivers`
+3. Restart Tableau Desktop.
 
-1. On macOS, copy the **couchbase-analytics-<version>.taco** file into the `/Users/<user>/Documents/My Tableau Repository/Connectors` directory to add the connector to Tableau.
-2. Next, copy the **couchbase-jdbc-driver-<version>.jar** to the `/Users/<user>/Library/Tableau/Drivers directory` to add the required JDBC driver to Tableau.
+## [](#install-the-connector-on-macos)Install the Connector on macOS
 
-## [](#verify-the-couchbase-analytics-connector-for-tableau-installation)Verify the Couchbase Analytics Connector for Tableau Installation
+To install the Couchbase Tableau Connector on macOS:
 
-1. Once the Tableau connector and JDBC files are copied to the right directories, launch Tableau and go to **Connect** **To a Server** to verify the installation. If your installation was successful, you should now see the option for Couchbase Analytics by Couchbase.  
-![Tableau Connect Menu including Couchbase Analytics by Couchbase](_images/tableau-connector.png)
-2. Select the Couchbase Analytics option to bring up a pop-up that allows you to configure the connection settings to your Couchbase Server.  
-![Couchbase Analytics Connector Configuration Popup](_images/tableau-connector-config-popup.png)
+1. Copy the `.taco` file into `/Users/<user>/Documents/My Tableau Repository/Connectors`
+2. Copy the `.jar` file into `/Users/<user>/Library/Tableau/Drivers directory`
+3. Restart Tableau Desktop.
+
+## [](#verify-the-connector-installation)Verify the Connector Installation
+
+To verify if the connector is installed correctly:
+
+1. Open **Tableau Desktop**.
+2. Go to **Connect** **To a Server** **More**.
+3. In the search box, enter **Couchbase**.
+
+If the connector appears in the search results, it's installed correctly.
 
 ## [](#ssl)Set Up SSL Support for Tableau Desktop
 
-Usually, you won't need to follow this section. There is no need to provide a certificate if you are connecting to Couchbase Capella, or using a certificate from a public certificate authority. Certificates of well-known public certification authorities as well as Couchbase Capella are trusted by default.
+Typically, you do not need to perform these steps. There is no need to provide a certificate if you are using a certificate from a public certificate authority. Certificates of well-known public certification authorities are trusted by default.
 
 To configure SSL support for Tableau Connector:
 

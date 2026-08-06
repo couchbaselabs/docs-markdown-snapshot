@@ -3,8 +3,8 @@ title: Active-Passive Peer-to-Peer Sync
 description: Where MultiPeer Sync is not available, Couchbase Lite's
   Active-Passive Peer-to-Peer Synchronization enables edge devices to
   synchronize securely without consuming centralized cloud-server resources
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/p2psync-websocket.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/p2psync-websocket.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:android:p2psync-websocket.adoc[]
 ---
 
@@ -15,14 +15,15 @@ link: xref:couchbase-lite:android:p2psync-websocket.adoc[]
 
 > Description — _Where MultiPeer Sync is not available, Couchbase Lite's Active-Passive Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — An introduction to Couchbase Lite's Peer-to-Peer Synchronization and its concepts._  
-> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
+> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
 > [!TIP]
 > [Multipeer P2P Replicator](p2psync-multipeer.md)
 
 Multipeer P2P Replicator is available for Android, offering:
 
-* Auto-discovery over local Wi-Fi (via `DNS-SD`)
+* Auto-discovery over Wi-Fi and Bluetooth Low Energy
+* Automatic transport switching between Wi-Fi and Bluetooth when both are enabled
 * Lightweight and low-maintenance configuration
 * Dynamic mesh topology for optimal peer connectivity
 * Secure communication via TLS and certificate-based authentication
@@ -57,7 +58,7 @@ Example 1\. Simple workflow
 5. Point the replicator at the Listener
 6. Initialize the replicator
 7. Replicator and Listener engage in the configured security protocol exchanges to confirm connection
-8. If connection is confirmed then replication will commence, synchronizing the two data stores.
+8. If connection is confirmed then replication commences, synchronizing the two data stores.
 
 Here you can see configuration involves a [Passive Peer](p2psync-websocket-using-passive.md) and an [Active Peer](p2psync-websocket-using-active.md) and a user-friendly Listener configuration in [Basic Setup](#simple-configuration).
 
@@ -77,7 +78,7 @@ Each listener instance serves a single Couchbase Lite database, enabling synchro
 
 Having a Listener on a database still allows you to open replications to the other clients. For example, a Listener can actively begin replicating to other Listeners while listening for connections. These replications can be for the same or a different database.
 
-The Listener will automatically select a port to use or a user-specified port. It will also listen on all available networks, unless you specify a specific network.
+The Listener automatically selects a port to use or a user-specified port. It also listens on all available networks, unless you specify a specific network.
 
 ### [](#security)Security
 
@@ -101,13 +102,13 @@ When a Listener is stopped, then all connected replicators are notified by a Web
 
 #### [](#passive-peers)Passive peers
 
-A Passive Peer losing connectivity with an Active Peer will clean up any associated endpoint connections to that Peer. The Active Peer may attempt to reconnect to the Passive Peer.
+A Passive Peer losing connectivity with an Active Peer cleans up any associated endpoint connections to that Peer. The Active Peer may attempt to reconnect to the Passive Peer.
 
 #### [](#active-peers)Active peers
 
-An Active Peer permanently losing connectivity with a Passive Peer will cease replicating.
+An Active Peer permanently losing connectivity with a Passive Peer ceases replicating.
 
-An Active Peer temporarily losing connectivity with a passive Peer will use exponential backoff functionality to attempt reconnection.
+An Active Peer temporarily losing connectivity with a passive Peer uses exponential backoff feature to attempt reconnection.
 
 ### [](#delta-sync)Delta Sync
 
@@ -125,7 +126,7 @@ You can configure a Peer-to-Peer synchronization with just a short amount of cod
 
 Example 2\. Simple Listener
 
-This simple listener configuration will give you a listener ready to participate in an encrypted synchronization with a replicator providing a valid user name and password.
+This simple listener configuration gives you a listener ready to participate in an encrypted synchronization with a replicator providing a valid user name and password.
 
 * Kotlin
 * Java
@@ -167,7 +168,7 @@ thisListener.start(); (4)
 
 Example 3\. Simple Replicator
 
-This simple replicator configuration will give you an encrypted, bi-directional Peer-to-Peer synchronization with automatic conflict resolution.
+This simple replicator configuration gives you an encrypted, bi-directional Peer-to-Peer synchronization with automatic conflict resolution.
 
 * Kotlin
 * Java
@@ -227,7 +228,7 @@ Core functionalities of the listener are:
 * The listener can be started, or can be stopped.
 * Once the listener is started, a total number of connections or active connections can be checked.
 
-API Reference: [URLEndpointListener](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListener.html)
+API Reference: [URLEndpointListener](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListener.html)
 
 ### [](#urlendpointlistenerconfiguration)URLEndpointListenerConfiguration
 
@@ -235,9 +236,9 @@ Use this to create a configuration object you can then use to initialize the lis
 
 Port
 
-This is the port that the listener will listen to.
+This is the port that the listener listens to.
 
-If the port is null or zero, the listener will auto-assign an available port to listen on.
+If the port is null or zero, the listener auto-assigns an available port to listen on.
 
 Default value is null or zero depending on platform. When the listener is not started, the port is null (or zero if the platform requires).
 
@@ -245,7 +246,7 @@ Network Interface
 
 Use this to select a specific Network Interface to use, in the form of the IP Address or network interface name.
 
-If the network interface is specified, only that interface wil be used.
+If the network interface is specified, only that interface will be used.
 
 If the network interface is not specified, all available network interfaces will be used.
 
@@ -253,31 +254,31 @@ The value is null if the listener is not started.
 
 disableTLS
 
-You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setDisableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-) method to disable TLS communication if necessary
+You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setDisableTLS](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-) method to disable TLS communication if necessary
 
 The `disableTLS` setting must be 'false' when _Client Cert Authentication_ is required.
 
 Basic Authentication can be used with, or without, TLS.
 
-[setDisableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
+[setDisableTLS](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
 
 * If `disableTLS` is true — TLS communication is disabled and TLS identity is ignored. Active peers will use the `ws://` URL scheme used to connect to the listener.
 * If `disableTLS` is false or not specified — TLS communication is enabled.  
-Active peers will use the `wss://` URL scheme to connect to the listener.
+Active peers uses the `wss://` URL scheme to connect to the listener.
 
-API Reference: [setDisableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-)
+API Reference: [setDisableTLS](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-)
 
 tlsIdentity
 
-Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setTlsIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setTlsIdentity-com.couchbase.lite.TLSIdentity-) method to configure the TLS Identity used in TLS communication.
+Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setTlsIdentity](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setTlsIdentity-com.couchbase.lite.TLSIdentity-) method to configure the TLS Identity used in TLS communication.
 
-If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous self-signed identity (unless `disableTLS = true`). Whilst the client cannot use this to authenticate the server, it will use it to encrypt communication, giving a more secure option than non-TLS communication.
+If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous self-signed identity (unless `disableTLS = true`). Whilst the client cannot use this to authenticate the server, it uses it to encrypt communication, giving a more secure option than non-TLS communication.
 
 The auto-generated anonymous self-signed identity is saved in secure storage for future use to obviate the need to re-generate it.
 
 When the listener is not started, the identity is null. When TLS is disabled, the identity is always null.
 
-API Reference: [setTlsIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setTlsIdentity-com.couchbase.lite.TLSIdentity-)
+API Reference: [setTlsIdentity](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setTlsIdentity-com.couchbase.lite.TLSIdentity-)
 
 authenticator
 
@@ -287,7 +288,7 @@ Use this to specify the authenticator the listener uses to authenticate the clie
 * ListenerCertificateAuthenticator
 * Null — there is no authentication.
 
-API Reference: [setAuthenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setAuthenticator-com.couchbase.lite.ListenerAuthenticator-)
+API Reference: [setAuthenticator](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setAuthenticator-com.couchbase.lite.ListenerAuthenticator-)
 
 readOnly
 
@@ -297,7 +298,7 @@ enableDeltaSync
 
 The option to enable Delta Sync and replicate only changed data also depends on the delta sync settings at database level. The default value is false.
 
-API Reference: [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)
+API Reference: [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)
 
 ## [](#security-2)Security
 
@@ -385,7 +386,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](#android:landing-p2psync.adoc)
-* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/)
+* [API References](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/)
 
 .
 

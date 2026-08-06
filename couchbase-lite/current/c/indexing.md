@@ -1,8 +1,8 @@
 ---
 title: Indexing your Data
 description: Couchbase Lite database data model concepts - indexes
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/indexing.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/indexing.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:indexing.adoc[]
 ---
 
@@ -54,27 +54,42 @@ The code to create the index will look something like this:
 
 Example 2\. Create index
 
+* C
+* C++
+
 ```c
 // For value types, this is optional but provides performance enhancements
 // NOTE: No error handling, for brevity (see getting started)
 
 // Syntax for second argument is the same as taking from a N1QL SELECT
 // i.e. SELECT (type, name) FROM _;
-CBLValueIndexConfiguration config{};
+CBLValueIndexConfiguration config = {};
 config.expressionLanguage = kCBLN1QLLanguage;
 config.expressions = FLSTR("type, name");
 
-CBLError err{};
+CBLError err = {};
 CBLCollection_CreateValueIndex(collection, FLSTR("TypeNameIndex"), config, &err);
+```
+
+```cpp
+// For value types, this is optional but provides performance enhancements
+// NOTE: No error handling, for brevity (see getting started)
+// Syntax for the expressions is the same as taking from a N1QL SELECT
+// i.e. SELECT (type, name) FROM _;
+cbl::ValueIndexConfiguration config{};
+config.expressionLanguage = kCBLN1QLLanguage;
+config.expressions = "type, name";
+
+collection.createValueIndex("TypeNameIndex", config);
 ```
 
 ## [](#partial-index)Partial Index
 
 Couchbase Lite 3.2.2 introduces support for Partial Index - Partial Value and Partial Full-Text Indexes. The Partial Index can create a smaller index, potentially improving index and query performance. You can use Partial Index to specify a `WHERE` clause in your index configuration. If a where clause is specified, the database will index a document only when the where clause condition is met.
 
-Couchbase's query optimizer uses [SQLite's Partial Index rules about queries using Partial Indexes](https://www.sqlite.org/partialindex.html) to determine whether to use partial index in the query or not.
+Couchbase's' query optimizer uses [SQLite's Partial Index rules about queries using Partial Indexes](https://www.sqlite.org/partialindex.html) to determine whether to use partial index in the query or not.
 
-Example 3\. Couchbase and SQLite's Partial Index Rules
+Example 3\. Couchbase and SQLite's' Partial Index Rules
 
 In general, Couchbase Lite follows the two rules, with a modification to the second rule.
 
@@ -111,44 +126,77 @@ SELECT * FROM col1 WHERE b=456;  -- cannot use partial index
 
 Partial Value Index is a form of Partial Index in which a value is used in the `WHERE` clause and the query is selected by the query optimizer.
 
+* C
+* C++
+
 ```c
-    CBLValueIndexConfiguration config {};
+    CBLValueIndexConfiguration config = {};
     config.expressionLanguage = kCBLN1QLLanguage;
     config.expressions = FLSTR("city");
     config.where = FLSTR("type = \"hotel\"");
 
-    CBLError err{};
+    CBLError err = {};
     CBLCollection_CreateValueIndex(collection, FLSTR("HotelCityIndex"), config, &err);
+```
+
+```cpp
+    cbl::ValueIndexConfiguration config{};
+    config.expressionLanguage = kCBLN1QLLanguage;
+    config.expressions = "city";
+    config.where = "type = \"hotel\"";
+
+    collection.createValueIndex("HotelCityIndex", config);
 ```
 
 ### [](#partial-full-text-index)Partial Full-Text Index
 
 A key difference between a Partial Value Index and a Partial Full-Text Index is that a Partial Full-Text Index is not selected by SQLite's query optimizer. Instead, it's explicitly selected by the SQL++ `match(indexName, terms)` function, which runs a Full-Text Search query using the indexed properties. This means that a Partial Full-Text Index will always be used when the `match()` function is invoked, regardless of other predicates in the WHERE clause. For details, see [Using Full-Text Search](fts.md).
 
+* C
+* C++
+
 ```c
-    CBLFullTextIndexConfiguration config{};
+    CBLFullTextIndexConfiguration config = {};
     config.expressionLanguage = kCBLN1QLLanguage;
     config.expressions = FLSTR("description");
     config.where = FLSTR("type = \"hotel\"");
 
-    CBLError err{};
+    CBLError err = {};
     CBLCollection_CreateFullTextIndex(collection, FLSTR("HotelDescIndex"), config, &err);
+```
+
+```cpp
+    cbl::FullTextIndexConfiguration config{};
+    config.expressionLanguage = kCBLN1QLLanguage;
+    config.expressions = "description";
+    config.where = "type = \"hotel\"";
+
+    collection.createFullTextIndex("HotelDescIndex", config);
 ```
 
 ## [](#array-indexing)Array Indexing
 
-Couchbase Lite 3.2.1 introduces functionality to optimize querying arrays. [Array UNNEST](query-n1ql-mobile.md#lbl-unnest) to unpack arrays within a document to allow joins with the parent object, and array indexes for indexing unnested array's values to allow more efficient queries with `UNNEST`.
+Couchbase Lite 3.2.1 introduces functionality to optimize querying arrays. [Array UNNEST](query-n1ql-mobile.md#lbl-unnest) to unpack arrays within a document to allow joins with the parent object, and array indexes for indexing unnested array's' values to allow more efficient queries with `UNNEST`.
 
 ### [](#the-array-index)The Array Index
 
-An array index is a new type of the index for indexing nested array's properties to allow querying with the `UNNEST` more efficiently.
+An array index is a new type of the index for indexing nested array's' properties to allow querying with the `UNNEST` more efficiently.
 
 Below is an example array index configuration:
 
+* C
+* C++
+
 ```c
-CBLArrayIndexConfiguration config{};
+CBLArrayIndexConfiguration config = {};
 config.expressionLanguage = kCBLN1QLLanguage;
 config.path = FLSTR("contacts");
+```
+
+```cpp
+cbl::ArrayIndexConfiguration config{};
+config.expressionLanguage = kCBLN1QLLanguage;
+config.path = "contacts";
 ```
 
 ### [](#array-index-syntax)Array Index Syntax
@@ -203,13 +251,24 @@ The query above produces the following output from the document:
 
 You can also perform the same operation using array indexes like so:
 
+* C
+* C++
+
 ```c
-    CBLArrayIndexConfiguration config{};
+    CBLArrayIndexConfiguration config = {};
     config.expressionLanguage = kCBLN1QLLanguage;
     config.path = FLSTR("likes");
 
-    CBLError err{};
+    CBLError err = {};
     CBLCollection_CreateArrayIndex(collection, FLSTR("myindex"), config, &err);
+```
+
+```cpp
+    cbl::ArrayIndexConfiguration config{};
+    config.expressionLanguage = kCBLN1QLLanguage;
+    config.path = "likes";
+
+    collection.createArrayIndex("myindex", config);
 ```
 
 You can perform similar operations on nested arrays:
@@ -233,14 +292,26 @@ The output demonstrates retrieval of both primary and secondary contact numbers 
 
 Here's an example of creating an array index on a nested array containing dictionary values:
 
+* C
+* C++
+
 ```c
-    CBLArrayIndexConfiguration config{};
+    CBLArrayIndexConfiguration config = {};
     config.expressionLanguage = kCBLN1QLLanguage;
     config.path = FLSTR("contacts[].phones");
     config.expressions = FLSTR("type");
 
-    CBLError err{};
+    CBLError err = {};
     CBLCollection_CreateArrayIndex(collection, FLSTR("myindex"), config, &err);
+```
+
+```cpp
+    cbl::ArrayIndexConfiguration config{};
+    config.expressionLanguage = kCBLN1QLLanguage;
+    config.path = "contacts[].phones";
+    config.expressions = "type";
+
+    collection.createArrayIndex("myindex", config);
 ```
 
 The above snippet creates an array index to allow you to iterate through `contacts[].phones[].type` in the document, namely `"home"` and `"mobile"`.

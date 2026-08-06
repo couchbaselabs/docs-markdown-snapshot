@@ -1,7 +1,7 @@
 ---
 title: Orphaned Requests Logging
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/observability-orphan-logger.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/observability-orphan-logger.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:howtos:observability-orphan-logger.adoc[]
 ---
 
@@ -20,31 +20,23 @@ When the user then sees timeouts in their logs, they can go look at the output o
 
 ### [](#configuring-orphan-logging)Configuring Orphan Logging
 
+> [!NOTE]
+> The underlying C++ core is responsible for orphan logging.
+
 The orphan response logging is very similar in principle to the threshold logging, but instead of tracking responses which are over a specific threshold it tracks those responses which are "orphaned".
 
 The report interval and sample size can be adjusted (defaults are 10s and 10 samples per service, respectively).
 
 ```python
-# configure logging
-logging.basicConfig(filename='example.log',
-                    filemode='w', 
-                    level=logging.DEBUG,
-                    format='%(levelname)s::%(asctime)s::%(message)s',
-                    datefmt='%Y-%m-%d %H:%M:%S')
-# setup couchbase logging
-logger = logging.getLogger()
-couchbase.configure_logging(logger.name, level=logger.level)
-
-tracing_opts = ClusterTracingOptions(
-    # report interval
-    tracing_orphaned_queue_flush_interval=timedelta(minutes=1),
-    # sample size
-    tracing_orphaned_queue_size=10
+orphan_opts = ClusterOrphanReportingOptions(
+    emit_interval=timedelta(minutes=1),
+    sample_size=10
 )
 
 authenticator = PasswordAuthenticator("Administrator", "password")
+cluster_opts = ClusterOptions(authenticator, orphan_reporting_options=orphan_opts)
 
-cluster = Cluster("couchbase://your-ip", ClusterOptions(authenticator,tracing_options=tracing_opts))
+cluster = Cluster.connect("couchbase://your-ip", cluster_opts)
 ```
 
 #### [](#json-output-format-logging)JSON Output Format & Logging

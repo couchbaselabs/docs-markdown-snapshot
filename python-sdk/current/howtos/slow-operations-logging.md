@@ -2,8 +2,8 @@
 title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging, orphan logging, and other span metrics.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/slow-operations-logging.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/slow-operations-logging.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:howtos:slow-operations-logging.adoc[]
 ---
 
@@ -18,33 +18,42 @@ To improve debuggability certain metrics are automatically measured and logged. 
 
 ## [](#threshold-logging-reporting)Threshold Logging Reporting
 
+> [!NOTE]
+> As of v4.6.0 the Threshold Logger is native to the Python SDK. In previous versions the underlying C++ core was responsible for threshold logging.
+
 Threshold logging is the recording of slow operations — useful for diagnosing when and where problems occur in a distributed environment.
 
 ### [](#configuring-threshold-logging)Configuring Threshold Logging
 
-To configure threshold logging, adjust the `ClusterTracingOptions`. For example setting the `tracing_threshold_kv` and `tracing_threshold_queue_size` on the Threshold Logger:
+By default the a threshold log report can be emitted every 10 seconds, but you can customize the emit interval, along with operation thresholds:
 
 ```python
-# configure logging
-logging.basicConfig(stream=sys.stderr, level=logging.INFO)
-# setup couchbase logging
-logger = logging.getLogger()
-couchbase.configure_logging(logger.name, level=logger.level)
-
 tracing_opts = ClusterTracingOptions(
+    tracing_threshold_queue_flush_interval=timedelta(seconds=5),
     tracing_threshold_queue_size=10,
     tracing_threshold_kv=timedelta(milliseconds=500))
 
-cluster_opts = ClusterOptions(authenticator=PasswordAuthenticator(
-    "Administrator",
-    "password"),
-    tracing_options=tracing_opts)
+auth = PasswordAuthenticator("Administrator", "password")
+cluster_opts = ClusterOptions(authenticator=auth, tracing_options=tracing_opts)
 
-cluster = Cluster(
-    "couchbase://your-ip",
-    cluster_opts
-)
+cluster = Cluster.connect("couchbase://your-ip", cluster_opts)
 ```
+
+The `ThresholdLogger` can be configured via `ClusterTracingOptions` as shown above. The following table shows the currently available properties:
+
+__Table 1\. ClusterTracingOptions Properties__
+| Property                                   | Default          | Description                                              |
+| ------------------------------------------ | ---------------- | -------------------------------------------------------- |
+| tracing\_enable\_tracing                   | true             | If tracing should be enabled.                            |
+| tracing\_threshold\_kv                     | 500 milliseconds | The key-value operations threshold.                      |
+| tracing\_threshold\_view                   | 1 second         | The view query operations threshold.                     |
+| tracing\_threshold\_query                  | 1 second         | The query operations threshold.                          |
+| tracing\_threshold\_search                 | 1 second         | The search query operations threshold.                   |
+| tracing\_threshold\_analytics              | 1 second         | The analytics query operations threshold.                |
+| tracing\_threshold\_eventing               | 1 second         | The eventing operations threshold.                       |
+| tracing\_threshold\_management             | 1 second         | The management operations threshold.                     |
+| tracing\_threshold\_queue\_size            | 10               | The top number of operations to report.                  |
+| tracing\_threshold\_queue\_flush\_interval | 10 seconds       | The interval at which a threshold report can be emitted. |
 
 Note that the Threshold Logger is set as the cluster level `Tracer` implementation.
 
@@ -74,6 +83,7 @@ The `total_count` represents the total amount of over-threshold recorded items i
   "last_dispatch_duration_us": 40,
   "total_dispatch_duration_us": 40,
   "last_server_duration_us": 2,
+  "total_server_duration_us": 2,
   "operation_name": "upsert",
   "last_local_id": "66388CF5BFCF7522/18CC8791579B567C",
   "operation_id": "0x23",

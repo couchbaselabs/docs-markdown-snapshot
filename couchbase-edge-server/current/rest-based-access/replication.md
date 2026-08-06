@@ -2,8 +2,8 @@
 title: Manage Replication with Edge Server
 description: The replicate endpoint enables you to synchronize Edge Server with
   another server, for example Sync Gateway or Couchbase Capella App Services.
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/replication.adoc
-pubDate: 2026-04-15T05:26:28.652Z
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/rest-based-access/pages/replication.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-edge-server:rest-based-access:replication.adoc[]
 ---
 
@@ -61,8 +61,32 @@ To configure automatic replication, use the top-level [replications](../configur
 | **tls\_client\_cert**      | This Edge Server's TLS client certificate, for mTLS. (Requires tls\_client\_cert\_key.) | string |
 | **tls\_client\_cert\_key** | Private key of TLS client certificate. (Requires tls\_client\_cert.)                    | string |
 
-1. One of `source` or `target` must be a local database name; the other must be a remote `ws:` or `wss:` sync URL.
-2. For more details, see [Edge Server Configuration](../configuration/edge-server-configuration.md).
+> [!NOTE]
+> The `tls_client_cert` and `tls_client_cert_key` fields configure mTLS for Edge Server authenticating to a remote server during replication. This is separate from mTLS used for client-to-Edge-Server connections. For more information on client authentication, see [Authentication](../configuration/authentication.md).
+
+Use `openid_token` when the remote App Services endpoint or Sync Gateway instance is configured with an OIDC provider. You can provide `user` and `openid_token` together; the OIDC token takes precedence for authentication.
+
+Example: OIDC authentication in the configuration file
+
+```json
+"replications": [
+  {
+    "source": "wss://<app-endpoint-url>:4984/american234",
+    "target": "american234",
+    "bidirectional": true,
+    "continuous": true,
+    "collections": { "AmericanAirlines.AA234": {} },
+    "auth": {
+      "user": "user123", (1)
+      "openid_token": "<OIDC_TOKEN>" (2)
+    }
+  }
+]
+```
+
+| **1** | The username must match a user configured on the remote App Services or Sync Gateway instance.                                                                                                                                                                                                                                                                                                                                        |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Replace <OIDC\_TOKEN> with a valid, unexpired token from your identity provider. OIDC tokens are short-lived. For continuous replication, ensure your token refresh mechanism updates this value before Edge Server starts. One of source or target must be a local database name; the other must be a remote ws: or wss: sync URL. For more details, see [Edge Server Configuration](../configuration/edge-server-configuration.md). |
 
 ## [](#start-replication-with-the-rest-api)Start Replication with the REST API
 
@@ -130,6 +154,36 @@ curl --cacert $CERT --user $USER:$PASSWORD \
 | ----- | ------------------------------------------------------------------------------------ |
 | **2** | Only the airport collection is replicated.                                           |
 | **3** | The user and password match the authentication that was set up for the App Endpoint. |
+
+A successful response has a `202` (Accepted) status and a JSON body containing a `session_id` property, whose value is an integer identifying this replication task. An error status will only be returned if the parameters are invalid.
+
+### [](#ex-start-replication-oidc)Start Replication with OIDC Authentication
+
+The following request starts replication between a Capella App Endpoint and the local database, authenticating with an OpenID Connect token. Use this when the remote App Endpoint is configured with an OIDC provider.
+
+HTTP Request
+
+```sh
+curl --cacert $CERT --user $USER:$PASSWORD \
+  "https://$HOST:$PORT/_replicate" --json '{
+  "source": "wss://<app-endpoint-url>:4984/american234",
+  "target": "american234",
+  "bidirectional": true, (1)
+  "continuous": true,
+  "collections": {
+    "AmericanAirlines.AA234": {}
+  },
+  "auth": {
+    "user": "user123", (2)
+    "openid_token": "<OIDC_TOKEN>" (3)
+  }
+}'
+```
+
+| **1** | Replication is bidirectional and continuous.                                                                                                                                                                           |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | The username must match a user configured on the remote App Services or Sync Gateway instance.                                                                                                                         |
+| **3** | Replace <OIDC\_TOKEN> with a valid, unexpired token from your identity provider. OIDC tokens are short-lived; for continuous replication, ensure your token refresh mechanism is in place before starting replication. |
 
 A successful response has a `202` (Accepted) status and a JSON body containing a `session_id` property, whose value is an integer identifying this replication task. An error status will only be returned if the parameters are invalid.
 

@@ -2,8 +2,8 @@
 title: Querying Metadata
 description: You can review information about your Enterprise Analytics entities
   by querying the collections in the <code>System.Metadata</code> scope.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_metadata.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_ddl_metadata.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sqlpp:5_ddl_metadata.adoc[]
 ---
 

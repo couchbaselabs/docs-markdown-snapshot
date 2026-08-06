@@ -1,7 +1,7 @@
 ---
 title: Sub-Documents
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/concept-docs/pages/subdocument-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/concept-docs/pages/subdocument-operations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:concept-docs:subdocument-operations.adoc[]
 ---
 
@@ -23,7 +23,7 @@ While full-document retrievals retrieve the entire document and full document up
 You should use Sub-Document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly.
 
 > [!IMPORTANT]
-> The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document SQL++ queries. (Sub-Document SQL++ queries are explained in the section [Querying with SQL++](../howtos/n1ql-queries-with-sdk.md).)
+> The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document SQL++ queries. (Sub-Document SQL++ queries are explained in the section [Querying with SQL++](../howtos/sqlpp-queries-with-sdk.md).)
 
 In order to use Sub-Document operations you need to specify a _path_ indicating the location of the Sub-Document. The _path_ follows [SQL++ syntax](#Path syntax). Considering the document:
 

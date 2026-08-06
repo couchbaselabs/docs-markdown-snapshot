@@ -2,7 +2,7 @@
 title: Import Data with an SDK
 description: How to import documents into Couchbase with an SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/import.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:7.6@server:guides:import.adoc[]
 ---
 
@@ -65,17 +65,13 @@ Comma Separated Values (.csv) are easily exported from many spreadsheet and data
 Ensure that the first row is a header row containing the names of the columns within the document.
 
 ```csv
-id,type,name
-20001,airline,CSV-air-1
-20002,airline,CSV-air-2
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.csv[]
 ```
 
 Tab Separated Values (.tsv) are a common variant of CSV files.
 
 ```tsv
-id	type	name
-20011	airline	TSV-air-1
-20012	airline	TSV-air-2
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.tsv[]
 ```
 
 JSON (.json) files are especially well suited to import into Couchbase, as it's the default native datatype.
@@ -83,19 +79,13 @@ JSON (.json) files are especially well suited to import into Couchbase, as it's 
 A .json file contains only one single value, so to give flexibility to import one or many values, format this as an **array** of the values you want to store.
 
 ```json
-[
-	{"id":20021, "type":"airline", "name":"JSON-air-1"},
-	{"id":20022, "type":"airline", "name":"JSON-air-2"},
-	{"id":20023, "type":"airline", "name":"JSON-air-3"}
-]
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.json[]
 ```
 
 JSON Lines (.json) also known as NDJSON is a common format for streaming JSON, with one JSON object per line of text.
 
 ```json
-{"id":20031, "type":"airline", "name":"JSONL-air-1"}
-{"id":20032, "type":"airline", "name":"JSONL-air-2"}
-{"id":20033, "type":"airline", "name":"JSONL-air-3"}
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.jsonl[]
 ```
 
 ## [](#using-cbimport)Using `cbimport`
@@ -356,23 +346,15 @@ Click the  View button to see any code sample in context.
 To parse CSV and TSV data, use the [csv-parse](https://csv.js.org/parse/) library.
 
 ```nodejs
-const { parse: csvParser } = require('csv-parse');
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.js[]
 ```
 
 ```nodejs
-const csvStream = (filename) =>
-  fs.createReadStream(filename)
-  .pipe(
-      csvParser({columns: true}))
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.js[]
 ```
 
 ```nodejs
-const tsvStream = (filename) =>
-  fs.createReadStream(filename)
-    .pipe(
-      csvParser({
-        columns: true,
-        delimiter: '\t'}))
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.js[]
 ```
 
 Click the  View button to see any code sample in context.
@@ -552,33 +534,15 @@ Use the [stream-json](https://github.com/uhop/stream-json) library.
 > stream-json formats its output with a `{ key: …​, value: …​}` wrapper, so we need to map the stream into the expected format.
 
 ```nodejs
-const stream = require('stream'); 
-
-// for JSON
-const StreamArray = require('stream-json/streamers/StreamArray')
-
-// for JsonL
-const {parser: jsonlParser} = require('stream-json/jsonl/Parser');
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.js[]
 ```
 
 ```nodejs
-const map = (f) =>
-  new stream.Transform({
-    objectMode: true,
-    transform: (obj, _, next) => next(null, f(obj))
-  })
-  
-const jsonStream = (filename) =>
-  fs.createReadStream(filename)
-    .pipe(StreamArray.withParser())
-    .pipe(map(obj => obj.value))
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.js[]
 ```
 
 ```nodejs
-const jsonlStream = (filename) =>
-  fs.createReadStream(filename)
-    .pipe(jsonlParser())
-    .pipe(map(obj => obj.value))
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.js[]
 ```
 
 Click the  View button to see any code sample in context.
@@ -654,13 +618,7 @@ Click the  View button to see any code sample in context.
 For more information, see [Managing Connections](../../../java-sdk/current/howtos/managing-connections.md).
 
 ```nodejs
-const cluster = await couchbase.connect('couchbase://localhost', {
-  username: 'Administrator',
-  password: 'password',
-})
-
-const bucket = cluster.bucket('travel-sample')
-const collection = bucket.scope('inventory').collection('airline')
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.js[]
 ```
 
 Click the  View button to see any code sample in context.
@@ -668,7 +626,7 @@ Click the  View button to see any code sample in context.
 For more information, see [Managing Connections](../../../nodejs-sdk/current/howtos/managing-connections.md).
 
 ```python
-cluster = Cluster(
+cluster = Cluster.connect(
     "couchbase://localhost",
     authenticator=PasswordAuthenticator(
         "Administrator", "password"))
@@ -810,33 +768,13 @@ For more information, see [Data Operations](../../../java-sdk/current/howtos/kv-
 To iterate the prepared data stream, use a `for` loop in the same way as an array.
 
 ```nodejs
-const importStream = async (stream) => {
-  for await (const doc of stream) {
-    upsertDocument(doc)
-  }
-}
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.js[]
 ```
 
 Hook the prepared stream in to an `upsertDocument` routine:
 
 ```nodejs
-const upsertDocument = async (doc) => {
-  try {
-    // Build the key
-    const key = `${doc.type}_${doc.id}`
-    
-    // Do any processing, logging etc.
-    doc.importer = "import.js"
-    console.log(key, doc)
-    
-    // Upsert the document
-    await collection.upsert(key, doc)
-  }
-  catch (error) {
-    // Error handling, retry, logging etc.
-    console.error(error)
-  }
-}
+Unresolved include directive in modules/guides/pages/import.adoc - include::nodejs-sdk:howtos:example$import.js[]
 ```
 
 Click the  View button to see any code sample in context.

@@ -1,8 +1,8 @@
 ---
 title: Upgrade Couchbase Lite for C
 description: Couchbase mobile database upgrading
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/dep-upgrade.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/dep-upgrade.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:dep-upgrade.adoc[]
 ---
 
@@ -27,7 +27,7 @@ Attachments that were persisted in the 1.x database will be copied to the 2.0 da
 
 ```c
 // NOTE: No error handling, for brevity (see getting started)
-CBLError err{};
+CBLError err = {};
 FLDict properties = CBLDocument_Properties(document);
 FLDict attachments = FLValue_AsDict(FLDict_Get(properties, FLSTR("_attachments")));
 const CBLBlob* avatar = FLDict_GetBlob(FLValue_AsDict(FLDict_Get(attachments, FLSTR("avatar"))));

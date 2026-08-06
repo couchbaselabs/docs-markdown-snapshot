@@ -2,8 +2,8 @@
 title: MapReduce Views
 description: Our legacy MapReduce Views Service is best replaced by the scalable
   Query Service.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/view-queries-with-sdk.adoc
-pubDate: 2026-04-23T05:28:56.075Z
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/howtos/pages/view-queries-with-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-sdk:howtos:view-queries-with-sdk.adoc[]
 ---
 

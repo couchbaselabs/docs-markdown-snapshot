@@ -3,8 +3,8 @@ title: User Management
 description: The Node.js SDK lets you create <em>users</em>, assign them
   <em>roles</em> and associated <em>privileges</em>, and remove them from the
   system.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/sdk-user-management-example.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/sdk-user-management-example.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:howtos:sdk-user-management-example.adoc[]
 ---
 
@@ -26,65 +26,19 @@ The most common uses of the `UserManager` API are creating and listing users:
 Creating Users
 
 ```javascript
-const userMgr = clusterAdm.users();
-
-await userMgr.upsertUser({
-    username: testUsername,
-    password: testPassword,
-    displayName: "Constance Lambert",
-    roles: [
-        // Roles required for the reading of data from the bucket
-        { name: "data_reader", bucket: "*" },
-        { name: "query_select", bucket: "*" },
-        
-        // Roles required for the writing of data into the bucket. 
-        { name: "data_writer", bucket: bucketName },
-        { name: "query_insert", bucket: bucketName },
-        { name: "query_delete", bucket: bucketName },
-        
-        // Role required for the creation of indexes on the bucket.
-        { name: "query_manage_index", bucket: bucketName }
-    ]
-})
+Unresolved include directive in modules/howtos/pages/sdk-user-management-example.adoc - include::example$user-manager.js[]
 ```
 
 Listing Users
 
 ```javascript
-const listOfUsers = await clusterAdm.users().getAllUsers();
-
-for (const currentUser of listOfUsers) {
-    console.log(`User's display name is: ${ currentUser.displayName }`);
-    const currentRoles = currentUser.effectiveRoles;
-    for (const role of currentRoles) {
-        console.log(`   User has the role: ${ role.name }, applicable to bucket ${ role.bucket }`);
-    }
-}
+Unresolved include directive in modules/howtos/pages/sdk-user-management-example.adoc - include::example$user-manager.js[]
 ```
 
 Using a user created in the SDK to access data:
 
 ```javascript
-const userCluster = await couchbase.connect(
-    "couchbase://localhost", {
-    username: testUsername,
-    password: testPassword,
-})
-const bucket = userCluster.bucket(bucketName)
-const scope = bucket.scope("inventory")
-const collection = scope.collection("airline")
-
-await collection.upsert(
-    "airline_11", {
-        callsign: "MILE-AIR",
-        iata: "Q5",
-        icao: "MLA",
-        id: 11,
-        name: "40-Mile Air",
-        type: "airline"
-    }
-)
-userCluster.close()
+Unresolved include directive in modules/howtos/pages/sdk-user-management-example.adoc - include::example$user-manager.js[]
 ```
 
 ## [](#further-reading)Further Reading

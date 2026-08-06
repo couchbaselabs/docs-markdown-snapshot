@@ -5,8 +5,8 @@ description: Deploy multiple Edge Servers at the edge, each serving a subset of
   enable eventual consistency of data on all the local clients. This topology
   can also be leveraged to deploy Edge Servers in a primary-secondary
   configuration for High Availability (HA).
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/sync/pages/edge-to-edge-sync.adoc
-pubDate: 2026-04-15T05:26:28.652Z
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/sync/pages/edge-to-edge-sync.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-edge-server:sync:edge-to-edge-sync.adoc[]
 ---
 

@@ -2,8 +2,8 @@
 title: XATTR &amp; Virtual XATTR
 description: Extended Attributes (XATTR) are metadata that can be provided on a
   per-application basis.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/concept-docs/pages/xattr.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/concept-docs/pages/xattr.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:concept-docs:xattr.adoc[]
 ---
 

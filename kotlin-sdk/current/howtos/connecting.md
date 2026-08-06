@@ -1,8 +1,8 @@
 ---
 title: Connecting
 description: Connecting to a Couchbase Server cluster and configuring client settings.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/howtos/pages/connecting.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/howtos/pages/connecting.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:kotlin-sdk:howtos:connecting.adoc[]
 ---
 
@@ -137,13 +137,13 @@ Omitting the scheme is equivalent to specifying the `couchbase://` prefix.
 
 ### [](#cloud-native-gateway)Cloud Native Gateway
 
-Couchbase's next generation connection protocol, introduced in Kotlin SDK 1.2 and [Couchbase Autonomous Operator 2.6.1](#operator::concept-cloud-native-gateway.adoc), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
+Couchbase's next generation connection protocol, introduced in Kotlin SDK 1.2 and [Couchbase Autonomous Operator 2.6.1](../../../cloud-native-gateway/current/intro/about-cng.md), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
 
 The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a forthcoming release of [Couchbase Autonomous Operator](../../../operator/current/overview.md).
 
 #### [](#limitations)Limitations
 
-The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](n1ql-queries.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.0@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
+The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](n1ql-queries.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.1@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
 
 The following are not currently implemented over the `couchbase2://` protocol:
 
@@ -245,7 +245,7 @@ System properties have the highest precedence, followed by connection string par
 
 ### [](#cloud-native-gateway-settings)Cloud Native Gateway Settings
 
-Using the [Cloud Native Gateway](#howtos:managing-connections.adoc#cloud-native-gateway) protocol (to connect to Couchbase Server running on [Couchbase Autonomous Operator](#operator::concept-cloud-native-gateway.adoc) 2.6.1 or newer) should not need any changes to config.
+Using the [Cloud Native Gateway](#howtos:managing-connections.adoc#cloud-native-gateway) protocol (to connect to Couchbase Server running on [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md) 2.6.1 or newer) should not need any changes to config.
 
 Some settings will be ignored when using the `couchbase2://` protocol. Currently, these include:
 

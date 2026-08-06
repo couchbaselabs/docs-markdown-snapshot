@@ -2,8 +2,8 @@
 title: Configure SAML
 description: You can configure Enterprise Analytics to authenticate an
   Enterprise Analytics Web Console user via a SAML Identity Provider.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-configure-saml.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/rest-configure-saml.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:reference:rest-configure-saml.adoc[]
 ---
 

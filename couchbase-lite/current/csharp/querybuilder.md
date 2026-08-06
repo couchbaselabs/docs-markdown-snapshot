@@ -1,8 +1,8 @@
 ---
 title: QueryBuilder
 description: How to use QueryBuilder to build effective queries with Couchbase Lite on C#
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/querybuilder.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/csharp/pages/querybuilder.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:csharp:querybuilder.adoc[]
 ---
 
@@ -166,7 +166,7 @@ Like SQL, you can use the `WHERE` statement to choose which documents are return
 
 ### [](#lbl-comp-ops)Comparison Operators
 
-The [Expression Comparators](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.IExpression.html#Couchbase%5FLite%5FQuery%5FIExpression%5F) can be used in the WHERE statement to specify on which property to match documents. In the example below, we use the `equalTo` operator to query documents where the `type` property equals "hotel".
+The [Expression Comparators](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.IExpression.html#Couchbase%5FLite%5FQuery%5FIExpression%5F) can be used in the WHERE statement to specify on which property to match documents. In the example below, we use the `equalTo` operator to query documents where the `type` property equals "hotel".
 
 ```json
 [
@@ -199,11 +199,11 @@ foreach (var result in query.Execute()) {
 
 ### [](#lbl-coll-ops)Collection Operators
 
-[ArrayFunction Collection Operators](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.ArrayFunction.html) are useful to check if a given value is present in an array.
+[ArrayFunction Collection Operators](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.ArrayFunction.html) are useful to check if a given value is present in an array.
 
 #### [](#contains-operator)CONTAINS Operator
 
-The following example uses the `[ArrayFunction](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.ArrayFunction.html)` to find documents where the `public_likes` array property contains a value equal to "Armani Langworth".
+The following example uses the `[ArrayFunction](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.ArrayFunction.html)` to find documents where the `public_likes` array property contains a value equal to "Armani Langworth".
 
 ```json
 {
@@ -258,7 +258,7 @@ In this section
 
 #### [](#lbl-string-match)String Matching
 
-The [Like()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.IExpression.html#Couchbase%5FLite%5FQuery%5FIExpression%5FLike%5FCouchbase%5FLite%5FQuery%5FIExpression%5F) operator can be used for string matching — see [Example 7](#ex-like-case-insensitive)
+The [Like()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.IExpression.html#Couchbase%5FLite%5FQuery%5FIExpression%5FLike%5FCouchbase%5FLite%5FQuery%5FIExpression%5F) operator can be used for string matching — see [Example 7](#ex-like-case-insensitive)
 
 > [!NOTE]
 > The `like` operator performs **case sensitive** matches.  
@@ -846,7 +846,7 @@ Couchbase Lite for C#.Net provides a convenience API to convert query results to
 
 Example 28\. Using JSON Results
 
-Use [Result.ToJson()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.Result.html#Couchbase%5FLite%5FQuery%5FResult%5FToJson) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 28](#ex-json) for a working example.
+Use [Result.ToJson()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.Result.html#Couchbase%5FLite%5FQuery%5FResult%5FToJson) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 28](#ex-json) for a working example.
 
 ```C#
 foreach (var result in query.Execute()) {

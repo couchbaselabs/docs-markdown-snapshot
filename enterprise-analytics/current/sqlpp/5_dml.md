@@ -3,8 +3,8 @@ title: DML Statements
 description: This section describes the SQL++ for Enterprise Analytics Data
   Manipulation Language (DML) statements you use to query and manipulate data in
   collections.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_dml.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_dml.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sqlpp:5_dml.adoc[]
 ---
 
@@ -22,6 +22,7 @@ You use the following statements to populate and update standalone collections:
 * [COPY INTO Statements](5%5Fdml%5Fcopy%5Fin.md)
 * [INSERT INTO Statements](5%5Fdml%5Finsert.md)
 * [UPSERT INTO Statements](5%5Fdml%5Fupsert.md)
+* [UPDATE Statements](5-dml-update.md)
 * [DELETE Statements](5%5Fdml%5Fdelete.md)
 * [CREATE COLLECTION AS Statements](5%5Fdml%5Fcreate%5Fas.md)
 

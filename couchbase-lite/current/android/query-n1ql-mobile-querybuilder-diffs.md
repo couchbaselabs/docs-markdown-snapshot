@@ -1,8 +1,8 @@
 ---
 title: SQL++ for Mobile&#8201;&#8212;&#8201;Differences from Querybuilder
 description: Differences between Couchbase Lite's Querybuilder and SQL++ for Mobile
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/query-n1ql-mobile-querybuilder-diffs.adoc
-pubDate: 2026-04-02T05:14:13.149Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/query-n1ql-mobile-querybuilder-diffs.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:android:query-n1ql-mobile-querybuilder-diffs.adoc[]
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Python SDK to a Couchbase cluster.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -11,30 +11,60 @@ link: xref:python-sdk:howtos:managing-connections.adoc[]
 
 # Managing Connections
 
-Please also refer to the [Server docs](../../../server/current/learn/security/authorization-overview.md).
-
-> This section describes how to connect the Python SDK to a Couchbase cluster. It contains best practices as well as information on TLS/SSL and other advanced connection options. 
+> This section describes how to connect the Python SDK to a Couchbase cluster. It contains best practices as well as information on TLS/SSL and advanced connection options, and a sub-page on troubleshooting Cloud connections. 
 
 ## [](#connecting-to-a-cluster)Connecting to a Cluster
 
 A connection to a Couchbase Server cluster is represented by a `Cluster` object. A `Cluster` provides access to Buckets, Scopes, and Collections, as well as various Couchbase services and management interfaces. The simplest way to create a `Cluster` object is to call `Cluster.connect()` with a [connection string](#connection-strings), username, and password:
 
+* Couchbase Capella
+* Self-Managed Couchbase Server
+
 ```python
-cluster = Cluster.connect("couchbase://your-ip", ClusterOptions(PasswordAuthenticator("Administrator", "password")))
-bucket = cluster.bucket("travel-sample")
-collection = bucket.default_collection()
+# Update this to your cluster
+endpoint = "--your-instance--.dp.cloud.couchbase.com"
+username = "username"
+password = "Password!123"
+bucket_name = "travel-sample"
+# User Input ends here.
 
-# You can access multiple buckets using the same Cluster object.
-another_bucket = cluster.bucket("beer-sample")
+# Connect options - authentication
+auth = PasswordAuthenticator(username, password)
 
-# You can access collections other than the default
-# if your version of Couchbase Server supports this feature.
-customer_a = bucket.scope("customer-a")
-widgets = customer_a.collection("widgets")
+# get a reference to our cluster
+options = ClusterOptions(auth)
+# Sets a pre-configured profile called "wan_development" to help avoid latency issues
+# when accessing Capella from a different Wide Area Network
+# or Availability Zone(e.g. your laptop).
+options.apply_profile('wan_development')
+cluster = Cluster.connect(f'couchbases://{endpoint}', options)
+
+# Wait until the cluster is ready for use.
+cluster.wait_until_ready(timedelta(seconds=35))
 ```
 
-> [!NOTE]
-> If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 6.0 and earlier, need to open a `` `Bucket `` instance before connecting to any other HTTP services (such as _Query_ or _Search_).
+Note, the client certificate for connecting to a Capella cluster is included in the SDK installation.
+
+```python
+# Update this to your cluster
+username = "Administrator"
+password = "password"
+bucket_name = "travel-sample"
+# User Input ends here.
+
+# Connect options - authentication
+auth = PasswordAuthenticator(
+    username,
+    password,
+)
+
+# Get a reference to our cluster
+# NOTE: For non-TLS/SSL connection use 'couchbase://<your-ip-address>' instead
+cluster = Cluster.connect('couchbases://your-ip', ClusterOptions(auth))
+
+# Wait until the cluster is ready for use.
+cluster.wait_until_ready(timedelta(seconds=5))
+```
 
 In a production environment, your connection string should include the addresses of multiple server nodes in case some are currently unavailable. Multiple addresses may be specified in a connection string by delimiting them with commas:
 
@@ -45,7 +75,20 @@ cluster = Cluster.connect("couchbase://node1.example.com,node2.example.com", Clu
 > [!TIP]
 > You don't need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
-## [](#connection-strings)Connection Strings
+### [](#waiting-for-bootstrap-completion)Waiting for Bootstrap Completion
+
+Opening resources is asynchronous. That is, the call to `cluster.bucket` or `Cluster.connect` will complete instantly, and opening that resource will continue in the background.
+
+> [!TIP]
+> WaitUntilReady()
+> 
+> For some of the SDKs, such as [Java](../../../java-sdk/current/hello-world/start-using-sdk.md#opening-a-bucket), you'll see a recommendation to use `waitUntilReady()`, which ensures that the bucket resource is fully loaded before proceeding.
+> 
+> Although this is an element of the [SDK bootstrapping RFC](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0048-sdk3-bootstrapping.md), it's not required for successful operation of the "wrapper" SDKs (Node.js, PHP, Python, and Ruby — wrappers over the C++ SDK), as `Cluster.connect()` blocks until bootstrap is complete and a cluster config is seen. Any bootstrap errors are returned there.
+
+Other timeout issues may occur when using the SDK located geographically separately from the Couchbase Server cluster — this is [not recommended in production deployments](../project-docs/compatibility.md#network-requirements), but often occurs during development. See the [Cloud section](#working-in-the-cloud) below for some suggestions of settings adjustments.
+
+### [](#connection-strings)Connection Strings
 
 A Couchbase connection string is a comma-delimited list of IP addresses and/or hostnames, optionally followed by a list of parameters.
 
@@ -65,96 +108,30 @@ couchbases://127.0.0.1?compression=on&redaction=on
 
 The full list of recognized parameters is documented in the client settings reference. Any client setting with a system property name may also be specified as a connection string parameter.
 
-A connection string may optionally be prefixed by either `"couchbase://"` or `"couchbases://"`.
+A connection string may optionally be prefixed by either `"couchbase://"` or `"couchbases://"`, the latter signifying a TLS connection.
 
 ### [](#connection-options)Connection Options
 
-The backend implementation of connection strings parameters changed substantially in 4.0\. See [more details on migrating to 4.0](../project-docs/migrating-sdk-code-to-3.n.md#sdk4-specifics).
+[Configuring client settings with ClusterOptions()](../ref/client-settings.md#cluster-options) is the preferred option for configuring connection parameters. More details can be found in the [API reference](https://docs.couchbase.com/sdk-api/couchbase-python-client/couchbase%5Fapi/options.html#cluster).
 
-[Configuring client settings with ClusterOptions()](../ref/client-settings.md#cluster-options) is the preferred option. More details can be found in the [API reference](https://docs.couchbase.com/sdk-api/couchbase-python-client/couchbase%5Fapi/options.html#cluster).
-
-## [](#connection-lifecycle)Connection Lifecycle
+### [](#connection-lifecycle)Connection Lifecycle
 
 Most of the high-level classes in the Python SDK are designed to be safe for concurrent use by multiple threads. For asynchronous modes, you will get the best performance if you share and reuse instances of `Cluster`, `Bucket`, `Scope`, and `Collection`, all of which are thread-safe. For synchronous mode, it is better to use separate instances in different threads.
 
 We recommend creating a single `Cluster` instance when your application starts up, and sharing this instance throughout your application. If you know at startup time which buckets, scopes, and collections your application will use, we recommend obtaining them from the `Cluster` at startup time and sharing those instances throughout your application as well.
 
-## [](#alternate-addresses)Alternate Addresses and Custom Ports
-
-If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT'd environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
-
-On the server side, each server node must be configured to advertise its external address as well as any custom port mapping. This is done with the `setting-alternate-address` CLI command — see the [command line docs](#cli:cbcli/couchbase-cli-setting-alternate-address.adoc). A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
-
-On the client side, the externally visible ports must be used when connecting. If the external ports are not the default, you can specify custom ports through the connection string.
-
-```python
-opts = ClusterOptions(PasswordAuthenticator("Administrator", "password"))
-cluster = Cluster.connect("couchbase://192.168.56.101:1234,192.168.56.102:5678", opts)
-```
-
-> [!TIP]
-> In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node.
-
-In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `ClusterOptions` `network` option (or in the connection string) to `default` if the client and server are on the same network, or `external` if they're on different networks.
-
-```python
-opts = ClusterOptions(PasswordAuthenticator("Administrator", "password"),
-                      network="external")
-cluster = Cluster.connect("couchbase://your-ip", opts)
-```
-
-> [!NOTE]
-> Any TLS certificates must be set up at the point where the connections are being made.
-
-## [](#using-dns-srv-records)Using DNS SRV records
-
-As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it's good practice to always enable DNS-SRV on the client.
-
-The following steps are necessary to make it work:
-
-1. Set up your DNS server to respond properly from a DNS SRV request.
-2. Enable it on the SDK and point it towards the DNS SRV entry.
-
-### [](#setting-up-the-dns-server)Setting up the DNS Server
-
-Capella gives you DNS-SRV by default — these instructions are for self-managed clusters, where you are responsible for your own DNS records.
-
-Your DNS server zone file should be set up like this, with one row for each bootstrap (KV, a.k.a. Data Service) node:
-
-; Service.Protocol.Domain	TTL	Class	Type	Priority	Weight	 Port	Target
-_couchbases._tcp.example.com.	3600	IN	SRV	0		0	 11207	node1.example.com.
-_couchbases._tcp.example.com.	3600	IN 	SRV	0		0	 11207	node2.example.com.
-_couchbases._tcp.example.com.	3600	IN 	SRV	0		0	 11207	node3.example.com.
-
-The first line comment is not needed in the record, we are showing the column headers here for illustration purposes. The myriad complexities of DNS are beyond the scope of this document, but note that SRV records must point to an A record, not a `CNAME`.
-
-The order in which you list the nodes — and any value entered for `Priority` or `Weight` — will be ignored by the SDK. Nevertheless, best practice here is to set them to `0`, avoiding ambiguity.
-
-Also note, the above is for connections using TLS. Should you be using an insecure connection (in testing or development, or totally within a firewalled environment), then your records would look like:
-
-_couchbase._tcp.example.com.  3600  IN  SRV  0  0  11210  node1.example.com.
-_couchbase._tcp.example.com.  3600  IN  SRV  0  0  11210  node2.example.com.
-_couchbase._tcp.example.com.  3600  IN  SRV  0  0  11210  node3.example.com.
-
-### [](#specifying-dns-srv-for-the-sdk)Specifying DNS-SRV for the SDK
-
-* The connection string must be to a single hostname, with no explicit port specifier, pointing to the DNS SRV entry — `couchbases://example.com`.
-* DNS-SRV must be enabled in the [client settings](../ref/client-settings.md).
-
-DNS SRV bootstrapping is enabled by default in the Python SDK. In order to make the SDK use the SRV records, you need to pass in the hostname from your records (here `example.com`):
-
 ## [](#ssl)Secure Connections
+
+Both Couchbase Capella, and the [Enterprise Edition](../../../server/current/introduction/editions.md#enterprise-edition) of self-managed Couchbase Server, support full encryption of client-side traffic using Transport Layer Security (TLS). That includes data (key-value type) operations, queries, and configuration communication. Make sure you have the Enterprise Edition of Couchbase Server, or a Couchbase Capella account, before proceeding with configuring encryption on the client side.
 
 > [!WARNING]
 > If the client cannot load or was not built with OpenSSL, attempting a TLS connection will result in a 'FEATURE\_UNAVAILABLE'.
 
-Couchbase Server Enterprise Edition and Couchbase Capella support full encryption of client-side traffic using Transport Layer Security (TLS). This includes key-value type operations, queries, and configuration communication. Make sure you have the Enterprise Edition of Couchbase Server, or a Couchbase Capella account, before proceeding with configuring encryption on the client side.
-
 For TLS certificate verification the SDK uses the following CA certificates:
 
 * The certificates in the Mozilla Root CA bundle (bundled with the SDK as of 4.1.5 and obtained from [curl](https://curl.se/docs/caextract.html)).
-* The certificates in OpenSSL's default CA certificate store (as of SDK 4.1.0).
-* The self-signed root certificate that is used to sign the Couchbase Capella certificates (bundled with the SDK as of 4.0.0).
+* The certificates in OpenSSL's default CA certificate store.
+* The self-signed root certificate that is used to sign the Couchbase Capella certificates.
 
 The OpenSSL defaults can be overridden using the `SSL_CERT_DIR` and `SSL_CERT_FILE` environment variables. The `SSL_CERT_DIR` variable is used to set a specific directory in which the client should look for individual certificate files, whereas the `SSL_CERT_FILE` environment variable is used to point to a single file containing one or more certificates. More information can be found in the relevant [OpenSSL documentation](https://www.openssl.org/docs/man1.1.1/man3/SSL%5FCTX%5Fload%5Fverify%5Flocations.html).
 
@@ -163,7 +140,7 @@ Loading the Mozilla certificates can be disabled by setting the `disable_mozilla
 Metadata from the Python SDK's C++ core provides information about where OpenSSL's default certificate store is located, which version of the Mozilla CA certificate store was bundled, and other useful details. You can get the metadata using the following command:
 
 ```console
-$ python -c "from couchbase import get_metadata; print(get_metadata(detailed=True))"
+$ python3 -c "from couchbase import get_metadata; print(get_metadata(detailed=True))"
 ```
 
 ```console
@@ -224,7 +201,7 @@ F4+FjEqAEIr1mQepDaNM0gEfVcgd2SzGhC3yhYFBAH//8W4DUot5ciEhoBs=
 The next step is to enable encryption by connecting to a cluster with the 'couchbases://' protocol in the connection string and pass it the path to the certificate file via an Authenticator, or via '?cert\_path=…​' in the connection string itself.
 
 ```python
-cluster = Cluster("couchbases://your-ip",ClusterOptions(PasswordAuthenticator("Administrator","password",cert_path="/path/to/cluster.crt")))
+cluster = Cluster.connect("couchbases://your-ip", ClusterOptions(PasswordAuthenticator("Administrator","password",cert_path="/path/to/cluster.crt")))
 ```
 
 Then use this custom `Cluster` when opening the connection to the cluster.
@@ -239,6 +216,63 @@ After enabling encryption, you cannot inspect the traffic in cleartext (same ups
 E.....@.@.............+....Z.'yZ..#........
 ..... ...xuG.O=.#.........?.Q)8..D...S.W.4.-#....@7...^.Gk.4.t..C+......6..)}......N..m..o.3...d.,.	...W.....U..
 .%v.....4....m*...A.2I.1.&.*,6+..#..#.5
+
+## [](#alternate-addresses)Alternate Addresses and Custom Ports
+
+If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT'd environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
+
+On the server side, each server node must be configured to advertise its external address as well as any custom port mapping. This is done with the `setting-alternate-address` CLI command — see the [command line docs](#cli:cbcli/couchbase-cli-setting-alternate-address.adoc). A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
+
+On the client side, the externally visible ports must be used when connecting. If the external ports are not the default, you can specify custom ports through the connection string.
+
+```python
+cluster = Cluster.connect("couchbase://127.0.0.1:1234", ClusterOptions(PasswordAuthenticator("Administrator", "password")));
+```
+
+> [!TIP]
+> In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node.
+
+In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `io.networkResolution` client setting to `default` if the client and server are on the same network, or `external` if they're on different networks.
+
+> [!NOTE]
+> Any TLS certificates must be set up at the point where the connections are being made.
+
+## [](#using-dns-srv-records)Using DNS SRV records
+
+As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it's good practice to always enable DNS-SRV on the client.
+
+The following steps are necessary to make it work:
+
+1. Set up your DNS server to respond properly from a DNS SRV request.
+2. Enable it on the SDK and point it towards the DNS SRV entry.
+
+### [](#setting-up-the-dns-server)Setting up the DNS Server
+
+Capella gives you DNS-SRV by default — these instructions are for self-managed clusters, where you are responsible for your own DNS records.
+
+Your DNS server zone file should be set up like this, with one row for each bootstrap (KV, a.k.a. Data Service) node:
+
+; Service.Protocol.Domain	TTL	Class	Type	Priority	Weight	 Port	Target
+_couchbases._tcp.example.com.	3600	IN	SRV	0		0	 11207	node1.example.com.
+_couchbases._tcp.example.com.	3600	IN 	SRV	0		0	 11207	node2.example.com.
+_couchbases._tcp.example.com.	3600	IN 	SRV	0		0	 11207	node3.example.com.
+
+The first line comment is not needed in the record, we are showing the column headers here for illustration purposes. The myriad complexities of DNS are beyond the scope of this document, but note that SRV records must point to an A record, not a `CNAME`.
+
+The order in which you list the nodes — and any value entered for `Priority` or `Weight` — will be ignored by the SDK. Nevertheless, best practice here is to set them to `0`, avoiding ambiguity.
+
+Also note, the above is for connections using TLS. Should you be using an insecure connection (in testing or development, or totally within a firewalled environment), then your records would look like:
+
+_couchbase._tcp.example.com.  3600  IN  SRV  0  0  11210  node1.example.com.
+_couchbase._tcp.example.com.  3600  IN  SRV  0  0  11210  node2.example.com.
+_couchbase._tcp.example.com.  3600  IN  SRV  0  0  11210  node3.example.com.
+
+### [](#specifying-dns-srv-for-the-sdk)Specifying DNS-SRV for the SDK
+
+* The connection string must be to a single hostname, with no explicit port specifier, pointing to the DNS SRV entry — `couchbases://example.com`.
+* DNS-SRV must be enabled in the [client settings](../ref/client-settings.md).
+
+DNS SRV bootstrapping is enabled by default in the Python SDK. In order to make the SDK use the SRV records, you need to pass in the hostname from your records (here `example.com`):
 
 For most use cases, connecting client software using a Couchbase SDK to the [Couchbase Capella service](../../../home/cloud.md) is similar to connecting to an on-premises Couchbase Cluster. The use of DNS-SRV, Alternate Address, and TLS is covered above.
 
@@ -258,3 +292,7 @@ Methods in the asynchronous API return instances of the relevant Async API:
 2. `Deferred` for Twisted
 
 Reference our [asynchronous programming](concurrent-async-apis.md) page for more details.
+
+## [](#next-steps)Next Steps
+
+* [Certificate Authentication](#secure-connections.adoc)

@@ -1,0 +1,78 @@
+---
+title: Who Am I?
+description: A Couchbase-Server user can check their id (or <em>username</em>),
+  domain, roles, and other details.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-whoami.adoc
+pubDate: 2026-08-06T05:31:06.200Z
+link: xref:2.1@enterprise-analytics:reference:rest-whoami.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/enterprise-analytics/2.1/reference/rest-whoami.html)
+
+# Who Am I?
+
+> A Couchbase-Server user can check their id (or _username_), domain, roles, and other details. 
+
+## [](#http-method-and-uri)HTTP method and URI
+
+GET ./whoami
+
+## [](#description)Description
+
+The call returns an object that contains the following:
+
+* `roles`. An object containing a key-value pair for every role assigned to the user. For example, `"role": "analytics_reader"`. Bucket-related roles are accompanied by a statement of the bucket to which the role applies. For example, `"bucket_name": "travel-sample"`.
+* `id`. The user's id (or _username_).
+* `domain`. The user's _authentication domain_, which can be `local` or `external`. For information, see [Authentication Domains](#learn:security/authentication-domains.adoc).
+* `name`. The user's full name, if specified.
+* `password_change_date`. The date on which the user's password was last changed. For example, `"2020-02-13T04:08:31.000Z"`.
+
+## [](#responses)Responses
+
+If successful, the call returns `200 OK`, and an object that contains information about the user's id, domain, name, roles, and date of last password-change.
+
+A malformed URI returns `404 Object Not Found`. Failure to authenticate returns `401 Unauthorized`.
+
+## [](#example)Example
+
+The following call returns information about a user whose id is `multiRoleAdmin`. Note that the output is piped to the [jq](https://stedolan.github.io/jq/) command, to facilitate output-readability.
+
+curl -X GET -u multiRoleAdmin:multiRoleAdminPassword \
+http://10.143.194.101:8091/whoami | jq
+
+If successful, the command returns output such as the following:
+
+{
+  "roles": [
+    {
+      "role": "analytics_reader"
+    },
+    {
+      "role": "replication_admin"
+    },
+    {
+      "role": "security_admin"
+    },
+    {
+      "role": "bucket_full_access",
+      "bucket_name": "travel-sample"
+    },
+    {
+      "role": "query_manage_index",
+      "bucket_name": "*"
+    },
+    {
+      "role": "views_reader",
+      "bucket_name": "*"
+    }
+  ],
+  "id": "multiRoleAdmin",
+  "domain": "local",
+  "name": "John Smith",
+  "password_change_date": "2020-02-13T04:08:31.000Z"
+}
+
+## [](#see-also)See Also
+
+An overview of Couchbase-Server authentication, and of authentication _domains_, is provided in [Understanding Authentication](#learn:security/authentication-overview.adoc).

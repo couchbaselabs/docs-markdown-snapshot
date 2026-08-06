@@ -1,8 +1,8 @@
 ---
 title: Pre-built Database
 description: How to handle pre-built databases in your Couchbase Lite on C app
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/prebuilt-database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/prebuilt-database.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:prebuilt-database.adoc[]
 ---
 
@@ -118,13 +118,13 @@ Alternatively you can pull the database from a CDN on launch instead of bundling
 > [!IMPORTANT]
 > This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.
 
-If you're using an encrypted database, [CBL\_CopyDatabase()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga027d34b2de65b040ecf42a2a83bf6720)does not change the encryption key. The encryption key specified in the config when opening the database is the encryption key used for both the original database and copied database.
+If you're using an encrypted database, [CBL\_CopyDatabase()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga027d34b2de65b040ecf42a2a83bf6720)does not change the encryption key. The encryption key specified in the config when opening the database is the encryption key used for both the original database and copied database.
 
 If you copied an un-encrypted database and want to apply encryption to the copy, or if you want to change (or remove) the encryption key applied to the copy:
 
-1. Provide the original encryption-key (if any) in the database copy's configuration using [CBLDatabaseConfiguration.encryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fdatabase%5Fconfiguration.html#aaab04fb9d092ff02693eea611efefc55)
+1. Provide the original encryption-key (if any) in the database copy's configuration using [CBLDatabaseConfiguration.encryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fdatabase%5Fconfiguration.html#aaab04fb9d092ff02693eea611efefc55)
 2. Open the database copy
-3. Use [CBLDatabase\_ChangeEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga76a603bc678ceae18c9610b8a8274a09) on the database copy to set the required encryption key.  
+3. Use [CBLDatabase\_ChangeEncryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga76a603bc678ceae18c9610b8a8274a09) on the database copy to set the required encryption key.  
 NOTE: To remove encryption on the copy, provide a null encryption-key
 
 ## [](#deploy-db)Using Pre-built Database on App Launch
@@ -133,7 +133,7 @@ During the application start-up logic, check if database exists in the required 
 
 1. Locate the pre-packaged database (for example, in the assets or other resource folder)
 2. Copy the pre-packaged database to the required location  
-Use the API's [CBL\_CopyDatabase()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga027d34b2de65b040ecf42a2a83bf6720) method — see: [Example 1](#lbl-code); This ensures that a UUID is generated for each copy.  
+Use the API's [CBL\_CopyDatabase()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga027d34b2de65b040ecf42a2a83bf6720) method — see: [Example 1](#lbl-code); This ensures that a UUID is generated for each copy.  
 > [!IMPORTANT]  
 > **Do not copy the database using any other method**  
 > **Otherwise:** Each copy of the app invalidates the other apps' [checkpoints](refer-glossary.md#checkpoint) because a new UUID was not generated.
@@ -150,6 +150,9 @@ The replicator uses the pre-built database's [checkpoint](refer-glossary.md#chec
 
 Example 1\. Copy database using API
 
+* C
+* C++
+
 ```c
 // Note: Getting the path to a database is platform-specific.  For desktop (including RPi)
 // this can be a simple filesystem path.  For iOS you need to get the path from the
@@ -158,10 +161,24 @@ Example 1\. Copy database using API
 
 // NOTE: No error handling, for brevity (see getting started)
 
-CBLError err{};
+CBLError err = {};
 const char* path = "/path/to/travel-sample.cblite2";
 if(!CBL_DatabaseExists(FLSTR("travel-sample.cblite2"), kFLSliceNull)) {
     CBL_CopyDatabase(FLStr(path), FLSTR("travel-sample"), NULL, &err);
+}
+```
+
+```cpp
+// Note: Getting the path to a database is platform-specific.  For desktop (including RPi)
+// this can be a simple filesystem path.  For iOS you need to get the path from the
+// main bundle.  For Android you need to extract it from your assets to a temporary directory
+// and then pass that path.
+
+// NOTE: No error handling, for brevity (see getting started)
+
+const char* path = "/path/to/travel-sample.cblite2";
+if (!cbl::Database::exists("travel-sample.cblite2")) {
+    cbl::Database::copyDatabase(path, "travel-sample");
 }
 ```
 
@@ -169,13 +186,13 @@ if(!CBL_DatabaseExists(FLSTR("travel-sample.cblite2"), kFLSliceNull)) {
 
 ### [](#initial-sync-still-takes-too-long)Initial Sync Still Takes Too Long
 
-If you're using a pre-built database but initial sync is still slow:
+If you're' using a pre-built database but initial sync is still slow:
 
 **Check checkpoint matching:**
 
 * Make sure you created the pre-built database using the exact same Sync Gateway URL, including port number (`:80` or `:443`)
 * Verify replication config parameters (channels, filters) match exactly between database creation and app usage
-* Confirm you're using `CBL_CopyDatabase()` API, not manual file copy, to preserve the database UUID
+* Confirm you're' using `CBL_CopyDatabase()` API, not manual file copy, to preserve the database UUID
 
 **Verify database freshness:**
 

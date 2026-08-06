@@ -1,7 +1,7 @@
 ---
 title: Set Up an External Data Source
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/manage-external.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sources/pages/manage-external.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sources:manage-external.adoc[]
 ---
 
@@ -14,19 +14,31 @@ link: xref:enterprise-analytics:sources:manage-external.adoc[]
 
 ## [](#supported-external-sources)Supported External Sources
 
-Enterprise Analytics supports external links to the following:
+Enterprise Analytics supports external links to the following object storage providers:
 
 * Amazon S3
 * S3-compatible object stores
 * Azure Blob Storage
+* Google Cloud Storage (GCS)
 
-This data remains in the source location—​Enterprise Analytics does not copy it into a collection. You can query `Delta` tables residing in S3 buckets, S3 objects, or Azure Blob Storage containers, that are in one of the following formats:
+This data remains in the source location — Enterprise Analytics does not copy it into a collection. You can query Delta tables residing in S3 buckets, S3 objects, or Azure Blob Storage containers, in one of the following formats:
 
 * JSON
 * CSV
 * TSV
 * Parquet
 * Avro
+
+## [](#apache-iceberg)Apache Iceberg
+
+Enterprise Analytics also supports read-only access to Apache Iceberg tables through external catalogs. Unlike S3 external collections, Iceberg tables are registered via a catalog entity rather than a direct link to object storage.
+
+To query Iceberg data:
+
+1. Register a catalog using [CREATE CATALOG](../sqlpp/5%5Fddl%5Ficeberg%5Fcatalog.md).
+2. Register an Iceberg table on that catalog using [CREATE EXTERNAL COLLECTION](../sqlpp/5%5Fddl%5Ficeberg%5Ftable.md).
+
+See [Iceberg Support](../sqlpp/5%5Fddl%5Ficeberg.md) for the full list of supported catalog types and prerequisites.
 
 ## [](#creating-a-link-with-an-sdk)Creating a Link with an SDK
 
@@ -40,5 +52,8 @@ For more information about data sources, see [Access and Organize Data in Enterp
 
 ## [](#see-also)See Also
 
-* [Query Data in External Data Sources](external-s3.md)
+* [Query Data in Amazon S3](external-s3.md)
+* [Query Data in Azure Blob Storage](external-azureblob.md)
+* [Query Data in Google Cloud Storage (GCS)](external-gcs.md)
 * [Design a Location Path](dynamic-prefixes.md)
+* [Iceberg Tables](../sqlpp/5%5Fddl%5Ficeberg.md)

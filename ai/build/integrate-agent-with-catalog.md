@@ -3,7 +3,7 @@ title: Integrate an Agent with the Agent Catalog
 description: Use the Couchbase Agent Catalog to create your own custom AI agents
   with your preferred Large Language Model (LLM) and agent framework.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/integrate-agent-with-catalog.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:build:integrate-agent-with-catalog.adoc[]
 ---
 
@@ -16,10 +16,10 @@ link: xref:ai:build:integrate-agent-with-catalog.adoc[]
 
 An AI agent could be a simple application like a chatbot, or a more specialized application designed to solve a specific problem, like a smart web crawler.
 
-Use the {ai-long} together with the Couchbase Agent Catalog to integrate {ai}-hosted models into your agent. The Agent Catalog features a command-line tool and a Python SDK to support your development. It works with Capella or Couchbase Server as a profile store, transactional store, or vector store.
+Use the Couchbase AI Data Plane together with the Couchbase Agent Catalog to integrate AI Data Plane-hosted models into your agent. The Agent Catalog features a command-line tool and a Python SDK to support your development. It works with Capella or Couchbase Server as a profile store, transactional store, or vector store.
 
 > [!TIP]
-> The {ai} also offers notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework:
+> The AI Data Plane also offers notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework:
 > 
 > * Colab: [LangGraph](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb)
 > * GitHub: [LangGraph](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb)

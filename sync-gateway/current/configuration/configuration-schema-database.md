@@ -1,8 +1,8 @@
 ---
 title: Database Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage databases
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-schema-database.adoc
-pubDate: 2026-04-30T05:37:08.077Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-database.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:configuration:configuration-schema-database.adoc[]
 ---
 
@@ -24,8 +24,47 @@ _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configurat
 
 From _Sync Gateway_ 3.0 you can use the Admin REST API to provision persistent configuration changes. This content introduces the [PUT /{db}/](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Management/operation/put%5Fdb-) and [POST /{db}/\_config](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/post%5Fdb-%5Fconfig) endpoints for convenience — see [Database Configuration](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) for a full description of the endpoints available.
 
-> [!NOTE]
-> You can define 1 custom scope per database with up to 1000 custom collections. If you don't specify a custom scope and collection, any documents you create will be saved in the default scope and collection.
+## [](#lbl-buckets-scopes-collections)Understanding Buckets, Scopes, and Collections
+
+Couchbase Server, Sync Gateway, and Couchbase Lite all organize data using the same three-level hierarchy: bucket, scope, and collection. A collection holds documents. A scope groups related collections. A bucket holds all the scopes for a dataset.
+
+[Table 1](#tbl-bucket-scope-collection) maps the terms across all three.
+
+__Table 1\. Bucket, scope, and collection mapping across Couchbase Server, Sync Gateway, and Couchbase Lite__
+| Level          | Couchbase Server                                               | Sync Gateway database config                                                                                                            | Couchbase Lite                                            |
+| -------------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| Top container  | A bucket, created and managed on the Couchbase Server cluster. | The bucket property names one existing Couchbase Server bucket. Each Sync Gateway database maps to exactly one Couchbase Server bucket. | A database, created locally on the mobile or edge device. |
+| Namespace      | A scope, created within a bucket.                              | A key under the scopes object in the database config.                                                                                   | A scope, created within a Couchbase Lite database.        |
+| Data container | A collection, created within a scope.                          | A key under scopes.<scope-name>.collections in the database config.                                                                     | A collection, created within a Couchbase Lite scope.      |
+
+### [](#defaults)Defaults
+
+If you don't specify a custom scope and collection in your database configuration, the database will use the default scope and collection.
+
+### [](#name-matching-across-tiers)Name matching across tiers
+
+Scope and collection names must match exactly, character for character, across all three tiers. For example, a Couchbase Lite replicator configured to sync the `airline` collection in the `inventory` scope only succeeds against a Sync Gateway database that defines an `airline` collection inside an `inventory` scope in its `scopes` config.
+
+The scope and collection must already exist on the Couchbase Server bucket before you reference them in the Sync Gateway database config. Sync Gateway does not create scopes or collections on Couchbase Server; you must create them there first.
+
+If a mismatch exists at any tier, replication does not start and Couchbase Lite logs an error.
+
+### [](#the-system-collection)The system collection
+
+From Sync Gateway 4.1, you can opt in to using a reserved system collection, `_system._mobile`, to store Sync Gateway internal metadata separately from user application data. This collection is owned by Sync Gateway and is not a user-configurable scope or collection.
+
+Opting in migrates Sync Gateway internal metadata from the default collection (`_default._default`) to `_system._mobile`. This isolates Sync Gateway system documents from your application data, prevents metadata from appearing in the Capella UI alongside user documents, and reduces the risk of metadata being processed by eventing functions or SQL++ queries.
+
+See [Migrate Metadata to System Collection](../migrate-metadata-system-collection.md) for details.
+
+### [](#scope-and-collection-limits)Scope and collection limits
+
+You can define:
+
+* 1 custom scope per database
+* 1000 custom collections across the cluster
+
+For the full set of configuration options, including default-scope and default-collection variants, worked JSON examples, and sync/import filter functions, see [Scopes and Collections Configuration for Sync Gateway](scopes-and-collections-config.md).
 
 ## [](#lbl-create-db)Create a new Sync Gateway database
 
@@ -35,7 +74,7 @@ For complete endpoint details, see [PUT /{db}/](../rest-api/rest%5Fapi%5Fadmin.m
 
 Example 1\. Create database
 
-This example creates a new sync gateway database.
+This example creates a new Sync Gateway database.
 
 * Curl
 * HTTP
@@ -63,7 +102,7 @@ Content-Length: 44
 }
 ```
 
-| **1** | Create a sync gateway database called traveldb                                          |
+| **1** | Create a Sync Gateway database called traveldb                                          |
 | ----- | --------------------------------------------------------------------------------------- |
 | **2** | Use Basic Authentication to authenticate against an existing Couchbase Server RBAC user |
 | **3** | Point to the Couchbase Server bucket called todo                                        |
@@ -76,7 +115,7 @@ For complete endpoint details, see [POST /{db}/\_config](../rest-api/rest%5Fapi%
 
 Example 2\. Configure database
 
-This example configures an existing sync gateway database.
+This example configures an existing Sync Gateway database.
 
 * Curl
 * HTTP
@@ -104,7 +143,7 @@ Content-Length: 120
 } (3)
 ```
 
-| **1** | Configure (\_config) a sync gateway database called traveldb                            |
+| **1** | Configure (\_config) a Sync Gateway database called traveldb                            |
 | ----- | --------------------------------------------------------------------------------------- |
 | **2** | Use Basic Authentication to authenticate against an existing Couchbase Server RBAC user |
 | **3** | Toggle a couple of database properties                                                  |
@@ -134,6 +173,7 @@ The configuration settings described here are provisioned through the [Database 
          [min_length](#cache-channel%5Fcache-min%5Flength): 50
       },
       [rev_cache](#cache-rev%5Fcache): {
+         [insert_on_write](#cache-rev%5Fcache-insert%5Fon%5Fwrite): false,
          [max_memory_count_mb](#cache-rev%5Fcache-max%5Fmemory%5Fcount%5Fmb): 0,
          [shard_count](#cache-rev%5Fcache-shard%5Fcount): 16,
          [size](#cache-rev%5Fcache-size): 5000
@@ -245,7 +285,7 @@ The configuration settings described here are provisioned through the [Database 
             [name](#logging-audit-disabled%5Fusers-name): "string"
          ],
          [enabled](#logging-audit-enabled): false,
-         [enabled_events](#logging-audit-enabled%5Fevents): [1234...]
+         [enabled_events](#logging-audit-enabled%5Fevents): [0...]
       },
       [console](#logging-console): {
          [log_keys](#logging-console-log%5Fkeys): ["string"...],
@@ -361,6 +401,7 @@ The configuration settings described here are provisioned through the [Database 
       },
       [oidc_tls_skip_verify](#unsupported-oidc%5Ftls%5Fskip%5Fverify): true,
       [remote_config_tls_skip_verify](#unsupported-remote%5Fconfig%5Ftls%5Fskip%5Fverify): true,
+      [resync_partitions](#unsupported-resync%5Fpartitions): 0,
       [same_site_cookie](#unsupported-same%5Fsite%5Fcookie): "string",
       [sgr_tls_skip_verify](#unsupported-sgr%5Ftls%5Fskip%5Fverify): true,
       user_views: {
@@ -603,6 +644,16 @@ object
 Description
 
 The revision cache config settings.
+
+#### `cache.rev_cache.insert_on_write`
+
+Type
+
+boolean
+
+Description
+
+Whether to insert revisions into the revision cache when documents are written to the database. If false, only revisions read from the database will be cached.
 
 #### `cache.rev_cache.max_memory_count_mb`
 
@@ -2689,6 +2740,16 @@ boolean
 Description
 
 Enable self-signed certificates for external JavaScript load.
+
+#### `unsupported.resync_partitions`
+
+Type
+
+integer
+
+Description
+
+Number of partitions to use for distributed DCP resync. Maximum number is the number of vBuckets for the backing bucket.
 
 #### `unsupported.same_site_cookie`
 

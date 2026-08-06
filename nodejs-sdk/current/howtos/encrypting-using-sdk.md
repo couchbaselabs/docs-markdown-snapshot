@@ -2,8 +2,8 @@
 title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the Node.js SDK.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/encrypting-using-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -43,54 +43,13 @@ Here we'll go through an example of setting up and using the Node Field-Level En
 To begin we need to create a couple of keys, you should **not** use the `InsecureKeyring` other than for evaluation purposes and should keep your keys secure.
 
 ```javascript
-  const keyBuffer = Buffer.from(
-    '000102030405060708090a0b0c0d0e0f' +
-      '101112131415161718191a1b1c1d1e1f' +
-      '202122232425262728292a2b2c2d2e2f' +
-      '303132333435363738393a3b3c3d3e3f',
-    'hex'
-  ) // output in string format: 123456789:;<=>?
-
-  const key1 = new keyring.Key('mykey', keyBuffer)
-  const key2 = new keyring.Key('myotherkey', keyBuffer)
-
-  // Create an insecure keyring and add two keys.
-  const insecureKeyring = new keyring.InsecureKeyring(key1, key2)
+Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::example$fle.js[]
 ```
 
 Now that we have keys we can create a `Provider` (here we use the `AeadAes256CbcHmacSha512` algorithm which is the default supplied by the library). The `Provider` gives us a way to easily create multiple encrypters for the same algorithm but different keys. At this point we also create `CryptoManager` and register our encrypters and decrypters with it.
 
 ```javascript
-  // Create a provider.
-  // AES-256 authenticated with HMAC SHA-512. Requires a 64-byte key.
-  const provider = new aesprovider.AeadAes256CbcHmacSha512Provider(
-    insecureKeyring
-  )
-
-  // Create the manager and add the providers.
-  const mgr = new crypto.DefaultCryptoManager()
-
-  // We need to create and then register encrypters.
-  // The key ID here is used by the encrypter to lookup the key from the store when encrypting a document.
-  // The key ID returned from the store at encryption time is written into the data for the field to be encrypted.
-  // The key ID that was written is then used on the decrypt side to find the corresponding key from the store.
-  const keyOneEncrypter = provider.encrypterForKey(key1.id)
-  const keyTwoEncrypter = provider.encrypterForKey(key2.id)
-
-  // We register the providers for both encryption and decryption.
-  // The alias used here is the value which corresponds to the "encryptionKey" field property
-  // in the CryptoSchema.
-  mgr.registerEncrypter('one', keyOneEncrypter)
-  mgr.registerEncrypter('two', keyTwoEncrypter)
-
-  // We don't need to add a default encryptor but if we do then any fields with an
-  // empty encryption key will use this encryptor.
-  mgr.defaultEncrypter(keyOneEncrypter)
-
-  // We only set one decrypter per algorithm.
-  // The crypto manager will work out which decrypter to use based on the `alg` field embedded in the field data.
-  // The decrypter will use the key ID embedded in the field data to determine which key to fetch from the key store for decryption
-  mgr.registerDecrypter(provider.decrypter())
+Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::howtos:example$fle.js[]
 ```
 
 ## [](#usage)Usage
@@ -98,75 +57,19 @@ Now that we have keys we can create a `Provider` (here we use the `AeadAes256Cbc
 Sensitive fields in your data classes can be encrypted by using a `CryptoSchema`. For example:
 
 ```javascript
-// CryptoSchema is used to register which fields to apply the encryption to.
-const schema = mgr.newCryptoSchema({
-  fields: {
-    password: {
-      encryptionKey: 'one',
-    },
-    addresses: {
-      fields: {
-        houseName: {
-          encryptionKey: 'one',
-        },
-        street: {
-          fields: {
-            secondLine: {
-              encryptionKey: 'two',
-            },
-          },
-        },
-        attributes: {
-          fields: {
-            action: {
-              encryptionKey: 'two',
-            },
-          },
-        },
-      },
-      encryptionKey: 'two',
-    },
-    phone: {
-      encryptionKey: '',
-    },
-  },
-})
+Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::howtos:example$fle.js[]
 ```
 
 Now let's create a person document and save it to Couchbase:
 
 ```javascript
-  const person = {
-    firstName: 'Barry',
-    lastName: 'Sheen',
-    password: 'bang!',
-    addresses: [
-      {
-        houseName: 'my house',
-        street: [
-          {
-            firstLine: 'my street',
-            secondLine: 'my second line',
-          },
-        ],
-      },
-      {
-        houseName: 'my other house',
-      },
-    ],
-    phone: '123456',
-  }
-
-  const encryptedDoc = schema.encrypt(person)
-  await collection.upsert('p1', encryptedDoc)
+Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::howtos:example$fle.js[]
 ```
 
 You can get the document to verify the fields were encrypted:
 
 ```javascript
-const result = await collection.get('p1')
-const resData = result.content
-console.log(JSON.stringify(resData, null, '  '))
+Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::howtos:example$fle.js[]
 ```
 
 The expected output is something like:
@@ -196,8 +99,7 @@ The expected output is something like:
 Now let's decrypt the person document and output the result.
 
 ```javascript
-const decryptedDoc = schema.decrypt(encryptedDoc)
-console.log(JSON.stringify(decryptedDoc, null, '  '))
+Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::howtos:example$fle.js[]
 ```
 
 The output is now:

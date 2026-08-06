@@ -1,14 +1,14 @@
 ---
-title: Query Data in External Data Sources
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/external-s3.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+title: Query Data in Amazon S3
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sources/pages/external-s3.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sources:external-s3.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/current/sources/external-s3.html)
 
-# Query Data in External Data Sources
+# Query Data in Amazon S3
 
 > To provide query access to OLAP data in an Amazon S3 and S3-compatible storage, you create an external link and associate it with an external collection. 
 

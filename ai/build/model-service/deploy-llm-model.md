@@ -1,9 +1,9 @@
 ---
 title: Deploy a Large Language Model (LLM)
-description: The {ai} Model Service can deploy Large Language Models (LLMs)
-  close to your data in Capella to power your AI applications.
+description: The AI Data Plane Model Service can deploy Large Language Models
+  (LLMs) close to your data in Capella to power your AI applications.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/deploy-llm-model.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:build:model-service/deploy-llm-model.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:ai:build:model-service/deploy-llm-model.adoc[]
 
 # Deploy a Large Language Model (LLM)
 
-> The {ai} Model Service can deploy Large Language Models (LLMs) close to your data in Capella to power your AI applications. 
+> The AI Data Plane Model Service can deploy Large Language Models (LLMs) close to your data in Capella to power your AI applications. 
 
-The {ai} Model Service offers endpoints for popular Large Language Models (LLMs) and supports features such as keyword filtering, caching, and guardrails.
+The AI Data Plane Model Service offers endpoints for popular Large Language Models (LLMs) and supports features such as keyword filtering, caching, and guardrails.
 
 ## [](#prerequisites)Prerequisites
 
@@ -22,7 +22,7 @@ The {ai} Model Service offers endpoints for popular Large Language Models (LLMs)
 
 ## [](#procedure)Procedure
 
-1. From your organization, go to menu:{ai}\[Models\].
+1. From your organization, go to **AI Data Plane** **Models**.
 2. Click **Deploy New Model**.
 3. Choose an LLM to deploy:
 

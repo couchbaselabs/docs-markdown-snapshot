@@ -1,8 +1,8 @@
 ---
 title: Data Sync Peer-to-Peer
 description: Couchbase Lite database peer-to-peer sync concepts using websockets
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/p2psync-websocket.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/objc/pages/p2psync-websocket.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:objc:p2psync-websocket.adoc[]
 ---
 
@@ -12,7 +12,20 @@ link: xref:couchbase-lite:objc:p2psync-websocket.adoc[]
 # Data Sync Peer-to-Peer
 
 > Description — _Couchbase Lite database peer-to-peer sync concepts using websockets_  
-> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
+> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
+
+> [!TIP]
+> Multipeer P2P Replicator
+> 
+> [Multipeer P2P Replicator](p2psync-multipeer.md) is available for Objective-C, offering:
+> 
+> * Auto-discovery over Wi-Fi and, from CBL 4.1, Bluetooth Low Energy
+> * Automatic transport switching between Wi-Fi and Bluetooth when both are enabled
+> * Lightweight and low-maintenance configuration
+> * Dynamic mesh topology for optimal peer connectivity
+> * Secure communication via TLS and certificate-based authentication
+> 
+> For many use cases, this will be quicker to develop for than Active-Passive peer-to-peer sync.
 
 ## [](#introduction)Introduction
 
@@ -177,7 +190,7 @@ Core functionalities of the listener are:
 * The listener can be started, or can be stopped.
 * Once the listener is started, a total number of connections or active connections can be checked.
 
-API Reference: [URLEndpointListener](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLURLEndpointListener.html)
+API Reference: [URLEndpointListener](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLURLEndpointListener.html)
 
 ### [](#urlendpointlistenerconfiguration)URLEndpointListenerConfiguration
 
@@ -203,23 +216,23 @@ The value is null if the listener is not started.
 
 disableTLS
 
-You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html)'s [disableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html#/c:objc%28cs%29CBLURLEndpointListenerConfiguration%28py%29disableTLS) method to disable TLS communication if necessary
+You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html)'s [disableTLS](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html#/c:objc%28cs%29CBLURLEndpointListenerConfiguration%28py%29disableTLS) method to disable TLS communication if necessary
 
 The `disableTLS` setting must be 'false' when _Client Cert Authentication_ is required.
 
 Basic Authentication can be used with, or without, TLS.
 
-[disableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html#/c:objc%28cs%29CBLURLEndpointListenerConfiguration%28py%29disableTLS) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
+[disableTLS](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html#/c:objc%28cs%29CBLURLEndpointListenerConfiguration%28py%29disableTLS) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
 
 * If `disableTLS` is true — TLS communication is disabled and TLS identity is ignored. Active peers will use the `ws://` URL scheme used to connect to the listener.
 * If `disableTLS` is false or not specified — TLS communication is enabled.  
 Active peers will use the `wss://` URL scheme to connect to the listener.
 
-API Reference: [disableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html#/c:objc%28cs%29CBLURLEndpointListenerConfiguration%28py%29disableTLS)
+API Reference: [disableTLS](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html#/c:objc%28cs%29CBLURLEndpointListenerConfiguration%28py%29disableTLS)
 
 tlsIdentity
 
-Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html)'s [tlsIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html#/c:objc%28cs%29CBLURLEndpointListenerConfiguration%28py%29tlsIdentity) method to configure the TLS Identity used in TLS communication.
+Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html)'s [tlsIdentity](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html#/c:objc%28cs%29CBLURLEndpointListenerConfiguration%28py%29tlsIdentity) method to configure the TLS Identity used in TLS communication.
 
 If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous self-signed identity (unless `disableTLS = true`). Whilst the client cannot use this to authenticate the server, it will use it to encrypt communication, giving a more secure option than non-TLS communication.
 
@@ -227,7 +240,7 @@ The auto-generated anonymous self-signed identity is saved in secure storage for
 
 When the listener is not started, the identity is null. When TLS is disabled, the identity is always null.
 
-API Reference: [tlsIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html#/c:objc%28cs%29CBLURLEndpointListenerConfiguration%28py%29tlsIdentity)
+API Reference: [tlsIdentity](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html#/c:objc%28cs%29CBLURLEndpointListenerConfiguration%28py%29tlsIdentity)
 
 authenticator
 
@@ -237,7 +250,7 @@ Use this to specify the authenticator the listener uses to authenticate the clie
 * ListenerCertificateAuthenticator
 * Null — there is no authentication.
 
-API Reference: [authenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html#/c:objc%28cs%29CBLURLEndpointListenerConfiguration%28py%29authenticator)
+API Reference: [authenticator](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html#/c:objc%28cs%29CBLURLEndpointListenerConfiguration%28py%29authenticator)
 
 readOnly
 
@@ -247,7 +260,7 @@ enableDeltaSync
 
 The option to enable Delta Sync and replicate only changed data also depends on the delta sync settings at database level. The default value is false.
 
-API Reference: [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html)
+API Reference: [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLURLEndpointListenerConfiguration.html)
 
 ## [](#security-2)Security
 
@@ -335,7 +348,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](#objc:landing-p2psync.adoc)
-* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc)
+* [API References](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc)
 
 .
 
@@ -345,4 +358,4 @@ Community Resources …​
 
 [Mobile Forum](https://forums.couchbase.com/c/mobile/14) | [Blog](https://blog.couchbase.com/) | [Tutorials](https://docs.couchbase.com/tutorials/)
 
-. [Getting Started with Peer-to-Peer Synchronization](../../../tutorials/cbl-p2p-sync-websockets/swift/cbl-p2p-sync-websockets.md)
+.

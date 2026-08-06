@@ -3,8 +3,8 @@ title: Configure Server Certificates
 description: "Enterprise Analytics supports using X.509 and PKCS #12
   certificates for authenticating and encrypting data between the nodes in the
   cluster."
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/configure-server-certificates.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/manage-security/configure-server-certificates.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:manage:manage-security/configure-server-certificates.adoc[]
 ---
 

@@ -3,7 +3,7 @@ title: SDK Doctor
 description: SDK doctor helps diagnose application-server-side connectivity
   issues with your Couchbase Cluster (among other things).
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/sdk/pages/sdk-doctor.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:7.6@server:sdk:sdk-doctor.adoc[]
 ---
 
@@ -89,7 +89,7 @@ Note: Diagnostics can only provide accurate results when your cluster
 Found multiple issues, see listing above.
 ```
 
-A full example can be found on our [Troubleshooting Cloud Connections](../../../java-sdk/3.5/howtos/troubleshooting-cloud-connections.md#validating-connectivity-with-sdk-doctor) page.
+A full example can be found on our [Troubleshooting Cloud Connections](#3.5@java-sdk:howtos:troubleshooting-cloud-connections.adoc#validating-connectivity-with-sdk-doctor) page.
 
 ## [](#limitations)Limitations
 

@@ -2,8 +2,8 @@
 title: Sub-Document Operations
 description: <em>Sub-document</em> operations can be used to efficiently access
   <em>parts</em> of documents.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/subdocument-operations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -61,22 +61,13 @@ The _lookup-in_ operations query the document for certain path(s); these path(s)
 Retrieve sub-document value
 
 ```ruby
-result = collection.lookup_in("customer123", [
-    LookupInSpec.get("addresses.delivery.country")
-])
-country = result.content(0)
-puts "Country = #{country}"
-#=> Country = United Kingdom
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 Check existence of sub-document path
 
 ```ruby
-result = collection.lookup_in("customer123", [
-    LookupInSpec.exists("addresses.delivery.does_not_exist")
-])
-puts "exists: #{result.exists?(0)}"
-#=> exists: false
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 Multiple operations can be combined as well:
@@ -84,14 +75,7 @@ Multiple operations can be combined as well:
 Combine multiple lookup operations
 
 ```ruby
-result = collection.lookup_in("customer123", [
-    LookupInSpec.get("addresses.delivery.country"),
-    LookupInSpec.exists("addresses.delivery.does_not_exist")
-])
-puts "Country = #{result.content(0)}"
-#=> Country = United Kingdom
-puts "exists: #{result.exists?(1)}"
-#=> exists: false
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 ## [](#mutating)Mutating
@@ -101,11 +85,7 @@ Mutation operations modify one or more paths in the document. The simplest of th
 Upserting a new sub-document
 
 ```ruby
-result = collection.mutate_in("customer123", [
-    MutateInSpec.upsert("email", "dougr96@hotmail.com")
-])
-puts "CAS: #{result.cas}"
-#=> CAS: 3769293415702
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 Likewise, the _subdoc-insert_ operation will only add the new value to the path if it does not exist:
@@ -113,24 +93,13 @@ Likewise, the _subdoc-insert_ operation will only add the new value to the path 
 Inserting a sub-document
 
 ```ruby
-begin
-  collection.mutate_in("customer123", [
-      MutateInSpec.insert("email", "dougr96@hotmail.com")
-  ])
-rescue Error::PathExists
-  puts "Error, path already exists"
-end
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutate-in_ API. Here's an example of one which replaces one path and removes another.
 
 ```ruby
-result = collection.mutate_in("customer123", [
-    MutateInSpec.remove("addresses.billing"),
-    MutateInSpec.replace("email", "dougr96@hotmail.com")
-])
-puts "success: #{result.success?}, CAS: #{result.cas}"
-#=> success: true, CAS: 149588684383510
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 > [!NOTE]
@@ -141,21 +110,11 @@ puts "success: #{result.success?}, CAS: #{result.cas}"
 The _subdoc-array-prepend_ and _subdoc-array-append_ operations are true array prepend and append operations. Unlike fulldoc _append_/_prepend_ operations (which simply concatenate bytes to the existing value), _subdoc-array-append_ and _subdoc-array-prepend_ are JSON-aware:
 
 ```ruby
-collection.mutate_in("customer123", [
-    MutateInSpec.array_append("purchases.complete", [777])
-])
-complete_purchases = collection.get("customer123").content["purchases"]["complete"]
-puts "purchases.complete: #{complete_purchases}"
-#=> purchases.complete: [339, 976, 442, 666, 777]
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 ```ruby
-collection.mutate_in("customer123", [
-    MutateInSpec.array_prepend("purchases.abandoned", [18])
-])
-abandoned_purchases = collection.get("customer123").content["purchases"]["abandoned"]
-puts "purchases.abandoned: #{abandoned_purchases}"
-#=> purchases.abandoned: [18, 157, 42, 999]
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 If your document only needs to contain an array, you do not have to create a top-level object wrapper to contain it. Simply initialize the document with an empty array and then use the empty path for subsequent sub-document array operations:
@@ -163,25 +122,13 @@ If your document only needs to contain an array, you do not have to create a top
 Creating and populating an array document
 
 ```ruby
-collection.upsert("my_array", [])
-
-collection.mutate_in("my_array", [
-    MutateInSpec.array_append("", ["some element"])
-])
-puts "my_array: #{collection.get("my_array").content}"
-#=> my_array: ["some element"]
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 If you wish to create an array if it does not exist and also push elements to it within the same operation you may use the [_create-path_](#subdoc-create-parents) option:
 
 ```ruby
-collection.upsert("some_doc", {})
-
-collection.mutate_in("some_doc", [
-    MutateInSpec.array_append("some.array", ["hello world"]).create_path
-])
-puts "some_doc: #{collection.get("some_doc").content}"
-#=> some_doc: {"some"=>{"array"=>["hello world"]}}
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 ## [](#arrays-as-unique-sets)Arrays as Unique Sets
@@ -189,17 +136,7 @@ puts "some_doc: #{collection.get("some_doc").content}"
 Limited support also exists for treating arrays like unique sets, using the `.array_add_unique()` method. This will do a check to determine if the given value exists or not before actually adding the item to the array:
 
 ```ruby
-collection.mutate_in("customer123", [
-    MutateInSpec.array_add_unique("purchases.complete", 95)
-])
-
-begin
-  collection.mutate_in("customer123", [
-      MutateInSpec.array_add_unique("purchases.complete", 95)
-  ])
-rescue Error::PathExists
-  puts "Error, value already exists in the path"
-end
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 Note that currently the `.array_add_unique()` will fail with a _Path Mismatch_ error if the array contains JSON _floats_, _objects_, or _arrays_. The `.array_add_unique()` operation will also fail with _Cannot Insert_ if the value to be added is one of those types as well.
@@ -211,17 +148,7 @@ Note that the actual position of the new element is undefined, and that the arra
 New elements can also be _inserted_ into an array. While _append_ will place a new item at the _end_ of an array and _prepend_ will place it at the beginning, _insert_ allows an element to be inserted at a specific _position_. The position is indicated by the last path component, which should be an array index. For example, to insert `"cruel"` as the second element in the array `["Hello", "world"]`, the code would look like:
 
 ```ruby
-collection.upsert("some_doc", {
-    "foo" => {
-        "bar" => ["hello", "world"]
-    }
-})
-
-collection.mutate_in("some_doc", [
-    MutateInSpec.array_insert("foo.bar[1]", ["cruel"])
-])
-puts "foo.bar: #{collection.get("some_doc").content["foo"]["bar"]}"
-#=> foo.bar: ["hello", "cruel", "world"]
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 Note that the array must already exist and that the index must be valid (i.e. it must not point to an element which is out of bounds).
@@ -231,27 +158,13 @@ Note that the array must already exist and that the index must be valid (i.e. it
 Counter operations allow the manipulation of a _numeric_ value inside a document. These operations are logically similar to the _counter_ operation on an entire document:
 
 ```ruby
-result = collection.mutate_in("customer123", [
-    MutateInSpec.increment("logins", 1)
-])
-
-# Counter operations return the updated count
-puts "current logins: #{result.content(0)}"
-#=> current logins: 1
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 The _subdoc-counter_ operation performs simple arithmetic against a numeric value, either incrementing or decrementing the existing value. The new value is returned.
 
 ```ruby
-collection.upsert("player432", {"gold" => 1000})
-
-result = collection.mutate_in("player432", [
-    MutateInSpec.decrement("gold", 150)
-])
-
-# Counter operations return the updated count
-puts "player432 has #{result.content(0)} gold coins"
-#=> player432 has 850 gold coins
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 The existing value for _subdoc-counter_ operations must be within range of a 64 bit signed integer. If the value does not exist, the _subdoc-counter_ operation will create it (and its parents, if _create-path_ is enabled).
@@ -296,17 +209,7 @@ Looking at the `some_field` field (which is really `level_0.level_1.level_2.leve
 By default the automatic creation of parents is disabled, as a simple typo in application code can result in a rather confusing document structure. Sometimes it is necessary to have the server create the hierarchy however. In this case, the _create-path_ option may be used.
 
 ```ruby
-collection.upsert("some_doc", {})
-
-collection.mutate_in("some_doc", [
-    MutateInSpec
-        .upsert("level_0.level_1.foo.bar.phone",
-                {"num" => "0118 999 881 999 119 725 3"})
-        .create_path
-])
-
-puts "some_doc: #{collection.get("some_doc").content}"
-#=> some_doc: {"level_0"=>{"level_1"=>{"foo"=>{"bar"=>{"phone"=>{"num"=>"0118 999 881 999 119 725 3"}}}}}}
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 ## [](#subdoc-from-replica)Reading Sub-Documents From Replicas
@@ -318,13 +221,7 @@ The `Collection#lookup_in_any_replica` method returns the first response — fro
 Sub-Document read from any replica
 
 ```ruby
-result = collection.lookup_in_any_replica("customer123", [
-  LookupInSpec.get("addresses.delivery.country")
-])
-puts "Country = #{result.content(0)}"
-#=> Country = United Kingdom
-puts "is replica?: #{result.replica?}"
-#=> is replica?: false|true
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 The `Collection#lookup_in_all_replicas` method fetches all available replicas (and the active copy), and returns all responses:
@@ -332,15 +229,7 @@ The `Collection#lookup_in_all_replicas` method fetches all available replicas (a
 Sub-Document read from all replicas
 
 ```ruby
-results = collection.lookup_in_all_replicas("customer123", [
-  LookupInSpec.get("addresses.delivery.country")
-])
-results.each do |res|
-  puts "Country = #{res.content(0)}"
-  #=> Country = United Kingdom
-  puts "is replica?: #{res.replica?}"
-  #=> is replica?: false|true
-end
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 ## [](#cas-semantics)CAS Semantics
@@ -348,13 +237,7 @@ end
 Subdoc mostly eliminates the need for tracking the [CAS](concurrent-document-mutations.md) value. Subdoc operations are atomic and therefore if two different threads access two different sub-documents then no conflict will arise.
 
 ```ruby
-get_result = collection.get("player432")
-
-options = Collection::MutateInOptions.new
-options.cas = get_result.cas
-collection.mutate_in("player432", [
-    MutateInSpec.decrement("gold", 150)
-], options)
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 Even when modifying the _same_ part of the document, operations will not necessarily conflict. For example, two concurrent _subdoc-array-append_ operations to the same array will both succeed, never overwriting the other.
@@ -366,11 +249,7 @@ While CAS is no longer so strongly required to ensure document updates are prese
 In Couchbase Server 6.5 and up, this is built upon with [Durable Writes](../concept-docs/durability-replication-failure-considerations.md#durable-writes), which uses the concept of majority to indicate the number of configured Data Service nodes to which commitment is required:
 
 ```ruby
-options = Collection::MutateInOptions.new
-options.durability_level = :majority
-collection.mutate_in("some_doc", [
-    MutateInSpec.insert("foo", "bar")
-])
+Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::example$subdoc.rb[]
 ```
 
 ## [](#error-handling)Error handling

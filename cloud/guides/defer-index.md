@@ -2,7 +2,7 @@
 title: Defer Indexes
 description: How to create deferred indexes and build them later.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/defer-index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:cloud:guides:defer-index.adoc[]
 ---
 
@@ -146,17 +146,11 @@ To defer a primary or secondary index to be built later:
 The following examples create a set of primary and secondary indexes in the specified keyspace, with build deferred until later.
 
 ```nodejs
-await cluster
-  .queryIndexes()
-  .createPrimaryIndex('travel-sample', { name: '#primary', deferred: true })
+Unresolved include directive in modules/guides/pages/defer-index.adoc - include::nodejs-sdk:hello-world:example$index-hello-world.js[]
 ```
 
 ```nodejs
-await cluster
-  .queryIndexes()
-  .createIndex('travel-sample', 'idx_name_email', ['name', 'email'], {
-    deferred: true,
-  })
+Unresolved include directive in modules/guides/pages/defer-index.adoc - include::nodejs-sdk:hello-world:example$index-hello-world.js[]
 ```
 
 Click the  View button to see this code in context.
@@ -289,17 +283,7 @@ To build all deferred indexes in a keyspace, use the `buildDeferredIndexes` func
 The following example builds all deferred indexes in the specified keyspace.
 
 ```nodejs
-// Start building any deferred indexes which were previously created.
-await cluster.queryIndexes().buildDeferredIndexes('travel-sample')
-
-// Wait for the deferred indexes to be ready for use.
-// Set the maximum time to wait to 3 minutes.
-await cluster.queryIndexes().watchIndexes(
-  'travel-sample',
-  ['idx_name_email'],
-  180000, // milliseconds
-  { watchPrimary: true }
-)
+Unresolved include directive in modules/guides/pages/defer-index.adoc - include::nodejs-sdk:hello-world:example$index-hello-world.js[]
 ```
 
 Click the  View button to see this code in context.

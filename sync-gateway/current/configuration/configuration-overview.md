@@ -1,8 +1,8 @@
 ---
 title: Configuration Overview
 description: How to configure <em>Sync&#160;Gateway</em> for secure cloud-to-edge data sync
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-overview.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:configuration:configuration-overview.adoc[]
 ---
 
@@ -20,15 +20,15 @@ _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configurat
 _Sync Gateway_ 3.0 introduces _Centralized Persistent Modular Configuration_, to better suit its use in increasingly prevalent multi-node, multi-cluster deployments. Centralized persistent modular configuration replaces the established, file-based configuration method \[[1](#%5Ffootnotedef%5F1 "View footnote.")\], supporting the move away from a reliance on increasingly monolithic central configuration files. It enables simpler, more agile configuration updates and encompasses:
 
 * **Bootstrap Startup**  
-Use a minimal configuration file to bootstrap a sync gateway node and attach it to its Couchbase Server cluster; these files and their settings are node-specific — see the [Bootstrap Configuration](configuration-schema-bootstrap.md)
+Use a minimal configuration file to bootstrap a Sync Gateway node and attach it to its Couchbase Server cluster; these files and their settings are node-specific — see the [Bootstrap Configuration](configuration-schema-bootstrap.md)
 * **Dynamic Configuration**  
-The ability to make remote in-flight configuration changes to database settings, access-control policies and inter-sync gateway replications, enables simpler and more agile maintenance.
+The ability to make remote in-flight configuration changes to database settings, access-control policies and inter-Sync Gateway replications, enables simpler and more agile maintenance.
 * **Cluster-aware Updates**  
-sync gateway propagates configuration changes made to a node through the API endpoints to other nodes belonging to the same cluster (or to a user-defined subset of nodes) — [Configuration Groups](#lbl-config-grp)
+Sync Gateway propagates configuration changes made to a node through the API endpoints to other nodes belonging to the same cluster (or to a user-defined subset of nodes) — [Configuration Groups](#lbl-config-grp)
 * **Persistent Updates**  
-Any database changes made using the API endpoints persist and survive sync gateway node restarts (this does not apply when running in file-based configuration mode).  
+Any database changes made using the API endpoints persist and survive Sync Gateway node restarts (this does not apply when running in file-based configuration mode).  
 > [!NOTE]  
-> Using sync gateway with Couchbase Server's [Couchbase Eventing Service](../../../server/current/eventing/eventing-overview.md) feature requires persistent configuration. Databases created via file-based configuration are not recorded in the registry and Eventing cannot detect them for compatibility checks — see [Server Compatibility - Eventing](../server-compatibility/server-compatibility-eventing.md).
+> Using Sync Gateway with Couchbase Server's [Couchbase Eventing Service](../../../server/current/eventing/eventing-overview.md) feature requires persistent configuration. Databases created via file-based configuration are not recorded in the registry and Eventing cannot detect them for compatibility checks — see [Server Compatibility - Eventing](../server-compatibility/server-compatibility-eventing.md).
 * **Secure REST API**  
 by default the REST API requires authentication and authorization using Couchbase Server RBAC-user credentials — see [Secure Sync Gateway Access](../security/secure-sgw-access.md). This can be disabled for test purposes only.
 * **Automatic upgrade path**  
@@ -44,9 +44,9 @@ Figure 1\. Configuration Workflow
 
 1. Set up a user for the Admin REST API on Couchbase Server  
 You can turn off authentication of REST API users for test purposes **only**
-2. Provide a [bootstrap configuration file](configuration-schema-bootstrap.md), in JSON format, which defines the sync gateway node's run time behavior. This configuration is node-specific. Any changes require a sync gateway restart.
+2. Provide a [bootstrap configuration file](configuration-schema-bootstrap.md), in JSON format, which defines the Sync Gateway node's run time behavior. This configuration is node-specific. Any changes require a Sync Gateway restart.
 3. Add or amend configuration items in-flight using the Admin Rest API.  
-All changes persist across sync gateway restarts. sync gateway initiates auto restarts for any change that requires one. You'll need to configure and maintain:
+All changes persist across Sync Gateway restarts. Sync Gateway initiates auto restarts for any change that requires one. You'll need to configure and maintain:
 
   1. Databases  
   Use the Admin REST API endpoint [Database Configuration](configuration-schema-database.md) endpoints to add required databases.
@@ -55,21 +55,21 @@ All changes persist across sync gateway restarts. sync gateway initiates auto re
   3. Access Control  
   Use the [Access Control](configuration-schema-access-control.md) endpoints to configure your Sync Function.
   4. Inter-Sync Gateway replications  
-  Use the [inter-sync gateway replication](configuration-schema-isgr.md) endpoints to configure required replications.
+  Use the [inter-Sync Gateway replication](configuration-schema-isgr.md) endpoints to configure required replications.
 
 ### [](#opt-out)Opt-out
 
-To continue using legacy Pre-3.0 configuration you should start sync gateway with [disable\_persistent\_config](configuration-properties-legacy.md#disable%5Fpersistent%5Fconfig) set `true` either in the configuration file or in [Command Line Options](../deploy/command-line-options.md).
+To continue using legacy Pre-3.0 configuration you should start Sync Gateway with [disable\_persistent\_config](configuration-properties-legacy.md#disable%5Fpersistent%5Fconfig) set `true` either in the configuration file or in [Command Line Options](../deploy/command-line-options.md).
 
-This ensures you can use the [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md). NOTE: sync gateway does not persist Admin REST API changes across restarts.
+This ensures you can use the [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md). NOTE: Sync Gateway does not persist Admin REST API changes across restarts.
 
 ## [](#key-terms)Key Terms
 
 | Term                             | Description                                                                                                                                              |
 | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sync Gateway Cluster             | A collection of sync gateway nodes connected to a common Couchbase Server cluster                                                                        |
-| Homogeneous Sync Gateway Cluster | A sync gateway cluster where every node in cluster shares common configuration                                                                           |
-| Sync Gateway Config Group        | A group of sync gateway nodes within a sync gateway cluster sharing common configuration. Each node in the group continues to have node-specific config. |
+| Sync Gateway Cluster             | A collection of Sync Gateway nodes connected to a common Couchbase Server cluster                                                                        |
+| Homogeneous Sync Gateway Cluster | A Sync Gateway cluster where every node in cluster shares common configuration                                                                           |
+| Sync Gateway Config Group        | A group of Sync Gateway nodes within a Sync Gateway cluster sharing common configuration. Each node in the group continues to have node-specific config. |
 
 ## [](#configuration-levels)Configuration Levels
 
@@ -82,7 +82,7 @@ __Table 1\. Configuration levels in centralized persistent modular configuration
 | System properties      | Node level system properties including, for example, api.tls.cert\_path and max\_file\_descriptors | Node-specific; unshared                                                                                                                  | Yes, file-editRestart required                                        |                                                   |
 | Logging properties     | Logging-related properties                                                                         | Node-specific; unshared                                                                                                                  | Yes by the Admin REST APINo restart, but **not persisted**            |                                                   |
 | Database               | DB properties                                                                                      | Database configuration properties including, for example, bucket, or access control policies such as users and sync                      | May be node-specific, but typically shared across nodes in same group | Yes, by Admin REST APIRestart initiated as needed |
-| Replication properties | inter-sync gateway replication properties                                                          | Shared across all participating replication nodes                                                                                        | Yes, by Admin REST APIRestart initiated as needed                     |                                                   |
+| Replication properties | inter-Sync Gateway replication properties                                                          | Shared across all participating replication nodes                                                                                        | Yes, by Admin REST APIRestart initiated as needed                     |                                                   |
 
 ## [](#lbl-auth)Secure Administration
 
@@ -96,13 +96,13 @@ For more see: [REST API Access](../rest-api/rest-api-access.md)
 
 ## [](#lbl-config-grp)Configuration Groups
 
-You can group sync gateway nodes into homogenous clusters using the `Config-Group-ID` property ([bootstrap.group\_id](configuration-schema-bootstrap.md#bootstrap-group%5Fid)). This defines the database configuration group to which a node belongs.
+You can group Sync Gateway nodes into homogenous clusters using the `Config-Group-ID` property ([bootstrap.group\_id](configuration-schema-bootstrap.md#bootstrap-group%5Fid)). This defines the database configuration group to which a node belongs.
 
-All nodes in a group share the same database configuration. sync gateway automatically propagates changes made from one node to other nodes in the group.
+All nodes in a group share the same database configuration. Sync Gateway automatically propagates changes made from one node to other nodes in the group.
 
 All nodes in a cluster belong, by default, to a common shared group `default`.
 
-If you move a sync gateway node to a new group, it inherits the configuration associated with that group. This applies also if you move a group (back) into the `default` group.
+If you move a Sync Gateway node to a new group, it inherits the configuration associated with that group. This applies also if you move a group (back) into the `default` group.
 
 ---
 

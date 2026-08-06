@@ -1,7 +1,7 @@
 ---
 title: Sub-Documents
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/concept-docs/pages/subdocument-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/concept-docs/pages/subdocument-operations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:scala-sdk:concept-docs:subdocument-operations.adoc[]
 ---
 

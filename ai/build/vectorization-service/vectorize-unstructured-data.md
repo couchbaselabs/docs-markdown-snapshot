@@ -1,10 +1,10 @@
 ---
 title: Process and Vectorize Unstructured Data
-description: Use an {ai-long} Unstructured Data Workflow to automatically
-  preprocess data for a Retrieval Augmented Generation (RAG) application or
-  other use cases inside Capella.
+description: Use an Couchbase AI Data Plane Unstructured Data Workflow to
+  automatically preprocess data for a Retrieval Augmented Generation (RAG)
+  application or other use cases inside Capella.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/vectorize-unstructured-data.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:build:vectorization-service/vectorize-unstructured-data.adoc[]
 ---
 
@@ -13,12 +13,12 @@ link: xref:ai:build:vectorization-service/vectorize-unstructured-data.adoc[]
 
 # Process and Vectorize Unstructured Data
 
-> Use an {ai-long} Unstructured Data Workflow to automatically preprocess data for a Retrieval Augmented Generation (RAG) application or other use cases inside Capella. Convert your data into JSON from PDFs, JPGs, PNGs, and DOCX files and generate vector embeddings, all in one Workflow. 
+> Use an Couchbase AI Data Plane Unstructured Data Workflow to automatically preprocess data for a Retrieval Augmented Generation (RAG) application or other use cases inside Capella. Convert your data into JSON from PDFs, JPGs, PNGs, and DOCX files and generate vector embeddings, all in one Workflow. 
 
 > [!IMPORTANT]
-> The {ai-long} can convert only JPG and PNG images of text to JSON data. Images that do not contain text cannot be converted by a Workflow. Make sure image files do not exceed the [maximum image file size](data-processing.md#limitations).
+> The Couchbase AI Data Plane can convert only JPG and PNG images of text to JSON data. Images that do not contain text cannot be converted by a Workflow. Make sure image files do not exceed the [maximum image file size](data-processing.md#limitations).
 
-Workflows use your choice of embedding model to generate JSON data and vector embeddings, along with a [Vector Search index](../../../cloud/vector-search/vector-search.md), based on data stored in an Amazon S3 bucket. To generate your embeddings, you can use a model [hosted by the {ai} Model Service](../model-service/deploy-embed-model.md), [OpenAI](https://openai.com/), or [Amazon Bedrock](https://aws.amazon.com/bedrock/). The {ai} stores the generated JSON data, vector embeddings, and Vector Search index in an operational cluster.
+Workflows use your choice of embedding model to generate JSON data and vector embeddings, along with a [Vector Search index](../../../cloud/vector-search/vector-search.md), based on data stored in an Amazon S3 bucket. To generate your embeddings, you can use a model [hosted by the AI Data Plane Model Service](../model-service/deploy-embed-model.md), [OpenAI](https://openai.com/), or [Amazon Bedrock](https://aws.amazon.com/bedrock/). The AI Data Plane stores the generated JSON data, vector embeddings, and Vector Search index in an operational cluster.
 
 To process your data effectively, you must choose a chunking strategy for your text. For more information, see [Chunking](data-processing.md#chunking).
 
@@ -30,10 +30,10 @@ To process your data effectively, you must choose a chunking strategy for your t
 * You have an Amazon S3 bucket that contains data in 1 of the following formats: PDF, JPG, PNG, DOCX
 * Your Amazon S3 bucket does not have more than 10,000 files or files larger than 100 MB.
 * You have read-only credentials for your Amazon S3 bucket. For more information about AWS access keys, see [the AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id%5Fcredentials%5Faccess-keys.html).
-* If you want to use a model hosted on the {ai}, you must have:
+* If you want to use a model hosted on the AI Data Plane, you must have:
 
-  * Deployed an {ai} embedding model. For more information, see [Deploy an Embedding Model](../model-service/deploy-embed-model.md).
-  * Your model's **API Key ID** and **API Key Token**. For more information about API keys for {ai} models, see [Get Started with the {ai-long} APIs](../../api-guide/api-start.md).
+  * Deployed an AI Data Plane embedding model. For more information, see [Deploy an Embedding Model](../model-service/deploy-embed-model.md).
+  * Your model's **API Key ID** and **API Key Token**. For more information about API keys for AI Data Plane models, see [Get Started with the Couchbase AI Data Plane APIs](../../api-guide/api-start.md).
 * If you want to use a model hosted by OpenAI, you have your OpenAI API Key. For more information about how to find your OpenAI API Key, see [the OpenAI Help Center](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
 * If you want to use an Amazon Bedrock model, you need a short-term Amazon Bedrock API key. For more information, see [Add an Amazon Bedrock API Key](../../admin/manage-ai-integrations.md#add-bedrock).
 * You know the chunking strategy you want to use to process your data. For more information, see [Chunking](data-processing.md#chunking).
@@ -46,9 +46,9 @@ To process your data effectively, you must choose a chunking strategy for your t
 
 ## [](#procedure)Procedure
 
-To create a new Unstructured Data Workflow and process unstructured data in the {ai}:
+To create a new Unstructured Data Workflow and process unstructured data in the AI Data Plane:
 
-1. Go to menu:{ai}\[Workflows\].
+1. Go to **AI Data Plane** **Workflows**.
 2. Click **Create New Workflow**.
 3. Click **Unstructured Data from External sources**.
 4. In the **Workflow Name** field, enter a name to identify your Unstructured Data Workflow, or accept the automatically generated name.  
@@ -68,7 +68,7 @@ Workflow names can be a maximum of 128 characters and can include letters (A-Z, 
 
 ### [](#configure-s3)Configure Your Amazon S3 Bucket
 
-Choose whether to use a new Amazon S3 bucket or choose an S3 bucket that you have already saved as an integration with the {ai-long}.
+Choose whether to use a new Amazon S3 bucket or choose an S3 bucket that you have already saved as an integration with the Couchbase AI Data Plane.
 
 > [!TIP]
 > You can manage your saved Amazon S3 bucket credentials from the [Integrations page](../../admin/manage-ai-integrations.md).
@@ -89,7 +89,7 @@ It's recommended to use read-only credentials for your S3 bucket. Make sure you 
 6. Verify your **S3 Integration Summary**.
 7. Continue with the rest of the [Procedure](#procedure).
 
-To use an existing Amazon S3 bucket that you added to the {ai}:
+To use an existing Amazon S3 bucket that you added to the AI Data Plane:
 
 1. In the **S3 Bucket Integration** list, select the S3 bucket where your unstructured data is stored.
 2. Verify your **S3 Integration Summary**.
@@ -113,18 +113,18 @@ For more information about chunking strategies, see [Chunking](data-processing.m
 
 ### [](#choose-embedding)Choose Your Embedding Model
 
-You can choose to use an embedding model [hosted by the {ai} Model Service](../model-service/deploy-embed-model.md), hosted by OpenAI, or hosted by Amazon Bedrock to vectorize your data.
+You can choose to use an embedding model [hosted by the AI Data Plane Model Service](../model-service/deploy-embed-model.md), hosted by OpenAI, or hosted by Amazon Bedrock to vectorize your data.
 
-* Use an {ai} Model
+* Use an AI Data Plane Model
 * Use an OpenAI Model
 * Use an AWS Bedrock Model
 
-To use an {ai} Model:
+To use an AI Data Plane Model:
 
 1. Click **Capella Model**.
 2. Select the name of the model you want to use in this workflow.
-3. Upload or manually enter your embedding model's **API Key ID** and **API Key Token**. For more information about API keys for {ai} models, see [Get Started with the {ai-long} APIs](../../api-guide/api-start.md).
-4. (Optional) Choose whether to set up **Private Networking** for your {ai} embedding model. For more information about Private Networking for the {ai}, see [Add an AWS PrivateLink Connection](../../security/add-aws-privatelink.md).
+3. Upload or manually enter your embedding model's **API Key ID** and **API Key Token**. For more information about API keys for AI Data Plane models, see [Get Started with the Couchbase AI Data Plane APIs](../../api-guide/api-start.md).
+4. (Optional) Choose whether to set up **Private Networking** for your AI Data Plane embedding model. For more information about Private Networking for the AI Data Plane, see [Add an AWS PrivateLink Connection](../../security/add-aws-privatelink.md).
 5. Click **Next**.
 6. Continue with the rest of the [Procedure](#procedure).
 
@@ -143,7 +143,7 @@ To use an OpenAI model:
 > [!NOTE]  
 > Workflows do not use the OpenAI Batch API.
 
-Before you begin, generate a short-term Amazon Bedrock API key and add it to the {ai-long} integrations. For more information, see [Add an Amazon Bedrock API Key](../../admin/manage-ai-integrations.md#add-bedrock).
+Before you begin, generate a short-term Amazon Bedrock API key and add it to the Couchbase AI Data Plane integrations. For more information, see [Add an Amazon Bedrock API Key](../../admin/manage-ai-integrations.md#add-bedrock).
 
 To use an AWS Bedrock model:
 
@@ -156,7 +156,7 @@ Use a Bedrock embedding model ID, for example `amazon.titan-embed-text-v2:0`.
 
 ## [](#next-steps)Next Steps
 
-The {ai} UI shows the documents that have been processed by your Unstructured Data Workflow. You can click the **Failed** icon to view error information for failed documents.
+The AI Data Plane UI shows the documents that have been processed by your Unstructured Data Workflow. You can click the **Failed** icon to view error information for failed documents.
 
 Unstructured Data Workflows display with an **S3 - Unstructured** Type.
 

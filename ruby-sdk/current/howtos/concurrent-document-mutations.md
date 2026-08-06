@@ -1,7 +1,7 @@
 ---
 title: Concurrent Document Mutations
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/howtos/pages/concurrent-document-mutations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/concurrent-document-mutations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:howtos:concurrent-document-mutations.adoc[]
 ---
 
@@ -85,25 +85,7 @@ If the item's CAS has changed since the last operation performed by the current 
 How to handle this error depends on the application logic. If the application wishes to simply insert a new property within the document (which is not dependent on other properties within the document), then it may simply retry the read-update cycle by retrieving the item (and thus getting the new CAS), performing the local modification and then uploading the change to the server. For example, if a document represents a user, and the application is simply updating a user's information (like an email field), the method to update this information may look like this:
 
 ```ruby
-max_retries = 10
-max_retries.times do
-  # get the current document contents
-  get_result = collection.get("user-id")
-
-  # increment a count on the user
-  content = get_result.content
-  content["visitCount"] += 1
-
-  begin
-    options = Collection::ReplaceOptions.new
-    options.cas = get_result.cas
-    collection.replace("user-id", content, options)
-    break
-  rescue Error::CasMismatch
-    # ignore CAS mismatch and try again
-    # note: any other exception will break the loop
-  end
-end
+Unresolved include directive in modules/howtos/pages/concurrent-document-mutations.adoc - include::example$cas.rb[]
 ```
 
 Sometimes more logic is needed when performing updates, for example, if a property is mutually exclusive with another property; only one or the other can exist, but not both.

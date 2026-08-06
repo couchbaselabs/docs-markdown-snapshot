@@ -4,8 +4,8 @@ description: Enterprise Analytics is a self-managed, JSON-native NoSQL
   analytical database. It serves to unify data from diverse sources, allowing
   for the execution of complex analytical queries and the extraction of timely
   insights.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/intro/pages/intro.adoc
-pubDate: 2026-04-17T05:26:26.225Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/intro/pages/intro.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:intro:intro.adoc[]
 ---
 
@@ -15,9 +15,6 @@ link: xref:enterprise-analytics:intro:intro.adoc[]
 # About Enterprise Analytics
 
 > Enterprise Analytics is a self-managed, JSON-native NoSQL analytical database. It serves to unify data from diverse sources, allowing for the execution of complex analytical queries and the extraction of timely insights. 
-
-> [!NOTE]
-> New features and fixes are available in the latest release. See [Release Notes](../release-notes/release-notes.md) for details.
 
 Enterprise Analytics harnesses the power of NoSQL for analytics. It integrates seamlessly with both Couchbase Server and the Couchbase Capella cloud platform, enabling the creation of real-time, adaptive applications.
 
@@ -34,7 +31,7 @@ Enterprise Analytics offers the following features:
 * An enhanced MPP-based query engine enables scalable, real-time analytical query computation.
 * A cost-based optimizer improves query execution without requiring user intervention. Using a sample-based approach, it quickly estimates data statistics from a small subset of the data, enabling it to identify the lowest-cost query plan without scanning the entire dataset.
 * Zero ETL for incoming data, with real-time ingestion capabilities powered by Confluent Kafka, that provide the ability to connect, capture, and extract data from nearly any database or application. One can optionally modify the target JSON structure of the incoming data while in transit, for example, to omit or modify its fields.
-* Data Lakehouse capabilities that enable direct querying from supported [object storage](../install/supported-platform.md#supported-object-storage-solutions), with support for formats including JSON, Parquet, Avro, CSV, TSV, and Delta tables, providing the ability for queries to combine external data with other data in Enterprise Analytics.
+* Data Lakehouse capabilities that enable direct querying from supported [object storage](../install/supported-platform.md#supported-object-storage-solutions), with support for formats including JSON, Parquet, Avro, CSV, TSV, Delta tables, and Apache Iceberg tables via [Iceberg catalogs](../sqlpp/5%5Fddl%5Ficeberg.md), providing the ability for queries to combine external data with other data in Enterprise Analytics.
 * A SQL++ based path for writing the results of a query back to the Couchbase Operational data service to support adaptive applications.
 * A tabular view facility that provides native SQL-based support for Tableau, PowerBI and Apache Superset for building business reports, visualizations, and dashboards.
 

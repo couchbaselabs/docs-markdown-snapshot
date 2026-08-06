@@ -1,8 +1,8 @@
 ---
 title: Databases
 description: Working with Couchbase Lite Databases
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/database.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:database.adoc[]
 ---
 
@@ -49,56 +49,80 @@ One reason for doing this is to store local configuration data (such as the pref
 
 ## [](#open-db)Create or Open Database
 
-You can create a new database and-or open an existing database, using the [CBLDatabase](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html) class. Just pass in a database name and optionally a [DatabaseConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fdatabase%5Fconfiguration.html) — see [Example 1](#ex-dbopen).
+You can create a new database and-or open an existing database, using the [CBLDatabase](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html) class. Just pass in a database name and optionally a [DatabaseConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fdatabase%5Fconfiguration.html) — see [Example 1](#ex-dbopen).
 
 Things to watch for include:
 
 * If the named database does not exist in the specified, or default, location then a new one is created
-* The database is created in a default location unless you specify a directory for it — see: [DatabaseConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fdatabase%5Fconfiguration.html) and [CBLDatabaseConfiguration.directory()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fdatabase%5Fconfiguration.html#a844a5e7d02dd4ceb072dff39c7e88591)  
+* The database is created in a default location unless you specify a directory for it — see: [DatabaseConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fdatabase%5Fconfiguration.html) and [CBLDatabaseConfiguration.directory()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fdatabase%5Fconfiguration.html#a844a5e7d02dd4ceb072dff39c7e88591)  
 Typically, the default location for C is the application sandbox or current working directory .  
 See also [Finding a Database File](#lbl-find-db-loc).
 
 Example 1\. Open or create a database
 
+* C
+* C++
+
 ```c
 // NOTE: No error handling, for brevity (see getting started)
-CBLError err{};
+CBLError err = {};
 CBLDatabase* db = CBLDatabase_Open(FLSTR("my-database"), NULL, &err);
+```
+
+```cpp
+// NOTE: No error handling, for brevity (see getting started)
+cbl::Database db("my-database");
 ```
 
 ## [](#close-database)Close Database
 
 You are advised to incorporate the closing of all open databases into your application workflow.
 
-To close a database, use [CBLDatabase\_Close()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga4d448b2d6809d6f9633d810d3ac6dcfa) — see: [Example 2](#ex-dbclose). This also closes active replications, listeners and-or live queries connected to the database.
+To close a database, use [CBLDatabase\_Close()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga4d448b2d6809d6f9633d810d3ac6dcfa) — see: [Example 2](#ex-dbclose). This also closes active replications, listeners and-or live queries connected to the database.
 
 > [!NOTE]
 > Closing a database soon after starting a replication involving it can cause an exception as the asynchronous `replicator (start)` may not yet be `connected`.
 
 Example 2\. Close a Database
 
+* C
+* C++
+
 ```c
 // NOTE: No error handling, for brevity (see getting started)
-CBLError err{};
+CBLError err = {};
 CBLDatabase_Close(db, &err);
+```
+
+```cpp
+// NOTE: No error handling, for brevity (see getting started)
+db.close();
 ```
 
 ## [](#database-full-sync)Database Full Sync
 
-Database Full Sync will prevent the loss of transactional data due to an unexpected system crash or loss of power. This feature is not enabled by default and must be manually set in your database configuration.
+Database Full Sync prevents the loss of transactional data due to an unexpected system crash or loss of power. This feature is not enabled by default and must be manually set in your database configuration.
 
 > [!CAUTION]
 > Database Full Sync is a safe method to prevent data loss but will incur a significant degredation of performance.
 
 Example 3\. Enable Database Full Sync
 
+* C
+* C++
+
 ```c
 // this enables full sync
 config.fullSync = true;
 ```
 
+```cpp
+// this enables full sync
+config.fullSync = true;
+```
+
 > [!NOTE]
-> Once a Database is created, its configuration is immutable — modifying the `DatabaseConfiguration` property afterwards has no effect on the existing instance.
+> It's' not possible to change the configuration of a Database after instantiating the Database with the configuration by updating its `DatabaseConfiguration` property.
 
 ## [](#database-encryption)Database Encryption
 
@@ -109,9 +133,12 @@ _Couchbase Lite on C_ includes the ability to encrypt Couchbase Lite databases. 
 
 ### [](#enabling)Enabling
 
-To enable encryption, use [CBLDatabaseConfiguration.encryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fdatabase%5Fconfiguration.html#aaab04fb9d092ff02693eea611efefc55) to set the encryption key of your choice. Provide this encryption key every time the database is opened — see [Example 4](#ex-sdb-encrypt).
+To enable encryption, use [CBLDatabaseConfiguration.encryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fdatabase%5Fconfiguration.html#aaab04fb9d092ff02693eea611efefc55) to set the encryption key of your choice. Provide this encryption key every time the database is opened — see [Example 4](#ex-sdb-encrypt).
 
 Example 4\. Configure Database Encryption
+
+* C
+* C++
 
 ```c
 // NOTE: No error handling, for brevity (see getting started)
@@ -121,7 +148,7 @@ CBLDatabaseConfiguration config = CBLDatabaseConfiguration_Default();
 // This returns a boolean, so check it in production code
 CBLEncryptionKey_FromPassword(&config.encryptionKey, FLSTR("password"));
 
-CBLError err{};
+CBLError err = {};
 CBLDatabase* db = CBLDatabase_Open(FLSTR("seekrit"), &config, &err);
 
 // Change the encryption key (or add encryption if the DB is unencrypted)
@@ -131,6 +158,24 @@ CBLDatabase_ChangeEncryptionKey(db, &betterKey, &err);
 
 // Remove encryption
 CBLDatabase_ChangeEncryptionKey(db, NULL, &err);
+```
+
+```cpp
+// NOTE: No error handling, for brevity (see getting started)
+
+cbl::DatabaseConfiguration config{};
+
+// Derive an AES-256 key from a password and set it on the configuration
+config.encryptionKey = cbl::EncryptionKey("password");
+
+cbl::Database db("seekrit", config);
+
+// Change the encryption key (or add encryption if the DB is unencrypted)
+cbl::EncryptionKey betterKey("betterpassw0rd");
+db.changeEncryptionKey(&betterKey);
+
+// Remove encryption
+db.changeEncryptionKey(nullptr);
 ```
 
 ### [](#persisting)Persisting
@@ -143,11 +188,11 @@ An encrypted database can only be opened with the same platform that was used to
 
 ### [](#changing)Changing
 
-To change an existing encryption key, open the database using its existing encryption-key and use [CBLDatabase\_ChangeEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga76a603bc678ceae18c9610b8a8274a09)to set the required new encryption-key value.
+To change an existing encryption key, open the database using its existing encryption-key and use [CBLDatabase\_ChangeEncryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga76a603bc678ceae18c9610b8a8274a09)to set the required new encryption-key value.
 
 ### [](#removing)Removing
 
-To remove encryption, open the database using its existing encryption-key and use [CBLDatabase\_ChangeEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga76a603bc678ceae18c9610b8a8274a09)with a null value as the encryption key.
+To remove encryption, open the database using its existing encryption-key and use [CBLDatabase\_ChangeEncryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga76a603bc678ceae18c9610b8a8274a09)with a null value as the encryption key.
 
 ### [](#upgrading)Upgrading
 
@@ -161,7 +206,7 @@ When the application is running on the iOS simulator, you can locate the applica
 
 From time to time it may be necessary to perform certain maintenance activities on your database, for example to compact the database file, removing unused documents and blobs no longer referenced by any documents.
 
-Couchbase Lite's API provides the [CBLDatabase\_PerformMaintenance()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#gaa4b06dcb7427cafeabde8486f5f03f10) method. The available maintenance operations, including `compact` are as shown in the enum [CBLMaintenanceType](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#gaace029f966f053946a52f837c285f156) to accomplish this.
+Couchbase Lite's API provides the [CBLDatabase\_PerformMaintenance()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#gaa4b06dcb7427cafeabde8486f5f03f10) method. The available maintenance operations, including `compact` are as shown in the enum [CBLMaintenanceType](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#gaace029f966f053946a52f837c285f156) to accomplish this.
 
 This is a resource intensive operation and is not performed automatically. It should be run on-demand using the API. If in doubt, consult Couchbase support.
 

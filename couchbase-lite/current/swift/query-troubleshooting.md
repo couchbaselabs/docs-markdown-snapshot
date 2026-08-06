@@ -1,8 +1,8 @@
 ---
 title: Query Troubleshooting
 description: Couchbase Lite Queries -- troubleshooting
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/query-troubleshooting.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/swift/pages/query-troubleshooting.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:swift:query-troubleshooting.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:couchbase-lite:swift:query-troubleshooting.adoc[]
 
 ### [](#using)Using
 
-Query's [explain()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Query.html#/s:18CouchbaseLiteSwift5QueryC7explainSSyKF) method can provide useful insight when you are trying to diagnose query performance issues and-or optimize queries. To examine how your query is working, either embed the call inside your app (see: [Example 1](#use-qe-app)), or use it interactively within a `cblite` shell (see: [Example 2](#use-qe-cblite)).
+Query's [explain()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Query.html#/s:18CouchbaseLiteSwift5QueryC7explainSSyKF) method can provide useful insight when you are trying to diagnose query performance issues and-or optimize queries. To examine how your query is working, either embed the call inside your app (see: [Example 1](#use-qe-app)), or use it interactively within a `cblite` shell (see: [Example 2](#use-qe-cblite)).
 
 Example 1\. Using Query Explain in App
 
@@ -55,7 +55,7 @@ cblite <your-database-name>.cblite2 (1)
 
 ### [](#output)Output
 
-The output from `[explain()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Query.html#/s:18CouchbaseLiteSwift5QueryC7explainSSyKF)` remains the same whether invoked by an app, or `cblite` — see [Example 3](#qe-output) for an example of how it looks.
+The output from `[explain()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Query.html#/s:18CouchbaseLiteSwift5QueryC7explainSSyKF)` remains the same whether invoked by an app, or `cblite` — see [Example 3](#qe-output) for an example of how it looks.
 
 Example 3\. Query.explain() Output
 
@@ -215,7 +215,7 @@ Resulting Query Plan
 
 Functions are a very useful tool in building queries, but be aware that they can impact whether the query-optimizer is able to use your index(es).
 
-For example, you can observe a similar situation to that shown in [Wildcard and Like-based Queries](#use-like-based-queries) when using the `[lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Function.html#/s:18CouchbaseLiteSwift8FunctionC5loweryAA18ExpressionProtocol%5FpAaE%5FpFZ)` function on an indexed property.
+For example, you can observe a similar situation to that shown in [Wildcard and Like-based Queries](#use-like-based-queries) when using the `[lower()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Function.html#/s:18CouchbaseLiteSwift8FunctionC5loweryAA18ExpressionProtocol%5FpAaE%5FpFZ)` function on an indexed property.
 
 Query
 
@@ -228,7 +228,7 @@ let query = QueryBuilder
 print(try query.explain());
 ```
 
-| **1** | Here we use the [lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Function.html#/s:18CouchbaseLiteSwift8FunctionC5loweryAA18ExpressionProtocol%5FpAaE%5FpFZ) function in the _Where_ expression |
+| **1** | Here we use the [lower()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Function.html#/s:18CouchbaseLiteSwift8FunctionC5loweryAA18ExpressionProtocol%5FpAaE%5FpFZ) function in the _Where_ expression |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 Query Plan:
@@ -237,7 +237,7 @@ Query Plan:
 2|0|0| SCAN TABLE kv_default AS _doc
 ```
 
-But removing the `[lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Function.html#/s:18CouchbaseLiteSwift8FunctionC5loweryAA18ExpressionProtocol%5FpAaE%5FpFZ)` function, changes things:
+But removing the `[lower()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Function.html#/s:18CouchbaseLiteSwift8FunctionC5loweryAA18ExpressionProtocol%5FpAaE%5FpFZ)` function, changes things:
 
 Query
 
@@ -251,7 +251,7 @@ let query = QueryBuilder
 print(try query.explain());
 ```
 
-| **1** | Here we have removed [lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Function.html#/s:18CouchbaseLiteSwift8FunctionC5loweryAA18ExpressionProtocol%5FpAaE%5FpFZ) from the _Where_ expression |
+| **1** | Here we have removed [lower()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Function.html#/s:18CouchbaseLiteSwift8FunctionC5loweryAA18ExpressionProtocol%5FpAaE%5FpFZ) from the _Where_ expression |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 Query plan
@@ -260,7 +260,7 @@ Query plan
 3|0|0| SEARCH TABLE kv_default AS _doc USING INDEX typeIndex (<expr>=?)
 ```
 
-Knowing this, you can consider how you create the index; for example, using [lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Function.html#/s:18CouchbaseLiteSwift8FunctionC5loweryAA18ExpressionProtocol%5FpAaE%5FpFZ) when you create the index and then always using lowercase comparisons.
+Knowing this, you can consider how you create the index; for example, using [lower()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Function.html#/s:18CouchbaseLiteSwift8FunctionC5loweryAA18ExpressionProtocol%5FpAaE%5FpFZ) when you create the index and then always using lowercase comparisons.
 
 ## [](#optimization-considerations)Optimization Considerations
 

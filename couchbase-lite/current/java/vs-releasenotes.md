@@ -1,8 +1,8 @@
 ---
 title: Vector Search Release Notes
 description: Couchbase Lite on Java Desktop
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/vs-releasenotes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/java/pages/vs-releasenotes.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:java:vs-releasenotes.adoc[]
 ---
 

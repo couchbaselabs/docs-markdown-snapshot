@@ -3,8 +3,8 @@ title: Work with Query Results
 description: The query results pane of the workbench provides options for
   displaying, copying, downloading, and otherwise working with the results of a
   query.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/query/pages/results.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/query/pages/results.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:query:results.adoc[]
 ---
 

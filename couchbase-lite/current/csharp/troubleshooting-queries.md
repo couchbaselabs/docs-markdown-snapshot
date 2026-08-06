@@ -1,8 +1,8 @@
 ---
 title: Troubleshooting Queries
 description: Couchbase Lite on C# -- Using query.explain()
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/troubleshooting-queries.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/csharp/pages/troubleshooting-queries.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:csharp:troubleshooting-queries.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:couchbase-lite:csharp:troubleshooting-queries.adoc[]
 
 ### [](#usage)Usage
 
-Query's [Explain()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.#Couchbase%5FLite%5F%5FQuery%5FIQuery%5FExplain) method can provide useful insight when you're trying to diagnose query performance issues and-or optimize queries. To examine how your query is working, either embed the call inside your app (see: [Example 1](#use-qe-app)), or use it interactively within a `cblite` shell (see: [Example 2](#use-qe-cblite)).
+Query's [Explain()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.#Couchbase%5FLite%5F%5FQuery%5FIQuery%5FExplain) method can provide useful insight when you're trying to diagnose query performance issues and-or optimize queries. To examine how your query is working, either embed the call inside your app (see: [Example 1](#use-qe-app)), or use it interactively within a `cblite` shell (see: [Example 2](#use-qe-cblite)).
 
 Example 1\. Using Query Explain in App
 
@@ -61,7 +61,7 @@ cblite <your-database-name>.cblite2 (1)
 
 ### [](#output)Output
 
-The output from `[Explain()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.#Couchbase%5FLite%5F%5FQuery%5FIQuery%5FExplain)` remains the same whether invoked by an app, or `cblite` — see [Example 3](#qe-output) for an example of how it looks.
+The output from `[Explain()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.#Couchbase%5FLite%5F%5FQuery%5FIQuery%5FExplain)` remains the same whether invoked by an app, or `cblite` — see [Example 3](#qe-output) for an example of how it looks.
 
 Example 3\. Query.explain() Output
 
@@ -222,7 +222,7 @@ Resulting Query Plan
 
 Functions are a useful tool in building queries, but be aware that they can affect whether the query-optimizer is able to use your index(es).
 
-For example, you can observe a similar situation to that shown in [Wildcard and Like-based Queries](#use-like-based-queries) when using the `[Lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FLower%5FCouchbase%5FLite%5FQuery%5FIExpression%5F)` function on an indexed property.
+For example, you can observe a similar situation to that shown in [Wildcard and Like-based Queries](#use-like-based-queries) when using the `[Lower()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FLower%5FCouchbase%5FLite%5FQuery%5FIExpression%5F)` function on an indexed property.
 
 Query
 
@@ -236,7 +236,7 @@ using var query =
 Console.WriteLine(query.Explain());
 ```
 
-| **1** | Here we use the [Lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FLower%5FCouchbase%5FLite%5FQuery%5FIExpression%5F) function in the _Where_ expression |
+| **1** | Here we use the [Lower()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FLower%5FCouchbase%5FLite%5FQuery%5FIExpression%5F) function in the _Where_ expression |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 Query Plan:
@@ -245,7 +245,7 @@ Query Plan:
 2|0|0| SCAN TABLE kv_default AS _doc
 ```
 
-Removing the `[Lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FLower%5FCouchbase%5FLite%5FQuery%5FIExpression%5F)` function changes things:
+Removing the `[Lower()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FLower%5FCouchbase%5FLite%5FQuery%5FIExpression%5F)` function changes things:
 
 Query
 
@@ -259,7 +259,7 @@ using var query =
 Console.WriteLine(query.Explain());
 ```
 
-| **1** | Here we have removed [Lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FLower%5FCouchbase%5FLite%5FQuery%5FIExpression%5F) from the _Where_ expression |
+| **1** | Here we have removed [Lower()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FLower%5FCouchbase%5FLite%5FQuery%5FIExpression%5F) from the _Where_ expression |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 Query plan
@@ -268,7 +268,7 @@ Query plan
 3|0|0| SEARCH TABLE kv_default AS _doc USING INDEX typeIndex (<expr>=?)
 ```
 
-Knowing this, you can consider how you create the index; for example, using [Lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FLower%5FCouchbase%5FLite%5FQuery%5FIExpression%5F) when you create the index and then always using lowercase comparisons.
+Knowing this, you can consider how you create the index; for example, using [Lower()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.Function.html#Couchbase%5FLite%5FQuery%5FFunction%5FLower%5FCouchbase%5FLite%5FQuery%5FIExpression%5F) when you create the index and then always using lowercase comparisons.
 
 ## [](#optimization-considerations)Optimization Considerations
 

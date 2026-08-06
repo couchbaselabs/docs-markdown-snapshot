@@ -1,8 +1,8 @@
 ---
 title: Secure Sync Gateway Access
 description: Couchbase Sync Gateway TLS encryption and verification
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/security/pages/secure-sgw-access.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/security/pages/secure-sgw-access.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:security:secure-sgw-access.adoc[]
 ---
 
@@ -29,9 +29,9 @@ By default _Sync Gateway_ requires TLS encryption and the server scheme is speci
 
 You can set the [bootstrap.server\_tls\_skip\_verify](../configuration/configuration-schema-bootstrap.md#bootstrap-server%5Ftls%5Fskip%5Fverify) flag `true` to connect to 'default CBS'. But, this must only be done for testing or development purposes.
 
-The content in [Table 1](#tbl-tls-config-options) shows the TLS configuration options for sync gateway-Couchbase Server communication. The options include flags that will allow you to override the requirement to use TLS — for use in testing and-or development environments **only**.
+The content in [Table 1](#tbl-tls-config-options) shows the TLS configuration options for Sync Gateway-Couchbase Server communication. The options include flags that will allow you to override the requirement to use TLS — for use in testing and-or development environments **only**.
 
-__Table 1\. Configuration options sync gateway ←→Couchbase Server__
+__Table 1\. Configuration options Sync Gateway ←→Couchbase Server__
 | Bootstrap Configuration /Command-line flag                                    | Default Behavior                                                                                                                                                                | Opt-out                                                                                                                                                                                                      |
 | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | bootstrap.use\_tls\_serverCLI: \-bootstrap.use\_tls\_server                   | TLS enabled                                                                                                                                                                     | Set this false in CLI or bootstrap file to turn-off off TLS completely — **development and testing only**                                                                                                    |
@@ -45,20 +45,20 @@ __Table 1\. Configuration options sync gateway ←→Couchbase Server__
 __Table 2\. Sync Gateway ←→ Couchbase Server behavior__
 | Required Configuration                                                                                                                                                                                                                                                                                                                                                                               | Default Behavior                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Opt-Out Trigger                                                     |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Use couchbases:// server schemeSet the certificate and key path: [bootstrap.ca\_cert\_path](../configuration/configuration-schema-bootstrap.md#bootstrap-ca%5Fcert%5Fpath) [bootstrap.x509\_cert\_path](../configuration/configuration-schema-bootstrap.md#bootstrap-x509%5Fcert%5Fpath) [bootstrap.x509\_key\_path](../configuration/configuration-schema-bootstrap.md#bootstrap-x509%5Fkey%5Fpath) | Sync Gateway will error non-secure server schemes (couchbase: or ws:) unless the opt-out is triggered If a ca\_cert\_path is specified then only certificates from that CA will be accepted. If ca\_cert\_path is omitted If server\_skip\_tls\_verify=trueThen sync gateway will skip validation of any server cert, but still require encryption. This includes skipping validation of certs that are from a trusted/well known CA If server\_skip\_tls\_verify=falseThen only certificates from a trusted/well known CA will be accepted | use\_tls\_server=false server\_skip\_tls\_verify=true (or included) |
+| Use couchbases:// server schemeSet the certificate and key path: [bootstrap.ca\_cert\_path](../configuration/configuration-schema-bootstrap.md#bootstrap-ca%5Fcert%5Fpath) [bootstrap.x509\_cert\_path](../configuration/configuration-schema-bootstrap.md#bootstrap-x509%5Fcert%5Fpath) [bootstrap.x509\_key\_path](../configuration/configuration-schema-bootstrap.md#bootstrap-x509%5Fkey%5Fpath) | Sync Gateway will error non-secure server schemes (couchbase: or ws:) unless the opt-out is triggered If a ca\_cert\_path is specified then only certificates from that CA will be accepted. If ca\_cert\_path is omitted If server\_skip\_tls\_verify=trueThen Sync Gateway will skip validation of any server cert, but still require encryption. This includes skipping validation of certs that are from a trusted/well known CA If server\_skip\_tls\_verify=falseThen only certificates from a trusted/well known CA will be accepted | use\_tls\_server=false server\_skip\_tls\_verify=true (or included) |
 
 For more on creating and installing certificates, see: [TLS Certificate Authentication](authentication-certs.md).
 
 ## [](#client-connection)Client Connection
 
-Couchbase Lite client applications must be updated to use TLS when connecting to sync gateway nodes running in default mode.
+Couchbase Lite client applications must be updated to use TLS when connecting to Sync Gateway nodes running in default mode.
 
 [Table 1](#tbl-tls-config-options) shows the TLS configuration options, whilst [Table 4](#tbl-replication-behavior) shows the default and opt-out behavior.
 
 __Table 3\. TLS configuration options__
 | Bootstrap Configuration   | Command-line flag           | Default | Purpose                                                                                                                                                                                            |
 | ------------------------- | --------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| api.https.tls\_key\_path  | \-api.https.tls\_key\_path  | nil     | Provide the path \[[4](#%5Ffootnotedef%5F4 "View footnote.")\] to the TLS private key file. [4](#%5Ffootnoteref%5F4). This can be absolute, or relative to the sync gateway executable's directory |
+| api.https.tls\_key\_path  | \-api.https.tls\_key\_path  | nil     | Provide the path \[[4](#%5Ffootnotedef%5F4 "View footnote.")\] to the TLS private key file. [4](#%5Ffootnoteref%5F4). This can be absolute, or relative to the Sync Gateway executable's directory |
 | api.https.tls\_cert\_path | \-api.https.tls\_cert\_path | \-      | Provide the path to the TLS certificate file.                                                                                                                                                      |
 
 Omit both options to use _plaintext_ — for development and-or testing **only** — see the [Bootstrap Configuration](../configuration/configuration-schema-bootstrap.md).
@@ -94,7 +94,7 @@ Use the following command line flags to configure TLS:
 
 Sync Gateway will error non-secure server schemes (`couchbase:` or `ws:`) unless the opt-out option is true.
 
-Note that you can no longer start sync gateway without providing at least one parameter, as with no configuration file specified, you need to either provide a TLS Cert/Key, or disable TLS.
+Note that you can no longer start Sync Gateway without providing at least one parameter, as with no configuration file specified, you need to either provide a TLS Cert/Key, or disable TLS.
 
 For more on command line options, see: [Command Line Options](../deploy/command-line-options.md).
 

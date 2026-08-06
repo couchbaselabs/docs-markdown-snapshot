@@ -1,8 +1,8 @@
 ---
 title: Full Installation
 description: Installation instructions for the Couchbase Go Client.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.1/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:go-analytics-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Analytics SDKs are developed from the ground-up and while they maintain some syn
 You can use `go get` to download the SDK:
 
 ```console
-$ go get github.com/couchbase/gocbanalytics@v1.0.0
+$ go get github.com/couchbase/gocbanalytics@v1.1.0
 ```
 
 > [!NOTE]

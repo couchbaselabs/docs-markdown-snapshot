@@ -2,8 +2,8 @@
 title: Roles
 description: Use `GRANT` and `REVOKE` statements to manage role creation and
   deletion privileges, and assign roles to users and other roles.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_rbac_roles.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_ddl_rbac_roles.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sqlpp:5_ddl_rbac_roles.adoc[]
 ---
 

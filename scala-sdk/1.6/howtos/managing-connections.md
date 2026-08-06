@@ -2,7 +2,7 @@
 title: Managing Connections
 description: This section describes how to connect the Scala SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:1.6@scala-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -303,7 +303,7 @@ E.....@.@.............+....Z.'yZ..#........
 
 ## [](#cloud-native-gateway)Cloud Native Gateway
 
-Couchbase's next generation connection protocol, introduced in Scala SDK 1.5 and [Couchbase Autonomous Operator 2.6.1](#operator::concept-cloud-native-gateway.adoc), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
+Couchbase's next generation connection protocol, introduced in Scala SDK 1.5 and [Couchbase Autonomous Operator 2.6.1](../../../cloud-native-gateway/current/intro/about-cng.md), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
 
 The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a forthcoming release of [Couchbase Autonomous Operator](../../../operator/current/overview.md).
 

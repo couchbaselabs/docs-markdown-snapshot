@@ -2,8 +2,8 @@
 title: Configuring Memory
 description: By means of the REST API, custom memory-allocation can be performed
   per service.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-configure-memory.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/rest-configure-memory.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:reference:rest-configure-memory.adoc[]
 ---
 

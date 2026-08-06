@@ -2,8 +2,8 @@
 title: Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/concept-docs/pages/data-model.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/concept-docs/pages/data-model.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-sdk:concept-docs:data-model.adoc[]
 ---
 

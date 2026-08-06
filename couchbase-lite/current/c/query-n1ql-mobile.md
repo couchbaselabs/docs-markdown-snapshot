@@ -2,8 +2,8 @@
 title: SQL++ Query Strings
 description: How to use SQL++ Query Strings to build effective queries with
   Couchbase Lite on C
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/query-n1ql-mobile.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/query-n1ql-mobile.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:query-n1ql-mobile.adoc[]
 ---
 
@@ -30,6 +30,9 @@ The database can create a query object with the SQL++ string. See [Query Results
 
 Example 1\. Running a SQL++ Query
 
+* C
+* C++
+
 ```c
 // Create a query to fetch documents of type SDK
 int errorPos;
@@ -49,6 +52,10 @@ if(!result) {
     // Failed to run query, do error handling as above
     return;
 }
+```
+
+```cpp
+Unresolved include directive in modules/c/pages/query-n1ql-mobile.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
 ```
 
 We are accessing the current database using the shorthand notation **`_`** — see the [FROM](#lbl-from) clause for more on data source selection and [Query Parameters](#lbl-query-params) for more on parameterized queries.
@@ -1295,9 +1302,11 @@ To specify substitutable parameters within your query string prefix the name wit
 
 Example 18\. Running a SQL++ Query
 
+C
+
 ```c
 int errorPos;
-CBLError err{};
+CBLError err = {};
 FLString n1qlstr = FLSTR("SELECT * FROM _ WHERE type = $type");
 CBLQuery* query = CBLDatabase_CreateQuery(database,
                       kCBLN1QLLanguage,
@@ -1333,6 +1342,24 @@ CBLQuery_Release(query);
 
 // Release result set then finished with
 CBLResultSet_Release(result);
+```
+
+C++
+
+```c
+Unresolved include directive in modules/c/pages/query-n1ql-mobile.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
+```
+
+cbl::Query query(database, kCBLN1QLLanguage, "SELECT \* FROM \_ WHERE type = $type");
+
+fleece::MutableDict params = fleece::MutableDict::newDict(); params\["type"\] = "hotel"; query.setParameters(params);
+
+cbl::ResultSet result = query.execute();
+
+```c
+--
+=====
+>>>>>>> fcd29863 (DOC-14473 add cpp code snippets to c platform (#1118))
 ```
 
 | **1** | Define a parameter placeholder $type |

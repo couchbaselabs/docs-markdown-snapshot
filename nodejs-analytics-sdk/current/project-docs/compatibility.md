@@ -3,8 +3,8 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.1/modules/project-docs/pages/compatibility.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-analytics-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:nodejs-analytics-sdk:project-docs:compatibility.adoc[]
 
 ### [](#node-js-version-compatibility)Node.js Version Compatibility
 
-The 1.0 Node.js SDK will run on recent LTS versions of Node.js: 24 and 22\. We recommend using the most recent long-term support (LTS) version of Node.js — at the time of writing (August 2025) this is version 24.
+The 1.1 Node.js SDK will run on recent LTS versions of Node.js: 24 and 22\. We recommend using the most recent long-term support (LTS) version of Node.js — at the time of writing (August 2025) this is version 24.
 
 > [!TIP]
 > Remember to keep your Node.js installation up to date, via `npm`.
@@ -28,29 +28,26 @@ The 1.0 Node.js SDK will run on recent LTS versions of Node.js: 24 and 22\. We r
 
 Analytics SDKs can be expected to run on all of the Operating Systems supported by [Couchbase Server](../../../server/current/install/install-platforms.md).
 
-The Node.js Analytics SDK is tested and supported on the following OSs and platforms:
+The Node.js Analytics SDK has been tested on a representative subset of the platforms listed below.
 
 ### GNU/Linux
 
 * Amazon Linux 2 & AL2023.
-* Red Hat Enterprise Linux 8 & 9;
-* Oracle Linux 8 & 9.
-* Ubuntu (LTS) 24.04 (_Noble_) & 22.04 (_Jammy_).
-* Debian 11 (_Bullseye_) & Debian 12 (_Bookworm_).
+* Red Hat Enterprise Linux 8, 9, & 10.
+* Oracle Linux 8, 9, & 10.
+* Ubuntu (LTS) 22.04 (_Jammy_) & 24.04 (_Noble_).
+* Debian 11 (_Bullseye_), Debian 12 (_Bookworm_), & Debian 13 (_Trixie_).
 * SUSE Enterprise Linux 12 & 15.
+* Alpine Linux 3.21 - 3.23.
 
 ### Microsoft Windows
 
 * Microsoft Windows 10 & 11;
-* Windows Server 2019 & 2022.
+* Windows Server 2019, 2022, & 2025.
 
 ### Mac OS X
 
-The current and previous two releases of OS X. At time of writing (August 2025): 15 (Sequoia), 14 (Sonoma), and 13 (Ventura). M1 ARM architecture is fully supported in the Node.js Analytics SDK.
-
-### ARM Processor Support
-
-AWS Amazon Graviton, Apple M1 ARM processors, and ARMv8 on Ubuntu 20.04+.
+The current and previous two releases of OS X. At time of writing (June 2026): 26 (Tahoe), 15 (Sequoia), and 14 (Sonoma).
 
 ### [](#network-requirements)Network Requirements
 
@@ -60,7 +57,18 @@ Couchbase does document, for purposes of convenience when developing and perform
 
 ## [](#enterprise-analytics-compatibility)Enterprise Analytics Compatibility
 
-This is the initial release of Enterprise Analytics and the Analytics SDKs. As such, the Analytics SDK is fully compatible with Enterprise Analytics.
+The 1.1 releases of the Analytics SDK is fully compatible with all currently supported releases of Enterprise Analytics. The 1.1 Node.js SDK also supports the poll-based Server Asynchronous Request API introduced in self-managed Enterprise Analytics Server 2.2.
+
+### [](#api-version)API Version
+
+__Analytics SDK API Versions__
+|                                                                                            | API 1.0 | API 1.1 |
+| ------------------------------------------------------------------------------------------ | ------- | ------- |
+| [.NET Analytics SDK Docs](../../../dotnet-analytics-sdk/current/hello-world/overview.md)   | 1.0     | 1.1     |
+| [Go Analytics SDK Docs](../../../go-analytics-sdk/current/hello-world/overview.md)         | 1.0     | 1.1     |
+| [Java Analytics SDK Docs](../../../java-analytics-sdk/current/hello-world/overview.md)     | 1.0     | 1.1     |
+| [Node.js Analytics SDK Docs](../hello-world/overview.md)                                   | 1.0     | 1.1     |
+| [Python Analytcis SDK Docs](../../../python-analytics-sdk/current/hello-world/overview.md) | 1.0     | 1.1     |
 
 ## [](#sdk-api-stability)SDK API Stability
 

@@ -3,7 +3,7 @@ title: Configure a Webhooks Alert Integration
 description: Send Capella metrics-based alerts to third-party tools with a
   generic Webhooks alert integration.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/configure-webhook-integration.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:cloud:clusters:monitoring/configure-webhook-integration.adoc[]
 ---
 
@@ -32,7 +32,7 @@ Configure an alert integration for each project where you want to send alerts, u
   * [Data Reader](../../projects/project-roles.md#project-cluster-data-reader)
 * You have deployed an operational cluster or App Service linked to an operational cluster on the [Enterprise](../../billing/billing.md#enterprise) or the [Developer Pro](../../billing/billing.md#dev-pro) Support Plans.  
 > [!TIP]  
-> For analytics clusters, the {ai-long}, and operational clusters and App Services on the [Basic](../../billing/billing.md#basic) plan, monitor alerts in the [Capella UI](activity-log.md) or by [email](alerts.md).
+> For analytics clusters, the Couchbase AI Data Plane, and operational clusters and App Services on the [Basic](../../billing/billing.md#basic) plan, monitor alerts in the [Capella UI](activity-log.md) or by [email](alerts.md).
 * You have configured your network firewall to allow inbound traffic from the following IP addresses for Capella alert integrations:
 
   * 54.236.200.31

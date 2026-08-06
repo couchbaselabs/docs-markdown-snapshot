@@ -1,7 +1,10 @@
 ---
 title: Introduction
-editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/index.adoc
-pubDate: 2026-04-01T05:25:30.286Z
+description: The Couchbase Tableau Connector provides integration between your
+  high performance Couchbase Tabular Views (TAVs) and the Tableau interactive
+  data visualization platform.
+editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/index.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:tableau-connector::index.adoc[]
 ---
 
@@ -10,16 +13,22 @@ link: xref:tableau-connector::index.adoc[]
 
 # Introduction
 
-> The Couchbase Tableau Connector provides integration between your high performance Couchbase Server tabular views and the Tableau interactive data visualization platform. 
+> The Couchbase Tableau Connector provides integration between your high performance Couchbase Tabular Views (TAVs) and the Tableau interactive data visualization platform. 
 
-## [](#compatibility)Compatibility
+The Tableau Connector 2.0.0 integrates Tableau with Enterprise Analytics.
 
-The Tableau connector is compatible with the following versions of Couchbase Server, Tableau Desktop, and Tableau Server. The following table lists the compatible versions:
+> [!NOTE]
+> Tableau Connector 2.0.0 is only compatible with Enterprise Analytics. To use the connector with other Couchbase products, use Tableau Connector 1.2.0 or earlier.
 
-__Table 1\. Couchbase Tableau connector compatibility__
-| Couchbase Server EE version                                                     | Tableau Desktop Version | Tableau Server Version |
-| ------------------------------------------------------------------------------- | ----------------------- | ---------------------- |
-| 7.1.1 or higher (including [Capella Analytics](../../analytics/intro/intro.md)) | 2020.4.x or higher      | 2021.x or higher       |
+## [](#prerequisites)Prerequisites
+
+Before you begin, make sure you have the following:
+
+| Component            | Requirement                                                                                                                                                           |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enterprise Analytics | Enterprise Analytics 2.0 or later. For on-premise deployments: A compatible server infrastructure. For self-managed deployments: An account with your cloud provider. |
+| Tableau Desktop      | 2020.4.x or higher                                                                                                                                                    |
+| Tableau Server       | 2021.x or higher                                                                                                                                                      |
 
 ## [](#operating-system-compatibility)Operating System Compatibility
 
@@ -27,7 +36,7 @@ __Table 1\. Couchbase Tableau connector compatibility__
 
 The Couchbase Tableau Connector for Tableau Desktop is available for Windows and macOS. The following table lists the compatible versions:
 
-__Table 2\. Couchbase Tableau connector for Tableau Desktop operating system compatibility__
+__Table 1\. Couchbase Tableau connector for Tableau Desktop operating system compatibility__
 | Operating System | Version                                 |
 | ---------------- | --------------------------------------- |
 | Windows          | 8/8.110 (x64)                           |
@@ -37,7 +46,7 @@ __Table 2\. Couchbase Tableau connector for Tableau Desktop operating system com
 
 The Couchbase Tableau Connector for Tableau Server is available for Windows and Linux. The following table lists the compatible versions:
 
-__Table 3\. Couchbase Tableau connector for Tableau Server operating system compatibility__
+__Table 2\. Couchbase Tableau connector for Tableau Server operating system compatibility__
 | Operating System | Version                                                                                                                               |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | Windows          | Windows Server 2016Windows Server 2019                                                                                                |

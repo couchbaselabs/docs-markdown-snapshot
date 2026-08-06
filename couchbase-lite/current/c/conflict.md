@@ -1,8 +1,8 @@
 ---
 title: Handling Data Conflicts
 description: Couchbase Lite Database Sync -- Handling conflict between data changes
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/conflict.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/conflict.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:conflict.adoc[]
 ---
 
@@ -55,9 +55,9 @@ This device already has _ChangeY_ and now Naomi's local document is in conflict.
 Couchbase Lite uses the following rules to handle conflicts such as those described in [A typical replication conflict scenario](#bmkRepConScene):
 
 * If one of the changes is a deletion:  
-A deleted document (that is, a _tombstone_) always wins over a document update.
+A deleted document (that's, a _tombstone_) always wins over a document update.
 * If both changes are document changes:  
-The change with the most revisions will win.  
+The change with the most revisions wins.  
 Since each change creates a revision with an ID prefixed by an incremented version number, the winner is the change with the highest version number.
 
 The result is saved internally by the Couchbase Lite replicator. Those rules describe the internal behavior of the replicator. For additional control over the handling of conflicts, including when a replication is in progress, see [Custom Conflict Resolution](#custom-conflict-resolution).
@@ -86,9 +86,7 @@ Apps have the following strategies for resolving conflicts:
 
 Example 2\. Using conflict resolvers
 
-* Local Wins
-* Remote Wins
-* Merge
+Local Wins ©
 
 ```c
 static const CBLDocument* local_win_conflict_resolver(void* context,
@@ -100,6 +98,17 @@ static const CBLDocument* local_win_conflict_resolver(void* context,
 }
 ```
 
+Local Wins (C++)
+
+```cpp
+static cbl::ConflictResolver localWinConflictResolver =
+    [](std::string_view documentID, const cbl::Document localDoc, const cbl::Document remoteDoc) {
+        return localDoc;
+    };
+```
+
+Remote Wins ©
+
 ```c
 static const CBLDocument* remote_win_conflict_resolver(void* context,
                                                        FLString documentID,
@@ -109,6 +118,17 @@ static const CBLDocument* remote_win_conflict_resolver(void* context,
     return remoteDocument;
 }
 ```
+
+Remote Wins (C++)
+
+```cpp
+static cbl::ConflictResolver remoteWinConflictResolver =
+    [](std::string_view documentID, const cbl::Document localDoc, const cbl::Document remoteDoc) {
+        return remoteDoc;
+    };
+```
+
+Merge ©
 
 ```c
 static const CBLDocument* merge_conflict_resolver(void* context,
@@ -141,6 +161,45 @@ static const CBLDocument* merge_conflict_resolver(void* context,
 }
 ```
 
+Merge (C++)
+
+```cpp
+static cbl::ConflictResolver mergeConflictResolver =
+    [](std::string_view documentID, const cbl::Document localDoc, const cbl::Document remoteDoc) {
+        // Start from the local properties, then add any keys that exist only remotely
+        fleece::MutableDict mergedProps = localDoc.properties().mutableCopy();
+        for (fleece::Dict::iterator i(remoteDoc.properties()); i; ++i) {
+            if (!mergedProps.get(i.keyString())) {
+                mergedProps.set(i.keyString(), i.value());
+            }
+        }
+
+        cbl::MutableDocument mergeDocument(documentID);
+        mergeDocument.setProperties(mergedProps);
+        return mergeDocument;
+    };
+```
+
+C++
+
+Local Wins
+
+```cpp
+Unresolved include directive in modules/c/pages/conflict.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
+```
+
+Remote Wins
+
+```cpp
+Unresolved include directive in modules/c/pages/conflict.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
+```
+
+Merge
+
+```cpp
+Unresolved include directive in modules/c/pages/conflict.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
+```
+
 When a null document is returned by the resolver, the conflict will be resolved as a document deletion.
 
 ### [](#important-guidelines-and-best-practices)Important Guidelines and Best Practices
@@ -169,16 +228,19 @@ The implemented custom conflict resolver can be registered on the replicator con
 
 Example 3\. A Conflict Resolver
 
+* C
+* C++
+
 ```c
 // NOTE: No error handling, for brevity (see getting started)
-CBLError err{};
+CBLError err = {};
 CBLEndpoint* target = CBLEndpoint_CreateWithURL(FLSTR("ws://localhost:4984/mydatabase"), &err);
 
-CBLCollectionConfiguration collectionConfig = {0};
+CBLCollectionConfiguration collectionConfig = {};
 collectionConfig.collection = collection;
 collectionConfig.conflictResolver = local_win_conflict_resolver;
 
-CBLReplicatorConfiguration replConfig = {0};
+CBLReplicatorConfiguration replConfig = {};
 replConfig.collections = &collectionConfig;
 replConfig.collectionCount = 1;
 replConfig.endpoint = target;
@@ -186,6 +248,19 @@ replConfig.endpoint = target;
 CBLReplicator* replicator = CBLReplicator_Create(&replConfig, &err);
 CBLEndpoint_Free(target);
 CBLReplicator_Start(replicator, false);
+```
+
+```cpp
+// NOTE: No error handling, for brevity (see getting started)
+cbl::Endpoint target = cbl::Endpoint::urlEndpoint("ws://localhost:4984/mydatabase");
+
+cbl::CollectionConfiguration collectionConfig(collection);
+collectionConfig.conflictResolver = localWinConflictResolver;
+
+cbl::ReplicatorConfiguration replConfig({ collectionConfig }, target);
+
+cbl::Replicator replicator(replConfig);
+replicator.start();
 ```
 
 ## [](#conflicts-when-saving)Conflicts when Updating
@@ -196,9 +271,9 @@ Example 4\. How Updating May Cause Conflicts
 
 Here's a typical sequence of events that would create an update conflict:
 
-1. Your code reads the document's current properties, and constructs a modified copy to save.
+1. Your code reads the document's' current properties, and constructs a modified copy to save.
 2. Another thread (perhaps the replicator) updates the document, creating a new revision with different properties.
-3. Your code updates the document with its modified properties, for example using [CBLDatabase\_SaveDocument()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdocuments.html#).
+3. Your code updates the document with its modified properties, for example using [CBLDatabase\_SaveDocument()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdocuments.html#).
 
 ### [](#automatic-conflict-resolution-2)Automatic Conflict Resolution
 
@@ -210,20 +285,20 @@ Example 5\. Currency Control Signatures
 
 Save operations
 
-[CBLDatabase\_SaveDocumentWithConcurrencyControl()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdocuments.html#gae37e21b95f62419762e521f70850b9c7) — attempts to save the document with a concurrency control.
+[CBLDatabase\_SaveDocumentWithConcurrencyControl()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdocuments.html#gae37e21b95f62419762e521f70850b9c7) — attempts to save the document with a concurrency control.
 
 The concurrency control parameter has two possible values:
 
 * `lastWriteWins` (default): The last operation wins if there is a conflict.
-* `failOnConflict`: The operation will fail if there is a conflict.  
+* `failOnConflict`: The operation fails if there is a conflict.  
 In this case, the app can detect the error that is being thrown, and handle it by re-reading the document, making the necessary conflict resolution, then trying again.
 
 Delete operations
 
 As with save operations, delete operation also have two method signatures, which specify how to handle a possible conflict:
 
-* [CBLDatabase\_DeleteDocument()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#gad9d878c8636a75898d3993537af7e88c): The last write will win if there is a conflict.
-* [CBLDatabase\_DeleteDocumentWithConcurrencyControl()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga01b4cf9725de18c41e8bb002255adb9a): attempts to delete the document with a concurrency control.
+* [CBLDatabase\_DeleteDocument()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#gad9d878c8636a75898d3993537af7e88c): The last write will win if there is a conflict.
+* [CBLDatabase\_DeleteDocumentWithConcurrencyControl()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga01b4cf9725de18c41e8bb002255adb9a): attempts to delete the document with a concurrency control.
 
 The concurrency control parameter has two possible values:
 
@@ -234,14 +309,17 @@ The concurrency control parameter has two possible values:
 
 Developers can hook a conflict handler when saving a document so they can easily handle the conflict in a single save method call.
 
-To implement custom conflict resolution when saving a document, apps must call the `save` method with a conflict handler block ( [CBLDatabase\_SaveDocumentWithConflictHandler()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdocuments.html#ga9c45bcf02e6e2977c702c493a7fe0b54)).
+To implement custom conflict resolution when saving a document, apps must call the `save` method with a conflict handler block ( [CBLDatabase\_SaveDocumentWithConflictHandler()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fdocuments.html#ga9c45bcf02e6e2977c702c493a7fe0b54)).
 
 The following code snippet shows an example of merging properties from the existing document (`current`) into the one being saved (`new`). In the event of conflicting keys, it will pick the key value from `new`.
 
 Example 6\. Merging document properties
 
+* C
+* C++
+
 ```c
-CBLError err{};
+CBLError err = {};
 CBLCollection* collection = CBLDatabase_DefaultCollection(database, &err);
 CBLDocument* mutableDoc = CBLCollection_GetMutableDocument(collection, FLSTR("xyz"), &err);
 FLMutableDict properties = CBLDocument_MutableProperties(mutableDoc);
@@ -276,6 +354,25 @@ CBLDocument_Release(mutableDoc);
 CBLCollection_Release(collection);
 ```
 
+```cpp
+cbl::Collection collection = database.getDefaultCollection();
+cbl::MutableDocument mutableDoc = collection.getMutableDocument("xyz");
+mutableDoc["name"] = "apples";
+
+bool saved = collection.saveDocument(mutableDoc,
+    [](cbl::MutableDocument documentBeingSaved, cbl::Document conflictingDocument) {
+        // Merge the conflicting document's properties into the one being saved
+        fleece::Dict currentProps = conflictingDocument.properties();
+        fleece::MutableDict newProps = documentBeingSaved.properties();
+        for (fleece::Dict::iterator i(currentProps); i; ++i) {
+            if (!newProps.get(i.keyString())) {
+                newProps.set(i.keyString(), i.value());
+            }
+        }
+        return true;
+    });
+```
+
 ## [](#related-content)Related Content
 
 ### [](#)
@@ -292,7 +389,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](p2psync-websocket.md)
-* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html)
+* [API References](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html)
 
 .
 

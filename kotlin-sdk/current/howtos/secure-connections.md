@@ -1,8 +1,8 @@
 ---
 title: Secure Connections with TLS
 description: Learn how to enable client support for TLS and configure trusted certificates.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/howtos/pages/secure-connections.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/howtos/pages/secure-connections.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:kotlin-sdk:howtos:secure-connections.adoc[]
 ---
 

@@ -1,16 +1,16 @@
 ---
-title: Couchbase Java SDK 3.11
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/hello-world/pages/overview.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+title: Couchbase Java SDK 3.12
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/hello-world/pages/overview.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/java-sdk/current/hello-world/overview.html)
 
-# Couchbase Java SDK 3.11
+# Couchbase Java SDK 3.12
 
-# Couchbase Java SDK 3.11
+# Couchbase Java SDK 3.12
 
 The Couchbase Java SDK allows Java applications to access a Couchbase cluster — Capella or self-managed.
 
@@ -49,7 +49,7 @@ Installing the SDK via Maven
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>java-client</artifactId>
-        <version>3.11.3</version>
+        <version>3.12.2</version>
     </dependency>
 </dependencies>
 ```

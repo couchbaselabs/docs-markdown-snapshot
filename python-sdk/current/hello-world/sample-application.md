@@ -3,8 +3,8 @@ title: Sample Application
 description: Discover how to program interactions with the Couchbase Server via
   the data, query, and search services -- using the Travel Sample Application
   with the built-in Travel Sample data Bucket.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/hello-world/pages/sample-application.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/hello-world/pages/sample-application.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:hello-world:sample-application.adoc[]
 ---
 
@@ -631,5 +631,5 @@ return jsonify(response)
 ## [](#next-steps)Next Steps
 
 * Sign up for a [Capella account](../../../home/cloud.md) and deploy a free operational cluster to get started with Couchbase the easy way.
-* Read more about interacting with the Couchbase services used in this example — [Data (K/V)](../howtos/kv-operations.md), [Sub-Document](../howtos/subdocument-operations.md), [Query](../howtos/n1ql-queries-with-sdk.md), and [Search](../howtos/full-text-searching-with-sdk.md).
+* Read more about interacting with the Couchbase services used in this example — [Data (K/V)](../howtos/kv-operations.md), [Sub-Document](../howtos/subdocument-operations.md), [Query](../howtos/sqlpp-queries-with-sdk.md), and [Search](../howtos/full-text-searching-with-sdk.md).
 * Discover [Distributed ACID Transactions](../howtos/distributed-acid-transactions-from-the-sdk.md) from the Python SDK, for cases where several documentations (such as combined flight and hotel bookings) must succeed together.

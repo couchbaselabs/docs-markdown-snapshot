@@ -2,8 +2,8 @@
 title: Data Operations
 description: Key Value (KV) or data service offers the simplest way to retrieve
   or mutate data where the key is known.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:python-sdk:howtos:kv-operations.adoc[]
 
 > Key Value (KV) or data service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS. 
 
-The complete code sample used on this page can be downloaded from [the GitHub repo for the Python docs](https://github.com/couchbase/docs-sdk-python/blob/release/4.5/modules/howtos/examples/kv%5Foperations.py), from which you can see in context how to authenticate and connect to a Couchbase Cluster, then perform these Collection operations.
+The complete code sample used on this page can be downloaded from [the GitHub repo for the Python docs](https://github.com/couchbase/docs-sdk-python/blob/release/4.6/modules/howtos/examples/kv%5Foperations.py), from which you can see in context how to authenticate and connect to a Couchbase Cluster, then perform these Collection operations.
 
 ## [](#documents)Documents
 
@@ -94,7 +94,7 @@ The options are in increasing levels of safety. Note that nothing comes for free
 The following example demonstrates using the newer durability features available in Couchbase server 6.5 onwards.
 
 ```python
-    # Upsert with Durability (Couchbase Server >= 6.5) level Majority
+    # Upsert with Durability level Majority
     document = dict(foo="bar", bar="foo")
     opts = UpsertOptions(durability=ServerDurability(Durability.MAJORITY))
     result = collection.upsert("document-key", document, opts)
@@ -141,7 +141,7 @@ Couchbase does not recommend this feature where read consistency is critical, bu
 > * The cluster should have enough nodes and group to make sure that copies of the same document are not stored on the same node, and each group has nodes that cover all 1024 vbuckets (in other words, the number of the groups does not exceeds number of the copies: `active+num_replicas`). The Admin UI should emit small yellow warning if the configuration is considered unbalanced.
 > * Setting **three** replicas for the bucket [disables durability for sync writes](../../../server/current/learn/data/durability.md#majority), also precluding the use of [multi-document ACID transactions](../concept-docs/transactions.md).
 
-## [](#retrieving-full-documents)Retrieving full documents
+## [](#retrieving-full-documents)Retrieving Full Documents
 
 Using the `get()` method with the document key can be done in a similar fashion to the other operations:
 
@@ -298,7 +298,7 @@ for r in result:
 
 If you want to get random documents from a collection, use a sample scan.
 
-KV Range Scan for 100 random documents
+KV Range Scan for 100 Random Documents
 
 ```python
 from couchbase.kv_range_scan import SamplingScan
@@ -307,11 +307,11 @@ for r in result:
     print(f'Found result, ID={r.id}, content={r.content_as[dict]}')
 ```
 
-### [](#kv-range-scan-only-ids)Get IDs instead of full documents
+### [](#kv-range-scan-only-ids)Get IDs Instead of Full Documents
 
 If you only want the document IDs, set the `ids_only` field of `ScanOptions` to `true`, like this:
 
-KV Range Scan for all document IDs in a collection
+KV Range Scan for All Document IDs in a Collection
 
 ```python
 from couchbase.options import ScanOptions
@@ -351,4 +351,4 @@ Working on just a specific path within a JSON document will reduce network bandw
 
 For another way of increasing performance, reference our [asynchronous programmaing options](concurrent-async-apis.md).
 
-Our [Query Engine](n1ql-queries-with-sdk.md) enables retrieval of information using the SQL-like syntax of SQL++ (formerly N1QL).
+Our [Query Engine](sqlpp-queries-with-sdk.md) enables retrieval of information using the SQL-like syntax of SQL++ (formerly N1QL).

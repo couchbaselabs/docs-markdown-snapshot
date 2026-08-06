@@ -1,9 +1,9 @@
 ---
 title: Search
-description: You can use the Full Text Search service (FTS) to create queryable
-  full-text indexes in Couchbase Server.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+description: You can use the Search Service to create queryable Search indexes
+  in Couchbase Server.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/full-text-searching-with-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -12,21 +12,21 @@ link: xref:nodejs-sdk:howtos:full-text-searching-with-sdk.adoc[]
 
 # Search
 
-> You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
+> You can use the Search Service to create queryable Search indexes in Couchbase Server. 
 
-FTS allows you to create, manage, and query full-text indexes on JSON documents stored in Couchbase buckets.
+The Search Service allows you to create, manage, and query Search indexes on JSON documents stored in Couchbase buckets.
 
 It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches.
 
 Supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries.
 
-The Node.js SDK exposes an API for performing FTS queries which abstracts some of the complexity of using the underlying REST API.
+The Node.js SDK exposes an API for performing Search queries which abstracts some of the complexity of using the underlying REST API.
 
-The Full Text Search service also supports vector search from Couchbase Server 7.6 onwards.
+The Search Service also supports vector search from Couchbase Server 7.6 onwards.
 
 There are two APIs for querying search: `cluster.searchQuery()`, and `cluster.search()`. Both are also available at the Scope level.
 
-The former API supports FTS queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6\. Most of this documentation will focus on the former API, as the latter is in `@Stability.Volatile` status.
+The former API supports Search queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6\. Most of this documentation will focus on the former API, as the latter is in `@Stability.Volatile` status.
 
 ## [](#examples)Examples
 
@@ -34,36 +34,18 @@ Search queries are executed at the cluster level (not bucket or collection). All
 
 Match
 
-Using the `travel-sample` [Sample Bucket](../../../server/current/manage/manage-settings/install-sample-buckets.md), we define an FTS SearchQuery using the `match()` method to search for the specified term: `"five-star"`.
+Using the `travel-sample` [Sample Bucket](../../../server/current/manage/manage-settings/install-sample-buckets.md), we define a Search Service SearchQuery using the `match()` method to search for the specified term: `"five-star"`.
 
 ```javascript
-  async function ftsMatchWord(term) {
-    return await cluster.searchQuery(
-      'index-hotel-description',
-      couchbase.SearchQuery.match(term),
-      { limit: 5 }
-    )
-  }
-
-  var result = await ftsMatchWord('five-star')
-  console.log('RESULT:', result)
+Unresolved include directive in modules/howtos/pages/full-text-searching-with-sdk.adoc - include::../examples/search.js[]
 ```
 
 Match Phrase
 
-An FTS SearchQuery using the `matchPhrase()` method to find a specified phrase: `"10-minute walk from the"`.
+A Search Service SearchQuery using the `matchPhrase()` method to find a specified phrase: `"10-minute walk from the"`.
 
 ```javascript
-  async function ftsMatchPhrase(phrase) {
-    return await cluster.searchQuery(
-      'index-hotel-description',
-      couchbase.SearchQuery.matchPhrase(phrase),
-      { limit: 10 }
-    )
-  }
-
-  result = await ftsMatchPhrase('10-minute walk from the')
-  console.log('RESULT:', result)
+Unresolved include directive in modules/howtos/pages/full-text-searching-with-sdk.adoc - include::../examples/search.js[]
 ```
 
 When searching for a phrase we get some additional benefits outside of the `match()` method. The match phrase query for `"10-minute walk from the"` will produce the following hits from our travel-sample dataset:
@@ -80,28 +62,10 @@ If you run this code, notice that we matched `"10-minute"` with three additional
 
 Date Range
 
-Here we define an FTS SearchQuery that uses the `dateRange()` method to search for hotels where the updated field (`datetime`) falls within a specified date range.
+Here we define a Search Service SearchQuery that uses the `dateRange()` method to search for hotels where the updated field (`datetime`) falls within a specified date range.
 
 ```javascript
-    async function ftsHotelByDateRange(startDate, endDate) {
-      const upsertResult = await collection.upsert('hotel_fts_123', {
-        name: 'HotelFTS',
-        updated: new Date('2010-11-10 18:33:50 +0300'),
-        description: 'a fancy hotel',
-        type: 'hotel',
-      })
-
-      return await cluster.searchQuery(
-        'index-hotel-description',
-        couchbase.SearchQuery.dateRange().start(startDate).end(endDate),
-        {
-          limit: 5,
-        }
-      )
-    }
-
-    result = await ftsHotelByDateRange('2010-11-10', '2010-11-20')
-    console.log('RESULT:', result)
+Unresolved include directive in modules/howtos/pages/full-text-searching-with-sdk.adoc - include::../examples/search.js[]
 ```
 
 Conjunction
@@ -109,46 +73,27 @@ Conjunction
 A query satisfying multiple child queries. The example below will only return two documents hitting on the term `"five-star"` and the phrase `"luxury hotel"` while no other documents match both criteria.
 
 ```javascript
-  async function ftsConjunction() {
-    return await cluster.searchQuery(
-      'index-hotel-description',
-      couchbase.SearchQuery.conjuncts(
-        couchbase.SearchQuery.match('five-star'),
-        couchbase.SearchQuery.matchPhrase('luxury hotel')
-      )
-    )
-  }
-
-  var result = await ftsConjunction()
-  console.log('RESULT:', result)
+Unresolved include directive in modules/howtos/pages/full-text-searching-with-sdk.adoc - include::../examples/search-conjuncts-disjuncts.js[]
 ```
 
-Note: Our match for `"five-star"` was not exact, but still produced a result because a similar term was found `"Five star"`, we could have potentially matched `"5 star"` or the word `"five"`. When you work with any full-text search the number of hits you get and their score are variable.
+Note: Our match for `"five-star"` was not exact, but still produced a result because a similar term was found `"Five star"`, we could have potentially matched `"5 star"` or the word `"five"`. When you work with any Search query the number of hits you get and their score are variable.
 
 Disjunction
 
 A query satisfying (by default) one query or another. If a conjunction query can be thought of like using an `AND` operator, a disjunction would be like using an `OR` operator. The example below will return seven documents hitting on the term `"Louvre"` and five hits on the term `"Eiffel"` returning a total of 12 rows together as part of a disjunction query.
 
 ```javascript
-  async function ftsDisjunction() {
-    return await cluster.searchQuery(
-      'index-hotel-description',
-      couchbase.SearchQuery.disjuncts(
-        couchbase.SearchQuery.match('Louvre'),
-        couchbase.SearchQuery.match('Eiffel')
-      ),
-      {
-        facets: {
-          Descriptions: new couchbase.TermSearchFacet('description', 5),
-        },
-        limit: 12,
-      }
-    )
-  }
-
-  result = await ftsDisjunction()
-  console.log('RESULT:', result)
+Unresolved include directive in modules/howtos/pages/full-text-searching-with-sdk.adoc - include::../examples/search-conjuncts-disjuncts.js[]
 ```
+
+> [!TIP]
+> Search Results Limit
+> 
+> By default, the Search Service returns only the first 10 matches (`size: 10`, `from: 0`). To retrieve more results, you must explicitly define pagination settings such as `size` or `from` in your query.
+> 
+> For information about formatting your Search query and specifying limits, see [Search Request JSON Properties](../../../server/current/search/search-request-params.md).
+> 
+> For information about pagination in Search responses, see [Pagination](../../../server/current/fts/fts-search-response.md#pagination).
 
 ## [](#working-with-results)Working with Results
 
@@ -159,32 +104,25 @@ Metadata holds additional information not directly related to your query, such a
 Iterating over Hits
 
 ```javascript
-result.rows.forEach((hit, index) => {
-  const docId = hit.id
-  const score = hit.score
-  const resultNum = index + 1
-  console.log(`Result #${resultNum} ID: ${docId} Score: ${score}`)
-})
+Unresolved include directive in modules/howtos/pages/full-text-searching-with-sdk.adoc - include::../examples/search-conjuncts-disjuncts.js[]
 ```
 
 Facets
 
 ```javascript
-var facets = result.meta.facets
-console.log('Descriptions facet:', facets.Descriptions)
+Unresolved include directive in modules/howtos/pages/full-text-searching-with-sdk.adoc - include::../examples/search-conjuncts-disjuncts.js[]
 ```
 
 ## [](#scoped-vs-global-indexes)Scoped vs Global Indexes
 
-The FTS APIs exist at both the `Cluster` and `Scope` levels.
+The Search APIs exist at both the `Cluster` and `Scope` levels.
 
-This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
+This is because the Search Service supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
 It's important to use the `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
 
 ```javascript
-request = couchbase.SearchRequest.create(couchbase.SearchQuery.matchAll())
-result = await scope.search('index-hotel-description', request)
+Unresolved include directive in modules/howtos/pages/full-text-searching-with-sdk.adoc - include::../examples/search.js[]
 ```
 
 The `SearchQuery` is created in the same way as detailed earlier.
@@ -198,35 +136,11 @@ There are two ways to control consistency: either by supplying a custom `SearchS
 Scan consistency example:
 
 ```javascript
-result = await cluster.searchQuery(
-  'index-hotel-description',
-  couchbase.SearchQuery.match('swanky'),
-  { consistency: couchbase.SearchScanConsistency.NotBounded }
-)
+Unresolved include directive in modules/howtos/pages/full-text-searching-with-sdk.adoc - include::../examples/search.js[]
 ```
 
-ConsistentWith consistency example:
+ConsistentWith Consistency Example:
 
 ```javascript
-    async function ftsHotelByDateRange(startDate, endDate) {
-      const upsertResult = await collection.upsert('hotel_fts_123', {
-        name: 'HotelFTS',
-        updated: new Date('2010-11-10 18:33:50 +0300'),
-        description: 'a fancy hotel',
-        type: 'hotel',
-      })
-
-      const mutationState = new couchbase.MutationState(upsertResult.token)
-      return await cluster.searchQuery(
-        'index-hotel-description',
-        couchbase.SearchQuery.dateRange().start(startDate).end(endDate),
-        {
-          limit: 5,
-          consistentWith: mutationState,
-        }
-      )
-    }
-
-    result = await ftsHotelByDateRange('2010-11-10', '2010-11-20')
-    console.log('RESULT:', result)
+Unresolved include directive in modules/howtos/pages/full-text-searching-with-sdk.adoc - include::../examples/search.js[]
 ```

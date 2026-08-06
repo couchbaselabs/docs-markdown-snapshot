@@ -2,8 +2,8 @@
 title: Error Codes
 description: The standardized error codes returned by the Couchbase Kotlin SDK,
   from cloud connection to sub-document.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/ref/pages/error-codes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/ref/pages/error-codes.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:kotlin-sdk:ref:error-codes.adoc[]
 ---
 

@@ -2,8 +2,8 @@
 title: Installing Multiple Instances on Linux Platforms
 description: You can install multiple instances of Enterprise Analytics on one
   physical machine for the Linux operating system.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/multiple-instances-linux.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/install/pages/multiple-instances-linux.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:install:multiple-instances-linux.adoc[]
 ---
 

@@ -2,8 +2,8 @@
 title: Encrypt a Database
 description: Encrypt a Couchbase Edge Server database using a password or AES256
   key, and verify its encryption status.
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/administer/pages/encrypt-database.adoc
-pubDate: 2026-04-15T05:26:28.652Z
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/administer/pages/encrypt-database.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-edge-server:administer:encrypt-database.adoc[]
 ---
 

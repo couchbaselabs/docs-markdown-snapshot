@@ -2,8 +2,8 @@
 title: Couchbase Lite on Android
 description: Start your Couchbase for Mobile and Edge adventure, get up and
   running with Couchbase Lite
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/quickstart.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/quickstart.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:android:quickstart.adoc[]
 ---
 
@@ -24,8 +24,8 @@ Get set up with an account and deploy a free tier operational cluster.
 
 * [Install](gs-install.md)
 * [Build](gs-build.md)
-* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android)
-* [Kotlin Extensions](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx)
+* [API References](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android)
+* [Kotlin Extensions](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx)
 
 ###  Do More
 
@@ -54,7 +54,7 @@ Understand fundamental principles and best practices.
 
 Stay updated with the latest releases and platform support.
 
-* [New in 4.0](../cbl-whatsnew.md)
+* [New in 4.1](../cbl-whatsnew.md)
 * [Couchbase Lite Release Notes](releasenotes.md)
 * [Vector Search Release Notes](vs-releasenotes.md)
 * [Supported Platforms](supported-os.md)

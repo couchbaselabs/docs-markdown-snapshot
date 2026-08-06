@@ -1,8 +1,8 @@
 ---
 title: Kotlin
 description: Couchbase Lite for Android -- Kotlin support
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/kotlin.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/kotlin.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:android:kotlin.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:couchbase-lite:android:kotlin.adoc[]
 
 ## [](#introduction)Introduction
 
-_Couchbase Lite_ _Android 4.0.3_ introduces full idiomatic support for Kotlin apps, out-of-the-box.
+_Couchbase Lite_ _Android 4.1.0_ introduces full idiomatic support for Kotlin apps, out-of-the-box.
 
 Kotlin developers can now build apps using [common Kotlin Patterns](https://developer.android.com/kotlin/common-patterns), that integrate seamlessly with Couchbase Lite for Android and have full feature parity with the Java API; including some convenient Kotlin Extensions to get you started.
 
@@ -32,16 +32,16 @@ Java support and functionality continues for Android.
 
 In addition to having full co-compatible access to the existing Java API, Kotlin developers can also access a number of Kotlin Extensions.
 
-The [Kotlin Extensions](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx)package includes:
+The [Kotlin Extensions](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx)package includes:
 
 * [Configuration Factories](#lbl-factories) for the configuration of important Couchbase Lite objects such as _Databases_, _Replicators_ and _Listeners_.
 * Change Flows that monitor key Couchbase Lite objects fpr change using Kotlin features such as, Co-routines and [Flows](https://developer.android.com/kotlin/flow).
 
-See: [Kotlin Extensions](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx) for extension API docs
+See: [Kotlin Extensions](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx) for extension API docs
 
 ## [](#lbl-factories)Configuration Factories
 
-Couchbase Lite provides a set of [ConfigurationFactories](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx/com/couchbase/lite/ConfigurationFactoriesKt.html) and [CommonConfigurationFactories](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html), these allow use of named parameters to specify property settings.
+Couchbase Lite provides a set of [ConfigurationFactories](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx/com/couchbase/lite/ConfigurationFactoriesKt.html) and [CommonConfigurationFactories](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html), these allow use of named parameters to specify property settings.
 
 This makes it simple to create variant configurations, by simply overriding named parameters:
 
@@ -57,7 +57,7 @@ val listener8081 = listener8080.newConfig(port = 8081)
 
 ### [](#database)Database
 
-Use [DatabaseConfigurationFactory](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx/com/couchbase/lite/ConfigurationFactoriesKt.html#DatabaseConfigurationFactory)to create a `DatabaseConfiguration` object, overriding the receiver's values with the passed parameters.
+Use [DatabaseConfigurationFactory](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx/com/couchbase/lite/ConfigurationFactoriesKt.html#DatabaseConfigurationFactory)to create a `DatabaseConfiguration` object, overriding the receiver's values with the passed parameters.
 
 * In Use
 * Definition
@@ -78,7 +78,7 @@ fun DatabaseConfiguration?.newConfig(
 
 ### [](#replication)Replication
 
-Use [ReplicatorConfigurationFactory](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx/com/couchbase/lite/ConfigurationFactoriesKt.html#ReplicatorConfigurationFactory)to create a `ReplicatorConfiguration` object, overriding the receiver's values with the passed parameters.
+Use [ReplicatorConfigurationFactory](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx/com/couchbase/lite/ConfigurationFactoriesKt.html#ReplicatorConfigurationFactory)to create a `ReplicatorConfiguration` object, overriding the receiver's values with the passed parameters.
 
 * In Use
 * Definition
@@ -124,7 +124,7 @@ fun MessageEndpointListenerConfiguration?.create(
 
 ### [](#full-text-search)Full Text Search
 
-Use [FullTextIndexConfigurationFactory](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html#FullTextIndexConfigurationFactory)to create a `FullTextIndexConfiguration` object, overriding the receiver's values with the passed parameters.
+Use [FullTextIndexConfigurationFactory](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html#FullTextIndexConfigurationFactory)to create a `FullTextIndexConfiguration` object, overriding the receiver's values with the passed parameters.
 
 * In Use
 * Definition
@@ -144,7 +144,7 @@ fun FullTextIndexConfiguration?.create(expression: String? = null)
 
 ### [](#indexing)Indexing
 
-Use [ValueIndexConfigurationFactory](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html#ValueIndexConfigurationFactory)to create a `ValueIndexConfiguration` object, overriding the receiver's values with the passed parameters.
+Use [ValueIndexConfigurationFactory](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html#ValueIndexConfigurationFactory)to create a `ValueIndexConfiguration` object, overriding the receiver's values with the passed parameters.
 
 * In Use
 * Definition
@@ -164,7 +164,7 @@ fun ValueIndexConfiguration?.create(vararg expressions: String = emptyArray())
 
 ### [](#logs)Logs
 
-Use [FileLogSinkFactory](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html#FileLogSinkFactory)to create a `FileLogSink` object, overriding the receiver's values with the passed parameters.
+Use [FileLogSinkFactory](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx/com/couchbase/lite/CommonConfigurationFactoriesKt.html#FileLogSinkFactory)to create a `FileLogSink` object, overriding the receiver's values with the passed parameters.
 
 * In Use
 * Definition
@@ -197,7 +197,7 @@ These wrappers use _Flowables_ to monitor for changes.
 
 ### [](#replicator-change-flow)Replicator Change Flow
 
-Use [replicatorChangeFlow(Replicator,Executor)](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx/com/couchbase/lite/CommonFlowsKt.html#replicatorChangeFlow%28Replicator,Executor%29)to monitor replicator changes.
+Use [replicatorChangeFlow(Replicator,Executor)](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx/com/couchbase/lite/CommonFlowsKt.html#replicatorChangeFlow%28Replicator,Executor%29)to monitor replicator changes.
 
 * In Use
 * Definition
@@ -215,7 +215,7 @@ fun Replicator.replicatorChangesFlow(executor: Executor? = null)
 
 ### [](#document-replicator-change-flow)Document Replicator Change Flow
 
-Use [documentReplicationFlow(Replicator,Executor)](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx/com/couchbase/lite/CommonFlowsKt.html#documentReplicationFlow%28Replicator,Executor%29)to monitor document changes during replication.
+Use [documentReplicationFlow(Replicator,Executor)](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx/com/couchbase/lite/CommonFlowsKt.html#documentReplicationFlow%28Replicator,Executor%29)to monitor document changes during replication.
 
 * In Use
 * Definition
@@ -234,7 +234,7 @@ fun Replicator.documentReplicationFlow(executor: Executor? = null)
 
 ### [](#query-change-flow)Query Change Flow
 
-Use [queryChangeFlow(Query,Executor)](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android-ktx/com/couchbase/lite/CommonFlowsKt.html#queryChangeFlow%28Query,Executor%29)to monitor document changes during replication.
+Use [queryChangeFlow(Query,Executor)](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android-ktx/com/couchbase/lite/CommonFlowsKt.html#queryChangeFlow%28Query,Executor%29)to monitor document changes during replication.
 
 * In Use
 * Definition

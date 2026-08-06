@@ -2,8 +2,8 @@
 title: Using Couchbase Transactions
 description: A practical guide on using Couchbase Distributed ACID transactions,
   via the Node.js API.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
@@ -52,52 +52,7 @@ Simply `npm install` the most recent version of the SDK. You may, on occasion, n
 To create a transaction, an application must supply its logic inside an `arrow function`, including any conditional logic required. Once the arrow function has successfully run to conclusion, the transaction will be automatically committed. If at any point an error occurs, the transaction will rollback and the arrow function may run again.
 
 ```typescript
-const inventory = cluster.bucket('travel-sample').scope('inventory')
-
-try {
-  await cluster.transactions().run(async (ctx) => {
-    // Inserting a doc:
-    await ctx.insert(collection, 'doc-a', {})
-
-    // Getting documents:
-    const docA = await ctx.get(collection, 'doc-a')
-
-    // Replacing a doc:
-    const docB = await ctx.get(collection, 'doc-b')
-    const content = docB.content
-    const newContent = {
-      transactions: 'are awesome',
-      ...content,
-    }
-    await ctx.replace(docB, newContent)
-
-    // Removing a doc:
-    const docC = await ctx.get(collection, 'doc-c')
-    await ctx.remove(docC)
-
-    // Performing a SELECT SQL++ (N1QL) query against a scope:
-    const qr = await ctx.query('SELECT * FROM hotel WHERE country = $1', {
-      scope: inventory,
-      parameters: ['United Kingdom'],
-    })
-    // ...qr.rows
-    qr.rows
-
-    await ctx.query('UPDATE route SET airlineid = $1 WHERE airline = $2', {
-      scope: inventory,
-      parameters: ['airline_137', 'AF'],
-    })
-
-  })
-} catch (error) {
-  if (error instanceof TransactionFailedError) {
-    console.error('Transaction did not reach commit point', error)
-  }
-
-  if (error instanceof TransactionCommitAmbiguousError) {
-    console.error('Transaction possibly committed', error)
-  }
-}
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 The transaction arrow function gets passed a `TransactionAttemptContext` object — generally referred to as `ctx` in these examples. Since the arrow function could be rerun multiple times, it is important that it does not contain any side effects. In particular, you should never perform regular operations on a `Collection`, such as `collection.insert()`, inside the arrow function. Such operations may be performed multiple times, and will not be performed transactionally. Instead, you should perform these operations through the `ctx` object, e.g. `ctx.insert()`.
@@ -134,9 +89,7 @@ You can perform transactional database operations using familiar key-value CRUD 
 To insert a document within a transaction arrow function, simply call `ctx.insert()`.
 
 ```typescript
-cluster.transactions().run(async (ctx) => {
-  await ctx.insert(collection, 'docId', {})
-})
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 ### [](#get)Get
@@ -144,9 +97,7 @@ cluster.transactions().run(async (ctx) => {
 To retrieve a document from the database you can call `ctx.get()`.
 
 ```typescript
-await cluster.transactions().run(async (ctx) => {
-  const aDoc: TransactionGetResult = await ctx.get(collection, 'a-doc')
-})
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 As you can see, `ctx.get()` will return a `TransactionGetResult` object, which is very similar to the `GetResult` you are used to.
@@ -154,13 +105,7 @@ As you can see, `ctx.get()` will return a `TransactionGetResult` object, which i
 Gets will "Read Your Own Writes", e.g. this will succeed:
 
 ```typescript
-await cluster.transactions().run(async (ctx) => {
-  const docId: string = 'docId'
-
-  await ctx.insert(collection, docId, {})
-
-  const doc: TransactionGetResult = await ctx.get(collection, docId)
-})
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 Of course, no other transaction will be able to read that inserted document, until this transaction reaches the commit point.
@@ -170,15 +115,7 @@ Of course, no other transaction will be able to read that inserted document, unt
 Replacing a document requires a `ctx.get()` call first. This is necessary so the SDK can check that the document is not involved in another transaction, and take appropriate action if so.
 
 ```typescript
-cluster.transactions().run(async ctx => {
-  const doc: TransactionGetResult = await ctx.get(collection, "doc-id")
-  const content: any = doc.content
-  const newContent: any = {
-    transactions: "are awesome",
-    ...content,
-  }
-  await ctx.replace(doc, newContent)
-})
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 ### [](#remove)Remove
@@ -186,10 +123,7 @@ cluster.transactions().run(async ctx => {
 As with replaces, removing a document requires a `ctx.get()` call first.
 
 ```typescript
-cluster.transactions().run(async (ctx) => {
-  const doc: TransactionGetResult = await ctx.get(collection, 'doc-id')
-  await ctx.remove(doc)
-})
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 ## [](#sql-queries)SQL++ Queries
@@ -202,63 +136,19 @@ If you already use [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1
 Here is an example of selecting some rows from the `travel-sample` bucket:
 
 ```typescript
-cluster.transactions().run(async (ctx) => {
-  const st: string = 'SELECT * FROM hotel WHERE country = $1'
-  const qr: TransactionQueryResult = await ctx.query(st, {
-    scope: inventory,
-    parameters: ['United Kingdom'],
-  })
-  for (let row in qr.rows) {
-    // do something
-  }
-})
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 An example using a `Scope` for an `UPDATE`:
 
 ```typescript
-const hotelChain: string = 'http://marriot%'
-const country: string = 'United States'
-cluster.transactions().run(async (ctx) => {
-  const qr: TransactionQueryResult = await ctx.query(
-    'UPDATE hotel SET price = $1 WHERE url LIKE $2 AND country = $3',
-    {
-      scope: inventory,
-      parameters: [99.99, hotelChain, country],
-    }
-  )
-  if (qr.meta.metrics?.mutationCount != 1) {
-    throw new Error('Mutation count not the expected amount.')
-  }
-})
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 And an example combining `SELECT` and an `UPDATE`.
 
 ```typescript
-cluster.transactions().run(async (ctx) => {
-  // Find all hotels of the chain
-  const qr: TransactionQueryResult = await ctx.query(
-    'SELECT reviews FROM hotel WHERE url LIKE $1 AND country = $2',
-    {
-      parameters: [hotelChain, country],
-      scope: inventory,
-    }
-  )
-
-  // This function (not provided here) will use a trained machine learning model to provide a
-  // suitable price based on recent customer reviews.
-  let updatedPrice = priceFromRecentReviews(qr)
-
-  // Set the price of all hotels in the chain
-  await ctx.query(
-    'UPDATE hotel SET price = $1 WHERE url LIKE $2 AND country = $3',
-    {
-      parameters: [updatedPrice, hotelChain, country],
-      scope: inventory,
-    }
-  )
-})
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 As you can see from the snippet above, it is possible to call regular Node.js methods from the arrow function, permitting complex logic to be performed. Just remember that since the arrow function may be called multiple times, so may the method.
@@ -266,11 +156,7 @@ As you can see from the snippet above, it is possible to call regular Node.js me
 Like key-value operations, queries support "Read Your Own Writes". This example shows inserting a document and then selecting it again:
 
 ```typescript
-cluster.transactions().run(async (ctx) => {
-  ctx.query("INSERT INTO `default` VALUES ('doc', {'hello':'world'})") (1)
-  const st: string = "SELECT `default`.* FROM `default` WHERE META().id = 'doc'" (2)
-  const qr: TransactionQueryResult = await ctx.query(st)
-})
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 | **1** | The inserted document is only staged at this point. as the transaction has not yet committed.Other transactions, and other non-transactional actors, will not be able to see this staged insert yet. |
@@ -282,10 +168,7 @@ cluster.transactions().run(async (ctx) => {
 Query options can be provided via `TransactionQueryOptions`, which provides a subset of the options in the Node.js SDK's `QueryOptions`.
 
 ```typescript
-const txQo: TransactionQueryOptions = { profile: QueryProfileMode.Timings }
-cluster.transactions().run(async (ctx) => {
-  ctx.query("INSERT INTO `default` VALUES ('doc', {'hello':'world'})", txQo)
-})
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 __Table 1\. Supported Transaction Query Options__
@@ -309,17 +192,7 @@ __Table 1\. Supported Transaction Query Options__
 Key-Value and SQL++ query operations can be freely intermixed, and will interact with each other as you would expect. In this example we insert a document with a key-value operation, and read it with a `SELECT` query.
 
 ```typescript
-cluster.transactions().run(async (ctx) => {
-  await ctx.insert(collection, 'doc', { hello: 'world' }) (1)
-
-  // Performing a 'Read Your Own Write'
-  const qr = await ctx.query(
-    "SELECT `default`.* FROM `default` WHERE META().id = 'doc'" (2)
-  )
-  if (qr.meta.metrics?.resultCount != 1) {
-    throw new Error('Mutation count not the expected amount.')
-  }
-})
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 | **1** | The key-value insert operation is only staged, and so it is not visible to other transactions or non-transactional actors. |
@@ -354,13 +227,7 @@ See [Concurrency with Non-Transactional Writes](../concept-docs/transactions.md#
 The default configuration should be appropriate for most use-cases. Transactions can optionally be globally configured when configuring the `Cluster`. For example, if you want to change the level of durability which must be attained, this can be configured as part of the connect options:
 
 ```typescript
-const cluster: Cluster = await connect('couchbase://127.0.0.1', {
-  username: 'username',
-  password: 'password',
-  transactions: {
-    durabilityLevel: DurabilityLevel.PersistToMajority,
-  },
-})
+Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::example$transactions-example.ts[]
 ```
 
 The default configuration will perform all writes with the durability setting `Majority`, ensuring that each write is available in-memory on the majority of replicas before the transaction continues. There are two higher durability settings available that will additionally wait for all mutations to be written to physical storage on either the active or the majority of replicas, before continuing. This further increases safety, at a cost of additional latency.

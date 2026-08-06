@@ -2,8 +2,8 @@
 title: Supported Operating System Versions
 description: Couchbase Lite for Swift -- the OS and SDK versions on which this
   framework is supported
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/supported-os.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/swift/pages/supported-os.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:swift:supported-os.adoc[]
 ---
 
@@ -20,10 +20,10 @@ link: xref:couchbase-lite:swift:supported-os.adoc[]
 The following table identifies the [supported platforms](#supported-os-versions).
 
 __Table 1\. Supported versions__
-| Platform | Minimum OS version                      |
-| -------- | --------------------------------------- |
-| iOS      | 15.0+                                   |
-| macOS    | 13 (Ventura), 14 (Sonoma), 15 (Sequoia) |
+| Platform | Minimum OS version        |
+| -------- | ------------------------- |
+| iOS      | 15.0+                     |
+| macOS    | 14 (Sonoma), 15 (Sequoia) |
 
 > [!NOTE]
 > Couchbase Lite for Swift provides native support for both Mac Catalyst and M1\.

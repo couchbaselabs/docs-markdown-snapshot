@@ -1,8 +1,8 @@
 ---
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase Lite on Java
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/gs-build.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/java/pages/gs-build.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:java:gs-build.adoc[]
 ---
 

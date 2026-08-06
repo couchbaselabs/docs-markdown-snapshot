@@ -2,7 +2,7 @@
 title: Monitor Changes with Edge Server
 description: You can monitor changes in a keyspace using the keyspaces's changes feed.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/changes-feed.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:1.0@couchbase-edge-server:rest-based-access:changes-feed.adoc[]
 ---
 
@@ -175,4 +175,4 @@ The REST API client then waits for the specified duration before timing out. If 
 * [Document Access with Edge Server](document-access.md)
 * [Run Queries with Edge Server](queries-api.md)
 * [Manage Replication with Edge Server](replication.md)
-* [public-api-reference:index.adoc](#public-api-reference:index.adoc)
+* [Edge Server Public REST API](../public-api-reference/index.md)

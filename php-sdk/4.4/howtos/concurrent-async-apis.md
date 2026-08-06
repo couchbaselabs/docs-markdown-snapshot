@@ -1,0 +1,121 @@
+---
+title: Batching
+description: The PHP SDK offers only a blocking API -- but this is not
+  necessarily a limitation.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/concurrent-async-apis.adoc
+pubDate: 2026-08-06T05:31:06.200Z
+link: xref:4.4@php-sdk:howtos:concurrent-async-apis.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/php-sdk/4.4/howtos/concurrent-async-apis.html)
+
+# Batching
+
+> The PHP SDK offers only a blocking API — but this is not necessarily a limitation. Using data batching or process forks you can perform effective bulk operations over data. 
+
+Process forks give an improvement in performance — but at the cost of increased use of CPU and memory. Note, they do not help improve network efficiency, but will be no worse than making individual calls.
+
+Using a combination of data batching and process forking or the batching API, you can perform effective bulk operations over data.
+
+Batching operations allows you to make better utilization of your network and speed up your application by increasing network throughput and reducing latency. Batched operations work by pipelining requests over the network. When requests are pipelined, they are sent in one large group to the cluster. The cluster in turn pipelines responses back to the client. When operations are batched, there are fewer IP packets to be sent over the network (since there are fewer individual TCP segments).
+
+## [](#batching-with-multi-get-multi-options)Batching with Multi Get, Multi Options
+
+Batching multiple data operations will improve network utilization efficiency, until the point that maximum network efficiency is reached. For average network conditions, perhaps start with fetching one or two MiB of data. On a very fast connection between your application server and your Couchbase cluster, try at least 10 MiB.
+
+### [](#getmulti)getMulti()
+
+Pass an array of document keys to receive a group of documents. See the API ref for [getMulti](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Collection.html#method%5FgetMulti) for more information.
+
+```php
+public getMulti(array<string|int, mixed> $ids[, GetOptions|null $options = null ]) : array<string|int, GetResult>
+```
+
+### [](#upsertmulti)upsertMulti()
+
+Creates a group of documents if they don't exist, otherwise updates them. See the API ref for [upsertMulti](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Collection.html#method%5FupsertMulti) for more information.
+
+```php
+public upsertMulti(array<string|int, mixed> $entries[, UpsertOptions|null $options = null ]) : array<string|int, MutationResult>
+```
+
+### [](#removemulti)removeMulti()
+
+Removes a group of documents. If second element of the entry (CAS) is null, then the operation will remove the document unconditionally. See the API ref for [removeMulti](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Collection.html#method%5FremoveMulti) for more information.
+
+```php
+public removeMulti(array<string|int, mixed> $entries[, RemoveOptions|null $options = null ]) : array<string|int, MutationResult>
+```
+
+## [](#batching-with-process-forks)Batching with process forks
+
+Bulk loading with multiple PHP processes provides a useful way of achieving the effectiveness of parallel operations. In the following example we will look at loading a set of JSON files and uploading them to Couchbase Server in concurrent batches.
+
+To begin with, let's look at loading the data from one of the Couchbase sample datasets, the beer dataset. This dataset is around 7300 JSON files, each file representing a document. This sample looks for the dataset in the default location for a GNU/Linux install, you can find the default locations for other Operating Systems in our [CLI reference](#https://docs.couchbase.com/server/7.1/cli/cli-intro.html).
+
+```php
+$concurrency = 4; // number of processes
+$sample_name = "beer-sample";
+$sample_zipball = "/opt/couchbase/samples/$sample_name.zip";
+printf("Using '%s' as input\n", $sample_zipball);
+system("rm -rf /tmp/$sample_name");
+system("unzip -q -d /tmp $sample_zipball");
+$files = glob("/tmp/$sample_name/docs/*.json");
+$batches = [];
+for ($i = 0; $i < $concurrency; $i++) {
+  $batches[$i] = [];
+}
+printf("Bundle '%s' contains %d files\n", $sample_name, count($files));
+for ($i = 0; $i < count($files); $i++) {
+  array_push($batches[$i % $concurrency], $files[$i]);
+}
+```
+
+Here we've unzipped the zip file containing the dataset and then set up the relevant number of batches, where each batch is a set of filenames that we will later read and use the documents from.
+
+In the next snippet we can see that call `pcntl_fork` to fork the process. After forking the process we check if we're now running as a child or as the parent process. If we're running as the child then we run the `upload_batch` function. The `upload_batch` function iterates over the filenames, reading the contents of each file and uploading it to Couchbase Server. If we were in the parent process then instead of running the `upload_batch` function we add the PID of the child process to the `$children` array. The parent then uses `pcntl_waitpid` to wait for each child process to complete.
+
+```php
+$children = [];
+for ($i = 0; $i < $concurrency; $i++) {
+  $pid = pcntl_fork();
+  if ($pid == -1) {
+    die("unable to spawn child process");
+  } else if ($pid == 0) {
+    printf("Start a process to upload a batch of %d files\n", count($batches[$i]));
+    upload_batch($i, $batches[$i]);
+    exit(0);
+  } else {
+    array_push($children, $pid);
+  }
+}
+
+foreach ($children as $child) {
+  pcntl_waitpid($child, $status);
+}
+
+use \Couchbase\Cluster;
+use \Couchbase\ClusterOptions;
+function upload_batch($id, $batch) {
+  $options = new ClusterOptions();
+  $options->credentials("Administrator", "password");
+  $cluster = new Cluster("couchbase://localhost", $options);
+  $collection = $cluster->bucket("travel-sample")->scope("inventory")->collection("airport");
+  foreach ($batch as $path) {
+    $collection->upsert($path, json_decode(file_get_contents($path)));
+  }
+}
+```
+
+In the output we can see something like:
+
+```console
+Bundle 'beer-sample' contains 7303 files
+Start a process to upload a batch of 1826 files
+Start a process to upload a batch of 1826 files
+Start a process to upload a batch of 1826 files
+Start a process to upload a batch of 1825 files
+```
+
+The application has split the files into four batches and then uploaded the batches in parallel.

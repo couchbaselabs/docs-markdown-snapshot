@@ -2,8 +2,8 @@
 title: Bootstrap Configuration
 description: Reference data on the contents of Sync Gateway's bootstrap
   configuration, which determines its run time behavior.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-schema-bootstrap.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-bootstrap.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:configuration:configuration-schema-bootstrap.adoc[]
 ---
 
@@ -23,9 +23,9 @@ _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configurat
 
 ## [](#introduction)Introduction
 
-The _Sync Gateway_ bootstrap configuration is provisioned in a JSON format file. The configuration properties define sync gateway's runtime behavior. See the [schema](#lbl-schema) below for more details on these properties.
+The _Sync Gateway_ bootstrap configuration is provisioned in a JSON format file. The configuration properties define Sync Gateway's runtime behavior. See the [schema](#lbl-schema) below for more details on these properties.
 
-Sync gateway will look for the following configuration file unless you direct it otherwise:  
+Sync Gateway will look for the following configuration file unless you direct it otherwise:  
 `/home/sync_gateway/sync_gateway.json`
 
 Use the following command to run Sync Gateway with a configuration file:
@@ -77,9 +77,11 @@ This schema identifies all the configurable properties.
       [ca_cert_path](#bootstrap-ca%5Fcert%5Fpath): "string",
       [config_update_frequency](#bootstrap-config%5Fupdate%5Ffrequency): "10s",
       [group_id](#bootstrap-group%5Fid): "default",
+      [node_heartbeat_expiry](#bootstrap-node%5Fheartbeat%5Fexpiry): "60s",
       [password](#bootstrap-password): "string",
       [server](#bootstrap-server): "string",
       [server_tls_skip_verify](#bootstrap-server%5Ftls%5Fskip%5Fverify): false,
+      [use_system_metadata_collection](#bootstrap-use%5Fsystem%5Fmetadata%5Fcollection): false,
       [use_tls_server](#bootstrap-use%5Ftls%5Fserver): true,
       [username](#bootstrap-username): "string",
       [x509_cert_path](#bootstrap-x509%5Fcert%5Fpath): "string",
@@ -121,7 +123,7 @@ This schema identifies all the configurable properties.
          [color_enabled](#logging-console-color%5Fenabled): false,
          [enabled](#logging-console-enabled): false,
          [file_output](#logging-console-file%5Foutput): "string",
-         [log_keys](#logging-console-log%5Fkeys): ["CRUD,HTTP,Query"...],
+         [log_keys](#logging-console-log%5Fkeys): ["string"...],
          [log_level](#logging-console-log%5Flevel): "info",
          [rotation](#logging-console-rotation): {
             [localtime](#logging-console-rotation-localtime): false,
@@ -219,6 +221,7 @@ This schema identifies all the configurable properties.
          [min_config_fetch_interval](#unsupported-serverless-min%5Fconfig%5Ffetch%5Finterval): "1s"
       },
       [stats_log_frequency](#unsupported-stats%5Flog%5Ffrequency): "1m",
+      [use_gocb_fast_fail_retry](#unsupported-use%5Fgocb%5Ffast%5Ffail%5Fretry): false,
       [use_stdlib_json](#unsupported-use%5Fstdlib%5Fjson): false,
       [use_xattr_config](#unsupported-use%5Fxattr%5Fconfig): false
    }
@@ -572,6 +575,22 @@ Description
 
 The config group ID to use when discovering databases. Allows for non-homogenous configuration.
 
+#### `bootstrap.node_heartbeat_expiry`
+
+Type
+
+string
+
+Default
+
+60s
+
+Description
+
+How long since a node's last heartbeat before its cluster compat registry entry is pruned. Minimum is 2x the configured `config_update_frequency`.
+
+This is a duration and therefore can be provided with units "h", "m", "s", "ms", "us", and "ns". For example, 5 hours, 20 minutes, and 30 seconds would be `5h20m30s`.
+
 #### `bootstrap.password`
 
 Type
@@ -612,6 +631,16 @@ boolean
 Description
 
 Allow empty server CA Cert Path without attempting to use system root pool
+
+#### `bootstrap.use_system_metadata_collection`
+
+Type
+
+boolean
+
+Description
+
+If true, Sync Gateway uses the `_system._mobile` metadata collection and triggers a one-time migration of any metadata in the default collection.
 
 #### `bootstrap.use_tls_server`
 
@@ -1832,6 +1861,16 @@ Description
 How often should stats be written to stats logs.
 
 This is a duration and therefore can be provided with units "h", "m", "s", "ms", "us", and "ns". For example, 5 hours, 20 minutes, and 30 seconds would be `5h20m30s`.
+
+#### `unsupported.use_gocb_fast_fail_retry`
+
+Type
+
+boolean
+
+Description
+
+When true, errors on initial connection to Couchbase Server will fail instantaneously. Enabling this will surface authentication errors quickly, but can cause some Sync Gateway operations to shut down databases with intermittent Couchbase Server connection errors.
 
 #### `unsupported.use_stdlib_json`
 

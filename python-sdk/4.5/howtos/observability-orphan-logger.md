@@ -1,0 +1,84 @@
+---
+title: Orphaned Requests Logging
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/observability-orphan-logger.adoc
+pubDate: 2026-08-06T05:31:06.200Z
+link: xref:4.5@python-sdk:howtos:observability-orphan-logger.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/python-sdk/4.5/howtos/observability-orphan-logger.html)
+
+# Orphaned Requests Logging
+
+## [](#orphaned-response-reporting)Orphaned Response Reporting
+
+In addition to request tracing and metrics reporting, logging orphaned requests provides additional insight into why an operation might have timed out (or got cancelled for a different reason). While tracing and metrics can also be consumed through external interfaces, getting information about orphaned requests only works through the built-in mechanisms.
+
+The way it works is that every time a response is in the process of being completed, when the SDK detects that the original caller is not listening anymore (likely because of a timeout), it will send this "orphaned" response to a reporting utility which aggregates all responses and in regular intervals logs them in a specific format.
+
+When the user then sees timeouts in their logs, they can go look at the output of the orphan reporter and correlate certain properties that aid debugging in production. For example, if a single node is slow but the rest of the cluster is responsive, this would be visible from orphan reporting.
+
+### [](#configuring-orphan-logging)Configuring Orphan Logging
+
+The orphan response logging is very similar in principle to the threshold logging, but instead of tracking responses which are over a specific threshold it tracks those responses which are "orphaned".
+
+The report interval and sample size can be adjusted (defaults are 10s and 10 samples per service, respectively).
+
+```python
+# configure logging
+logging.basicConfig(filename='example.log',
+                    filemode='w', 
+                    level=logging.DEBUG,
+                    format='%(levelname)s::%(asctime)s::%(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S')
+# setup couchbase logging
+logger = logging.getLogger()
+couchbase.configure_logging(logger.name, level=logger.level)
+
+tracing_opts = ClusterTracingOptions(
+    # report interval
+    tracing_orphaned_queue_flush_interval=timedelta(minutes=1),
+    # sample size
+    tracing_orphaned_queue_size=10
+)
+
+authenticator = PasswordAuthenticator("Administrator", "password")
+
+cluster = Cluster("couchbase://your-ip", ClusterOptions(authenticator,tracing_options=tracing_opts))
+```
+
+#### [](#json-output-format-logging)JSON Output Format & Logging
+
+You should expect to see output in JSON format in the logs for the services encountering problems:
+
+```json
+{
+  "<service-a>": {
+    "total_count": 1234,
+    "top_requests": [{<entry>}, {<entry>},...]
+  },
+  "<service-b>": {
+    "total_count": 1234,
+    "top_requests": [{<entry>}, {<entry>},...]
+  },
+}
+```
+
+The `total_count` represents the total amount of over-threshold recorded items in each interval per service. The number of entries in "top\_requests" is configured by the `sampleSize`. The service placeholder is replaced with each service — "kv", "query", etc. Each entry looks like this, with all fields populated:
+
+```json
+{
+  "total_duration_us": 1200,
+  "encode_duration_us": 100,
+  "last_dispatch_duration_us": 40,
+  "total_dispatch_duration_us": 40,
+  "last_server_duration_us": 2,
+  "operation_name": "upsert",
+  "last_local_id": "66388CF5BFCF7522/18CC8791579B567C",
+  "operation_id": "0x23",
+  "last_local_socket": "10.211.55.3:52450",
+  "last_remote_socket": "10.112.180.101:11210"
+}
+```
+
+If a field is not present (because for example dispatch did not happen), it will not be included.

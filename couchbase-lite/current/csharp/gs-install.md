@@ -1,8 +1,8 @@
 ---
 title: Installing Couchbase Lite on .Net
 description: How to install Couchbase Lite on .Net
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/gs-install.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/csharp/pages/gs-install.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:csharp:gs-install.adoc[]
 ---
 
@@ -16,13 +16,13 @@ link: xref:couchbase-lite:csharp:gs-install.adoc[]
 
 Quick Steps
 
-For experienced developers, this is all you need to add _Couchbase Lite for C#.Net 4.0.3_ to your application projects.
+For experienced developers, this is all you need to add _Couchbase Lite for C#.Net 4.1.1_ to your application projects.
 
 1. Create or open an existing Visual Studio project
 2. Install either of the following packages from Nuget.
 
-  * Community Edition — `Couchbase.Lite` package for 4.0.3
-  * Enterprise Edition — `Couchbase.Lite.Enterprise` package for 4.0.3
+  * Community Edition — `Couchbase.Lite` package for 4.1.1
+  * Enterprise Edition — `Couchbase.Lite.Enterprise` package for 4.1.1
 
     * Vector Search Extension — `Couchbase.Lite.VectorSearch` package for 2.0.
 3. Within your app, include a call to the relevant `Activate()` function inside of the class that is included in the support assembly.
@@ -130,7 +130,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](#csharp:landing-p2psync.adoc)
-* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net)
+* [API References](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net)
 
 .
 

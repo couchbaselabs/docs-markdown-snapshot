@@ -3,7 +3,7 @@ title: Capella App Services Release Notes
 description: Release notes for Capella App Services, including new features,
   enhancements, and updates.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/release-notes/release-notes.adoc
-pubDate: 2026-07-22T05:30:13.485Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:app-services::release-notes/release-notes.adoc[]
 ---
 
@@ -50,7 +50,7 @@ New App Services deployments now deploy Sync Gateway 4.0.4\. This release includ
   * [CBG-5202](https://issues.couchbase.com/browse/CBG-5202) — Fixed an issue where remote-wins conflict resolution incorrectly generated a new revision ID.
   * [CBG-5157](https://issues.couchbase.com/browse/CBG-5157) — Added support for EdDSA tokens for OIDC and JWT authentication.
   * [CBG-5214](https://issues.couchbase.com/browse/CBG-5214) — CBL-JS ping BLIP requests are now handled silently to reduce noise in logs.  
-For more information about all changes within this maintenance release, see the [Sync Gateway 4.0.4 Release Notes](../../sync-gateway/current/product-notes/release-notes.md#maint-4-0-4).
+For more information about all changes within this maintenance release, see the [Sync Gateway 4.0.4 Release Notes](../../sync-gateway/4.0/product-notes/release-notes.md#maint-4-0-4).
 * New App Services deployments now deploy Sync Gateway 3.3.4  
 This release includes the following fixed issues and enhancements:
 
@@ -77,7 +77,7 @@ New App Services deployments now deploy Sync Gateway 4.0.2\. This release includ
   * [CBG-5027](https://issues.couchbase.com/browse/CBG-5027) — Improved revision cache lock handling by using defer for lock and unlock operations where applicable.
   * [CBG-5029](https://issues.couchbase.com/browse/CBG-5029) — Fixed a potential deadlock in the revision cache shard that could occur during memory-based cache eviction.
   * [CBG-5034](https://issues.couchbase.com/browse/CBG-5034) — Fixed delta computation to ensure proper synchronization.  
-For more information about all changes within this maintenance release, see the [Sync Gateway 4.0.2 Release Notes](../../sync-gateway/current/product-notes/release-notes.md#maint-4-0-2).
+For more information about all changes within this maintenance release, see the [Sync Gateway 4.0.2 Release Notes](../../sync-gateway/4.0/product-notes/release-notes.md#maint-4-0-2).
 * Dynatrace Support for App Services Log Streaming  
 You can now stream App Services operational and audit logs to Dynatrace for proactive troubleshooting and application monitoring.  
 Dynatrace joins the existing list of supported third-party observability platforms, including Datadog, Sumo Logic, Elasticsearch, Grafana Loki, Splunk, and custom HTTP collectors.  
@@ -93,7 +93,7 @@ For more information, see [Connect OpenID Connect (OIDC) Providers](../security/
 * App Services 4.0 with Bidirectional XDCR Support  
 This App Services release introduces the ability to set up bidirectional XDCR between two active App Services clusters. With this capability, you can set up App Services in active standby mode for failover and disaster recovery use cases. Couchbase Lite clients on v4.0 can seamlessly switch between App Services clusters running this version.  
 App Services 4.0 is compatible with Couchbase Server versions 7.6.4 and above. However, the minimum version of Couchbase Server required for the bidirectional XDCR capability is 7.6.6.  
-For more information about all changes within this major release, see the [Sync Gateway 4.0 Release Notes](../../sync-gateway/current/product-notes/release-notes.md).
+For more information about all changes within this major release, see the [Sync Gateway 4.0 Release Notes](../../sync-gateway/4.0/product-notes/release-notes.md).
 
 ## [](#september-2025)September 2025
 

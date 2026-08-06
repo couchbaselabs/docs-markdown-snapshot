@@ -1,8 +1,8 @@
 ---
 title: ip-family
 description: Edits cluster IP family settings
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-ip-family.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/cli/pages/couchbase-cli-ip-family.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:cli:couchbase-cli-ip-family.adoc[]
 ---
 

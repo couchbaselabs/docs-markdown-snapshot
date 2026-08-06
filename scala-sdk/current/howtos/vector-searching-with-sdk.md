@@ -2,8 +2,8 @@
 title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-04-10T05:25:10.333Z
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/vector-searching-with-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:scala-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: Monitoring Queries
 description: This page explains how to monitor queries in Couchbase Analytics.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/monitoring-queries.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sources/pages/monitoring-queries.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sources:monitoring-queries.adoc[]
 ---
 
@@ -34,3 +34,13 @@ The **Completed Enterprise Analytics Queries** page shows a table of completed q
 For each query, this page shows the query syntax, the node address where the query ran, the duration, the final state of the query, the timestamp when the query was run, and the user who initiated the query. Click **Edit** to edit a particular query in the **Workbench** tab.
 
 To display the Completed Enterprise Analytics Query page, make sure the Monitor screen is displayed, and then if necessary click **Completed**.
+
+## [](#open-queries)Open Queries
+
+The **Open Enterprise Analytics Queries** page shows a table of open queries. Open queries include all active queries and completed asynchronous queries, until they're explicitly discarded or reach their TTL.
+
+For each query, this page shows the query syntax, the node address where the query ran, the duration, the final state of the query, the timestamp when the query was run, and the user who initiated the query. Click **Edit** to edit a particular query in the **Workbench** tab.
+
+To display the Open Enterprise Analytics Queries page, make sure the Monitor screen is displayed, then if necessary click **Open**.
+
+To discard a completed asynchronous query, you must use the Enterprise Analytics Service REST API. For more information, see [Discard Request Result](../analytics-rest-service/index.md#operation/delete%5Frequest%5Fresult).

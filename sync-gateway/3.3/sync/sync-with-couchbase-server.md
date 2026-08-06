@@ -2,7 +2,7 @@
 title: Sync with Couchbase Server
 description: Use Sync Gateway to sync Couchbase Server changes securely from cloud to edge
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/sync/pages/sync-with-couchbase-server.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:3.3@sync-gateway:sync:sync-with-couchbase-server.adoc[]
 ---
 
@@ -203,7 +203,7 @@ The following diagram shows an example architecture of two Sync Gateway nodes ha
 
 Next Steps
 
-* Check out our getting started tutorial for more on how to setup, configure and run Sync Gateway replications - [Sync tutorial](../../../tutorials/userprofile-sync/userprofile%5Fsync.md)
+* Check out our getting started tutorial for more on how to setup, configure and run Sync Gateway replications - [Sync tutorial](#tutorials:userprofile-sync:userprofile%5Fsync.adoc)
 * Further reading:
 
   * Couchbase Server documentation on [Extended Attributes](../../../server/current/learn/data/extended-attributes-fundamentals.md)

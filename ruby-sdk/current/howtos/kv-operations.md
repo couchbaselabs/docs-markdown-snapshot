@@ -2,8 +2,8 @@
 title: Data Operations
 description: Data service offers the simplest way to retrieve or mutate data
   where the key is known.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -23,40 +23,19 @@ A _document_ refers to an entry in the database (other databases may refer to th
 The core interface to Couchbase Server is simple KV operations on full documents. Make sure you're familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK section](../hello-world/start-using-sdk.md). We're going to expand on the short _Upsert_ example we used there, adding options as we move through the various CRUD operations. Here is the _Insert_ operation, with simple error handling:
 
 ```ruby
-begin
-  collection.insert("document-key", {"title" => "My Blog Post"})
-rescue Error::DocumentExists
-  puts "The document already exists!"
-end
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 Setting a Compare and Swap (CAS) value is a form of optimistic locking - dealt with in depth in the [CAS page](concurrent-document-mutations.md). Here we just note that the CAS is a value representing the current state of an item; each time the item is modified, its CAS changes. The CAS value is returned as part of a document's metadata whenever a document is accessed. Without explicitly setting it, a newly-created document would have a CAS value of _0_.
 
 ```ruby
-collection.upsert("my-document", {"initial" => true})
-
-result = collection.get("my-document")
-content = result.content
-content["modified"] = true
-content["initial"] = false
-collection.replace("my-document", content, Options::Replace(cas: result.cas))
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 Expiration sets an explicit time to live (TTL) for a document. For a discussion of item (Document) _vs_ Bucket expiration, see the [Expiration Overview page](../../../server/current/learn/data/expiration.md#expiration-bucket-versus-item).
 
 ```ruby
-collection.upsert("my-document", {"doc" => true},
-                  Options::Insert(expiry: 2 * 60 * 60))
-
-# or with ActiveSupport::Duration
-require 'active_support/core_ext/numeric/time'
-collection.upsert("my-document", {"doc" => true},
-                  Options::Insert(expiry: 2.hours))
-
-# Time instances also acceptable as absolute time points
-expiry = Time.now + 30 # 30 seconds from now
-collection.upsert("my-document", {"doc" => true},
-                  Options::Insert(expiry: expiry))
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 ## [](#durability)Durability
@@ -68,8 +47,7 @@ The optional `durability_level` parameter, which all mutating operations accept,
 It can be used like this:
 
 ```ruby
-collection.upsert("my-document", {"doc" => true},
-                Options::Upsert(durability_level: :majority))
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 If no argument is provided the application will report success back as soon as the primary node has acknowledged the mutation in its memory. However, we recognize that there are times when the application needs that extra certainty that especially vital mutations have been successfully replicated, and the other durability options provide the means to achieve this.
@@ -85,8 +63,7 @@ The options are in increasing levels of safety. Note that nothing comes for free
 If a version of Couchbase Server earlier than 6.5 is being used then the application can fall-back to ['client verified' durability](../concept-docs/durability-replication-failure-considerations.md#older-server-versions). Here the SDK will do a simple poll of the replicas and only return once the requested durability level is achieved. This can be achieved like this:
 
 ```ruby
-collection.upsert("my-document", {"doc" => true},
-                Options::Upsert(persist_to: :none, replicate_to: :two))
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 To stress, durability is a useful feature but should not be the default for most applications, as there is a performance consideration, and the default level of safety provided by Couchbase will be reasonable for the majority of situations.
@@ -118,31 +95,18 @@ Couchbase does not recommend this feature where read consistency is critical, bu
 > * The cluster should have enough nodes and group to make sure that copies of the same document are not stored on the same node, and each group has nodes that cover all 1024 vbuckets (in other words, the number of the groups does not exceeds number of the copies: `active+num_replicas`). The Admin UI should emit small yellow warning if the configuration is considered unbalanced.
 > * Setting **three** replicas for the bucket [disables durability for sync writes](../../../server/current/learn/data/durability.md#majority), also precluding the use of [multi-document ACID transactions](#concept-docs:transactions.adoc).
 
-## [](#retrieving-full-documents)Retrieving full documents
+## [](#retrieving-full-documents)Retrieving Full Documents
 
 Using the `.get()` method with the document key can be done in a similar fashion to the other operations:
 
 ```ruby
-begin
-  get_result = collection.get("document-key")
-  title = get_result.content["title"]
-  puts title
-  #=> My Blog Post
-rescue Error::DocumentExists
-  puts "Document not found!"
-end
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 You can then add in logic to filter on the fields returned:
 
 ```ruby
-found = collection.get("document-key")
-content = found.content
-if content["author"] == "mike"
-  # do something
-else
-  # do something else
-end
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 ## [](#removing)Removing
@@ -150,11 +114,7 @@ end
 When removing a document, you will have the same concern for durability as with any additive modification to the Bucket:
 
 ```ruby
-begin
-  collection.remove("my-document")
-rescue Error::DocumentNotFound
-  puts "Document did not exist when trying to remove"
-end
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 ## [](#expiration-ttl)Expiration / TTL
@@ -164,26 +124,13 @@ Couchbase Server includes an option to have particular documents automatically e
 You can set an expiry value when creating a document:
 
 ```ruby
-collection.upsert("my-document", {"doc" => true},
-                  Options::Insert(expiry: 2 * 60 * 60))
-
-# or with ActiveSupport::Duration
-require 'active_support/core_ext/numeric/time'
-collection.upsert("my-document", {"doc" => true},
-                  Options::Insert(expiry: 2.hours))
-
-# Time instances also acceptable as absolute time points
-expiry = Time.now + 30 # 30 seconds from now
-collection.upsert("my-document", {"doc" => true},
-                  Options::Insert(expiry: expiry))
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 When getting a document, the expiry is not provided automatically by Couchbase Server but it can be requested:
 
 ```ruby
-found = collection.get("my-document", Options::Get(with_expiry: true))
-puts "Expiry of found doc: #{found.expiry_time})"
-#=> Expiry of found doc: 2020-07-26 21:52:22 +0300
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 > [!NOTE]
@@ -192,20 +139,13 @@ puts "Expiry of found doc: #{found.expiry_time})"
 Note that when updating the document, special care must be taken to avoid resetting the expiry to zero. Here's how:
 
 ```ruby
-found = collection.get("my-document", Options::Get(with_expiry: true))
-
-collection.replace("my-document", {"content" => "something new"},
-                   Options::Replace(expiry: found.expiry_time))
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 Some applications may find `getAndTouch` useful, which fetches a document while updating its expiry field. It can be used like this:
 
 ```ruby
-collection.get_and_touch("my-document", 24 * 60 * 60)
-
-# or with ActiveSupport::Duration
-require 'active_support/core_ext/numeric/time'
-collection.get_and_touch("my-document", 1.day)
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 ## [](#atomic-counters)Atomic Counters
@@ -218,40 +158,23 @@ The value of a document can be increased or decreased atomically using `#increme
 Increment
 
 ```ruby
-# increment binary value by 1 (default)
-binary_collection = collection.binary
-res = binary_collection.increment("foo")
-res.content
-#=> 1
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_counter.rb[]
 ```
 
 ```ruby
-# Create a document and assign it to 10 -- counter works atomically
-# by first creating a document if it doesn't exist. If it exists,
-# the same method will increment/decrement per the "delta" parameter
-res = binary_collection.increment("counter",
-           Options::Increment(initial: 10, delta: 2))
-res.value
-#=> 10
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_counter.rb[]
 ```
 
 Decrement
 
 ```ruby
-# decrement binary value by 1 (default)
-res = binary_collection.decrement("foo")
-res.content
-#=> 0
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_counter.rb[]
 ```
 
 Decrement (with options)
 
 ```ruby
-# Decrement value by 4 to 8
-res = binary_collection.decrement("counter",
-           Options::Decrement(initial: 10, delta: 4))
-res.value
-#=> 8
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_counter.rb[]
 ```
 
 > [!TIP]
@@ -270,33 +193,27 @@ A range scan gives you documents from a collection, even if you don't know the d
 > [!TIP]
 > KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
-### [](#kv-range-scan-range)Range scan
+### [](#kv-range-scan-range)Range Scan
 
 Here's an example of a KV range scan that gets all documents in a collection:
 
-KV Range Scan for all documents in a collection
+KV Range Scan for all Documents in a Collection
 
 ```ruby
-result = collection.scan(RangeScan.new) (1)
-result.each do |item|
-  puts "ID: #{item.id}, Content: #{item.content}"
-end
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 | **1** | The RangeScan class has two optional attributes: from and to. If you omit them like in this example, you'll get all documents in the collection. These parameters are for advanced use cases; you probably won't need to specify them. Instead, it's more common to use the "prefix" scan type shown in the next example. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-### [](#kv-range-scan-prefix)Prefix scan
+### [](#kv-range-scan-prefix)Prefix Scan
 
 KV range scan can also give you all documents whose IDs start with the same prefix. Imagine you have a collection where documents are named like this: `<username>::<uuid>`. In other words, the document ID starts with the name of the user associated with the document, followed by a delimiter, and then a UUID. If you use this document naming scheme, you can use a prefix range scan to get all documents associated with a user. For example, to get all documents associated with user "alice", you would write:
 
 KV Range Scan for all documents in a collection whose IDs start with `alice::`
 
 ```ruby
-result = collection.scan(PrefixScan.new('alice::')) (1)
-result.each do |item|
-  puts "ID: #{item.id}, Content: #{item.content}"
-end
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 | **1** | Note the scan type is PrefixScan |
@@ -306,26 +223,20 @@ end
 
 If you want to get random documents from a collection, use a sample scan.
 
-KV Range Scan for 100 random documents
+KV Range Scan for 100 Random Documents
 
 ```ruby
-result = collection.scan(SamplingScan.new(100))
-result.each do |item|
-  puts "ID: #{item.id}, Content: #{item.content}"
-end
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
-### [](#kv-range-scan-only-ids)Get IDs instead of full documents
+### [](#kv-range-scan-only-ids)Get IDs Instead of Full Documents
 
 If you only want the document IDs, set the `ids_only` attribute of `Options::Scan` to `true`, like this:
 
-KV Range Scan for all document IDs in a collection
+KV Range Scan for all Document IDs in a Collection
 
 ```ruby
-result = collection.scan(RangeScan.new, Options::Scan.new(ids_only: true))
-result.each do |item|
-  puts "ID: #{item.id}"
-end
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 ## [](#scoped-kv-operations)Scoped KV Operations
@@ -335,11 +246,7 @@ It is possible to perform scoped key-value operations on named [Collections](../
 Here is an example showing an upsert in the `users` collection, which lives in the `travel-sample.tenant_agent_00` keyspace:
 
 ```ruby
-agent_scope = bucket.scope("tenant_agent_00")
-users_collection = agent_scope.collection("users")
-document = {"name" => "John Doe", "preferred_email" => "johndoe111@test123.test"}
-
-result = users_collection.upsert("user-key", document)
+Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$kv_operations.rb[]
 ```
 
 ## [](#additional-resources)Additional Resources

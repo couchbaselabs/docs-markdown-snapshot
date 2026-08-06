@@ -1,8 +1,8 @@
 ---
 title: Full Installation
 description: Installation instructions for the Couchbase Node.js Client.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -45,17 +45,7 @@ Run `tsc --init` in your project directory to generate a `tsconfig.json` file. T
 Should you wish to make changes in future you can simply edit the file:
 
 ```json
-{
-  "compilerOptions": {
-   "disableReferencedProjectLoad": true,             
-    "target": "es5",                                   
-    "module": "commonjs",                                
-    "esModuleInterop": true,                             
-    "forceConsistentCasingInFileNames": true,            
-    "strict": true,                                     
-    "skipLibCheck": true                                 
-  }
-}
+Unresolved include directive in modules/project-docs/pages/sdk-full-installation.adoc - include::project-docs:example$example-tsconfig.json[]
 ```
 
 Note that the example above does not include the generated comments for readability.

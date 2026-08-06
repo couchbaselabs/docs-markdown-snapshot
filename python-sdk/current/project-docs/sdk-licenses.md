@@ -1,27 +1,32 @@
 ---
-title: SDK License
-description: Couchbase SDKs' source code is licensed under the Apache Licence 2.0.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/project-docs/pages/sdk-licenses.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+title: Licenses
+description: Couchbase SDKs' source code and binaries are licensed under the
+  Apache Licence 2.0.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/project-docs/pages/sdk-licenses.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:project-docs:sdk-licenses.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/python-sdk/current/project-docs/sdk-licenses.html)
 
-# SDK License
+# Licenses
 
-> Couchbase SDKs' source code is licensed under the Apache Licence 2.0\. Dependencies carry their own licenses. 
+> Couchbase SDKs' source code and binaries are licensed under the Apache Licence 2.0\. Dependencies carry their own licenses. 
 
-The Couchbase Python Client is distributed as source under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+Source and any and all binaries for the Couchbase Python Client are distributed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
-## [](#binary-distribution)Binary Distribution
+## [](#support-level)Support Level
 
-Binary distributions are made under Couchbase's own license agreements.
+Support level will match the terms of your use of your Couchbase Cluster(s), under Couchbase's Enterprise or Community license agreements.
 
-* [Enterprise License Agreement](https://www.couchbase.com/license-agreement/)
-* [Community License Agreement](https://www.couchbase.com/community-license-agreement/)
+* [Enterprise License Agreement](https://www.couchbase.com/license-agreement/) — this support level also applies to users of Capella Operational.
+* [Community License Agreement](https://www.couchbase.com/community-license-agreement/) — this support level also applies to users of Capella Free Tier.
 
 ## [](#dependencies)Dependencies
 
 Any dependencies may have their [own, separate licenses](https://www.couchbase.com/legal/agreements#ThirdPartyComponents).
+
+## [](#documentation-license)Documentation License
+
+This documentation is copyright Couchbase Inc. The docs' source is licensed under the Creative Commons [CC-by-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en) license, see <https://github.com/couchbase/docs-sdk-python/blob/release/4.6/LICENSE>.

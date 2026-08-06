@@ -1,8 +1,8 @@
 ---
 title: Integrate a Custom Built Listener
 description: Couchbase Lite database peer-to-peer sync- integrate a custom built listener
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/p2psync-custom.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/p2psync-custom.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:android:p2psync-custom.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:couchbase-lite:android:p2psync-custom.adoc[]
 # Integrate a Custom Built Listener
 
 > Description — _Couchbase Lite database peer-to-peer sync- integrate a custom built listener_  
-> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/) | [Peer-to-Peer](p2psync-websocket.md) | [Integrate Custom Listener](p2psync-custom.md)
+> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/) | [Peer-to-Peer](p2psync-websocket.md) | [Integrate Custom Listener](p2psync-custom.md)
 
 ## [](#overview)Overview
 
@@ -322,7 +322,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](#android:landing-p2psync.adoc)
-* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/)
+* [API References](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/)
 
 .
 

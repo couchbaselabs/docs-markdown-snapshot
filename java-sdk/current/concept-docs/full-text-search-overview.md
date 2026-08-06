@@ -1,7 +1,7 @@
 ---
 title: Search
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/concept-docs/pages/full-text-search-overview.adoc
-pubDate: 2026-04-11T05:05:55.612Z
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/concept-docs/pages/full-text-search-overview.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-sdk:concept-docs:full-text-search-overview.adoc[]
 ---
 

@@ -2,8 +2,8 @@
 title: Setting Up With Object Storage
 description: This page describes how to set up Couchbase Enterprise Analytics
   with Object Storage.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/object-storage.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/manage-nodes/object-storage.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:manage:manage-nodes/object-storage.adoc[]
 ---
 

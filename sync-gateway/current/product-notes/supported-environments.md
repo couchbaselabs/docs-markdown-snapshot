@@ -1,8 +1,8 @@
 ---
 title: Supported Environments
 description: Sync Gateway's Supported Operating System and Cloud environments
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/product-notes/pages/supported-environments.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/product-notes/pages/supported-environments.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:product-notes:supported-environments.adoc[]
 ---
 
@@ -19,21 +19,23 @@ link: xref:sync-gateway:product-notes:supported-environments.adoc[]
 Make sure that your chosen operating system or cloud environment is listed in one of the following tables before you install _Sync Gateway_. See the [Deprecated Versions](#deprecated-versions) section for information about platform support changes, including deprecated platforms.
 
 > [!IMPORTANT]
-> sync gateway clusters on mixed platforms are not supported. Nodes in a sync gateway cluster should all be running on the same OS, and every effort should be made to apply the same OS patches across the entire cluster.
+> Sync Gateway clusters on mixed platforms are not supported. Nodes in a Sync Gateway cluster should all be running on the same OS, and every effort should be made to apply the same OS patches across the entire cluster.
 
 __Table 1\. Supported Operating Systems for Development, Testing, and Production__
 | Operating System                | Supported Versions           |
 | ------------------------------- | ---------------------------- |
 | Red Hat Enterprise Linux (RHEL) | 10.x                         |
 | 9.x                             |                              |
-| Alma Linux                      | 9.x                          |
-| Rocky Linux                     | 9.x                          |
+| Alma Linux                      | 10.x                         |
+| 9.x                             |                              |
+| Rocky Linux                     | 10.x                         |
+| 9.x                             |                              |
 | Ubuntu                          | 24.04 LTS ARM, 24.04 LTS x86 |
 | 22.04 LTS ARM, 22.04 LTS x86    |                              |
 | Debian                          | 13.x                         |
 | 12.x                            |                              |
-| 11.x                            |                              |
-| Windows Server                  | 2022                         |
+| Windows Server                  | 2025                         |
+| 2022                            |                              |
 
 __Table 2\. Supported Cloud Environments for Development, Testing, and Production__
 | Platform                  | Operating System     | Supported Versions                         |
@@ -62,7 +64,8 @@ __Table 4\. Deprecated Versions Table__
 | Operating System | Versions             | Deprecation Release |
 | ---------------- | -------------------- | ------------------- |
 | Amazon Linux     | 2 LTS ARM, 2 LTS x86 | 3.3.0               |
-| MacOS            | 13 M1 ARM64, 13 x86  | 3.3.0               |
+| macOS            | 13 M1 ARM64, 13 x86  | 3.3.0               |
+| Debian           | 11.x (Bullseye)      | 4.1                 |
 
 ---
 

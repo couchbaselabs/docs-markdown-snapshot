@@ -1,8 +1,8 @@
 ---
 title: Server Groups API
 description: The <em>Server Groups REST API</em> manages <em>Server Group Awareness</em>.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-rza.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/rest-rza.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:reference:rest-rza.adoc[]
 ---
 

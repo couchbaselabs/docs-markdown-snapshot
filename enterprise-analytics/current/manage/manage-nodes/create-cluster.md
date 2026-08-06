@@ -3,8 +3,8 @@ title: Create a Cluster
 description: A new Enterprise Analytics node can be <em>provisioned</em>, to
   establish its Full Administrator credentials, its service-assignments, and its
   memory quotas. At this point, it becomes a <em>cluster</em> of one node.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/create-cluster.adoc
-pubDate: 2026-04-15T05:26:28.652Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/manage-nodes/create-cluster.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:manage:manage-nodes/create-cluster.adoc[]
 ---
 
@@ -38,7 +38,7 @@ For additional, detailed information about using hostnames and IP addresses, see
 
 Once you have connected, the **Welcome** screen appears. It presents two main options: **Setup New Cluster** and **Join Existing Cluster**.
 
-The **Welcome** screen lets you either **Setup New Cluster**, or **Join Existing Cluster**. Information about joining an existing cluster is provided in [Join a Cluster and Rebalance](join-cluster-and-rebalance.md). To set up a new cluster, click **Setup New Cluster**.
+The **Welcome** screen lets you either **Setup New Cluster**, or **Join Existing Cluster**. information about joining an existing cluster is provided in [Join a Cluster and Rebalance](join-cluster-and-rebalance.md). To set up a new cluster, click on **Setup New Cluster**.
 
 ### [](#set-up-a-new-cluster)Set Up a New Cluster
 
@@ -47,27 +47,27 @@ The **New Cluster** screen now appears. It contains fields for initial cluster c
 The fields displayed on the screen are:
 
 * **Cluster Name**: Your choice of name for the cluster to be created. For information about cluster-naming, see [Naming Clusters and Nodes](../../../../server/current/learn/clusters-and-availability/nodes.md#naming-clusters-and-nodes).
-* **Create Admin Username**: Your choice of username, for yourself: the _Full Administrator_ for this cluster. You'll have read-write access to all Enterprise Analytics resources, including the ability to create new users with defined roles and corresponding privileges.  
+* **Create Admin Username**: Your choice of username, for yourself: the _Full Administrator_ for this cluster. You will have read-write access to all Enterprise Analytics resources; including the ability to create new users with defined roles and corresponding privileges.  
 > [!NOTE]  
-> Enterprise Analytics prohibits use of the following characters in usernames: `( ) < > @ , ; : \ " / [ ] ? = { }`. Usernames _may not_ be more than 128 UTF-8 characters in length. Couchbase recommends keeping them to no more than 64 UTF-8 characters in length so they display correctly onscreen.  
+> Enterprise Analytics prohibits use of the following characters in usernames: `( ) < > @ , ; : \ " / [ ] ? = { }`. Usernames _may not_ be more than 128 UTF-8 characters in length; and it is recommended that they be no more than 64 UTF-8 characters in length, in order to ensure successful onscreen display.  
 For more information, see [Usernames and Passwords](../../../../server/current/learn/security/usernames-and-passwords.md).
-* **Create Password**: Your choice of password, for yourself: the Full Administrator for this cluster. The only default format-requirement is that the password be at least 6 characters in length. However, following cluster-initialization, you can modify and improve the default password-policy, by means of the Couchbase CLI [setting-password-policy](../../cli/couchbase-cli-setting-password-policy.md) command.
+* **Create Password**: Your choice of password, for yourself: the Full Administrator for this cluster. The only default format-requirement is that the password be at least 6 characters in length. However, following cluster-initialization, you can modify (and indeed strengthen) the default password-policy, by means of the Couchbase CLI [setting-password-policy](../../cli/couchbase-cli-setting-password-policy.md) command.
 
 For more information, see [Usernames and Passwords](../../cli/couchbase-cli-setting-password-policy.md).
 
-When you have entered appropriate data into each field, click **Next: Accept Terms**.
+When you have entered appropriate data into each field, click on the **Next: Accept Terms** button, at the lower right.
 
 ### [](#accept-terms)Accept Terms and Register for Updates
 
 The **New Cluster** screen now changes to show the **Terms and Conditions** for Enterprise Analytics.
 
-The terms and conditions for the product are displayed in a panel. To view a web-based document containing the terms and conditions, click the **terms and conditions** link.
+The terms and conditions for use of the product are displayed in a panel. Check the **I accept the terms & conditions** checkbox, which is immediately below the panel.
 
-After reviewing the terms and conditions, select **I accept the terms & conditions**.
+You may click in the **terms and conditions** link, to access a web-based document, containing the text.
 
-Next, determine whether you want to share usage information with Couchbase. Couchbase recommends sharing usage information to benefit from regular software update notifications. **Share usage information with Couchbase and get software update notifications** is selected by default. For more information about sharing usage with Couchbase, see the **Privacy FAQ** and **Couchbase Privacy Policy**.
+Next, determine whether you wish to share usage information with Couchbase: a full account of this process is provided in the panel beneath the header **Software Updates & Sharing Usage Information With Couchbase**. You are strongly recommended to share information, and thereby benefit from regular software update notifications: the checkbox marked **Share usage information with Couchbase and get software update notifications** is checked by default. (Note that if you wish, you may click on the **Privacy FAQ** and **Couchbase Privacy Policy** links, to read web-based versions of those documents.)
 
-If you click **Finish With Defaults**, cluster-initialization is performed with default settings, provided by Couchbase. The Enterprise Analytics Web Console **Dashboard** appears, and your configuration is complete. _All_ Couchbase services will have been deployed.
+You now have two options for proceeding. If you click on the **Finish With Defaults** button, cluster-initialization is performed with default settings, provided by Couchbase; the Enterprise Analytics Web Console **Dashboard** appears, and your configuration is complete. _All_ Couchbase services will have been deployed.
 
 ### [](#configure-couchbase-server)Configure Enterprise Analytics
 
@@ -75,66 +75,43 @@ The **Configure** screen now appears. It provides detailed configuration options
 
 The displayed fields are:
 
-* **Host Name / IP Address**: The data in this field determines the name that will be used for this node. The field has been populated with the _loopback_ address, `127.0.0.1`, which can be used until a second node is added to the cluster, at which point the name will automatically be changed to the IP address of the underlying host. If you want, you can substitute the IP address of the underlying host now, or you can substitute the fully qualified hostname of the underlying host, if one exists. If you want to use a fully qualified hostname, you _must_ specify it now, since a node's name cannot be changed from an IP address to a hostname once the cluster has become a multi-node cluster. For information about naming, see [Naming Clusters and Nodes](../../../../server/current/learn/clusters-and-availability/nodes.md#naming-clusters-and-nodes).
-* **enable node encryption**: Select to enable _node-to-node_ encryption for the cluster. Use of IP address families and node-to-node encryption is described in [Node-to-Node Encryption](../../cli/couchbase-cli-node-to-node-encryption.md).
-* **IP Family Preference**: Select the appropriate radio-button. If **IPv4** or **IPv6** is selected, the corresponding address family is required, but the other supported address family can also be used. (This is the default setting, with the IPv4 address family being required.) If **IPv4-only** or **IPv6-only** is selected, only the corresponding address family can be used.
-
-> [!NOTE]
-> The **IPv4-only** and **IPv6-only** options are available only with Enterprise Analytics Version 7.0.2 and later.
-
+* **Host Name / IP Address**: The data in this field determines the name that will be used for this node. The field has been populated with the _loopback_ address, `127.0.0.1`, which can be used until a second node is added to the cluster, at which point the name will automatically be changed to the IP address of the underlying host. If you wish, you can substitute the IP address of the underlying host now, or you can substitute the fully qualified hostname of the underlying host, if one exists. If you _do_ wish to use a fully qualified hostname, you _must_ specify it now, since a node's name cannot be changed from an IP address to a hostname once the cluster has become a multi-node cluster. For information about naming, see [Naming Clusters and Nodes](../../../../server/current/learn/clusters-and-availability/nodes.md#naming-clusters-and-nodes).
+* **enable node encryption**: Check the checkbox to enable _node-to-node_ encryption for the cluster. Use of IP address families and node-to-node encryption is described in [Node-to-Node Encryption](../../cli/couchbase-cli-node-to-node-encryption.md).
+* **IP Family Preference**: Select the appropriate radio-button. If **IPv4** or **IPv6** is selected, the corresponding address family is required, but the other supported address family can also be used. (This is the default setting, with the IPv4 address family being required.) If **IPv4-only** or **IPv6-only** is selected, only the corresponding address family can be used. (Note that the **IPv4-only** and **IPv6-only** options are available only with Enterprise Analytics Version 7.0.2 and later.)
 * **Enterprise Analytics Memory Quota**: A field that allows specify how much memory should be allocated. Select for both the current node and for each node you may subsequently add to the cluster.
 
 The total RAM available is displayed below this figure, at the center. If your memory allocation is excessive, a notification warns you, and you must lessen your allocation.
 
 * **Blob Storage Configuration**: This category allows you to specify the path and region to the directory in which blob data is stored.
 
-  * **Storage Scheme**: Select the storage scheme to be used for blob data. The options are:
-
-    * AWS S3
-    * S3-Compatible Storage
-    * Azure Blob Storage
-
-    * **Bucket Name**: Enter the name of the bucket to be used for blob data.
-    * **Bucket Path Prefix**: Enter the path prefix to be used for blob data. This is the path to the directory in which blob data is stored.
-    * **Bucket Region**: Enter the region to be used for blob data.
-
-    * **Storage Endpoint** — The URL of the S3-compatible storage endpoint. For example: `<https://my-object-storage:18082>`. You can edit this field.
-    * **Bucket Name** — Enter the name of the bucket to be used for blob data.
-    * **Bucket Region** — Enter the region to be used for blob data.
-    * **Bucket Path Prefix** — Enter the path prefix to be used for blob data. This is the path to the directory in which blob data is stored.
-    * **Storage Endpoint Certificates** — One or more PEM-encoded certificates to trust when connecting to the storage endpoint. Provide multiple certificates to support certificate rotation. Displayed only when the endpoint uses HTTPS and **Disable SSL Verification** is unchecked.
-
-    * **Blob service endpoint** — The URL of the Azure Blob Storage service endpoint. For example: `<https://myaccount.blob.core.windows.net>`.
-    * **Container (Bucket) Name** — Enter the name of the container to be used for blob data.
-    * **Container Path Prefix** — Enter the path prefix to be used for blob data. This is the path to the directory in which blob data is stored.
-* **Authentication** — Specifies how Enterprise Analytics authenticates with selected object storage. Select one of the following options:
-
-  * **Standard Credential Chain** — Uses the default AWS provider chain to obtain credentials automatically. This includes instance profiles, environment variables, and other standard credential sources.
-  * **Static Credentials** — Allows you to supply credentials directly. When selected, the following fields appear:
-
-    * **Access Key ID** — The access key ID for the selected object storage.
-    * **Secret Access Key** — The secret access key for the selected object storage. If a key is already configured, the field displays the placeholder **Enter new value to change**. Leave the field empty to retain the existing key.
-  * **Anonymous** — Accesses the bucket without credentials. Use this only for publicly accessible buckets.
+  * **Blob Storage Scheme**: Select the storage scheme to be used for blob data. The options are **AWS S3** (the default) and [S3-Compatible Storage](object-storage.md).
+  * **Bucket name**: Enter the name of the bucket to be used for blob data.
+  * **Bucket path prefix**: Enter the path prefix to be used for blob data. This is the path to the directory in which blob data is stored.
+  * **Bucket Region**: Enter the region to be used for blob data.
+  * **Use Anonymous Authentication**: When enabled, you can interact with the blob storage without requiring explicit credentials.
+  * **Use Path Style Addressing**: When enabled, the S3-compatible storage uses path-style URLs for accessing storage.
+  * **Disable SSL Verification**: When enabled, SSL certificate verification is disabled for S3-compatible storage.
 * **Local Storage Configuration**: This category allows you to specify the path to the directory in which local data is stored.
 
   * **Metadata Disk Path**: Enter the path to the directory in which metadata is stored. This is the directory in which Enterprise Analytics stores its metadata, such as cluster configuration and user data.
-  * **Cache Disk Paths**: Enter the path to the directory in which cache data is stored.  
-> [!NOTE]  
-> You cannot change cache disk paths after setup.
+  * **Cache Disk Path(s)**: Enter the path to the directory in which cache data is stored.
 
-When you have finished entering your configuration-details, click **Save & Finish**. This configures the server accordingly, and brings up the Enterprise Analytics Web Console **Dashboard**, for the first time.
+> [!NOTE]
+> Path(s) cannot be changed after setup.
+
+When you have finished entering your configuration-details, click on the **Save & Finish** button, at the lower right. This configures the server accordingly, and brings up the Enterprise Analytics Web Console **Dashboard**, for the first time.
 
 The Dashboard is the main landing page after logging in. It consists of a **banner** with interactive controls; a **main panel**, which allows display of data and configuration fields (and which, on initial appearance, is unpopulated); a **left-hand navigation bar**, which allows the main panel's content to be determined; and a **lower panel**, which displays current status on the cluster. These are described in [Understanding the Dashboard](../manage-ui/manage-ui.md#understanding-the-dashboard), which is part of the page that introduces all features of [Enterprise Analytics Web Console](../manage-ui/manage-ui.md).
 
 ### [](#new-custer-set-up-next-steps)New-Cluster Set-Up: Next Steps
 
-If this is the first node in the cluster, a notification appears, stating that no nodes are currently defined. A _node_ is the principal unit of data-storage used by Enterprise Analytics. To save and subsequently use documents and other objects, you must create one or more databases.
+If this is the first node in the cluster, a notification appears, stating that no nodes are currently defined. A _node_ is the principal unit of data-storage used by Enterprise Analytics. In order to save and subsequently access documents and other objects, you must create one or more databases.
 
 As specified by the notification, you can go to **Workbench**, and begin database-creation; or add a **sample database**. A description of how to create, edit, flush, and delete databases can be found in the section [intro:connecting-to-data-sources.adoc#import-the-travel-sample-collections](../../intro/connecting-to-data-sources.md#import-the-travel-sample-collections).
 
 For more details on Databases, see [Manage Databases](../../sources/manage-databases.md).
 
-Three different kinds of database exist, so you may want to familiarize yourself with their properties before you start database-creation.
+There are three different kinds of database, so you may wish to familiarize yourself with their properties, before you start database-creation.
 
 > [!NOTE]
 > _Sample_ databases already contain data, and so are ready for your immediate experimentation and testing.
@@ -184,7 +161,7 @@ The last command, which establishes credentials, completes provisioning. The fol
 
 {"newBaseUri":"http://10.142.181.101:8091/"}
 
-The provisioned node is now initialized as a cluster, and is available at the given IP address and port number. The default disk-paths for data, indexes, and analytics are used, since no custom paths were specified by means of `/nodes/self/controller/settings` (see [Initialize a Node with the REST API](initialize-node.md#initialize-node-with-the-rest-api).)
+The provisioned node has thus been initialized as a cluster, and is available at the given IP address and port number. Note that the default disk-paths for data, indexes, and analytics will be used, since no custom paths were specified by means of `/nodes/self/controller/settings` (see [Initialize a Node with the REST API](initialize-node.md#initialize-node-with-the-rest-api).)
 
 ## [](#next-steps-after-provisioning)Next Steps
 

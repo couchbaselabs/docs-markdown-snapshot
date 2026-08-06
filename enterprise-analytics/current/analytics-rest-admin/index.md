@@ -2,8 +2,8 @@
 title: Analytics Administration REST API
 description: A description of the Administration REST APIs for Couchbase
   Enterprise Analytics.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/analytics-rest-admin/pages/index.adoc
-pubDate: 2026-04-15T05:26:28.652Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/analytics-rest-admin/pages/index.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:analytics-rest-admin:index.adoc[]
 ---
 
@@ -15,6 +15,7 @@ link: xref:enterprise-analytics:analytics-rest-admin:index.adoc[]
 * delRequest Cancellation
 * getActive Requests
 * getCompleted Requests
+* getOpen Requests
 * getService Status
 * postService Restart
 * postNode Restart
@@ -23,7 +24,7 @@ link: xref:enterprise-analytics:analytics-rest-admin:index.adoc[]
 
 [API docs by Redocly](https://redocly.com/redoc/)
 
-# Enterprise Analytics Administration REST APIs (2.1)
+# Enterprise Analytics Administration REST APIs (2.2)
 
 Download OpenAPI specification:
 
@@ -177,6 +178,74 @@ get/api/v1/completed\_requests
 The URL scheme, host, and port are as follows.
 
 {scheme}://{host}:{port}/api/v1/completed\_requests
+
+### Response samples 
+
+* 200
+* 401
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`[
+* {
+  * "cancellable": true,
+  * "clientContextID": "28379d60-7139-44d6-b57a-95935540b586",
+  * "elapsedTime": 0.126,
+  * "jobCreateTime": "2024-05-28T19:47:02.512",
+  * "jobId": "JID:0.14",
+  * "jobQueueTime": 0,
+  * "jobRequiredCPUs": 1,
+  * "jobRequiredMemory": 34013184,
+  * "jobStartTime": "2024-05-28T19:47:02.514",
+  * "jobStatus": "RUNNING",
+  * "plan": "string",
+  * "node": "172.20.0.2:8095",
+  * "remoteAddr": "172.20.0.123:53612",
+  * "requestTime": "2024-05-28T19:44:07.730",
+  * "scanConsistency": "not_bounded",
+  * "state": "running",
+  * "statement": "select count(*) from hotel_endorsement_view;",
+  * "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:126.0) Gecko/20100101 Firefox/126.0",
+  * "users": "Administrator",
+  * "uuid": "91f60338-a3e0-4163-9287-5e723fda29ef"  
+}
+]`
+
+## [](#operation/open%5Frequests)Open Requests 
+
+Gets a list of all open requests. Open requests include the active requests and the completed `async` requests until they are explicitly discarded or reach their TTL.
+
+##### Authorizations:
+
+_AnalyticsManageAnalyticsAccess_
+
+### Responses
+
+**200** 
+
+Success. Returns a list of all open requests.
+
+**401** 
+
+Unauthorized. The user name or password may be incorrect.
+
+Returns an object containing an error message. Refer to [Error Codes](/server/7.6/analytics/error-codes.html).
+
+**404** 
+
+Not found. The path may be incorrect.
+
+get/api/v1/open\_requests
+
+The URL scheme, host, and port are as follows.
+
+{scheme}://{host}:{port}/api/v1/open\_requests
 
 ### Response samples 
 

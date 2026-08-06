@@ -2,7 +2,7 @@
 title: Reading Data
 description: How to read documents in Couchbase.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/reading-data.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:7.2@server:guides:reading-data.adoc[]
 ---
 
@@ -139,11 +139,7 @@ A `GetResult` promise is returned, which includes the `content`, `cas` value, an
 The example below retrieves document `hotel-123` from the `hotel` keyspace in the `inventory` scope.
 
 ```nodejs
-const getResult = await hotelCollection.get('hotel-123')
-
-// Print some result metadata to the console.
-console.log('CAS:', getResult.cas)
-console.log('Data:', JSON.stringify(getResult.content, null, '  '))
+Unresolved include directive in modules/guides/pages/reading-data.adoc - include::nodejs-sdk:hello-world:example$kv-hello-world-scoped.js[]
 ```
 
 > [!NOTE]
@@ -289,14 +285,7 @@ A `GetResult` object is returned, which may include extra metadata, depending on
 The example below retrieves a document `hotel-123` with additional expiry metadata.
 
 ```nodejs
-const getResult = await hotelCollection.get('hotel-456', {
-  withExpiry: true,
-})
-
-// Print some result metadata to the console.
-console.log('CAS:', getResult.cas)
-console.log('Data:', JSON.stringify(getResult.content, null, '  '))
-console.log('Expiry time:', getResult.expiryTime)
+Unresolved include directive in modules/guides/pages/reading-data.adoc - include::nodejs-sdk:hello-world:example$kv-hello-world-scoped.js[]
 ```
 
 Click the  View button to see this code in context.
@@ -433,11 +422,7 @@ A `LookupInResult` promise is returned containing the result and metadata releva
 The example below fetches the `geo` data from the `hotel-123` document.
 
 ```nodejs
-const lookupInResult = await hotelCollection.lookupIn('hotel-123', [
-  couchbase.LookupInSpec.get('geo'),
-])
-console.log('CAS:', lookupInResult.cas)
-console.log('Geo:', lookupInResult.content[0].value)
+Unresolved include directive in modules/guides/pages/reading-data.adoc - include::nodejs-sdk:hello-world:example$kv-hello-world-scoped.js[]
 ```
 
 Click the  View button to see this code in context.

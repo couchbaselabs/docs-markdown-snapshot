@@ -1,7 +1,13 @@
 ---
 title: Develop with Couchbase
+description: The Developer Data Platform for Critical Applications in Our AI
+  World. Couchbase is a multipurpose NoSQL database for transactional,
+  analytical, mobile, and AI applications. Develop at the edge with
+  offline-first Couchbase Lite, for transactional workloads with SDKs in a dozen
+  popular programming languages, for real-time analytics, and build agentic
+  apps.
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/developer.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:home::developer.adoc[]
 ---
 
@@ -46,7 +52,7 @@ Build your app with [Couchbase Lite](../couchbase-lite/current/index.md) for off
 * [Develop for iOS on Swift](../couchbase-lite/current/swift/quickstart.md)(and [Objective-C](../couchbase-lite/current/objc/quickstart.md))
 * [Develop for Edge devices in C](../couchbase-lite/current/c/quickstart.md)
 * Couchbase Lite [on C# .NET](../couchbase-lite/current/csharp/quickstart.md) | [Java](../couchbase-lite/current/java/quickstart.md) | [JavaScript — Ionic and React](#couchbase-lite:javascript:quickstart.adoc)
-* Sync your data with [App Services](#cloud:app-services:index.adoc) / self-managed [SyncGateway](../sync-gateway/current/introduction.md) / [Edge Server](#couchbase-edge-server:introduction:intro.adoc) — or run [peer-to-peer](../couchbase-lite/current/swift/p2psync-websocket.md).
+* Sync your data with [App Services](#cloud:app-services:index.adoc) / self-managed [SyncGateway](../sync-gateway/current/introduction.md) / [Edge Server](../couchbase-edge-server/current/introduction/intro.md) — or run [peer-to-peer](../couchbase-lite/current/swift/p2psync-websocket.md).
 
 ###  Develop RAG and Agentic AI Applications
 

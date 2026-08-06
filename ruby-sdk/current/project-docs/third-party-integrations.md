@@ -3,8 +3,8 @@ title: 3rd Party Integrations
 description: The Couchbase Ruby SDK is often used with unofficial and third
   party tools and applications to integrate into broader language and platform
   ecosystems, and across data lakes in heterogeneous environments.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/project-docs/pages/third-party-integrations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/project-docs/pages/third-party-integrations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:project-docs:third-party-integrations.adoc[]
 ---
 

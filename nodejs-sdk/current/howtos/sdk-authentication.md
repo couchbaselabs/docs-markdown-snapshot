@@ -2,8 +2,8 @@
 title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/sdk-authentication.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:howtos:sdk-authentication.adoc[]
 ---
 
@@ -21,10 +21,7 @@ Our [Getting Started](../hello-world/start-using-sdk.md) guide covered the basic
 Our [Getting Started](../hello-world/start-using-sdk.md) guide introduced basic authentication against a Couchbase cluster:
 
 ```javascript
-var cluster = await couchbase.connect('couchbase://localhost', {
-  username: 'Administrator',
-  password: 'password',
-})
+Unresolved include directive in modules/howtos/pages/sdk-authentication.adoc - include::example$auth.js[]
 ```
 
 Couchbase uses Role Base Access Control (RBAC), and has since Server 5.0 was released. For a general overview of Couchbase-Server authorization, see [Authorization](../../../server/current/learn/security/authorization-overview.md). For a list of available roles and corresponding privileges, see [Roles](../../../server/current/learn/security/roles.md).
@@ -44,15 +41,7 @@ For a more detailed conceptual description of using certificates, see [Certifica
 For sample procedures whereby certificates can be generated and deployed, see [Manage Certificates](../../../server/current/manage/manage-security/manage-certificates.md). The rest of this document assumes that the processes there, or something similar, have been followed. That is, a cluster certificate has been created and installed on the server, a client certificate has been created, and it is stored on the client machine.
 
 ```javascript
-cluster = await couchbase.connect('couchbase://localhost', {
-  authenticator: new couchbase.CertificateAuthenticator(
-    '/path/to/client/certificate.pem',
-    '/path/to/client/key.pem'
-  ),
-  security: {
-    trustStorePath: '/path/to/ca/certificates.pem',
-  }
-})
+Unresolved include directive in modules/howtos/pages/sdk-authentication.adoc - include::example$auth.js[]
 ```
 
 ## [](#ldap)LDAP

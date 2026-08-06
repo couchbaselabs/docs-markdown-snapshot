@@ -1,8 +1,8 @@
 ---
 title: OS Level Tuning
 description: OS level parameters you can use to tune _Couchbase Sync&nbspGateway
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/deploy/pages/os-level-tuning.adoc
-pubDate: 2026-04-01T05:25:30.286Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/deploy/pages/os-level-tuning.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:deploy:os-level-tuning.adoc[]
 ---
 

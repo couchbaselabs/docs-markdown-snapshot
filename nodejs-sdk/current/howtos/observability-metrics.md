@@ -1,0 +1,229 @@
+---
+title: Metrics Reporting
+description: Individual request tracing presents a very specific (though
+  isolated) view of the system.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/observability-metrics.adoc
+pubDate: 2026-08-06T05:31:06.200Z
+link: xref:nodejs-sdk:howtos:observability-metrics.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/nodejs-sdk/current/howtos/observability-metrics.html)
+
+# Metrics Reporting
+
+> Individual request tracing presents a very specific (though isolated) view of the system. In addition, it also makes sense to capture information that aggregates request data (i.e. requests per second), but also data which is not tied to a specific request at all (i.e. resource utilization). 
+
+The SDK exposes metrics for operation durations, broken down into p50, p90, p99, p99.9, and p100 percentiles.
+
+These metrics can either be logged periodically into the application logs, using the `LoggingMeter` (this is the default behaviour).
+
+Or, sent into the OpenTelemetry or Micrometer libraries, where they can be sent on to the user's metrics infrastructure — such as Prometheus.
+
+## [](#the-default-loggingmeter)The Default LoggingMeter
+
+> [!NOTE]
+> As of v4.7.0 the `LoggingMeter` is native to the Node.js SDK. In previous versions the underlying C++ core was responsible for all metrics related behaviour.
+
+The default implementation aggregates and logs request and response metrics.
+
+By default the metrics will be emitted every 10 minutes, but you can customize the emit interval as well:
+
+```javascript
+const cluster = await couchbase.connect('couchbase://your-ip', {
+  username: 'Administrator',
+  password: 'password',
+  metricsConfig: {
+    emitInterval: 5 * 60 * 1000, // 5 minutes in milliseconds
+  }
+})
+```
+
+Once enabled, there is no further configuration needed. The `LoggingMeter` will emit the collected request statistics every interval. A possible report looks like this (prettified for better readability):
+
+```json
+{
+   "meta":{
+      "emit_interval_s":10
+   },
+   "query":{
+      "127.0.0.1":{
+         "total_count":9411,
+         "percentiles_us":{
+            "50.0":544.767,
+            "90.0":905.215,
+            "99.0":1589.247,
+            "99.9":4095.999,
+            "100.0":100663.295
+         }
+      }
+   },
+   "kv":{
+      "127.0.0.1":{
+         "total_count":9414,
+         "percentiles_us":{
+            "50.0":155.647,
+            "90.0":274.431,
+            "99.0":544.767,
+            "99.9":1867.775,
+            "100.0":574619.647
+         }
+      }
+   }
+}
+```
+
+Each report contains one object for each service that got used and is further separated on a per-node basis so they can be analyzed in isolation.
+
+For each service / host combination, a total amount of recorded requests is reported, as well as percentiles from a histogram in microseconds. The meta section on top contains information such as the emit interval in seconds so tooling can later calculate numbers like requests per second.
+
+The `LoggingMeter` can be configured via `MetricsConfig` as shown above. The following table shows the currently available properties:
+
+__Table 1\. MetricsConfig Properties__
+| Property      | Default     | Description                                |
+| ------------- | ----------- | ------------------------------------------ |
+| enableMetrics | true        | If the LoggingMeter should be enabled.     |
+| emitInterval  | 600 seconds | The interval at which metrics are emitted. |
+
+## [](#opentelemetry-integration)OpenTelemetry Integration
+
+The SDK supports plugging in any `OpenTelemetry` metrics consumer instead of using the default `LoggingMeter`.
+
+To do this, install the required Node.js libraries for OpenTelemetry:
+
+> [!NOTE]
+> The Node.js SDK specifies the OpenTelemetry API package as an optional peer dependency.
+
+```console
+$ npm install @opentelemetry/api @opentelemetry/sdk-node @opentelemetry/sdk-metrics-node
+```
+
+In addition, you'll need to get the metrics data into your metrics backend. This is often done by having the metrics backend (such as Prometheus) regularly gather, or 'scrape', the metrics data.
+
+There are multiple approaches here. The `opentelemetry-exporter-prometheus` library makes it possible to open an HTTP server in the application that Prometheus can then scape.
+
+As that library is in alpha, here we will instead show how to send OpenTelemetry metrics into `opentelemetry-collector`, where it can be scraped by Prometheus or another metrics backend.
+
+```console
+$ npm install @opentelemetry/exporter-metrics-otlp-grpc
+```
+
+This aligns well with tracing, where a recommended approach is also to send OpenTelemetry spans into `opentelemetry-collector`, where they can be processed and forwarded elsewhere. See [the Request Tracing documentation](observability-tracing.md) for more information.
+
+For metrics, add this logic to the application:
+
+```javascript
+// create service resource
+const customResource = resourceFromAttributes({
+  [ATTR_SERVICE_NAME]: SERVICE_NAME,
+})
+const resource = defaultResource().merge(customResource)
+
+// setup an exporter
+// This exporter exports traces on the OTLP protocol over GRPC to localhost:4317.
+const metricExporter = new OTLPMetricExporter({
+  url: 'http://localhost:4317',
+})
+
+// create the meter provider with the resource and periodic reader
+const meterProvider = new MeterProvider({
+  resource: resource,
+  readers: [
+    new PeriodicExportingMetricReader({
+      exporter: metricExporter,
+      exportIntervalMillis: 1000, // Export metrics every 1000  milliseconds
+    }),
+  ],
+})
+
+// Wrap the OTel meter with the Couchbase SDK wrapper
+const couchbaseMeter = getOTelMeter(meterProvider)
+
+const cluster = await connect(CONNECTION_STRING, {
+  username: USERNAME,
+  password: PASSWORD,
+  meter: couchbaseMeter, // Inject the SDK meter
+})
+```
+
+At this point the SDK is hooked up with the OpenTelemetry metrics and will emit them to the exporter.
+
+A `db.client.operation.duration` histogram is exported, which will appear in Prometheus as `db_client_operation_duration_seconds_bucket`.
+
+It has these tags (and more): `db_system_name="couchbase"` and `couchbase_service` ("kv", "query", etc.) and `db_operation_name` ("upsert", "query", etc.)
+
+### [](#testing)Testing
+
+For convenience, here is a simple Docker-based configuration of `opentelemetry-collector` and Prometheus for localhost testing of an OpenTelemetry setup.
+
+Create file `otel-collector-config.yaml`:
+
+```yaml
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+
+exporters:
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      exporters: [prometheus]
+```
+
+And file `prometheus.yml`:
+
+```yaml
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'otel-collector'
+    static_configs:
+      - targets: ['otel-collector:8889']
+```
+
+And file `docker-compose.yml`:
+
+```yaml
+services:
+  otel-collector:
+    image: otel/opentelemetry-collector:latest
+    command: ["--config=/etc/otel-collector-config.yml"]
+    volumes:
+      - ./otel-collector-config.yml:/etc/otel-collector-config.yml
+    ports:
+      - "4317:4317" # OTLP gRPC receiver (Node.js sends here)
+      - "8889:8889" # Prometheus exporter (Prometheus scrapes here)
+
+  prometheus:
+    image: prom/prometheus:latest
+    command: ["--config.file=/etc/prometheus/prometheus.yml"]
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090" # Prometheus UI (You view this in your browser)
+    depends_on:
+      - otel-collector
+```
+
+Now start up the containers:
+
+```console
+$ docker-compose up -d
+```
+
+Some things to note:
+
+* The containers are put on the same network so they can refer to each other by container name.
+* The app has been told to export metrics over OLTP GRPC to localhost:4317\. `opentelemetry-collector` is listening to this.
+* `opentelemetry-collector` will store the metrics, and exposes port 8889 for Prometheus to periodically scrape.
+
+Now run the application. All being well, Prometheus (the UI is available on <http://localhost:9090>) should allow querying for `db_client_operation_duration_seconds_bucket`. (Though a real deployment will generally use another tool, such as Grafana, for visualisation.)
+
+If this fails, check <http://localhost:9090/api/v1/targets> to see if Prometheus is unable to contact `opentelemetry-collector`.

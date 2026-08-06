@@ -2,8 +2,8 @@
 title: Access and Organize Data in Enterprise Analytics
 description: This topic introduces the database objects that you use to view and
   organize data in Enterprise Analytics.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/database-objects.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sources/pages/database-objects.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sources:database-objects.adoc[]
 ---
 
@@ -21,7 +21,7 @@ Data sources include:
 * Remote Couchbase operational databases, which are typically subject to rapid, ongoing modification. Enterprise Analytics connects to Couchbase Server and Couchbase Capella operational clusters.
 * Kafka distributed streaming platform to stream data from other data sources such as databases.
 * External data stores, logs, and archives to support analyses of historical data. Enterprise Analytics can query data residing in supported [object storage](../install/supported-platform.md#supported-object-storage-solutions). This data remains at the source and is not copied into Enterprise Analytics collections. Supported formats are JSON, CSV, TSV, Avro and Parquet.
-* Data Lakes such as `delta lake`, residing in S3 buckets.
+* Data Lakes, including Delta Lake and Apache Iceberg tables. Iceberg tables are accessed via [Iceberg catalogs](../sqlpp/5%5Fddl%5Ficeberg.md) and can reside in AWS S3, Google Cloud Storage (GCS), or Azure Blob Storage. See [Create a Catalog](../sqlpp/5%5Fddl%5Ficeberg%5Fcatalog.md) and [Create an Iceberg Table](../sqlpp/5%5Fddl%5Ficeberg%5Ftable.md).
 
 ## [](#database-objects)Database Objects
 

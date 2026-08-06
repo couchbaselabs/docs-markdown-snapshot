@@ -1,74 +1,95 @@
 ---
-title: New In 4.0
+title: New In 4.1
 description: Couchbase Sync Gateway -- What's new in the latest release
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/whatsnew.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/ROOT/pages/whatsnew.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway::whatsnew.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/current/whatsnew.html)
 
-# New In 4.0
+# New In 4.1
 
 > Couchbase Sync Gateway — What's new in the latest release  
-> This content covers the new features introduced in Sync Gateway 4.0
+> This content covers the new features introduced in Sync Gateway 4.1
 
 > [!CAUTION]
 > Sync Gateway 4.0 introduces some breaking changes. If you're upgrading from 3.x, see [Upgrading Sync Gateway](upgrading.md).
 
-## [](#overview-of-sync-gateway-4-0)Overview of Sync Gateway 4.0
+## [](#overview-4-1)Overview 4.1
 
-Sync Gateway 4.0 represents a major architectural evolution, transitioning from revision trees to [version vectors](server-compatibility/server-compatibility-xdcr-mobile.md#version-vectors) as the foundation for document revision tracking.
+Sync Gateway 4.1 focuses on operational reliability and scalability for production deployments. This release introduces non-disruptive rolling upgrades with a safe rollback path, distributed resync for large datasets, channel history management APIs, and an opt-in migration to isolate Sync Gateway internal metadata from user application data, and document channel history management APIs.
 
-This architectural change enables true active-active mobile cluster deployments with bidirectional Cross Data Center Replication (XDCR) while maintaining data consistency and conflict resolution capabilities.
+## [](#non-disruptive-rolling-upgrades)Non-Disruptive Rolling Upgrades
 
-## [](#cross-data-center-replication-xdcr-interoperability)Cross Data Center Replication (XDCR) Interoperability
+Sync Gateway 4.1 introduces cluster compatibility version, which transforms rolling upgrades into a low-risk, routine operational task.
 
-* **Bi-directional XDCR between mobile clusters**Sync Gateway now supports two way active-active replication using Couchbase Server's XDCR across mobile clusters. This enables active-active deployments with high availability and no downtime during fail over or disaster recovery.
-* **Unified versioning of documents compatible with both XDCR and Mobile products**. Allows for new deployment architectures and consistent conflict resolution.
+* Upgrade a cluster node by node without downtime and without reducing cluster capacity or throughput.
+* Freeze the cluster compatibility version before starting an upgrade to preserve a safe rollback path throughout the upgrade window. A freeze persists across node restarts and is cluster-wide.
+* Roll back any upgraded node to the previous version at any point before starting an upgrade, without data loss or invasive operations such as bucket flushing or backup and restore.
+* Unfreeze when all nodes are on the new version to start an upgrade and activate new cluster-wide features.
 
-For more information, see [XDCR — Server Compatibility](server-compatibility/server-compatibility-xdcr.md) and [Bi-directional XDCR Between Mobile Clusters](server-compatibility/server-compatibility-xdcr-mobile.md).
+Three new Admin REST API endpoints support this workflow: `GET /_cluster_compat_version`, `POST /_cluster_compat_version/freeze`, and `POST /_cluster_compat_version/unfreeze`.
 
-## [](#conflict-resolution-with-version-vectors)Conflict Resolution with Version Vectors
+For more information, see [Cluster Compatibility Version](cluster-compatibility-version.md).
 
-* Sync Gateway 4.0 leverages version vector–based conflict resolution for XDCR.
-* By default, Sync Gateway resolves conflicts using `Last Write Wins` (LWW), with the option to use Couchbase Server's custom conflict resolution (CCR).
-* Developers can extend with custom conflict resolvers to meet application-specific needs.
+## [](#distributed-resync)Distributed Resync
 
-This ensures consistency across mobile and server data while maintaining performance during high-volume replication.
+Sync Gateway 4.1 redesigns the resync mechanism to distribute work in parallel across all nodes in the cluster.
 
-For more information, see [Version vectors](server-compatibility/server-compatibility-xdcr-mobile.md#version-vectors).
+In previous versions, resync ran sequentially on a single node, making it impractical for large datasets. In Sync Gateway 4.1, resync distributes the workload automatically across all available nodes without any configuration changes. Resync runs alongside live application traffic with bounded resource usage, and adding nodes to the cluster increases resync throughput.
+
+The `GET /{db}/_resync` response adds two new fields: `docs_targeted` for tracking estimated total documents to process across the cluster, and `docs_errored` for per-node error counts. Two new Prometheus metrics, `sgw_database_resync_docs_targeted` and `sgw_database_resync_errors_total`, support monitoring distributed resync runs.
+
+For more information, see [Resync](manage/resync.md).
+
+## [](#channel-history-management)Channel History Management
+
+Sync Gateway 4.1 introduces Admin REST API endpoints for managing channel history in both user and document metadata.
+
+In deployments with high channel grant and revocation frequency, channel history grows without bound. This causes two operational problems: metadata bloat on documents and user records, and unnecessary revocation messages sent to clients during zero-checkpoint replications such as after an app reinstall or checkpoint rollback.
+
+* **User channel history:** Two new endpoints let administrators retrieve a user's channel access history and selectively remove specific channel entries, preventing Sync Gateway from re-sending old revocations during future zero-checkpoint replications.
+* **Document channel history:** Two new endpoints let administrators retrieve inactive channel history for specific documents and remove entries older than a specified sequence number. Using the current head sequence performs a deep clean of all historical channel metadata for the targeted documents without affecting document content.
+
+Both operations are non-destructive to user data and do not interrupt active continuous replications.
+
+For more information, see [Channel History Management](manage/channel-history.md).
+
+## [](#metadata-isolation-migrate-to-system-collection)Metadata Isolation: Migrate to System Collection
+
+Sync Gateway 4.1 introduces an opt-in migration that moves Sync Gateway internal metadata from the default collection (`_default._default`) to the system collection (`_system._mobile`).
+
+* Sync Gateway metadata is isolated from user application data in its own collection.
+* Internal Sync Gateway documents no longer appear alongside user-modifiable documents in the Capella UI.
+* Eventing functions and SQL++ queries against the default collection no longer process Sync Gateway system documents.
+
+The migration is opt-in at both the cluster level and per database, and is never applied automatically at upgrade. Databases remain fully available for reads and writes throughout the migration. The migration is a one-way operation and cannot be reversed.
+
+A new Admin REST API endpoint `GET|POST /{db}/_metadata_migration` lets operators monitor migration status and manually start, stop, or retry the operation. Seven new Prometheus metrics track migration progress per database under the `sgw_metadata_migration` subsystem.
+
+For more information, see [Migrate Metadata to System Collection](migrate-metadata-system-collection.md).
 
 ## [](#compatibility)Compatibility
 
-* Requires Couchbase Server 7.6.6+ for XDCR interoperability.
-* Couchbase Lite 4.0 provides full compatibility with Sync Gateway 4.0, including the ability to switch between clusters while maintaining consistency.
-* Earlier Couchbase Lite versions (3.x and 2.x) can synchronize with Sync Gateway 4.0 but cannot switch between clusters without potential consistency issues.
-
-> [!WARNING]
-> **Couchbase Lite 4.0 with Sync Gateway 3.2.0 and 3.3.0 is unsupported.**
-> 
-> Connecting Couchbase Lite 4.0 to Sync Gateway versions before 4.0 is not supported. Use Sync Gateway 4.0 for Couchbase Lite 4.0 compatibility. Fixes for SGW 3.2.0 and 3.3.0 will be available in versions 3.2.7 and 3.3.1.
-
-## [](#performance-improvements)Performance improvements
-
-Sync Gateway 4.0.3 optimizes channel cache processing to improve throughput in high-load scenarios.
+* You must use Couchbase Server 7.6.0 or later. Use 7.6.6 or later for bi-directional XDCR features.
+* See the [Compatibility Matrix](product-notes/compatibility.md) for full version compatibility details.
 
 ## [](#see-also)See Also
 
-[What's new in previous version 3.3](../3.3/whatsnew.md).
+[What's new in the previous version 4.0](../4.0/whatsnew.md).
 
 ### [](#sync-gateway-release-notes)Sync Gateway Release Notes
 
-[Read the full 4.0 release notes here](product-notes/release-notes.md).
+[Read the full 4.1 release notes here](product-notes/release-notes.md).
 
 ## [](#upgrading)Upgrading
 
-[Upgrading Sync Gateway](upgrading.md).
+[Upgrade Sync Gateway](upgrading.md).
 
 > [!IMPORTANT]
-> Upgrading to version 4.0 is a one way process.
+> Downgrading from Sync Gateway 4.1 to an earlier version is not supported after the full cluster has been upgraded. Use [Cluster Compatibility Version](cluster-compatibility-version.md) to preserve a rollback path during the upgrade window.
 
 ---
 

@@ -1,7 +1,14 @@
 ---
 title: Couchbase Server
+description: Couchbase is the modern database for enterprise applications.
+  Couchbase Server is an open source, distributed, JSON document database. It
+  exposes a scale-out, key-value store with managed cache for sub-millisecond
+  data operations, purpose-built indexers for efficient queries, and a powerful
+  query engine for executing SQL-like queries. For mobile and Internet of Things
+  environments Couchbase also runs natively on-device and manages
+  synchronization to the server.
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/server.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:home::server.adoc[]
 ---
 

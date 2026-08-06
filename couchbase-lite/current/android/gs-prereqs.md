@@ -1,8 +1,8 @@
 ---
 title: Preparing for Couchbase Lite on Android
 description: Prerequisites for the installation of Couchbase Lite
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/gs-prereqs.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/gs-prereqs.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:android:gs-prereqs.adoc[]
 ---
 
@@ -30,7 +30,7 @@ The [Supported OS Versions](supported-os.md#supported-os-versions) lists certifi
 | Android  | x86                   | 22                |
 | Android  | x86\_64               | 22                |
 
-## [](#supported-versions-for-vector-search-4-0-0)Supported Versions for Vector Search 4.0.0
+## [](#supported-versions-for-vector-search-4-1-0)Supported Versions for Vector Search 4.1.0
 
 > [!IMPORTANT]
 > To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)

@@ -1,0 +1,44 @@
+---
+title: React Native
+description: The React Native plugin for Couchbase Lite is now in public
+  preview. This is an open-source, community-supported project developed by
+  Couchbase.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/javascript/pages/react.adoc
+pubDate: 2026-08-06T05:31:06.200Z
+link: xref:3.4@couchbase-lite:javascript:react.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/couchbase-lite/3.4/javascript/react.html)
+
+# React Native
+
+## [](#overview)Overview
+
+Couchbase Lite Enterprise Edition for React Native is a Native Module implementation that uses TypeScript. This public preview release enables developers using React to integrate Couchbase Lite into their mobile applications, ensuring they can build offline-first, cross-platform solutions with ease.
+
+More information on React Native Native Modules can be found at [Couchbase Lite Enterprise Edition for React Native](https://cbl-reactnative.dev/).
+
+## [](#important-notes)Important Notes
+
+* Platform Support - This plugin currently only supports iOS and Android platforms. Web, Windows, and macOS are not currently supported.
+* Couchbase Community Supported - This open-source plugin is Couchbase Community supported. Note that the Couchbase Lite binary linked to the plugin is Couchbase Lite Enterprise Edition (EE) and its use is guided by the terms and conditions of the [Couchbase Lite Enterprise license agreement](https://www.couchbase.com/2018-04-30v3%5FLicense%5FAgreement/).
+
+> [!NOTE]
+> _**Couchbase Community Supported**_ is an Open source integration that is developed by Couchbase. Issues related to the integration can be raised in the relevant GitHub repositories or via Couchbase forums or Discord. Support is provided best effort by development team. For more information, see [Support Models](../../../cloud/third-party/integrations.md#support-model).
+
+## [](#getting-started)Getting Started
+
+You can use the links below to help you get started with the React Native plugin for Couchbase Lite:
+
+* [Official Documentation](https://cbl-reactnative.dev).
+* [Example Project](https://github.com/couchbase-examples/expo-cbl-travel) \- A hands-on demonstration using Expo to showcase Couchbase Lite in a React Native app.
+* [Project Repository](https://github.com/Couchbase-Ecosystem/cbl-reactnative).
+
+### [](#why-use-expo)Why Use Expo?
+
+Couchbase recommends using Expo. Expo makes working with React Native simpler and more efficient. You can find information on the prerequisites and setup, including Expo configuration at [Couchbase Lite for React Native Prerequisites](https://cbl-reactnative.dev/StartHere/prerequisites).
+
+## [](#next-steps)Next Steps
+
+As this is a community-supported project, we encourage you to explore, test, and provide feedback to help us improve the React Native plugin for Couchbase Lite. Feel free to file issues through the [GitHub issue tracker](https://github.com/Couchbase-Ecosystem/cbl-reactnative/issues), our [Community Discord](https://www.couchbase.com/blog/couchbase-on-discord/) or [Couchbase Forums](https://www.couchbase.com/forums/).

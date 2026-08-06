@@ -2,8 +2,8 @@
 title: Query
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/concept-docs/pages/n1ql-query.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:python-sdk:concept-docs:n1ql-query.adoc[]
 
 > Parallel data management for complex queries over many records, using a familiar SQL-like syntax. 
 
-The [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) Query Language provides a familiar, SQL-like experience for querying documents stored in Couchbase. You can [read up on the language in our reference guide](../../../server/current/n1ql/n1ql-language-reference/index.md), but you probably just want to [dive into a practical example](../howtos/n1ql-queries-with-sdk.md).
+The [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) Query Language provides a familiar, SQL-like experience for querying documents stored in Couchbase. You can [read up on the language in our reference guide](../../../server/current/n1ql/n1ql-language-reference/index.md), but you probably just want to [dive into a practical example](../howtos/sqlpp-queries-with-sdk.md).
 
 Below, we fill in some of the gaps between reference and rolling-up-your-sleeves practicality, with discussion of a few areas of the Query Service where more background knowledge will help you to better program your application.
 

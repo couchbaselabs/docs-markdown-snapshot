@@ -2,8 +2,8 @@
 title: Configure a Sync Gateway Install
 description: Configure your <em>Sync Gateway</em> installation; securely sync
   enterprise data from cloud to edge!
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-configure.adoc
-pubDate: 2026-05-13T05:45:28.868Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/start-here/pages/get-started-configure.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:start-here:get-started-configure.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:sync-gateway:start-here:get-started-configure.adoc[]
 # Configure a Sync Gateway Install
 
 > Configure your _Sync Gateway_ installation; securely sync enterprise data from cloud to edge!  
-> This is **Step 3** in the _Start Here!_ topic group. Here you'll configure _sync gateway_ to connect to a _Couchbase Server_ instance and verify that the connection is working.
+> This is **Step 3** in the _Start Here!_ topic group. Here you'll configure _Sync Gateway_ to connect to a _Couchbase Server_ instance and verify that the connection is working.
 
 > [!NOTE]
 > Preparatory Steps
@@ -32,17 +32,17 @@ In this step of the Getting Started topic we will configure your _Sync Gateway_ 
 
 You'll need to edit the configuration file used in the [Install](get-started-install.md) step to point to a bucket on your Couchbase Server — see [Bootstrap Sync Gateway](#lbl-config).
 
-On completion of this topic you'll have a working sync gateway instance connected to Couchbase Server. You can then continue to [Explore](get-started-explore.md) to add a database, create users, and run a CRUD cycle.
+On completion of this topic you'll have a working Sync Gateway instance connected to Couchbase Server. You can then continue to [Explore](get-started-explore.md) to add a database, create users, and run a CRUD cycle.
 
 ## [](#lbl-config)Bootstrap Sync Gateway
 
-To configure sync gateway to connect to a Couchbase Server:
+To configure Sync Gateway to connect to a Couchbase Server:
 
-1. Make sure your sync gateway service stops/unloads
+1. Make sure your Sync Gateway service stops/unloads
 2. Edit the configuration file you used in [Install](get-started-install.md) and replace the contents with those shown in [Example 1](#sample-cfg).  
-The configuration points to your Couchbase Server cluster, which you'll use to verify that you can connect to Couchbase Server through sync gateway.
+The configuration points to your Couchbase Server cluster, which you'll use to verify that you can connect to Couchbase Server through Sync Gateway.
 3. Make sure you start Couchbase Server
-4. Restart/Load your sync gateway to pick-up the changed configuration
+4. Restart/Load your Sync Gateway to pick-up the changed configuration
 
 Example 1\. Simple Sync Gateway Bootstrap Config
 
@@ -90,27 +90,27 @@ bin/sync_gateway -<options> sgwconfig.json (1)
 > [!TIP]
 > You can use [Console Logs](../manage/logging.md#lbl-console-logs) to aid diagnosis of connection issues.
 
-1. With sync gateway and Couchbase Server started, point your browser to the sync gateway url, typically on port 4984, but this can be changed — see: [REST API Access](../rest-api/rest-api-access.md).  
+1. With Sync Gateway and Couchbase Server started, point your browser to the Sync Gateway url, typically on port 4984, but this can be changed — see: [REST API Access](../rest-api/rest-api-access.md).  
 So, for example:  
 ```bash  
 http://localhost:4984  
 ```
 2. Check that you receive a response similar to this:  
 ```bash  
-{"couchdb":"Welcome","vendor":{"name":"Couchbase Sync Gateway","version":"4.0"},"version":"Couchbase sync gateway/{version-full}(376;e2e7d42) EE"}  
+{"couchdb":"Welcome","vendor":{"name":"Couchbase Sync Gateway","version":"4.1"},"version":"Couchbase Sync Gateway/{version-full}(376;e2e7d42) EE"}  
 ```  
 If there are issues, check the [Console Logs](../manage/logging.md#lbl-console-logs) for more information. Where necessary you can redirect console output to a file — see: [Redirect Console Logs](../manage/logging.md#lbl-log-redirect).
 
 > [!TIP]
-> If sync gateway is behind a load balancer, check the websockets configuration — see [Load Balancer](../deploy/load-balancer.md).
+> If Sync Gateway is behind a load balancer, check the websockets configuration — see [Load Balancer](../deploy/load-balancer.md).
 
 ## [](#next-steps)Next Steps
 
-Now that you have a configured sync gateway installation connected to Couchbase Server, continue to [Explore](get-started-explore.md) page, where you'll add a database configuration, create users, and run a CRUD cycle to confirm sync is working end-to-end.
+Now that you have a configured Sync Gateway installation connected to Couchbase Server, continue to [Explore](get-started-explore.md) page, where you'll add a database configuration, create users, and run a CRUD cycle to confirm sync is working end-to-end.
 
 From there, you can explore more complex scenarios with confidence:
 
-* Learn more about sync gateway's [Bootstrap Configuration](../configuration/configuration-schema-bootstrap.md)
+* Learn more about Sync Gateway's [Bootstrap Configuration](../configuration/configuration-schema-bootstrap.md)
 * Learn how to [Sync with Couchbase Server](../sync/sync-with-couchbase-server.md)
 * Implement access controls — see: [Users](../access-control/users.md), [Roles](../access-control/roles.md), and the [Sync Function](../access-control/sync-function/sync-function.md)
 * Implement secure connectivity — see: [User Authentication](../security/authentication-users.md) and [TLS Certificate Authentication](../security/authentication-certs.md)

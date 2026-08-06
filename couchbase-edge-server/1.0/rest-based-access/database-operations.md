@@ -2,7 +2,7 @@
 title: Database Operations with Edge Server
 description: How to make an API call with the Couchbase Edge Server REST API.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/database-operations.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:1.0@couchbase-edge-server:rest-based-access:database-operations.adoc[]
 ---
 
@@ -34,7 +34,7 @@ To make an API call:
 2. Pass the TLS certificate information and the HTTP Basic username and password as required.
 3. If a request body is required, pass it in JSON format.
 
-Alternatively, you can use a client such as [Insomnia](https://insomnia.rest) or [Postman](https://www.postman.com) to explore the details of the REST API, generate code samples, and so on. The Edge Server REST API uses an [OpenAPI](https://swagger.io/resources/open-api) v3 specification. To download the Edge Server REST API specification, go to the [REST API Reference](#public-api-reference:index.adoc) and click **Download**.
+Alternatively, you can use a client such as [Insomnia](https://insomnia.rest) or [Postman](https://www.postman.com) to explore the details of the REST API, generate code samples, and so on. The Edge Server REST API uses an [OpenAPI](https://swagger.io/resources/open-api) v3 specification. To download the Edge Server REST API specification, go to the [REST API Reference](../public-api-reference/index.md) and click **Download**.
 
 ## [](#examples)Examples
 
@@ -177,4 +177,4 @@ HTTP Response
 * [Monitor Changes with Edge Server](changes-feed.md)
 * [Run Queries with Edge Server](queries-api.md)
 * [Manage Replication with Edge Server](replication.md)
-* [public-api-reference:index.adoc](#public-api-reference:index.adoc)
+* [Edge Server Public REST API](../public-api-reference/index.md)

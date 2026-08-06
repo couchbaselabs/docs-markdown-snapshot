@@ -2,8 +2,8 @@
 title: DISCONNECT Statements
 description: This topic describes how you use <code>DISCONNECT</code> statements
   to disconnects all remote collections on the given link or links.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_disconnect.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_ddl_disconnect.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sqlpp:5_ddl_disconnect.adoc[]
 ---
 

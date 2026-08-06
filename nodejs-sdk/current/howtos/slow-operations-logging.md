@@ -2,8 +2,8 @@
 title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging, orphan logging, and other span metrics.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/slow-operations-logging.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/slow-operations-logging.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:howtos:slow-operations-logging.adoc[]
 ---
 
@@ -12,39 +12,69 @@ link: xref:nodejs-sdk:howtos:slow-operations-logging.adoc[]
 
 # Slow Operations Logging
 
-> Tracing information on slow operations can be found in the logs as threshold logging, orphan logging, and other span metrics. 
+> Tracing information on slow operations can be found in the logs as threshold logging, orphan logging, and other span metrics. Change the settings to alter how much information you collect 
 
-> [!IMPORTANT]
-> The Logging implementation has changed substantially in 4.x. There are currently no options for configuring tracing thresholds or the logging meter emit interval — only the defaults from the underlying C++ SDK are available.
+To improve debuggability certain metrics are automatically measured and logged. These include slow queries, responses taking beyond a certain threshold, and orphanned responses.
 
-## [](#orphaned-response-reporting)Orphaned Response Reporting
+## [](#threshold-logging-reporting)Threshold Logging Reporting
 
-Orphan response reporting acts as an auxiliary tool to the tracing and metrics capabilities. It does not expose an external API to the application and is very focussed on its feature set.
+> [!NOTE]
+> As of v4.7.0 the Threshold Logger is native to the Node.js SDK. In previous versions the underlying C++ core was responsible for threshold logging.
 
-The way it works is that every time a response is in the process of being completed, when the SDK detects that the original caller is not listening anymore (likely because of a timeout), it will send this "orphan" response to a reporting utility which then aggregates it and in regular intervals logs them in a specific format.
+Threshold logging is the recording of slow operations — useful for diagnosing when and where problems occur in a distributed environment.
 
-When the user then sees timeouts in their logs, they can go look at the output of the orphan reporter and correlate certain properties that aid debugging in production. For example, if a single node is slow but the rest of the cluster is responsive, this would be visible from orphan reporting.
+### [](#configuring-threshold-logging)Configuring Threshold Logging
 
-### [](#configuring-orphan-logging)Configuring Orphan Logging
+By default the a threshold log report can be emitted every 10 seconds, but you can customize the emit interval, along with operation thresholds:
 
-The OrphanResponseReporter is very similar in principle to the ThresholdRequestTracer, but instead of tracking responses which are over a specific threshold it tracks those responses which are "orphaned".
+```javascript
+const cluster = await couchbase.connect('couchbase://your-ip', {
+  username: 'Administrator',
+  password: 'password',
+  tracingConfig: {
+    emitInterval: 5000, // 5 seconds
+    sampleSize: 5, // only report the top 5 slow operations per service
+    kvThreshold: 2000, // 2 seconds in milliseconds
+  }
+})
+```
 
-The `emitInterval` and `sampleSize` can be adjusted (defaults are 10s and 10 samples per service, respectively). The overall structure looks like this (here prettified for readability):
+The `ThresholdLogger` can be configured via `TracingConfig` as shown above. The following table shows the currently available properties:
+
+__Table 1\. TracingConfig Properties__
+| Property            | Default          | Description                                              |
+| ------------------- | ---------------- | -------------------------------------------------------- |
+| enableTracing       | true             | If tracing should be enabled.                            |
+| kvThreshold         | 500 milliseconds | The key-value operations threshold.                      |
+| viewsThreshold      | 1 second         | The view query operations threshold.                     |
+| queryThreshold      | 1 second         | The query operations threshold.                          |
+| searchThreshold     | 1 second         | The search query operations threshold.                   |
+| analyticsThreshold  | 1 second         | The analytics query operations threshold.                |
+| eventingThreshold   | 1 second         | The eventing operations threshold.                       |
+| managementThreshold | 1 second         | The management operations threshold.                     |
+| sampleSize          | 10               | The top number of operations to report.                  |
+| emitInterval        | 10 seconds       | The interval at which a threshold report can be emitted. |
+
+Note that the Threshold Logger is set as the cluster level `Tracer` implementation.
+
+#### [](#json-output-format-logging)JSON Output Format & Logging
+
+You should expect to see output in JSON format in the logs for the services encountering problems:
 
 ```json
 {
-  “<service-a>”: {
-    “total_count”: 1234,
-    “top_requests”: [{<entry>}, {<entry>},...]
+  "<service-a>": {
+    "total_count": 1234,
+    "top_requests": [{<entry>}, {<entry>},...]
   },
-  “<service-b>”: {
-    “total_count”: 1234,
-    “top_requests”: [{<entry>}, {<entry>},...]
+  "<service-b>": {
+    "total_count": 1234,
+    "top_requests": [{<entry>}, {<entry>},...]
   },
 }
 ```
 
-The total\_count represents the total amount of recorded items in each interval per service. The number of entries in "top\_requests" is configured by the sampleSize. The service placeholder is replaced with each service, i.e. "kv", "query" etc. Each entry looks like this, with all fields populated:
+The `total_count` represents the total amount of over-threshold recorded items in each interval per service. The number of entries in "top\_requests" is configured by the `sampleSize`. The service placeholder is replaced with each service — "kv", "query", etc. Each entry looks like this, with all fields populated:
 
 ```json
 {
@@ -53,9 +83,9 @@ The total\_count represents the total amount of recorded items in each interval 
   "last_dispatch_duration_us": 40,
   "total_dispatch_duration_us": 40,
   "last_server_duration_us": 2,
-  “timeout_ms”: 75000,
+  "total_server_duration_us": 2,
   "operation_name": "upsert",
-  "last_local_id": "66388CF5BFCF7522/18CC8791579B567C,
+  "last_local_id": "66388CF5BFCF7522/18CC8791579B567C",
   "operation_id": "0x23",
   "last_local_socket": "10.211.55.3:52450",
   "last_remote_socket": "10.112.180.101:11210"

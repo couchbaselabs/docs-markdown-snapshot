@@ -1,8 +1,8 @@
 ---
 title: Databases
 description: Working with Couchbase Lite on Android databases
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/database.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:android:database.adoc[]
 ---
 
@@ -75,12 +75,12 @@ public void onCreate() {
 
 ## [](#open-db)Create or Open Database
 
-You can create a new database and-or open an existing database, using the [Database](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/Database.html) class. Just pass in a database name and optionally a [DatabaseConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/DatabaseConfiguration.html) — see [Example 2](#ex-dbopen).
+You can create a new database and-or open an existing database, using the [Database](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/Database.html) class. Just pass in a database name and optionally a [DatabaseConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/DatabaseConfiguration.html) — see [Example 2](#ex-dbopen).
 
 Things to watch for include:
 
 * If the named database does not exist in the specified, or default, location then a new one is created
-* The database is created in a default location unless you specify a directory for it — see: [DatabaseConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/DatabaseConfiguration.html) and [DatabaseConfiguration.setDirectory()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/DatabaseConfiguration.html#setDirectory-java.lang.String-)  
+* The database is created in a default location unless you specify a directory for it — see: [DatabaseConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/DatabaseConfiguration.html) and [DatabaseConfiguration.setDirectory()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/DatabaseConfiguration.html#setDirectory-java.lang.String-)  
 Typically, the default location for Android is the application sandbox .  
 See also [Finding a Database File](#lbl-find-db-loc).
 
@@ -101,7 +101,7 @@ Database database = new Database(DB_NAME);
 
 You are advised to incorporate the closing of all open databases into your application workflow.
 
-To close a database, use [Database.close()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/Database.html#close--) — see: [Example 3](#ex-dbclose). This also closes \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]active replications, listeners and-or live queries connected to the database.
+To close a database, use [Database.close()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/Database.html#close--) — see: [Example 3](#ex-dbclose). This also closes \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]active replications, listeners and-or live queries connected to the database.
 
 > [!NOTE]
 > Closing a database soon after starting a replication involving it can cause an exception as the asynchronous `replicator (start)` may not yet be `connected`.
@@ -161,7 +161,7 @@ _Couchbase Lite on Android_ includes the ability to encrypt Couchbase Lite datab
 
 ### [](#enabling)Enabling
 
-To enable encryption, use [DatabaseConfiguration.setEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/DatabaseConfiguration.html#setEncryptionKey-com.couchbase.lite.EncryptionKey-) to set the encryption key of your choice. Provide this encryption key every time the database is opened — see [Example 5](#ex-sdb-encrypt).
+To enable encryption, use [DatabaseConfiguration.setEncryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/DatabaseConfiguration.html#setEncryptionKey-com.couchbase.lite.EncryptionKey-) to set the encryption key of your choice. Provide this encryption key every time the database is opened — see [Example 5](#ex-sdb-encrypt).
 
 Example 5\. Configure Database Encryption
 
@@ -193,11 +193,11 @@ An encrypted database can only be opened with the same platform that was used to
 
 ### [](#changing)Changing
 
-To change an existing encryption key, open the database using its existing encryption-key and use [Database.changeEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/Database.html#changeEncryptionKey%28com.couchbase.lite.EncryptionKey%29)to set the required new encryption-key value.
+To change an existing encryption key, open the database using its existing encryption-key and use [Database.changeEncryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/Database.html#changeEncryptionKey%28com.couchbase.lite.EncryptionKey%29)to set the required new encryption-key value.
 
 ### [](#removing)Removing
 
-To remove encryption, open the database using its existing encryption-key and use [Database.changeEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/Database.html#changeEncryptionKey%28com.couchbase.lite.EncryptionKey%29)with a null value as the encryption key.
+To remove encryption, open the database using its existing encryption-key and use [Database.changeEncryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/Database.html#changeEncryptionKey%28com.couchbase.lite.EncryptionKey%29)with a null value as the encryption key.
 
 ### [](#upgrading)Upgrading
 
@@ -229,7 +229,7 @@ $ adb pull /data/data/{APPLICATION_ID}/files/{DATABASE_NAME}.cblite2 .
 
 From time to time it may be necessary to perform certain maintenance activities on your database, for example to compact the database file, removing unused documents and blobs no longer referenced by any documents.
 
-Couchbase Lite's API provides the [Database.performMaintenance()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/Database.html#performMaintenance-com.couchbase.lite.MaintenanceType-) method. The available maintenance operations, including `compact` are as shown in the enum [MaintenanceType](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/MaintenanceType.html) to accomplish this.
+Couchbase Lite's API provides the [Database.performMaintenance()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/Database.html#performMaintenance-com.couchbase.lite.MaintenanceType-) method. The available maintenance operations, including `compact` are as shown in the enum [MaintenanceType](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/com/couchbase/lite/MaintenanceType.html) to accomplish this.
 
 This is a resource intensive operation and is not performed automatically. It should be run on-demand using the API. If in doubt, consult Couchbase support.
 

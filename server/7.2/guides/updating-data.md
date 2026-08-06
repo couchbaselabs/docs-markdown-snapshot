@@ -2,7 +2,7 @@
 title: Updating Data
 description: How to update documents in Couchbase.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/updating-data.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:7.2@server:guides:updating-data.adoc[]
 ---
 
@@ -122,11 +122,7 @@ Use the `upsert()` function to update a document in the database. If it does not
 The example below updates the existing document `hotel-123`.
 
 ```nodejs
-// Update or create a document in the hotel collection.
-const upsertResult = await hotelCollection.upsert('hotel-123', document)
-
-// Print the result's CAS metadata to the console.
-console.log('CAS:', upsertResult.cas)
+Unresolved include directive in modules/guides/pages/updating-data.adoc - include::nodejs-sdk:hello-world:example$kv-hello-world-scoped.js[]
 ```
 
 Click the  View button to see this code in context.
@@ -321,29 +317,7 @@ A new `CAS` value is provided in the returned `MutationResult` object.
 The example below adds a new entry to the `reviews` array in document `hotel-123`.
 
 ```nodejs
-// Fetch an existing hotel document.
-getResult = await hotelCollection.get('hotel-123')
-const existingDoc = getResult.content
-
-// Get the current CAS value.
-const currentCas = getResult.cas
-console.log('Current CAS:', currentCas)
-
-// Add a new review to the reviews array.
-existingDoc['reviews'].push({
-  content: 'This hotel was cozy, conveniently located and clean.',
-  author: "Carmella O'Keefe",
-  date: new Date().toISOString(),
-})
-
-// Update the document with new data and pass the current CAS value.
-const replaceResult = await hotelCollection.replace(
-  'hotel-123',
-  existingDoc
-)
-
-// Print the new CAS value.
-console.log('New CAS:', replaceResult.cas)
+Unresolved include directive in modules/guides/pages/updating-data.adoc - include::nodejs-sdk:hello-world:example$kv-hello-world-scoped.js[]
 ```
 
 > [!NOTE]
@@ -474,10 +448,7 @@ A `MutateInResult` object is returned, containing the result and metadata releva
 The example below upserts a `pets_ok` field in document `hotel-123` and sets the value to true.
 
 ```nodejs
-const mutateInResult = await hotelCollection.mutateIn('hotel-123', [
-  couchbase.MutateInSpec.upsert('pets_ok', true),
-])
-console.log('CAS:', mutateInResult.cas)
+Unresolved include directive in modules/guides/pages/updating-data.adoc - include::nodejs-sdk:hello-world:example$kv-hello-world-scoped.js[]
 ```
 
 Click the  View button to see this code in context.

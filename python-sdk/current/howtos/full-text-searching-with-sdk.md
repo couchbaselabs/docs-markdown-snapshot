@@ -1,9 +1,9 @@
 ---
 title: Search
-description: You can use the Full Text Search service (FTS) to create queryable
-  full-text indexes in Couchbase Server.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+description: You can use the Search service to create queryable Search indexes
+  in Couchbase Server.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/full-text-searching-with-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -12,13 +12,13 @@ link: xref:python-sdk:howtos:full-text-searching-with-sdk.adoc[]
 
 # Search
 
-> You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
+> You can use the Search service to create queryable Search indexes in Couchbase Server. 
 
-Full Text Search or FTS allows you to create, manage and query full text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for indexing and querying documents, provides relevance scoring on the results of your queries and has fast indexes for querying a wide range of possible text searches.
+The Search Service allows you to create, manage and query Search indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for indexing and querying documents, provides relevance scoring on the results of your queries and has fast indexes for querying a wide range of possible text searches.
 
 Some of the supported query-types include simple queries like Match and Term queries, range queries like Date Range and Numeric Range and compound queries for conjunctions, disjunctions and/or boolean queries.
 
-The Full Text Search service also supports vector search from Couchbase Server 7.6 onwards.
+The Search service also supports vector search from Couchbase Server 7.6 onwards.
 
 ## [](#getting-started)Getting Started
 
@@ -26,9 +26,9 @@ After familiarizing yourself with how to create and query a Search index in the 
 
 There are two APIs for querying search: `cluster.searchQuery()`, and `cluster.search()`. Both are also available at the Scope level.
 
-The former API supports FTS queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6\. Most of this documentation will focus on the former API, as the latter is in @Stability.Volatile status.
+The former API supports Search queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6\. Most of this documentation will focus on the former API, as the latter is in @Stability.Volatile status.
 
-We will perform an FTS query here - see the [\[vector-search\]](#vector-search) section for examples of that.
+We will perform a Search query here - see the [\[vector-search\]](#vector-search) section for examples of that.
 
 ```python
 from couchbase.cluster import Cluster
@@ -63,6 +63,15 @@ except CouchbaseException as ex:
 Let's break it down. The `search_query` API takes the name of the index and the type of query as required arguments and then allows to provide additional options if needed (in the example above, no options are specified).
 
 Once a result returns you can iterate over the returned rows, and/or access the `search.metadata` associated with the query.
+
+> [!TIP]
+> Search Results Limit
+> 
+> By default, the Search Service returns only the first 10 matches (`size: 10`, `from: 0`). To retrieve more results, you must explicitly define pagination settings such as `size` or `from` in your query.
+> 
+> For information about formatting your Search query and specifying limits, see [Search Request JSON Properties](../../../server/current/search/search-request-params.md).
+> 
+> For information about pagination in Search responses, see [Pagination](../../../server/current/fts/fts-search-response.md#pagination).
 
 ## [](#search-queries)Search Queries
 
@@ -111,7 +120,7 @@ for row in result.rows():
 The `SearchRow` contains the following methods:
 
 __Table 2\. SearchRow__
-| index → str                                 | The name of the FTS index that gave this result.                |
+| index → str                                 | The name of the Search index that gave this result.             |
 | ------------------------------------------- | --------------------------------------------------------------- |
 | id → str                                    | The id of the matching document.                                |
 | score →float                                | The score of this hit.                                          |
@@ -124,9 +133,9 @@ Note that the `SearchMetaData` also contains potential `errors`, because the SDK
 
 ## [](#scoped-vs-global-indexes)Scoped vs Global Indexes
 
-The FTS APIs exist at both the `Cluster` and `Scope` levels.
+The Search APIs exist at both the `Cluster` and `Scope` levels.
 
-This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
+This is because the Search Service supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
 It's important to use the `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
 
@@ -269,7 +278,7 @@ import couchbase.search as search
 
 
 async def get_couchbase():
-    cluster = Cluster(
+    cluster = await AsyncCluster.connect(
         "couchbase://your-ip",
         ClusterOptions(PasswordAuthenticator("Administrator", "password")))
     bucket = cluster.bucket("travel-sample")

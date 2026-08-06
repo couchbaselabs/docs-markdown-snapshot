@@ -2,8 +2,8 @@
 title: Couchbase Lite on Java&#8201;&#8212;&#8201;Installing
 description: Couchbase Lite on Java -- a framework for developing offline-first
   Java applications for mobile and edge
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/gs-install.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/java/pages/gs-install.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:java:gs-install.adoc[]
 ---
 
@@ -18,11 +18,11 @@ link: xref:couchbase-lite:java:gs-install.adoc[]
 
 ## [](#introduction)Introduction
 
-_Couchbase Lite_ on Java 4.0.3 enables development and deployment of Couchbase Lite applications to a JVM environment. You can deploy Standalone (Java Desktop/Console) apps or Web Apps (using, for example, Tomcat; including embedded Tomcat deployments).
+_Couchbase Lite_ on Java 4.1.0 enables development and deployment of Couchbase Lite applications to a JVM environment. You can deploy Standalone (Java Desktop/Console) apps or Web Apps (using, for example, Tomcat; including embedded Tomcat deployments).
 
 Quick Steps
 
-For experienced developers, this is all you need to add _Couchbase Lite for Java 4.0.3_ to your application projects.
+For experienced developers, this is all you need to add _Couchbase Lite for Java 4.1.0_ to your application projects.
 
 * Enterprise Edition
 * Community Edition
@@ -32,13 +32,13 @@ Include the following in your Gradle `build.gradle` or Maven `pom.xml` file, as 
 * The Couchbase Enterprise Edition repository  
 `<https://mobile.maven.couchbase.com/maven2/dev/>`
 * The Couchbase Lite Enterprise Edition dependency:  
-`couchbase-lite-java-ee:4.0.3`
+`couchbase-lite-java-ee:4.1.0`
 
   1. If you want to use Vector Search, add the Couchbase Lite Vector Search dependency: `couchbase-lite-java-vector-search`
   2. You must then use `CouchbaseLite.enableVectorSearch();` to enable the vector search extension.
 
 1. Include the Couchbase Lite for Java dependency in your Gradle `build.gradle` or Maven `pom.xml` file, as appropriate:  
-`couchbase-lite-java:4.0.3`
+`couchbase-lite-java:4.1.0`
 2. For Gradle:  
 Check you have `mavenCentral()` in `repositories` (or in `settings.gradle`).  
 Maven automatically checks its own repo for dependencies.
@@ -61,7 +61,7 @@ Couchbase Lite binaries are available for both Community (CE) and Enterprise (EE
 ### [](#prerequisites)Prerequisites
 
 * Planning to sync with a _Couchbase Server_?  
-You will need to have runnable instances of _Couchbase Server_ and \_Sync Gateway installed. If you have not already done so see [Prepare Sync Gateway](#sync-gateway::get-started-prepare.adoc)
+You will need to have runnable instances of _Couchbase Server_ and \_Sync Gateway installed. If you have not already done so see [Prepare Sync Gateway](../../../sync-gateway/current/start-here/get-started-prepare.md)
 * Running on Microsoft Windows?  
 Windows requires C++ runtime installed. Please install the Visual C++ Redistribution package from this link: <https://www.microsoft.com/en-us/download/details.aspx?id=52685>
 * Deploying to Linux?  
@@ -107,7 +107,7 @@ Dependencies
 
 ```groovy
 dependencies {
-    implementation "com.couchbase.lite:couchbase-lite-java:4.0.3"
+    implementation "com.couchbase.lite:couchbase-lite-java:4.1.0"
 
 //   ... other section content as required by user
 }
@@ -142,7 +142,7 @@ Dependencies
 
 ```groovy
 dependencies {
-    implementation "com.couchbase.lite:couchbase-lite-java:4.0.3"
+    implementation "com.couchbase.lite:couchbase-lite-java:4.1.0"
 
   // All standard 64-bit ARM architectures
   implementation 'com.couchbase.lite:couchbase-lite-java-vector-search-arm64-2.0.0'
@@ -188,7 +188,7 @@ Dependencies
 
 ```groovy
 dependencies {
-    implementation "com.couchbase.lite:couchbase-lite-java:4.0.3"
+    implementation "com.couchbase.lite:couchbase-lite-java:4.1.0"
 
 //   ... other section content as required by user
 }
@@ -224,7 +224,7 @@ Dependencies
     <dependency>
       <groupId>com.couchbase.lite</groupId>
       <artifactId>couchbase-lite-java-ee</artifactId>
-      <version>4.0.3</version>
+      <version>4.1.0</version>
     </dependency>
 
     <!-- ... any other section content as required by user-home  -->
@@ -261,7 +261,7 @@ Dependencies
   <dependency>
       <groupId>com.couchbase.lite</groupId>
       <artifactId>couchbase-lite-java</artifactId>
-      <version>4.0.3</version>
+      <version>4.1.0</version>
   </dependency>
 
   //   ... any other section content as required by user
@@ -328,7 +328,7 @@ Example 3\. build.gradle file content
 
 ```groovy
 dependencies {
-    implementation "com.couchbase.lite:couchbase-lite-java:4.0.3"
+    implementation "com.couchbase.lite:couchbase-lite-java:4.1.0"
 
 //   ... other section content as required by user
 }
@@ -342,7 +342,7 @@ repositories {
     }
 
 dependencies {
-    implementation "com.couchbase.lite:couchbase-lite-java-ee:4.0.3"
+    implementation "com.couchbase.lite:couchbase-lite-java-ee:4.1.0"
 
 //   ... other section content as required by user
     }

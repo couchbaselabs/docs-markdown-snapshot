@@ -1,8 +1,8 @@
 ---
 title: Database Security
 description: Using Sync Gateway's Admin REST API to configure users and roles
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-schema-db-security.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-db-security.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:configuration:configuration-schema-db-security.adoc[]
 ---
 
@@ -22,7 +22,7 @@ _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configurat
 
 ## [](#introduction)Introduction
 
-Use the Admin REST API `_user` and `_role` endpoints to provision and manage sync gateway users through persistent configuration changes.
+Use the Admin REST API `_user` and `_role` endpoints to provision and manage Sync Gateway users through persistent configuration changes.
 
 This page provides examples for the [/{db}/\_role/{name}](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Security/operation/put%5Fdb-%5Frole-name) and [/{db}/\_user/{name}](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Security/operation/put%5Fdb-%5Fuser-name) endpoints. For a full description of all available endpoints, see [Database Security](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Security).
 

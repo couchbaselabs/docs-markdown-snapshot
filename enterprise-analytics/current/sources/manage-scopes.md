@@ -2,8 +2,8 @@
 title: Manage Enterprise Analytics Scopes
 description: Scopes are intermediary containers within a database to group
   related objects like collections, indexes, and functions.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/manage-scopes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sources/pages/manage-scopes.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sources:manage-scopes.adoc[]
 ---
 

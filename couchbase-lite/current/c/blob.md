@@ -1,8 +1,8 @@
 ---
 title: Blobs
 description: Couchbase Lite database data model concepts - blobs
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/blob.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/blob.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:blob.adoc[]
 ---
 
@@ -54,7 +54,7 @@ FLSliceResult avatar = FLSliceResult_CreateWith(buffer, read);
 CBLBlob* blob = CBLBlob_CreateWithData(FLSTR("image/jpeg"), FLSliceResult_AsSlice(avatar)); (2)
 FLSliceResult_Release(avatar);
 
-CBLError err{};
+CBLError err = {};
 FLMutableDict properties = CBLDocument_MutableProperties(newTask);
 FLSlot_SetBlob(FLMutableDict_Set(properties, FLSTR("avatar")), blob);
 CBLCollection_SaveDocument(collection, newTask, &err); (3)

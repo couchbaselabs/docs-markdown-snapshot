@@ -2,8 +2,8 @@
 title: Data Sync Peer-to-Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/p2psync-websocket.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/p2psync-websocket.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:p2psync-websocket.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:couchbase-lite:c:p2psync-websocket.adoc[]
 # Data Sync Peer-to-Peer
 
 > Description — _Couchbase Lite's Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
-> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
+> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
 ## [](#introduction)Introduction
 
@@ -109,9 +109,11 @@ Example 2\. Simple Listener
 
 This simple listener configuration will give you a listener ready to participate in an encrypted synchronization with a replicator providing a valid user name and password.
 
+* C
+* C++
+
 ```c
-CBLURLEndpointListenerConfiguration config; (1)
-memset(&config, 0, sizeof(CBLURLEndpointListenerConfiguration));
+CBLURLEndpointListenerConfiguration config = {}; (1)
 
 // Setup collections available for replication:
 CBLCollection* collections[1];
@@ -129,11 +131,10 @@ config.tlsIdentity = NULL;
 CBLListenerAuthenticator* auth = CBLListenerAuth_CreatePassword(
     [](void* ctx, FLString user, FLString password) {
     return authenticate(user, password);
-}, nullptr);
+}, NULL);
 config.authenticator = auth; (2)
 
-CBLError error;
-memset(&error, 0, sizeof(CBLError));
+CBLError error = {};
 
 // Create the listener with the config:
 CBLURLEndpointListener* listener = CBLURLEndpointListener_Create(&config, &error); (3)
@@ -148,18 +149,21 @@ CBLURLEndpointListener_Start(listener, &error); (4)
 | **3** | Initialize the Listener                                            |
 | **4** | Start the Listener                                                 |
 
+```cpp
+
+```
+
 Example 3\. Simple Replicator
 
-This simple replicator configuration will give you an encrypted, bi-directional Peer-to-Peer synchronization with automatic conflict resolution.
+* C
+* C++
 
 ```c
 // Initialize replicator config:
-CBLReplicatorConfiguration replConfig;
-memset(&replConfig, 0, sizeof(replConfig));
+CBLReplicatorConfiguration replConfig = {};
 
 // Set up the collections for replication:
-CBLCollectionConfiguration collectionConfig;
-memset(&collectionConfig, 0, sizeof(collectionConfig));
+CBLCollectionConfiguration collectionConfig = {};
 
 collectionConfig.collection = collection;
 replConfig.collectionCount = 1;
@@ -167,8 +171,7 @@ replConfig.collections = &collectionConfig; (2)
 
 // Create a URL endpoint to the listener and set to the replicator config:
 // Note: You can safely free `endpoint` using CBLEndpoint_Free() after the replicator is created.
-CBLError error;
-memset(&error, 0, sizeof(CBLError));
+CBLError error = {};
 CBLEndpoint* endpoint = CBLEndpoint_CreateWithURL(FLSTR("wss://<listener-ip-address>:<listener-port>/<database-name>"), &error);
 replConfig.endpoint = endpoint; (1)
 
@@ -188,7 +191,7 @@ CBLReplicator* replicator = CBLReplicator_Create(&replConfig, &error); (5)
 CBLReplicator_Start(replicator, false); (6)
 ```
 
-| **1** | Get the Listener's endpoint. Here we use a known URL, but it could be a URL established dynamically in a discovery phase.                  |
+| **1** | Get the Listener's' endpoint. Here we use a known URL, but it could be a URL established dynamically in a discovery phase.                 |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | **2** | Initialize the replicator configuration with the database to be synchronized and the Listener it is to synchronize with.                   |
 | **3** | Configure the replicator to expect a self-signed certificate from the Listener.                                                            |
@@ -196,11 +199,35 @@ CBLReplicator_Start(replicator, false); (6)
 | **5** | Initialize the replicator                                                                                                                  |
 | **6** | Start the replicator                                                                                                                       |
 
+```cpp
+// Set up the collection for replication:
+cbl::CollectionConfiguration collectionConfig(collection);
+
+// Create a URL endpoint to the listener:
+cbl::Endpoint endpoint =
+    cbl::Endpoint::urlEndpoint("wss://<listener-ip-address>:<listener-port>/<database-name>");
+
+// Initialize the replicator config with the collection and endpoint:
+cbl::ReplicatorConfiguration replConfig({ collectionConfig }, endpoint);
+
+// Accept self-signed certificates, for testing purposes only:
+replConfig.acceptOnlySelfSignedServerCertificate = true;
+
+// Set up a basic authenticator with a username and password:
+replConfig.authenticator = cbl::Authenticator::basicAuthenticator("username", "password");
+
+// Create a replicator:
+cbl::Replicator replicator(replConfig);
+
+// Start the replicator:
+replicator.start();
+```
+
 ## [](#api-highlights)API Highlights
 
 ### [](#urlendpointlistener)URLEndpointListener
 
-The `URLEndpointListener` is the listener for peer-to-peer synchronization. It acts like a passive replicator, in the same way that Sync Gateway does in a 'standard' replication. On the client side, the listener's endpoint is used to point the replicator to the listener.
+The `URLEndpointListener` is the listener for peer-to-peer synchronization. It acts like a passive replicator, in the same way that Sync Gateway does in a 'standard' replication. On the client side, the listener's' endpoint is used to point the replicator to the listener.
 
 Core functionalities of the listener are:
 
@@ -208,7 +235,7 @@ Core functionalities of the listener are:
 * The listener can be started, or can be stopped.
 * Once the listener is started, a total number of connections or active connections can be checked.
 
-API Reference: [URLEndpointListener](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5F8h.html)
+API Reference: [URLEndpointListener](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5F8h.html)
 
 ### [](#urlendpointlistenerconfiguration)URLEndpointListenerConfiguration
 
@@ -234,23 +261,23 @@ The value is null if the listener is not started.
 
 disableTLS
 
-You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [disableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177) method to disable TLS communication if necessary.
+You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [disableTLS](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177) method to disable TLS communication if necessary.
 
 The `disableTLS` setting must be 'false' when _Client Cert Authentication_ is required.
 
 Basic Authentication can be used with, or without, TLS.
 
-[disableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
+[disableTLS](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
 
 * If `disableTLS` is true — TLS communication is disabled and TLS identity is ignored. Active peers will use the `ws://` URL scheme used to connect to the listener.
 * If `disableTLS` is false or not specified — TLS communication is enabled.  
 Active peers will use the `wss://` URL scheme to connect to the listener.
 
-API Reference: [disableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177)
+API Reference: [disableTLS](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177)
 
 tlsIdentity
 
-Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [tlsIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a872c060c215290313ab95bb920ad33ae) method to configure the TLS Identity used in TLS communication.
+Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [tlsIdentity](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a872c060c215290313ab95bb920ad33ae) method to configure the TLS Identity used in TLS communication.
 
 If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous self-signed identity (unless `disableTLS = true`). Whilst the client cannot use this to authenticate the server, it will use it to encrypt communication, giving a more secure option than non-TLS communication.
 
@@ -258,7 +285,7 @@ The auto-generated anonymous self-signed identity is saved in secure storage for
 
 When the listener is not started, the identity is null. When TLS is disabled, the identity is always null.
 
-API Reference: [tlsIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a872c060c215290313ab95bb920ad33ae)
+API Reference: [tlsIdentity](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a872c060c215290313ab95bb920ad33ae)
 
 authenticator
 
@@ -268,7 +295,7 @@ Use this to specify the authenticator the listener uses to authenticate the clie
 * ListenerCertificateAuthenticator
 * Null — there is no authentication.
 
-API Reference: [authenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a68159e04ec97a47fcbe785709ca54b35)
+API Reference: [authenticator](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a68159e04ec97a47fcbe785709ca54b35)
 
 readOnly
 
@@ -278,7 +305,7 @@ enableDeltaSync
 
 The option to enable Delta Sync and replicate only changed data also depends on the delta sync settings at database level. The default value is false.
 
-API Reference: [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)
+API Reference: [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)
 
 ## [](#security-2)Security
 
@@ -341,7 +368,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](p2psync-websocket.md)
-* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html)
+* [API References](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html)
 
 ###### [](#-3)
 

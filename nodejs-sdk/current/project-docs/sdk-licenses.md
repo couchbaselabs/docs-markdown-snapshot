@@ -1,8 +1,9 @@
 ---
 title: Licenses
-description: Couchbase SDKs' source code is licensed under the Apache Licence 2.0.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/project-docs/pages/sdk-licenses.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+description: Couchbase SDKs' source code and binaries are licensed under the
+  Apache Licence 2.0.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/project-docs/pages/sdk-licenses.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:project-docs:sdk-licenses.adoc[]
 ---
 
@@ -11,17 +12,21 @@ link: xref:nodejs-sdk:project-docs:sdk-licenses.adoc[]
 
 # Licenses
 
-> Couchbase SDKs' source code is licensed under the Apache Licence 2.0\. Dependencies carry their own licenses. 
+> Couchbase SDKs' source code and binaries are licensed under the Apache Licence 2.0\. Dependencies carry their own licenses. 
 
-The Couchbase Node.js Client is distributed as source under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+Source and any and all binaries for the Couchbase Node.js Client are distributed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
-## [](#binary-distribution)Binary Distribution
+## [](#support-level)Support Level
 
-Binary distributions are made under Couchbase's own license agreements.
+Support level will match the terms of your use of your Couchbase Cluster(s), under Couchbase's Enterprise or Community license agreements.
 
-* [Enterprise License Agreement](https://www.couchbase.com/license-agreement/)
-* [Community License Agreement](https://www.couchbase.com/community-license-agreement/)
+* [Enterprise License Agreement](https://www.couchbase.com/license-agreement/) — this support level also applies to users of Capella Operational.
+* [Community License Agreement](https://www.couchbase.com/community-license-agreement/) — this support level also applies to users of Capella Free Tier.
 
 ## [](#dependencies)Dependencies
 
 Any dependencies may have their [own, separate licenses](https://www.couchbase.com/legal/agreements#ThirdPartyComponents).
+
+## [](#documentation-license)Documentation License
+
+This documentation is copyright Couchbase Inc. The docs' source is licensed under the Creative Commons [CC-by-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en) license, see <https://github.com/couchbase/docs-sdk-nodejs/blob/release/4.7/LICENSE>.

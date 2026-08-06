@@ -1,7 +1,7 @@
 ---
 title: Edge Server Public REST API
-editUrl: https://github.com/couchbase/edge-server/edit/main/docs/modules/public-api-reference/pages/index.adoc
-pubDate: 2026-04-21T05:28:09.835Z
+editUrl: https://github.com/couchbase/edge-server/edit/release/1.1/docs/modules/public-api-reference/pages/index.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-edge-server:public-api-reference:index.adoc[]
 ---
 

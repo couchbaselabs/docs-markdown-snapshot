@@ -1,28 +1,28 @@
 ---
-title: Get Started with the {ai-long} APIs
-description: To get started with the Couchbase Capella APIs for the {ai-long},
-  you must create an API key. An API key authenticates and authorizes you to
-  access the APIs.
+title: Get Started with the Couchbase AI Data Plane APIs
+description: To get started with the Couchbase Capella APIs for the Couchbase AI
+  Data Plane, you must create an API key. An API key authenticates and
+  authorizes you to access the APIs.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-start.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:api-guide:api-start.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/api-guide/api-start.html)
 
-# Get Started with the {ai-long} APIs
+# Get Started with the Couchbase AI Data Plane APIs
 
-> To get started with the Couchbase Capella APIs for the {ai-long}, you must create an API key. An API key authenticates and authorizes you to access the APIs. 
+> To get started with the Couchbase Capella APIs for the Couchbase AI Data Plane, you must create an API key. An API key authenticates and authorizes you to access the APIs. 
 
-This page is for the {ai-long}. It covers the {ai} features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Get Started with the Capella Operational Management API](../../cloud/management-api-guide/management-api-start.md).
+This page is for the Couchbase AI Data Plane. It covers the AI Data Plane features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Get Started with the Capella Operational Management API](../../cloud/management-api-guide/management-api-start.md).
 
 This page describes how to generate and manage:
 
 * [API keys for the Management API](#management-api-keys).
 * [Model Service API keys for the Model Service API](#model-service-keys).
 
-Use the Management API to configure and manage the {ai}. Use the Model Service API to send inference requests to your AI models and view their outputs.
+Use the Management API to configure and manage the AI Data Plane. Use the Model Service API to send inference requests to your AI models and view their outputs.
 
 ## [](#management-api-keys)Management API Keys
 
@@ -206,15 +206,15 @@ For each API key, you can grant access from:
 
 To display your region's API keys:
 
-1. In the Capella UI, go to menu:{ai}\[Access Control\].
+1. In the Capella UI, go to **AI Data Plane** **Access Control**.
 
-By default, there are no API keys for your {ai} AWS region.
+By default, there are no API keys for your AI Data Plane AWS region.
 
 ### [](#generate-model-keys)Generate Model Service API Keys
 
 To generate a Model Service API key:
 
-1. In the Capella UI, go to menu:{ai}\[Access Control\].
+1. In the Capella UI, go to **AI Data Plane** **Access Control**.
 2. Click **Generate API Key**.
 3. In the **API Key Name** field, enter a name for the API key.
 4. In the **Expiration (Days)** field, accept the default expiration, change the expiration, or specify that the key should not expire.
@@ -239,15 +239,15 @@ The Capella UI shows the new API key ID and the new API key token. The API key t
 
 To delete a Model Service API key:
 
-1. In the Capella UI, go to menu:{ai}\[Access Control\].
+1. In the Capella UI, go to **AI Data Plane** **Access Control**.
 2. Next to the API key you want to delete, click the trash can icon ().
 3. In the confirmation dialogue, confirm that you want to delete the API key.
 4. Click **Delete API Key**.
 
 ## [](#next-steps)Next Steps
 
-* To make an API call, see [Make an API Call with the {ai-long} APIs](api-use.md).
+* To make an API call, see [Make an API Call with the Couchbase AI Data Plane APIs](api-use.md).
 * For a full reference guide for the Management API, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
 * For a full reference guide for the Model Service API, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 * For a reference of the Management API errors, see [Management API Error Messages ](api-errors.md#management-api-errors).
-* For a reference of the {ai} Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).
+* For a reference of the AI Data Plane Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).

@@ -1,7 +1,7 @@
 ---
 title: Get Involved
-editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/get-involved.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.1/modules/project-docs/pages/get-involved.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-analytics-sdk:project-docs:get-involved.adoc[]
 ---
 

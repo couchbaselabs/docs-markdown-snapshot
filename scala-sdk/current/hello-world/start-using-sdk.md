@@ -2,8 +2,8 @@
 title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Scala SDK.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:scala-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -59,7 +59,7 @@ For the example code below to run, you'll need the username and password of the 
 ### [](#prerequisites)Prerequisites
 
 * The Scala SDK is tested against LTS versions of Oracle JDK and OpenJDK — see the [compatibility docs](../project-docs/compatibility.md#jdk-compat).
-* The Couchbase Scala SDK 3.11 Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
+* The Couchbase Scala SDK 3.12 Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
 
 The code examples also assume:
 
@@ -89,7 +89,7 @@ More details of the installation process are in the [full installation guide](..
 * Maven
 
 ```sbt
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.11.3"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.12.2"
 ```
 
 This will automatically use the correct build for your Scala version.
@@ -98,7 +98,7 @@ For Scala 2.13 or Scala 3.3 through 3.7, include the following in your `build.gr
 
 ```groovy
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_3', version: '3.11.3'
+    compile group: 'com.couchbase.client', name: 'scala-client_3', version: '3.12.2'
 }
 ```
 
@@ -111,7 +111,7 @@ For Scala 2.13 or Scala 3.3 through 3.7, include the following in your Maven `po
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_3</artifactId>
-        <version>3.11.3</version>
+        <version>3.12.2</version>
     </dependency>
 </dependencies>
 ```
@@ -357,7 +357,7 @@ val cluster = Cluster
   .get
 ```
 
-Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](#operator:ROOT:concept-cloud-native-gateway.adoc):
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md):
 
 ```scala
 .connect(

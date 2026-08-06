@@ -1,7 +1,7 @@
 ---
 title: Sync Gateway Admin API Reference
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/rest-api/pages/rest_api_admin.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/rest-api/pages/rest_api_admin.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:rest-api:rest_api_admin.adoc[]
 ---
 
@@ -21,6 +21,10 @@ link: xref:sync-gateway:rest-api:rest_api_admin.adoc[]
 * Server
   * getGet server configuration
   * putSet runtime configuration
+  * getGet the cluster information
+  * getGet the cluster compatibility version state
+  * postFreeze the cluster compatibility version at its current value
+  * postClear the cluster compatibility version freeze
   * getGet the server status
   * getGet the status of the Sync Gateway Collect Info
   * postStart Sync Gateway Collect Info
@@ -48,6 +52,8 @@ link: xref:sync-gateway:rest-api:rest_api_admin.adoc[]
   * getGet the status of the most recent compact operation
   * postManage a attachment migration operation
   * getGet the status of the most recent attachment migration operation
+  * postManage a metadata migration operation
+  * getGet the status of the most recent metadata migration operation
   * postEnsure Full Commit
 * Database Configuration
   * getGet database configuration
@@ -69,6 +75,8 @@ link: xref:sync-gateway:rest-api:rest_api_admin.adoc[]
   * putUpsert a user
   * delDelete a user
   * headCheck if user exists
+  * getGet user's channel history information
+  * postCompact user's channel history
   * getGet all names of the roles
   * postCreate a new role
   * getGet a role
@@ -85,6 +93,8 @@ link: xref:sync-gateway:rest-api:rest_api_admin.adoc[]
 * Document
   * getGet a document with the corresponding metadata
   * postPurge a document
+  * getGet Channel History of Document
+  * postCompact Channel History of Document
   * postCreate a new document
   * getGet changes list
   * postGet changes list
@@ -166,7 +176,7 @@ link: xref:sync-gateway:rest-api:rest_api_admin.adoc[]
 
 [API docs by Redocly](https://redocly.com/redoc/)
 
-# Sync Gateway Admin REST API (4.0)
+# Sync Gateway Admin REST API (4.1)
 
 Download OpenAPI specification:
 
@@ -207,6 +217,10 @@ Successfully connected with the OpenID Connect provider so now redirecting to th
 
 The provider provided is not defined in the Sync Gateway config. If no provided was specified then there is no default provider set. 
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -223,6 +237,7 @@ Admin API
 
 ### Response samples 
 
+* 403
 * 404
 
 Content type
@@ -232,8 +247,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Authentication/operation/get%5Fdb-%5Foidc%5Fchallenge)OpenID Connect authentication initiation via WWW-Authenticate header 
@@ -261,6 +276,10 @@ The provider provided is not defined in the Sync Gateway config. If no provided 
 
 Successfully connected with the OpenID Connect provider so now the client can login.
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -277,6 +296,7 @@ Admin API
 
 ### Response samples 
 
+* 403
 * 404
 
 Content type
@@ -286,8 +306,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Authentication/operation/get%5Fdb-%5Foidc%5Fcallback)OpenID Connect authentication callback 
@@ -321,6 +341,10 @@ A problem occurred when reading the callback request body
 
 An error was received from the OpenID Connect provider. This means the error query parameter was filled.
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -338,6 +362,7 @@ Admin API
 ### Response samples 
 
 * 200
+* 403
 * 404
 * 500
 
@@ -382,6 +407,10 @@ Successfully authenticated with OpenID Connect.
 
 The provider provided is not defined in the Sync Gateway config. If no provided was specified then there is no default provider set. 
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -399,6 +428,7 @@ Admin API
 ### Response samples 
 
 * 200
+* 403
 * 404
 
 Content type
@@ -447,9 +477,9 @@ Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin
 
 Received error from Facebook verifier
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **502** 
 
@@ -483,7 +513,7 @@ Copy
 
 * 400
 * 401
-* 404
+* 403
 * 502
 * 504
 
@@ -528,9 +558,9 @@ Value of `Origin` is not in the approved list of allowed origins in `LoginOrigin
 
 Received error from Google token verifier or invalid application ID in the config
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **502** 
 
@@ -564,7 +594,7 @@ Copy
 
 * 400
 * 401
-* 404
+* 403
 * 502
 
 Content type
@@ -669,10 +699,12 @@ Copy
 * "bootstrap": {
   * "ca_cert_path": "string",
   * "config_update_frequency": "10s",
+  * "node_heartbeat_expiry": "60s",
   * "group_id": "default",
   * "password": "string",
   * "server": "string",
   * "server_tls_skip_verify": false,
+  * "use_system_metadata_collection": false,
   * "use_tls_server": true,
   * "username": "string",
   * "x509_cert_path": "string",
@@ -714,11 +746,9 @@ Copy
   * "console": {
     * "log_level": "none",
     * "log_keys": [
-      * [
-        * "CRUD",
-        * "HTTP",
-        * "Query"  
-            ]  
+      * "CRUD",
+      * "HTTP",
+      * "Query"  
       ],
     * "color_enabled": false,
     * "file_output": "string",
@@ -834,7 +864,8 @@ Copy
   },
   * "stats_log_frequency": "1m",
   * "use_stdlib_json": false,
-  * "use_xattr_config": false  
+  * "use_xattr_config": false,
+  * "use_gocb_fast_fail_retry": false  
 },
 * "couchbase_keepalive_interval": 0
 }`
@@ -890,11 +921,9 @@ Copy
   * "console": {
     * "log_level": "none",
     * "log_keys": [
-      * [
-        * "CRUD",
-        * "HTTP",
-        * "Query"  
-            ]  
+      * "CRUD",
+      * "HTTP",
+      * "Query"  
       ]  
   },
   * "error": {
@@ -935,6 +964,533 @@ Copy
 `{
 * "error": "string",
 * "reason": "string"
+}`
+
+## [](#tag/Server/operation/get%5F%5Fcluster%5Finfo)Get the cluster information 
+
+This will retrieve information about the Sync Gateway cluster's buckets.
+
+Required Sync Gateway RBAC roles:
+
+* Sync Gateway Dev Ops
+
+### Responses
+
+**200** 
+
+Returned the cluster information successfully
+
+**400** 
+
+There was a problem with your request
+
+get/\_cluster\_info
+
+Admin API
+
+{protocol}://{hostname}:4985/\_cluster\_info
+
+### Response samples 
+
+* 200
+* 400
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "legacy_config": true,
+* "buckets": {
+  * "bucketname1": {
+    * "registry": {
+      * "version": "string",
+      * "config_groups": {
+        * "configgroupid1": {
+          * "databases": {
+            * "dbname1": {
+              * "scopes": {
+                * "scopename1": {
+                  * "collections": [ ]  
+                                                                        },
+                * "scopename2": {
+                  * "collections": [ ]  
+                                                                        }  
+                                                        },
+              * "version": "string",
+              * "previous_version": {
+                * "scopes": {
+                  * "scopename1": { },
+                  * "scopename2": { }  
+                                                                        },
+                * "version": "string"  
+                                                        },
+              * "metadata_id": "string",
+              * "uuid": "string"  
+                                          },
+            * "dbname2": {
+              * "scopes": {
+                * "scopename1": {
+                  * "collections": [ ]  
+                                                                        },
+                * "scopename2": {
+                  * "collections": [ ]  
+                                                                        }  
+                                                        },
+              * "version": "string",
+              * "previous_version": {
+                * "scopes": {
+                  * "scopename1": { },
+                  * "scopename2": { }  
+                                                                        },
+                * "version": "string"  
+                                                        },
+              * "metadata_id": "string",
+              * "uuid": "string"  
+                                          }  
+                              }  
+                    },
+        * "configgroupid2": {
+          * "databases": {
+            * "dbname1": {
+              * "scopes": {
+                * "scopename1": {
+                  * "collections": [ ]  
+                                                                        },
+                * "scopename2": {
+                  * "collections": [ ]  
+                                                                        }  
+                                                        },
+              * "version": "string",
+              * "previous_version": {
+                * "scopes": {
+                  * "scopename1": { },
+                  * "scopename2": { }  
+                                                                        },
+                * "version": "string"  
+                                                        },
+              * "metadata_id": "string",
+              * "uuid": "string"  
+                                          },
+            * "dbname2": {
+              * "scopes": {
+                * "scopename1": {
+                  * "collections": [ ]  
+                                                                        },
+                * "scopename2": {
+                  * "collections": [ ]  
+                                                                        }  
+                                                        },
+              * "version": "string",
+              * "previous_version": {
+                * "scopes": {
+                  * "scopename1": { },
+                  * "scopename2": { }  
+                                                                        },
+                * "version": "string"  
+                                                        },
+              * "metadata_id": "string",
+              * "uuid": "string"  
+                                          }  
+                              }  
+                    }  
+            },
+      * "sg_version": "string",
+      * "cluster_compat_version_hwm": "4.1",
+      * "updated_at": "2019-08-24T14:15:22Z",
+      * "created_at": "2019-08-24T14:15:22Z",
+      * "nodes": {
+        * "nodeUID1": {
+          * "version": "4.1",
+          * "heartbeat_at": "2019-08-24T14:15:22Z"  
+                    },
+        * "nodeUID2": {
+          * "version": "4.1",
+          * "heartbeat_at": "2019-08-24T14:15:22Z"  
+                    }  
+            },
+      * "frozen_cluster_compat_version": {
+        * "version": "4.1",
+        * "frozen_at": "2019-08-24T14:15:22Z"  
+            },
+      * "pre_ccv_aware_nodes": {
+        * "nodeUUID1": {
+          * "version": "4.1",
+          * "last_observed_at": "2019-08-24T14:15:22Z"  
+                    },
+        * "nodeUUID2": {
+          * "version": "4.1",
+          * "last_observed_at": "2019-08-24T14:15:22Z"  
+                    }  
+            }  
+      },
+    * "migration_status": {
+      * "bucket_migration_id": "string",
+      * "databases": {
+        * "metadataid1": {
+          * "state": "pending",
+          * "started_at": "2019-08-24T14:15:22Z",
+          * "completed_at": "2019-08-24T14:15:22Z"  
+                    },
+        * "metadataid2": {
+          * "state": "pending",
+          * "started_at": "2019-08-24T14:15:22Z",
+          * "completed_at": "2019-08-24T14:15:22Z"  
+                    }  
+            },
+      * "bootstrap": {
+        * "state": "pending",
+        * "completed_at": "2019-08-24T14:15:22Z",
+        * "last_attempted_at": "2019-08-24T14:15:22Z",
+        * "attempts": 0  
+            }  
+      },
+    * "enable_cross_cluster_versioning": true,
+    * "bootstrap_target": "_system._mobile"  
+  },
+  * "bucketname2": {
+    * "registry": {
+      * "version": "string",
+      * "config_groups": {
+        * "configgroupid1": {
+          * "databases": {
+            * "dbname1": {
+              * "scopes": {
+                * "scopename1": {
+                  * "collections": [ ]  
+                                                                        },
+                * "scopename2": {
+                  * "collections": [ ]  
+                                                                        }  
+                                                        },
+              * "version": "string",
+              * "previous_version": {
+                * "scopes": {
+                  * "scopename1": { },
+                  * "scopename2": { }  
+                                                                        },
+                * "version": "string"  
+                                                        },
+              * "metadata_id": "string",
+              * "uuid": "string"  
+                                          },
+            * "dbname2": {
+              * "scopes": {
+                * "scopename1": {
+                  * "collections": [ ]  
+                                                                        },
+                * "scopename2": {
+                  * "collections": [ ]  
+                                                                        }  
+                                                        },
+              * "version": "string",
+              * "previous_version": {
+                * "scopes": {
+                  * "scopename1": { },
+                  * "scopename2": { }  
+                                                                        },
+                * "version": "string"  
+                                                        },
+              * "metadata_id": "string",
+              * "uuid": "string"  
+                                          }  
+                              }  
+                    },
+        * "configgroupid2": {
+          * "databases": {
+            * "dbname1": {
+              * "scopes": {
+                * "scopename1": {
+                  * "collections": [ ]  
+                                                                        },
+                * "scopename2": {
+                  * "collections": [ ]  
+                                                                        }  
+                                                        },
+              * "version": "string",
+              * "previous_version": {
+                * "scopes": {
+                  * "scopename1": { },
+                  * "scopename2": { }  
+                                                                        },
+                * "version": "string"  
+                                                        },
+              * "metadata_id": "string",
+              * "uuid": "string"  
+                                          },
+            * "dbname2": {
+              * "scopes": {
+                * "scopename1": {
+                  * "collections": [ ]  
+                                                                        },
+                * "scopename2": {
+                  * "collections": [ ]  
+                                                                        }  
+                                                        },
+              * "version": "string",
+              * "previous_version": {
+                * "scopes": {
+                  * "scopename1": { },
+                  * "scopename2": { }  
+                                                                        },
+                * "version": "string"  
+                                                        },
+              * "metadata_id": "string",
+              * "uuid": "string"  
+                                          }  
+                              }  
+                    }  
+            },
+      * "sg_version": "string",
+      * "cluster_compat_version_hwm": "4.1",
+      * "updated_at": "2019-08-24T14:15:22Z",
+      * "created_at": "2019-08-24T14:15:22Z",
+      * "nodes": {
+        * "nodeUID1": {
+          * "version": "4.1",
+          * "heartbeat_at": "2019-08-24T14:15:22Z"  
+                    },
+        * "nodeUID2": {
+          * "version": "4.1",
+          * "heartbeat_at": "2019-08-24T14:15:22Z"  
+                    }  
+            },
+      * "frozen_cluster_compat_version": {
+        * "version": "4.1",
+        * "frozen_at": "2019-08-24T14:15:22Z"  
+            },
+      * "pre_ccv_aware_nodes": {
+        * "nodeUUID1": {
+          * "version": "4.1",
+          * "last_observed_at": "2019-08-24T14:15:22Z"  
+                    },
+        * "nodeUUID2": {
+          * "version": "4.1",
+          * "last_observed_at": "2019-08-24T14:15:22Z"  
+                    }  
+            }  
+      },
+    * "migration_status": {
+      * "bucket_migration_id": "string",
+      * "databases": {
+        * "metadataid1": {
+          * "state": "pending",
+          * "started_at": "2019-08-24T14:15:22Z",
+          * "completed_at": "2019-08-24T14:15:22Z"  
+                    },
+        * "metadataid2": {
+          * "state": "pending",
+          * "started_at": "2019-08-24T14:15:22Z",
+          * "completed_at": "2019-08-24T14:15:22Z"  
+                    }  
+            },
+      * "bootstrap": {
+        * "state": "pending",
+        * "completed_at": "2019-08-24T14:15:22Z",
+        * "last_attempted_at": "2019-08-24T14:15:22Z",
+        * "attempts": 0  
+            }  
+      },
+    * "enable_cross_cluster_versioning": true,
+    * "bootstrap_target": "_system._mobile"  
+  }  
+}
+}`
+
+## [](#tag/Server/operation/get%5F%5Fcluster%5Fcompat%5Fversion)Get the cluster compatibility version state 
+
+Returns the cluster-wide cluster compatibility version, the per-node versions registered in the cluster, and the frozen value if a freeze is currently in effect.
+
+Without a freeze, `cluster_compat_version` is the minimum across all live nodes. With a freeze, `cluster_compat_version` is pinned to `frozen_cluster_compat_version`. The presence of `frozen_cluster_compat_version` in the response indicates that a freeze is set.
+
+Required Sync Gateway RBAC roles:
+
+* Sync Gateway Dev Ops
+
+### Responses
+
+**200** 
+
+Returned the cluster compatibility version state successfully
+
+**403** 
+
+User does not have access to resource, or resource does not exist
+
+**503** 
+
+Cluster compatibility version tracking is not enabled on this node
+
+get/\_cluster\_compat\_version
+
+Admin API
+
+{protocol}://{hostname}:4985/\_cluster\_compat\_version
+
+### Response samples 
+
+* 200
+* 403
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "cluster_compat_version": "4.1",
+* "nodes": {
+  * "nodeUID1": "4.1",
+  * "nodeUID2": "4.1"  
+},
+* "pre_ccv_aware_nodes": {
+  * "nodeUUID1": "4.1",
+  * "nodeUUID2": "4.1"  
+},
+* "frozen_cluster_compat_version": "4.1"
+}`
+
+## [](#tag/Server/operation/post%5F%5Fcluster%5Fcompat%5Fversion%5Ffreeze)Freeze the cluster compatibility version at its current value 
+
+Captures the current cluster compatibility version and pins the cluster to this version.
+
+While frozen, subsequent node upgrades will not advance the reported `cluster_compat_version`, preserving the option to roll a node back to the prior major/minor.
+
+Returns success only if every tracked bucket accepts the freeze. If one or more buckets fail to accept it, a `503` is returned with the current state — the cluster compatibility version may still be partially pinned, and the request should be retried.
+
+To clear the pinned version, call `POST /_cluster_compat_version/unfreeze`.
+
+Required Sync Gateway RBAC roles:
+
+* Sync Gateway Dev Ops
+
+### Responses
+
+**200** 
+
+Cluster compatibility version has been frozen
+
+**403** 
+
+User does not have access to resource, or resource does not exist
+
+**500** 
+
+An unexpected error occurred while freezing the cluster compatibility version
+
+**503** 
+
+The freeze could not be fully applied. Possible reasons:
+
+* Cluster compatibility version tracking is not enabled on this node.
+* The cluster compatibility version has not yet been computed (e.g. immediately after startup).
+* No tracked bucket registries.
+* One or more tracked buckets did not accept the freeze (partial failure). In this case the response body is a `ClusterCompatVersionState` describing the version (if any) that is currently pinned, so the admin can see what did take effect.
+
+post/\_cluster\_compat\_version/freeze
+
+Admin API
+
+{protocol}://{hostname}:4985/\_cluster\_compat\_version/freeze
+
+### Response samples 
+
+* 200
+* 403
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "cluster_compat_version": "4.1",
+* "nodes": {
+  * "nodeUID1": "4.1",
+  * "nodeUID2": "4.1"  
+},
+* "pre_ccv_aware_nodes": {
+  * "nodeUUID1": "4.1",
+  * "nodeUUID2": "4.1"  
+},
+* "frozen_cluster_compat_version": "4.1"
+}`
+
+## [](#tag/Server/operation/post%5F%5Fcluster%5Fcompat%5Fversion%5Funfreeze)Clear the cluster compatibility version freeze 
+
+Clears any pinned cluster compatibility version previously frozen via `POST /_cluster_compat_version/freeze`.
+
+The reported `cluster_compat_version` will resume tracking the live-node minimum and may immediately advance if all nodes have been upgraded since the freeze was set.
+
+Returns success only if the cluster is fully unfrozen. If any part of the cluster remains frozen after the request, a `503` is returned with the current state - the cluster compatibility version may still be held back, and the request should be retried.
+
+Required Sync Gateway RBAC roles:
+
+* Sync Gateway Dev Ops
+
+### Responses
+
+**200** 
+
+Cluster compatibility version freeze has been cleared
+
+**403** 
+
+User does not have access to resource, or resource does not exist
+
+**500** 
+
+An unexpected error occurred while clearing the cluster compatibility version freeze
+
+**503** 
+
+The unfreeze did not fully apply. The cluster compatibility version may still be held back and the request should be retried. The response body is either a `ClusterCompatVersionState`showing the residual freeze, or an `HTTP-Error` when cluster compatibility version tracking is not enabled on this node, or when the unfreeze partially failed and the residual freeze state could not be verified.
+
+post/\_cluster\_compat\_version/unfreeze
+
+Admin API
+
+{protocol}://{hostname}:4985/\_cluster\_compat\_version/unfreeze
+
+### Response samples 
+
+* 200
+* 403
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "cluster_compat_version": "4.1",
+* "nodes": {
+  * "nodeUID1": "4.1",
+  * "nodeUID2": "4.1"  
+},
+* "pre_ccv_aware_nodes": {
+  * "nodeUUID1": "4.1",
+  * "nodeUUID2": "4.1"  
+},
+* "frozen_cluster_compat_version": "4.1"
 }`
 
 ## [](#tag/Server/operation/get%5F%5Fstatus)Get the server status 
@@ -1083,7 +1639,8 @@ Copy
           * "host": "string"  
                     }  
             }  
-      }  
+      },
+    * "metadata_store_mode": "fallback_active"  
   },
   * "dbname2": {
     * "seq": 0,
@@ -1192,14 +1749,22 @@ Copy
           * "host": "string"  
                     }  
             }  
-      }  
+      },
+    * "metadata_store_mode": "fallback_active"  
   }  
 },
 * "version": "string",
 * "vendor": {
   * "name": "Couchbase Sync Gateway",
-  * "version": 3.1  
-}
+  * "version": "3.1"  
+},
+* "runtime": {
+  * "go_memlimit_bytes": 1073741824,
+  * "go_maxprocs": 4,
+  * "cgroup_memory_limit_bytes": 2147483648  
+},
+* "node_uid": "string",
+* "cluster_compat_version": "4.1"
 }`
 
 ## [](#tag/Server/operation/get%5F%5Fsgcollect%5Finfo)Get the status of the Sync Gateway Collect Info 
@@ -1448,10 +2013,12 @@ Copy
 * "couchdb": "Welcome",
 * "vendor": {
   * "name": "Couchbase Sync Gateway",
-  * "version": 3.1  
+  * "version": "3.1"  
 },
 * "version": "Couchbase Sync Gateway/3.1.0(1;a765231) EE",
-* "persistent_config": true
+* "persistent_config": true,
+* "node_uid": "string",
+* "cluster_compat_version": "4.1"
 }`
 
 ## [](#tag/Server/operation/head%5F-)Check if server online 
@@ -1693,9 +2260,9 @@ Required Sync Gateway RBAC roles:
 
 Successfully returned database information
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 get/{db}/
 
@@ -1706,7 +2273,7 @@ Admin API
 ### Response samples 
 
 * 200
-* 404
+* 403
 
 Content type
 
@@ -1749,9 +2316,9 @@ Required Sync Gateway RBAC roles:
 
 Successfully removed the database
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **500** 
 
@@ -1766,7 +2333,7 @@ Admin API
 ### Response samples 
 
 * 200
-* 404
+* 403
 * 500
 
 Content type
@@ -1796,9 +2363,9 @@ Required Sync Gateway RBAC roles:
 
 Database exists
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 head/{db}/
 
@@ -1808,7 +2375,7 @@ Admin API
 
 ### Response samples 
 
-* 404
+* 403
 
 Content type
 
@@ -1817,8 +2384,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Database-Management/operation/put%5Fdb-)Create a new Sync Gateway database 
@@ -1978,7 +2545,8 @@ Copy
   * "rev_cache": {
     * "max_memory_count_mb": 0,
     * "shard_count": 16,
-    * "size": 5000  
+    * "size": 5000,
+    * "insert_on_write": false  
   },
   * "channel_cache_expiry": 0,
   * "channel_cache_max_length": 0,
@@ -2152,10 +2720,8 @@ Copy
       ],
     * "enabled": false,
     * "enabled_events": [
-      * [
-        * 1234,
-        * 5678  
-            ]  
+      * 1234,
+      * 5678  
       ]  
   },
   * "console": {
@@ -2366,6 +2932,7 @@ Copy
   },
   * "oidc_tls_skip_verify": true,
   * "remote_config_tls_skip_verify": true,
+  * "resync_partitions": 1,
   * "same_site_cookie": "Default",
   * "sgr_tls_skip_verify": true,
   * "user_views": {
@@ -2551,9 +3118,9 @@ Required Sync Gateway RBAC roles:
 
 successfully retrieved the most recent resync operation status
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 get/{db}/\_resync
 
@@ -2564,7 +3131,7 @@ Admin API
 ### Response samples 
 
 * 200
-* 404
+* 403
 
 Content type
 
@@ -2580,6 +3147,8 @@ Copy
 * "last_error": "string",
 * "docs_changed": 0,
 * "docs_processed": 0,
+* "docs_targeted": 0,
+* "docs_errored": 0,
 * "collections_processing": {
   * "scopeName": [
     * "collection1",
@@ -2629,6 +3198,10 @@ Required Sync Gateway RBAC roles:
 
 successfully changed the status of the resync operation
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **503** 
 
 Service Unavailable
@@ -2664,6 +3237,7 @@ Copy
 ### Response samples 
 
 * 200
+* 403
 * 503
 
 Content type
@@ -2680,6 +3254,8 @@ Copy
 * "last_error": "string",
 * "docs_changed": 0,
 * "docs_processed": 0,
+* "docs_targeted": 0,
+* "docs_errored": 0,
 * "collections_processing": {
   * "scopeName": [
     * "collection1",
@@ -2802,9 +3378,9 @@ Required Sync Gateway RBAC roles:
 
 successfully retrieved the most recent index initialization
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 get/{db}/\_index\_init
 
@@ -2815,7 +3391,7 @@ Admin API
 ### Response samples 
 
 * 200
-* 404
+* 403
 
 Content type
 
@@ -2847,9 +3423,9 @@ Copy
 
 ## [](#tag/Database-Management/operation/post%5Fdb-%5Fonline)Bring the database online 
 
-This will bring the database online on this node only so the Public and full Admin REST API requests can be served.
+Transition the state of the database to online.
 
-If using persistent config, call [POST /{db}/\_config](#operation/post%5Fdb-%5Fconfig) with `{"offline": false}` to set the database to online.
+If using persistent config this will affect all Sync Gateway nodes, otherwise this operation is local to the node.
 
 Bringing a database online will:
 
@@ -2884,9 +3460,9 @@ Add an optional delay to wait before bringing the database online
 
 Database will be brought online immediately or with the specified delay
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **503** 
 
@@ -2914,7 +3490,7 @@ Copy
 
 ### Response samples 
 
-* 404
+* 403
 * 503
 
 Content type
@@ -2924,15 +3500,15 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Database-Management/operation/post%5Fdb-%5Foffline)Take the database offline 
 
-This will take the database offline on this node only. Actions can be taken without disrupting current operations ungracefully or having the restart the Sync Gateway instance.
+Transition the state of the database to offline. This database will no longer accept traffic and only maintenance operations can be performed. This operation blocks until all REST traffic is idle.
 
-If using persistent config, call [POST /{db}/\_config](#operation/post%5Fdb-%5Fconfig) with `{"offline": true}` to set the database to offline.
+If using persistent config this will affect all Sync Gateway nodes, otherwise this is operation is local to the node.
 
 This will not take the backing Couchbase Server bucket offline.
 
@@ -2960,9 +3536,9 @@ Required Sync Gateway RBAC roles:
 
 Database has been taken offline successfully
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **503** 
 
@@ -2976,7 +3552,7 @@ Admin API
 
 ### Response samples 
 
-* 404
+* 403
 * 503
 
 Content type
@@ -2986,8 +3562,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Database-Management/operation/post%5Fdb-%5Fcompact)Manage a compact operation 
@@ -3028,9 +3604,9 @@ Started or stopped compact operation successfully
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **503** 
 
@@ -3045,7 +3621,7 @@ Admin API
 ### Response samples 
 
 * 400
-* 404
+* 403
 * 503
 
 Content type
@@ -3087,9 +3663,9 @@ Compaction status retrieved successfully
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 get/{db}/\_compact
 
@@ -3101,7 +3677,7 @@ Admin API
 
 * 200
 * 400
-* 404
+* 403
 
 Content type
 
@@ -3152,9 +3728,9 @@ Started or stopped compact operation successfully
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **503** 
 
@@ -3169,7 +3745,7 @@ Admin API
 ### Response samples 
 
 * 400
-* 404
+* 403
 * 503
 
 Content type
@@ -3206,9 +3782,9 @@ Attachment migration status retrieved successfully
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 get/{db}/\_attachment\_migration
 
@@ -3220,7 +3796,7 @@ Admin API
 
 * 200
 * 400
-* 404
+* 403
 
 Content type
 
@@ -3236,6 +3812,145 @@ Copy
 * "docs_changed": 0,
 * "docs_processed": 0,
 * "docs_failed": 0
+}`
+
+## [](#tag/Database-Management/operation/post%5Fdb-%5Fmetadata%5Fmigration)Manage a metadata migration operation 
+
+This allows a metadata migration operation to be started on the database, or to stop an existing running metadata migration operation.
+
+Metadata migration moves a database's `_sync:`\-rooted metadata from the legacy `_default._default` keyspace into the `_system._mobile` collection. It is normally armed automatically the moment all nodes in the cluster have applied the database configuration that opts into the system metadata collection — this endpoint is provided for operators that need to drive the lifecycle directly (e.g. retry after a give-up, stop a runaway migration).
+
+Metadata migration is a single-node process and only one node in the cluster can be running it at a time. Other nodes contend for a cluster-wide heartbeat lock.
+
+Required Sync Gateway RBAC roles:
+
+* Sync Gateway Architect
+
+##### path Parameters
+
+| dbrequired | string Example: db1The name of the database to run the operation against. |
+| ---------- | ------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| action | string Default: "start" Enum: "start" "stop" Defines whether a metadata migration operation is being started or stopped.  |
+| ------ | ------------------------------------------------------------------------------------------------------------------------- |
+| reset  | boolean This forces a fresh metadata migration start instead of trying to resume the previous failed migration operation. |
+
+### Responses
+
+**200** 
+
+Started or stopped metadata migration operation successfully.
+
+**400** 
+
+There was a problem with your request
+
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
+**404** 
+
+Metadata migration manager is not initialized for this database.
+
+**503** 
+
+Cannot start metadata migration due to another migration operation still running.
+
+post/{db}/\_metadata\_migration
+
+Admin API
+
+{protocol}://{hostname}:4985/{db}/\_metadata\_migration
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "status": "running",
+* "start_time": "string",
+* "last_error": "string",
+* "migration_id": "string",
+* "docs_processed": 0,
+* "docs_failed": 0,
+* "docs_attempted": 0,
+* "docs_out_of_scope": 0,
+* "passes": 0
+}`
+
+## [](#tag/Database-Management/operation/get%5Fdb-%5Fmetadata%5Fmigration)Get the status of the most recent metadata migration operation 
+
+This will retrieve the current status of the most recent metadata migration operation for the database.
+
+Required Sync Gateway RBAC roles:
+
+* Sync Gateway Architect
+
+##### path Parameters
+
+| dbrequired | string Example: db1The name of the database to run the operation against. |
+| ---------- | ------------------------------------------------------------------------- |
+
+### Responses
+
+**200** 
+
+Metadata migration status retrieved successfully.
+
+**400** 
+
+There was a problem with your request
+
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
+**404** 
+
+Metadata migration manager is not initialized for this database.
+
+get/{db}/\_metadata\_migration
+
+Admin API
+
+{protocol}://{hostname}:4985/{db}/\_metadata\_migration
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "status": "running",
+* "start_time": "string",
+* "last_error": "string",
+* "migration_id": "string",
+* "docs_processed": 0,
+* "docs_failed": 0,
+* "docs_attempted": 0,
+* "docs_out_of_scope": 0,
+* "passes": 0
 }`
 
 ## [](#tag/Database-Management/operation/post%5Fdb-%5Fensure%5Ffull%5Fcommit)Ensure Full Commit  Deprecated 
@@ -3310,9 +4025,9 @@ Required Sync Gateway RBAC roles:
 
 Successfully retrieved database configuration
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 get/{db}/\_config
 
@@ -3323,7 +4038,7 @@ Admin API
 ### Response samples 
 
 * 200
-* 404
+* 403
 
 Content type
 
@@ -3355,7 +4070,8 @@ Copy
   * "rev_cache": {
     * "max_memory_count_mb": 0,
     * "shard_count": 16,
-    * "size": 5000  
+    * "size": 5000,
+    * "insert_on_write": false  
   },
   * "channel_cache_expiry": 0,
   * "channel_cache_max_length": 0,
@@ -3571,10 +4287,8 @@ Copy
       ],
     * "enabled": false,
     * "enabled_events": [
-      * [
-        * 1234,
-        * 5678  
-            ]  
+      * 1234,
+      * 5678  
       ]  
   },
   * "console": {
@@ -3847,6 +4561,7 @@ Copy
   },
   * "oidc_tls_skip_verify": true,
   * "remote_config_tls_skip_verify": true,
+  * "resync_partitions": 1,
   * "same_site_cookie": "Default",
   * "sgr_tls_skip_verify": true,
   * "user_views": {
@@ -4137,9 +4852,9 @@ Database configuration successfully updated
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **412** 
 
@@ -4189,7 +4904,8 @@ Copy
   * "rev_cache": {
     * "max_memory_count_mb": 0,
     * "shard_count": 16,
-    * "size": 5000  
+    * "size": 5000,
+    * "insert_on_write": false  
   },
   * "channel_cache_expiry": 0,
   * "channel_cache_max_length": 0,
@@ -4363,10 +5079,8 @@ Copy
       ],
     * "enabled": false,
     * "enabled_events": [
-      * [
-        * 1234,
-        * 5678  
-            ]  
+      * 1234,
+      * 5678  
       ]  
   },
   * "console": {
@@ -4577,6 +5291,7 @@ Copy
   },
   * "oidc_tls_skip_verify": true,
   * "remote_config_tls_skip_verify": true,
+  * "resync_partitions": 1,
   * "same_site_cookie": "Default",
   * "sgr_tls_skip_verify": true,
   * "user_views": {
@@ -4683,7 +5398,7 @@ Copy
 ### Response samples 
 
 * 400
-* 404
+* 403
 * 412
 
 Content type
@@ -4795,9 +5510,9 @@ Database configuration successfully updated
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Not Found
+User does not have access to the database resource, or database resource does not exist
 
 **412** 
 
@@ -4847,7 +5562,8 @@ Copy
   * "rev_cache": {
     * "max_memory_count_mb": 0,
     * "shard_count": 16,
-    * "size": 5000  
+    * "size": 5000,
+    * "insert_on_write": false  
   },
   * "channel_cache_expiry": 0,
   * "channel_cache_max_length": 0,
@@ -5021,10 +5737,8 @@ Copy
       ],
     * "enabled": false,
     * "enabled_events": [
-      * [
-        * 1234,
-        * 5678  
-            ]  
+      * 1234,
+      * 5678  
       ]  
   },
   * "console": {
@@ -5235,6 +5949,7 @@ Copy
   },
   * "oidc_tls_skip_verify": true,
   * "remote_config_tls_skip_verify": true,
+  * "resync_partitions": 1,
   * "same_site_cookie": "Default",
   * "sgr_tls_skip_verify": true,
   * "user_views": {
@@ -5341,6 +6056,7 @@ Copy
 ### Response samples 
 
 * 400
+* 403
 * 412
 
 Content type
@@ -5379,9 +6095,9 @@ Required Sync Gateway RBAC roles:
 
 Successfully retrieved database configuration
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 get/{db}/\_config/audit
 
@@ -5392,7 +6108,7 @@ Admin API
 ### Response samples 
 
 * 200
-* 404
+* 403
 
 Content type
 
@@ -5465,9 +6181,9 @@ Database audit configuration successfully updated
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 put/{db}/\_config/audit
 
@@ -5514,7 +6230,7 @@ Copy
 ### Response samples 
 
 * 400
-* 404
+* 403
 
 Content type
 
@@ -5571,9 +6287,9 @@ Database audit configuration successfully updated
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Not Found
+User does not have access to the database resource, or database resource does not exist
 
 post/{db}/\_config/audit
 
@@ -5620,6 +6336,7 @@ Copy
 ### Response samples 
 
 * 400
+* 403
 
 Content type
 
@@ -5653,9 +6370,9 @@ Required Sync Gateway RBAC roles:
 
 Successfully retrieved the sync function
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 get/{keyspace}/\_config/sync
 
@@ -5666,7 +6383,7 @@ Admin API
 ### Response samples 
 
 * 200
-* 404
+* 403
 
 Content type
 
@@ -5717,9 +6434,9 @@ Updated sync function successfully
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **412** 
 
@@ -5752,7 +6469,7 @@ function (doc, oldDoc) {
 ### Response samples 
 
 * 400
-* 404
+* 403
 * 412
 
 Content type
@@ -5790,8 +6507,8 @@ Required Sync Gateway RBAC roles:
 
 ##### header Parameters
 
-| If-Match | string An optimistic concurrency control (OCC) value used to prevent conflicts. Use the value returned in the ETag response header of the GET request for the resource being updated, or the latest known Revision Tree ID or Current Version of the document. |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| If-Match | string An optimistic concurrency control (OCC) value used to prevent conflicts. The value is typically the ETag response header from a prior GET of the document, or the latest known Revision Tree ID or Current Version (CV) of the document; the type is autodetected. The If-Match header, the rev query parameter, and the \_rev / \_cv fields in the request body are alternative OCC sources, listed below. Clients may supply more than one as long as same-type values match exactly; mismatched values return HTTP 400\. Precedence when multiple are present: rev query parameter, then If-Match header, then body \_cv, then body \_rev. For [PUT /{keyspace}/{docid}](#operation/put%5Fkeyspace-docid): any of these OCC sources may be used. For [POST /{keyspace}/\_bulk\_docs](#operation/post%5Fkeyspace-%5Fbulk%5Fdocs): per-document OCC must be supplied in the doc body via \_rev or \_cv (header/query OCC are per-request, not per-document). |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### Responses
 
@@ -5799,9 +6516,9 @@ Required Sync Gateway RBAC roles:
 
 Successfully reset the sync function
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **412** 
 
@@ -5819,7 +6536,7 @@ Admin API
 
 ### Response samples 
 
-* 404
+* 403
 * 412
 
 Content type
@@ -5829,8 +6546,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Database-Configuration/operation/get%5Fkeyspace-%5Fconfig-import%5Ffilter)Get database import filter 
@@ -5854,9 +6571,9 @@ Required Sync Gateway RBAC roles:
 
 Successfully retrieved the import filter
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 get/{keyspace}/\_config/import\_filter
 
@@ -5866,7 +6583,7 @@ Admin API
 
 ### Response samples 
 
-* 404
+* 403
 
 Content type
 
@@ -5875,8 +6592,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter)Set database import filter 
@@ -5918,9 +6635,9 @@ Updated import filter successfully
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **412** 
 
@@ -5939,7 +6656,7 @@ Admin API
 ### Response samples 
 
 * 400
-* 404
+* 403
 * 412
 
 Content type
@@ -5977,9 +6694,9 @@ Required Sync Gateway RBAC roles:
 
 Successfully deleted the import filter
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **412** 
 
@@ -5997,7 +6714,7 @@ Admin API
 
 ### Response samples 
 
-* 404
+* 403
 * 412
 
 Content type
@@ -6007,8 +6724,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Database-Security)Database Security
@@ -6042,6 +6759,10 @@ Required Sync Gateway RBAC roles:
 
 Users retrieved successfully
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -6055,6 +6776,7 @@ Admin API
 ### Response samples 
 
 * 200
+* 403
 * 404
 
 Content type
@@ -6101,9 +6823,9 @@ Properties associated with a user
 
 New user created successfully
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **409** 
 
@@ -6168,7 +6890,7 @@ Copy
 
 ### Response samples 
 
-* 404
+* 403
 * 409
 
 Content type
@@ -6178,8 +6900,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Database-Security/operation/get%5Fdb-%5Fuser-name)Get a user 
@@ -6204,6 +6926,10 @@ Required Sync Gateway RBAC roles:
 
 Properties associated with a user
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -6217,6 +6943,7 @@ Admin API
 ### Response samples 
 
 * 200
+* 403
 * 404
 
 Content type
@@ -6346,9 +7073,9 @@ Existing user modified successfully
 
 New user created
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 put/{db}/\_user/{name}
 
@@ -6409,7 +7136,7 @@ Copy
 
 ### Response samples 
 
-* 404
+* 403
 
 Content type
 
@@ -6418,8 +7145,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Database-Security/operation/delete%5Fdb-%5Fuser-name)Delete a user 
@@ -6443,6 +7170,10 @@ Required Sync Gateway RBAC roles:
 
 User deleted successfully
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -6455,6 +7186,7 @@ Admin API
 
 ### Response samples 
 
+* 403
 * 404
 
 Content type
@@ -6464,8 +7196,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Database-Security/operation/head%5Fdb-%5Fuser-name)Check if user exists 
@@ -6490,6 +7222,10 @@ Required Sync Gateway RBAC roles:
 
 User exists
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Not Found
@@ -6499,6 +7235,178 @@ head/{db}/\_user/{name}
 Admin API
 
 {protocol}://{hostname}:4985/{db}/\_user/{name}
+
+### Response samples 
+
+* 403
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "error": "string",
+* "reason": "string"
+}`
+
+## [](#tag/Database-Security/operation/get%5Fdb-%5Fuser-name-%5Fhistory)Get user's channel history information 
+
+Retrieve the channel history of the specified user.
+
+Required Sync Gateway RBAC roles:
+
+* Sync Gateway Architect
+* Sync Gateway Application
+* Sync Gateway Application Read Only
+
+##### path Parameters
+
+| dbrequired   | string Example: db1The name of the database to run the operation against. |
+| ------------ | ------------------------------------------------------------------------- |
+| namerequired | string The name of the user.                                              |
+
+### Responses
+
+**200** 
+
+User channel history information retrieved successfully
+
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
+**404** 
+
+Resource could not be found
+
+get/{db}/\_user/{name}/\_access\_history
+
+Admin API
+
+{protocol}://{hostname}:4985/{db}/\_user/{name}/\_access\_history
+
+### Response samples 
+
+* 200
+* 403
+* 404
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "channels": {
+  * "scope1": {
+    * "collection1": [
+      * "channel1",
+      * "channel2"  
+      ],
+    * "collection2": [
+      * "channel3"  
+      ]  
+  }  
+}
+}`
+
+## [](#tag/Database-Security/operation/post%5Fdb-%5Fuser-name-%5Fhistory-compact)Compact user's channel history 
+
+Remove specified channels from a user's channel history.
+
+Required Sync Gateway RBAC roles:
+
+* Sync Gateway Architect
+* Sync Gateway Application
+
+##### path Parameters
+
+| dbrequired   | string Example: db1The name of the database to run the operation against. |
+| ------------ | ------------------------------------------------------------------------- |
+| namerequired | string The name of the user.                                              |
+
+##### Request Body schema: application/json
+
+Channels to be compacted from the user
+
+| channels | object Channel history organized by scope and collection. |
+| -------- | --------------------------------------------------------- |
+
+### Responses
+
+**200** 
+
+Channels compacted successfully from user
+
+**400** 
+
+Bad request. Invalid channel names or malformed request body.
+
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
+**404** 
+
+Resource could not be found
+
+post/{db}/\_user/{name}/\_access\_history/compact
+
+Admin API
+
+{protocol}://{hostname}:4985/{db}/\_user/{name}/\_access\_history/compact
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "channels": {
+  * "scope1": {
+    * "collection1": [
+      * "scoped_channel1"  
+      ]  
+  }  
+}
+}`
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "compacted_channels": {
+  * "scope1": {
+    * "collection1": [
+      * "scoped_channel1"  
+      ]  
+  }  
+}
+}`
 
 ## [](#tag/Database-Security/operation/get%5Fdb-%5Frole-)Get all names of the roles 
 
@@ -6526,6 +7434,10 @@ Required Sync Gateway RBAC roles:
 
 Roles retrieved successfully
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -6539,6 +7451,7 @@ Admin API
 ### Response samples 
 
 * 200
+* 403
 * 404
 
 Content type
@@ -6581,9 +7494,9 @@ Properties associated with a role
 
 New role created successfully
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **409** 
 
@@ -6642,7 +7555,7 @@ Copy
 
 ### Response samples 
 
-* 404
+* 403
 * 409
 
 Content type
@@ -6652,8 +7565,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Database-Security/operation/get%5Fdb-%5Frole-name)Get a role 
@@ -6678,6 +7591,10 @@ Required Sync Gateway RBAC roles:
 
 Properties associated with a role
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -6691,6 +7608,7 @@ Admin API
 ### Response samples 
 
 * 200
+* 403
 * 404
 
 Content type
@@ -6799,9 +7717,9 @@ OK
 
 Created
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 put/{db}/\_role/{name}
 
@@ -6856,7 +7774,7 @@ Copy
 
 ### Response samples 
 
-* 404
+* 403
 
 Content type
 
@@ -6865,8 +7783,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Database-Security/operation/delete%5Fdb-%5Frole-name)Delete a role 
@@ -6890,6 +7808,10 @@ Required Sync Gateway RBAC roles:
 
 OK
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -6902,6 +7824,7 @@ Admin API
 
 ### Response samples 
 
+* 403
 * 404
 
 Content type
@@ -6911,8 +7834,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Database-Security/operation/head%5Fdb-%5Frole-name)Check if role exists 
@@ -6937,6 +7860,10 @@ Required Sync Gateway RBAC roles:
 
 Role exists
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -6949,6 +7876,7 @@ Admin API
 
 ### Response samples 
 
+* 403
 * 404
 
 Content type
@@ -6958,8 +7886,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Session)Session
@@ -6981,6 +7909,10 @@ This will get the information about the current user.
 
 Properties associated with a user session
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -6994,6 +7926,7 @@ Admin API
 ### Response samples 
 
 * 200
+* 403
 * 404
 
 Content type
@@ -7053,9 +7986,9 @@ Session created successfully. Returned body is dependant on if using Public or A
 
 User does not have access to resource, or resource does not exist
 
-**404** 
+**403** 
 
-Return if database does not exist
+User does not have access to the database resource, or database resource does not exist
 
 post/{db}/\_session
 
@@ -7082,7 +8015,7 @@ Copy
 
 * 200
 * 401
-* 404
+* 403
 
 Content type
 
@@ -7118,6 +8051,10 @@ Required Sync Gateway RBAC roles:
 
 Properties associated with a user session
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -7131,6 +8068,7 @@ Admin API
 ### Response samples 
 
 * 200
+* 403
 * 404
 
 Content type
@@ -7177,6 +8115,10 @@ Required Sync Gateway RBAC roles:
 
 Successfully removed the user session
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -7189,6 +8131,7 @@ Admin API
 
 ### Response samples 
 
+* 403
 * 404
 
 Content type
@@ -7198,8 +8141,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Session/operation/delete%5Fdb-%5Fuser-name-%5Fsession)Remove all of a users sessions 
@@ -7225,6 +8168,10 @@ Required Sync Gateway RBAC roles:
 
 User now has no sessions
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -7237,6 +8184,7 @@ Admin API
 
 ### Response samples 
 
+* 403
 * 404
 
 Content type
@@ -7246,8 +8194,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Session/operation/delete%5Fdb-%5Fuser-name-%5Fsession-sessionid)Remove session with user validation 
@@ -7272,6 +8220,10 @@ Required Sync Gateway RBAC roles:
 
 Session has been successfully removed as the user was associated with the session
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -7284,6 +8236,7 @@ Admin API
 
 ### Response samples 
 
+* 403
 * 404
 
 Content type
@@ -7293,8 +8246,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Document)Document
@@ -7335,6 +8288,10 @@ Document found successfully
 
 There was a problem with your request
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -7349,6 +8306,7 @@ Admin API
 
 * 200
 * 400
+* 403
 * 404
 
 Content type
@@ -7468,9 +8426,9 @@ Attempted documents purge. Check output to verify the documents that were purged
 
 Bad request. This could be due to the documents listed in the request body not having the `["*"]` value for each document ID.
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 post/{keyspace}/\_purge
 
@@ -7504,7 +8462,7 @@ Copy
 
 * 200
 * 400
-* 404
+* 403
 
 Content type
 
@@ -7524,6 +8482,145 @@ Copy
     * "*"  
   ]  
 }
+}`
+
+## [](#tag/Document/operation/get%5Fkeyspace-%5Fchannel%5Fhistory)Get Channel History of Document 
+
+Returns the channel revocation history for the specified document as a map of channel names to the array of sequences at which the document was removed from each channel. Only channels that have been revoked at least once are included; channels the document is currently assigned may be included if they were previously revoked.
+
+Multiple sequences for a given channel indicate that the document has lost access to that channel more than once — each sequence represents a point in time at which the document was removed from the channel.
+
+Required Sync Gateway RBAC roles:
+
+* Sync Gateway Application
+* Sync Gateway Application Read Only
+
+##### path Parameters
+
+| keyspacerequired | string Examples: db1 \- Default scope and collectiondb1.collection1 \- Named collection within the default scopedb1.scope1.collection1 \- Fully-qualified scope and collectionThe keyspace to run the operation against. A keyspace is a dot-separated string, comprised of a database name, and optionally a named scope and collection. |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| docidrequired    | string Example: doc1The document ID to run the operation against.                                                                                                                                                                                                                                                                         |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the channel revocation history for the specified document. Returns a JSON object mapping each channel name to an array of sequences at which the document was removed from that channel.
+
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
+**404** 
+
+Document not found.
+
+get/{keyspace}/\_channel\_history/{docid}
+
+Admin API
+
+{protocol}://{hostname}:4985/{keyspace}/\_channel\_history/{docid}
+
+### Response samples 
+
+* 200
+* 403
+* 404
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "channel1": [
+  * 3,
+  * 7  
+],
+* "channel2": [
+  * 5  
+]
+}`
+
+## [](#tag/Document/operation/post%5Fkeyspace-%5Fhistory-compact)Compact Channel History of Document 
+
+Compacts channel history for a specified document. Channel history older than the specified sequence will be removed.
+
+This endpoint removes all channel entries (for sequences before the specified sequence number where the document left the channel), effectively cleaning up historical channel membership information while preserving active channels and recent changes. This can be useful for reducing metadata size for documents that frequently gain and lose access to channels.
+
+Required Sync Gateway RBAC roles:
+
+* Sync Gateway Application
+
+##### path Parameters
+
+| keyspacerequired | string Examples: db1 \- Default scope and collectiondb1.collection1 \- Named collection within the default scopedb1.scope1.collection1 \- Fully-qualified scope and collectionThe keyspace to run the operation against. A keyspace is a dot-separated string, comprised of a database name, and optionally a named scope and collection. |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| docidrequired    | string Example: doc1The document ID to run the operation against.                                                                                                                                                                                                                                                                         |
+
+##### Request Body schema: application/json
+
+| seqrequired | integer <int64\> \>= 1 Channel history having end sequences earlier than this sequence will be removed from the specified document's metadata. |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**200** 
+
+Successfully compacted channel history from the specified document. Returns a list of channels that were compacted.
+
+If the response has an empty array, it means either no channels were compacted.
+
+**400** 
+
+Bad request. This could be due to invalid request parameters such as invalid seq value.
+
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
+post/{keyspace}/\_channel\_history/{docid}/compact
+
+Admin API
+
+{protocol}://{hostname}:4985/{keyspace}/\_channel\_history/{docid}/compact
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "seq": 12345
+}`
+
+### Response samples 
+
+* 200
+* 400
+* 403
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "compacted_channels": [
+  * "channel1",
+  * "channel2"  
+]
 }`
 
 ## [](#tag/Document/operation/post%5Fkeyspace-)Create a new document 
@@ -7546,14 +8643,15 @@ A document can have a maximum size of 20MB.
 
 ##### Request Body schema: application/json
 
-| \_id                               | string The ID of the document.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| \_rev                              | string The revision of the document.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| \_exp                              | string Expiry time after which the document will be purged. The expiration time is set and managed on the Couchbase Server document. The value can be specified in two ways; in ISO-8601 format, for example the 6th of July 2022 at 17:00 in the BST timezone would be 2016-07-06T17:00:00+01:00; it can also be specified as a numeric Couchbase Server expiry value. Couchbase Server expiry values are specified as Unix time, and if the desired TTL is below 30 days then it can also represent an interval in seconds from the current time (for example, a value of 5 will remove the document 5 seconds after it is written to Couchbase Server). The document expiration time is returned in the response of GET /{db}/{doc}  when show\_exp=true is included in the query. As with the existing explicit purge mechanism, this applies only to the local database; it has nothing to do with replication. This expiration time is not propagated when the document is replicated. The purge of the document does not cause it to be deleted on any other database. |
-| \_deleted                          | boolean Whether the document is a tombstone or not. If true, it is a tombstone.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| \_revisions                        | object                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| \_attachments                      | object                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| property name\*additional property | any                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| \_id                              | string The ID of the document.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| \_rev                             | string The ancestor Revision Tree ID of the document, used by Sync Gateway as an optimistic concurrency control (OCC) value to detect conflicts when updating an existing document; omit this field when creating a new document. The value is typically taken from the \_rev returned by a prior GET of the document, or from the ETag response header. For single-document upserts ([PUT /{keyspace}/{docid}](#operation/put%5Fkeyspace-docid)), the rev query parameter and the If-Match request header are alternative OCC sources for the same document; for bulk upserts ([POST /{keyspace}/\_bulk\_docs](#operation/post%5Fkeyspace-%5Fbulk%5Fdocs)), per-document OCC must be supplied in the doc body via this field or \_cv. Clients may supply more than one OCC source as long as same-type values match exactly; mismatched values return HTTP 400\. Precedence when multiple are present: rev query parameter, then If-Match header, then body \_cv, then body \_rev.                                                                                           |
+| \_cv                              | string The ancestor Current Version (CV) ID of the document, used by Sync Gateway as an optimistic concurrency control (OCC) value to detect conflicts when updating an existing document; omit this field when creating a new document. The value is typically taken from the \_cv returned by a prior GET of the document, or from the ETag response header. Unlike the rev query parameter and If-Match header (which autodetect Revision Tree IDs vs Current Version IDs), this field must hold a CV. As with \_rev, this can be supplied alongside other OCC sources as long as same-type values match exactly. See \_rev for the full precedence order.                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| \_exp                             | string Expiry time after which the document will be purged. The expiration time is set and managed on the Couchbase Server document. The value can be specified in two ways; in ISO-8601 format, for example the 6th of July 2022 at 17:00 in the BST timezone would be 2016-07-06T17:00:00+01:00; it can also be specified as a numeric Couchbase Server expiry value. Couchbase Server expiry values are specified as Unix time, and if the desired TTL is below 30 days then it can also represent an interval in seconds from the current time (for example, a value of 5 will remove the document 5 seconds after it is written to Couchbase Server). The document expiration time is returned in the response of GET /{db}/{doc}  when show\_exp=true is included in the query. As with the existing explicit purge mechanism, this applies only to the local database; it has nothing to do with replication. This expiration time is not propagated when the document is replicated. The purge of the document does not cause it to be deleted on any other database. |
+| \_deleted                         | boolean Whether the document is a tombstone or not. If true, it is a tombstone.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| \_revisions                       | object Encoded revision history for the document. This field is used by legacy 1.x REST replication protocol clients and CouchDB-style API callers to transmit ancestry alongside a revision. Most upsert/create requests should omit this field and rely on \_rev alone.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| \_attachments                     | object Binary attachments associated with the document, keyed by attachment name. Each entry describes a single attachment and its inline base64 data. Attachments are stored separately from the document body but travel with the document during replication.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| propertyname\*additional property | any A user-defined field belonging to the document body. Any JSON value is permitted. Field names beginning with \_ are reserved for Sync Gateway metadata.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ### Responses
 
@@ -7565,9 +8663,9 @@ New document revision created successfully.
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **409** 
 
@@ -7596,24 +8694,11 @@ Copy
  Expand all  Collapse all 
 
 `{
-* "_id": "string",
-* "_rev": "string",
-* "_exp": "string",
-* "_deleted": true,
-* "_revisions": {
-  * "start": 0,
-  * "ids": [
-    * "string"  
-  ]  
-},
+* "foo": "bar",
 * "_attachments": {
-  * "attachmentname1": {
-    * "content_type": "string",
-    * "data": "string"  
-  },
-  * "attachmentname2": {
-    * "content_type": "string",
-    * "data": "string"  
+  * "hello.txt": {
+    * "content_type": "text/plain",
+    * "data": "aGVsbG8="  
   }  
 }
 }`
@@ -7622,7 +8707,7 @@ Copy
 
 * 200
 * 400
-* 404
+* 403
 * 409
 * 415
 
@@ -7683,6 +8768,10 @@ Successfully returned the changes feed
 
 There was a problem with your request
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -7697,6 +8786,7 @@ Admin API
 
 * 200
 * 400
+* 403
 * 404
 
 Content type
@@ -7765,9 +8855,9 @@ Successfully returned the changes feed
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 post/{keyspace}/\_changes
 
@@ -7805,7 +8895,7 @@ Copy
 
 * 200
 * 400
-* 404
+* 403
 
 Content type
 
@@ -7854,6 +8944,10 @@ Required Sync Gateway RBAC roles:
 
 Comparisons successful
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -7885,6 +8979,7 @@ Copy
 ### Response samples 
 
 * 200
+* 403
 * 404
 
 Content type
@@ -7933,6 +9028,10 @@ Successfully found local document
 
 There was a problem with your request
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -7946,6 +9045,7 @@ Admin API
 ### Response samples 
 
 * 400
+* 403
 * 404
 
 Content type
@@ -7992,9 +9092,9 @@ Document successfully written. The document ID will be prefixed with `_local/`.
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **409** 
 
@@ -8024,7 +9124,7 @@ Copy
 
 * 201
 * 400
-* 404
+* 403
 
 Content type
 
@@ -8070,6 +9170,10 @@ Successfully removed the local document.
 
 There was a problem with your request
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -8087,6 +9191,7 @@ Admin API
 ### Response samples 
 
 * 400
+* 403
 * 404
 
 Content type
@@ -8127,6 +9232,10 @@ Document exists
 
 There was a problem with your request
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -8140,6 +9249,7 @@ Admin API
 ### Response samples 
 
 * 400
+* 403
 * 404
 
 Content type
@@ -8192,6 +9302,10 @@ Document ID is not in an allowed format therefore is invalid.
 
 This could be because it is over 250 characters or is prefixed with an underscore ("\_").
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -8210,6 +9324,7 @@ Admin API
 
 * 200
 * 400
+* 403
 * 404
 * 501
 
@@ -8261,19 +9376,20 @@ Required Sync Gateway RBAC roles:
 
 ##### header Parameters
 
-| If-Match | string An optimistic concurrency control (OCC) value used to prevent conflicts. Use the value returned in the ETag response header of the GET request for the resource being updated, or the latest known Revision Tree ID or Current Version of the document. |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| If-Match | string An optimistic concurrency control (OCC) value used to prevent conflicts. The value is typically the ETag response header from a prior GET of the document, or the latest known Revision Tree ID or Current Version (CV) of the document; the type is autodetected. The If-Match header, the rev query parameter, and the \_rev / \_cv fields in the request body are alternative OCC sources, listed below. Clients may supply more than one as long as same-type values match exactly; mismatched values return HTTP 400\. Precedence when multiple are present: rev query parameter, then If-Match header, then body \_cv, then body \_rev. For [PUT /{keyspace}/{docid}](#operation/put%5Fkeyspace-docid): any of these OCC sources may be used. For [POST /{keyspace}/\_bulk\_docs](#operation/post%5Fkeyspace-%5Fbulk%5Fdocs): per-document OCC must be supplied in the doc body via \_rev or \_cv (header/query OCC are per-request, not per-document). |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ##### Request Body schema: application/json
 
-| \_id                               | string The ID of the document.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| \_rev                              | string The revision of the document.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| \_exp                              | string Expiry time after which the document will be purged. The expiration time is set and managed on the Couchbase Server document. The value can be specified in two ways; in ISO-8601 format, for example the 6th of July 2022 at 17:00 in the BST timezone would be 2016-07-06T17:00:00+01:00; it can also be specified as a numeric Couchbase Server expiry value. Couchbase Server expiry values are specified as Unix time, and if the desired TTL is below 30 days then it can also represent an interval in seconds from the current time (for example, a value of 5 will remove the document 5 seconds after it is written to Couchbase Server). The document expiration time is returned in the response of GET /{db}/{doc}  when show\_exp=true is included in the query. As with the existing explicit purge mechanism, this applies only to the local database; it has nothing to do with replication. This expiration time is not propagated when the document is replicated. The purge of the document does not cause it to be deleted on any other database. |
-| \_deleted                          | boolean Whether the document is a tombstone or not. If true, it is a tombstone.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| \_revisions                        | object                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| \_attachments                      | object                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| property name\*additional property | any                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| \_id                              | string The ID of the document.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| \_rev                             | string The ancestor Revision Tree ID of the document, used by Sync Gateway as an optimistic concurrency control (OCC) value to detect conflicts when updating an existing document; omit this field when creating a new document. The value is typically taken from the \_rev returned by a prior GET of the document, or from the ETag response header. For single-document upserts ([PUT /{keyspace}/{docid}](#operation/put%5Fkeyspace-docid)), the rev query parameter and the If-Match request header are alternative OCC sources for the same document; for bulk upserts ([POST /{keyspace}/\_bulk\_docs](#operation/post%5Fkeyspace-%5Fbulk%5Fdocs)), per-document OCC must be supplied in the doc body via this field or \_cv. Clients may supply more than one OCC source as long as same-type values match exactly; mismatched values return HTTP 400\. Precedence when multiple are present: rev query parameter, then If-Match header, then body \_cv, then body \_rev.                                                                                           |
+| \_cv                              | string The ancestor Current Version (CV) ID of the document, used by Sync Gateway as an optimistic concurrency control (OCC) value to detect conflicts when updating an existing document; omit this field when creating a new document. The value is typically taken from the \_cv returned by a prior GET of the document, or from the ETag response header. Unlike the rev query parameter and If-Match header (which autodetect Revision Tree IDs vs Current Version IDs), this field must hold a CV. As with \_rev, this can be supplied alongside other OCC sources as long as same-type values match exactly. See \_rev for the full precedence order.                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| \_exp                             | string Expiry time after which the document will be purged. The expiration time is set and managed on the Couchbase Server document. The value can be specified in two ways; in ISO-8601 format, for example the 6th of July 2022 at 17:00 in the BST timezone would be 2016-07-06T17:00:00+01:00; it can also be specified as a numeric Couchbase Server expiry value. Couchbase Server expiry values are specified as Unix time, and if the desired TTL is below 30 days then it can also represent an interval in seconds from the current time (for example, a value of 5 will remove the document 5 seconds after it is written to Couchbase Server). The document expiration time is returned in the response of GET /{db}/{doc}  when show\_exp=true is included in the query. As with the existing explicit purge mechanism, this applies only to the local database; it has nothing to do with replication. This expiration time is not propagated when the document is replicated. The purge of the document does not cause it to be deleted on any other database. |
+| \_deleted                         | boolean Whether the document is a tombstone or not. If true, it is a tombstone.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| \_revisions                       | object Encoded revision history for the document. This field is used by legacy 1.x REST replication protocol clients and CouchDB-style API callers to transmit ancestry alongside a revision. Most upsert/create requests should omit this field and rely on \_rev alone.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| \_attachments                     | object Binary attachments associated with the document, keyed by attachment name. Each entry describes a single attachment and its inline base64 data. Attachments are stored separately from the document body but travel with the document during replication.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| propertyname\*additional property | any A user-defined field belonging to the document body. Any JSON value is permitted. Field names beginning with \_ are reserved for Sync Gateway metadata.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ### Responses
 
@@ -8284,6 +9400,10 @@ Created
 **400** 
 
 There was a problem with your request
+
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
 
 **404** 
 
@@ -8311,29 +9431,21 @@ Content type
 
 application/json
 
+Example
+
+Update with RevTree OCCUpdate with CV OCCUpdate with RevTree OCC
+
 Copy
 
  Expand all  Collapse all 
 
 `{
-* "_id": "string",
-* "_rev": "string",
-* "_exp": "string",
-* "_deleted": true,
-* "_revisions": {
-  * "start": 0,
-  * "ids": [
-    * "string"  
-  ]  
-},
+* "_rev": "1-64d4a1f179db5c1848fe52967b47c166",
+* "foo": "bar",
 * "_attachments": {
-  * "attachmentname1": {
-    * "content_type": "string",
-    * "data": "string"  
-  },
-  * "attachmentname2": {
-    * "content_type": "string",
-    * "data": "string"  
+  * "hello.txt": {
+    * "content_type": "text/plain",
+    * "data": "aGVsbG8="  
   }  
 }
 }`
@@ -8342,6 +9454,7 @@ Copy
 
 * 201
 * 400
+* 403
 * 404
 * 409
 * 415
@@ -8382,8 +9495,8 @@ Required Sync Gateway RBAC roles:
 
 ##### header Parameters
 
-| If-Match | string An optimistic concurrency control (OCC) value used to prevent conflicts. Use the value returned in the ETag response header of the GET request for the resource being updated, or the latest known Revision Tree ID or Current Version of the document. |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| If-Match | string An optimistic concurrency control (OCC) value used to prevent conflicts. The value is typically the ETag response header from a prior GET of the document, or the latest known Revision Tree ID or Current Version (CV) of the document; the type is autodetected. The If-Match header, the rev query parameter, and the \_rev / \_cv fields in the request body are alternative OCC sources, listed below. Clients may supply more than one as long as same-type values match exactly; mismatched values return HTTP 400\. Precedence when multiple are present: rev query parameter, then If-Match header, then body \_cv, then body \_rev. For [PUT /{keyspace}/{docid}](#operation/put%5Fkeyspace-docid): any of these OCC sources may be used. For [POST /{keyspace}/\_bulk\_docs](#operation/post%5Fkeyspace-%5Fbulk%5Fdocs): per-document OCC must be supplied in the doc body via \_rev or \_cv (header/query OCC are per-request, not per-document). |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### Responses
 
@@ -8394,6 +9507,10 @@ New revision created successfully
 **400** 
 
 There was a problem with your request
+
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
 
 **404** 
 
@@ -8409,6 +9526,7 @@ Admin API
 
 * 200
 * 400
+* 403
 * 404
 
 Content type
@@ -8463,6 +9581,10 @@ Document ID is not in an allowed format therefore is invalid.
 
 This could be because it is over 250 characters or is prefixed with an underscore ("\_").
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -8476,6 +9598,7 @@ Admin API
 ### Response samples 
 
 * 400
+* 403
 * 404
 
 Content type
@@ -8531,6 +9654,10 @@ Found attachment successfully.
 
 Partial attachment content returned
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -8547,6 +9674,7 @@ Admin API
 
 ### Response samples 
 
+* 403
 * 404
 
 Content type
@@ -8556,8 +9684,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Document/operation/put%5Fkeyspace-docid-attach)Create or update an attachment on a document 
@@ -8604,6 +9732,10 @@ The content to store in the body
 
 Attachment added to new or existing document successfully
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -8621,6 +9753,7 @@ Admin API
 ### Response samples 
 
 * 201
+* 403
 * 404
 * 409
 
@@ -8664,6 +9797,10 @@ Required Sync Gateway RBAC roles:
 
 The document exists and the attachment exists on the document.
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -8676,6 +9813,7 @@ Admin API
 
 ### Response samples 
 
+* 403
 * 404
 
 Content type
@@ -8685,8 +9823,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Document/operation/delete%5Fkeyspace-docid-attach)Delete an attachment on a document 
@@ -8718,6 +9856,10 @@ If the attachment exists, the attachment will be removed from the document.
 
 Attachment removed from the document successfully
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -8735,6 +9877,7 @@ Admin API
 ### Response samples 
 
 * 200
+* 403
 * 404
 * 409
 
@@ -8790,9 +9933,9 @@ Operation ran successfully
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 get/{keyspace}/\_all\_docs
 
@@ -8804,7 +9947,7 @@ Admin API
 
 * 200
 * 400
-* 404
+* 403
 
 Content type
 
@@ -8872,9 +10015,9 @@ Operation ran successfully
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 post/{keyspace}/\_all\_docs
 
@@ -8904,7 +10047,7 @@ Copy
 
 * 200
 * 400
-* 404
+* 403
 
 Content type
 
@@ -8935,9 +10078,9 @@ This will allow multiple documented to be created, updated or deleted in bulk.
 
 To create a new document, simply add the body in an object under `docs`. A doc ID will be generated by Sync Gateway unless `_id` is specified.
 
-To update an existing document, provide the document ID (`_id`) and Revision Tree ID (`_rev`) as well as the new body values.
+To update an existing document, provide the document ID (`_id`) and an optimistic concurrency control (OCC) value as well as the new body values. The OCC value is either the ancestor Revision Tree ID in `_rev` or the ancestor Current Version (CV) ID in `_cv`. Per-document OCC must be supplied in the doc body — the `If-Match` header and `rev` query parameter are not used by this endpoint.
 
-To delete an existing document, provide the document ID (`_id`), Revision Tree ID (`_rev`), and set the deletion flag (`_deleted`) to true.
+To delete an existing document, provide the document ID (`_id`), an OCC value (`_rev` or `_cv`), and set the deletion flag (`_deleted`) to true.
 
 Required Sync Gateway RBAC roles:
 
@@ -8966,9 +10109,9 @@ Each object in the returned array represents a document. Each document should be
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 post/{keyspace}/\_bulk\_docs
 
@@ -9012,7 +10155,7 @@ Copy
 
 * 201
 * 400
-* 404
+* 403
 
 Content type
 
@@ -9089,9 +10232,9 @@ Returned the requested docs as `multipart/mixed` response type
 
 Bad Request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 post/{keyspace}/\_bulk\_get
 
@@ -9127,7 +10270,7 @@ Copy
 
 ### Response samples 
 
-* 404
+* 403
 
 Content type
 
@@ -9136,8 +10279,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Replication)Replication
@@ -9163,9 +10306,9 @@ Required Sync Gateway RBAC roles:
 
 Retrieved replication configurations successfully. The `assigned_node` fields will end with `(local)` or `(non-local)` depending on if the replication is running on this Sync Gateway node.
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 get/{db}/\_replication/
 
@@ -9176,7 +10319,7 @@ Admin API
 ### Response samples 
 
 * 200
-* 404
+* 403
 
 Content type
 
@@ -9283,9 +10426,9 @@ Created new replication successfully
 
 There was a problem with your request
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 post/{db}/\_replication/
 
@@ -9343,7 +10486,7 @@ Copy
 ### Response samples 
 
 * 400
-* 404
+* 403
 
 Content type
 
@@ -9376,6 +10519,10 @@ Required Sync Gateway RBAC roles:
 
 Successfully retrieved the replication configuration
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -9389,6 +10536,7 @@ Admin API
 ### Response samples 
 
 * 200
+* 403
 * 404
 
 Content type
@@ -9497,6 +10645,10 @@ Created new replication successfully
 
 There was a problem with your request
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -9557,6 +10709,7 @@ Copy
 ### Response samples 
 
 * 400
+* 403
 * 404
 
 Content type
@@ -9594,6 +10747,10 @@ Replication successfully deleted
 
 There was a problem with your request
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -9607,6 +10764,7 @@ Admin API
 ### Response samples 
 
 * 400
+* 403
 * 404
 
 Content type
@@ -9640,6 +10798,10 @@ Required Sync Gateway RBAC roles:
 
 Replication exists
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Replication does not exist
@@ -9649,6 +10811,21 @@ head/{db}/\_replication/{replicationid}
 Admin API
 
 {protocol}://{hostname}:4985/{db}/\_replication/{replicationid}
+
+### Response samples 
+
+* 403
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "error": "string",
+* "reason": "string"
+}`
 
 ## [](#tag/Replication/operation/get%5Fdb-%5FreplicationStatus-)Get all replication statuses 
 
@@ -9681,6 +10858,10 @@ Successfully retrieved all replication statuses.
 
 There was a problem with your request
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 get/{db}/\_replicationStatus/
 
 Admin API
@@ -9691,6 +10872,7 @@ Admin API
 
 * 200
 * 400
+* 403
 
 Content type
 
@@ -10061,9 +11243,9 @@ Required Sync Gateway RBAC roles:
 
 Upgraded to a web socket connection
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **426** 
 
@@ -10077,7 +11259,7 @@ Admin API
 
 ### Response samples 
 
-* 404
+* 403
 * 426
 
 Content type
@@ -10087,8 +11269,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Metrics)Metrics
@@ -10149,7 +11331,7 @@ Required Sync Gateway RBAC roles:
 
 **200** 
 
-Successfully returned statistics. For details, see [JSON Metrics](stats-monitoring-json.html).
+Successfully returned statistics. For details, see [JSON Metrics](../manage/stats-monitoring-json.html).
 
 get/\_expvar
 
@@ -11004,6 +12186,10 @@ Required Sync Gateway RBAC roles:
 
 Found document
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -11017,6 +12203,7 @@ Admin API
 ### Response samples 
 
 * 200
+* 403
 * 404
 
 Content type
@@ -11031,7 +12218,7 @@ Copy
 
 **This is unsupported**
 
-This will purge _all_ documents.
+This will purge _all_ documents and remove any other database that is backed by this bucket.
 
 The bucket will only be flushed if the unsupported database configuration option `enable_couchbase_bucket_flush` is set.
 
@@ -11050,9 +12237,9 @@ Required Sync Gateway RBAC roles:
 
 Successfully flushed the bucket
 
-**404** 
+**403** 
 
-Resource could not be found
+User does not have access to the database resource, or database resource does not exist
 
 **503** 
 
@@ -11066,7 +12253,7 @@ Admin API
 
 ### Response samples 
 
-* 404
+* 403
 * 503
 
 Content type
@@ -11076,8 +12263,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Unsupported/operation/get%5Fdb-%5Fdump-view)Dump a view | Unsupported 
@@ -11103,6 +12290,10 @@ Required Sync Gateway RBAC roles:
 
 Retrieved view successfully
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -11119,6 +12310,7 @@ Admin API
 
 ### Response samples 
 
+* 403
 * 404
 * 500
 
@@ -11129,8 +12321,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Unsupported/operation/get%5Fdb-%5Fview-view)Query a view on the default design document | Unsupported 
@@ -11248,6 +12440,10 @@ Required Sync Gateway RBAC roles:
 
 Successfully got all documents in the channel
 
+**403** 
+
+User does not have access to the database resource, or database resource does not exist
+
 **404** 
 
 Resource could not be found
@@ -11260,6 +12456,7 @@ Admin API
 
 ### Response samples 
 
+* 403
 * 404
 
 Content type
@@ -11269,8 +12466,8 @@ application/json
 Copy
 
 `{
-* "error": "not_found",
-* "reason": "no such database \"invalid-db\""
+* "error": "string",
+* "reason": "string"
 }`
 
 ## [](#tag/Unsupported/operation/post%5Fdb-%5Frepair)Disabled endpoint 

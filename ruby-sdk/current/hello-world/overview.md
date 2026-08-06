@@ -1,16 +1,16 @@
 ---
-title: Couchbase Ruby SDK 3.7
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+title: Couchbase Ruby SDK 3.8
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/hello-world/pages/overview.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ruby-sdk/current/hello-world/overview.html)
 
-# Couchbase Ruby SDK 3.7
+# Couchbase Ruby SDK 3.8
 
-# Couchbase Ruby SDK 3.7
+# Couchbase Ruby SDK 3.8
 
 ```ruby
 agent_scope = bucket.scope("tenant_agent_00")

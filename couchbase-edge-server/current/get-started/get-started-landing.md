@@ -3,8 +3,8 @@ title: Getting Started
 description: You can get started with Couchbase Edge Server by following three
   steps. Confirming you meet the prerequisite requirements, installing, and
   running the product.
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/get-started/pages/get-started-landing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/get-started/pages/get-started-landing.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-edge-server:get-started:get-started-landing.adoc[]
 ---
 

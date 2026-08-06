@@ -1,7 +1,13 @@
 ---
 title: Couchbase Mobile
+description: Couchbase Mobile brings the power of NoSQL to the edge. The
+  combination of Sync Gateway and Couchbase Lite coupled with the power of
+  Couchbase Server provides fast, efficient bidirectional synchronization of
+  data between the edge and the cloud. This lets you deploy fully featured
+  mobile and embedded applications with greater agility on premises or in any
+  cloud.
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/mobile.adoc
-pubDate: 2026-07-23T05:30:31.135Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:home::mobile.adoc[]
 ---
 
@@ -58,7 +64,7 @@ App Services is Capella's managed version of Sync Gateway, running the same sync
 Edge Server
 
 Couchbase Edge Server is a lightweight standalone database for resource-constrained edge. It exposes a REST API that enables you to get database information, perform document operations, run SQL++ queries, and manage change feeds and replication.  
-[Go to Edge Server Docs](#couchbase-edge-server:introduction:intro.adoc)
+[Go to Edge Server Docs](../couchbase-edge-server/current/introduction/intro.md)
 
 Couchbase Lite JavaScript
 

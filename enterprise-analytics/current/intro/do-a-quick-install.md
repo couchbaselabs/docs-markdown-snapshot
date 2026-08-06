@@ -3,8 +3,8 @@ title: Do a Quick Install
 description: First-time users can get Enterprise Analytics running simply and
   rapidly by using Docker. Once you install Docker, you can use a single command
   to download and install Enterprise Analytics on your computer.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/intro/pages/do-a-quick-install.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/intro/pages/do-a-quick-install.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:intro:do-a-quick-install.adoc[]
 ---
 
@@ -39,18 +39,18 @@ This command creates the `ea` network, enabling communication between the Enterp
 We use S3Mock to emulate AWS S3 behavior locally.
 
 docker run -d --name s3mock --network ea \
-  -e initialBuckets=cloud-storage-container \
-  -e root=fs \
-  -e retainFilesOnExit=true \
+  -e COM_ADOBE_TESTING_S3MOCK_STORE_INITIAL_BUCKETS=cloud-storage-container \
+  -e COM_ADOBE_TESTING_S3MOCK_STORE_ROOT=fs \
+  -e COM_ADOBE_TESTING_S3MOCK_STORE_RETAIN_FILES_ON_EXIT=true \
   adobe/s3mock
 
-This starts the S3Mock container with a pre-created persistent bucket named `cloud-storage-container` for Enterprise Analytics to uses, configured to communicate over the `ea` network.
+This starts the S3Mock container with a pre-created persistent bucket named `cloud-storage-container` for Enterprise Analytics to use, configured to communicate over the `ea` network.
 
 #### [](#3-create-the-couchbase-enterprise-analytics-container)3\. Create the Couchbase Enterprise Analytics Container
 
 docker run -d --name ea --network ea \
   -p 8091:8091 -p 8095:8095 \
-  couchbase/enterprise-analytics:2.1.0
+  couchbase/enterprise-analytics:2.2.0
 
 This exposes the Enterprise Analytics UI and REST APIs on ports `8091` and `8095` respectively.
 

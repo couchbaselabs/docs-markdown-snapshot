@@ -2,7 +2,7 @@
 title: Deleting Data
 description: How to delete documents in Couchbase.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/deleting-data.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:7.2@server:guides:deleting-data.adoc[]
 ---
 
@@ -96,8 +96,7 @@ Use the `remove()` function to delete a document from the database.
 The example below deletes document `hotel-123` from the database.
 
 ```nodejs
-const removeResult = await hotelCollection.remove('hotel-123')
-console.log('CAS:', removeResult.cas)
+Unresolved include directive in modules/guides/pages/deleting-data.adoc - include::nodejs-sdk:hello-world:example$kv-hello-world-scoped.js[]
 ```
 
 > [!NOTE]
@@ -216,10 +215,7 @@ A `MutateInResult` object is returned, containing the result and metadata releva
 The example below deletes the `url` field from document `hotel-123`.
 
 ```nodejs
-mutateInResult = await hotelCollection.mutateIn('hotel-123', [
-  couchbase.MutateInSpec.remove('url'),
-])
-console.log('CAS:', mutateInResult.cas)
+Unresolved include directive in modules/guides/pages/deleting-data.adoc - include::nodejs-sdk:hello-world:example$kv-hello-world-scoped.js[]
 ```
 
 > [!NOTE]

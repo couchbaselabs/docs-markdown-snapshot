@@ -2,8 +2,8 @@
 title: Copy Results to a Couchbase Collection
 description: From Enterprise Analytics, you can write the results of an
   analytical query to a Capella or Couchbase Server collection.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/query/pages/copy-to-kv.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/query/pages/copy-to-kv.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:query:copy-to-kv.adoc[]
 ---
 

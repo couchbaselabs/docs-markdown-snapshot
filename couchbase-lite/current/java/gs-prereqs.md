@@ -2,8 +2,8 @@
 title: Couchbase Lite on Java&#8201;&#8212;&#8201;Prerequisites
 description: Couchbase Lite on Java -- a framework for developing offline-first
   Java applications for mobile and edge
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/gs-prereqs.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/java/pages/gs-prereqs.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:java:gs-prereqs.adoc[]
 ---
 
@@ -31,7 +31,7 @@ Couchbase Lite enables development and deployment of Couchbase Lite applications
 
 If you want to use Couchbase Lite with _Couchbase Server_ and-or \_Sync Gateway you will need to have installed operational instances of these before completing the installation and test build steps.
 
-So, If you have not already done so, see [Prepare Sync Gateway](#sync-gateway::get-started-prepare.adoc)
+So, If you have not already done so, see [Prepare Sync Gateway](../../../sync-gateway/current/start-here/get-started-prepare.md)
 
 * Within _Couchbase Server_, create a bucket named getting-started.cblite2
 * Create a RBAC user for \_Sync Gateway with username = `sync-gateway` and password = `password`
@@ -46,13 +46,13 @@ Before proceeding to [Couchbase Lite on Java — Installing](gs-install.md), you
 
 ### [](#steps)Steps
 
-1. Download the _zip_ file from here — <https://packages.couchbase.com/releases/couchbase-lite-java/4.0.3/couchbase-lite-java-linux-supportlibs-4.0.3.zip>.
-2. Unpack the downloaded file to a location accessible to your build and runtime environments, for example `your_dir/couchbase-lite-java-4.0.3`.
+1. Download the _zip_ file from here — <https://packages.couchbase.com/releases/couchbase-lite-java/4.1.0/couchbase-lite-java-linux-supportlibs-4.1.0.zip>.
+2. Unpack the downloaded file to a location accessible to your build and runtime environments, for example `your_dir/couchbase-lite-java-4.1.0`.
 
 1. Set up the Native Libraries for Linux. You will need to add the path of the directory containing the unpacked support libraries to the value of the Java system property `java.library.path`.  
 The simplest way to set this is through the shell variable `LD_LIBRARY_PATH`:  
 ```bash  
-export LD_LIBRARY_PATH=<your_dir>/couchbase-lite-java-4.0.3/:$LD_LIBRARY_PATH  
+export LD_LIBRARY_PATH=<your_dir>/couchbase-lite-java-4.1.0/:$LD_LIBRARY_PATH  
 ```  
 Where `<your_dir>` is the path where you unpacked the support libraries in step 2.  
 > [!NOTE]  

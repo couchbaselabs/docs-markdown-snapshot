@@ -2,8 +2,8 @@
 title: Deploy Sync Gateway with Docker
 description: Deploy <em>Sync Gateway</em> using Docker; securely sync enterprise
   data from cloud to edge.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-install-docker.adoc
-pubDate: 2026-05-13T05:45:28.868Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/start-here/pages/get-started-install-docker.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:start-here:get-started-install-docker.adoc[]
 ---
 
@@ -59,7 +59,7 @@ Once Couchbase Server is running, open the Admin UI at `http://localhost:8091` a
 
 * Creating a cluster
 * Creating a bucket
-* Creating an RBAC user for sync gateway
+* Creating an RBAC user for Sync Gateway
 
 > [!NOTE]
 > Note the bucket name and RBAC credentials. You will need them in the next step.
@@ -99,7 +99,7 @@ Example 1\. Sync Gateway Bootstrap Config for Docker
 
 ### [](#run-sync-gateway)Run Sync Gateway
 
-Run sync gateway in a Docker container, mounting the configuration file you created.
+Run Sync Gateway in a Docker container, mounting the configuration file you created.
 
 Replace `/path/to/sync-gateway-config.json` with the absolute path to the file on your local machine.
 
@@ -113,17 +113,17 @@ docker run -d --name sync-gateway \
 ```
 
 > [!NOTE]
-> Port 4985 is the sync gateway Admin port. By default it is only accessible from within the container. Do not expose port 4985 to external traffic in production environments.
+> Port 4985 is the Sync Gateway Admin port. By default it is only accessible from within the container. Do not expose port 4985 to external traffic in production environments.
 
 ## [](#verify-the-connection)Verify the Connection
 
-1. Point your browser to the sync gateway public port:  
+1. Point your browser to the Sync Gateway public port:  
 ```bash  
 http://localhost:4984  
 ```
 2. Confirm that you receive a response similar to this:  
 ```bash  
-{"couchdb":"Welcome","vendor":{"name":"Couchbase Sync Gateway","version":"4.0"},"version":"Couchbase sync gateway/4.0.0 EE"}  
+{"couchdb":"Welcome","vendor":{"name":"Couchbase Sync Gateway","version":"4.1"},"version":"Couchbase Sync Gateway/4.1.0 EE"}  
 ```  
 If there are issues, select the [Console Logs](../manage/logging.md#lbl-console-logs) for more information.
 
@@ -138,7 +138,7 @@ docker stop cb-server
 
 ### [](#start-containers)Start Containers
 
-Start Couchbase Server before sync gateway.
+Start Couchbase Server before Sync Gateway.
 
 ```bash
 docker start cb-server
@@ -146,11 +146,11 @@ docker start sync-gateway
 ```
 
 > [!NOTE]
-> If Couchbase Server is stopped for an extended period, sync gateway loses the connection. Restart sync gateway after restarting Couchbase Server.
+> If Couchbase Server is stopped for an extended period, Sync Gateway loses the connection. Restart Sync Gateway after restarting Couchbase Server.
 
 ### [](#update-the-sync-gateway-configuration)Update the Sync Gateway Configuration
 
-To update the sync gateway configuration, stop and remove the container, then re-run it with the updated configuration file.
+To update the Sync Gateway configuration, stop and remove the container, then re-run it with the updated configuration file.
 
 ```bash
 docker stop sync-gateway
@@ -161,11 +161,11 @@ Then repeat [Run Sync Gateway](#run-sync-gateway).
 
 ## [](#next-steps)Next Steps
 
-Now that you have sync gateway running in Docker, continue to [Explore](get-started-explore.md) to add a database configuration, create users, and run a CRUD cycle to confirm sync is working end-to-end.
+Now that you have Sync Gateway running in Docker, continue to [Explore](get-started-explore.md) to add a database configuration, create users, and run a CRUD cycle to confirm sync is working end-to-end.
 
 From there, you can explore more complex scenarios:
 
-* Learn more about sync gateway's [Bootstrap Configuration](../configuration/configuration-schema-bootstrap.md)
+* Learn more about Sync Gateway's [Bootstrap Configuration](../configuration/configuration-schema-bootstrap.md)
 * Learn how to [Sync with Couchbase Server](../sync/sync-with-couchbase-server.md)
 * Implement access controls — see: [Users](../access-control/users.md), [Roles](../access-control/roles.md), and the [Sync Function](../access-control/sync-function/sync-function.md)
 

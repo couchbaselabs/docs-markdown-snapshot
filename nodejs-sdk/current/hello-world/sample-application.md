@@ -3,8 +3,8 @@ title: Sample Application
 description: Discover how to program interactions with the Couchbase Server via
   the data, Query, and search services -- using the Travel Sample Application
   with the built-in Travel Sample data Bucket.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/hello-world/pages/sample-application.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/hello-world/pages/sample-application.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:hello-world:sample-application.adoc[]
 ---
 

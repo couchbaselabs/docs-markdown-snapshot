@@ -1,9 +1,9 @@
 ---
 title: Search
-description: You can use the Full Text Search service (FTS) to create queryable
-  full-text indexes in Couchbase Server.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+description: You can use the Search service (FTS) to create queryable Search
+  indexes in Couchbase Server.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/full-text-searching-with-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:php-sdk:howtos:full-text-searching-with-sdk.adoc[]
 
 # Search
 
-> You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
+> You can use the Search service (FTS) to create queryable Search indexes in Couchbase Server. 
 
-Full Text Search or FTS allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches.
+Search Service allows you to create, manage, and query search indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches.
 
 Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries.
 
@@ -28,7 +28,7 @@ We will perform an FTS query here - see the [\[vector-search\]](#vector-search) 
 
 ## [](#examples)Examples
 
-For the purposes of the below examples we will use the Travel Sample sample bucket with the below Full Text Search index (dynamic mapping for type `hotel`).
+For the purposes of the below examples we will use the Travel Sample bucket with the below Search index (dynamic mapping for type `hotel`).
 
 ```json
 {
@@ -115,6 +115,15 @@ foreach ($res->rows() as $row) {
 }
 ```
 
+> [!TIP]
+> Search Results Limit
+> 
+> By default, the Search Service returns only the first 10 matches (`size: 10`, `from: 0`). To retrieve more results, you must explicitly define pagination settings such as `size` or `from` in your query.
+> 
+> For information about formatting your Search query and specifying limits, see [Search Request JSON Properties](../../../server/current/search/search-request-params.md).
+> 
+> For information about pagination in Search responses, see [Pagination](../../../server/current/fts/fts-search-response.md#pagination).
+
 ## [](#working-with-results)Working with Results
 
 The result of a search query has three components: rows, facets, and metdata. Rows are the documents that match the query. Facets allow the aggregation of information collected on a particular result set. Metdata holds additional information not directly related to your query, such as success total hits and how long the query took to execute in the cluster.
@@ -180,7 +189,7 @@ This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped 
 
 It's important to use the `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
 
-#### [](#fts-queries)FTS queries
+#### [](#fts-queries)FTS Queries
 
 And note that traditional FTS queries, without vector search, are also supported with the new `cluster.search()` / `scope.search()` APIs:
 

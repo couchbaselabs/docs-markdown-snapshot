@@ -2,8 +2,8 @@
 title: Tracing
 description: Tracing and Metrics provide fine-grained insight into how an
   application is performing, and helps to diagnose when it is not.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/concept-docs/pages/response-time-observability.adoc
-pubDate: 2026-04-08T05:18:32.349Z
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/concept-docs/pages/response-time-observability.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-sdk:concept-docs:response-time-observability.adoc[]
 ---
 

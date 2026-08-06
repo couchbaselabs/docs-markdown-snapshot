@@ -2,8 +2,8 @@
 title: Go Analytics SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Enterprise Analytics and the Go Analytics SDK.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.1/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:go-analytics-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -31,6 +31,12 @@ Declare a dependency on the SDK using its [Full Installation](../project-docs/sd
 To see log messages from the SDK, [consult the logging documentation](../howtos/logging.md).
 
 ## [](#connecting-and-executing-a-query)Connecting and Executing a Query
+
+Go Analytics SDK 1.1 adds support for JWT and client certificate authentication, as well as a new Server Asynchronous Request API that uses request handles to fetch results. Introduced in the self-managed Enterprise Analytics Server 2.2, this API eliminates the need for long-running server connections.
+
+The examples in this first section of the page are for the standard API — async on the client side — working with Enterprise Analytics 2.0 and later (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). You can still use this API with Enterprise Analytics 2.2 and later, in addition to the new API.
+
+### [](#server-synchronous-request-api)Server Synchronous Request API
 
 ```go
 package main
@@ -101,6 +107,113 @@ func helloWorld() {
 
 	err = cluster.Close()
 	handleErr(err)
+}
+```
+
+### [](#server-asynchronous-api)Server Asynchronous Request API
+
+Enterprise Analytics 2.2 introduces a Server Asynchronous Request API. The SDK sends a request, polls for results, and then fetches once the result is available.
+
+Server Asynchronous API Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+	"time"
+
+	cbanalytics "github.com/couchbase/gocbanalytics"
+)
+
+func waitForQueryResults(ctx context.Context, handle *cbanalytics.QueryHandle, delay time.Duration) (*cbanalytics.QueryResultHandle, error) {
+	var lastStatus *cbanalytics.QueryStatus
+	deadline, _ := ctx.Deadline()
+
+	for {
+		status, err := handle.FetchStatus(ctx)
+		if err != nil {
+			fmt.Printf("Error fetching query results: %v\n", err)
+		} else {
+			if status.ResultsReady() {
+				return status.ResultHandle()
+			}
+			lastStatus = status
+		}
+
+		nextPoll := time.Now().Add(delay)
+		if deadline.Before(nextPoll) {
+			return nil, fmt.Errorf("query results not ready")
+		}
+
+		if lastStatus != nil {
+			fmt.Printf("Query status: %s\n", lastStatus)
+		}
+		fmt.Printf("Query results not ready yet, sleeping for %s...\n", delay)
+		time.Sleep(delay)
+	}
+}
+
+func main() {
+	endpoint := "https://localhost"
+	username := "Administrator"
+	password := "password"
+
+	cred := cbanalytics.NewBasicAuthCredential(username, password)
+	cluster, err := cbanalytics.NewCluster(endpoint, cred)
+	if err != nil {
+		log.Fatalf("failed to create cluster: %v", err)
+	}
+	defer func() {
+		if err := cluster.Close(); err != nil {
+			log.Printf("failed to close cluster: %v", err)
+		}
+	}()
+
+	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
+	defer cancel()
+
+	statement := `SELECT VALUE SLEEP("x", 100) FROM RANGE(1, 100) AS id;`
+
+	handle, err := cluster.StartQuery(ctx, statement)
+	if err != nil {
+		log.Fatalf("failed to start query: %v", err)
+	}
+
+	resultHandle, err := waitForQueryResults(ctx, handle, 2500*time.Millisecond)
+	if err != nil {
+		log.Fatalf("waiting for results: %v", err)
+	}
+
+	res, err := resultHandle.FetchResults(ctx)
+	if err != nil {
+		log.Fatalf("failed to fetch results: %v", err)
+	}
+
+	for row := res.NextRow(); row != nil; row = res.NextRow() {
+		var val interface{}
+		if err := row.ContentAs(&val); err != nil {
+			log.Printf("failed to decode row: %v", err)
+			continue
+		}
+		fmt.Printf("Found row: %v\n", val)
+	}
+
+	if err := res.Err(); err != nil {
+		log.Fatalf("result error: %v", err)
+	}
+
+	metadata, err := res.MetaData()
+	if err != nil {
+		log.Fatalf("failed to get metadata: %v", err)
+	}
+	fmt.Printf("metadata=%+v\n", metadata)
+
+	if err := resultHandle.DiscardResults(ctx); err != nil {
+		log.Printf("failed to discard results: %v", err)
+	}
 }
 ```
 

@@ -2,8 +2,8 @@
 title: XDCR Active-Active and Eventing
 description: Understand how to safely use Couchbase Eventing functions in
   bi-directional XDCR environments, including Sync Gateway 4.0 compatibility.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/server-compatibility/pages/xdcr-active-active-eventing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/server-compatibility/pages/xdcr-active-active-eventing.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:server-compatibility:xdcr-active-active-eventing.adoc[]
 ---
 
@@ -21,7 +21,7 @@ _Other Topics_: [Compatibility Matrix](../product-notes/compatibility.md)
 
 ## [](#introduction)Introduction
 
-With sync gateway 4.0, you can use [Couchbase Server Cross Data Center Replication](../../../server/current/learn/clusters-and-availability/xdcr-overview.md) (XDCR) alongside Eventing functions to process or enrich documents.
+With Sync Gateway 4.0, you can use [Couchbase Server Cross Data Center Replication](../../../server/current/learn/clusters-and-availability/xdcr-overview.md) (XDCR) alongside Eventing functions to process or enrich documents.
 
 However, in active-active XDCR environments, improper function design can create "replication" loops and data "conflicts" that compromise cluster stability.
 

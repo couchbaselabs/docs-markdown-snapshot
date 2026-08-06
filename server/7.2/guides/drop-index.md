@@ -2,7 +2,7 @@
 title: Dropping Indexes
 description: How to drop primary and secondary indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/drop-index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:7.2@server:guides:drop-index.adoc[]
 ---
 
@@ -130,15 +130,13 @@ To drop a primary index, use the `dropPrimaryIndex` function on a `QueryIndexMan
 The following example drops an unnamed primary index from the specified keyspace.
 
 ```nodejs
-await cluster.queryIndexes().dropPrimaryIndex('travel-sample')
+Unresolved include directive in modules/guides/pages/drop-index.adoc - include::nodejs-sdk:hello-world:example$index-hello-world.js[]
 ```
 
 The following example drops a named primary index from the specified keyspace.
 
 ```nodejs
-await cluster
-  .queryIndexes()
-  .dropPrimaryIndex('travel-sample', { name: 'named_primary_index' })
+Unresolved include directive in modules/guides/pages/drop-index.adoc - include::nodejs-sdk:hello-world:example$index-hello-world.js[]
 ```
 
 Click the  View button to see this code in context.
@@ -260,7 +258,7 @@ To drop a secondary index, use the `dropIndex` function on a `QueryIndexManager`
 The following example drops a named index from the specified keyspace.
 
 ```nodejs
-await cluster.queryIndexes().dropIndex('travel-sample', 'index_name')
+Unresolved include directive in modules/guides/pages/drop-index.adoc - include::nodejs-sdk:hello-world:example$index-hello-world.js[]
 ```
 
 Click the  View button to see this code in context.

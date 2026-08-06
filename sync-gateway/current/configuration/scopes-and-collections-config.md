@@ -1,8 +1,8 @@
 ---
 title: Scopes and Collections Configuration for Sync Gateway
 description: Configure Scopes and Collections for Sync Gateway - Examples with descriptions.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/scopes-and-collections-config.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/scopes-and-collections-config.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:configuration:scopes-and-collections-config.adoc[]
 ---
 
@@ -16,6 +16,14 @@ This section explains how to configure Scopes and Collections for Sync Gateway. 
 ## [](#understanding-buckets-scopes-and-collections)Understanding Buckets, Scopes, and Collections
 
 You can define 1 custom scope per database with up to 1000 custom collections. If you don't specify a custom scope and collection, any documents you create saves in the default scope and collection. For more information, examples and use cases, see [Scopes and Collections Support in Couchbase Mobile for Edge Applications](https://www.couchbase.com/blog/scopes-collections-couchbase-mobile/).
+
+### [](#the-system-collection)The System Collection
+
+{sgw} uses a reserved system collection, `_system._mobile`, to store its internal metadata separately from user application data. This collection is owned by {sgw} and is not a user-configurable scope or collection.
+
+From {sgw} 4.1, you can opt in to migrating {sgw} internal metadata from the default collection (`_default._default`) to `_system._mobile`. This isolates {sgw} system documents from your application data, prevents metadata from appearing in the Capella UI alongside user documents, and reduces the risk of metadata being processed by eventing functions or SQL++ queries.
+
+See [Migrate Metadata to System Collection](../migrate-metadata-system-collection.md) for details.
 
 ## [](#configuration-options)Configuration Options
 

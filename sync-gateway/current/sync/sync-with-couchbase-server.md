@@ -1,8 +1,8 @@
 ---
 title: Sync with Couchbase Server
 description: Use Sync Gateway to sync Couchbase Server changes securely from cloud to edge
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/sync/pages/sync-with-couchbase-server.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/sync/pages/sync-with-couchbase-server.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:sync:sync-with-couchbase-server.adoc[]
 ---
 
@@ -120,7 +120,7 @@ SELECT meta().xattrs._sync FROM scope.collection WHERE meta().id = "mydocId"
 ```
 
 > [!WARNING]
-> sync gateway maintains the sync metadata internally, and its structure can change at any time. Applications must not use it for business logic. The direct use of the SQL++ query or modifying the internal sync metadata contents to drive the business logic is unsupported and must not be used in production environments. WARNING: Sync Gateway maintains the sync metadata internally, and its structure can change at any time. Applications must not use it for business logic. The direct use of the SQL++ query or modifying the internal sync metadata contents to drive the business logic is unsupported and must not be used in production environments. The sync metadata includes the `_sync` extended attribute (XATTR) in use case documents and all `_sync:` prefixed documents in Sync Gateway connected Buckets.
+> Sync Gateway maintains the sync metadata internally, and its structure can change at any time. Applications must not use it for business logic. The direct use of the SQL++ query or modifying the internal sync metadata contents to drive the business logic is unsupported and must not be used in production environments. WARNING: Sync Gateway maintains the sync metadata internally, and its structure can change at any time. Applications must not use it for business logic. The direct use of the SQL++ query or modifying the internal sync metadata contents to drive the business logic is unsupported and must not be used in production environments. The sync metadata includes the `_sync` extended attribute (XATTR) in use case documents and all `_sync:` prefixed documents in Sync Gateway connected Buckets.
 
 ### [](#enable-shared-bucket-access)Enable Shared Bucket Access
 
@@ -203,7 +203,7 @@ The following diagram shows an example architecture of two Sync Gateway nodes ha
 
 Next Steps
 
-* Check out our getting started tutorial for more on how to setup, configure and run Sync Gateway replications - [Sync tutorial](../../../tutorials/userprofile-sync/userprofile%5Fsync.md)
+* Check out our getting started tutorial for more on how to setup, configure and run Sync Gateway replications - [Sync tutorial](#tutorials:userprofile-sync:userprofile%5Fsync.adoc)
 * Further reading:
 
   * Couchbase Server documentation on [Extended Attributes](../../../server/current/learn/data/extended-attributes-fundamentals.md)

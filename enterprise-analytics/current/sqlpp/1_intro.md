@@ -3,8 +3,8 @@ title: SQL++ for Enterprise Analytics
 description: Enterprise Analytics extends the grammar, statements, and
   capabilities of  SQL++ for Analytics used with the Analytics Service in
   Couchbase Server and Capella.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/1_intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/1_intro.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sqlpp:1_intro.adoc[]
 ---
 

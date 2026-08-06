@@ -2,8 +2,8 @@
 title: Python Analytics SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Enterprise Analytics and the Python Analytics SDK.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.1/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-analytics-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -22,21 +22,29 @@ Install and configure an [Enterprise Analytics Cluster](../../../enterprise-anal
 
 ### [](#prerequisites)Prerequisites
 
-Currently Python 3.9 - Python 3.12 is supported. See the [compatibility page](../project-docs/compatibility.md#platform-compatibility) for more information about platform support.
+Currently Python 3.10 - Python 3.14 is supported. See the [compatibility page](../project-docs/compatibility.md#platform-compatibility) for more information about platform support.
 
 ## [](#getting-the-sdk)Getting the SDK
 
 The SDK can be installed via `pip`:
 
 ```console
-python -m pip install couchbase-analytics
+$ python3 -m pip install couchbase-analytics
 ```
 
 For other installation methods, see the [installation page](../project-docs/sdk-full-installation.md).
 
 ## [](#connecting-and-executing-a-query)Connecting and Executing a Query
 
-### [](#synchronous-api)Synchronous API
+Python Analytics SDK 1.1 adds support for JWT and client certificate authentication, as well as a new Server Asynchronous Request API that uses request handles to fetch results. Introduced in the self-managed Enterprise Analytics Server 2.2, this API eliminates the need for long-running server connections.
+
+The examples in this first section of the page are for the standard API — with blocking and async client-side APIs — working with Enterprise Analytics 2.0 and later (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). You can still use this API with Enterprise Analytics 2.2 and later, in addition to the new API.
+
+### [](#server-synchronous-request-api)Server Synchronous Request API
+
+#### [](#client-synchronous-api)Client Synchronous API
+
+Blocking API Example
 
 ```python
 from couchbase_analytics.cluster import Cluster
@@ -89,7 +97,9 @@ if __name__ == '__main__':
     main()
 ```
 
-### [](#asynchronous-asyncio-api)Asynchronous (asyncio) API
+#### [](#python-asynchronous-api-with-asyncio)Python Asynchronous API with asyncio
+
+asyncio Example
 
 ```python
 import asyncio
@@ -142,6 +152,79 @@ async def main() -> None:
 
 if __name__ == '__main__':
     asyncio.run(main())
+```
+
+### [](#server-asynchronous-api)Server Asynchronous Request API (with Python Blocking API)
+
+Enterprise Analytics 2.2 introduces a Server Asynchronous Request API. The SDK sends a request, polls for results, and then fetches once the result is available. The SDK supports each stage of this information flow:
+
+Server Asynchronous API Example
+
+```python
+import logging
+import time
+
+from couchbase_analytics import LOG_DATE_FORMAT, LOG_FORMAT
+from couchbase_analytics.cluster import Cluster
+from couchbase_analytics.credential import Credential
+from couchbase_analytics.query_handle import BlockingQueryHandle, BlockingQueryResultHandle
+
+# setup logger via basicConfig
+logging.basicConfig(format=LOG_FORMAT, datefmt=LOG_DATE_FORMAT, level=logging.DEBUG)
+
+def wait_for_query_results(handle: BlockingQueryHandle,
+                           delay: float = 2.5,
+                           timeout: int = 120) -> BlockingQueryResultHandle:
+    current_time = time.monotonic()
+    deadline = current_time + timeout  # seconds
+    status = None
+    while True:
+        try:
+            status = handle.fetch_status()
+            if status.results_ready():
+                return status.result_handle()
+        except Exception as e:
+            # Depending on the use case, you might want to break here or continue retrying.
+            print(f'Error fetching query results: {e}')
+
+        current_time = time.monotonic()
+        delay_time = current_time + delay
+        if deadline < delay_time:
+            raise TimeoutError(f'Query results not ready within {timeout} seconds.')
+        else:
+            if status is not None:
+                print(f'Query status: {status}')
+            print(f'Query results not ready yet, sleeping for {delay} seconds...')
+
+        time.sleep(delay)
+
+
+def main() -> None:
+    # Update this to your cluster
+    # IMPORTANT:  The appropriate port needs to be specified. The SDK's default ports are 80 (http) and 443 (https).
+    #             If attempting to connect to Capella, the correct ports are most likely to be 8095 (http) and 18095 (https).    # noqa: E501
+    #             Capella example: https://cb.2xg3vwszqgqcrsix.cloud.couchbase.com:18095
+    endpoint = 'http://localhost'
+    username = 'Administrator'
+    pw = 'password'
+    # User Input ends here.
+
+    cred = Credential.from_username_and_password(username, pw)
+    cluster = Cluster.create_instance(endpoint, cred)
+    statement = 'SELECT VALUE SLEEP("x", 100) FROM RANGE(1, 100) AS id;'
+    handle = cluster.start_query(statement)
+
+    result_handle = wait_for_query_results(handle, delay=2.5, timeout=60)
+    res = result_handle.fetch_results()
+
+    for row in res:
+        print(f'Found row: {row}')
+    print(f'metadata={res.metadata()}')
+    result_handle.discard_results()
+
+
+if __name__ == '__main__':
+    main()
 ```
 
 ### [](#connection-string)Connection String

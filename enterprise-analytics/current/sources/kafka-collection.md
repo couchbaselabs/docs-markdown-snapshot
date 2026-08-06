@@ -1,7 +1,7 @@
 ---
 title: Create a Kafka Pipeline Collection
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/kafka-collection.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sources/pages/kafka-collection.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sources:kafka-collection.adoc[]
 ---
 
@@ -47,7 +47,10 @@ You can have Enterprise Analytics report any messages it fails to load to a Kafk
 
 Change Data Capture
 
-Whether Change Data Capture (CDC) applies, and if so, the source.
+Whether Change Data Capture (CDC) applies, and if so, the source. Enterprise Analytics supports the following CDC sources via the Debezium connector:
+
+* `ORACLE` — See [Stream CDC Data from Oracle](debezium-oracle.md).
+* `SQLSERVER` — See [Stream CDC Data from SQL Server](debezium-sqlserver.md).
 
 ## [](#create-a-collection-for-a-kafka-data-link)Create a Collection for a Kafka Data Link
 
@@ -59,7 +62,8 @@ Whether Change Data Capture (CDC) applies, and if so, the source.
 6. In the **Primary Key** field, enter the name of the primary key and its data type in the format `KEY_NAME:DATA_TYPE`. See the [requirements](#reqs) for examples.
 7. In the **Key Serialization Type** field, select the data serialization type used for keys. See the [requirements](#reqs) for examples.
 8. In the **Value Serialization Type** field, select the data serialization type used for keys. See the [requirements](#reqs) for examples.
-9. Click **CDC Enabled** if the topics use Change Data Capture (CDC).
+9. Click **CDC Enabled** if the topics use Change Data Capture (CDC).  
+To specify the CDC source type (Oracle or SQL Server) and connector, use a SQL++ `CREATE COLLECTION` statement with a `cdcDetails` clause instead of the UI. See [Stream CDC Data from Oracle](debezium-oracle.md) or [Stream CDC Data from SQL Server](debezium-sqlserver.md).
 10. In the **Dead Letter Queue Topic** field, enter the dead letter topic. See the [requirements](#reqs) for more information.
 11. In the **Source bucket.scope.collection** field, select the source bucket, scope and collection.
 12. In the **Where (optional)** field, you can add an optional WHERE clause to filter documents in the dataset. Make sure you do not include the WHERE keyword.
@@ -73,4 +77,6 @@ You can also use an SQL++ statement to create a remote Kafka collection, see [CR
 * [Connect or Disconnect a Remote Link](connect-link.md)
 * [Delete a Collection or Link](delete-entity.md)
 * [CREATE a Remote Collection](../sqlpp/5%5Fddl%5Fremote.md#createkafka)
+* [Stream CDC Data from Oracle](debezium-oracle.md)
+* [Stream CDC Data from SQL Server](debezium-sqlserver.md)
 * [Access and Organize Data in Enterprise Analytics](database-objects.md)

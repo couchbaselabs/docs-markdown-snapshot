@@ -2,8 +2,8 @@
 title: Using Full-Text Search
 description: Working with Couchbase Lite's data model  -- Querying the database
   using full text search
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/fts.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/fts.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:fts.adoc[]
 ---
 
@@ -27,14 +27,26 @@ SQL++ provides a configuration object to define Full Text Search indexes — `Fu
 
 Example 1\. Using SQL++'s FullTextIndexConfiguration
 
+* C
+* C++
+
 ```c
-CBLError err{};
-CBLFullTextIndexConfiguration config{};
+CBLError err = {};
+CBLFullTextIndexConfiguration config = {};
 config.expressionLanguage = kCBLN1QLLanguage;
 config.expressions = FLSTR("name");
 config.ignoreAccents = false;
 
 CBLCollection_CreateFullTextIndex(collection, FLSTR("nameFTSIndex"), config, &err);
+```
+
+```cpp
+cbl::FullTextIndexConfiguration config{};
+config.expressionLanguage = kCBLN1QLLanguage;
+config.expressions = "name";
+config.ignoreAccents = false;
+
+collection.createFullTextIndex("nameFTSIndex", config);
 ```
 
 ## [](#use-index)Use Index
@@ -49,8 +61,11 @@ The following example finds all hotels mentioning _Michigan_ in their _Overview_
 
 Example 2\. Using SQL++ Full Text Search
 
+* C
+* C++
+
 ```c
-CBLError err{};
+CBLError err = {};
 CBLQuery* query = CBLDatabase_CreateQuery(database, kCBLN1QLLanguage,
     FLSTR("SELECT meta().id FROM _ WHERE MATCH(nameFTSIndex, \"'buy'\")"),
     NULL, &err);
@@ -63,6 +78,16 @@ while(CBLResultSet_Next(results)) {
 
 CBLResultSet_Release(results);
 CBLQuery_Release(query);
+```
+
+```cpp
+cbl::Query query(database, kCBLN1QLLanguage,
+    "SELECT meta().id FROM _ WHERE MATCH(nameFTSIndex, \"'buy'\")");
+
+cbl::ResultSet results = query.execute();
+for (cbl::Result result : results) {
+    std::cout << "Document id :: " << result[0].asstring() << std::endl;
+}
 ```
 
 ## [](#operation)Operation
@@ -106,7 +131,7 @@ Query the database for documents for which the term "linux" appears in the docum
 
 A _phrase query_ is one that retrieves all documents containing a nominated set of terms or term prefixes in a specified order with no intervening tokens.
 
-Phrase queries are specified by enclosing a space separated sequence of terms or term prefixes in double quotes (").
+Phrase queries are specified by enclosing a space separated sequence of terms or term prefixes in double quotes ("").
 
 Example 5\. Phrase query
 
@@ -146,7 +171,7 @@ Query for the set of documents that contains the term "linux", and at least one 
 
 ## [](#ordering-results)Ordering Results
 
-It's very common to sort full-text results in descending order of relevance. This can be a very difficult heuristic to define, but Couchbase Lite comes with a ranking function you can use.
+It's' very common to sort full-text results in descending order of relevance. This can be a very difficult heuristic to define, but Couchbase Lite comes with a ranking function you can use.
 
 In the `OrderBy` array, use a string of the form `Rank(X)`, where `X` is the property or expression being searched, to represent the ranking of the result.
 

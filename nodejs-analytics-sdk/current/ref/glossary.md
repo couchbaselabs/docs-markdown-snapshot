@@ -2,8 +2,8 @@
 title: Glossary
 description: Unpicking the tangled alphabet soup of the Enterprise Analytics
   Platform, from an SDK perspective.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/ref/pages/glossary.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.1/modules/ref/pages/glossary.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-analytics-sdk:ref:glossary.adoc[]
 ---
 

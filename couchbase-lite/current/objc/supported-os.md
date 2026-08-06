@@ -2,8 +2,8 @@
 title: Supported Operating System Versions
 description: Couchbase Lite on Objective-C -- the OS and SDK versions on which
   this framework is supported
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/supported-os.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/objc/pages/supported-os.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:objc:supported-os.adoc[]
 ---
 
@@ -20,29 +20,23 @@ link: xref:couchbase-lite:objc:supported-os.adoc[]
 The following table identifies the [supported platforms](#supported-os-versions).
 
 __Table 1\. Supported versions__
-| Platform | Minimum OS version                      |
-| -------- | --------------------------------------- |
-| iOS      | 15.0+                                   |
-| macOS    | 13 (Ventura), 14 (Sonoma), 15 (Sequoia) |
+| Platform | Minimum OS version        |
+| -------- | ------------------------- |
+| iOS      | 15.0+                     |
+| macOS    | 14 (Sonoma), 15 (Sequoia) |
 
 > [!NOTE]
 > Couchbase Lite for Objective-C provides native support for both Mac Catalyst and M1\.
 
-## [](#deprecated-versions)Deprecated Versions
-
-| Operating System | Version      | Deprecation Release |
-| ---------------- | ------------ | ------------------- |
-| macOS            | 13 (Ventura) | 3.3.0               |
-
 ## [](#removed-versions)Removed Versions
 
-| Operating System | Version  | Removed | Deprecation Release |
-| ---------------- | -------- | ------- | ------------------- |
-| iOS              | iOS 10   | 3.1.1   | 3.1.0               |
-| iOS 11           | 3.2.0    | 3.1.1   |                     |
-| iOS 12           | 3.3.0    | 3.3.0   |                     |
-| iOS 13 & 14      | 3.2.0    | 3.3.0   |                     |
-| macOS            | macOS 12 | 3.3.0   | 3.2.0               |
-| macOS 11         | 3.2.0    | 3.1.0   |                     |
-| OSX 10.15        | 3.2.0    | 3.1.0   |                     |
-| OSX 10.14        | 3.2.0    | 3.1.0   |                     |
+| Operating System | Version            | Removed | Deprecation Release |
+| ---------------- | ------------------ | ------- | ------------------- |
+| iOS              | iOS 10             | 3.1.1   | 3.1.0               |
+| iOS 11           | 3.2.0              | 3.1.1   |                     |
+| iOS 12           | 3.3.0              | 3.3.0   |                     |
+| iOS 13 & 14      | 3.2.0              | 3.3.0   |                     |
+| macOS            | macOS 13 (Ventura) | 4.1     | 3.3.0               |
+| macOS 12         | 3.3.0              | 3.2.0   |                     |
+| macOS 11         | 3.2.0              | 3.1.0   |                     |
+| OSX 10.15        | 3.2.0              | 3.1.0   |                     |

@@ -1,8 +1,8 @@
 ---
 title: Using Couchbase Transactions
 description: Distributed ACID Transactions in Couchbase SDKs
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
@@ -238,12 +238,11 @@ $cluster->transactions()->run(
 
     // This function (not provided here) will use a trained machine learning model to provide a
     // suitable price based on recent customer reviews.
-    function priceFromRecentReviews(Couchbase\QueryResult $qr)
-    {
+    $priceFromRecentReviews = function (\Couchbase\QueryResult $qr): float {
       // this would call a trained ML model to get the best price
       return 99.98;
-    }
-    $updatedPrice = priceFromRecentReviews($qr);
+    };
+    $updatedPrice = $priceFromRecentReviews($qr);
 
     // Set the price of all hotels in the chain
     $ctx->query(

@@ -1,8 +1,8 @@
 ---
 title: Caching Example
 description: A walk-through of the steps to use Couchbase as a caching layer for Rails.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/howtos/pages/caching-example.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/caching-example.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:howtos:caching-example.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:ruby-sdk:howtos:caching-example.adoc[]
 
 This example demonstrates how to integrate Couchbase into a caching layer of the [Rails](https://rubyonrails.org/) web-framework.
 
-You can also find the [full code for _this_ example here](https://github.com/couchbase/docs-sdk-ruby/blob/temp/3.5/modules/howtos/examples/rails-caching-example).
+You can also find the [full code for _this_ example here](https://github.com/couchbase/docs-sdk-ruby/blob/temp/3.8/modules/devguide/examples/rails-caching-example).
 
 ## [](#configuration)Configuration
 

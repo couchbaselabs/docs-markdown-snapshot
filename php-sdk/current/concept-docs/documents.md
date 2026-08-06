@@ -2,8 +2,8 @@
 title: Documents
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/concept-docs/pages/documents.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/documents.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:concept-docs:documents.adoc[]
 ---
 
@@ -118,9 +118,7 @@ You can also specify additional options when storing a document in Couchbase
 > If you wish to only modify certain parts of a document, you can use [sub-document](subdocument-operations.md) operations which operate on specific subsets of documents:
 > 
 > ```php
-> $result = $collection->mutateIn('airline_10', [
->     new MutateUpsertSpec('msrp', 18.00)
-> ]);
+> Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents-concept.php[]
 > ```
 > 
 > or [N1QL UPDATE](../../../server/current/n1ql/n1ql-language-reference/update.md) to update documents based on specific query criteria:
@@ -164,11 +162,7 @@ SELECT * FROM `travel-sample`.inventory.airport WHERE META().id = "airport_1254"
 You can also retrieve _parts_ of documents using [sub-document operations](subdocument-operations.md), by specifying one or more sections of the document to be retrieved
 
 ```php
-$usersCollection = $bucket->scope('tenant_agent_00')->collection('users');
-$usersCollection->lookupIn('1', [
-    new LookupGetSpec('credit_cards[0].type'),
-    new LookupGetSpec('credit_cards[0].expiration')
-]);
+Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents-concept.php[]
 ```
 
 ## [](#counters)Counters
@@ -181,17 +175,7 @@ You can atomically increment or decrement the numerical value of special counter
 A document may be used as a counter if its value is a simple ASCII number, like `42`. Couchbase allows you to increment and decrement these values atomically using a special `counter` operation in the `Binary.Collection`. The example below shows a counter being initialised, then being incremented and decremented:
 
 ```php
-$counterDocId = 'counter-doc';
-$decrementOpts = new DecrementOptions();
-$incrementOpts = new IncrementOptions();
-// Increment by 1, creating doc if needed.
-// By using `initial(1)` we set the starting count(non-negative) to 1 if the document needs to be created.
-// If it already exists, the count will increase by 1.
-$collection->binary()->increment($counterDocId, $incrementOpts->initial(1));
-// Decrement by 1
-$collection->binary()->decrement($counterDocId);
-// Decrement by 5
-$collection->binary()->decrement($counterDocId, $decrementOpts->delta(5));
+Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents-concept.php[]
 ```
 
 In the above example, a counter is created by using the `counter` method with an `initial` value. The initial value is the value the counter uses if the counter ID does not yet exist.
@@ -205,15 +189,7 @@ Couchbase counters are 64-bit unsigned integers in Couchbase and do not wrap aro
 [CAS](../howtos/concurrent-document-mutations.md) values are not used with counter operations since counter operations are atomic. The intent of the counter operation is to simply increment the current server-side value of the document. If you wish to only increment the document if it is at a certain value, then you may use a normal `replace` function with CAS:
 
 ```php
-$result = $collection->get('counter-doc');
-$value = $result->content();
-$incrementAmnt = 5;
-
-if (shouldIncrementValue($value)) {
-    $opts = new ReplaceOptions();
-    $opts->cas($result->cas());
-    $collection->replace('counter-doc', $value + $incrementAmnt, $opts);
-}
+Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents-concept.php[]
 ```
 
 You can also use [sub-document counter operations](subdocument-operations.md) to increment numeric values _within_ a document containing other content. An example can be found in the [practical sub-doc page](../howtos/subdocument-operations.md#counters-and-numeric-fields).

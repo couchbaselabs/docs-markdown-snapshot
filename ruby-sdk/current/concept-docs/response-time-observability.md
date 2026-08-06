@@ -2,8 +2,8 @@
 title: Tracing
 description: Tracing and Metrics provide fine-grained insight into how an
   application is performing, and helps to diagnose when it is not.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/concept-docs/pages/response-time-observability.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/concept-docs/pages/response-time-observability.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:concept-docs:response-time-observability.adoc[]
 ---
 
@@ -13,6 +13,9 @@ link: xref:ruby-sdk:concept-docs:response-time-observability.adoc[]
 # Tracing
 
 > Tracing and Metrics provide fine-grained insight into how an application is performing, and helps to diagnose when it is not. 
+
+> [!TIP]
+> In addition to Tracing and other metrics, and client logging, SDK is telemetry is also sent to the Server — available from 8.0, and in new Capella Operational clusters — for ingestion with other Prometheus metrics. Capella Operational exposes these metrics through the UI.
 
 Health indicators can tell you a lot about the performance of an application. Monitoring them is vital both during its development and production lifecycle.
 
@@ -28,7 +31,7 @@ In addition to built-in turnkey logging solutions, support for external systems 
 
 Tracing provides granular timing information down the individual phases of a request/operation. For a simple overview, consider the following output for an individual request — which is logged from the default tracer that ships with the SDK, and is enabled by default:
 
-```java
+```json
 {
   "total_duration_us": 1200,
   "encode_duration_us": 100,
@@ -75,13 +78,13 @@ Request metrics provide insight into the sum of all individual requests flowing 
 }
 ```
 
-The JSON above shows the maximum latency as well as lower percentiles for individual operations. Note that they are aggregated across all nodes and include potential retries, so this really shows end-to-end latency from a users/SDK perspective.
+The JSON above shows the maximum latency as well as lower percentiles for individual operations. Note that they are aggregated across all nodes and include potential retries, so this really shows end-to-end latency from a user or SDK perspective.
 
 ## [](#opentelemetry-integration)OpenTelemetry Integration
 
 In addition to the built-in turnkey logging solutions for both tracing and metrics — depending on platform availability — we are providing support for OpenTelemetry and other platform-specific integrations. This allows tight integration into your monitoring infrastructure, making monitoring and troubleshooting performance even more efficient.
 
-The howto section provides more information on the platform specifics, and general information about OpenTelemetry can be found on the <https://opentelemetry.io/> website.
+The [OTel howto section](../howtos/observability-tracing.md#opentelemetry-integration) provides more information on the platform specifics, and general information about OpenTelemetry can be found on the <https://opentelemetry.io/> website.
 
 ## [](#additional-information)Additional Information
 

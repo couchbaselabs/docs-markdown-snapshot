@@ -1,8 +1,8 @@
 ---
 title: Type Functions
 description: This topic describes the builtin SQL++ for Enterprise Analytics type functions.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/8_builtin_type.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/8_builtin_type.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sqlpp:8_builtin_type.adoc[]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Concurrent Document Mutations
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/concurrent-document-mutations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/concurrent-document-mutations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:howtos:concurrent-document-mutations.adoc[]
 ---
 
@@ -100,7 +100,7 @@ function incrementVisitCount(Collection $collection, string $userId) {
             $opts = new ReplaceOptions();
             $opts->cas($res->cas());
             $collection->replace($userId, $user, $opts);
-        } catch (CasMismatchError $ex) {
+        } catch (CasMismatchException $ex) {
             continue;
         }
 

@@ -1,7 +1,15 @@
 ---
 title: Welcome to Couchbase Capella
+description: Capella operational is the easiest way to use Couchbase Server. Get
+  access to SQL-like querying, full-text and vector search, powerful eventing,
+  and connectivity to mobile and IoT devices at the edge. Capella Analytics is
+  an analytical database (RT-OLAP) for real-time apps and operational
+  intelligence. Capella Analytics is a standalone, cloud-only offering from
+  Couchbase under the Capella family of products. The Couchbase AI Data Plane is
+  a fully managed set of tools that help you build, deploy, and scale your
+  agentic and retrieval-augmented generation (RAG) AI applications.
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/cloud.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:home::cloud.adoc[]
 ---
 
@@ -16,7 +24,7 @@ Capella operational is the easiest way to use Couchbase Server. Get access to SQ
 
 Capella Analytics is an analytical database (RT-OLAP) for real-time apps and operational intelligence. Capella Analytics is a standalone, cloud-only offering from Couchbase under the Capella family of products.
 
-The {ai-long} is a fully managed set of tools that help you build, deploy, and scale your agentic and retrieval-augmented generation (RAG) AI applications.
+The Couchbase AI Data Plane is a fully managed set of tools that help you build, deploy, and scale your agentic and retrieval-augmented generation (RAG) AI applications.
 
 ## Explore Couchbase Capella
 
@@ -50,14 +58,14 @@ Create your account and follow our tutorial on how to load data into your Analyt
 * [Access Data](../analytics/intro/examples.md)
 * [Query and Explore with the Workbench](../analytics/query/workbench.md)
 
-###  Get Started With the {ai-long}
+###  Get Started With the Couchbase AI Data Plane
 
-Create your account and start working with the {ai}.
+Create your account and start working with the AI Data Plane.
 
 * [Sign Up](https://cloud.couchbase.com/sign-up)
-* [{ai-long}](../ai/get-started/intro.md)
-* [Process Your Data For the {ai-long}](../ai/build/vectorization-service/data-processing.md)
+* [Couchbase AI Data Plane](../ai/get-started/intro.md)
+* [Process Your Data For the Couchbase AI Data Plane](../ai/build/vectorization-service/data-processing.md)
 * [Deploy a Large Language Model (LLM)](../ai/build/model-service/deploy-llm-model.md)
 * [Deploy an Embedding Model](../ai/build/model-service/deploy-embed-model.md)
 * [Integrate an Agent with the Agent Catalog](../ai/build/integrate-agent-with-catalog.md)
-* [Use {ai-long} AI Functions](../ai/build/ai-functions.md)
+* [Use Couchbase AI Data Plane AI Functions](../ai/build/ai-functions.md)

@@ -1,8 +1,8 @@
 ---
 title: Databases
 description: Working with Couchbase Lite Databases
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/csharp/pages/database.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:csharp:database.adoc[]
 ---
 
@@ -49,12 +49,12 @@ One reason for doing this is to store local configuration data (such as the pref
 
 ## [](#open-db)Create or Open Database
 
-You can create a new database and-or open an existing database, using the [Database](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Database.html) class. Just pass in a database name and optionally a [DatabaseConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html) — see [Example 1](#ex-dbopen).
+You can create a new database and-or open an existing database, using the [Database](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Database.html) class. Just pass in a database name and optionally a [DatabaseConfiguration](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html) — see [Example 1](#ex-dbopen).
 
 Things to watch for include:
 
 * If the named database does not exist in the specified, or default, location then a new one is created
-* The database is created in a default location unless you specify a directory for it — see: [DatabaseConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html) and [DatabaseConfiguration.Directory()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html#Couchbase%5FLite%5FDatabaseConfiguration%5Fdirectory)  
+* The database is created in a default location unless you specify a directory for it — see: [DatabaseConfiguration](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html) and [DatabaseConfiguration.Directory()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html#Couchbase%5FLite%5FDatabaseConfiguration%5Fdirectory)  
 Typically, the default location for C#.Net is . a platform-dependant location:
 
   * .NET Console: `Path.Combine(AppContext.BaseDirectory, "CouchbaseLite")` (unless the app context is altered \[e.g. by XUnit\], this will be the same directory as the output binary)
@@ -73,7 +73,7 @@ var database = new Database("my-database");
 
 You are advised to incorporate the closing of all open databases into your application workflow.
 
-To close a database, use [Database.Close()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FClose) — see: [Example 2](#ex-dbclose). This also closes \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]active replications, listeners and-or live queries connected to the database.
+To close a database, use [Database.Close()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FClose) — see: [Example 2](#ex-dbclose). This also closes \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]active replications, listeners and-or live queries connected to the database.
 
 > [!NOTE]
 > Closing a database soon after starting a replication involving it can cause an exception as the asynchronous `replicator (start)` may not yet be `connected`.
@@ -118,7 +118,7 @@ _Couchbase Lite on C#.Net_ includes the ability to encrypt Couchbase Lite databa
 
 ### [](#enabling)Enabling
 
-To enable encryption, use [DatabaseConfiguration.EncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html#Couchbase%5FLite%5FDatabaseConfiguration%5FEncryptionKey) to set the encryption key of your choice. Provide this encryption key every time the database is opened — see [Example 4](#ex-sdb-encrypt).
+To enable encryption, use [DatabaseConfiguration.EncryptionKey()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html#Couchbase%5FLite%5FDatabaseConfiguration%5FEncryptionKey) to set the encryption key of your choice. Provide this encryption key every time the database is opened — see [Example 4](#ex-sdb-encrypt).
 
 Example 4\. Configure Database Encryption
 
@@ -149,11 +149,11 @@ An encrypted database can only be opened with the same platform that was used to
 
 ### [](#changing)Changing
 
-To change an existing encryption key, open the database using its existing encryption-key and use [Database.ChangeEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FChangeEncryptionKey%5FCouchbase%5FLite%5FEncryptionKey%5F)to set the required new encryption-key value.
+To change an existing encryption key, open the database using its existing encryption-key and use [Database.ChangeEncryptionKey()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FChangeEncryptionKey%5FCouchbase%5FLite%5FEncryptionKey%5F)to set the required new encryption-key value.
 
 ### [](#removing)Removing
 
-To remove encryption, open the database using its existing encryption-key and use [Database.ChangeEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FChangeEncryptionKey%5FCouchbase%5FLite%5FEncryptionKey%5F)with a null value as the encryption key.
+To remove encryption, open the database using its existing encryption-key and use [Database.ChangeEncryptionKey()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FChangeEncryptionKey%5FCouchbase%5FLite%5FEncryptionKey%5F)with a null value as the encryption key.
 
 ### [](#upgrading)Upgrading
 
@@ -172,7 +172,7 @@ Where a database goes by default depends on the platform it is running on. Here 
 
 From time to time it may be necessary to perform certain maintenance activities on your database, for example to compact the database file, removing unused documents and blobs no longer referenced by any documents.
 
-Couchbase Lite's API provides the [Database.PerformMaintenance()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FPerformMaintenance-com.couchbase.lite.MaintenanceType-) method. The available maintenance operations, including `compact` are as shown in the enum [MaintenanceType](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net/api/Couchbase.Lite.MaintenanceType.html) to accomplish this.
+Couchbase Lite's API provides the [Database.PerformMaintenance()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FPerformMaintenance-com.couchbase.lite.MaintenanceType-) method. The available maintenance operations, including `compact` are as shown in the enum [MaintenanceType](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.MaintenanceType.html) to accomplish this.
 
 This is a resource intensive operation and is not performed automatically. It should be run on-demand using the API. If in doubt, consult Couchbase support.
 

@@ -2,8 +2,8 @@
 title: Couchbase Lite on C
 description: Start your Couchbase for Mobile and Edge adventure, get up and
   running with Couchbase Lite
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/quickstart.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/quickstart.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:quickstart.adoc[]
 ---
 
@@ -14,18 +14,20 @@ link: xref:couchbase-lite:c:quickstart.adoc[]
 
 Couchbase Lite is an embedded, NoSQL JSON Document Style database for your mobile apps.
 
-You can use Couchbase Lite as a standalone embedded database within your mobile apps, or with Sync Gateway and Couchbase Server to provide a complete cloud to edge synchronized solution
+You can use Couchbase Lite as a standalone embedded database within your mobile apps, or with Sync Gateway and Couchbase Server to provide a complete cloud to edge synchronized solution.
+
+Couchbase Lite for C ships both a C API and a committed C++ wrapper API (cbl++), available on all supported platforms.
 
 ## How Do You Want To Start Building Today?
 
-###  Get Started with C
+###  Get Started with C / C++
 
-Get set up with an account and deploy a free tier operational cluster.
+Get set up and deploy Couchbase Lite for C, which includes both the C API and the C++ wrapper API (cbl++).
 
 * [Download](gs-downloads.md)
 * [Install](gs-install.md)
 * [Build](gs-build.md)
-* [Browse API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/modules.html)
+* [Browse C API References](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/modules.html)
 
 ###  Do More
 
@@ -54,7 +56,7 @@ Understand fundamental principles and best practices.
 
 Stay updated with the latest releases and platform support.
 
-* [New in 4.0](../cbl-whatsnew.md)
+* [New in 4.1](../cbl-whatsnew.md)
 * [Couchbase Lite Release Notes](releasenotes.md)
 * [Vector Search Release Notes](vs-releasenotes.md)
 * [Supported Platforms](supported-os.md)

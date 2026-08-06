@@ -1,7 +1,7 @@
 ---
 title: Create a Kafka Pipeline Link
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/remote-kafka.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sources/pages/remote-kafka.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sources:remote-kafka.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Your Enterprise Analytics account must have the `**Enterprise Analytics Access**
 
 To connect to a Kafka data streaming service, you provide the broker URL or URLs and the authentication type to use with its credentials. For data that's in a format other than JSON, you also provide the schema registry to use and its details.
 
-Enterprise Analytics supports Confluent Cloud Kafka as Kafka sources:
+Enterprise Analytics supports Confluent Cloud Kafka as Kafka sources. When a Debezium connector populates topics, Enterprise Analytics also supports Oracle and SQL Server as upstream CDC sources. See [Stream CDC Data from Oracle](debezium-oracle.md) and [Stream CDC Data from SQL Server](debezium-sqlserver.md).
 
 * Confluent Cloud Kafka
 
@@ -35,7 +35,7 @@ Enterprise Analytics supports Confluent Cloud Kafka as Kafka sources:
 
   * API Key
   * API Key Secret
-  * TLS 1.2 or higher encryption
+  * TLS 1.2 or later encryption
 
   * API Key
   * API Key Secret
@@ -66,7 +66,7 @@ The name must start with a letter (A-Z, a-z) and contain only upper- and lowerca
 > [!NOTE]  
 > If there are multiple URLs, separate them with commas.
 6. In the **Authentication** field, select 1 of the options.
-7. TLS encryption is optional for some authentication types. To leave data unencrypted, clear TLS Enabled.
+7. TLS encryption is optional for some authentication types. To leave data without encryption, clear TLS Enabled.
 8. Select **Custom Schema registry** so that collections associated with this link can handle schema types other than JSON.
 9. Click **Save**.
 

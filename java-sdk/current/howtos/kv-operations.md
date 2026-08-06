@@ -2,8 +2,8 @@
 title: Data Operations
 description: Data service offers the simplest way to retrieve or mutate data
   where the key is known.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:java-sdk:howtos:kv-operations.adoc[]
 
 > Data service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS — as well as KV Range scan, for querying without an index. 
 
-The complete code sample used on this page can be downloaded from [here](https://github.com/couchbase/docs-sdk-java/blob/release/3.11/modules/devguide/examples/java/KvOperations.java).
+The complete code sample used on this page can be downloaded from [here](https://github.com/couchbase/docs-sdk-java/blob/release/3.12/modules/devguide/examples/java/KvOperations.java).
 
 At its heart Couchbase Server is a high-performance key-value store, and the key-value interface outlined below is the fastest and best method to perform operations involving single documents.
 

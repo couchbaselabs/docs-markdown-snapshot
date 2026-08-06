@@ -3,8 +3,8 @@ title: Health Check
 description: Health Check provides <code>ping()</code> and
   <code>diagnostics()</code> tests for the health of the network and the
   cluster.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/health-check.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/howtos/pages/health-check.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-sdk:howtos:health-check.adoc[]
 ---
 

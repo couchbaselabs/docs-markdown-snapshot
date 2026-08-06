@@ -2,8 +2,8 @@
 title: Cost-Based Optimizer for Enterprise Analytics Services
 description: The cost-based optimizer for Enterprise Analytics uses samples to
   choose the optimal plan to execute a query.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5b_cbo.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5b_cbo.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sqlpp:5b_cbo.adoc[]
 ---
 
@@ -56,7 +56,7 @@ The query language provides ANALYZE statements which enable you to manage cost-b
 
 ![AnalyzeCollection | AnalyzeCollectionDrop](_images/AnalyzeStmnt.png) 
 
-## [](#Collecting%5Fsamples)Creating Samples
+## [](#Collecting%5Fsamples)Collecting Samples
 
 The `ANALYZE COLLECTION` statement creates a sample of randomly selected objects from the specified collection.
 

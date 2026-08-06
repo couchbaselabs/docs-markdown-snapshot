@@ -1,7 +1,12 @@
 ---
 title: Couchbase Documentation
+description: Couchbase is the modern database for enterprise applications.
+  Couchbase is a distributed document database with a powerful search engine and
+  in-built operational and analytical capabilities. It brings the power of NoSQL
+  to the edge and provides fast, efficient bidirectional synchronization of data
+  between the edge and the cloud.
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/index.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:home::index.adoc[]
 ---
 
@@ -73,14 +78,14 @@ Couchbase Mobile
 
 _Couchbase Mobile_ brings the power of NoSQL to the edge. The combination of _Sync Gateway_ and _Couchbase Lite_ coupled with the power of _Couchbase Server_ provides fast, efficient bidirectional synchronization of data between the edge and the cloud. Enabling you to deploy your offline-first mobile and embedded applications with greater agility on premises or in any cloud.
 
-[Couchbase Lite](../couchbase-lite/current/index.md) | [Sync Gateway](../sync-gateway/current/introduction.md) | [Couchbase Edge Server](#couchbase-edge-server:introduction:intro.adoc)
+[Couchbase Lite](../couchbase-lite/current/index.md) | [Sync Gateway](../sync-gateway/current/introduction.md) | [Couchbase Edge Server](../couchbase-edge-server/current/introduction/intro.md)
 
   
-The {ai-long}
+The Couchbase AI Data Plane
 
-The {ai-long} is a fully managed set of tools that help you build, deploy, and scale your agentic and retrieval-augmented generation (RAG) AI applications. These tools integrate seamlessly with the Couchbase Capella cloud platform, enabling you to develop your AI applications on the same platform as your data.
+The Couchbase AI Data Plane is a fully managed set of tools that help you build, deploy, and scale your agentic and retrieval-augmented generation (RAG) AI applications. These tools integrate seamlessly with the Couchbase Capella cloud platform, enabling you to develop your AI applications on the same platform as your data.
 
-[The {ai-long}](../ai/get-started/intro.md)
+[The Couchbase AI Data Plane](../ai/get-started/intro.md)
 
 ###### 
 

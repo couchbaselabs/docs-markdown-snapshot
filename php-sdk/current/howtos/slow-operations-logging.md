@@ -2,8 +2,8 @@
 title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging, orphan logging, and other span metrics.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/slow-operations-logging.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/slow-operations-logging.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:howtos:slow-operations-logging.adoc[]
 ---
 
@@ -218,7 +218,7 @@ __Table 1\. Allowed Tracer Properties__
 | **tracing\_threshold\_kv**                     | duration | 0.5     | Minimum time for the tracing span of KV service to be considered by threshold tracer.        |
 | **tracing\_threshold\_query**                  | duration | 1.0     | Minimum time for the tracing span of QUERY service to be considered by threshold tracer.     |
 | **tracing\_threshold\_view**                   | duration | 1.0     | Minimum time for the tracing span of VIEW service to be considered by threshold tracer.      |
-| **tracing\_threshold\_search**                 | duration | 1.0     | Minimum time for the tracing span of FTS service to be considered by threshold tracer.       |
+| **tracing\_threshold\_search**                 | duration | 1.0     | Minimum time for the tracing span of Search service to be considered by threshold tracer.    |
 | **tracing\_threshold\_analytics**              | duration | 1.0     | Minimum time for the tracing span of ANALYTICS service to be considered by threshold tracer. |
 
 The duration properties are given in **seconds** with fractions after floating point (e.g. "2.5" is 2 seconds and 500 milliseconds).

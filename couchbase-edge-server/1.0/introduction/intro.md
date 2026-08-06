@@ -3,7 +3,7 @@ title: Introducing Couchbase Edge Server
 description: Couchbase Edge Server is a lightweight standalone database for
   resource-constrained edge, based on Couchbase Lite Core.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/introduction/pages/intro.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:1.0@couchbase-edge-server:introduction:intro.adoc[]
 ---
 
@@ -71,7 +71,7 @@ Use Couchbase Edge Server REST API capabilities to perform CRUD operations, SQL+
 * [Monitor Changes with Edge Server](../rest-based-access/changes-feed.md)
 * [Run Queries with Edge Server](../rest-based-access/queries-api.md)
 * [Manage Replication with Edge Server](../rest-based-access/replication.md)
-* [public-api-reference:index.adoc](#public-api-reference:index.adoc)
+* [Edge Server Public REST API](../public-api-reference/index.md)
 
 ## Sync
 

@@ -1,8 +1,8 @@
 ---
 title: Troubleshoot
 description: Common errors, general tips, and an account of how to handle core files.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/troubleshoot/troubleshoot.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/troubleshoot/troubleshoot.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:manage:troubleshoot/troubleshoot.adoc[]
 ---
 

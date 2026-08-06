@@ -1,8 +1,8 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Node.js SDK to a Couchbase cluster.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -44,10 +44,14 @@ cluster = await couchbase.connect('couchbases://nodeA.example.com', {
 })
 ```
 
-> [!NOTE]
-> If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 6.0 and earlier, need to open a `` `Bucket `` instance before connecting to any other HTTP services (such as _Query_ or _Search_.
-
 Connection String options are covered [in the API guide](https://docs.couchbase.com/sdk-api/couchbase-node-client/interfaces/ConnectOptions.html).
+
+> [!TIP]
+> WaitUntilReady()
+> 
+> For some of the SDKs, such as [Java](../../../java-sdk/current/hello-world/start-using-sdk.md#opening-a-bucket), you'll see a recommendation to use `waitUntilReady()`, which ensures that the bucket resource is fully loaded before proceeding.
+> 
+> Although this is an element of the [SDK bootstrapping RFC](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0048-sdk3-bootstrapping.md), it's not required for successful operation of the "wrapper" SDKs (Node.js, PHP, Python, and Ruby — wrappers over the C++ SDK), as `Cluster.connect()` blocks until bootstrap is complete and a cluster config is seen. Any bootstrap errors are returned there.
 
 In a production environment, your connection string should include the addresses of multiple server nodes in case some are currently unavailable. Multiple addresses may be specified in a connection string by delimiting them with commas:
 

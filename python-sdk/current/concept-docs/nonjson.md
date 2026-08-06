@@ -1,8 +1,8 @@
 ---
 title: Non-JSON Documents
 description: Binary formats &amp; Transcoders.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/concept-docs/pages/nonjson.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/concept-docs/pages/nonjson.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:concept-docs:nonjson.adoc[]
 ---
 

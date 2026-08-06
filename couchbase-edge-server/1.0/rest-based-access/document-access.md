@@ -3,7 +3,7 @@ title: Document Access with Edge Server
 description: You can create, read, update, and delete documents in a keyspace
   using the REST API's document operations.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/document-access.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:1.0@couchbase-edge-server:rest-based-access:document-access.adoc[]
 ---
 
@@ -178,4 +178,4 @@ If the revision number does not match, the request returns a `409` error. If thi
 * [Monitor Changes with Edge Server](changes-feed.md)
 * [Run Queries with Edge Server](queries-api.md)
 * [Manage Replication with Edge Server](replication.md)
-* [public-api-reference:index.adoc](#public-api-reference:index.adoc)
+* [Edge Server Public REST API](../public-api-reference/index.md)

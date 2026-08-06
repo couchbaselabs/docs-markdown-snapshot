@@ -1,25 +1,25 @@
 ---
-title: Deploy Models with the {ai} Model Service
+title: Deploy Models with the AI Data Plane Model Service
 description: Deploy and manage Large Language Models (LLMs) and embedding models
   in Capella to power your AI-driven applications.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/model-service.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:build:model-service/model-service.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/build/model-service/model-service.html)
 
-# Deploy Models with the {ai} Model Service
+# Deploy Models with the AI Data Plane Model Service
 
 > Deploy and manage Large Language Models (LLMs) and embedding models in Capella to power your AI-driven applications. 
 
-The {ai} Model Service provides a managed platform for deploying Large Language Models (LLMs) and embedding models. Use it to integrate AI capabilities directly into your applications without managing the underlying infrastructure.
+The AI Data Plane Model Service provides a managed platform for deploying Large Language Models (LLMs) and embedding models. Use it to integrate AI capabilities directly into your applications without managing the underlying infrastructure.
 
 ## [](#get-started)Get Started
 
 * [Deploy Large Language Models](deploy-llm-model.md) to power chatbots, content generation, and natural language interactions.
-* [Deploy Embedding Models](deploy-embed-model.md) to use with [the {ai-long} Workflows](../vectorization-service/data-processing.md) and generate vector representations of text data.
+* [Deploy Embedding Models](deploy-embed-model.md) to use with [the Couchbase AI Data Plane Workflows](../vectorization-service/data-processing.md) and generate vector representations of text data.
 
 ## [](#model-service-billing)Model Service Billing
 

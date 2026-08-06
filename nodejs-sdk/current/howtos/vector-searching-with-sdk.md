@@ -2,8 +2,8 @@
 title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/vector-searching-with-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
@@ -82,20 +82,15 @@ Couchbase Server 7.6.0 (7.6.2 for base64-encoded vectors) — or a Capella Opera
 
 ### [](#examples-2)Examples
 
-#### [](#single-vector-query)Single vector query
+#### [](#single-vector-query)Single Vector Query
 
 In this first example we are performing a single vector query:
 
 ```javascript
-let request = couchbase.SearchRequest.create(
-  couchbase.VectorSearch.fromVectorQuery(
-    couchbase.VectorQuery.create('vector-field', queryVector)
-  )
-)
-result = await scope.search('vector-index', request)
+Unresolved include directive in modules/howtos/pages/vector-searching-with-sdk.adoc - include::../examples/search.js[]
 ```
 
-Let's break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
+Let's break this down. We create a `SearchRequest`, which can contain a traditional Search query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
 
 The `VectorSearch` allows us to perform one or more `VectorQuery` s.
 
@@ -103,7 +98,7 @@ The `VectorQuery` itself takes the name of the document field that contains embe
 
 (Note that Couchbase itself is not involved in generating the vectors, and these will come from an external source such as an embeddings API.)
 
-Finally we execute the `SearchRequest` against the FTS index "vector-index", which has previously been setup to vector index the "vector-field" field.
+Finally we execute the `SearchRequest` against the Search index "vector-index", which has previously been setup to vector index the "vector-field" field.
 
 This happens to be a scoped index so we are using `scope.search()`. If it was a global index we would use `cluster.search()` instead - see [\[Scoped vs Global Indexes\]](#Scoped vs Global Indexes).
 
@@ -114,14 +109,7 @@ It returns the same `SearchResult` detailed earlier.
 From Couchbase Server 7.6.4 — and in Capella Operational clusters — [pre-filtering with similarity search](../../../server/current/vector-search/pre-filtering-vector-search.md#about-pre-filtering) is available. This is a non-vector query that the server executes first to get an intermediate result. Then it executes the vector query on the intermediate result to get the final result.
 
 ```javascript
-  let prefilter = couchbase.SearchQuery.match('primary').field('color-wheel-pos')
-  request = couchbase.SearchRequest.create(
-    couchbase.VectorSearch.fromVectorQuery(
-      couchbase.VectorQuery.create('vector-field', queryVector)
-        .prefilter(prefilter)
-    )
-  )
-  result = await scope.search('vector-index', request)
+Unresolved include directive in modules/howtos/pages/vector-searching-with-sdk.adoc - include::howtos:example$search.js[]
 ```
 
 If no prefilter is specified, the server executes the vector query on all indexed documents.
@@ -131,53 +119,29 @@ The prefilter can be any Search Query — from a simple match, as above, to a st
 String Query
 
 ```javascript
-  prefilter = couchbase.SearchQuery.queryString('+description:sea -color_hex:fff5ee')
-  request = couchbase.SearchRequest.create(
-    couchbase.VectorSearch.fromVectorQuery(
-      couchbase.VectorQuery.create('vector-field', queryVector)
-        .prefilter(prefilter)
-    )
-  )
-  result = await scope.search('vector-index', request)
+Unresolved include directive in modules/howtos/pages/vector-searching-with-sdk.adoc - include::howtos:example$search.js[]
 ```
 
 See the [API reference](https://docs.couchbase.com/sdk-api/couchbase-python-client/couchbase%5Fapi/couchbase%5Fsearch.html#couchbase.vector%5Fsearch.VectorQuery.prefilter).
 
-#### [](#multiple-vector-queries)Multiple vector queries
+#### [](#multiple-vector-queries)Multiple Vector Queries
 
 You can run multiple vector queries together:
 
 ```javascript
-request = couchbase.SearchRequest.create(
-  couchbase.VectorSearch([
-    couchbase.VectorQuery.create('vector-field', queryVector)
-      .numCandidates(2)
-      .boost(0.3),
-    couchbase.VectorQuery.create('vector-field', anotherQueryVector)
-      .numCandidates(5)
-      .boost(0.7),
-  ])
-)
-result = await scope.search('vector-index', request)
+Unresolved include directive in modules/howtos/pages/vector-searching-with-sdk.adoc - include::../examples/search.js[]
 ```
 
 Note that `num_candidates` sets how many similar vectors are returned. If it is not set, then the Cluster's default of `3` will be used — this corresponds with `k` on the Server side, for K-Nearest Neighbors.
 
 How the results are combined (ANDed or ORed) can be controlled with `vectorQueryCombination` in `VectorSearchOptions`.
 
-#### [](#combining-fts-and-vector-queries)Combining FTS and vector queries
+#### [](#combining-search-and-vector-queries)Combining Search and Vector Queries
 
-You can combine a traditional FTS query with vector queries:
+You can combine a traditional Search query with vector queries:
 
 ```javascript
-request = couchbase.SearchRequest.create(
-  couchbase.SearchQuery.matchAll()
-).withVectorSearch(
-  couchbase.VectorSearch.fromVectorQuery(
-    couchbase.VectorQuery.create('vector-field', queryVector)
-  )
-)
-result = await scope.search('vector-and-fts-index', request)
+Unresolved include directive in modules/howtos/pages/vector-searching-with-sdk.adoc - include::../examples/search.js[]
 ```
 
 How the results are combined (ANDed or ORed) can be controlled with `vectorQueryCombination` in `VectorSearchOptions`.

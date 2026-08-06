@@ -1,8 +1,8 @@
 ---
 title: Crash Logs
 description: Couchbase Lite on Objective-C -- Using symbolicate to decode crash logs
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/troubleshooting-crashes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/objc/pages/troubleshooting-crashes.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:objc:troubleshooting-crashes.adoc[]
 ---
 

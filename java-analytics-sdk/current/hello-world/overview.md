@@ -1,16 +1,16 @@
 ---
-title: Java Analytics SDK
-editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+title: Java Analytics SDK 1.1
+editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.1/modules/hello-world/pages/overview.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-analytics-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/java-analytics-sdk/current/hello-world/overview.html)
 
-# Java Analytics SDK
+# Java Analytics SDK 1.1
 
-# Java Analytics SDK
+# Java Analytics SDK 1.1
 
 The Java Analytics SDK allows you to connect to an Enterprise Analytics cluster from Java. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [Java Operational SDK](../../../java-sdk/current/hello-world/overview.md).
 

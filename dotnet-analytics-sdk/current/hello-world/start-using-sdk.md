@@ -2,8 +2,8 @@
 title: .NET Analytics SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Enterprise Analytics and the .NET Analytics SDK.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.1/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:dotnet-analytics-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -33,10 +33,16 @@ dotnet add package Couchbase.AnalyticsClient
 ```
 
 ```xml
-<PackageReference Include="Couchbase.AnalyticsClient" Version="1.0.1" />
+<PackageReference Include="Couchbase.AnalyticsClient" Version="1.1.0" />
 ```
 
 ## [](#connecting-and-executing-a-query)Connecting and Executing a Query
+
+.NET Analytics SDK 1.1 adds support for JWT and client certificate authentication, as well as a new Server Asynchronous Request API that uses request handles to fetch results. Introduced in the self-managed Enterprise Analytics Server 2.2, this API eliminates the need for long-running server connections.
+
+The examples in this first section of the page are for the standard API — async on the client side — working with Enterprise Analytics 2.0 and later (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). You can still use this API with Enterprise Analytics 2.2 and later, in addition to the new API.
+
+### [](#server-synchronous-request-api)Server Synchronous Request API
 
 ```csharp
 using Couchbase.AnalyticsClient;
@@ -55,6 +61,107 @@ var result = await cluster.ExecuteQueryAsync("SELECT i from ARRAY_RANGE(1, 100) 
 await foreach (var row in result.ConfigureAwait(false))
 {
     Console.WriteLine(row.ContentAs<JsonElement>());
+}
+```
+
+### [](#server-asynchronous-api)Server Asynchronous Request API
+
+Enterprise Analytics 2.2 introduces an asynchronous request API. The SDK sends a request, polls for results, and then fetches once the result is available.
+
+Server Asynchronous API Example
+
+```csharp
+
+// ──────────────────────────────────────────────
+//  Start an async query
+// ──────────────────────────────────────────────
+
+var statement = """SELECT VALUE SLEEP("x", 100) FROM RANGE(1, 100) AS id;""";
+
+var handle = await cluster.StartQueryAsync(statement, opts => opts
+    .WithQueryTimeout(TimeSpan.FromSeconds(60)));
+
+Console.WriteLine($"Query submitted. Handle: {handle}");
+
+// ──────────────────────────────────────────────
+//  Poll until results are ready
+// ──────────────────────────────────────────────
+
+var resultHandle = await WaitForQueryResultsAsync(handle, pollDelay: TimeSpan.FromSeconds(2.5), timeout: TimeSpan.FromSeconds(120));
+
+Console.WriteLine($"Results ready. {resultHandle}");
+
+// ──────────────────────────────────────────────
+//  Fetch and display results
+// ──────────────────────────────────────────────
+
+// IQueryResult implements IAsyncDisposable. The 'await using' declaration
+// ensures the underlying HTTP response stream is released after consumption.
+// Forgetting this will leak connections.
+await using var results = await resultHandle.FetchResultsAsync();
+
+await foreach (var row in results.Rows)
+{
+    Console.WriteLine($"Found row: {row.ContentAs<JsonElement>()}");
+}
+
+Console.WriteLine($"Metadata: RequestId={results.MetaData.RequestId}, " +
+                  $"ResultCount={results.MetaData.Metrics?.ResultCount}, " +
+                  $"ElapsedTime={results.MetaData.Metrics?.ElapsedTime}");
+
+// ──────────────────────────────────────────────
+//  Discard results on the server
+// ──────────────────────────────────────────────
+
+await resultHandle.DiscardResultsAsync();
+Console.WriteLine("Results discarded.");
+
+// ──────────────────────────────────────────────
+//  Helper: poll query status until ready
+// ──────────────────────────────────────────────
+
+/// <summary>
+/// Polls the query handle at regular intervals until the server reports
+/// that results are ready, or the timeout is reached.
+/// </summary>
+/// <param name="handle">The query handle returned by StartQueryAsync.</param>
+/// <param name="pollDelay">Time between status polls.</param>
+/// <param name="timeout">Maximum time to wait before throwing a TimeoutException.</param>
+/// <returns>A <see cref="QueryResultHandle"/> that can be used to fetch results.</returns>
+/// <exception cref="TimeoutException">Thrown when results are not ready within the timeout.</exception>
+static async Task<QueryResultHandle> WaitForQueryResultsAsync(
+    QueryHandle handle,
+    TimeSpan pollDelay,
+    TimeSpan timeout)
+{
+    var stopwatch = Stopwatch.StartNew();
+
+    while (true)
+    {
+        try
+        {
+            var status = await handle.FetchStatusAsync();
+            if (status.ResultsReady)
+            {
+                return status.ResultHandle();
+            }
+
+            Console.WriteLine($"Query status: {status}");
+        }
+        catch (Exception ex)
+        {
+            // Depending on the use case, you might want to break here or continue retrying.
+            Console.WriteLine($"Error fetching query status: {ex.Message}");
+        }
+
+        if (stopwatch.Elapsed + pollDelay > timeout)
+        {
+            throw new TimeoutException($"Query results not ready within {timeout.TotalSeconds} seconds.");
+        }
+
+        Console.WriteLine($"Query results not ready yet, sleeping for {pollDelay.TotalSeconds}s...");
+        await Task.Delay(pollDelay);
+    }
 }
 ```
 

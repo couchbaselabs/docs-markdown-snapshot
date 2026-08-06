@@ -2,8 +2,8 @@
 title: Object Functions
 description: This topic describes the builtin SQL++ for Enterprise Analytics
   object functions.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/8_builtin_obj.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/8_builtin_obj.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sqlpp:8_builtin_obj.adoc[]
 ---
 

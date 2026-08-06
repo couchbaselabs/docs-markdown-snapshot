@@ -1,8 +1,8 @@
 ---
 title: Live Queries
 description: Couchbase mobile database live query concepts
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/query-live.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/query-live.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:query-live.adoc[]
 ---
 
@@ -25,10 +25,13 @@ To activate a LiveQuery just add a change listener to the query statement. It wi
 
 Example 1\. Starting a Live Query
 
+* C
+* C++
+
 ```c
 /*
 static void query_change_listener(void* context, CBLQuery* query, CBLListenerToken* token) {
-    CBLError err{};
+    CBLError err = {};
     CBLResultSet* results = CBLQuery_CopyCurrentResults(query, token, &err);
     while(CBLResultSet_Next(results)) {
         // Update UI
@@ -38,23 +41,52 @@ static void query_change_listener(void* context, CBLQuery* query, CBLListenerTok
 
 // NOTE: No error handling, for brevity (see getting started)
 
-CBLError err{};
+CBLError err = {};
 CBLQuery* query = CBLDatabase_CreateQuery(database, kCBLN1QLLanguage,
     FLSTR("SELECT * FROM _"), NULL, &err); (1)
 
 CBLListenerToken* token = CBLQuery_AddChangeListener(query, query_change_listener, NULL); (2)
 ```
 
-| **1** | Build the query statements                                                                                                                                |
-| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | Activate the _live_ query by attaching a listener. Save the token in order to detach the listener and stop the query later — se [Example 2](#ex-qry-stop) |
+```cpp
+// NOTE: No error handling, for brevity (see getting started)
+cbl::Query query(database, kCBLN1QLLanguage, "SELECT * FROM _"); (1)
 
-Example 2\. Stop a LIve Query
+// The listener is invoked with the current results whenever they change
+auto token = query.addChangeListener([](cbl::Query::Change change) { (2)
+    for (cbl::Result result : change.results()) {
+        // Update UI
+    }
+});
+```
+
+| **1** | Build the query statements                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Activate the _live_ query by attaching a listener. Save the token to detach the listener and stop the query later — see [Example 2](#ex-qry-stop) C++ Unresolved include directive in modules/c/pages/query-live.adoc - include::c:example$code\_snippets/cbl\_cpp.cpp\[\] **1** Build the query statements **2** Activate the _live_ query by attaching a listener. Save the token in order to detach the listener and stop the query later — see [Example 2](#ex-qry-stop) |
+
+Example 2\. Stop a Live Query
+
+C
 
 ```c
 CBLListener_Remove(token); // The token received from AddChangeListener
 CBLQuery_Release(query);
 ```
 
+C++
+
+```cpp
+token.remove(); // The token received from addChangeListener
+```
+
 | **1** | Here we use the change lister token from [Example 1](#ex-qry-start) to remove the listener. Doing so stops the live query. |
 | ----- | -------------------------------------------------------------------------------------------------------------------------- |
+
+C++
+
+```cpp
+Unresolved include directive in modules/c/pages/query-live.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
+```
+
+| **1** | Here we use the change listener token from [Example 1](#ex-qry-start) to remove the listener. Doing so stops the live query. |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------- |

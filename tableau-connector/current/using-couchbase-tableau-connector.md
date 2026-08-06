@@ -1,115 +1,57 @@
 ---
-title: Using the Couchbase Tableau Connector
-editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/using-couchbase-tableau-connector.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+title: View and Analyze Data in Tableau
+description: View and analyze data from Couchbase data sources using Tableau.
+editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/using-couchbase-tableau-connector.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:tableau-connector::using-couchbase-tableau-connector.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/tableau-connector/current/using-couchbase-tableau-connector.html)
 
-# Using the Couchbase Tableau Connector
+# View and Analyze Data in Tableau
 
-> The Couchbase Analytics Connector for Tableau is compatible with Couchbase Server running version 7.1 or higher. 
+> View and analyze data from Couchbase data sources using Tableau. 
 
-## [](#configure-connection)Configure Connection
+## [](#prerequisites)Prerequisites
 
-Configure the Tableau connector based on the type of Couchbase Server instances you are using.
+Before you can view and analyze Couchbase data in Tableau, you must:
 
-### [](#configure-couchbase-analytics-connector-for-couchbase-server-instances)Configure Couchbase Analytics Connector for Couchbase Server Instances
+* Create Tabular Analytics Views from your Couchbase datasets for use with Tableau. For more information, see [Couchbase Analytics Tabular Views](tabular-views.md).
+* Configure the connection between Tableau and your Couchbase data source. For more information, see [Configure the Connection](configure-connection.md).
 
-To connect to your Couchbase instance:
+## [](#view-data-from-analytic-views)View Data from Analytic Views
 
-1. Set the **Server** field to the address of the Couchbase instance — for example, `localhost`.
-2. Enter your **Username** and **Password**, and click **Sign In**.
-3. (Optional) To securely connect to Couchbase with certificates enabled, select the **Require SSL** option.
+After Tableau connects to your Couchbase data source, the connection appears in the **Connections** section. The scopes defined when you [set up the connection](configure-connection.md#set-up-the-connection) appear under **Scopes**. The **Collections** section lists collections based on your [tabular analytics views](tabular-views.md).
 
-![Tableau Connection Without SSL](_images/tableau-connection-without-ssl.png) 
+To view the data for a specific view, drag and drop the view onto the data pane. This displays the data in a tabular format.
 
-### [](#ssl)Set Up SSL Support for Tableau Connector
+## [](#use-analytics-views-to-build-tableau-worksheets)Use Analytics Views to Build Tableau Worksheets
 
-To set up SSL support for Tableau Connector, see the following sections:
+After setting up your Couchbase Analytics Tabular views, use them as a data source to build a Tableau worksheet.
 
-* [Set Up SSL Support for Tableau Desktop](setup-tableau-desktop.md#ssl)
-* [Set Up SSL Support for Tableau Server](setup-tableau-server.md#ssl)
+1. From the Data Source pane, drag and drop the **airline\_view** onto the data pane.  
+This brings up two views. The first view shows details about the view, including the mapping from the view column names to their corresponding document fields.
+2. Select **Sheet1**. This sheet opens and displays individual columns from the view, along with a subset of columns called **Measure Values**.
+3. Drag the **City** column on to the Rows section to add cities to the sheet.
+4. Drag **Airport Name** to the columns section.
+5. Select the drop-down on **Airport Name** and select **Measure** **Count**. This creates a simple bar graph that shows the number of airports for each city.
 
-### [](#configure-advanced-settings)Configure Advanced Settings
+You can also filter your results by using the **Filters** section.
 
-To set up the connection timeout and the scan consistency mode, go to the **Advanced** tab.
+1. Drag and drop the **Country** field into the **Filters** section.
+2. Select the country you want to filter by. For example, selecting France filters out cities from other countries.
 
-![Tableau Connection Advanced Scan Consistency](_images/tableau-connector-config-advanced-110.png) 
+Depending on the view you're using and the type of report you want to build, you can also select how the data is plotted by choosing one of the options in the **Marks** drop-down.
 
-Setting the scan consistency to `Request plus` displays a dropdown to select the scan wait time.
+## [](#use-analytics-queries-to-build-tableau-worksheets)Use Analytics Queries to Build Tableau Worksheets
 
-### [](#configure-tableau-server-connection-on-tableau-desktop)Configure Tableau Server Connection on Tableau Desktop
+In addition to using predefined views or custom views, you can use Analytics queries as a data source.
 
-Reports and dashboards created on Tableau Desktop can be published and viewed on Tableau Server. To configure your Tableau Server connection, go to **Server** **Tableau Online**.
-
-![Connect to Tableau Server](_images/connect-to-tableau-server.png) 
-
-You will then be prompted to sign in to your Tableau Server account. Once signed in, you should see the connection in the Server section.
-
-![Verify Tableau Server Connection](_images/verify-connection-to-tableau-server.png) 
+To use Analytics queries, go to the **Data Source** tab and select **New Custom SQL**. Here you can submit queries through the Tableau Connector/JDBC driver that run in a special SQL-compatible mode where certain language constructs operate differently from the regular SQL++ execution.
 
 > [!NOTE]
-> If you're using an on-premise instance of Tableau Server, you will need to configure SSL. This can be done by logging into the Tableau Services Manager UI and going to **Configuration** **Security** **External SSL**.
-
-![Tableau Server SSL Configuration](_images/tableau-server-ssl-config.png) 
-
-For more information on configuring SSL on your Tableau Server, follow the guide on the [Configuring SSL on Tableau Server](https://help.tableau.com/current/server/en-us/ssl%5Fconfig.htm#use-the-tsm-web-interface) page.
-
-## [](#view-data-from-analytic-views-on-tableau)View Data from Analytic Views on Tableau
-
-Once Tableau has successfully established a connection with your Couchbase Server, you should see it in the Connections section. You should also see the Analytics scopes set up in the previous steps.
-
-![Analytics Scopes in Tableau](_images/analytic-scopes-in-tableau.png) 
-
-The collections are listed based on the tabular views created. Dragging and dropping a view onto the data pane will then display the data for the view in a table.
-
-![Analytics Views in Tableau](_images/view-data-from-analytic-views.png) 
-
-## [](#use-couchbase-analytics-views-to-build-tableau-worksheets)Use Couchbase Analytics Views to Build Tableau Worksheets
-
-Now that you have your Couchbase Analytics Tabular views set up on Tableau, you can now use these views as the data source to build your Tableau worksheets.
-
-From the Data Source pane, drag and drop the **airline\_view** onto the data pane. This will bring up two views. The first view shows you details about the view including the mapping from the view column names to their corresponding document fields.
-
-![Analytics View](_images/view-data-from-analytic-views.png) 
-
-Next select **Sheet1**, which should now show the individual columns from the view along with a subset of the columns called **Measure Values**.
-
-![Analytic Views Columns](_images/analytics-view-columns.png) 
-
-Drag the **City** column on to the Rows section to add cities to the sheet. Next, add **Airport Name** to the columns section. Select the drop-down and choose **Measure** **Count**.
-
-![Airports Per City](_images/airport-view.png) 
-
-This will create a simple bar graph that shows the number of airports for each city.
-
-![Airports Per City Graph](_images/airports-per-city.png) 
-
-You can also filter your results by using the Filters section. Drag and drop the **Country** field into the Filters section and select the country to filter by.
-
-![Filter Graph by Country](_images/filter-by-country.png) 
-
-Selecting France then filters out cities from the other countries.
-
-![Filter Result](_images/filter-result.png) 
-
-Depending on the view you are using and the type of report you want to build, you can also select how the data is plotted by choosing one of the options in the Marks drop-down.
-
-![Change Graph Style](_images/change-graph-style.png) 
-
-## [](#use-couchbase-analytics-queries-to-build-tableau-worksheets)Use Couchbase Analytics Queries to Build Tableau Worksheets
-
-Apart from the predefined views or any other custom views you create, the Couchbase Tableau connector also supports the use of Analytics queries as the data source.
-
-To use Analytics queries, go to the Data Source tab and select New Custom SQL. Here you can submit queries through the Tableau Connector/JDBC driver that run in a special SQL-compatible mode where certain language constructs operate differently from the regular SQL++ execution.
-
-![New Custom Query](_images/new-custom-query.png) 
-
-> [!NOTE]
-> The default scope is set based on the scope if specified in the connection dialog. If no scope is explicitly mentioned, it is set to `Default`, however users can provide any other scope when setting up the connection. To run Analytics queries, you may specify the Analytics scope along with the collection in your queries. If no scope is specified in a query, the scope set in the connection dialog will be used. For example, to use the airline Analytics collection, use `` `travel-sample`.inventory.airline ``.
+> The default scope is set based on the scope specified in the connection dialog. If no scope is explicitly mentioned, it's set to `Default`. However, users can provide any other scope when setting up the connection. To run Analytics queries, you may specify the Analytics scope along with the collection in your queries. If no scope is specified in a query, the scope set in the connection dialog will be used. For example, to use the airline Analytics collection, use `` `travel-sample`.inventory.airline ``.
 
 ### [](#run-analytics-queries-on-tableau)Run Analytics Queries on Tableau
 
@@ -166,50 +108,35 @@ limit 100
 
 ### [](#use-analytics-queries-as-the-data-source-to-build-tableau-reports)Use Analytics Queries as the Data Source to Build Tableau Reports
 
-Once you have executed your query, you should be able to see the data from the query in a tabular form.
+After you execute your query, you can see the data from the query in a tabular form.
 
-![Analytics Query In Table](_images/analytics-query-tabular-view.png) 
-
-Go to the Sheet tab and add the **name** field to the Rows section and the **rank** field generated by the query to the Columns section. You can then click on the **rank** label on the graph to sort the chart in from highest to lowest rank.
-
-![Graph Using Analytics Query As Data Source](_images/analytics-query-data-source.png) 
+1. Go to the **Sheet** tab.
+2. Add the **name** field to **Rows** and the **rank** field to **Columns**.
+3. Click the **rank** label on the graph and choose descending to order the chart from highest to lowest.
 
 ## [](#publish-workbook-to-tableau-server)Publish Workbook to Tableau Server
 
-Once you have created your reports, you can then publish them onto Tableau Server. From the menu, select **Server** **Publish Workbook**.
+Follow these steps to publish a workbook from Tableau Desktop to Tableau Server:
 
-![Publish Report to Tableau Server](_images/publish-report.png) 
+1. From the menu, choose **Server** **Publish Workbook**.
+2. Select the project and enter a name for the workbook.
+3. Configure any publish options, then click **Publish**.
+4. After publishing, your web browser opens and prompts you to sign in to Tableau Server.
+5. Sign in with your Tableau Server account.
 
-Select the project to publish the workbook to and give it a name. Once you have selected the options you need, click on the **Publish** button.
+After signing in, open the workbook on Tableau Server to:
 
-![Publish Workbook Dialog](_images/publish-workbook-dialog.png) 
-
-Once published your browser will launch, and you will be prompted to log in to Tableau Server. Log in using you Tableau Server user account credentials.
-
-![Tableau Server Login](_images/tableau-server-login.png) 
-
-Once you are successfully logged in, you should see the workbook you created using Tableau Desktop.
-
-![Published Workbooks](_images/published-workbook.png) 
-
-You can click on the workbook to view it in greater detail. From this page you can also refresh the data so that your report reflects any updates made to the source.
-
-![Published Workbook View](_images/published-workbook-view.png) 
+* View the report in detail.
+* Refresh the workbook data to load any updates from the source.
 
 ## [](#publish-data-sources-to-tableau-server)Publish Data Sources to Tableau Server
 
-You can also publish you data source directly to Tableau Server from Tableau Desktop. This will allow users with access to your Tableau Server project to view and build their own workbooks and reports using the Couchbase Analytics data source you have set up on Tableau Desktop. From the menu, select **Server** **Publish Data Source**.
+Publish a data source from Tableau Desktop so other users can build workbooks from it on Tableau Server.
 
-![Publish Data Source](_images/publish-data-source.png) 
+To publish a data source:
 
-Select the project to publish to and give the data source a name and hit **Publish**.
+1. In Tableau Desktop, choose **Server** **Publish Data Source**.
+2. Select the project, enter a name for the data source, and configure any publish options.
+3. Click **Publish**.
 
-![Publish Data Source Dialog](_images/publish-data-source-dialog.png) 
-
-Once successfully configured, you will receive a notification on Tableau Server. Here you will be prompted to log in to Tableau Server again.
-
-![Published Data Source](_images/published-data-source.png) 
-
-Once logged in you should be able to see your data source. Using the data source you can then create your own workbooks and reports that use the data source set up by Tableau Server.
-
-![Using Published Data Source](_images/using-published-data-source.png)
+After publishing, your browser opens and prompts you to sign in to Tableau Server. Sign in with your Tableau Server account. After you sign in, the published data source appears in the selected project on Tableau Server. Users with access to that project can then open the data source to create workbooks and reports as needed.

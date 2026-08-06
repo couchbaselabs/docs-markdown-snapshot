@@ -2,8 +2,8 @@
 title: Explore Sync Gateway
 description: Add a database, create users, and run a CRUD cycle to explore your
   <em>Sync Gateway</em> installation end-to-end.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-explore.adoc
-pubDate: 2026-04-09T05:16:09.658Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/start-here/pages/get-started-explore.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:start-here:get-started-explore.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:sync-gateway:start-here:get-started-explore.adoc[]
 # Explore Sync Gateway
 
 > Add a database, create users, and run a CRUD cycle to explore your _Sync Gateway_ installation end-to-end.  
-> This is **Step 4** in the _Start Here!_ topic group. Here we add a database configuration, create a sync gateway user, and run a CRUD cycle to confirm sync is working end-to-end.
+> This is **Step 4** in the _Start Here!_ topic group. Here we add a database configuration, create a Sync Gateway user, and run a CRUD cycle to confirm sync is working end-to-end.
 
 > [!NOTE]
 > Preparatory Steps
@@ -26,7 +26,7 @@ Steps in Getting Started
 
 ## [](#introduction)Introduction
 
-In this step you will use the sync gateway Admin REST API to add a database configuration pointing to the `travel-sample` bucket, create a role and user scoped to the `inventory.hotel` collection, and then run a full CRUD cycle to confirm that sync is working between sync gateway and Couchbase Server.
+In this step you will use the Sync Gateway Admin REST API to add a database configuration pointing to the `travel-sample` bucket, create a role and user scoped to the `inventory.hotel` collection, and then run a full CRUD cycle to confirm that sync is working between Sync Gateway and Couchbase Server.
 
 On completion of this topic you will have confirmed end-to-end sync and will be ready to build on this foundation with confidence.
 
@@ -43,7 +43,7 @@ On completion of this topic you will have confirmed end-to-end sync and will be 
 
 ## [](#add-a-database-configuration)Add a Database Configuration
 
-Use the Admin REST API to add a database to your sync gateway cluster.
+Use the Admin REST API to add a database to your Sync Gateway cluster.
 
 The `curl` command shown in [Example 1](#ex-add-sgw-db) creates a `traveldb` database pointing to the Couchbase Server `travel-sample` bucket, scoped to the `inventory.hotel` collection.
 
@@ -66,7 +66,7 @@ curl  --location --request PUT 'http://127.0.0.1:4985/traveldb/' \(1)
           }'
 ```
 
-| **1** | Here we specify the name of the sync gateway database — traveldb                                                                                                     |
+| **1** | Here we specify the name of the Sync Gateway database — traveldb                                                                                                     |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Now we point traveldb at the Couchbase Server bucket travel-sample, which we created in [Configure Server for Sync Gateway](get-started-prepare.md#configure-server) |
 | **3** | We scope the database to the inventory.hotel collection in the travel-sample bucket                                                                                  |
@@ -74,7 +74,7 @@ curl  --location --request PUT 'http://127.0.0.1:4985/traveldb/' \(1)
 
 ## [](#add-a-sync-gateway-user)Add a Sync Gateway User
 
-Create a sync gateway role and user to allow secure access during replication on this sync gateway cluster.
+Create a Sync Gateway role and user to allow secure access during replication on this Sync Gateway cluster.
 
 ### [](#add-a-role)Add a Role
 
@@ -98,7 +98,7 @@ curl  --location --request PUT 'http://127.0.0.1:4985/traveldb/_role/stdrole' \(
       }'
 ```
 
-| **1** | Here we identify the sync gateway database — traveldb, the action \_role, and the role name stdrole.                             |
+| **1** | Here we identify the Sync Gateway database — traveldb, the action \_role, and the role name stdrole.                             |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Here we scope the role to the inventory scope and hotel collection in the travel-sample bucket.                                  |
 | **3** | Here we identify the channels accessible to users assigned this role; these will be used by the Sync Function to control access. |
@@ -127,26 +127,26 @@ curl  --location -g --request POST 'http://localhost:4985/traveldb/_user/' \(1)
       }'
 ```
 
-| **1** | Here we identify the sync gateway database — traveldb and the required object \_user                                                                    |
+| **1** | Here we identify the Sync Gateway database — traveldb and the required object \_user                                                                    |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | The credential in the Authorization header relates to the sync gateway admin user                                                                       |
+| **2** | The credential in the Authorization header relates to the Sync Gateway admin user                                                                       |
 | **3** | Here we provide the credentials of the user to create: name sgwuser1 and required password. If the password is omitted, a random password is generated. |
 | **4** | Here we identify any roles assigned to this user; it will inherit any channels associated with those roles.                                             |
 | **5** | Here we scope the user's access to the inventory scope and hotel collection in the travel-sample bucket.                                                |
 
 ## [](#verify-the-crud-cycle)Verify the CRUD Cycle
 
-Here we will use curl and sync gateway's REST API to run a full CRUD cycle:
+Here we will use curl and Sync Gateway's REST API to run a full CRUD cycle:
 
 1. [Create a New Document](#lbl-crud-crt) — Add a document via the API and verify it appears in Couchbase Server
-2. [Get a Document Using the API](#lbl-crud-get) — Read the document back from Couchbase Server using the sync gateway API
+2. [Get a Document Using the API](#lbl-crud-get) — Read the document back from Couchbase Server using the Sync Gateway API
 3. [Update a Document Using the API](#lbl-crud-upd) — Update the document and observe the change in Couchbase Server
-4. [Sync a Couchbase Server Change](#lbl-crud-upd-svr) — Update the document in Couchbase Server and check the change in sync gateway
-5. [Delete a Document Using the API](#lbl-crud-del) — Delete the document and verify its state in both Couchbase Server and sync gateway
+4. [Sync a Couchbase Server Change](#lbl-crud-upd-svr) — Update the document in Couchbase Server and check the change in Sync Gateway
+5. [Delete a Document Using the API](#lbl-crud-del) — Delete the document and verify its state in both Couchbase Server and Sync Gateway
 
 ### [](#lbl-crud-crt)Create a New Document
 
-Use curl to add a new document to the `traveldb` database via the sync gateway public API.
+Use curl to add a new document to the `traveldb` database via the Sync Gateway public API.
 
 Request
 
@@ -180,7 +180,7 @@ Response
 
 Check
 
-View the document in the Couchbase Server Admin Console to verify it synced from sync gateway.
+View the document in the Couchbase Server Admin Console to verify it synced from Sync Gateway.
 
 1. Within the Admin Console, select **Buckets** and select **Documents** to open the _Document Editor_ tab.
 2. Within the _Document Editor_ tab:
@@ -190,7 +190,7 @@ View the document in the Couchbase Server Admin Console to verify it synced from
   3. Enter `hotel` as _Collection_
   4. Enter `id="88801"` as _SQL++ WHERE_ query
   5. Enter  
-  You will see the response shown in [Figure 1](#img-cbs-view). The document should include any changes made through sync gateway, including the initial create.  
+  You will see the response shown in [Figure 1](#img-cbs-view). The document should include any changes made through Sync Gateway, including the initial create.  
   ![cbs view first doc](../_images/cbs-view-first-doc.png)  
   Figure 1\. Couchbase Server Document Editor
 
@@ -264,7 +264,7 @@ Check
 
 ### [](#lbl-crud-upd-svr)Sync a Couchbase Server Change
 
-This confirms that changes made in Couchbase Server replicate back to sync gateway.
+This confirms that changes made in Couchbase Server replicate back to Sync Gateway.
 
 1. Within the Couchbase Server Document Editor:
 
@@ -279,7 +279,7 @@ You should see the change you made in Couchbase Server reflected in the response
 "address":"The Shambles","city":"Manchester","country":"United Kingdom","email":"reception@hotel_88801.internet","id":"88801","name":"Verify-Install Topic-Updated-In-Server","type":"hotel"}  
 ```
 
-| **1** | The revision sequence is now 3\. The _email_ and _name_ fields reflect both the sync gateway change and the Couchbase Server amendment. |
+| **1** | The revision sequence is now 3\. The _email_ and _name_ fields reflect both the Sync Gateway change and the Couchbase Server amendment. |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### [](#lbl-crud-del)Delete a Document Using the API
@@ -320,20 +320,20 @@ You should see the following response:
 
 To verify that document changes have been replicated, you can:
 
-* Monitor the sync gateway revision number returned by the database endpoint ([GET /{db}/](../rest-api/rest%5Fapi%5Fpublic.md#tag/Database-Management/operation/get%5Fdb-)). The revision number increments for every change on the sync gateway database.
-* Query a document by ID on the sync gateway REST API — see [Check Document on Couchbase Server](#lbl-check-cbs). Use [GET /{keyspace}/{docid}](../rest-api/rest%5Fapi%5Fpublic.md#tag/Document/operation/get%5Fkeyspace-docid) — see: [REST API Access](../rest-api/rest-api-access.md) for more.
+* Monitor the Sync Gateway revision number returned by the database endpoint ([GET /{db}/](../rest-api/rest%5Fapi%5Fpublic.md#tag/Database-Management/operation/get%5Fdb-)). The revision number increments for every change on the Sync Gateway database.
+* Query a document by ID on the Sync Gateway REST API — see [Check Document on Couchbase Server](#lbl-check-cbs). Use [GET /{keyspace}/{docid}](../rest-api/rest%5Fapi%5Fpublic.md#tag/Document/operation/get%5Fkeyspace-docid) — see: [REST API Access](../rest-api/rest-api-access.md) for more.
 * Query a document from the Query Workbench on the Couchbase Server Console.
 
 ## [](#next-steps)Next Steps
 
-Now you have confirmed sync gateway is deployed and syncing end-to-end. You can explore more complex scenarios with confidence.
+Now you have confirmed Sync Gateway is deployed and syncing end-to-end. You can explore more complex scenarios with confidence.
 
-* Learn more about sync gateway's [Bootstrap Configuration](../configuration/configuration-schema-bootstrap.md) or how to [Sync with Couchbase Server](../sync/sync-with-couchbase-server.md)
+* Learn more about Sync Gateway's [Bootstrap Configuration](../configuration/configuration-schema-bootstrap.md) or how to [Sync with Couchbase Server](../sync/sync-with-couchbase-server.md)
 * Implement access controls for users and data — see: [Users](../access-control/users.md), [Roles](../access-control/roles.md), and the [Sync Function](../access-control/sync-function/sync-function.md)
 * Implement secure connectivity — see: [User Authentication](../security/authentication-users.md) and [TLS Certificate Authentication](../security/authentication-certs.md)
 * Build more complex syncs:
 
-  * Other sync gateway nodes — see: [Inter Sync Gateway Sync - Overview](../sync/sync-inter-syncgateway-overview.md)
+  * Other Sync Gateway nodes — see: [Inter Sync Gateway Sync - Overview](../sync/sync-inter-syncgateway-overview.md)
   * Mobile devices using Couchbase Lite — see: [Sync Using App](../sync/sync-using-app.md)
 
 ---

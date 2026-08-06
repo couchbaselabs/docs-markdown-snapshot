@@ -1,8 +1,8 @@
 ---
 title: Full Installation
 description: Installation instructions for the Python Analytics SDK.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.1/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-analytics-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -19,7 +19,7 @@ Set up an [Enterprise Analytics](../../../enterprise-analytics/current/intro/int
 
 ### [](#prerequisites)Prerequisites
 
-Currently Python 3.9 - Python 3.13 is supported. See the [compatibility page](compatibility.md#platform-compatibility) for more information about platform support.
+Currently Python 3.10 - Python 3.14 is supported. See the [compatibility page](compatibility.md#platform-compatibility) for more information about platform support.
 
 ## [](#getting-the-sdk)Getting the SDK
 

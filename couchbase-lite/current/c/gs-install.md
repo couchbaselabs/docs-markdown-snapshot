@@ -1,8 +1,8 @@
 ---
 title: Install Couchbase Lite for C
 description: Installing Couchbase Lite for C
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/gs-install.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/gs-install.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:gs-install.adoc[]
 ---
 
@@ -17,9 +17,12 @@ Steps in Getting Started
 
 **Install**| [Build and Run](gs-build.md)
 
+> [!NOTE]
+> Couchbase Lite for C ships both a C API and a C++ wrapper API in the same package. You do not need additional installation steps to use the C++ API. See [Build and Run](gs-build.md) for how to include each API in your project.
+
 ## [](#lbl-get-binaries)Download
 
-Couchbase Lite for C 4.0.3 is available for all supported platforms — see: [Platform Availability](#lbl-platforms).
+Couchbase Lite for C 4.1.0 is available for all supported platforms — see: [Platform Availability](#lbl-platforms).
 
 You can obtain the downloads here:
 
@@ -366,7 +369,7 @@ Couchbase Lite for C is available on the platforms shown in the tables below.
 
 ## [](#lbl-downloads)Download Links
 
-### [](#release-3-2-1)Couchbase Lite Release 3.3.0
+### [](#release-3-3-0)Couchbase Lite Release 3.3.0
 
 _Couchbase Lite for C_ is available for all [Supported Platforms](supported-os.md). You can obtain downloads for _Linux_ and _macOS_ from the links here in the downloads table. Ensure you select the correct package for your application's compiler and architecture.
 
@@ -374,9 +377,9 @@ Alternatively, check the [install](gs-install.md)page for instructions on how to
 
 Available platforms are:
 
-[MacOS](#macos-3-2-1) | [Windows](#windows-3-2-1) | [Debian](#debian-3-2-1) | [Ubuntu](#ubuntu-3-2-1) |
+[MacOS](#macos-3-3-0) | [Windows](#windows-3-3-0) | [Debian](#debian-3-3-0) | [Ubuntu](#ubuntu-3-3-0) |
 
-#### [](#macos-3-2-1)MacOS
+#### [](#macos-3-3-0)MacOS
 
 Example 1\. Download link table
 
@@ -392,7 +395,7 @@ Community Edition
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | MacOS    | [couchbase-lite-c-community-3.3.0-macos.zip](https://packages.couchbase.com/releases/couchbase-lite-c/3.3.0/couchbase-lite-c-community-3.3.0-macos.zip) | [couchbase-lite-c-community-3.3.0-macos.zip.sha256](https://packages.couchbase.com/releases/couchbase-lite-c/3.3.0/couchbase-lite-c-community-3.3.0-macos.zip.sha256) | [couchbase-lite-c-community-3.3.0-macos-symbols.zip](https://packages.couchbase.com/releases/couchbase-lite-c/3.3.0/couchbase-lite-c-community-3.3.0-macos-symbols.zip) |
 
-#### [](#windows-3-2-1)Windows
+#### [](#windows-3-3-0)Windows
 
 Example 2\. Download link table
 
@@ -408,7 +411,7 @@ Community Edition
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Windows  | [couchbase-lite-c-community-3.3.0-windows-x86\_64.zip](https://packages.couchbase.com/releases/couchbase-lite-c/3.3.0/couchbase-lite-c-community-3.3.0-windows-x86%5F64.zip) |     | [couchbase-lite-c-community-3.3.0-windows-x86\_64-symbols.zip](https://packages.couchbase.com/releases/couchbase-lite-c/3.3.0/couchbase-lite-c-community-3.3.0-windows-x86%5F64-symbols.zip) |
 
-#### [](#debian-3-2-1)Debian
+#### [](#debian-3-3-0)Debian
 
 Example 3\. Download link table
 
@@ -460,7 +463,7 @@ Community Edition
 | [libcblite-community\_3.3.0-debian9\_armhf.deb](https://packages.couchbase.com/releases/couchbase-lite-c/3.3.0/libcblite-community%5F3.3.0-debian9%5Farmhf.deb)                | [libcblite-community\_3.3.0-debian9\_armhf.deb.sha256](https://packages.couchbase.com/releases/couchbase-lite-c/3.3.0/libcblite-community%5F3.3.0-debian9%5Farmhf.deb.sha256)                |                                                                                                                                                                                                |                                                                                                                                                                                           |
 | [libcblite-dev-community\_3.3.0-debian9\_armhf.deb](https://packages.couchbase.com/releases/couchbase-lite-c/3.3.0/libcblite-dev-community%5F3.3.0-debian9%5Farmhf.deb)        | [libcblite-dev-community\_3.3.0-debian9\_armhf.deb.sha256](https://packages.couchbase.com/releases/couchbase-lite-c/3.3.0/libcblite-dev-community%5F3.3.0-debian9%5Farmhf.deb.sha256)        |                                                                                                                                                                                                |                                                                                                                                                                                           |
 
-#### [](#ubuntu-3-2-1)Ubuntu
+#### [](#ubuntu-3-3-0)Ubuntu
 
 Example 4\. Download link table
 
@@ -508,7 +511,7 @@ Community Edition
 
 Please use the [Debian .deb download](#debian-3-3-0) choosing the appropriate version (`debian11` or `debian12`) and architecture.
 
-### [](#vs-release-1-0-0)Vector Search Release 1.0.0
+### [](#vs-release-2-0-0)Vector Search Release 2.0.0
 
 _Couchbase Lite Vector Search - C_ is available for all [Supported Platforms](supported-os.md). You can obtain downloads for _Linux_ and _macOS_ from the links here in the downloads table. Ensure you select the correct package for your application's compiler and architecture.
 

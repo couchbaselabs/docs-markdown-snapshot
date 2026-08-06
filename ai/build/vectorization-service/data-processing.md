@@ -1,33 +1,33 @@
 ---
-title: Process Your Data For the {ai-long}
-description: Use the {ai-long} Workflows to prepare, process, and vectorize text
-  for use with other {ai} features.
+title: Process Your Data For the Couchbase AI Data Plane
+description: Use the Couchbase AI Data Plane Workflows to prepare, process, and
+  vectorize text for use with other AI Data Plane features.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/data-processing.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:build:vectorization-service/data-processing.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/build/vectorization-service/data-processing.html)
 
-# Process Your Data For the {ai-long}
+# Process Your Data For the Couchbase AI Data Plane
 
-> Use the {ai-long} Workflows to prepare, process, and vectorize text for use with other {ai} features. 
+> Use the Couchbase AI Data Plane Workflows to prepare, process, and vectorize text for use with other AI Data Plane features. 
 
-The following Workflows are available through the {ai-long}:
+The following Workflows are available through the Couchbase AI Data Plane:
 
 * **Unstructured Data from S3**: Use when your data is not yet in JSON format and is stored inside an Amazon S3 bucket.
 * **Structured Data from External Sources**: Use when your data has already been pre-processed and stored in JSON format on an Amazon S3 bucket.
 * **Data from Capella**: Use when your data has already been pre-processed and stored in a Capella operational cluster.
 
 > [!NOTE]
-> All Workflows require an embedding model to generate vectors. You can use an embedding model [hosted by the {ai} Model Service](../model-service/deploy-embed-model.md), [OpenAI](https://openai.com/), or [Amazon Bedrock](https://aws.amazon.com/bedrock/).
+> All Workflows require an embedding model to generate vectors. You can use an embedding model [hosted by the AI Data Plane Model Service](../model-service/deploy-embed-model.md), [OpenAI](https://openai.com/), or [Amazon Bedrock](https://aws.amazon.com/bedrock/).
 
 You must configure specific [data preprocessing options](#data-preprocess) when using an Unstructured Data Workflow. Keep the [Unstructured Data Processing Limitations](#limitations) in mind when processing unstructured data.
 
 ## [](#vectorization)Vectorization
 
-Using the Data Processing Service, the {ai} preprocesses and chunks your data, removing elements to reduce your signal-to-noise ratio and converting data into JSON. It uses the Vectorization Service to take processed JSON data and generate vector embeddings.
+Using the Data Processing Service, the AI Data Plane preprocesses and chunks your data, removing elements to reduce your signal-to-noise ratio and converting data into JSON. It uses the Vectorization Service to take processed JSON data and generate vector embeddings.
 
 Vectors are a numerical representation of complex unstructured data. They distill this complex data into an array of floating-point values called dimensions. The dimensions in vectors capture features of the data in a way that makes them easy to compare mathematically.
 
@@ -59,7 +59,7 @@ You can configure the following options:
 
 You can set an inclusive range of pages for any documents processed through your Workflow.
 
-The {ai} ignores any content on document pages not included in this range.
+The AI Data Plane ignores any content on document pages not included in this range.
 
 ### [](#layout-exclusions)Layout Exclusions
 
@@ -93,7 +93,7 @@ If you choose to set a chunk overlap, your Unstructured Data Workflow makes sure
 
 #### [](#chunking-strategies)Chunking Strategies
 
-The following chunking strategies are available in the {ai}:
+The following chunking strategies are available in the AI Data Plane:
 
 | Chunking Strategy                       | Semantic Preservation                                                                                                                                                                                                                                                                                              | Common Use Cases                                                                                           |
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
@@ -127,7 +127,7 @@ Divides text into smaller, self-contained units based on meaning and context. Th
 
 Semantic chunking makes sure each chunk conveys a unified idea and preserves coherent context for RAG applications. It uses a specific algorithm that requires a specific chunk size and a chunk overlap, to help determine where to create breaks in the content.
 
-Semantic chunking is the default option for the {ai}, as it can provide the best results.
+Semantic chunking is the default option for the AI Data Plane, as it can provide the best results.
 
 Sentence chunking
 
@@ -147,11 +147,11 @@ Unstructured Data Workflows have the following file size or file number limitati
 
 ## [](#status)Workflow Statuses
 
-A the {ai} Workflow can have 1 of the following statuses:
+A the AI Data Plane Workflow can have 1 of the following statuses:
 
 | State          | Description                                                                                                                                                                                                                                                |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Deploying      | The resources for this Workflow are currently being deployed on the {ai}.                                                                                                                                                                                  |
+| Deploying      | The resources for this Workflow are currently being deployed on the AI Data Plane.                                                                                                                                                                         |
 | Deploy Failed  | The required resources for this Workflow failed to deploy. You can delete this Workflow and try to deploy a new one.                                                                                                                                       |
 | Pending        | The deployment process for the Workflow is taking longer than expected.                                                                                                                                                                                    |
 | Running        | The Workflow is currently processing documents. You can stop the Workflow while it's running by going to **More Options (⋮)** **Stop Workflow** on the Workflows page.                                                                                     |

@@ -1,8 +1,8 @@
 ---
 title: Install and Verify
 description: Install Couchbase Edge Server for use in your applications.
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/get-started/pages/install.adoc
-pubDate: 2026-04-15T05:26:28.652Z
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/get-started/pages/install.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-edge-server:get-started:install.adoc[]
 ---
 
@@ -34,37 +34,37 @@ Follow the appropriate install option from the methods shown.
 Install Couchbase Edge Server with apt:
 
 ```bash
-apt install couchbase-edge-server_1.0.1_amd64.deb
+apt install couchbase-edge-server_1.1.0_amd64.deb
 ```
 
 Install the debug symbols:
 
 ```bash
-apt install couchbase-edge-server-dbgsym_1.0.1_amd64.deb
+apt install couchbase-edge-server-dbgsym_1.1.0_amd64.deb
 ```
 
 Install Couchbase Edge Server with the dpkg package manager:
 
 ```bash
-dpkg install couchbase-edge-server_1.0.1_amd64.deb
+dpkg install couchbase-edge-server_1.1.0_amd64.deb
 ```
 
 Install the debug symbols:
 
 ```bash
-dpkg install couchbase-edge-server-dbgsym_1.0.1_amd64.deb
+dpkg install couchbase-edge-server-dbgsym_1.1.0_amd64.deb
 ```
 
 Install Couchbase Edge Server with the DNF package manager:
 
 ```bash
-dnf install couchbase-edge-server-1.0.1-x86_64.rpm
+dnf install couchbase-edge-server-1.1.0-x86_64.rpm
 ```
 
 Install the debug symbols:
 
 ```bash
-dnf install couchbase-edge-server-debuginfo-1.0.1-x86_64.rpm
+dnf install couchbase-edge-server-debuginfo-1.1.0-x86_64.rpm
 ```
 
 ## [](#install-for-macos)Install for macOS
@@ -78,7 +78,7 @@ Download the required edition of Couchbase Edge Server from the [downloads page]
 Unzip the package into your preferred file location using the following command:
 
 ```bash
-unzip -d couchbase-edge-server-1.0.1-macos.zip
+unzip -d couchbase-edge-server-1.1.0-macos.zip
 ```
 
 ## [](#run-and-verify-your-installation)Run and Verify Your Installation

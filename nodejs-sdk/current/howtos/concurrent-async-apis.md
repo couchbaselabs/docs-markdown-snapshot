@@ -2,8 +2,8 @@
 title: Choosing an API
 description: The Couchbase Node.js SDK allows the use, and mixing, of two
   distinct forms of result handling.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/concurrent-async-apis.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 

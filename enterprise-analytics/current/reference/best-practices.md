@@ -2,8 +2,8 @@
 title: Best Practices - Load Balancer [WIP]
 description: This page describes best practices for setting up a load balancer
   with Couchbase Enterprise Analytics.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/best-practices.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/best-practices.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:reference:best-practices.adoc[]
 ---
 

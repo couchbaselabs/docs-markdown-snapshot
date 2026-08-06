@@ -2,8 +2,8 @@
 title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/n1ql-query.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -33,15 +33,7 @@ If your queries are highly dynamic, we recommend using parameterized queries if 
 For the PHP SDK, the `adhoc` parameter should be set to `false` for a plan to be prepared, or a prepared plan to be reused. Do not turn off the `adhoc` flag for _every_ query to Server 6.0 and earlier, since only a finite number of query plans (currently 5000) can be stored in the SDK.
 
 ```php
-$query = "SELECT count(*) FROM `travel-sample`.inventory.airport where country = $1";
-$opts = new QueryOptions();
-$opts->adhoc(false);
-$opts->positionalParameters(['France']);
-
-$result = $cluster->query($query, $opts);
-foreach ($result->rows() as $row) {
-    // do something
-}
+Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$n1ql-concept.php[]
 ```
 
 > [!CAUTION]
@@ -80,11 +72,7 @@ Indexes help improve the performance of a query. When an index includes the actu
 You can also create and define indexes in the SDK using:
 
 ```php
-$mgr = $cluster->queryIndexes();
-
-$mgr->createPrimaryIndex('travel-sample');
-$mgr->createIndex('travel-sample', 'ix_name', ['name']);
-$mgr->createIndex('travel-sample', 'ix_email', ['email']);
+Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$n1ql-concept.php[]
 ```
 
 ## [](#index-building)Index Building
@@ -103,15 +91,7 @@ The indexes are not built until the `BUILD INDEX` statement is executed. At this
 Building deferred indexes can also be done via the SDK:
 
 ```php
-$indexOpts = new CreateQueryIndexOptions();
-$primaryIndexOpts = new CreateQueryPrimaryIndexOptions();
-
-$mgr->createPrimaryIndex('travel-sample', $primaryIndexOpts->deferred(true));
-$mgr->createIndex('travel-sample', 'ix_name', ['name'], $indexOpts->deferred(true));
-$mgr->createIndex('travel-sample', 'ix_email', ['email'], $indexOpts->deferred(true));
-
-$indexesToBuild = $mgr->buildDeferredIndexes('travel-sample');
-$mgr->watchIndexes('travel-sample', $indexesToBuild, 2);
+Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$n1ql-concept.php[]
 ```
 
 ## [](#index-consistency)Index Consistency
@@ -134,15 +114,7 @@ For SQL++, the default consistency is `not_bounded`.
 Consider the following snippet:
 
 ```php
-$indexOpts = new CreateQueryIndexOptions();
-$primaryIndexOpts = new CreateQueryPrimaryIndexOptions();
-
-$mgr->createPrimaryIndex('travel-sample', $primaryIndexOpts->deferred(true));
-$mgr->createIndex('travel-sample', 'ix_name', ['name'], $indexOpts->deferred(true));
-$mgr->createIndex('travel-sample', 'ix_email', ['email'], $indexOpts->deferred(true));
-
-$indexesToBuild = $mgr->buildDeferredIndexes('travel-sample');
-$mgr->watchIndexes('travel-sample', $indexesToBuild, 2);
+Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$n1ql-concept.php[]
 ```
 
 The above query may not return the newly inserted document because it has not yet been indexed. The query is issued immediately after document creation, and in this case the query engine may process the query before the index has been updated.
@@ -150,12 +122,7 @@ The above query may not return the newly inserted document because it has not ye
 If the above code is modified to use _RequestPlus_, query processing will wait until all updates have been processed and recalculated into the index from the point in time the query was received:
 
 ```php
-$queryOpts->scanConsistency(QueryScanConsistency::REQUEST_PLUS);
-$queryOpts->positionalParameters(['Brass']);
-$cluster->query(
-    "SELECT name, email, random, META().id FROM `travel-sample`.inventory.airport WHERE $1 IN name",
-    $queryOpts,
-);
+Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$n1ql-concept.php[]
 ```
 
 This gives the application developer more control over the balance between performance (latency) and consistency, and allows optimization on a case-by-case basis.

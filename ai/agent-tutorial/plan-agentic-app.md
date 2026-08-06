@@ -3,7 +3,7 @@ title: Plan Your Agentic App
 description: Before you start building, you should plan the tools, framework,
   and structure of your agent application.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/plan-agentic-app.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:agent-tutorial:plan-agentic-app.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:ai:agent-tutorial:plan-agentic-app.adoc[]
 An AI agent could be a simple application like a chatbot, or a more specialized application designed to solve a specific problem, like a smart web crawler. For more information about agentic apps, see [About Agentic Apps](about-agentic-app.md).
 
 > [!TIP]
-> The {ai-long} also offers notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework:
+> The Couchbase AI Data Plane also offers notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework:
 > 
 > * Colab: [LangGraph](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb)
 > * GitHub: [LangGraph](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb)
@@ -25,16 +25,16 @@ An AI agent could be a simple application like a chatbot, or a more specialized 
 To effectively plan a new agentic app, you need to consider:
 
 * The Large Language Model (LLM) you want to use to power your application.  
-For more information about how to set up an embedding model or LLM on the {ai}, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md) or [Deploy a Large Language Model (LLM)](../build/model-service/deploy-llm-model.md). For more information about how to choose an LLM, see [Large Language Model (LLM)](#llm).
+For more information about how to set up an embedding model or LLM on the AI Data Plane, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md) or [Deploy a Large Language Model (LLM)](../build/model-service/deploy-llm-model.md). For more information about how to choose an LLM, see [Large Language Model (LLM)](#llm).
 * The agent development framework you want to use to write and develop your agent code.  
 For more information about how to choose an agent development framework and an overview of different available frameworks, see [Agent Development Framework](#agent-framework).
 * The underlying storage you want to use for memory and agent data.  
-For more information about using a Capella operational cluster for vector and data storage, see [Process Your Data For the {ai-long}](../build/vectorization-service/data-processing.md).
+For more information about using a Capella operational cluster for vector and data storage, see [Process Your Data For the Couchbase AI Data Plane](../build/vectorization-service/data-processing.md).
 * The tools your agent needs to use to solve user problems.  
-For more information about how the {ai} can help manage your agent's tools, see [Integrate an Agent with the Agent Catalog](../build/integrate-agent-with-catalog.md).
+For more information about how the AI Data Plane can help manage your agent's tools, see [Integrate an Agent with the Agent Catalog](../build/integrate-agent-with-catalog.md).
 * The interface you want to use for user interactions with your application, such as a web application, command-line tool, or API.
 * The way you want to test and evaluate the performance of your agentic app.  
-For more information about using the {ai} for evaluating your agent, see [Monitor and Observe with Agent Tracer](../build/agent-tracer/agent-tracer.md).
+For more information about using the AI Data Plane for evaluating your agent, see [Monitor and Observe with Agent Tracer](../build/agent-tracer/agent-tracer.md).
 
 ## [](#llm)Large Language Model (LLM)
 
@@ -105,7 +105,7 @@ Externally hosted models offer good performance, but you'll have less control ov
 
 An open source, self-hosted model can reduce costs for higher volumes of usage, and keep sensitive data safe.
 
-The {ai-long} offers a range of models that can be hosted inside your own VPC, giving full control over your data, model versioning, and more. For more information about hosting models on the {ai}, see [Deploy Models with the {ai} Model Service](../build/model-service/model-service.md).
+The Couchbase AI Data Plane offers a range of models that can be hosted inside your own VPC, giving full control over your data, model versioning, and more. For more information about hosting models on the AI Data Plane, see [Deploy Models with the AI Data Plane Model Service](../build/model-service/model-service.md).
 
 ### [](#reasoning-framework)Reasoning Framework
 
@@ -221,5 +221,5 @@ AutoGen works best for an agent application that needs:
 
 * [About Agentic Apps](about-agentic-app.md)
 * [About RAG Blueprints](rag-patterns.md)
-* [{ai-long}](../get-started/intro.md)
+* [Couchbase AI Data Plane](../get-started/intro.md)
 * [Integrate an Agent with the Agent Catalog](../build/integrate-agent-with-catalog.md)

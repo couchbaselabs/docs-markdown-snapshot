@@ -1,8 +1,8 @@
 ---
 title: Collections and Scopes
 description: Fully supported from Couchbase Server 7.0.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/concept-docs/pages/collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/collections.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:concept-docs:collections.adoc[]
 ---
 
@@ -22,13 +22,13 @@ Information on _Collections_ can be found in the [server docs](#8.0@server:learn
 Access a non-default collection, in the default scope, with:
 
 ```php
-$bucket->scope('_default')->collection('bookings');
+Unresolved include directive in modules/concept-docs/pages/collections.adoc - include::example$collections-concept.php[]
 ```
 
 And for a non-default scope:
 
 ```php
-$bucket->scope('tenant_agent_00')->collection('bookings');
+Unresolved include directive in modules/concept-docs/pages/collections.adoc - include::example$collections-concept.php[]
 ```
 
 ## [](#further-reading)Further Reading

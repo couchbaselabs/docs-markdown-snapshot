@@ -1,8 +1,8 @@
 ---
 title: Result Sets
 description: How to use Couchbase Lite Query's Result Sets
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/query-resultsets.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/query-resultsets.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:query-resultsets.adoc[]
 ---
 
@@ -22,7 +22,7 @@ Each row of the result set represents the data returned from a document that met
 
 ## [](#lbl-process-resultset)Processing Results
 
-[Access Document Properties - All Properties](#lbl-acc-all)| [Access Document Properties - ID](#lbl-acc-id)| [Access Document Properties - Selected Properties](#lbl-acc-specific)
+[Access Document Properties - All Properties](#lbl-acc-all)| [\[lbl-acc-id\]](#lbl-acc-id)| [\[lbl-acc-specific\]](#lbl-acc-specific)
 
 To retrieve the results of your query, you need to execute it using `Query.execute`.
 
@@ -39,6 +39,8 @@ In this case each array element is a dictionary structure with the database name
 You access the retrieved document properties by converting each row's value, in turn, to a dictionary — as shown in [Example 1](#ex-acc-all).
 
 Example 1\. Access All Properties
+
+C
 
 ```c
 CBLResultSet* results = CBLQuery_Execute(query, &err);
@@ -60,21 +62,44 @@ while(CBLResultSet_Next(results)) {
 CBLResultSet_Release(results);
 ```
 
+C++
+
+```cpp
+cbl::ResultSet results = query.execute();
+for (cbl::Result result : results) {
+    fleece::Dict dict = result["_"].asDict();
+
+    std::cout << "ID :: "   << dict["id"].asstring()   << std::endl;
+    std::cout << "Type :: " << dict["type"].asstring() << std::endl;
+    std::cout << "Name :: " << dict["name"].asstring() << std::endl;
+    std::cout << "City :: " << dict["city"].asstring() << std::endl;
+}
+// All results are available from the above query
+```
+
 | **1** | Here we get the dictionary of document properties using the database name as the key. You can add this dictionary to an array of returned matches, for processing elsewhere in the app. |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Alternatively, you can access the document properties here, by using the property names as keys to the dictionary object.                                                               |
 
-### [](#lbl-acc-id)Access Document Properties - ID
+C++
 
-Here we look at how to access document properties when you have returned only the document IDs for documents that matched your selection criteria.
+```cpp
+Unresolved include directive in modules/c/pages/query-resultsets.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
+```
+
+| **1** | Here we get the dictionary of document properties using the database name as the key. You can add this dictionary to an array of returned matches, for processing elsewhere in the app. |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Alternatively, you can access the document properties here, by using the property names as keys to the dictionary object.                                                               |
+
+\=== Access Document Properties - ID Here we look at how to access document properties when you have returned only the document IDs for documents that matched your selection criteria.
 
 This is something you may do when retrieval of the properties directly by the query may consume excessive amounts of memory and-or processing time.
 
 In this case each array element is a dictionary structure where `ID` is the key and the required document ID is the value.
 
-Access the required document properties by retrieving the document from the database using its document ID — as shown in [Example 2](#ex-acc-id).
+Access the required document properties by retrieving the document from the database using its document ID — as shown in [\[ex-acc-id\]](#ex-acc-id).
 
-Example 2\. Access by ID
+C
 
 ```c
 // NOTE: No error handling, for brevity (see getting started)
@@ -86,21 +111,28 @@ while(CBLResultSet_Next(results)) {
 }
 ```
 
-| **1** | Extract the Id value from the dictionary and use it to get the document from the database |
-| ----- | ----------------------------------------------------------------------------------------- |
+C++
 
-### [](#lbl-acc-specific)Access Document Properties - Selected Properties
+```cpp
+// NOTE: No error handling, for brevity (see getting started)
+cbl::ResultSet results = query.execute();
+for (cbl::Result result : results) {
+    std::cout << "Document ID :: " << result["id"].asstring() << std::endl;
+}
+```
 
-Here we look at how to access properties when you have used SelectResult to get a specific subset of properties.
+\=== Access Document Properties - Selected Properties Here we look at how to access properties when you have used SelectResult to get a specific subset of properties.
 
 In this case each array element is an array of key value pairs (property name/property value).
 
 Access the retrieved properties by converting each row into a dictionary — as shown in [\[ex-acc-specific\]](#ex-acc-specific).
 
+C
+
 ```c
 // NOTE: No error handling, for brevity (see getting started)
 
-CBLError err{};
+CBLError err = {};
 CBLQuery* query = CBLDatabase_CreateQuery(database, kCBLN1QLLanguage,
     FLSTR("SELECT type, name, city FROM _"), NULL, &err);
 
@@ -116,11 +148,25 @@ while(CBLResultSet_Next(results)) {
 }
 ```
 
-## [](#json-result-sets)JSON Result Sets
+C++
 
-Example 3\. Using JSON Results
+```cpp
+// NOTE: No error handling, for brevity (see getting started)
+cbl::Query query(database, kCBLN1QLLanguage, "SELECT type, name, city FROM _");
 
-Use [FLValue\_ToJSON()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fjson.html#ga3450acc0690101545d75986b91e4080) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 3](#ex-json) for a working example.
+cbl::ResultSet results = query.execute();
+for (cbl::Result result : results) {
+    std::cout << "Type :: " << result["type"].asstring() << std::endl;
+    std::cout << "Name :: " << result["name"].asstring() << std::endl;
+    std::cout << "City :: " << result["city"].asstring() << std::endl;
+}
+```
+
+\== JSON Result Sets
+
+Use [FLValue\_ToJSON()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c/C/html/group%5F%5Fjson.html#ga3450acc0690101545d75986b91e4080) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [\[ex-json\]](#ex-json) for a working example.
+
+C
 
 ```c
 CBLResultSet* results = CBLQuery_Execute(query, &err);
@@ -131,6 +177,15 @@ while(CBLResultSet_Next(results)) {
     FLSliceResult_Release(json);
 }
 CBLResultSet_Release(results);
+```
+
+C++
+
+```cpp
+cbl::ResultSet results = query.execute();
+for (cbl::Result result : results) {
+    std::cout << "JSON Result :: " << result.toJSON().asString() << std::endl;
+}
 ```
 
 JSON String Format
@@ -155,33 +210,16 @@ If your query selects a sub-set of available properties then the JSON format wil
 }
 ```
 
-## [](#related-content)Related Content
+\== Related Content
 
-###### [](#)
-
-How to . . .
-
-* [Install](gs-install.md)
-* [Build and Run](gs-build.md)
+\====== .How to . . . \* [Install](gs-install.md)\* [Build and Run](gs-build.md)
 
 .
 
-###### [](#-2)
-
-Learn more . . .
-
-* [Databases](database.md)
-* [Documents](document.md)
-* [Blobs](blob.md)
-* [Remote Sync Gateway](replication.md)
-* [Handling Data Conflicts](conflict.md)
+\====== .Learn more . . . \* [Databases](database.md)\* [Documents](document.md)\* [Blobs](blob.md)\* [Remote Sync Gateway](replication.md)\* [Handling Data Conflicts](conflict.md)
 
 .
 
-###### [](#-3)
-
-Dive Deeper . . .
-
-[Mobile Forum](https://forums.couchbase.com/c/mobile/14) | [Blog](https://blog.couchbase.com/) | [Tutorials](https://docs.couchbase.com/tutorials/)
+\====== .Dive Deeper . . . [Mobile Forum](https://forums.couchbase.com/c/mobile/14) | [Blog](https://blog.couchbase.com/) | [Tutorials](https://docs.couchbase.com/tutorials/)
 
 .

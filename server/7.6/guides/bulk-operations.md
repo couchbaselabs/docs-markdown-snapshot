@@ -2,7 +2,7 @@
 title: Work with Documents in Bulk
 description: How to perform bulk CRUD operations with a command line tool or an SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/bulk-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:7.6@server:guides:bulk-operations.adoc[]
 ---
 
@@ -144,21 +144,7 @@ For more information, see [Collection](https://docs.couchbase.com/sdk-api/couchb
 The example below inserts multiple JSON documents in the `users` keyspace in the `tenant_agent_00` scope.
 
 ```nodejs
-const users = [
-  { id: 'user_111', email: 'tom_the_cat@gmail.com' },
-  { id: 'user_222', email: 'jerry_mouse@gmail.com' },
-  { id: 'user_333', email: 'mickey_mouse@gmail.com' },
-]
-// Wait for all the insert operations to complete and store the results.
-const insertResults = await Promise.all(
-  users.map((user) => {
-    console.log(`Inserting document: ${user.id}`)
-    return usersCollection.insert(user.id, user)
-  })
-)
-
-// Iterate the results and print the CAS metadata.
-insertResults.forEach((result) => console.log('CAS:', result.cas))
+Unresolved include directive in modules/guides/pages/bulk-operations.adoc - include::nodejs-sdk:hello-world:example$kv-bulk-hello-world.js[]
 ```
 
 Click the  View button to see this code in context.
@@ -332,21 +318,7 @@ Perform a `get` operation on each document and wait for all the promises to comp
 The example below fetches multiple JSON documents from the `users` keyspace in the `tenant_agent_00` scope.
 
 ```nodejs
-const users = [
-  { id: 'user_111', email: 'tom_the_cat@gmail.com' },
-  { id: 'user_222', email: 'jerry_mouse@gmail.com' },
-  { id: 'user_333', email: 'mickey_mouse@gmail.com' },
-]
-// Wait for all the get operations to complete and store the results.
-const getResults = await Promise.all(
-  users.map((user) => {
-    console.log(`Getting document: ${user.id}`)
-    return usersCollection.get(user.id, user)
-  })
-)
-
-// Iterate the results and print the CAS metadata.
-getResults.forEach((result) => console.log('Document:', result.content))
+Unresolved include directive in modules/guides/pages/bulk-operations.adoc - include::nodejs-sdk:hello-world:example$kv-bulk-hello-world.js[]
 ```
 
 Click the  View button to see this code in context.
@@ -486,27 +458,7 @@ For more information, see [Collection](https://docs.couchbase.com/sdk-api/couchb
 The example below upserts multiple JSON documents in the `users` keyspace in the `tenant_agent_00` scope.
 
 ```nodejs
-const users = [
-  { id: 'user_111', email: 'tom_the_cat@gmail.com' },
-  { id: 'user_222', email: 'jerry_mouse@gmail.com' },
-  { id: 'user_333', email: 'mickey_mouse@gmail.com' },
-]
-const newUsers = [
-  { id: 'user_111', email: 'tom@gmail.com' },
-  { id: 'user_222', email: 'jerry@gmail.com' },
-  { id: 'user_333', email: 'mickey@gmail.com' },
-]
-
-// Wait for all the upsert operations to complete and store the results.
-const upsertResults = await Promise.all(
-  newUsers.map((newUser) => {
-    console.log(`Upserting document: ${newUser.id}`)
-    return usersCollection.upsert(newUser.id, newUser)
-  })
-)
-
-// Iterate the results and print the CAS metadata.
-upsertResults.forEach((result) => console.log('CAS:', result.cas))
+Unresolved include directive in modules/guides/pages/bulk-operations.adoc - include::nodejs-sdk:hello-world:example$kv-bulk-hello-world.js[]
 ```
 
 Click the  View button to see this code in context.
@@ -628,21 +580,7 @@ Perform a remove operation on each document and wait for all the promises to com
 The example below deletes multiple JSON documents from the `users` keyspace in the `tenant_agent_00` scope.
 
 ```nodejs
-const users = [
-  { id: 'user_111', email: 'tom_the_cat@gmail.com' },
-  { id: 'user_222', email: 'jerry_mouse@gmail.com' },
-  { id: 'user_333', email: 'mickey_mouse@gmail.com' },
-]
-// Wait for all the remove operations to complete and store the results.
-const removeResults = await Promise.all(
-  users.map((user) => {
-    console.log(`Removing document: ${user.id}`)
-    return usersCollection.remove(user.id, user)
-  })
-)
-
-// Iterate the results and print the CAS metadata.
-removeResults.forEach((result) => console.log('CAS:', result.cas))
+Unresolved include directive in modules/guides/pages/bulk-operations.adoc - include::nodejs-sdk:hello-world:example$kv-bulk-hello-world.js[]
 ```
 
 Click the  View button to see this code in context.

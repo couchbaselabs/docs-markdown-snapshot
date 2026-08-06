@@ -2,8 +2,8 @@
 title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
-pubDate: 2026-04-11T05:05:55.612Z
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:scala-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:scala-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 
 > Meta documentation — what you might need to know to get the best from these docs, from their intent to their Information Architecture. 
 
-Welcome to the [Scala SDK 3.11](compatibility.md#api-version) docs — this is an _afterword_ to the documentation, rather than something most people will read as a _foreword_. Why so? On most occasions you will arrive at a page directly from a search engine or LLM, perhaps follow a link to another page or two, and then depart (with, we hope, your questions answererd). This page is to help with those occasions when you are unsure precisely what you want, but you are after understanding — so this page is a guide to the SDK docs, to help you to get the most from them.
+Welcome to the [Scala SDK 3.12](compatibility.md#api-version) docs — this is an _afterword_ to the documentation, rather than something most people will read as a _foreword_. Why so? On most occasions you will arrive at a page directly from a search engine or LLM, perhaps follow a link to another page or two, and then depart (with, we hope, your questions answererd). This page is to help with those occasions when you are unsure precisely what you want, but you are after understanding — so this page is a guide to the SDK docs, to help you to get the most from them.
 
 ## [](#assumptions-presumptions)Assumptions & Presumptions
 

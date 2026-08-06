@@ -1,8 +1,8 @@
 ---
 title: Take Database Offline/Online
 description: How to take a <em>Sync&nbspGateway</em> database offline and bring back online.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/database-offline.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/manage/pages/database-offline.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:manage:database-offline.adoc[]
 ---
 
@@ -48,7 +48,10 @@ The workflow for taking databases offline/online differs depending on your confi
 
 If you use the **Persistent Configuration** mode for Sync Gateway (default since Sync Gateway 3.0), Couchbase Server stores your configuration.
 
-When you take a database offline or bring it online using the `PUT /{db}/_config` endpoint with `{"offline": true/false}`, Sync Gateway updates the database configuration in the bucket and propagates the change automatically to all Sync Gateway nodes.
+When you take a database offline or bring it online using the `POST /{db}/_config` endpoint with `{"offline": true/false}`, Sync Gateway updates the database configuration in the bucket and propagates the change automatically to all Sync Gateway nodes.
+
+> [!IMPORTANT]
+> Use `POST /{db}/_config` for this, not `PUT /{db}/_config`. `PUT /{db}/_config` replaces the entire database configuration with whatever payload you send. If your request body contains only `{"offline": true}` and omits the rest of the database's current configuration, `PUT` resets those omitted fields to their defaults. `POST /{db}/_config` performs a partial update instead: it changes only the fields you include and leaves everything else untouched. Because the offline/online examples here send just a single field, `POST` is the safer choice unless you are certain you're submitting the complete current configuration.
 
 The state transition is asynchronous. Database states transition through: Offline → Starting → Online or Online → Stopping → Offline. This transition is typically quick (1 second or less), unless going from Offline → Online and Sync Gateway needs to build indexes.
 
@@ -74,8 +77,8 @@ This section describes how to manually take a database offline.
 
 Use this method when your Sync Gateway configuration is stored in Couchbase Server (default since Sync Gateway 3.0).
 
-1. Make a PUT request to [/{db}/\_config](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/post%5Fdb-%5Fconfig) with `{"offline": true}`.  
-This updates the database configuration persisted in the bucket, and all nodes goes offline.  
+1. Make a POST request to [/{db}/\_config](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/post%5Fdb-%5Fconfig) with `{"offline": true}`.  
+This updates the database configuration persisted in the bucket, and all nodes go offline.  
 You can use a Load Balancer for this operation.  
 > [!NOTE]  
 > The state transition is asynchronous. The database transitions from Online → Stopping → Offline, typically in less than 1 second.
@@ -95,7 +98,7 @@ This section describes how to manually bring a database online.
 
 Use this method when Couchbase Server stores your Sync Gateway configuration (default since Sync Gateway 3.0).
 
-1. Make a PUT request to [/{db}/\_config](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/post%5Fdb-%5Fconfig) with `{"offline": false}`.  
+1. Make a POST request to [/{db}/\_config](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/post%5Fdb-%5Fconfig) with `{"offline": false}`.  
 This updates the database configuration persisted in the bucket, and all nodes will go online.  
 You can use a Load Balancer for this operation.  
 > [!NOTE]  

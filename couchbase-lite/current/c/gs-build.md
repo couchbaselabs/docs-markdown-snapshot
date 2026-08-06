@@ -1,8 +1,8 @@
 ---
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase Lite on C
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/gs-build.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/gs-build.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:c:gs-build.adoc[]
 ---
 
@@ -17,21 +17,39 @@ Steps in Getting Started
 
 [Install](gs-install.md)| **Build**
 
+Couchbase Lite for C ships both a C API and a C++ wrapper API (cbl++). After installation, both APIs are available in the same package.
+
+Include headers
+
+* C
+* C++
+
+```c
+#include cbl/CouchbaseLite.h
+```
+
+```cpp
+#include cbl++/CouchbaseLite.hh
+```
+
 ## [](#verify-install)Verify Install
 
 Now you have _Couchbase Lite for C_ installed, you can verify that your apps build correctly.
 
-Enter the C code from [Example 1](#ex-c-starter) into your editor of choice and build it.
+Enter the C and C++ code from [Example 1](#ex-c-starter) into your editor of choice and build it.
 
-Running it will create a database, add a document, retrieve the document, update the document and then delete the document.
+Running it creates a database, adds a document, retrieves the document, updates the document and then deletes the document.
 
 Example 1\. Sample code
+
+* C
+* C++
 
 ```c
 //  Purpose-- provide an overview of available crud  and sync functionality
 //
 // Get the database (and create it if it doesn't exist)
-CBLError err{};
+CBLError err = {};
 CBLDatabase* database = CBLDatabase_Open(FLSTR("mydb"), NULL, &err);
 if(!database) {
     // Error handling.  For brevity, this is truncated in the rest of the snippet
@@ -121,7 +139,7 @@ CBLResultSet_Release(result);
 CBLQuery_Release(query);
 
 // Create replicator to push and pull changes to and from the cloud
-CBLCollectionConfiguration collectionConfig = {0};
+CBLCollectionConfiguration collectionConfig = {};
 collectionConfig.collection = collection;
 
 CBLEndpoint* targetEndpoint = CBLEndpoint_CreateWithURL(FLSTR("ws://localhost:4984/getting-started-db"), &err);
@@ -130,7 +148,7 @@ if(!targetEndpoint) {
     return;
 }
 
-CBLReplicatorConfiguration replConfig = {0};
+CBLReplicatorConfiguration replConfig = {};
 replConfig.collections = &collectionConfig;
 replConfig.collectionCount = 1;
 replConfig.endpoint = targetEndpoint;
@@ -167,6 +185,74 @@ stop_replicator(replicator);
 
 CBLCollection_Release(collection);
 CBLDatabase_Release(database);
+```
+
+```cpp
+//  Purpose-- provide an overview of available CRUD and sync functionality
+//
+// The C++ API reports failures by throwing cbl::Error. For brevity this
+// try/catch is shown only here and is omitted in the other doc snippets.
+try {
+    // Get the database (and create it if it doesn't exist)
+    cbl::Database database("mydb");
+
+    // All CRUD operations must be carried out via a collection. C++ objects
+    // are ref-counted, so there is no explicit release/close to remember.
+    cbl::Collection collection = database.getDefaultCollection();
+
+    // Create a new document (i.e. a record) in the database. Passing nullptr
+    // gives it an auto-generated ID. 'Mutable' means its properties can change.
+    cbl::MutableDocument mutableDoc(nullptr);
+    mutableDoc["version"] = 3.0f;
+
+    // Save it to the database
+    collection.saveDocument(mutableDoc);
+
+    // Keep the auto-generated ID so we can fetch the document again
+    std::string id = mutableDoc.id();
+
+    // Update a document
+    mutableDoc = collection.getMutableDocument(id);
+    mutableDoc["language"] = "C++";
+    collection.saveDocument(mutableDoc);
+
+    // Read it back (a cbl::Document, unlike cbl::MutableDocument, is read-only)
+    cbl::Document docAgain = collection.getDocument(id);
+    std::cout << "Document ID :: " << docAgain.id() << std::endl;
+    std::cout << "Learning " << docAgain["language"].asstring() << std::endl;
+
+    // Create a query to fetch documents of type SDK
+    cbl::Query query(database, kCBLN1QLLanguage,
+                     "SELECT * FROM _ WHERE type = \"SDK\"");
+    cbl::ResultSet result = query.execute();
+
+    // Create a replicator to push and pull changes to and from the cloud
+    cbl::ReplicatorConfiguration config(
+        { cbl::CollectionConfiguration(collection) },
+        cbl::Endpoint::urlEndpoint("ws://localhost:4984/getting-started-db"));
+    config.authenticator = cbl::Authenticator::basicAuthenticator("john", "pass");
+
+    cbl::Replicator replicator(config);
+
+    // Listen for replicator status changes
+    auto token = replicator.addChangeListener(
+        [](cbl::Replicator r, const CBLReplicatorStatus& status) {
+            if (status.error.code != 0) {
+                std::cerr << "Error " << status.error.domain
+                          << " / " << status.error.code << std::endl;
+            }
+        });
+
+    replicator.start();
+
+    // Later, stop the replicator. Ref-counted objects free themselves once
+    // the last reference goes away (here, when this scope ends).
+    replicator.stop();
+} catch (const cbl::Error& e) {
+    // Error handling. For brevity, this is truncated here and omitted in the
+    // other doc code snippets.
+    std::cerr << "Error: " << e.what() << std::endl;
+}
 ```
 
 ## [](#related-content)Related Content

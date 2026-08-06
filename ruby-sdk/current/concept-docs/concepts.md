@@ -1,7 +1,7 @@
 ---
 title: Overview
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/concept-docs/pages/concepts.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/concept-docs/pages/concepts.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:concept-docs:concepts.adoc[]
 ---
 

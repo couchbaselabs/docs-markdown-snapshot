@@ -1,10 +1,10 @@
 ---
 title: General Settings
 description: <em>General</em> settings allow configuration of <em>cluster
-  name</em>, <em>blob storage</em>, <em>memory quotas</em>, <em>storage
-  modes</em>, and <em>node availability</em> for the cluster.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-settings/general-settings.adoc
-pubDate: 2026-04-15T05:26:28.652Z
+  name</em>, <em>memory quotas</em>, <em>storage modes</em>, and <em>node
+  availability</em> for the cluster.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/manage-settings/general-settings.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:manage:manage-settings/general-settings.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:enterprise-analytics:manage:manage-settings/general-settings.adoc[]
 
 # General Settings
 
-> _General_ settings allow configuration of _cluster name_, _blob storage_, _memory quotas_, _storage modes_, and _node availability_ for the cluster. 
+> _General_ settings allow configuration of _cluster name_, _memory quotas_, _storage modes_, and _node availability_ for the cluster. 
 
 ## [](#configuring-general-settings-examples-on-this-page)Examples on This Page
 
@@ -28,44 +28,6 @@ The panels and their UI elements are described in the following sections.
 ### [](#cluster-name)Cluster Name
 
 The **Cluster Name** is the name that was given during initial setup. This name can be changed at any time using the interactive text field in this section.
-
-### [](#blob-storage-settings)Blob Storage Settings
-
-The **Blob Storage Settings** panel displays the object storage configuration that was established during cluster initialization. Some settings can be modified here after initialization.
-
-The following fields are read-only and cannot be changed after cluster initialization:
-
-* **Storage Scheme** — The configured storage provider, shown as one of: **AWS S3**, **S3-Compatible Storage**, or **Azure Blob Storage**.
-* **Bucket Name** (or **Container Name** for Azure Blob Storage) — The name of the bucket or container used by Enterprise Analytics for persistent storage.
-* **Bucket Region** — The AWS region of the bucket. Displayed only when the storage scheme is **AWS S3**.
-* **Bucket Path Prefix** (or **Container Path Prefix** for Azure Blob Storage) — The path prefix within the bucket or container where Enterprise Analytics stores its data.
-
-The editable fields in this panel depend on the configured storage scheme, as described in the following sections:
-
-* AWS S3
-* S3-Compatible Storage
-* Azure Blob Storage
-
-**Authentication** — Specifies how Enterprise Analytics authenticates with AWS S3\. Select one of the following options:
-
-* **Standard Credential Chain** — Uses the default AWS provider chain to obtain credentials automatically. This includes instance profiles, environment variables, and other standard AWS credential sources.
-* **Static Credentials** — Allows you to supply credentials directly. When selected, the following fields appear:
-
-  * **Access Key ID** — The AWS access key ID.
-  * **Secret Access Key** — The AWS secret access key. If a key is already configured, the field displays the placeholder **Enter new value to change**. Leave the field empty to retain the existing key.
-* **Anonymous** — Accesses the bucket without credentials. Use this only for publicly accessible buckets.
-
-* **Storage Endpoint** — The URL of the S3-compatible storage endpoint. For example: `<https://my-object-storage:18082>`. This field is editable.
-* **Use Path Style Addressing** — When checked, requests use path-style URLs of the form `https://s3.example.com/bucket-name/key`, instead of virtual-hosted-style URLs of the form `https://bucket-name.s3.example.com/key`. Enable this for storage services that do not support virtual-hosted-style addressing.
-* **Disable SSL Verification** — When checked, disables certificate verification for SSL/TLS connections to the storage endpoint. Displayed only when the endpoint URL uses HTTPS.  
-> [!WARNING]  
-> Disabling SSL verification is not recommended for production environments. It exposes the connection to Man-in-the-Middle (MITM) attacks.
-* **Storage Endpoint Certificate(s)** — One or more PEM-encoded certificates to trust when connecting to the storage endpoint. Provide multiple certificates to support certificate rotation. Displayed only when the endpoint uses HTTPS and **Disable SSL Verification** is unchecked.
-
-* **Blob Storage Endpoint** — The URL of the Azure Blob Storage account endpoint. For example: `https://mycompany.blob.core.windows.net/`). You can edit this field.
-* **Disable SSL Verification** — When checked, disables certificate verification for SSL/TLS connections to the Azure endpoint. Displayed only when the endpoint URL uses HTTPS.  
-> [!WARNING]  
-> Disabling SSL verification is not recommended for production environments. It exposes the connection to Man-in-the-Middle (MITM) attacks.
 
 ### [](#current-version)Current Version
 
@@ -137,7 +99,7 @@ Name and memory settings are established with the [setting-cluster](../../cli/co
 --cluster-name 10.143.192.101 \
 ```
 
-This establishes the cluster-name as `10.143.192.101`, the memory allocation for Data Services each as 256 megabytes, and the memory allocation for each other service as zero.
+This establishes the cluster-name as `10.143.192.101`, the memory allocation for Data and Index Services each as 256 megabytes, and the memory allocation for each other service as zero.
 
 If successful, the call produces the following output:
 
@@ -163,124 +125,111 @@ This returns the setting for data in the cluster:
 "path": "/opt/enterprise-analytics/var/lib/couchbase/data"
 ```
 
+```shell
 If successful, the call produces the following output:
 
-```shell
+[source,shell]
+```
+
 SUCCESS: Indexer settings modified
-```
 
-### [](#software-update-settings-via-cli)Software-Update Settings via CLI
+[#software-update-settings-via-cli]
+=== Software-Update Settings via CLI
 
-You can enable and disable software update notifications in Enterprise Analytics Enterprise Edition using the [setting-notification](../../cli/couchbase-cli-setting-notification.md) command.
+You can enable and disable software update notifications in Enterprise Analytics Enterprise Edition using the xref:cli:couchbase-cli-setting-notification.adoc[setting-notification] command.
 
-```shell
-/opt/enterprise-analytics/bin/couchbase-cli
--c 10.143.192.101 -u Administrator -p password \
---enable-notifications 1
-```
+[source,shell]
 
-Setting value of 1 for `--enable-notifications` enables update-notifications. A value of 0 disables notifications. If successful, the command produces the following output:
+/opt/enterprise-analytics/bin/couchbase-cli -c 10.143.192.101 -u Administrator -p password \\ --enable-notifications 1
 
-```shell
+Setting value of 1 for `--enable-notifications` enables update-notifications. A value of 0 disables notifications.
+If successful, the command produces the following output:
+
+[source,shell]
+
 SUCCESS: Notification settings updated
-```
 
-> [!NOTE]
-> You cannot disable software update notifications in Enterprise Analytics Community Edition.
+NOTE: You cannot disable software update notifications in Enterprise Analytics Community Edition.
 
-### [](#auto-failover-settings-via-cli)Auto-Failover Settings via CLI
+[#auto-failover-settings-via-cli]
+=== Auto-Failover Settings via CLI
 
-Auto-failover can be configured with the [setting-autofailover](../../cli/couchbase-cli-setting-autofailover.md) command.
+Auto-failover can be configured with the xref:cli:couchbase-cli-setting-autofailover.adoc[setting-autofailover] command.
 
-```shell
-/opt/enterprise-analytics/bin/couchbase-cli
--c 10.143.192.101:8091 \
--u Administrator \
--p password \
---enable-auto-failover 1 \
---auto-failover-timeout 120 \
---max-failovers 2
-```
+[source,shell]
+
+/opt/enterprise-analytics/bin/couchbase-cli -c 10.143.192.101:8091 \\ -u Administrator \\ -p password \\ --enable-auto-failover 1 \\ --auto-failover-timeout 120 \\ --max-failovers 2
 
 This enables auto-failover, with a timeout of 120 seconds, and an event-maximum of 2.
 
 If successful, the command returns the following output:
 
-```shell
+[source,shell]
+
 SUCCESS: Auto-failover settings modified
-```
 
-For a detailed description of auto-failover settings, policy, and constraints, see [Automatic Failover](../../../../server/current/learn/clusters-and-availability/automatic-failover.md).
+For a detailed description of auto-failover settings, policy, and constraints, see xref:server:learn:clusters-and-availability/automatic-failover.adoc[Automatic Failover].
 
-### [](#rebalance-settings-via-cli)Rebalance Settings via CLI
 
-To obtain the cluster's current rebalance settings by means of the CLI, use the [setting-rebalance](../../cli/couchbase-cli-setting-rebalance.md) command, with the `--get` option:
+[#rebalance-settings-via-cli]
+=== Rebalance Settings via CLI
 
-```shell
-/opt/enterprise-analytics/bin/couchbase-cli
--c 10.143.192.101 \
--u Administrator \
--p password \
---get
-```
+To obtain the cluster's current rebalance settings by means of the CLI, use the xref:cli:couchbase-cli-setting-rebalance.adoc[setting-rebalance] command, with the `--get` option:
+
+[source,shell]
+
+/opt/enterprise-analytics/bin/couchbase-cli -c 10.143.192.101 \\ -u Administrator \\ -p password \\ --get
 
 If successful, the command returns the current rebalance settings:
 
-```shell
-Automatic rebalance retry disabled
-Retry wait time: 300
-Maximum number of retries: 2
-```
+[source,shell]
+
+Automatic rebalance retry disabled Retry wait time: 300 Maximum number of retries: 2
 
 To modify the current rebalance settings, use the `--set` option; and specify appropriate values for the `--max-attempts` and `--wait-for` flags:
 
-```shell
-/opt/enterprise-analytics/bin/couchbase-cli
--c 10.143.192.101 \
--u Administrator \
--p password \
---set \
---max-attempts 3 \
---wait-for 200
-```
+[source,shell]
+
+/opt/enterprise-analytics/bin/couchbase-cli -c 10.143.192.101 \\ -u Administrator \\ -p password \\ --set \\ --max-attempts 3 \\ --wait-for 200
 
 If successful, the command displays the following success message:
 
-```shell
+[source,shell]
+
 SUCCESS: Automatic rebalance retry settings updated
-```
 
-For more information, see the reference page [Configure Rebalance Retries](../../reference/rest-configure-rebalance-retry.md).
+For more information, see the reference page xref:reference:rest-configure-rebalance-retry.adoc[Configure Rebalance Retries].
 
-## [](#configure-general-settings-with-the-rest-api)Configure General Settings with the REST API
 
-Multiple REST API methods are provided to support configuration of general settings. These are described below.
+[#configure-general-settings-with-the-rest-api]
+== Configure General Settings with the REST API
 
-### [](#name-and-memory-settings-via-rest)Name and Memory Settings via REST
+Multiple REST API methods are provided to support configuration of general settings.
+These are described below.
+
+[#name-and-memory-settings-via-rest]
+=== Name and Memory Settings via REST
 
 To establish name and memory settings, use the `/pools/default` method.
 
-```shell
-curl -v -X POST -u Administrator:password \
-http://10.143.192.101:8091/pools/default \
--d clusterName=10.143.192.101 \
--d cbasMemoryQuota=1024 \
-```
+[source,shell]
+
+curl -v -X POST -u Administrator:password \\ <http://10.143.192.101:8091/pools/default> \\ -d clusterName=10.143.192.101 \\ -d cbasMemoryQuota=1024 \\
 
 This establishes the cluster's IP address as its name, and assigns memory-quotas for each node.
 
-Note that when used with GET, `/pools/default` returns configuration-settings. The output can be filtered, by means of a tool such as [jq](https://stedolan.github.io/jq/):
+Note that when used with GET, `/pools/default` returns configuration-settings.
+The output can be filtered, by means of a tool such as https://stedolan.github.io/jq/[jq]:
 
-```shell
-curl -s -u Administrator:password \
-http://10.143.192.101:8091/pools/default | jq '.cbasMemoryQuota'
-```
+[source,shell]
+
+curl -s -u Administrator:password \\ <http://10.143.192.101:8091/pools/default> | jq '.cbasMemoryQuota'
 
 If successful, this returns the value of the key `cbasMemoryQuota`:
 
-```shell
-256
-```
+[source,shell]
+
+## [](#256)256
 
 ### [](#software-update-settings-via-rest)Update Notification and Statistics Settings via REST
 
@@ -365,8 +314,4 @@ If successful, the command returns the following object:
 
 This verifies that rebalance retry is disabled, the required period between retries changed to `100` seconds, and the maximum number of retries changed to `2`.
 
-For more information about getting and setting the rebalance retry status, see the following:
-
-* [Configure Rebalance Retries](../../reference/rest-configure-rebalance-retry.md)
-* [Get Rebalance-Retry Status](../../reference/rest-get-rebalance-retry.md)
-* [Cancel Rebalance Retries](../../reference/rest-cancel-rebalance-retry.md)
+For more information about getting and setting the rebalance retry status, see [Configure Rebalance Retries](../../reference/rest-configure-rebalance-retry.md), [Get Rebalance-Retry Status](../../reference/rest-get-rebalance-retry.md), and [Cancel Rebalance Retries](../../reference/rest-cancel-rebalance-retry.md).

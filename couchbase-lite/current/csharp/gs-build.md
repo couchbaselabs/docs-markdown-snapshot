@@ -1,8 +1,8 @@
 ---
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase Lite on C#
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/gs-build.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/csharp/pages/gs-build.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:csharp:gs-build.adoc[]
 ---
 
@@ -87,7 +87,7 @@ replicator.Start();
 
 Build and run. You should see the document ID and property printed to the console. The document was successfully persisted to the database.
 
-See also — [Install Sync Gateway](#sync-gateway::get-started-install.adoc)
+See also — [Install Sync Gateway](../../../sync-gateway/current/start-here/get-started-install.md)
 
 ### [](#building-with-vector-search)Building With Vector Search
 
@@ -121,7 +121,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](#csharp:landing-p2psync.adoc)
-* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-net)
+* [API References](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net)
 
 .
 

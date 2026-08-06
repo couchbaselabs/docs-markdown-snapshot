@@ -1,10 +1,10 @@
 ---
 title: Querying with SQL++
 description: You can query for documents in Couchbase using the SQL++ query
-  language, a language based on SQL, but designed for structured and flexible
+  language -- a language based on SQL, but designed for structured and flexible
   JSON documents.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.1/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:nodejs-analytics-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -13,19 +13,24 @@ link: xref:nodejs-analytics-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 
 # Querying with SQL++
 
-> You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. 
+> You can query for documents in Couchbase using the SQL++ query language — a language based on SQL, but designed for structured and flexible JSON documents. 
 
 On this page we dive straight into using the Query Service API from the Node.js Analytics SDK. For a deeper look at the concepts, to help you better understand the Query Service, and the SQL++ language, see the links in the [Further Information](#further-information) section at the end of this page.
 
-Here we show queries against the Travel Sample collection, at cluster and scope level, and give links to information on adding other collections to your data.
-
 ## [](#before-you-start)Before You Start
 
-This page assumes that you have [installed the Node.js Analytics SDK](../hello-world/start-using-sdk.md), and created an [Enterprise Analytics cluster](../../../enterprise-analytics/current/install/introduction-linux-installation.md).
+This page assumes that you have [installed the Node.js Analytics SDK](../hello-world/start-using-sdk.md), added your IP address to the allowlist, and [created an Enterprise Analytics cluster](#analytics:manage:manage-nodes/create-cluster.adoc#cluster).
 
-Create a collection to work upon by [importing the travel-sample dataset](../../../enterprise-analytics/current/intro/connecting-to-data-sources.md#import-the-travel-sample-collections) into your cluster.
+Create a collection to work upon by [importing the travel-sample dataset](#analytics:intro:connecting-to-data-sources.adoc#import-the-travel-sample-collections) into your cluster.
 
 ## [](#querying-your-dataset)Querying Your Dataset
+
+> [!TIP]
+> API Enhancements & Async
+> 
+> The 1.1 Node.js Analytics SDK adds support for JWT and client certificate authentication, as well as a new poll-based Server Asynchronous Request API that uses request handles to fetch results. Introduced in self-managed Enterprise Analytics Server 2.2, this API eliminates the need for long-running server connections.
+> 
+> The examples in this first section of the page are for the standard API, working with all 2.x releases of Enterprise Analytics (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). Note, you will still be able to use this API with 2.2+ releases of Enterprise Analytics, in addition to the new API.
 
 Most queries return more than one result, and you want to iterate over the results:
 
@@ -111,6 +116,181 @@ let res = await scope.executeQuery(qs, {
 })
 ```
 
+## [](#server-asynchronous-api)Server Asynchronous Request API
+
+Enterprise Analytics Server 2.2 adds aServer Asynchronous Request API. The SDK will send a request, poll for results, and then fetch once the result is available.
+
+### [](#commonjs)CommonJS
+
+Server Asynchronous API Example
+
+```javascript
+const analytics = require('couchbase-analytics')
+
+async function waitForQueryResults(handle, delayMs = 2500, timeoutMs = 120000) {
+  const deadline = Date.now() + timeoutMs
+  let status = null
+  while (true) {
+    try {
+      status = await handle.fetchStatus()
+      if (status.resultsReady()) {
+        return status.resultsHandle()
+      }
+    } catch (e) {
+      console.log(`Error fetching query status: ${e}`)
+    }
+
+    const now = Date.now()
+    if (deadline < now + delayMs) {
+      throw new Error(
+        `Query results not ready within ${timeoutMs / 1000} seconds.`
+      )
+    }
+
+    if (status !== null) {
+      console.log(`Query status: ${status}`)
+    }
+    console.log(
+      `Query results not ready yet, sleeping for ${delayMs / 1000} seconds...`
+    )
+    await new Promise((resolve) => setTimeout(resolve, delayMs))
+  }
+}
+
+async function main() {
+  // Update this to your cluster
+  // IMPORTANT:  The appropriate port needs to be specified. The SDK's default ports are 80 (http) and 443 (https).
+  //             If attempting to connect to Capella, the correct ports are most likely to be 8095 (http) and 18095 (https).
+  //             Capella example: https://cb.2xg3vwszqgqcrsix.cloud.couchbase.com:18095
+  const clusterConnStr = 'https://--your-instance--'
+  const username = 'Administrator'
+  const password = 'password'
+  // User Input ends here.
+
+  const credential = new analytics.Credential(username, password)
+  const cluster = analytics.createInstance(clusterConnStr, credential)
+  const statement = 'SELECT VALUE SLEEP("x", 100) FROM RANGE(1, 100) AS id;'
+  const handle = await cluster.startQuery(statement)
+
+  const resultHandle = await waitForQueryResults(handle, 2500, 60000)
+  const res = await resultHandle.fetchResults()
+
+  for await (let row of res.rows()) {
+    console.log('Found row: ', row)
+  }
+  console.log('Metadata: ', res.metadata())
+  await resultHandle.discardResults()
+}
+
+main()
+  .then(() => {
+    console.log('Finished.  Exiting app...')
+  })
+  .catch((err) => {
+    console.log('ERR: ', err)
+    console.log('Exiting app...')
+    process.exit(1)
+  })
+```
+
+### [](#es-modules)ES Modules
+
+```typescript
+/*
+ *  Copyright 2016-2026. Couchbase, Inc.
+ *  All Rights Reserved.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+import {
+    Credential,
+    createInstance,
+    QueryHandle,
+    QueryResultHandle,
+    QueryStatus,
+  } from 'couchbase-analytics'
+
+  async function waitForQueryResults(
+    handle: QueryHandle,
+    delayMs: number = 2500,
+    timeoutMs: number = 120000
+  ): Promise<QueryResultHandle> {
+    const deadline = Date.now() + timeoutMs
+    let status: QueryStatus | null = null
+    while (true) {
+      try {
+        status = await handle.fetchStatus()
+        if (status.resultsReady()) {
+          return status.resultsHandle()
+        }
+      } catch (e) {
+        console.log(`Error fetching query status: ${e}`)
+      }
+
+      const now = Date.now()
+      if (deadline < now + delayMs) {
+        throw new Error(
+          `Query results not ready within ${timeoutMs / 1000} seconds.`
+        )
+      }
+
+      if (status !== null) {
+        console.log(`Query status: ${status}`)
+      }
+      console.log(
+        `Query results not ready yet, sleeping for ${delayMs / 1000} seconds...`
+      )
+      await new Promise((resolve) => setTimeout(resolve, delayMs))
+    }
+  }
+
+  async function main(): Promise<void> {
+    // Update this to your cluster
+    // IMPORTANT:  The appropriate port needs to be specified. The SDK's default ports are 80 (http) and 443 (https).
+    //             If attempting to connect to Capella, the correct ports are most likely to be 8095 (http) and 18095 (https).
+    //             Capella example: https://cb.2xg3vwszqgqcrsix.cloud.couchbase.com:18095
+    const clusterConnStr = 'https://--your-instance--'
+    const username = 'Administrator'
+    const password = 'password'
+    // User Input ends here.
+
+    const credential = new Credential(username, password)
+    const cluster = createInstance(clusterConnStr, credential)
+    const statement = 'SELECT VALUE SLEEP("x", 100) FROM RANGE(1, 100) AS id;'
+    const handle = await cluster.startQuery(statement)
+
+    const resultHandle = await waitForQueryResults(handle, 2500, 60000)
+    const res = await resultHandle.fetchResults()
+
+    for await (const row of res.rows()) {
+      console.log('Found row: ', row)
+    }
+    console.log('Metadata: ', res.metadata())
+    await resultHandle.discardResults()
+  }
+
+  main()
+    .then(() => {
+      console.log('Finished.  Exiting app...')
+    })
+    .catch((err) => {
+      console.log('ERR: ', err)
+      console.log('Exiting app...')
+      process.exit(1)
+    })
+```
+
 ## [](#query-options)Query Options
 
 The Query Service provides an array of options to customize your query. The following table lists them all:
@@ -130,4 +310,4 @@ __Table 1\. Available Query Options__
 
 ## [](#further-information)Further Information
 
-The [SQL++ for Analytics Reference](../../../server/current/analytics/1%5Fintro.md)offers a complete guide to the SQL++ language for both of our analytics services, including all of the latest additions.
+The [SQL++ for Analytics Reference](../../../analytics/sqlpp/1%5Fintro.md)\] offers a complete guide to the SQL++ language for both of our analytics services, including all of the latest additions.

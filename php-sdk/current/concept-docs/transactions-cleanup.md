@@ -2,8 +2,8 @@
 title: Cleanup
 description: The SDK takes care of failed or lost transactions, using an
   asynchronous cleanup background task.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/concept-docs/pages/transactions-cleanup.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/transactions-cleanup.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:concept-docs:transactions-cleanup.adoc[]
 ---
 

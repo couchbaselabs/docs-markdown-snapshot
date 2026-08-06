@@ -1,8 +1,8 @@
 ---
 title: Release Notes
 description: Release notes for the Couchbase Power BI Connector.
-editUrl: https://github.com/couchbase/docs-connectors-power-bi/edit/release/1.2/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-connectors-power-bi/edit/release/1.3/modules/ROOT/pages/release-notes.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:power-bi-connector::release-notes.adoc[]
 ---
 
@@ -16,6 +16,19 @@ link: xref:power-bi-connector::release-notes.adoc[]
 The [Couchbase Power BI Connector](index.md) provides integration between Microsoft's Power BI interactive data visualization platform and either Couchbase Analytics Service (CBAS) or tabular views of your Capella columnar collections or query results.
 
 For self-managed CBAS, the Power BI connector requires Couchbase Server 7.2.4 or newer.
+
+## [](#v-1-3)Version 1.3 (2026-06-30)
+
+The Power BI connector now supports JSON Web Token (JWT) authentication for Enterprise Analytics. For more information, see [Authenticate Using JWT](index.md#authenticate-using-jwt).
+
+[Power BI Connector Download](https://packages.couchbase.com/releases/couchbase-powerbi-connector/1.3/couchbase-powerbi-connector-1.3.100.mez)
+
+The supported and tested dependencies of this release are:
+
+* [couchbase-odbc-1.3-win64.msi](https://packages.couchbase.com/releases/couchbase-odbc-driver/1.3/couchbase-odbc-1.3.102-win64.msi)
+
+  * See the [Notices File](https://packages.couchbase.com/releases/couchbase-odbc-driver/1.3/couchbase-odbc-driver-1.3-notices.txt) for dependency licenses for the ODBC Driver.
+* [Win64 OpenSSL v3.3.x Light](https://slproweb.com/products/Win32OpenSSL.html)
 
 ## [](#v-1-2)Version 1.2 (2026-03-12)
 

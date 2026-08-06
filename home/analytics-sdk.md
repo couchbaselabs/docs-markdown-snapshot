@@ -1,7 +1,11 @@
 ---
 title: Develop with Enterprise Analytics
+description: Enterprise Analytics is a self-managed, JSON-native NoSQL
+  analytical database. It serves to unify data from diverse sources, allowing
+  for the execution of complex analytical queries and the extraction of timely
+  insights.
 editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/analytics-sdk.adoc
-pubDate: 2026-06-26T05:54:04.226Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:home::analytics-sdk.adoc[]
 ---
 

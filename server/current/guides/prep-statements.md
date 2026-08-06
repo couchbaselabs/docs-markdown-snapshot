@@ -3,7 +3,7 @@ title: Prepare Statements for Reuse
 description: How to create and execute prepared statements, including
   placeholder parameters.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/prep-statements.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:server:guides:prep-statements.adoc[]
 ---
 
@@ -280,29 +280,21 @@ To supply named parameter values for a query or prepared statement, use the `nam
 The following examples supply a single positional parameter.
 
 ```python
-result = cluster.query(
-    "SELECT ts.* FROM `travel-sample`.inventory.airport WHERE city=$1",
-    QueryOptions(positional_parameters=["San Jose"]))
+Unresolved include directive in modules/guides/pages/prep-statements.adoc - include::python-sdk:howtos:example$n1ql_ops.py[]
 ```
 
 ```python
-result = cluster.query(
-    "SELECT ts.* FROM `travel-sample`.inventory.airport WHERE city=$1",
-    "San Jose")
+Unresolved include directive in modules/guides/pages/prep-statements.adoc - include::python-sdk:howtos:example$n1ql_ops.py[]
 ```
 
 The following examples supply a single named parameter.
 
 ```python
-result = cluster.query(
-    "SELECT ts.* FROM `travel-sample`.inventory.airport WHERE city=$city",
-    QueryOptions(named_parameters={"city": "San Jose"}))
+Unresolved include directive in modules/guides/pages/prep-statements.adoc - include::python-sdk:howtos:example$n1ql_ops.py[]
 ```
 
 ```python
-result = cluster.query(
-    "SELECT ts.* FROM `travel-sample`.inventory.airport WHERE city=$city",
-    city='San Jose')
+Unresolved include directive in modules/guides/pages/prep-statements.adoc - include::python-sdk:howtos:example$n1ql_ops.py[]
 ```
 
 For details, see [QueryOptions](https://docs.couchbase.com/sdk-api/couchbase-python-client/couchbase%5Fapi/options.html#queryoptions).
@@ -586,7 +578,7 @@ Reference:
 
 Querying with SDKs:
 
-* [C](../../../c-sdk/current/howtos/n1ql-queries-with-sdk.md)| [C++](../../../cxx-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [.NET](../../../dotnet-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Go](../../../go-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Java](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Kotlin](../../../kotlin-sdk/current/howtos/n1ql-queries.md)| [Node.js](../../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md)| [PHP](../../../php-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Python](../../../python-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Ruby](../../../ruby-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Rust](../../../rust-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Scala](../../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)
+* [C](../../../c-sdk/current/howtos/n1ql-queries-with-sdk.md)| [C++](../../../cxx-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [.NET](../../../dotnet-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Go](../../../go-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Java](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Kotlin](../../../kotlin-sdk/current/howtos/n1ql-queries.md)| [Node.js](../../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md)| [PHP](../../../php-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Python](../../../python-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Ruby](../../../ruby-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Rust](../../../rust-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Scala](../../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)
 
 Prepared statements with SDKs:
 

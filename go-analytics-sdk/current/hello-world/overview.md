@@ -1,16 +1,16 @@
 ---
-title: Go Analytics SDK
-editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+title: Go Analytics SDK 1.1
+editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.1/modules/hello-world/pages/overview.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:go-analytics-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/go-analytics-sdk/current/hello-world/overview.html)
 
-# Go Analytics SDK
+# Go Analytics SDK 1.1
 
-# Go Analytics SDK
+# Go Analytics SDK 1.1
 
 The Analytics Go SDK allows you to connect to an [Enterprise Analytics](#entreprise-analytics:intro:intro.adoc) cluster from Go. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [Go Operational SDK](../../../go-sdk/current/hello-world/overview.md).
 

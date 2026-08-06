@@ -2,8 +2,8 @@
 title: Migrating to SDK 3 API
 description: The 3.x API breaks the existing 2.x APIs in order to provide a
   number of improvements. Collections and Scopes are introduced.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-04-23T05:28:56.075Z
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -700,88 +700,87 @@ __Table 8\. SDK Reactor vs RxJava__
 The following table provides commonly used configuration options in SDK 2 and where they can be now applied in SDK 3\. Note that some options have been removed, and others have different ways to configure them.
 
 __Table 9\. SDK 2.x vs SDK 3.x Environment Configs__
-| SDK 2                                 | SDK 3                                          |
-| ------------------------------------- | ---------------------------------------------- |
-| sslEnabled                            | SecurityConfig.enableTls                       |
-| sslKeystoreFile                       | on CertificateAuthenticator                    |
-| sslKeystorePassword                   | on CertificateAuthenticator                    |
-| sslKeystore                           | on CertificateAuthenticator                    |
-| sslTruststoreFile                     | SecurityConfig.trustCertificate                |
-| sslTruststorePassword                 | SecurityConfig.trustCertificate                |
-| sslTruststore                         | SecurityConfig.trustManagerFactory             |
-| bootstrapCarrierEnabled               | removed                                        |
-| bootstrapHttpDirectPort               | via custom SeedNode                            |
-| bootstrapHttpSslPort                  | via custom SeedNode                            |
-| bootstrapCarrierDirectPort            | via custom SeedNode                            |
-| bootstrapCarrierSslPort               | via custom SeedNode                            |
-| ioPoolSize                            | via custom IoEnvironment pools                 |
-| computationPoolSize                   | removed                                        |
-| requestBufferSize                     | removed                                        |
-| responseBufferSize                    | removed                                        |
-| kvEndpoints                           | IoConfig.numKvConnections                      |
-| viewEndpoints                         | IoConfig.maxHttpConnections                    |
-| queryEndpoints                        | IoConfig.maxHttpConnections                    |
-| searchEndpoints                       | IoConfig.maxHttpConnections                    |
-| userAgent                             | removed                                        |
-| packageNameAndVersion                 | removed                                        |
-| observeIntervalDelay                  | removed                                        |
-| reconnectDelay                        | removed                                        |
-| retryDelay                            | removed                                        |
-| ioPool                                | via custom IoEnvironment pools                 |
-| kvIoPool                              | via custom IoEnvironment pools                 |
-| viewIoPool                            | via custom IoEnvironment pools                 |
-| queryIoPool                           | via custom IoEnvironment pools                 |
-| searchIoPool                          | via custom IoEnvironment pools                 |
-| analyticsIoPool                       | via custom IoEnvironment pools                 |
-| scheduler                             | scheduler                                      |
-| retryStrategy                         | retryStrategy                                  |
-| maxRequestLifetime                    | removed                                        |
-| keepAliveInterval                     | removed                                        |
-| autoreleaseAfter                      | removed                                        |
-| eventBus                              | eventBus                                       |
-| bufferPoolingEnabled                  | removed                                        |
-| tcpNodelayEnabled                     | IoConfig.enableTcpKeepAlives                   |
-| mutationTokensEnabled                 | IoConfig.enableMutationTokens                  |
-| runtimeMetricsCollectorConfig         | removed                                        |
-| networkLatencyMetricsCollectorConfig  | removed                                        |
-| defaultMetricsLoggingConsumer         | removed                                        |
-| socketConnectTimeout                  | removed                                        |
-| callbacksOnIoPool                     | removed                                        |
-| requestBufferWaitStrategy             | removed                                        |
-| memcachedHashingStrategy              | removed                                        |
-| keyValueServiceConfig                 | removed                                        |
-| viewServiceConfig                     | removed                                        |
-| queryServiceConfig                    | removed                                        |
-| searchServiceConfig                   | removed                                        |
-| analyticsServiceConfig                | removed                                        |
-| configPollInterval                    | removed                                        |
-| configPollFloorInterval               | removed                                        |
-| certAuthEnabled                       | on CertificateAuthenticator                    |
-| continuousKeepAliveEnabled            | removed                                        |
-| keepAliveErrorThreshold               | removed                                        |
-| keepAliveTimeout                      | removed                                        |
-| couchbaseCoreSendHook                 | removed                                        |
-| forceSaslPlain                        | on PasswordAuthenticator.allowedSaslMechanisms |
-| operationTracingEnabled               | removed                                        |
-| operationTracingServerDurationEnabled | removed                                        |
-| tracer                                | requestTracer                                  |
-| compressionMinSize                    | CompressionConfig.minSize                      |
-| compressionMinRatio                   | CompressionConfig.minRatio                     |
-| compressionEnabled                    | CompressionConfig.enable                       |
-| orphanResponseReportingEnabled        | removed                                        |
-| orphanResponseReporter                | removed                                        |
-| networkResolution                     | IoConfig.networkResolution                     |
-| managementTimeout                     | TimeoutConfig.managementTimeout                |
-| queryTimeout                          | TimeoutConfig.queryTimeout                     |
-| kvTimeout                             | TimeoutConfig.kvTimeout                        |
-| viewTimeout                           | TimeoutConfig.viewTimeout                      |
-| searchTimeout                         | TimeoutConfig.searchTimeout                    |
-| analyticsTimeout                      | TimeoutConfig.analyticsTimeout                 |
-| connectTimeout                        | TimeoutConfig.connectTimeout                   |
-| disconnectTimeout                     | TimeoutConfig.disconnectTimeout                |
-| dnsSrvEnabled                         | IoConfig.enableDnsSrv                          |
-| cryptoManager                         | removed                                        |
-| propagateParentSpan                   | removed                                        |
+| SDK 2                                   | SDK 3                                          |
+| --------------------------------------- | ---------------------------------------------- |
+| sslEnabled                              | SecurityConfig.enableTls                       |
+| sslKeystoreFile                         | on CertificateAuthenticator                    |
+| sslKeystorePassword                     | on CertificateAuthenticator                    |
+| sslKeystore                             | on CertificateAuthenticator                    |
+| sslTruststoreFile sslTruststorePassword | SecurityConfig.trustStore                      |
+| sslTruststore                           | SecurityConfig.trustManagerFactory             |
+| bootstrapCarrierEnabled                 | removed                                        |
+| bootstrapHttpDirectPort                 | via custom SeedNode                            |
+| bootstrapHttpSslPort                    | via custom SeedNode                            |
+| bootstrapCarrierDirectPort              | via custom SeedNode                            |
+| bootstrapCarrierSslPort                 | via custom SeedNode                            |
+| ioPoolSize                              | via custom IoEnvironment pools                 |
+| computationPoolSize                     | removed                                        |
+| requestBufferSize                       | removed                                        |
+| responseBufferSize                      | removed                                        |
+| kvEndpoints                             | IoConfig.numKvConnections                      |
+| viewEndpoints                           | IoConfig.maxHttpConnections                    |
+| queryEndpoints                          | IoConfig.maxHttpConnections                    |
+| searchEndpoints                         | IoConfig.maxHttpConnections                    |
+| userAgent                               | removed                                        |
+| packageNameAndVersion                   | removed                                        |
+| observeIntervalDelay                    | removed                                        |
+| reconnectDelay                          | removed                                        |
+| retryDelay                              | removed                                        |
+| ioPool                                  | via custom IoEnvironment pools                 |
+| kvIoPool                                | via custom IoEnvironment pools                 |
+| viewIoPool                              | via custom IoEnvironment pools                 |
+| queryIoPool                             | via custom IoEnvironment pools                 |
+| searchIoPool                            | via custom IoEnvironment pools                 |
+| analyticsIoPool                         | via custom IoEnvironment pools                 |
+| scheduler                               | scheduler                                      |
+| retryStrategy                           | retryStrategy                                  |
+| maxRequestLifetime                      | removed                                        |
+| keepAliveInterval                       | removed                                        |
+| autoreleaseAfter                        | removed                                        |
+| eventBus                                | eventBus                                       |
+| bufferPoolingEnabled                    | removed                                        |
+| tcpNodelayEnabled                       | IoConfig.enableTcpKeepAlives                   |
+| mutationTokensEnabled                   | IoConfig.enableMutationTokens                  |
+| runtimeMetricsCollectorConfig           | removed                                        |
+| networkLatencyMetricsCollectorConfig    | removed                                        |
+| defaultMetricsLoggingConsumer           | removed                                        |
+| socketConnectTimeout                    | removed                                        |
+| callbacksOnIoPool                       | removed                                        |
+| requestBufferWaitStrategy               | removed                                        |
+| memcachedHashingStrategy                | removed                                        |
+| keyValueServiceConfig                   | removed                                        |
+| viewServiceConfig                       | removed                                        |
+| queryServiceConfig                      | removed                                        |
+| searchServiceConfig                     | removed                                        |
+| analyticsServiceConfig                  | removed                                        |
+| configPollInterval                      | removed                                        |
+| configPollFloorInterval                 | removed                                        |
+| certAuthEnabled                         | on CertificateAuthenticator                    |
+| continuousKeepAliveEnabled              | removed                                        |
+| keepAliveErrorThreshold                 | removed                                        |
+| keepAliveTimeout                        | removed                                        |
+| couchbaseCoreSendHook                   | removed                                        |
+| forceSaslPlain                          | on PasswordAuthenticator.allowedSaslMechanisms |
+| operationTracingEnabled                 | removed                                        |
+| operationTracingServerDurationEnabled   | removed                                        |
+| tracer                                  | requestTracer                                  |
+| compressionMinSize                      | CompressionConfig.minSize                      |
+| compressionMinRatio                     | CompressionConfig.minRatio                     |
+| compressionEnabled                      | CompressionConfig.enable                       |
+| orphanResponseReportingEnabled          | removed                                        |
+| orphanResponseReporter                  | removed                                        |
+| networkResolution                       | IoConfig.networkResolution                     |
+| managementTimeout                       | TimeoutConfig.managementTimeout                |
+| queryTimeout                            | TimeoutConfig.queryTimeout                     |
+| kvTimeout                               | TimeoutConfig.kvTimeout                        |
+| viewTimeout                             | TimeoutConfig.viewTimeout                      |
+| searchTimeout                           | TimeoutConfig.searchTimeout                    |
+| analyticsTimeout                        | TimeoutConfig.analyticsTimeout                 |
+| connectTimeout                          | TimeoutConfig.connectTimeout                   |
+| disconnectTimeout                       | TimeoutConfig.disconnectTimeout                |
+| dnsSrvEnabled                           | IoConfig.enableDnsSrv                          |
+| cryptoManager                           | removed                                        |
+| propagateParentSpan                     | removed                                        |
 
 ## [](#comparing-older-documentation)Comparing Older Documentation
 

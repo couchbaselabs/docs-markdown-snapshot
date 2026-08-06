@@ -3,8 +3,8 @@ title: CREATE an External Collection
 description: This topic describes how you use the <code>CREATE</code> statement
   to create a collection so that you can query OLAP data on an external data
   source.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_external.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_ddl_external.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sqlpp:5_ddl_external.adoc[]
 ---
 
@@ -21,6 +21,9 @@ To create a link to an external data source, you use the Enterprise Analytics UI
 
 > [!NOTE]
 > To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](../reference/cloud%5Fread%5Fwrite%5Fpermissions.md).
+
+> [!NOTE]
+> To query Apache Iceberg tables, use [CREATE CATALOG](5%5Fddl%5Ficeberg%5Fcatalog.md) to register a catalog, then use `CREATE EXTERNAL COLLECTION` with an `ON CATALOG` clause. This is a separate flow from the external collection syntax documented on this page. See [Iceberg Support](5%5Fddl%5Ficeberg.md) for details.
 
 ## [](#syntax)Syntax
 

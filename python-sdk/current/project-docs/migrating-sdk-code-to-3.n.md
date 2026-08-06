@@ -3,8 +3,8 @@ title: Migrating to SDK 3 API
 description: The SDK API 3 (used in Python SDK 3.x and 4.x) introduces breaking
   changes to the previous SDK API 2 APIs (used in Python SDK 2.x) in order to
   provide a number of improvements. Collections and Scopes are introduced.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -22,30 +22,32 @@ Couchbase Python SDK 4.0, like the 3.2, 3.1, and 3.0 versions, conforms to the C
 > [!NOTE]
 > For the most part, migration from SDK API 2._x_ versions remains the same. The few 4.0-specific changes can be found at the end of this document. If you are an existing Python SDK 3._x_ user considering migrating to SDK 4.0, you may wish to skip to the [SDK 4.0 specifics](#sdk4-specifics) below.
 
-This release of the SDK is written to version 3.8 of the SDK API specification (and matching the features available in Couchbase 8.0 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
+This release of the SDK is written to version 3.9 of the SDK API specification (and matching the features available in Couchbase 8.0.1 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
 
 Whilst these two numbers match for the .NET SDK, this is not the case for the others, as version numbers for individual SDKs are bumped up in line with [Semantic Versioning](https://semver.org/) — check the [release notes](#sdk-release-notes) of each SDK for individual details.
 
 __Table 1\. SDK API Versions__
-|                                                                    | API 3.3       | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      |
-| ------------------------------------------------------------------ | ------------- | --------- | ------- | ------- | ------- | ------------ |
-| [.NET](../../../dotnet-sdk/current/hello-world/overview.md)        | 3.3           | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          |
-| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.0 - 3.3.2 | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        |
-| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-            | \-        | \-      | 1.0     | 1.1     | 1.2          |
-| [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.5           | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         |
-| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.3           | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   |
-| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.0           | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ |
-| [Node.js](../../../nodejs-sdk/current/hello-world/overview.md)     | 4.1           | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          |
-| [PHP](../../../php-sdk/current/hello-world/overview.md)            | 4.0           | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          |
-| [Python](../hello-world/overview.md)                               | 4.0           | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          |
-| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.3           | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          |
-| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-            | \-        | \-      | \-      | \-      | 1.0          |
-| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.3           | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ |
+|                                                                    | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      | API 3.9     |
+| ------------------------------------------------------------------ | --------- | ------- | ------- | ------- | ------------ | ----------- |
+| [.NET](../../../dotnet-sdk/current/hello-world/overview.md)        | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          | 3.9         |
+| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        | N/A ②       |
+| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-        | \-      | 1.0     | 1.1     | 1.2          | 1.3         |
+| [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         | 2.12        |
+| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   | 3.11 & 3.12 |
+| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ | 3.11 & 3.12 |
+| [Node.js](../../../nodejs-sdk/current/hello-world/overview.md)     | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          | 4.7         |
+| [PHP](../../../php-sdk/current/hello-world/overview.md)            | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          | 4.5         |
+| [Python](../hello-world/overview.md)                               | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          | 4.6         |
+| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          | 3.8         |
+| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-        | \-      | \-      | \-      | \-           | 1.0         |
+| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ | 3.11 & 3.12 |
 
 | **1** | Excludes DNS SRV refresh support in Serverless Environments.                                                                                                                                              |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | For most purposes better productivity and functionality can be found in our [C++ SDK](../../../cxx-sdk/current/hello-world/overview.md).                                                                  |
 | **3** | With the Java 3.9 release, the other JVM SDKs hosted in the Java SDK monorepo adopted common release versions. This includes a number of other artifacts, as can be seen referenced in the release notes. |
+
+**SDK API 3.9**: Provides support for JWT based authentication, as well as mTLS Certs Refresh (without restart). Deprecates SDK support for MapReduce Views.
 
 **SDK API 3.8**: Introduced alongside Couchbase Server 8.0, which adds support for 128 vBuckets on Magma. Server 8.0 introduced vector query using Global Secondary Indexes (GSI), the Query Service index — using either a fast Hyperscale index, or a composite index to combine scalar queries with semantic search.
 
@@ -83,7 +85,7 @@ As an example here is a KeyValue document fetch:
 from datetime import timedelta
 from couchbase.cluster import Cluster
 from couchbase.collection import GetOptions
-cluster=Cluster("couchbases://10.192.1.104")
+cluster=Cluster.connect("couchbases://10.192.1.104")
 collection=cluster.default_collection()
 get_result = collection.get("key", GetOptions(timeout=timedelta(seconds=3)))
 ```
@@ -146,7 +148,7 @@ bucket.timeout=5
 
 ```python
 # SDK 3 equivalent
-cluster=Cluster("couchbases://10.192.1.104")
+cluster=Cluster.connect("couchbases://10.192.1.104")
 collection=cluster.bucket("default").default_collection()
 collection.timeout=5
 ```

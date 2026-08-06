@@ -1,7 +1,7 @@
 ---
 title: Import Processing
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/sync/pages/import-processing.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/sync/pages/import-processing.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:sync:import-processing.adoc[]
 ---
 
@@ -12,17 +12,17 @@ link: xref:sync-gateway:sync:import-processing.adoc[]
 
 ## [](#overview)Overview
 
-The **import process** is a key part of mobile convergence. It is the means by which sync gateway becomes aware of non-sync gateway data changes and obtains the mobile metadata it requires to replicate changes.
+The **import process** is a key part of mobile convergence. It is the means by which Sync Gateway becomes aware of non-Sync Gateway data changes and obtains the mobile metadata it requires to replicate changes.
 
 ![shared bucket access](../_images/shared-bucket-access.png) 
 
 ## [](#operation)Operation
 
-Any non-sync gateway change is eligible for import. For more information, refer to the [Sync Function](../access-control/sync-function/sync-function.md) documentation.
+Any non-Sync Gateway change is eligible for import. For more information, refer to the [Sync Function](../access-control/sync-function/sync-function.md) documentation.
 
 The document is first run through the Sync Function to compute read security and routing, with the following differences:
 
-* The import is processed with an admin user context in the Sync Function, similar to writes made through the sync gateway Admin API. This means that `requireAccess`, `requireUser` and `requireRole` calls in the Sync Function are treated as no-ops.
+* The import is processed with an admin user context in the Sync Function, similar to writes made through the Sync Gateway Admin API. This means that `requireAccess`, `requireUser` and `requireRole` calls in the Sync Function are treated as no-ops.
 * During import, `oldDoc` is `nil` when the Sync Function is executed.
 
 You can specify a filter function dynamically using the [/{keyspace}/\_config/import\_filter](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter) endpoint, or you can define one when you set up a database. Refer to the [Import Filter Configuration](../configuration/configuration-schema-import-filter.md) documentation for more information.

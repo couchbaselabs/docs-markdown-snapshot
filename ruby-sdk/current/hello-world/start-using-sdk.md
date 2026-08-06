@@ -1,8 +1,8 @@
 ---
 title: Start Using the Ruby SDK
 description: A quick start guide to get you up and running with Couchbase and the Ruby SDK.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:ruby-sdk:hello-world:start-using-sdk.adoc[]
 
 The Couchbase Ruby SDK allows you to connect to a Couchbase cluster from Ruby. The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase's binary protocols.
 
-Ruby SDK supports [currently maintained Ruby versions](https://www.ruby-lang.org/en/downloads/branches/), and recommends the latest stable version where possible (currently 3.3 as of March 2024).
+The Ruby SDK supports [currently maintained Ruby versions](https://www.ruby-lang.org/en/downloads/branches/), and recommends the latest stable version where possible (currently 4.0 as of March 2026).
 
 In this guide, you will learn:
 
@@ -162,7 +162,7 @@ Start a new project (in VS Code or RubyMine, etc.) and create a file `cb-test.rb
 Firstly, you will need to have `require` statement at the top of your Ruby program:
 
 ```ruby
-require "couchbase"
+Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
 ```
 
 ### [](#connect)Connect
@@ -175,16 +175,7 @@ Connect to your cluster by calling the `Cluster.connect()` method and pass it yo
 From version 3.3, the Ruby SDK includes Capella's standard certificates by default, so you do not need to additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
 
 ```ruby
-# Update these credentials for your Capella instance!
-options = Cluster::Options::Cluster.new
-options.authenticate("username", "Password!123")
-
-# Sets a pre-configured profile called "wan-development" to help avoid latency issues
-# when accessing Capella from a different Wide Area Network
-# or Availability Zone (e.g. your laptop).
-options.apply_profile("wan_development")
-
-cluster = Cluster.connect("couchbases://cb.<your-endpoint>.cloud.couchbase.com", options)
+Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$cloud.rb[]
 ```
 
 When accessing Capella from a different Wide Area Network or Availability Zone, you may experience latency issues with the default connection settings. SDK 3.4 introduces a `wan_development` Configuration Profile, which provides pre-configured timeout settings suitable for working in high latency environments. Basic usage is shown in the example above, but if you want to learn more see [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
@@ -193,10 +184,7 @@ When accessing Capella from a different Wide Area Network or Availability Zone, 
 > The Configuration Profiles feature is currently a [Volatile API](../project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ```ruby
-# Update these credentials for your Local instance!
-options = Cluster::ClusterOptions.new
-options.authenticate("username", "Password!123")
-cluster = Cluster.connect("couchbase://localhost", options)
+Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
 ```
 
 For developing locally on the same machine as Couchbase Server, your URI can be `couchbase://localhost` as shown here. For production deployments, you will want to use a secure server, with `couchbases://`.
@@ -204,8 +192,7 @@ For developing locally on the same machine as Couchbase Server, your URI can be 
 Following successful authentication, add this code snippet to access your `Bucket`:
 
 ```ruby
-# get a bucket reference
-bucket = cluster.bucket("travel-sample")
+Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
 ```
 
 > [!TIP]
@@ -222,9 +209,7 @@ Collections allow Documents to be grouped by purpose or theme, according to spec
 Here we refer to the `users` collection within the `tenant_agent_00` scope from the Travel Sample bucket as an example, but you may replace this with your own data.
 
 ```ruby
-# get a user-defined collection reference
-scope = bucket.scope("tenant_agent_00")
-collection = scope.collection("users")
+Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
 ```
 
 [Data operations](../howtos/kv-operations.md), like storing and retrieving documents, can be done using simple methods on the `Collection` class such as `Collection.get()` and `Collection.upsert()`.
@@ -232,22 +217,7 @@ collection = scope.collection("users")
 To get you started the following code creates a new document in a custom scope and collection and then fetches it again, printing the result.
 
 ```ruby
-# Upsert Document
-upsert_result = collection.upsert(
-  "my-document-key",
-  {
-    "name" => "Ted",
-    "age" => 31
-  }
-)
-p cas: upsert_result.cas
-#=> {:cas=>223322674373654}
-
-# Get Document
-get_result = collection.get("my-document-key")
-p cas: get_result.cas,
-  name: get_result.content["name"]
-#=> {:cas=>223322674373654, :name=>"Ted"}
+Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
 ```
 
 ### [](#sql-lookup)SQL++ Lookup
@@ -257,11 +227,7 @@ Couchbase SQL++ queries can be performed at the `Cluster` or `Scope` level by in
 Cluster level queries require you to specify the fully qualified keyspace each time (e.g. `travel-sample.inventory.airline`). However, with a Scope level query you only need to specify the Collection name — which in this case is `airline`:
 
 ```rb
-inventory_scope = bucket.scope("inventory")
-result = inventory_scope.query('SELECT * FROM airline WHERE id = 10;')
-result.rows.each do |row|
-  p row
-end
+Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
 ```
 
 You can learn more about SQL++ queries on the [Query page](../howtos/n1ql-queries-with-sdk.md).
@@ -269,7 +235,7 @@ You can learn more about SQL++ queries on the [Query page](../howtos/n1ql-querie
 After completing operations, finish with (otherwise resources will be released by garbage collector):
 
 ```ruby
-cluster.disconnect
+Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
 ```
 
 ## [](#next-steps)Next Steps

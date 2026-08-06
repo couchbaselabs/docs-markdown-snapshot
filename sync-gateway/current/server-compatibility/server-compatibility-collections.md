@@ -1,8 +1,8 @@
 ---
 title: Collections&#8201;&#8212;&#8201;Server Compatibility
 description: How <em>Sync Gateway</em> can work with <em>Couchbase Server's Collections</em>
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/server-compatibility/pages/server-compatibility-collections.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/server-compatibility/pages/server-compatibility-collections.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:server-compatibility:server-compatibility-collections.adoc[]
 ---
 
@@ -25,6 +25,12 @@ Couchbase Server provides the backing data store for Sync Gateway.
 > See: [Compatibility Matrix](../product-notes/compatibility.md) for version compatibility information.
 
 Sync Gateway supports scopes and collections ([Default Collections](#7.0@server:learn:data/scopes-and-collections.adoc#default-scope-and-collection), [Named Collections](#7.0@server:learn:data/scopes-and-collections.adoc#naming-for-scopes-and-collections) ).
+
+## [](#practical-limits)Practical Limits
+
+Couchbase Server currently supports up to 1000 scopes and up to 1000 collections per cluster.
+
+Sync Gateway targets the same ceiling for a database's custom scope: up to 1000 custom collections.
 
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: Transcoders and Non-JSON Documents
 description: The Ruby SDK supports common JSON document requirements out-of-the-box.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/transcoders-nonjson.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
@@ -26,4 +26,4 @@ Details of the behavior of the API can be found in the [API documentation](https
 
 ## [](#further-reading)Further reading
 
-* If you want to work with binary documents and our Search service, you might like to take a look at <https://github.com/khanium/couchbase-fts-binary>
+* If you want to work with binary documents and our Search Service, you might like to take a look at <https://github.com/khanium/couchbase-fts-binary>

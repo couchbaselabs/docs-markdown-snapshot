@@ -2,8 +2,8 @@
 title: Sub-Document Operations
 description: <em>Sub-document</em> operations can be used to efficiently access
   <em>parts</em> of documents.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/subdocument-operations.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -142,7 +142,7 @@ $result = $collection->MutateIn("customer123", [
 
 ```php
 $result = $collection->MutateIn("customer123", [
-    new \Couchbase\MutateArrayPrependspec("purchases.abandoned", [18])
+    new \Couchbase\MutateArrayPrependSpec("purchases.abandoned", [18])
 ]);
 // purchases.abandoned is now [18, 157, 49, 999]
 ```

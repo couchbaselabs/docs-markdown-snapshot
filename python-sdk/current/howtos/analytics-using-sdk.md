@@ -2,8 +2,8 @@
 title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/analytics-using-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -23,7 +23,7 @@ This page covers using our operational Python SDK to connect to the Analytics Se
 > 
 > Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](../../../home/columnar-sdk.md) for more information.
 
-For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the [Couchbase Analytics Service (CBAS)](../../../server/current/analytics/introduction.md). This is the analytic counterpart to our [operational data focussed Query Service](n1ql-queries-with-sdk.md).
+For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the [Couchbase Analytics Service (CBAS)](../../../server/current/analytics/introduction.md). This is the analytic counterpart to our [operational data focussed Query Service](sqlpp-queries-with-sdk.md).
 
 The analytics service is available in [Capella operational](../../../cloud/clusters/analytics-service/analytics-service.md)or the Enterprise Edition of self-managed Couchbase Server.
 
@@ -100,7 +100,7 @@ result = cluster.analytics_query(
     AnalyticsOptions(named_parameters={"country": "France"}))
 ```
 
-The complete code for this page's example can be found at [analytics\_ops.py](https://github.com/couchbase/docs-sdk-python/blob/release/3.2/modules/howtos/examples/analytics%5Fops.py). What style you choose is up to you, for readability in more complex queries we generally recommend using the named parameters. Note that you cannot use parameters in all positions. If you put it in an unsupported place the server will respond with a `CompilationFailedException` or similar.
+The complete code for this page's example can be found at [analytics\_ops.py](https://github.com/couchbase/docs-sdk-python/blob/release/4.6/modules/devguide/examples/python/analytics%5Fops.py). What style you choose is up to you, for readability in more complex queries we generally recommend using the named parameters. Note that you cannot use parameters in all positions. If you put it in an unsupported place the server will respond with a `CompilationFailedException` or similar.
 
 ## [](#the-analytics-result)The Analytics Result
 
@@ -208,7 +208,7 @@ from couchbase.exceptions import CouchbaseException
 
 
 async def get_couchbase():
-    cluster = Cluster(
+    cluster = await AsyncCluster.connect(
         "couchbase://your-ip",
         ClusterOptions(PasswordAuthenticator("Administrator", "password")))
     bucket = cluster.bucket("travel-sample")

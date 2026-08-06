@@ -2,8 +2,8 @@
 title: Channels
 description: About Sync Gateway <em>Channels</em> and their part in data routing
   and access control for secure cloud-to-edge enterprise data synchronization.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/channels.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/access-control/pages/channels.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:access-control:channels.adoc[]
 ---
 

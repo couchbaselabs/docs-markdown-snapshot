@@ -3,7 +3,7 @@ title: Agent Memory for Persistent Memory Storage
 description: Couchbase Agent Memory provides a unified, persistent memory layer
   for agentic applications to maintain context across user sessions.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/about-agent-mem.adoc
-pubDate: 2026-08-01T05:32:35.777Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:build:agent-memory/about-agent-mem.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Agent Memory manages the storage and retrieval of memories for an agent. Agent M
 
 * Reasoning logic for using memories.
 * Support for non-textual content.
-* Model hosting. For more information about how to host a model through Capella, see [Deploy Models with the {ai} Model Service](../model-service/model-service.md).
+* Model hosting. For more information about how to host a model through Capella, see [Deploy Models with the AI Data Plane Model Service](../model-service/model-service.md).
 * Real-time streaming of memory changes.
 * Memory sharing across users of your application. You can share memory across agents within the same application using [annotation-based access control](develop-agent-mem.md#use-annotations).
 

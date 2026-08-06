@@ -1,7 +1,7 @@
 ---
 title: MapReduce Views
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/understanding-views.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/concept-docs/pages/understanding-views.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:kotlin-sdk:concept-docs:understanding-views.adoc[]
 ---
 

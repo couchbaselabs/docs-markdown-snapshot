@@ -2,8 +2,8 @@
 title: Platform Introduction
 description: Discover how to get up and running developing applications with the
   Couchbase PHP SDK 4.0+ using <code>Visual Studio Code</code>.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/hello-world/pages/platform-help.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/hello-world/pages/platform-help.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:hello-world:platform-help.adoc[]
 ---
 
@@ -120,32 +120,7 @@ $ code example.php
 Create a file with some sample PHP. (You will want to alter the username and password details to match your local cluster.)
 
 ```php
-<?php
-
-use Couchbase\ClusterOptions;
-use Couchbase\Cluster;
-
-$options = new ClusterOptions();
-$options->credentials("Administrator", "password");
-$cluster = new Cluster("couchbase://localhost", $options);
-$bucket = $cluster->bucket("travel-sample");
-
-$options = new ClusterOptions();
-$options->credentials("Administrator", "password");
-
-# authentication with TLS client certificate
-$connectionString = "couchbases://localhost?" .
-    "truststorepath=/path/to/ca/certificates.pem&" .
-    "certpath=/path/to/client/certificate.pem&" .
-    "keypath=/path/to/client/key.pem";
-
-$cluster = new Cluster($connectionString, $options);
-$bucket = $cluster->bucket("travel-sample");
-
-$options = new ClusterOptions();
-$options->credentials("Administrator", "password");
-$cluster = new Cluster("couchbase://localhost?sasl_mech_force=PLAIN", $options);
-$bucket = $cluster->bucket("travel-sample");
+Unresolved include directive in modules/hello-world/pages/platform-help.adoc - include::howtos:example$auth.php[]
 ```
 
 ### [](#running-couchbase-examples)Running Couchbase examples

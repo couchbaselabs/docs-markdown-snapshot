@@ -1,8 +1,8 @@
 ---
 title: Webhooks
 description: Introducing Sync Gateway events and event handling with Webhooks
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/deploy/pages/webhooks.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/deploy/pages/webhooks.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:deploy:webhooks.adoc[]
 ---
 
@@ -72,7 +72,7 @@ Sync Gateway supports the use of Javascript functions to customize the sync proc
 Learn more about this property ($db.event\_handlers) in the Configuration Schema Reference — see: [database.event\_handlers](../configuration/configuration-schema-database.md#database-event%5Fhandlers).
 
 > [!NOTE]
-> Sync gateway 3.x configuration of Javascript functions is done using the [Admin REST API](../rest-api/rest-api-admin.md); specifically the [Authentication](../rest-api/rest%5Fapi%5Fadmin.md#tag/Authentication) and [/{keyspace}/\_config/import\_filter](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter) endpoints.
+> Sync Gateway 3.x configuration of Javascript functions is done using the [Admin REST API](../rest-api/rest-api-admin.md); specifically the [Authentication](../rest-api/rest%5Fapi%5Fadmin.md#tag/Authentication) and [/{keyspace}/\_config/import\_filter](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter) endpoints.
 
 Prior to this, configuration was done within the database configuration file — see: [Example 1](#ex-jsfunc-opts)
 

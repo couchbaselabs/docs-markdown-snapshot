@@ -2,7 +2,7 @@
 title: Nest and Unnest Documents
 description: How to nest and unnest arrays of embedded objects.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/nest-unnest.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:cloud:guides:nest-unnest.adoc[]
 ---
 
@@ -330,4 +330,4 @@ Tutorials:
 
 Querying with SDKs:
 
-* [C](../../c-sdk/current/howtos/n1ql-queries-with-sdk.md)| [C++](../../cxx-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [.NET](../../dotnet-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Go](../../go-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Java](../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Kotlin](../../kotlin-sdk/current/howtos/n1ql-queries.md)| [Node.js](../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md)| [PHP](../../php-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Python](../../python-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Ruby](../../ruby-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Rust](../../rust-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Scala](../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)
+* [C](../../c-sdk/current/howtos/n1ql-queries-with-sdk.md)| [C++](../../cxx-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [.NET](../../dotnet-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Go](../../go-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Java](../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Kotlin](../../kotlin-sdk/current/howtos/n1ql-queries.md)| [Node.js](../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md)| [PHP](../../php-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Python](../../python-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Ruby](../../ruby-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Rust](../../rust-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Scala](../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)

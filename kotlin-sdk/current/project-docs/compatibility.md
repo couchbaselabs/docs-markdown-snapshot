@@ -3,8 +3,8 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/project-docs/pages/compatibility.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:kotlin-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -15,13 +15,13 @@ link: xref:kotlin-sdk:project-docs:compatibility.adoc[]
 
 > Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
 
-The Kotlin SDK requires Java 8 or later (_Java 21 is recommended_), and Kotlin 2.1.0 or later.
+The Kotlin SDK requires Java 8 or later (_Java 25 is recommended_), and Kotlin 2.1.0 or later.
 
 ## [](#platform-compatibility)Platform Compatibility
 
 ### [](#jdk-version-compatibility)JDK Version Compatibility
 
-The Kotlin SDK is tested with Oracle JDK and OpenJDK. Other JDK implementations might work but are not tested and are unsupported. We recommend running the latest LTS version (i.e. at the time of writing JDK 21) with the highest patch version available.
+The Kotlin SDK is tested with Oracle JDK and OpenJDK. Other JDK implementations might work but are not tested and are unsupported. We recommend running the latest LTS version (i.e. at the time of writing JDK 25) with the highest patch version available.
 
 The following JDK releases are supported:
 
@@ -58,7 +58,7 @@ The Kotlin SDK will run on, and is supported on, the following OSs and platforms
 
 ### Mac OS X
 
-The current and previous two releases of OS X. At time of writing (February 2026): 26 (Tahoe), 15 (Sequoia), and 14 (Sonoma).
+The current and previous two releases of OS X. At time of writing (June 2026): 26 (Tahoe), 15 (Sequoia), and 14 (Sonoma).
 
 The JVM SDKs should also be expected to run on other commonly-available GNU/Linux distributions which support an appropriate JDK, but not all combinations can be tested — notable exceptions are listed below.
 
@@ -115,7 +115,7 @@ The matrix below denotes the version of Couchbase Server, the version of the Sca
 * ✔ **Supported**: This combination is subject to ongoing quality assurance, and is fully supported by our technical support organization.
 
 __Recommended SDK per Server Version Matrix__
-|                  | 1.1, 1.2 | 1.3, 1.4 | 1.5   | 3.9-3.11 |
+|                  | 1.1, 1.2 | 1.3, 1.4 | 1.5   | 3.9-3.12 |
 | ---------------- | -------- | -------- | ----- | -------- |
 | **Server 8.0** ① | **◎**    | **✔**    | **✔** | **✔**    |
 | **Server 7.6** ① | **✔**    | **✔**    | **✔** | **✔**    |
@@ -161,7 +161,7 @@ __Recommended Spring Data Couchbase per Server Version Matrix__
 
 ### [](#api-version)API Version
 
-This release of the SDK is written to version 3.9 of the SDK API specification (and matching the features available in Couchbase 8.0.0 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
+This release of the SDK is written to version 3.9 of the SDK API specification (and matching the features available in Couchbase 8.0.1 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
 
 Whilst these two numbers match for the .NET SDK, this is not the case for the others, as version numbers for individual SDKs are bumped up in line with [Semantic Versioning](https://semver.org/) — check the [release notes](#sdk-release-notes) of each SDK for individual details.
 

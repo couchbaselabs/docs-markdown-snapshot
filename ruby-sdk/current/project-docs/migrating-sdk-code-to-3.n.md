@@ -2,8 +2,8 @@
 title: Migrating from SDK2 to SDK3 API
 description: The 3.x API breaks the existing 2.x APIs in order to provide a
   number of improvements. Collections and Scopes are introduced.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 

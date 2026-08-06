@@ -2,8 +2,8 @@
 title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/provisioning-cluster-resources.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
@@ -43,7 +43,7 @@ Management operations in the SDK may be performed through several interfaces dep
 The `BucketManager` interface may be used to create and delete buckets from the Couchbase cluster. It is instantiated through the `Cluster.buckets()` method.
 
 ```python
-cluster = Cluster(
+cluster = Cluster.connect(
     "couchbase://your-ip",
     authenticator=PasswordAuthenticator(
         "Administrator",
@@ -155,7 +155,7 @@ try:
 except CollectionNotFoundException as ex:
     print(ex)
 
-[data-source-url=https://github.com/couchbase/docs-sdk-python/blob/70d8ba40daa791f76deaecdb379011c8a8abfa70/modules/howtos/examples/provisioning_resources_collections.py#L107-L110]
+[data-source-url=https://github.com/couchbase/docs-sdk-python/blob/0fb91052d19b9b5341780b72439eecb6cffead07/modules/devguide/examples/python/provisioning_resources_collections.py#L107-L110]
 try:
     coll_manager.drop_scope("example-scope")
 except ScopeNotFoundException as ex:

@@ -3,7 +3,7 @@ title: Client Settings
 description: Client settings using <code>ConnectOptions</code> for
   bootstrapping, timeouts, reliability, and performance.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/ref/pages/client-settings.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:2.8@go-sdk:ref:client-settings.adoc[]
 ---
 
@@ -264,7 +264,7 @@ __Table 1\. Profile Settings__
 
 ## [](#cloud-native-gateway)Cloud Native Gateway
 
-Using the [Cloud Native Gateway](../howtos/managing-connections.md#cloud-native-gateway) protocol (to connect to Couchbase Server running on [Couchbase Autonomous Operator](#operator::concept-cloud-native-gateway.adoc) 2.6.1 or newer) should not need any changes to config.
+Using the [Cloud Native Gateway](../howtos/managing-connections.md#cloud-native-gateway) protocol (to connect to Couchbase Server running on [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md) 2.6.1 or newer) should not need any changes to config.
 
 Cloud Native Gateway should not need any changes to config. Some settings will be ignored — currently, these include:
 

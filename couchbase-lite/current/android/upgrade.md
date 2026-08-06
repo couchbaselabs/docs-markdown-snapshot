@@ -1,7 +1,7 @@
 ---
 title: Upgrade
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/upgrade.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/upgrade.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:android:upgrade.adoc[]
 ---
 
@@ -14,13 +14,43 @@ link: xref:couchbase-lite:android:upgrade.adoc[]
 > On upgrading from a 2.x release, all Couchbase Lite databases automatically re-index on initial database open.  
 > This can result in a delay before the database is usable.
 
-## [](#4-0-0-upgrade)4.0.3 Upgrade
+## [](#4-1-0-upgrade)4.1.0 Upgrade
+
+Couchbase Lite 4.1 is a non-breaking upgrade from 4.0\. Update your Couchbase Lite dependency to 4.1 — no API or configuration changes are required. Existing `MultipeerReplicatorConfiguration` setups continue to work without modification. The default transport remains Wi-Fi only.
+
+### [](#enabling-bluetooth-transport-optional)Enabling Bluetooth Transport (Optional)
+
+To enable Bluetooth Low Energy transport alongside Wi-Fi, set the transports when building your `MultipeerReplicatorConfiguration`:
+
+```Kotlin
+val config = MultipeerReplicatorConfiguration.Builder()
+    .setPeerGroupID("myGroup")
+    .setIdentity(identity)
+    .setAuthenticator(authenticator)
+    .setCollections(collections)
+    .setTransports(EnumSet.of(MultipeerTransport.WIFI, MultipeerTransport.BLUETOOTH))
+    .build()
+```
+
+```Java
+MultipeerReplicatorConfiguration config = new MultipeerReplicatorConfiguration.Builder()
+    .setPeerGroupID("myGroup")
+    .setIdentity(identity)
+    .setAuthenticator(authenticator)
+    .setCollections(collections)
+    .setTransports(EnumSet.of(MultipeerTransport.WIFI, MultipeerTransport.BLUETOOTH))
+    .build();
+```
+
+Bluetooth transport requires Android API 29 or later. For full configuration options, see [Configure Transports](#android:p2psync-multipeer-transports.adoc).
+
+## [](#4-0-0-upgrade)4.0.0 Upgrade
 
 Couchbase Lite 4.0 introduces significant architectural changes, most notably the migration from revision trees to version vectors for document versioning.
 
-### [](#major-changes-in-4-0-3)Major Changes in 4.0.3
+### [](#major-changes-in-4-0-0)Major Changes in 4.0.0
 
-**Version Vector Architecture**: CBL 4.0.3 replaces the revision tree system with version vectors, providing improved performance, scalability, and conflict resolution. Documents now use version-based revision IDs in the format `<timestamp>@<source-id>` instead of the previous `<generation>-<document-hash>` format.
+**Version Vector Architecture**: CBL 4.0 replaces the revision tree system with version vectors, providing improved performance, scalability, and conflict resolution. Documents now use version-based revision IDs in the format `<timestamp>@<source-id>` instead of the previous `<generation>-<document-hash>` format.
 
 **Enhanced Conflict Resolution**: The default conflict resolution strategy changes from `most active wins` to `last write wins` based on hybrid logical timestamps, providing more intuitive and predictable conflict resolution behavior.
 
@@ -28,15 +58,15 @@ Couchbase Lite 4.0 introduces significant architectural changes, most notably th
 
 ### [](#database-compatibility-40)Database Compatibility
 
-**Automatic Upgrade from 3.x**: CBL 4.0.3 databases are compatible with CBL 3.1 and 3.2 databases. When opening a 3.1 or 3.2 database with CBL 4.0.3, documents are automatically upgraded to use version vectors when they're updated and saved.
+**Automatic Upgrade from 3.x**: CBL 4.0 databases are compatible with CBL 3.1 and 3.2 databases. When opening a 3.1 or 3.2 database with CBL 4.0, documents are automatically upgraded to use version vectors when they're updated and saved.
 
-**No Configuration Required**: CBL 4.0.3 enables version vectors by default - the feature requires no API configuration.
+**No Configuration Required**: CBL 4.0 enables version vectors by default - the feature requires no API configuration.
 
 ### [](#synchronization-compatibility-40)Synchronization Compatibility
 
-**Sync Gateway Requirements**: CBL 4.0.3 requires Sync Gateway 4.x or later for synchronization. Attempting to sync with Sync Gateway versions prior to 4.x results in replication errors with appropriate error messages indicating the incompatibility.
+**Sync Gateway Requirements**: CBL 4.0 requires Sync Gateway 4.x or later for synchronization. Attempting to sync with Sync Gateway versions prior to 4.x results in replication errors with appropriate error messages indicating the incompatibility.
 
-**Peer-to-Peer Compatibility**: CBL 4.0.3 can only perform peer-to-peer synchronization with other CBL 4.x instances using either `URLEndpointListener` or `URLMessageEndpointListener`. Sync attempts with CBL 3.x peers fail with appropriate error messages.
+**Peer-to-Peer Compatibility**: CBL 4.0 can only perform peer-to-peer synchronization with other CBL 4.x instances using either `URLEndpointListener` or `URLMessageEndpointListener`. Sync attempts with CBL 3.x peers fail with appropriate error messages.
 
 ## [](#downgrading-couchbase-lite)Downgrading Couchbase Lite
 

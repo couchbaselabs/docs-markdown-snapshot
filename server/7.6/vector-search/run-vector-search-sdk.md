@@ -3,7 +3,7 @@ title: Run a Vector Search with a Couchbase SDK
 description: Using a Couchbase SDK, you can run a simple or more complex vector
   search against a Vector Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/vector-search/pages/run-vector-search-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:7.6@server:vector-search:run-vector-search-sdk.adoc[]
 ---
 
@@ -94,7 +94,7 @@ For more information about how to create a Vector Search index, see [Create a Ve
 >  
 > For the best results, consider using the sample Vector Search index from [Create a Vector Search Index with the Server Web Console](create-vector-search-index-ui.md#example) or [Create a Vector Search Index with the REST API and curl/HTTP](create-vector-search-index-rest-api.md#example).
 * You have installed the Couchbase Python SDK.  
-For more information about installing and using the Couchbase Python SDK, see [Start Using the Python SDK](../../../python-sdk/current/hello-world/start-using-sdk.md).
+For more information about installing and using the Couchbase Python SDK, see [Hello World](../../../python-sdk/current/hello-world/start-using-sdk.md).
 * You have created and activated a virtual environment using `venv` and installed packages.  
 For more information about how to set up your virtual environment, see [the Python Packaging User Guide](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/).
 * You have made a `requirements.txt` file with the following:  

@@ -1,16 +1,16 @@
 ---
-title: .NET Analytics SDK
-editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+title: .NET Analytics SDK 1.1
+editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.1/modules/hello-world/pages/overview.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:dotnet-analytics-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/dotnet-analytics-sdk/current/hello-world/overview.html)
 
-# .NET Analytics SDK
+# .NET Analytics SDK 1.1
 
-# .NET Analytics SDK
+# .NET Analytics SDK 1.1
 
 The .NET Analytics SDK allows you to connect to an Enterprise Analytics cluster using C#. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [.NET Operational SDK](../../../dotnet-sdk/current/hello-world/overview.md).
 

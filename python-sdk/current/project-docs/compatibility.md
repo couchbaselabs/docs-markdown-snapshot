@@ -3,8 +3,8 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/project-docs/pages/compatibility.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -28,40 +28,42 @@ Because the Python SDK is written primarily in C using the CPython API, the offi
 Other Python versions and implementations might work but are _not tested and are not supported_. Please make sure you run on one of the latest patch releases, since they provide stability improvements and security fixes in general.
 
 __Supported Python Versions__
-| Python Version                                            | Support EOL   | Couchbase SDK Versions Supported |
-| --------------------------------------------------------- | ------------- | -------------------------------- |
-| [3.9](https://www.python.org/dev/peps/pep-0596/#lifespan) | until 2025-10 | from 3.0.0                       |
-| [3.10](https://peps.python.org/pep-0619/#lifespan)        | until 2026-10 | from 4.0.0                       |
-| [3.11](https://peps.python.org/pep-0664/#lifespan)        | until 2027-10 | from 4.1.6                       |
-| [3.12](https://peps.python.org/pep-0693/#lifespan)        | until 2028-10 | from 4.3.2                       |
-| [3.13](https://peps.python.org/pep-0719/#lifespan)        | until 2029-10 | from 4.3.4                       |
+| Python Version                                     | Support EOL   | Couchbase SDK Versions Supported |
+| -------------------------------------------------- | ------------- | -------------------------------- |
+| [3.10](https://peps.python.org/pep-0619/#lifespan) | until 2026-10 | from 4.0.0                       |
+| [3.11](https://peps.python.org/pep-0664/#lifespan) | until 2027-10 | from 4.1.6                       |
+| [3.12](https://peps.python.org/pep-0693/#lifespan) | until 2028-10 | from 4.3.2                       |
+| [3.13](https://peps.python.org/pep-0719/#lifespan) | until 2029-10 | from 4.3.4                       |
+| [3.14](https://peps.python.org/pep-0745/#lifespan) | until 2030-10 | from 4.6.0                       |
 
 ### [](#os-compatibility)OS Compatibility
 
-The Python SDK is built on top of the C++ SDK, which is tested and supported on the following platforms:
+The Python SDK will run on, and is supported on, the following OSs and platforms. The SDK has been tested on a representative subset of the platforms listed below.
 
 ### GNU/Linux
 
 * Amazon Linux 2 & AL2023.
-* Red Hat Enterprise Linux 8 & 9;
-* Oracle Linux 8 & 9.
+* Red Hat Enterprise Linux 8, 9, & 10.
+* Oracle Linux 8, 9, & 10.
 * Ubuntu (LTS) 22.04 (_Jammy_) & 24.04 (_Noble_).
-* Debian 11 (_Bullseye_) & Debian 12 (_Bookworm_).
+* Debian 11 (_Bullseye_), Debian 12 (_Bookworm_), & Debian 13 (_Trixie_).
 * SUSE Enterprise Linux 12 & 15.
-* Alpine Linux 3.18.
+* Alpine Linux 3.21 - 3.23.
 
 ### Microsoft Windows
 
 * Microsoft Windows 10 & 11;
-* Windows Server 2019 & 2022.
+* Windows Server 2019, 2022, & 2025.
 
 ### Mac OS X
 
-The current and previous two releases of OS X. At time of writing (April 2025): 15 (Sequoia), 14 (Sonoma), and 13 (Ventura). M1 ARM architecture is fully supported in the Python SDK.
+* The current and previous two releases of OS X. At time of writing (March 2026): 26 (Tahoe), 15 (Sequoia), and 14 (Sonoma).
 
-### ARM Processor Support
+#### [](#platforms-chipsets-and-virtual-environments)Platforms, Chipsets, and Virtual Environments
 
-AWS Amazon Graviton2, Apple M1 ARM processors, and ARMv8 on Ubuntu.
+Couchbase SDKs can be expected to run on modern ARM chips (such as AWS Graviton) and virtualised platforms (such as Microsoft Hyper-V). Nevertheless, there are so many products available that not all can be tested — as such, we do not call out specific support for any particular product. Please contact our support organisation if you run into any issues.
+
+As always, running the very latest version of the SDKs will pick up any fixes already made to platform support (see the [Release Notes](sdk-release-notes.md)).
 
 ### [](#network-requirements)Network Requirements
 
@@ -89,15 +91,15 @@ Couchbase SDKs are tested against a variety of different environments to ensure 
 The matrix below denotes the version of Couchbase Server, the version of the Python SDK and whether the SDK is:
 
 * ✖ **Unsupported**: This combination is not tested, and is not within the scope of technical support if you have purchased a support agreement.
-* ◎ **Compatible**: This combination has been tested previously, and should be compatible. This combination is not recommended by our technical support organization. It is best to upgrade either the SDK or the Couchbase version you are using.
+* ◎ **Compatible**: This combination has been tested previously, and should be compatible. Nevertheless, this combination is not recommended by our technical support organization, as not all of the latest features are supported by it. It is best to upgrade either the SDK or the Couchbase version you are using.
 * ✔ **Supported**: This combination is subject to ongoing quality assurance, and is fully supported by our technical support organization.
 
 __Recommended SDK per Server Version Matrix__
-|                      | 4.2 - 4.3 | 4.4   | 4.5   |
-| -------------------- | --------- | ----- | ----- |
-| **Server 7.0 - 7.2** | **✔**     | **✔** | **✔** |
-| **Server 7.6**       | **✔**     | **✔** | **✔** |
-| **Server 8.0**       | **◎**     | **✔** | **✔** |
+|                | 4.2 - 4.3 | 4.4   | 4.5-4.6 |
+| -------------- | --------- | ----- | ------- |
+| **Server 8.0** | **◎**     | **✔** | **✔**   |
+| **Server 7.6** | **✔**     | **✔** | **✔**   |
+| **Server 7.2** | **✔**     | **✔** | **✔**   |
 
 Note the [End of Life dates](https://www.couchbase.com/support-policy/EOL/) for Couchbase Server and SDK versions. See the notes there for Support details.
 
@@ -110,44 +112,45 @@ Note, Capella is offered as a fully provisioned service, so the underlying versi
 ### [](#couchbase-new-feature-availability-matrix)Couchbase New Feature Availability Matrix
 
 __Couchbase Server and SDK Supported Version Matrix__
-|                                                                      | Server 7.0, 7.1   | Server 7.2     | Server 7.6 |
-| -------------------------------------------------------------------- | ----------------- | -------------- | ---------- |
-| Enhanced Durability                                                  | All SDK versions  |                |            |
-| Durable Writes                                                       | Since 3.0         |                |            |
-| Analytics                                                            | Since 2.6         |                |            |
-| Collections                                                          | Since 3.0.10      |                |            |
-| Scope-Level SQL++ (formerly N1QL) Queries & all Collections features | Since SDK 3.2.0   |                |            |
-| Request Tracing                                                      | Since SDK 3.2.0   |                |            |
-| Distributed ACID Transactions                                        | Since SDK 4.0     |                |            |
-| Cloud Native Gateway                                                 | Not Yet Supported |                |            |
-| Vector Search                                                        | N/A               | From SDK 4.2.0 |            |
+|                          | Server 7.2 | Server 7.6.x                                       | Server 8.0 |
+| ------------------------ | ---------- | -------------------------------------------------- | ---------- |
+| KV Range Scan            | N/A        | From SDK 4.2.0                                     |            |
+| Vector Search            | N/A        | From SDK 4.2.0 (base64 encoded vectors from 4.3.0) |            |
+| Zone aware replica reads | N/A        | From SDK 4.3.0                                     |            |
+| Vector Query using GSI   | N/A        | From SDK 4.5.0 ①                                   |            |
+
+① As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested.
+
+This table is not an exhaustive list — just a few highlights — provided to help assess compatibility of older versions in particular. For a slightly fuller table, see the [Deployment page](deployment.md#couchbase-operational-cluster-feature-compatibility). For alignment of SDKs and new Server features, scroll down to the information below the [API Version table](#api-version).
 
 ### [](#api-version)API Version
 
-This release of the SDK is written to version 3.8 of the SDK API specification (and matching the features available in Couchbase 8.0 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
+This release of the SDK is written to version 3.9 of the SDK API specification (and matching the features available in Couchbase 8.0.1 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
 
 Whilst these two numbers match for the .NET SDK, this is not the case for the others, as version numbers for individual SDKs are bumped up in line with [Semantic Versioning](https://semver.org/) — check the [release notes](#sdk-release-notes) of each SDK for individual details.
 
 __SDK API Versions__
-|                                                                    | API 3.3       | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      |
-| ------------------------------------------------------------------ | ------------- | --------- | ------- | ------- | ------- | ------------ |
-| [.NET](../../../dotnet-sdk/current/hello-world/overview.md)        | 3.3           | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          |
-| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.0 - 3.3.2 | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        |
-| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-            | \-        | \-      | 1.0     | 1.1     | 1.2          |
-| [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.5           | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         |
-| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.3           | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   |
-| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.0           | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ |
-| [Node.js](../../../nodejs-sdk/current/hello-world/overview.md)     | 4.1           | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          |
-| [PHP](../../../php-sdk/current/hello-world/overview.md)            | 4.0           | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          |
-| [Python](../hello-world/overview.md)                               | 4.0           | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          |
-| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.3           | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          |
-| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-            | \-        | \-      | \-      | \-      | 1.0          |
-| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.3           | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ |
+|                                                                    | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      | API 3.9     |
+| ------------------------------------------------------------------ | --------- | ------- | ------- | ------- | ------------ | ----------- |
+| [.NET](../../../dotnet-sdk/current/hello-world/overview.md)        | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          | 3.9         |
+| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        | N/A ②       |
+| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-        | \-      | 1.0     | 1.1     | 1.2          | 1.3         |
+| [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         | 2.12        |
+| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   | 3.11 & 3.12 |
+| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ | 3.11 & 3.12 |
+| [Node.js](../../../nodejs-sdk/current/hello-world/overview.md)     | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          | 4.7         |
+| [PHP](../../../php-sdk/current/hello-world/overview.md)            | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          | 4.5         |
+| [Python](../hello-world/overview.md)                               | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          | 4.6         |
+| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          | 3.8         |
+| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-        | \-      | \-      | \-      | \-           | 1.0         |
+| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ | 3.11 & 3.12 |
 
 | **1** | Excludes DNS SRV refresh support in Serverless Environments.                                                                                                                                              |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | For most purposes better productivity and functionality can be found in our [C++ SDK](../../../cxx-sdk/current/hello-world/overview.md).                                                                  |
 | **3** | With the Java 3.9 release, the other JVM SDKs hosted in the Java SDK monorepo adopted common release versions. This includes a number of other artifacts, as can be seen referenced in the release notes. |
+
+**SDK API 3.9**: Provides support for JWT based authentication, as well as mTLS Certs Refresh (without restart). Deprecates SDK support for MapReduce Views.
 
 **SDK API 3.8**: Introduced alongside Couchbase Server 8.0, which adds support for 128 vBuckets on Magma. Server 8.0 introduced vector query using Global Secondary Indexes (GSI), the Query Service index — using either a fast Hyperscale index, or a composite index to combine scalar queries with semantic search.
 

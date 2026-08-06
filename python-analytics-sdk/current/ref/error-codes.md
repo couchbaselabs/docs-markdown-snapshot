@@ -2,8 +2,8 @@
 title: Error Messages
 description: The standardized error codes returned by the Analytics Python SDK,
   from Capella connection to SQL++ query.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.0/modules/ref/pages/error-codes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.1/modules/ref/pages/error-codes.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-analytics-sdk:ref:error-codes.adoc[]
 ---
 

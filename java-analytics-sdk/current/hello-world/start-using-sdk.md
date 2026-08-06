@@ -2,8 +2,8 @@
 title: Java Analytics SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Enterprise Analytics and the Java Analytics SDK.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.1/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-analytics-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -38,6 +38,12 @@ Declare a dependency on the SDK using its [Maven Coordinates](../project-docs/sd
 To see log messages from the SDK, [include an SLF4J binding in your project](../howtos/logging.md).
 
 ## [](#connecting-and-executing-a-query)Connecting and Executing a Query
+
+Java Analytics SDK 1.1 adds support for JWT and client certificate authentication, as well as a new Server Asynchronous Request API that uses request handles to fetch results. Introduced in the self-managed Enterprise Analytics Server 2.2, this API eliminates the need for long-running server connections.
+
+The examples in this first section of the page are for the standard API — async on the client side — working with Enterprise Analytics 2.0 and later (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). You can still use this API with Enterprise Analytics 2.2 and later, in addition to the new API.
+
+### [](#server-synchronous-request-api)Server Synchronous Request API
 
 ```java
 import com.couchbase.analytics.client.java.Cluster;
@@ -98,6 +104,67 @@ The `connStr` in the above example should take the form of "https://<your\_hostn
 The default port is 443, for TLS connections. You do not need to give a port number if you are using port 443 — `hostname = "https://<your_hostname>"` is effectively the same as \`hostname = "https://<your\_hostname>:" + "443"
 
 If you are using a different port — for example, connecting to a cluster without a load balancer, directly to the Analytics port, `18095` — or not using TLS, then see the [Connecting to Enterprise Analytics](../howtos/managing-connections.md) page.
+
+### [](#server-asynchronous-api)Server Asynchronous Request API
+
+Enterprise Analytics 2.2 introduces a Server Asynchronous Request API. The SDK sends a request, polls for results, and then fetches once the result is available.
+
+Server Asynchronous API Example
+
+```java
+static void queryHandleExample(Queryable clusterOrScope) throws InterruptedException, TimeoutException {
+    String slowStatement = """
+      SELECT COUNT (1) AS c
+          FROM
+          ARRAY_RANGE(0,10000) AS d1,
+          ARRAY_RANGE(0,10000) AS d2
+      """;
+
+    Duration timeout = Duration.ofMinutes(15);
+
+    QueryHandle queryHandle = clusterOrScope.startQuery(
+      slowStatement,
+      opt -> opt.timeout(timeout)
+    );
+
+    QueryResultHandle resultHandle = waitForResult(queryHandle, timeout);
+    try {
+      // Process rows one by one as they arrive from the server.
+      QueryMetadata metadata = resultHandle.streamRows(row -> System.out.println("Got row: " + row));
+      System.out.println("Got metadata: " + metadata);
+
+      // Alternatively, if the result is known to fit in memory:
+      QueryResult buffered = resultHandle.bufferRows();
+      System.out.println("Got result: " + buffered);
+
+    } finally {
+      // Tell the server it can forget the result.
+      resultHandle.discard();
+    }
+  }
+
+  private static QueryResultHandle waitForResult(
+    QueryHandle queryHandle,
+    Duration timeout
+  ) throws InterruptedException, TimeoutException {
+    final long timeoutNanos = timeout.toNanos();
+    final long startNanos = System.nanoTime();
+
+    while (true) {
+      QueryStatus status = queryHandle.fetchStatus();
+      if (status.resultReady()) return status.resultHandle();
+
+      System.out.println("Waiting for query to finish; current status: " + status);
+
+      long elapsedNanos = System.nanoTime() - startNanos;
+      if (elapsedNanos > timeoutNanos) {
+        throw new TimeoutException("Query result not ready after " + timeout);
+      }
+
+      SECONDS.sleep(1); // or use exponential backoff
+    }
+  }
+```
 
 ## [](#migration-from-row-based-analytics)Migration from Row-Based Analytics
 

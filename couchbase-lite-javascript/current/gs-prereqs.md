@@ -2,7 +2,7 @@
 title: Preparing for Couchbase Lite JavaScript
 description: Prerequisites for the installation of Couchbase Lite JavaScript
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/gs-prereqs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite-javascript::gs-prereqs.adoc[]
 ---
 
@@ -36,7 +36,7 @@ A modern ES2022+ JavaScript environment is needed for execution as the SDK uses 
 If you are using Sync Gateway or App Services as a backend for your browser-based applications, you should enable CORS before you can synchronize data:
 
 * For App Services, see [CORS Configuration for App Services](https://docs.couchbase.com/cloud/app-services/deployment/cors-configuration-for-app-services.html)
-* The CORS configuration should be done in the [Sync Gateway Bootstrap Configuration](../../sync-gateway/current/configuration/configuration-schema-bootstrap.md#lbl-schema).
+* The CORS configuration should be done in the [Sync Gateway Bootstrap Configuration](../../sync-gateway/4.0/configuration/configuration-schema-bootstrap.md#lbl-schema).
 
 > [!IMPORTANT]
 > Users must be on Sync Gateway 3.3.1 or 4.0.1 and above to sync data with the JavaScript SDK.

@@ -1,22 +1,22 @@
 ---
-title: Use {ai-long} AI Functions
+title: Use Couchbase AI Data Plane AI Functions
 description: Use AI Functions to summarize text, classify content, detect
   sentiment, explain patterns, and more — all within your SQL++ queries.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/ai-functions.adoc
-pubDate: 2026-07-24T05:33:21.264Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:build:ai-functions.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/build/ai-functions.html)
 
-# Use {ai-long} AI Functions
+# Use Couchbase AI Data Plane AI Functions
 
 > Use AI Functions to summarize text, classify content, detect sentiment, explain patterns, and more — all within your SQL++ queries. 
 
-{ai-long} AI Functions combine SQL++ with language models to analyze your data. Use large language models (LLMs) such as OpenAI, Bedrock, or models hosted in the [{ai} Model Service](model-service/deploy-llm-model.md) to run task-based functions using familiar SQL++ queries directly within Capella's query editor.
+Couchbase AI Data Plane AI Functions combine SQL++ with language models to analyze your data. Use large language models (LLMs) such as OpenAI, Bedrock, or models hosted in the [AI Data Plane Model Service](model-service/deploy-llm-model.md) to run task-based functions using familiar SQL++ queries directly within Capella's query editor.
 
-The following {ai} AI Functions are available:
+The following AI Data Plane AI Functions are available:
 
 * **Sentiment Analysis**: Determines text sentiment, such as positive, negative, neutral, or mixed.
 * **Summarization**: Condenses lengthy text into key insights.
@@ -60,23 +60,23 @@ The following {ai} AI Functions are available:
     * [Advanced access credentials](../../cloud/clusters/cluster-rbac.md#advanced-access-credentials) assigned with a role that includes the `Query Curl Access` [privilege](../../cloud/clusters/cluster-rbac.md#privileges-for-advanced-access-credentials).
 * A deployed LLM with:
 
-  * The [{ai} Model Service](model-service/deploy-llm-model.md)
+  * The [AI Data Plane Model Service](model-service/deploy-llm-model.md)
   * [OpenAI](https://openai.com/)
   * [Amazon Bedrock](https://aws.amazon.com/bedrock/)
 * (Recommended) If you have a production workload, [enable private networking](../security/add-aws-privatelink.md) to use AI Functions.  
 > [!NOTE]  
-> If you want to enable private networking for your AI Functions, your {ai} model and Capella operational cluster need to be deployed within the same AWS region.
+> If you want to enable private networking for your AI Functions, your AI Data Plane model and Capella operational cluster need to be deployed within the same AWS region.
 * (Recommended) You have guardrails selected for your chosen model. This includes keyword filtering and jailbreak detection. Guardrails are important to have when you use the completion function. For more information, see [Deploy a Large Language Model (LLM)](model-service/deploy-llm-model.md).
 
 ## [](#enable-ai-functions)Enable AI Functions
 
 You can enable AI Functions on any of your Capella operational clusters. Enabling AI Functions on 1 cluster does not automatically enable it on your other clusters. You need to enable AI Functions individually for each cluster.
 
-To enable {ai} AI Functions:
+To enable AI Data Plane AI Functions:
 
 1. Do 1 of the following:
 
-  1. Go to menu:{ai}\[AI Functions\].
+  1. Go to **AI Data Plane** **AI Functions**.
   2. On the **Operational** tab, click the name of the cluster where you want to enable AI Functions.
 
     1. Go to **AI Functions**.
@@ -84,15 +84,15 @@ To enable {ai} AI Functions:
 3. Select the functions you want to use, and click **Next**.
 4. Select 1 of the model options:  
 > [!NOTE]  
-> Private networking is only available for {ai} models.
+> Private networking is only available for AI Data Plane models.
 
-  * {ai} Model
+  * AI Data Plane Model
   * OpenAI Model
   * AWS Bedrock Model
 
   1. Select **Capella Model**.
-  2. Choose your {ai} model.
-  3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for {ai} models, see [Get Started with the {ai-long} APIs](../api-guide/api-start.md).
+  2. Choose your AI Data Plane model.
+  3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for AI Data Plane models, see [Get Started with the Couchbase AI Data Plane APIs](../api-guide/api-start.md).
   4. Click **Next**.
 
   1. Select **OpenAI Model**.
@@ -117,7 +117,7 @@ To enable {ai} AI Functions:
   4. Choose your Bedrock credentials.
   5. Click **Next**.
 5. Choose a Capella operational cluster for your functions.
-6. (Optional) If your {ai} model and your Capella operational cluster have the same AWS region, choose whether you want to enable private networking for your functions. This enables private networking between your LLM's AWS region and your Capella operational cluster.  
+6. (Optional) If your AI Data Plane model and your Capella operational cluster have the same AWS region, choose whether you want to enable private networking for your functions. This enables private networking between your LLM's AWS region and your Capella operational cluster.  
 > [!NOTE]  
 > You cannot disable private networking later.
 7. Click **Complete Setup**.
@@ -127,7 +127,7 @@ To enable {ai} AI Functions:
 Run AI Functions like any other SQL++ query using the [Query tab](../../cloud/clusters/query-service/query-workbench.md) on the operational cluster where you have configured AI Functions.
 
 > [!IMPORTANT]
-> When using input prompts with {ai}, Bedrock, or OpenAI LLMs, turn on model guardrails for security.
+> When using input prompts with AI Data Plane, Bedrock, or OpenAI LLMs, turn on model guardrails for security.
 
 Experiment with AI Functions with your own data or by loading a sample query into the Query tab of your operational cluster. The following sample queries require the `travel-sample` dataset on the same cluster where you configured your AI Functions LLM.
 
@@ -135,7 +135,7 @@ For more information about how to load the `travel-sample` into your operational
 
 To load a sample query:
 
-1. Copy a [sample query](#sample-queries) from the list of {ai} AI Functions available. For example, copy the sample query for [Sentiment Analysis](#sentiment-analysis).
+1. Copy a [sample query](#sample-queries) from the list of AI Data Plane AI Functions available. For example, copy the sample query for [Sentiment Analysis](#sentiment-analysis).
 2. In your Capella operational cluster, go to **Data Tools** **Query**.
 3. In the query editor, replace the existing text with the sample query you copied.
 4. Press Enter or click **Run**. The query results are automatically displayed in JSON format.
@@ -151,7 +151,7 @@ AI Function performance depends on the number and size of query nodes, data volu
 
 To view a list of AI Functions in your organization and their associated operational clusters:
 
-1. Go to menu:{ai}\[AI Functions\].
+1. Go to **AI Data Plane** **AI Functions**.
 2. (Optional) Filter the list of AI Functions by their associated operational cluster, function name, and model service provider.
 
 To view more details about the AI Functions associated with an operational cluster, do 1 of the following:
@@ -159,7 +159,7 @@ To view more details about the AI Functions associated with an operational clust
 1. Go to **Operational** and click the name of the cluster.
 
   1. Go to **AI Functions**.
-2. From menu:{ai}\[AI Functions\], click the name of an operational cluster.
+2. From **AI Data Plane** **AI Functions**, click the name of an operational cluster.
 
 You can view the status of each of your AI Functions and [change their associated model](#change-model-association). Click the name of the associated model to get more information.
 
@@ -177,7 +177,7 @@ The status of your AI Function can be dependent on the status of its associated 
 
 You can change the model associated with your AI Function. The model options for AI Functions include:
 
-* An {ai} model
+* An AI Data Plane model
 * An OpenAI model
 * An AWS Bedrock model
 
@@ -188,13 +188,13 @@ To change the model associated with your AI Function:
 3. Find the AI Function you want to associate with a different model and go to **More Options (⋮)** **Edit associated model**.
 4. Select 1 of the model options:
 
-  * {ai} Model
+  * AI Data Plane Model
   * OpenAI Model
   * AWS Bedrock Model
 
   1. Select **Capella Model**.
-  2. Choose your {ai} model.
-  3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for {ai} models, see [Get Started with the {ai-long} APIs](../api-guide/api-start.md).
+  2. Choose your AI Data Plane model.
+  3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for AI Data Plane models, see [Get Started with the Couchbase AI Data Plane APIs](../api-guide/api-start.md).
   4. Click **Next**.
 
   1. Select **OpenAI Model**.

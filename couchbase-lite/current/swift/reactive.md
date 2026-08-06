@@ -2,8 +2,8 @@
 title: Reactive APIs
 description: The Reactive APIs are enhanced APIs for Swift that streamline data
   modeling and enable reactive programming patterns.
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/reactive.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/swift/pages/reactive.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:swift:reactive.adoc[]
 ---
 
@@ -63,7 +63,7 @@ To get a document from a collection and decode it into a Swift model:
 let document = try collection.document(id: task.id!, as: Task.self)
 ```
 
-For API details, see [Document Management](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Collection.html#/Document%20Management).
+For API details, see [Document Management](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Collection.html#/Document%20Management).
 
 ### [](#save-an-encodable-object-as-a-document)Save an Encodable Object as a Document
 
@@ -93,7 +93,7 @@ Specify concurrency control
 let resolved = try collection.save(from: task, concurrencyControl: .failOnConflict)
 ```
 
-For API details, see [Document Management](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Collection.html#/Document%20Management).
+For API details, see [Document Management](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Collection.html#/Document%20Management).
 
 ### [](#delete-a-document)Delete a Document
 
@@ -113,7 +113,7 @@ Specify concurrency control
 let resolved = try collection.delete(for: task, concurrencyControl: .failOnConflict)
 ```
 
-For API details, see [Document Management](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Collection.html#/Document%20Management).
+For API details, see [Document Management](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Collection.html#/Document%20Management).
 
 ### [](#purge-a-document)Purge a Document
 
@@ -128,7 +128,7 @@ To purge a document represented by a Swift model object from a collection:
 try collection.purge(for: task)
 ```
 
-For API details, see [Document Management](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Collection.html#/Document%20Management).
+For API details, see [Document Management](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Collection.html#/Document%20Management).
 
 ## [](#decode-query-results)Decode Query Results
 
@@ -161,7 +161,7 @@ for result in results {
 }
 ```
 
-For API details, see [ReadOnlyArrayProtocol](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Result.html#/ReadOnlyArrayProtocol).
+For API details, see [ReadOnlyArrayProtocol](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Result.html#/ReadOnlyArrayProtocol).
 
 > [!NOTE]
 > When saving a document model decoded from the query's result, the document associated with the model will be retrieved during the save time. As a result, the document may not be the same document during the query time if the document has been changed.
@@ -178,7 +178,7 @@ To get all a query's results as an array of a decodable model objects:
 tasks = try query.execute().data(as: Task.self)
 ```
 
-For API details, see [ResultSet](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/ResultSet.html).
+For API details, see [ResultSet](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/ResultSet.html).
 
 > [!WARNING]
 > Getting all the query's results as an array of decodable model objects may take a long time and consume a large amount of memory, depending on the data size and the number of results.
@@ -220,7 +220,7 @@ query.changePublisher()
     .store(in: &cancellables)
 ```
 
-For API details, see [Query](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Query.html).
+For API details, see [Query](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Query.html).
 
 > [!NOTE]
 > The emitted `QueryChange` contains the entire new result set of the query, not just the delta.
@@ -238,7 +238,7 @@ collection.changePublisher()
     .store(in: &cancellables)
 ```
 
-For API details, see [Combine Publisher](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Collection.html#/Combine%20Publisher).
+For API details, see [Combine Publisher](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Collection.html#/Combine%20Publisher).
 
 To get a publisher that emits `DocumentChange` events whenever a specific document in a collection changes:
 
@@ -254,7 +254,7 @@ collection.documentChangePublisher(for: task.id!)
     .store(in: &cancellables)
 ```
 
-For API details, see [Combine Publisher](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Collection.html#/Combine%20Publisher).
+For API details, see [Combine Publisher](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Collection.html#/Combine%20Publisher).
 
 ### [](#publish-replicator-changes)Publish Replicator Changes
 
@@ -269,7 +269,7 @@ replicator.changePublisher()
     .store(in: &cancellables)
 ```
 
-For API details, see [Combine Publisher](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Replicator.html#/Combine%20Publisher).
+For API details, see [Combine Publisher](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Replicator.html#/Combine%20Publisher).
 
 To get a publisher that emits `DocumentReplication` events whenever documents are pushed or pulled during replication:
 
@@ -286,7 +286,7 @@ replicator.documentReplicationPublisher()
     .store(in: &cancellables)
 ```
 
-For API details, see [Combine Publisher](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift/Classes/Replicator.html#/Combine%20Publisher).
+For API details, see [Combine Publisher](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift/Classes/Replicator.html#/Combine%20Publisher).
 
 ## [](#examples)Examples
 

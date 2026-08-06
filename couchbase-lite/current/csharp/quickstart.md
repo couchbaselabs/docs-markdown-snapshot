@@ -2,8 +2,8 @@
 title: Couchbase Lite on C#.Net
 description: Start your Couchbase for Mobile and Edge adventure, get up and
   running with Couchbase Lite
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/quickstart.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/csharp/pages/quickstart.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:csharp:quickstart.adoc[]
 ---
 
@@ -52,7 +52,7 @@ Understand fundamental principles and best practices.
 
 Stay updated with the latest releases and platform support.
 
-* [New in 4.0](../cbl-whatsnew.md)
+* [New in 4.1](../cbl-whatsnew.md)
 * [Couchbase Lite Release Notes](releasenotes.md)
 * [Vector Search Release Notes](vs-releasenotes.md)
 * [Supported Platforms](supported-os.md)

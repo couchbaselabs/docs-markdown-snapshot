@@ -1,8 +1,8 @@
 ---
 title: Analytics Service Metrics
 description: A list of the metrics provided by the Analytics Service.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/metrics-reference/pages/analytics-service-metrics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/metrics-reference/pages/analytics-service-metrics.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:metrics-reference:analytics-service-metrics.adoc[]
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: Changes Feed
 description: Integrating Sync Gateway with other servers
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/deploy/pages/changes-feed.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/deploy/pages/changes-feed.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:deploy:changes-feed.adoc[]
 ---
 
@@ -42,7 +42,7 @@ The changes feed API is a REST API endpoint ([/{keyspace}/\_changes](../rest-api
 
 ## [](#lbl-methods)Methods
 
-There are several methods of connecting to the changes feed (also know as the feed type). The first three methods (`polling`, `longpoll` and `continuous`) are based on the CouchDB API. The last method (`websocket`) is specific to sync gateway.
+There are several methods of connecting to the changes feed (also know as the feed type). The first three methods (`polling`, `longpoll` and `continuous`) are based on the CouchDB API. The last method (`websocket`) is specific to Sync Gateway.
 
 [polling](http://guide.couchdb.org/draft/notifications.html#polling) (default)
 
@@ -54,7 +54,7 @@ In addition to regular polling, if the request is sent with a special `last_seq`
 
 [continuous](http://guide.couchdb.org/draft/notifications.html#continuous)
 
-The continuous changes API allows you to receive change notifications as they come, in a single HTTP connection. You make a request to the continuous changes API and both you and sync gateway will hold the connection open "forever."
+The continuous changes API allows you to receive change notifications as they come, in a single HTTP connection. You make a request to the continuous changes API and both you and Sync Gateway will hold the connection open "forever."
 
 [WebSockets](#lbl-websockets)
 

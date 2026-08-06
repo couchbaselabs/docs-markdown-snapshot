@@ -1,8 +1,8 @@
 ---
 title: Travel Sample Data Model
 description: An overview of the travel sample application data model and documents.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/ref/pages/travel-app-data-model.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/ref/pages/travel-app-data-model.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ruby-sdk:ref:travel-app-data-model.adoc[]
 ---
 

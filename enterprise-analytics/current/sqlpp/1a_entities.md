@@ -2,8 +2,8 @@
 title: Entities in Enterprise Analytics
 description: This topic describes how Enterprise Analytics organizes entities
   into a hierarchy and resolves the entity names in a statement or query.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/1a_entities.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/1a_entities.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:enterprise-analytics:sqlpp:1a_entities.adoc[]
 ---
 

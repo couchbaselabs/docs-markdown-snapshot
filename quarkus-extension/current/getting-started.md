@@ -2,8 +2,8 @@
 title: Getting Started
 description: The Couchbase Quarkus extension integrates the Couchbase Java SDK
   within the Quarkus ecosystem.
-editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.3/modules/ROOT/pages/getting-started.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.4/modules/ROOT/pages/getting-started.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:quarkus-extension::getting-started.adoc[]
 ---
 
@@ -56,13 +56,18 @@ For additional configuration options, refer to the [Quarkus Configuration Guide]
 
 ## [](#using-the-extension)Using the Extension
 
-The extension produces an Application-scoped `Cluster` bean that can be injected using the jakarta annotation `@Inject`:
+The extension produces an Application-scoped `Cluster` bean that can be injected using the jakarta annotation `@Inject`, as well as a `Bucket`:
 
 ```java
 public class QuarkusExample {
     @Inject
     Cluster cluster;
+
+    @Inject
+    Bucket bucket;
 }
 ```
+
+When using DevServices, the Bucket will automatically be created. When connecting to an existing Couchbase instance, the bucket must already exist, and the name can be configured using `quarkus.couchbase.bucket-name`.
 
 From there, you can use the Cluster object like you normally would with the Java SDK. Refer to the [Quarkus Guide](https://docs.quarkiverse.io/quarkus-couchbase/dev/index.html) for an example using `quarkus-rest` to create HTTP endpoints.

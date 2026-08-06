@@ -2,8 +2,8 @@
 title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/sdk-authentication.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:howtos:sdk-authentication.adoc[]
 ---
 
@@ -26,7 +26,7 @@ from couchbase.cluster import Cluster
 from couchbase.options import ClusterOptions
 
 
-cluster = Cluster('couchbase://your-ip',
+cluster = Cluster.connect('couchbases://your-ip',
                   ClusterOptions(PasswordAuthenticator('username', 'password')))
 ```
 
@@ -62,7 +62,7 @@ options = dict(cert_path=os.path.join(clientdir, "client.pem"),
                key_path=os.path.join(clientdir, "client.key"))
 
 opts = ClusterOptions(CertificateAuthenticator(**options))
-cluster = Cluster('couchbase://your-ip', opts)
+cluster = Cluster.connect('couchbase://your-ip', opts)
 ```
 
 ## [](#ldap)LDAP
@@ -76,5 +76,5 @@ If you are on a network where access is controlled by LDAP, the SDK will work tr
 # Use over TLS for production
 opts = ClusterOptions(PasswordAuthenticator('einstein', 'password'))
 connection_str = "couchbases://10.143.205.101?sasl_mech_force=PLAIN&certpath=cert.ca"
-cluster = Cluster(connection_str, opts)
+cluster = Cluster.connect(connection_str, opts)
 ```

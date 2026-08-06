@@ -2,8 +2,8 @@
 title: Supported Operating System Versions
 description: Couchbase Lite on Java -- the OS and SDK versions on which this
   framework is supported
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/supported-os.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/java/pages/supported-os.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:java:supported-os.adoc[]
 ---
 
@@ -26,6 +26,7 @@ Couchbase Lite on Java is supported on x86 64-bit platforms. The targeted OS ver
 > 
 > * macOS 13 (Ventura)
 > * Windows 10
+> * Debian Linux 11 (Bullseye)
 > 
 > Please plan to migrate your apps to use an appropriate alternative version.
 
@@ -36,7 +37,7 @@ __Table 1\. Supported versions__
 | RockyLinux              | 9                                      | ALL                                    |
 | Ubuntu                  | 22.04 LTS                              | ALL                                    |
 | 24.04 LTS               | Desktop & Web Service/Servlet (Tomcat) |                                        |
-| Debian                  | GNU/Linux 11 (Bullseye)                | Desktop & Web Service/Servlet (Tomcat) |
+| Debian                  | GNU/Linux 11 (Bullseye) (Deprecated)   | Desktop & Web Service/Servlet (Tomcat) |
 | GNU/Linux 12 (Bookworm) | Desktop & Web Service/Servlet (Tomcat) |                                        |
 | GNU/Linux 13 (Trixie)   | Desktop & Web Service/Servlet (Tomcat) |                                        |
 | Microsoft Server        | Windows Server 2022 (64-bit)           | Web Service/Servlet (Tomcat)           |

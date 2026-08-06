@@ -1,8 +1,8 @@
 ---
 title: Prerequisites&#8201;&#8212;&#8201;Couchbase Lite for Objective-C
 description: Prerequisites for the installation of Couchbase Lite
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/gs-prereqs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/objc/pages/gs-prereqs.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:objc:gs-prereqs.adoc[]
 ---
 
@@ -28,7 +28,7 @@ In addition, the bitcode that is included contributes to the majority of the dow
 
 Although you can disable bitcode within your app and strip away bitcode from the Couchbase Lite framework, it is not necessary to do so. In fact, it is probably best to leave it enabled to be future proof. This is because the bitcode is never downloaded by the user even though it is uploaded during App submission.
 
-More information on App size is available on this [Apple Q&A](https://developer.apple.com/library/archive/qa/qa1795/%5Findex.html) page.
+More information on App size is available on this [Apple Q&A](https://developer.apple.com/library/archive/qa/qa1795/index.html) page.
 
 ## [](#related-content)Related Content
 

@@ -2,8 +2,8 @@
 title: Error Messages
 description: The standardized error codes returned by the Couchbase Python SDK,
   from cloud connection to sub-document.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/ref/pages/error-codes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/ref/pages/error-codes.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:ref:error-codes.adoc[]
 ---
 
@@ -420,5 +420,5 @@ INFO:couchbase.confmon:[2302468477383294429] Provider 'HTTP' failed: LCB_ERR_UNK
 ## [](#further-reading)Further Reading
 
 * Our practical look at [error handling with the SDK](../howtos/error-handling.md).
-* [Discussion document](../concept-docs/errors.md) on handling exceptions.
+* [Discussion document](../concept-docs/best-practices.md) on handling exceptions.
 * Further reference material in the [API Guide](https://docs.couchbase.com/sdk-api/couchbase-python-client).

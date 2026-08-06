@@ -1,8 +1,8 @@
 ---
 title: Enhanced Conflict Resolution
 description: About conflict resolution in inter-Sync Gateway replication
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/sync/pages/sync-inter-syncgateway-conflict-resolution.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/sync/pages/sync-inter-syncgateway-conflict-resolution.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:sync:sync-inter-syncgateway-conflict-resolution.adoc[]
 ---
 
@@ -184,7 +184,7 @@ Sync Gateway supports the use of Javascript functions to customize the sync proc
 You can provide your conflict resolver as either an inline or external JavaScript function.44 You can learn more about the ($db.custom\_conflict\_resolver) property in the Configuration Schema Reference — see: [custom\_conflict\_resolver](../configuration/configuration-schema-database.md#database-replications-this%5Frep-custom%5Fconflict%5Fresolver).
 
 > [!NOTE]
-> Sync gateway 3.x configuration of Javascript functions is done using the [Admin REST API](../rest-api/rest-api-admin.md); specifically the [Authentication](../rest-api/rest%5Fapi%5Fadmin.md#tag/Authentication) and [/{keyspace}/\_config/import\_filter](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter) endpoints.
+> Sync Gateway 3.x configuration of Javascript functions is done using the [Admin REST API](../rest-api/rest-api-admin.md); specifically the [Authentication](../rest-api/rest%5Fapi%5Fadmin.md#tag/Authentication) and [/{keyspace}/\_config/import\_filter](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter) endpoints.
 
 Prior to this, configuration was done within the database configuration file — see: [Example 3](#ex-jsfunc-opts)
 

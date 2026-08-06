@@ -5,7 +5,7 @@ description: Couchbase Lite JavaScript is a lightweight offline-first embedded
   rich query, indexing and data synchronization capabilities with Capella App
   Services or Sync Gateway.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/index.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite-javascript::index.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Couchbase Lite JavaScript is a lightweight offline-first embedded NoSQL JSON doc
 
 With Couchbase Lite JavaScript, you can build resilient web applications that work seamlessly online and offline, with automatic data synchronization to Sync Gateway when connectivity is restored.
 
-Couchbase Lite JavaScript runs entirely in the browser, storing data locally using [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB%5FAPI) and synchronizing with [Sync Gateway](../../sync-gateway/current/introduction.md) via WebSockets for secure, bi-directional replication.
+Couchbase Lite JavaScript runs entirely in the browser, storing data locally using [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB%5FAPI) and synchronizing with [Sync Gateway](../../sync-gateway/4.0/introduction.md) via WebSockets for secure, bi-directional replication.
 
 ![Couchbase Lite JavaScript Architecture](_images/cbl-js-architecture.png) 
 

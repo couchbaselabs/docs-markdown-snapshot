@@ -3,7 +3,7 @@ title: Use the Agent Catalog Tools and Prompts Hub
 description: Use the Tools Hub or the Prompts Hub to view all the tools and
   prompts published to Agent Catalog from your agent projects.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/tools-prompts-hub.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:build:tools-prompts-hub.adoc[]
 ---
 
@@ -35,7 +35,7 @@ For more information about how to add Services to a cluster, see [Modify the Clu
 
 To view published tools in your Agent Catalog project in the Capella UI:
 
-1. In the Capella UI, go to menu:{ai}\[Tools Hub\].
+1. In the Capella UI, go to **AI Data Plane** **Tools Hub**.
 2. In the **Operational Cluster** list, select the cluster you added to your environment variables and configured as the publish destination for your tools.
 3. To filter the displayed tools, do any of the following:
 
@@ -55,7 +55,7 @@ To view published tools in your Agent Catalog project in the Capella UI:
 
 To view published prompts in your Agent Catalog project in the Capella UI:
 
-1. In the Capella UI, go to menu:{ai}\[Prompts Hub\].
+1. In the Capella UI, go to **AI Data Plane** **Prompts Hub**.
 2. In the **Operational Cluster** list, select the cluster you added to your environment variables and configured as the publish destination for your prompts.
 3. To filter the displayed prompts, do any of the following:
 

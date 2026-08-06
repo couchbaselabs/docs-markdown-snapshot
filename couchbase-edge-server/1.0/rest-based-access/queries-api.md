@@ -2,7 +2,7 @@
 title: Run Queries with Edge Server
 description: You can run SQL++ queries in a keyspace using the keyspace's query endpoint.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/queries-api.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:1.0@couchbase-edge-server:rest-based-access:queries-api.adoc[]
 ---
 
@@ -231,4 +231,4 @@ For details of the query language, see [Query Format](../../../couchbase-lite/cu
 * [Document Access with Edge Server](document-access.md)
 * [Monitor Changes with Edge Server](changes-feed.md)
 * [Manage Replication with Edge Server](replication.md)
-* [public-api-reference:index.adoc](#public-api-reference:index.adoc)
+* [Edge Server Public REST API](../public-api-reference/index.md)

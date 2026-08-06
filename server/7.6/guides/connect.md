@@ -2,7 +2,7 @@
 title: Connect to Couchbase Server
 description: How to connect to a Couchbase Cluster.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/connect.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:7.6@server:guides:connect.adoc[]
 ---
 
@@ -157,10 +157,7 @@ Call the `connect()` function with a connection URL, and a `ConnectOptions` obje
 The example below connects to a single-node cluster environment with basic auth credentials.
 
 ```nodejs
-var cluster = await couchbase.connect('couchbase://localhost', {
-  username: 'Administrator',
-  password: 'password',
-})
+Unresolved include directive in modules/guides/pages/connect.adoc - include::nodejs-sdk:howtos:example$auth.js[]
 ```
 
 > [!NOTE]
@@ -178,17 +175,7 @@ For more information, see [Cluster](https://docs.couchbase.com/sdk-api/couchbase
 The example below connects to a single-node cluster environment with basic auth credentials.
 
 ```python
-cluster = Cluster.connect("couchbase://your-ip", ClusterOptions(PasswordAuthenticator("Administrator", "password")))
-bucket = cluster.bucket("travel-sample")
-collection = bucket.default_collection()
-
-# You can access multiple buckets using the same Cluster object.
-another_bucket = cluster.bucket("beer-sample")
-
-# You can access collections other than the default
-# if your version of Couchbase Server supports this feature.
-customer_a = bucket.scope("customer-a")
-widgets = customer_a.collection("widgets")
+Unresolved include directive in modules/guides/pages/connect.adoc - include::python-sdk:howtos:example$managing_connections.py[]
 ```
 
 > [!NOTE]
@@ -291,11 +278,7 @@ The example below connects to a single-node cluster over a secure connection wit
 It's assumed that a valid client certificate has been set up.
 
 ```nodejs
-cluster = await couchbase.connect('couchbases://localhost', {
-  trustStorePath: '/path/to/ca/certificates.pem',
-  username: 'Administrator',
-  password: 'password',
-})
+Unresolved include directive in modules/guides/pages/connect.adoc - include::nodejs-sdk:howtos:example$auth.js[]
 ```
 
 Click the  View button to see this code in context.
@@ -313,7 +296,7 @@ The example below connects to a single-node cluster over a secure connection wit
 It's assumed that a valid client certificate has been set up.
 
 ```python
-cluster = Cluster("couchbases://your-ip",ClusterOptions(PasswordAuthenticator("Administrator","password",cert_path="/path/to/cluster.crt")))
+Unresolved include directive in modules/guides/pages/connect.adoc - include::python-sdk:howtos:example$managing_connections.py[]
 ```
 
 Click the  View button to see this code in context.

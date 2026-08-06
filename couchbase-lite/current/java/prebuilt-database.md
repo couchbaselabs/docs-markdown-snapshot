@@ -1,8 +1,8 @@
 ---
 title: Pre-built Database
 description: How to handle pre-built databases in your Couchbase Lite on Java app
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/prebuilt-database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/java/pages/prebuilt-database.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:java:prebuilt-database.adoc[]
 ---
 
@@ -118,13 +118,13 @@ Alternatively you can pull the database from a CDN on launch instead of bundling
 > [!IMPORTANT]
 > This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.
 
-If you're using an encrypted database, [Database.copy()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/Database.html#copy%28java.io.File,java.lang.String,com.couchbase.lite.DatabaseConfiguration%29)does not change the encryption key. The encryption key specified in the config when opening the database is the encryption key used for both the original database and copied database.
+If you're using an encrypted database, [Database.copy()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-java/com/couchbase/lite/Database.html#copy%28java.io.File,java.lang.String,com.couchbase.lite.DatabaseConfiguration%29)does not change the encryption key. The encryption key specified in the config when opening the database is the encryption key used for both the original database and copied database.
 
 If you copied an un-encrypted database and want to apply encryption to the copy, or if you want to change (or remove) the encryption key applied to the copy:
 
-1. Provide the original encryption-key (if any) in the database copy's configuration using [DatabaseConfiguration.setEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/DatabaseConfiguration.html#setEncryptionKey%28com.couchbase.lite.EncryptionKey%29)
+1. Provide the original encryption-key (if any) in the database copy's configuration using [DatabaseConfiguration.setEncryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-java/com/couchbase/lite/DatabaseConfiguration.html#setEncryptionKey%28com.couchbase.lite.EncryptionKey%29)
 2. Open the database copy
-3. Use [Database.changeEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/Database.html#changeEncryptionKey%28com.couchbase.lite.EncryptionKey%29) on the database copy to set the required encryption key.  
+3. Use [Database.changeEncryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-java/com/couchbase/lite/Database.html#changeEncryptionKey%28com.couchbase.lite.EncryptionKey%29) on the database copy to set the required encryption key.  
 NOTE: To remove encryption on the copy, provide a null encryption-key
 
 ## [](#deploy-db)Using Pre-built Database on App Launch
@@ -133,7 +133,7 @@ During the application start-up logic, check if database exists in the required 
 
 1. Locate the pre-packaged database (for example, in the assets or other resource folder)
 2. Copy the pre-packaged database to the required location  
-Use the API's [Database.copy()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/Database.html#copy%28java.io.File,java.lang.String,com.couchbase.lite.DatabaseConfiguration%29) method — see: [Example 1](#lbl-code); This ensures that a UUID is generated for each copy.  
+Use the API's [Database.copy()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-java/com/couchbase/lite/Database.html#copy%28java.io.File,java.lang.String,com.couchbase.lite.DatabaseConfiguration%29) method — see: [Example 1](#lbl-code); This ensures that a UUID is generated for each copy.  
 > [!IMPORTANT]  
 > **Do not copy the database using any other method**  
 > **Otherwise:** Each copy of the app invalidates the other apps' [checkpoints](refer-glossary.md#checkpoint) because a new UUID was not generated.

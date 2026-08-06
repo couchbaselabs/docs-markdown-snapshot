@@ -1,0 +1,65 @@
+---
+title: Cluster Initialization and Provisioning
+description: The Couchbase REST API can be used to initialize an individual
+  node; and to provision it, so that it becomes a single-node cluster, to which
+  further nodes can then be added.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-cluster-init-and-provisioning.adoc
+pubDate: 2026-08-06T05:31:06.200Z
+link: xref:2.1@enterprise-analytics:reference:rest-cluster-init-and-provisioning.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/enterprise-analytics/2.1/reference/rest-cluster-init-and-provisioning.html)
+
+# Cluster Initialization and Provisioning
+
+> The Couchbase REST API can be used to initialize an individual node; and to provision it, so that it becomes a single-node cluster, to which further nodes can then be added. 
+
+## [](#understanding-initialization-and-provisioning)Understanding Initialization and Provisioning
+
+Once a newly installed instance of Enterprise Analytics has been started for the first time, the Couchbase REST API can be used to:
+
+* _Initialize_. This means optionally to specify, for the current node, the following:
+
+  * Custom disk paths for the Data and Analytics services.
+  * A custom location for the Java Runtime Environment to be used by the Analytics Service.
+  * A node-name.
+* _Provision_. This means to establish, for the current node:
+
+  * The default disk paths for the Data and Analytics Services, in cases where custom disk paths have not been previously established through initialization.
+  * The default location for the Java Runtime Environment to be used by the Analytics Service; in cases where no custom location has been previously established through initialization.
+  * A node-name, in cases where no such name has been previously established through initialization.
+  * A name for the entire cluster.
+  * Services that will reside on the node, and their individual memory allocations.
+  * A username and password for the administrator creating the cluster — the administrator will have Full Admin credentials.  
+  Once the username and password are established, the node is considered a fully provisioned single-node cluster, and the cluster's instance of Couchbase Web Console can be accessed by means of user login.  
+  Following the establishment of username and password, the single-node cluster can no longer be initialized; nor can services be assigned to the node. If no services have been assigned prior to the username and password being assigned, the default list of services is assigned to the node, using the default memory allocations. See [Memory](#learn:buckets-memory-and-storage/memory.adoc).  
+  Following the establishment of username and password, the node-name can continue to be assigned and reassigned, provided that the node remains a single-node cluster. Memory allocations and cluster name can also continue to be modified, including after the cluster has become a multi-node cluster.  
+  If username and password are established _before_ the other provisioning APIs have been used, any such calls made subsequently must be authenticated: however, prior to username and password being established, the other provisioning APIs can be used without authentication. For information about roles, see [Roles](#learn:security/roles.adoc).
+
+Note the following:
+
+* The custom access-paths established for the node during _initializing_ will be retained even if the node is subsequently added to a different cluster.
+* Once the one-node cluster has been provisioned, and is thus a single-node cluster, it can be made part of a multi-node cluster: _either_ by adding other individual nodes to it; or by adding it to another, already existing cluster.
+* When a provisioned node is added to another cluster, the node loses all aspects of its provisioning; and must be reprovisioned, as part of the node-addition process.
+* After a cluster has been provisioned, one or more _buckets_ can be added to it, for the retention of data.
+
+For detailed conceptual information about initialization, provisioning and all other principal aspects of node-management, see [Nodes](#learn:clusters-and-availability/nodes.adoc). For information about specifying a Java Runtime Environment, see the description of [Additional Requirements](#install:install-environments.adoc) provided for the install process. For information about creating and maintaining buckets, subsequent to cluster-creation, see [Buckets API](#reference:rest-bucket-intro.adoc).
+
+## [](#options-for-initializing-and-provisioning)Options for Initializing and Provisioning
+
+Each of the principal tasks required to initialize and provision a single-node cluster is granted its on HTTP method and URI. These are listed in the table immediately below. Also listed is the `POST` method with the `/clusterInit` URI: this API effectively combines all of the others, in order to provide the option of making a single call, whereby the cluster is instantly initialized and provisioned.
+
+## [](#apis-in-this-section)APIs in this Section
+
+The REST APIs described in this section are listed below.
+
+| HTTP Method | URI                             | Documented at                                              |
+| ----------- | ------------------------------- | ---------------------------------------------------------- |
+| POST        | /clusterInit                    | [Initialize a Cluster](rest-initialize-cluster.md)         |
+| POST        | /nodes/self/controller/settings | [Initializing a Node](rest-initialize-node.md)             |
+| POST        | /settings/web                   | [Establishing Credentials](rest-establish-credentials.md)  |
+| POST        | /node/controller/rename         | [Naming a Node](rest-name-node.md)                         |
+| POST        | /pools/default                  | [Configuring Memory](rest-configure-memory.md)             |
+| POST        | /node/controller/setupServices  | [Assigning Services](#reference:rest-set-up-services.adoc) |
+| POST        | /pools/default                  | [Naming a Cluster](rest-name-cluster.md)                   |

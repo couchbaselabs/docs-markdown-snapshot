@@ -1,22 +1,22 @@
 ---
-title: Couchbase PHP SDK 4.4
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+title: Couchbase PHP SDK 4.5
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/hello-world/pages/overview.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:php-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/php-sdk/current/hello-world/overview.html)
 
-# Couchbase PHP SDK 4.4
+# Couchbase PHP SDK 4.5
 
-# Couchbase PHP SDK 4.4
+# Couchbase PHP SDK 4.5
 
 ```console
 $ pecl install couchbase
 ```
 
-The Couchbase PHP SDK allows you to connect to a Couchbase cluster from PHP. The Couchbase PHP SDK is a native PHP extension and uses the Couchbase++ high-performance C++ library to handle communicating to the cluster over Couchbase binary protocols.
+The Couchbase PHP SDK allows you to connect to a Couchbase cluster from PHP. The Couchbase PHP SDK is a native PHP extension and uses a high-performance C++ library to handle communicating to the cluster over Couchbase binary protocols.
 
   
 ##  Using Your Database

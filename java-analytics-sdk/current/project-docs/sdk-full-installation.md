@@ -1,8 +1,8 @@
 ---
 title: Maven Coordinates
 description: How to get the Java Analytics SDK from Maven Central.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.1/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-analytics-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -29,7 +29,7 @@ For [Maven](https://maven.apache.org), add this to the `dependencies` section of
 <dependency>
     <groupId>com.couchbase.client</groupId>
     <artifactId>couchbase-analytics-java-client</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -38,13 +38,13 @@ Refer to the [Maven Documentation](https://maven.apache.org/guides/introduction/
 For a [Gradle](https://gradle.org/) script written in Kotlin, add this line to the `dependencies` section of your project's `build.gradle.kts` file:
 
 ```kotlin
-implementation("com.couchbase.client:couchbase-analytics-java-client:1.0.0")
+implementation("com.couchbase.client:couchbase-analytics-java-client:1.1.0")
 ```
 
 For a [Gradle](https://gradle.org/) script written in Groovy, add this line to the `dependencies` section of your project's `build.gradle` file:
 
 ```groovy
-implementation 'com.couchbase.client:couchbase-analytics-java-client:1.0.0'
+implementation 'com.couchbase.client:couchbase-analytics-java-client:1.1.0'
 ```
 
 ## [](#using-a-snapshot-version)Using a Snapshot Version

@@ -2,8 +2,8 @@
 title: Async APIs
 description: The Couchbase Python SDK offers both asyncio and Twisted APIs for
   async operation.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/concurrent-async-apis.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:python-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -29,7 +29,7 @@ from couchbase.auth import PasswordAuthenticator
 
 
 async def get_couchbase():
-    cluster = Cluster(
+    cluster = await AsyncCluster.connect(
         "couchbase://your-ip",
         ClusterOptions(PasswordAuthenticator("Administrator", "password")))
     bucket = cluster.bucket("travel-sample")

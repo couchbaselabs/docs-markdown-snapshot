@@ -1,8 +1,8 @@
 ---
 title: Get Involved
 description: Get involved with Couchbase's Open Source SDKs.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/project-docs/pages/get-involved.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/project-docs/pages/get-involved.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:scala-sdk:project-docs:get-involved.adoc[]
 ---
 

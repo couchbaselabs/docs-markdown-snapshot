@@ -1,8 +1,8 @@
 ---
 title: Install the SDK
 description: How to install the .NET Analytics SDK from NuGet.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.1/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:dotnet-analytics-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -22,13 +22,13 @@ Install using your preferred method:
 ### [](#net-cli).NET CLI
 
 ```shell
-dotnet add package Couchbase.AnalyticsClient --version 1.0.1
+dotnet add package Couchbase.AnalyticsClient --version 1.1.0
 ```
 
 ### [](#add-to-csproj)Add to .csproj
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="Couchbase.AnalyticsClient" Version="1.0.1" />
+  <PackageReference Include="Couchbase.AnalyticsClient" Version="1.1.0" />
 </ItemGroup>
 ```

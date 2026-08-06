@@ -1,0 +1,313 @@
+---
+title: Indexes
+description: You use indexes to speed up queries on remote and standalone collections.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/7_using_index.adoc
+pubDate: 2026-08-06T05:31:06.200Z
+link: xref:2.1@enterprise-analytics:sqlpp:7_using_index.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/enterprise-analytics/2.1/sqlpp/7_using_index.html)
+
+# Indexes
+
+> You use indexes to speed up queries on remote and standalone collections. 
+
+Indexes can speed up queries if you apply them properly. The sections in this topic describe scenarios in which you can use indexes to speed up query processing.
+
+> [!NOTE]
+> You cannot index external collections. To make your queries on external data stores more efficient, when you create the collection you can choose to specify a location path that is as specific as possible. See [Design a Location Path](../sources/dynamic-prefixes.md).
+
+## [](#Indexes)Indexes
+
+An index is a materialized access path for data in a collection. You can create more than one index on the same collection. Each index name must be unique within a collection. Creating an index fails if there is an existing index with the same name in the target collection and `IF NOT EXISTS` is not specified.
+
+For each JSON document ingested into a collection, the system computes the indexed key for each index.
+
+In the case of a secondary index, the index key is computed by extracting the target field values from the document based on the specified field path.
+
+After the system builds the indexed key, it's inserted into the secondary index. If the system cannot build the indexed key, there is no entry made in the index for this object.
+
+Secondary indexes are automatically maintained by the system during data ingestion - that's when a corresponding remote link is connected and populating its collections. In addition, they're automatically rebalanced when their shadow collections are rebalanced (scaled up or scaled down).
+
+## [](#Standard%5Findexes)Standard Indexes
+
+Standard indexes are heterogeneous, meaning they do not require and in fact, do not allow explicit specification of the field path within a column. Currently, mixing heterogeneous fields with schema-declared fields in index definitions is not supported. This limitation applies specifically to typed collections. For example:
+
+CREATE TYPE userType AS {id: int, age: int};
+CREATE COLLECTION user(userType) PRIMARY KEY id;
+
+// The following index creation is not permitted:
+CREATE INDEX idx_name_age ON user(name, age);
+
+In this example, `age` is part of the declared schema (`userType`), while `name` is a heterogeneous field. Indexes cannot span both types.
+
+### [](#Selection%5Fqueries)Indexing for Selection Queries
+
+The query optimizer chooses to use a secondary index for query execution if both of the following conditions are met:
+
+* The query contains a conjunctive equality or range predicate over one or more fields, or a join predicate: see the [next section](#Join%5Fqueries). The conjunctive predicate has a form:  
+QualifiedName Operator Literal ( AND field Operator Literal )+  
+where `Operator` is `=`, `>`, `>=`, `<`, `<=`, or `BETWEEN`;
+* There is an index with a key, such that the corresponding fields in the predicate form a prefix of that key. For example, suppose that there is an index on collection `foo` with key fields `c_s` and `c_d`.
+
+```SQL++
+ CREATE INDEX idx_s_d ON foo(c_s, c_d);
+```
+
+The following query uses the index because it has an equality predicate `=` on a field `c_s` that's a prefix of the indexed key `c_s, c_d`:
+
+```SQL++
+ SELECT f.c_x as res
+ FROM foo f
+ WHERE f.c_s = 'world';
+```
+
+To prevent an available index from being used for a particular query predicate - for example, because there are many, many matching objects - you can include a `skip-index` hint as shown in the following example.
+
+> [!TIP]
+> The query optimizer automatically makes these decisions for you in most cases.
+
+```SQL++
+ SELECT f.c_x as res
+ FROM foo f
+ WHERE f.c_s /*+ skip-index */ = 'world';
+```
+
+If multiple indexes are eligible access paths, there can be two cases:
+
+* Two or more indexes are sharing the same prefix and the predicate is on that prefix. For example: `indexA` is on (c1, c2), `indexB` is on (c1, c3) and the predicate is on c1 (c1 = 100). In this case, the query optimizer picks one of the indexes.
+* No indexes share the same prefix and the predicate refers to fields from each individual index. For example: `indexA` in on (c1) and `indexB` is on (c2), the predicate is on c1 and c2 (c1 = 100 and c2 = 200). In this case, both indexes will be used to retrieve matched primary keys and then the key sets will be intersected to further filter retrieved primary keys.
+
+Both of the below queries can utilize the index 'idx\_age':
+
+// Index
+CREATE INDEX idx_age ON user(age);
+
+// Query
+SELECT * FROM user WHERE age < "30";
+
+// Result
+{ "id": 5, "age": "10" }
+{ "id": 6, "age": "20" }
+
+// Query
+SELECT * FROM user WHERE age < 30;
+
+// Result
+{ "id": 1, "age": 10 }
+{ "id": 2, "age": 20 }
+
+### [](#Join%5Fqueries)Indexing for Join Queries
+
+SQL++ for Enterprise Analytics supports joins from standard SQL in the following forms:
+
+* Inner join:  
+SELECT * FROM ds_outer, ds_inner WHERE <predicate>;  
+SELECT * FROM ds_outer JOIN ds_inner ON <predicate>;  
+SELECT * FROM ds_outer INNER JOIN ds_inner ON <predicate>;
+* Left outer join:  
+SELECT * FROM ds_outer LEFT JOIN ds_inner ON <predicate>;  
+SELECT * FROM ds_outer LEFT OUTER JOIN ds_inner ON <predicate>;
+* Right outer join:  
+SELECT * FROM ds_outer RIGHT JOIN ds_inner ON <predicate>;  
+SELECT * FROM ds_outer RIGHT OUTER JOIN ds_inner ON <predicate>;
+
+`ds_outer` is the outer collection and `ds_inner` is the inner collection, in the order in which they appear in the FROM clause.
+
+The join predicate is an equality or range predicate that refers to fields from both branches of the join, in the form of:
+
+expr_outer OP expr_inner
+
+Where:
+
+* `OP` is `<`, `⇐`, `=`, `>=`, `>`, or `BETWEEN`
+* `expr_inner` is a field from the inner collection
+* `expr_outer` is a field from the outer collection
+
+## [](#Array%5Findexes)Array Indexes
+
+Enterprise Analytics also provides array indexes, which enable you to index values within an array, or fields within an object nested in an array. You can create an array index by providing a sequence of `UNNEST` and `SELECT` keywords to identify the field to index.
+
+Array indexes accelerate a query that involves some array-valued field. This enables fast evaluation of predicates in queries involving arrays or arrays of nested objects. For brevity, all further mentions of array-valued fields are also applicable to multiset-valued fields.
+
+In Enterprise Analytics, array indexes are **not** meant to serve as covering indexes. Instead, array indexes are meant only to accelerate queries involving multi-valued fields.
+
+There are also some differences between array indexes and standard indexes concerning how the query optimizer uses them. See [Array Index Parameter](appendix%5F2%5Fparameters.md#ArrayIndexFlag).
+
+> [!NOTE]
+> Currently, array indexes do not support heterogeneous indexing. This limitation exists because array indexes cannot store `NULL` or `MISSING` values. When creating an array index, you have the option to exclude `NULL` and `MISSING` values. However, if you choose to do so, the index will not optimize queries that rely on the presence of `NULL` fields in the documents.
+
+### [](#QuantificationQueries)Quantification Queries
+
+A common use case for array indexes involves quantifying some or all elements within an array. Quantification queries have two variants: existential and universal.
+
+* **Existential** queries ask if **any** element in some array satisfies a given predicate. Membership queries are a specific type of existential query, asking if any element in some array is equal to a particular value.
+* **Universal** queries ask if **all** elements in some array satisfy a particular predicate. Empty arrays are not stored in an array index, meaning that you must also specify that the array is non-empty to tell Enterprise Analytics that it's possible to use an array index as an access method for the given query.
+
+The examples that follow suppose the existence of a collection named `products`, containing two fields: `productno`, an integer, and `categories`, an array of strings in the Commerce dataset. You can follow the instructions for the [intro:connecting-to-data-sources.adoc#install-the-commerce-dataset-in-standalone-collections](../intro/connecting-to-data-sources.md#install-the-commerce-dataset-in-standalone-collections) to set up a standalone collection for this data.
+
+```json
+[
+  { "productno": 347, "categories": ["Food"]},
+  { "productno": 193, "categories": ["Drink"]},
+  { "productno": 460, "categories": ["Food", "Frozen"]}
+]
+```
+
+You can create an array index on the `categories` field of the `products` collection as follows.
+
+```SQL++
+ CREATE INDEX pCategoriesIdx
+ ON products (UNNEST categories:STRING)
+ EXCLUDE UNKNOWN KEY;
+```
+
+> [!NOTE]
+> `EXCLUDE UNKNOWN KEY` is required for array indexes.
+
+Suppose you want to find all products that have the category `"Food"`. The following membership query uses the `pCategoriesIdx` index.
+
+```SQL++
+ SELECT p
+ FROM products p
+ WHERE "Food" IN p.categories;
+```
+
+You can rewrite this query as an explicit existential quantification query with an equality predicate. This also uses the `pCategoriesIdx` index:
+
+```SQL++
+ SELECT p
+ FROM products p
+ WHERE SOME c IN p.categories SATISFIES c = "Food";
+```
+
+You can create an array index on the `qty` and `price` fields in the `items` array of the `orders` collection as follows.
+
+```SQL++
+ CREATE INDEX oItemsQtyPriceIdx
+ ON orders (UNNEST items SELECT qty:BIGINT, price:DOUBLE)
+ EXCLUDE UNKNOWN KEY;
+```
+
+Now suppose you want to find all orders that only have items with large quantities and low prices. The following universal quantification query uses the `oItemsQtyPriceIdx` index:
+
+```SQL++
+ SELECT o
+ FROM orders o
+ WHERE LEN(o.items) > 0 AND
+       (EVERY i IN o.items SATISFIES i.qty > 100 AND i.price < 5.00);
+```
+
+Take note of the `LEN(o.items) > 0` conjunct. Array indexes cannot be used for queries with potentially empty arrays.
+
+### [](#ExplicitUnnestQueries)Explicit Unnesting Queries
+
+You can also use array indexes to accelerate queries that involve the explicit unnesting of array fields. You can express the same membership / existential example above using an explicit `UNNEST` query. To keep the same cardinality as the query above, that is, to undo the `UNNEST`, the query adds a `DISTINCT` clause. The `pCategoriesIdx` index is still used.
+
+```SQL++
+ SELECT DISTINCT p
+ FROM products p, p.categories c
+ WHERE c = "Food";
+```
+
+As another example, suppose that you want to find all orders that have **some** item with a large quantity. The following query uses the `oItemsQtyPriceIdx` index, using only the `qty` field.
+
+```SQL++
+ SELECT DISTINCT o
+ FROM orders o, o.items i
+ WHERE i.qty > 100 AND i.price > 0;
+```
+
+In this case, even though you do not want to filter the results by price, you must specify a dummy predicate on the `price` field so that the query optimizer can select the required index.
+
+### [](#JoinQueries)Join Queries
+
+Finally, array indexes can also be used for index nested-loop joins if the field being joined is located within an array. You can create an array index on the `itemno` field in the `items` array of the `orders` collection as follows.
+
+```SQL++
+ CREATE INDEX oProductIDIdx
+ ON orders (UNNEST items SELECT itemno:BIGINT)
+ EXCLUDE UNKNOWN KEY;
+```
+
+Now suppose you want to find all products located in a specific order. You can accomplish this with the join query that follows. If an index is possible for the join, the optimizer uses it if it's the most cost-effective option. However, if you specify a join hint like `indexnl` as in the example that follows, Enterprise Analytics uses the index even if it's more expensive than a hash join.
+
+```SQL++
+ SELECT DISTINCT p
+ FROM products p JOIN orders o
+ ON SOME i IN o.items SATISFIES i.itemno /*+ indexnl */ = p.productno
+     WHERE o.custid = "C41";
+```
+
+### [](#ComplexIndexingExamples)Arrays in Arrays
+
+Array indexes are not just limited to arrays of depth 1\. You can generalize array indexes to arbitrary depth, as long as an object encapsulates each array. For example, suppose the `orders` collection includes the `qty` field in a double-nested `items` array.
+
+```json
+{
+  "orderno": 2001,
+  "items0": [
+    {
+      "items1": [
+        {
+          "qty": 100,
+          // ...
+        }
+      ]
+    }
+  ]
+}
+```
+
+The following statement indexes the `qty` field in a double-nested `items` array.
+
+```SQL++
+ CREATE INDEX oItemItemQtyIdx
+ ON orders (UNNEST items0 UNNEST items1 SELECT qty:INT)
+ EXCLUDE UNKNOWN KEY;
+```
+
+Similarly, suppose the `orders` collection includes the `qty` field in a triple-nested `items` array.
+
+```json
+{
+  "orderno": 3001,
+  "items0": [
+    {
+      "items1": [
+        {
+          "items2": [
+            {
+              "qty": 100,
+              // ...
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+The following statement indexes the `qty` field in a triple-nested `items` array.
+
+```SQL++
+ CREATE INDEX oItemItemItemQtyIdx
+ ON orders (UNNEST items0 UNNEST items1 UNNEST items2 SELECT qty:BIGINT)
+ EXCLUDE UNKNOWN KEY;
+```
+
+The queries that follow use the indexes above. The first query uses the `oItemItemQtyIdx` index through nested existential quantification. The second query uses the `oItemItemItemQtyIdx` index with three unnesting clauses.
+
+```SQL++
+SELECT o
+FROM orders o
+WHERE SOME o0 IN o.items0 SATISFIES (
+    SOME o1 IN o0.items1 SATISFIES o1.qty = 100
+);
+
+SELECT DISTINCT o
+FROM orders o, o.items0 o0, o0.items1 o1, o1.items2 o2
+WHERE o2.qty = 100;
+```

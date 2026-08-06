@@ -3,8 +3,8 @@ title: Legacy Pre-3.0 Configuration
 description: Configuring <em>Sync Gateway</em> Pre-3.0 to provide secure
   cloud-to-edge synchronization of enterprise data using the standard, static,
   configuration file.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-properties-legacy.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-properties-legacy.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:sync-gateway:configuration:configuration-properties-legacy.adoc[]
 ---
 
@@ -31,7 +31,7 @@ This page describes Sync Gateway's legacy Pre-3.0 configuration method. It uses 
 > [!IMPORTANT]
 > Persistent Configuration is enabled by default from 3.0.
 > 
-> To continue using legacy Pre-3.0 configuration you should start sync gateway with [disable\_persistent\_config](#disable%5Fpersistent%5Fconfig) set `true` either in the configuration file or in [Command Line Options](../deploy/command-line-options.md).
+> To continue using legacy Pre-3.0 configuration you should start Sync Gateway with [disable\_persistent\_config](#disable%5Fpersistent%5Fconfig) set `true` either in the configuration file or in [Command Line Options](../deploy/command-line-options.md).
 
 You can change many configuration settings using the [Admin REST API](../rest-api/rest-api-admin.md) **but Sync Gateway does not persist these beyond a restart**. To make persistent changes you must edit the central Configuration Properties file — or switch to the 3.x persistent configuration — see: [Configuration Overview](configuration-overview.md)
 
@@ -40,7 +40,7 @@ You can change many configuration settings using the [Admin REST API](../rest-ap
 The Configuration Properties file defines sync gateway's runtime behavior. Its contents include, for example:
 
 * Details of the connected Couchbase databases
-* How sync gateway conducts replications
+* How Sync Gateway conducts replications
 * What security to use
 * What logging options to apply, and
 * Any customization of import filtering and synchronization.

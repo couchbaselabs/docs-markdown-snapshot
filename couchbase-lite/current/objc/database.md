@@ -1,8 +1,8 @@
 ---
 title: Databases
 description: Working with Couchbase Lite Databases
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/database.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/objc/pages/database.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite:objc:database.adoc[]
 ---
 
@@ -49,12 +49,12 @@ One reason for doing this is to store local configuration data (such as the pref
 
 ## [](#open-db)Create or Open Database
 
-You can create a new database and-or open an existing database, using the [CBLDatabase](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html) class. Just pass in a database name and optionally a [CBLDatabaseConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html) — see [Example 1](#ex-dbopen).
+You can create a new database and-or open an existing database, using the [CBLDatabase](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLDatabase.html) class. Just pass in a database name and optionally a [CBLDatabaseConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html) — see [Example 1](#ex-dbopen).
 
 Things to watch for include:
 
 * If the named database does not exist in the specified, or default, location then a new one is created
-* The database is created in a default location unless you specify a directory for it — see: [CBLDatabaseConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html) and [CBLDatabaseConfiguration.directory()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html#/c:objc%28cs%29CBLDatabaseConfiguration%28py%29directory)  
+* The database is created in a default location unless you specify a directory for it — see: [CBLDatabaseConfiguration](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html) and [CBLDatabaseConfiguration.directory()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html#/c:objc%28cs%29CBLDatabaseConfiguration%28py%29directory)  
 Typically, the default location for Objective-C is the application sandbox .  
 See also [Finding a Database File](#lbl-find-db-loc).
 
@@ -73,7 +73,7 @@ self.database = database;
 
 You are advised to incorporate the closing of all open databases into your application workflow.
 
-To close a database, use [CBLDatabase.Close()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29close:) — see: [Example 2](#ex-dbclose). This also closes \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]active replications, listeners and-or live queries connected to the database.
+To close a database, use [CBLDatabase.Close()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29close:) — see: [Example 2](#ex-dbclose). This also closes \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]active replications, listeners and-or live queries connected to the database.
 
 > [!NOTE]
 > Closing a database soon after starting a replication involving it can cause an exception as the asynchronous `replicator (start)` may not yet be `connected`.
@@ -115,7 +115,7 @@ _Couchbase Lite on Objective-C_ includes the ability to encrypt Couchbase Lite d
 
 ### [](#enabling)Enabling
 
-To enable encryption, use [CBLDatabaseConfiguration.encryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html#/c:objc%28cs%29CBLDatabaseConfiguration%28py%29encryptionKey) to set the encryption key of your choice. Provide this encryption key every time the database is opened — see [Example 4](#ex-sdb-encrypt).
+To enable encryption, use [CBLDatabaseConfiguration.encryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html#/c:objc%28cs%29CBLDatabaseConfiguration%28py%29encryptionKey) to set the encryption key of your choice. Provide this encryption key every time the database is opened — see [Example 4](#ex-sdb-encrypt).
 
 Example 4\. Configure Database Encryption
 
@@ -139,11 +139,11 @@ An encrypted database can only be opened with the same platform that was used to
 
 ### [](#changing)Changing
 
-To change an existing encryption key, open the database using its existing encryption-key and use [CBLDatabase.changeEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29changeEncryptionKey:error:)to set the required new encryption-key value.
+To change an existing encryption key, open the database using its existing encryption-key and use [CBLDatabase.changeEncryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29changeEncryptionKey:error:)to set the required new encryption-key value.
 
 ### [](#removing)Removing
 
-To remove encryption, open the database using its existing encryption-key and use [CBLDatabase.changeEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29changeEncryptionKey:error:)with a null value as the encryption key.
+To remove encryption, open the database using its existing encryption-key and use [CBLDatabase.changeEncryptionKey()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29changeEncryptionKey:error:)with a null value as the encryption key.
 
 ### [](#upgrading)Upgrading
 
@@ -157,7 +157,7 @@ When the application is running on the iOS simulator, you can locate the applica
 
 From time to time it may be necessary to perform certain maintenance activities on your database, for example to compact the database file, removing unused documents and blobs no longer referenced by any documents.
 
-Couchbase Lite's API provides the [CBLDatabase.performMaintenance()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29performMaintenance:error:) method. The available maintenance operations, including `compact` are as shown in the enum [CBLMaintenanceType](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Enums/CBLMaintenanceType.html) to accomplish this.
+Couchbase Lite's API provides the [CBLDatabase.performMaintenance()](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29performMaintenance:error:) method. The available maintenance operations, including `compact` are as shown in the enum [CBLMaintenanceType](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-objc/Enums/CBLMaintenanceType.html) to accomplish this.
 
 This is a resource intensive operation and is not performed automatically. It should be run on-demand using the API. If in doubt, consult Couchbase support.
 

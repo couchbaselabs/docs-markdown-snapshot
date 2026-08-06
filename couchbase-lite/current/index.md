@@ -1,7 +1,7 @@
 ---
 title: Introduction
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/ROOT/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/ROOT/pages/index.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:couchbase-lite::index.adoc[]
 ---
 
@@ -36,15 +36,15 @@ You can use Couchbase Lite as a standalone embedded database within your mobile 
 * Revision control and conflict resolution.
 * Lightweight footprint for constrained environments.
 
-| Platform                   | Language and Resources                                          |
-| -------------------------- | --------------------------------------------------------------- |
-| Android                    | [Java](java/quickstart.md), [Kotlin](android/kotlin.md)         |
-| iOS                        | [Swift](swift/quickstart.md), [Objective-C](objc/quickstart.md) |
-| .NET                       | [.NET](csharp/quickstart.md)                                    |
-| C                          | [C](c/quickstart.md)                                            |
-| React Native _(Community)_ | [Community resources](https://cbl-reactnative.dev/)             |
-| Ionic _(Community)_        | [Community resources ](https://cbl-ionic.dev/)                  |
-| Flutter _(Community)_      | [Community resources](https://cbl-dart.dev/)                    |
+| Platform              | Language and Resources                                          |
+| --------------------- | --------------------------------------------------------------- |
+| Android               | [Java](java/quickstart.md), [Kotlin](android/kotlin.md)         |
+| iOS                   | [Swift](swift/quickstart.md), [Objective-C](objc/quickstart.md) |
+| .NET                  | [.NET](csharp/quickstart.md)                                    |
+| C and C++             | [C and C++](c/quickstart.md)                                    |
+| React Native          | [React Native](https://cbl-reactnative.dev/)                    |
+| Ionic _(Community)_   | [Community resources ](https://cbl-ionic.dev/)                  |
+| Flutter _(Community)_ | [Community resources](https://cbl-dart.dev/)                    |
 
 > [!NOTE]
 > The community maintains the React Native, Ionic and Flutter integrations. Couchbase does not officially support them. See [Support model](https://docs.couchbase.com/cloud/third-party/integrations.html#support-model) for more information on community support.

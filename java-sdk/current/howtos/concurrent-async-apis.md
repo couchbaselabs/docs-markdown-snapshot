@@ -2,8 +2,8 @@
 title: Async and Reactive APIs
 description: The Java SDK offers efficient, non-blocking alternatives to the
   regular blocking API.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-28T05:05:12.980Z
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/howtos/pages/concurrent-async-apis.adoc
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:java-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 

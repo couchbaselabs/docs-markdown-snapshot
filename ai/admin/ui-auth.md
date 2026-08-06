@@ -1,9 +1,9 @@
 ---
 title: Manage Roles for UI Access
-description: Your level of access to the {ai-long} using the Capella UI is
-  determined by your organization and project roles.
+description: Your level of access to the Couchbase AI Data Plane using the
+  Capella UI is determined by your organization and project roles.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/ui-auth.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-06T05:31:06.200Z
 link: xref:ai:admin:ui-auth.adoc[]
 ---
 
@@ -12,9 +12,9 @@ link: xref:ai:admin:ui-auth.adoc[]
 
 # Manage Roles for UI Access
 
-> Your level of access to the {ai-long} using the Capella UI is determined by your organization and project roles. 
+> Your level of access to the Couchbase AI Data Plane using the Capella UI is determined by your organization and project roles. 
 
-To interact with the {ai} using the Capella UI, you need an organization role and 1 or more project roles.
+To interact with the AI Data Plane using the Capella UI, you need an organization role and 1 or more project roles.
 
 ## [](#prerequisites)Prerequisites
 
@@ -32,15 +32,15 @@ To assign organization and project roles, complete the following steps:
 
   1. Assign the user 1 or more [project roles](../../cloud/projects/project-roles.md).
 
-## [](#organization-and-project-role-permissions-for-the-ai)Organization and Project Role Permissions for the {ai}
+## [](#organization-and-project-role-permissions-for-the-ai-data-plane)Organization and Project Role Permissions for the AI Data Plane
 
-The permissions for the {ai} are driven by both your organization and project roles. Some services, such as the Model Service, only depend on your organization role. Most services, such as Workflows and AI Functions, depend on both your organization and project roles because they require interaction with a Capella operational cluster.
+The permissions for the AI Data Plane are driven by both your organization and project roles. Some services, such as the Model Service, only depend on your organization role. Most services, such as Workflows and AI Functions, depend on both your organization and project roles because they require interaction with a Capella operational cluster.
 
 For more information about project roles and how they apply to operational clusters, see [Project Roles](../../cloud/projects/project-roles.md).
 
 ### [](#platform-permissions)Platform Permissions
 
-Your organization role determines how you configure your {ai} platform-level features. The following table describes the organization roles as they apply to platform-level features:
+Your organization role determines how you configure your AI Data Plane platform-level features. The following table describes the organization roles as they apply to platform-level features:
 
 __Table 1\. Organization roles and platform features__
 | Organization Role   | Add and Manage Integrations | View Integrations | Add Private Endpoints for Models | View Private Endpoints for Models |
@@ -143,5 +143,5 @@ __Table 8\. Project roles and Agent Catalog__
 
 ## [](#next-steps)Next Steps
 
-* To access and manage the {ai} using APIs, see [Get Started with the {ai-long} APIs](../api-guide/api-start.md).
+* To access and manage the AI Data Plane using APIs, see [Get Started with the Couchbase AI Data Plane APIs](../api-guide/api-start.md).
 * To set up single sign-on (SSO) for your organization, see [Add SSO Authentication](../../cloud/organizations/ui-auth/add-sso-auth.md).
