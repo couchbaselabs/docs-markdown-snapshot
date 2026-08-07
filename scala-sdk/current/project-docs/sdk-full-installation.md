@@ -2,7 +2,7 @@
 title: Couchbase Scala SDK Installation
 description: Installation instructions for the Couchbase Scala Client.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-08-06T05:31:06.200Z
+pubDate: 2026-08-07T05:05:42.965Z
 link: xref:scala-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -17,7 +17,7 @@ This page gives full installation instructions for the Scala SDK. In most cases,
 
 ## [](#prerequisites)Prerequisites
 
-The Scala SDK is tested against LTS versions of Oracle JDK and OpenJDK — see our [compatibility docs](compatibility.md#jdk-compat). The underlying OS normally makes no difference, but library incompatibilities in Alpine Linux makes a [workaround](compatibility.md#alpine-linux-compatibility) necessary for this OS.
+The Scala SDK is tested against LTS versions of OpenJDK — see our [compatibility docs](compatibility.md#jdk-compat). The underlying OS normally makes no difference, but library incompatibilities in Alpine Linux makes a [workaround](compatibility.md#alpine-linux-compatibility) necessary for this OS.
 
 The Couchbase Scala SDK 3.9 Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
 

@@ -1,8 +1,13 @@
 ---
 title: Capella MCP Server
-description: ""
+description: Couchbase MCP Server is a self-hosted MCP Server that allows AI
+  agents to connect to and interact with data in Couchbase clusters, whether
+  hosted on Capella or self-managed. It provides tools across categories
+  including Cluster Health, Data Schema, Key-Value, Query, and Performance —
+  with safety controls via read-only mode and fine-grained tool disabling. It
+  supports both STDIO and Streamable HTTP transports.
 editUrl: https://github.com/couchbaselabs/docs-mcp-server/edit/main/modules/ROOT/pages/intro.adoc
-pubDate: 2026-08-06T05:31:06.200Z
+pubDate: 2026-08-07T05:05:42.965Z
 link: xref:mcp-server::intro.adoc[]
 ---
 

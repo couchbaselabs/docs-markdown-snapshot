@@ -3,7 +3,7 @@ title: Command Line Tools
 description: Use Couchbase command line tools to import and export data, manage
   backups, and interact with your cluster from the command line.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/command-line-tools.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-07T05:05:42.965Z
 link: xref:cloud:reference:command-line-tools.adoc[]
 ---
 
@@ -149,23 +149,23 @@ $ ./cbq --version
 
 Linux
 
-<https://packages.couchbase.com/releases/7.6.11/couchbase-server-dev-tools-7.6.11-linux%5Fx86%5F64.tar.gz>
+<https://packages.couchbase.com/releases/7.6.12/couchbase-server-dev-tools-7.6.12-linux%5Fx86%5F64.tar.gz>
 
 Linux aarch64
 
-<https://packages.couchbase.com/releases/7.6.11/couchbase-server-dev-tools-7.6.11-linux%5Faarch64.tar.gz>
+<https://packages.couchbase.com/releases/7.6.12/couchbase-server-dev-tools-7.6.12-linux%5Faarch64.tar.gz>
 
 macOS x86
 
-<https://packages.couchbase.com/releases/7.6.11/couchbase-server-dev-tools-7.6.11-macos%5Fx86%5F64.zip>
+<https://packages.couchbase.com/releases/7.6.12/couchbase-server-dev-tools-7.6.12-macos%5Fx86%5F64.zip>
 
 macOS arm64
 
-<https://packages.couchbase.com/releases/7.6.11/couchbase-server-dev-tools-7.6.11-macos%5Farm64.zip>
+<https://packages.couchbase.com/releases/7.6.12/couchbase-server-dev-tools-7.6.12-macos%5Farm64.zip>
 
 Windows
 
-<https://packages.couchbase.com/releases/7.6.11/couchbase-server-dev-tools-7.6.11-windows%5Famd64.zip>
+<https://packages.couchbase.com/releases/7.6.12/couchbase-server-dev-tools-7.6.12-windows%5Famd64.zip>
 
 > [!TIP]
 > On Windows, you need a recent Microsoft Visual C++ Redistributable installed. Download the latest Visual C++ Redistributable from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
@@ -175,17 +175,17 @@ Unzip or untar the packages, and the binaries are ready to run. The extracted pa
 For example, for Linux x86\_64:
 
 ```console
-$ wget https://packages.couchbase.com/releases/7.6.11/couchbase-server-dev-tools_7.6.11-linux_x86_64.tar.gz
+$ wget https://packages.couchbase.com/releases/7.6.12/couchbase-server-dev-tools_7.6.12-linux_x86_64.tar.gz
 ```
 
 ```console
-$ tar -xf couchbase-server-dev-tools_7.6.11-linux_x86_64.tar.gz
+$ tar -xf couchbase-server-dev-tools_7.6.12-linux_x86_64.tar.gz
 ```
 
 ```console
 $ ls -1
 bin
-couchbase-server-dev-tools_7.6.11-linux_x86_64.tar.gz
+couchbase-server-dev-tools_7.6.12-linux_x86_64.tar.gz
 lib
 LICENSE.txt
 NOTICES.txt
@@ -208,28 +208,28 @@ cbq
 
 ```console
 $ ./cbimport --version
-cbimport version 7.6.11-8495 (e9a7a0ae)
+cbimport version 7.6.12-8946 (2815d57e)
 ```
 
 ```console
 $ ./cbexport --version
-cbexport version 7.6.11-8495 (e9a7a0ae)
+cbexport version 7.6.12-8946 (2815d57e)
 ```
 
 ```console
 $ ./cbbackupmgr --version
-cbbackupmgr version 7.6.11-8495 (e9a7a0ae)
+cbbackupmgr version 7.6.12-8946 (2815d57e)
 ```
 
 ```console
 $ ./cbdatarecovery --version
-cbdatarecovery version 7.6.11-8495 (e9a7a0ae)
+cbdatarecovery version 7.6.12-8946 (2815d57e)
 ```
 
 ```console
 $ ./cbq --version
- GO VERSION : go1.25.8
- SHELL VERSION : 7.6.11-8495
+ GO VERSION : go1.26.3
+ SHELL VERSION : 7.6.12-8946
 
  Use N1QL queries select version(); or select min_version(); to display server version.
 ```

@@ -1,7 +1,10 @@
 ---
 title: Welcome to Couchbase Capella
+description: Capella is the easiest way to use our Couchbase NoSQL database. Get
+  access to SQL-like querying, Full-Text Search, powerful eventing, and connect
+  to mobile and IoT devices at the edge.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/intro.adoc
-pubDate: 2026-03-25T08:25:24.097Z
+pubDate: 2026-08-07T05:05:42.965Z
 link: xref:cloud:get-started:intro.adoc[]
 ---
 

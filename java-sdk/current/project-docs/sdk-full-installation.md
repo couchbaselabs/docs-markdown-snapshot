@@ -2,7 +2,7 @@
 title: Full Installation
 description: Installation instructions for the Couchbase Java Client.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-08-06T05:31:06.200Z
+pubDate: 2026-08-07T05:05:42.965Z
 link: xref:java-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -19,7 +19,7 @@ The Couchbase Java SDK 3._x_ is a complete rewrite of the 2.x API, providing a s
 
 ## [](#prerequisites)Prerequisites
 
-The Java SDK is tested against LTS versions of Oracle JDK and OpenJDK — see our [compatibility docs](compatibility.md#jdk-compat). The underlying OS normally makes no difference, but library incompatibilities in Alpine Linux makes a [workaround](compatibility.md#alpine-linux-compatibility) necessary for this OS.
+The Java SDK is tested against LTS versions OpenJDK — see our [compatibility docs](compatibility.md#jdk-compat). The underlying OS normally makes no difference, but library incompatibilities in Alpine Linux makes a [workaround](compatibility.md#alpine-linux-compatibility) necessary for this OS.
 
 ## [](#installing-the-sdk)Installing the SDK
 

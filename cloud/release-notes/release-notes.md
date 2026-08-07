@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-07-20T13:54:32.914Z
+pubDate: 2026-08-07T05:05:42.965Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -9,6 +9,12 @@ link: xref:cloud:release-notes:release-notes.adoc[]
 [View original HTML](/cloud/release-notes/release-notes.html)
 
 # Couchbase Capella Release Notes
+
+## [](#august-2026-changelog)August 2026 Changelog
+
+* Couchbase Server 7.6.12  
+Creating a new operational cluster with Couchbase Server 7.6 now deploys the Couchbase Server 7.6.12 maintenance release. This version includes bug fixes.  
+For more information about this version of Couchbase Server, see [Couchbase Server 7.6.12](../../server/7.6/release-notes/relnotes.md#release-7612).
 
 ## [](#june-2026-changelog)June 2026 Changelog
 

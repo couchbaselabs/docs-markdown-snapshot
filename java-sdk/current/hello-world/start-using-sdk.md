@@ -3,7 +3,7 @@ title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Java SDK.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-08-06T05:31:06.200Z
+pubDate: 2026-08-07T05:05:42.965Z
 link: xref:java-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -55,7 +55,7 @@ For the example code below to run, you'll need the username and password of the 
 
 ### [](#prerequisites)Prerequisites
 
-* The Java SDK is tested against LTS versions of Oracle JDK and OpenJDK — see the [compatibility docs](../project-docs/compatibility.md#jdk-compat).  
+* The Java SDK is tested against LTS versions of OpenJDK — see the [compatibility docs](../project-docs/compatibility.md#jdk-compat).  
 [OpenJDK 25 with HotSpot JVM](https://adoptium.net/) is recommended.
 
 The code examples also assume:

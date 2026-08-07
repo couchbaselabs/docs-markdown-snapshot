@@ -4,7 +4,7 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-08-06T05:31:06.200Z
+pubDate: 2026-08-07T05:05:42.965Z
 link: xref:kotlin-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -21,19 +21,26 @@ The Kotlin SDK requires Java 8 or later (_Java 25 is recommended_), and Kotlin 2
 
 ### [](#jdk-version-compatibility)JDK Version Compatibility
 
-The Kotlin SDK is tested with Oracle JDK and OpenJDK. Other JDK implementations might work but are not tested and are unsupported. We recommend running the latest LTS version (i.e. at the time of writing JDK 25) with the highest patch version available.
+We test the Kotlin SDK with [Eclipse Temurin](https://adoptium.net/) versions 8, 17, 21, and 25.
 
-The following JDK releases are supported:
+The following OpenJDK releases are supported:
 
 * [OpenJDK 25 with HotSpot JVM](https://adoptium.net/) (recommended)
 * [OpenJDK 21 with HotSpot JVM](https://adoptium.net/)
 * [OpenJDK 17 with HotSpot JVM](https://adoptium.net/)
-* [Oracle JDK 17](https://www.oracle.com/java/technologies/downloads/#jdk17)
-* [OpenJDK 11](https://adoptium.net/) (Hotspot recommended) or [Oracle JDK 11](https://www.oracle.com/java/technologies/downloads/#jdk11)
-* [OpenJDK 1.8 with HotSpot JVM](https://adoptium.net/)
-* [Oracle JDK 1.8](https://www.oracle.com/java/technologies/downloads/#java8)
+* [OpenJDK 11 with HotSpot JVM](https://adoptium.net/)
+* [OpenJDK 8 with HotSpot JVM](https://adoptium.net/)
 
-Please make sure you run on one of the latest patch releases, since they provide stability improvements and security fixes in general.
+The following Oracle JDK releases are also supported but we do not do any testing with them owing to Oracle license issues:
+
+* [Oracle JDK 17](https://www.oracle.com/java/technologies/downloads/#java17)
+* [Oracle JDK 11](https://www.oracle.com/java/technologies/downloads/#java11)
+* [Oracle JDK 8](https://www.oracle.com/java/technologies/downloads/#java8)
+
+Other JDK implementations might work but are untested and unsupported.
+
+> [!TIP]
+> Make sure to stay up to date with JDK patch releases because they provide stability improvements and security fixes.
 
 ### [](#os-compatibility)OS Compatibility
 

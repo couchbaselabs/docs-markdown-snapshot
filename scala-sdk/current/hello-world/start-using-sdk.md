@@ -3,7 +3,7 @@ title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Scala SDK.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-08-06T05:31:06.200Z
+pubDate: 2026-08-07T05:05:42.965Z
 link: xref:scala-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -58,7 +58,7 @@ For the example code below to run, you'll need the username and password of the 
 
 ### [](#prerequisites)Prerequisites
 
-* The Scala SDK is tested against LTS versions of Oracle JDK and OpenJDK — see the [compatibility docs](../project-docs/compatibility.md#jdk-compat).
+* The Scala SDK is tested against LTS versions of OpenJDK — see the [compatibility docs](../project-docs/compatibility.md#jdk-compat).
 * The Couchbase Scala SDK 3.12 Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
 
 The code examples also assume:
