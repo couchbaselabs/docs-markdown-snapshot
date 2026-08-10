@@ -2,7 +2,7 @@
 title: Configuration Overview
 description: How to configure <em>Sync&#160;Gateway</em> for secure cloud-to-edge data sync
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-overview.adoc
-pubDate: 2026-08-06T05:31:06.200Z
+pubDate: 2026-08-10T04:59:35.970Z
 link: xref:4.0@sync-gateway:configuration:configuration-overview.adoc[]
 ---
 
@@ -85,12 +85,6 @@ __Table 1\. Configuration levels in centralized persistent modular configuration
 | Replication properties | inter-sync gateway replication properties                                                          | Shared across all participating replication nodes                                                                                        | Yes, by Admin REST APIRestart initiated as needed                     |                                                   |
 
 ## [](#lbl-auth)Secure Administration
-
-Secure Administration is **on** by default.
-
-In order to submit Admin or Metrics REST API requests you should create specific Couchbase Server users for that purpose. You will then provide a valid set of Couchbase Server credentials for these RBAC-users in each API request.
-
-Authenticated users will have access to Admin and-or Metrics API functionality, application data and configuration settings.
 
 For more see: [REST API Access](../rest-api/rest-api-access.md)
 
