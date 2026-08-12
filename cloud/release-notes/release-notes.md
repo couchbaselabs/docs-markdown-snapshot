@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-08-07T05:05:42.965Z
+pubDate: 2026-08-12T05:01:45.181Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -12,6 +12,9 @@ link: xref:cloud:release-notes:release-notes.adoc[]
 
 ## [](#august-2026-changelog)August 2026 Changelog
 
+* XDCR Conflict Logging  
+Capella now supports conflict logging for replications between operational clusters running Couchbase Server 8.0 or later. You can enable conflict logging when you [create](../clusters/xdcr/manage-xdcr-replications.md#between-capella-dbs) or [modify](../clusters/xdcr/manage-xdcr-replications.md#modify-replication) a replication.  
+For more information, see [Conflict Logging](../clusters/xdcr/xdcr.md#conflict-logging).
 * Couchbase Server 7.6.12  
 Creating a new operational cluster with Couchbase Server 7.6 now deploys the Couchbase Server 7.6.12 maintenance release. This version includes bug fixes.  
 For more information about this version of Couchbase Server, see [Couchbase Server 7.6.12](../../server/7.6/release-notes/relnotes.md#release-7612).

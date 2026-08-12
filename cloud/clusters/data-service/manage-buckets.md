@@ -3,7 +3,7 @@ title: Manage Buckets
 description: Create, edit, and delete buckets to manage your data storage in a
   Capella operational cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/manage-buckets.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-08-12T05:01:45.181Z
 link: xref:cloud:clusters:data-service/manage-buckets.adoc[]
 ---
 
@@ -239,7 +239,7 @@ To modify a bucket:
 5. Expand **Show Advanced Settings** to show all available settings. You can change the following settings:
 
   * **Memory Quota (MiB)**: Edit the amount of memory allocated to the bucket. A minimum of 100 MiB is required for a Couchstore storage backend bucket, and 1 GiB for a Magma bucket. Couchstore needs a minimum of 100 MiB, while Magma needs 100 MiB with 128 vBuckets or 1 GiB with 1024 vBuckets.
-  * **Cross Cluster Versioning (CCV)**: Choose to enable or disable. Cross Cluster Versioning enables advanced XDCR capabilities, including mobile active replication. When enabled, XDCR stores additional metadata, called the Hybrid Logical Vector (HLV), in the document extended attributes (XATTRs) for each document it processes.  
+  * **Cross Cluster Versioning (CCV)**: Choose to enable or disable. Cross Cluster Versioning enables advanced XDCR capabilities, including mobile active replication. When enabled, XDCR stores additional metadata, called the Hybrid Logical Vector (HLV), in the document extended attributes (XATTRs) for each document it processes. For more information, see [XDCR enableCrossClusterVersioning](../../../server/current/learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md).  
   CCV is automatically enabled when setting up mobile active replication. You cannot turn off CCV after enabling it.  
   CCV enables the following advanced replication scenarios when App Services Endpoints link to buckets:
 

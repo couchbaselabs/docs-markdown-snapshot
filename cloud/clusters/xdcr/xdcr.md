@@ -3,7 +3,7 @@ title: Cross Data Center Replication (XDCR)
 description: Cross Data Center Replication (XDCR) allows data to be replicated
   across clusters in cloud environments or on-premises.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/xdcr.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-08-12T05:01:45.181Z
 link: xref:cloud:clusters:xdcr/xdcr.adoc[]
 ---
 
@@ -127,6 +127,14 @@ The conflict resolution policy configured on the source and destination buckets 
 
 Learn more about XDCR conflict resolution in the [Couchbase Server documentation](../../../server/current/learn/clusters-and-availability/xdcr-conflict-resolution.md).
 
+### [](#conflict-logging)Conflict Logging
+
+When resolving a conflict between a source and target document, Capella applies the prevailing document to the target and overwrites the older or losing version. Conflict logging allows you to preserve both document versions and their associated metadata by storing them in designated conflict log collections.
+
+This provides an audit trail that enables you to review overwritten data. You can enable or disable conflict logging and specify target conflict log collections on a per-replication basis when you [create](#manage-xdcr-replications.adoc#between-capella-dbs) or [modify](#manage-xdcr-replications.adoc#modify-replication) a replication.
+
+For more information about XDCR conflict logging, see [XDCR Conflict Logging](../../../server/current/learn/clusters-and-availability/xdcr-conflict-logging-feature.md).
+
 ## [](#administering-replications)Administering Replications
 
-For information on how to create, observe, pause, and delete replications, refer to [Manage Replications](manage-xdcr-replications.md).
+For information about how to create, observe, pause, and delete replications, see [Manage Replications](manage-xdcr-replications.md).

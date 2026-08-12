@@ -3,7 +3,7 @@ title: Manage Replications
 description: Use the procedures on this page to create and manage XDCR (Cross
   Data Center Replication) with Capella operational clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/manage-xdcr-replications.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-08-12T05:01:45.181Z
 link: xref:cloud:clusters:xdcr/manage-xdcr-replications.adoc[]
 ---
 
@@ -21,6 +21,10 @@ Configure XDCR to replicate data between source and destination buckets. XDCR co
 * To view and manage replications on a cluster, you need the [Project Owner](../../projects/project-roles.md#project-owner-role) role for your source cluster.
 * To delete or create a new replication, you need the [Project Owner](../../projects/project-roles.md#project-owner-role) role for the projects that contain your source cluster and destination cluster.
 * You have created a single node or multi-node cluster that you want to use for replication, either as a source or destination cluster.
+* To enable conflict logging for replications between operational clusters, your source and target clusters must have:
+
+  * Server version 8.0 or later.
+  * The bucket property [Cross Cluster Versioning](../data-service/manage-buckets.md#edit-bucket) enabled on both source and target buckets.
 
 > [!IMPORTANT]
 > Replication on single node clusters is only supported for development or test use cases.
@@ -85,14 +89,35 @@ For more information about filtering binary documents from XDCR, see [Filtering 
 11. To set a network usage limit, under **Set Network Usage Limit**, click **Enable**. Enter a limit in MiB per second for the maximum network usage of this replication.  
 > [!NOTE]  
 > This limit applies to all replications for your source cluster.
-12. (Optional) If you want to replicate all scopes and collections on your source cluster to your target cluster, under **Replicate All Scopes and Collections**, click **Yes**.  
+12. To store conflict logs, under **Specify Collections for storing conflict log & documents**, click **Enable**.  
+> [!NOTE]  
+> To enable conflict logging, both the source and target clusters must run Server version 8.0 or later, and have the bucket property [Cross Cluster Versioning (CCV)](../../../server/current/learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md) enabled on their buckets. For more information about how to enable CCV for your bucket, see [Modify a Bucket](../data-service/manage-buckets.md#edit-bucket).
+
+  1. Under **Default Conflict Logging Destination**, choose a **Bucket**, **Scope**, and **Collection** to serve as the default location for conflict logs.
+  2. Select **Enable Conflict Logging**.  
+  > [!CAUTION]  
+  > If you do not select **Enable Conflict Logging**, Capella saves your default settings, but will not log any conflicts.
+  3. (Optional) To customize conflict logging at the scope or collection level, select **Additional Configuration**.
+
+    1. Select **Customise Conflict Logging at the Scope level** and for every **Scope**, choose 1 of the following configurations:
+
+      * To store conflict logs in the default collection, select **Default Collection**.
+      * To choose a specific bucket, scope, and collection to store conflict logs for this scope, select **Custom Collection**.
+      * To not store any conflict logs for this scope, select **Do not Log**.
+    2. (Optional) Select **Customise Conflict Logging at the Collection level** and for every **Collection**, select 1 of the following configurations:
+
+      * To use the storage destination configured for the parent scope, select **Parent Collection**.
+      * To store conflict logs in the default collection, select **Default Collection**.
+      * To choose a specific bucket, scope, and collection to store conflict logs for this collection, select **Custom Collection**.
+      * To not store any conflict logs for this collection, select **Do not Log**.
+13. (Optional) If you want to replicate all scopes and collections on your source cluster to your target cluster, under **Replicate All Scopes and Collections**, click **Yes**.  
 > [!NOTE]  
 > To replicate your scopes and collections, each scope and collection must already exist with the same name on the source and target buckets. If you want to replicate documents to a different target scope and collection from your source, click **No**.
 
   1. In the **Source Name** list, choose a scope and then a specific collection on your source cluster to replicate.
   2. In the **Target Name** list, choose the scope and specific collection on your target cluster to receive the replicated documents.
   3. (Optional) To add another scope and collection pairing on your source and target clusters, click **Add Source and Target**.
-13. To start the replication, click **Setup Replication**.
+14. To start the replication, click **Setup Replication**.
 
 Capella returns you to the **Replications** page, which lists the new replication with a **Creating** status while setup is in progress. Setting up a replication for the first time between 2 operational clusters may take 2 to 20 minutes, depending on their configuration and cloud service provider (CSP). You may also see both clusters enter a **Deploying** state as Capella sets up networking between them. This does not affect applications connected to the cluster or any ongoing operations. When setup is complete, the status changes to **Active**.
 
@@ -337,7 +362,7 @@ To pause or resume a replication:
 1. On the **Replications** page, click the **Active** replication you want to pause, or the **Paused** replication you want to resume.
 2. Under **Pause Replication**, click **Pause Replication** or **Resume Replication**.
 
-## [](#modify-a-replication)Modify a Replication
+## [](#modify-replication)Modify a Replication
 
 You can modify specific replication settings after creation. You cannot change:
 
@@ -348,11 +373,12 @@ You can modify specific replication settings after creation. You cannot change:
 To modify your replication:
 
 1. On the **Replications** page, click the replication you want to modify.
-2. Modify the following settings:
+2. Return to the steps for [creating a replication](#between-capella-dbs) and modify the following settings:
 
   * Enable or disable filter replication.
   * Select **High**, **Medium**, or **Low** replication priority.
   * Enable or disable the network usage limit.
+  * Enable or disable conflict logging.
   * Choose to replicate all scopes and collections.
 3. Click **Save**.
 
