@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1786511285115,
+  "generated": 1786597883369,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -340,12 +340,6 @@
               "path": "create_vpc_peering_connection.adoc",
               "url": "/analytics/admin/create_vpc_peering_connection.md",
               "title": "Create VPC Peering Connection"
-            },
-            {
-              "module": "admin",
-              "path": "gcp-pvtservice.adoc",
-              "url": "/analytics/admin/gcp-pvtservice.md",
-              "title": "GCP Private Service Connection"
             },
             {
               "module": "admin",
@@ -6611,13 +6605,6 @@
               "path": "create_vpc_peering_connection.adoc",
               "url": "/analytics/admin/create_vpc_peering_connection.md",
               "title": "Create VPC Peering Connection"
-            },
-            {
-              "alias": true,
-              "module": "admin",
-              "path": "gcp-pvtservice.adoc",
-              "url": "/analytics/admin/gcp-pvtservice.md",
-              "title": "GCP Private Service Connection"
             },
             {
               "alias": true,
@@ -91640,6 +91627,12 @@
               "path": "backup-service-metrics.adoc",
               "url": "/server/current/metrics-reference/backup-service-metrics.md",
               "title": "Backup Service Metrics"
+            },
+            {
+              "module": "metrics-reference",
+              "path": "data-service-metrics-2.adoc",
+              "url": "/server/current/metrics-reference/data-service-metrics-2.md",
+              "title": "Data Service Metrics"
             },
             {
               "module": "metrics-reference",

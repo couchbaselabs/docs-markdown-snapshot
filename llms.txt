@@ -2453,6 +2453,7 @@ Get enterprise support by registering for a trial here: https://www.couchbase.co
     - [Rebalance Reference](https://docs.couchbase.com/server/current/rebalance-reference/rebalance-reference.md)
     - [Metrics Reference](https://docs.couchbase.com/server/current/metrics-reference/metrics-reference.md)
         - [Data Service Metrics](https://docs.couchbase.com/server/current/metrics-reference/data-service-metrics.md)
+            - [&#8230;&#8203;continued](https://docs.couchbase.com/server/current/metrics-reference/data-service-metrics-2.md)
             - [Data Service Metrics Cross Reference](https://docs.couchbase.com/server/current/metrics-reference/data-service-metrics-cross-reference.md)
         - [Query Service Metrics](https://docs.couchbase.com/server/current/metrics-reference/query-service-metrics.md)
             - [Query Service Metrics Cross Reference](https://docs.couchbase.com/server/current/metrics-reference/query-service-metrics-cross-reference.md)

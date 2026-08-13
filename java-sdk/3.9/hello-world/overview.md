@@ -1,7 +1,7 @@
 ---
 title: Couchbase Java SDK 3.9
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-08-13T05:04:50.295Z
 link: xref:3.9@java-sdk:hello-world:overview.adoc[]
 ---
 
@@ -49,7 +49,7 @@ Installing the SDK via Maven
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>java-client</artifactId>
-        <version>3.9.2</version>
+        <version>3.9.3</version>
     </dependency>
 </dependencies>
 ```
