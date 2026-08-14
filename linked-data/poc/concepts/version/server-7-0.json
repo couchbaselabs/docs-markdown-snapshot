@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-7.0",
+  "label": "Couchbase Server 7.0",
+  "type": "closed vocabulary term - pre-minted before extraction began, not discovered by recurrence",
+  "promoted": true,
+  "recurrence": 3,
+  "occurrences": [
+    "server/n1ql-language-reference/createindex",
+    "server/n1ql-language-reference/index-partitioning",
+    "server/n1ql-language-reference/createprimaryindex"
+  ]
+}

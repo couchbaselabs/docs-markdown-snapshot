@@ -1,0 +1,73 @@
+{
+  "page_id": "server/learn/services-and-indexes/indexes/index_pushdowns",
+  "source_version": "7.2",
+  "source_path": "server/7.2/learn/services-and-indexes/indexes/index_pushdowns.md",
+  "concepts": [
+    { "candidate_id": "learn:index-pushdowns", "label": "Pushdowns (Index Projection, Predicate, Pagination, Order, Operator pushdowns)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:index-projection", "label": "Index projection (Indexer returns only requested fields)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:skip-key-range-scan", "label": "Composite predicate pushdown on non-continuous leading index-keys (skip-key range scan)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:max-pushdown", "label": "MAX() pushdown to Indexer", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:min-pushdown", "label": "MIN() pushdown to Indexer", "reused_or_minted": "minted" },
+    { "candidate_id": "version:server-5.0", "label": "Couchbase Server 5.0", "reused_or_minted": "minted", "note": "not present in the provided registry table; minted following the version: namespace convention" },
+    { "candidate_id": "version:server-5.5", "label": "Couchbase Server 5.5", "reused_or_minted": "minted", "note": "not present in the provided registry table; minted following the version: namespace convention" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:index-projection",
+      "predicate": "availableSince",
+      "object": "version:server-5.0",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In earlier releases, the Indexer used to return all index-keys available in the index for the matching documents. From Couchbase Server 5.0, the Query engine requests the exact list of fields needed for the query."
+    },
+    {
+      "subject": "n1ql:skip-key-range-scan",
+      "predicate": "availableSince",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-6.5",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server 6.5 and later, it is possible to push down a composite predicate on non-continuous leading index-keys. There must be a predicate on the first key in the index definition, and then on any of the subsequent index-keys."
+    },
+    {
+      "subject": "n1ql:max-pushdown",
+      "predicate": "availableSince",
+      "object": "version:server-5.5",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Prior to Couchbase Server 5.5, MAX() could be pushed to the Indexer only when the index was created with matching index keys in descending order. This limitation has been removed in Couchbase Server 5.5 and later."
+    },
+    {
+      "subject": "n1ql:min-pushdown",
+      "predicate": "availableSince",
+      "object": "version:server-5.5",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Prior to Couchbase Server 5.5, MIN() could be pushed to the Indexer only when the index was created with matching index keys in ascending order. This limitation has been removed in Couchbase Server 5.5 and later."
+    },
+    {
+      "subject": "learn:index-pushdowns",
+      "predicate": "seeAlso",
+      "object": "learn:index-scans",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "Refer to section [Scans](index-scans.md) for more information."
+    },
+    {
+      "subject": "learn:index-pushdowns",
+      "predicate": "seeAlso",
+      "object": "n1ql:covering-indexes",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Covering Indexes](../../../n1ql/n1ql-language-reference/covering-indexes.md)"
+    },
+    {
+      "subject": "learn:index-pushdowns",
+      "predicate": "seeAlso",
+      "object": "n1ql:groupby-aggregate-performance",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Grouping and Aggregate Pushdown](../../../n1ql/n1ql-language-reference/groupby-aggregate-performance.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The 'Using Index Order' section states a current, version-independent limitation ('reverse-scan of the index is not supported') without ever saying whether this was ever different in an earlier release or is planned to change — unlike the MAX()/MIN() pushdown subsections on this same page, which both explicitly frame their limitation as 'Prior to version X ... removed in version X and later.' The asymmetry suggests this particular limitation has no known origin/removal version, or it simply wasn't documented with the same rigor."
+  },
+  "competency_questions_addressed": [
+    "Since which version does a given pushdown optimization or constraint hold true?",
+    "Generate related pages for navigation"
+  ]
+}

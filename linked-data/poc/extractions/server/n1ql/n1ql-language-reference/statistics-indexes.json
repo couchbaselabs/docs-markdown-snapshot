@@ -1,0 +1,47 @@
+{
+  "page_id": "server/n1ql-language-reference/statistics-indexes",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/statistics-indexes.md",
+  "concepts": [
+    { "candidate_id": "n1ql:update-statistics-multiple-indexes", "label": "UPDATE STATISTICS FOR ... INDEX (...) / ANALYZE ... INDEX ALL (multiple-indexes syntax)", "reused_or_minted": "minted", "note": "no prior term in registry; one of several syntactic forms of the UPDATE STATISTICS statement" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:update-statistics-multiple-indexes",
+      "predicate": "availableSince",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-6.5",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server 6.5 and later, the index type for a secondary index must be Global Secondary Index (GSI). The `USING GSI` keywords are optional and may be omitted."
+    },
+    {
+      "subject": "n1ql:update-statistics-multiple-indexes",
+      "predicate": "sharesOptionSetWith",
+      "object": "n1ql:update-statistics-single-index",
+      "reused_or_minted_predicate": "reused, still watchlist",
+      "note": "the WITH-clause option table (sample_size, resolution, update_statistics_timeout, batch_size) on this page is word-for-word identical to the one on statistics-index.md",
+      "evidence": "sample\\_size [Optional] An integer specifying the sample size to use for distribution statistics. A minimum sample size is also calculated... resolution [Optional] A float representing the percentage of documents to store in each distribution bin... update\\_statistics\\_timeout [Optional] A number representing a duration in seconds... batch\\_size [Optional] Only applies when processing multiple index expressions at once..."
+    },
+    {
+      "subject": "n1ql:update-statistics-multiple-indexes",
+      "predicate": "usesEnum",
+      "object": "https://docs.couchbase.com/ld/concepts/index-state",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The subquery must return an array of strings, each string representing the name of an index. The subquery should look for GSI indexes that are in the online state."
+    },
+    {
+      "subject": "n1ql:update-statistics-multiple-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:update-statistics",
+      "note": "structural link from existing Markdown Related Links list",
+      "evidence": "[UPDATE STATISTICS](updatestatistics.md) overview"
+    },
+    {
+      "subject": "n1ql:update-statistics-multiple-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:update-statistics-single-index",
+      "note": "structural link from existing Markdown Related Links list",
+      "evidence": "[Updating Statistics for a Single Index](statistics-index.md)"
+    }
+  ],
+  "competency_questions_addressed": ["Generate related pages for navigation"]
+}

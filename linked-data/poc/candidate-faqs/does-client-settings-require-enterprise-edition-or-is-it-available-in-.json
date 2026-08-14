@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/candidate-faqs/does-client-settings-require-enterprise-edition-or-is-it-available-in-",
+  "status": "draft-unverified",
+  "question": "Does Client Settings require Enterprise Edition, or is it available in Community Edition too?",
+  "answer": "Set this to `true` to encrypt all communication between the client and server using TLS. This feature requires the Enterprise Edition of Couchbase Server.",
+  "groundedIn": [
+    {
+      "source_file": "extractions/java-sdk/ref/client-settings.json",
+      "page_id": "java-sdk/ref/client-settings",
+      "subject": "sdk:client-settings",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise"
+    }
+  ],
+  "note": "Mechanically generated from a single extracted relation instance. Not verified against the live page; treat the answer text as a candidate lead, not publishable copy, until a human checks it against the current source."
+}

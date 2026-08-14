@@ -1,0 +1,9 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/relations/requires-capella-role",
+  "@type": "rdf:Property",
+  "label": "requires Capella role",
+  "comment": "The subject statement can only be executed by a user holding at least one of the listed Capella management-plane roles (disjunctive - any one suffices). Distinct from requiresPrivilege: this gates at the organization/project level, before the query engine's own data-plane RBAC is checked at all. Discovered on the Capella-only bucket/user/group DDL and GRANT/REVOKE statements, and on the vector-index statement family - no server/ equivalent exists.",
+  "rdfs:domain": { "@id": "https://schema.org/TechArticle" },
+  "rdfs:range": { "@id": "https://docs.couchbase.com/ld/vocab#CapellaRole" }
+}

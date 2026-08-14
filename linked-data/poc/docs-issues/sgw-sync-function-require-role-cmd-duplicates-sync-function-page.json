@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/sgw-sync-function-require-role-cmd-duplicates-sync-function-page",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "sync-function-api-require-role-cmd.md appears to duplicate content already present on sync-function.md - same underlying function, same worked example - per the extraction agent's direct observation.",
+  "about": [
+    "sync-gateway/access-control/sync-function/sync-function-api-require-role-cmd",
+    "sync-gateway/access-control/sync-function/sync-function"
+  ],
+  "foundDuring": "poc-cross-product-family-test",
+  "status": "open"
+}

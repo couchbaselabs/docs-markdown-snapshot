@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-basic-access-write",
+  "label": "Write access (Basic cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type rather than a named RBAC privilege",
+  "promoted": true,
+  "recurrence": 9,
+  "note": "Sibling of privilege:capella-advanced-access-query-index. Object of incompatibleWithCredentialType-shaped and requiresPrivilege-shaped relations on Capella index-statement pages. Do not conflate with privilege:query-manage-index (server/) - structurally different access model, see reconciliation.md"
+}

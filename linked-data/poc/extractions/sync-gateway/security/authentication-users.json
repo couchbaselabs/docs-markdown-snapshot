@@ -1,0 +1,32 @@
+{
+  "page_id": "sync-gateway/security/authentication-users",
+  "source_version": "Sync Gateway",
+  "source_path": "sync-gateway/current/security/authentication-users.md",
+  "concepts": [
+    { "candidate_id": "sgw:guest-user", "label": "GUEST user", "reused_or_minted": "reused stub from sync-function.md; fully defined here as the disabled-by-default anonymous-request identity" },
+    { "candidate_id": "sgw:basic-authentication", "label": "Basic Authentication", "reused_or_minted": "minted - username/password auth producing a SyncGatewaySession cookie" },
+    { "candidate_id": "sgw:sync-gateway-session", "label": "SyncGatewaySession cookie", "reused_or_minted": "minted - the session artifact issued after successful authentication by any method" },
+    { "candidate_id": "sgw:social-auth-provider", "label": "Facebook/Google turnkey auth provider", "reused_or_minted": "minted - deprecated, legacy-mode-only social login mechanism" },
+    { "candidate_id": "sgw:legacy-mode", "label": "Legacy mode (SGW)", "reused_or_minted": "minted - a runtime mode gating deprecated features" },
+    { "candidate_id": "sgw:custom-authentication", "label": "Custom Authentication", "reused_or_minted": "minted - app-server-delegated auth that creates an SGW session via the Admin API" },
+    { "candidate_id": "sgw:oidc-authentication", "label": "OpenID Connect Authentication", "reused_or_minted": "minted - delegates authentication to a third-party OIDC provider" },
+    { "candidate_id": "sgw:oidc-implicit-flow", "label": "OIDC Implicit Flow", "reused_or_minted": "minted - client obtains a signed ID token directly and presents it to Sync Gateway" },
+    { "candidate_id": "sgw:oidc-auth-code-flow", "label": "OIDC Authorization Code Flow", "reused_or_minted": "minted - Sync Gateway itself retrieves the ID token" },
+    { "candidate_id": "sgw:admin-rest-api", "label": "Sync Gateway Admin REST API", "reused_or_minted": "reused stub from users.md" },
+    { "candidate_id": "sgw:user", "label": "Sync Gateway User", "reused_or_minted": "reused from users.md" },
+    { "candidate_id": "sgw:guest-disabled-setting", "label": "GUEST account disabled property", "reused_or_minted": "minted - the specific config property gating the GUEST account" },
+    { "candidate_id": "sgw:oidc-rs256-requirement", "label": "OIDC RS256 signed-token requirement", "reused_or_minted": "minted - the specific signing-algorithm constraint on tokens accepted by the Implicit Flow" }
+  ],
+  "relations": [
+    { "subject": "sgw:guest-user", "predicate": "requiresSetting", "object": "sgw:guest-disabled-setting", "reused_or_minted_predicate": "reused (promoted requiresSetting) - direct match: enabling the account requires flipping a specific config property", "evidence": "To enable the GUEST account, set its disabled property to false." },
+    { "subject": "sgw:basic-authentication", "predicate": "producesSessionCookie", "object": "sgw:sync-gateway-session", "reused_or_minted_predicate": "minted - ties an auth method to the session artifact it yields; no such artifact existed in server/'s or Capella's privilege-only models", "evidence": "the replicator will send the credentials in the first request to retrieve a SyncGatewaySession cookie and use it for all subsequent requests during the replication." },
+    { "subject": "sgw:social-auth-provider", "predicate": "requiresLegacyMode", "object": "sgw:legacy-mode", "reused_or_minted_predicate": "minted - gates a deprecated feature behind a runtime mode rather than an edition/version threshold, so requiresEdition/availableSince do not fit", "evidence": "This feature is deprecated. It can be enabled only when running in legacy mode." },
+    { "subject": "sgw:custom-authentication", "predicate": "createsSessionViaEndpoint", "object": "sgw:admin-rest-api", "reused_or_minted_predicate": "minted - a session is created as a side effect of calling a specific admin endpoint", "evidence": "Given a user that has already been created, a new session for that user can be created on the Admin POST /{db}/_session endpoint." },
+    { "subject": "sgw:oidc-authentication", "predicate": "autoRegistersUser", "object": "sgw:user", "reused_or_minted_predicate": "minted in users.md; reused here with this page's own evidence", "evidence": "Use register to auto-register a Sync Gateway user on successful completion of the validation" },
+    { "subject": "sgw:oidc-authentication", "predicate": "seeAlso", "object": "sgw:oidc-implicit-flow", "reused_or_minted_predicate": "structural markdown link / section reference", "evidence": "[Implicit Flow](#implicit-flow) With this method, the retrieval of the ID token takes place on the device." },
+    { "subject": "sgw:oidc-authentication", "predicate": "seeAlso", "object": "sgw:oidc-auth-code-flow", "reused_or_minted_predicate": "structural markdown link / section reference", "evidence": "[Authorization Code Flow](#authorization-code-flow) This method relies on Sync Gateway to retrieve the ID token." },
+    { "subject": "sgw:oidc-implicit-flow", "predicate": "requiresSetting", "object": "sgw:oidc-rs256-requirement", "reused_or_minted_predicate": "reused (promoted requiresSetting) - direct match: the flow only accepts signed tokens using a specific algorithm", "evidence": "Note that only signed tokens are supported. ... In the algorithm dropdown, make sure to select RS256 as the signing algorithm (other options such as HS256 are not yet supported by Sync Gateway)." }
+  ],
+  "cross_product_finding": "Sync Gateway's authentication layer is a pluggable front door (basic auth, deprecated social login, custom app-server delegation, OIDC) that all converge on producing one of two things: a Sync Gateway user session (Public API, channel/role-gated) or reliance on Couchbase Server RBAC credentials (Admin/Metrics API, privilege-gated - the server/ batch's model). Unlike Capella, which keys distinct privilege sets to distinct credential *types* (API key vs DB credential, etc. - see requiresCapellaRole), Sync Gateway keys distinct *authentication mechanisms* to the same single user identity/session concept; the privilege-vs-channel split happens by API surface (Public vs Admin/Metrics), not by credential type.",
+  "notable_absence": "No mention of MFA, IP allowlisting, or audit logging on this page - authentication here is purely about establishing a session/identity, with all *authorization* (channel/role checks) delegated entirely to the sync function and role/user grants covered in the access-control/ pages."
+}

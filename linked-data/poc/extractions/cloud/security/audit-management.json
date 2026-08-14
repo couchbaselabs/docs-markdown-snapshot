@@ -1,0 +1,20 @@
+{
+  "page_id": "cloud/security/audit-management",
+  "source_version": "Capella",
+  "source_path": "cloud/security/audit-management.md",
+  "concepts": [
+    { "candidate_id": "security:audit-management", "label": "Manage Audits (Capella Management API)", "reused_or_minted": "minted" },
+    { "candidate_id": "security:audit-log-export", "label": "Audit Log Export (job/request lifecycle)", "reused_or_minted": "reused - same concept minted in cloud/security/auditing.json" },
+    { "candidate_id": "security:cluster-audit-log-configuration", "label": "Cluster Audit Log Configuration (auditEnabled, disabledUsers, enabledEventIDs)", "reused_or_minted": "minted" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support/Service Plan (Capella support-tier gate)", "reused_or_minted": "reused - same concept minted in cloud/security/auditing.json; see cross_product_finding for a wording inconsistency between the two source pages" },
+    { "candidate_id": "api:management-api", "label": "Capella Management API", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "security:audit-management", "predicate": "requiresSupportPlan", "object": "plan:enterprise-support-plan", "reused_or_minted_predicate": "reused (requiresSupportPlan) - object and predicate minted in cloud/security/auditing.json", "evidence": "> [!IMPORTANT]\n> Auditing is available only to clusters with an Enterprise Service Plan." },
+    { "subject": "security:audit-management", "predicate": "seeAlso", "object": "security:auditing", "evidence": "For an overview of event auditing, see [Auditing](auditing.md)." },
+    { "subject": "security:audit-management", "predicate": "seeAlso", "object": "api:management-api", "evidence": "For more information about how to use the Management API and the calls described on this page, see [Make an API Call with the Capella Operational Management API](../management-api-guide/management-api-use.md)." },
+    { "subject": "security:cluster-audit-log-configuration", "predicate": "seeAlso", "object": "security:filterable-event", "evidence": "* List filterable audit log events. A filterable event is one that can be individually enabled or disabled." }
+  ],
+  "notable_absence": { "predicate": "requiresApiKeyScope / requiresOrganizationRole", "finding": "This entire page documents Management API endpoints (GET/PUT/POST against .../auditLog and .../auditLogEvents and .../auditLogExports) but never once states what API key scope, role, or permission is required to call them. Unlike server/'s RBAC docs, which name a specific privilege for admin actions, this page is silent on the actual access-control gate for these API calls - presumably a Capella API key with sufficient organization/project scope, per cloud/security/security.json's org:organization-project-role-model, but that link is not made explicit anywhere on this page." },
+  "cross_product_finding": "Wording inconsistency worth flagging to the coordinator (not as a docs-issue file, just noted here): cloud/security/auditing.md says auditing requires an 'Enterprise Support Plan', while this page (audit-management.md) says it requires an 'Enterprise Service Plan'. These are presumably meant to be the same gating concept - I mapped both onto the single minted concept plan:enterprise-support-plan - but the source text itself is inconsistent about the plan's name, which is itself evidence that Capella's plan-based feature gating is a real, distinct axis from server/'s edition-based gating (no server/ page would describe an edition inconsistently like this within two pages of the same feature)."
+}

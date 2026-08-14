@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/build-index",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/build-index.md",
+  "concepts": [
+    { "candidate_id": "n1ql:build-index", "label": "BUILD INDEX statement", "reused_or_minted": "reused - same concept id as the server/ version of this statement (cross-product reuse)." },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials)", "reused_or_minted": "minted - see createindex.json for full reasoning." },
+    { "candidate_id": "privilege:capella-advanced-access-query-index", "label": "Query Index (privilege required under Advanced cluster access credentials)", "reused_or_minted": "minted - see createindex.json for full reasoning." },
+    { "candidate_id": "enum:cluster-access-credential-type", "label": "Cluster Access Credential Type enum (Basic | Advanced)", "reused_or_minted": "minted - see createindex.json for full reasoning." }
+  ],
+  "relations": [
+    { "subject": "n1ql:build-index", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-write", "reused_or_minted_predicate": "predicate reused; object minted - not the same as privilege:query-manage-index", "evidence": "To execute this statement, your client must have necessary privileges on the keyspace that contains the indexes. The required privilege depends on your cluster access credential type. | Basic | Write |" },
+    { "subject": "n1ql:build-index", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-index", "reused_or_minted_predicate": "predicate reused; object minted", "evidence": "| Advanced | Query Index |" },
+    { "subject": "n1ql:build-index", "predicate": "usesEnum", "object": "enum:cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:build-index", "predicate": "usesEnum", "object": "https://docs.couchbase.com/ld/concepts/index-state", "reused_or_minted_predicate": "reused", "evidence": "The index state may be `scheduled for creation`, `deferred`, `building`, `pending`, `online`, `offline`, or `abridged`." },
+    { "subject": "n1ql:build-index", "predicate": "seeAlso", "object": "n1ql:create-primary-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [CREATE PRIMARY INDEX](createprimaryindex.md)| [CREATE INDEX](createindex.md)| [CREATE VECTOR INDEX](createvectorindex.md)" },
+    { "subject": "n1ql:build-index", "predicate": "seeAlso", "object": "n1ql:alter-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [ALTER INDEX](alterindex.md)| [ALTER VECTOR INDEX](altervectorindex.md)" },
+    { "subject": "n1ql:build-index", "predicate": "seeAlso", "object": "n1ql:drop-primary-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [DROP PRIMARY INDEX](dropprimaryindex.md)| [DROP INDEX](dropindex.md)| [DROP VECTOR INDEX](dropvectorindex.md)" }
+  ],
+  "cross_product_finding": "Same access-model mismatch as createindex.json: Prerequisites keys the privilege off 'cluster access credential type' (Basic -> Write, Advanced -> Query Index), not off privilege:query-manage-index. This page (like createindex/createprimaryindex/createvectorindex) also carries the full index-state enum, which per the registry note likely IS still valid on Capella since it describes the underlying GSI index engine's lifecycle rather than the deployment model - so index-state is reused here without qualification, unlike the privilege vocabulary.",
+  "competency_questions_addressed": ["Which privileges/access are required to run this statement on Capella?", "Which enums does this statement use?"]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/candidate-faqs/are-user-and-rbac-user-related",
+  "status": "draft-unverified",
+  "question": "Are User and RBAC User related?",
+  "answer": "Sync Gateway users and roles have no relationship to Couchbase Server's RBAC (Role-based Access Control) users. They are created and operate solely within the Sync Gateway ecosphere to govern access to replication data and to the Public API.",
+  "groundedIn": [
+    {
+      "source_file": "extractions/sync-gateway/access-control/access-control-concepts.json",
+      "page_id": "sync-gateway/access-control/access-control-concepts",
+      "subject": "sgw:user",
+      "object": "sgw:rbac-user"
+    }
+  ],
+  "note": "Mechanically generated from a single extracted relation instance. Not verified against the live page; treat the answer text as a candidate lead, not publishable copy, until a human checks it against the current source."
+}

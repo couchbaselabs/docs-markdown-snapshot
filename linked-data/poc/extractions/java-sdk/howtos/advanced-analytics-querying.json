@@ -1,0 +1,9 @@
+{
+  "page_id": "java-sdk/howtos/advanced-analytics-querying",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/advanced-analytics-querying.md",
+  "concepts": [],
+  "relations": [],
+  "cross_product_finding": "Not applicable - this page's body is empty in the snapshot (title only, no content beyond the heading). No statement-vs-SDK-specific judgment can be made from an empty page.",
+  "notable_absence": "The page has a title ('Advanced Analytics Querying') and front matter suggesting substantial content (analytics querying from the SDK, which would be the Analytics-service analogue of sqlpp-queries-with-sdk.md), but the markdown body contains nothing after the H1 heading. Flagging as a docs-snapshot gap rather than inferring content."
+}

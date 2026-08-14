@@ -1,0 +1,6 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/capella-role/organization-owner",
+  "@type": "skos:Concept",
+  "prefLabel": "Organization Owner"
+}

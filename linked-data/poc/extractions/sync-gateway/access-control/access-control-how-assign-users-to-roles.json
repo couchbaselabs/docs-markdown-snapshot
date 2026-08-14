@@ -1,0 +1,28 @@
+{
+  "page_id": "sync-gateway/access-control/access-control-how-assign-users-to-roles",
+  "source_version": "Sync Gateway",
+  "source_path": "sync-gateway/current/access-control/access-control-how-assign-users-to-roles.md",
+  "concepts": [
+    { "candidate_id": "sgw:user", "label": "Sync Gateway User", "reused_or_minted": "reused from users.json" },
+    { "candidate_id": "sgw:role", "label": "Role", "reused_or_minted": "reused from roles.json" },
+    { "candidate_id": "sgw:channel", "label": "Channel", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:role-cmd", "label": "role()", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:role-name-prefix-convention", "label": "role: name-prefix convention", "reused_or_minted": "reused from sync-function-api-require-role-cmd.json - same convention, here applying to role()" },
+    { "candidate_id": "sgw:meta-xattr-arg", "label": "meta argument (XATTR access-grant data)", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:admin-roles-property", "label": "admin_roles property", "reused_or_minted": "minted - the concrete REST API / config-file field used to statically assign a user to one or more roles, sibling to admin_channels" },
+    { "candidate_id": "sgw:admin-rest-api", "label": "Sync Gateway Admin REST API", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:legacy-pre-3-config", "label": "Legacy Pre-3.0 Configuration File", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:disable-persistent-config-flag", "label": "disable_persistent_config flag", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "sgw:user", "predicate": "assignsRole", "object": "sgw:role", "reused_or_minted_predicate": "reused - established in users.json; here shown via the admin_roles REST field rather than the general prose statement", "evidence": "Assign a user to a role by sending a PUT request to the Admin REST API _user endpoint. Specify the roles to be assigned in the admin_roles array." },
+    { "subject": "sgw:role-cmd", "predicate": "assignsRole", "object": "sgw:role", "reused_or_minted_predicate": "reused from sync-function.json", "evidence": "You can also use the Sync Function's role() function to assign users to roles programmatically." },
+    { "subject": "sgw:role-cmd", "predicate": "suppliedBy", "object": "sgw:meta-xattr-arg", "reused_or_minted_predicate": "reused - established in access-control-how-control-document-access.json for channel(); same XATTR-sourcing pattern applies to role assignment", "evidence": "By user defined XATTR (3.0+) — the role can be specified within a special user-defined XATTR associated with the document." },
+    { "subject": "sgw:role-cmd", "predicate": "appliesToRoleWhenPrefixed", "object": "sgw:role-name-prefix-convention", "reused_or_minted_predicate": "reused - established in sync-function-api-require-role-cmd.json; role() takes the identical role: prefix form as its second argument", "evidence": "role (\"Edge1User\", \"role:Edge1\");" },
+    { "subject": "sgw:admin-roles-property", "predicate": "assignsRole", "object": "sgw:role", "reused_or_minted_predicate": "reused (assignsRole is promoted and already established for this exact shape)", "evidence": "Add the role the user is to be assigned to in the configuration file... \"admin_roles\": [\"Edge1\"]" },
+    { "subject": "sgw:role", "predicate": "revocationRevokesChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "reused - established in roles.json/access-control-how-create-roles.json", "evidence": "Removing a role effectively revokes access to the channel that role is associated with. This may mean users will lose access to required documents." },
+    { "subject": "sgw:legacy-pre-3-config", "predicate": "requiresFlagToEnable", "object": "sgw:disable-persistent-config-flag", "reused_or_minted_predicate": "reused", "evidence": "To continue using legacy Pre-3.0 configuration you should start Sync Gateway with disable_persistent_config set true." }
+  ],
+  "notable_absence": { "predicate": "n/a (error handling)", "finding": "The page states: 'Note that both role and user must already exist. Nonexistent roles don't cause an error, but have no effect on the user's access privileges.' This is a fail-silent behavior for a malformed/typo'd role assignment - assigning a user to a role that doesn't exist is accepted without complaint and simply grants nothing. This is a materially different failure mode from server/'s RBAC (which, per the prior batch, errors on invalid privilege/role names) and worth flagging as a docs/product behavior contrast rather than a documentation gap per se." },
+  "cross_product_finding": "Role assignment in SGW has three interchangeable mechanisms (Admin REST API admin_roles field, Sync Function role() call, legacy config admin_roles field) that all reduce to the same underlying assignsRole relationship - there is no single canonical grant path the way Capella's console/API-key-scoped role assignment is comparatively centralized, nor a single privilege-grant statement the way server/'s GRANT ROLE works. The role() sync-function path is the most novel: it lets assignment happen as a SIDE EFFECT of document processing (a document's content or XATTR can cause a user to be assigned a role while that document is being synced), meaning role membership in SGW can be driven by application data flowing through the system rather than only by an administrator's explicit out-of-band grant action - a shape with no parallel in either server/'s or Capella's static grant models."
+}

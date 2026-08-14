@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/candidate-faqs/what-privilege-do-i-need-to-use-create-index",
+  "status": "draft-unverified",
+  "question": "What privilege do I need to use Create Index?",
+  "answer": "To perform query index operations, the provided user must either be an _Admin_ or assigned the _Query Manage Index_ role. See the [Roles](../../../server/current/learn/security/roles.md#query-manage-index) page for more information.",
+  "groundedIn": [
+    {
+      "source_file": "extractions/java-sdk/howtos/provisioning-cluster-resources.json",
+      "page_id": "java-sdk/howtos/provisioning-cluster-resources",
+      "subject": "n1ql:create-index",
+      "object": "https://docs.couchbase.com/ld/concepts/privilege/query-manage-index"
+    }
+  ],
+  "note": "Mechanically generated from a single extracted relation instance. Not verified against the live page; treat the answer text as a candidate lead, not publishable copy, until a human checks it against the current source."
+}

@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/dropprimaryindex",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/dropprimaryindex.md",
+  "concepts": [
+    { "candidate_id": "n1ql:drop-primary-index", "label": "DROP PRIMARY INDEX statement", "reused_or_minted": "reused - same concept id as the server/ version of this statement (cross-product reuse)." },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials)", "reused_or_minted": "minted - see createindex.json for full reasoning." },
+    { "candidate_id": "privilege:capella-advanced-access-query-index", "label": "Query Index (privilege required under Advanced cluster access credentials)", "reused_or_minted": "minted - see createindex.json for full reasoning." },
+    { "candidate_id": "enum:cluster-access-credential-type", "label": "Cluster Access Credential Type enum (Basic | Advanced)", "reused_or_minted": "minted - see createindex.json for full reasoning." }
+  ],
+  "relations": [
+    { "subject": "n1ql:drop-primary-index", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-write", "reused_or_minted_predicate": "predicate reused; object minted - not the same as privilege:query-manage-index", "evidence": "To execute this statement, your client must have necessary privileges on the keyspace that contains the primary index. The required privilege depends on your cluster access credential type. | Basic | Write |" },
+    { "subject": "n1ql:drop-primary-index", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-index", "reused_or_minted_predicate": "predicate reused; object minted", "evidence": "| Advanced | Query Index |" },
+    { "subject": "n1ql:drop-primary-index", "predicate": "usesEnum", "object": "enum:cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:drop-primary-index", "predicate": "seeAlso", "object": "n1ql:create-primary-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [CREATE PRIMARY INDEX](createprimaryindex.md)| [CREATE INDEX](createindex.md)| [CREATE VECTOR INDEX](createvectorindex.md)" },
+    { "subject": "n1ql:drop-primary-index", "predicate": "seeAlso", "object": "n1ql:build-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [BUILD INDEX](build-index.md)" },
+    { "subject": "n1ql:drop-primary-index", "predicate": "seeAlso", "object": "n1ql:alter-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [ALTER INDEX](alterindex.md)| [ALTER VECTOR INDEX](altervectorindex.md)" },
+    { "subject": "n1ql:drop-primary-index", "predicate": "seeAlso", "object": "n1ql:drop-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [DROP INDEX](dropindex.md)| [DROP VECTOR INDEX](dropvectorindex.md)" }
+  ],
+  "cross_product_finding": "Same access-model mismatch as createindex.json: Prerequisites keys the privilege off 'cluster access credential type' (Basic -> Write, Advanced -> Query Index), not off privilege:query-manage-index. Also note the compatibility remark 'For compatibility with legacy versions of Couchbase Server, you can also use the DROP INDEX or DROP VECTOR INDEX statement to drop a named primary index' is server/-legacy-version language surfacing on a Capella page, despite Capella having no discrete version numbers of its own.",
+  "competency_questions_addressed": ["Which privileges/access are required to run this statement on Capella?"]
+}

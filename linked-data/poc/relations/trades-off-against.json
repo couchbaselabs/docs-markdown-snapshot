@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/trades-off-against",
+  "label": "trades off against",
+  "kind": "relation (schema-level)",
+  "type": "comparative relation between two vector-index strategies with opposite strengths/weaknesses (e.g. Hyperscale vs Composite Vector Index, depending on scalar-filter-heavy vs general-default use) - 10 occurrences across 3 files",
+  "promoted": true,
+  "recurrence": 10,
+  "note": "Bidirectional/context-dependent in practice - one file noted mustUseInsteadWhen pointing in opposite directions depending on context between the same two statements, which is really this relation's shape, not a one-way 'use instead' recommendation. Coordinator should check whether some existing mustUseInsteadWhen relations between vector-index statements should be re-typed as tradesOffAgainst."
+}

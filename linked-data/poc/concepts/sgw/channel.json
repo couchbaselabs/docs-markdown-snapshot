@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/channel",
+  "label": "Channel (Sync Gateway)",
+  "type": "core Sync Gateway access-control primitive - a freeform, uncataloged label documents are tagged with by the sync function; users/roles gain read access to a document by being granted membership of its channel(s)",
+  "promoted": true,
+  "recurrence": 22,
+  "note": "Unlike privilege:query-manage-index or capella-role:*, there is no fixed enum of channels - they are created implicitly by the sync function assigning documents to them. See relations/grants-channel-access.json."
+}

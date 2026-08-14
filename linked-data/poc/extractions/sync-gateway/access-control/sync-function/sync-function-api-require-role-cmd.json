@@ -1,0 +1,17 @@
+{
+  "page_id": "sync-gateway/access-control/sync-function/sync-function-api-require-role-cmd",
+  "source_version": "Sync Gateway",
+  "source_path": "sync-gateway/current/access-control/sync-function/sync-function-api-require-role-cmd.md",
+  "concepts": [
+    { "candidate_id": "sgw:require-role-cmd", "label": "requireRole()", "reused_or_minted": "reused - same concept as defined inline on sync-function.md; this page is its dedicated reference entry" },
+    { "candidate_id": "sgw:role", "label": "Role", "reused_or_minted": "reused from roles.md" },
+    { "candidate_id": "sgw:role-name-prefix-convention", "label": "role: name-prefix convention", "reused_or_minted": "minted - the mandatory lexical convention that disambiguates a role argument string from a user argument string" }
+  ],
+  "relations": [
+    { "subject": "sgw:require-role-cmd", "predicate": "requiresRole", "object": "sgw:role", "reused_or_minted_predicate": "minted in sync-function.md; reused here with this page's own evidence quote", "evidence": "Use the requireRole() function to reject document updates that are not made by user with the specified role or roles, as shown in Example 1." },
+    { "subject": "sgw:require-role-cmd", "predicate": "mustUseInsteadWhen", "object": "sgw:role-name-prefix-convention", "reused_or_minted_predicate": "reused - the promoted mustUseInsteadWhen shape fits: the argument syntax must use the role: prefix form instead of a bare name, or the call fails", "evidence": "Role names must always be prefixed with role:; an exception is thrown if a role name doesn't conform with this rule." },
+    { "subject": "sgw:require-role-cmd", "predicate": "seeAlso", "object": "sgw:access-cmd", "reused_or_minted_predicate": "structural markdown link", "evidence": "_Related Topics_: [access()](sync-function-api-access-cmd.md) | [channel()](sync-function-api-channel-cmd.md) | [expiry()](sync-function-api-expiry-cmd.md) | [requireAccess()](sync-function-api-require-access-cmd.md) | [requireAdmin()](sync-function-api-require-admin-cmd.md) | [requireRole()](sync-function-api-require-role-cmd.md) | [requireUser()](sync-function-api-require-user-cmd.md) | [role()](sync-function-api-role-cmd.md) | [throw()](sync-function-api-throw-cmd.md)" },
+    { "subject": "sgw:require-role-cmd", "predicate": "seeAlso", "object": "sgw:sync-function", "reused_or_minted_predicate": "structural markdown link", "evidence": "Learn more …​ * [Sync Function](sync-function.md)" }
+  ],
+  "cross_product_finding": "This page is a 1:1 reference split-out of a section already covered fully in sync-function.md (same function, same example, same argument table). Worth flagging to the coordinator as a likely duplicate/alias pair for reconciliation: sgw:require-role-cmd should end up as a single promoted concept even though it was extracted from two source pages in this batch. The enforced role: prefix (an exception is thrown otherwise) is a stricter, code-enforced naming convention than anything in server/'s privilege strings or Capella's credential-type keys - those are validated by the platform's config/API layer, not by throwing inside user-authored logic."
+}

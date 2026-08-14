@@ -1,0 +1,32 @@
+{
+  "page_id": "cloud/n1ql/n1ql-manage/query-settings",
+  "source_version": "Capella",
+  "source_path": "cloud/n1ql/n1ql-manage/query-settings.md",
+  "concepts": [
+    { "candidate_id": "n1ql:request-level-query-parameters", "label": "Request-Level Query Parameters", "reused_or_minted": "minted - core topic of this page, not in registry" },
+    { "candidate_id": "n1ql:transactional-scan-consistency", "label": "Transactional Scan Consistency", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:named-and-positional-parameters", "label": "Named Parameters and Positional Parameters", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:scan-consistency-values", "label": "Scan consistency enum (not_bounded | at_plus | request_plus | statement_plus)", "reused_or_minted": "minted - distinct from the registry's index-state enum; this enum governs query scan consistency, not GSI index lifecycle state" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:request-level-query-parameters",
+      "predicate": "usesEnum",
+      "object": "n1ql:scan-consistency-values",
+      "reused_or_minted_predicate": "reused - usesEnum predicate from promoted list; object concept minted",
+      "evidence": "Values: \"not_bounded\", \"at_plus\", \"request_plus\", \"statement_plus\""
+    },
+    {
+      "subject": "n1ql:request-level-query-parameters",
+      "predicate": "seeAlso",
+      "object": "data-api-guide:data-api-intro",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "For more information about the Data API, see [Manage Data with the Data API](../../data-api-guide/data-api-intro.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "Several parameters (natural, natural_cred, natural_orgid, natural_context, natural_output, use_replica, and the underscore-masking behavior of named parameters) are explicitly gated with 'Couchbase Server X.Y and later' language - exactly the shape the availableSince relation was designed for on server/ pages. Per the batch instructions, availableSince is not asserted here because Capella has no discrete version numbers; this gating language on a Capella page is itself the interesting signal (see cross_product_finding)."
+  },
+  "cross_product_finding": "This Capella page repeatedly gates parameters using literal Couchbase Server version numbers, e.g. 'This parameter is available in clusters running Couchbase Server 8.0 and later' (natural/natural_cred/natural_orgid/natural_context/natural_output), 'Reading from replica is only possible if the cluster uses Couchbase Server 7.6.0 or later' (use_replica), and 'Parameter masking is available in clusters running Couchbase Server 7.6.8 and later' (named parameters). It also links directly into server/ docs via absolute paths, e.g. '/server/8.0/learn/data/durability.html' and '/server/8.0/learn/data/transactions.html'. This strongly suggests the page is generated from largely the same source content as server/'s n1ql-manage/query-settings.md (server/current, server/7.6, server/7.2 all exist) with insufficient adaptation for a versionless Capella audience - a user reading this Capella page has no way to know what 'Couchbase Server 8.0' corresponds to in their Capella cluster."
+}

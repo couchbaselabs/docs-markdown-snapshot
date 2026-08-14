@@ -1,0 +1,30 @@
+{
+  "page_id": "server/n1ql-language-reference/statistics-delete",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/statistics-delete.md",
+  "concepts": [
+    { "candidate_id": "n1ql:update-statistics-delete", "label": "UPDATE STATISTICS ... DELETE / ANALYZE ... DELETE STATISTICS (delete-statistics syntax)", "reused_or_minted": "minted", "note": "no prior term in registry; one of several syntactic forms of the UPDATE STATISTICS statement" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer", "reused_or_minted": "minted", "note": "no prior term in registry" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:update-statistics-delete",
+      "predicate": "seeAlso",
+      "object": "n1ql:cost-based-optimizer",
+      "note": "structural link; page explains the functional effect of this statement in terms of the cost-based optimizer",
+      "evidence": "Since the [cost-based optimizer](cost-based-optimizer.md) uses statistics for cost calculations, deleting statistics for a set of index expressions effectively turns off the cost-based optimizer for queries which utilize predicates on those expressions."
+    },
+    {
+      "subject": "n1ql:update-statistics-delete",
+      "predicate": "seeAlso",
+      "object": "n1ql:update-statistics",
+      "note": "structural link from existing Markdown Related Links list",
+      "evidence": "[UPDATE STATISTICS](updatestatistics.md) overview"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "sharesOptionSetWith",
+    "finding": "Unlike statistics-index.md and statistics-indexes.md, which both carry an identical WITH-clause option table (sample_size, resolution, update_statistics_timeout, batch_size), this delete-statistics syntax has no WITH/USING clause at all — it only has a DELETE clause. This is a structural asymmetry among the four UPDATE STATISTICS sub-syntax pages worth noting for the ontology (not every sibling shares the same option surface)."
+  },
+  "competency_questions_addressed": ["Generate related pages for navigation"]
+}

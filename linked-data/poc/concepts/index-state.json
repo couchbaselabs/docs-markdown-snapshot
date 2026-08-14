@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-state",
+  "label": "GSI index lifecycle state",
+  "type": "enum, discovered by recurrence during pass-1/pass-2 - not pre-declared, unlike edition/version",
+  "values": ["scheduled for creation", "deferred", "building", "pending", "online", "offline", "abridged"],
+  "promoted": true,
+  "promotion_reason": "verbatim-identical enum text seen a second time (build-index.json) - promoted on sight, a real example of the recurrence rule catching something the POC design didn't think to pre-mint",
+  "recurrence": 3,
+  "occurrences": [
+    "server/n1ql-language-reference/createindex",
+    "server/n1ql-language-reference/build-index",
+    "server/n1ql-language-reference/createprimaryindex"
+  ]
+}

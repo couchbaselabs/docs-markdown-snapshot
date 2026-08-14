@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/is-synonym-of",
+  "label": "is synonym of",
+  "kind": "relation (schema-level)",
+  "type": "for statement pairs the docs explicitly declare functionally identical - 4 occurrences across 4 files",
+  "promoted": true,
+  "recurrence": 4,
+  "examples": ["DROP INDEX / DROP VECTOR INDEX (Capella)", "ALTER INDEX / ALTER VECTOR INDEX (Capella)"]
+}

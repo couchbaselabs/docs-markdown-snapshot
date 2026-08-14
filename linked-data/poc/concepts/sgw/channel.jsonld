@@ -1,0 +1,7 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/sgw/channel",
+  "@type": "cb:SgwChannel",
+  "label": "Channel (Sync Gateway)",
+  "comment": "Not a skos:Concept from a fixed vocabulary - channels are freeform labels created implicitly by the sync function, with no product-defined catalog, unlike privilege:query-manage-index or capella-role:*. Typed as a distinct class (cb:SgwChannel) rather than skos:Concept for this reason."
+}

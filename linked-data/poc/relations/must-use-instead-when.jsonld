@@ -1,0 +1,9 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/relations/must-use-instead-when",
+  "@type": "rdf:Property",
+  "label": "must use instead when",
+  "comment": "The subject statement should not be used under the condition described on its page; the object statement should be used instead. First relation type minted with no existing-vocabulary fit; promoted on its second occurrence. See poc/reconciliation.md.",
+  "rdfs:domain": { "@id": "https://schema.org/TechArticle" },
+  "rdfs:range": { "@id": "https://schema.org/TechArticle" }
+}

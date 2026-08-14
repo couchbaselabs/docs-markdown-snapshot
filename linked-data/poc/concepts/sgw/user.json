@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/user",
+  "label": "User (Sync Gateway, Public API identity)",
+  "type": "core Sync Gateway identity primitive, governing the Public (sync/replication) API",
+  "promoted": true,
+  "recurrence": 7,
+  "note": "Identity creation is decoupled from access-granting (creating a user grants no channels by itself). Distinct from sgw:rbac-user, which governs the Admin/Metrics API and is a reuse of the server RBAC model - the docs state explicitly these 'have no relationship' (see relations/has-no-relationship-to.json)."
+}

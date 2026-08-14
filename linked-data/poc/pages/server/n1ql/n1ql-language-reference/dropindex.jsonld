@@ -1,0 +1,12 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/server/7.2/n1ql/n1ql-language-reference/dropindex.html",
+  "@type": "schema:TechArticle",
+  "headline": "DROP INDEX",
+  "description": "The DROP INDEX statement allows you to drop a named primary index or a secondary index.",
+  "datePublished": "2026-03-26T05:14:31.984Z",
+  "requiresPrivilege": { "@id": "https://docs.couchbase.com/ld/concepts/privilege/query-manage-index" },
+  "seeAlso": [
+    { "@id": "https://docs.couchbase.com/server/7.2/n1ql/n1ql-language-reference/dropprimaryindex.html" }
+  ]
+}

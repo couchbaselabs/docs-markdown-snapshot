@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/candidate-faqs/what-privilege-do-i-need-to-use-authentication",
+  "status": "draft-unverified",
+  "question": "What privilege do I need to use Authentication?",
+  "answer": "Couchbase uses Role Base Access Control (RBAC), and has since Server 5.0 was released. For a general overview of Couchbase-Server authorization, see [Authorization]. For a list of available roles and corresponding privileges, see [Roles].",
+  "groundedIn": [
+    {
+      "source_file": "extractions/java-sdk/howtos/sdk-authentication.json",
+      "page_id": "java-sdk/howtos/sdk-authentication",
+      "subject": "sdk:authentication",
+      "object": "https://docs.couchbase.com/ld/concepts/rbac-role/role"
+    }
+  ],
+  "note": "Mechanically generated from a single extracted relation instance. Not verified against the live page; treat the answer text as a candidate lead, not publishable copy, until a human checks it against the current source."
+}

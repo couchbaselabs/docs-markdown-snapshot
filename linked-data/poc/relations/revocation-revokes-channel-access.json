@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/revocation-revokes-channel-access",
+  "label": "revocation revokes channel access",
+  "kind": "relation (schema-level)",
+  "type": "removing a role/channel grant propagates to revoke the derived access - relevant to Couchbase Lite's auto-purge-on-revoke behavior too (cbl:auto-purge-on-revoke), a cross-product link between the two products worth noting explicitly",
+  "promoted": true,
+  "recurrence": 3
+}

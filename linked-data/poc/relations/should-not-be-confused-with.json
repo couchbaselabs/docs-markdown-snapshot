@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/should-not-be-confused-with",
+  "label": "should not be confused with",
+  "kind": "relation (schema-level)",
+  "type": "a general-purpose disambiguation relation for two concepts that share a name or surface similarity but are documented as distinct - mint sparingly, only where a page states the distinction explicitly",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Could plausibly apply to the sgw:role / capella-role:* / rbac-role:role three-way naming collision (see reconciliation.md), though no single page states that distinction explicitly, so it hasn't been applied there - flagged as a candidate use, not asserted."
+}

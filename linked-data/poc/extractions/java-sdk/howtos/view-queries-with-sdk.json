@@ -1,0 +1,12 @@
+{
+  "page_id": "java-sdk/howtos/view-queries-with-sdk",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/view-queries-with-sdk.md",
+  "concepts": [
+    { "candidate_id": "sdk:view-queries-with-sdk", "label": "MapReduce Views from the Java SDK (deprecated)", "reused_or_minted": "minted - MapReduce Views are a pre-SQL++ Couchbase feature with no SQL++ statement equivalent at all, so there is no n1ql:* concept to reuse. The page is also thin/deprecation-notice content rather than a real howto." }
+  ],
+  "relations": [
+    { "subject": "sdk:view-queries-with-sdk", "predicate": "mustUseInsteadWhen", "object": "sdk:sqlpp-queries-with-sdk", "evidence": "Views are the only service which does not benefit from Multi-Dimensional Scaling, and is rarely the best choice over, say, [our Query service](sqlpp-queries-with-sdk.md) if you are starting a fresh application." }
+  ],
+  "cross_product_finding": "MapReduce Views is the strongest 'no statement to reuse at all' case in the batch: it predates SQL++/N1QL entirely, is deprecated in the SDK, and 'not available in Capella Operational, only in self-managed Couchbase Server' - i.e. it doesn't even exist in the cloud/ product family that the other reconciliation batch covers. There is no ambiguity here about statement-vs-SDK-specific: Views have no statement-level artifact, so the concept is necessarily SDK/product-specific (sdk:view-queries-with-sdk), not a candidate for n1ql:* reuse."
+}

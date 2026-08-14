@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/assigns-to-group",
+  "label": "assigns to group",
+  "kind": "relation (schema-level)",
+  "type": "CREATE USER's action of attaching the new user to a group at creation time",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Part of the Capella data-plane RBAC statement family - see relations/grants-role.json."
+}

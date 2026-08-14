@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/collection",
+  "label": "Collection (Sync Gateway scope)",
+  "type": "core primitive - sync-function rules and channel grants can be scoped to a collection",
+  "promoted": true,
+  "recurrence": 3
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/missing-privilege-doc-fts-delete-index",
+  "type": "docs-issue",
+  "issueType": "missing-privilege-documentation",
+  "description": "Page has no privilege requirement documented for a destructive action (deleting a Full-Text Search index). Same gap as the search/create-search-indexes.md page.",
+  "about": ["server/fts/fts-delete-index"],
+  "foundDuring": "poc-8-page-batch",
+  "status": "open"
+}

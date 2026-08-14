@@ -1,0 +1,8 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/index-state",
+  "@type": "skos:ConceptScheme",
+  "label": "GSI index lifecycle state",
+  "enumValues": ["scheduled for creation", "deferred", "building", "pending", "online", "offline", "abridged"],
+  "comment": "Modeled as a scheme with a flat literal list of values rather than one skos:Concept per value, since nothing yet references an individual state on its own (e.g. no page says 'see the deferred state'). Promote each value to its own skos:Concept, in-scheme here, if that need arises."
+}

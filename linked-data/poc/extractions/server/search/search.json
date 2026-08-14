@@ -1,0 +1,29 @@
+{
+  "page_id": "server/search/search",
+  "source_version": "7.2",
+  "source_path": "server/7.2/search/search.md",
+  "concepts": [
+    {
+      "candidate_id": "search:search",
+      "label": "Add Search to Your Application (landing/overview page for the Search Service)",
+      "reused_or_minted": "minted",
+      "note": "no prior term in registry"
+    }
+  ],
+  "relations": [
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:create-search-indexes", "note": "structural link" },
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:create-search-index-ui", "note": "structural link" },
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:create-search-index-rest-api", "note": "structural link" },
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:run-searches", "note": "structural link" },
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:simple-search-ui", "note": "structural link" },
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:simple-search-rest-api", "note": "structural link" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "This landing/overview page for the entire Search Service makes no mention of RBAC roles/privileges at all (not even a pointer to where they're documented), despite create-quick-index.md later in the same tree requiring the 'Search Admin' role. A reader starting here would not learn that a role is needed until they reach a specific task page."
+  },
+  "competency_questions_addressed": [
+    "What is the Search Service and what can it be used for?",
+    "Generate related pages for navigation"
+  ]
+}

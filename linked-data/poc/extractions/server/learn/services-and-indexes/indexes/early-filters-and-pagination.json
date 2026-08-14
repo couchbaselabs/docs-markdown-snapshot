@@ -1,0 +1,25 @@
+{
+  "page_id": "server/learn/services-and-indexes/indexes/early-filters-and-pagination",
+  "source_version": "7.2",
+  "source_path": "server/7.2/learn/services-and-indexes/indexes/early-filters-and-pagination.md",
+  "concepts": [
+    { "candidate_id": "index:covering-index", "label": "Covering Index", "reused_or_minted": "reused", "note": "same concept minted on indexing-and-query-perf.md, this batch" },
+    { "candidate_id": "n1ql:index-pushdown", "label": "Index Pushdown (filter/order/pagination pushdown to the Index Service)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:early-filtering", "label": "Early Filtering", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:early-order-and-pagination", "label": "Early Order and Pagination", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "n1ql:early-filtering", "predicate": "seeAlso", "object": "index:index-scans", "note": "structural link, Related Links section ('Query Execution: Details')" },
+    { "subject": "n1ql:index-pushdown", "predicate": "seeAlso", "object": "n1ql:covering-indexes", "note": "structural link, Related Links section" },
+    { "subject": "n1ql:index-pushdown", "predicate": "seeAlso", "object": "n1ql:index-pushdowns", "note": "structural link, Related Links section ('Index Pushdown Optimizations')" },
+    { "subject": "n1ql:index-pushdown", "predicate": "seeAlso", "object": "n1ql:groupby-aggregate-performance", "note": "structural link, Related Links section ('Grouping and Aggregate Pushdown')" },
+    { "subject": "n1ql:early-filtering", "predicate": "seeAlso", "object": "n1ql:where", "note": "structural link, Related Links section ('WHERE Clause - to apply a filter')" },
+    { "subject": "n1ql:early-order-and-pagination", "predicate": "seeAlso", "object": "n1ql:orderby", "note": "structural link, Related Links section ('ORDER BY Clause - to apply a sort')" },
+    { "subject": "n1ql:early-order-and-pagination", "predicate": "seeAlso", "object": "n1ql:offset", "note": "structural link, Related Links section ('OFFSET Clause - to apply pagination')" },
+    { "subject": "n1ql:early-order-and-pagination", "predicate": "seeAlso", "object": "n1ql:limit", "note": "structural link, Related Links section ('LIMIT Clause - to apply pagination')" }
+  ],
+  "competency_questions_addressed": [
+    "How does the Query Service optimize filtering, ordering, and pagination relative to the Index Service?",
+    "Generate related pages for navigation"
+  ]
+}

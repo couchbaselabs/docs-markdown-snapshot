@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/depends-on-service",
+  "label": "depends on service",
+  "kind": "relation (schema-level)",
+  "type": "service-to-service architectural dependency (e.g. Query Service depends on Index Service and Data Service) - 3 occurrences across 2 files",
+  "promoted": true,
+  "recurrence": 3,
+  "relates_to_competency_question": "Which service implements this operation?"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/capella-storage-modes-vocabulary-mismatch",
+  "type": "docs-issue",
+  "issueType": "title-content-mismatch",
+  "description": "cloud/indexes/storage-modes.md's filename and title imply a choice of storage modes (mirroring server/'s Standard vs. Memory-Optimized, an Enterprise-Edition-gated choice), but the Capella page's actual content states flatly there is only one storage engine (Plasma) with no choice to make. The page structure was carried over from server/ without adapting to the fact that the underlying distinction doesn't exist on Capella.",
+  "about": ["cloud/indexes/storage-modes"],
+  "foundDuring": "poc-100-page-stress-test",
+  "status": "open"
+}

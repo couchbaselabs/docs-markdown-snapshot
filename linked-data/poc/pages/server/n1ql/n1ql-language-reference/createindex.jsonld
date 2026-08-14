@@ -1,0 +1,30 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/server/7.2/n1ql/n1ql-language-reference/createindex.html",
+  "@type": "schema:TechArticle",
+  "headline": "CREATE INDEX",
+  "description": "The CREATE INDEX statement allows you to create a secondary index. Secondary indexes contain a filtered or a full set of keys in a given keyspace.",
+  "datePublished": "2026-07-20T13:54:32.914Z",
+  "requiresPrivilege": { "@id": "https://docs.couchbase.com/ld/concepts/privilege/query-manage-index" },
+  "availableSince": [
+    { "@id": "https://docs.couchbase.com/ld/concepts/version/server-7.0" },
+    { "@id": "https://docs.couchbase.com/ld/concepts/version/server-6.5" }
+  ],
+  "usesEnum": { "@id": "https://docs.couchbase.com/ld/concepts/index-state" },
+  "hasOption": [
+    {
+      "@type": "cb:StatementOption",
+      "optionName": "num_replica",
+      "requiresEdition": { "@id": "https://docs.couchbase.com/ld/concepts/edition/enterprise" }
+    },
+    {
+      "@type": "cb:StatementOption",
+      "optionName": "nodes",
+      "behavesDifferentlyUnder": { "@id": "https://docs.couchbase.com/ld/concepts/edition/community" }
+    }
+  ],
+  "seeAlso": [
+    { "@id": "https://docs.couchbase.com/server/7.2/n1ql/n1ql-language-reference/build-index.html" },
+    { "@id": "https://docs.couchbase.com/server/7.2/n1ql/n1ql-language-reference/index-partitioning.html" }
+  ]
+}

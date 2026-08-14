@@ -1,0 +1,30 @@
+{
+  "page_id": "server/fts/fts-manage-index-lifecycle",
+  "source_version": "7.2",
+  "source_path": "server/7.2/fts/fts-manage-index-lifecycle.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:manage-index-lifecycle",
+      "label": "Manage (FTS) Index Lifecycle - Web Console UI actions (Edit / Delete / Clone)",
+      "reused_or_minted": "minted",
+      "note": "No prior registry term; overview page covering the Edit, Delete, and Clone actions available on an existing full text index."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "fts:manage-index-lifecycle",
+      "predicate": "seeAlso",
+      "object": "fts:searching-from-the-ui",
+      "note": "structural link; target page not in this batch",
+      "evidence": "(See [Searching from the UI](fts-searching-from-the-UI.md) for a full illustration.)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege documented for Edit, Delete, or Clone index-lifecycle actions, despite Delete being an irreversible, asynchronous destructive operation ('Index deletion is an asynchronous process run in the background') - same gap as other fts/ pages in this batch."
+  },
+  "competency_questions_addressed": [
+    "What actions are available for managing the lifecycle of a full text index?",
+    "What privileges are required to edit, delete, or clone a full text index?"
+  ]
+}

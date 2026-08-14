@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/grants-role",
+  "label": "grants role",
+  "kind": "relation (schema-level)",
+  "type": "GRANT statement's core action - delegating a role to a user or group. Part of a small well-evidenced family with revokesRole/assignsRole/assignsToGroup/groupMembersInheritRole covering the Capella data-plane RBAC statement set (CREATE/DROP USER/GROUP, GRANT, REVOKE) deliberately targeted by this stress-test batch.",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Individually low-recurrence but promoted as a family - see relations/revokes-role.json, assigns-role.json, assigns-to-group.json, group-members-inherit-role.json, and reconciliation.md."
+}

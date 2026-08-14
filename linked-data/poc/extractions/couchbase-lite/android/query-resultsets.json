@@ -1,0 +1,14 @@
+{
+  "page_id": "couchbase-lite/android/query-resultsets",
+  "source_version": "Couchbase Lite (Android)",
+  "source_path": "couchbase-lite/current/android/query-resultsets.md",
+  "concepts": [
+    { "candidate_id": "cbl:query-resultsets", "label": "Query Result Sets", "reused_or_minted": "minted - the array-of-dictionaries/JSON output shape returned by Query.execute(), with format varying by SelectResult style (all-properties / doc-id-only / specific-properties)" }
+  ],
+  "relations": [
+    { "subject": "cbl:query-resultsets", "predicate": "seeAlso", "object": "cbl:querybuilder", "reused_or_minted_predicate": "structural markdown link", "evidence": "Related Content — [QueryBuilder](querybuilder.md) | [SQL++ for Mobile](query-n1ql-mobile.md) | [Predictive Queries](querybuilder.md#lbl-predquery) | [Live Queries](query-live.md) | [Indexing](indexing.md)" },
+    { "subject": "cbl:query-resultsets", "predicate": "seeAlso", "object": "cbl:sql-plus-plus-mobile", "reused_or_minted_predicate": "structural markdown link", "evidence": "Related Content — ... [SQL++ for Mobile](query-n1ql-mobile.md) ..." },
+    { "subject": "cbl:query-resultsets", "predicate": "seeAlso", "object": "cbl:live-query", "reused_or_minted_predicate": "structural markdown link", "evidence": "Related Content — ... [Live Queries](query-live.md) ..." }
+  ],
+  "cross_product_finding": "Purely a data-shape/API-ergonomics page (dictionary vs. JSON-string result formats), with no access-control, edition, or version dimension. Notable only as a mechanical confirmation that result-set handling is identical whether the query was built via QueryBuilder or SQL++ for Mobile strings - the two front-ends converge on the same Result/ResultSet types downstream."
+}

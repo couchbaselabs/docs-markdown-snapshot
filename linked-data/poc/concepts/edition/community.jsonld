@@ -1,0 +1,6 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/edition/community",
+  "@type": "skos:Concept",
+  "prefLabel": "Community Edition"
+}

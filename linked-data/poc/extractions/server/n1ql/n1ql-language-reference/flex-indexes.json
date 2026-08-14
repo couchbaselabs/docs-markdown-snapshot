@@ -1,0 +1,40 @@
+{
+  "page_id": "server/n1ql-language-reference/flex-indexes",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/flex-indexes.md",
+  "concepts": [
+    { "candidate_id": "n1ql:flex-indexes", "label": "Flex Index feature (SQL++ query over a full-text index)", "reused_or_minted": "minted", "note": "a feature/capability page, not itself a single SQL++ statement" },
+    { "candidate_id": "version:server-6.6", "label": "Couchbase Server 6.6", "reused_or_minted": "minted", "note": "not in the promoted registry" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:flex-indexes",
+      "predicate": "availableSince",
+      "object": "version:server-6.6",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Starting with Couchbase Server 6.6, the _Flex Index_ feature provides the ability for a SQL++ query to leverage either a global secondary index or full-text index transparently with standard SQL++ syntax, simplifying the application development process."
+    },
+    {
+      "subject": "n1ql:flex-indexes",
+      "predicate": "usesEnum",
+      "object": "https://docs.couchbase.com/ld/concepts/index-state",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Full-text indexes are online and searchable as soon as they are created. GSI indexes are online and searchable after they have been built."
+    },
+    {
+      "subject": "n1ql:flex-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:covering-indexes",
+      "note": "structural link from an existing Markdown xref to covering-indexes.md",
+      "evidence": "A Flex Index query cannot use a full-text index as a [covering index](covering-indexes.md)."
+    },
+    {
+      "subject": "n1ql:flex-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:build-index",
+      "note": "structural link from an existing Markdown xref to build-index.md; also loosely resembles the watchlist 'completes' shape (BUILD INDEX finishes the deferred creation of a GSI index) but the evidence on this page is only a passing cross-reference, not a direct statement of that relationship, so seeAlso was used instead of minting/reusing 'completes'",
+      "evidence": "GSI indexes are online and searchable after they have been built. For further details, refer to [BUILD INDEX](build-index.md)."
+    }
+  ],
+  "competency_questions_addressed": ["Which version introduced this capability?", "Generate related pages for navigation"]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/candidate-faqs/which-version-introduced-scoped-vs-global-search-indexes",
+  "status": "draft-unverified",
+  "question": "Which version introduced Scoped Vs Global Search Indexes?",
+  "answer": "This is because the Search Service supports, as of Couchbase Server 7.6, a new form of \"scoped index\" in addition to the traditional \"global index\".",
+  "groundedIn": [
+    {
+      "source_file": "extractions/java-sdk/howtos/full-text-searching-with-sdk.json",
+      "page_id": "java-sdk/howtos/full-text-searching-with-sdk",
+      "subject": "sdk:scoped-vs-global-search-indexes",
+      "object": "version:server-7-6"
+    }
+  ],
+  "note": "Mechanically generated from a single extracted relation instance. Not verified against the live page; treat the answer text as a candidate lead, not publishable copy, until a human checks it against the current source."
+}

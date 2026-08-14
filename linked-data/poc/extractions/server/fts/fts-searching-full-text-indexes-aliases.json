@@ -1,0 +1,38 @@
+{
+  "page_id": "server/fts/fts-searching-full-text-indexes-aliases",
+  "source_version": "7.2",
+  "source_path": "server/7.2/fts/fts-searching-full-text-indexes-aliases.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:searching-full-text-indexes-aliases",
+      "label": "Searching Full Text Indexes/Aliases - overview of Search/Delete/Clone/Edit UI actions",
+      "reused_or_minted": "minted",
+      "note": "No prior registry term; overview page listing the Search, Delete, Clone, and Edit buttons available for an index or alias row."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "fts:searching-full-text-indexes-aliases",
+      "predicate": "seeAlso",
+      "object": "learn:indexes",
+      "note": "structural link; target page not in this batch",
+      "evidence": "For more information about different types of indexes, see [Indexes](../learn/services-and-indexes/indexes/indexes.md)."
+    },
+    {
+      "subject": "fts:searching-full-text-indexes-aliases",
+      "predicate": "seeAlso",
+      "object": "fts:searching-from-the-ui",
+      "note": "structural link; target page not in this batch",
+      "evidence": "(See [Searching from the UI](fts-searching-from-the-UI.md) for a full illustration.)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege documented for any of the Search, Delete, Clone, or Edit actions listed here, despite Delete being explicitly destructive ('Delete causes the current index to be deleted') - identical gap to fts-delete-index (Example B in the extraction spec) and to fts-clone-index.md / fts-edit-index.md elsewhere in this batch."
+  },
+  "cross_component_finding": "Links out to the general 'Indexes' concept page under learn/services-and-indexes/, connecting the FTS-specific index/alias management UI to the broader cross-service indexes taxonomy.",
+  "competency_questions_addressed": [
+    "What actions are available when managing a full text index or alias from the Search tab?",
+    "What privilege is required to delete a full text index or alias from the UI?"
+  ]
+}

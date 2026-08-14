@@ -1,0 +1,134 @@
+{
+  "@context": [
+    "https://docs.couchbase.com/ld/context.jsonld",
+    {
+      "faqGroups": { "@id": "cb:faqGroups" },
+      "concept": { "@id": "schema:about", "@type": "@id" },
+      "questions": { "@id": "cb:questions", "@type": "@id" },
+      "groundedIn": { "@id": "cb:groundedIn" },
+      "sourcePage": "cb:sourcePage",
+      "status": "cb:status"
+    }
+  ],
+  "@id": "https://docs.couchbase.com/ld/faq/server",
+  "@type": "schema:FAQPage",
+  "schema:name": "Couchbase Server — Frequently Asked Questions (candidate, grouped by concept)",
+  "status": "draft-unverified",
+  "comment": "Sketch only. Mechanically assembled from promoted relations + pass-1 extraction evidence across the 58 server/ pages processed so far (of ~3,900 in the full corpus) — not a real page, not reviewed, not published. schema:FAQPage's mainEntity stays a flat list of Question nodes for compatibility with anything that expects standard FAQPage shape; faqGroups is this document's own addition (declared inline above, not in the shared context.jsonld) giving the same questions a concept-clustered view alongside the flat list.",
+
+  "faqGroups": [
+    {
+      "concept": "https://docs.couchbase.com/ld/concepts/privilege/query-manage-index",
+      "questions": [
+        "https://docs.couchbase.com/ld/faq/server#q-create-index-privilege",
+        "https://docs.couchbase.com/ld/faq/server#q-build-index-privilege"
+      ]
+    },
+    {
+      "concept": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+      "questions": [
+        "https://docs.couchbase.com/ld/faq/server#q-index-partitioning-edition",
+        "https://docs.couchbase.com/ld/faq/server#q-index-replication-edition"
+      ]
+    },
+    {
+      "concept": "https://docs.couchbase.com/ld/concepts/version/server-7.0",
+      "questions": [
+        "https://docs.couchbase.com/ld/faq/server#q-gsi-per-collection-since"
+      ]
+    },
+    {
+      "comment": "No single concept node fits this one — it's a relationship between two statements (n1ql:drop-primary-index, n1ql:drop-index), neither of which is a promoted concept, just page-level ids. Left out of faqGroups rather than forcing schema:about onto one arbitrarily; see the note on this Question below.",
+      "questions": [
+        "https://docs.couchbase.com/ld/faq/server#q-drop-primary-index-vs-drop-index"
+      ]
+    }
+  ],
+
+  "mainEntity": [
+    {
+      "@id": "https://docs.couchbase.com/ld/faq/server#q-create-index-privilege",
+      "@type": "schema:Question",
+      "schema:name": "What privilege do I need to run CREATE INDEX?",
+      "schema:about": { "@id": "https://docs.couchbase.com/ld/concepts/privilege/query-manage-index" },
+      "schema:acceptedAnswer": {
+        "@type": "schema:Answer",
+        "schema:text": "User executing the CREATE INDEX statement must have the Query Manage Index privilege granted on the keyspace."
+      },
+      "groundedIn": {
+        "sourcePage": "server/n1ql/n1ql-language-reference/createindex",
+        "status": "draft-unverified"
+      }
+    },
+    {
+      "@id": "https://docs.couchbase.com/ld/faq/server#q-build-index-privilege",
+      "@type": "schema:Question",
+      "schema:name": "What privilege do I need to run BUILD INDEX?",
+      "schema:about": { "@id": "https://docs.couchbase.com/ld/concepts/privilege/query-manage-index" },
+      "schema:acceptedAnswer": {
+        "@type": "schema:Answer",
+        "schema:text": "User executing the BUILD INDEX statement must have the Query Manage Index privilege granted on the keyspace."
+      },
+      "groundedIn": {
+        "sourcePage": "server/n1ql/n1ql-language-reference/build-index",
+        "status": "draft-unverified"
+      }
+    },
+    {
+      "@id": "https://docs.couchbase.com/ld/faq/server#q-index-partitioning-edition",
+      "@type": "schema:Question",
+      "schema:name": "Does index partitioning require Enterprise Edition?",
+      "schema:about": { "@id": "https://docs.couchbase.com/ld/concepts/edition/enterprise" },
+      "schema:acceptedAnswer": {
+        "@type": "schema:Answer",
+        "schema:text": "This feature is available only in Couchbase Server Enterprise Edition."
+      },
+      "groundedIn": {
+        "sourcePage": "server/fts/fts-index-partitions",
+        "status": "draft-unverified"
+      }
+    },
+    {
+      "@id": "https://docs.couchbase.com/ld/faq/server#q-index-replication-edition",
+      "@type": "schema:Question",
+      "schema:name": "Does index replication across nodes require Enterprise Edition?",
+      "schema:about": { "@id": "https://docs.couchbase.com/ld/concepts/edition/enterprise" },
+      "schema:acceptedAnswer": {
+        "@type": "schema:Answer",
+        "schema:text": "You can replicate primary and secondary indexes across cluster nodes running the Index Service. This feature is available only in Couchbase Server Enterprise Edition."
+      },
+      "groundedIn": {
+        "sourcePage": "server/learn/services-and-indexes/indexes/index-replication",
+        "status": "draft-unverified"
+      }
+    },
+    {
+      "@id": "https://docs.couchbase.com/ld/faq/server#q-gsi-per-collection-since",
+      "@type": "schema:Question",
+      "schema:name": "Which version introduced per-collection Global Secondary Indexes?",
+      "schema:about": { "@id": "https://docs.couchbase.com/ld/concepts/version/server-7.0" },
+      "schema:acceptedAnswer": {
+        "@type": "schema:Answer",
+        "schema:text": "In Couchbase Server 7.0 and later, a Global Secondary Index is created on a single collection — not on an entire bucket."
+      },
+      "groundedIn": {
+        "sourcePage": "server/learn/services-and-indexes/indexes/index-lifecycle",
+        "status": "draft-unverified"
+      }
+    },
+    {
+      "@id": "https://docs.couchbase.com/ld/faq/server#q-drop-primary-index-vs-drop-index",
+      "@type": "schema:Question",
+      "schema:name": "Should I use DROP PRIMARY INDEX or DROP INDEX?",
+      "comment": "Deliberately no schema:about here — see the matching faqGroups entry above.",
+      "schema:acceptedAnswer": {
+        "@type": "schema:Answer",
+        "schema:text": "Named primary indexes that are created using CREATE PRIMARY INDEX can only be dropped using the DROP INDEX command."
+      },
+      "groundedIn": {
+        "sourcePage": "server/n1ql/n1ql-language-reference/dropprimaryindex",
+        "status": "draft-unverified"
+      }
+    }
+  ]
+}

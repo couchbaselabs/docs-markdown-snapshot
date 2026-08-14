@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-capella-role",
+  "label": "requires Capella role",
+  "kind": "relation (schema-level)",
+  "type": "the headline new predicate from the 100-page stress test - 30 occurrences across 10 files",
+  "promoted": true,
+  "promotion_reason": "by far the most-recurring minted predicate in the batch; captures Capella's management-plane role gate (Organization Owner / Project Owner / Project Data Writer, any one of the three) on CREATE/DROP BUCKET/USER/GROUP, GRANT/REVOKE, and the vector-index statements - a structurally different mechanism from server/'s requiresPrivilege, not a renamed version of it",
+  "recurrence": 30,
+  "domain_note": "subject = a Capella statement page; object = one or more capella-role:* concepts (disjunctive - any one suffices)",
+  "relates_to_competency_question": "Which privileges are required? - answered differently on Capella than on server/, which is itself the finding"
+}

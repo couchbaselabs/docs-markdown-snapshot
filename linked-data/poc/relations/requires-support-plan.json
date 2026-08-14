@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-support-plan",
+  "label": "requires support plan",
+  "kind": "relation (schema-level)",
+  "type": "a commercial support/service-tier gate on Capella (e.g. auditing requiring an Enterprise Support Plan), orthogonal to requiresEdition since Capella has no Enterprise/Community editions - 2 occurrences across 2 files",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Source pages used inconsistent wording ('Enterprise Support Plan' vs 'Enterprise Service Plan') for what may be the same plan - flagged, not resolved; see reconciliation.md."
+}

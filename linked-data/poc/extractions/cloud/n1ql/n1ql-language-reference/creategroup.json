@@ -1,0 +1,87 @@
+{
+  "page_id": "cloud/n1ql-language-reference/creategroup",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/creategroup.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:create-group",
+      "label": "CREATE GROUP statement",
+      "reused_or_minted": "minted - Capella-specific DCL statement, no server/ equivalent"
+    },
+    {
+      "candidate_id": "capella-role:organization-owner",
+      "label": "Organization Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-owner",
+      "label": "Project Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-data-writer",
+      "label": "Data Writer (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella:cluster-access-credentials",
+      "label": "Cluster access credentials (Capella data-plane database credentials)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "rbac:group",
+      "label": "RBAC group",
+      "reused_or_minted": "reused (minted earlier in this batch, createuser.json)"
+    },
+    {
+      "candidate_id": "rbac-role:role",
+      "label": "RBAC role",
+      "reused_or_minted": "reused (minted earlier in this batch, dropuser.json)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:create-group",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:organization-owner",
+      "reused_or_minted_predicate": "minted - see createbucket.json",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Organization Owner"
+    },
+    {
+      "subject": "n1ql:create-group",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-owner",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Project Owner"
+    },
+    {
+      "subject": "n1ql:create-group",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-data-writer",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Data Writer"
+    },
+    {
+      "subject": "n1ql:create-group",
+      "predicate": "incompatibleWithCredentialType",
+      "object": "capella:cluster-access-credentials",
+      "reused_or_minted_predicate": "minted - see createbucket.json",
+      "evidence": "You cannot execute this statement using cluster access credentials."
+    },
+    {
+      "subject": "n1ql:create-group",
+      "predicate": "assignsRole",
+      "object": "rbac-role:role",
+      "reused_or_minted_predicate": "minted - direct, statement-level action of attaching one or more roles to the group at creation time via the ROLE/ROLES clause. This is a different relation from the runtime inheritance behavior below (`groupMembersInheritRole`): one is what the DDL statement does, the other is what the resulting group entity does for its members thereafter.",
+      "evidence": "ROLE assigns a single role to the group."
+    },
+    {
+      "subject": "rbac:group",
+      "predicate": "groupMembersInheritRole",
+      "object": "rbac-role:role",
+      "reused_or_minted_predicate": "minted - this is the exact 'role hierarchy, not privilege-per-statement' shape flagged in the task brief: membership in a group is not itself a privilege check, it is a structural relationship where a principal transitively acquires a role (and therefore that role's privileges) by virtue of group membership. `requiresPrivilege` describes a single privilege gating a single operation; this describes role propagation through an organizational structure, which is a fundamentally different shape and does not force-fit into `requiresPrivilege`.",
+      "evidence": "When you add users to a group, they automatically inherit the roles assigned to that group."
+    }
+  ],
+  "cross_product_finding": "CREATE GROUP is where the RBAC 'role hierarchy' shape becomes explicit and undeniable: groups are role-bundling, role-propagating constructs, not privilege checks. This is why the task brief's suggestion to consider a `requiresRole`-shaped predicate (here realized as `assignsRole` + `groupMembersInheritRole`) rather than reusing `requiresPrivilege` is correct - the object of these relations is always an RBAC *role* (an assignable, inheritable bundle), never a single named privilege like `privilege:query-manage-index`. Separately, note the RBAC role table row for 'role' says these are 'predefined by Couchbase Server' here (not 'Couchbase Capella' as in grant.md/revoke.md) - see grant.json for the cross-page terminology inconsistency this reveals."
+}

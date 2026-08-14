@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/candidate-faqs/does-certificate-authentication-require-enterprise-edition-or-is-it-av",
+  "status": "draft-unverified",
+  "question": "Does Certificate Authentication require Enterprise Edition, or is it available in Community Edition too?",
+  "answer": "Couchbase Server supports the use of X.509 certificates to authenticate clients (only available in the Enterprise Edition, not the Community Edition).",
+  "groundedIn": [
+    {
+      "source_file": "extractions/java-sdk/howtos/sdk-authentication.json",
+      "page_id": "java-sdk/howtos/sdk-authentication",
+      "subject": "sdk:certificate-authentication",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise"
+    }
+  ],
+  "note": "Mechanically generated from a single extracted relation instance. Not verified against the live page; treat the answer text as a candidate lead, not publishable copy, until a human checks it against the current source."
+}

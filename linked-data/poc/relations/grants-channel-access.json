@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/grants-channel-access",
+  "label": "grants channel access",
+  "kind": "relation (schema-level)",
+  "type": "the headline predicate of the Sync Gateway cross-product-family round - 15 occurrences across 8 files, by far the most-recurring minted predicate in this batch",
+  "promoted": true,
+  "recurrence": 15,
+  "domain_note": "subject = a user or role; object = sgw:channel. The whole point: server/'s requiresPrivilege (an operation-gated check) does not generalize to this shape at all - Sync Gateway inverts the direction entirely (documents are tagged with channels; access is granted by channel membership; reads are a pure set-intersection with no per-operation gate)."
+}

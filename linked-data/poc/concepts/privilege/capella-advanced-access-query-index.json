@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-query-index",
+  "label": "Query Index access (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type",
+  "promoted": true,
+  "recurrence": 9,
+  "note": "Sibling of privilege:capella-basic-access-write."
+}

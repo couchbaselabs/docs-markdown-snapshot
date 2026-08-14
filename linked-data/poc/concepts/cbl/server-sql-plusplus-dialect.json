@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cbl/server-sql-plusplus-dialect",
+  "label": "Server-side SQL++ dialect (as referenced from Couchbase Lite's diff pages)",
+  "type": "umbrella concept - the full server/ SQL++ language taken as a whole, coarser-grained than the individual n1ql:* statement concepts, minted because CBL's diff pages compare against 'the dialect' as a whole rather than any one statement",
+  "promoted": true,
+  "recurrence": 11,
+  "note": "Sibling of cbl:sql-plus-plus-mobile. The comparison page (query-n1ql-mobile-server-diffs) mapped every difference cleanly onto behavesDifferentlyUnder, but the gating axis is product family, not edition or version - a second generalization of that relation's range, alongside deployment:capella."
+}

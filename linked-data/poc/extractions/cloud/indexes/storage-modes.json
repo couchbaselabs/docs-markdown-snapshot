@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/indexes/storage-modes",
+  "source_version": "Capella",
+  "source_path": "cloud/indexes/storage-modes.md",
+  "concepts": [
+    { "candidate_id": "indexes:index-storage-plasma", "label": "Plasma index storage engine", "reused_or_minted": "reused (intended) - same Plasma storage-engine concept as server/'s storage-modes.md equivalents" },
+    { "candidate_id": "indexes:bloom-filter", "label": "Per-Page Bloom Filter (Plasma memory enhancement)", "reused_or_minted": "minted" },
+    { "candidate_id": "indexes:in-memory-compression", "label": "In-Memory Compression (Plasma memory enhancement)", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "indexes:index-storage-plasma",
+      "predicate": "seeAlso",
+      "object": "clusters:manage-buckets",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "Couchbase Capella index storage supports indexes for both Couchbase buckets and Memory-only buckets. See [Manage Buckets](../clusters/data-service/manage-buckets.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / storage-mode choice",
+    "finding": "The page title 'Index Storage Settings' and filename 'storage-modes.md' (plural) imply a choice between multiple storage modes, mirroring server/'s historical distinction between Standard (Plasma) and Memory-Optimized (MOI) index storage. But the page body states unconditionally, with no alternative offered, that indexes use Plasma - there is no storage-mode selection UI or setting described on this Capella page."
+  },
+  "cross_product_finding": "The filename 'storage-modes.md' (plural 'modes') is inherited from server/'s equivalent pages (server/current, server/7.2, server/7.6 learn/services-and-indexes/indexes/storage-modes.md), where historically more than one index storage engine could be selected (e.g. Memory-Optimized Indexes, which on server/ is Enterprise-Edition-gated). On Capella, the content flatly states 'All indexes in Couchbase Capella use the Couchbase Plasma storage engine' - there is no mode to choose and no edition gating, since Capella has no EE/CE distinction. This is a case where the server/-derived filename/title vocabulary ('modes', plural) no longer matches the Capella content (one mode, no choice)."
+}

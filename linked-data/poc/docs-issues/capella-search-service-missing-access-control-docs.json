@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/capella-search-service-missing-access-control-docs",
+  "type": "docs-issue",
+  "issueType": "missing-privilege-documentation",
+  "description": "None of the three Capella Search-index-creation pages (create-search-indexes, create-search-index-ui, create-search-index-alias) document any role/privilege/credential-type requirement for creating a Search index or alias. This is inconsistent in two directions at once: server/'s equivalent pages DO name a 'Search Admin' privilege, and Capella's own vector-index pages (a close sibling feature) DO use requiresCapellaRole. Search stands out as the one area with no access-control documentation at all on Capella.",
+  "about": [
+    "cloud/search/create-search-indexes",
+    "cloud/search/create-search-index-ui",
+    "cloud/search/create-search-index-alias"
+  ],
+  "foundDuring": "poc-100-page-stress-test",
+  "status": "open"
+}

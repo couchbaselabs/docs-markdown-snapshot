@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/auto-registers-user",
+  "label": "auto-registers user",
+  "kind": "relation (schema-level)",
+  "type": "a mechanism (e.g. an auth provider) creates a Sync Gateway user identity automatically on first successful authentication, without an explicit CREATE USER-equivalent step",
+  "promoted": true,
+  "recurrence": 3
+}

@@ -1,0 +1,9 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/relations/behaves-differently-under",
+  "@type": "rdf:Property",
+  "label": "behaves differently under",
+  "comment": "The subject (typically a clause or option) exists in every edition, but its behavior or constraints change under the named edition. Distinct from requiresEdition, which is for options that don't exist at all outside one edition. Range generalized during the 100-page stress test: the object is now an edition-or-deployment-variant concept, since deployment:capella (Capella as a deployment/variant, not an edition) also appears as an object here - a clause can be disabled specifically on Capella with no Enterprise/Community distinction involved at all.",
+  "rdfs:domain": { "@id": "https://docs.couchbase.com/ld/vocab#StatementOption" },
+  "rdfs:range": { "@id": "http://www.w3.org/2004/02/skos/core#Concept" }
+}

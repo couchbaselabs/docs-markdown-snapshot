@@ -1,0 +1,27 @@
+{
+  "page_id": "cloud/n1ql-intro/sysinfo",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-intro/sysinfo.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:system-indexes-catalog",
+      "label": "system:indexes catalog (visibility gated by per-item SELECT permission)",
+      "reused_or_minted": "minted - unlike the DDL/DCL statements elsewhere in this batch, this is a genuine `requiresPrivilege`-shaped case: a single, per-resource privilege check gates visibility of a catalog row, matching the shape the promoted predicate was defined for"
+    },
+    {
+      "candidate_id": "rbac-role:select",
+      "label": "SELECT permission/role",
+      "reused_or_minted": "minted - distinct from the already-promoted `privilege:query-manage-index` (a server/ administrative privilege); this is the ordinary data-read role/privilege that also happens to gate metadata visibility"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:system-indexes-catalog",
+      "predicate": "requiresPrivilege",
+      "object": "rbac-role:select",
+      "reused_or_minted_predicate": "reused - this is a straightforward single-privilege-gates-single-resource-visibility check, the same shape `requiresPrivilege` was promoted for on server/. Unlike the CREATE/DROP/GRANT/REVOKE family on this batch, there is no management-plane role involved here, so no need to mint `requiresCapellaRole`.",
+      "evidence": "Similarly, users must have SELECT permission on the target of an index to be able to view that index in the system catalog."
+    }
+  ],
+  "cross_product_finding": "Two sub-sections of this page ('Query Groups' and 'Query Bucket Information', covering system:group_info and system:bucket_info) are labeled with the badge 'Couchbase Server 8.0' even though this page is served under cloud/ (Capella), and per the registry Capella has no discrete version numbers at all ('Capella (continuously deployed, no discrete version number)'). Evidence: the literal text 'Couchbase Server 8.0' appears immediately before 'You can query group information using the system:group_info keyspace' and again before the system:bucket_info section. Per the registry's explicit guidance, this is flagged here rather than mapped onto `version:server-7.0`/`version:server-6.5` or any new Capella version concept - the content is very likely shared/reused verbatim from the server/ docs module (note the editUrl targets a 'capella' branch of the same docs-devex repo used for server content) and the version badge was probably carried over unintentionally, rather than reflecting a real Capella feature-availability gate. Worth a docs-accuracy look independent of the ontology work."
+}

@@ -1,0 +1,14 @@
+{
+  "page_id": "couchbase-lite/android/query-live",
+  "source_version": "Couchbase Lite (Android)",
+  "source_path": "couchbase-lite/current/android/query-live.md",
+  "concepts": [
+    { "candidate_id": "cbl:live-query", "label": "Live Query", "reused_or_minted": "minted - a query that stays active and re-runs automatically on database change, posting results to change listeners/Flows/LiveData; no equivalent construct in server/'s or Capella's request/response query model" }
+  ],
+  "relations": [
+    { "subject": "cbl:live-query", "predicate": "seeAlso", "object": "cbl:querybuilder", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [QueryBuilder](querybuilder.md)" },
+    { "subject": "cbl:live-query", "predicate": "seeAlso", "object": "cbl:sql-plus-plus-mobile", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [SQL++ for Mobile](query-n1ql-mobile.md)" },
+    { "subject": "cbl:live-query", "predicate": "seeAlso", "object": "cbl:full-text-search", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Full Text Search](fts.md)" }
+  ],
+  "cross_product_finding": "No access-control, edition, or version gating on this page at all - Live Query is a client-side reactive-UI mechanism (change listener attached to a query statement, optionally surfaced via Kotlin Flow/LiveData) with no server-side or licensing dimension whatsoever. This is a useful negative data point: not every CBL feature maps onto the 'edition/version/access-control' axes this stress test is probing for; some pages are simply orthogonal to all of them."
+}

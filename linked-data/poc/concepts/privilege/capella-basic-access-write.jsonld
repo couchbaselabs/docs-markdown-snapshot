@@ -1,0 +1,7 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/privilege/capella-basic-access-write",
+  "@type": "skos:Concept",
+  "prefLabel": "Write access (Basic cluster access credentials)",
+  "comment": "Not the same kind of thing as privilege:query-manage-index - this is one arm of a credential-type-keyed access check, not a named RBAC privilege. See cluster-access-credential-type.jsonld."
+}

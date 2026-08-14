@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-role",
+  "label": "requires role",
+  "kind": "relation (schema-level)",
+  "type": "the sync function's requireRole() check - the subject write operation is rejected unless the authenticated user holds the named role. Generalizes the single-occurrence requiresChannelAccess/requiresUser/requiresAdminApi predicates found in the same batch (kept as watchlist, distinct nuances, not merged in).",
+  "promoted": true,
+  "recurrence": 2
+}

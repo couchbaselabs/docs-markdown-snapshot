@@ -1,0 +1,91 @@
+{
+  "page_id": "cloud/n1ql-language-reference/revoke",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/revoke.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:revoke",
+      "label": "REVOKE statement",
+      "reused_or_minted": "minted - Capella-specific DCL statement, no server/ equivalent"
+    },
+    {
+      "candidate_id": "capella-role:organization-owner",
+      "label": "Organization Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-owner",
+      "label": "Project Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-data-writer",
+      "label": "Data Writer (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella:cluster-access-credentials",
+      "label": "Cluster access credentials (Capella data-plane database credentials)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "rbac-role:role",
+      "label": "RBAC role",
+      "reused_or_minted": "reused (minted earlier in this batch, dropuser.json)"
+    },
+    {
+      "candidate_id": "rbac-role-type:enum",
+      "label": "RBAC role type (simple vs. parameterized-by-keyspace)",
+      "reused_or_minted": "reused (minted earlier in this batch, grant.json)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:revoke",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:organization-owner",
+      "reused_or_minted_predicate": "minted - see createbucket.json",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Organization Owner"
+    },
+    {
+      "subject": "n1ql:revoke",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-owner",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Project Owner"
+    },
+    {
+      "subject": "n1ql:revoke",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-data-writer",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Data Writer"
+    },
+    {
+      "subject": "n1ql:revoke",
+      "predicate": "incompatibleWithCredentialType",
+      "object": "capella:cluster-access-credentials",
+      "reused_or_minted_predicate": "minted - see createbucket.json",
+      "evidence": "You cannot execute this statement using cluster access credentials."
+    },
+    {
+      "subject": "n1ql:revoke",
+      "predicate": "revokesRole",
+      "object": "rbac-role:role",
+      "reused_or_minted_predicate": "minted (reused from dropuser.json) - REVOKE's core, explicit, user-initiated action, the direct inverse of GRANT's `grantsRole`",
+      "evidence": "The REVOKE statement allows revoking of any RBAC roles from specific users or groups."
+    },
+    {
+      "subject": "n1ql:revoke",
+      "predicate": "usesEnum",
+      "object": "rbac-role-type:enum",
+      "reused_or_minted_predicate": "reused - same enum as grant.json, restated verbatim on this page",
+      "evidence": "Roles can be of the following two types: simple ... Roles which apply generically to all keyspaces/resources in the cluster. ... parameterized by a keyspace ... Roles which are defined for the context of the specified keyspace only."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The parameter table on this page documents only a 'user' row ('A user name created by the Couchbase Capella RBAC system'); it omits a 'group' row entirely, even though the grammar explicitly defines `revoke-group` and Example 3 on this same page demonstrates `REVOKE query_update ON \\`travel-sample\\` FROM GROUP sales`. GRANT's equivalent table (grant.md) does document both 'user' and 'group' rows. This is a documentation gap on REVOKE, not a real functional difference from GRANT - both statements support groups per their grammar and examples - so it should not be read as evidence that group revocation is unsupported."
+  },
+  "cross_product_finding": "REVOKE mirrors GRANT's cross-product findings exactly (see grant.json): the management-plane role gate (`requiresCapellaRole`) is orthogonal to and coexists with the data-plane role-delegation action (`revokesRole`), and the same simple/parameterized role-type enum recurs verbatim. The 'Couchbase Capella RBAC system' phrasing here (for 'user') versus 'Couchbase Server Role-Based Access Control (RBAC) system' elsewhere in the batch (createuser.md, dropuser.md, creategroup.md, dropgroup.md) is the same cross-page terminology inconsistency flagged in grant.json."
+}

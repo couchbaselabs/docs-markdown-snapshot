@@ -1,0 +1,57 @@
+{
+  "page_id": "server/learn/services-and-indexes/services/index-service",
+  "source_version": "7.2",
+  "source_path": "server/7.2/learn/services-and-indexes/services/index-service.md",
+  "concepts": [
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "minted" },
+    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "minted", "note": "referenced, not yet extracted as its own page in this batch" },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused", "note": "co-processed in this batch, see query-service.json" },
+    { "candidate_id": "index:memory-optimized-storage", "label": "Memory-Optimized Index Storage", "reused_or_minted": "reused", "note": "same concept minted on storage-modes.md, this batch" },
+    { "candidate_id": "index:standard-storage", "label": "Standard Index Storage", "reused_or_minted": "reused", "note": "same concept minted on storage-modes.md, this batch" }
+  ],
+  "relations": [
+    {
+      "subject": "service:index-service",
+      "predicate": "dependsOnService",
+      "object": "service:data-service",
+      "reused_or_minted_predicate": "minted - captures a service-level architectural dependency; no existing predicate in the schema (privilege/version/edition/enum relations) fits a service-to-service relationship",
+      "evidence": "The Index Service supports the creation of primary and secondary indexes on items stored within the Data Service."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "requiresEdition",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Only available in Couchbase Server Enterprise Edition. Indexes are saved in-memory."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/community",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server Community Edition, writes can either be _append-only_ or _write with circular reuse_, depending on the write mode selected for global secondary indexes. Each index gets a dedicated file."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server Enterprise Edition, compaction is handled automatically."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "availableSince",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-7.0",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "As of Couchbase Server 7.0, multiple indexes are stored in a given file."
+    },
+    { "subject": "service:index-service", "predicate": "seeAlso", "object": "index:storage-modes", "note": "structural link ('For more information, see Index Storage Settings'); reuses concept minted on storage-modes.md, this batch" },
+    { "subject": "service:index-service", "predicate": "seeAlso", "object": "index:global-secondary-indexes", "note": "structural link ('For information on using the Indexing Service, see Using Indexes')" }
+  ],
+  "cross_component_finding": "This page's 'Saving Indexes' section restates, near-identically, the Enterprise/Community storage-engine split already fully documented on storage-modes.md (same product, different doc component - services vs indexes, both under learn/services-and-indexes) - see storage-modes.json's cross_component_finding for the reciprocal note.",
+  "competency_questions_addressed": [
+    "What versions and editions support this feature?",
+    "Which services does this service depend on?",
+    "Generate related pages for navigation"
+  ]
+}

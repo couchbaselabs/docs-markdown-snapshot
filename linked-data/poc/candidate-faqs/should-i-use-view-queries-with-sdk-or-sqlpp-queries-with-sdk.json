@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/candidate-faqs/should-i-use-view-queries-with-sdk-or-sqlpp-queries-with-sdk",
+  "status": "draft-unverified",
+  "question": "Should I use View Queries With SDK or Sqlpp Queries With SDK?",
+  "answer": "Views are the only service which does not benefit from Multi-Dimensional Scaling, and is rarely the best choice over, say, [our Query service](sqlpp-queries-with-sdk.md) if you are starting a fresh application.",
+  "groundedIn": [
+    {
+      "source_file": "extractions/java-sdk/howtos/view-queries-with-sdk.json",
+      "page_id": "java-sdk/howtos/view-queries-with-sdk",
+      "subject": "sdk:view-queries-with-sdk",
+      "object": "sdk:sqlpp-queries-with-sdk"
+    }
+  ],
+  "note": "Mechanically generated from a single extracted relation instance. Not verified against the live page; treat the answer text as a candidate lead, not publishable copy, until a human checks it against the current source."
+}

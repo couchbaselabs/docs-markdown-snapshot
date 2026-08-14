@@ -1,0 +1,9 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/relations/requires-edition",
+  "@type": "rdf:Property",
+  "label": "requires edition",
+  "comment": "The subject - typically a specific clause or option within a statement, not the whole statement - exists only in the named Couchbase Server edition. See cb:StatementOption / hasOption for how sub-statement subjects are modeled.",
+  "rdfs:domain": { "@id": "https://docs.couchbase.com/ld/vocab#StatementOption" },
+  "rdfs:range": { "@id": "http://www.w3.org/2004/02/skos/core#Concept" }
+}

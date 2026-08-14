@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/fts-index-management-content-duplication",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "fts-manage-index-lifecycle.md, fts-edit-index.md, fts-clone-index.md, and fts-editing-cloning-full-text-indexes.md have substantially duplicated content/wording, per the extraction agent's direct observation while processing them side by side. Candidates for merging or cross-referencing rather than each restating the same procedure.",
+  "about": [
+    "server/fts/fts-manage-index-lifecycle",
+    "server/fts/fts-edit-index",
+    "server/fts/fts-clone-index",
+    "server/fts/fts-editing-cloning-full-text-indexes"
+  ],
+  "foundDuring": "poc-100-page-stress-test",
+  "status": "open"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/role-name-prefix-convention",
+  "label": "'role:' string-prefix convention (Sync Gateway sync function)",
+  "type": "a lexical, code-enforced naming convention (not a type system) distinguishing role identities from user/channel identities in sync-function arguments - throws if violated",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Contrasts with Capella's typed, credential-keyed model - here the distinction is enforced by string convention, not by the platform's type system."
+}

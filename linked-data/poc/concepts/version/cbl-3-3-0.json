@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/cbl-3.3.0",
+  "label": "Couchbase Lite 3.3.0",
+  "type": "Couchbase Lite's own independent version family",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Only one CBL version concept seen in this batch - expect more as more CBL pages are processed."
+}

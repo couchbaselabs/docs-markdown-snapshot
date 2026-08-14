@@ -1,0 +1,7 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/sgw/user",
+  "@type": "cb:SgwIdentity",
+  "label": "User (Sync Gateway, Public API identity)",
+  "comment": "Distinct from sgw:rbac-user - see concepts/sgw/rbac-user.json."
+}

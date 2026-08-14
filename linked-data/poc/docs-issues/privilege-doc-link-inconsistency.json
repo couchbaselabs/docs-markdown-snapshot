@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/privilege-doc-link-inconsistency",
+  "type": "docs-issue",
+  "issueType": "inconsistent-cross-reference",
+  "description": "4 of 5 N1QL index-statement pages link the Query Manage Index privilege sentence to learn/security/authorization-overview.md; DROP PRIMARY INDEX links the same sentence to learn/security/roles.md instead. Same page under two names/paths, or genuine drift? Not resolved automatically - resolved to the majority link for the public JSON-LD (concepts/privilege/query-manage-index.jsonld), but the discrepancy itself is tracked here rather than silently dropped.",
+  "about": [
+    "server/n1ql-language-reference/dropprimaryindex",
+    "server/n1ql-language-reference/createindex",
+    "server/n1ql-language-reference/dropindex",
+    "server/n1ql-language-reference/build-index",
+    "server/n1ql-language-reference/createprimaryindex"
+  ],
+  "foundDuring": "poc-8-page-batch",
+  "status": "open"
+}

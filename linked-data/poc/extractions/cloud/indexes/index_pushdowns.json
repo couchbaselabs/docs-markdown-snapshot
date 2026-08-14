@@ -1,0 +1,44 @@
+{
+  "page_id": "cloud/indexes/index_pushdowns",
+  "source_version": "Capella",
+  "source_path": "cloud/indexes/index_pushdowns.md",
+  "concepts": [
+    { "candidate_id": "indexes:index-pushdown", "label": "Index Pushdown (Query engine pushing work down to the Indexer)", "reused_or_minted": "reused (intended) - same concept as server/current/indexes/index_pushdowns.md and server/7.2/7.6 equivalents" },
+    { "candidate_id": "indexes:index-projection", "label": "Index Projection (indexer returns only requested index-key fields)", "reused_or_minted": "minted" },
+    { "candidate_id": "indexes:predicate-pushdown", "label": "Predicate Pushdown (including composite/skip-key predicate pushdown)", "reused_or_minted": "minted" },
+    { "candidate_id": "indexes:pagination-pushdown", "label": "Pagination Pushdown (LIMIT/OFFSET pushed to Indexer)", "reused_or_minted": "minted" },
+    { "candidate_id": "indexes:order-pushdown", "label": "ORDER BY / Index Order Pushdown", "reused_or_minted": "minted" },
+    { "candidate_id": "indexes:operator-pushdown", "label": "Operator Pushdown (MAX/MIN/COUNT/COUNT DISTINCT pushed to Indexer)", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "indexes:pagination-pushdown",
+      "predicate": "mustUseInsteadWhen",
+      "object": "indexes:order-pushdown",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen predicate from watchlist/promoted relations; used here for the documented condition under which pagination pushdown is unavailable and early/default pagination must be used instead",
+      "evidence": "When ORDER BY key in the query is different from that of the index order, then the query layer will need to process the sort; and hence, in those cases, the pagination cannot be pushed to the indexer as shown in [Example 7](#example-page-3) below."
+    },
+    {
+      "subject": "indexes:index-pushdown",
+      "predicate": "seeAlso",
+      "object": "indexes:early-filters-and-pagination",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "[Early Filters, Order, and Pagination](early-filters-and-pagination.md)"
+    },
+    {
+      "subject": "indexes:predicate-pushdown",
+      "predicate": "seeAlso",
+      "object": "indexes:index-scans",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "Refer to section [Index Scans](index-scans.md) for more information."
+    },
+    {
+      "subject": "indexes:operator-pushdown",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-profiling",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "when you [enable monitoring](../n1ql/n1ql-manage/monitoring-n1ql-query.md) with the configuration parameter `profile = \"timings\"` for this query, you can see that the indexer returns 165 documents"
+    }
+  ],
+  "cross_product_finding": "This 985-line page is structurally identical to server/current/indexes/index_pushdowns.md and the server/7.2/7.6 equivalents, sharing the exact same example indexes and EXPLAIN output (e.g. `def_inventory_route_route_src_dst_day`, `def_inventory_landmark_city`). The sentence 'In Couchbase Capella, the Query service and Indexer are enhanced with complete and accurate predicate pushdown to filter such unnecessary results in the Indexer itself' reads like a product-name substitution of server/ source text (which, per the pattern seen elsewhere in this batch, likely names a specific Couchbase Server version instead of 'Couchbase Capella'). Confirms the shared-source-with-substitution pattern across the whole indexes/ page set in this batch."
+}

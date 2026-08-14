@@ -1,0 +1,21 @@
+{
+  "page_id": "sync-gateway/access-control/roles",
+  "source_version": "Sync Gateway",
+  "source_path": "sync-gateway/current/access-control/roles.md",
+  "concepts": [
+    { "candidate_id": "sgw:role", "label": "Role", "reused_or_minted": "minted - named collection of channels; no equivalent in server/'s privilege model or Capella's management-plane role model" },
+    { "candidate_id": "sgw:channel", "label": "Channel", "reused_or_minted": "minted - core SGW access-control unit; documents are assigned to channels and access is granted per channel, unlike server/'s resource-scoped privileges" },
+    { "candidate_id": "sgw:user", "label": "Sync Gateway User", "reused_or_minted": "minted - stub, fully defined in users.md" },
+    { "candidate_id": "sgw:admin-rest-api", "label": "Sync Gateway Admin REST API", "reused_or_minted": "minted - stub, the provisioning surface for roles/users" }
+  ],
+  "relations": [
+    { "subject": "sgw:role", "predicate": "grantsChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "minted - Capella's requiresCapellaRole and server's requiresPrivilege both gate an operation behind a fixed enum; here a role is itself defined as a bundle of channel grants, so the relation runs role -> channel, not operation -> role", "evidence": "A Role and a user assigned to a role is granted to access to a channel, which is associated with a specific collection." },
+    { "subject": "sgw:user", "predicate": "inheritsAccessFromRole", "object": "sgw:role", "reused_or_minted_predicate": "minted - closest promoted relation (groupMembersInheritRole) describes a group inheriting a role; here the inheritance is of channel access via role membership, a different object type, so a new predicate was minted", "evidence": "Any user associated with a role inherits the right to access any of the channels in the role's list." },
+    { "subject": "sgw:role", "predicate": "hasSeparateNamespaceFrom", "object": "sgw:user", "reused_or_minted_predicate": "minted - no prior relation captures two entity kinds sharing a namespace-collision-free space", "evidence": "Roles have a separate namespace from users, so it's possible to have a user and a role with the same name." },
+    { "subject": "sgw:role", "predicate": "revocationRevokesChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "minted - revokesRole (promoted) is about removing a role grant from a user; this is about deleting the role entity itself cascading to loss of channel access for all its members", "evidence": "removing a role effectively revokes access to the channel that role is associated with and may mean users will lose access to required documents." },
+    { "subject": "sgw:role", "predicate": "seeAlso", "object": "sgw:sync-function", "reused_or_minted_predicate": "structural markdown link", "evidence": "[Sync Function](sync-function/sync-function.md)" },
+    { "subject": "sgw:role", "predicate": "seeAlso", "object": "sgw:user", "reused_or_minted_predicate": "structural markdown link", "evidence": "_Related Concepts_: [Access Control Model](access-control-model.md) | [Channels](channels.md) | [Roles](roles.md) | [Sync Function](sync-function/sync-function.md) | [Users](users.md)" },
+    { "subject": "sgw:role", "predicate": "seeAlso", "object": "sgw:admin-rest-api", "reused_or_minted_predicate": "structural markdown link", "evidence": "Roles are created via the Sync Gateway Admin REST API — see: [Admin REST API](../rest-api/rest-api-admin.md)." }
+  ],
+  "cross_product_finding": "Roles here are not a fixed, product-defined enum (unlike server/'s named RBAC privileges or Capella's catalog of management-plane roles) - they are arbitrary, admin-created bundles of channel grants, scoped per scope/collection. The 'role grants channel access, user inherits via role membership' shape has no counterpart in either prior batch: server/ and Capella both gate *operations* behind a role/privilege, whereas SGW roles are themselves containers of *data-access* grants. Also notable: SGW explicitly allows a role and a user to share the same name (separate namespaces) - a modeling choice neither server/ RBAC nor Capella's IAM-style roles exhibit as far as covered."
+}

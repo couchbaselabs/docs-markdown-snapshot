@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/inherits-access-from-role",
+  "label": "inherits access from role",
+  "kind": "relation (schema-level)",
+  "type": "a user's effective channel access includes every channel granted to any role it belongs to - the role-hierarchy mechanism",
+  "promoted": true,
+  "recurrence": 3
+}

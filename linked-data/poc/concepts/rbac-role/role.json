@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/rbac-role/role",
+  "label": "a Capella data-plane RBAC role (coarse placeholder)",
+  "type": "coarse - stands in for the object of grantsRole/revokesRole/groupMembersInheritRole where individual pages didn't name a specific role. Needs refinement into per-role concepts once enough pages name specific roles by name.",
+  "promoted": true,
+  "recurrence": 6,
+  "note": "Do not confuse with capella-role:* (management-plane roles like Organization Owner) - this is the data-plane role family that GRANT/REVOKE/CREATE GROUP manipulate."
+}

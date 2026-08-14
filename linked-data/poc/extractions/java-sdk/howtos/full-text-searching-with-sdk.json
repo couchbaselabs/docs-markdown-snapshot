@@ -1,0 +1,18 @@
+{
+  "page_id": "java-sdk/howtos/full-text-searching-with-sdk",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/full-text-searching-with-sdk.md",
+  "concepts": [
+    { "candidate_id": "sdk:full-text-searching-with-sdk", "label": "Running Search (FTS) Queries from the Java SDK", "reused_or_minted": "minted - the Search Service has no equivalent to a SQL++ statement; there is no n1ql:* concept this could reuse. The page is entirely about the client API (`cluster.searchQuery()`, `cluster.search()`, `SearchQuery`, `SearchOptions`, `SearchRow`) for querying a pre-existing Search index, not about creating/managing the index itself." },
+    { "candidate_id": "sdk:search-query-types", "label": "SearchQuery construction methods (match, matchPhrase, prefix, regexp, disjuncts, conjuncts, geoBoundingBox, etc.)", "reused_or_minted": "minted" },
+    { "candidate_id": "sdk:search-options", "label": "SearchOptions (limit, skip, highlight, sort, facets, consistentWith, collections)", "reused_or_minted": "minted" },
+    { "candidate_id": "sdk:scoped-vs-global-search-indexes", "label": "Scoped vs Global Search Indexes (Cluster.search() vs Scope.search())", "reused_or_minted": "minted - SDK-level API routing concern, though it reflects a genuine server-side index-scoping distinction introduced in 7.6" }
+  ],
+  "relations": [
+    { "subject": "sdk:full-text-searching-with-sdk", "predicate": "seeAlso", "object": "sdk:vector-searching-with-sdk", "evidence": "We will perform a Search query here — see the [Vector Search](vector-searching-with-sdk.md) docs for examples of Vector and [combining Vector and Search queries](vector-searching-with-sdk.md#combining-fts-and-vector-queries)." },
+    { "subject": "sdk:full-text-searching-with-sdk", "predicate": "availableSince", "object": "https://docs.couchbase.com/ld/concepts/version/server-7-0", "evidence": "Note that this feature is only supported with Couchbase Server 7.0 or later. [Collections in Search queries]" },
+    { "subject": "sdk:scoped-vs-global-search-indexes", "predicate": "availableSince", "object": "version:server-7-6", "reused_or_minted_predicate": "predicate reused; object is an unconfirmed candidate id (version:server-7-6) - only server-6-5 and server-7-0 version concepts were visible in the registry at extraction time, so this may need minting or reconciling by the coordinator", "evidence": "This is because the Search Service supports, as of Couchbase Server 7.6, a new form of \"scoped index\" in addition to the traditional \"global index\"." }
+  ],
+  "cross_product_finding": "The Search Service has no statement-level artifact analogous to SQL++'s CREATE INDEX/GRANT - Search indexes are managed via REST/UI (documented in server/), and this SDK page is purely about querying an index that already exists, using a Search-specific query DSL (`SearchQuery.match()`, `.term()`, etc.) that has no n1ql:* counterpart at all. So there is no reuse candidate in the registry for this page's core concept; it must be entirely SDK-specific vocabulary. This is a useful negative case for the batch's central question: for services without a SQL++ surface, the 'reuse the statement concept' option isn't available even in principle, so the SDK-specific concept family is not a judgment call here so much as the only option.",
+  "notable_absence": "The relation object 'https://docs.couchbase.com/ld/concepts/version/server-7-6' for the scoped-vs-global-index availability gate could not be confirmed against the version/ registry (only server-6-5 and server-7-0 concept files were visible), so it is left unresolved for the coordinator rather than guessed."
+}

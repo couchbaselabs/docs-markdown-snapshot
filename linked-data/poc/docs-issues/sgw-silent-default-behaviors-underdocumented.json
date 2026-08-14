@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/sgw-silent-default-behaviors-underdocumented",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "Two silent/surprising default behaviors, each only briefly mentioned on the page it appears on rather than called out prominently: (1) Sync Gateway's default write model is fail-open - read access implies write access unless the sync function explicitly overrides it, the opposite of a default-deny posture; (2) assigning a nonexistent role to a user is a silent no-op rather than an error. Both are the kind of default a reader could easily miss and get surprised by later.",
+  "about": [
+    "sync-gateway/access-control/access-control-how-control-document-access",
+    "sync-gateway/access-control/access-control-how-assign-users-to-roles"
+  ],
+  "foundDuring": "poc-cross-product-family-test",
+  "status": "open"
+}

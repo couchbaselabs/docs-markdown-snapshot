@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cbl/sql-plus-plus-mobile",
+  "label": "N1QL for Mobile / SQL++ for Mobile (Couchbase Lite's own query dialect)",
+  "type": "umbrella concept, sibling of cbl:server-sql-plusplus-dialect",
+  "promoted": true,
+  "recurrence": 4
+}

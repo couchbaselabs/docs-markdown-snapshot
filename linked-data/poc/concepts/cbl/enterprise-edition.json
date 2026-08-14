@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cbl/enterprise-edition",
+  "label": "Enterprise Edition (Couchbase Lite)",
+  "type": "Couchbase Lite's own independent Enterprise/Community edition split, gating a disjoint feature set (Predictive Query, Delta Sync, Database Encryption) from server/'s (GSI, eventing, etc.)",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Deliberately not the same concept as edition:enterprise (server/) - same word, same general shape (a two-tier license split), but a different feature set entirely. Kept as a separate concept per the extraction batch's explicit instructions. Notable contradiction flagged by the extraction: Vector Search is ML-adjacent like the other gated features but is NOT edition-gated - worth SME follow-up, see docs-issues/."
+}

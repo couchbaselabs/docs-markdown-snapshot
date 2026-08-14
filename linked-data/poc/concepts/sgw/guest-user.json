@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/guest-user",
+  "label": "GUEST user (Sync Gateway)",
+  "type": "a provisioned-then-disabled anonymous pseudo-identity with no analogue in server/ or Capella",
+  "promoted": true,
+  "recurrence": 2
+}

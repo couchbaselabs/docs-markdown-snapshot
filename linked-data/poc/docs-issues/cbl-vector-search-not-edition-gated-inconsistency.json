@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cbl-vector-search-not-edition-gated-inconsistency",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Couchbase Lite's Enterprise Edition gates Predictive Query, Delta Sync, and Database Encryption - but Vector Search, despite being similarly ML-adjacent and premium-feeling, is documented as NOT edition-gated. Flagged by the extraction agent as a contradiction worth checking: either Vector Search availability is genuinely different (in which case fine), or the edition gate is undocumented on the vector-search page.",
+  "about": ["couchbase-lite/android/vector-search", "couchbase-lite/android/querybuilder"],
+  "foundDuring": "poc-cross-product-family-test",
+  "status": "open"
+}

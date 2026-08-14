@@ -1,0 +1,9 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/relations/grants-channel-access",
+  "@type": "rdf:Property",
+  "label": "grants channel access",
+  "comment": "A user or role is granted read access to every document tagged with the named channel. The headline finding of the cross-product-family stress test: server/'s requiresPrivilege (an operation-gated check evaluated per statement) does not generalize here at all. Sync Gateway inverts the direction - documents are tagged with channels by an imperative sync function, users/roles are granted channel membership, and a read is a pure set-intersection with no per-operation privilege check anywhere in the model.",
+  "rdfs:domain": { "@id": "https://docs.couchbase.com/ld/vocab#SyncGatewayIdentity" },
+  "rdfs:range": { "@id": "https://docs.couchbase.com/ld/concepts/sgw/channel" }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/edition/community",
+  "label": "Community Edition",
+  "type": "closed vocabulary term - pre-minted before extraction began, not discovered by recurrence",
+  "promoted": true,
+  "sibling_terms": ["edition:enterprise", "edition:capella (not yet observed in this batch)"],
+  "occurrences": [
+    "server/n1ql-language-reference/createindex",
+    "server/n1ql-language-reference/index-partitioning",
+    "server/n1ql-language-reference/createprimaryindex"
+  ]
+}

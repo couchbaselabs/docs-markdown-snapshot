@@ -1,0 +1,27 @@
+{
+  "page_id": "sync-gateway/access-control/access-control-how-create-users",
+  "source_version": "Sync Gateway",
+  "source_path": "sync-gateway/current/access-control/access-control-how-create-users.md",
+  "concepts": [
+    { "candidate_id": "sgw:user", "label": "Sync Gateway User", "reused_or_minted": "reused from users.json" },
+    { "candidate_id": "sgw:channel", "label": "Channel", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:admin-rest-api", "label": "Sync Gateway Admin REST API", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:oidc-provider", "label": "OIDC Provider (SGW auth)", "reused_or_minted": "reused from users.json" },
+    { "candidate_id": "sgw:legacy-pre-3-config", "label": "Legacy Pre-3.0 Configuration File", "reused_or_minted": "reused from access-control-concepts.json" },
+    { "candidate_id": "sgw:disable-persistent-config-flag", "label": "disable_persistent_config flag", "reused_or_minted": "reused from access-control-how-control-document-access.json" },
+    { "candidate_id": "sgw:admin-channels-property", "label": "admin_channels property (collection_access)", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:persistent-configuration", "label": "Persistent Configuration (default since 3.0)", "reused_or_minted": "minted - the current-default provisioning mode that the legacy file-based config and its disable_persistent_config escape hatch exist in contrast to" },
+    { "candidate_id": "version:sgw-3.0", "label": "Sync Gateway 3.0", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:guest-user", "label": "GUEST user", "reused_or_minted": "reused from sync-function.json - shown here being explicitly disabled rather than granted" }
+  ],
+  "relations": [
+    { "subject": "sgw:user", "predicate": "createdVia", "object": "sgw:admin-rest-api", "reused_or_minted_predicate": "minted - user creation is a provisioning action distinct from a grant relationship", "evidence": "Users are created via the Sync Gateway Admin REST API." },
+    { "subject": "sgw:oidc-provider", "predicate": "autoRegistersUser", "object": "sgw:user", "reused_or_minted_predicate": "reused - established in users.json", "evidence": "Configure OIDC authentication to auto-register a user following successful validation of an ID Token." },
+    { "subject": "sgw:user", "predicate": "createdVia", "object": "sgw:legacy-pre-3-config", "reused_or_minted_predicate": "reused (minted above)", "evidence": "Static Configuration (Pre 3.0): Users can be statically configured within the Sync Gateway Configuration File." },
+    { "subject": "sgw:persistent-configuration", "predicate": "availableSince", "object": "version:sgw-3.0", "reused_or_minted_predicate": "reused (availableSince is promoted); applied here to a configuration-mode concept rather than a sync-function argument as in sync-function.json's use of the same predicate", "evidence": "Persistent Configuration is enabled by default from 3.0." },
+    { "subject": "sgw:legacy-pre-3-config", "predicate": "requiresFlagToEnable", "object": "sgw:disable-persistent-config-flag", "reused_or_minted_predicate": "reused from access-control-how-control-document-access.json", "evidence": "to use this option in version 3.x users must run Sync Gateway with the disable_persistent_config flag set to true." },
+    { "subject": "sgw:user", "predicate": "grantsChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "reused", "evidence": "Update existing user \"Edge1User\" and add admin_channels data ... 'name\": \"Edge1User\", \"admin_channels\": [\"RandomChannel\"]}'" },
+    { "subject": "sgw:user", "predicate": "seeAlso", "object": "sgw:guest-user", "reused_or_minted_predicate": "structural reference - GUEST appears in the example config specifically to be turned off", "evidence": "\"GUEST\": {\"disabled\": true}," }
+  ],
+  "cross_product_finding": "User creation itself is almost pure identity provisioning (name + password, or an OIDC-federated auto-register) - it carries no privilege or role at creation time by default; access is a wholly separate act performed afterward via the admin_channels/admin_roles properties (see access-control-how-assign-users-to-roles.json). This separation of 'who are you' from 'what can you reach' is sharper in SGW than in server/'s RBAC, where creating a user and granting it privileges are typically the same admin action, and sharper than Capella's model, where a credential (API key or DB credential) is generally minted already scoped to a role. The disabled-by-default GUEST user shown in the example config is also notable: it is the anonymous/unauthenticated identity (referenced elsewhere in this batch's sync-function.json as the implicit actor behind unauthenticated requests, e.g. for public-channel access) and disabling it is presented as a routine security hardening step - a concept with no direct analogue in server/'s or Capella's access-control docs covered so far, since neither exposes an anonymous pseudo-identity as something you provision and then explicitly turn off."
+}

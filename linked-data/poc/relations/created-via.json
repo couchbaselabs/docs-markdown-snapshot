@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/created-via",
+  "label": "created via",
+  "kind": "relation (schema-level)",
+  "type": "generic provenance relation - the subject entity (a user, role, channel) is created through the named mechanism (an API endpoint, an admin command, an implicit side effect)",
+  "promoted": true,
+  "recurrence": 4
+}

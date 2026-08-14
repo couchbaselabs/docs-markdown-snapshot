@@ -1,0 +1,32 @@
+{
+  "page_id": "cloud/indexes/index-lifecycle",
+  "source_version": "Capella",
+  "source_path": "cloud/indexes/index-lifecycle.md",
+  "concepts": [
+    { "candidate_id": "indexes:index-lifecycle", "label": "Global Secondary Index Lifecycle (creation, build, update, scan)", "reused_or_minted": "reused (intended) - same index-lifecycle concept as server/current/indexes/index-lifecycle.md, server/7.2 and server/7.6 learn/services-and-indexes/indexes/index-lifecycle.md; minted here under the shared namespace for a later merge" }
+  ],
+  "relations": [
+    {
+      "subject": "indexes:index-lifecycle",
+      "predicate": "usesEnum",
+      "object": "https://docs.couchbase.com/ld/concepts/index-state",
+      "reused_or_minted_predicate": "reused - registry enum for GSI index lifecycle state; page's build-phase description directly evidences the 'deferred' state value",
+      "evidence": "When you create an index, you can choose to defer the build phase, and then build the deferred index later. This allows multiple indexes to be built at once rather than having to re-scan the entire keyspace for each index."
+    },
+    {
+      "subject": "indexes:index-lifecycle",
+      "predicate": "seeAlso",
+      "object": "indexes:index-replication",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "For more information, see [Index Scans](index-scans.md) and [Index Consistency](index-replication.md#index-consistency)."
+    },
+    {
+      "subject": "indexes:index-lifecycle",
+      "predicate": "seeAlso",
+      "object": "clusters:xdcr",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "When migrating data using XDCR, avoid creating any indexes before the migration to achieve higher throughput. You can create the indexes after the migration to assist with query performance. For more information, see [Cross Data Center Replication (XDCR)](../clusters/xdcr/xdcr.md)."
+    }
+  ],
+  "cross_product_finding": "This page is structurally and almost textually identical to server/current/indexes/index-lifecycle.md and the server/7.2 and server/7.6 learn/services-and-indexes/indexes/index-lifecycle.md equivalents, including identical image filenames (_images/index-lifecycle-build.png, -update-1.png, -update-2.png, -scan.png) and the same numbered walkthroughs of the DCP projector/indexer flow. Confirms shared source content between server/ and cloud/ for core GSI mechanics pages; the Capella version differs mainly by using generic 'Index Service'/'Data Service' language rather than any version- or edition-qualified statements."
+}

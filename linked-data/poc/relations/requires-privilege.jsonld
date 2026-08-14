@@ -1,0 +1,9 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/relations/requires-privilege",
+  "@type": "rdf:Property",
+  "label": "requires privilege",
+  "comment": "The RBAC privilege a user must hold to execute the subject statement.",
+  "rdfs:domain": { "@id": "https://schema.org/TechArticle" },
+  "rdfs:range": { "@id": "http://www.w3.org/2004/02/skos/core#Concept" }
+}

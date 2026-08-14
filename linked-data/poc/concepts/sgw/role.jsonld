@@ -1,0 +1,7 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/sgw/role",
+  "@type": "cb:SgwRole",
+  "label": "Role (Sync Gateway)",
+  "comment": "The third structurally distinct thing named 'role' in this ontology - see concepts/sgw/role.json and reconciliation.md for the three-way distinction from capella-role:* and rbac-role:role. Typed as its own class rather than skos:Concept, since (like sgw:channel) there is no fixed catalog."
+}

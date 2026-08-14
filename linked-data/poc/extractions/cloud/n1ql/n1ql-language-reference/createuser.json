@@ -1,0 +1,75 @@
+{
+  "page_id": "cloud/n1ql-language-reference/createuser",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/createuser.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:create-user",
+      "label": "CREATE USER statement",
+      "reused_or_minted": "minted - Capella-specific DCL statement, no server/ equivalent (server/ manages local users via REST API/UI/Server-Admin, not SQL++ DDL/DCL)"
+    },
+    {
+      "candidate_id": "capella-role:organization-owner",
+      "label": "Organization Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-owner",
+      "label": "Project Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-data-writer",
+      "label": "Data Writer (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella:cluster-access-credentials",
+      "label": "Cluster access credentials (Capella data-plane database credentials)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "rbac:group",
+      "label": "RBAC group (a named collection of users that shares assigned roles)",
+      "reused_or_minted": "minted - the data-plane grouping entity that CREATE/DROP GROUP manage and CREATE USER assigns membership to; distinct from Capella's own 'Project'/'Organization' management-plane groupings"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:create-user",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:organization-owner",
+      "reused_or_minted_predicate": "minted - management-plane role gating a DCL statement; see createbucket.json for full reasoning",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Organization Owner"
+    },
+    {
+      "subject": "n1ql:create-user",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-owner",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Project Owner"
+    },
+    {
+      "subject": "n1ql:create-user",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-data-writer",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Data Writer"
+    },
+    {
+      "subject": "n1ql:create-user",
+      "predicate": "incompatibleWithCredentialType",
+      "object": "capella:cluster-access-credentials",
+      "reused_or_minted_predicate": "minted - see createbucket.json for reasoning",
+      "evidence": "You cannot execute this statement using cluster access credentials."
+    },
+    {
+      "subject": "n1ql:create-user",
+      "predicate": "assignsToGroup",
+      "object": "rbac:group",
+      "reused_or_minted_predicate": "minted - this is a membership assignment (a new local user is placed into zero-or-more groups at creation time), a different shape from `requiresPrivilege`/`requiresCapellaRole` (which describe what gates the statement itself, not what the statement's own GROUP/GROUPS clause does to the created object).",
+      "evidence": "GROUP assigns the user to a single group."
+    }
+  ],
+  "cross_product_finding": "Same management-plane/data-plane split as CREATE BUCKET (see createbucket.json for the general reasoning). Additionally notable: this page's Purpose section describes the object being created as 'a new local user in the Couchbase Server Role-Based Access Control (RBAC) system' - the doc text itself names 'Couchbase Server RBAC', not a distinct 'Capella RBAC'. This suggests the underlying data-plane role/privilege engine that CREATE USER/CREATE GROUP/GRANT/REVOKE operate on is shared/inherited from server/'s RBAC implementation, and it is only the front door - who is allowed to invoke CREATE/DROP/GRANT/REVOKE at all - that Capella gates differently (via the management-plane role checked here) . This matters for the ontology: the RBAC role/privilege taxonomy itself (cluster_admin, query_select, data_reader, etc.) may not need a Capella-specific parallel taxonomy at all - only the execution-gating layer is genuinely new. Contrast this with grant.md/revoke.md, whose parameter tables instead attribute the same role concept to 'Couchbase Capella' - see grant.json for that inconsistency."
+}

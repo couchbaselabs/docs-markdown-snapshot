@@ -1,0 +1,8 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/privilege/query-manage-index",
+  "@type": "skos:Concept",
+  "prefLabel": "Query Manage Index",
+  "seeAlso": { "@id": "https://docs.couchbase.com/server/7.2/learn/security/authorization-overview.html" },
+  "comment": "seeAlso resolved to the link target used by 4 of the 5 pages that cite this privilege. One citing page (DROP PRIMARY INDEX) links a differently-named target instead - see docs-issues/privilege-doc-link-inconsistency.json rather than reproducing the ambiguity here."
+}

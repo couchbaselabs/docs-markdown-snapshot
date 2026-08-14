@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/search/create-search-index-alias",
+  "source_version": "Capella",
+  "source_path": "cloud/search/create-search-index-alias.md",
+  "concepts": [
+    { "candidate_id": "search:create-search-index-alias", "label": "Create a Search Index Alias with the Capella UI (task/how-to page)", "reused_or_minted": "reused - same concept id as the server/ version of this page (server/search/create-search-index-alias.json); cross-product reuse" },
+    { "candidate_id": "search:index-aliases", "label": "Create Search Index Aliases", "reused_or_minted": "reused - stub already minted cross-product in server/search/create-search-index-alias.json and cloud/search/search-index-params.json" },
+    { "candidate_id": "search:create-search-index-ui", "label": "Create a Search Index with the Capella UI", "reused_or_minted": "reused - fully extracted in cloud/search/create-search-index-ui.json (this same batch)" },
+    { "candidate_id": "search:customize-index", "label": "Search Index Features (Capella)", "reused_or_minted": "reused - already extracted in cloud/search/customize-index.json" },
+    { "candidate_id": "search:simple-search-ui", "label": "Run a Simple Search with the Capella UI", "reused_or_minted": "reused - stub already minted cross-product in server/search/create-search-index-ui.json, reused again in cloud/search/create-search-index-ui.json (this batch)" }
+  ],
+  "relations": [
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:index-aliases", "note": "structural link", "evidence": "For more information about Search index aliases, see [Create Search Index Aliases](index-aliases.md)." },
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:create-search-index-ui", "note": "structural link", "evidence": "You have created at least one Search index. For more information, see [Create a Search Index with the Capella UI](create-search-index-ui.md)." },
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:customize-index", "note": "structural link", "evidence": "To customize a Search index, see [Search Index Features](customize-index.md)." },
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:simple-search-ui", "note": "structural link", "evidence": "To run a search and test the contents of your Search index or Search index alias, see [Run A Simple Search with the Capella UI](simple-search-ui.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "No role/privilege is stated in this page's Prerequisites for creating a Search index alias - only 'Search Service enabled', 'at least one Search index already created', and 'logged in to the Capella UI'. This matches the notable_absence already logged for the server/ counterpart of this page (server/search/create-search-index-alias.json), and is consistent with the same gap found on cloud/search/create-search-indexes.json and cloud/search/create-search-index-ui.json in this same batch."
+  },
+  "cross_product_finding": "This is the third of three Capella search/ pages in this batch (create-search-indexes, create-search-index-ui, create-search-index-alias) with no documented privilege/role/credential-type requirement for creating Search indexes or aliases. See the fuller cross_product_finding logged in cloud/search/create-search-indexes.json for the full reasoning: this contrasts with (a) server/'s create-search-index-ui.json, which requires a 'Search Admin' role, and (b) this batch's cloud/vector-index/ pages, which require a Capella management-plane role (requiresCapellaRole) to create an index. Worth flagging as a possible genuine access-control inconsistency between Capella's Search Service and Vector Index feature areas, not just a docs gap."
+}

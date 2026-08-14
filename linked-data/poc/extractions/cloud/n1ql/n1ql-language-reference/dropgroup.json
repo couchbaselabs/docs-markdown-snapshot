@@ -1,0 +1,80 @@
+{
+  "page_id": "cloud/n1ql-language-reference/dropgroup",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/dropgroup.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:drop-group",
+      "label": "DROP GROUP statement",
+      "reused_or_minted": "minted - Capella-specific DCL statement, no server/ equivalent"
+    },
+    {
+      "candidate_id": "capella-role:organization-owner",
+      "label": "Organization Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-owner",
+      "label": "Project Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-data-writer",
+      "label": "Data Writer (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella:cluster-access-credentials",
+      "label": "Cluster access credentials (Capella data-plane database credentials)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "rbac:group",
+      "label": "RBAC group",
+      "reused_or_minted": "reused (minted earlier in this batch, createuser.json)"
+    },
+    {
+      "candidate_id": "rbac-role:role",
+      "label": "RBAC role",
+      "reused_or_minted": "reused (minted earlier in this batch, dropuser.json)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:drop-group",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:organization-owner",
+      "reused_or_minted_predicate": "minted - see createbucket.json",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Organization Owner"
+    },
+    {
+      "subject": "n1ql:drop-group",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-owner",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Project Owner"
+    },
+    {
+      "subject": "n1ql:drop-group",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-data-writer",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Data Writer"
+    },
+    {
+      "subject": "n1ql:drop-group",
+      "predicate": "incompatibleWithCredentialType",
+      "object": "capella:cluster-access-credentials",
+      "reused_or_minted_predicate": "minted - see createbucket.json",
+      "evidence": "You cannot execute this statement using cluster access credentials."
+    },
+    {
+      "subject": "n1ql:drop-group",
+      "predicate": "revokesRole",
+      "object": "rbac-role:role",
+      "reused_or_minted_predicate": "minted (reused from dropuser.json) - cascading revocation as a side-effect of deleting the group entity itself",
+      "evidence": "Deleting a group removes all roles and privileges associated with the group. Users in the deleted group no longer inherit the roles granted to it."
+    }
+  ],
+  "cross_product_finding": "Confirms, from the deletion side, the role-inheritance shape established in creategroup.json: the evidence explicitly frames the effect of DROP GROUP in terms of terminating inheritance ('no longer inherit the roles granted to it'), not merely revoking a privilege. Same management-plane/data-plane split as the rest of the family."
+}

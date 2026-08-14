@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/group-members-inherit-role",
+  "label": "group members inherit role",
+  "kind": "relation (schema-level)",
+  "type": "the actual role-hierarchy shape: users transitively acquire roles via group membership - structurally distinct from a single per-statement privilege check",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Part of the Capella data-plane RBAC statement family - see relations/grants-role.json. This is the relation that most clearly shows Capella RBAC is a role-hierarchy model, not a privilege-per-statement model."
+}

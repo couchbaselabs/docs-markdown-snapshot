@@ -1,0 +1,6 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-query-index",
+  "@type": "skos:Concept",
+  "prefLabel": "Query Index access (Advanced cluster access credentials)"
+}

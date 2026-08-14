@@ -1,0 +1,14 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/server/7.2/search/create-search-indexes.html",
+  "@type": "schema:TechArticle",
+  "headline": "Create a Search Index",
+  "description": "Create a Search index to get started with the Search Service in your database.",
+  "datePublished": "2026-03-26T05:14:31.984Z",
+  "seeAlso": [
+    { "@id": "https://docs.couchbase.com/server/7.2/search/create-search-index-ui.html" },
+    { "@id": "https://docs.couchbase.com/server/7.2/search/create-search-index-rest-api.html" },
+    { "@id": "https://docs.couchbase.com/server/7.2/search/search-index-params.html" },
+    { "@id": "https://docs.couchbase.com/server/7.2/search/customize-index.html" }
+  ]
+}

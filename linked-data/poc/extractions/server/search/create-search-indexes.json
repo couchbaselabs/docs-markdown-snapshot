@@ -1,0 +1,26 @@
+{
+  "page_id": "server/search/create-search-indexes",
+  "source_version": "7.2",
+  "source_path": "server/7.2/search/create-search-indexes.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-search-index",
+      "label": "Create a Search Index (task/how-to page)",
+      "reused_or_minted": "minted - first page from the search component processed in this batch"
+    }
+  ],
+  "relations": [
+    { "subject": "search:create-search-index", "predicate": "seeAlso", "object": "search:create-search-index-ui", "note": "structural link" },
+    { "subject": "search:create-search-index", "predicate": "seeAlso", "object": "search:create-search-index-rest-api", "note": "structural link" },
+    { "subject": "search:create-search-index", "predicate": "seeAlso", "object": "search:search-index-params", "note": "structural link" },
+    { "subject": "search:create-search-index", "predicate": "seeAlso", "object": "search:customize-index", "note": "structural link" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "This page has no 'RBAC Privileges' section at all, unlike every N1QL statement-reference page processed so far (5/5 had one). It is a task/how-to page (Web Console UI + REST API), not a language-statement reference - the RBAC Privileges convention appears specific to the N1QL reference doc template, not applied uniformly across components. The Search Service almost certainly requires a privilege to create an index; it simply is not documented on this page. This is a content gap the extraction surfaced, independent of the ontology work - worth a note to the docs owner rather than something the linked-data layer can fix by inference.",
+    "docsIssue": "https://docs.couchbase.com/ld/docs-issues/missing-privilege-doc-search-create-search-indexes"
+  },
+  "competency_questions_addressed": [
+    "Generate related pages for navigation"
+  ]
+}

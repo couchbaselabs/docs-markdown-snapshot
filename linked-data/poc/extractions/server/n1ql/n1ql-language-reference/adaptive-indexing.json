@@ -1,0 +1,29 @@
+{
+  "page_id": "server/n1ql-language-reference/adaptive-indexing",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/adaptive-indexing.md",
+  "concepts": [
+    { "candidate_id": "n1ql:adaptive-index", "label": "Adaptive Index (functional array index using PAIRS())", "reused_or_minted": "minted", "note": "a feature/index-type page built on top of CREATE INDEX + array indexing, not itself a distinct statement" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:adaptive-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:array-indexing",
+      "note": "structural link from existing Markdown xref; page states Adaptive Index is built over Array Indexing technology",
+      "evidence": "Adaptive Indexes are bound to the limitations of Array Indexes because they are built over [Array Indexing](indexing-arrays.md) technology."
+    },
+    {
+      "subject": "n1ql:adaptive-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:create-index",
+      "note": "structural link from existing Markdown xref",
+      "evidence": "An adaptive index is a type of array index. To create an adaptive index, the overall syntax is the same as for an array index. Refer to the [CREATE INDEX](createindex.md) statement for details of the syntax."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "Unlike the sibling feature pages Flex Indexes ('Starting with Couchbase Server 6.6...') and Array Indexing ('Couchbase Server 5.0 and later provides a simpler syntax...'), this page never states which Couchbase Server version introduced the Adaptive Index / PAIRS() feature. There is also no privilege or edition-restriction section, whereas ALTER INDEX (same n1ql reference tree) explicitly documents both an RBAC role requirement and an Enterprise-Edition restriction."
+  },
+  "competency_questions_addressed": ["Generate related pages for navigation", "Which version introduced this capability?"]
+}

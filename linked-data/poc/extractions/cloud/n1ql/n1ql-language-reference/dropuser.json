@@ -1,0 +1,80 @@
+{
+  "page_id": "cloud/n1ql-language-reference/dropuser",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/dropuser.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:drop-user",
+      "label": "DROP USER statement",
+      "reused_or_minted": "minted - Capella-specific DCL statement, no server/ equivalent"
+    },
+    {
+      "candidate_id": "capella-role:organization-owner",
+      "label": "Organization Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-owner",
+      "label": "Project Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-data-writer",
+      "label": "Data Writer (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella:cluster-access-credentials",
+      "label": "Cluster access credentials (Capella data-plane database credentials)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "rbac:group",
+      "label": "RBAC group",
+      "reused_or_minted": "reused (minted earlier in this batch, createuser.json)"
+    },
+    {
+      "candidate_id": "rbac-role:role",
+      "label": "RBAC role (a named bundle of privileges grantable to a user or group)",
+      "reused_or_minted": "minted - the generic class of things GRANT/REVOKE operate on; deliberately not reusing `privilege:query-manage-index` because a 'role' here is a coarser-grained, bundlable, group-inheritable unit distinct from the single named privilege that concept represents (see reasoning in grant.json)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:drop-user",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:organization-owner",
+      "reused_or_minted_predicate": "minted - see createbucket.json",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Organization Owner"
+    },
+    {
+      "subject": "n1ql:drop-user",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-owner",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Project Owner"
+    },
+    {
+      "subject": "n1ql:drop-user",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-data-writer",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Data Writer"
+    },
+    {
+      "subject": "n1ql:drop-user",
+      "predicate": "incompatibleWithCredentialType",
+      "object": "capella:cluster-access-credentials",
+      "reused_or_minted_predicate": "minted - see createbucket.json",
+      "evidence": "You cannot execute this statement using cluster access credentials."
+    },
+    {
+      "subject": "n1ql:drop-user",
+      "predicate": "revokesRole",
+      "object": "rbac-role:role",
+      "reused_or_minted_predicate": "minted - captures a cascading side-effect (deleting the user implicitly revokes every role/privilege it held), distinct from the explicit, user-initiated revocation modeled by the REVOKE statement. Same target shape as `grantsRole`/`revokesRole` minted for GRANT/REVOKE, so it is reused across this batch rather than minting a separate 'cascade revoke' predicate.",
+      "evidence": "It removes the user from all groups and revokes all roles and privileges assigned to that user."
+    }
+  ],
+  "cross_product_finding": "Same management-plane/data-plane split as CREATE BUCKET/CREATE USER. This page also confirms the cascading nature of user deletion in the RBAC role model: dropping a user is not just a management-plane act but has data-plane consequences (group membership and role/privilege revocation), evidenced directly in text rather than inferred. The statement's own framing - 'the Couchbase Server Role-Based Access Control (RBAC) system' - again uses 'Couchbase Server', reinforcing the createuser.json finding that the underlying RBAC model is shared with server/, and only the management-plane gate is Capella-specific."
+}

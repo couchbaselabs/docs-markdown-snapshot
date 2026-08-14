@@ -1,0 +1,10 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/server/7.2/fts/fts-delete-index.html",
+  "@type": "schema:TechArticle",
+  "headline": "Delete Index",
+  "datePublished": "2026-03-20T03:41:54.898Z",
+  "seeAlso": [
+    { "@id": "https://docs.couchbase.com/server/7.2/fts/fts-searching-from-the-UI.html" }
+  ]
+}

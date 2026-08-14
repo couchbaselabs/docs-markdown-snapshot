@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/candidate-faqs/should-i-use-ldap-authentication-or-certificate-authentication",
+  "status": "draft-unverified",
+  "question": "Should I use Ldap Authentication or Certificate Authentication?",
+  "answer": "If LDAP is enabled, Couchbase Server will only allow PLAIN sasl authentication which by default, for good security, the SDK will not allow ... the secure solution is [to use TLS](managing-connections.md#ssl).",
+  "groundedIn": [
+    {
+      "source_file": "extractions/java-sdk/howtos/sdk-authentication.json",
+      "page_id": "java-sdk/howtos/sdk-authentication",
+      "subject": "sdk:ldap-authentication",
+      "object": "sdk:certificate-authentication"
+    }
+  ],
+  "note": "Mechanically generated from a single extracted relation instance. Not verified against the live page; treat the answer text as a candidate lead, not publishable copy, until a human checks it against the current source."
+}

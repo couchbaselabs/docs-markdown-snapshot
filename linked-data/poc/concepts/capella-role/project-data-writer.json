@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella-role/project-data-writer",
+  "label": "Project Data Writer",
+  "type": "Capella management-plane role",
+  "promoted": true,
+  "recurrence": 10,
+  "scheme": "capella management-plane role"
+}

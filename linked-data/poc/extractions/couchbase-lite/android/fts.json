@@ -1,0 +1,16 @@
+{
+  "page_id": "couchbase-lite/android/fts",
+  "source_version": "Couchbase Lite (Android)",
+  "source_path": "couchbase-lite/current/android/fts.md",
+  "concepts": [
+    { "candidate_id": "cbl:full-text-search", "label": "Full-Text Search (Couchbase Lite)", "reused_or_minted": "minted - local, SQLite-FTS-backed search over an FTS index, invoked via the SQL++ match()/RANK() functions or via FullTextFunction.match() in QueryBuilder; unlike server/'s FTS this runs entirely on-device with no separate Search Service" },
+    { "candidate_id": "cbl:fts-index", "label": "Full-Text Index (Couchbase Lite)", "reused_or_minted": "minted - created via FullTextIndexConfiguration or IndexBuilder.fullTextIndex(); mandatory before running an FTS query, unlike a regular value query" }
+  ],
+  "relations": [
+    { "subject": "cbl:full-text-search", "predicate": "requiresIndex", "object": "cbl:fts-index", "reused_or_minted_predicate": "minted - no promoted predicate captured a hard prerequisite-index relationship; distinct from requiresPrivilege/requiresEdition since this is a functional prerequisite, not an access or licensing gate", "evidence": "To run a full-text search (FTS) query, you must create a full-text index on the expression being matched. Unlike regular queries, the index is not optional." },
+    { "subject": "cbl:fts-index", "predicate": "seeAlso", "object": "cbl:partial-full-text-index", "reused_or_minted_predicate": "structural cross-reference (indexing.md defines the partial variant of this index type)", "evidence": "A key difference between a Partial Value Index and a Partial Full-Text Index is that a Partial Full-Text Index is not selected by SQLite's query optimizer." },
+    { "subject": "cbl:full-text-search", "predicate": "seeAlso", "object": "cbl:vector-search", "reused_or_minted_predicate": "structural markdown link (Hybrid Vector Search combines FTS with vector search)", "evidence": "Related Content ... [Full Text Search](fts.md)" }
+  ],
+  "cross_product_finding": "FTS in Couchbase Lite is entirely local: no Search Service dependency, no cluster-level index-manage privilege, no edition gate mentioned on this page (contrast with Predictive Query and Delta Sync elsewhere in this batch, which are explicitly Enterprise Edition-gated). The mandatory-index requirement is a functional constraint of the SQLite FTS engine, not an access-control or licensing decision - a genuinely new relation shape (requiresIndex) that has no counterpart in the privilege/role/billing-gate vocabulary from server/ or Capella.",
+  "notable_absence": "No dependsOnService relation applies here - there is no separate 'FTS service' to depend on, unlike server/'s Search Service architecture (as referenced by server/'s and Capella's presumed FTS-service concepts)."
+}

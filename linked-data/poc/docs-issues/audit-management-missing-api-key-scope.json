@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/audit-management-missing-api-key-scope",
+  "type": "docs-issue",
+  "issueType": "missing-privilege-documentation",
+  "description": "cloud/security/audit-management.md documents Management API endpoints for retrieving/configuring audit settings but never names the API-key scope or role required to call them.",
+  "about": ["cloud/security/audit-management"],
+  "foundDuring": "poc-100-page-stress-test",
+  "status": "open"
+}

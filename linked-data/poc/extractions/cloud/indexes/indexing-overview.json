@@ -1,0 +1,53 @@
+{
+  "page_id": "cloud/indexes/indexing-overview",
+  "source_version": "Capella",
+  "source_path": "cloud/indexes/indexing-overview.md",
+  "concepts": [
+    { "candidate_id": "indexes:indexing-overview", "label": "Primary and Secondary Index Reference (navigation hub page)", "reused_or_minted": "minted - thin index/nav page" }
+  ],
+  "relations": [
+    {
+      "subject": "indexes:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "indexes:query-without-index",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "[Query without Indexes](query-without-index.md)"
+    },
+    {
+      "subject": "indexes:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "indexes:index-pushdowns",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "[Index Pushdowns](index%5Fpushdowns.md)"
+    },
+    {
+      "subject": "indexes:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "indexes:early-filters-and-pagination",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "[Early Filters, Order, and Pagination](early-filters-and-pagination.md)"
+    },
+    {
+      "subject": "indexes:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "indexes:index-lifecycle",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "[Index Lifecycle](index-lifecycle.md)"
+    },
+    {
+      "subject": "indexes:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "indexes:index-replication",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "[Index Availability and Performance](index-replication.md)"
+    },
+    {
+      "subject": "indexes:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "indexes:storage-modes",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "[Index Storage Settings](storage-modes.md)"
+    }
+  ],
+  "cross_product_finding": "This navigation-hub page's structure (grouping links under 'Indexing and Query Performance', 'Index Commands', and 'Storage and Availability') mirrors server/current/indexes/indexing-overview.md, indicating the same table-of-contents pattern is reused across cloud/ and server/ index documentation sets, just with server/-only pages (e.g. version-specific index compatibility notes) omitted from the Capella version."
+}

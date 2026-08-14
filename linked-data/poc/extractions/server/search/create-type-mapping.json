@@ -1,0 +1,37 @@
+{
+  "page_id": "server/search/create-type-mapping",
+  "source_version": "7.2",
+  "source_path": "server/7.2/search/create-type-mapping.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-type-mapping",
+      "label": "Create a Type Mapping (task/how-to page)",
+      "reused_or_minted": "minted",
+      "note": "no prior term in registry"
+    }
+  ],
+  "relations": [
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:create-search-index-ui", "note": "structural link" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:customize-index", "note": "structural link (type-mappings anchor)" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:default-analyzers-reference", "note": "structural link" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:create-custom-analyzer", "note": "structural link" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:create-child-field", "note": "structural link" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:create-child-mapping", "note": "structural link" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:set-type-identifier", "note": "structural link" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:create-custom-character-filter", "note": "structural link" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:create-custom-token-filter", "note": "structural link" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:create-custom-tokenizer", "note": "structural link" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:create-custom-wordlist", "note": "structural link" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:set-advanced-settings", "note": "structural link" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:simple-search-ui", "note": "structural link" },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:simple-search-rest-api", "note": "structural link" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "Same gap pattern seen elsewhere in this component: no role/privilege stated for creating/editing a type mapping on an existing index, though a privilege was explicitly documented for the simpler create-quick-index.md task."
+  },
+  "competency_questions_addressed": [
+    "How do I scope a Search index to a specific collection/document type?",
+    "How do I switch a type mapping from dynamic to static?"
+  ]
+}

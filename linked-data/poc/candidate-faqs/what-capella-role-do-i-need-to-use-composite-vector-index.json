@@ -1,0 +1,27 @@
+{
+  "id": "https://docs.couchbase.com/ld/candidate-faqs/what-capella-role-do-i-need-to-use-composite-vector-index",
+  "status": "draft-unverified",
+  "question": "What Capella role do I need to use Composite Vector Index?",
+  "answer": "Your account must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Owner](../projects/project-roles.md#project-owner-role), or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role to be able to create an index.",
+  "groundedIn": [
+    {
+      "source_file": "extractions/cloud/vector-index/composite-vector-index.json",
+      "page_id": "cloud/vector-index/composite-vector-index",
+      "subject": "vector-index:composite-vector-index",
+      "object": "capella-role:organization-owner"
+    },
+    {
+      "source_file": "extractions/cloud/vector-index/composite-vector-index.json",
+      "page_id": "cloud/vector-index/composite-vector-index",
+      "subject": "vector-index:composite-vector-index",
+      "object": "capella-role:project-owner"
+    },
+    {
+      "source_file": "extractions/cloud/vector-index/composite-vector-index.json",
+      "page_id": "cloud/vector-index/composite-vector-index",
+      "subject": "vector-index:composite-vector-index",
+      "object": "capella-role:project-data-writer"
+    }
+  ],
+  "note": "Grouped from 3 separate requiresCapellaRole relation instances (Organization Owner, Project Data Writer, Project Owner) sharing one page and evidence quote. Mechanically generated; not verified against the live page."
+}

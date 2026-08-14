@@ -1,0 +1,42 @@
+{
+  "page_id": "server/n1ql-language-reference/indexing-arrays",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/indexing-arrays.md",
+  "concepts": [
+    { "candidate_id": "n1ql:array-indexing", "label": "Array Indexing (global indexes on array elements)", "reused_or_minted": "minted", "note": "a feature/index-type page built on CREATE INDEX syntax, not itself a distinct statement" },
+    { "candidate_id": "n1ql:simple-array-expression", "label": "Simple array expression syntax for array indexing (sub-capability)", "reused_or_minted": "minted", "note": "a specific syntax simplification within array indexing, not the whole feature" },
+    { "candidate_id": "n1ql:unnest-alias-flexibility", "label": "Arbitrary alias for the right side of UNNEST when using an array index (sub-capability)", "reused_or_minted": "minted", "note": "a specific relaxation of a naming constraint, not the whole array-indexing feature" },
+    { "candidate_id": "version:server-5.0", "label": "Couchbase Server 5.0", "reused_or_minted": "minted", "note": "not in the promoted registry" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:simple-array-expression",
+      "predicate": "availableSince",
+      "object": "version:server-5.0",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server 5.0 and later provides a simpler syntax for array indexing when all array elements are indexed as is, without needing to use the `ARRAY` operator in the index definition."
+    },
+    {
+      "subject": "n1ql:unnest-alias-flexibility",
+      "predicate": "availableSince",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-6.5",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server 6.5 and later, you can use any arbitrary alias for the right side of an UNNEST — the alias does not have to be the same as the ARRAY index variable name in order to use that index."
+    },
+    {
+      "subject": "n1ql:array-indexing",
+      "predicate": "seeAlso",
+      "object": "n1ql:create-index",
+      "note": "structural link from existing Markdown xref",
+      "evidence": "To create an array index, the overall syntax is the same as for a global secondary index... Refer to the [CREATE INDEX](createindex.md) statement for details of the syntax."
+    },
+    {
+      "subject": "n1ql:array-indexing",
+      "predicate": "seeAlso",
+      "object": "n1ql:covering-indexes",
+      "note": "structural link from existing Markdown xref",
+      "evidence": "Covering indexes are an efficient method of using an Index for a particular query... For more details, see [Covering Indexes](covering-indexes.md)."
+    }
+  ],
+  "competency_questions_addressed": ["Which version introduced this capability?", "Generate related pages for navigation"]
+}

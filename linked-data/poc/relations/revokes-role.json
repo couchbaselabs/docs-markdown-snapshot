@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/revokes-role",
+  "label": "revokes role",
+  "kind": "relation (schema-level)",
+  "type": "REVOKE statement's core action - the inverse of grantsRole",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Part of the Capella data-plane RBAC statement family - see relations/grants-role.json."
+}

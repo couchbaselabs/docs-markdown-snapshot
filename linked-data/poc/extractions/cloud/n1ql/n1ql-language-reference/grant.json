@@ -1,0 +1,92 @@
+{
+  "page_id": "cloud/n1ql-language-reference/grant",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/grant.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:grant",
+      "label": "GRANT statement",
+      "reused_or_minted": "minted - Capella-specific DCL statement, no server/ equivalent"
+    },
+    {
+      "candidate_id": "capella-role:organization-owner",
+      "label": "Organization Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-owner",
+      "label": "Project Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-data-writer",
+      "label": "Data Writer (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella:cluster-access-credentials",
+      "label": "Cluster access credentials (Capella data-plane database credentials)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "rbac:group",
+      "label": "RBAC group",
+      "reused_or_minted": "reused (minted earlier in this batch, createuser.json)"
+    },
+    {
+      "candidate_id": "rbac-role:role",
+      "label": "RBAC role",
+      "reused_or_minted": "reused (minted earlier in this batch, dropuser.json)"
+    },
+    {
+      "candidate_id": "rbac-role-type:enum",
+      "label": "RBAC role type (simple vs. parameterized-by-keyspace)",
+      "reused_or_minted": "minted - an enum describing whether a role applies cluster-wide or is scoped to a specific keyspace; fits the promoted `usesEnum` predicate shape well (deliberately reused rather than minting a new predicate here, since the shape genuinely matches)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:grant",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:organization-owner",
+      "reused_or_minted_predicate": "minted - see createbucket.json for full reasoning. Notably GRANT is the statement that most looks like classic `requiresPrivilege` (server/ RBAC has a `grant`-equivalent admin privilege), yet Capella still gates it with a management-plane role rather than (or in addition to) a data-plane privilege - reinforcing that this is a genuinely new axis, not a re-labeling of `requiresPrivilege`.",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Organization Owner"
+    },
+    {
+      "subject": "n1ql:grant",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-owner",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Project Owner"
+    },
+    {
+      "subject": "n1ql:grant",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-data-writer",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Data Writer"
+    },
+    {
+      "subject": "n1ql:grant",
+      "predicate": "incompatibleWithCredentialType",
+      "object": "capella:cluster-access-credentials",
+      "reused_or_minted_predicate": "minted - see createbucket.json",
+      "evidence": "You cannot execute this statement using cluster access credentials."
+    },
+    {
+      "subject": "n1ql:grant",
+      "predicate": "grantsRole",
+      "object": "rbac-role:role",
+      "reused_or_minted_predicate": "minted - the core action of GRANT is assigning a named RBAC *role* to a user or group, not checking/consuming a privilege. This is exactly the case the task brief anticipated: 'a role hierarchy, not a single privilege-per-statement' - GRANT never mentions privileges directly, only roles, so `requiresPrivilege` (object = a privilege) is the wrong shape; `grantsRole` (object = a role, and the relation itself represents delegation of access rather than a prerequisite check) fits what is actually on the page.",
+      "evidence": "The GRANT statement allows granting any RBAC roles to a specific user or group."
+    },
+    {
+      "subject": "n1ql:grant",
+      "predicate": "usesEnum",
+      "object": "rbac-role-type:enum",
+      "reused_or_minted_predicate": "reused - promoted predicate; role type genuinely is an enum of exactly two members, matching the index-state precedent's shape",
+      "evidence": "Roles can be of the following two types: simple ... Roles which apply generically to all keyspaces or resources in the cluster. ... parameterized by a keyspace ... Roles which are defined for the context of the specified keyspace only."
+    }
+  ],
+  "cross_product_finding": "GRANT is the single best page in this batch for demonstrating why `requiresPrivilege` must not be force-fit: the statement's entire subject matter is roles, never privileges, and the relation it embodies (delegating access to a user/group) is directionally opposite to `requiresPrivilege` (a prerequisite check on the actor invoking a statement) - GRANT's own prerequisite check (`requiresCapellaRole`) and its payload action (`grantsRole`) are two distinct relations on the same page and must not be conflated. Separately, a striking internal terminology inconsistency: within the SAME parameter table on this page, the 'role' row says roles are 'predefined by Couchbase Capella', while the very next row says 'group' is 'A group name created by the Couchbase Server RBAC system' - one table, two different product names for what should be the same underlying access-control system. Combined with createuser.md/dropuser.md/creategroup.md/dropgroup.md all saying 'Couchbase Server RBAC' and this page alone saying 'Couchbase Capella' for roles, this looks like inconsistent doc authoring rather than a real product distinction, but it is worth flagging because it could mislead a reader into thinking Capella has a wholly separate role catalog from server/ when the more likely truth (per createuser.json's finding) is a shared underlying RBAC engine with only the execution-gating layer being Capella-specific."
+}

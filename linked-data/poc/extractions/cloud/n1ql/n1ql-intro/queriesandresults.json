@@ -1,0 +1,27 @@
+{
+  "page_id": "cloud/n1ql-intro/queriesandresults",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-intro/queriesandresults.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql-intro:keyspace-reference",
+      "label": "Keyspace reference (full or partial path identifying a bucket/scope/collection)",
+      "reused_or_minted": "minted - conceptual model underpinning the `keyspace-ref` EBNF production reused verbatim across creategroup.md, grant.md, and revoke.md in this same batch"
+    },
+    {
+      "candidate_id": "n1ql-intro:query-context",
+      "label": "Query context (namespace/bucket/scope used to resolve partial keyspace references)",
+      "reused_or_minted": "minted - a request-level setting, not itself a statement, so it doesn't fit the `<namespace>:<kebab-case-statement-name>` convention exactly, but it's a first-class concept referenced by name across multiple pages"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql-intro:keyspace-reference",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql-intro/sysinfo",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The term keyspace is also used to refer to any of the catalogs in the [system](sysinfo.md) namespace."
+    }
+  ],
+  "cross_product_finding": "This page contains an explicit backward-compatibility carve-out that sits oddly on a Capella-only page: 'For compatibility with legacy versions of Couchbase Server, a keyspace reference may comprise the bucket name only, when referring to the default collection in the default scope within a bucket.' Capella is continuously deployed with no discrete version numbers (per the registry), so a clause conditioned on 'legacy versions of Couchbase Server' is either (a) boilerplate inherited from a shared server/cloud content source describing behavior that predates Capella entirely, carried over without adaptation, or (b) evidence that Capella's query engine genuinely inherits version-sensitive parsing behavior from the underlying Couchbase Server codebase it runs on. Either reading matters for the ontology: this is exactly the kind of version-shaped fact the registry says to flag here rather than force onto `version:server-6.5`/`version:server-7.0`, since those concepts describe server/ editions' own release history, not a compatibility mode inherited by Capella."
+}

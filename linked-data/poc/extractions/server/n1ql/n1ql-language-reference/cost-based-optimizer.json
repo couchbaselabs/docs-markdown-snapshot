@@ -1,0 +1,60 @@
+{
+  "page_id": "server/n1ql/n1ql-language-reference/cost-based-optimizer",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/cost-based-optimizer.md",
+  "concepts": [
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer (CBO)", "reused_or_minted": "minted", "note": "no prior term in registry" },
+    { "candidate_id": "n1ql:rules-based-optimizer", "label": "Rules-Based Optimizer (RBO, legacy fallback)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:hash-join", "label": "Hash join method", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:update-statistics", "label": "UPDATE STATISTICS statement", "reused_or_minted": "minted", "note": "matches n1ql:<kebab-case-statement-name> convention" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:cost-based-optimizer",
+      "predicate": "availableInEdition",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+      "reused_or_minted_predicate": "minted",
+      "note": "requiresEdition is defined for a clause/option within a statement, not a whole standalone query-engine feature; CBO is a whole optimizer subsystem, so a distinct predicate is minted for feature-level EE gating.",
+      "evidence": "The _cost-based optimizer_ (CBO) is a feature available in Couchbase Server Enterprise Edition that enables the Query service to create the most efficient plan to execute a query."
+    },
+    {
+      "subject": "n1ql:hash-join",
+      "predicate": "availableInEdition",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+      "reused_or_minted_predicate": "minted, still watchlist (second use of availableInEdition on this page)",
+      "evidence": "In Couchbase Server Enterprise Edition, two join methods are supported: nested-loop join and hash join."
+    },
+    {
+      "subject": "n1ql:cost-based-optimizer",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:update-statistics",
+      "reused_or_minted_predicate": "minted",
+      "note": "distinct from availableSince/requiresPrivilege shapes: this is a runtime dependency on having previously run a different statement, not a version or privilege gate.",
+      "evidence": "Before you can use the cost-based optimizer with a query, you _must_ first gather the statistics that it needs using the [UPDATE STATISTICS](updatestatistics.md) statement."
+    },
+    {
+      "subject": "n1ql:cost-based-optimizer",
+      "predicate": "seeAlso",
+      "object": "n1ql:optimizer-hints",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "For further details, refer to [Optimizer Hints](optimizer-hints.md)."
+    },
+    {
+      "subject": "n1ql:cost-based-optimizer",
+      "predicate": "seeAlso",
+      "object": "n1ql:explain",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "You can see these estimates using the [EXPLAIN](explain.md) command."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "This page states plainly that CBO is an Enterprise-Edition-only feature, but never states which Couchbase Server version introduced it. That's notable because other version/edition-gated features in this same batch (e.g. index replication and index rollback-after-failover in index-replication.md, GSI per-collection scoping in index-lifecycle.md) explicitly cite a version threshold alongside the edition or behavior gate. Here only the edition gate is given, with no corresponding availableSince fact."
+  },
+  "cross_component_finding": "This n1ql-language-reference page repeatedly defers to concepts explained in the 'learn/services-and-indexes/services/query-service.md' page (e.g. the rules-based optimizer and query-execution operations) rather than defining them locally, suggesting the RBO/query-architecture concept genuinely lives in the 'learn' component and n1ql-language-reference pages are consumers of it, not its source of truth.",
+  "competency_questions_addressed": [
+    "Which features are Enterprise-only?",
+    "What must be done before a given optimization/statement can be used?",
+    "Generate related pages for navigation"
+  ]
+}

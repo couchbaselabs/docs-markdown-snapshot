@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/fts-search-doc-overlap",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "fts/ and search/ appear to be two documentation generations covering overlapping functionality - e.g. both trees have their own index-alias pages (fts/fts-create-index-aliases.md vs search/create-search-index-alias.md) and their own create/delete-index pages. Not exhaustively surveyed - noticed in passing while processing 2 pages, one from each tree.",
+  "about": ["server/fts/fts-delete-index", "server/search/create-search-indexes"],
+  "foundDuring": "poc-8-page-batch",
+  "status": "open"
+}

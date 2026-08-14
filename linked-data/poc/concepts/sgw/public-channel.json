@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/public-channel",
+  "label": "!public channel (Sync Gateway)",
+  "type": "the special channel value granting access to every user",
+  "promoted": true,
+  "recurrence": 2
+}

@@ -1,0 +1,17 @@
+{
+  "page_id": "cloud/security/private-endpoints",
+  "source_version": "Capella",
+  "source_path": "cloud/security/private-endpoints.md",
+  "concepts": [
+    { "candidate_id": "security:private-endpoints", "label": "Private Endpoints (AWS PrivateLink / Azure Private Link / GCP Private Service Connect)", "reused_or_minted": "reused - same concept minted in cloud/security/security.json" },
+    { "candidate_id": "security:vpc-peering", "label": "VPC Peering", "reused_or_minted": "reused - same concept minted in cloud/security/security.json" },
+    { "candidate_id": "clusters:xdcr", "label": "Cross Data Center Replication (XDCR)", "reused_or_minted": "minted" },
+    { "candidate_id": "clusters:prometheus-server", "label": "Prometheus Server (metrics scraping)", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "security:private-endpoints", "predicate": "seeAlso", "object": "security:vpc-peering", "evidence": "> [!TIP]\n> VPC Peering\n> \n> A VPC Peering connection provides an added layer of security for organizations by avoiding communication across public internet connections. For details, see [Configure a VPC Peering Connection](../clouds/private-network.md)." },
+    { "subject": "security:private-endpoints", "predicate": "seeAlso", "object": "clusters:xdcr", "evidence": "Private endpoints on AWS and GCP supports [cross data center replication (XDCR)](../clusters/xdcr/xdcr.md) and [Prometheus Server](../clusters/monitoring/prometheus.md)." },
+    { "subject": "security:private-endpoints", "predicate": "seeAlso", "object": "clusters:prometheus-server", "evidence": "Private endpoints on AWS and GCP supports [cross data center replication (XDCR)](../clusters/xdcr/xdcr.md) and [Prometheus Server](../clusters/monitoring/prometheus.md)." }
+  ],
+  "cross_product_finding": "Private endpoints (and VPC peering) are network-boundary access-control primitives - they answer 'which network can even reach the cluster', a question that server/'s RBAC privilege model never has to answer since server/ docs assume the caller already has network access to the cluster. Combined with the findings on the other security/ pages in this batch, the overall picture for Capella access control is at least four distinct, non-overlapping layers found across this batch's pages: (1) network boundary - private endpoints, VPC peering, allowed IPs, restrict public access (this page + security.json); (2) transport/identity authentication - TLS (always-on), root certificates, X.509 client certs, SSO/MFA (security-certificates.json + security.json); (3) authorization - organization/project user roles, cluster credentials (security.json); (4) operational governance - auditing, gated by a support/service plan rather than by privilege or edition (auditing.json + audit-management.json). None of these four layers is well-served by shoehorning it into requiresPrivilege, which was designed for server/'s single flat list of named RBAC privileges (e.g. privilege:query-manage-index). This strongly supports the coordinator treating Capella's security/ vocabulary as its own sub-ontology with cross-links to server/ only where content is explicitly deferred to server/ docs (as seen with the audit event reference in auditing.json), rather than trying to retrofit it onto the requiresPrivilege/requiresEdition/availableSince predicates built for server/."
+}

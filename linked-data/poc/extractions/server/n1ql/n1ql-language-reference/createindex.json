@@ -1,0 +1,57 @@
+{
+  "page_id": "server/n1ql-language-reference/createindex",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/createindex.md",
+  "concepts": [
+    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "minted", "note": "no prior term in registry" },
+    { "candidate_id": "privilege:query-manage-index", "label": "Query Manage Index", "reused_or_minted": "minted" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "reused_or_minted": "minted", "note": "pre-agreed closed vocabulary" },
+    { "candidate_id": "edition:community", "label": "Community Edition", "reused_or_minted": "minted" },
+    { "candidate_id": "index-state", "label": "GSI index lifecycle state", "reused_or_minted": "minted", "note": "enum: scheduled for creation | deferred | building | pending | online | offline | abridged" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-manage-index",
+      "evidence": "User executing the CREATE INDEX statement must have the Query Manage Index privilege granted on the keyspace."
+    },
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "availableSince",
+      "object": "version:server-7.0",
+      "evidence": "In Couchbase Server 7.0 and later, CREATE INDEX allows you to make multiple concurrent index creation requests."
+    },
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "requiresMinVersionFor",
+      "object": "version:server-6.5",
+      "evidence": "In Couchbase Server 6.5 and later, the index type for a secondary index must be Global Secondary Index (GSI)."
+    },
+    {
+      "subject": "n1ql:with-num_replica",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "evidence": "[ENTERPRISE EDITION] ... you can specify multiple nodes to distribute replicas of an index."
+    },
+    {
+      "subject": "n1ql:with-nodes",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:community",
+      "evidence": "[COMMUNITY EDITION] a single secondary index of type GSI can be placed on a single node... The nodes property enables you to specify the node."
+    },
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "usesEnum",
+      "object": "index-state",
+      "evidence": "The index state may be scheduled for creation, deferred, building, pending, online, offline, or abridged."
+    },
+    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "n1ql:build-index", "note": "structural link from existing Markdown xref, not LLM-inferred" },
+    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "n1ql:index-partitioning", "note": "structural link" }
+  ],
+  "competency_questions_addressed": [
+    "Which privileges are required?",
+    "What versions and editions support this feature?",
+    "Generate related pages for navigation"
+  ]
+}

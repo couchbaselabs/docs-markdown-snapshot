@@ -1,0 +1,36 @@
+{
+  "@context": {
+    "cb": "https://docs.couchbase.com/ld/vocab#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "seeAlso": { "@id": "rdfs:seeAlso", "@type": "@id" },
+    "label": "rdfs:label",
+    "comment": "rdfs:comment",
+
+    "prefLabel": "skos:prefLabel",
+    "inScheme": { "@id": "skos:inScheme", "@type": "@id" },
+
+    "headline": "schema:headline",
+    "description": "schema:description",
+    "datePublished": { "@id": "schema:datePublished", "@type": "xsd:dateTime" },
+
+    "requiresPrivilege": { "@id": "https://docs.couchbase.com/ld/relations/requires-privilege", "@type": "@id" },
+    "availableSince": { "@id": "https://docs.couchbase.com/ld/relations/available-since", "@type": "@id" },
+    "requiresEdition": { "@id": "https://docs.couchbase.com/ld/relations/requires-edition", "@type": "@id" },
+    "behavesDifferentlyUnder": { "@id": "https://docs.couchbase.com/ld/relations/behaves-differently-under", "@type": "@id" },
+    "usesEnum": { "@id": "https://docs.couchbase.com/ld/relations/uses-enum", "@type": "@id" },
+    "mustUseInsteadWhen": { "@id": "https://docs.couchbase.com/ld/relations/must-use-instead-when", "@type": "@id" },
+    "requiresCapellaRole": { "@id": "https://docs.couchbase.com/ld/relations/requires-capella-role", "@type": "@id" },
+    "incompatibleWithCredentialType": { "@id": "https://docs.couchbase.com/ld/relations/incompatible-with-credential-type", "@type": "@id" },
+    "grantsChannelAccess": { "@id": "https://docs.couchbase.com/ld/relations/grants-channel-access", "@type": "@id" },
+    "hasNoRelationshipTo": { "@id": "https://docs.couchbase.com/ld/relations/has-no-relationship-to", "@type": "@id" },
+
+    "hasOption": { "@id": "cb:hasOption" },
+    "optionName": "cb:optionName",
+    "enumValues": "cb:enumValues"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "page_id": "server/fts/fts-index-partitions",
+  "source_version": "7.2",
+  "source_path": "server/7.2/fts/fts-index-partitions.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:index-partitioning",
+      "label": "Index Partitioning (FTS)",
+      "reused_or_minted": "minted",
+      "note": "No prior registry term; divides and spreads a large FTS index across multiple nodes to increase query performance."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "fts:index-partitioning",
+      "predicate": "requiresEdition",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This feature is available only in Couchbase Server Enterprise Edition."
+    },
+    {
+      "subject": "fts:index-partitioning",
+      "predicate": "seeAlso",
+      "object": "fts:creating-index-from-ui-classic-editor",
+      "note": "structural link; target page not in this batch",
+      "evidence": "See [Using the Index Definition Preview](fts-creating-index-from-UI-classic-editor.md#using-the-index-definition-preview)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege documented for setting the number of index partitions, despite the edition restriction being explicit - same privilege-documentation gap as other fts/ pages in this batch."
+  },
+  "competency_questions_addressed": [
+    "Which Couchbase Server edition is required to use Index Partitioning?",
+    "What is the default number of index partitions, and where is the partition count stored?",
+    "What privileges are required to configure index partitioning?"
+  ]
+}

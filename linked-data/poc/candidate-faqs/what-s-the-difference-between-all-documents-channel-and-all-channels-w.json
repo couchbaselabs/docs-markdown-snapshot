@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/candidate-faqs/what-s-the-difference-between-all-documents-channel-and-all-channels-w",
+  "status": "draft-unverified",
+  "question": "What's the difference between All Documents Channel and All Channels Wildcard?",
+  "answer": "This channel should not be confused with the use of the All Channels Wildcard in access grants.",
+  "groundedIn": [
+    {
+      "source_file": "extractions/sync-gateway/access-control/access-control-concepts.json",
+      "page_id": "sync-gateway/access-control/access-control-concepts",
+      "subject": "sgw:all-documents-channel",
+      "object": "sgw:all-channels-wildcard"
+    }
+  ],
+  "note": "Mechanically generated from a single extracted relation instance. Not verified against the live page; treat the answer text as a candidate lead, not publishable copy, until a human checks it against the current source."
+}

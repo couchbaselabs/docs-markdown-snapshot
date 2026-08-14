@@ -1,0 +1,28 @@
+{
+  "page_id": "server/search/create-search-index-alias",
+  "source_version": "7.2",
+  "source_path": "server/7.2/search/create-search-index-alias.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-search-index-alias",
+      "label": "Create a Search Index Alias with the Web Console (task/how-to page)",
+      "reused_or_minted": "minted",
+      "note": "no prior term in registry"
+    }
+  ],
+  "relations": [
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:index-aliases", "note": "structural link" },
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:create-search-index-ui", "note": "structural link" },
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:customize-index", "note": "structural link" },
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:simple-search-ui", "note": "structural link" },
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:simple-search-rest-api", "note": "structural link" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No role/privilege is stated in the Prerequisites for creating a Search index alias, unlike the sibling page create-quick-index.md which explicitly requires the 'Search Admin' role. Since an alias is itself a kind of index object, the same or a related privilege likely applies but is undocumented here - an inconsistency within the same doc set, not just an isolated gap.",
+    "docsIssue": "https://docs.couchbase.com/ld/docs-issues/missing-privilege-doc-search-create-search-index-alias"
+  },
+  "competency_questions_addressed": [
+    "How do I create a Search index alias spanning multiple buckets/scopes/indexes?"
+  ]
+}

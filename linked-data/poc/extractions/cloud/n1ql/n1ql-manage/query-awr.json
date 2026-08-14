@@ -1,0 +1,35 @@
+{
+  "page_id": "cloud/n1ql/n1ql-manage/query-awr",
+  "source_version": "Capella",
+  "source_path": "cloud/n1ql/n1ql-manage/query-awr.md",
+  "concepts": [
+    { "candidate_id": "n1ql:automatic-workload-repository", "label": "Automatic Workload Repository (AWR)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:awr-workload-repository", "label": "AWR workload repository (bucket/collection location for snapshots)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:awr-snapshot", "label": "AWR snapshot document", "reused_or_minted": "minted" },
+    { "candidate_id": "privilege:query-manage-system-catalog", "label": "query_manage_system_catalog role", "reused_or_minted": "minted - distinct privilege from the registered privilege:query-manage-index" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:automatic-workload-repository",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-manage-system-catalog",
+      "reused_or_minted_predicate": "reused - requiresPrivilege predicate from promoted list; object minted since this is a different privilege from privilege:query-manage-index",
+      "evidence": "Only admins or users with the `query_manage_system_catalog` role can modify settings in `system:awr`."
+    },
+    {
+      "subject": "n1ql:automatic-workload-repository",
+      "predicate": "seeAlso",
+      "object": "n1ql:system-completed-requests",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "you can extract the SQL ID of the problematic query from the AWR report and use it to trace the query in [completed_requests](monitoring-n1ql-query.md#sys-completed-req)."
+    },
+    {
+      "subject": "n1ql:awr-workload-repository",
+      "predicate": "seeAlso",
+      "object": "server:expiration",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link crossing into server/ docs",
+      "evidence": "The TTL specifies how long the documents remain in that location before the system automatically purges them. For more information about configuring the TTL, see [Expiration](../../../server/current/learn/data/expiration.md)."
+    }
+  ],
+  "cross_product_finding": "server/current/n1ql/n1ql-manage/query-awr.md exists as a near-identical counterpart, indicating AWR documentation is shared source content across server/ and cloud/. More notably, this Capella-audience page links directly out to server/ documentation for a supporting concept ('../../../server/current/learn/data/expiration.md' for TTL/Expiration) rather than to any Capella-specific expiration page - the ontology should probably treat Expiration/TTL as a single shared concept referenced by both products rather than duplicating it per-product."
+}

@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/document",
+  "label": "Document (Sync Gateway sync-function context)",
+  "type": "core primitive - the thing the sync function processes and routes to channels on every revision",
+  "promoted": true,
+  "recurrence": 4
+}

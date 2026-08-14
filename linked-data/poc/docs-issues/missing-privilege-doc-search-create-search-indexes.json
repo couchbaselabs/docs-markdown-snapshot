@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/missing-privilege-doc-search-create-search-indexes",
+  "type": "docs-issue",
+  "issueType": "missing-privilege-documentation",
+  "description": "Page has no 'RBAC Privileges' section, unlike every N1QL statement-reference page processed so far in this POC (5/5 had one). The Search Service almost certainly requires a privilege to create an index; it simply isn't documented on this page.",
+  "about": ["server/search/create-search-indexes"],
+  "foundDuring": "poc-8-page-batch",
+  "status": "open"
+}

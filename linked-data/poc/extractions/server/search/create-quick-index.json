@@ -1,0 +1,31 @@
+{
+  "page_id": "server/search/create-quick-index",
+  "source_version": "7.2",
+  "source_path": "server/7.2/search/create-quick-index.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-quick-index",
+      "label": "Create a Search Index with the Quick Editor (task/how-to page)",
+      "reused_or_minted": "minted",
+      "note": "no prior term in registry"
+    },
+    {
+      "candidate_id": "privilege:search-admin",
+      "label": "Search Admin role (Search Service RBAC, per-bucket)",
+      "reused_or_minted": "minted",
+      "note": "registry only contains privilege:query-manage-index (N1QL); Search Admin is a distinct Search Service role, not previously registered"
+    }
+  ],
+  "relations": [
+    { "subject": "search:create-quick-index", "predicate": "requiresPrivilege", "object": "privilege:search-admin", "reused_or_minted_predicate": "reused", "evidence": "Your user account has the **Search Admin** role for the bucket where you want to create the index." },
+    { "subject": "search:create-quick-index", "predicate": "seeAlso", "object": "search:field-data-types-reference", "note": "structural link" },
+    { "subject": "search:create-quick-index", "predicate": "seeAlso", "object": "search:quick-index-field-options", "note": "structural link" },
+    { "subject": "search:create-quick-index", "predicate": "seeAlso", "object": "search:customize-index", "note": "structural link" },
+    { "subject": "search:create-quick-index", "predicate": "seeAlso", "object": "search:simple-search-ui", "note": "structural link" },
+    { "subject": "search:create-quick-index", "predicate": "seeAlso", "object": "search:simple-search-rest-api", "note": "structural link" }
+  ],
+  "competency_questions_addressed": [
+    "Which privileges/roles are required to create a Search index via the Quick Editor?",
+    "What are the steps to create a quick Search index in the Web Console?"
+  ]
+}

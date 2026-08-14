@@ -1,0 +1,9 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/relations/available-since",
+  "@type": "rdf:Property",
+  "label": "available since",
+  "comment": "The earliest Couchbase Server version in which the subject statement, or a behavior described on its page, holds true. Consolidated during JSON-LD drafting from two near-synonymous pass-1 predicates, availableSince and requiresMinVersionFor - both expressed the same 'since version V, this holds' shape, just applied to a new capability vs. a longstanding constraint. Extraction agents in the 100-page stress test independently re-minted requiresMinVersionFor without knowing about this consolidation (they were only told the promoted predicate names, not the design history) - a real limitation of instructing many parallel agents from a written registry rather than a queryable one. Fold requiresMinVersionFor occurrences into this relation during reconciliation; do not treat it as a second real predicate. See poc/reconciliation.md.",
+  "rdfs:domain": { "@id": "https://schema.org/TechArticle" },
+  "rdfs:range": { "@id": "http://www.w3.org/2004/02/skos/core#Concept" }
+}

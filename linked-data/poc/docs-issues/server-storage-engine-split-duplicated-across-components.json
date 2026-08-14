@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-storage-engine-split-duplicated-across-components",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "server/learn/services-and-indexes/indexes/storage-modes.md and server/learn/services-and-indexes/services/index-service.md both restate the Enterprise-Edition/Plasma vs. Community-Edition/ForestDB storage-engine split almost verbatim, despite living under different components (indexes/ vs services/).",
+  "about": [
+    "server/learn/services-and-indexes/indexes/storage-modes",
+    "server/learn/services-and-indexes/services/index-service"
+  ],
+  "foundDuring": "poc-100-page-stress-test",
+  "status": "open"
+}

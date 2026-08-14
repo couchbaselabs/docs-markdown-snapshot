@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/applies-to-role-when-prefixed",
+  "label": "applies to role when prefixed",
+  "kind": "relation (schema-level)",
+  "type": "captures the 'role:' string-prefix convention in sync-function arguments - a lexical, code-enforced convention rather than a typed distinction",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "See concepts/sgw/role-name-prefix-convention.json."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/role",
+  "label": "Role (Sync Gateway)",
+  "type": "an admin-created, uncataloged bundle of channel grants - a THIRD structurally distinct thing called 'role' in this ontology",
+  "promoted": true,
+  "recurrence": 14,
+  "note": "Do not conflate with capella-role:* (Capella's fixed catalog of management-plane roles: Organization Owner, Project Owner, Project Data Writer) or rbac-role:role (the coarse placeholder for Capella/server data-plane RBAC roles manipulated by GRANT/REVOKE). All three are called 'role' in their respective docs; all three are structurally different: sgw:role is an ad hoc, customer-named, channel-grant bundle with no fixed catalog at all, unlike the other two. This same-word-different-thing pattern is exactly what cross-product-family testing was designed to catch - see reconciliation.md."
+}

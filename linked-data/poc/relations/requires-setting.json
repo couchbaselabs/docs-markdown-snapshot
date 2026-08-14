@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-setting",
+  "label": "requires setting",
+  "kind": "relation (schema-level)",
+  "type": "a statement or behavior depends on a named cluster/session setting being configured a particular way - 2 occurrences across 2 files",
+  "promoted": true,
+  "recurrence": 2
+}

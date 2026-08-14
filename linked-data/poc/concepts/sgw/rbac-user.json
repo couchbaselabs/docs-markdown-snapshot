@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/rbac-user",
+  "label": "User (Sync Gateway, Admin/Metrics API - reused Couchbase Server RBAC)",
+  "type": "the second, disjoint identity system Sync Gateway runs - governs the Admin/Metrics API using the server/ RBAC model, explicitly declared to have no relationship to sgw:user/sgw:role/sgw:channel",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Key evidence for the headline finding of this cross-product-family round: one product running two structurally unrelated access-control systems side by side, not one system with two names."
+}

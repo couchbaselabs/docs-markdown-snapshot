@@ -1,0 +1,6 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+  "@type": "skos:Concept",
+  "prefLabel": "Enterprise Edition"
+}

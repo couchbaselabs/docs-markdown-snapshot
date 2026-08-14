@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/must-use-instead-when",
+  "label": "must use [alternate statement] instead of [self] when [condition]",
+  "kind": "relation (schema-level property, not a concept instance) - moved out of concepts/ where it was originally filed; see poc/README.md",
+  "type": "relation type minted during extraction - not sourced from any standard ontology",
+  "promoted": true,
+  "promotion_reason": "second occurrence (createprimaryindex.json) crossed the recurrence threshold; the two occurrences describe the same underlying constraint from each statement's own point of view",
+  "recurrence": 2,
+  "occurrences": [
+    { "page": "server/n1ql-language-reference/dropprimaryindex", "evidence": "Named primary indexes that are created using CREATE PRIMARY INDEX can only be dropped using the DROP INDEX command." },
+    { "page": "server/n1ql-language-reference/createprimaryindex", "evidence": "Unnamed primary indexes are dropped by using the DROP PRIMARY INDEX statement, and named primary indexes are dropped by using the DROP INDEX statement." }
+  ],
+  "relates_to_competency_question": "What replaced this deprecated setting? - same relation shape (an authoritative pointer from one thing to the thing you should use instead), even though this instance is a statement-choice constraint rather than a deprecation."
+}

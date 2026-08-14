@@ -1,0 +1,19 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/capella-pages-cite-server-versions",
+  "type": "docs-issue",
+  "issueType": "unadapted-shared-source-content",
+  "description": "At least 11 relations across 6 Capella pages cite literal 'Couchbase Server X.Y' version strings, or link to server/ paths, despite Capella being a continuously-deployed product with no discrete version numbers - the single most-recurring anomaly found in the 100-page stress test. Examples: cloud/n1ql/n1ql-intro/sysinfo.md carries 'Couchbase Server 8.0' badges; cloud/n1ql/n1ql-manage/query-settings.md cites 'Server 8.0/7.6.0/7.6.8' and links an absolute /server/8.0/ path; cloud/n1ql/n1ql-manage/monitoring-n1ql-query.md's sample JSON output includes an edition-tagged version string ('7.0.0-4960-enterprise') meaningless on Capella; cloud/search/{create-search-indexes,create-search-index-ui,customize-index,run-searches,search-index-params}.md and cloud/vector-index/use-vector-indexes.md all cite 'Server 8.0' or 'Server 7.6' as a feature gate. Several agents independently concluded this reads as server/ content copied with only the product name substituted, not written for Capella's model.",
+  "about": [
+    "cloud/n1ql/n1ql-intro/sysinfo",
+    "cloud/n1ql/n1ql-manage/query-settings",
+    "cloud/n1ql/n1ql-manage/monitoring-n1ql-query",
+    "cloud/search/create-search-indexes",
+    "cloud/search/create-search-index-ui",
+    "cloud/search/customize-index",
+    "cloud/search/run-searches",
+    "cloud/search/search-index-params",
+    "cloud/vector-index/use-vector-indexes"
+  ],
+  "foundDuring": "poc-100-page-stress-test",
+  "status": "open"
+}

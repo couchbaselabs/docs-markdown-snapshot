@@ -1,0 +1,23 @@
+{
+  "page_id": "server/search/quick-index-supported-languages",
+  "source_version": "7.2",
+  "source_path": "server/7.2/search/quick-index-supported-languages.md",
+  "concepts": [
+    {
+      "candidate_id": "search:quick-index-language",
+      "label": "Quick Index Language option (enum: Unknown/Various, English, Arabic, Chinese/Japanese/Korean, Croatian, Danish, Dutch, Finnish, French, German, Hebrew, Hindi, Hungarian, Italian, Norwegian, Persian, Portuguese, Romanian, Russian, Sorani Kurdish, Spanish, Swedish, Turkish, Web)",
+      "reused_or_minted": "minted",
+      "note": "this page is the canonical definition/enumeration of the enum also referenced from quick-index-field-options.md (see that page's usesEnum relation)"
+    }
+  ],
+  "relations": [
+    { "subject": "search:quick-index-supported-languages", "predicate": "seeAlso", "object": "search:create-quick-index", "note": "structural link" }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "No version information is given for when specific language options (e.g. Sorani Kurdish, Web) were added; the list reads as a single flat enum with no per-value history."
+  },
+  "competency_questions_addressed": [
+    "What languages are supported for Quick Index text fields?"
+  ]
+}

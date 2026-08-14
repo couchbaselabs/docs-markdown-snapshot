@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/sgw-2.x",
+  "label": "Sync Gateway 2.x (legacy pre-3.0 config)",
+  "type": "Sync Gateway's own version family",
+  "promoted": true,
+  "recurrence": 2
+}

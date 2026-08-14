@@ -1,0 +1,13 @@
+{
+  "page_id": "couchbase-lite/android/query-n1ql-mobile-querybuilder-diffs",
+  "source_version": "Couchbase Lite (Android)",
+  "source_path": "couchbase-lite/current/android/query-n1ql-mobile-querybuilder-diffs.md",
+  "concepts": [
+    { "candidate_id": "cbl:sql-mobile-only-features", "label": "SQL++-for-Mobile features not available in QueryBuilder", "reused_or_minted": "minted - the feature set the table enumerates (UNNEST clause, CASE, array/conditional/pattern-matching/type functions) that has no QueryBuilder fluent-API equivalent" }
+  ],
+  "relations": [
+    { "subject": "cbl:sql-plus-plus-mobile", "predicate": "lacksFeatureNotIn", "object": "cbl:predictive-query", "reused_or_minted_predicate": "minted - no promoted predicate captures 'X supports everything Y has except Z'; direction here is that SQL++ for Mobile is missing exactly the two QueryBuilder-only features named", "evidence": "Couchbase Lite's SQL++ for Mobile supports all QueryBuilder features, except _Predictive Query_ and _Index_." },
+    { "subject": "cbl:sql-plus-plus-mobile", "predicate": "hasFeatureNotInQueryBuilder", "object": "cbl:sql-mobile-only-features", "reused_or_minted_predicate": "minted - the inverse gap: features SQL++ for Mobile has that QueryBuilder lacks", "evidence": "See Table 1 for the features supported by SQL++ but not by QueryBuilder." }
+  ],
+  "cross_product_finding": "Not access-control- or edition-shaped at all: this page is a pure API-surface-parity table between CBL's own two query front-ends (fluent QueryBuilder vs. SQL++ string). It has no counterpart in the server/ or Capella batches, which (per the registry) were organized around privilege/role/billing gates rather than 'which of our two client APIs supports this query feature'. Notably, the gap runs in only one direction except for two named features (Predictive Query, Index) that are QueryBuilder-exclusive and unavailable from SQL++ strings at all - consistent with query-n1ql-mobile-server-diffs.md's statement that CREATE INDEX is 'Not Supported' in SQL++ for Mobile."
+}

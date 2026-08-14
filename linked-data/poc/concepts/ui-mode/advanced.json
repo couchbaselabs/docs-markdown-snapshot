@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/ui-mode/advanced",
+  "label": "Advanced Mode (Capella Web Console UI)",
+  "type": "a client-side UI affordance gating a feature, distinct from RBAC/edition/deployment gating - object of requiresUiMode",
+  "promoted": true,
+  "recurrence": 4
+}

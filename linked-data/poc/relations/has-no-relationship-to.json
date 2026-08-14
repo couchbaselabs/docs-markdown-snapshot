@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/has-no-relationship-to",
+  "label": "has no relationship to",
+  "kind": "relation (schema-level)",
+  "type": "an explicit, docs-stated assertion that two systems/concepts that share surface similarity (or even a product) are deliberately unrelated - minted specifically for Sync Gateway's docs stating its own channel/role/user model and its reused server-RBAC model 'have no relationship'",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Low recurrence but promoted for its semantic significance - this is the sharpest piece of evidence for the round's headline finding (one product, two disjoint access-control systems). Also a candidate relation for resolving the still-open search-admin/fts-admin docs-issue, IF a page is ever found stating those are unrelated (none has been, so far)."
+}

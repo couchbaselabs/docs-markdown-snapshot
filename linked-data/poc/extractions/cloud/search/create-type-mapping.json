@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/search/create-type-mapping",
+  "source_version": "Capella",
+  "source_path": "cloud/search/create-type-mapping.md",
+  "concepts": [
+    { "candidate_id": "search:create-type-mapping", "label": "Create a New Mapping or Type Mapping (Capella UI task page)", "reused_or_minted": "reused - matches concept minted in linked-data/poc/extractions/server/search/create-type-mapping.json (server/7.2/search/create-type-mapping.md); this cloud/ page covers the same task via the Capella UI" },
+    { "candidate_id": "search:type-mapping", "label": "Search Index Type Mapping", "reused_or_minted": "reused - same page-batch concept minted in cloud/search/customize-index.json" },
+    { "candidate_id": "search:doc-filter", "label": "Document Filter", "reused_or_minted": "reused - same page-batch concept minted in cloud/search/search-index-params.json" },
+    { "candidate_id": "search:xattrs-mapping", "label": "XATTRs Mapping (index document metadata)", "reused_or_minted": "minted" },
+    { "candidate_id": "search:future-field-mapping", "label": "Mapping for a Future (not-yet-existing) Object or Field", "reused_or_minted": "minted" },
+    { "candidate_id": "capella:advanced-mode", "label": "Capella Search Index Editor - Advanced Mode", "reused_or_minted": "reused - same page-batch concept minted in cloud/search/customize-index.json" }
+  ],
+  "relations": [
+    { "subject": "search:xattrs-mapping", "predicate": "requiresUiMode", "object": "capella:advanced-mode", "reused_or_minted_predicate": "reused (requiresUiMode) - see cloud/search/customize-index.json", "evidence": "> [!NOTE]\n> XATTRs mappings can only be created with **Advanced Mode**." },
+    { "subject": "search:future-field-mapping", "predicate": "requiresUiMode", "object": "capella:advanced-mode", "reused_or_minted_predicate": "reused (requiresUiMode)", "evidence": "> [!NOTE]\n> Mappings for objects that do not yet exist in your documents can only be created in **Advanced Mode**." },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:about-mappings", "evidence": "For more information about type mappings and mappings in the Search Service, see [About Mapping Collections, Objects and Fields](about-mappings.md)." },
+    { "subject": "search:create-type-mapping", "predicate": "seeAlso", "object": "search:customize-index", "evidence": "For more information about how to run a search, see [Run A Simple Search with the Capella UI](simple-search-ui.md). You can keep adding additional features to your Search index to improve performance and search results. For more information, see [Search Index Features](customize-index.md)." }
+  ],
+  "cross_product_finding": "Cross-product reuse confirmed: search:create-type-mapping was already minted for server/search/create-type-mapping.md (server/7.2), and that extraction flagged a notable_absence for requiresPrivilege ('no role/privilege stated for creating/editing a type mapping'). This cloud/ page has the exact same gap for RBAC, but for a different reason: instead of an RBAC privilege, the prerequisite list ('You have logged in to the Couchbase Capella UI', 'You have the Search Service enabled on a node in your operational cluster') implies access is gated by being an authenticated Capella UI session with appropriate organization/project/cluster access, not by a named privilege. The Capella procedure is also framed around a breadcrumb navigation hierarchy (organization -> project -> cluster) absent from the server/ version of this task, reinforcing that Capella's access model is organization/project-scoped rather than privilege-scoped.",
+  "notable_absence": { "predicate": "requiresPrivilege / requiresOrganizationRole", "finding": "Like the server/ version of this page, this Capella page never states which organization or project role a user needs to create or edit a type mapping - only 'You have logged in to the Couchbase Capella UI' is given as a prerequisite." }
+}

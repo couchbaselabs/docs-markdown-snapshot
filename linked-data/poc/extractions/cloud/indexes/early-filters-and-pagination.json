@@ -1,0 +1,38 @@
+{
+  "page_id": "cloud/indexes/early-filters-and-pagination",
+  "source_version": "Capella",
+  "source_path": "cloud/indexes/early-filters-and-pagination.md",
+  "concepts": [
+    { "candidate_id": "indexes:early-filtering", "label": "Early Filtering (Query service applies filters to index-scan results before fetch)", "reused_or_minted": "reused (intended) - same concept as server/current/indexes/early-filters-and-pagination.md and server/7.2/7.6 equivalents" },
+    { "candidate_id": "indexes:early-order-and-pagination", "label": "Early Order and Pagination", "reused_or_minted": "reused (intended) - same concept as server/'s equivalent pages" },
+    { "candidate_id": "indexes:covering-index", "label": "Covering Index", "reused_or_minted": "reused (intended) - same concept as server/'s covering-indexes.md" }
+  ],
+  "relations": [
+    {
+      "subject": "indexes:early-filtering",
+      "predicate": "mustUseInsteadWhen",
+      "object": "indexes:predicate-pushdown",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen predicate from watchlist/promoted relations; the documented condition is that a filter which cannot be reduced to an exact index span cannot use ordinary predicate pushdown and early filtering must be used instead",
+      "evidence": "In this case, the filter cannot be pushed down to the Index service. This is where early filtering comes into play. The Query service can apply the specified filter to the results of the index scan, before fetching the matching documents from the Data service."
+    },
+    {
+      "subject": "indexes:early-order-and-pagination",
+      "predicate": "mustUseInsteadWhen",
+      "object": "indexes:order-pushdown",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen predicate; documents the condition (ORDER BY terms not aligned with index key order, or reverse-scan direction) under which order/pagination pushdown is unavailable and early ordering must be used instead",
+      "evidence": "However, if we change the order of the ordering terms so that they no longer match the index key order, ordering cannot be pushed down to the Index service. ... So in this case, early ordering, limit, and offset are done by the Query service before fetch."
+    },
+    {
+      "subject": "indexes:early-filtering",
+      "predicate": "seeAlso",
+      "object": "indexes:index-pushdown",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "Index [pushdowns](index%5Fpushdowns.md) provide one way to reduce the amount of data to be fetched."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The Limitations section lists precise structural conditions for early ordering/pagination to apply (single keyspace, no JOIN, no GROUP BY/aggregates, no IntersectScan/UnionScan/DistinctScan, parallelism disabled when active) but these are procedural constraints rather than candidate ontology relations - flagged here rather than force-fit into a relation."
+  },
+  "cross_product_finding": "This page mirrors server/current/indexes/early-filters-and-pagination.md and the server/7.2/7.6 equivalents almost verbatim, including identical example indexes (idx_eat_city_name, idx_landmark_city_name) and EXPLAIN output. Consistent with the rest of this batch's indexes/ pages (index-lifecycle, index-replication, index_pushdowns, storage-modes), confirming a single shared source of index-mechanics documentation reused across server/ and cloud/, with only light product-name substitution ('Couchbase Capella therefore attempts to apply filters, order, and pagination before fetching data, wherever possible')."
+}

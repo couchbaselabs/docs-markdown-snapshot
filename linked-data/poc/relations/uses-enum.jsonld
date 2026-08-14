@@ -1,0 +1,9 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/relations/uses-enum",
+  "@type": "rdf:Property",
+  "label": "uses enum",
+  "comment": "The subject statement's documented output or metadata draws its values from the named controlled vocabulary.",
+  "rdfs:domain": { "@id": "https://schema.org/TechArticle" },
+  "rdfs:range": { "@id": "http://www.w3.org/2004/02/skos/core#ConceptScheme" }
+}

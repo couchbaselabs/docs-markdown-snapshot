@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/deployment/capella",
+  "label": "Couchbase Capella (as a deployment/variant, distinct from an edition)",
+  "type": "generalizes the edition axis - used as the object of behavesDifferentlyUnder when a clause is disabled specifically because it's running on Capella, not because of Enterprise/Community edition",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "See relations/behaves-differently-under.json - its range should be read as 'edition-or-deployment-variant concept', not strictly 'edition concept', now that this exists."
+}

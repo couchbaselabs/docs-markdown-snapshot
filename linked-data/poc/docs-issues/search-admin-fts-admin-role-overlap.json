@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/search-admin-fts-admin-role-overlap",
+  "type": "docs-issue",
+  "issueType": "possible-concept-duplication",
+  "description": "server/search/create-search-index-ui.md and create-search-index-rest-api.md name a 'Search Admin' privilege; server/fts/fts-introduction.md separately names 'FTS Admin' and 'FTS Searcher' privileges. Both were minted as distinct concepts (extracted by two different, independent agents who could not see each other's output) with an explicit note that they may be the same or related roles under the fts/ (old) vs search/ (new) product naming. No page states the mapping either way - needs a subject-matter expert, not more extraction.",
+  "about": [
+    "server/search/create-search-index-ui",
+    "server/search/create-search-index-rest-api",
+    "server/fts/fts-introduction"
+  ],
+  "foundDuring": "poc-100-page-stress-test",
+  "status": "open"
+}

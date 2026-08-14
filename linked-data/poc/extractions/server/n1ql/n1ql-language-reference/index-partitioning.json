@@ -1,0 +1,48 @@
+{
+  "page_id": "server/n1ql-language-reference/index-partitioning",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/index-partitioning.md",
+  "concepts": [
+    { "candidate_id": "n1ql:index-partitioning", "label": "Index Partitioning", "reused_or_minted": "minted" },
+    {
+      "candidate_id": "n1ql:create-primary-index",
+      "label": "CREATE PRIMARY INDEX statement",
+      "reused_or_minted": "referenced, not yet extracted at time of this page's processing",
+      "note": "page not in the original 5-page batch - minted as a placeholder stub. Since resolved: see createprimaryindex.json in this same directory."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:index-partitioning",
+      "predicate": "requiresMinVersionFor",
+      "object": "version:server-6.5",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Starting with Couchbase Server 6.5, max_parallelism is set by default to match the number of partitions of the index."
+    },
+    {
+      "subject": "n1ql:index-partitioning",
+      "predicate": "availableSince",
+      "object": "version:server-7.0",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server 7.0 and later, the index redistribution setting enables you to specify how Couchbase Server redistributes indexes on rebalance."
+    },
+    {
+      "subject": "n1ql:with-max_parallelism",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:community",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server Community Edition, max_parallelism cannot be greater than 4."
+    },
+    {
+      "subject": "n1ql:index-partitioning",
+      "predicate": "sharesOptionSetWith",
+      "object": "n1ql:create-index",
+      "reused_or_minted_predicate": "minted - new predicate, single occurrence so far, watchlist",
+      "evidence": "WITH clause table lists num_partition, nodes, defer_build, num_replica, secKeySize, docKeySize, arrSize, numDoc, residentRatio - 3 of these (nodes, defer_build, num_replica) are the identical options documented on createindex.md's WITH clause."
+    }
+  ],
+  "competency_questions_addressed": [
+    "What versions and editions support this feature?",
+    "Generate related pages for navigation"
+  ]
+}

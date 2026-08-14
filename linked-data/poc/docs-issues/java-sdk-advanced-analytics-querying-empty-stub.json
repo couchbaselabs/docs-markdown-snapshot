@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/java-sdk-advanced-analytics-querying-empty-stub",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "java-sdk/howtos/advanced-analytics-querying.md is an empty stub page with no content, flagged directly by the extraction agent rather than as a judgment call.",
+  "about": ["java-sdk/howtos/advanced-analytics-querying"],
+  "foundDuring": "poc-cross-product-family-test",
+  "status": "open"
+}

@@ -1,0 +1,24 @@
+{
+  "page_id": "couchbase-lite/android/vector-search",
+  "source_version": "Couchbase Lite (Android)",
+  "source_path": "couchbase-lite/current/android/vector-search.md",
+  "concepts": [
+    { "candidate_id": "cbl:vector-search", "label": "Vector Search (Couchbase Lite)", "reused_or_minted": "minted - on-device semantic/similarity search over vector embeddings, positioned for Generative AI/RAG/recommendation use cases at the edge" },
+    { "candidate_id": "cbl:vector-index", "label": "Vector Index", "reused_or_minted": "minted - stores/manages embeddings; requires training (centroid/parameter computation) before first efficient query, distinct index-training lifecycle from any GSI or CBL value/FTS index" },
+    { "candidate_id": "cbl:lazy-vector-index", "label": "Lazy Vector Index", "reused_or_minted": "minted - CBL-specific asynchronous, developer-scheduled index-update mode, as opposed to the automatic update of a regular vector index" },
+    { "candidate_id": "cbl:vector-encoding", "label": "Vector Encoding (None / Scalar Quantizer / Product Quantizer)", "reused_or_minted": "minted - compression scheme enum for stored vector embeddings" },
+    { "candidate_id": "cbl:centroid", "label": "Centroid", "reused_or_minted": "minted - cluster center point computed via k-means during vector-index training" },
+    { "candidate_id": "cbl:probe", "label": "Probe (NumProbes)", "reused_or_minted": "minted - the number of centroid buckets a vector search checks" },
+    { "candidate_id": "cbl:distance-metric", "label": "Distance Metric (Squared Euclidean / Euclidean / Cosine / Dot Product)", "reused_or_minted": "minted - enum of similarity-scoring functions for vector search" },
+    { "candidate_id": "cbl:hybrid-vector-search", "label": "Hybrid Vector Search", "reused_or_minted": "minted - combines a WHERE-clause pre-filter (traditional/FTS matching) with vector similarity ranking" }
+  ],
+  "relations": [
+    { "subject": "cbl:vector-index", "predicate": "usesEnum", "object": "cbl:vector-encoding", "reused_or_minted_predicate": "reused - direct match to the promoted usesEnum shape", "evidence": "Vector Search for Couchbase Lite supports the following encoding algorithms: None ... Scalar Quantizer ... Product Quantizer ..." },
+    { "subject": "cbl:vector-search", "predicate": "usesEnum", "object": "cbl:distance-metric", "reused_or_minted_predicate": "reused - direct match to the promoted usesEnum shape", "evidence": "Couchbase Lite supports the following distance metrics: Squared Euclidean Distance ... Euclidean Distance ... Cosine Distance ... Dot Product Distance ..." },
+    { "subject": "cbl:lazy-vector-index", "predicate": "seeAlso", "object": "cbl:vector-index", "reused_or_minted_predicate": "structural comparison drawn directly from the text's comparison table", "evidence": "Lazy indexing is an alternate approach to using the standard predictive model with regular vector indexes which handle the indexing process automatically." },
+    { "subject": "cbl:hybrid-vector-search", "predicate": "seeAlso", "object": "cbl:full-text-search", "reused_or_minted_predicate": "structural markdown link / direct textual reference", "evidence": "Hybrid Vector Search (Hybrid Search) combines traditional keyword-based search such as [full text search (FTS)](fts.md) ... with advanced methods such as Vector Search." },
+    { "subject": "cbl:vector-index", "predicate": "usesEnum", "object": "cbl:centroid", "reused_or_minted_predicate": "loosely reused - centroid count is a configuration parameter rather than a closed enum, but usesEnum was the closest promoted shape for a named, bounded configuration concept; flagged for coordinator review", "evidence": "The general guideline for the optimum number of Centroids is approximately the square root of the number of documents." }
+  ],
+  "cross_product_finding": "Unlike Predictive Query, Delta Sync, and Database Encryption elsewhere in this batch, Vector Search carries NO Enterprise Edition gate on this page (no '[Enterprise Edition]' callout appears anywhere in vector-search.md) - it appears to be available regardless of edition, which is a genuine asymmetry in how CBL licenses its feature set (ML-integration features are split: Predictive Query is Enterprise-only, but Vector Search, which is also ML-adjacent, is not gated here). This is worth flagging for the coordinator since it contradicts an assumption that 'AI/ML features are Enterprise-gated' in Couchbase Lite.",
+  "notable_absence": "No edition, version, or access-control gate found anywhere on this page - a second confirmation (after query-live.md) that not all CBL feature areas map onto the edition/version/privilege axes this stress test is probing."
+}

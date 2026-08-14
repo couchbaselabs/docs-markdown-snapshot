@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+  "label": "Enterprise Edition",
+  "type": "closed vocabulary term - pre-minted before extraction began, not discovered by recurrence",
+  "promoted": true,
+  "promotion_reason": "editions/versions are an obviously small, closed, high-recurrence set (per discussion during POC design) - pre-minting was validated by the first page already needing it",
+  "sibling_terms": ["edition:community", "edition:capella (not yet observed in this batch)"],
+  "occurrences": [
+    "server/n1ql-language-reference/createindex",
+    "server/n1ql-language-reference/createprimaryindex"
+  ]
+}

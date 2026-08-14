@@ -1,0 +1,7 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/relations/has-no-relationship-to",
+  "@type": "rdf:Property",
+  "label": "has no relationship to",
+  "comment": "An explicit, docs-stated assertion that two systems or concepts which share surface similarity (sometimes even the same name, as with sgw:user vs sgw:rbac-user) are deliberately unrelated. Minted for Sync Gateway's own docs stating its channel/role/user model and its reused server-RBAC model 'have no relationship' - the sharpest evidence in this round for one product deliberately running two disjoint access-control systems, rather than one system under two names."
+}

@@ -1,0 +1,63 @@
+{
+  "page_id": "cloud/n1ql-language-reference/createbucket",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/createbucket.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:create-bucket",
+      "label": "CREATE BUCKET statement",
+      "reused_or_minted": "minted - Capella-specific DDL statement, no server/ equivalent (server/ manages buckets via REST API/UI, not SQL++ DDL)"
+    },
+    {
+      "candidate_id": "capella-role:organization-owner",
+      "label": "Organization Owner (Capella management-plane role)",
+      "reused_or_minted": "minted - Capella management-plane role; server/'s RBAC has no 'organization' layer above the cluster"
+    },
+    {
+      "candidate_id": "capella-role:project-owner",
+      "label": "Project Owner (Capella management-plane role)",
+      "reused_or_minted": "minted - Capella management-plane role scoped to a Project, a resource concept absent from server/"
+    },
+    {
+      "candidate_id": "capella-role:project-data-writer",
+      "label": "Data Writer (Capella management-plane role)",
+      "reused_or_minted": "minted - Capella management-plane role; text calls it 'Data Writer' but the anchor is 'project-cluster-data-reader-writer'"
+    },
+    {
+      "candidate_id": "capella:cluster-access-credentials",
+      "label": "Cluster access credentials (Capella data-plane database credentials)",
+      "reused_or_minted": "minted - the data-plane credential type explicitly forbidden for this statement, distinct from the management-plane identity that IS required"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:create-bucket",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:organization-owner",
+      "reused_or_minted_predicate": "minted - the gating role here is a Capella organization/project management-plane role checked by Capella's own authorization system before the statement ever reaches the query engine, not a per-statement RBAC privilege checked by SQL++ at execution time (the shape `requiresPrivilege` was defined for). A statement can require several alternative management roles disjunctively, which is also unlike a single-privilege check.",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Organization Owner"
+    },
+    {
+      "subject": "n1ql:create-bucket",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-owner",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Project Owner"
+    },
+    {
+      "subject": "n1ql:create-bucket",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-data-writer",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Data Writer"
+    },
+    {
+      "subject": "n1ql:create-bucket",
+      "predicate": "incompatibleWithCredentialType",
+      "object": "capella:cluster-access-credentials",
+      "reused_or_minted_predicate": "minted - captures a 'must NOT use this auth method' constraint, the mirror image of the promoted `mustUseInsteadWhen` shape but for authentication context rather than statement choice. Distinct from `requiresCapellaRole` because it names what is excluded, not what is required.",
+      "evidence": "You cannot execute this statement using cluster access credentials."
+    }
+  ],
+  "cross_product_finding": "This statement is the clearest example in the batch of Capella's two-tier access model, which has no counterpart in server/. Layer 1 (management plane): execution is gated by a Capella organization/project role (Organization Owner, Project Owner, or Data Writer), checked by Capella's own control-plane authorization before the statement reaches the query engine. Layer 2 (data plane): 'cluster access credentials' (the database-user credentials analogous to server/'s classic RBAC users) are explicitly forbidden from running this statement at all - 'You cannot execute this statement using cluster access credentials.' server/ has only one layer: a cluster-admin-privileged user runs bucket-management operations (via REST/UI, not SQL++) and that single RBAC check is the whole story. Capella instead requires a distinct, non-database identity even to perform an operation that create/configures the database resource the RBAC system will later govern. This is a structural, not incidental, difference and likely needs its own relation shape (`requiresCapellaRole`) rather than forcing it into `requiresPrivilege`."
+}

@@ -1,0 +1,21 @@
+{
+  "page_id": "server/n1ql-language-reference/dropindex",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/dropindex.md",
+  "concepts": [
+    { "candidate_id": "n1ql:drop-index", "label": "DROP INDEX statement", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:drop-index",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-manage-index",
+      "reused_or_minted_predicate": "reused - registry hit, identical phrasing to createindex.md",
+      "evidence": "User executing the DROP INDEX statement must have the Query Manage Index privilege granted on the keyspace/bucket."
+    },
+    { "subject": "n1ql:drop-index", "predicate": "seeAlso", "object": "n1ql:drop-primary-index", "note": "structural link" }
+  ],
+  "competency_questions_addressed": [
+    "Which privileges are required?"
+  ]
+}

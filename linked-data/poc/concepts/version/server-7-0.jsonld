@@ -1,0 +1,6 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/version/server-7.0",
+  "@type": "skos:Concept",
+  "prefLabel": "Couchbase Server 7.0"
+}

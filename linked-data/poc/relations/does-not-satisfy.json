@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/does-not-satisfy",
+  "label": "does not satisfy",
+  "kind": "relation (schema-level)",
+  "type": "negative-requirement relation - performing the subject action does not count toward satisfying the named requirement (e.g. an admin-API grant does not satisfy a sync-function requireRole check performed on the public API path)",
+  "promoted": true,
+  "recurrence": 2
+}

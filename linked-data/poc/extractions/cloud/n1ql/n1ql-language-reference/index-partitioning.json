@@ -1,0 +1,16 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/index-partitioning",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/index-partitioning.md",
+  "concepts": [
+    { "candidate_id": "n1ql:index-partitioning", "label": "Index Partitioning (PARTITION BY HASH feature)", "reused_or_minted": "reused - same underlying GSI index-partitioning feature as server/'s Index Partitioning page (cross-product reuse of concept id), though this page is a conceptual/feature reference rather than a single statement grammar page." }
+  ],
+  "relations": [
+    { "subject": "n1ql:index-partitioning", "predicate": "sharesOptionSetWith", "object": "n1ql:create-index", "reused_or_minted_predicate": "reused (watchlist)", "evidence": "Composite Vector indexes and Hyperscale Vector indexes support further options. See [CREATE INDEX](createindex.md#index-with) or [CREATE VECTOR INDEX](createvectorindex.md#vector-index-with)." },
+    { "subject": "n1ql:index-partitioning", "predicate": "sharesOptionSetWith", "object": "n1ql:create-primary-index", "reused_or_minted_predicate": "reused (watchlist)", "evidence": "For details of the syntax, see [CREATE PRIMARY INDEX](createprimaryindex.md#primary-index-with), [CREATE INDEX](createindex.md#index-with), or [CREATE VECTOR INDEX](createvectorindex.md#vector-index-with)." },
+    { "subject": "n1ql:index-partitioning", "predicate": "seeAlso", "object": "n1ql:create-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information, see [CREATE PRIMARY INDEX](createprimaryindex.md), [CREATE INDEX](createindex.md), or [CREATE VECTOR INDEX](createvectorindex.md)." }
+  ],
+  "notable_absence": { "predicate": "requiresPrivilege", "finding": "This page has no Prerequisites/privilege section at all - it is a conceptual/feature page describing PARTITION BY HASH, not a statement grammar reference, so it does not repeat the Basic/Advanced credential-type privilege table that appears on the 9 statement pages in this batch." },
+  "cross_product_finding": "This page contains an explicitly Capella-specific behavioral note that has no edition/version analogue in the server/ registry: 'In Couchbase Capella, max_parallelism is set by default to match the number of partitions of the index.' This is a deployment-specific default rather than an edition- or version-gated difference, and doesn't cleanly fit requiresEdition/availableSince/behavesDifferentlyUnder as currently scoped (those are edition- or version-keyed) - flagging rather than minting a relation for it, since a single sentence about a default value isn't clearly a 'clause/option within a statement' the way the promoted relations are scoped.",
+  "competency_questions_addressed": ["Does this conceptual page require any privileges to use?", "What option sets does index partitioning share with the CREATE INDEX family of statements?"]
+}

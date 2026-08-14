@@ -1,0 +1,29 @@
+{
+  "page_id": "server/n1ql/n1ql-intro/sysinfo",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-intro/sysinfo.md",
+  "concepts": [
+    { "candidate_id": "n1ql:system-catalog", "label": "SQL++ system catalog (the `system` namespace)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:system-indexes-keyspace", "label": "system:indexes keyspace", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:system-indexes-keyspace",
+      "predicate": "usesEnum",
+      "object": "https://docs.couchbase.com/ld/concepts/index-state",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| state | (string) State of index, for example, online |"
+    },
+    {
+      "subject": "n1ql:system-catalog",
+      "predicate": "seeAlso",
+      "object": "manage:monitoring-n1ql-query",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "Refer to [Monitor Queries](../../manage/monitor/monitoring-n1ql-query.md) for more information on the system namespace."
+    }
+  ],
+  "competency_questions_addressed": [
+    "What enum/scheme concepts does a given statement or keyspace use?",
+    "Generate related pages for navigation"
+  ]
+}

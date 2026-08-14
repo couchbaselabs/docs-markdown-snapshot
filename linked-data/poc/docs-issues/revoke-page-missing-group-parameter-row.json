@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/revoke-page-missing-group-parameter-row",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "cloud/n1ql/n1ql-language-reference/revoke.md's parameter table omits a 'group' row despite the page's own grammar including revoke-group syntax and a worked example that uses it. Small, concrete, and independently fixable regardless of any ontology decision.",
+  "about": ["cloud/n1ql/n1ql-language-reference/revoke"],
+  "foundDuring": "poc-100-page-stress-test",
+  "status": "open"
+}

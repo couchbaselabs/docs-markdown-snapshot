@@ -1,0 +1,64 @@
+{
+  "page_id": "server/learn/services-and-indexes/indexes/indexes",
+  "source_version": "7.2",
+  "source_path": "server/7.2/learn/services-and-indexes/indexes/indexes.md",
+  "concepts": [
+    { "candidate_id": "learn:indexes-overview", "label": "Indexes (overview of all Couchbase Server index forms)", "reused_or_minted": "minted" },
+    { "candidate_id": "index:primary", "label": "Primary index", "reused_or_minted": "minted" },
+    { "candidate_id": "index:secondary-gsi", "label": "Secondary index / Global Secondary Index (GSI)", "reused_or_minted": "minted" },
+    { "candidate_id": "index:full-text", "label": "Full Text index (Search service)", "reused_or_minted": "minted" },
+    { "candidate_id": "index:analytics", "label": "Analytics index", "reused_or_minted": "minted" },
+    { "candidate_id": "index:view", "label": "View index (deprecated)", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "index:view",
+      "predicate": "deprecatedSince",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-7.0",
+      "reused_or_minted_predicate": "minted",
+      "note": "availableSince covers a capability/constraint starting at a version; this is the inverse (a capability being retired starting at a version), so a distinct predicate is minted rather than overloading availableSince.",
+      "evidence": "Views are deprecated in Couchbase Server 7.0, and will be removed in a future release."
+    },
+    {
+      "subject": "index:primary",
+      "predicate": "seeAlso",
+      "object": "learn:global-secondary-indexes",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "For information on primary indexes, see [Using Indexes](global-secondary-indexes.md)."
+    },
+    {
+      "subject": "index:secondary-gsi",
+      "predicate": "seeAlso",
+      "object": "learn:global-secondary-indexes",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "For information on Global Secondary Indexes, see [Using Indexes](global-secondary-indexes.md)."
+    },
+    {
+      "subject": "index:full-text",
+      "predicate": "seeAlso",
+      "object": "fts:fts-creating-indexes",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "For information on how to create Full Text Indexes, see [Creating Indexes](../../../fts/fts-creating-indexes.md)."
+    },
+    {
+      "subject": "index:analytics",
+      "predicate": "seeAlso",
+      "object": "analytics:using-index",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "See the section on [Using Indexes](../../../analytics/7_using_index.md) in Couchbase Analytics."
+    },
+    {
+      "subject": "index:view",
+      "predicate": "seeAlso",
+      "object": "views:views-intro",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "Supports [Couchbase Views](../../views/views-intro.md), with fields and information extracted from documents."
+    }
+  ],
+  "cross_component_finding": "This page states explicitly that 'index' is not a single unified concept across Couchbase Server: the Query service consumes indexes built by the separate Index service, while the Search and Analytics services each maintain their own internal index types. Any ontology node for 'index' should probably be a supertype with service-specific subtypes (GSI/primary via Index service, Full Text via Search service, Analytics index via Analytics service, View via the deprecated view engine), since privilege/version/edition facts likely attach at the subtype level, not this shared label.",
+  "competency_questions_addressed": [
+    "What forms of index exist and which service provides each?",
+    "Which features are deprecated and since which version?",
+    "Generate related pages for navigation"
+  ]
+}

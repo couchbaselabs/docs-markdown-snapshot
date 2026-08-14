@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/all-channels-wildcard",
+  "label": "* (all-channels wildcard, Sync Gateway)",
+  "type": "the special channel value meaning 'every channel' when granted to a user or role",
+  "promoted": true,
+  "recurrence": 3
+}

@@ -1,0 +1,15 @@
+{
+  "page_id": "cloud/security/security-certificates",
+  "source_version": "Capella",
+  "source_path": "cloud/security/security-certificates.md",
+  "concepts": [
+    { "candidate_id": "security:capella-root-certificate", "label": "Capella Root Certificate (X.509)", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "security:capella-root-certificate", "predicate": "seeAlso", "object": "security:customer-managed-encryption-keys", "evidence": "* [Use Customer-Managed Encryption Keys (CMEK)](cmek.md)" },
+    { "subject": "security:capella-root-certificate", "predicate": "seeAlso", "object": "security:auditing", "evidence": "* [Audit Events](auditing.md)" },
+    { "subject": "security:capella-root-certificate", "predicate": "seeAlso", "object": "security:security-best-practices", "evidence": "* [Security Best Practices](security.md)" }
+  ],
+  "cross_product_finding": "This page is a clean example of a Capella access-control primitive that is authentication, not authorization: the root certificate proves a client's trust in the Capella-issued TLS endpoint (or, via mutual TLS/X.509 client certs referenced in the SDK links, proves the client's identity), but the page says nothing about what that authenticated identity is then permitted to DO. That's the job of org:organization-project-role-model / security:cluster-credentials (see cloud/security/security.json), not this page. So requiresPrivilege genuinely does not apply here at all - not because Capella lacks the concept, but because certificate management is purely an authentication-layer concern, while requiresPrivilege (as reused from server/) is an authorization-layer concept. Recommend the coordinator keep authN concepts (this page, plus SSO/MFA/certs) and authZ concepts (org/project roles, RBAC) in clearly separate branches of the ontology rather than trying to link them through a single access-control predicate.",
+  "notable_absence": { "predicate": "n/a", "finding": "The page gives no information about the root certificate's validity period, rotation/renewal policy, or what happens to existing connections if/when Capella rotates the root certificate - all of which would matter for an operator relying on certificate-based trust." }
+}

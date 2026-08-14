@@ -1,0 +1,69 @@
+{
+  "page_id": "server/n1ql-language-reference/createprimaryindex",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/createprimaryindex.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:create-primary-index",
+      "label": "CREATE PRIMARY INDEX statement",
+      "reused_or_minted": "resolves placeholder stub minted by index-partitioning.json and referenced by createindex.md's WITH clause table",
+      "note": "this is the page that resolves the pending stub - first pass-1 stress-test addition"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:create-primary-index",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-manage-index",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Users executing the CREATE PRIMARY INDEX statement must have the Query Manage Index privilege granted on the keyspace."
+    },
+    {
+      "subject": "n1ql:create-primary-index",
+      "predicate": "availableSince",
+      "object": "version:server-7.0",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server 7.0 and later, CREATE PRIMARY INDEX allows you to make multiple concurrent index creation requests."
+    },
+    {
+      "subject": "n1ql:create-primary-index",
+      "predicate": "requiresMinVersionFor",
+      "object": "version:server-6.5",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server 6.5 and later, the index type for a primary index must be Global Secondary Index (GSI)."
+    },
+    {
+      "subject": "n1ql:with-num_replica-primary",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[ENTERPRISE EDITION] ... This property is only available in Couchbase Server Enterprise Edition."
+    },
+    {
+      "subject": "n1ql:with-nodes-primary",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:community",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[COMMUNITY EDITION] a single primary index of type GSI can be placed on a single node that runs the Indexing Service."
+    },
+    {
+      "subject": "n1ql:create-primary-index",
+      "predicate": "usesEnum",
+      "object": "index-state",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The index state may be scheduled for creation, deferred, building, pending, online, offline, or abridged."
+    },
+    {
+      "subject": "n1ql:drop-primary-index",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:drop-index",
+      "reused_or_minted_predicate": "reused - second occurrence of this predicate, first seen on dropprimaryindex.md. Crosses recurrence threshold; promoted to concepts/predicate/must-use-instead-when.json",
+      "evidence": "Unnamed primary indexes are dropped by using the DROP PRIMARY INDEX statement, and named primary indexes are dropped by using the DROP INDEX statement."
+    }
+  ],
+  "competency_questions_addressed": [
+    "Which privileges are required?",
+    "What versions and editions support this feature?",
+    "What replaced/supersedes this? (statement-choice shape)"
+  ]
+}

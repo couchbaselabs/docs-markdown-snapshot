@@ -1,0 +1,13 @@
+{
+  "page_id": "java-sdk/howtos/working-with-collections",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/working-with-collections.md",
+  "concepts": [
+    { "candidate_id": "sdk:working-with-collections", "label": "Collections/Scopes support in the 3.x Java SDK API", "reused_or_minted": "minted - Scopes/Collections are a keyspace-addressing/data-modeling concept, not a statement. This is a thin landing page mostly pointing at a sample application, with no statement or management-API content of its own." }
+  ],
+  "relations": [
+    { "subject": "sdk:working-with-collections", "predicate": "seeAlso", "object": "sdk:provisioning-cluster-resources", "reused_or_minted_predicate": "inferred link - CollectionManager (used to create the Scopes/Collections referenced here) is documented on provisioning-cluster-resources.md", "evidence": "The `travel-sample` bucket has been split into _Scopes_ for multiple tenant travel agents ... and a shared `inventory` which is further subdivided into _Collections_." },
+    { "subject": "sdk:working-with-collections", "predicate": "behavesDifferentlyUnder", "object": "https://docs.couchbase.com/ld/concepts/version/server-7-0", "evidence": "The [Collections feature](../../../server/current/learn/data/scopes-and-collections.md) in Couchbase Server 7.x is fully implemented in the 3.x API versions of the Couchbase SDKs. When working with versions earlier than 7.0, the `defaultcollection` is used from the SDK." }
+  ],
+  "cross_product_finding": "This page is thin (mostly a pointer to the multi-language sample application) but is worth noting as a non-judgment-call case: Collections/Scopes are a data-modeling/keyspace-addressing concept (like a schema namespace), not a SQL++ statement and not really SDK-API-surface either - it's closer to a shared cross-SDK concept (the page explicitly lists Go/Java/.NET/Node.js/PHP/Python/Scala/Ruby SDK equivalents of the same sample app). I minted sdk:working-with-collections for consistency with this batch's namespace convention, but flag that a coordinator doing full cross-SDK reconciliation (not just cross-product) might want a language-neutral 'collections-and-scopes' concept above the sdk: namespace, since this concept is not really Java-specific at all."
+}

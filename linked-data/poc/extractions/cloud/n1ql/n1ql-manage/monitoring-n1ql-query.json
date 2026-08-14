@@ -1,0 +1,42 @@
+{
+  "page_id": "cloud/n1ql/n1ql-manage/monitoring-n1ql-query",
+  "source_version": "Capella",
+  "source_path": "cloud/n1ql/n1ql-manage/monitoring-n1ql-query.md",
+  "concepts": [
+    { "candidate_id": "n1ql:query-monitoring", "label": "Query management and monitoring system keyspaces", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:system-vitals", "label": "system:vitals catalog", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:system-active-requests", "label": "system:active_requests catalog", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:system-prepareds", "label": "system:prepareds catalog", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:system-completed-requests", "label": "system:completed_requests catalog", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:query-profiling", "label": "Query Profiling (off/phases/timings)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:query-profiling-level-values", "label": "Query profiling level enum (off | phases | timings)", "reused_or_minted": "minted - distinct enum from registry's index-state enum" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:query-profiling",
+      "predicate": "usesEnum",
+      "object": "n1ql:query-profiling-level-values",
+      "reused_or_minted_predicate": "reused - usesEnum predicate; object concept minted",
+      "evidence": "off — query profiling is disabled. phases — query profiling is enabled, including information about the phases of query execution. timings — query profiling is enabled, including information about the phases of query execution, and detailed timing information."
+    },
+    {
+      "subject": "n1ql:query-monitoring",
+      "predicate": "seeAlso",
+      "object": "clusters:manage-database-users",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "Users must have permission to access restricted system keyspaces. For information about cluster credentials, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md)."
+    },
+    {
+      "subject": "n1ql:query-profiling",
+      "predicate": "seeAlso",
+      "object": "n1ql:request-level-query-parameters",
+      "reused_or_minted_predicate": "reused, not minted - structural markdown link",
+      "evidence": "For more information about Query settings and parameters, see [Configure Queries](query-settings.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "The page asserts 'Users must have permission to access restricted system keyspaces' but never names the specific RBAC privilege/role required - unlike query-without-index.md in this same batch, which explicitly names the 'Query Use Sequential Scans' role. No requiresPrivilege relation could be extracted here for lack of a named privilege."
+  },
+  "cross_product_finding": "This page closely mirrors server/current/n1ql/n1ql-manage/monitoring-n1ql-query.md (and the server/7.6 equivalent) almost verbatim, including identical sample JSON output. Notably, the sample system:vitals output includes \"version\": \"7.0.0-N1QL\" and the profiling example includes \"~versions\": [\"7.0.0-N1QL\", \"7.0.0-4960-enterprise\"] - an edition-tagged version string ('-enterprise') that has no meaning on Capella, which has no Enterprise/Community edition distinction. This is strong evidence that example output was copied from a server/ Enterprise Edition instance rather than captured from an actual Capella cluster."
+}

@@ -1,0 +1,6 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/capella-role/project-data-writer",
+  "@type": "skos:Concept",
+  "prefLabel": "Project Data Writer"
+}

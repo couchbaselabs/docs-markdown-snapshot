@@ -1,0 +1,60 @@
+{
+  "page_id": "server/learn/services-and-indexes/indexes/storage-modes",
+  "source_version": "7.2",
+  "source_path": "server/7.2/learn/services-and-indexes/indexes/storage-modes.md",
+  "concepts": [
+    { "candidate_id": "index:storage-modes", "label": "Index Storage Settings (Storage Modes) page/topic", "reused_or_minted": "minted" },
+    { "candidate_id": "index:memory-optimized-storage", "label": "Memory-Optimized Index Storage", "reused_or_minted": "minted" },
+    { "candidate_id": "index:standard-storage", "label": "Standard Index Storage", "reused_or_minted": "minted" },
+    { "candidate_id": "index:indexer-node-state", "label": "Indexer node operational state", "reused_or_minted": "minted", "note": "enum candidate: Active | Warmup | Paused - describes the operating mode of the Indexer process on a node (memory-pressure driven), distinct from the promoted per-index lifecycle enum at https://docs.couchbase.com/ld/concepts/index-state (scheduled for creation | deferred | building | pending | online | offline | abridged)" },
+    { "candidate_id": "version:server-7.0.2", "label": "Couchbase Server 7.0.2", "reused_or_minted": "minted", "note": "specific patch version; registry only has server-6.5 and server-7.0 (minor versions)" }
+  ],
+  "relations": [
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "requiresEdition",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Memory-optimized index-storage is supported by the _Nitro_ storage engine, and is only available in Couchbase Server Enterprise Edition."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server Enterprise Edition, standard index-storage is supported by the _Plasma_ storage engine. In this case, compaction is handled automatically."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/community",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server Community Edition, standard index-storage is supported by the _ForestDB_ storage engine. In this case, each index saved with the _standard_ option has two write modes"
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "availableSince",
+      "object": "version:server-7.0.2",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In version 7.0.2 and after, standard index storage supports indexes for both Couchbase buckets _and_ Ephemeral buckets. This applies both to Enterprise and to Community Edition."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "usesEnum",
+      "object": "index:indexer-node-state",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If indexer RAM usage then goes above 95% of the Index Service memory-quota, the indexer goes into the Paused mode on that node; and although the indexes remain in `Active` state, traffic is routed away from the node."
+    },
+    { "subject": "index:storage-modes", "predicate": "seeAlso", "object": "learn:buckets", "note": "structural link ('Memory-optimized indexes can be created for both Couchbase and Ephemeral buckets. See Buckets')" },
+    { "subject": "index:storage-modes", "predicate": "seeAlso", "object": "manage:configure-alerts", "note": "structural link ('an error-notification is provided')" },
+    { "subject": "index:storage-modes", "predicate": "seeAlso", "object": "index:index-replication", "note": "structural link ('For information on these settings, see Index Availability and Performance')" },
+    { "subject": "index:storage-modes", "predicate": "seeAlso", "object": "manage:configure-compact-settings", "note": "structural link ('Other storage-settings are described in detail in Configuring Auto-Compaction')" },
+    { "subject": "index:storage-modes", "predicate": "seeAlso", "object": "manage:node-management-overview", "note": "structural link ('For information on adding and removing nodes... see Manage Nodes and Clusters')" },
+    { "subject": "index:storage-modes", "predicate": "seeAlso", "object": "manage:general-settings", "note": "structural link ('Bloom filters can be enabled or disabled... See the information provided on establishing General settings')" }
+  ],
+  "cross_component_finding": "This page's Enterprise-vs-Community storage-engine split (Plasma/Nitro for EE, ForestDB for CE) is described again, almost identically, in server/7.2/learn/services-and-indexes/services/index-service.md's 'Saving Indexes' section (a different doc component: services vs indexes, both under learn/services-and-indexes). The index-service.md page even cross-links back to this one ('For more information, see Index Storage Settings'), but restates the edition split rather than purely deferring to it - worth checking during reconciliation whether these should collapse to one canonical set of requiresEdition/behavesDifferentlyUnder relations with two source pages, rather than duplicate relation sets.",
+  "competency_questions_addressed": [
+    "What versions and editions support this feature?",
+    "Generate related pages for navigation"
+  ]
+}

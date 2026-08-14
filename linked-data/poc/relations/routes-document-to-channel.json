@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/routes-document-to-channel",
+  "label": "routes document to channel",
+  "kind": "relation (schema-level)",
+  "type": "the sync function's channel() call - assigns a document to a channel as a side effect of processing its revision",
+  "promoted": true,
+  "recurrence": 5
+}

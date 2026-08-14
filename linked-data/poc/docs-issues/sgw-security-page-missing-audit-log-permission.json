@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/sgw-security-page-missing-audit-log-permission",
+  "type": "docs-issue",
+  "issueType": "missing-privilege-documentation",
+  "description": "secure-sgw-access.md does not document any audit-log-related permission, despite Sync Gateway having a dedicated audit-logging subsystem (security/audit-logging.md, security/manage-audit-logs.md, security/audit-log-events.md - not yet processed in this batch). Flagged by the extraction agent as an expected-but-missing cross-reference.",
+  "about": ["sync-gateway/security/secure-sgw-access"],
+  "foundDuring": "poc-cross-product-family-test",
+  "status": "open"
+}

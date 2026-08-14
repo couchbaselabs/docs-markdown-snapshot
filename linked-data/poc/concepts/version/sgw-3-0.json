@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/sgw-3.0",
+  "label": "Sync Gateway 3.0",
+  "type": "Sync Gateway's own independent version family - kept separate from version:server-* per the extraction batch's explicit instructions",
+  "promoted": true,
+  "recurrence": 3
+}

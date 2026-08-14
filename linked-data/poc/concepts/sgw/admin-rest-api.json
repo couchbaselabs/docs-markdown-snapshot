@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/admin-rest-api",
+  "label": "Admin REST API (Sync Gateway)",
+  "type": "the coarse admin-vs-not bypass mechanism - calls via this API make requireUser/requireRole/requireAccess checks in the sync function into no-ops",
+  "promoted": true,
+  "recurrence": 8,
+  "note": "The closest thing Sync Gateway has to a platform-enforced privilege gate, and it is a single undifferentiated bypass switch, not a named/enumerable privilege like privilege:query-manage-index."
+}

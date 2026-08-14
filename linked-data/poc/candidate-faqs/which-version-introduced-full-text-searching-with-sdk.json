@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/candidate-faqs/which-version-introduced-full-text-searching-with-sdk",
+  "status": "draft-unverified",
+  "question": "Which version introduced Full Text Searching With SDK?",
+  "answer": "Note that this feature is only supported with Couchbase Server 7.0 or later. [Collections in Search queries]",
+  "groundedIn": [
+    {
+      "source_file": "extractions/java-sdk/howtos/full-text-searching-with-sdk.json",
+      "page_id": "java-sdk/howtos/full-text-searching-with-sdk",
+      "subject": "sdk:full-text-searching-with-sdk",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-7-0"
+    }
+  ],
+  "note": "Mechanically generated from a single extracted relation instance. Not verified against the live page; treat the answer text as a candidate lead, not publishable copy, until a human checks it against the current source."
+}

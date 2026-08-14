@@ -1,0 +1,63 @@
+{
+  "page_id": "cloud/n1ql-language-reference/dropbucket",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/dropbucket.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:drop-bucket",
+      "label": "DROP BUCKET statement",
+      "reused_or_minted": "minted - Capella-specific DDL statement, no server/ equivalent"
+    },
+    {
+      "candidate_id": "capella-role:organization-owner",
+      "label": "Organization Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-owner",
+      "label": "Project Owner (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella-role:project-data-writer",
+      "label": "Data Writer (Capella management-plane role)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    },
+    {
+      "candidate_id": "capella:cluster-access-credentials",
+      "label": "Cluster access credentials (Capella data-plane database credentials)",
+      "reused_or_minted": "reused (minted earlier in this batch, createbucket.json)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:drop-bucket",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:organization-owner",
+      "reused_or_minted_predicate": "minted - see createbucket.json for full reasoning; management-plane role, not a per-statement RBAC privilege",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Organization Owner"
+    },
+    {
+      "subject": "n1ql:drop-bucket",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-owner",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Project Owner"
+    },
+    {
+      "subject": "n1ql:drop-bucket",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-data-writer",
+      "reused_or_minted_predicate": "same as above",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * Data Writer"
+    },
+    {
+      "subject": "n1ql:drop-bucket",
+      "predicate": "incompatibleWithCredentialType",
+      "object": "capella:cluster-access-credentials",
+      "reused_or_minted_predicate": "minted - see createbucket.json for reasoning",
+      "evidence": "You cannot execute this statement using cluster access credentials."
+    }
+  ],
+  "cross_product_finding": "Same two-tier access model as CREATE BUCKET (see createbucket.json). Notably, DROP BUCKET is also irreversible and cascades destruction of all indexes/metadata in the bucket ('Dropping a bucket deletes all data in the bucket, including documents, scopes, and collections. It also deletes all associated indexes, metadata, and other bucket resources.'), yet the gating check is still purely the Capella management-plane role, not any data-plane privilege like a hypothetical 'drop bucket' RBAC privilege - server/'s nearest equivalent (bucket deletion via REST/UI) is likewise not an RBAC-privilege-gated SQL++ operation, so this isn't a divergence from server/ so much as confirmation that bucket lifecycle management sits entirely outside the RBAC privilege model in both products - only the identity system that gates it differs (Capella org/project role vs. server/ cluster-admin credential)."
+}

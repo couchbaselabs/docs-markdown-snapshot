@@ -1,0 +1,40 @@
+{
+  "page_id": "server/manage/manage-indexes/manage-indexes",
+  "source_version": "7.2",
+  "source_path": "server/7.2/manage/manage-indexes/manage-indexes.md",
+  "concepts": [
+    { "candidate_id": "manage:manage-indexes", "label": "Manage Indexes (Web Console / CLI / REST task page)", "reused_or_minted": "minted" },
+    { "candidate_id": "manage:index-advisor", "label": "Index Advisor / Query Advisor feature", "reused_or_minted": "minted" },
+    { "candidate_id": "index:indexer-node-state", "label": "Indexer node operational state", "reused_or_minted": "reused", "note": "minted on storage-modes.md, this batch, with enum values Active | Warmup | Paused; this page's UI status column instead shows ready | pause | warmup | n mutations remaining - possibly the same underlying state exposed with different wording/casing across pages. Flagged rather than merged, since the two vocabularies aren't textually identical." }
+  ],
+  "relations": [
+    {
+      "subject": "manage:index-advisor",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/community",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Note that in Couchbase Server _Community_ Edition, index-definition support is provided in a slightly different way. ... The External Query Advisor link takes the user to an external web-site, where the Query Advisor can be accessed and used."
+    },
+    {
+      "subject": "manage:manage-indexes",
+      "predicate": "usesEnum",
+      "object": "index:indexer-node-state",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "status. The current state of the Index Service on the node on which this index is stored. The state can be expressed as **ready**, **pause**, **warmup**, or **n mutations remaining** (where **n** is an integer)."
+    },
+    { "subject": "manage:manage-indexes", "predicate": "seeAlso", "object": "n1ql:dropindex", "note": "structural link ('you can also drop an index by means of the SQL++ DROP INDEX and DROP PRIMARY INDEX commands'); convention-matched id, may already be registered from a prior batch" },
+    { "subject": "manage:manage-indexes", "predicate": "seeAlso", "object": "n1ql:dropprimaryindex", "note": "structural link, same sentence as above; convention-matched id, may already be registered from a prior batch" },
+    { "subject": "manage:manage-indexes", "predicate": "seeAlso", "object": "index:storage-modes", "note": "structural link ('Storage Mode. The storage mode used by the Index Service...'); reuses concept minted on storage-modes.md, this batch" },
+    { "subject": "manage:manage-indexes", "predicate": "seeAlso", "object": "manage:monitoring-indexes", "note": "structural link ('For more information on these charts, see Index Statistics' and 'refer to Index Service Statistics')" },
+    { "subject": "manage:manage-indexes", "predicate": "seeAlso", "object": "index:index-replication", "note": "structural link ('An overview of index replication... are provided in Index Replication'); reuses concept minted on storage-modes.md, this batch" },
+    { "subject": "manage:manage-indexes", "predicate": "seeAlso", "object": "n1ql:index-partitioning", "note": "structural link ('Examples of creating partitioned indexes are provided in Partition Keys'); convention-matched id, may already be registered from a prior batch" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "This page - which covers creating, dropping, and editing indexes via the Web Console Query Editor, plus CLI and REST management of Index-Service settings - has no RBAC/privileges section anywhere, despite covering the same underlying operations (CREATE INDEX, DROP INDEX) that the N1QL statement-reference pages document as requiring the Query Manage Index privilege. This is the same pattern noted for search/fts task pages in an earlier batch: task/UI-oriented how-to pages tend not to restate the privilege requirements that the underlying statement-reference pages document, even when the UI is just a front end for that same statement."
+  },
+  "competency_questions_addressed": [
+    "Generate related pages for navigation",
+    "What versions and editions support this feature?"
+  ]
+}
