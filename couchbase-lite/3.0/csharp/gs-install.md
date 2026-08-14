@@ -2,7 +2,7 @@
 title: Installing Couchbase Lite on .Net
 description: How to install Couchbase Lite on .Net
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/csharp/pages/gs-install.adoc
-pubDate: 2026-03-26T05:14:31.984Z
+pubDate: 2026-08-14T05:04:04.685Z
 link: xref:3.0@couchbase-lite:csharp:gs-install.adoc[]
 ---
 
@@ -23,7 +23,7 @@ For experienced developers, this is all you need to add _Couchbase Lite for C#.N
 
   * Community Edition — `Couchbase.Lite` package for 3.0.15
   * Enterprise Edition — `Couchbase.Lite.Enterprise` package for 3.0.15
-3. Within your app, include a call the relevant `Activate()` function inside of the class that is included in the support assembly.
+3. Within your Android app, include a call to the relevant `Activate()` function inside of the class that is included in the support assembly, passing in a `context` argument (typically the `ApplicationContext` property on your app class).
 
 That's it!  
 You should be ready to build you app using this version. The rest of this content contains more detail, for those who want tp know more about the install or who encountered issues
@@ -57,14 +57,19 @@ If you are using `packages.config`, you must take extra care when upgrading the 
 > [!NOTE]
 > Versions that are not the same are incompatible with each other — see: [Comparative Table](https://www.couchbase.com/products/editions)
 
-## [](#activating)Activating
+## [](#activating-on-android-platform-only)Activating (on Android platform only)
 
-Within your app, include a call the relevant `Activate()` function inside of the class that is included in the support assembly.
+Couchbase Lite must be activated before any other calls can be made.  
+Within your Android app, include a call to the relevant `Activate()` function inside of the class that is included in the support assembly.
 
 There is only one public class in each support assembly, and the support assembly itself is a nuget dependency.
 
-For example, UWP looks like:  
-`Couchbase.Lite.Support.UWP.Activate()`
+On Android, this method takes a `context` argument — typically the `ApplicationContext` property on your app class.
+
+For example:  
+`Couchbase.Lite.Support.Android.Activate(this.ApplicationContext)`
+
+The `Activate()` function is required for applications using .NET on the Android platform only. It is not required, and the function does not exist, for iOS or UWP.
 
 Currently the support assemblies provide dependency injected mechanisms for default directory logic, and platform specific logging (So, C# will log to logcat with correct log levels and tags. No more "mono-stdout" always at info level.)
 
