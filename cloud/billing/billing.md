@@ -3,7 +3,7 @@ title: Manage Your Billing
 description: Couchbase Capella bills you for the size and number of operational
   clusters in your organization.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/billing.adoc
-pubDate: 2026-08-06T05:31:06.200Z
+pubDate: 2026-08-15T04:37:50.554Z
 link: xref:cloud:billing:billing.adoc[]
 ---
 
@@ -205,8 +205,8 @@ Integrated LLM Cache
 
 If you enable any of the following **Value Adds** when [deploying your Capella-hosted models](../../ai/build/model-service/deploy-llm-model.md#procedure), Couchbase charges an additional fixed hourly cache fee on top of your regular Model Service costs:
 
-* [Caching](../../ai/get-started/intro.md#llm-caching)
-* [Async Processing](#ai:build:model-service:configure-embed-performance.adoc#async-processing)
+* [Caching](../../ai/build/model-service/configure-value-adds.md#caching)
+* [Async Processing](../../ai/build/model-service/configure-value-adds.md#async-processing)
 
 This integrated cache fee is per tenant per region, and applies for every cloud service provider (CSP) region which has at least 1 model with these **Value Adds** enabled. For example, Couchbase bills 2 models that have caching enabled in AWS regions `us-east-1` and `us-west-2` an additional 1 credit per hour, which is 0.5 credit per hour for each region.
 

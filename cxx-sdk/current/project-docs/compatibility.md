@@ -4,7 +4,7 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-06-12T16:31:57.907Z
+pubDate: 2026-08-15T04:37:50.554Z
 link: xref:cxx-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -115,7 +115,7 @@ __SDK API Versions__
 | ------------------------------------------------------------------ | --------- | ------- | ------- | ------- | ------------ | ----------- |
 | [.NET](../../../dotnet-sdk/current/hello-world/overview.md)        | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          | 3.9         |
 | [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        | N/A ②       |
-| [C++](../hello-world/overview.md)                                  | \-        | \-      | 1.0     | 1.1     | 1.2          | 1.3         |
+| [C++](../hello-world/overview.md)                                  | \-        | \-      | 1.0     | 1.1     | 1.2          | 1.3 & 1.4   |
 | [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         | 2.12        |
 | [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   | 3.11 & 3.12 |
 | [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ | 3.11 & 3.12 |

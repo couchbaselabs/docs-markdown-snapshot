@@ -877,7 +877,6 @@ Get enterprise support by registering for a trial here: https://www.couchbase.co
         - [Sizing a Cluster](https://docs.couchbase.com/cloud/clusters/sizing.md)
         - [Cluster Scaling](https://docs.couchbase.com/cloud/clusters/scale-database.md)
         - [Configure Allowed IPs](https://docs.couchbase.com/cloud/clusters/allow-ip-address.md)
-        - [Configure Cluster Access Credentials](https://docs.couchbase.com/cloud/clusters/manage-database-users.md)
         - [Monitor Clusters](https://docs.couchbase.com/cloud/clusters/monitoring/monitoring.md)
             - [View Monitoring Dashboards](https://docs.couchbase.com/cloud/clusters/monitoring/metrics-dashboard.md)
             - [View Health Advisor](https://docs.couchbase.com/cloud/clusters/monitoring/health-advisor.md)
