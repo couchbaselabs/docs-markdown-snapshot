@@ -3,9 +3,10 @@ title: Integrations, Connectors, and Tools
 description: An overview of the integrations, connectors, and tools available
   for Capella Analytics, including data visualization, feature stores, and data
   ingestion pipelines.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/integration.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:analytics:query:integration.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/integration.adoc
+  xref: xref:analytics:query:integration.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

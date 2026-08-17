@@ -2,9 +2,10 @@
 title: Sync Gateway Quick Start
 description: Start your Couchbase for Mobile and Edge adventure, get up and
   running with Sync Gateway
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/index.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:2.8@sync-gateway::index.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/index.adoc
+  xref: xref:2.8@sync-gateway::index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

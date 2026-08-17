@@ -2,9 +2,10 @@
 title: Add a Synonym Source Using the Quick Editor
 description: You can add a Synonym Source to set the collection where your
   synonym documents are stored with the Quick Editor.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/synonyms/add-synonym-source-quick.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:search:synonyms/add-synonym-source-quick.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/synonyms/add-synonym-source-quick.adoc
+  xref: xref:server:search:synonyms/add-synonym-source-quick.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

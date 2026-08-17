@@ -2,9 +2,10 @@
 title: Analytics Workbench
 description: The Analytics Workbench provides a rich graphical user interface to
   perform Analytics query development.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/analytics-service/analytics-workbench.adoc
-pubDate: 2026-05-02T05:28:41.565Z
-link: xref:cloud:clusters:analytics-service/analytics-workbench.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/analytics-service/analytics-workbench.adoc
+  xref: xref:cloud:clusters:analytics-service/analytics-workbench.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

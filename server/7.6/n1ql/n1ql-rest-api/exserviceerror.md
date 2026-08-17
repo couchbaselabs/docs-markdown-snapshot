@@ -2,9 +2,10 @@
 title: Service Error
 description: "A service error means there is a problem that prevents the request
   being fulfilled:"
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/n1ql/pages/n1ql-rest-api/exserviceerror.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:n1ql:n1ql-rest-api/exserviceerror.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/n1ql/pages/n1ql-rest-api/exserviceerror.adoc
+  xref: xref:7.6@server:n1ql:n1ql-rest-api/exserviceerror.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

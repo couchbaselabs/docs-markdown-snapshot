@@ -1,9 +1,10 @@
 ---
 title: Synchronous Replication
 description: Durability
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/howtos/pages/synchronous-replication.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:1.6@scala-sdk:howtos:synchronous-replication.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/howtos/pages/synchronous-replication.adoc
+  xref: xref:1.6@scala-sdk:howtos:synchronous-replication.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

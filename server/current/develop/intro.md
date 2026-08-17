@@ -2,9 +2,10 @@
 title: Developer Intro
 description: This section contains tutorials, how-to guides, and information
   about Couchbase Services to help you develop applications.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/develop/pages/intro.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:server:develop:intro.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/develop/pages/intro.adoc
+  xref: xref:server:develop:intro.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

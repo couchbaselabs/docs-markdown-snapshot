@@ -2,9 +2,10 @@
 title: Sub-Document Operations with the C SDK
 description: <em>Sub-document</em> operations can be used to efficiently access
   <em>parts</em> of documents.
-editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:c-sdk:howtos:subdocument-operations.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/subdocument-operations.adoc
+  xref: xref:c-sdk:howtos:subdocument-operations.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

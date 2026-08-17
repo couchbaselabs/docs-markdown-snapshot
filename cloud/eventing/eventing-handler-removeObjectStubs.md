@@ -1,9 +1,10 @@
 ---
 title: "Function: removeObjectStubs"
 description: Recursively remove all empty object stubs from a document.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-removeObjectStubs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:cloud:eventing:eventing-handler-removeObjectStubs.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-removeObjectStubs.adoc
+  xref: xref:cloud:eventing:eventing-handler-removeObjectStubs.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

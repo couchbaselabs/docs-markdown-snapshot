@@ -2,9 +2,10 @@
 title: XDCR Data-Type Conversion
 description: <em>XDCR filtering expressions</em> are supported by data-type
   <em>conversion</em> and <em>collation</em>.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/xdcr-reference/pages/xdcr-filtering-data-type-conversion.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:xdcr-reference:xdcr-filtering-data-type-conversion.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/xdcr-reference/pages/xdcr-filtering-data-type-conversion.adoc
+  xref: xref:server:xdcr-reference:xdcr-filtering-data-type-conversion.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

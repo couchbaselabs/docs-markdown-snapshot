@@ -5,9 +5,10 @@ description: The Couchbase AI Data Plane provides you with the tools to create,
   environment. Choose between self-managed deployments for use with Couchbase
   Server Enterprise Edition or fully managed solutions integrated with Couchbase
   Capella.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/get-started/pages/intro.adoc
-pubDate: 2026-08-07T05:05:42.965Z
-link: xref:ai:get-started:intro.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/get-started/pages/intro.adoc
+  xref: xref:ai:get-started:intro.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

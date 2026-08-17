@@ -1,9 +1,10 @@
 ---
 title: cbbackupmgr strategies
 description: Recommended backup strategies for cbbackupmgr
-editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-strategies.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:backup-restore:cbbackupmgr-strategies.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-strategies.adoc
+  xref: xref:7.2@server:backup-restore:cbbackupmgr-strategies.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

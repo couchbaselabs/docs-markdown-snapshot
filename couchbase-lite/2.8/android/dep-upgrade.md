@@ -1,8 +1,9 @@
 ---
 title: Upgrade
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/android/pages/dep-upgrade.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:2.8@couchbase-lite:android:dep-upgrade.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/android/pages/dep-upgrade.adoc
+  xref: xref:2.8@couchbase-lite:android:dep-upgrade.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

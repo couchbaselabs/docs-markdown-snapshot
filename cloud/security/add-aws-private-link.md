@@ -4,9 +4,10 @@ description: Add an AWS PrivateLink connection that peers your Amazon Web
   Service (AWS) network with a Capella cluster using AWS as its cloud provider.
   This connection can reduce latency and egress costs for applications hosted in
   the same region.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/add-aws-private-link.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:cloud:security:add-aws-private-link.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/add-aws-private-link.adoc
+  xref: xref:cloud:security:add-aws-private-link.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,8 +1,9 @@
 ---
 title: Couchbase AI Data Plane Release Notes
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/reference/pages/release-notes.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:reference:release-notes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/reference/pages/release-notes.adoc
+  xref: xref:ai:reference:release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

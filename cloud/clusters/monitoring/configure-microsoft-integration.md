@@ -2,9 +2,10 @@
 title: Configure a Microsoft Teams Alert Integration
 description: Send Capella metrics-based alerts to your Microsoft Teams channel
   with an alert integration.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/configure-microsoft-integration.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud:clusters:monitoring/configure-microsoft-integration.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/configure-microsoft-integration.adoc
+  xref: xref:cloud:clusters:monitoring/configure-microsoft-integration.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: ALTER VECTOR INDEX
 description: The ALTER VECTOR INDEX statement increases or decreases the number
   of index replicas and partition replicas.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/altervectorindex.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:n1ql:n1ql-language-reference/altervectorindex.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/altervectorindex.adoc
+  xref: xref:cloud:n1ql:n1ql-language-reference/altervectorindex.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

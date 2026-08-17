@@ -1,9 +1,10 @@
 ---
 title: Configure Client Certificates
 description: Couchbase Server supports client-authentication by means of X.509 certificates.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/configure-client-certificates.adoc
-pubDate: 2026-05-06T05:34:55.761Z
-link: xref:server:manage:manage-security/configure-client-certificates.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/configure-client-certificates.adoc
+  xref: xref:server:manage:manage-security/configure-client-certificates.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

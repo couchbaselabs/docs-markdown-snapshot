@@ -3,9 +3,10 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.6@nodejs-sdk:project-docs:compatibility.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/project-docs/pages/compatibility.adoc
+  xref: xref:4.6@nodejs-sdk:project-docs:compatibility.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

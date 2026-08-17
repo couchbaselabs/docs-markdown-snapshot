@@ -2,9 +2,10 @@
 title: Add Autocomplete to Your Application
 description: Use autocomplete to add suggestions for a user's Search query as
   they type in your application.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/search-query-auto-complete-code.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:search:search-query-auto-complete-code.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/search-query-auto-complete-code.adoc
+  xref: xref:cloud:search:search-query-auto-complete-code.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

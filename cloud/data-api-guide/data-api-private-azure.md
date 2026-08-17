@@ -2,9 +2,10 @@
 title: Manage Azure Private Endpoints for the Data API
 description: How to configure and manage private endpoints for the Data API
   using Microsoft Azure.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-private-azure.adoc
-pubDate: 2026-04-01T05:25:30.286Z
-link: xref:cloud:data-api-guide:data-api-private-azure.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-private-azure.adoc
+  xref: xref:cloud:data-api-guide:data-api-private-azure.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

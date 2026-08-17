@@ -2,9 +2,10 @@
 title: Deploy Agent Memory for Production
 description: Deploy the Agent Memory server to a Linux server with HTTPS, Docker
   Compose, and persistent storage.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/deploy-agent-mem-prod.adoc
-pubDate: 2026-08-01T05:32:35.777Z
-link: xref:ai:build:agent-memory/deploy-agent-mem-prod.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/deploy-agent-mem-prod.adoc
+  xref: xref:ai:build:agent-memory/deploy-agent-mem-prod.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

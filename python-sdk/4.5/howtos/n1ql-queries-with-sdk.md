@@ -3,9 +3,10 @@ title: Query
 description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/n1ql-queries-with-sdk.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.5@python-sdk:howtos:n1ql-queries-with-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/n1ql-queries-with-sdk.adoc
+  xref: xref:4.5@python-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

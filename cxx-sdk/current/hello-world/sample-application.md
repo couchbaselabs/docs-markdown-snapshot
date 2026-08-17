@@ -1,9 +1,10 @@
 ---
 title: Quickstart in Couchbase with C&#43;&#43;
 description: Quickstart app to build a REST API using Couchbase Capella in C&#43;&#43;.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/hello-world/pages/sample-application.adoc
-pubDate: 2026-07-28T05:30:40.250Z
-link: xref:cxx-sdk:hello-world:sample-application.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/hello-world/pages/sample-application.adoc
+  xref: xref:cxx-sdk:hello-world:sample-application.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

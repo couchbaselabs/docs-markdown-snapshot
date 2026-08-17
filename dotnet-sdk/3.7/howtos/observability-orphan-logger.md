@@ -3,9 +3,10 @@ title: Orphaned Requests Logging
 description: In addition to request tracing and metrics reporting, logging
   orphaned requests provides additional insight into why an operation might have
   timed out (or got cancelled for a different reason).
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/howtos/pages/observability-orphan-logger.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.7@dotnet-sdk:howtos:observability-orphan-logger.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/howtos/pages/observability-orphan-logger.adoc
+  xref: xref:3.7@dotnet-sdk:howtos:observability-orphan-logger.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Behavior During Node Failures
 description: How Cloud Native Gateway handles Couchbase Server node failures,
   Cloud Native Gateway instance failures, and the impact on client applications.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/availability-and-failover/pages/behavior-during-node-failures.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:availability-and-failover:behavior-during-node-failures.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/availability-and-failover/pages/behavior-during-node-failures.adoc
+  xref: xref:cloud-native-gateway:availability-and-failover:behavior-during-node-failures.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

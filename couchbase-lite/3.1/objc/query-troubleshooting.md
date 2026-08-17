@@ -1,9 +1,10 @@
 ---
 title: Query Troubleshooting
 description: Couchbase Lite Queries -- troubleshooting
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/objc/pages/query-troubleshooting.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.1@couchbase-lite:objc:query-troubleshooting.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/objc/pages/query-troubleshooting.adoc
+  xref: xref:3.1@couchbase-lite:objc:query-troubleshooting.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:3.10@scala-sdk:howtos:provisioning-cluster-resources.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/howtos/pages/provisioning-cluster-resources.adoc
+  xref: xref:3.10@scala-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

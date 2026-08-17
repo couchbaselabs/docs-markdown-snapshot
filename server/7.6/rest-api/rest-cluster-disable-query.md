@@ -3,9 +3,10 @@ title: Disabling Consistent View Query Results on Rebalance
 description: Ensuring view query results consistency is performed with the
   <code>POST /internalSettings -d indexAwareRebalanceDisabled</code> HTTP
   method, URI, and parameter.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-cluster-disable-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:rest-api:rest-cluster-disable-query.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-cluster-disable-query.adoc
+  xref: xref:7.6@server:rest-api:rest-cluster-disable-query.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

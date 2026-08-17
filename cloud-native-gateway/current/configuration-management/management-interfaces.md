@@ -2,9 +2,10 @@
 title: Management Interfaces
 description: The web management interface, health checks, and runtime
   configuration options for Cloud Native Gateway.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/configuration-management/pages/management-interfaces.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:configuration-management:management-interfaces.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/configuration-management/pages/management-interfaces.adoc
+  xref: xref:cloud-native-gateway:configuration-management:management-interfaces.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

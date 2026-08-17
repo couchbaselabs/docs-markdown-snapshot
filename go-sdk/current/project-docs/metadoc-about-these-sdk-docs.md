@@ -2,9 +2,10 @@
 title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
-pubDate: 2026-04-11T05:05:55.612Z
-link: xref:go-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
+  xref: xref:go-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -3,9 +3,10 @@ title: Async and Batching APIs
 description: The Go SDK offers a synchronous blocking interface but this does
   not stop you from using it asynchronously, or from performing bulk operations
   concurrently.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.8@go-sdk:howtos:concurrent-async-apis.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/howtos/pages/concurrent-async-apis.adoc
+  xref: xref:2.8@go-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

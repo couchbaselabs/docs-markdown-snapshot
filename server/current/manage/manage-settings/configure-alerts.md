@@ -1,9 +1,10 @@
 ---
 title: Alerts
 description: Email alerts can be dispatched automatically.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/configure-alerts.adoc
-pubDate: 2026-08-01T05:32:35.777Z
-link: xref:server:manage:manage-settings/configure-alerts.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/configure-alerts.adoc
+  xref: xref:server:manage:manage-settings/configure-alerts.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

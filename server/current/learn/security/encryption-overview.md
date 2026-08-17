@@ -1,9 +1,10 @@
 ---
 title: Encryption
 description: Couchbase Server lets you use encryption to protect data.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/encryption-overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:learn:security/encryption-overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/encryption-overview.adoc
+  xref: xref:server:learn:security/encryption-overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

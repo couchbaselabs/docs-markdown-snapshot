@@ -1,9 +1,10 @@
 ---
 title: Full Installation
 description: Installation instructions for the Couchbase Go Client.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:1.0@go-analytics-sdk:project-docs:sdk-full-installation.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
+  xref: xref:1.0@go-analytics-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

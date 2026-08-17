@@ -1,8 +1,9 @@
 ---
 title: User Management
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/sdk-user-management-overview.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:php-sdk:concept-docs:sdk-user-management-overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/sdk-user-management-overview.adoc
+  xref: xref:php-sdk:concept-docs:sdk-user-management-overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

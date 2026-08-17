@@ -1,8 +1,9 @@
 ---
 title: Capella Analytics Management API Reference
-editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/columnar/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-04-01T05:25:30.286Z
-link: xref:analytics:management-api-reference:index.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/columnar/modules/management-api-reference/pages/index.adoc
+  xref: xref:analytics:management-api-reference:index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

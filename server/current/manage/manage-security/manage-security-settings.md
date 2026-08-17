@@ -2,9 +2,10 @@
 title: Manage Security Settings
 description: Couchbase Server security-settings can be managed from Couchbase
   Web Console, and by means of the REST API.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-security-settings.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:manage:manage-security/manage-security-settings.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-security-settings.adoc
+  xref: xref:server:manage:manage-security/manage-security-settings.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

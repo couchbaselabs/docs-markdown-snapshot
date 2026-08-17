@@ -2,9 +2,10 @@
 title: Index Storage Settings
 description: "A Secondary Index can be saved in either of two ways:
   memory-optimized or standard."
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/indexes/pages/storage-modes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:indexes:storage-modes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/indexes/pages/storage-modes.adoc
+  xref: xref:server:indexes:storage-modes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

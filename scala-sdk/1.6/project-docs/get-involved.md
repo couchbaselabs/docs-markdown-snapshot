@@ -1,9 +1,10 @@
 ---
 title: Get Involved
 description: link:project-docs:partial$attributes.adoc[]
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/project-docs/pages/get-involved.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:1.6@scala-sdk:project-docs:get-involved.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/project-docs/pages/get-involved.adoc
+  xref: xref:1.6@scala-sdk:project-docs:get-involved.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

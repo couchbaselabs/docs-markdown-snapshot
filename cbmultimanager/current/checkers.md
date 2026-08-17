@@ -1,8 +1,9 @@
 ---
 title: Cluster Monitor checkers
-editUrl: https://github.com/couchbaselabs/cbmultimanager/edit/0.2.x/docs/modules/ROOT/pages/checkers.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cbmultimanager::checkers.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/cbmultimanager/edit/0.2.x/docs/modules/ROOT/pages/checkers.adoc
+  xref: xref:cbmultimanager::checkers.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

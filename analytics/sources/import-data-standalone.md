@@ -2,9 +2,10 @@
 title: Import Data to a Standalone Collection
 description: You can use the Capella Analytics workbench to upload a data file
   into a standalone collection.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/import-data-standalone.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:analytics:sources:import-data-standalone.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/import-data-standalone.adoc
+  xref: xref:analytics:sources:import-data-standalone.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

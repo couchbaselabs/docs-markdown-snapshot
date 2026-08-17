@@ -1,8 +1,9 @@
 ---
 title: Service Selection
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/concept-docs/pages/data-services.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.8@go-sdk:concept-docs:data-services.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/concept-docs/pages/data-services.adoc
+  xref: xref:2.8@go-sdk:concept-docs:data-services.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

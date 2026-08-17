@@ -3,9 +3,10 @@ title: Work with Query Results
 description: The query results pane of the workbench provides options for
   displaying, copying, downloading, and otherwise working with the results of a
   query.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/results.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:analytics:query:results.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/results.adoc
+  xref: xref:analytics:query:results.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Sub-document DataFrame KV persistence
 description: Use sub-document KV writes with Spark DataFrames to update parts of
   JSON documents efficiently.
-editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/subdocument.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:spark-connector::subdocument.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/subdocument.adoc
+  xref: xref:spark-connector::subdocument.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: vBuckets
 description: vBuckets are virtual buckets that break bucket data into smaller
   pieces to make distributing and replicating data across multiple nodes easier.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/vbuckets.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:learn:buckets-memory-and-storage/vbuckets.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/vbuckets.adoc
+  xref: xref:server:learn:buckets-memory-and-storage/vbuckets.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

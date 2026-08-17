@@ -1,8 +1,9 @@
 ---
 title: Menu UI Macro
-editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/menu-ui-macro.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:styleguide::menu-ui-macro.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/menu-ui-macro.adoc
+  xref: xref:styleguide::menu-ui-macro.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

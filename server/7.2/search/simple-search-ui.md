@@ -2,9 +2,10 @@
 title: Run A Simple Search with the Web Console
 description: Run a Search query from the Couchbase Server Web Console to preview
   the search results from a Search index.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/simple-search-ui.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.2@server:search:simple-search-ui.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/simple-search-ui.adoc
+  xref: xref:7.2@server:search:simple-search-ui.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

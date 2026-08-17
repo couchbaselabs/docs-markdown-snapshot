@@ -1,9 +1,10 @@
 ---
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on C#.Net
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/csharp/pages/releasenotes.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:3.4@couchbase-lite:csharp:releasenotes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/csharp/pages/releasenotes.adoc
+  xref: xref:3.4@couchbase-lite:csharp:releasenotes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

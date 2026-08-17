@@ -3,9 +3,10 @@ title: Delete a Reference
 description: Deleting an XDCR <em>reference</em> ensures that the previously
   specified remote cluster and bucket are no longer available to receive
   replicated data.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/delete-xdcr-reference.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:manage:manage-xdcr/delete-xdcr-reference.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/delete-xdcr-reference.adoc
+  xref: xref:server:manage:manage-xdcr/delete-xdcr-reference.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

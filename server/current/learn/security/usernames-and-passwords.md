@@ -3,9 +3,10 @@ title: Usernames and Passwords
 description: Couchbase Server requires that administrators and applications
   <em>authenticate</em>, in order to gain access to data, settings, and
   statistics.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/usernames-and-passwords.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:learn:security/usernames-and-passwords.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/usernames-and-passwords.adoc
+  xref: xref:server:learn:security/usernames-and-passwords.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

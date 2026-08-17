@@ -3,9 +3,10 @@ title: Legacy Pre-3.0 Configuration
 description: Configuring <em>Sync Gateway</em> Pre-3.0 to provide secure
   cloud-to-edge synchronization of enterprise data using the standard, static,
   configuration file.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-properties-legacy.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:sync-gateway:configuration:configuration-properties-legacy.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-properties-legacy.adoc
+  xref: xref:sync-gateway:configuration:configuration-properties-legacy.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

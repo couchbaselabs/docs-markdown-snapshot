@@ -2,9 +2,10 @@
 title: Cleanup
 description: The SDK takes care of failed or lost transactions, using an
   asynchronous cleanup background task.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/concept-docs/pages/transactions-cleanup.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.6@nodejs-sdk:concept-docs:transactions-cleanup.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/concept-docs/pages/transactions-cleanup.adoc
+  xref: xref:4.6@nodejs-sdk:concept-docs:transactions-cleanup.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

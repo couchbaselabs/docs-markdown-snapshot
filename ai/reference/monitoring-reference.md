@@ -2,9 +2,10 @@
 title: Monitoring Reference
 description: This reference lists the metric graphs displayed in the Couchbase
   AI Data Plane UI Monitoring dashboards.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/reference/pages/monitoring-reference.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:reference:monitoring-reference.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/reference/pages/monitoring-reference.adoc
+  xref: xref:ai:reference:monitoring-reference.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

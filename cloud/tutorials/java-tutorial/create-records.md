@@ -1,9 +1,10 @@
 ---
 title: Create Student and Course Records
 description: Learn how to use the SDK to create student and course records.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/create-records.adoc
-pubDate: 2026-06-25T05:47:47.215Z
-link: xref:cloud:tutorials:java-tutorial/create-records.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/create-records.adoc
+  xref: xref:cloud:tutorials:java-tutorial/create-records.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

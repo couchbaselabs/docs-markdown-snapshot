@@ -2,9 +2,10 @@
 title: Buckets and Clusters
 description: The Couchbase Java SDK provides an API for managing a Couchbase
   cluster programmatically.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.10/modules/concept-docs/pages/buckets-and-clusters.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:3.10@kotlin-sdk:concept-docs:buckets-and-clusters.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.10/modules/concept-docs/pages/buckets-and-clusters.adoc
+  xref: xref:3.10@kotlin-sdk:concept-docs:buckets-and-clusters.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

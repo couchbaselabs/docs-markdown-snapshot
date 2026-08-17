@@ -2,9 +2,10 @@
 title: Scans
 description: This section discusses how index spans are generated from query
   predicates and provides a number of examples.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/learn/pages/services-and-indexes/indexes/index-scans.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:7.2@server:learn:services-and-indexes/indexes/index-scans.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/learn/pages/services-and-indexes/indexes/index-scans.adoc
+  xref: xref:7.2@server:learn:services-and-indexes/indexes/index-scans.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

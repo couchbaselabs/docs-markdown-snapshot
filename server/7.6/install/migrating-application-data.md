@@ -4,9 +4,10 @@ description: With the introduction of scopes and collections, you can plan for a
   simpler mapping from RDBMS and consolidate hundreds of microservices and/or
   tenants in a single Couchbase cluster, resulting in much lower operational
   cost.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/migrating-application-data.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:install:migrating-application-data.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/migrating-application-data.adoc
+  xref: xref:7.6@server:install:migrating-application-data.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

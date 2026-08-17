@@ -1,9 +1,10 @@
 ---
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on Objective-C
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/releasenotes.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:3.2@couchbase-lite:objc:releasenotes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/releasenotes.adoc
+  xref: xref:3.2@couchbase-lite:objc:releasenotes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

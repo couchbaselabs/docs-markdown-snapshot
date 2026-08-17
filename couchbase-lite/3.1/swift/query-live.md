@@ -1,9 +1,10 @@
 ---
 title: Live Queries
 description: Couchbase mobile database live query concepts
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/swift/pages/query-live.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:3.1@couchbase-lite:swift:query-live.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/swift/pages/query-live.adoc
+  xref: xref:3.1@couchbase-lite:swift:query-live.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

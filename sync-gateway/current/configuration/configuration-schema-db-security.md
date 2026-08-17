@@ -1,9 +1,10 @@
 ---
 title: Database Security
 description: Using Sync Gateway's Admin REST API to configure users and roles
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-db-security.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:sync-gateway:configuration:configuration-schema-db-security.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-db-security.adoc
+  xref: xref:sync-gateway:configuration:configuration-schema-db-security.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -3,9 +3,10 @@ title: Access Control
 description: An overview of fine-grained access control for downstream edge
   clients in Couchbase Edge Server, including keyspace patterns, permissions,
   and enforcement behavior.
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/access-control/pages/access-control-concept.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:couchbase-edge-server:access-control:access-control-concept.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/access-control/pages/access-control-concept.adoc
+  xref: xref:couchbase-edge-server:access-control:access-control-concept.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

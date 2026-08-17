@@ -1,9 +1,10 @@
 ---
 title: Access()
 description: Enabling Sync Gateway data access
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/access-control/pages/sync-function/sync-function-api-access-cmd.adoc
-pubDate: 2026-05-12T05:41:22.753Z
-link: xref:3.3@sync-gateway:access-control:sync-function/sync-function-api-access-cmd.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/access-control/pages/sync-function/sync-function-api-access-cmd.adoc
+  xref: xref:3.3@sync-gateway:access-control:sync-function/sync-function-api-access-cmd.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

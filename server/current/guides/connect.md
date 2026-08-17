@@ -1,9 +1,10 @@
 ---
 title: Connect to Couchbase Server
 description: How to connect to a Couchbase Cluster.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/connect.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:server:guides:connect.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/connect.adoc
+  xref: xref:server:guides:connect.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

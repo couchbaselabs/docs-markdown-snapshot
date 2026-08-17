@@ -1,9 +1,10 @@
 ---
 title: View and Query Examples
 description: This section provides general information and query examples.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-query-samples.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:learn:views/views-query-samples.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-query-samples.adoc
+  xref: xref:7.2@server:learn:views/views-query-samples.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

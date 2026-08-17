@@ -2,9 +2,10 @@
 title: Archive a Repository
 description: The Backup Service REST API supports the archiving of currently
   active repositories.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/backup-archive-a-repository.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:rest-api:backup-archive-a-repository.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/backup-archive-a-repository.adoc
+  xref: xref:7.6@server:rest-api:backup-archive-a-repository.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

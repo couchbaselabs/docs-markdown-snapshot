@@ -1,9 +1,10 @@
 ---
 title: Collections and Scopes
 description: Fully supported in Couchbase Server 7.1.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/concept-docs/pages/collections.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:2.8@go-sdk:concept-docs:collections.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/concept-docs/pages/collections.adoc
+  xref: xref:2.8@go-sdk:concept-docs:collections.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

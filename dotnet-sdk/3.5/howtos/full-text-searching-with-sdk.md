@@ -2,9 +2,10 @@
 title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.5/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-04-08T05:18:32.349Z
-link: xref:3.5@dotnet-sdk:howtos:full-text-searching-with-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.5/modules/howtos/pages/full-text-searching-with-sdk.adoc
+  xref: xref:3.5@dotnet-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

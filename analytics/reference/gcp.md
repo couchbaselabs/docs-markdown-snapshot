@@ -1,9 +1,10 @@
 ---
 title: Google Cloud Platform (GCP)
 description: Capella Analytics supports deploying clusters onto Google Cloud Platform (GCP).
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/reference/pages/gcp.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:analytics:reference:gcp.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/reference/pages/gcp.adoc
+  xref: xref:analytics:reference:gcp.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -3,9 +3,10 @@ title: Setting Alerts
 description: Alerts can be configured; to be dispatched or displayed
   automatically by Enterprise Analytics, in order to notify users of specific
   issues and problems.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/rest-cluster-email-notifications.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:reference:rest-cluster-email-notifications.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/rest-cluster-email-notifications.adoc
+  xref: xref:enterprise-analytics:reference:rest-cluster-email-notifications.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

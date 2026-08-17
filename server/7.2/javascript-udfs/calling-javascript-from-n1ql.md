@@ -1,9 +1,10 @@
 ---
 title: Calling JavaScript from SQL++ User-Defined Functions
 description: Using a SQL++ User-Defined Function to call JavaScript functions.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/javascript-udfs/pages/calling-javascript-from-n1ql.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:javascript-udfs:calling-javascript-from-n1ql.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/javascript-udfs/pages/calling-javascript-from-n1ql.adoc
+  xref: xref:7.2@server:javascript-udfs:calling-javascript-from-n1ql.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

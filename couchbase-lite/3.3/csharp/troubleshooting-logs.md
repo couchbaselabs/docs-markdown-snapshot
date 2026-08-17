@@ -1,9 +1,10 @@
 ---
 title: Using the Legacy Logging API for Troubleshooting
 description: Couchbase Lite on C# -- Using Logs for Troubleshooting
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/csharp/pages/troubleshooting-logs.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.3@couchbase-lite:csharp:troubleshooting-logs.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/csharp/pages/troubleshooting-logs.adoc
+  xref: xref:3.3@couchbase-lite:csharp:troubleshooting-logs.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

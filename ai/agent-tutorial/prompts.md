@@ -1,9 +1,10 @@
 ---
 title: About Prompts and Prompt Engineering
 description: Learn how prompts, context, and orchestration work together in agentic apps.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/prompts.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:agent-tutorial:prompts.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/prompts.adoc
+  xref: xref:ai:agent-tutorial:prompts.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

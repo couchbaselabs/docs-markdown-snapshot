@@ -1,9 +1,10 @@
 ---
 title: kvtimings
 description: Provides low-level timings from the underlying KV storage system.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-kvtimings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:cli:cbstats/cbstats-kvtimings.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-kvtimings.adoc
+  xref: xref:server:cli:cbstats/cbstats-kvtimings.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

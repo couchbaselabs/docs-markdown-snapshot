@@ -1,9 +1,10 @@
 ---
 title: Install Couchbase Lite on Swift
 description: Installing Couchbase Lite on Swift
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/swift/pages/gs-install.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:couchbase-lite:swift:gs-install.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/swift/pages/gs-install.adoc
+  xref: xref:couchbase-lite:swift:gs-install.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

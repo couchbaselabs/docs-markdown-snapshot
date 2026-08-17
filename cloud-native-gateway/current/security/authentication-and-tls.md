@@ -3,9 +3,10 @@ title: Authentication and TLS
 description: How Cloud Native Gateway authenticates client requests using
   credentials, TLS client certificates, and On-Behalf-Of semantics, and how TLS
   secures all communication.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/security/pages/authentication-and-tls.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:security:authentication-and-tls.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/security/pages/authentication-and-tls.adoc
+  xref: xref:cloud-native-gateway:security:authentication-and-tls.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

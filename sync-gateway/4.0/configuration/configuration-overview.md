@@ -1,9 +1,10 @@
 ---
 title: Configuration Overview
 description: How to configure <em>Sync&#160;Gateway</em> for secure cloud-to-edge data sync
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-overview.adoc
-pubDate: 2026-08-11T04:59:08.422Z
-link: xref:4.0@sync-gateway:configuration:configuration-overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-overview.adoc
+  xref: xref:4.0@sync-gateway:configuration:configuration-overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

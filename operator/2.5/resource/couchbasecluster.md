@@ -1,8 +1,9 @@
 ---
 title: CouchbaseCluster Resource
-editUrl: https://github.com/couchbase/couchbase-operator/edit/2.5.x/docs/user/modules/ROOT/pages/resource/couchbasecluster.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.5@operator::resource/couchbasecluster.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/couchbase-operator/edit/2.5.x/docs/user/modules/ROOT/pages/resource/couchbasecluster.adoc
+  xref: xref:2.5@operator::resource/couchbasecluster.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

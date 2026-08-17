@@ -1,9 +1,10 @@
 ---
 title: Download Links
 description: Download links for Couchbase Lite for C
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/gs-downloads.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.0@couchbase-lite:c:gs-downloads.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/gs-downloads.adoc
+  xref: xref:4.0@couchbase-lite:c:gs-downloads.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Application Telemetry Metrics
 description: Couchbase can be configured to collect metrics related to Couchbase
   SDK calls made from applications.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/metrics-reference/pages/application-telemetry-metrics.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:server:metrics-reference:application-telemetry-metrics.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/metrics-reference/pages/application-telemetry-metrics.adoc
+  xref: xref:server:metrics-reference:application-telemetry-metrics.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

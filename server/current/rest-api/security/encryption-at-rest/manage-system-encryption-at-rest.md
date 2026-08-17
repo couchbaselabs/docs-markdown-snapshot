@@ -2,9 +2,10 @@
 title: Manage Audit, Config, and Log Encryption at Rest
 description: You can use the REST API to view and change the state of encryption
   at rest for non-bucket data.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/manage-system-encryption-at-rest.adoc
-pubDate: 2026-03-31T05:15:32.656Z
-link: xref:server:rest-api:security/encryption-at-rest/manage-system-encryption-at-rest.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/manage-system-encryption-at-rest.adoc
+  xref: xref:server:rest-api:security/encryption-at-rest/manage-system-encryption-at-rest.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

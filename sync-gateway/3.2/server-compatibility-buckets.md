@@ -2,9 +2,10 @@
 title: Buckets&#8201;&#8212;&#8201;Server Compatibility
 description: How <em>Sync Gateway</em> works with <em>Couchbase Server's</em>
   <em>Buckets</em>
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/server-compatibility-buckets.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.2@sync-gateway::server-compatibility-buckets.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/server-compatibility-buckets.adoc
+  xref: xref:3.2@sync-gateway::server-compatibility-buckets.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

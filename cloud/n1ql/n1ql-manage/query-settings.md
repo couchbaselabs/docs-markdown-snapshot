@@ -1,9 +1,10 @@
 ---
 title: Configure Queries
 description: You can configure the Query Service using request-level query parameters.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-manage/query-settings.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cloud:n1ql:n1ql-manage/query-settings.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-manage/query-settings.adoc
+  xref: xref:cloud:n1ql:n1ql-manage/query-settings.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

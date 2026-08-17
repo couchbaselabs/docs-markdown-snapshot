@@ -1,9 +1,10 @@
 ---
 title: Transcoders &amp; Non-JSON Documents
 description: The Rust SDK supports common JSON document requirements out-of-the-box.
-editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-04-10T05:25:10.333Z
-link: xref:rust-sdk:howtos:transcoders-nonjson.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/transcoders-nonjson.adoc
+  xref: xref:rust-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Vector Search Using Search Vector Indexes
 description: Use Couchbase Capella's Vector Search features to add fast and
   accurate semantic search to your applications.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/vector-search.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud:vector-search:vector-search.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/vector-search.adoc
+  xref: xref:cloud:vector-search:vector-search.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

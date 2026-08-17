@@ -1,9 +1,10 @@
 ---
 title: Sync with Couchbase Server
 description: Use Sync Gateway to sync Couchbase Server changes securely from cloud to edge
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/sync-with-couchbase-server.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:3.1@sync-gateway::sync-with-couchbase-server.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/sync-with-couchbase-server.adoc
+  xref: xref:3.1@sync-gateway::sync-with-couchbase-server.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

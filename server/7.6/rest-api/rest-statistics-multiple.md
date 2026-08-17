@@ -2,9 +2,10 @@
 title: Getting Multiple Statistics
 description: The REST API allows cluster-statistics to be retrieved for multiple
   metrics, in a single call.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-statistics-multiple.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:rest-api:rest-statistics-multiple.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-statistics-multiple.adoc
+  xref: xref:7.6@server:rest-api:rest-statistics-multiple.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

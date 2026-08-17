@@ -1,9 +1,10 @@
 ---
 title: Reference Pages
 description: Essential reference infomation for developing with Couchbase.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/ref/pages/index.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:3.8@java-sdk:ref:index.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/ref/pages/index.adoc
+  xref: xref:3.8@java-sdk:ref:index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,8 +1,9 @@
 ---
 title: cbbackupmgr network filesystems
-editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-network-filesystems.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:backup-restore:cbbackupmgr-network-filesystems.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-network-filesystems.adoc
+  xref: xref:7.2@server:backup-restore:cbbackupmgr-network-filesystems.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

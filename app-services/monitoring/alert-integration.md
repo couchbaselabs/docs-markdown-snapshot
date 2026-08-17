@@ -2,9 +2,10 @@
 title: Alert Integrations for App Services
 description: An alert integration lets Capella send metric-based notifications
   to a third-party tool.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/alert-integration.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:app-services::monitoring/alert-integration.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/alert-integration.adoc
+  xref: xref:app-services::monitoring/alert-integration.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

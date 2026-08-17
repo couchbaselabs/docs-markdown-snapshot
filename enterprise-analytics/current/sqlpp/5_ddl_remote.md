@@ -2,9 +2,10 @@
 title: CREATE a Remote Collection
 description: This topic describes how you use the `CREATE` statement to create a
   collection that shadows OLTP data from a remote data source.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_ddl_remote.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:sqlpp:5_ddl_remote.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_ddl_remote.adoc
+  xref: xref:enterprise-analytics:sqlpp:5_ddl_remote.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

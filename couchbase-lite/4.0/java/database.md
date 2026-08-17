@@ -1,9 +1,10 @@
 ---
 title: Databases
 description: Working with Couchbase Lite on Java databases
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/database.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.0@couchbase-lite:java:database.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/database.adoc
+  xref: xref:4.0@couchbase-lite:java:database.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

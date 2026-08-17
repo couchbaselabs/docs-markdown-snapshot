@@ -2,9 +2,10 @@
 title: Troubleshooting the Developer Tutorial
 description: This page addresses errors you might come across when following the
   Student Record System tutorial.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/tutorial-troubleshooting.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:cloud:tutorials:java-tutorial/tutorial-troubleshooting.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/tutorial-troubleshooting.adoc
+  xref: xref:cloud:tutorials:java-tutorial/tutorial-troubleshooting.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

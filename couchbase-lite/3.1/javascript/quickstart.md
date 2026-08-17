@@ -1,8 +1,9 @@
 ---
 title: Couchbase Lite on Javascript
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/javascript/pages/quickstart.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:3.1@couchbase-lite:javascript:quickstart.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/javascript/pages/quickstart.adoc
+  xref: xref:3.1@couchbase-lite:javascript:quickstart.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

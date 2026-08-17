@@ -2,9 +2,10 @@
 title: Manage Buckets
 description: Create, edit, and delete buckets to manage your data storage in a
   Capella operational cluster.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/manage-buckets.adoc
-pubDate: 2026-08-12T05:01:45.181Z
-link: xref:cloud:clusters:data-service/manage-buckets.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/manage-buckets.adoc
+  xref: xref:cloud:clusters:data-service/manage-buckets.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

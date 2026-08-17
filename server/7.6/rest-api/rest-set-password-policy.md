@@ -4,9 +4,10 @@ description: The REST API allows the  <em>password policy</em> for a cluster to
   be established and retrieved by means of the <code>POST</code> and
   <code>GET</code> methods respectively, using the
   <code>/settings/passwordPolicy</code> URI.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-set-password-policy.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:rest-api:rest-set-password-policy.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-set-password-policy.adoc
+  xref: xref:7.6@server:rest-api:rest-set-password-policy.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

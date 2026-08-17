@@ -2,9 +2,10 @@
 title: Manage Address Families
 description: Couchbase Server Enterprise Edition supports the IPv4 and IPv6
   address families.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-nodes/manage-address-families.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:manage:manage-nodes/manage-address-families.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-nodes/manage-address-families.adoc
+  xref: xref:7.6@server:manage:manage-nodes/manage-address-families.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

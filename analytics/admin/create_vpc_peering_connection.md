@@ -1,8 +1,9 @@
 ---
 title: Create VPC Peering Connection
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/create_vpc_peering_connection.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:analytics:admin:create_vpc_peering_connection.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/create_vpc_peering_connection.adoc
+  xref: xref:analytics:admin:create_vpc_peering_connection.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

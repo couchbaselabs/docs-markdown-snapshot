@@ -2,9 +2,10 @@
 title: Batching
 description: The PHP SDK offers only a blocking API -- but this is not
   necessarily a limitation.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.4@php-sdk:howtos:concurrent-async-apis.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/concurrent-async-apis.adoc
+  xref: xref:4.4@php-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

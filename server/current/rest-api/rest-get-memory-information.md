@@ -2,9 +2,10 @@
 title: Getting Memory Information
 description: Use the REST API to retrieve the current memory quota information
   for services in a cluster.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-get-memory-information.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:rest-api:rest-get-memory-information.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-get-memory-information.adoc
+  xref: xref:server:rest-api:rest-get-memory-information.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

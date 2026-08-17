@@ -2,9 +2,10 @@
 title: "Function: Shipping Notifier"
 description: Send notifications when an order scheduled to arrive, when it is
   shipped, and when it is delivered.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-shippingNotifier.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:eventing:eventing-handler-shippingNotifier.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-shippingNotifier.adoc
+  xref: xref:7.2@server:eventing:eventing-handler-shippingNotifier.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

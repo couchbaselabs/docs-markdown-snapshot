@@ -2,9 +2,10 @@
 title: Manage App Services for Mobile and Edge
 description: App Services synchronizes data between the Couchbase Capella
   cluster and your apps running on mobile applications.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:app-services::index.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/index.adoc
+  xref: xref:app-services::index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,9 +1,10 @@
 ---
 title: cbbackupmgr compact
 description: Compacts a backup to free disk space
-editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-compact.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:backup-restore:cbbackupmgr-compact.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-compact.adoc
+  xref: xref:server:backup-restore:cbbackupmgr-compact.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

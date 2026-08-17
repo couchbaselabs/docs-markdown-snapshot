@@ -1,9 +1,10 @@
 ---
 title: Using Indexes
 description: Using indexes to speed up queries.
-editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/7_using_index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:analytics:7_using_index.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/7_using_index.adoc
+  xref: xref:server:analytics:7_using_index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Configure Agent Memory Authentication
 description: Secure Agent Memory with OIDC/OAuth2 authentication by connecting
   it to your external identity provider (IdP).
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/config-agent-mem-auth.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:ai:build:agent-memory/config-agent-mem-auth.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/config-agent-mem-auth.adoc
+  xref: xref:ai:build:agent-memory/config-agent-mem-auth.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

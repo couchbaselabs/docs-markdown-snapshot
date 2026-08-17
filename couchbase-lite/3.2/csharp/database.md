@@ -1,9 +1,10 @@
 ---
 title: Databases
 description: Working with Couchbase Lite Databases
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/database.adoc
-pubDate: 2026-04-08T05:18:32.349Z
-link: xref:3.2@couchbase-lite:csharp:database.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/database.adoc
+  xref: xref:3.2@couchbase-lite:csharp:database.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

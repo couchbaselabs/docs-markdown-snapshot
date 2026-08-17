@@ -2,9 +2,10 @@
 title: set flush_param
 description: The command <code class="cmd">set flush_param</code> establishes
   bucket parameters for threading and memory management.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbepctl/set-flush_param.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:cli:cbepctl/set-flush_param.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbepctl/set-flush_param.adoc
+  xref: xref:7.6@server:cli:cbepctl/set-flush_param.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

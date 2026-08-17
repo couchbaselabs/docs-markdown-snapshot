@@ -2,9 +2,10 @@
 title: Run a Vector Search with a Couchbase SDK
 description: Using a Couchbase SDK, you can run a simple or more complex vector
   search against a Search Vector Index.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/run-vector-search-sdk.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud:vector-search:run-vector-search-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/run-vector-search-sdk.adoc
+  xref: xref:cloud:vector-search:run-vector-search-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

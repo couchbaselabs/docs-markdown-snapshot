@@ -1,9 +1,10 @@
 ---
 title: Extended Attributes (XATTRs)
 description: Use Extended Attributes (XATTRs) to manage access control in App Services.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/xattrs-for-app-services.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:app-services::app-endpoints/xattrs-for-app-services.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/xattrs-for-app-services.adoc
+  xref: xref:app-services::app-endpoints/xattrs-for-app-services.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

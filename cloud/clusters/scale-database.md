@@ -2,9 +2,10 @@
 title: Cluster Scaling
 description: Clusters can be multi-dimensionally scaled by adding or removing
   Service instances and whole Services, and by adjusting Service instance sizes.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/scale-database.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cloud:clusters:scale-database.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/scale-database.adoc
+  xref: xref:cloud:clusters:scale-database.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Download Tableau
 description: Download Tableau Desktop or sign up for Tableau Server to use the
   Couchbase Tableau Connector.
-editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/download-tableau.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:tableau-connector::download-tableau.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/download-tableau.adoc
+  xref: xref:tableau-connector::download-tableau.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

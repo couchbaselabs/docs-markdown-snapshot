@@ -2,9 +2,10 @@
 title: Capella UI Authentication
 description: Couchbase Capella supports federated authentication with Single
   Sign-On (SSO) and Multi-Factor Authentication (MFA) for the Capella UI.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/capella-ui-auth.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:organizations:ui-auth/capella-ui-auth.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/capella-ui-auth.adoc
+  xref: xref:cloud:organizations:ui-auth/capella-ui-auth.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

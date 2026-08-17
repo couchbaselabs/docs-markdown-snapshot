@@ -1,9 +1,10 @@
 ---
 title: Index Service Metrics
 description: A list of the metrics provided by the Index Service.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/metrics-reference/pages/index-service-metrics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:metrics-reference:index-service-metrics.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/metrics-reference/pages/index-service-metrics.adoc
+  xref: xref:7.6@server:metrics-reference:index-service-metrics.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

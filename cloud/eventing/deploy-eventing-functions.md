@@ -1,9 +1,10 @@
 ---
 title: Deploy Eventing Functions
 description: Use the Capella UI to deploy and undeploy Eventing Functions in your cluster.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/deploy-eventing-functions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:cloud:eventing:deploy-eventing-functions.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/deploy-eventing-functions.adoc
+  xref: xref:cloud:eventing:deploy-eventing-functions.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

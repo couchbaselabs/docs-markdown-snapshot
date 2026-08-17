@@ -1,8 +1,9 @@
 ---
 title: cao
-editUrl: https://github.com/couchbase/couchbase-operator/edit/2.8.x/docs/user/modules/ROOT/pages/tools/cao.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:2.8@operator::tools/cao.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/couchbase-operator/edit/2.8.x/docs/user/modules/ROOT/pages/tools/cao.adoc
+  xref: xref:2.8@operator::tools/cao.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

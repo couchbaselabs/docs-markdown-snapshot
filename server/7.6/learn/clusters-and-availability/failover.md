@@ -2,9 +2,10 @@
 title: Failover
 description: <em>Failover</em> is a process whereby a node can be taken out of a
   Couchbase cluster with speed.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/failover.adoc
-pubDate: 2026-04-18T05:14:52.159Z
-link: xref:7.6@server:learn:clusters-and-availability/failover.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/failover.adoc
+  xref: xref:7.6@server:learn:clusters-and-availability/failover.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

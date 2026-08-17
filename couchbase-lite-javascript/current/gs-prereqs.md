@@ -1,9 +1,10 @@
 ---
 title: Preparing for Couchbase Lite JavaScript
 description: Prerequisites for the installation of Couchbase Lite JavaScript
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/gs-prereqs.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:couchbase-lite-javascript::gs-prereqs.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/gs-prereqs.adoc
+  xref: xref:couchbase-lite-javascript::gs-prereqs.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

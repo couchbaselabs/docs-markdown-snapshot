@@ -1,9 +1,10 @@
 ---
 title: Metrics REST API
 description: Description of the Sync Gateway Metrics REST API
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/rest-api-metrics.adoc
-pubDate: 2026-03-28T05:05:12.980Z
-link: xref:3.0@sync-gateway::rest-api-metrics.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/rest-api-metrics.adoc
+  xref: xref:3.0@sync-gateway::rest-api-metrics.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

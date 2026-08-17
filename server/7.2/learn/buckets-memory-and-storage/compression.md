@@ -3,9 +3,10 @@ title: Compression
 description: Couchbase Server supports <em>data compression</em> in its
   communications with internal and external clients, and in its internal
   handling of items.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/buckets-memory-and-storage/compression.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:learn:buckets-memory-and-storage/compression.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/buckets-memory-and-storage/compression.adoc
+  xref: xref:7.2@server:learn:buckets-memory-and-storage/compression.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

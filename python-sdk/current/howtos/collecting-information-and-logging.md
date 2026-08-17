@@ -1,9 +1,10 @@
 ---
 title: Logging
 description: Logging with the Python SDK.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:python-sdk:howtos:collecting-information-and-logging.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/collecting-information-and-logging.adoc
+  xref: xref:python-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Map Document Collections, Objects, and Fields
 description: The Search Service has distinct mapping types for collections,
   objects, and fields in a Search index.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/about-mappings.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:search:about-mappings.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/about-mappings.adoc
+  xref: xref:server:search:about-mappings.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Index Service Cross Reference
 description: A cross-referenced table of the metrics provided by the Index
   Service as named by various generations of reporting tools.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/metrics-reference/pages/index-service-metrics-cross-reference.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:metrics-reference:index-service-metrics-cross-reference.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/metrics-reference/pages/index-service-metrics-cross-reference.adoc
+  xref: xref:7.6@server:metrics-reference:index-service-metrics-cross-reference.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

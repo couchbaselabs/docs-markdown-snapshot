@@ -2,9 +2,10 @@
 title: Deploying in Self-Managed Environments
 description: How to deploy Cloud Native Gateway as a standalone container or
   process for self-managed Couchbase Server environments outside of Kubernetes.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/Deployment/pages/deploying-self-managed.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:Deployment:deploying-self-managed.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/Deployment/pages/deploying-self-managed.adoc
+  xref: xref:cloud-native-gateway:Deployment:deploying-self-managed.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

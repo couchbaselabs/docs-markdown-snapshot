@@ -1,8 +1,9 @@
 ---
 title: Release Notes for Couchbase Server 7.2
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/release-notes/pages/relnotes.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:7.2@server:release-notes:relnotes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/release-notes/pages/relnotes.adoc
+  xref: xref:7.2@server:release-notes:relnotes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

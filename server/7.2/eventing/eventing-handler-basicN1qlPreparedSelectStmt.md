@@ -2,9 +2,10 @@
 title: "Function: Basic SQL++ Prepared Select Statement"
 description: Iterate through a basic {sqlpp} SELECT where Eventing interacts
   with the Data service via a prepared {sqlpp} statement.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-basicN1qlPreparedSelectStmt.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.2@server:eventing:eventing-handler-basicN1qlPreparedSelectStmt.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-basicN1qlPreparedSelectStmt.adoc
+  xref: xref:7.2@server:eventing:eventing-handler-basicN1qlPreparedSelectStmt.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

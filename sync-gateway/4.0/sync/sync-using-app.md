@@ -1,9 +1,10 @@
 ---
 title: Sync with Couchbase Lite
 description: Use Sync Gateway to sync with Couchbase Lite apps.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/sync/pages/sync-using-app.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.0@sync-gateway:sync:sync-using-app.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/sync/pages/sync-using-app.adoc
+  xref: xref:4.0@sync-gateway:sync:sync-using-app.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Advanced Settings for App Endpoints
 description: App Endpoints possess a variety of advanced settings to customize
   your applications.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/advanced-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:app-services::app-endpoints/advanced-settings.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/advanced-settings.adoc
+  xref: xref:app-services::app-endpoints/advanced-settings.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: cbft-bleve
 description: The <code>cbft-bleve</code> tool returns information on
   <em>Moss</em> and <em>Scorch</em> index partitions, and on <em>Zap</em> files.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbft-bleve.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.2@server:cli:cbft-bleve.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbft-bleve.adoc
+  xref: xref:7.2@server:cli:cbft-bleve.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

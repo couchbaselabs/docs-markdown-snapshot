@@ -2,9 +2,10 @@
 title: Cluster Compatibility Version
 description: Use the cluster compatibility version to perform a rolling upgrade
   of Sync Gateway 4.1 without downtime and with a safe rollback path.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/ROOT/pages/cluster-compatibility-version.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:sync-gateway::cluster-compatibility-version.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/ROOT/pages/cluster-compatibility-version.adoc
+  xref: xref:sync-gateway::cluster-compatibility-version.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

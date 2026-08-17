@@ -4,9 +4,10 @@ description: Couchbase Lite for React Native is a fully enterprise-supported,
   TypeScript-friendly Native Module that brings Couchbase Lite's embedded NoSQL
   database and data sync capabilities to React Native and Expo applications with
   full TypeScript/JavaScript support.
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/hybrid/pages/react.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:couchbase-lite:hybrid:react.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/hybrid/pages/react.adoc
+  xref: xref:couchbase-lite:hybrid:react.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

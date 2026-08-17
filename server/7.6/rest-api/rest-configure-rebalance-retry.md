@@ -1,8 +1,9 @@
 ---
 title: Configuring Rebalance Retries
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-configure-rebalance-retry.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:rest-api:rest-configure-rebalance-retry.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-configure-rebalance-retry.adoc
+  xref: xref:7.6@server:rest-api:rest-configure-rebalance-retry.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

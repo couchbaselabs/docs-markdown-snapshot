@@ -2,9 +2,10 @@
 title: Prepare to Install Sync Gateway
 description: Prerequisites for installing <em>Sync Gateway</em>; to synchronize
   your data from cloud to edge.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/start-here/pages/get-started-prepare.adoc
-pubDate: 2026-06-23T05:47:02.601Z
-link: xref:3.3@sync-gateway:start-here:get-started-prepare.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/start-here/pages/get-started-prepare.adoc
+  xref: xref:3.3@sync-gateway:start-here:get-started-prepare.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

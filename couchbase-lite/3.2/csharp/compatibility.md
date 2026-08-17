@@ -1,9 +1,10 @@
 ---
 title: Compatibility
 description: Couchbase Lite framework and Sync Gateway compatibility
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/compatibility.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.2@couchbase-lite:csharp:compatibility.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/compatibility.adoc
+  xref: xref:3.2@couchbase-lite:csharp:compatibility.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

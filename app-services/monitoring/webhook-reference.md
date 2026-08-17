@@ -1,9 +1,10 @@
 ---
 title: Webhook JSON Payload for App Services
 description: Learn more about the JSON payload structure used in Webhook alert integrations.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/webhook-reference.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:app-services::monitoring/webhook-reference.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/webhook-reference.adoc
+  xref: xref:app-services::monitoring/webhook-reference.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

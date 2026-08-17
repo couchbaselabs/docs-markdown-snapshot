@@ -1,9 +1,10 @@
 ---
 title: Deferring Indexes
 description: How to create deferred indexes and build them later.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/defer-index.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:7.2@server:guides:defer-index.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/defer-index.adoc
+  xref: xref:7.2@server:guides:defer-index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

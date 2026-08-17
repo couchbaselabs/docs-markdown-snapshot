@@ -2,9 +2,10 @@
 title: Caching Example Use Case
 description: A walk-through of the basics of Key-Value operations with
   Couchbase, through the lens of a REST api caching layer.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/caching-example.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.6@dotnet-sdk:howtos:caching-example.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/caching-example.adoc
+  xref: xref:3.6@dotnet-sdk:howtos:caching-example.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,8 +1,9 @@
 ---
 title: Canceling Rebalance Retries
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-cancel-rebalance-retry.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:rest-api:rest-cancel-rebalance-retry.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-cancel-rebalance-retry.adoc
+  xref: xref:server:rest-api:rest-cancel-rebalance-retry.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

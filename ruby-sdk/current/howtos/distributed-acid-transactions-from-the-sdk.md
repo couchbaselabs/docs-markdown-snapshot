@@ -3,9 +3,10 @@ title: Using Couchbase Transactions
 description: Distributed ACID Transactions are not currently available for the
   Ruby SDK. Strong durable gurarantees within a single bucket, and some
   re-architecture, may achieve similar ends within the Ruby SDK.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ruby-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+  xref: xref:ruby-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

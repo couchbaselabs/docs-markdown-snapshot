@@ -2,9 +2,10 @@
 title: Create a Replication
 description: An XDCR replication allows data to be replicated continuously from
   a specified bucket on the source cluster to a specified bucket on the target.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/create-xdcr-replication.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:manage:manage-xdcr/create-xdcr-replication.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/create-xdcr-replication.adoc
+  xref: xref:server:manage:manage-xdcr/create-xdcr-replication.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,9 +1,10 @@
 ---
 title: Transactions&#8201;&#8212;&#8201;Server Compatibility
 description: How Sync Gateway works with <em>Couchbase Server Transactions</em>
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/server-compatibility-transactions.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.1@sync-gateway::server-compatibility-transactions.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/server-compatibility-transactions.adoc
+  xref: xref:3.1@sync-gateway::server-compatibility-transactions.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

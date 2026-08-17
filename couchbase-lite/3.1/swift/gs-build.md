@@ -1,9 +1,10 @@
 ---
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase Lite on Swift
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/swift/pages/gs-build.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.1@couchbase-lite:swift:gs-build.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/swift/pages/gs-build.adoc
+  xref: xref:3.1@couchbase-lite:swift:gs-build.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,8 +1,9 @@
 ---
 title: Kubernetes Networking
-editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-kubernetes-networking.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:operator::concept-kubernetes-networking.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-kubernetes-networking.adoc
+  xref: xref:operator::concept-kubernetes-networking.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

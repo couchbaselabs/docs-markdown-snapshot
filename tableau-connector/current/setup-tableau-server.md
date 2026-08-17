@@ -1,9 +1,10 @@
 ---
 title: Install the Couchbase Tableau Connector on Tableau Server
 description: You can install the Couchbase Tableau Connector on Tableau Server.
-editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/setup-tableau-server.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:tableau-connector::setup-tableau-server.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/setup-tableau-server.adoc
+  xref: xref:tableau-connector::setup-tableau-server.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

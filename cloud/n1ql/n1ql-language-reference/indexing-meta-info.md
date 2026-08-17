@@ -2,9 +2,10 @@
 title: Indexing Metadata Information
 description: Couchbase Capella allows indexing on selected metadata fields, for
   example the expiration and CAS properties.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/indexing-meta-info.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:cloud:n1ql:n1ql-language-reference/indexing-meta-info.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/indexing-meta-info.adoc
+  xref: xref:cloud:n1ql:n1ql-language-reference/indexing-meta-info.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

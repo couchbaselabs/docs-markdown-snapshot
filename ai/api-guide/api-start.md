@@ -3,9 +3,10 @@ title: Get Started with the Couchbase AI Data Plane APIs
 description: To get started with the Couchbase Capella APIs for the Couchbase AI
   Data Plane, you must create an API key. An API key authenticates and
   authorizes you to access the APIs.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-start.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:api-guide:api-start.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-start.adoc
+  xref: xref:ai:api-guide:api-start.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging, orphan logging, and other span metrics.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/slow-operations-logging.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:4.4@nodejs-sdk:howtos:slow-operations-logging.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/slow-operations-logging.adoc
+  xref: xref:4.4@nodejs-sdk:howtos:slow-operations-logging.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

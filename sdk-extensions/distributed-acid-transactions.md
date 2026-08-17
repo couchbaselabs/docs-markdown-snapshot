@@ -3,9 +3,10 @@ title: Distributed ACID Transactions
 description: A <em>transaction</em> is an atomic unit of work that contains one
   or more operations. It is a group of operations that are either committed to
   the database together or they are all undone from the database.
-editUrl: https://github.com/couchbase/docs-sdk-extensions/edit/main/modules/ROOT/pages/distributed-acid-transactions.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:sdk-extensions::distributed-acid-transactions.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-extensions/edit/main/modules/ROOT/pages/distributed-acid-transactions.adoc
+  xref: xref:sdk-extensions::distributed-acid-transactions.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

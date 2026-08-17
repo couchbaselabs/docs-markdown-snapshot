@@ -2,9 +2,10 @@
 title: Upgrading Sync Gateway
 description: This page documents various implementation details and
   functionalities to consider when performing an upgrade to Sync Gateway 4.0.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/upgrading.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.0@sync-gateway::upgrading.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/upgrading.adoc
+  xref: xref:4.0@sync-gateway::upgrading.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

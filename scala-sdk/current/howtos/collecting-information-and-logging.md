@@ -3,9 +3,10 @@ title: Logging
 description: The Scala SDK logs events and also provides an event bus that
   transmits information about the behavior of your database system, including
   system and metric events.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:scala-sdk:howtos:collecting-information-and-logging.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/collecting-information-and-logging.adoc
+  xref: xref:scala-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

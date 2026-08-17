@@ -3,9 +3,10 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-08-15T04:37:50.554Z
-link: xref:ruby-sdk:project-docs:compatibility.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/project-docs/pages/compatibility.adoc
+  xref: xref:ruby-sdk:project-docs:compatibility.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

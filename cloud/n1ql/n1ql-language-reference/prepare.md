@@ -1,9 +1,10 @@
 ---
 title: PREPARE
 description: The PREPARE statement prepares a query for repeated execution.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/prepare.adoc
-pubDate: 2026-04-18T05:14:52.159Z
-link: xref:cloud:n1ql:n1ql-language-reference/prepare.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/prepare.adoc
+  xref: xref:cloud:n1ql:n1ql-language-reference/prepare.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

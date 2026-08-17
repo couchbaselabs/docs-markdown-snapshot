@@ -3,9 +3,10 @@ title: Recovery
 description: "After a node has been failed over, it can be <em>recovered</em>:
   that is, added back into the cluster from which it was failed over, by means
   of the <em>rebalance</em> operation."
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/recovery.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:learn:clusters-and-availability/recovery.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/recovery.adoc
+  xref: xref:7.2@server:learn:clusters-and-availability/recovery.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

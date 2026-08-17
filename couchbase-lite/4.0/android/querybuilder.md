@@ -2,9 +2,10 @@
 title: QueryBuilder
 description: How to use QueryBuilder to build effective queries with Couchbase
   Lite on Android
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/querybuilder.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.0@couchbase-lite:android:querybuilder.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/querybuilder.adoc
+  xref: xref:4.0@couchbase-lite:android:querybuilder.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

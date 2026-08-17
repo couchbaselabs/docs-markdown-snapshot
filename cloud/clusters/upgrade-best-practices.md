@@ -4,9 +4,10 @@ description: Each Capella cluster runs a specific version of Couchbase Server.
   Upgrading a cluster means upgrading its underlying Server version, which may
   include enhancements or changes to performance and compatibility. These best
   practices help ensure a secure and smooth upgrade process.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/upgrade-best-practices.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cloud:clusters:upgrade-best-practices.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/upgrade-best-practices.adoc
+  xref: xref:cloud:clusters:upgrade-best-practices.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

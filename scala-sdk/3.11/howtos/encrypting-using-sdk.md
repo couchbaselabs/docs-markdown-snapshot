@@ -2,9 +2,10 @@
 title: Field Level Encryption from the SDK
 description: The Field Level Encryption library enables encryption and
   decryption of JSON fields, to support FIPS-140-2 compliance.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:3.11@scala-sdk:howtos:encrypting-using-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/encrypting-using-sdk.adoc
+  xref: xref:3.11@scala-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Pre-filtering Vector Searches
 description: You can specify filters as part of a Vector Search query object to
   restrict the documents searched in a Search index.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/vector-search/pages/pre-filtering-vector-search.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:vector-search:pre-filtering-vector-search.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/vector-search/pages/pre-filtering-vector-search.adoc
+  xref: xref:7.6@server:vector-search:pre-filtering-vector-search.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,9 +1,10 @@
 ---
 title: Create an Account and Deploy Your Free Tier Operational Cluster
 description: Create an account and start managing your data with Couchbase Capella.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/create-account.adoc
-pubDate: 2026-06-17T06:07:18.814Z
-link: xref:cloud:get-started:create-account.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/create-account.adoc
+  xref: xref:cloud:get-started:create-account.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

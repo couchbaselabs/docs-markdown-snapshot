@@ -2,9 +2,10 @@
 title: Alert Reference
 description: This reference lists the alerts that Capella can emit, the
   conditions in which they occur, and a description for each.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/alert-reference.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cloud:reference:alert-reference.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/alert-reference.adoc
+  xref: xref:cloud:reference:alert-reference.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: SDK Doctor
 description: SDK doctor helps diagnose application-server-side connectivity
   issues with your Couchbase Cluster (among other things).
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/sdk/pages/sdk-doctor.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:sdk:sdk-doctor.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/sdk/pages/sdk-doctor.adoc
+  xref: xref:server:sdk:sdk-doctor.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

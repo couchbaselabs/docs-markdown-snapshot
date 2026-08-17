@@ -2,9 +2,10 @@
 title: MapReduce Views
 description: You can use MapReduce views to create queryable indexes in
   Couchbase Data Platform.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/howtos/pages/view-queries-with-sdk.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:3.5@ruby-sdk:howtos:view-queries-with-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/howtos/pages/view-queries-with-sdk.adoc
+  xref: xref:3.5@ruby-sdk:howtos:view-queries-with-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

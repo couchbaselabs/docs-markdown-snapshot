@@ -1,9 +1,10 @@
 ---
 title: Initialize Inter-Sync Gateway Replications
 description: Initializing and running inter-Sync Gateway replication
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/sync-inter-syncgateway-run.adoc
-pubDate: 2026-04-02T05:14:13.149Z
-link: xref:3.2@sync-gateway::sync-inter-syncgateway-run.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/sync-inter-syncgateway-run.adoc
+  xref: xref:3.2@sync-gateway::sync-inter-syncgateway-run.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Add Search to Your Application
 description: Use the Search Service to create a customizable search experience
   for your database and your end-user applications.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.2@server:search:search.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/search.adoc
+  xref: xref:7.2@server:search:search.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

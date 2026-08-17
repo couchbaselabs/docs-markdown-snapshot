@@ -1,8 +1,9 @@
 ---
 title: Sync Metadata Isolation
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/migrating/migrate-sync-metadata.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:app-services::migrating/migrate-sync-metadata.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/migrating/migrate-sync-metadata.adoc
+  xref: xref:app-services::migrating/migrate-sync-metadata.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -3,9 +3,10 @@ title: MERGE
 description: A MERGE statement provides the ability to update, insert into, or
   delete from a keyspace based on the results of a join with another keyspace or
   subquery.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/merge.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:cloud:n1ql:n1ql-language-reference/merge.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/merge.adoc
+  xref: xref:cloud:n1ql:n1ql-language-reference/merge.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

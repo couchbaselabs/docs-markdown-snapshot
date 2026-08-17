@@ -3,9 +3,10 @@ title: Identifying the Orchestrator Node
 description: The node currently running the <em>orchestrator</em> (sometimes
   referred to as the <em>Master Services</em>) can be identified by means of the
   REST API.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-identify-orchestrator.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:2.0@enterprise-analytics:reference:rest-identify-orchestrator.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-identify-orchestrator.adoc
+  xref: xref:2.0@enterprise-analytics:reference:rest-identify-orchestrator.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

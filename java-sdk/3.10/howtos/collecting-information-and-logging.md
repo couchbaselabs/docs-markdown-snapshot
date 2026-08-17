@@ -2,9 +2,10 @@
 title: Logging
 description: Configuring logging; working with the event bus; and log redaction
   for data security.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.10@java-sdk:howtos:collecting-information-and-logging.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/collecting-information-and-logging.adoc
+  xref: xref:3.10@java-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

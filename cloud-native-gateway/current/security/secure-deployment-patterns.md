@@ -3,9 +3,10 @@ title: Secure Deployment Patterns
 description: Best practices for securely deploying Cloud Native Gateway,
   including secret management, network segmentation, and defense-in-depth
   strategies.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/security/pages/secure-deployment-patterns.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:security:secure-deployment-patterns.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/security/pages/secure-deployment-patterns.adoc
+  xref: xref:cloud-native-gateway:security:secure-deployment-patterns.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

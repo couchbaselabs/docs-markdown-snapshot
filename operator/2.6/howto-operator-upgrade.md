@@ -1,8 +1,9 @@
 ---
 title: Upgrade the Operator
-editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/howto-operator-upgrade.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.6@operator::howto-operator-upgrade.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/howto-operator-upgrade.adoc
+  xref: xref:2.6@operator::howto-operator-upgrade.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

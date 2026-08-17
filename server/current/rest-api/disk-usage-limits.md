@@ -3,9 +3,10 @@ title: Set Data Disk Use Limits
 description: You can have the Data Service stop writing to the data storage path
   when it fills to a specific percentage. This option helps prevent the data
   path from running out of disk space and making recovery difficult.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/disk-usage-limits.adoc
-pubDate: 2026-03-31T05:15:32.656Z
-link: xref:server:rest-api:disk-usage-limits.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/disk-usage-limits.adoc
+  xref: xref:server:rest-api:disk-usage-limits.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,8 +1,9 @@
 ---
 title: Set Up Documentation Repositories
-editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/set-up-repository.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:home:contribute:set-up-repository.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/set-up-repository.adoc
+  xref: xref:home:contribute:set-up-repository.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

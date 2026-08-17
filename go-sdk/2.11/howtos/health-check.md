@@ -2,9 +2,10 @@
 title: Health Check
 description: In today's distributed and virtual environments, users will often
   not have full administrative control over their whole network.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/health-check.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.11@go-sdk:howtos:health-check.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/health-check.adoc
+  xref: xref:2.11@go-sdk:howtos:health-check.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

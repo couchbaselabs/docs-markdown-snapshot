@@ -2,9 +2,10 @@
 title: Deploying Cloud Native Gateway in a DNS Rewriting Environment
 description: How to deploy Cloud Native Gateway when DNS is rewritten between
   clients, the gateway, and Couchbase cluster nodes.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/advanced-use-cases/pages/dns-rewriting.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:advanced-use-cases:dns-rewriting.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/advanced-use-cases/pages/dns-rewriting.adoc
+  xref: xref:cloud-native-gateway:advanced-use-cases:dns-rewriting.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

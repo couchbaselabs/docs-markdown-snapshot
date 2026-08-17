@@ -2,9 +2,10 @@
 title: Resume a Replication
 description: After an XDCR replication has been paused, resuming it restarts the
   replication of data from the source bucket to the target.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-xdcr/resume-xdcr-replication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.2@server:manage:manage-xdcr/resume-xdcr-replication.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-xdcr/resume-xdcr-replication.adoc
+  xref: xref:7.2@server:manage:manage-xdcr/resume-xdcr-replication.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

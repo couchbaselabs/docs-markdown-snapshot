@@ -1,8 +1,9 @@
 ---
 title: Configure Your Antora Playbook
-editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/playbook.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:home:contribute:playbook.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/playbook.adoc
+  xref: xref:home:contribute:playbook.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

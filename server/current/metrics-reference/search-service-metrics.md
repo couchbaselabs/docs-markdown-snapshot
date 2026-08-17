@@ -1,9 +1,10 @@
 ---
 title: Search Service Metrics
 description: A list of the metrics provided by the Search Service.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/metrics-reference/pages/search-service-metrics.adoc
-pubDate: 2026-08-13T05:04:50.295Z
-link: xref:server:metrics-reference:search-service-metrics.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/metrics-reference/pages/search-service-metrics.adoc
+  xref: xref:server:metrics-reference:search-service-metrics.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

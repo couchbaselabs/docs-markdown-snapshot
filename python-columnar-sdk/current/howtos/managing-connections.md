@@ -2,9 +2,10 @@
 title: Managing Connections
 description: This section describes how to connect the Python Columnar SDK to a
   Columnar cluster.
-editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:python-columnar-sdk:howtos:managing-connections.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
+  xref: xref:python-columnar-sdk:howtos:managing-connections.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

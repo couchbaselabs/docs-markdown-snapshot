@@ -6,9 +6,10 @@ description: Couchbase MCP Server is a self-hosted MCP Server that allows AI
   including Cluster Health, Data Schema, Key-Value, Query, and Performance —
   with safety controls via read-only mode and fine-grained tool disabling. It
   supports both STDIO and Streamable HTTP transports.
-editUrl: https://github.com/couchbaselabs/docs-mcp-server/edit/main/modules/ROOT/pages/intro.adoc
-pubDate: 2026-08-07T05:05:42.965Z
-link: xref:mcp-server::intro.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-mcp-server/edit/main/modules/ROOT/pages/intro.adoc
+  xref: xref:mcp-server::intro.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

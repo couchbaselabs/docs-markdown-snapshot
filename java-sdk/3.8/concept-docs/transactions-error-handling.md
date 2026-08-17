@@ -1,9 +1,10 @@
 ---
 title: Error Handling
 description: Handling transaction errors with Couchbase.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/concept-docs/pages/transactions-error-handling.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.8@java-sdk:concept-docs:transactions-error-handling.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/concept-docs/pages/transactions-error-handling.adoc
+  xref: xref:3.8@java-sdk:concept-docs:transactions-error-handling.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

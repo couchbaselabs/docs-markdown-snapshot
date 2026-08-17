@@ -2,9 +2,10 @@
 title: Set Up Google Cloud Storage (GCS) External Source
 description: To provide query access to OLAP data in GCS, you create an external
   link and associate it with an external collection.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/setup-gcs-external-source.adoc
-pubDate: 2026-03-27T05:16:21.194Z
-link: xref:analytics:sources:setup-gcs-external-source.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/setup-gcs-external-source.adoc
+  xref: xref:analytics:sources:setup-gcs-external-source.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

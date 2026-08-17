@@ -2,9 +2,10 @@
 title: Rolling Upgrade
 description: Step-by-step procedures for performing a rolling upgrade of a Sync
   Gateway cluster for each supported version.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/ROOT/pages/rolling-upgrade.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:sync-gateway::rolling-upgrade.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/ROOT/pages/rolling-upgrade.adoc
+  xref: xref:sync-gateway::rolling-upgrade.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: all
 description: The <code>all</code> command provides information on memory,
   queues, persistence, and vBuckets.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-all.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:cli:cbstats/cbstats-all.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-all.adoc
+  xref: xref:7.6@server:cli:cbstats/cbstats-all.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,9 +1,10 @@
 ---
 title: Installation - Couchbase Lite on Objective-C
 description: Installing Couchbase Lite on Objective-C
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/objc/pages/gs-install.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:3.4@couchbase-lite:objc:gs-install.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/objc/pages/gs-install.adoc
+  xref: xref:3.4@couchbase-lite:objc:gs-install.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Migrating from SDK2 to SDK3 API
 description: This is the first release of the Couchbase Scala SDK -- you will
   not have any code based upon older API versions.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:1.6@scala-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+  xref: xref:1.6@scala-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

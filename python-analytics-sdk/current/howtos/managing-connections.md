@@ -2,9 +2,10 @@
 title: Managing Connections
 description: This section describes how to connect the Python Analytics SDK to
   an Enterprise Analytics cluster.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.1/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:python-analytics-sdk:howtos:managing-connections.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.1/modules/howtos/pages/managing-connections.adoc
+  xref: xref:python-analytics-sdk:howtos:managing-connections.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

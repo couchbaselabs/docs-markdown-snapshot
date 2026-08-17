@@ -2,9 +2,10 @@
 title: Establishing Credentials
 description: By means of the REST API, credentials can be established for the
   administrator who is provisioning a new, single-node cluster.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-establish-credentials.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:rest-api:rest-establish-credentials.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-establish-credentials.adoc
+  xref: xref:server:rest-api:rest-establish-credentials.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

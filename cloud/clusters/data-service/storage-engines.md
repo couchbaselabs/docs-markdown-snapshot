@@ -1,9 +1,10 @@
 ---
 title: Storage Engines
 description: "Capella supports two different backend storage engines: Magma and Couchstore."
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/storage-engines.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cloud:clusters:data-service/storage-engines.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/storage-engines.adoc
+  xref: xref:cloud:clusters:data-service/storage-engines.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

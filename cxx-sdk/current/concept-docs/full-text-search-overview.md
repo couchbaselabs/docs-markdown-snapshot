@@ -1,8 +1,9 @@
 ---
 title: Search
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/concept-docs/pages/full-text-search-overview.adoc
-pubDate: 2026-04-11T05:05:55.612Z
-link: xref:cxx-sdk:concept-docs:full-text-search-overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/concept-docs/pages/full-text-search-overview.adoc
+  xref: xref:cxx-sdk:concept-docs:full-text-search-overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

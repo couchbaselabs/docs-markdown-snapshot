@@ -2,9 +2,10 @@
 title: Data Operations
 description: Key Value (KV) or data service offers the simplest way to retrieve
   or mutate data where the key is known.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:go-sdk:howtos:kv-operations.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/kv-operations.adoc
+  xref: xref:go-sdk:howtos:kv-operations.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

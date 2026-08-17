@@ -1,9 +1,10 @@
 ---
 title: Modify a Paid Cluster
 description: Review, modify, and rename Couchbase Capella clusters.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/modify-database.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cloud:clusters:modify-database.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/modify-database.adoc
+  xref: xref:cloud:clusters:modify-database.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

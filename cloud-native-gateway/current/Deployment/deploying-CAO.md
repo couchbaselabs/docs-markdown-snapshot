@@ -3,9 +3,10 @@ title: Deploying with Couchbase Kubernetes Operator
 description: How to deploy Cloud Native Gateway as a sidecar alongside Couchbase
   Server pods using the CouchbaseKubernetes Operator in Kubernetes and
   OpenShift.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/Deployment/pages/deploying-CAO.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:Deployment:deploying-CAO.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/Deployment/pages/deploying-CAO.adoc
+  xref: xref:cloud-native-gateway:Deployment:deploying-CAO.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

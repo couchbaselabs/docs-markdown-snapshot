@@ -2,9 +2,10 @@
 title: Encryption-at-Rest API
 description: The encryption-at-rest API lets you encrypt audit, configuration,
   logging, and bucket data when written to disk.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/encryption-at-rest.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:rest-api:security/encryption-at-rest/encryption-at-rest.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/encryption-at-rest.adoc
+  xref: xref:server:rest-api:security/encryption-at-rest/encryption-at-rest.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Node.js Client.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.5@nodejs-sdk:project-docs:sdk-release-notes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/project-docs/pages/sdk-release-notes.adoc
+  xref: xref:4.5@nodejs-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

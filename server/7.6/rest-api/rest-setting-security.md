@@ -2,9 +2,10 @@
 title: Configure On-the-Wire Security
 description: Establish and retrieve cluster-wide settings for the use of
   encryption and cipher-suites.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-setting-security.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:rest-api:rest-setting-security.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-setting-security.adoc
+  xref: xref:7.6@server:rest-api:rest-setting-security.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

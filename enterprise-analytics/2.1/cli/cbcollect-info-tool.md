@@ -2,9 +2,10 @@
 title: cbcollect_info
 description: The <code class="cmd">cbcollect_info</code> tool provides detailed
   statistics for a specific node.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/cbcollect-info-tool.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:2.1@enterprise-analytics:cli:cbcollect-info-tool.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/cbcollect-info-tool.adoc
+  xref: xref:2.1@enterprise-analytics:cli:cbcollect-info-tool.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

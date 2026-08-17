@@ -1,9 +1,10 @@
 ---
 title: Full Installation of the C&#43;&#43; SDK
 description: Installation instructions for the Couchbase C&#43;&#43; Client.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cxx-sdk:project-docs:sdk-full-installation.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/sdk-full-installation.adoc
+  xref: xref:cxx-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

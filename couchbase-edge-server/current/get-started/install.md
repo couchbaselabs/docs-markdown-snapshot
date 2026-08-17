@@ -1,9 +1,10 @@
 ---
 title: Install and Verify
 description: Install Couchbase Edge Server for use in your applications.
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/get-started/pages/install.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:couchbase-edge-server:get-started:install.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/get-started/pages/install.adoc
+  xref: xref:couchbase-edge-server:get-started:install.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

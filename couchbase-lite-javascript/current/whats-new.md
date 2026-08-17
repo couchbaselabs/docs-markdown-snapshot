@@ -1,9 +1,10 @@
 ---
 title: New In 1.0
 description: Couchbase Lite for JavaScript -- What's new in the latest release
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/whats-new.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:couchbase-lite-javascript::whats-new.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/whats-new.adoc
+  xref: xref:couchbase-lite-javascript::whats-new.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

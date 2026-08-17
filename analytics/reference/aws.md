@@ -1,9 +1,10 @@
 ---
 title: Amazon Web Services (AWS)
 description: Capella Analytics supports deploying clusters onto Amazon Web Services (AWS).
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/reference/pages/aws.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:analytics:reference:aws.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/reference/pages/aws.adoc
+  xref: xref:analytics:reference:aws.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

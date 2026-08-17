@@ -2,9 +2,10 @@
 title: Date Functions
 description: SQL++ date functions return the system clock value or manipulate
   the datetime values, which are represented as a string or an integer.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/datefun.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:server:n1ql:n1ql-language-reference/datefun.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/datefun.adoc
+  xref: xref:server:n1ql:n1ql-language-reference/datefun.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

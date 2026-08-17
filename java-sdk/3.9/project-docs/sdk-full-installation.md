@@ -1,9 +1,10 @@
 ---
 title: Full Installation
 description: Installation instructions for the Couchbase Java Client.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-08-13T05:04:50.295Z
-link: xref:3.9@java-sdk:project-docs:sdk-full-installation.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/project-docs/pages/sdk-full-installation.adoc
+  xref: xref:3.9@java-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

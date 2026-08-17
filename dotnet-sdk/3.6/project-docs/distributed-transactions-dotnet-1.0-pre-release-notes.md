@@ -3,9 +3,10 @@ title: Couchbase Distributed ACID Transactions for .NET SDK Pre-release Archive
   Release Notes
 description: Historic release notes archive for the 1.0 pre-GA (Alpha &amp;
   Beta) Couchbase .NET Distributed ACID Transactions Releases.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/project-docs/pages/distributed-transactions-dotnet-1.0-pre-release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.6@dotnet-sdk:project-docs:distributed-transactions-dotnet-1.0-pre-release-notes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/project-docs/pages/distributed-transactions-dotnet-1.0-pre-release-notes.adoc
+  xref: xref:3.6@dotnet-sdk:project-docs:distributed-transactions-dotnet-1.0-pre-release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

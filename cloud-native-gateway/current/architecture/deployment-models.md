@@ -3,9 +3,10 @@ title: Deployment Models
 description: Cloud Native Gateway supports sidecar, standalone, and internal
   Capella deployment models, each suited to different infrastructure and
   operational requirements.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/architecture/pages/deployment-models.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:architecture:deployment-models.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/architecture/pages/deployment-models.adoc
+  xref: xref:cloud-native-gateway:architecture:deployment-models.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

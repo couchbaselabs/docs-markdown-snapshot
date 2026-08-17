@@ -2,9 +2,10 @@
 title: DELETE Statements
 description: This topic describes how you use <code>DELETE</code> statements to
   delete objects from a standalone collection.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_dml_delete.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:2.1@enterprise-analytics:sqlpp:5_dml_delete.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_dml_delete.adoc
+  xref: xref:2.1@enterprise-analytics:sqlpp:5_dml_delete.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

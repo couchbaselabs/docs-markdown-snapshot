@@ -2,9 +2,10 @@
 title: Version Vectors
 description: Couchbase Lite 4.0 -- Version Vectors -- Document versioning and
   conflict resolution
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/version-vectors.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.0@couchbase-lite:objc:version-vectors.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/version-vectors.adoc
+  xref: xref:4.0@couchbase-lite:objc:version-vectors.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -3,9 +3,10 @@ title: On-the-Wire Security
 description: To support secure communications between nodes, clusters, and
   clients, Couchbase Server provides interfaces for the configuration of
   on-the-wire security.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/on-the-wire-security.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:learn:security/on-the-wire-security.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/on-the-wire-security.adoc
+  xref: xref:7.6@server:learn:security/on-the-wire-security.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

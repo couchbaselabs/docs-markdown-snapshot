@@ -1,9 +1,10 @@
 ---
 title: Eventing&#8201;&#8212;&#8201;Server Compatibility
 description: How Sync Gateway works with Couchbase Server's Eventing feature
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/server-compatibility/pages/server-compatibility-eventing.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:sync-gateway:server-compatibility:server-compatibility-eventing.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/server-compatibility/pages/server-compatibility-eventing.adoc
+  xref: xref:sync-gateway:server-compatibility:server-compatibility-eventing.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,9 +1,10 @@
 ---
 title: Perform an Immediate Backup
 description: The Backup Service REST API allows an immediate backup to be triggered.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/backup-trigger-backup.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:rest-api:backup-trigger-backup.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/backup-trigger-backup.adoc
+  xref: xref:7.6@server:rest-api:backup-trigger-backup.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

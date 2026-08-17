@@ -1,8 +1,9 @@
 ---
 title: Prerequisites and System Requirements
-editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/prerequisite-and-setup.adoc
-pubDate: 2026-04-11T05:05:55.612Z
-link: xref:2.8@operator::prerequisite-and-setup.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/prerequisite-and-setup.adoc
+  xref: xref:2.8@operator::prerequisite-and-setup.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

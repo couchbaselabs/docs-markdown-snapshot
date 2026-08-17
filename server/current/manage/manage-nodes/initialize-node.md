@@ -2,9 +2,10 @@
 title: Initialize a Node
 description: A new Couchbase Server node can be <em>initialized</em>, to
   establish node-specific paths for local storage.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/initialize-node.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:manage:manage-nodes/initialize-node.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/initialize-node.adoc
+  xref: xref:server:manage:manage-nodes/initialize-node.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -76,7 +77,7 @@ To initialize a node with the REST API, use the `POST /nodes/self/controller/set
 
 curl  -u Administrator:password -v -X POST \
   http://10.142.181.103:8091/nodes/self/controller/settings \
-  -d 'data_path=%2Fopt%2Fcouchbase%2Fvar%2Flib%2Fcouchbase%2Fdata&' \
+  -d 'path=%2Fopt%2Fcouchbase%2Fvar%2Flib%2Fcouchbase%2Fdata&' \
   -d 'index_path=%2Fopt%2Fcouchbase%2Fvar%2Flib%2Fcouchbase%2Fidata&' \
   -d 'cbas_path=%2Fopt%2Fcouchbase%2Fvar%2Flib%2Fcouchbase%2Fadata&' \
   -d 'eventing_path=%2Fopt%2Fcouchbase%2Fvar%2Flib%2Fcouchbase%2Fedata&' \

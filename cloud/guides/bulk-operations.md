@@ -1,9 +1,10 @@
 ---
 title: Work with Documents in Bulk
 description: How to perform bulk CRUD operations with a command line tool or an SDK.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/bulk-operations.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud:guides:bulk-operations.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/bulk-operations.adoc
+  xref: xref:cloud:guides:bulk-operations.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Search API
 description: The Search API supports the creation and management of indexes for
   <em>Full Text Search</em>.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-fts.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:rest-api:rest-fts.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-fts.adoc
+  xref: xref:server:rest-api:rest-fts.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

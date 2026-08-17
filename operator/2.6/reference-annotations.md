@@ -1,8 +1,9 @@
 ---
 title: Annotation Documentation
-editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/reference-annotations.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:2.6@operator::reference-annotations.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/reference-annotations.adoc
+  xref: xref:2.6@operator::reference-annotations.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

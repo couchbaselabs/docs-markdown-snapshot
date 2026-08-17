@@ -2,9 +2,10 @@
 title: About App Endpoints
 description: Learn about App Endpoints, how they work, and how to configure them
   in Couchbase Capella.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/about-app-endpoints.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:app-services::app-endpoints/about-app-endpoints.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/about-app-endpoints.adoc
+  xref: xref:app-services::app-endpoints/about-app-endpoints.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

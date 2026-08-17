@@ -1,9 +1,10 @@
 ---
 title: XDCR Metrics
 description: A list of the metrics provided by XDCR.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/metrics-reference/pages/xdcr-metrics.adoc
-pubDate: 2026-08-13T05:04:50.295Z
-link: xref:cloud:metrics-reference:xdcr-metrics.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/metrics-reference/pages/xdcr-metrics.adoc
+  xref: xref:cloud:metrics-reference:xdcr-metrics.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,9 +1,10 @@
 ---
 title: Concepts Guides
 description: A discursive look at the features exposed by the Couchbase Java SDK.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/concepts.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:3.11@kotlin-sdk:concept-docs:concepts.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/concepts.adoc
+  xref: xref:3.11@kotlin-sdk:concept-docs:concepts.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

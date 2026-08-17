@@ -2,9 +2,10 @@
 title: Status and Events
 description: Cluster status and important system events can be retrieved by
   means of the REST API.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-status-and-events-overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:2.0@enterprise-analytics:reference:rest-status-and-events-overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-status-and-events-overview.adoc
+  xref: xref:2.0@enterprise-analytics:reference:rest-status-and-events-overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

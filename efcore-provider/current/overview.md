@@ -2,9 +2,10 @@
 title: Couchbase EFCore Provider
 description: This database provider allows Entity Framework Core to be used with
   Couchbase Database.
-editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:efcore-provider::overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/overview.adoc
+  xref: xref:efcore-provider::overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

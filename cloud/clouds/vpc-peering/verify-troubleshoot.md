@@ -2,9 +2,10 @@
 title: Verify VPC Peering Connectivity
 description: Use the procedures on this page to verify that a VPC peering
   connection is working correctly and help troubleshoot connectivity issues.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/verify-troubleshoot.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cloud:clouds:vpc-peering/verify-troubleshoot.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/verify-troubleshoot.adoc
+  xref: xref:cloud:clouds:vpc-peering/verify-troubleshoot.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

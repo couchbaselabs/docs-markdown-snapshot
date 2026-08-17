@@ -1,9 +1,10 @@
 ---
 title: Glossary
 description: Couchbase-specific terms you'll need to understand to develop with the SDK.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/ref/pages/glossary.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.6@nodejs-sdk:ref:glossary.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/ref/pages/glossary.adoc
+  xref: xref:4.6@nodejs-sdk:ref:glossary.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

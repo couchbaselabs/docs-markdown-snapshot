@@ -1,8 +1,9 @@
 ---
 title: Using Couchbase Transactions
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:3.7@ruby-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+  xref: xref:3.7@ruby-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

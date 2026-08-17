@@ -2,9 +2,10 @@
 title: Perform Hard Failover
 description: Hard failover allows a node to be removed from a cluster
   reactively, because the node has become unresponsive or unstable.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/failover-hard.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:manage:manage-nodes/failover-hard.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/failover-hard.adoc
+  xref: xref:server:manage:manage-nodes/failover-hard.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

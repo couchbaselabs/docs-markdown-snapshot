@@ -1,9 +1,10 @@
 ---
 title: Integrate a Custom Built Listener
 description: Couchbase Lite database peer-to-peer sync- integrate a custom built listener
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/csharp/pages/p2psync-custom.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:3.4@couchbase-lite:csharp:p2psync-custom.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/csharp/pages/p2psync-custom.adoc
+  xref: xref:3.4@couchbase-lite:csharp:p2psync-custom.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

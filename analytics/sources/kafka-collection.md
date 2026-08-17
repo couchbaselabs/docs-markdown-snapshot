@@ -1,8 +1,9 @@
 ---
 title: Create a Kafka Pipeline Collection
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/kafka-collection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:analytics:sources:kafka-collection.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/kafka-collection.adoc
+  xref: xref:analytics:sources:kafka-collection.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

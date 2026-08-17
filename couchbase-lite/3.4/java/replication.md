@@ -2,9 +2,10 @@
 title: Data Sync using Sync Gateway
 description: Couchbase Lite for Java -- Synchronizing data changes between local
   and remote databases using Sync Gateway
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/java/pages/replication.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:3.4@couchbase-lite:java:replication.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/java/pages/replication.adoc
+  xref: xref:3.4@couchbase-lite:java:replication.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Window Functions
 description: Window functions are used to compute cumulative, moving, and
   reporting aggregations.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/windowfun.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.2@server:n1ql:n1ql-language-reference/windowfun.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/windowfun.adoc
+  xref: xref:7.2@server:n1ql:n1ql-language-reference/windowfun.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

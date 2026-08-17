@@ -2,9 +2,10 @@
 title: Transcoders and Non-JSON Documents
 description: The Node SDK supports common JSON, string and binary document
   requirements out-of-the-box.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:4.4@nodejs-sdk:howtos:transcoders-nonjson.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/transcoders-nonjson.adoc
+  xref: xref:4.4@nodejs-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

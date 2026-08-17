@@ -2,9 +2,10 @@
 title: About RAG Blueprints
 description: Learn about common RAG (Retrieval-Augmented Generation) patterns
   and how they are applied in knowledge bases, support, and search.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/rag-patterns.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:agent-tutorial:rag-patterns.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/rag-patterns.adoc
+  xref: xref:ai:agent-tutorial:rag-patterns.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

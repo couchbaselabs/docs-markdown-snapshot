@@ -1,9 +1,10 @@
 ---
 title: Audit Event Reference
 description: A complete list of the events audited by Couchbase Server.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/audit-event-reference/pages/audit-event-reference.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:audit-event-reference:audit-event-reference.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/audit-event-reference/pages/audit-event-reference.adoc
+  xref: xref:server:audit-event-reference:audit-event-reference.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

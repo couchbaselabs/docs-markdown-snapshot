@@ -2,9 +2,10 @@
 title: Connection Errors
 description: Diagnosing and resolving common connection errors when applications
   connect to Cloud Native Gateway.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/troubleshooting/pages/connection-errors.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:troubleshooting:connection-errors.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/troubleshooting/pages/connection-errors.adoc
+  xref: xref:cloud-native-gateway:troubleshooting:connection-errors.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

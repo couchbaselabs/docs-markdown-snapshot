@@ -1,8 +1,9 @@
 ---
 title: Add a New Documentation Page
-editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/add-pages.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:home:contribute:add-pages.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/add-pages.adoc
+  xref: xref:home:contribute:add-pages.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

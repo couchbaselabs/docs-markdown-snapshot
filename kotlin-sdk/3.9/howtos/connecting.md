@@ -1,9 +1,10 @@
 ---
 title: Connecting
 description: Connecting to a Couchbase Server cluster and configuring client settings.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.9/modules/howtos/pages/connecting.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:3.9@kotlin-sdk:howtos:connecting.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.9/modules/howtos/pages/connecting.adoc
+  xref: xref:3.9@kotlin-sdk:howtos:connecting.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Intra-Cluster Replication
 description: Intra-cluster replication replicates data across the nodes of a
   cluster, by means of the <em>Database Change Protocol</em>.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/intra-cluster-replication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:learn:clusters-and-availability/intra-cluster-replication.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/intra-cluster-replication.adoc
+  xref: xref:server:learn:clusters-and-availability/intra-cluster-replication.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

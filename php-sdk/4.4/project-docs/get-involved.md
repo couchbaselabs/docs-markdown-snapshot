@@ -1,8 +1,9 @@
 ---
 title: Get Involved
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/project-docs/pages/get-involved.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.4@php-sdk:project-docs:get-involved.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/project-docs/pages/get-involved.adoc
+  xref: xref:4.4@php-sdk:project-docs:get-involved.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

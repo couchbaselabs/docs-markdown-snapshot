@@ -2,9 +2,10 @@
 title: Configure LLM Performance
 description: The AI Data Plane Model Service offers options to tweak the
   performance of your LLM.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/configure-llm-performance.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:build:model-service/configure-llm-performance.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/configure-llm-performance.adoc
+  xref: xref:ai:build:model-service/configure-llm-performance.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

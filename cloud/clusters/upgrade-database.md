@@ -2,9 +2,10 @@
 title: Upgrading a Cluster
 description: Maintenance jobs are scheduled to run upgrades on your cluster.
   Capella upgrades help provide a reliable service with the latest features.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/upgrade-database.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cloud:clusters:upgrade-database.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/upgrade-database.adoc
+  xref: xref:cloud:clusters:upgrade-database.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Integrating the Data API with Cloud Native Gateway
 description: How to integrate with the Data API served by Cloud Native Gateway,
   including authentication, document operations, and service passthrough.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/data-api/pages/integrating-data-api-cng.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:data-api:integrating-data-api-cng.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/data-api/pages/integrating-data-api-cng.adoc
+  xref: xref:cloud-native-gateway:data-api:integrating-data-api-cng.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

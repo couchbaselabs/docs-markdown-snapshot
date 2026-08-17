@@ -1,9 +1,10 @@
 ---
 title: Common Errors
 description: Common errors that occur during management of Couchbase Server.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/troubleshoot/common-errors.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:manage:troubleshoot/common-errors.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/troubleshoot/common-errors.adoc
+  xref: xref:7.2@server:manage:troubleshoot/common-errors.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

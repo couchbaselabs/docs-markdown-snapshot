@@ -2,9 +2,10 @@
 title: Search Response
 description: Full Text Search provides a <em>response object</em>, which
   contains detailed information on the results of the search.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-search-response.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:fts:fts-search-response.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-search-response.adoc
+  xref: xref:server:fts:fts-search-response.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Manage AWS Private Endpoints Using the Capella UI
 description: Configure and manage AWS private endpoints for App Services using
   the Capella UI.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/private-endpoints/app-services-private-endpoints-aws-ui.adoc
-pubDate: 2026-07-22T05:30:13.485Z
-link: xref:app-services::private-endpoints/app-services-private-endpoints-aws-ui.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/private-endpoints/app-services-private-endpoints-aws-ui.adoc
+  xref: xref:app-services::private-endpoints/app-services-private-endpoints-aws-ui.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

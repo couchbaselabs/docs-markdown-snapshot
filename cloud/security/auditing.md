@@ -2,9 +2,10 @@
 title: Audit Events
 description: Capella provides event auditing, whereby events are logged. Log
   files can be downloaded for inspection.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/auditing.adoc
-pubDate: 2026-06-18T06:06:41.045Z
-link: xref:cloud:security:auditing.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/auditing.adoc
+  xref: xref:cloud:security:auditing.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Configure Your Cluster
 description: Understand the different configuration options available to
   customize your Couchbase Capella cluster.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/databases.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:cloud:clusters:databases.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/databases.adoc
+  xref: xref:cloud:clusters:databases.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

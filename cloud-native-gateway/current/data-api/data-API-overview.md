@@ -3,9 +3,10 @@ title: About Data API
 description: The Data API is a RESTful HTTPS interface in Cloud Native Gateway
   for document operations and passthrough access to Query, Search, and
   Analytics.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/data-api/pages/data-API-overview.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:data-api:data-API-overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/data-api/pages/data-API-overview.adoc
+  xref: xref:cloud-native-gateway:data-api:data-API-overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

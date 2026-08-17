@@ -2,9 +2,10 @@
 title: Create a Search Vector Index with the Server Web Console
 description: Use a sample dataset to create a vector search index with the
   Couchbase Server Web Console.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-search/pages/create-vector-search-index-ui.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:vector-search:create-vector-search-index-ui.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-search/pages/create-vector-search-index-ui.adoc
+  xref: xref:server:vector-search:create-vector-search-index-ui.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

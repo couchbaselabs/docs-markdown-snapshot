@@ -3,9 +3,10 @@ title: Early Filters, Order, and Pagination
 description: When covering indexes and index pushdowns are not available, the
   Query Service may use early filtering, early ordering, and early pagination to
   improve the query response time.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/early-filters-and-pagination.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:learn:services-and-indexes/indexes/early-filters-and-pagination.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/early-filters-and-pagination.adoc
+  xref: xref:7.6@server:learn:services-and-indexes/indexes/early-filters-and-pagination.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

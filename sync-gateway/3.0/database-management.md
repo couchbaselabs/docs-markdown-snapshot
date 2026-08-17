@@ -2,9 +2,10 @@
 title: Database Management
 description: Describes the various database management functions available to
   maintain an efficient sync gateway database
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/database-management.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.0@sync-gateway::database-management.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/database-management.adoc
+  xref: xref:3.0@sync-gateway::database-management.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

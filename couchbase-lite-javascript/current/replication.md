@@ -2,9 +2,10 @@
 title: Data Sync using Sync Gateway
 description: Couchbase Lite JavaScript -- Synchronizing data changes between
   local and remote databases using Sync Gateway
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/replication.adoc
-pubDate: 2026-07-28T05:30:40.250Z
-link: xref:couchbase-lite-javascript::replication.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/replication.adoc
+  xref: xref:couchbase-lite-javascript::replication.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

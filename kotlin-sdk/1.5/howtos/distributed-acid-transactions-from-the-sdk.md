@@ -1,9 +1,10 @@
 ---
 title: Distributed Transactions from the Kotlin SDK
 description: Distributed ACID Transactions with JVM SDKs.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.5/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:1.5@kotlin-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.5/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+  xref: xref:1.5@kotlin-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
