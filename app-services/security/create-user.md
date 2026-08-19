@@ -2,7 +2,7 @@
 title: Create App Users
 description: Creating and editing App Users for a synchronized application using
   the Capella UI
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-19T04:43:28.923Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/security/create-user.adoc
   xref: xref:app-services::security/create-user.adoc[]
@@ -31,6 +31,8 @@ Users can also be assigned to zero or more roles. A user inherits the channel ac
 
 > [!IMPORTANT]
 > App Users are now organized at the collection level instead of at the bucket level.
+
+This page covers creating and managing local App Users. If you want to delegate authentication to an external identity provider instead (for example, Google or Azure AD), see [Set Up an Authentication Provider](set-up-authentication-provider.md).
 
 In this section, we'll show you how to create new users in App Services. Before you start, make sure you're logged on to your Capella instance as an administrator.
 
@@ -80,3 +82,4 @@ From the Edit App User page, you can perform the following actions:
 * [Create App Roles](create-app-role.md)
 * [Configure Access Control and Data Validation](../app-endpoints/access-control-data-validation.md)
 * [Add Security with Channels](channels.md)
+* [Set Up an Authentication Provider](set-up-authentication-provider.md)
