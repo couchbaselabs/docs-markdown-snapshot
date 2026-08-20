@@ -5,7 +5,7 @@ description: The Couchbase AI Data Plane provides you with the tools to create,
   environment. Choose between self-managed deployments for use with Couchbase
   Server Enterprise Edition or fully managed solutions integrated with Couchbase
   Capella.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-20T04:42:15.589Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/get-started/pages/intro.adoc
   xref: xref:ai:get-started:intro.adoc[]
@@ -56,7 +56,7 @@ Use AI Functions to summarize text, classify content, detect sentiment, explain 
 
 Couchbase MCP Server is a Model Context Protocol (MCP) server implementation that lets LLMs directly interact with data stored in Couchbase clusters through a rich set of tools.
 
-[Learn more](../../mcp-server/intro.md)
+[Learn more](#mcp-server:get-started:overview.adoc)
 
 ###  Data Processing Service
 
